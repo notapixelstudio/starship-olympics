@@ -36,3 +36,4 @@ func control(delta):
 	#	speed_multiplier = 3
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
+	

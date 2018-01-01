@@ -19,7 +19,7 @@ radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
 
-radius = 260.0
+radius = 500.0
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
@@ -44,7 +44,6 @@ editor/display_folded = true
 shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-editor/display_folded = true
 input_pickable = false
 collision_layer = 8
 collision_mask = 5

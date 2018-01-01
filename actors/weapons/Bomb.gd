@@ -18,7 +18,7 @@ var target = null
 var timeout = 0
 var autolocking_timeout = 0.1
 
-const LIFETIME = 1.5
+const LIFETIME = 0.5
 
 signal detonate
 var explosion
