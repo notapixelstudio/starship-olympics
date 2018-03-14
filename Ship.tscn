@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ship.gd" type="Script" id=1]
+[ext_resource path="res://Circle.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[node name="Ship" type="KinematicBody2D"]
+
+position = Vector2( 109.693, 210.2 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+velocity = Vector2( 6, 0 )
+color = Color( 0, 0, 0, 1 )
+player = "p1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Circle" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="Line2D" type="Line2D" parent="." index="2"]
+
+points = PoolVector2Array( 0, 0, 16, 0 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 1987387402
+sharp_limit = 2.0
+round_precision = 8
+
+
