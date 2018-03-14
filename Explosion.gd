@@ -10,4 +10,5 @@ func _ready():
 
 func _physics_process(delta):
 	shape.set_radius(radius)
+	$Circle.set_radius(radius+8) # the actual hitbox is smaller than the rendered circle
 	radius += 0.25

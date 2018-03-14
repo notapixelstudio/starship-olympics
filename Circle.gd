@@ -17,3 +17,8 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 		var angle_point = angle_from + i * (angle_to - angle_from) / nb_points - 90
 		points_arc.push_back(center + Vector2(cos(deg2rad(angle_point)), sin(deg2rad(angle_point))) * radius)
 	draw_polygon(points_arc, colors)
+	
+func set_radius(value):
+	radius = value
+	update()
+	
