@@ -20,7 +20,6 @@ func _ready():
 	$Circle.radius = RADIUS
 	width = get_viewport().size.x
 	height = get_viewport().size.y
-	print(width)
 
 func _physics_process(delta):
 	left = Input.is_action_pressed(player+'_left')
@@ -40,12 +39,12 @@ func _physics_process(delta):
 	# wrap
 	if position.x > width:
 		position.x -= width
-	elif position.x <= width:
+	elif position.x <= 0:
 		position.x += width
 		
 	if position.y > height:
 		position.y -= height
-	elif position.y <= height:
+	elif position.y <= 0:
 		position.y += height
 	
 	# dash recover
