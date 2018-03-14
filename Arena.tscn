@@ -1,13 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Arena.gd" type="Script" id=1]
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Explosion.gd" type="Script" id=3]
-
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 10.0
 
 [node name="Arena" type="Node" index="0"]
 
@@ -24,27 +18,5 @@ color = Color( 0.164819, 0.5625, 0.189674, 1 )
 
 color = Color( 0.777344, 0.196426, 0.196426, 1 )
 player = "p2"
-
-[node name="Explosion" type="Area2D" parent="." index="2"]
-
-position = Vector2( 410.673, 216.684 )
-input_pickable = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = -1.0
-angular_damp = -1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 3 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Linear" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion" index="0"]
-
-shape = SubResource( 1 )
-
-[connection signal="body_entered" from="Explosion" to="." method="_on_Explosion_body_entered"]
 
 

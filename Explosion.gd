@@ -1,6 +1,6 @@
-extends Area2D
+extends StaticBody2D
 
-var radius = 4
+var radius
 
 func _physics_process(delta):
 	$CollisionShape2D.shape.set_radius(radius)

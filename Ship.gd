@@ -64,6 +64,6 @@ func steer(rad):
 func fire():
 	var bomb = Bomb.instance()
 	get_node('/root/Arena').add_child(bomb)
-	bomb.position = position
 	bomb.velocity = velocity*(-1)
+	bomb.position = position + bomb.velocity*1.5 # this moves the bomb away from the ship
 	
