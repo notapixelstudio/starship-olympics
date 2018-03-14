@@ -39,7 +39,11 @@ func _physics_process(delta):
 		speed_multiplier = 3
 		fire()
 		
-	move_and_collide(velocity * speed_multiplier)
+	var collision = move_and_collide(velocity * speed_multiplier)
+	
+	# check collision with deadly entities
+	if collision != null and collision.collider.get('deadly'):
+		queue_free()
 	
 	# wrap
 	if position.x > width:

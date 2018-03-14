@@ -2,6 +2,7 @@ extends StaticBody2D
 
 var radius = 4
 var shape
+const deadly = true
 
 func _ready():
 	shape = CircleShape2D.new()
