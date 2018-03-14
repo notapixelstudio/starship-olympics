@@ -5,7 +5,7 @@ export var velocity = Vector2(10, 0)
 var Explosion
 
 func _ready():
-	Explosion = load('res://Explosion.tscn')
+	Explosion = preload('res://Explosion.tscn')
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity)
@@ -17,4 +17,4 @@ func detonate():
 	var explosion = Explosion.instance()
 	get_node('/root/Arena').add_child(explosion)
 	explosion.position = position
-	explosion.radius = 4
+	
