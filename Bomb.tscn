@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Bomb.gd" type="Script" id=1]
+[ext_resource path="res://Circle.tscn" type="PackedScene" id=2]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -22,6 +23,10 @@ velocity = Vector2( 10, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
+
+[node name="Circle" parent="." index="1" instance=ExtResource( 2 )]
+
+color = Color( 0.457031, 0.396831, 0.396831, 1 )
 
 

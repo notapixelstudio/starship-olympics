@@ -15,11 +15,15 @@ var height
 export var color = Color(0,0,0)
 export var player = 'p1'
 
+var Bomb
+
 func _ready():
 	$Circle.color = color
 	$Circle.radius = RADIUS
 	width = get_viewport().size.x
 	height = get_viewport().size.y
+	
+	Bomb = load('res://Bomb.tscn')
 
 func _physics_process(delta):
 	left = Input.is_action_pressed(player+'_left')
@@ -33,6 +37,7 @@ func _physics_process(delta):
 	# dash
 	if Input.is_action_just_pressed(player+'_act'):
 		speed_multiplier = 3
+		fire()
 		
 	move_and_collide(velocity * speed_multiplier)
 	
@@ -54,3 +59,11 @@ func _physics_process(delta):
 func steer(rad):
 	velocity = velocity.rotated(rad)
 	rotate(rad)
+	
+# Fire a bomb
+func fire():
+	var bomb = Bomb.instance()
+	get_node('/root/Arena').add_child(bomb)
+	bomb.position = position
+	bomb.velocity = velocity*(-1)
+	
