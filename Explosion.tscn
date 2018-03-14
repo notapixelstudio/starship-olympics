@@ -1,19 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends StaticBody2D
-
-var radius = 4
-var shape
-
-func _ready():
-	shape = CircleShape2D.new()
-	$CollisionShape2D.set_shape(shape)
-
-func _physics_process(delta):
-	shape.set_radius(radius)
-	radius += 0.25"
+[ext_resource path="res://Explosion.gd" type="Script" id=1]
 
 [node name="Explosion" type="StaticBody2D" index="0"]
 
@@ -25,7 +12,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script = SubResource( 1 )
+script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Linear" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]

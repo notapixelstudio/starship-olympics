@@ -1,11 +1,12 @@
 extends StaticBody2D
 
 var radius = 4
+var shape
 
 func _ready():
-	# create a collision shape on ready, in order to have a
-	different instance of it in each explosion
+	shape = CircleShape2D.new()
+	$CollisionShape2D.set_shape(shape)
 
 func _physics_process(delta):
-	$CollisionShape2D.shape.set_radius(radius)
+	shape.set_radius(radius)
 	radius += 0.25
