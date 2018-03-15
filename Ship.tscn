@@ -7,36 +7,37 @@
 custom_solver_bias = 0.0
 radius = 16.0
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 
 offsets = PoolRealArray( 0, 0.0179949, 0.177378, 0.66838 )
 colors = PoolColorArray( 1, 1, 1, 0.77498, 0.521505, 0.966356, 1, 0.80498, 0.241273, 0.578066, 1, 0.218152, 0.137097, 0.43372, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=3]
 
 flags = 4
-gradient = SubResource( 3 )
+gradient = SubResource( 2 )
 width = 2048
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=4]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.021267, 0.31667 ), -0.982902, -0.982902, 0, 0, Vector2( 1, 0.115879 ), 0.117166, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
+[sub_resource type="CurveTexture" id=5]
 
 flags = 4
 width = 2048
-curve = SubResource( 5 )
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=6]
 
 render_priority = 0
 trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
+emission_shape = 4
+emission_point_count = 1
+flag_align_y = true
 flag_rotate_y = false
 flag_disable_z = true
 spread = 45.0
@@ -56,12 +57,12 @@ tangential_accel = 0.0
 tangential_accel_random = 0.0
 damping = 0.0
 damping_random = 0.0
-angle = 45.0
-angle_random = 1.0
+angle = 0.0
+angle_random = 0.0
 scale = 22.0
-scale_random = 0.2
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 4 )
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -69,7 +70,7 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity", "Hue Variation", "Resource", "Scale" ]
+_sections_unfolded = [ "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Resource", "Scale", "Trail" ]
 
 [node name="Ship" type="KinematicBody2D" index="0"]
 
@@ -105,12 +106,12 @@ preprocess = 0.0
 speed_scale = 1.0
 explosiveness = 0.0
 randomness = 0.0
-fixed_fps = 60
+fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 6 )
 texture = null
 normal_map = null
 h_frames = 1
