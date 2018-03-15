@@ -24,6 +24,6 @@ func _physics_process(delta):
 func detonate():
 	queue_free()
 	var explosion = Explosion.instance()
-	get_node('/root/Arena').add_child(explosion)
+	get_node('/root/Arena/Battlefield').add_child(explosion)
 	explosion.position = position
 	
