@@ -9,8 +9,6 @@ const ROTATION_SPEED = 0.1
 var count = 0
 signal died 
 
-const RADIUS = 16
-
 var width
 var height
 
@@ -20,9 +18,8 @@ export var player = 'p1'
 var Bomb
 
 func _ready():
+	$Sprite.set_texture(load('res://'+player+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
-	$Circle.color = color
-	$Circle.radius = RADIUS
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	
