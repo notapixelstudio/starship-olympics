@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Explosion.gd" type="Script" id=1]
+[ext_resource path="res://Circle.tscn" type="PackedScene" id=2]
 
 [node name="Explosion" type="StaticBody2D"]
 
@@ -15,6 +16,11 @@ bounce = 0.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Linear" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="Circle" parent="." index="0" instance=ExtResource( 2 )]
+
+radius = 4
+color = Color( 1, 0.914062, 0, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 
