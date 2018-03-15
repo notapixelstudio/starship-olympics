@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Ship.gd" type="Script" id=1]
 
@@ -6,6 +6,70 @@
 
 custom_solver_bias = 0.0
 radius = 16.0
+
+[sub_resource type="Gradient" id=3]
+
+offsets = PoolRealArray( 0, 0.0179949, 0.177378, 0.66838 )
+colors = PoolColorArray( 1, 1, 1, 0.77498, 0.521505, 0.966356, 1, 0.80498, 0.241273, 0.578066, 1, 0.218152, 0.137097, 0.43372, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+
+flags = 4
+gradient = SubResource( 3 )
+width = 2048
+
+[sub_resource type="Curve" id=5]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.021267, 0.31667 ), -0.982902, -0.982902, 0, 0, Vector2( 1, 0.115879 ), 0.117166, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+
+flags = 4
+width = 2048
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 45.0
+angle_random = 1.0
+scale = 22.0
+scale_random = 0.2
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Gravity", "Hue Variation", "Resource", "Scale" ]
 
 [node name="Ship" type="KinematicBody2D" index="0"]
 
@@ -20,13 +84,37 @@ velocity = Vector2( 6, 0 )
 color = Color( 0, 0, 0, 1 )
 player = "p1"
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
-scale = Vector2( 0.5, 0.5 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="Particles2D" type="Particles2D" parent="." index="2"]
+
+show_behind_parent = true
+position = Vector2( -32, 0 )
+emitting = true
+amount = 512
+lifetime = 5.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 60
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 2 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
 
