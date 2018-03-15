@@ -6,6 +6,8 @@ export var velocity = Vector2(6,0)
 var speed_multiplier = 1
 
 const ROTATION_SPEED = 0.1
+var count = 0
+signal died 
 
 const RADIUS = 16
 
@@ -18,6 +20,7 @@ export var player = 'p1'
 var Bomb
 
 func _ready():
+	connect("died", get_node('/root/Arena'), "update_score")
 	$Circle.color = color
 	$Circle.radius = RADIUS
 	width = get_viewport().size.x
@@ -43,6 +46,7 @@ func _physics_process(delta):
 	
 	# check collision with deadly entities
 	if collision != null and collision.collider.get('deadly'):
+		emit_signal("died", player)
 		queue_free()
 	
 	# wrap
