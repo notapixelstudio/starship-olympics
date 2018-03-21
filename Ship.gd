@@ -35,8 +35,11 @@ func _physics_process(delta):
 		steer(ROTATION_SPEED)
 		
 	# dash
-	if Input.is_action_just_pressed(player+'_act'):
+	if Input.is_action_just_pressed(player+'_dash'):
 		speed_multiplier = 3
+		
+	# fire
+	if Input.is_action_just_pressed(player+'_fire'):
 		fire()
 		
 	var collision = move_and_collide(velocity * speed_multiplier)
@@ -68,7 +71,7 @@ func steer(rad):
 # Fire a bomb
 func fire():
 	var bomb = Bomb.instance()
-	get_node('/root/Arena/Battlefield').add_child(bomb)
 	bomb.velocity = velocity*(-1)
-	bomb.position = position + bomb.velocity*3 # this moves the bomb away from the ship
+	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
+	get_node('/root/Arena/Battlefield').add_child(bomb)
 	
