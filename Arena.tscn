@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Arena.gd" type="Script" id=1]
 [ext_resource path="res://Label1.gd" type="Script" id=2]
 [ext_resource path="res://hud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Camera.gd" type="Script" id=4]
+[ext_resource path="res://instruction.gd" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [node name="Arena" type="Node" index="0"]
 
@@ -13,7 +15,6 @@ script = ExtResource( 1 )
 
 [node name="HUD" type="CanvasLayer" parent="." index="1"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -64,7 +65,7 @@ lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 2 )
 
-[node name="hud" parent="." index="2" instance=ExtResource( 3 )]
+[node name="HUD2" parent="." index="2" instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 
@@ -93,14 +94,24 @@ editor_draw_drag_margin = false
 script = ExtResource( 4 )
 _sections_unfolded = [ "Limit" ]
 
-[node name="TextureButton" type="TextureButton" parent="." index="4"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="btn_instructions" type="TextureButton" parent="CanvasLayer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1014.0
-margin_bottom = 604.0
+margin_left = -1.0
+margin_top = 3.0
+margin_right = 1279.0
+margin_bottom = 724.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -112,5 +123,14 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/btn_instructions" index="0"]
+
+position = Vector2( 608.313, 364.433 )
+texture = ExtResource( 6 )
 
 

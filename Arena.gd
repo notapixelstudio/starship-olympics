@@ -1,8 +1,12 @@
+# script arena
+
 extends Node
 
 var Ship
 var width
 var height
+
+signal score_current_changed
 
 func _ready():
 	set_process_input(true)
@@ -35,7 +39,7 @@ func reset():
 	ship1.player = 'p1'
 	ship1.position.x = 32
 	ship1.position.y = height/2
-	ship1.velocity = Vector2(6,0)
+	ship1.velocity = Vector2(8,0)
 	ship1.color = Color(0,1,0)
 	get_node('/root/Arena/Battlefield').add_child(ship1)
 	
@@ -44,7 +48,11 @@ func reset():
 	ship2.rotation = PI
 	ship2.position.x = width-32
 	ship2.position.y = height/2
-	ship2.velocity = Vector2(-6,0)
+	ship2.velocity = Vector2(-8,0)
 	ship2.color = Color(1,0,0)
 	get_node('/root/Arena/Battlefield').add_child(ship2)
 	
+func _set_score_current(new_value):
+	count = new_value
+	emit_signal("score_current_changed")
+	pass
