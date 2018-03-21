@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 var left
 var right
 export var velocity = Vector2(6,0)
@@ -16,6 +17,7 @@ export var color = Color(0,0,0)
 export var player = 'p1'
 
 var Bomb
+
 
 func _ready():
 	$Sprite.set_texture(load('res://'+player+'_ship.png'))
