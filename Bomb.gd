@@ -29,3 +29,6 @@ func detonate():
 	
 func on_explosion_entered():
 	detonate()
+	
+func on_trail_entered():
+	detonate()

@@ -85,6 +85,9 @@ func fire():
 func on_explosion_entered():
 	die()
 	
+func on_trail_entered():
+	die()
+	
 func die():
 	emit_signal("died", player)
 	queue_free()
