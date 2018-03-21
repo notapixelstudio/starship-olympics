@@ -12,6 +12,9 @@ signal died
 var width
 var height
 
+var fire_cooldown = 0
+var dash_cooldown = 0
+
 export var color = Color(0,0,0)
 export var player = 'p1'
 
@@ -37,14 +40,20 @@ func _physics_process(delta):
 		steer(ROTATION_SPEED)
 		
 	# dash
-	if Input.is_action_just_pressed(player+'_dash'):
+	if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
 		speed_multiplier = 3
 		$TrailParticles.emitting = true
+		dash_cooldown = 1
 		
 	# fire
-	if Input.is_action_just_pressed(player+'_fire'):
+	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
 		fire()
+		fire_cooldown = 0.1
 		
+	# cooldown
+	fire_cooldown -= delta
+	dash_cooldown -= delta
+	
 	move_and_collide(velocity * speed_multiplier)
 	
 	# wrap
