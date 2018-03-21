@@ -6,9 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 16.0
 
-[node name="Bomb" type="KinematicBody2D" index="0"]
+[node name="Bomb" type="KinematicBody2D"]
 
 position = Vector2( 220, 96.9999 )
 input_pickable = false
@@ -27,6 +27,7 @@ shape = SubResource( 1 )
 
 [node name="Circle" parent="." index="1" instance=ExtResource( 2 )]
 
+radius = 16
 color = Color( 0.457031, 0.396831, 0.396831, 1 )
 
 
