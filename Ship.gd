@@ -45,12 +45,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed(player+'_fire'):
 		fire()
 		
-	var collision = move_and_collide(velocity * speed_multiplier)
-	
-	# check collision with deadly entities
-	if collision != null and collision.collider.get('deadly'):
-		emit_signal("died", player)
-		queue_free()
+	move_and_collide(velocity * speed_multiplier)
 	
 	# wrap
 	if position.x > width:
@@ -86,4 +81,11 @@ func fire():
 	bomb.velocity = velocity*(-1)
 	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
 	get_node('/root/Arena/Battlefield').add_child(bomb)
+	
+func on_explosion_entered():
+	die()
+	
+func die():
+	emit_signal("died", player)
+	queue_free()
 	

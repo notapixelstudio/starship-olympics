@@ -27,3 +27,5 @@ func detonate():
 	get_node('/root/Arena/Battlefield').add_child(explosion)
 	explosion.position = position
 	
+func on_explosion_entered():
+	detonate()

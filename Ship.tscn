@@ -72,18 +72,18 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Resource", "Scale", "Trail" ]
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=7]
 
 min_value = -360.0
 max_value = 360.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=13]
+[sub_resource type="CurveTexture" id=8]
 
 flags = 4
 width = 2048
-curve = SubResource( 12 )
+curve = SubResource( 7 )
 
 [sub_resource type="Curve" id=9]
 
@@ -126,7 +126,7 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-angle_curve = SubResource( 13 )
+angle_curve = SubResource( 8 )
 scale = 22.0
 scale_random = 0.0
 scale_curve = SubResource( 10 )
@@ -140,7 +140,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 
-[node name="Ship" type="KinematicBody2D" index="0"]
+[node name="Ship" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1

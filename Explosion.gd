@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 var radius = 4
 var shape
@@ -8,9 +8,6 @@ const growT = 0.4
 const stillT = 1
 const shrinkT = 0.2
 const maxRadius = 60
-
-
-const deadly = true
 
 func _ready():
 	shape = CircleShape2D.new()
@@ -37,3 +34,9 @@ func _physics_process(delta):
 		
 func sigmoid(x, dt, amp):
   return x/dt*amp
+
+
+func _on_Explosion_body_entered(body):
+	if body.has_method('on_explosion_entered'):
+		body.on_explosion_entered()
+		
