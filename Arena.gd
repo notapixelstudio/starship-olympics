@@ -53,6 +53,6 @@ func reset():
 	get_node('/root/Arena/Battlefield').add_child(ship2)
 	
 func _set_score_current(new_value):
-	count = new_value
+#	count = new_value
 	emit_signal("score_current_changed")
 	pass

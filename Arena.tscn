@@ -1,13 +1,28 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Arena.gd" type="Script" id=1]
-[ext_resource path="res://Label1.gd" type="Script" id=2]
-[ext_resource path="res://hud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Camera.gd" type="Script" id=4]
-[ext_resource path="res://instruction.gd" type="Script" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://fonts/score_font.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Label1.gd" type="Script" id=3]
+[ext_resource path="res://hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Camera.gd" type="Script" id=5]
 
-[node name="Arena" type="Node" index="0"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 35
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 35
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Resource", "Settings" ]
+
+[node name="Arena" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -23,25 +38,31 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="Label1" type="Label" parent="HUD" index="0"]
 
-anchor_left = 0.0
+anchor_left = 0.12
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 55.0
-margin_top = 22.0
-margin_right = 95.0
-margin_bottom = 36.0
+anchor_right = 0.12
+anchor_bottom = 0.02
+margin_left = -13.6
+margin_top = 40.0
+margin_right = 89.4
+margin_bottom = 75.6
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
 text = "0"
-percent_visible = 1.0
+valign = 1
+percent_visible = 0.347
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 2 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Margin", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
 [node name="Label2" type="Label" parent="HUD" index="1"]
 
@@ -49,23 +70,28 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 854.0
-margin_top = 37.0
-margin_right = 894.0
-margin_bottom = 51.0
+margin_left = 1085.0
+margin_top = 53.0
+margin_right = 1154.0
+margin_bottom = 88.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "0"
+align = 2
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 2 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts", "custom_styles" ]
 
-[node name="HUD2" parent="." index="2" instance=ExtResource( 3 )]
+[node name="HUD2" parent="." index="2" instance=ExtResource( 4 )]
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 
@@ -91,46 +117,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 4 )
-_sections_unfolded = [ "Limit" ]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="btn_instructions" type="TextureButton" parent="CanvasLayer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -1.0
-margin_top = 3.0
-margin_right = 1279.0
-margin_bottom = 724.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/btn_instructions" index="0"]
-
-position = Vector2( 608.313, 364.433 )
-texture = ExtResource( 6 )
+_sections_unfolded = [ "Limit" ]
 
 

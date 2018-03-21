@@ -2,7 +2,7 @@
 
 extends Label
 
-var count setget _set_score_current
+var count
 
 func _ready():
 	count = 0
