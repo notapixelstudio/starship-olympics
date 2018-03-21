@@ -15,6 +15,7 @@ func _ready():
 func _physics_process(delta):
 	var collision = move_and_collide(velocity)
 	if collision != null:
+		print(collision.collider.name)
 		detonate()
 		
 	# remove bomb if far outside the screen
