@@ -7,7 +7,8 @@ var speed_multiplier = 1
 
 const ROTATION_SPEED = 0.1
 var count = 0
-signal died 
+signal died
+var alive = true 
 
 var width
 var height
@@ -98,6 +99,9 @@ func on_trail_entered():
 	die()
 	
 func die():
-	emit_signal("died", player)
-	queue_free()
+	if alive:
+		alive = false
+		emit_signal("died", player)
+		queue_free()
+	
 	
