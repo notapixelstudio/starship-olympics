@@ -1,0 +1,186 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://screens/basic_screen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://screens/credit_screen/credit_screen.gd" type="Script" id=2]
+[ext_resource path="res://screens/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=4]
+[ext_resource path="res://screens/logo_complete.png" type="Texture" id=5]
+
+[node name="CreditScreen" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+_sections_unfolded = [ "Rect", "Theme" ]
+next_scene = "res://screens/main_screen/main_screen.tscn"
+
+[node name="Transition" parent="." index="1"]
+
+layer = 2
+
+[node name="ColorRect" parent="Transition" index="0"]
+
+margin_left = -1280.0
+margin_top = 0.0
+margin_right = -80.0
+margin_bottom = 600.0
+
+[node name="Background" type="TextureRect" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -17.0
+margin_top = -16.0
+margin_right = 1046.0
+margin_bottom = 616.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Tools" type="VBoxContainer" parent="." index="3"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 2.0
+margin_top = 350.0
+margin_right = 798.0
+margin_bottom = 459.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 4 )
+alignment = 0
+_sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
+
+[node name="Label" type="Label" parent="Tools" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 796.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 4 )
+text = "an open source game made with:"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="List" type="HBoxContainer" parent="Tools" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 24.0
+margin_right = 796.0
+margin_bottom = 109.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+alignment = 0
+_sections_unfolded = [ "Size Flags", "Theme" ]
+
+[node name="Tool" type="Label" parent="Tools/List" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 30.0
+margin_right = 796.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource( 4 )
+text = "godot engine"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "Theme" ]
+
+[node name="Label2" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 417.0
+margin_top = 462.0
+margin_right = 525.0
+margin_bottom = 486.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 4 )
+text = "Music by "
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="Credits" type="Sprite" parent="." index="5"]
+
+position = Vector2( 314.176, 14.6781 )
+scale = Vector2( 1.17592, 1.03117 )
+texture = ExtResource( 5 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 389.0
+margin_top = 288.0
+margin_right = 429.0
+margin_bottom = 328.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 4 )
+alignment = 0
+_sections_unfolded = [ "Theme" ]
+
+

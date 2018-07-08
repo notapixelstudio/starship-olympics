@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://addons/net.kivano.fsm/content/FSMDebugger/UIHolder2D/UIHolder2D.gd" type="Script" id=1]
+
+[node name="UIHolder2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+followingSpatialPath = NodePath("..")
+shift = Vector3( 0, 0, 0 )
+automaticallyStartFollow = true
+cameraDistScaling = false
+minScale = 0.25
+minScaleAtCamDst = 50
+maxScale = 1.0
+maxScaleAtCamDst = 5
+
+
