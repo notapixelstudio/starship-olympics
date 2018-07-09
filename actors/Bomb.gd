@@ -3,13 +3,13 @@ extends KinematicBody2D
 
 export var velocity = Vector2(18, 0)
 
-var Explosion
+var Explosion = preload('res://actors/Explosion.tscn')
 var width
 var height
 const CLEANUP_DISTANCE = 100
 
+	
 func _ready():
-	Explosion = preload('res://Explosion.tscn')
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 

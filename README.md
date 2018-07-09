@@ -1,4 +1,4 @@
-# fast-start-template-godot
+# SuperStarFighter
 Scenes and actors (with basic animation and FSM) templates. Menu>Game>Victory. Written in Godot
 
 ## Content
@@ -10,7 +10,6 @@ This template is composed by:
   - utilities: contains fonts and frames
 - characters: Folder where there are the scenes of a generic character, will handle FSM and animation
 - screens: Folder containing generic scenes, all inherited from basic_screen
-
 
 ## Resources used and aknowledgement
 
