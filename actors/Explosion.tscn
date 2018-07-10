@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://actors/Circle.tscn" type="PackedScene" id=2]
+
+
+
+
+[node name="Explosion" type="Area2D"]
+
+input_pickable = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
+
+[node name="Circle" parent="." index="0" instance=ExtResource( 2 )]
+
+radius = 4
+color = Color( 1, 0.914062, 0, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+[connection signal="body_entered" from="." to="." method="_on_Explosion_body_entered"]
+
+

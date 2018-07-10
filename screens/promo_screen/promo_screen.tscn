@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://screens/basic_screen.tscn" type="PackedScene" id=1]
+
+[node name="PromoScreen" index="0" instance=ExtResource( 1 )]
+
+next_scene = "res://screens/main_screen/main_screen.tscn"
+
+[node name="ColorRect" parent="Transition" index="0"]
+
+margin_left = -1280.0
+margin_top = 0.0
+margin_right = -134.0
+margin_bottom = 600.0
+
+
