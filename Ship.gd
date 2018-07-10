@@ -1,3 +1,4 @@
+# script ship
 extends KinematicBody2D
 
 var left

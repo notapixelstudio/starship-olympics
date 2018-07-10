@@ -1,6 +1,7 @@
+# script bomb
 extends KinematicBody2D
 
-export var velocity = Vector2(10, 0)
+export var velocity = Vector2(18, 0)
 
 var Explosion
 var width

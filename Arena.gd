@@ -1,8 +1,12 @@
+# script arena
+
 extends Node
 
 var Ship
 var width
 var height
+
+signal score_current_changed
 
 func _ready():
 	set_process_input(true)
@@ -48,3 +52,7 @@ func reset():
 	ship2.color = Color(1,0,0)
 	get_node('/root/Arena/Battlefield').add_child(ship2)
 	
+func _set_score_current(new_value):
+#	count = new_value
+	emit_signal("score_current_changed")
+	pass
