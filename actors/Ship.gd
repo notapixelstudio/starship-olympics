@@ -28,19 +28,19 @@ func _ready():
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x
 	height = get_viewport().size.y
-	
+
 	Bomb = preload('res://actors/Bomb.tscn')
 	Trail = preload('res://actors/Trail.tscn')
 
 func _physics_process(delta):
 	left = Input.is_action_pressed(player+'_left')
 	right = Input.is_action_pressed(player+'_right')
-	
+
 	if left and not right:
 		steer(-ROTATION_SPEED)
 	elif right and not left:
 		steer(ROTATION_SPEED)
-		
+
 	# dash
 	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
 	#	speed_multiplier = 3
