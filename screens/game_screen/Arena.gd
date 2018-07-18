@@ -5,7 +5,7 @@ extends Node
 var Ship
 var width
 var height
-const MAX_WIN = 1
+const MAX_WIN = 5
 
 signal score_current_changed
 
@@ -13,6 +13,8 @@ func _ready():
 	Ship = preload('res://actors/Ship.tscn')
 	width = get_viewport().size.x
 	height = get_viewport().size.y
+	global.scores["p1"] = 0
+	global.scores["p2"] = 0
 	reset()
 
 func update_score(dead_player, killer_player):
@@ -21,7 +23,7 @@ func update_score(dead_player, killer_player):
 	if dead_player != killer_player:
 		global.scores[killer_player] += 1
 		if global.scores[killer_player] >= MAX_WIN:
-			get_tree().change_scene_to('res://screens/gameover_screen/GameOver.tscn')
+			get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
 		updated_label = get_node('HUD/'+killer_player+'_score')
 		updated_label.set_text(str(global.scores[killer_player]))
 	else:

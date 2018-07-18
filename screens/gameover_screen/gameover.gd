@@ -1,5 +1,9 @@
 extends "res://screens/basic_screen.gd"
 
+func _input(event):
+	if event is InputEventMouseButton:
+		change_scene()
+
 func _ready():
 	var winner
 	var win_count = 0
@@ -15,4 +19,5 @@ func _ready():
 	
 	print(winner)
 	$winner.set_text("The winner is " + str(winner) + " with "+ str(win_count) +" points ")
+	
 	
