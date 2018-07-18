@@ -45,18 +45,18 @@ func reset():
 		
 	var ship1 = Ship.instance()
 	ship1.player = 'p1'
-	ship1.position.x = 32
+	ship1.rotation = PI
+	ship1.position.x = width-32
 	ship1.position.y = height/2
-	ship1.velocity = Vector2(8,0)
+	ship1.velocity = Vector2(-8,0)
 	ship1.color = Color(0,1,0)
 	$Battlefield.add_child(ship1)
 	
 	var ship2 = Ship.instance()
 	ship2.player = 'p2'
-	ship2.rotation = PI
-	ship2.position.x = width-32
+	ship2.position.x = 32
 	ship2.position.y = height/2
-	ship2.velocity = Vector2(-8,0)
+	ship2.velocity = Vector2(8,0)
 	ship2.color = Color(1,0,0)
 	$Battlefield.add_child(ship2)
 	
