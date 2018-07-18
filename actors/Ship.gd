@@ -42,10 +42,10 @@ func _physics_process(delta):
 		steer(ROTATION_SPEED)
 		
 	# dash
-	if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
-		speed_multiplier = 3
-		$TrailParticles.emitting = true
-		dash_cooldown = 1
+	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
+	#	speed_multiplier = 3
+	#	$TrailParticles.emitting = true
+	#	dash_cooldown = 1
 		
 	# fire
 	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
