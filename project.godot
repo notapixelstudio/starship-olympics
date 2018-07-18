@@ -14,6 +14,10 @@ config/name="superstarfighter"
 run/main_scene="res://screens/game_screen/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://globals/global.gd"
+
 [display]
 
 window/size/width=1280
@@ -44,5 +48,6 @@ p2_dash=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

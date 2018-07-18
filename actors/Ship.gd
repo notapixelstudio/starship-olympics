@@ -89,20 +89,21 @@ func steer(rad):
 # Fire a bomb
 func fire():
 	var bomb = Bomb.instance()
+	bomb.player_id = player
 	bomb.velocity = velocity*(-1)
 	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
 	get_node('/root/Arena/Battlefield').add_child(bomb)
 	
-func on_explosion_entered():
-	die()
+func on_explosion_entered(explosion_player):
+	die(explosion_player)
 	
 func on_trail_entered():
-	die()
+	die() # FIXME trail player id
 	
-func die():
+func die(killer_player):
 	if alive:
 		alive = false
-		emit_signal("died", player)
+		emit_signal("died", player, killer_player)
 		queue_free()
 	
 	

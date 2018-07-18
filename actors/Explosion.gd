@@ -3,6 +3,8 @@ extends Area2D
 var radius = 4
 var shape
 
+var player_id
+
 var t = 0
 const growT = 0.4
 const stillT = 1
@@ -38,5 +40,5 @@ func sigmoid(x, dt, amp):
 
 func _on_Explosion_body_entered(body):
 	if body.has_method('on_explosion_entered'):
-		body.on_explosion_entered()
+		body.on_explosion_entered(player_id)
 		
