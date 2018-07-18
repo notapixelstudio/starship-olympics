@@ -7,9 +7,9 @@ var player_id
 
 var t = 0
 const growT = 0.4
-const stillT = 1
+const stillT = 1.5
 const shrinkT = 0.2
-const maxRadius = 60
+const maxRadius = 80
 
 func _ready():
 	shape = CircleShape2D.new()

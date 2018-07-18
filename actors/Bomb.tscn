@@ -3,9 +3,6 @@
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/Circle.tscn" type="PackedScene" id=2]
 
-
-
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -84,7 +81,7 @@ shape = SubResource( 1 )
 
 [node name="Circle" parent="." index="1" instance=ExtResource( 2 )]
 
-radius = 16
+radius = 20
 color = Color( 0.557901, 0.69484, 0.988281, 1 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
