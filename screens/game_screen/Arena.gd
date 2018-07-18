@@ -9,7 +9,6 @@ var height
 signal score_current_changed
 
 func _ready():
-	set_process_input(true)
 	Ship = preload('res://actors/Ship.tscn')
 	width = get_viewport().size.x
 	height = get_viewport().size.y
