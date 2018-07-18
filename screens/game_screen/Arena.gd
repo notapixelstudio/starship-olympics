@@ -15,13 +15,17 @@ func _ready():
 	height = get_viewport().size.y
 	reset()
 
-func update_score(player):
+func update_score(dead_player, killer_player):
 	var updated_label
-	if player == 'p1':
-		updated_label = get_node('/root/Arena/HUD/Label2')
-	else: 
-		updated_label = get_node('/root/Arena/HUD/Label1')
-	updated_label.update_score()
+	
+	if dead_player != killer_player:
+		global.scores[killer_player] += 1
+		updated_label = get_node('HUD/'+killer_player+'_score')
+		updated_label.set_text(str(global.scores[killer_player]))
+	else:
+		global.scores[dead_player] = max(0, global.scores[dead_player]-1)
+		updated_label = get_node('HUD/'+dead_player+'_score')
+		updated_label.set_text(str(global.scores[dead_player]))
 
 func _on_Explosion_body_entered(body):
 	print('boom')

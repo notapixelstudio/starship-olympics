@@ -3,6 +3,8 @@ extends KinematicBody2D
 
 export var velocity = Vector2(18, 0)
 
+var player_id
+
 var Explosion = preload('res://actors/Explosion.tscn')
 var width
 var height
@@ -26,9 +28,10 @@ func detonate():
 	queue_free()
 	var explosion = Explosion.instance()
 	get_node('/root/Arena/Battlefield').add_child(explosion)
+	explosion.player_id = player_id
 	explosion.position = position
 	
-func on_explosion_entered():
+func on_explosion_entered(player_id):
 	detonate()
 	
 func on_trail_entered():
