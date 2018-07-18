@@ -5,6 +5,7 @@ extends Node
 var Ship
 var width
 var height
+const MAX_WIN = 1
 
 signal score_current_changed
 
@@ -19,13 +20,15 @@ func update_score(dead_player, killer_player):
 	
 	if dead_player != killer_player:
 		global.scores[killer_player] += 1
+		if global.scores[killer_player] >= MAX_WIN:
+			get_tree().change_scene_to('res://screens/gameover_screen/GameOver.tscn')
 		updated_label = get_node('HUD/'+killer_player+'_score')
 		updated_label.set_text(str(global.scores[killer_player]))
 	else:
 		global.scores[dead_player] = max(0, global.scores[dead_player]-1)
 		updated_label = get_node('HUD/'+dead_player+'_score')
 		updated_label.set_text(str(global.scores[dead_player]))
-
+	
 func _on_Explosion_body_entered(body):
 	print('boom')
 

@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://screens/game_screen/Arena.gd" type="Script" id=1]
-[ext_resource path="res://screens/game_screen/fonts/score_font.TTF" type="DynamicFontData" id=2]
-[ext_resource path="res://screens/game_screen/hud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://screens/game_screen/Camera.gd" type="Script" id=4]
+[ext_resource path="res://screens/basic_screen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://screens/game_screen/fonts/score_font.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://screens/game_screen/hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://screens/game_screen/Camera.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 35
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
@@ -18,16 +19,18 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 35
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
 
 [node name="Arena" type="Node"]
 
 script = ExtResource( 1 )
 
-[node name="Battlefield" type="Node" parent="." index="0"]
+[node name="BasicScreen" parent="." index="0" instance=ExtResource( 2 )]
 
-[node name="HUD" type="CanvasLayer" parent="." index="1"]
+[node name="Battlefield" type="Node" parent="." index="1"]
+
+[node name="HUD" type="CanvasLayer" parent="." index="2"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -35,7 +38,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="p1_score" type="Label" parent="HUD" index="0"]
+[node name="Label1" type="Label" parent="HUD" index="0"]
 
 anchor_left = 0.12
 anchor_top = 0.0
@@ -62,7 +65,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="p2_score" type="Label" parent="HUD" index="1"]
+[node name="Label2" type="Label" parent="HUD" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -88,9 +91,9 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts", "custom_styles" ]
 
-[node name="HUD2" parent="." index="2" instance=ExtResource( 3 )]
+[node name="HUD2" parent="." index="3" instance=ExtResource( 4 )]
 
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
 
 anchor_mode = 0
 rotating = false
@@ -114,7 +117,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Limit" ]
 
 
