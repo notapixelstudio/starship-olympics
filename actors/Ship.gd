@@ -24,7 +24,7 @@ var Bomb
 var Trail
 
 func _ready():
-	$Sprite.set_texture(load('res://'+player+'_ship.png'))
+	$Sprite.set_texture(load('res://actors/'+player+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x
 	height = get_viewport().size.y
