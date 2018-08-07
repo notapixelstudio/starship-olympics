@@ -3,6 +3,7 @@
 extends Node
 
 var Ship
+var AIShip
 var width
 var height
 const MAX_WIN = 5
@@ -11,6 +12,7 @@ signal score_current_changed
 
 func _ready():
 	Ship = preload('res://actors/Ship.tscn')
+	AIShip = preload('res://actors/AIShip.tscn')
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	global.scores["p1"] = 0
@@ -52,13 +54,14 @@ func reset():
 	ship1.color = Color(0,1,0)
 	$Battlefield.add_child(ship1)
 	
-	var ship2 = Ship.instance()
+	var ship2 = AIShip.instance()
 	ship2.player = 'p2'
 	ship2.position.x = 32
 	ship2.position.y = height/2
 	ship2.velocity = Vector2(8,0)
 	ship2.color = Color(1,0,0)
 	$Battlefield.add_child(ship2)
+	ship2.target=ship1
 	
 func _set_score_current(new_value):
 #	count = new_value

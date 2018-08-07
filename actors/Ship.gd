@@ -32,7 +32,7 @@ func _ready():
 	Bomb = preload('res://actors/Bomb.tscn')
 	Trail = preload('res://actors/Trail.tscn')
 
-func _physics_process(delta):
+func control(delta):
 	left = Input.is_action_pressed(player+'_left')
 	right = Input.is_action_pressed(player+'_right')
 
@@ -46,7 +46,14 @@ func _physics_process(delta):
 	#	speed_multiplier = 3
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
-		
+	
+
+func _physics_process(delta):
+	if not alive:
+		return
+	control(delta)
+	move_and_collide(velocity * speed_multiplier)
+
 	# fire
 	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
 		fire()
@@ -55,8 +62,6 @@ func _physics_process(delta):
 	# cooldown
 	fire_cooldown -= delta
 	dash_cooldown -= delta
-	
-	move_and_collide(velocity * speed_multiplier)
 	
 	# wrap
 	if position.x > width:
