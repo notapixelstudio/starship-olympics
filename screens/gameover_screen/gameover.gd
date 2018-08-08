@@ -8,6 +8,7 @@ func _input(event):
 		change_scene()
 
 func _ready():
+	print("here")
 	var winner
 	var win_count = 0
 	var other 

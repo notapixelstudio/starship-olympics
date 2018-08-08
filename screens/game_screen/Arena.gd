@@ -6,7 +6,7 @@ var Ship
 var AIShip
 var width
 var height
-const MAX_WIN = 5
+const MAX_WIN = 3
 
 signal score_current_changed
 
@@ -25,6 +25,7 @@ func update_score(dead_player, killer_player):
 	if dead_player != killer_player:
 		global.scores[killer_player] += 1
 		if global.scores[killer_player] >= MAX_WIN:
+			print("changing scene")
 			get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
 		updated_label = get_node('HUD/'+killer_player+'_score')
 		updated_label.set_text(str(global.scores[killer_player]))

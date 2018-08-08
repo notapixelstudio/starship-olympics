@@ -42,12 +42,11 @@ func control(delta):
 			fire_cooldown = 0.4
 			fire()
 	elif dist >= 1.3 and dist<= 1.8:
-		steer(sign(direction.x) * ROTATION_SPEED)
-		last_rotation = ROTATION_SPEED
-		pause_mode=true
-	elif dist < 1 and dist > 0.4 :
-		steer(sign(direction.x) * ROTATION_SPEED)
-		last_rotation= -ROTATION_SPEED
+		last_rotation = -sign(direction.y) * ROTATION_SPEED
+		steer(last_rotation)
+	elif  dist > 0.4 and dist < 1 :
+		last_rotation = -sign(direction.y) * ROTATION_SPEED
+		steer(last_rotation)
 	
 	var steer_away = avoid_collision(100)
 	if steer_away:
