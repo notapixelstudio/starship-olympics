@@ -22,8 +22,10 @@ export var player = 'p1'
 
 var Bomb
 var Trail
-
+var enemy # TODO: Maybe delete this
+var direction1 = Vector2()
 func _ready():
+	enemy = get_parent().get_node("AIShip")
 	$Sprite.set_texture(load('res://actors/'+player+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x
@@ -35,7 +37,9 @@ func _ready():
 func control(delta):
 	left = Input.is_action_pressed(player+'_left')
 	right = Input.is_action_pressed(player+'_right')
-
+	
+	if Input.is_action_just_pressed('ui_select'):
+		alive = false
 	if left and not right:
 		steer(-ROTATION_SPEED)
 	elif right and not left:
@@ -58,7 +62,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
 		fire()
 		fire_cooldown = 0.1
-		
 	# cooldown
 	fire_cooldown -= delta
 	dash_cooldown -= delta
@@ -84,7 +87,7 @@ func _physics_process(delta):
 		$TrailParticles.emitting = false
 		
 	# dash recover
-	speed_multiplier = max(1, speed_multiplier - 0.1)
+	#speed_multiplier = max(1, speed_multiplier - 0.1)
 	
 # Steer the ship _rad_ radians clockwise.
 func steer(rad):
