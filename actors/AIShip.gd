@@ -6,6 +6,7 @@ var last_rotation = ROTATION_SPEED
 var counter = 0
 var paused = false
 var aim = false
+var danger = false
 
 func _ready():
 	var circle = CircleShape2D.new()
@@ -29,29 +30,33 @@ func control(delta):
 		
 		#var current_dir = Vector2(0, 0).rotated($Line2D.global_rotation)
 		#$Line2D.global_rotation = current_dir.linear_interpolate(direction, 100 * delta).angle()
-
 	if not target.alive:
 		self.alive  = false
 		print(direction)
 		print(dist)
 		#$Debug.text = str(direction.x)
-		pass
-	if dist > 1.8 :
-		if aim and fire_cooldown <= 0 :
-			print(distance(-self.velocity.normalized(), direction))
-			fire_cooldown = 0.4
-			fire()
-	elif dist >= 1.3 and dist<= 1.8:
-		last_rotation = -sign(direction.y) * ROTATION_SPEED
-		steer(last_rotation)
-	elif  dist > 0.4 and dist < 1 :
-		last_rotation = -sign(direction.y) * ROTATION_SPEED
-		steer(last_rotation)
-	
+		
 	var steer_away = avoid_collision(100)
 	if steer_away:
 		print(steer_away)
-		steer(-last_rotation)
+		steer(last_rotation)
+		danger = true
+	else:
+		danger = false
+	if not danger:
+		if dist > 1.8 :
+			if aim and fire_cooldown <= 0 :
+				print(distance(-self.velocity.normalized(), direction))
+				fire_cooldown = 0.4
+				fire()
+		elif dist >= 1.3 and dist<= 1.8:
+			last_rotation = -sign(direction.y) * ROTATION_SPEED
+			steer(last_rotation)
+		elif  dist > 0.4 and dist < 1 :
+			last_rotation = -sign(direction.y) * ROTATION_SPEED
+			steer(last_rotation)
+	
+
 	move_and_collide(direction*speed_multiplier*delta) 
 
 func distance(n1,n2):
@@ -60,7 +65,7 @@ func distance(n1,n2):
 	
 func avoid_collision(proximity):
 	for node in get_node('/root/Arena/Battlefield').get_children():
-		if node.has_method("_on_Explosion_body_entered"):
+		if not node.is_in_group("players"):
 			var dist = distance(self.position, node.position)
 			if dist <= proximity:
 				print("STEER AWAY")
