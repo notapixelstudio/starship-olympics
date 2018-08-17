@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=4]
 [ext_resource path="res://screens/main_screen/Button.gd" type="Script" id=5]
 
-[node name="MainScreen" instance=ExtResource( 1 )]
+[node name="MainScreen" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 next_scene = "res://screens/game_screen/Game.tscn"

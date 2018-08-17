@@ -22,10 +22,8 @@ export var player = 'p1'
 
 var Bomb
 var Trail
-var enemy # TODO: Maybe delete this
-var direction1 = Vector2()
+
 func _ready():
-	enemy = get_parent().get_node("AIShip")
 	$Sprite.set_texture(load('res://actors/'+player+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x

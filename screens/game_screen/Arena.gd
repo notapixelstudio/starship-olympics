@@ -21,7 +21,6 @@ func _ready():
 
 func update_score(dead_player, killer_player):
 	var updated_label
-	
 	if dead_player != killer_player:
 		global.scores[killer_player] += 1
 		if global.scores[killer_player] >= MAX_WIN:
@@ -34,6 +33,13 @@ func update_score(dead_player, killer_player):
 		updated_label = get_node('HUD/'+dead_player+'_score')
 		updated_label.set_text(str(global.scores[dead_player]))
 	
+	# after X seconds let's stop all
+	var players = get_tree().get_nodes_in_group("players")
+	yield(get_tree().create_timer(1.0), "timeout")
+	for p in players:
+		var wr = weakref(p)
+		if wr.get_ref():
+			p.alive=false
 func _on_Explosion_body_entered(body):
 	print('boom')
 
