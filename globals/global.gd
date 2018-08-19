@@ -1,7 +1,8 @@
 extends Node
 
+const LIVES = 3
+var enemy = "CPU"
 var scores = {
-	'p1': 0,
-	'p2': 0
+	'p1': LIVES,
+	'p2': LIVES
 }
-

@@ -3,43 +3,33 @@
 extends Node
 
 var Ship
-var AIShip
+var player2
 var width
 var height
-const MAX_WIN = 3
 
-signal score_current_changed
 
 func _ready():
 	Ship = preload('res://actors/Ship.tscn')
-	AIShip = preload('res://actors/AIShip.tscn')
+	if global.enemy == "CPU":
+		player2 = preload('res://actors/AIShip.tscn')
+	else:
+		player2 = Ship
 	width = get_viewport().size.x
 	height = get_viewport().size.y
-	global.scores["p1"] = 0
-	global.scores["p2"] = 0
 	reset()
 
 func update_score(dead_player, killer_player):
 	var updated_label
-	if dead_player != killer_player:
-		global.scores[killer_player] += 1
-		if global.scores[killer_player] >= MAX_WIN:
-			print("changing scene")
+	global.scores[dead_player] -= 1
+	print(dead_player + str(global.scores))
+	if global.scores[dead_player] <= 0:
 			get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
-		updated_label = get_node('HUD/'+killer_player+'_score')
-		updated_label.set_text(str(global.scores[killer_player]))
-	else:
-		global.scores[dead_player] = max(0, global.scores[dead_player]-1)
-		updated_label = get_node('HUD/'+dead_player+'_score')
-		updated_label.set_text(str(global.scores[dead_player]))
-	
 	# after X seconds let's stop all
-	var players = get_tree().get_nodes_in_group("players")
-	yield(get_tree().create_timer(1.0), "timeout")
-	for p in players:
-		var wr = weakref(p)
-		if wr.get_ref():
-			p.alive=false
+	yield(get_tree().create_timer(2.0), "timeout")
+	$Popup.update_score()
+	$Popup.show()
+	get_tree().paused=true
+
 func _on_Explosion_body_entered(body):
 	print('boom')
 
@@ -61,7 +51,7 @@ func reset():
 	ship1.color = Color(0,1,0)
 	$Battlefield.add_child(ship1)
 	
-	var ship2 = AIShip.instance()
+	var ship2 = player2.instance()
 	ship2.player = 'p2'
 	ship2.position.x = 32
 	ship2.position.y = height/2
@@ -69,8 +59,4 @@ func reset():
 	ship2.color = Color(1,0,0)
 	$Battlefield.add_child(ship2)
 	ship2.target=ship1
-	
-func _set_score_current(new_value):
-#	count = new_value
-	emit_signal("score_current_changed")
-	pass
+	ship1.target = ship2

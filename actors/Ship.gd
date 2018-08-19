@@ -22,6 +22,7 @@ export var player = 'p1'
 
 var Bomb
 var Trail
+var target = null
 
 func _ready():
 	$Sprite.set_texture(load('res://actors/'+player+'_ship.png'))
