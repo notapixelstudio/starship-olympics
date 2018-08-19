@@ -22,6 +22,10 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 script = ExtResource( 1 )
+_sections_unfolded = [ "Material" ]
+left = "A"
+right = "D"
+fire = "1"
 species = "MANTIACS"
 side = -1
 
@@ -32,9 +36,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 4.0
-margin_top = 138.0
+margin_top = 88.0
 margin_right = 257.0
-margin_bottom = 582.0
+margin_bottom = 632.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -50,7 +54,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 253.0
-margin_bottom = 300.0
+margin_bottom = 400.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -66,10 +70,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 76.0
-margin_right = 176.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 100, 300 )
+margin_left = 61.0
+margin_right = 191.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 130, 400 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -79,21 +83,22 @@ size_flags_vertical = 1
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 5
-_sections_unfolded = [ "Focus", "Grow Direction", "Margin", "Rect" ]
+_sections_unfolded = [ "Focus", "Grow Direction", "Margin", "Material", "Rect" ]
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/MarginContainer/TextureRect" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 11.0
-margin_top = 202.0
-margin_right = 103.0
-margin_bottom = 294.0
+use_parent_material = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.0
+margin_top = -85.0
+margin_right = 45.0
+margin_bottom = -1.0
 rect_min_size = Vector2( 30, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -104,12 +109,12 @@ size_flags_vertical = 1
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 5
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Material", "Rect", "Size Flags" ]
 
 [node name="Controls" parent="VBoxContainer" index="1" instance=ExtResource( 4 )]
 
-margin_top = 304.0
+margin_top = 404.0
 margin_right = 253.0
-margin_bottom = 444.0
+margin_bottom = 544.0
 
 
