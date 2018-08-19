@@ -2,10 +2,11 @@ extends "res://screens/basic_screen.gd"
 
 func _ready():
 	$VBoxContainer.add_constant_override("separation", 6)
+	$VBoxContainer/Start.grab_focus()
 	"""
 	if !bgm_creation.is_playing():
 		bgm_creation.play()
-	$Start.grab_focus()
+	
 	"""
 	pass
 

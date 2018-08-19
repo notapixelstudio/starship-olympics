@@ -31,10 +31,10 @@ func control(delta):
 		
 		#var current_dir = Vector2(0, 0).rotated($Line2D.global_rotation)
 		#$Line2D.global_rotation = current_dir.linear_interpolate(direction, 100 * delta).angle()
-	if not target.alive:
-		self.alive  = false
-		print(direction)
-		print(dist)
+	#if not target.alive:
+	#	self.alive  = false
+	#	print(direction)
+#		print(dist)
 		#$Debug.text = str(direction.x)
 	# Priority to avoid danger
 	var steer_away = avoid_collision(MAX_DANGER)
@@ -47,7 +47,7 @@ func control(delta):
 	if dist > 1.8 :
 		if aim and fire_cooldown <= 0 :
 			print(distance(-self.velocity.normalized(), direction))
-			fire_cooldown = 0.4
+			fire_cooldown = 0.2
 			fire()
 	elif dist >= 1.3 and dist<= 1.8:
 		last_rotation = -sign(direction.y) * ROTATION_SPEED
