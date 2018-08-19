@@ -2,9 +2,6 @@
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
 
-
-
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -143,7 +140,9 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 
-[node name="Ship" type="KinematicBody2D" index="0"]
+[node name="Ship" type="KinematicBody2D" index="0" groups=[
+"players",
+]]
 
 input_pickable = false
 collision_layer = 1

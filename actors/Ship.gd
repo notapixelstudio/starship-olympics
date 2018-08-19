@@ -22,6 +22,7 @@ export var player = 'p1'
 
 var Bomb
 var Trail
+var target = null
 
 func _ready():
 	$Sprite.set_texture(load('res://actors/'+player+'_ship.png'))
@@ -32,10 +33,12 @@ func _ready():
 	Bomb = preload('res://actors/Bomb.tscn')
 	Trail = preload('res://actors/Trail.tscn')
 
-func _physics_process(delta):
+func control(delta):
 	left = Input.is_action_pressed(player+'_left')
 	right = Input.is_action_pressed(player+'_right')
-
+	
+	if Input.is_action_just_pressed('ui_select'):
+		alive = false
 	if left and not right:
 		steer(-ROTATION_SPEED)
 	elif right and not left:
@@ -46,17 +49,21 @@ func _physics_process(delta):
 	#	speed_multiplier = 3
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
-		
+	
+
+func _physics_process(delta):
+	if not alive:
+		return
+	control(delta)
+	move_and_collide(velocity * speed_multiplier)
+
 	# fire
 	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
 		fire()
 		fire_cooldown = 0.1
-		
 	# cooldown
 	fire_cooldown -= delta
 	dash_cooldown -= delta
-	
-	move_and_collide(velocity * speed_multiplier)
 	
 	# wrap
 	if position.x > width:
@@ -79,7 +86,7 @@ func _physics_process(delta):
 		$TrailParticles.emitting = false
 		
 	# dash recover
-	speed_multiplier = max(1, speed_multiplier - 0.1)
+	#speed_multiplier = max(1, speed_multiplier - 0.1)
 	
 # Steer the ship _rad_ radians clockwise.
 func steer(rad):

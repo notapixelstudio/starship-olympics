@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://screens/main_screen/Species.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/shader.tres" type="Material" id=2]
+[ext_resource path="res://assets/character_red_1.png" type="Texture" id=3]
+
+[node name="RoboLords" instance=ExtResource( 1 )]
+
+_sections_unfolded = [ "Material", "Rect" ]
+
+[node name="TextureRect" parent="VBoxContainer/MarginContainer" index="0"]
+
+material = ExtResource( 2 )
+texture = ExtResource( 3 )
+
+
