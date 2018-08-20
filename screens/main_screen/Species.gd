@@ -20,6 +20,19 @@ func _ready():
 	$VBoxContainer/Controls/CenterContainer/Fire/Panel/Key.text = fire
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
+	
+	ship.position = Vector2(50,50)
+	ship.scale = Vector2(0.5, 0.5)
+	if side < 0:
+		
+		ship.texture = load("res://actors/p2_ship.png")
+		ship.get_node("AnimationPlayer").play("standby")
+	else:
+		ship.flip_h = true
+		ship.texture = load("res://actors/p1_ship.png")
+		ship.get_node("AnimationPlayer").play_backwards("standby")
+	
 	pass
 
 #func _process(delta):
