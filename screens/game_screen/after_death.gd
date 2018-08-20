@@ -11,7 +11,7 @@ func _ready():
 	for player in global.scores:
 		var container = preload("res://screens/game_screen/PlayerContainerDeath.tscn").instance()
 		container.p_name = player
-		var i = load("res://actors/"+player+"_ship.png")
+		var i = load("res://actors/"+global.chosen_species[player]+"_ship.png")
 		for life in global.scores[player]:
 			var l = load("res://screens/game_screen/life_rect.tscn").instance()
 			l.set_texture(i)
