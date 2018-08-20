@@ -1,5 +1,4 @@
 # script arena
-
 extends Node
 
 var Ship
@@ -7,6 +6,8 @@ var player2
 var width
 var height
 
+var debug = false
+onready var DebugNode = get_node("DebugNode")
 
 func _ready():
 	Ship = preload('res://actors/Ship.tscn')
@@ -34,6 +35,11 @@ func _on_Explosion_body_entered(body):
 	print('boom')
 
 func _input(event):
+	var debug_pressed = event.is_action_pressed("debug")
+	if debug_pressed:
+		debug = not debug
+		DebugNode.visible = debug
+
 	if event.is_action_pressed('continue'):
 		reset()
 		

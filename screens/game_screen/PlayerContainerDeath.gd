@@ -20,7 +20,7 @@ func get_life_count():
 	
 func remove_life():
 	$NinePatchRect/HBoxContainer.remove_child($NinePatchRect/HBoxContainer.get_child(get_child_count()))
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	# Called every frame. Delta is time since last frame.
+	# Update game logic here.
+	$NinePatchRect.rect_min_size.x = $NinePatchRect/HBoxContainer.rect_size.x + 10

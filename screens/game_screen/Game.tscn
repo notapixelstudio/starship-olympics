@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://screens/game_screen/Arena.gd" type="Script" id=1]
 [ext_resource path="res://screens/game_screen/Camera.gd" type="Script" id=2]
 [ext_resource path="res://screens/game_screen/after_death.tscn" type="PackedScene" id=3]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=4]
 
-[node name="Arena" type="Node"]
+[node name="Arena" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -40,5 +41,7 @@ _sections_unfolded = [ "Limit" ]
 [node name="Popup" parent="." index="2" instance=ExtResource( 3 )]
 
 visible = false
+
+[node name="DebugNode" parent="." index="3" instance=ExtResource( 4 )]
 
 
