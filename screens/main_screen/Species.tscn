@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="Species" type="CenterContainer"]
+[node name="Species" type="CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.5
@@ -120,7 +120,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 toggle_mode = false
-action_mode = 0
 enabled_focus_mode = 0
 shortcut = null
 group = null
@@ -128,7 +127,7 @@ texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 expand = true
 stretch_mode = 5
-_sections_unfolded = [ "Rect", "Textures" ]
+_sections_unfolded = [ "Textures" ]
 
 [node name="CharacterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" index="1"]
 
