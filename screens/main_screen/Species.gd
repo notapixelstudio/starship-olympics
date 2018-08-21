@@ -11,32 +11,32 @@ export (int) var side = -1
 func _ready():
 	# set shortcut for left and right
 	print("My name is " + name + " and I have this side " + str(side))
-	var mater = $VBoxContainer/MarginContainer/HBoxContainer/TextureRect.get_material() 
-	if mater:
-		mater.set_shader_param("flip",side < 0)
 	$VBoxContainer/Controls/VBoxContainer/Right/Panel/Key.text = right
 	$VBoxContainer/Controls/VBoxContainer/Left/Panel/Key.text = left
 	$VBoxContainer/Controls/CenterContainer/Fire/Panel/Key.text = fire
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
+	var characterSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite
 	
 	ship.position = Vector2(50,50)
 	ship.scale = Vector2(0.5, 0.5)
+	characterSprite.position = Vector2(65,200)
+	characterSprite.scale = Vector2(0.43, 0.43)
 	change_spieces(species)
-	if side < 0:
+	if side != 0:
 		ship.get_node("AnimationPlayer").play("standby")
 	else:
-		ship.flip_h = true
 		ship.get_node("AnimationPlayer").play_backwards("standby")
-	
+	ship.flip_h = not side
+	characterSprite.flip_h = side
 	pass
 
 func change_spieces(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
 	$VBoxContainer/Controls/VBoxContainer/Label.text = specie.to_upper()
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
-	$VBoxContainer/MarginContainer/HBoxContainer/TextureRect.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
+	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
 	print("changed_spieces into from "+species +" to " + specie)
 	global.chosen_species[name.to_lower()] = specie
 	species = specie

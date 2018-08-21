@@ -18,7 +18,8 @@ func _ready():
 			container.get_node("NinePatchRect/HBoxContainer").add_child(l)
 		$VBoxContainer.add_child(container)
 	connect("reset_signal", get_node('/root/Arena'), "reset")
-	pass
+	$close_button.grab_focus()
+	
 
 func update_score():
 	var guys = $VBoxContainer.get_children()

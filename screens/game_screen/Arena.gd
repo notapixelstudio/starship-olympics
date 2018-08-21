@@ -28,7 +28,7 @@ func update_score(dead_player, killer_player):
 	# after X seconds let's stop all
 	yield(get_tree().create_timer(2.0), "timeout")
 	$Popup.update_score()
-	$Popup.show()
+	$Popup.popup_centered()
 	get_tree().paused=true
 
 func _on_Explosion_body_entered(body):
