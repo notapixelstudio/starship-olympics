@@ -10,6 +10,26 @@ export (String) var species = "ROBOLORDS"
 export (int) var side = -1
 func _ready():
 	# set shortcut for left and right
+	# https://github.com/godotengine/godot/issues/15979
+	var hotkey = InputEventKey.new() # weird, but no `.new`
+	if left != "A":
+		hotkey.scancode = KEY_LEFT
+	else:
+		hotkey.scancode = KEY_A
+	var shortcut = ShortCut.new()
+	shortcut.set_shortcut(hotkey)
+	# and then on BaseButton
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.set_shortcut(shortcut)
+	
+	hotkey = InputEventKey.new() # weird, but no `.new`
+	if right != "D":
+		hotkey.scancode = KEY_RIGHT
+	else:
+		hotkey.scancode = KEY_D
+	shortcut = ShortCut.new()
+	shortcut.set_shortcut(hotkey)
+	# and then on BaseButton
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.set_shortcut(shortcut)
 	print("My name is " + name + " and I have this side " + str(side))
 	$VBoxContainer/Controls/VBoxContainer/Right/Panel/Key.text = right
 	$VBoxContainer/Controls/VBoxContainer/Left/Panel/Key.text = left

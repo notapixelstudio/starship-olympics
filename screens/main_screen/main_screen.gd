@@ -11,7 +11,6 @@ func _ready():
 		bgm_creation.play()
 	
 	"""
-
 func _on_Start_pressed():
 	global.enemy = "CPU"
 	change_scene()
