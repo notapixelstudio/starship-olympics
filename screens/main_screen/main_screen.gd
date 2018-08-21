@@ -3,13 +3,14 @@ extends "res://screens/basic_screen.gd"
 func _ready():
 	$VBoxContainer.add_constant_override("separation", 6)
 	$VBoxContainer/StartCPU.grab_focus()
+	global.chosen_species['p1'] = $P1.species.to_lower()
+	global.chosen_species['p2'] = $P2.species.to_lower()
+	print(global.chosen_species)
 	"""
 	if !bgm_creation.is_playing():
 		bgm_creation.play()
 	
 	"""
-	pass
-
 func _on_Start_pressed():
 	global.enemy = "CPU"
 	change_scene()

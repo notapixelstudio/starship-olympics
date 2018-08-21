@@ -4,6 +4,8 @@ export (String, FILE, "*.tscn") var next_scene
 signal transition_finished
 
 func _ready():
+	$Transition/ColorRect.rect_size = get_viewport().size + Vector2(20, 20)
+	$Transition/ColorRect.rect_position = Vector2()
 	#Transition back everytime a screen is loaded
 	apply_transition(OUT)
 	
