@@ -38,4 +38,7 @@ func update_score():
 func _on_close_button_pressed():
 	get_tree().paused=false
 	hide()
-	emit_signal("reset_signal")
+	if global.gameover:
+		get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
+	else:
+		emit_signal("reset_signal")
