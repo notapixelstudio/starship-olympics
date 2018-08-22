@@ -71,9 +71,8 @@ func change_species(specie):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
-
 func _input(event):
-	if event.is_action_pressed(name.to_lower()+"_fire"):
+	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
 		disable_choice()
 		selected = true
 		var i = global.chosen_species[name.to_lower()]
