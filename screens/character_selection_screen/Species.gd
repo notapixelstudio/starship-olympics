@@ -7,6 +7,10 @@ export (String) var species = "ROBOLORDS"
 export (int) var side = -1
 
 signal selected 
+
+var disabled = false
+var selected = false
+
 func _ready():
 	# set shortcut for left and right
 	# https://github.com/godotengine/godot/issues/15979
@@ -46,6 +50,9 @@ func _ready():
 	species = global.avalaible_species[global.chosen_species[name.to_lower()]]
 	change_spieces(species)
 	
+	if disabled:
+		disable_choice()
+	
 	if side != 0:
 		ship.get_node("AnimationPlayer").play("standby")
 	else:
@@ -65,6 +72,12 @@ func change_spieces(specie):
 #	# Update game logic here.
 #	pass
 
+func _input(event):
+	if event.is_action_pressed(name.to_lower()+"_fire"):
+		disable_choice()
+		selected = true
+		emit_signal("selected")
+
 
 func _on_Previous_pressed():
 	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.avalaible_species)
@@ -76,3 +89,7 @@ func _on_Next_pressed():
 	var i = (global.chosen_species[name.to_lower()] + 1) % len(global.avalaible_species)
 	global.chosen_species[name.to_lower()] = i
 	change_spieces(global.avalaible_species[i])
+
+func disable_choice():
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = true
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = true

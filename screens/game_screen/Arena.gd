@@ -41,9 +41,11 @@ func _input(event):
 	if debug_pressed:
 		debug = not debug
 		DebugNode.visible = debug
-
-	if event.is_action_pressed('continue'):
+		
+		# reset by command only through debug
+		if event.is_action_pressed('continue'):
 		reset()
+	
 		
 func reset():
 	for child in $Battlefield.get_children():
