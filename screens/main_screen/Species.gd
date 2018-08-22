@@ -43,15 +43,16 @@ func _ready():
 	ship.scale = Vector2(0.5, 0.5)
 	characterSprite.position = Vector2(65,200)
 	characterSprite.scale = Vector2(0.43, 0.43)
-	print(global.chosen_species)
+	
+	species = global.avalaible_species[global.chosen_species[name.to_lower()]]
 	change_spieces(species)
+	
 	if side != 0:
 		ship.get_node("AnimationPlayer").play("standby")
 	else:
 		ship.get_node("AnimationPlayer").play_backwards("standby")
 	ship.flip_h = not side
 	characterSprite.flip_h = side
-	pass
 
 func change_spieces(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite

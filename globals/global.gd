@@ -1,6 +1,6 @@
 extends Node
 
-const LIVES = 3
+const LIVES = 5
 var gameover = false
 var enemy = "CPU"
 var avalaible_species = ["robolords", "mantiacs", "trixens"]
