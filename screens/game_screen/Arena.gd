@@ -18,6 +18,7 @@ func _ready():
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	reset()
+	print(global.chosen_species)
 
 func update_score(dead_player, killer_player):
 	# TODO: what if both of them died
@@ -41,9 +42,11 @@ func _input(event):
 	if debug_pressed:
 		debug = not debug
 		DebugNode.visible = debug
-
-	if event.is_action_pressed('continue'):
-		reset()
+		
+		# reset by command only through debug
+		if event.is_action_pressed('continue'):
+			reset()
+	
 		
 func reset():
 	for child in $Battlefield.get_children():
