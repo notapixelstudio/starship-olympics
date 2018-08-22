@@ -43,6 +43,7 @@ func _ready():
 	ship.scale = Vector2(0.5, 0.5)
 	characterSprite.position = Vector2(65,200)
 	characterSprite.scale = Vector2(0.43, 0.43)
+	print(global.chosen_species)
 	change_spieces(species)
 	if side != 0:
 		ship.get_node("AnimationPlayer").play("standby")
@@ -58,7 +59,6 @@ func change_spieces(specie):
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
 	print("changed_spieces into from "+species +" to " + specie)
-	global.chosen_species[name.to_lower()] = specie
 	species = specie
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -67,8 +67,12 @@ func change_spieces(specie):
 
 
 func _on_Previous_pressed():
-	change_spieces(global.avalaible_species[1])
+	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.avalaible_species)
+	global.chosen_species[name.to_lower()] = i
+	change_spieces(global.avalaible_species[i])
 
 
 func _on_Next_pressed():
-	change_spieces(global.avalaible_species[0])
+	var i = (global.chosen_species[name.to_lower()] + 1) % len(global.avalaible_species)
+	global.chosen_species[name.to_lower()] = i
+	change_spieces(global.avalaible_species[i])
