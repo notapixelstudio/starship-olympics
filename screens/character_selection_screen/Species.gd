@@ -31,9 +31,9 @@ func _ready():
 	# and then on BaseButton
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.set_shortcut(shortcut)
 	print("My name is " + name + " and I have this side " + str(side))
-	$VBoxContainer/Controls/VBoxContainer/Right/Panel/Key.text = right
-	$VBoxContainer/Controls/VBoxContainer/Left/Panel/Key.text = left
-	$VBoxContainer/Controls/CenterContainer/Fire/Panel/Key.text = fire
+	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Right/CenterContainer/Panel/Key.text = right
+	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Left/CenterContainer/Panel/Key.text = left
+	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Fire/CenterContainer/Panel/Key.text = fire
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
@@ -56,7 +56,7 @@ func _ready():
 
 func change_spieces(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
-	$VBoxContainer/Controls/VBoxContainer/Label.text = specie.to_upper()
+	$VBoxContainer/Controls/Label.text = specie.to_upper()
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
 	print("changed_spieces into from "+species +" to " + specie)
