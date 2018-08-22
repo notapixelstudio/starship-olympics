@@ -28,6 +28,7 @@ func ready_to_fight():
 					ready = false
 					break
 	if ready:
+		$MarginContainer/HBoxContainer/VS.text = "Ready to fight"
 		$Button.disabled = false
 		$Button.visible = true
 		$Button.grab_focus()
@@ -46,8 +47,11 @@ func _on_Selection_random_choice(player):
 		if p != player:
 			forbidden = global.chosen_species[p]
 	var random_choice = 0
-	$MarginContainer/HBoxContainer/VS.text = global.avalaible_species[forbidden]
 	random_choice = randi() % len(global.avalaible_species)
 	while(forbidden == random_choice):
 		random_choice = randi() % len(global.avalaible_species)
-	$MarginContainer/HBoxContainer/P2.change_spieces(global.avalaible_species[random_choice])
+	global.chosen_species[player] = random_choice
+	$MarginContainer/HBoxContainer/P2.change_species(global.avalaible_species[random_choice])
+
+func _on_Button_pressed():
+	get_tree().change_scene_to(load("res://screens/game_screen/Game.tscn"))

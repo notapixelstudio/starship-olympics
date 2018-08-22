@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/theme/utilities/fonts/uroob.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=4]
 
-[node name="Selection" type="Node2D" index="0"]
+[node name="Selection" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_constants" ]
@@ -124,5 +124,7 @@ _sections_unfolded = [ "Theme" ]
 [connection signal="selected" from="MarginContainer/HBoxContainer/P2" to="." method="_on_P2_selected"]
 
 [connection signal="selected" from="MarginContainer/HBoxContainer/P1" to="." method="_on_P1_selected"]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
 
