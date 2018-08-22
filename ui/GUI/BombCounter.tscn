@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://ui/GUI/Counter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ui/GUI/assets/GUI/bombs_icon.png" type="Texture" id=2]
-
-
 
 [node name="BombCounter" instance=ExtResource( 1 )]
 
@@ -13,7 +10,6 @@ margin_left = -68.0
 margin_top = -9.0
 margin_right = -2.0
 margin_bottom = -4.0
-texture = ExtResource( 2 )
 expand = true
 stretch_mode = 0
 

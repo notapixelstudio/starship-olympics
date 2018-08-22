@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://GUI/LifeBar.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GUI/EnergyBar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GUI/BombCounter.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GUI/RupeeCounter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/GUI/LifeBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/GUI/EnergyBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/GUI/BombCounter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/GUI/RupeeCounter.tscn" type="PackedScene" id=4]
 
-[node name="GUI" type="MarginContainer"]
+[node name="GUI" type="MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -26,7 +26,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1024.0
+margin_left = 8.0
+margin_right = 1280.0
 margin_bottom = 137.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -43,7 +44,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 824.0
+margin_right = 1064.0
 margin_bottom = 137.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -56,13 +57,13 @@ _sections_unfolded = [ "Anchor", "Size Flags" ]
 
 [node name="LifeBar" parent="HBoxContainer/Bars" index="0" instance=ExtResource( 1 )]
 
-margin_right = 824.0
+margin_right = 1064.0
 
 [node name="EnergyBar" parent="HBoxContainer/Bars" index="1" instance=ExtResource( 2 )]
 
-margin_top = 53.0
-margin_right = 824.0
-margin_bottom = 93.0
+margin_top = 57.0
+margin_right = 1064.0
+margin_bottom = 97.0
 
 [node name="Counters" type="HBoxContainer" parent="HBoxContainer" index="1"]
 
@@ -70,9 +71,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 824.0
+margin_left = 1068.0
 margin_top = 48.0
-margin_right = 1024.0
+margin_right = 1272.0
 margin_bottom = 88.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -102,9 +103,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 100.0
+margin_left = 104.0
 margin_top = 0.0
-margin_right = 200.0
+margin_right = 204.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 script = null
