@@ -47,7 +47,7 @@ func _ready():
 	characterSprite.position = Vector2(65,200)
 	characterSprite.scale = Vector2(0.43, 0.43)
 	
-	species = global.avalaible_species[global.chosen_species[name.to_lower()]]
+	species = global.available_species[global.chosen_species[name.to_lower()]]
 	change_species(species)
 	
 	if disabled:
@@ -78,20 +78,21 @@ func _input(event):
 		selected = true
 		var i = global.chosen_species[name.to_lower()]
 		global.chosen_species[name.to_lower()] = i
-		change_species(global.avalaible_species[i])
+		change_species(global.available_species[i])
+		global.available_species.remove(i)
 		emit_signal("selected")
 
 
 func _on_Previous_pressed():
-	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.avalaible_species)
+	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.available_species)
 	global.chosen_species[name.to_lower()] = i
-	change_species(global.avalaible_species[i])
+	change_species(global.available_species[i])
 
 
 func _on_Next_pressed():
-	var i = (global.chosen_species[name.to_lower()] + 1) % len(global.avalaible_species)
+	var i = (global.chosen_species[name.to_lower()] + 1) % len(global.available_species)
 	global.chosen_species[name.to_lower()] = i
-	change_species(global.avalaible_species[i])
+	change_species(global.available_species[i])
 
 func disable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = true

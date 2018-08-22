@@ -47,11 +47,11 @@ func _on_Selection_random_choice(player):
 		if p != player:
 			forbidden = global.chosen_species[p]
 	var random_choice = 0
-	random_choice = randi() % len(global.avalaible_species)
+	random_choice = randi() % len(global.available_species)
 	while(forbidden == random_choice):
-		random_choice = randi() % len(global.avalaible_species)
+		random_choice = randi() % len(global.available_species)
 	global.chosen_species[player] = random_choice
-	$MarginContainer/HBoxContainer/P2.change_species(global.avalaible_species[random_choice])
+	$MarginContainer/HBoxContainer/P2.change_species(global.available_species[random_choice])
 
 func _on_Button_pressed():
 	get_tree().change_scene_to(load("res://screens/game_screen/Game.tscn"))

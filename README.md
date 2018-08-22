@@ -16,4 +16,4 @@ This template is composed by:
 Fonts: [Londrina](https://www.dafont.com/it/londrina.font?l[]=10&l[]=1)
 Frame Texture: [Freepik](https://www.freepik.com/free-photos-vectors/frame)
 Scenes structure and theme: inspired by [PigDev](https://pigdev.itch.io/)
-Character structure: inspired by [GDquest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)
+Character structure: inspired by [GDquest](https://www.youtube.com/channelavalaible/UCxboW7x0jZqFdvMdCFKTMsQ)
