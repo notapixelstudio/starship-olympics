@@ -5,8 +5,8 @@ var gameover = false
 var enemy = "CPU"
 var avalaible_species = ["robolords", "mantiacs", "trixens"]
 var chosen_species = {
-	'p1': 0,
-	'p2': 1
+	'p1': 1,
+	'p2': 0
 }
 var scores = {
 	'p1': LIVES,
