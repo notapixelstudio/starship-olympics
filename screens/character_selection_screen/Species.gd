@@ -4,10 +4,9 @@ export (String) var left = "A"
 export (String) var right = "D"
 export (String) var fire = "1"
 export (String) var species = "ROBOLORDS"
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 export (int) var side = -1
+
+signal selected 
 func _ready():
 	# set shortcut for left and right
 	# https://github.com/godotengine/godot/issues/15979

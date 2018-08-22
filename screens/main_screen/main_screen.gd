@@ -8,18 +8,13 @@ func _ready():
 		bgm_creation.play()
 	
 	"""
-func _on_Start_pressed():
-	global.enemy = "CPU"
-	change_scene()
 
 func _on_Credits_pressed():
 	change_scene("res://screens/credit_screen/credit_screen.tscn")
 
-
 func _on_StartCPU_pressed():
 	global.enemy = "CPU"
 	change_scene()
-
 
 func _on_StartHuman_pressed():
 	global.enemy = "Human"
