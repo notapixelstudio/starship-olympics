@@ -11,6 +11,7 @@ var count = 0
 signal died
 var alive = true 
 
+var species
 var width
 var height
 
@@ -22,9 +23,12 @@ export var player = 'p1'
 
 var Bomb
 var Trail
+var target = null
 
 func _ready():
-	$Sprite.set_texture(load('res://actors/'+player+'_ship.png'))
+	print(global.chosen_species)
+	species = global.chosen_species[player]
+	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x
 	height = get_viewport().size.y
