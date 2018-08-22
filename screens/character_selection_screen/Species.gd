@@ -55,7 +55,7 @@ func _ready():
 
 func change_spieces(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
-	$VBoxContainer/Controls/Label.text = specie.to_upper()
+	$VBoxContainer/SpeciesName.text = specie.to_upper()
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
 	print("changed_spieces into from "+species +" to " + specie)
