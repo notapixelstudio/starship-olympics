@@ -1,12 +1,12 @@
 extends Node
 
-const LIVES = 3
+const LIVES = 5
 var gameover = false
 var enemy = "CPU"
-var avalaible_species = ["robolords", "mantiacs"]
+var avalaible_species = ["robolords", "mantiacs", "trixens"]
 var chosen_species = {
-	'p1': "robolords",
-	'p2': "mantiacs"
+	'p1': 1,
+	'p2': 0
 }
 var scores = {
 	'p1': LIVES,
