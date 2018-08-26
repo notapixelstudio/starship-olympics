@@ -63,7 +63,7 @@ func _on_Selection_random_choice(player):
 
 func simulate_choice():
 	var how_many_times = randi() % 10
-	var n_characters = len(global.available_species)
+	var n_characters = global.unlocked
 	for times in range(0,how_many_times):
 		for i in range(0,n_characters):
 			yield(get_tree().create_timer(0.1), "timeout")
