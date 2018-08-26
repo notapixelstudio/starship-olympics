@@ -81,7 +81,6 @@ func _input(event):
 		global.available_species.remove(i)
 		emit_signal("selected")
 
-
 func _on_Previous_pressed():
 	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.available_species)
 	global.chosen_species[name.to_lower()] = i
