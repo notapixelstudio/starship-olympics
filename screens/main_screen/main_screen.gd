@@ -3,6 +3,7 @@ extends "res://screens/basic_screen.gd"
 func _ready():
 	$VBoxContainer.add_constant_override("separation", 6)
 	$VBoxContainer/StartCPU.grab_focus()
+	#persistance.save_game()
 	"""
 	if !bgm_creation.is_playing():
 		bgm_creation.play()

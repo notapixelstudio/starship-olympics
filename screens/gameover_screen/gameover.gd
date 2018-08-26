@@ -24,7 +24,7 @@ func _ready():
 	for player in global.scores:
 		if player != winner:
 			other = player
-	var win_species = global.SPECIES[global.chosen_species[winner]]
+	var win_species = global.species[global.chosen_species[winner]]
 	
 	$Sprite.set_texture(load("res://assets/"+win_species+"_win.jpg"))
 	$Winner.text = "The winner is " + str(winner) + " with "+ str(win_count) +" - " + str(global.scores[other])+" points "
