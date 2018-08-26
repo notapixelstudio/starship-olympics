@@ -1,6 +1,6 @@
 extends Node
 
-const LIVES = 5
+const LIVES = 1
 const species = ["robolords", "mantiacs", "trixens"]
 
 var gameover = false
@@ -19,22 +19,25 @@ var scores = {
 func _ready():
 	# if we want to save data from global
 	add_to_group("persist")
-	
 
 func get_available_species(new_value):
 	unlocked=new_value
-	print("prima")
-	for i in range(0, unlocked):
-		available_species.append(species[i])
-	
+	reset_selection()
+
 func reset():
-	available_species = species
+	available_species = []
+	reset_selection()
 	scores = {
 	'p1': LIVES,
 	'p2': LIVES
 	}
 	gameover = false
 	
+	
+func reset_selection():
+	for i in range(0, unlocked):
+		available_species.append(species[i])
+		
 func get_state():
 	var save_dict = {
 		lives=5,
@@ -45,4 +48,3 @@ func get_state():
 func load_state(data):
 	for attribute in data:
 		set(attribute, data[attribute])
-	

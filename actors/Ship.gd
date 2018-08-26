@@ -28,6 +28,8 @@ var target = null
 func _ready():
 	print(global.chosen_species)
 	species = global.species[global.chosen_species[player]]
+	print("set texture " + species)
+	print("because " + str(global.chosen_species[player]))
 	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x

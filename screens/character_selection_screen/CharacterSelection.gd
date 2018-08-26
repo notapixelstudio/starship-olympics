@@ -10,10 +10,6 @@ func _ready():
 		randomize()
 		$MarginContainer/HBoxContainer/P2.disable_choice()
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
 
 func ready_to_fight():
 	var ready = true
@@ -51,11 +47,11 @@ func _on_Selection_random_choice(player):
 		if p != player:
 			forbidden = global.chosen_species[p]
 	var random_choice = 0
-	random_choice = randi() % len(global.available_species)
-	while(forbidden == random_choice):
-		random_choice = randi() % len(global.available_species)
+	random_choice = randi() % len(global.species)
+	while(forbidden == random_choice or random_choice>=global.unlocked):
+		random_choice += 1 % len(global.species)
 	global.chosen_species[player] = random_choice
-	$MarginContainer/HBoxContainer/P2.change_species(global.available_species[random_choice])
+	$MarginContainer/HBoxContainer/P2.change_species(global.species[random_choice])
 	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.set_modulate(Color(1, 1, 1, 1))
 	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.visible = true
 

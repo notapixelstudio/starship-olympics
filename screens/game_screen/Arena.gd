@@ -52,7 +52,10 @@ func reset():
 	for child in $Battlefield.get_children():
 		child.queue_free()
 		remove_child(child)
-		
+	print("let's start battle")
+	print("global.available_species")
+	print(global.available_species)
+	print(global.chosen_species)
 	var ship1 = Ship.instance()
 	ship1.player = 'p1'
 	ship1.species = global.chosen_species[ship1.player]

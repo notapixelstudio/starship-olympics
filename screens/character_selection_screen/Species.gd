@@ -77,10 +77,7 @@ func change_species(specie):
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.texture = load("res://assets/character_selection_rect_"+specie.to_lower()+".png")
 	print("changed_species into from "+species +" to " + specie)
 	species = specie
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+
 func _input(event):
 	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
 		disable_choice()
@@ -89,6 +86,7 @@ func _input(event):
 		global.chosen_species[name.to_lower()] = i
 		change_species(global.available_species[i])
 		global.available_species.remove(i)
+		print(global.available_species)
 		emit_signal("selected")
 
 func _on_Previous_pressed():

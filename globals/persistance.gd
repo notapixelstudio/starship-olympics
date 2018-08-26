@@ -3,7 +3,6 @@ extends Node
 const SAVE_PATH ="user://savegame.save"
 var _settings = {}
 
-
 func _ready():
 	load_game()
 
