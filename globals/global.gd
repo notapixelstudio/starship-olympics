@@ -6,7 +6,7 @@ const species = ["robolords", "mantiacs", "trixens"]
 var gameover = false
 var enemy = "CPU"
 var available_species =[]
-var unlocked setget get_available_species
+var unlocked = len(species) setget get_available_species
 var chosen_species = {
 	'p1': 1,
 	'p2': 0
@@ -19,6 +19,7 @@ var scores = {
 func _ready():
 	# if we want to save data from global
 	add_to_group("persist")
+	reset_selection()
 
 func get_available_species(new_value):
 	unlocked=new_value
