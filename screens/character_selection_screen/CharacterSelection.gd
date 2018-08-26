@@ -9,6 +9,8 @@ func _ready():
 	if global.enemy == "CPU":
 		randomize()
 		$MarginContainer/HBoxContainer/P2.disable_choice()
+		$MarginContainer/HBoxContainer/P2/VBoxContainer/Controls/Label.text = 'CPU'
+		$MarginContainer/HBoxContainer/P2/VBoxContainer/Controls/CenterContainer.visible = false
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

@@ -67,7 +67,9 @@ func _ready():
 	ship.flip_h = not side
 	characterSprite.flip_h = side
 	
-	
+	# set controls to keyboard 2 if flipped
+	if side != 0:
+		$VBoxContainer/Controls/Label.text = 'KEYBOARD 2'
 
 func change_species(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
@@ -105,3 +107,5 @@ func _on_Next_pressed():
 func disable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = true
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = true
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = false
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = false
