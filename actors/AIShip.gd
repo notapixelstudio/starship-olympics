@@ -17,12 +17,12 @@ func _ready():
 var wr
 var direction = Vector2()
 var current_dir = Vector2()
-var dist 
+var dist
+ 
 func control(delta):
 	counter += 1
 	wr = weakref(target)
 	direction = Vector2() 
-	
 	if wr.get_ref():
 		direction = (target.position - self.position).normalized()
 		# if 2 we are in opposite direction, if 1 we are in perpendicular, if 0 we are running into it

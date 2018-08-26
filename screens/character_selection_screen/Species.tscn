@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://screens/main_screen/Species.gd" type="Script" id=1]
+[ext_resource path="res://screens/character_selection_screen/Species.gd" type="Script" id=1]
 [ext_resource path="res://screens/main_screen/interface/left.png" type="Texture" id=2]
 [ext_resource path="res://screens/main_screen/interface/left_pressed.png" type="Texture" id=3]
 [ext_resource path="res://assets/character_mantiacs_1.png" type="Texture" id=4]
 [ext_resource path="res://screens/main_screen/interface/right.png" type="Texture" id=5]
 [ext_resource path="res://screens/main_screen/interface/right_pressed.png" type="Texture" id=6]
-[ext_resource path="res://assets/button.png" type="Texture" id=7]
+[ext_resource path="res://ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=7]
 [ext_resource path="res://actors/mantiacs_ship.png" type="Texture" id=8]
 [ext_resource path="res://ui/interface/stats/Attack.tscn" type="PackedScene" id=9]
 
@@ -29,7 +29,9 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="Species" type="CenterContainer" index="0"]
+[node name="Species" type="CenterContainer" groups=[
+"choice",
+]]
 
 anchor_left = 0.0
 anchor_top = 0.5
@@ -59,9 +61,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 36.0
-margin_right = 329.0
-margin_bottom = 684.0
+margin_top = 28.0
+margin_right = 288.0
+margin_bottom = 692.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -76,7 +78,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 329.0
+margin_right = 288.0
 margin_bottom = 400.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -93,8 +95,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
-margin_right = 308.0
+margin_right = 288.0
 margin_bottom = 400.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -127,7 +128,7 @@ texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 expand = true
 stretch_mode = 5
-_sections_unfolded = [ "Textures" ]
+_sections_unfolded = [ "Rect", "Textures" ]
 
 [node name="CharacterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" index="1"]
 
@@ -181,15 +182,39 @@ expand = true
 stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" index="1"]
+[node name="SpeciesName" type="Label" parent="VBoxContainer" index="1"]
 
+modulate = Color( 1, 0.576471, 0, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 404.0
-margin_right = 329.0
-margin_bottom = 504.0
+margin_right = 288.0
+margin_bottom = 444.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 7 )
+text = "SPECIES"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 448.0
+margin_right = 288.0
+margin_bottom = 548.0
 rect_min_size = Vector2( 100, 50 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -206,8 +231,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 114.0
-margin_right = 214.0
+margin_left = 94.0
+margin_right = 194.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -216,13 +241,12 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="Sprite" type="Sprite" parent="VBoxContainer/CenterContainer/NinePatchRect" index="0"]
 
 position = Vector2( 50, 50 )
-rotation = 6.28319
+rotation = 4.46638e-06
 scale = Vector2( 0.5, 0.500019 )
 texture = ExtResource( 8 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
@@ -238,11 +262,11 @@ anims/standby = SubResource( 1 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="Controls" parent="VBoxContainer" index="2" instance=ExtResource( 9 )]
+[node name="Controls" parent="VBoxContainer" index="3" instance=ExtResource( 9 )]
 
-margin_top = 508.0
-margin_right = 329.0
-margin_bottom = 648.0
+margin_top = 552.0
+margin_right = 288.0
+margin_bottom = 664.0
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/Previous" to="." method="_on_Previous_pressed"]
 

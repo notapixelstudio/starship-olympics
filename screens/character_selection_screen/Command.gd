@@ -7,7 +7,7 @@ export (String) var description = "LEFT"
 # var b = "textvar"
 
 func _ready():
-	$Panel/Key.text = key
+	$CenterContainer/Panel/Key.text = key
 	$Description.text = description
 	# Called when the node is added to the scene for the first time.
 	# Initialization here

@@ -4,10 +4,13 @@ export (String) var left = "A"
 export (String) var right = "D"
 export (String) var fire = "1"
 export (String) var species = "ROBOLORDS"
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 export (int) var side = -1
+
+signal selected 
+
+var disabled = false
+var selected = false
+
 func _ready():
 	# set shortcut for left and right
 	# https://github.com/godotengine/godot/issues/15979
@@ -31,9 +34,9 @@ func _ready():
 	# and then on BaseButton
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.set_shortcut(shortcut)
 	print("My name is " + name + " and I have this side " + str(side))
-	$VBoxContainer/Controls/VBoxContainer/Right/Panel/Key.text = right
-	$VBoxContainer/Controls/VBoxContainer/Left/Panel/Key.text = left
-	$VBoxContainer/Controls/CenterContainer/Fire/Panel/Key.text = fire
+	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Right/CenterContainer/Panel/Key.text = right
+	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Left/CenterContainer/Panel/Key.text = left
+	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Fire/CenterContainer/Panel/Key.text = fire
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
@@ -43,32 +46,52 @@ func _ready():
 	ship.scale = Vector2(0.5, 0.5)
 	characterSprite.position = Vector2(65,200)
 	characterSprite.scale = Vector2(0.43, 0.43)
-	change_spieces(species)
+	
+	species = global.available_species[global.chosen_species[name.to_lower()]]
+	change_species(species)
+	
+	if disabled:
+		disable_choice()
+	
 	if side != 0:
 		ship.get_node("AnimationPlayer").play("standby")
 	else:
 		ship.get_node("AnimationPlayer").play_backwards("standby")
 	ship.flip_h = not side
 	characterSprite.flip_h = side
-	pass
 
-func change_spieces(specie):
+func change_species(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
-	$VBoxContainer/Controls/VBoxContainer/Label.text = specie.to_upper()
+	$VBoxContainer/SpeciesName.text = specie.to_upper()
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
-	print("changed_spieces into from "+species +" to " + specie)
-	global.chosen_species[name.to_lower()] = specie
+	print("changed_species into from "+species +" to " + specie)
 	species = specie
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
-
+func _input(event):
+	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
+		disable_choice()
+		selected = true
+		var i = global.chosen_species[name.to_lower()]
+		global.chosen_species[name.to_lower()] = i
+		change_species(global.available_species[i])
+		global.available_species.remove(i)
+		emit_signal("selected")
 
 func _on_Previous_pressed():
-	change_spieces(global.avalaible_species[1])
+	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.available_species)
+	global.chosen_species[name.to_lower()] = i
+	change_species(global.available_species[i])
 
 
 func _on_Next_pressed():
-	change_spieces(global.avalaible_species[0])
+	var i = (global.chosen_species[name.to_lower()] + 1) % len(global.available_species)
+	global.chosen_species[name.to_lower()] = i
+	change_species(global.available_species[i])
+
+func disable_choice():
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = true
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = true

@@ -11,7 +11,7 @@ func _ready():
 	for player in global.scores:
 		var container = preload("res://screens/game_screen/PlayerContainerDeath.tscn").instance()
 		container.p_name = player
-		var i = load("res://actors/"+global.chosen_species[player]+"_ship.png")
+		var i = load("res://actors/"+global.SPECIES[global.chosen_species[player]]+"_ship.png")
 		for life in global.scores[player]:
 			var l = load("res://screens/game_screen/life_rect.tscn").instance()
 			l.set_texture(i)
@@ -38,4 +38,7 @@ func update_score():
 func _on_close_button_pressed():
 	get_tree().paused=false
 	hide()
-	emit_signal("reset_signal")
+	if global.gameover:
+		get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
+	else:
+		emit_signal("reset_signal")

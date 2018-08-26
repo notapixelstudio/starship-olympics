@@ -18,13 +18,16 @@ func _ready():
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	reset()
+	print(global.chosen_species)
 
 func update_score(dead_player, killer_player):
+	# TODO: what if both of them died
 	var updated_label
 	global.scores[dead_player] -= 1
 	print(dead_player + str(global.scores))
+	# gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
-			get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
+		global.gameover = true
 	# after X seconds let's stop all
 	yield(get_tree().create_timer(2.0), "timeout")
 	$Popup.update_score()
@@ -39,9 +42,11 @@ func _input(event):
 	if debug_pressed:
 		debug = not debug
 		DebugNode.visible = debug
-
-	if event.is_action_pressed('continue'):
-		reset()
+		
+		# reset by command only through debug
+		if event.is_action_pressed('continue'):
+			reset()
+	
 		
 func reset():
 	for child in $Battlefield.get_children():
