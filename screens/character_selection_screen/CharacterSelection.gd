@@ -34,10 +34,14 @@ func ready_to_fight():
 		$Button.grab_focus()
 
 func _on_P1_selected():
+	$MarginContainer/HBoxContainer/P1/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.set_modulate(Color(1, 1, 1, 1))
+	$MarginContainer/HBoxContainer/P1/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.visible = true
 	ready_to_fight()
 
 
 func _on_P2_selected():
+	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.set_modulate(Color(1, 1, 1, 1))
+	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.visible = true
 	ready_to_fight()
 
 
@@ -52,6 +56,8 @@ func _on_Selection_random_choice(player):
 		random_choice = randi() % len(global.available_species)
 	global.chosen_species[player] = random_choice
 	$MarginContainer/HBoxContainer/P2.change_species(global.available_species[random_choice])
+	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.set_modulate(Color(1, 1, 1, 1))
+	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.visible = true
 
 func _on_Button_pressed():
 	get_tree().change_scene_to(load("res://screens/game_screen/Game.tscn"))
