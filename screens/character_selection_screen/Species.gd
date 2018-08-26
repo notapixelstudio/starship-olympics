@@ -77,7 +77,6 @@ func change_species(specie):
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.texture = load("res://assets/character_selection_rect_"+specie.to_lower()+".png")
-	print("changed_species into from "+species +" to " + specie)
 	species = specie
 
 func _input(event):
@@ -86,14 +85,26 @@ func _input(event):
 		selected = true
 		var i = global.chosen_species[name.to_lower()]
 		global.chosen_species[name.to_lower()] = i
-		change_species(global.available_species[i])
+		change_species(global.species[i])
+		print(global.chosen_species)
 		global.available_species.remove(i)
 		print(global.available_species)
+		print(i)
 		emit_signal("selected")
 
+func mod(a,b):
+	var ret = a%b
+	if ret < 0: 
+		return ret+b
+	else:
+		return ret
+
 func _on_Previous_pressed():
-	var i = (global.chosen_species[name.to_lower()] - 1) % len(global.available_species)
+	var a = global.chosen_species[name.to_lower()] - 1
+	var b = len(global.available_species)
+	var i = mod(a,b)
 	global.chosen_species[name.to_lower()] = i
+	print(str(global.chosen_species[name.to_lower()])  + " premiamo dietro " + str(i) + " per " + str(len(global.available_species)))
 	change_species(global.available_species[i])
 
 
