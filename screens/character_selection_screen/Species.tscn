@@ -152,13 +152,15 @@ _sections_unfolded = [ "Focus", "Grow Direction", "Material", "Rect" ]
 
 [node name="SelRect" type="Sprite" parent="VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer" index="0"]
 
+visible = false
 position = Vector2( 65, 200 )
 scale = Vector2( 0.43, 0.43 )
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer" index="1"]
 
+modulate = Color( 0.632812, 0.632812, 0.632812, 1 )
 position = Vector2( 65, 200 )
 scale = Vector2( 0.43, 0.43 )
 texture = ExtResource( 5 )
