@@ -41,11 +41,18 @@ func _ready():
 	# Initialization here
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
 	var characterSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite
+	var selRectSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect
 	
 	ship.position = Vector2(50,50)
 	ship.scale = Vector2(0.5, 0.5)
 	characterSprite.position = Vector2(65,200)
 	characterSprite.scale = Vector2(0.43, 0.43)
+	selRectSprite.position = Vector2(65,200)
+	selRectSprite.scale = Vector2(0.43, 0.43)
+	
+	# adjust selection rect position if flipped
+	if side != 0:
+		selRectSprite.position = Vector2(55,200)
 	
 	species = global.available_species[global.chosen_species[name.to_lower()]]
 	change_species(species)
@@ -59,12 +66,15 @@ func _ready():
 		ship.get_node("AnimationPlayer").play_backwards("standby")
 	ship.flip_h = not side
 	characterSprite.flip_h = side
+	
+	
 
 func change_species(specie):
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
 	$VBoxContainer/SpeciesName.text = specie.to_upper()
 	ship.texture = load("res://actors/"+specie.to_lower()+"_ship.png")
 	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.texture = load("res://assets/character_"+specie.to_lower()+"_1.png")
+	$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.texture = load("res://assets/character_selection_rect_"+specie.to_lower()+".png")
 	print("changed_species into from "+species +" to " + specie)
 	species = specie
 #func _process(delta):
