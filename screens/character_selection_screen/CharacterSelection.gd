@@ -68,8 +68,8 @@ func simulate_choice(final_choice):
 		for i in range(0,n_characters):
 			var wait_time = 0.1 + 0.01*times
 			yield(get_tree().create_timer(wait_time), "timeout")
-			$MarginContainer/HBoxContainer/P2.change_species(global.species[i])
-	yield(get_tree().create_timer(0,7), "timeout")
+			$MarginContainer/HBoxContainer/P2.change_species(global.species[(i+final_choice)%n_characters])
+	yield(get_tree().create_timer(0.5), "timeout")
 	$MarginContainer/HBoxContainer/P2.change_species(global.species[final_choice])
 	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite.set_modulate(Color(1, 1, 1, 1))
 	$MarginContainer/HBoxContainer/P2/VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect.visible = true
