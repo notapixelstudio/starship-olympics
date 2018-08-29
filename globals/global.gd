@@ -1,6 +1,6 @@
 extends Node
 
-const LIVES = 1
+const LIVES = 5
 const species = ["robolords", "mantiacs", "trixens"]
 
 var gameover = false
