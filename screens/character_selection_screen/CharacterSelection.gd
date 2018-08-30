@@ -63,7 +63,7 @@ func _on_Selection_random_choice(player):
 
 func simulate_choice(final_choice):
 	var how_many_times =8 + randi()%3
-	var n_characters = global.unlocked
+	var n_characters = int(global.unlocked)
 	for times in range(0,how_many_times):
 		for i in range(0,n_characters):
 			var wait_time = 0.1 + 0.01*times

@@ -1,0 +1,669 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://screens/option_screen/blue_theme.tres" type="Theme" id=1]
+
+
+[sub_resource type="ButtonGroup" id=1]
+
+resource_local_to_scene = true
+resource_name = "radio"
+_sections_unfolded = [ "Resource" ]
+
+[node name="Theme" type="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -978.0
+margin_bottom = -556.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+_sections_unfolded = [ "Theme" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1024.0
+margin_bottom = 611.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 192.0
+margin_top = 108.0
+margin_right = 832.0
+margin_bottom = 502.5
+rect_min_size = Vector2( 640, 360 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_align = 2
+tabs_visible = true
+_sections_unfolded = [ "Rect", "Size Flags" ]
+
+[node name="Buttons" type="PanelContainer" parent="CenterContainer/TabContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.25
+margin_top = 63.5
+margin_right = -7.75
+margin_bottom = -8.75
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/TabContainer/Buttons" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.75
+margin_top = 20.0
+margin_right = 607.25
+margin_bottom = 302.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/TabContainer/Buttons/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 302.0
+margin_bottom = 282.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 26
+alignment = 0
+_sections_unfolded = [ "Size Flags", "custom_constants" ]
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 302.0
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "A check box"
+flat = false
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 62.0
+margin_right = 302.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="CheckBox2" type="CheckBox" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 92.0
+margin_right = 302.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Another checkbox"
+flat = false
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 154.0
+margin_right = 302.0
+margin_bottom = 158.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Radio" type="CheckBox" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 184.0
+margin_right = 302.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = SubResource( 1 )
+text = "A radio button"
+flat = false
+align = 1
+
+[node name="Radio2" type="CheckBox" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 246.0
+margin_right = 302.0
+margin_bottom = 282.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = SubResource( 1 )
+text = "Second radio"
+flat = false
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/TabContainer/Buttons/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 306.0
+margin_right = 590.0
+margin_bottom = 282.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Button" type="Button" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 284.0
+margin_bottom = 91.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Just"
+flat = false
+clip_text = true
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Button2" type="Button" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer2" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 95.0
+margin_right = 284.0
+margin_bottom = 186.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Some"
+flat = false
+clip_text = true
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Button3" type="Button" parent="CenterContainer/TabContainer/Buttons/HBoxContainer/VBoxContainer2" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 190.0
+margin_right = 284.0
+margin_bottom = 282.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Buttons"
+flat = false
+clip_text = true
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Scrolls" type="PanelContainer" parent="CenterContainer/TabContainer" index="1"]
+
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.25
+margin_top = 63.5
+margin_right = -7.75
+margin_bottom = -8.75
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Rect" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/TabContainer/Scrolls" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.75
+margin_top = 20.0
+margin_right = 607.25
+margin_bottom = 301.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 75
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="CenterContainer/TabContainer/Scrolls/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 257.0
+margin_bottom = 281.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = true
+scroll_horizontal = 0
+scroll_vertical_enabled = false
+scroll_vertical = 0
+scroll_deadzone = 0
+_sections_unfolded = [ "Scroll", "Size Flags" ]
+
+[node name="Lorem" type="CenterContainer" parent="CenterContainer/TabContainer/Scrolls/HBoxContainer/ScrollContainer2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 800.0
+margin_bottom = 281.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+use_top_left = false
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="Label" type="Label" parent="CenterContainer/TabContainer/Scrolls/HBoxContainer/ScrollContainer2/Lorem" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 15.0
+margin_right = 800.0
+margin_bottom = 265.0
+rect_min_size = Vector2( 800, 250 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus porta nibh et lacinia. Nullam sed eleifend nisi. Ut iaculis enim sit amet nunc scelerisque, sit amet sollicitudin sem fringilla. Nunc id nunc vitae massa pulvinar sollicitudin. Aenean eu ornare nunc, quis semper felis. Sed lacinia a neque vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra sapien erat, et vestibulum tellus pretium non.
+
+Suspendisse potenti. Aliquam porta urna quis lectus consequat commodo. Nam non tortor augue. Praesent et magna at sapien dapibus euismod at sit amet mi. Pellentesque faucibus semper vestibulum. Proin hendrerit ex eget fringilla feugiat. Nulla dictum tempor varius.
+
+Morbi ut posuere dolor, eu condimentum mi. Aliquam consectetur dolor vitae pharetra pellentesque. Nam quis dignissim odio, eu ullamcorper ligula. Nulla pharetra urna sed tortor laoreet, ut eleifend elit egestas. Aliquam ac dictum libero. Nulla eget convallis metus. Aliquam id ultrices lectus. Nam ut tincidunt nisl, in elementum ante. Aliquam egestas convallis mi, nec tempor turpis ullamcorper ut. Nulla ultricies urna sed metus egestas feugiat.
+
+Duis feugiat molestie faucibus. Sed eros ipsum, tincidunt non massa quis, luctus pharetra nisi. Suspendisse eget tempor elit, et mollis ipsum. Quisque tellus nibh, elementum vel arcu nec, tincidunt scelerisque sapien. Vivamus commodo id lacus nec sollicitudin. Donec risus turpis, fermentum sit amet lorem et, feugiat faucibus eros. Sed posuere id velit nec viverra. Morbi luctus sapien erat, at malesuada mauris pretium ac. Proin sed felis ligula.
+
+Sed id purus sit amet tortor pharetra consectetur at ut massa. Duis sit amet est nec mauris pharetra pharetra sit amet sit amet ex. Cras tempus sed odio quis euismod. Duis non elit justo. Integer feugiat, elit nec laoreet sollicitudin, est augue volutpat ex, nec sagittis lacus ante at urna. Nunc congue aliquam auctor. Praesent ornare auctor nibh, quis porttitor dui malesuada quis. Pellentesque in velit a magna finibus placerat. Praesent consequat, nibh tempus porttitor posuere, dolor lorem ornare est, in dapibus mi ipsum in diam."
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/TabContainer/Scrolls/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 332.0
+margin_right = 590.0
+margin_bottom = 281.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = true
+scroll_horizontal = 0
+scroll_vertical_enabled = true
+scroll_vertical = 0
+scroll_deadzone = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Lorem" type="CenterContainer" parent="CenterContainer/TabContainer/Scrolls/HBoxContainer/ScrollContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 258.0
+margin_bottom = 800.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+use_top_left = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Label2" type="Label" parent="CenterContainer/TabContainer/Scrolls/HBoxContainer/ScrollContainer/Lorem" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_right = 241.0
+margin_bottom = 800.0
+rect_min_size = Vector2( 225, 800 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus porta nibh et lacinia. Nullam sed eleifend nisi. Ut iaculis enim sit amet nunc scelerisque, sit amet sollicitudin sem fringilla. Nunc id nunc vitae massa pulvinar sollicitudin. Aenean eu ornare nunc, quis semper felis. Sed lacinia a neque vitae vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra sapien erat, et vestibulum tellus pretium non.
+
+Suspendisse potenti. Aliquam porta urna quis lectus consequat commodo. Nam non tortor augue. Praesent et magna at sapien dapibus euismod at sit amet mi. Pellentesque faucibus semper vestibulum. Proin hendrerit ex eget fringilla feugiat. Nulla dictum tempor varius.
+
+Morbi ut posuere dolor, eu condimentum mi. Aliquam consectetur dolor vitae pharetra pellentesque. Nam quis dignissim odio, eu ullamcorper ligula. Nulla pharetra urna sed tortor laoreet, ut eleifend elit egestas. Aliquam ac dictum libero. Nulla eget convallis metus. Aliquam id ultrices lectus. Nam ut tincidunt nisl, in elementum ante. Aliquam egestas convallis mi, nec tempor turpis ullamcorper ut. Nulla ultricies urna sed metus egestas feugiat.
+
+Duis feugiat molestie faucibus. Sed eros ipsum, tincidunt non massa quis, luctus pharetra nisi. Suspendisse eget tempor elit, et mollis ipsum. Quisque tellus nibh, elementum vel arcu nec, tincidunt scelerisque sapien. Vivamus commodo id lacus nec sollicitudin. Donec risus turpis, fermentum sit amet lorem et, feugiat faucibus eros. Sed posuere id velit nec viverra. Morbi luctus sapien erat, at malesuada mauris pretium ac. Proin sed felis ligula.
+
+Sed id purus sit amet tortor pharetra consectetur at ut massa. Duis sit amet est nec mauris pharetra pharetra sit amet sit amet ex. Cras tempus sed odio quis euismod. Duis non elit justo. Integer feugiat, elit nec laoreet sollicitudin, est augue volutpat ex, nec sagittis lacus ante at urna. Nunc congue aliquam auctor. Praesent ornare auctor nibh, quis porttitor dui malesuada quis. Pellentesque in velit a magna finibus placerat. Praesent consequat, nibh tempus porttitor posuere, dolor lorem ornare est, in dapibus mi ipsum in diam."
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Ranges" type="PanelContainer" parent="CenterContainer/TabContainer" index="2"]
+
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.25
+margin_top = 63.5
+margin_right = -7.75
+margin_bottom = -8.75
+rect_min_size = Vector2( 615, 321 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Rect" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/TabContainer/Ranges" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.75
+margin_top = 20.0
+margin_right = 623.25
+margin_bottom = 287.25
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 50
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/TabContainer/Ranges/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 278.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 41.911
+exp_edit = false
+rounded = false
+percent_visible = true
+_sections_unfolded = [ "Percent", "Size Flags" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/TabContainer/Ranges/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 328.0
+margin_right = 606.0
+margin_bottom = 267.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 18
+alignment = 0
+_sections_unfolded = [ "Size Flags", "custom_constants" ]
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/TabContainer/Ranges/HBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 278.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+editable = true
+tick_count = 0
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="VSlider" type="VSlider" parent="CenterContainer/TabContainer/Ranges/HBoxContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 38.0
+margin_right = 20.0
+margin_bottom = 267.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+editable = true
+tick_count = 0
+ticks_on_borders = false
+focus_mode = 2
+_sections_unfolded = [ "Size Flags" ]
+
+[connection signal="value_changed" from="CenterContainer/TabContainer/Ranges/HBoxContainer/VBoxContainer/HSlider" to="CenterContainer/TabContainer/Ranges/HBoxContainer/ProgressBar" method="set_value"]
+
+[connection signal="value_changed" from="CenterContainer/TabContainer/Ranges/HBoxContainer/VBoxContainer/VSlider" to="CenterContainer/TabContainer/Ranges/HBoxContainer/ProgressBar" method="set_value"]
+
+

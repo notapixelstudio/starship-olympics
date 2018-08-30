@@ -50,7 +50,11 @@ func _input(event):
 	if event.is_action_pressed('continue') and debug:
 		reset()
 	
-		
+func _process(delta):
+	for node in $Battlefield.get_children():
+		if node.is_in_group("AI"):
+			$DebugNode/VBoxContainer/AI.text = "AI dist: "+ str(node.dist)
+			$DebugNode/VBoxContainer/pos_dist.text = "AI direction: "+ str(node.pos_dist)
 func reset():
 	someone_died = false
 	for child in $Battlefield.get_children():
