@@ -1,48 +1,51 @@
 extends Node
 
-const LIVES = 1
+var lives = 1
 const species = ["robolords", "mantiacs", "trixens"]
 
 var gameover = false
+var changed = false
 var enemy = "CPU"
 var available_species =[]
-var unlocked = len(species) setget get_available_species
+var unlocked = 2 setget get_available_species
 var chosen_species = {
 	'p1': 1,
 	'p2': 0
 }
 var scores = {
-	'p1': LIVES,
-	'p2': LIVES
+	'p1': lives,
+	'p2': lives
 }
 
 func _ready():
 	# if we want to save data from global
 	add_to_group("persist")
-	reset_selection()
+	reset()
 
 func get_available_species(new_value):
 	unlocked=new_value
 	reset_selection()
 
 func reset():
-	available_species = []
+	print(changed)
 	reset_selection()
 	scores = {
-	'p1': LIVES,
-	'p2': LIVES
+	'p1': lives,
+	'p2': lives
 	}
 	gameover = false
 	
 	
 func reset_selection():
+	available_species =[]
 	for i in range(0, unlocked):
 		available_species.append(species[i])
 		
 func get_state():
 	var save_dict = {
 		lives=5,
-		unlocked=2
+		unlocked=3,
+		changed=true
 	}
 	return save_dict
 

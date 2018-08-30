@@ -121,6 +121,8 @@ flat = false
 align = 1
 _sections_unfolded = [ "Theme" ]
 
+[connection signal="all_ready" from="." to="." method="_on_Selection_all_ready"]
+
 [connection signal="random_choice" from="." to="." method="_on_Selection_random_choice"]
 
 [connection signal="selected" from="MarginContainer/HBoxContainer/P2" to="." method="_on_P2_selected"]

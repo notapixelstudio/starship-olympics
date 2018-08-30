@@ -9,6 +9,7 @@ var danger = false
 const MAX_DANGER = 100
 
 func _ready():
+	add_to_group("AI")
 	var circle = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
@@ -18,6 +19,7 @@ var wr
 var direction = Vector2()
 var current_dir = Vector2()
 var dist
+var pos_dist
  
 func control(delta):
 	counter += 1
@@ -27,6 +29,7 @@ func control(delta):
 		direction = (target.position - self.position).normalized()
 		# if 2 we are in opposite direction, if 1 we are in perpendicular, if 0 we are running into it
 		dist = distance(self.velocity.normalized(), direction)
+		pos_dist = (target.position - self.position).normalized()
 		
 		#var current_dir = Vector2(0, 0).rotated($Line2D.global_rotation)
 		#$Line2D.global_rotation = current_dir.linear_interpolate(direction, 100 * delta).angle()
@@ -52,8 +55,6 @@ func control(delta):
 		last_rotation = -sign(direction.y) * ROTATION_SPEED
 		steer(last_rotation)
 	
-
-	move_and_collide(direction*speed_multiplier*delta) 
 
 func distance(n1,n2):
 	var distance = n1 - n2
