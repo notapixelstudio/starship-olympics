@@ -16,6 +16,11 @@ func _ready():
 		$MarginContainer/HBoxContainer/P2/VBoxContainer/Controls/CenterContainer.visible = false
 
 
+func _input(event):
+	if event.is_action_pressed("ui_back"):
+		print("whhhhhaaaat")
+		get_tree().change_scene_to(load(global.from_scene))
+		
 func ready_to_fight():
 	if not ready:
 		if global.enemy == "CPU" :
