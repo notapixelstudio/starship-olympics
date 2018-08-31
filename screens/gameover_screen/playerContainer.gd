@@ -19,7 +19,6 @@ func _ready():
 		$Lives.add_child(life)
 	#rect_scale = Vector2(-1,1)
 	if not player_num % 2:
-		print("bbooooMMM")
 		var p = $Player
 		remove_child(p)
 		var tmp = $Lives

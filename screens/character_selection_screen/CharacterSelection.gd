@@ -18,7 +18,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_back"):
-		get_tree().change_scene_to(load(global.from_scene))
+		get_tree().change_scene(global.from_scene)
 		
 func ready_to_fight():
 	if not ready:
