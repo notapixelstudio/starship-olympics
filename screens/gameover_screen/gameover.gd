@@ -9,8 +9,8 @@ func _input(event):
 		change_scene()
 
 func _ready():
-	p1.species = global.species[global.chosen_species["p1"]]
-	p2.species = global.species[global.chosen_species["p2"]]
+	p1.get_node("Player").species = global.species[global.chosen_species["p1"]]
+	p2.get_node("Player").species = global.species[global.chosen_species["p2"]]
 	
 	$VBoxContainer/Rematch.grab_focus()
 	var winner
@@ -27,9 +27,11 @@ func _ready():
 			winner = player 
 			other = player
 			win_count = global.scores[player]
-	
-	get_node("MarginContainer/HBoxContainer/"+winner).win()
-	get_node("MarginContainer/HBoxContainer/"+other).lose()
+
+	var losing_count = global.scores[other]
+	print(losing_count)
+	get_node("MarginContainer/HBoxContainer/"+winner).win(win_count)
+	get_node("MarginContainer/HBoxContainer/"+other).lose(losing_count)
 	var win_species = global.species[global.chosen_species[winner]]
 
 	$MarginContainer/HBoxContainer/Label.text = win_species.to_upper() + " WON!"

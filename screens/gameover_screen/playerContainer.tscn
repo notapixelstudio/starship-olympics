@@ -3,7 +3,7 @@
 [ext_resource path="res://screens/gameover_screen/playerContainer.gd" type="Script" id=1]
 [ext_resource path="res://actors/CharacterContainer.tscn" type="PackedScene" id=2]
 
-[node name="gameoverContainer" type="HBoxContainer"]
+[node name="p1" type="HBoxContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -21,8 +21,7 @@ size_flags_vertical = 1
 alignment = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Rect" ]
-species = "TRIXENS"
-player_num = 1
+player_num = 2
 
 [node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 

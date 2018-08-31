@@ -3,14 +3,10 @@ extends CenterContainer
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-export (String) var species = "TRIXENS"
+var species
 
-func _ready():
-	species = species.to_lower()
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
+func setup(species):
+	$Sprite.texture = load("res://assets/character_"+species+"_1.png")
 func selected():
 	$SelRect.visible = true
 	

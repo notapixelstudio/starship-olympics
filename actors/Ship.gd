@@ -4,7 +4,7 @@ extends KinematicBody2D
 var left
 var right
 export var velocity = Vector2(6,0)
-var speed_multiplier = 0.2
+var speed_multiplier = 1
 
 const ROTATION_SPEED = 0.1
 var count = 0

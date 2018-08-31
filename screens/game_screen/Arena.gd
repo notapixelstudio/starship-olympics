@@ -54,6 +54,10 @@ func _process(delta):
 		if node.is_in_group("AI"):
 			$DebugNode/VBoxContainer/AI.text = "AI dist: "+ str(node.dist)
 			$DebugNode/VBoxContainer/pos_dist.text = "AI direction: "+ str(node.pos_dist)
+			var danger = false
+			if node.steer_away:
+				danger= true
+			$DebugNode/VBoxContainer/danger.text = str(danger)
 func reset():
 	someone_died = false
 	for child in $Battlefield.get_children():
