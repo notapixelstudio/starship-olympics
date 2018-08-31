@@ -33,7 +33,6 @@ func _ready():
 	shortcut.set_shortcut(hotkey)
 	# and then on BaseButton
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.set_shortcut(shortcut)
-	print("My name is " + name + " and I have this side " + str(side))
 	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Right/CenterContainer/Panel/Key.text = right
 	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Left/CenterContainer/Panel/Key.text = left
 	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Fire/CenterContainer/Panel/Key.text = fire
@@ -86,10 +85,7 @@ func _input(event):
 		var i = global.chosen_species[name.to_lower()]
 		global.chosen_species[name.to_lower()] = i
 		change_species(global.species[i])
-		print(global.chosen_species)
 		global.available_species.remove(i)
-		print(global.available_species)
-		print(i)
 		emit_signal("selected")
 
 func mod(a,b):
@@ -104,7 +100,6 @@ func _on_Previous_pressed():
 	var b = len(global.available_species)
 	var i = mod(a,b)
 	global.chosen_species[name.to_lower()] = i
-	print(str(global.chosen_species[name.to_lower()])  + " premiamo dietro " + str(i) + " per " + str(len(global.available_species)))
 	change_species(global.available_species[i])
 
 

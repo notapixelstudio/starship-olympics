@@ -16,6 +16,10 @@ func _ready():
 		$MarginContainer/HBoxContainer/P2/VBoxContainer/Controls/CenterContainer.visible = false
 
 
+func _input(event):
+	if event.is_action_pressed("ui_back"):
+		get_tree().change_scene(global.from_scene)
+		
 func ready_to_fight():
 	if not ready:
 		if global.enemy == "CPU" :
@@ -26,6 +30,8 @@ func ready_to_fight():
 					if not p.selected:
 						ready = false
 						break
+					else:
+						emit_signal("all_ready")
 	else:
 		$MarginContainer/HBoxContainer/VS.text = "Ready to fight"
 		$Button.visible = true
@@ -77,7 +83,6 @@ func simulate_choice(final_choice):
 	
 func _on_Button_pressed():
 	get_tree().change_scene_to(load("res://screens/game_screen/Game.tscn"))
-
 
 func _on_Selection_all_ready():
 	ready = true

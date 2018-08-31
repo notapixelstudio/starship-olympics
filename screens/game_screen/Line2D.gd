@@ -11,7 +11,6 @@ func _process(delta):
 	update()
 	
 func _draw():
-	print(from)
 	debug_draw(from, to)
 	
 func debug_draw(from, to):

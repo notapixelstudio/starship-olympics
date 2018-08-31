@@ -1,6 +1,10 @@
 extends "res://screens/basic_screen.gd"
 
+# TODO: We need a way to get the scene
+var this_path="res://screens/main_screen/main_screen.tscn"
+
 func _ready():
+	global.from_scene = this_path
 	$VBoxContainer.add_constant_override("separation", 6)
 	$VBoxContainer/StartCPU.grab_focus()
 	persistance.load_game()

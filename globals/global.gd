@@ -3,7 +3,11 @@ extends Node
 var lives = 1
 const species = ["robolords", "mantiacs", "trixens"]
 
+var from_scene
+
 var gameover = false
+var standoff = false
+
 var changed = false
 var enemy = "CPU"
 var available_species =[]
@@ -27,7 +31,6 @@ func get_available_species(new_value):
 	reset_selection()
 
 func reset():
-	print(changed)
 	reset_selection()
 	scores = {
 	'p1': lives,

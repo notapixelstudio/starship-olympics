@@ -7,7 +7,7 @@ var width
 var height
 var someone_died = false
 
-var debug = false
+var debug = true
 onready var DebugNode = get_node("DebugNode")
 
 func _ready():
@@ -19,17 +19,23 @@ func _ready():
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	reset()
-	print(global.chosen_species)
 
 func update_score(dead_player, killer_player):
 	# TODO: what if both of them died
 	var updated_label
 	global.scores[dead_player] -= 1
 	print(dead_player + str(global.scores))
-	# gameover condition doesn't need to be here
+	
+	# after X seconds let's stop all, this is done due to avoid double popup
+	# and here it can happen double KO. Needs standoff
+	if global.gameover:
+		global.standoff = true
+		print("standoooofff")
+		
+	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
 		global.gameover = true
-	# after X seconds let's stop all, this is done due to avoid double popup
+	
 	if not someone_died:
 		someone_died = true
 		yield(get_tree().create_timer(2.0), "timeout")
@@ -38,7 +44,7 @@ func update_score(dead_player, killer_player):
 		get_tree().paused=true
 
 func _on_Explosion_body_entered(body):
-	print('boom')
+	pass
 
 func _input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -55,6 +61,12 @@ func _process(delta):
 		if node.is_in_group("AI"):
 			$DebugNode/VBoxContainer/AI.text = "AI dist: "+ str(node.dist)
 			$DebugNode/VBoxContainer/pos_dist.text = "AI direction: "+ str(node.pos_dist)
+			var danger = false
+			if node.steer_away:
+				danger= true
+			$DebugNode/VBoxContainer/danger.text = str(danger)
+			if global.standoff:
+				$DebugNode/VBoxContainer/standoff.text = "standoff"
 func reset():
 	someone_died = false
 	for child in $Battlefield.get_children():

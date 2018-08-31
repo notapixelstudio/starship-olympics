@@ -6,7 +6,8 @@ var counter = 0
 var paused = false
 var aim = false
 var danger = false
-const MAX_DANGER = 100
+const MAX_DANGER = 250
+var steer_away
 
 func _ready():
 	add_to_group("AI")
@@ -39,7 +40,7 @@ func control(delta):
 #		print(dist)
 		#$Debug.text = str(direction.x)
 	# Priority to avoid danger
-	var steer_away = avoid_collision(MAX_DANGER)
+	steer_away = avoid_collision(MAX_DANGER)
 	if steer_away:
 		direction = (steer_away - self.position).normalized()
 		dist = distance(self.velocity.normalized(), direction)
@@ -51,7 +52,7 @@ func control(delta):
 	elif dist >= 1.3 and dist<= 1.8:
 		last_rotation = -sign(direction.y) * ROTATION_SPEED
 		steer(last_rotation)
-	elif  dist > 0.4 and dist < 1 :
+	elif  (dist > 0.4 and dist < 1.3) or steer_away:
 		last_rotation = -sign(direction.y) * ROTATION_SPEED
 		steer(last_rotation)
 	

@@ -89,10 +89,3 @@ func _physics_process(delta):
 			is_moving = false
 			target_pos = Vector2()
 		move_and_collide(velocity)
-
-func _on_Character_mouse_entered():
-	print("area entered")
-	
-	
-func _on_Piece_mouse_exited():
-	print("Mouse exited")
