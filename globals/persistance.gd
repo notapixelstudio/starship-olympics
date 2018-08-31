@@ -4,6 +4,7 @@ const SAVE_PATH ="user://savegame.save"
 var _settings = {}
 
 func _ready():
+	save_game()
 	load_game()
 
 func save_game():

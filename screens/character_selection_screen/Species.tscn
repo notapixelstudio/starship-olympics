@@ -1,15 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://screens/character_selection_screen/Species.gd" type="Script" id=1]
 [ext_resource path="res://screens/main_screen/interface/left.png" type="Texture" id=2]
 [ext_resource path="res://screens/main_screen/interface/left_pressed.png" type="Texture" id=3]
-[ext_resource path="res://assets/character_selection_rect_mantiacs.png" type="Texture" id=4]
-[ext_resource path="res://assets/character_mantiacs_1.png" type="Texture" id=5]
-[ext_resource path="res://screens/main_screen/interface/right.png" type="Texture" id=6]
-[ext_resource path="res://screens/main_screen/interface/right_pressed.png" type="Texture" id=7]
-[ext_resource path="res://ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=8]
-[ext_resource path="res://actors/mantiacs_ship.png" type="Texture" id=9]
-[ext_resource path="res://ui/interface/stats/Attack.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/CharacterContainer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://screens/main_screen/interface/right.png" type="Texture" id=5]
+[ext_resource path="res://screens/main_screen/interface/right_pressed.png" type="Texture" id=6]
+[ext_resource path="res://ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=7]
+[ext_resource path="res://actors/mantiacs_ship.png" type="Texture" id=8]
+[ext_resource path="res://ui/interface/stats/Attack.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -131,40 +130,7 @@ expand = true
 stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="CharacterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 79.0
-margin_right = 209.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 130, 400 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-_sections_unfolded = [ "Focus", "Grow Direction", "Material", "Rect" ]
-
-[node name="SelRect" type="Sprite" parent="VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer" index="0"]
-
-visible = false
-position = Vector2( 65, 200 )
-scale = Vector2( 0.43, 0.43 )
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="Sprite" type="Sprite" parent="VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer" index="1"]
-
-modulate = Color( 0.632812, 0.632812, 0.632812, 1 )
-position = Vector2( 65, 200 )
-scale = Vector2( 0.43, 0.43 )
-texture = ExtResource( 5 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
+[node name="CharacterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" index="1" instance=ExtResource( 4 )]
 
 [node name="Next" type="TextureButton" parent="VBoxContainer/MarginContainer/HBoxContainer" index="2"]
 
@@ -186,8 +152,8 @@ toggle_mode = false
 enabled_focus_mode = 0
 shortcut = null
 group = null
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 7 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]
@@ -208,7 +174,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 7 )
 text = "SPECIES"
 align = 1
 percent_visible = 1.0
@@ -258,7 +224,7 @@ _sections_unfolded = [ "Rect" ]
 position = Vector2( 50, 50 )
 rotation = 4.46638e-06
 scale = Vector2( 0.5, 0.500019 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/CenterContainer/NinePatchRect/Sprite" index="0"]
@@ -272,7 +238,7 @@ anims/standby = SubResource( 1 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="Controls" parent="VBoxContainer" index="3" instance=ExtResource( 10 )]
+[node name="Controls" parent="VBoxContainer" index="3" instance=ExtResource( 9 )]
 
 margin_top = 552.0
 margin_right = 288.0

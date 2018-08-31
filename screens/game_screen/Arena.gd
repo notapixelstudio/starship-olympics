@@ -7,7 +7,7 @@ var width
 var height
 var someone_died = false
 
-var debug = false
+var debug = true
 onready var DebugNode = get_node("DebugNode")
 
 func _ready():

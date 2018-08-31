@@ -21,18 +21,17 @@ func _ready():
 	$close_button.grab_focus()
 	
 
+# TODO: that timeout has to be an animation
 func update_score():
 	var guys = $VBoxContainer.get_children()
-	yield(get_tree().create_timer(0.5), "timeout)"
+	yield(get_tree().create_timer(0.5), "timeout")
 	for player in guys:
 		var lives = player.get_life_count()
-		print(lives)
-		print(global.scores[player.p_name])
 		while(global.scores[player.p_name] < lives):
 			player.remove_life()
+			lives = player.get_life_count()
 		
 		
-
 func _on_close_button_pressed():
 	get_tree().paused=false
 	hide()
