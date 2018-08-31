@@ -20,6 +20,14 @@ func get_life_count():
 	
 func remove_life():
 	$NinePatchRect/HBoxContainer.remove_child($NinePatchRect/HBoxContainer.get_child(get_child_count()))
+
+func add_life():
+	var life_texture = load("res://actors/"+global.species[global.chosen_species[p_name]]+"_ship.png")
+	var life = load("res://screens/game_screen/life_rect.tscn").instance()
+	life.set_texture(life_texture)
+	get_node("NinePatchRect/HBoxContainer").add_child(life)
+	
+
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.

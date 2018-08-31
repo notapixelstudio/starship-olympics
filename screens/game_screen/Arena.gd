@@ -25,10 +25,17 @@ func update_score(dead_player, killer_player):
 	var updated_label
 	global.scores[dead_player] -= 1
 	print(dead_player + str(global.scores))
-	# gameover condition doesn't need to be here
+	
+	# after X seconds let's stop all, this is done due to avoid double popup
+	# and here it can happen double KO. Needs standoff
+	if global.gameover:
+		global.standoff = true
+		print("standoooofff")
+		
+	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
 		global.gameover = true
-	# after X seconds let's stop all, this is done due to avoid double popup
+	
 	if not someone_died:
 		someone_died = true
 		yield(get_tree().create_timer(2.0), "timeout")
@@ -58,6 +65,8 @@ func _process(delta):
 			if node.steer_away:
 				danger= true
 			$DebugNode/VBoxContainer/danger.text = str(danger)
+			if global.standoff:
+				$DebugNode/VBoxContainer/standoff.text = "standoff"
 func reset():
 	someone_died = false
 	for child in $Battlefield.get_children():

@@ -52,7 +52,7 @@ func control(delta):
 	elif dist >= 1.3 and dist<= 1.8:
 		last_rotation = -sign(direction.y) * ROTATION_SPEED
 		steer(last_rotation)
-	elif  dist > 0.4 and dist < 1 :
+	elif  (dist > 0.4 and dist < 1.3) or steer_away:
 		last_rotation = -sign(direction.y) * ROTATION_SPEED
 		steer(last_rotation)
 	

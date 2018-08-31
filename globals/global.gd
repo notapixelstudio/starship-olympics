@@ -1,11 +1,13 @@
 extends Node
 
-var lives = 5
+var lives = 1
 const species = ["robolords", "mantiacs", "trixens"]
 
 var from_scene
 
 var gameover = false
+var standoff = false
+
 var changed = false
 var enemy = "CPU"
 var available_species =[]
