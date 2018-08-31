@@ -23,15 +23,13 @@ func _ready():
 
 func update_score():
 	var guys = $VBoxContainer.get_children()
+	yield(get_tree().create_timer(0.5), "timeout)"
 	for player in guys:
 		var lives = player.get_life_count()
 		print(lives)
 		print(global.scores[player.p_name])
 		while(global.scores[player.p_name] < lives):
 			player.remove_life()
-			print("removed")
-			lives = player.get_life_count()
-			print(lives)
 		
 		
 

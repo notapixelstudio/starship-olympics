@@ -19,7 +19,6 @@ func _ready():
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	reset()
-	print(global.chosen_species)
 
 func update_score(dead_player, killer_player):
 	# TODO: what if both of them died
@@ -38,7 +37,7 @@ func update_score(dead_player, killer_player):
 		get_tree().paused=true
 
 func _on_Explosion_body_entered(body):
-	print('boom')
+	pass
 
 func _input(event):
 	var debug_pressed = event.is_action_pressed("debug")

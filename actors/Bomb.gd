@@ -28,7 +28,6 @@ func detonate():
 	queue_free()
 	var explosion = Explosion.instance()
 	get_node('/root/Arena/Battlefield').add_child(explosion)
-	print(explosion.name)
 	explosion.player_id = player_id
 	explosion.position = position
 	

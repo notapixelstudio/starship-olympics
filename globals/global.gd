@@ -29,7 +29,6 @@ func get_available_species(new_value):
 	reset_selection()
 
 func reset():
-	print(changed)
 	reset_selection()
 	scores = {
 	'p1': lives,
