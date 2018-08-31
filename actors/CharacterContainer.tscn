@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/CharacterContainer.gd" type="Script" id=1]
+[ext_resource path="res://assets/character_selection_rect_mantiacs.png" type="Texture" id=2]
+[ext_resource path="res://assets/character_mantiacs_1.png" type="Texture" id=3]
+
+[node name="CharacterContainer" type="CenterContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 79.0
+margin_right = 209.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 130, 400 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Focus", "Grow Direction", "Material", "Rect" ]
+species = "TRIXENS"
+
+[node name="SelRect" type="Sprite" parent="." index="0"]
+
+visible = false
+position = Vector2( 65, 200 )
+scale = Vector2( 0.43, 0.43 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+modulate = Color( 0.632812, 0.632812, 0.632812, 1 )
+position = Vector2( 65, 200 )
+scale = Vector2( 0.43, 0.43 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
+
+
