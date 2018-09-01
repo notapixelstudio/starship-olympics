@@ -1,9 +1,10 @@
 extends Node
 
-var lives = 1
+var lives = 5
 const species = ["robolords", "mantiacs", "trixens"]
 
 var from_scene
+var debug = false
 
 var gameover = false
 var standoff = false
