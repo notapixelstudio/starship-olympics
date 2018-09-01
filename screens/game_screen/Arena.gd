@@ -7,7 +7,7 @@ var width
 var height
 var someone_died = false
 
-var debug = true
+var debug = false
 onready var DebugNode = get_node("DebugNode")
 
 func _ready():
@@ -18,6 +18,8 @@ func _ready():
 		player2 = Ship
 	width = get_viewport().size.x
 	height = get_viewport().size.y
+	debug = global.debug
+	DebugNode.visible = debug
 	reset()
 
 func update_score(dead_player, killer_player):
