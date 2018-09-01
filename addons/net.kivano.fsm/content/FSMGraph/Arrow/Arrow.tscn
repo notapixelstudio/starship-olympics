@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/net.kivano.fsm/content/FSMGraph/Arrow/Arrow.gd" type="Script" id=1]
+[ext_resource path="res://addons/net.kivano.fsm/content/FSMGraph/Arrow/CloseIcon/CloseIcon.tscn" type="PackedScene" id=2]
+
+[node name="Arrow" type="Node2D"]
+
+script = ExtResource( 1 )
+target_node_path = NodePath("")
+target = Vector2( 0, 0 )
+closeIconActive = true
+width = 7
+start_offset = 0
+end_offset = 0
+side_offset = 0
+color = Color( 0.392157, 0.764706, 0.529412, 1 )
+beginningColor = Color( 0.321569, 0.611765, 0.94902, 1 )
+editor_only = false
+with_arrow = true
+
+[node name="CloseIcon" parent="." instance=ExtResource( 2 )]
+
+position = Vector2( 35, 0 )
+
+[connection signal="onCloseBtnClicked" from="CloseIcon" to="." method="_on_CloseIcon_onCloseBtnClicked"]
+
+

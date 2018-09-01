@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/net.kivano.fsm/content/FSMDebugger/UIHolder2D/UIHolder2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/net.kivano.fsm/content/FSMDebugger/FSMDebugger3D.gd" type="Script" id=2]
+[ext_resource path="res://addons/net.kivano.fsm/content/FSMDebugger/FSMDebugger.tscn" type="PackedScene" id=3]
+
+[node name="FSMDebugger3D" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="FSMDebugger" parent="." instance=ExtResource( 3 )]
+
+

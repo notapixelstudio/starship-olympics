@@ -1,0 +1,242 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://screens/basic_screen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://screens/main_screen/main_screen.gd" type="Script" id=2]
+[ext_resource path="res://screens/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/theme/utilities/fonts/uroob.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=5]
+[ext_resource path="res://screens/main_screen/Button.gd" type="Script" id=6]
+
+[sub_resource type="InputEventAction" id=1]
+
+device = 0
+action = ""
+pressed = false
+
+[sub_resource type="ShortCut" id=2]
+
+shortcut = SubResource( 1 )
+
+[node name="MainScreen" instance=ExtResource( 1 )]
+
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+script = ExtResource( 2 )
+next_scene = "res://screens/character_selection_screen/CharacterSelection.tscn"
+
+[node name="ColorRect" parent="Transition" index="0"]
+
+margin_left = -200.0
+margin_right = -200.0
+margin_bottom = 0.0
+
+[node name="background" type="TextureRect" parent="." index="2"]
+
+self_modulate = Color( 0.925781, 0.925781, 0.925781, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -4.0
+margin_right = 1291.0
+margin_bottom = 738.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Offset", "Rect", "Size Flags", "Transform", "Visibility", "Z Index" ]
+
+[node name="GameTitle" type="Label" parent="." index="3"]
+
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -263.0
+margin_right = 263.0
+margin_bottom = 201.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.705882, 0.85098, 0.262745, 1 )
+custom_colors/font_color_shadow = Color( 0.00503206, 0.0078125, 0.000549316, 1 )
+text = "SuperStarFighter"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Margin", "Rect", "Size Flags", "Theme", "custom_colors", "custom_fonts" ]
+
+[node name="Label" type="Label" parent="GameTitle" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 138.0
+margin_top = 136.0
+margin_right = 178.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.705882, 0.85098, 0.262745, 1 )
+text = "a game by notapixelstudio"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="4"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -145.0
+margin_top = -143.0
+margin_right = 145.0
+margin_bottom = 143.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+alignment = 1
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_constants" ]
+
+[node name="StartCPU" type="Button" parent="VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 290.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 210, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = SubResource( 2 )
+group = null
+text = "Human vs CPU"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Rect", "Theme" ]
+
+[node name="StartHuman" type="Button" parent="VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 74.0
+margin_right = 290.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 210, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Human vs Human"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Rect", "Theme" ]
+
+[node name="Credits" type="Button" parent="VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 148.0
+margin_right = 290.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 0, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Credits"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect", "Theme" ]
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 222.0
+margin_right = 290.0
+margin_bottom = 292.0
+rect_min_size = Vector2( 0, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Quit"
+flat = false
+align = 1
+script = ExtResource( 6 )
+_sections_unfolded = [ "Rect", "Theme" ]
+
+[connection signal="pressed" from="VBoxContainer/StartCPU" to="." method="_on_StartCPU_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/StartHuman" to="." method="_on_StartHuman_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_QuitButton_pressed"]
+
+

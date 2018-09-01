@@ -1,0 +1,15 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+
+code = "shader_type canvas_item;
+
+uniform bool flip;
+
+void fragment() {
+    vec2 uv = UV;
+    if(flip)
+        uv.x = 1.0 - uv.x;
+    COLOR = texture(TEXTURE, uv);
+}"
+
