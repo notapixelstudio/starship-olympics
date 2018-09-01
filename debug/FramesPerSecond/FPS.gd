@@ -1,4 +1,4 @@
-extends Control
+extends Panel
 
 var count = 0
 var time = 0.0
