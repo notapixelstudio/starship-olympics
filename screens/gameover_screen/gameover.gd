@@ -40,7 +40,7 @@ func _ready():
 	yield(get_tree().create_timer(3.0), "timeout")
 	
 	for button in $VBoxContainer.get_children():
-		button.disabled = true
+		button.disabled = false
 	$VBoxContainer/Rematch.grab_focus()
 
 	# check if we unlocked something
