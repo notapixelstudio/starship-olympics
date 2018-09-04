@@ -3,6 +3,11 @@ enum trans_type{IN, OUT}
 export (String, FILE, "*.tscn") var next_scene
 signal transition_finished
 
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		change_scene()
+
+
 func _ready():
 	$Transition/ColorRect.rect_size = get_viewport().size + Vector2(20, 20)
 	$Transition/ColorRect.rect_position = Vector2()

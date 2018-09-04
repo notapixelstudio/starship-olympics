@@ -1,16 +1,118 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://screens/basic_screen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://screens/promo_screen/Keyboard & Mouse/Dark/Keyboard_Black_Arrow_Down.png" type="Texture" id=2]
+[ext_resource path="res://screens/promo_screen/Keyboard & Mouse/Dark/Keyboard_Black_Arrow_Left.png" type="Texture" id=3]
+[ext_resource path="res://screens/promo_screen/Keyboard & Mouse/Dark/Keyboard_Black_Arrow_Right.png" type="Texture" id=4]
+[ext_resource path="res://screens/promo_screen/Keyboard & Mouse/Dark/Keyboard_Black_Arrow_Up.png" type="Texture" id=5]
+[ext_resource path="res://screens/promo_screen/Keyboard & Mouse/Dark/Keyboard_Black_M.png" type="Texture" id=6]
+[ext_resource path="res://screens/promo_screen/Keyboard & Mouse/Dark/Keyboard_Black_N.png" type="Texture" id=7]
 
 [node name="PromoScreen" index="0" instance=ExtResource( 1 )]
 
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 next_scene = "res://screens/main_screen/main_screen.tscn"
 
 [node name="ColorRect" parent="Transition" index="0"]
 
 margin_left = -1280.0
-margin_top = 0.0
 margin_right = -134.0
 margin_bottom = 600.0
+
+[node name="Keyboard_Black_Arrow_Down" type="Sprite" parent="." index="2"]
+
+position = Vector2( 376.488, 341.871 )
+texture = ExtResource( 2 )
+
+[node name="Keyboard_Black_Arrow_Left" type="Sprite" parent="." index="3"]
+
+position = Vector2( 311.798, 341.871 )
+texture = ExtResource( 3 )
+
+[node name="Keyboard_Black_Arrow_Right" type="Sprite" parent="." index="4"]
+
+position = Vector2( 443.766, 344.458 )
+texture = ExtResource( 4 )
+
+[node name="Keyboard_Black_Arrow_Up" type="Sprite" parent="." index="5"]
+
+position = Vector2( 379.076, 279.768 )
+texture = ExtResource( 5 )
+
+[node name="Keyboard_Black_M" type="Sprite" parent="." index="6"]
+
+position = Vector2( 720.639, 341.871 )
+texture = ExtResource( 6 )
+
+[node name="Keyboard_Black_N" type="Sprite" parent="." index="7"]
+
+position = Vector2( 614.548, 344.459 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 693.0
+margin_top = 393.0
+margin_right = 748.0
+margin_bottom = 448.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Navigate"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label2" type="Label" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 590.0
+margin_top = 386.0
+margin_right = 638.0
+margin_bottom = 407.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Cancel"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label3" type="Label" parent="." index="10"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 357.0
+margin_top = 401.0
+margin_right = 407.0
+margin_bottom = 415.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Confirm"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
