@@ -8,6 +8,7 @@ func _ready():
 	$VBoxContainer.add_constant_override("separation", 6)
 	$VBoxContainer/StartCPU.grab_focus()
 	persistance.load_game()
+	global.reset()
 	"""
 	if !bgm_creation.is_playing():
 		bgm_creation.play()
@@ -31,3 +32,7 @@ func _on_Save_pressed():
 	if persistance.load_game():
 		$VBoxContainer/Save/Label.text = "good job!"
 		global.reset()
+
+
+func _on_Options_pressed():
+	change_scene("res://screens/option_screen/OptionScreen.tscn")

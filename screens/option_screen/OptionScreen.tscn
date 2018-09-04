@@ -3,7 +3,7 @@
 [ext_resource path="res://screens/option_screen/OptionScreen.gd" type="Script" id=1]
 [ext_resource path="res://screens/option_screen/ElementOption.tscn" type="PackedScene" id=2]
 
-[node name="OptionScreen" type="Control" index="0"]
+[node name="OptionScreen" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -59,16 +59,18 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Life" parent="Options" index="0" instance=ExtResource( 2 )]
+[node name="element0" parent="Options" index="0" instance=ExtResource( 2 )]
 
 margin_right = 224.0
+description = "changed"
 
-[node name="Element" parent="Options" index="1" instance=ExtResource( 2 )]
+[node name="element1" parent="Options" index="1" instance=ExtResource( 2 )]
 
 margin_top = 18.0
 margin_right = 224.0
 margin_bottom = 32.0
 alignment = 2
+description = "lives"
 elem_type = 1
 
 [connection signal="focus_entered" from="Title" to="." method="_on_Label_focus_entered"]

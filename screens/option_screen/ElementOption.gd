@@ -6,15 +6,21 @@ extends Control
 enum OPTION_TYPE{ON_OFF, NUMBER}
 export (String) var description = "Life"
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
-export(String) var value = "ON"
+var value 
 
+func _exit_tree():
+	print(description, " -> ", value)
+	
 func _ready():
 	if elem_type == NUMBER:
-		value = 0
 		$Value/left.visible = true
 		$Value/right.visible = true
+
 	$Description.text = description
-	$Value/Value.text = str(value)
+	value = str(global.get(description))
+	$Value/Value.text = value
+	print(description,"=>", value)
+	
 	set_process_input(false)
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -25,22 +31,21 @@ func _input(event):
 		if event.is_action_pressed("ui_accept"):
 			print("change")
 			shake_node($Value)
-			var value = $Value/Value.text
-			if value == "ON":
-				value = "OFF"
-			elif value == "OFF":
-				value = "ON"
+			value = ($Value/Value.text == 'True')
+			value = not value
 			$Value/Value.text = str(value)
 			
 	if elem_type == NUMBER:
 		if event.is_action_pressed("ui_right"):
 			shake_node($Value)
-			var value = int($Value/Value.text)
-			$Value/Value.text = str(value +1)
+			value = int($Value/Value.text)
+			value +=1
+			$Value/Value.text = str(value)
 		elif event.is_action_pressed("ui_left"):
 			shake_node_backwards($Value)
-			var value = int($Value/Value.text)
-			$Value/Value.text = str(value-1)
+			value = int($Value/Value.text)
+			value -=1
+			$Value/Value.text = str(value)
 		
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

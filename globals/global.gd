@@ -3,7 +3,7 @@ extends Node
 var lives = 5
 const species = ["robolords", "mantiacs", "trixens"]
 
-var from_scene
+var from_scene = "res://screens/main_screen/main_screen.tscn"
 var debug = false
 
 var gameover = false
@@ -47,9 +47,9 @@ func reset_selection():
 		
 func get_state():
 	var save_dict = {
-		lives=5,
-		unlocked=3,
-		changed=true
+		lives=lives,
+		unlocked=unlocked,
+		changed=changed
 	}
 	return save_dict
 
