@@ -18,7 +18,7 @@ func _ready():
 		for life in global.scores[player]:
 			var l = load("res://screens/game_screen/life_rect.tscn").instance()
 			l.set_texture(i)
-			container.get_node("NinePatchRect/HBoxContainer").add_child(l)
+			container.get_node("NinePatchRect/Container").add_child(l)
 		$VBoxContainer.add_child(container)
 	connect("reset_signal", get_node('/root/Arena'), "reset")
 	$close_button.disabled = true
