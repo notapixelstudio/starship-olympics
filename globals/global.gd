@@ -47,9 +47,9 @@ func reset_selection():
 		
 func get_state():
 	var save_dict = {
-		lives=lives,
-		unlocked=unlocked,
-		changed=changed
+		lives=int(lives),
+		unlocked=int(unlocked),
+		changed=bool(changed)
 	}
 	return save_dict
 
