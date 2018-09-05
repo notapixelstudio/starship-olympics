@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://actors/Circle.tscn" type="PackedScene" id=2]
 
-[node name="Explosion" type="Area2D" index="0"]
+[node name="Explosion" type="Area2D"]
 
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )
@@ -22,6 +22,8 @@ color = Color( 1, 0.914062, 0, 0.784314 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-[connection signal="body_entered" from="." to="." method="_on_Explosion_body_entered"]
+[node name="TriggerComponent" type="Node" parent="." index="2"]
+
+[node name="DeadlyComponent" type="Node" parent="." index="3"]
 
 
