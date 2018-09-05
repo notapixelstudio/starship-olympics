@@ -31,8 +31,9 @@ func update_score(dead_player, killer_player):
 	# after X seconds let's stop all, this is done due to avoid double popup
 	# and here it can happen double KO. Needs standoff
 	if global.gameover:
-		global.standoff = true
-		print("standoooofff")
+		if global.scores[dead_player] <= 0:
+			global.standoff = true
+			print("standoooofff")
 		
 	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
