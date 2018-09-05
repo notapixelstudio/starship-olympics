@@ -12,7 +12,7 @@ var life_scn = preload("res://screens/game_screen/life_rect.tscn")
 func _ready():
 	species = global.species[global.chosen_species[name.to_lower()]]
 	species = species.to_lower()
-	var life_texture = load("res://actors/"+species+"_ship.png")
+	var life_texture = load("res://actors/"+species+"_ship_plain.png")
 	for i in range(0,global.lives):
 		var life = life_scn.instance()
 		life.texture = life_texture
