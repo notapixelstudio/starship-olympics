@@ -22,7 +22,7 @@ func _ready():
 	DebugNode.visible = debug
 	reset()
 
-func update_score(dead_player, killer_player):
+func update_score(dead_player):
 	# TODO: what if both of them died
 	var updated_label
 	global.scores[dead_player] -= 1
@@ -44,9 +44,6 @@ func update_score(dead_player, killer_player):
 		$Popup.update_score()
 		$Popup.popup_centered()
 		get_tree().paused=true
-
-func _on_Explosion_body_entered(body):
-	pass
 
 func _input(event):
 	var debug_pressed = event.is_action_pressed("debug")

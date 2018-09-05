@@ -67,13 +67,13 @@ func avoid_collision(proximity):
 			if distance(self.position, node.position) <= proximity:
 				return(node.position)
 	return Vector2()
-	
-func _on_DetectRadius_body_entered(body):
-	if body.is_in_group("players") and body != self:
+
+func _on_DetectRadius_area_entered(area):
+	if area.is_in_group("players") and area != self:
 		if direction.x == 1 and direction.y == 0:
 			steer(last_rotation)
 		aim = true
 
-func _on_DetectRadius_body_exited(body):
-	if body.is_in_group("players") and body != self:
+func _on_DetectRadius_area_exited(area):
+	if area.is_in_group("players") and area != self:
 		aim = false

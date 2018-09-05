@@ -36,9 +36,3 @@ func _physics_process(delta):
 		
 func sigmoid(x, dt, amp):
   return x/dt*amp
-
-
-func _on_Explosion_body_entered(body):
-	if body.has_method('on_explosion_entered'):
-		body.on_explosion_entered(player_id)
-		

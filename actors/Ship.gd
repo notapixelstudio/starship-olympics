@@ -1,5 +1,5 @@
 # script ship
-extends KinematicBody2D
+extends Area2D
 
 var left
 var right
@@ -57,7 +57,11 @@ func _physics_process(delta):
 	if not alive:
 		return
 	control(delta)
-	move_and_collide(velocity * speed_multiplier)
+	
+	var actual_velocity = velocity * speed_multiplier
+	
+	position.x += actual_velocity.x
+	position.y += actual_velocity.y
 
 	# fire
 	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
@@ -103,16 +107,12 @@ func fire():
 	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
 	get_node('/root/Arena/Battlefield').add_child(bomb)
 	
-func on_explosion_entered(explosion_player):
-	die(explosion_player)
-	
-func on_trail_entered():
-	die() # FIXME trail player id
-	
-func die(killer_player):
+func die():
 	if alive:
 		alive = false
-		emit_signal("died", player, killer_player)
+		emit_signal("died", player)
 		queue_free()
 	
-	
+func _on_Ship_area_entered(area):
+	if area.has_node('DeadlyComponent'):
+		die()
