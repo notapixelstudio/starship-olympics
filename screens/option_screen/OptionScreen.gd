@@ -16,7 +16,7 @@ func _exit_tree():
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	$Options/element0.grab_focus()
+	$Options.get_child(0).grab_focus()
 
 func _input(event):
 	if event.is_action_pressed("ui_back"):
