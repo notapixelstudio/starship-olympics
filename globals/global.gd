@@ -3,7 +3,7 @@ extends Node
 var lives = 5
 const species = ["robolords", "mantiacs", "trixens"]
 
-var from_scene = "res://screens/main_screen/main_screen.tscn"
+var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 var debug = false
 
 var gameover = false
@@ -23,6 +23,7 @@ var scores = {
 }
 
 func _ready():
+	print(from_scene)
 	# if we want to save data from global
 	add_to_group("persist")
 	reset()
