@@ -18,7 +18,6 @@ var height
 var fire_cooldown = 0
 var dash_cooldown = 0
 
-export var color = Color(0,0,0)
 export var player = 'p1'
 
 var Bomb
