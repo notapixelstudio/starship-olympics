@@ -8,6 +8,7 @@ var species
 func setup(species):
 	$Sprite.texture = load("res://assets/character_"+species+"_1.png")
 func selected():
+	$Sprite.modulate = Color(1,1,1)
 	$SelRect.visible = true
 	
 func lose():
