@@ -4,13 +4,14 @@ extends "res://screens/basic_screen.gd"
 # var a = 2
 # var b = "textvar"
 
+export (String) var new_species = "trixens"
+
 func _ready():
 	$Ship.visible = false
 	$Character.visible = false
-	print(global.unlocked)
+	global.unlocked_species.append(new_species)
 	global.unlocked += 1
 	yield(get_tree().create_timer(2.0), "timeout")
-	var new_species = global.species[global.unlocked-1]
 	$Ship.texture = load("res://actors/"+new_species+"_ship.png")
 	$Character.texture = load("res://assets/character_"+new_species+"_1.png")
 	var sprite = get_node("Ship")
