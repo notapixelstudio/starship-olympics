@@ -40,7 +40,7 @@ size_flags_vertical = 1
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Rect" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect" index="0"]
+[node name="Container" type="VBoxContainer" parent="NinePatchRect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -57,15 +57,14 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Label" type="Label" parent="NinePatchRect/HBoxContainer" index="0"]
+[node name="Label" type="Label" parent="NinePatchRect/Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 5.0
 margin_right = 62.0
-margin_bottom = 29.0
+margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
