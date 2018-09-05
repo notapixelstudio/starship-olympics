@@ -7,19 +7,26 @@ enum OPTION_TYPE{ON_OFF, NUMBER}
 export (String) var description = "Life"
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
 var value 
+var min_value
+var max_value
+const focus_color = Color(1,0,0)
 
 func _exit_tree():
 	print(description, " -> ", value)
 	
 func _ready():
+	$Description.text = description
+	value = global.get(description)
+	$Value/Value.text = str(value)
+	print(description,"=>", value)
 	if elem_type == NUMBER:
 		$Value/left.visible = true
 		$Value/right.visible = true
-
-	$Description.text = description
-	value = str(global.get(description))
-	$Value/Value.text = value
-	print(description,"=>", value)
+		min_value = global.get("min_"+description)
+		max_value = global.get("max_"+description)
+		print(value<=min_value)
+		$Value/left.visible = value>min_value
+		$Value/right.visible = value<max_value
 	
 	set_process_input(false)
 	# Called when the node is added to the scene for the first time.
@@ -29,24 +36,27 @@ func _ready():
 func _input(event):
 	if elem_type == ON_OFF:
 		if event.is_action_pressed("ui_accept"):
-			print("change")
 			shake_node($Value)
 			value = ($Value/Value.text == 'True')
 			value = not value
 			$Value/Value.text = str(value)
 			
 	if elem_type == NUMBER:
-		if event.is_action_pressed("ui_right"):
+		if event.is_action_pressed("ui_right") and $Value/right.visible:
+			$Value/left.visible = true
 			shake_node($Value)
 			value = int($Value/Value.text)
 			value +=1
 			$Value/Value.text = str(value)
-		elif event.is_action_pressed("ui_left"):
+			$Value/right.visible = value<max_value
+		elif event.is_action_pressed("ui_left") and $Value/left.visible:
+			$Value/right.visible = true
 			shake_node_backwards($Value)
 			value = int($Value/Value.text)
 			value -=1
 			$Value/Value.text = str(value)
-		
+			$Value/left.visible = value>min_value
+
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
@@ -69,11 +79,13 @@ func _on_Element_focus_entered():
 	set_process_input(true)
 	var d= $Description
 	shake_node(d)
-	d.modulate = Color(1,0,1)
+	d.modulate = focus_color
+	$Value/Value.modulate = focus_color
 	
 
 func _on_Element_focus_exited():
 	for node in get_children():
 		node.modulate = Color(1,1,1)
+	$Value/Value.modulate = Color(1,1,1)
 	set_process_input(false)
 	

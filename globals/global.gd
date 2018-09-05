@@ -1,9 +1,13 @@
 extends Node
 
+const min_lives = 1
 var lives = 5
+const max_lives = 10
+
 const species = ["robolords", "mantiacs", "trixens"]
 
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
+
 var debug = false
 
 var gameover = false
