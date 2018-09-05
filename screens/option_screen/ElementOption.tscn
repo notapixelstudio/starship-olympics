@@ -48,7 +48,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_fonts" ]
+_sections_unfolded = [ "Focus", "Mouse", "Rect", "custom_fonts" ]
 
 [node name="Padding" type="Label" parent="." index="1"]
 
@@ -69,7 +69,7 @@ size_flags_vertical = 4
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Focus", "Rect" ]
 
 [node name="Tween" type="Tween" parent="." index="2"]
 
@@ -96,7 +96,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Focus", "Rect" ]
 
 [node name="left" type="TextureRect" parent="Value" index="0"]
 
@@ -117,7 +117,6 @@ size_flags_vertical = 1
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
-_sections_unfolded = [ "Rect" ]
 
 [node name="Value" type="Label" parent="Value" index="1"]
 

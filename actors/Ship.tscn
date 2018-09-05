@@ -140,18 +140,20 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 
-[node name="Ship" type="KinematicBody2D" groups=[
+[node name="Ship" type="Area2D" groups=[
 "players",
 ]]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 velocity = Vector2( 6, 0 )
-color = Color( 0, 0, 0, 1 )
 player = "p1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
@@ -209,5 +211,9 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
+
+[node name="TriggerComponent" type="Node" parent="." index="4"]
+
+[connection signal="area_entered" from="." to="." method="_on_Ship_area_entered"]
 
 
