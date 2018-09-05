@@ -21,7 +21,9 @@ var enemy = "CPU"
 var available_species =[]
 
 # TODO: this will disappear
+var min_unlocked = 1
 var unlocked = 2 setget get_available_species
+var max_unlocked = 3
 
 var default_players = 2
 var chosen_species = {}
@@ -58,6 +60,11 @@ func reset_selection():
 		available_species.append(unlocked_species[i])
 		
 func get_state():
+	# for debug purposes
+	unlocked_species = []
+	for i in range(0, unlocked):
+		unlocked_species.append(species[i])
+
 	var save_dict = {
 		lives=int(lives),
 		unlocked_species=unlocked_species,
