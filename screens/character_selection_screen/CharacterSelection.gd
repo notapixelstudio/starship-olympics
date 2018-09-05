@@ -30,9 +30,10 @@ func ready_to_fight():
 					if not p.selected:
 						ready = false
 						var p_name = p.name.to_lower()
-						if global.available_species.find(global.chosen_species[p_name])== -1 :
-							global.chosen_species[p_name] = (global.chosen_species[p_name]+ 1) % n_characters
-							p.change_species(global.unlocked_species[global.chosen_species[p_name]])
+						# check if the current selection is still available 
+						if global.available_species.find(p.index_selection)== -1 :
+							p.index_selection = (p.index_selection + 1) % len(global.available_species)
+							p.change_species(global.available_species[p.index_selection])
 						break
 					else:
 						emit_signal("all_ready")
@@ -60,6 +61,7 @@ func _on_Selection_random_choice(player):
 	for p in global.chosen_species:
 		if p != player:
 			forbidden = global.chosen_species[p]
+	
 	var random_choice = 0
 	random_choice = randi() % len(global.species)
 	while(forbidden == random_choice or random_choice>=len(global.unlocked_species)):

@@ -11,6 +11,8 @@ signal selected
 var disabled = false
 var selected = false
 
+var index_selection
+
 onready var controls_label=$VBoxContainer/Controls/Label
 onready var controls_container=$VBoxContainer/Controls/CenterContainer
 onready var character_container=$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer
@@ -63,7 +65,8 @@ func _ready():
 		selRectSprite.position = Vector2(55,200)
 	
 	# set species from available_species
-	species = global.available_species[global.chosen_species[name.to_lower()]]
+	index_selection = global.chosen_species[name.to_lower()]
+	species = global.available_species[index_selection]
 	change_species(species)
 	
 	# if CPU or fixed choice
@@ -96,24 +99,26 @@ func _input(event):
 	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
 		disable_choice()
 		selected = true
-		var i = global.chosen_species[name.to_lower()]
-		global.chosen_species[name.to_lower()] = i
-		change_species(global.species[i])
-		global.available_species.remove(i)
+		global.chosen_species[name.to_lower()] = index_selection
+		change_species(global.species[index_selection])
+		global.available_species.remove(index_selection)
 		emit_signal("selected")
 
 func _on_Previous_pressed():
-	var a = global.chosen_species[name.to_lower()] - 1
+	
+	var a = index_selection - 1
 	var b = len(global.available_species)
-	var i = mod(a,b)
-	global.chosen_species[name.to_lower()] = i
-	change_species(global.available_species[i])
+	index_selection = mod(a,b)
+
+	change_species(global.available_species[index_selection])
 
 
 func _on_Next_pressed():
-	var i = (global.chosen_species[name.to_lower()] + 1) % len(global.available_species)
-	global.chosen_species[name.to_lower()] = i
-	change_species(global.available_species[i])
+	var a = index_selection - 1
+	var b = len(global.available_species)
+	index_selection = mod(a,b)
+	
+	change_species(global.available_species[index_selection])
 
 func disable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = true
