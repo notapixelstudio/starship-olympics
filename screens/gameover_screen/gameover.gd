@@ -30,7 +30,6 @@ func _ready():
 			win_count = global.scores[player]
 
 	var losing_count = global.scores[other]
-	print(losing_count)
 	get_node("MarginContainer/HBoxContainer/"+winner).win(win_count)
 	get_node("MarginContainer/HBoxContainer/"+other).lose(losing_count)
 	var win_species = global.species[global.chosen_species[winner]]

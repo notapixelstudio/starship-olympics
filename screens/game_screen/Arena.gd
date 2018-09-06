@@ -57,7 +57,6 @@ func update_score(dead_player):
 	if global.gameover:
 		if global.scores[dead_player] <= 0:
 			global.standoff = true
-			print("standoooofff")
 		
 	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:

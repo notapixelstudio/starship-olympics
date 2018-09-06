@@ -40,7 +40,6 @@ func update_score():
 	if global.standoff:
 		$Standoff.visible = true
 		ready_for_standoff()
-		print("getting ready")
 		yield(self, "standoff_ready")
 		global.gameover = false
 		global.standoff = false
@@ -53,7 +52,6 @@ func ready_for_standoff():
 	yield(get_tree().create_timer(0.7), "timeout")
 	for player in global.scores:
 		var container = $VBoxContainer.get_child(i)
-		print(container.name)
 		yield(get_tree().create_timer(0.1), "timeout")
 		container.add_life()
 		global.scores[player] += 1 
@@ -70,5 +68,5 @@ func _on_close_button_pressed():
 
 
 func _on_Timer_timeout():
-	print("dsa")
+	pass
 	

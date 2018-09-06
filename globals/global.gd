@@ -26,6 +26,7 @@ var unlocked = 2 setget get_available_species
 var max_unlocked = 3
 
 var default_players = 2
+# chosen_species contains the choses species as string
 var chosen_species = {}
 var scores = {}
 
@@ -34,11 +35,10 @@ func _ready():
 	for i in range(1,default_players+1):
 		var pname = "p"+str(i)
 		scores[pname] = lives
-		chosen_species[pname] = i-1
+		chosen_species[pname] = species[i-1]
 
 	# if we want to save data from global
 	add_to_group("persist")
-	print(scores)
 	reset()
 
 func get_available_species(new_value):
@@ -74,6 +74,5 @@ func get_state():
 	return save_dict
 
 func load_state(data):
-	print(data)
 	for attribute in data:
 		set(attribute, data[attribute])
