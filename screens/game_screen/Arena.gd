@@ -88,9 +88,7 @@ func _process(delta):
 			if node.steer_away:
 				danger= true
 			$DebugNode/VBoxContainer/danger.text = str(danger)
-			if global.standoff:
-				$DebugNode/VBoxContainer/standoff.text = "standoff"
-				
+			
 func reset():
 	someone_died = false
 	get_tree().reload_current_scene()
