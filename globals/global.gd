@@ -26,6 +26,7 @@ var unlocked = 2 setget get_available_species
 var max_unlocked = 3
 
 var default_players = 2
+
 # chosen_species contains the choses species as string
 var chosen_species = {}
 var scores = {}
@@ -47,10 +48,9 @@ func get_available_species(new_value):
 
 func reset():
 	reset_selection()
-	scores = {
-	'p1': lives,
-	'p2': lives
-	}
+	for i in range(1,default_players+1):
+		var pname = "p"+str(i)
+		scores[pname] = lives
 	gameover = false
 	
 	

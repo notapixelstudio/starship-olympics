@@ -22,7 +22,7 @@ func remove_life():
 	$NinePatchRect/Container.remove_child($NinePatchRect/Container.get_child(get_child_count()))
 
 func add_life():
-	var life_texture = load("res://actors/"+global.species[global.chosen_species[p_name]]+"_ship_plain.png")
+	var life_texture = load("res://actors/"+global.chosen_species[p_name]+"_ship_plain.png")
 	var life = load("res://screens/game_screen/life_rect.tscn").instance()
 	life.set_texture(life_texture)
 	get_node("NinePatchRect/HBoxContainer").add_child(life)

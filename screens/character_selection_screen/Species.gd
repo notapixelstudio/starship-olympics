@@ -65,8 +65,9 @@ func _ready():
 		selRectSprite.position = Vector2(55,200)
 	
 	# set species from available_species
-	index_selection = global.chosen_species[name.to_lower()]
-	species = global.available_species[index_selection]
+	species = global.chosen_species[name.to_lower()]
+	index_selection = global.unlocked_species.find(species)
+	
 	change_species(species)
 	
 	# if CPU or fixed choice
@@ -87,6 +88,7 @@ func _ready():
 		$VBoxContainer/Controls/Label.text = 'KEYBOARD 2'
 
 func change_species(new_species):
+	print(name,": ", species," new_species->", new_species," index-> ",index_selection,global.chosen_species)
 	species = new_species.to_lower()
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
 	$VBoxContainer/SpeciesName.text = species.to_upper()
@@ -99,8 +101,8 @@ func _input(event):
 	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
 		disable_choice()
 		selected = true
-		global.chosen_species[name.to_lower()] = index_selection
-		change_species(global.species[index_selection])
+		global.chosen_species[name.to_lower()] = species
+		change_species(species)
 		global.available_species.remove(index_selection)
 		emit_signal("selected")
 
@@ -114,10 +116,10 @@ func _on_Previous_pressed():
 
 
 func _on_Next_pressed():
-	var a = index_selection - 1
+	var a = index_selection + 1
 	var b = len(global.available_species)
 	index_selection = mod(a,b)
-	
+
 	change_species(global.available_species[index_selection])
 
 func disable_choice():

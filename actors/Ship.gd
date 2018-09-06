@@ -25,7 +25,7 @@ var Trail
 var target = null
 
 func _ready():
-	species = global.species[global.chosen_species[player]]
+	species = global.chosen_species[player]
 	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x
