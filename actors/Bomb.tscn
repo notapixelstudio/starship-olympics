@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://actors/bomb.png" type="Texture" id=2]
+[ext_resource path="res://actors/bomb_frame_1.png" type="Texture" id=2]
+[ext_resource path="res://actors/bomb_frame_2.png" type="Texture" id=3]
+[ext_resource path="res://actors/bomb_frame_3.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -62,6 +64,15 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Scale" ]
 
+[sub_resource type="SpriteFrames" id=5]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
 [node name="Bomb" type="Area2D"]
 
 input_pickable = false
@@ -79,13 +90,7 @@ velocity = Vector2( 18, 0 )
 
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
-
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Transform" ]
-
-[node name="Particles2D" type="Particles2D" parent="." index="2"]
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
 
 emitting = true
 amount = 32
@@ -106,6 +111,14 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
+
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
+animation = "default"
+playing = true
+_sections_unfolded = [ "Transform" ]
 
 [node name="TriggerComponent" type="Node" parent="." index="3"]
 
