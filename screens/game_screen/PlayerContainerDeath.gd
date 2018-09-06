@@ -4,11 +4,11 @@ export(String) var p_name = "BOH"
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-
+onready var container = $NinePatchRect/Container
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	$NinePatchRect/Container/Label.text = p_name
+	container.get_node("Label").text = p_name
 	pass
 
 func get_life_count():
@@ -25,7 +25,7 @@ func add_life():
 	var life_texture = load("res://actors/"+global.chosen_species[p_name]+"_ship_plain.png")
 	var life = load("res://screens/game_screen/life_rect.tscn").instance()
 	life.set_texture(life_texture)
-	get_node("NinePatchRect/HBoxContainer").add_child(life)
+	container.add_child(life)
 	
 
 func _process(delta):

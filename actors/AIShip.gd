@@ -44,7 +44,8 @@ func control(delta):
 	if steer_away:
 		direction = (steer_away - self.position).normalized()
 		dist = distance(self.velocity.normalized(), direction)
-		# steer(last_rotation)
+		if dist < 0.2:
+			steer(last_rotation)
 	if dist > 1.8 :
 		if aim and fire_cooldown <= 0 :
 			fire_cooldown = 0.2
