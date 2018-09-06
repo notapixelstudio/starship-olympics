@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://actors/Circle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/bomb.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -79,10 +79,11 @@ velocity = Vector2( 18, 0 )
 
 shape = SubResource( 1 )
 
-[node name="Circle" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Sprite" type="Sprite" parent="." index="1"]
 
-radius = 20
-color = Color( 0.557901, 0.69484, 0.988281, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
 

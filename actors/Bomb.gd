@@ -16,12 +16,15 @@ func _ready():
 	height = get_viewport().size.y
 	
 	# remove particle trail if not moving
-	if position.x == 0 and position.y == 0:
+	if velocity == Vector2(0, 0):
 		$Particles2D.queue_free()
 
 func _physics_process(delta):
 	position.x += velocity.x
 	position.y += velocity.y
+	
+	# bomb rotate by default
+	#rotation += 0.05
 	
 	# remove bomb if far outside the screen
 	if position.x > width+CLEANUP_DISTANCE or position.x <= -CLEANUP_DISTANCE or position.y > height+CLEANUP_DISTANCE or position.y <= -CLEANUP_DISTANCE:
@@ -30,7 +33,7 @@ func _physics_process(delta):
 func detonate():
 	queue_free()
 	var explosion = Explosion.instance()
-	get_node('/root/Arena/Battlefield').add_child(explosion)
+	get_parent().add_child(explosion)
 	explosion.player_id = player_id
 	explosion.position = position
 
