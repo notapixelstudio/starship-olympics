@@ -60,13 +60,14 @@ func _on_Selection_random_choice(player):
 	var forbidden 
 	for p in global.chosen_species:
 		if p != player:
-			forbidden = global.chosen_species[p]
+			# get index of chosen_species
+			forbidden = global.unlocked_species.find(global.chosen_species[p])
 	
 	var random_choice = 0
 	random_choice = randi() % len(global.species)
 	while(forbidden == random_choice or random_choice>=len(global.unlocked_species)):
 		random_choice = (random_choice+ 1) % len(global.species)
-	global.chosen_species[player] = random_choice
+	global.chosen_species[player] = global.unlocked_species[random_choice]
 	simulate_choice(random_choice)
 	
 

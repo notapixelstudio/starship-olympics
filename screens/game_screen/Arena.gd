@@ -10,7 +10,13 @@ var someone_died = false
 var debug = false
 onready var DebugNode = get_node("DebugNode")
 
+export(String) var enemy
+
 func _ready():
+	# override for testing
+	if enemy:
+		global.enemy = enemy
+	
 	Ship = preload('res://actors/Ship.tscn')
 	if global.enemy == "CPU":
 		player2 = preload('res://actors/AIShip.tscn')
@@ -35,7 +41,7 @@ func _ready():
 	
 	var ship2 = player2.instance()
 	ship2.player = 'p2'
-	ship1.species = global.chosen_species[ship2.player]
+	ship2.species = global.chosen_species[ship2.player]
 	#$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	ship2.position.x = 32
 	ship2.position.y = height/2
@@ -57,7 +63,6 @@ func update_score(dead_player):
 	if global.gameover:
 		if global.scores[dead_player] <= 0:
 			global.standoff = true
-			print("standoooofff")
 		
 	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
@@ -89,9 +94,7 @@ func _process(delta):
 			if node.steer_away:
 				danger= true
 			$DebugNode/VBoxContainer/danger.text = str(danger)
-			if global.standoff:
-				$DebugNode/VBoxContainer/standoff.text = "standoff"
-				
+			
 func reset():
 	someone_died = false
 	get_tree().reload_current_scene()

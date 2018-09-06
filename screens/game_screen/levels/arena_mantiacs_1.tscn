@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://screens/game_screen/Game.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/Bomb.tscn" type="PackedScene" id=2]
+[ext_resource path="res://screens/game_screen/levels/mantiacs_background.png" type="Texture" id=2]
+[ext_resource path="res://actors/Bomb.tscn" type="PackedScene" id=3]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 
-[node name="Bomb" parent="." index="1" instance=ExtResource( 2 )]
+enemy = "player"
+
+[node name="mantiacs_background" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Bomb" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 640, 360 )
 velocity = Vector2( 0, 0 )

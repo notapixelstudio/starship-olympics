@@ -25,7 +25,7 @@ var Trail
 var target = null
 
 func _ready():
-	species = global.species[global.chosen_species[player]]
+	species = global.chosen_species[player]
 	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 	width = get_viewport().size.x
@@ -86,7 +86,7 @@ func _physics_process(delta):
 		var trail = Trail.instance()
 		trail.position = position
 		trail.rotation = rotation + PI/2
-		get_node('/root/Arena/Battlefield').add_child(trail)
+		get_parent().add_child(trail)
 	else:
 		$TrailParticles.emitting = false
 		
@@ -104,7 +104,7 @@ func fire():
 	bomb.player_id = player
 	bomb.velocity = velocity*(-1)
 	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
-	get_node('/root/Arena/Battlefield').add_child(bomb)
+	get_parent().add_child(bomb)
 	
 func die():
 	if alive:

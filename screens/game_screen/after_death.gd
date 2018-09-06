@@ -14,7 +14,7 @@ func _ready():
 		var container = preload("res://screens/game_screen/PlayerContainerDeath.tscn").instance()
 		container.p_name = player
 		container.name = player
-		var i = load("res://actors/"+global.species[global.chosen_species[player]]+"_ship_plain.png")
+		var i = load("res://actors/"+global.chosen_species[player]+"_ship_plain.png")
 		for life in global.scores[player]:
 			var l = load("res://screens/game_screen/life_rect.tscn").instance()
 			l.set_texture(i)
@@ -40,7 +40,6 @@ func update_score():
 	if global.standoff:
 		$Standoff.visible = true
 		ready_for_standoff()
-		print("getting ready")
 		yield(self, "standoff_ready")
 		global.gameover = false
 		global.standoff = false
@@ -53,7 +52,6 @@ func ready_for_standoff():
 	yield(get_tree().create_timer(0.7), "timeout")
 	for player in global.scores:
 		var container = $VBoxContainer.get_child(i)
-		print(container.name)
 		yield(get_tree().create_timer(0.1), "timeout")
 		container.add_life()
 		global.scores[player] += 1 
@@ -70,5 +68,5 @@ func _on_close_button_pressed():
 
 
 func _on_Timer_timeout():
-	print("dsa")
+	pass
 	

@@ -18,13 +18,11 @@ func _ready():
 	$Description.text = description
 	value = global.get(description)
 	$Value/Value.text = str(value)
-	print(description,"=>", value)
 	if elem_type == NUMBER:
 		$Value/left.visible = true
 		$Value/right.visible = true
 		min_value = global.get("min_"+description)
 		max_value = global.get("max_"+description)
-		print(value<=min_value)
 		$Value/left.visible = value>min_value
 		$Value/right.visible = value<max_value
 	

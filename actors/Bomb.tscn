@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://actors/bomb_frame_1.png" type="Texture" id=2]
-[ext_resource path="res://actors/bomb_frame_2.png" type="Texture" id=3]
-[ext_resource path="res://actors/bomb_frame_3.png" type="Texture" id=4]
+[ext_resource path="res://actors/bomb.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -67,7 +65,7 @@ _sections_unfolded = [ "Color", "Emission Shape", "Scale" ]
 [sub_resource type="SpriteFrames" id=5]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0

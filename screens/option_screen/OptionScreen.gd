@@ -10,7 +10,6 @@ func _exit_tree():
 		global.set(node.description, node.value)
 	# when we leave the scene
 	persistance.save_game()
-	print(global.lives)
 
 
 func _ready():
@@ -29,4 +28,3 @@ func _input(event):
 
 func _on_Label_focus_entered():
 	$Label.modulate = Color(0,1,1)
-	print("focuss")

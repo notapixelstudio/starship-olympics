@@ -26,7 +26,7 @@ func control(delta):
 	counter += 1
 	wr = weakref(target)
 	direction = Vector2() 
-	if wr.get_ref():
+	if wr.get_ref() and "position" in target:
 		direction = (target.position - self.position).normalized()
 		# if 2 we are in opposite direction, if 1 we are in perpendicular, if 0 we are running into it
 		dist = distance(self.velocity.normalized(), direction)
@@ -44,7 +44,8 @@ func control(delta):
 	if steer_away:
 		direction = (steer_away - self.position).normalized()
 		dist = distance(self.velocity.normalized(), direction)
-		# steer(last_rotation)
+		if dist < 0.2:
+			steer(last_rotation)
 	if dist > 1.8 :
 		if aim and fire_cooldown <= 0 :
 			fire_cooldown = 0.2
@@ -62,8 +63,8 @@ func distance(n1,n2):
 	return(sqrt((distance.x * distance.x) + (distance.y * distance.y)))
 	
 func avoid_collision(proximity):
-	for node in get_node('/root/Arena/Battlefield').get_children():
-		if not node.is_in_group("players"):
+	for node in get_parent().get_children():
+		if not node.is_in_group("players") and not node is Control:
 			if distance(self.position, node.position) <= proximity:
 				return(node.position)
 	return Vector2()

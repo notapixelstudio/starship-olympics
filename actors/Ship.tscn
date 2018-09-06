@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
+[ext_resource path="res://actors/trail_spark.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -59,7 +60,7 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-scale = 22.0
+scale = 1.6
 scale_random = 0.5
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
@@ -183,11 +184,11 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 6 )
-texture = null
+texture = ExtResource( 2 )
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
 [node name="TrailParticles" type="Particles2D" parent="." index="3"]
 
