@@ -51,6 +51,11 @@ func _ready():
 	# setup AI
 	ship2.target = ship1
 	ship1.target = ship2
+	
+	# setup spawner
+	for spawner in $Battlefield.get_children():
+		if spawner.is_in_group("spawner"):
+			spawner.spawn()
 
 func update_score(dead_player):
 	# TODO: what if both of them died

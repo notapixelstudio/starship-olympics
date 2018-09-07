@@ -11,6 +11,8 @@ const stillT = 1.5
 const shrinkT = 0.2
 const maxRadius = 80
 
+signal end_explosion
+
 func _ready():
 	shape = CircleShape2D.new()
 	$CollisionShape2D.set_shape(shape)
@@ -33,6 +35,7 @@ func _physics_process(delta):
 		radius = maxRadius - sigmoid(t1-growT-stillT, shrinkT, maxRadius)
 	else:
 		# destroy the explosion
+		emit_signal("end_explosion")
 		queue_free()
 		
 func sigmoid(x, dt, amp):
