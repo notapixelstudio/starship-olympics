@@ -31,7 +31,7 @@ func ready_to_fight():
 						ready = false
 						var p_name = p.name.to_lower()
 						# check if the current selection is still available 
-						if global.available_species.find(p.index_selection)== -1 :
+						if global.available_species.find(p.species)== -1 :
 							p.index_selection = (p.index_selection + 1) % len(global.available_species)
 							p.change_species(global.available_species[p.index_selection])
 						break
@@ -87,7 +87,7 @@ func simulate_choice(final_choice):
 	emit_signal("all_ready")
 	
 func _on_Button_pressed():
-	get_tree().change_scene_to(load("res://screens/game_screen/Game.tscn"))
+	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+global.level))
 
 func _on_Selection_all_ready():
 	ready = true

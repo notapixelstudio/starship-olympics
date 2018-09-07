@@ -4,6 +4,10 @@ const min_lives = 1
 var lives = 5
 const max_lives = 10
 
+# levels
+var level
+var array_level
+
 const species = ["mantiacs","robolords", "trixens"]
 
 # default unlocked species. The idea is put the locked one to "blank"
@@ -32,6 +36,10 @@ var chosen_species = {}
 var scores = {}
 
 func _ready():
+	# get the list of levels
+	array_level = dir_contents("res://screens/game_screen/levels")
+	if not level:
+		level = array_level[0]
 	# setting players dictionary
 	for i in range(1,default_players+1):
 		var pname = "p"+str(i)
@@ -69,10 +77,29 @@ func get_state():
 		lives=int(lives),
 		unlocked_species=unlocked_species,
 		unlocked=int(unlocked),
-		changed=bool(changed)
+		changed=bool(changed),
+		level=level
 	}
 	return save_dict
 
 func load_state(data):
 	for attribute in data:
 		set(attribute, data[attribute])
+
+
+func dir_contents(path):
+	var dir = Directory.new()
+	var list_files = []
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while (file_name != ""):
+			if dir.current_is_dir():
+				pass
+			else:
+				if file_name.ends_with(".tscn"):
+					list_files.append(file_name)
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return list_files

@@ -88,7 +88,7 @@ func _ready():
 		$VBoxContainer/Controls/Label.text = 'KEYBOARD 2'
 
 func change_species(new_species):
-	print(name,": ", species," new_species->", new_species," index-> ",index_selection,global.chosen_species)
+	# print(name,": ", species," new_species->", new_species," index-> ",index_selection,global.chosen_species)
 	species = new_species.to_lower()
 	var ship = $VBoxContainer/CenterContainer/NinePatchRect/Sprite
 	$VBoxContainer/SpeciesName.text = species.to_upper()
