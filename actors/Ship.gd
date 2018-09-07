@@ -38,8 +38,6 @@ func control(delta):
 	left = Input.is_action_pressed(player+'_left')
 	right = Input.is_action_pressed(player+'_right')
 	
-	if Input.is_action_just_pressed('ui_select'):
-		alive = false
 	if left and not right:
 		steer(-ROTATION_SPEED)
 	elif right and not left:

@@ -10,6 +10,7 @@ var width
 var height
 const CLEANUP_DISTANCE = 100
 
+signal detonate
 	
 func _ready():
 	width = get_viewport().size.x
@@ -40,4 +41,5 @@ func detonate():
 func _on_Bomb_area_entered(area):
 	# bombs always explode when they touch objects with the Trigger component
 	if area.has_node('TriggerComponent'):
+		emit_signal("detonate")
 		detonate()
