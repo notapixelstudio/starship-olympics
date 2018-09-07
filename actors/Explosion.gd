@@ -17,7 +17,8 @@ func _ready():
 
 func _physics_process(delta):
 	shape.set_radius(radius)
-	$Circle.set_radius(radius+8) # the actual hitbox is smaller than the rendered circle
+	#$Circle.set_radius(radius+8) # the actual hitbox is smaller than the rendered circle
+	$Image.scale = Vector2(radius+8, radius+8)
 	
 	# update the explosion's radius
 	var t1 = t

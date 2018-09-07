@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://screens/game_screen/Game.tscn" type="PackedScene" id=1]
+[ext_resource path="res://screens/game_screen/levels/arena_mantiacs_1.gd" type="Script" id=2]
+[ext_resource path="res://screens/game_screen/levels/robolords_background.png" type="Texture" id=3]
+[ext_resource path="res://actors/Bomb.tscn" type="PackedScene" id=4]
+
+[node name="Arena" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+enemy = null
+
+[node name="robolords_background" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="Bomb" parent="Battlefield" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 380, 200 )
+velocity = Vector2( 0, 0 )
+
+[node name="Bomb2" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 380, 500 )
+velocity = Vector2( 0, 0 )
+
+[node name="Bomb3" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 900, 200 )
+velocity = Vector2( 0, 0 )
+
+[node name="Bomb4" parent="Battlefield" index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 900, 500 )
+velocity = Vector2( 0, 0 )
+
+

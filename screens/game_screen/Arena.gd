@@ -10,7 +10,13 @@ var someone_died = false
 var debug = false
 onready var DebugNode = get_node("DebugNode")
 
+export(String) var enemy
+
 func _ready():
+	# override for testing
+	if enemy:
+		global.enemy = enemy
+	
 	Ship = preload('res://actors/Ship.tscn')
 	if global.enemy == "CPU":
 		player2 = preload('res://actors/AIShip.tscn')
