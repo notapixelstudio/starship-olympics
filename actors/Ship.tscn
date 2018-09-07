@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/trail_spark.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 16.0
@@ -18,21 +18,22 @@ colors = PoolColorArray( 1, 1, 1, 0.77498, 0.521505, 0.966356, 1, 0.80498, 0.241
 flags = 4
 gradient = SubResource( 2 )
 width = 2048
+_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=5]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.021267, 0.31667 ), -0.982902, -0.982902, 0, 0, Vector2( 1, 0.115879 ), 0.117166, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
+[sub_resource type="CurveTexture" id=6]
 
 flags = 4
 width = 2048
-curve = SubResource( 4 )
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=7]
 
 render_priority = 0
 trail_divisor = 1
@@ -62,7 +63,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.6
 scale_random = 0.5
-scale_curve = SubResource( 5 )
+scale_curve = SubResource( 6 )
 color_ramp = SubResource( 3 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -73,33 +74,33 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Resource", "Scale", "Trail" ]
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=8]
 
 min_value = -360.0
 max_value = 360.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=8]
+[sub_resource type="CurveTexture" id=9]
 
 flags = 4
 width = 2048
-curve = SubResource( 7 )
+curve = SubResource( 8 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=10]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.223774, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.336574, 0.88501 ), 0.0, 0.0, 0, 0, Vector2( 0.421839, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.543521, 0.792236 ), 0.0, 0.0, 0, 0, Vector2( 0.663426, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.785108, 0.615967 ), 0.0, 0.0, 0, 0, Vector2( 0.889914, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
+[sub_resource type="CurveTexture" id=11]
 
 flags = 4
 width = 2048
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=12]
 
 render_priority = 0
 trail_divisor = 1
@@ -127,10 +128,10 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-angle_curve = SubResource( 8 )
+angle_curve = SubResource( 9 )
 scale = 22.0
 scale_random = 0.0
-scale_curve = SubResource( 10 )
+scale_curve = SubResource( 11 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -159,7 +160,7 @@ player = "p1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
@@ -183,7 +184,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 6 )
+process_material = SubResource( 7 )
 texture = ExtResource( 2 )
 normal_map = null
 h_frames = 1
@@ -206,7 +207,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 11 )
+process_material = SubResource( 12 )
 texture = null
 normal_map = null
 h_frames = 1
