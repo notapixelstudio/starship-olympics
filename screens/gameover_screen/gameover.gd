@@ -51,7 +51,8 @@ func _ready():
 	
 func _on_Rematch_pressed():
 	global.reset()
-	change_scene()
+	print(global.level)
+	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+global.level))
 
 func _on_Menu_pressed():
 	global.reset()
