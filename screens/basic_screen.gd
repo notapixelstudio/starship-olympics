@@ -15,8 +15,8 @@ func _ready():
 	
 func change_scene(to = next_scene):
 	#Applies an transition animation then load the next scene
+	set_process_input(false)
 	apply_transition(IN)
-	
 	yield(self, "transition_finished")
 	get_tree().change_scene(to)
 	
