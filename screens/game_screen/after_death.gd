@@ -23,10 +23,12 @@ func _ready():
 	connect("reset_signal", get_node('/root/Arena'), "reset")
 	$close_button.disabled = true
 	
+	
 
 # TODO: that timeout has to be an animation
 func update_score():
 	$Standoff.visible = false
+	$elapsed_time.text += str(analytics.this_elapsed_time)
 	var guys = $VBoxContainer.get_children()
 	yield(get_tree().create_timer(0.5), "timeout")
 	var lives = 0

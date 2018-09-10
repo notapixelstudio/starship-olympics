@@ -35,6 +35,8 @@ var default_players = 2
 var chosen_species = {}
 var scores = {}
 
+var this_run_time = 0
+
 func _ready():
 	# get the list of levels
 	array_level = dir_contents("res://screens/game_screen/levels")

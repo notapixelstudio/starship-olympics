@@ -13,6 +13,7 @@ onready var DebugNode = get_node("DebugNode")
 export(String) var enemy
 
 func _ready():
+	global.this_run_time = OS.get_ticks_msec()
 	# override for testing
 	if enemy:
 		global.enemy = enemy
@@ -51,6 +52,9 @@ func _ready():
 	# setup AI
 	ship2.target = ship1
 	ship1.target = ship2
+	
+	#Analytics
+	analytics.start_elapsed_time()
 	
 	# setup spawner
 	for spawner in $Battlefield.get_children():
@@ -99,6 +103,7 @@ func _process(delta):
 			if node.steer_away:
 				danger= true
 			$DebugNode/VBoxContainer/danger.text = str(danger)
+			
 			
 func reset():
 	someone_died = false
