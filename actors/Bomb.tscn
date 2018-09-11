@@ -82,7 +82,8 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-velocity = Vector2( 18, 0 )
+velocity = Vector2( 6, 0 )
+acceleration = Vector2( -0.06, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

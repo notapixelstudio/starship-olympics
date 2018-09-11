@@ -100,7 +100,9 @@ func steer(rad):
 func fire():
 	var bomb = Bomb.instance()
 	bomb.player_id = player
-	bomb.velocity = velocity*(-1)
+	bomb.velocity = bomb.velocity.rotated(rotation-PI)
+	bomb.acceleration = bomb.acceleration.rotated(rotation-PI)
+	
 	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
 	get_parent().add_child(bomb)
 	
