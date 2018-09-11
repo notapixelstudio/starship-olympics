@@ -25,7 +25,9 @@ var pos_dist
 func control(delta):
 	counter += 1
 	wr = weakref(target)
-	direction = Vector2() 
+	direction = Vector2()
+	if global.gameover:
+		return 
 	if wr.get_ref() and "position" in target:
 		direction = (target.position - self.position).normalized()
 		# if 2 we are in opposite direction, if 1 we are in perpendicular, if 0 we are running into it
