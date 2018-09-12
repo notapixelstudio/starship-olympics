@@ -29,13 +29,17 @@ func _ready():
 	
 	someone_died = false
 	
+	# compute the battlefield size
+	width = global.width / $Battlefield.transform.get_scale().x
+	height = global.height / $Battlefield.transform.get_scale().y
+	
 	# create ships
 	var ship1 = Ship.instance()
 	ship1.player = 'p1'
 	ship1.species = global.chosen_species[ship1.player]
 	ship1.rotation = PI
-	ship1.position.x = global.width-32
-	ship1.position.y = global.height/2
+	ship1.position.x = width-32
+	ship1.position.y = height/2
 	ship1.velocity = Vector2(-8,0)
 	$Battlefield.add_child(ship1)
 	
@@ -44,7 +48,7 @@ func _ready():
 	ship2.species = global.chosen_species[ship2.player]
 	#$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	ship2.position.x = 32
-	ship2.position.y = global.height/2
+	ship2.position.y = height/2
 	ship2.velocity = Vector2(8,0)
 	$Battlefield.add_child(ship2)
 	

@@ -4,12 +4,12 @@
 [ext_resource path="res://screens/game_screen/after_death.tscn" type="PackedScene" id=2]
 [ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=3]
 
-[node name="Arena" type="Node" index="0"]
+[node name="Arena" type="Node"]
 
 script = ExtResource( 1 )
 enemy = null
 
-[node name="Battlefield" type="Node" parent="." index="0"]
+[node name="Battlefield" type="Node2D" parent="." index="0"]
 
 [node name="Popup" parent="." index="1" instance=ExtResource( 2 )]
 
