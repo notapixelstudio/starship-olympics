@@ -16,12 +16,13 @@ var stopped = false
 signal detonate
 	
 func _ready():
-	width = get_viewport().size.x
-	height = get_viewport().size.y
-	
 	# remove particle trail if not moving
 	if velocity == Vector2(0, 0):
 		stop()
+		
+	# load battlefield size
+	width = get_node('/root/Arena').width
+	height = get_node('/root/Arena').height
 
 func stop():
 	acceleration = Vector2(0, 0)

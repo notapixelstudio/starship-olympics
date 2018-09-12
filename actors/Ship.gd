@@ -31,6 +31,10 @@ func _ready():
 
 	Bomb = preload('res://actors/Bomb.tscn')
 	Trail = preload('res://actors/Trail.tscn')
+	
+	# load battlefield size
+	width = get_node('/root/Arena').width
+	height = get_node('/root/Arena').height
 
 func control(delta):
 	left = Input.is_action_pressed(player+'_left')
@@ -67,15 +71,15 @@ func _physics_process(delta):
 	dash_cooldown -= delta
 	
 	# wrap
-	if position.x > global.width:
-		position.x -= global.width
+	if position.x > width:
+		position.x -= width
 	elif position.x <= 0:
-		position.x += global.width
+		position.x += width
 		
-	if position.y > global.height:
-		position.y -= global.height
+	if position.y > height:
+		position.y -= height
 	elif position.y <= 0:
-		position.y += global.height
+		position.y += height
 		
 	# trail
 	if speed_multiplier > 1:
