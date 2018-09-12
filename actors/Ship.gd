@@ -28,8 +28,6 @@ func _ready():
 	species = global.chosen_species[player]
 	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
-	width = get_viewport().size.x
-	height = get_viewport().size.y
 
 	Bomb = preload('res://actors/Bomb.tscn')
 	Trail = preload('res://actors/Trail.tscn')
@@ -69,15 +67,15 @@ func _physics_process(delta):
 	dash_cooldown -= delta
 	
 	# wrap
-	if position.x > width:
-		position.x -= width
+	if position.x > global.width:
+		position.x -= global.width
 	elif position.x <= 0:
-		position.x += width
+		position.x += global.width
 		
-	if position.y > height:
-		position.y -= height
+	if position.y > global.height:
+		position.y -= global.height
 	elif position.y <= 0:
-		position.y += height
+		position.y += global.height
 		
 	# trail
 	if speed_multiplier > 1:

@@ -1,5 +1,8 @@
 extends Node
 
+const width = 1280
+const height = 720
+
 const min_lives = 1
 var lives = 5
 const max_lives = 10
