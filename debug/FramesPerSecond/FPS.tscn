@@ -3,13 +3,13 @@
 [ext_resource path="res://debug/FramesPerSecond/FPS.gd" type="Script" id=1]
 [ext_resource path="res://debug/debug_font.tres" type="DynamicFont" id=2]
 
-[node name="Debug" type="Panel"]
+[node name="Debug" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 85.0
+margin_right = 97.0
 margin_bottom = 114.0
 rect_scale = Vector2( 3, 3 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -145,5 +145,19 @@ text = "time: "
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="ColorRect" type="ColorRect" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.352941 )
 
 

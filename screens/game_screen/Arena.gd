@@ -8,7 +8,9 @@ var height
 var someone_died = false
 
 var debug = false
-onready var DebugNode = get_node("DebugNode")
+onready var DebugNode = get_node("Debug/DebugNode")
+onready var Battlefield = get_node("World/Battlefield")
+onready var Pause = get_node("Pause/end_battle")
 
 export(String) var enemy
 
@@ -30,8 +32,8 @@ func _ready():
 	someone_died = false
 	
 	# compute the battlefield size
-	width = global.width / $Battlefield.transform.get_scale().x
-	height = global.height / $Battlefield.transform.get_scale().y
+	width = global.width / Battlefield.transform.get_scale().x
+	height = global.height / Battlefield.transform.get_scale().y
 	
 	# create ships
 	var ship1 = Ship.instance()
@@ -41,7 +43,7 @@ func _ready():
 	ship1.position.x = width-32
 	ship1.position.y = height/2
 	ship1.velocity = Vector2(-8,0)
-	$Battlefield.add_child(ship1)
+	Battlefield.add_child(ship1)
 	
 	var ship2 = player2.instance()
 	ship2.player = 'p2'
@@ -50,7 +52,7 @@ func _ready():
 	ship2.position.x = 32
 	ship2.position.y = height/2
 	ship2.velocity = Vector2(8,0)
-	$Battlefield.add_child(ship2)
+	Battlefield.add_child(ship2)
 	
 	# setup AI
 	ship2.target = ship1
@@ -60,7 +62,7 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 	# setup spawner
-	for spawner in $Battlefield.get_children():
+	for spawner in Battlefield.get_children():
 		if spawner.is_in_group("spawner"):
 			spawner.spawn()
 
@@ -83,9 +85,7 @@ func update_score(dead_player):
 	if not someone_died:
 		someone_died = true
 		yield(get_tree().create_timer(2.0), "timeout")
-		$Popup.update_score()
-		$Popup.popup_centered()
-		get_tree().paused=true
+		Pause.update_score()
 
 func _input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -98,14 +98,14 @@ func _input(event):
 		reset()
 	
 func _process(delta):
-	for node in $Battlefield.get_children():
+	for node in Battlefield.get_children():
 		if node.is_in_group("AI"):
-			$DebugNode/VBoxContainer/AI.text = "AI dist: "+ str(node.dist)
-			$DebugNode/VBoxContainer/pos_dist.text = "AI direction: "+ str(node.pos_dist)
+			DebugNode.get_node("VBoxContainer/AI").text = "AI dist: "+ str(node.dist)
+			DebugNode.get_node("VBoxContainer/pos_dist").text = "AI direction: "+ str(node.pos_dist)
 			var danger = false
 			if node.steer_away:
 				danger= true
-			$DebugNode/VBoxContainer/danger.text = str(danger)
+			DebugNode.get_node("VBoxContainer/danger").text = str(danger)
 			
 			
 func reset():

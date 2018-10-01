@@ -5,7 +5,7 @@
 [ext_resource path="res://screens/game_screen/levels/robolords_background.png" type="Texture" id=3]
 [ext_resource path="res://screens/game_screen/Bomb_spawner.tscn" type="PackedScene" id=4]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 
@@ -25,29 +25,20 @@ texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Transform" ]
 
-[node name="Battlefield" parent="." index="1"]
+[node name="Spawner" parent="World/Battlefield" index="0" instance=ExtResource( 4 )]
 
-scale = Vector2( 0.8, 0.8 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 408.018, 212.51 )
 
-[node name="Spawner" parent="Battlefield" index="0" instance=ExtResource( 4 )]
+[node name="Spawner2" parent="World/Battlefield" index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 537.302, 202.313 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 308.847, 493.022 )
 
-[node name="Spawner2" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="Spawner3" parent="World/Battlefield" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 602.074, 581.208 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 801.87, 255.012 )
 
-[node name="Spawner3" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+[node name="Spawner4" parent="World/Battlefield" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 943.952, 306.411 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Spawner4" parent="Battlefield" index="3" instance=ExtResource( 4 )]
-
-position = Vector2( 1029.54, 703.811 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 969.044, 561.026 )
 
 

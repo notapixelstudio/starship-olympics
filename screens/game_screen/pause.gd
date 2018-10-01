@@ -1,14 +1,14 @@
-extends PopupPanel
+extends Control
 
 signal standoff
 signal standoff_ready
 signal reset_signal
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
+onready var close_button = get_node("menu_button/close_button")
+onready var back_to_menu = get_node("menu_button/back_to_menu")
+
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+
 	$Standoff.visible = false
 	for player in global.scores:
 		var container = preload("res://screens/game_screen/PlayerContainerDeath.tscn").instance()
@@ -21,15 +21,18 @@ func _ready():
 			container.get_node("NinePatchRect/Container").add_child(l)
 		$VBoxContainer.add_child(container)
 	connect("reset_signal", get_node('/root/Arena'), "reset")
-	$close_button.disabled = true
-	
+	close_button.disabled = true
 	
 
 # TODO: that timeout has to be an animation
 func update_score():
+	get_tree().paused=true
+	visible = true
+	
 	$Standoff.visible = false
-	$elapsed_time.text += str(analytics.this_elapsed_time)
+	$elapsed_time.text += str(analytics.this_elapsed_time) + "s"
 	var guys = $VBoxContainer.get_children()
+	# animation for the life that ... dies
 	yield(get_tree().create_timer(0.5), "timeout")
 	var lives = 0
 	for player in guys:
@@ -46,8 +49,8 @@ func update_score():
 		global.gameover = false
 		global.standoff = false
 		
-	$close_button.disabled=false
-	$close_button.grab_focus()
+	close_button.disabled=false
+	close_button.grab_focus()
 
 func ready_for_standoff():
 	var i = 0
@@ -61,8 +64,10 @@ func ready_for_standoff():
 	emit_signal("standoff_ready")
 	
 func _on_close_button_pressed():
+	
 	get_tree().paused=false
 	hide()
+	
 	if global.gameover:
 		get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
 	else:
@@ -72,3 +77,10 @@ func _on_close_button_pressed():
 func _on_Timer_timeout():
 	pass
 	
+
+
+func _on_back_to_menu_pressed():
+	get_tree().paused=false
+	hide()
+	
+	get_tree().change_scene(global.from_scene)
