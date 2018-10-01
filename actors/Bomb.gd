@@ -1,7 +1,8 @@
 # script bomb
 extends Area2D
 
-export var velocity = Vector2(18, 0)
+export var velocity = Vector2(6, 0)
+export var acceleration = Vector2(-0.06, 0)
 
 var player_id
 
@@ -10,20 +11,35 @@ var width
 var height
 const CLEANUP_DISTANCE = 100
 
+var stopped = false
+
 signal detonate
 	
 func _ready():
-	width = get_viewport().size.x
-	height = get_viewport().size.y
-	
 	# remove particle trail if not moving
 	if velocity == Vector2(0, 0):
-		$Particles2D.queue_free()
+		stop()
+		
+	# load battlefield size
+	width = get_node('/root/Arena').width
+	height = get_node('/root/Arena').height
 
-func _physics_process(delta):
-	position.x += velocity.x
-	position.y += velocity.y
+func stop():
+	acceleration = Vector2(0, 0)
+	velocity = Vector2(0, 0)
+	stopped = true
 	
+func _physics_process(delta):
+	position += velocity
+	
+	var old_velocity = velocity.length()
+	velocity += acceleration
+	
+	# stop if velocity crossed zero
+	if not stopped and (old_velocity-velocity.length()) <= 0:
+		stop()
+		queue_free()
+		
 	# bomb rotate by default
 	#rotation += 0.05
 	

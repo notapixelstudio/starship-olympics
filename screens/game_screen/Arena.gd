@@ -23,12 +23,15 @@ func _ready():
 		player2 = preload('res://actors/AIShip.tscn')
 	else:
 		player2 = Ship
-	width = get_viewport().size.x
-	height = get_viewport().size.y
+		
 	debug = global.debug
 	DebugNode.visible = debug
 	
 	someone_died = false
+	
+	# compute the battlefield size
+	width = global.width / $Battlefield.transform.get_scale().x
+	height = global.height / $Battlefield.transform.get_scale().y
 	
 	# create ships
 	var ship1 = Ship.instance()

@@ -28,11 +28,13 @@ func _ready():
 	species = global.chosen_species[player]
 	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
-	width = get_viewport().size.x
-	height = get_viewport().size.y
 
 	Bomb = preload('res://actors/Bomb.tscn')
 	Trail = preload('res://actors/Trail.tscn')
+	
+	# load battlefield size
+	width = get_node('/root/Arena').width
+	height = get_node('/root/Arena').height
 
 func control(delta):
 	left = Input.is_action_pressed(player+'_left')
@@ -100,7 +102,9 @@ func steer(rad):
 func fire():
 	var bomb = Bomb.instance()
 	bomb.player_id = player
-	bomb.velocity = velocity*(-1)
+	bomb.velocity = bomb.velocity.rotated(rotation-PI)
+	bomb.acceleration = bomb.acceleration.rotated(rotation-PI)
+	
 	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
 	get_parent().add_child(bomb)
 	

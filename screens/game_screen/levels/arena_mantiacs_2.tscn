@@ -25,24 +25,29 @@ texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Transform" ]
 
+[node name="Battlefield" parent="." index="1"]
+
+scale = Vector2( 0.8, 0.8 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="Spawner" parent="Battlefield" index="0" instance=ExtResource( 4 )]
 
-position = Vector2( 380, 200 )
+position = Vector2( 537.302, 202.313 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Spawner2" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 380, 500 )
+position = Vector2( 602.074, 581.208 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Spawner3" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 900, 200 )
+position = Vector2( 943.952, 306.411 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Spawner4" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 900, 500 )
+position = Vector2( 1029.54, 703.811 )
 _sections_unfolded = [ "Transform" ]
 
 
