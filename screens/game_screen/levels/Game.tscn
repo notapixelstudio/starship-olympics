@@ -1,21 +1,48 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://screens/game_screen/Arena.gd" type="Script" id=1]
-[ext_resource path="res://screens/game_screen/after_death.tscn" type="PackedScene" id=2]
+[ext_resource path="res://screens/game_screen/pause.tscn" type="PackedScene" id=2]
 [ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=3]
 
-[node name="Arena" type="Node"]
+[node name="Arena" type="Node" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 enemy = null
 
-[node name="Battlefield" type="Node2D" parent="." index="0"]
+[node name="Background" type="CanvasLayer" parent="." index="0"]
 
-[node name="Popup" parent="." index="1" instance=ExtResource( 2 )]
+layer = 0
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="World" type="CanvasLayer" parent="." index="1"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Battlefield" type="Node2D" parent="World" index="0"]
+
+_sections_unfolded = [ "Pause" ]
+
+[node name="Pause" type="CanvasLayer" parent="." index="2"]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="end_battle" parent="Pause" index="0" instance=ExtResource( 2 )]
 
 visible = false
 
-[node name="DebugNode" parent="." index="2" instance=ExtResource( 3 )]
+[node name="DebugNode" parent="." index="3" instance=ExtResource( 3 )]
 
 visible = false
 

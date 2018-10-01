@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://screens/game_screen/levels/Game.tscn" type="PackedScene" id=1]
 [ext_resource path="res://screens/game_screen/levels/mantiacs_background.png" type="Texture" id=2]
-[ext_resource path="res://screens/game_screen/Bomb_spawner.tscn" type="PackedScene" id=3]
 
 [node name="Arena" instance=ExtResource( 1 )]
 
@@ -24,10 +23,20 @@ texture = ExtResource( 2 )
 stretch_mode = 0
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Spawner" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 
-position = Vector2( 640, 360 )
-_sections_unfolded = [ "Transform" ]
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." index="5"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 
-[editable path="Battlefield/Spawner"]

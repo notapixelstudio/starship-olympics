@@ -1,14 +1,12 @@
-extends PopupPanel
+extends Control
 
 signal standoff
 signal standoff_ready
 signal reset_signal
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
+
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+
 	$Standoff.visible = false
 	for player in global.scores:
 		var container = preload("res://screens/game_screen/PlayerContainerDeath.tscn").instance()
@@ -27,6 +25,9 @@ func _ready():
 
 # TODO: that timeout has to be an animation
 func update_score():
+	get_tree().paused=true
+	visible = true
+	
 	$Standoff.visible = false
 	$elapsed_time.text += str(analytics.this_elapsed_time)
 	var guys = $VBoxContainer.get_children()
@@ -61,8 +62,10 @@ func ready_for_standoff():
 	emit_signal("standoff_ready")
 	
 func _on_close_button_pressed():
+	print("ARE WE READY")
 	get_tree().paused=false
 	hide()
+	
 	if global.gameover:
 		get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
 	else:
