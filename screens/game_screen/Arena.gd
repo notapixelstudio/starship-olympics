@@ -8,7 +8,7 @@ var height
 var someone_died = false
 
 var debug = false
-onready var DebugNode = get_node("DebugNode")
+onready var DebugNode = get_node("Debug/DebugNode")
 onready var Battlefield = get_node("World/Battlefield")
 onready var Pause = get_node("Pause/end_battle")
 
@@ -100,12 +100,12 @@ func _input(event):
 func _process(delta):
 	for node in Battlefield.get_children():
 		if node.is_in_group("AI"):
-			$DebugNode/VBoxContainer/AI.text = "AI dist: "+ str(node.dist)
-			$DebugNode/VBoxContainer/pos_dist.text = "AI direction: "+ str(node.pos_dist)
+			DebugNode.get_node("VBoxContainer/AI").text = "AI dist: "+ str(node.dist)
+			DebugNode.get_node("VBoxContainer/pos_dist").text = "AI direction: "+ str(node.pos_dist)
 			var danger = false
 			if node.steer_away:
 				danger= true
-			$DebugNode/VBoxContainer/danger.text = str(danger)
+			DebugNode.get_node("VBoxContainer/danger").text = str(danger)
 			
 			
 func reset():

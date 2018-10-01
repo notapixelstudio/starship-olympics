@@ -30,7 +30,7 @@ func update_score():
 	visible = true
 	
 	$Standoff.visible = false
-	$elapsed_time.text += str(analytics.this_elapsed_time)
+	$elapsed_time.text += str(analytics.this_elapsed_time) + "s"
 	var guys = $VBoxContainer.get_children()
 	# animation for the life that ... dies
 	yield(get_tree().create_timer(0.5), "timeout")
