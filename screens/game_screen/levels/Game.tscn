@@ -4,7 +4,7 @@
 [ext_resource path="res://screens/game_screen/pause.tscn" type="PackedScene" id=2]
 [ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=3]
 
-[node name="Arena" type="Node" index="0"]
+[node name="Arena" type="Node"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -12,7 +12,7 @@ enemy = null
 
 [node name="Background" type="CanvasLayer" parent="." index="0"]
 
-layer = 0
+layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -20,7 +20,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="World" type="CanvasLayer" parent="." index="1"]
 
-layer = 1
+layer = 0
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -32,6 +32,7 @@ _sections_unfolded = [ "Pause" ]
 
 [node name="Pause" type="CanvasLayer" parent="." index="2"]
 
+editor/display_folded = true
 layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
