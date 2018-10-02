@@ -12,14 +12,11 @@ var height
 const CLEANUP_DISTANCE = 100
 
 var stopped = false
+var timeout = 0
 
 signal detonate
-	
+
 func _ready():
-	# remove particle trail if not moving
-	if velocity == Vector2(0, 0):
-		stop()
-		
 	# load battlefield size
 	width = get_node('/root/Arena').width
 	height = get_node('/root/Arena').height
@@ -28,6 +25,7 @@ func stop():
 	acceleration = Vector2(0, 0)
 	velocity = Vector2(0, 0)
 	stopped = true
+	timeout = 0.5
 	
 func _physics_process(delta):
 	position += velocity
@@ -38,7 +36,13 @@ func _physics_process(delta):
 	# stop if velocity crossed zero
 	if not stopped and (old_velocity-velocity.length()) <= 0:
 		stop()
-		queue_free()
+		
+	# disable bomb after timeout
+	if stopped:
+		if timeout > 0:
+			timeout -= delta
+		else:
+			queue_free()
 		
 	# bomb rotate by default
 	#rotation += 0.05
