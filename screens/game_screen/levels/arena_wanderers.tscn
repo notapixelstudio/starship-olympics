@@ -6,9 +6,10 @@
 [ext_resource path="res://screens/game_screen/Bomb_spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/NPC/EnemyWanderer.tscn" type="PackedScene" id=5]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+enemy = "Player"
 
 [node name="robolords_background" type="TextureRect" parent="." index="0"]
 
@@ -48,6 +49,6 @@ position = Vector2( 969.044, 561.026 )
 
 [node name="Wanderer" parent="World/Battlefield" index="4" instance=ExtResource( 5 )]
 
-position = Vector2( 614.862, 96.3377 )
+position = Vector2( 192.676, 374.017 )
 
 
