@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/trail_spark.png" type="Texture" id=2]
@@ -142,13 +142,18 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Ship" type="RigidBody2D" index="0" groups=[
+[sub_resource type="CircleShape2D" id=12]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 0
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -165,15 +170,17 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = 5.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
 player = "p1"
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Graphics" type="Node2D" parent="." index="0"]
+
+[node name="Sprite" type="Sprite" parent="Graphics" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="1"]
+[node name="Particles2D" type="Particles2D" parent="Graphics" index="1"]
 
 show_behind_parent = true
 position = Vector2( -32, 0 )
@@ -197,7 +204,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
-[node name="TrailParticles" type="Particles2D" parent="." index="2"]
+[node name="TrailParticles" type="Particles2D" parent="Graphics" index="2"]
 
 show_behind_parent = true
 emitting = false
@@ -220,7 +227,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
+[node name="Area2D" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -235,6 +242,10 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
 shape = SubResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 12 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
 

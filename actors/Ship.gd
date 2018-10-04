@@ -33,7 +33,7 @@ var target = null
 
 func _ready():
 	species = global.chosen_species[player]
-	$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
+	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
 
 	Bomb = preload('res://actors/Bomb.tscn')
@@ -59,10 +59,11 @@ func control(delta):
 	#	dash_cooldown = 1
 	
 func _integrate_forces(state):
-	#steer_force = max_steer_force * rotation_dir
+	steer_force = max_steer_force * rotation_dir
 	
-	set_applied_force(Vector2(thrust,0).rotated(rotation))
-	set_applied_torque(rotation_dir * 25000)
+	rotation = state.linear_velocity.angle()
+	set_applied_force(Vector2(thrust,steer_force).rotated(rotation))
+	#set_applied_torque(rotation_dir * 2500)
 	
 	# force the physics engine
 	var xform = state.get_transform()
@@ -78,10 +79,11 @@ func _integrate_forces(state):
 		xform.origin.y = height
 	
 	# clamp velocity
-	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
+	state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
 	# rotate: match rotation with velocity angle
-	#rot = state.linear_velocity.angle()
+	
+	#$Graphics.rotation = -rotation + state.linear_velocity.angle()
 	#rotation = rot
 	
 	state.set_transform(xform)
