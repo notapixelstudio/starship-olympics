@@ -3,37 +3,32 @@
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/trail_spark.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=4]
-
-custom_solver_bias = 0.0
-radius = 16.0
-
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 
 offsets = PoolRealArray( 0, 0.0179949, 0.177378, 0.66838 )
 colors = PoolColorArray( 1, 1, 1, 0.77498, 0.521505, 0.966356, 1, 0.80498, 0.241273, 0.578066, 1, 0.218152, 0.137097, 0.43372, 1, 0 )
 
-[sub_resource type="GradientTexture" id=3]
+[sub_resource type="GradientTexture" id=2]
 
 flags = 4
-gradient = SubResource( 2 )
+gradient = SubResource( 1 )
 width = 2048
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=3]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.021267, 0.31667 ), -0.982902, -0.982902, 0, 0, Vector2( 1, 0.115879 ), 0.117166, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
+[sub_resource type="CurveTexture" id=4]
 
 flags = 4
 width = 2048
-curve = SubResource( 5 )
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=5]
 
 render_priority = 0
 trail_divisor = 1
@@ -63,8 +58,8 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.6
 scale_random = 0.5
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -74,12 +69,25 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Resource", "Scale", "Trail" ]
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=6]
 
 min_value = -360.0
 max_value = 360.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+
+flags = 4
+width = 2048
+curve = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.223774, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.336574, 0.88501 ), 0.0, 0.0, 0, 0, Vector2( 0.421839, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.543521, 0.792236 ), 0.0, 0.0, 0, 0, Vector2( 0.663426, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.785108, 0.615967 ), 0.0, 0.0, 0, 0, Vector2( 0.889914, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=9]
 
@@ -87,20 +95,7 @@ flags = 4
 width = 2048
 curve = SubResource( 8 )
 
-[sub_resource type="Curve" id=10]
-
-min_value = 0.0
-max_value = 1.0
-bake_resolution = 100
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.223774, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.336574, 0.88501 ), 0.0, 0.0, 0, 0, Vector2( 0.421839, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.543521, 0.792236 ), 0.0, 0.0, 0, 0, Vector2( 0.663426, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.785108, 0.615967 ), 0.0, 0.0, 0, 0, Vector2( 0.889914, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=11]
-
-flags = 4
-width = 2048
-curve = SubResource( 10 )
-
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=10]
 
 render_priority = 0
 trail_divisor = 1
@@ -128,10 +123,10 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-angle_curve = SubResource( 9 )
+angle_curve = SubResource( 7 )
 scale = 22.0
 scale_random = 0.0
-scale_curve = SubResource( 11 )
+scale_curve = SubResource( 9 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -142,32 +137,43 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 
-[node name="Ship" type="Area2D" groups=[
+[sub_resource type="CircleShape2D" id=11]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[node name="Ship" type="RigidBody2D" index="0" groups=[
 "players",
 ]]
 
 input_pickable = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = 5.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-velocity = Vector2( 6, 0 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
 player = "p1"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-
-shape = SubResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="2"]
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
 
 show_behind_parent = true
 position = Vector2( -32, 0 )
@@ -184,14 +190,14 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 7 )
+process_material = SubResource( 5 )
 texture = ExtResource( 2 )
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
-[node name="TrailParticles" type="Particles2D" parent="." index="3"]
+[node name="TrailParticles" type="Particles2D" parent="." index="2"]
 
 show_behind_parent = true
 emitting = false
@@ -207,15 +213,29 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 12 )
+process_material = SubResource( 10 )
 texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
-[node name="TriggerComponent" type="Node" parent="." index="4"]
+[node name="Area2D" type="Area2D" parent="." index="3"]
 
-[connection signal="area_entered" from="." to="." method="_on_Ship_area_entered"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="TriggerComponent" type="Node" parent="Area2D" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
+
+shape = SubResource( 11 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
 
 
