@@ -12,13 +12,9 @@ onready var DebugNode = get_node("Debug/DebugNode")
 onready var Battlefield = get_node("World/Battlefield")
 onready var Pause = get_node("Pause/end_battle")
 
-export(String) var enemy
 
 func _ready():
 	global.this_run_time = OS.get_ticks_msec()
-	# override for testing
-	if enemy:
-		global.enemy = enemy
 	
 	Ship = preload('res://actors/Ship.tscn')
 	if global.enemy == "CPU":

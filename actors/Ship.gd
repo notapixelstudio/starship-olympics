@@ -7,6 +7,8 @@ var max_velocity = 600
 var max_steer_force = 3400
 var thrust = 2000
 
+var velocity = Vector2(0,0)
+
 var speed_multiplier = 1
 
 var steer_force = 0
@@ -52,6 +54,13 @@ func control(delta):
 	if Input.is_action_pressed(player+'_right'):
 		rotation_dir += 1
 		
+	# fire
+	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
+		fire()
+		fire_cooldown = 0.1
+	# cooldown
+	fire_cooldown -= delta
+		
 	# dash
 	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
 	#	speed_multiplier = 3
@@ -80,6 +89,9 @@ func _integrate_forces(state):
 	
 	# clamp velocity
 	state.linear_velocity = state.linear_velocity.clamped(max_velocity)
+	
+	# store velocity as a readable var
+	velocity = state.linear_velocity
 	
 	# rotate: match rotation with velocity angle
 	
