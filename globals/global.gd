@@ -24,7 +24,7 @@ var gameover = false
 var standoff = false
 
 var changed = false
-var enemy = "CPU"
+var enemy = "Player"
 var available_species =[]
 
 # TODO: this will disappear

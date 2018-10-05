@@ -4,7 +4,7 @@ extends RigidBody2D
 var left
 var right
 var max_velocity = 600
-var max_steer_force = 3400
+var max_steer_force = 2500
 var thrust = 2000
 
 var velocity = Vector2(0,0)
@@ -46,14 +46,8 @@ func _ready():
 	height = get_node('/root/Arena').height
 
 func control(delta):
-	rotation_dir = 0
+	rotation_dir = int(Input.is_action_pressed(player+'_right')) - int(Input.is_action_pressed(player+'_left'))
 	
-	if Input.is_action_pressed(player+'_left'):
-		rotation_dir -= 1
-		
-	if Input.is_action_pressed(player+'_right'):
-		rotation_dir += 1
-		
 	# fire
 	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
 		fire()
@@ -68,7 +62,7 @@ func control(delta):
 	#	dash_cooldown = 1
 	
 func _integrate_forces(state):
-	steer_force = max_steer_force * rotation_dir
+	steer_force = max_steer_force * rotation_dir 
 	
 	#rotation = state.linear_velocity.angle()
 	set_applied_force(Vector2(thrust,steer_force).rotated(rotation))
