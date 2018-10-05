@@ -153,7 +153,7 @@ radius = 10.0
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 0
+collision_mask = 2
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -168,7 +168,7 @@ can_sleep = true
 linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
-angular_damp = 5.0
+angular_damp = 50.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
 player = "p1"
@@ -236,6 +236,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="TriggerComponent" type="Node" parent="Area2D" index="0"]
 

@@ -3,9 +3,9 @@ extends RigidBody2D
 
 var left
 var right
-var max_velocity = 500
-var max_steer_force = 2500
-var thrust = 200
+var max_velocity = 600
+var max_steer_force = 3400
+var thrust = 2000
 
 var speed_multiplier = 1
 
@@ -61,9 +61,9 @@ func control(delta):
 func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
-	rotation = state.linear_velocity.angle()
+	#rotation = state.linear_velocity.angle()
 	set_applied_force(Vector2(thrust,steer_force).rotated(rotation))
-	#set_applied_torque(rotation_dir * 2500)
+	set_applied_torque(rotation_dir * 30000)
 	
 	# force the physics engine
 	var xform = state.get_transform()
