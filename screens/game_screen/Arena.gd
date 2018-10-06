@@ -7,7 +7,7 @@ var width
 var height
 var someone_died = false
 
-export (int) var size_multiplier = 1
+export (float) var size_multiplier = 1.0
 
 var debug = false
 onready var DebugNode = get_node("Debug/DebugNode")

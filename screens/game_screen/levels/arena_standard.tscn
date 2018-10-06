@@ -10,10 +10,11 @@
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
-size_multiplier = 2
+size_multiplier = 1.0
 
 [node name="Battlefield" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="TextureRect" type="TextureRect" parent="Battlefield" index="0"]

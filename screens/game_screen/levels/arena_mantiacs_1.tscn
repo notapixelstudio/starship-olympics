@@ -5,7 +5,15 @@
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 
-size_multiplier = 1
+size_multiplier = 1.5
+
+[node name="TextureRect" parent="Battlefield" index="0"]
+
+visible = false
+
+[node name="Background" parent="." index="1"]
+
+editor/display_folded = true
 
 [node name="mantiacs_background" type="TextureRect" parent="Background" index="0"]
 
