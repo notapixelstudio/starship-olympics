@@ -42,8 +42,9 @@ func _ready():
 	Trail = preload('res://actors/Trail.tscn')
 	
 	# load battlefield size
-	width = get_node('/root/Arena').width
-	height = get_node('/root/Arena').height
+	
+	width = get_parent().owner.size_multiplier * OS.window_size.x
+	height = OS.window_size.y * get_parent().owner.size_multiplier
 
 func control(delta):
 	rotation_dir = int(Input.is_action_pressed(player+'_right')) - int(Input.is_action_pressed(player+'_left'))
@@ -62,7 +63,7 @@ func control(delta):
 	#	dash_cooldown = 1
 	
 func _integrate_forces(state):
-	steer_force = max_steer_force * rotation_dir 
+	steer_force = max_steer_force * rotation_dir
 	
 	#rotation = state.linear_velocity.angle()
 	set_applied_force(Vector2(thrust,steer_force).rotated(rotation))

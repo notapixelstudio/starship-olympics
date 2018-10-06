@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://screens/game_screen/levels/Game.tscn" type="PackedScene" id=1]
+[ext_resource path="res://screens/game_screen/levels/arena_standard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://screens/game_screen/levels/mantiacs_background.png" type="Texture" id=2]
-[ext_resource path="res://screens/game_screen/Bomb_spawner.tscn" type="PackedScene" id=3]
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
+
+size_multiplier = 1
 
 [node name="mantiacs_background" type="TextureRect" parent="Background" index="0"]
 
@@ -23,14 +24,5 @@ size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 0
 _sections_unfolded = [ "Offset", "Transform" ]
-
-[node name="World" parent="." index="1"]
-
-editor/display_folded = false
-
-[node name="Spawner" parent="World/Battlefield" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 640, 360 )
-_sections_unfolded = [ "Transform" ]
 
 

@@ -7,9 +7,11 @@ var width
 var height
 var someone_died = false
 
+export (int) var size_multiplier = 1
+
 var debug = false
 onready var DebugNode = get_node("Debug/DebugNode")
-onready var Battlefield = get_node("World/Battlefield")
+onready var Battlefield = get_node("Battlefield")
 onready var Pause = get_node("Pause/end_battle")
 
 
@@ -26,10 +28,9 @@ func _ready():
 	DebugNode.visible = debug
 	
 	someone_died = false
-	
 	# compute the battlefield size
-	width = global.width / Battlefield.transform.get_scale().x
-	height = global.height / Battlefield.transform.get_scale().y
+	width = OS.window_size.x * size_multiplier
+	height = OS.window_size.y * size_multiplier
 	
 	# create ships
 	var ship1 = Ship.instance()

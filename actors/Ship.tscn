@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
-[ext_resource path="res://actors/trail_spark.png" type="Texture" id=2]
+[ext_resource path="res://actors/mantiacs_ship_plain.png" type="Texture" id=2]
+[ext_resource path="res://actors/trail_spark.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 
@@ -147,7 +148,7 @@ radius = 16.0
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Ship" type="RigidBody2D" index="0" groups=[
+[node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
 
@@ -178,6 +179,7 @@ player = "p1"
 [node name="Sprite" type="Sprite" parent="Graphics" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Particles2D" type="Particles2D" parent="Graphics" index="1"]
@@ -198,7 +200,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 normal_map = null
 h_frames = 1
 v_frames = 1
