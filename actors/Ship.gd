@@ -14,7 +14,9 @@ var speed_multiplier = 1
 var steer_force = 0
 var rot = 0
 var rotation_dir = 0
-const ROTATION_SPEED = 100000000
+const ROTATION_SPEED = 100000000 # to be removed
+
+const BOMB_OFFSET = 32
 
 var count = 0
 signal died
@@ -145,10 +147,10 @@ func _process(delta):
 func fire():
 	var bomb = Bomb.instance()
 	bomb.player_id = player
-	bomb.velocity = bomb.velocity.rotated(rotation-PI)
-	bomb.acceleration = bomb.acceleration.rotated(rotation-PI)
-	
-	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
+	#bomb.velocity = bomb.velocity.rotated(rotation-PI)
+	#bomb.acceleration = bomb.acceleration.rotated(rotation-PI)
+	bomb.apply_impulse(Vector2(0,0), Vector2(-500,0).rotated(rotation))
+	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
 	
 func die():

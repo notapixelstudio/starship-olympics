@@ -15,12 +15,13 @@ _sections_unfolded = [ "Transform" ]
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
 input_pickable = true
-space_override = 3
+space_override = 1
 gravity_vec = Vector2( 0, 0 )
 gravity = 98.0
 linear_damp = 10.0
 angular_damp = 100.0
 collision_layer = 2
+collision_mask = 5
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision", "Transform" ]
