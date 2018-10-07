@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/bomb.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 16.0
@@ -71,12 +71,12 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=6]
 
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Bomb" type="RigidBody2D" index="0"]
+[node name="Bomb" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 4
@@ -101,7 +101,7 @@ _sections_unfolded = [ "Angular", "Collision", "Linear", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="1"]
 
@@ -147,7 +147,7 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Bomb_area_entered"]
 
