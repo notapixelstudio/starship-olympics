@@ -14,7 +14,10 @@ var speed_multiplier = 1
 var steer_force = 0
 var rot = 0
 var rotation_dir = 0
-const ROTATION_SPEED = 100000000
+const ROTATION_SPEED = 100000000 # to be removed
+
+var charge = 0
+const BOMB_OFFSET = 40
 
 var count = 0
 signal died
@@ -24,6 +27,7 @@ var species
 var width
 var height
 
+var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
@@ -48,11 +52,22 @@ func _ready():
 
 func control(delta):
 	rotation_dir = int(Input.is_action_pressed(player+'_right')) - int(Input.is_action_pressed(player+'_left'))
+		
+	# charge
+	if charging:
+		charge += delta
+	else:
+		charge = 0
 	
+	if not charging and Input.is_action_pressed(player+'_fire') and fire_cooldown <= 0:
+		charging = true
+		
 	# fire
-	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
+	if charging and Input.is_action_just_released(player+'_fire'):
 		fire()
+		charging = false
 		fire_cooldown = 0.1
+		
 	# cooldown
 	fire_cooldown -= delta
 		
@@ -66,7 +81,7 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	#rotation = state.linear_velocity.angle()
-	set_applied_force(Vector2(thrust,steer_force).rotated(rotation))
+	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging)) # thrusters switch off when charging
 	set_applied_torque(rotation_dir * 30000)
 	
 	# force the physics engine
@@ -83,7 +98,7 @@ func _integrate_forces(state):
 		xform.origin.y = height
 	
 	# clamp velocity
-	state.linear_velocity = state.linear_velocity.clamped(max_velocity)
+	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
 	# store velocity as a readable var
 	velocity = state.linear_velocity
@@ -145,10 +160,11 @@ func _process(delta):
 func fire():
 	var bomb = Bomb.instance()
 	bomb.player_id = player
-	bomb.velocity = bomb.velocity.rotated(rotation-PI)
-	bomb.acceleration = bomb.acceleration.rotated(rotation-PI)
+	bomb.apply_impulse(Vector2(0,0), Vector2(-500-1000*charge,0).rotated(rotation)) # the more charge the stronger the impulse
 	
-	bomb.position = position + bomb.velocity*6 # this moves the bomb away from the ship
+	apply_impulse(Vector2(0,0), Vector2(500*charge,0).rotated(rotation)) # recoil
+	
+	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
 	
 func die():

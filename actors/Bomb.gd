@@ -1,8 +1,8 @@
 # script bomb
-extends Area2D
+extends RigidBody2D
 
-export var velocity = Vector2(6, 0)
-export var acceleration = Vector2(-0.06, 0)
+#export var velocity = Vector2(6, 0)
+#export var acceleration = Vector2(-0.06, 0)
 
 var player_id
 
@@ -20,32 +20,41 @@ func _ready():
 	# load battlefield size
 	width = get_node('/root/Arena').width
 	height = get_node('/root/Arena').height
+	
+	# bombs life
+	timeout = 1.5
 
-func stop():
-	acceleration = Vector2(0, 0)
-	velocity = Vector2(0, 0)
-	stopped = true
-	timeout = 0.5
+#func stop():
+#	acceleration = Vector2(0, 0)
+#	velocity = Vector2(0, 0)
+#	stopped = true
+#	timeout = 0.5
 	
 func _physics_process(delta):
-	position += velocity
+	#position += velocity
 	
-	var old_velocity = velocity.length()
-	velocity += acceleration
+	#var old_velocity = velocity.length()
+	#velocity += acceleration
 	
 	# stop if velocity crossed zero
-	if not stopped and (old_velocity-velocity.length()) <= 0:
-		stop()
+	#if not stopped and (old_velocity-velocity.length()) <= 0:
+	#	stop()
 		
 	# disable bomb after timeout
-	if stopped:
-		if timeout > 0:
-			timeout -= delta
-		else:
-			queue_free()
+	#if stopped:
+	#	if timeout > 0:
+	#		timeout -= delta
+	#	else:
+	#		queue_free()
 		
 	# bomb rotate by default
 	#rotation += 0.05
+	
+	# destroy bomb after timeout
+	if timeout > 0:
+		timeout -= delta
+	else:
+		queue_free()
 	
 	# remove bomb if far outside the screen
 	if position.x > width+CLEANUP_DISTANCE or position.x <= -CLEANUP_DISTANCE or position.y > height+CLEANUP_DISTANCE or position.y <= -CLEANUP_DISTANCE:
