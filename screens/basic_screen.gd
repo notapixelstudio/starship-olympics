@@ -2,11 +2,12 @@ extends Control
 enum trans_type{IN, OUT}
 export (String, FILE, "*.tscn") var next_scene
 signal transition_finished
+var is_changing = false
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") and not is_changing:
+		is_changing = true
 		change_scene()
-
 
 func _ready():
 	$Transition/ColorRect.rect_size = get_viewport().size + Vector2(20, 20)
