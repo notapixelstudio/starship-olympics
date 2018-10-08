@@ -7,18 +7,16 @@ var width
 var height
 var someone_died = false
 
+export (float) var size_multiplier = 1.0
+
 var debug = false
 onready var DebugNode = get_node("Debug/DebugNode")
-onready var Battlefield = get_node("World/Battlefield")
+onready var Battlefield = get_node("Battlefield")
 onready var Pause = get_node("Pause/end_battle")
 
-export(String) var enemy
 
 func _ready():
 	global.this_run_time = OS.get_ticks_msec()
-	# override for testing
-	if enemy:
-		global.enemy = enemy
 	
 	Ship = preload('res://actors/Ship.tscn')
 	if global.enemy == "CPU":
@@ -30,10 +28,9 @@ func _ready():
 	DebugNode.visible = debug
 	
 	someone_died = false
-	
 	# compute the battlefield size
-	width = global.width / Battlefield.transform.get_scale().x
-	height = global.height / Battlefield.transform.get_scale().y
+	width = OS.window_size.x * size_multiplier
+	height = OS.window_size.y * size_multiplier
 	
 	# create ships
 	var ship1 = Ship.instance()
@@ -42,7 +39,6 @@ func _ready():
 	ship1.rotation = PI
 	ship1.position.x = width-32
 	ship1.position.y = height/2
-	ship1.velocity = Vector2(-8,0)
 	Battlefield.add_child(ship1)
 	
 	var ship2 = player2.instance()
@@ -51,7 +47,6 @@ func _ready():
 	#$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	ship2.position.x = 32
 	ship2.position.y = height/2
-	ship2.velocity = Vector2(8,0)
 	Battlefield.add_child(ship2)
 	
 	# setup AI
