@@ -73,14 +73,13 @@ func _on_Selection_random_choice(player):
 
 # when simulating choice... show all the characters (needs to be blank or offuscate for locked ones)
 func simulate_choice(final_choice):
-	var how_many_times =8 + randi()%3
+	var how_many_times = 10
 	var n_characters = int(len(global.unlocked_species))
 	for times in range(0,how_many_times):
-		for i in range(0,n_characters):
-			var wait_time = 0.1 + 0.01*times
-			yield(get_tree().create_timer(wait_time), "timeout")
-			# you should cycle around the unlocked_species
-			p2.change_species(global.unlocked_species[(i+final_choice)%n_characters])
+		var wait_time = 0.1 + 0.01*times
+		yield(get_tree().create_timer(wait_time), "timeout")
+		# you should cycle around the unlocked_species
+		p2.change_species(global.unlocked_species[(times+final_choice)%n_characters])
 	yield(get_tree().create_timer(0.5), "timeout")
 	p2.change_species(global.unlocked_species[final_choice])
 	p2.character_container.selected()

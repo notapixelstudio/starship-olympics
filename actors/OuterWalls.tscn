@@ -1,0 +1,127 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 50, 820 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1280, 50 )
+
+[node name="OuterWalls" type="Node2D"]
+
+[node name="left" type="StaticBody2D" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 0, 720 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 3
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="SolidComponent" type="Node" parent="left" index="1"]
+
+[node name="lleft" type="Line2D" parent="." index="1"]
+
+points = PoolVector2Array( 50, 50, 50, 1390 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="right" type="StaticBody2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 2560, 720 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 3
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="SolidComponent" type="Node" parent="right" index="1"]
+
+[node name="lright" type="Line2D" parent="." index="3"]
+
+points = PoolVector2Array( 2510, 50, 2510, 1390 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="top" type="StaticBody2D" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 1280, 0 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 3
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="SolidComponent" type="Node" parent="top" index="1"]
+
+[node name="ltop" type="Line2D" parent="." index="5"]
+
+points = PoolVector2Array( 50, 50, 2510, 50 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="bottom" type="StaticBody2D" parent="." index="6"]
+
+editor/display_folded = true
+position = Vector2( 1280, 1440 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 3
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="SolidComponent" type="Node" parent="bottom" index="1"]
+
+[node name="lbottom" type="Line2D" parent="." index="7"]
+
+points = PoolVector2Array( 50, 1390, 2510, 1390 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+

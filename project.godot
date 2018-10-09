@@ -11,13 +11,14 @@ config_version=3
 [application]
 
 config/name="superstarfighter"
-run/main_scene="res://screens/promo_screen/promo_screen.tscn"
+run/main_scene="res://screens/main_screen/main_screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 persistance="*res://globals/persistance.gd"
 global="*res://globals/global.gd"
+analytics="*res://globals/analytics.gd"
 
 [display]
 
@@ -25,6 +26,8 @@ window/size/width=1280
 window/size/height=720
 window/size/resizable=false
 window/dpi/allow_hidpi=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -56,9 +59,18 @@ debug=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"",
  ]
 ui_back=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":78,"unicode":0,"echo":false,"script":null)
  ]
+p1_brake=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+p2_brake=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+
+[physics]
+
+2d/default_linear_damp=2.0
+2d/default_angular_damp=50
 
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
-environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_clear_color=Color( 0.145098, 0.172549, 0.231373, 1 )
 environment/default_environment="res://default_env.tres"

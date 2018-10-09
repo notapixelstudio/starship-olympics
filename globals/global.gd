@@ -1,5 +1,8 @@
 extends Node
 
+const width = 1280
+const height = 720
+
 const min_lives = 1
 var lives = 5
 const max_lives = 10
@@ -21,7 +24,7 @@ var gameover = false
 var standoff = false
 
 var changed = false
-var enemy = "CPU"
+var enemy = "Player"
 var available_species =[]
 
 # TODO: this will disappear
@@ -34,6 +37,8 @@ var default_players = 2
 # chosen_species contains the choses species as string
 var chosen_species = {}
 var scores = {}
+
+var this_run_time = 0
 
 func _ready():
 	# get the list of levels
