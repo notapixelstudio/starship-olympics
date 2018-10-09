@@ -109,6 +109,8 @@ func _integrate_forces(state):
 	#rotation = rot
 	
 	state.set_transform(xform)
+	
+	
 
 func _process(delta):
 	if not alive:
@@ -185,3 +187,7 @@ func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
 		
+
+func _on_Area2D_body_entered(body):
+	if body.has_node('SolidComponent'):
+		print('boing')
