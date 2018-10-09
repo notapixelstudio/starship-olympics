@@ -13,11 +13,19 @@ func identify_planet(new_texture):
 	texture = new_texture
 	
 func _ready():
-	arrow.visible = false
+	pass
 	# on_focus()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 
+func show_planet():
+	arrow.visible = true
+	on_focus()
+
+func unshow_planet():
+	arrow.visible = false
+	arrow.get_node("tween").stop_all()
+	
 func on_focus():
 	var tween = arrow.get_node("tween")
 	tween.interpolate_property(arrow, "position", arrow.position, arrow.position + Vector2(0, -15),
@@ -26,4 +34,3 @@ func on_focus():
 		1.5, tween.TRANS_BACK, tween.EASE_IN_OUT, 1.5)
 	tween.start()
 	yield(tween, "tween_completed")
-	print("ci siamo")

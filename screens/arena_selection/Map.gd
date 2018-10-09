@@ -10,8 +10,7 @@ func _ready():
 	pass
 
 func focus_on_planet(planet):
-	print(planet)
-	get_node(planet+"/arrow_selection").visible = true
+	get_node(planet).show_planet()
 
 func unfocus_on_planet(planet):
-	get_node(planet).get_node("arrow_selection").visible = false
+	get_node(planet).unshow_planet()

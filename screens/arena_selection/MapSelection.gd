@@ -7,9 +7,8 @@ onready var map = get_node("Map/Map")
 onready var navigator = get_node("Navigator/Navigator")
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	navigator.connect("show_planet", self, "_on_Navigator_show_planet")
+	navigator.connect("unshow_planet", self, "_on_Navigator_unshow_planet")
 
 func _on_Navigator_show_planet(planet):
 	map.focus_on_planet(planet)
