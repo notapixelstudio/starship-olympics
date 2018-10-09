@@ -158,12 +158,14 @@ func _process(delta):
 
 # Fire a bomb
 func fire():
+	var charge_impulse =min(1500*charge, 3500)
+	
 	var bomb = Bomb.instance()
 	bomb.origin_ship = self
 	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-500-1200*charge,0).rotated(rotation)) # the more charge the stronger the impulse
+	bomb.apply_impulse(Vector2(0,0), Vector2(-500-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
-	apply_impulse(Vector2(0,0), Vector2(1200*charge,0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(charge_impulse,0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
