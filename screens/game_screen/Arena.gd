@@ -37,7 +37,7 @@ func _ready():
 	ship1.player = 'p1'
 	ship1.species = global.chosen_species[ship1.player]
 	ship1.rotation = PI
-	ship1.position.x = width-32
+	ship1.position.x = width-128
 	ship1.position.y = height/2
 	Battlefield.add_child(ship1)
 	
@@ -45,7 +45,7 @@ func _ready():
 	ship2.player = 'p2'
 	ship2.species = global.chosen_species[ship2.player]
 	#$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
-	ship2.position.x = 32
+	ship2.position.x = 128
 	ship2.position.y = height/2
 	Battlefield.add_child(ship2)
 	

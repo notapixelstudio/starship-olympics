@@ -76,15 +76,15 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Bomb" type="RigidBody2D" index="0"]
+[node name="Bomb" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 4
-collision_mask = 10
+collision_mask = 26
 mode = 0
 mass = 1.0
 friction = 1.0
-bounce = 0.0
+bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0

@@ -109,6 +109,8 @@ func _integrate_forces(state):
 	#rotation = rot
 	
 	state.set_transform(xform)
+	
+	
 
 func _process(delta):
 	if not alive:
