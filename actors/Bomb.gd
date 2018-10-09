@@ -26,17 +26,15 @@ func _ready():
 	timeout = 1.5
 	
 func _physics_process(delta):
-	if target == null:
+	if target != null and target.get_ref() != null:
+		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50) # need a meaningful way to do this
+	else:
 		# destroy bomb after timeout
 		if timeout > 0:
 			timeout -= delta
 		else:
 			queue_free()
-	else:
-		var t = target.get_ref()
-		if t:
-			apply_impulse(Vector2(0,0), (t.position - position).normalized()*50) # need a meaningful way to do this
-	
+		
 	# remove bomb if far outside the screen
 	if position.x > width+CLEANUP_DISTANCE or position.x <= -CLEANUP_DISTANCE or position.y > height+CLEANUP_DISTANCE or position.y <= -CLEANUP_DISTANCE:
 		queue_free()
