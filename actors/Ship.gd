@@ -159,8 +159,9 @@ func _process(delta):
 # Fire a bomb
 func fire():
 	var bomb = Bomb.instance()
+	bomb.origin_ship = self
 	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-500-1000*charge,0).rotated(rotation)) # the more charge the stronger the impulse
+	bomb.apply_impulse(Vector2(0,0), Vector2(-500-1200*charge,0).rotated(rotation)) # the more charge the stronger the impulse
 	
 	apply_impulse(Vector2(0,0), Vector2(500*charge,0).rotated(rotation)) # recoil
 	
@@ -176,3 +177,9 @@ func die():
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
 		die()
+		
+
+func _on_DetectionArea_body_entered(body):
+	if body.has_node('DetectorComponent'):
+		body.try_acquire_target(self)
+		
