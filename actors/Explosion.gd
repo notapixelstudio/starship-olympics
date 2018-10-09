@@ -9,6 +9,7 @@ var t = 0
 const growT = 0.4
 const stillT = 1.5
 const shrinkT = 0.2
+const minRadius = 40
 const maxRadius = 80
 
 signal end_explosion
@@ -28,7 +29,7 @@ func _physics_process(delta):
 	
 	t = t2
 	if t1 < growT:
-		radius = sigmoid(t2, growT, maxRadius)
+		radius = minRadius + sigmoid(t2, growT, maxRadius - minRadius)
 	elif t1 < growT+stillT:
 		pass
 	elif t1 < growT+stillT+shrinkT:
