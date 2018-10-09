@@ -27,3 +27,4 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
 - keyboard icons: made by "Nicolae Berbece" (also known as Xelu) - founder of "Those Awesome Guys" - nick@thoseawesomeguys.com
 - planets: [here](https://opengameart.org/content/big-space-gun-free-pixel-art-graphics-for-your-game-0)
+- tiny planets : [here](https://opengameart.org/content/pixel-planets)
