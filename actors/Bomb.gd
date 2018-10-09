@@ -14,6 +14,7 @@ const CLEANUP_DISTANCE = 100
 
 var target = null
 var timeout = 0
+var autolocking_timeout = 0.1
 
 signal detonate
 
@@ -26,6 +27,8 @@ func _ready():
 	timeout = 1.5
 	
 func _physics_process(delta):
+	autolocking_timeout -= delta
+	
 	if target != null and target.get_ref() != null:
 		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50) # need a meaningful way to do this
 	else:
@@ -47,7 +50,7 @@ func detonate():
 	explosion.position = position
 
 func try_acquire_target(ship):
-	if ship != origin_ship: # avoid pursuing the ship of origin
+	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
 		target = weakref(ship)
 	
 func _on_Bomb_area_entered(area):
