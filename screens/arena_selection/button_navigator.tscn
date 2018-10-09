@@ -27,7 +27,7 @@ group = null
 texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 2 )
-_sections_unfolded = [ "Textures" ]
+_sections_unfolded = [ "Rect", "Textures" ]
 
 [node name="Label" type="Label" parent="." index="0"]
 
@@ -51,6 +51,15 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="Tween" type="Tween" parent="." index="1"]
+
+repeat = true
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = true
+playback/speed = 1.0
 
 [connection signal="focus_entered" from="." to="." method="_on_button_navigator_focus_entered"]
 
