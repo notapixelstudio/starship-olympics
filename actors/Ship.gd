@@ -109,6 +109,8 @@ func _integrate_forces(state):
 	#rotation = rot
 	
 	state.set_transform(xform)
+	
+	
 
 func _process(delta):
 	if not alive:
@@ -158,11 +160,14 @@ func _process(delta):
 
 # Fire a bomb
 func fire():
-	var bomb = Bomb.instance()
-	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-500-1000*charge,0).rotated(rotation)) # the more charge the stronger the impulse
+	var charge_impulse =min(1500*charge, 3500)
 	
-	apply_impulse(Vector2(0,0), Vector2(500*charge,0).rotated(rotation)) # recoil
+	var bomb = Bomb.instance()
+	bomb.origin_ship = self
+	bomb.player_id = player
+	bomb.apply_impulse(Vector2(0,0), Vector2(-500-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
+	
+	apply_impulse(Vector2(0,0), Vector2(charge_impulse,0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
@@ -176,3 +181,9 @@ func die():
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
 		die()
+		
+
+func _on_DetectionArea_body_entered(body):
+	if body.has_node('DetectorComponent'):
+		body.try_acquire_target(self)
+		

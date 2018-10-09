@@ -80,11 +80,11 @@ radius = 16.0
 
 input_pickable = false
 collision_layer = 4
-collision_mask = 2
+collision_mask = 26
 mode = 0
 mass = 1.0
 friction = 1.0
-bounce = 0.0
+bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -148,6 +148,8 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
 shape = SubResource( 6 )
+
+[node name="DetectorComponent" type="Node" parent="." index="4"]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Bomb_area_entered"]
 

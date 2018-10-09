@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100, 100 )
+
+[node name="SquareWall" type="StaticBody2D"]
+
+input_pickable = false
+collision_layer = 16
+collision_mask = 5
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="ltop" type="Line2D" parent="." index="1"]
+
+points = PoolVector2Array( -100, -100, 100, -100 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="lbottom" type="Line2D" parent="." index="2"]
+
+points = PoolVector2Array( -100, 100, 100, 100 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="lleft" type="Line2D" parent="." index="3"]
+
+points = PoolVector2Array( -100, -100, -100, 100 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="lright" type="Line2D" parent="." index="4"]
+
+points = PoolVector2Array( 100, -100, 100, 100 )
+width = 10.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 202017328
+sharp_limit = 2.0
+round_precision = 8
+
+

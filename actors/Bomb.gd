@@ -4,6 +4,7 @@ extends RigidBody2D
 #export var velocity = Vector2(6, 0)
 #export var acceleration = Vector2(-0.06, 0)
 
+var origin_ship
 var player_id
 
 var Explosion = preload('res://actors/Explosion.tscn')
@@ -11,8 +12,9 @@ var width
 var height
 const CLEANUP_DISTANCE = 100
 
-var stopped = false
+var target = null
 var timeout = 0
+var autolocking_timeout = 0.1
 
 signal detonate
 
@@ -23,39 +25,19 @@ func _ready():
 	
 	# bombs life
 	timeout = 1.5
-
-#func stop():
-#	acceleration = Vector2(0, 0)
-#	velocity = Vector2(0, 0)
-#	stopped = true
-#	timeout = 0.5
 	
 func _physics_process(delta):
-	#position += velocity
+	autolocking_timeout -= delta
 	
-	#var old_velocity = velocity.length()
-	#velocity += acceleration
-	
-	# stop if velocity crossed zero
-	#if not stopped and (old_velocity-velocity.length()) <= 0:
-	#	stop()
-		
-	# disable bomb after timeout
-	#if stopped:
-	#	if timeout > 0:
-	#		timeout -= delta
-	#	else:
-	#		queue_free()
-		
-	# bomb rotate by default
-	#rotation += 0.05
-	
-	# destroy bomb after timeout
-	if timeout > 0:
-		timeout -= delta
+	if target != null and target.get_ref() != null:
+		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50) # need a meaningful way to do this
 	else:
-		queue_free()
-	
+		# destroy bomb after timeout
+		if timeout > 0:
+			timeout -= delta
+		else:
+			queue_free()
+		
 	# remove bomb if far outside the screen
 	if position.x > width+CLEANUP_DISTANCE or position.x <= -CLEANUP_DISTANCE or position.y > height+CLEANUP_DISTANCE or position.y <= -CLEANUP_DISTANCE:
 		queue_free()
@@ -67,8 +49,13 @@ func detonate():
 	explosion.player_id = player_id
 	explosion.position = position
 
+func try_acquire_target(ship):
+	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
+		target = weakref(ship)
+	
 func _on_Bomb_area_entered(area):
 	# bombs always explode when they touch objects with the Trigger component
 	if area.has_node('TriggerComponent'):
 		emit_signal("detonate")
 		detonate()
+		
