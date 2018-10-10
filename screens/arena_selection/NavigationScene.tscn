@@ -7,7 +7,7 @@
 [ext_resource path="res://screens/arena_selection/img/small_planet_toxic.png" type="Texture" id=5]
 [ext_resource path="res://screens/arena_selection/img/small_planet_toxic_disabled.png" type="Texture" id=6]
 
-[node name="Navigator" type="Control"]
+[node name="Navigator" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 1.0
@@ -43,6 +43,7 @@ _sections_unfolded = [ "custom_constants" ]
 [node name="mantiacs" parent="container" index="0" instance=ExtResource( 2 )]
 
 texture_normal = ExtResource( 3 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="robolords" parent="container" index="1" instance=ExtResource( 2 )]
 

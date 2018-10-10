@@ -1,9 +1,16 @@
 tool
-extends TextureButton
+extends Node
+
+export (bool) var locked = 1 setget locked_planed
 
 signal focus_planet(planet)
 signal exit_focus_planet(planet)
 onready var tween = get_node("Tween")
+
+func locked_planet(new_value):
+	locked = new_value
+	disabled = locked
+	$locked.visible = locked
 
 func _ready():
 	$Label.text = name
