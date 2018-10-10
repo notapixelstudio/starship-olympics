@@ -1,13 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://screens/arena_selection/NavigationScene.gd" type="Script" id=1]
 [ext_resource path="res://screens/arena_selection/button_navigator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/arena_selection/img/small_planet_desert.png" type="Texture" id=3]
 [ext_resource path="res://screens/arena_selection/img/small_planet_ice.png" type="Texture" id=4]
-[ext_resource path="res://screens/arena_selection/img/small_planet_toxic.png" type="Texture" id=5]
-[ext_resource path="res://screens/arena_selection/img/small_planet_toxic_disabled.png" type="Texture" id=6]
 
-[node name="Navigator" type="Control" index="0"]
+[node name="Navigator" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 1.0
@@ -42,26 +40,28 @@ _sections_unfolded = [ "custom_constants" ]
 
 [node name="mantiacs" parent="container" index="0" instance=ExtResource( 2 )]
 
+disabled = false
 texture_normal = ExtResource( 3 )
-_sections_unfolded = [ "Rect" ]
+locked = false
 
 [node name="robolords" parent="container" index="1" instance=ExtResource( 2 )]
 
 margin_left = 575.0
 margin_right = 625.0
+disabled = false
 texture_normal = ExtResource( 4 )
+locked = false
 
 [node name="trixen" parent="container" index="2" instance=ExtResource( 2 )]
 
 margin_left = 655.0
 margin_right = 705.0
+disabled = false
+locked = false
 
 [node name="toxic" parent="container" index="3" instance=ExtResource( 2 )]
 
 margin_left = 735.0
 margin_right = 785.0
-disabled = true
-texture_normal = ExtResource( 5 )
-texture_disabled = ExtResource( 6 )
 
 

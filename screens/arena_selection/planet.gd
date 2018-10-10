@@ -6,6 +6,8 @@ extends Sprite
 # var b = "textvar"
 export (Texture) var sprite setget identify_planet
 
+var selected = false
+
 onready var arrow = get_node("arrow_selection")
 
 func identify_planet(new_texture):
@@ -18,6 +20,22 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 
+func _input(event):
+	if event.is_action_pressed("continue"):
+		show_arenas()
+
+func show_arenas():
+	$GridContainer.visible = true
+	$Camera2D.visible = true
+	$Camera2D.current = true
+	$Camera2D.position = $GridContainer.rect_position
+	$Camera2D.zoom = Vector2(0.3,0.3)
+	print($Camera2D)
+	
+func hide_arenas():
+	$GridContainer.visible = false
+	$Camera2D.current = false
+	
 func show_planet():
 	arrow.visible = true
 	on_focus()
