@@ -32,7 +32,7 @@ var min_unlocked = 1
 var unlocked = 2 setget get_available_species
 var max_unlocked = 3
 
-var default_players = 2
+var default_players = 3
 
 # chosen_species contains the choses species as string
 var chosen_species = {}
