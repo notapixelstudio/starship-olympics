@@ -15,6 +15,7 @@ func _on_Navigator_show_planet(planet):
 	map.focus_on_planet(planet)
 
 func _on_Navigator_show_arenas(planet):
+	$Camera2D.current = not $Camera2D.current
 	map.show_arenas(planet)
 
 func _on_Navigator_unshow_planet(planet):

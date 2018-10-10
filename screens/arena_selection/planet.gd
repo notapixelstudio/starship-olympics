@@ -25,16 +25,20 @@ func _input(event):
 		show_arenas()
 
 func show_arenas():
+	selected = true
 	$GridContainer.visible = true
 	$Camera2D.visible = true
 	$Camera2D.current = true
-	$Camera2D.position = $GridContainer.rect_position
+	$Camera2D.position = $GridContainer.rect_position + Vector2(100, 60)
 	$Camera2D.zoom = Vector2(0.3,0.3)
-	print($Camera2D)
 	
 func hide_arenas():
+	selected = false
 	$GridContainer.visible = false
+	$Camera2D.zoom = Vector2(1,1)
 	$Camera2D.current = false
+	$Camera2D.position = Vector2(0,0)
+	
 	
 func show_planet():
 	arrow.visible = true

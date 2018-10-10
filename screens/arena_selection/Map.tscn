@@ -6,7 +6,7 @@
 [ext_resource path="res://screens/arena_selection/img/planet_desert.png" type="Texture" id=4]
 [ext_resource path="res://screens/arena_selection/img/planet_ice.png" type="Texture" id=5]
 
-[node name="Map" type="Control"]
+[node name="Map" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -20,7 +20,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="TextureRect" type="TextureRect" parent="." index="0"]
+[node name="background" type="TextureRect" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -40,18 +40,18 @@ stretch_mode = 7
 
 [node name="mantiacs" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 610.101, 472.977 )
+position = Vector2( 246.426, 290.146 )
 texture = ExtResource( 4 )
 sprite = ExtResource( 4 )
 
 [node name="robolords" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 826.716, 338.828 )
+position = Vector2( 574.329, 503.774 )
 texture = ExtResource( 5 )
 sprite = ExtResource( 5 )
 
 [node name="trixen" parent="." index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 381.561, 387.523 )
+position = Vector2( 840.626, 260.336 )
 
 

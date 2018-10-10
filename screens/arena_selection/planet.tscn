@@ -7,10 +7,12 @@
 
 [node name="planet" type="Sprite"]
 
-position = Vector2( 185.464, 90.9669 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Region", "Transform", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
 sprite = ExtResource( 1 )
 
 [node name="arrow_selection" type="Sprite" parent="." index="0"]
