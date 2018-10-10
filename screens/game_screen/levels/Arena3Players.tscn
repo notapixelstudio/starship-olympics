@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://screens/game_screen/Arena.gd" type="Script" id=1]
 [ext_resource path="res://actors/Ship.tscn" type="PackedScene" id=2]
-[ext_resource path="res://screens/game_screen/levels/mantiacs_background.png" type="Texture" id=3]
-[ext_resource path="res://screens/game_screen/pause.tscn" type="PackedScene" id=4]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=5]
-[ext_resource path="res://screens/game_screen/levels/Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://actors/SquareWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://screens/game_screen/levels/mantiacs_background.png" type="Texture" id=4]
+[ext_resource path="res://screens/game_screen/pause.tscn" type="PackedScene" id=5]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=6]
+[ext_resource path="res://screens/game_screen/levels/Camera2D.gd" type="Script" id=7]
 
-[node name="Arena" type="Node"]
+[node name="Arena" type="Node" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
-size_multiplier = 2.0
+size_multiplier = 2.5
 
 [node name="Battlefield" type="Node2D" parent="." index="0"]
 
@@ -22,6 +23,16 @@ _sections_unfolded = [ "Pause", "Transform" ]
 position = Vector2( 1274.64, 124.299 )
 rotation = 1.5708
 player = "p3"
+
+[node name="SquareWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 1280, 720 )
+rotation = 0.523599
+
+[node name="SquareWall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 2559.53, 957.789 )
+rotation = 0.523599
 
 [node name="Background" type="CanvasLayer" parent="." index="1"]
 
@@ -45,7 +56,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
@@ -67,7 +78,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="end_battle" parent="Pause" index="0" instance=ExtResource( 4 )]
+[node name="end_battle" parent="Pause" index="0" instance=ExtResource( 5 )]
 
 visible = false
 
@@ -80,7 +91,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="DebugNode" parent="Debug" index="0" instance=ExtResource( 5 )]
+[node name="DebugNode" parent="Debug" index="0" instance=ExtResource( 6 )]
 
 visible = false
 
@@ -108,7 +119,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 

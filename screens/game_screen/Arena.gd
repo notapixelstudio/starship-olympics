@@ -5,7 +5,7 @@ var Ship
 var player2
 var width
 var height
-var someone_died = false
+var someone_died = 0
 
 export (float) var size_multiplier = 1.0
 
@@ -27,7 +27,7 @@ func _ready():
 	debug = global.debug
 	DebugNode.visible = debug
 	
-	someone_died = false
+	someone_died = 0
 	# compute the battlefield size
 	width = OS.window_size.x * size_multiplier
 	height = OS.window_size.y * size_multiplier
@@ -64,6 +64,7 @@ func _ready():
 func update_score(dead_player):
 	# TODO: what if both of them died
 	var updated_label
+	someone_died +=1
 	global.scores[dead_player] -= 1
 	print(dead_player + str(global.scores))
 	
@@ -77,8 +78,7 @@ func update_score(dead_player):
 	if global.scores[dead_player] <= 0:
 		global.gameover = true
 	
-	if not someone_died:
-		someone_died = true
+	if someone_died >= global.default_players-1:
 		yield(get_tree().create_timer(2.0), "timeout")
 		Pause.update_score()
 
