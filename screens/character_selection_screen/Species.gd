@@ -20,30 +20,7 @@ onready var characterSprite = $VBoxContainer/MarginContainer/HBoxContainer/Chara
 onready var selRectSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect
 
 func _ready():
-	# set shortcut for left and right
-	# https://github.com/godotengine/godot/issues/15979
-	# left
-	var hotkey = InputEventKey.new() 
-	if left != "A":
-		hotkey.scancode = KEY_LEFT
-	else:
-		hotkey.scancode = KEY_A
-	var shortcut = ShortCut.new()
-	shortcut.set_shortcut(hotkey)
-	# and then on BaseButton
-	$VBoxContainer/MarginContainer/HBoxContainer/Previous.set_shortcut(shortcut)
 	
-	#right
-	hotkey = InputEventKey.new() 
-	if right != "D":
-		hotkey.scancode = KEY_RIGHT
-	else:
-		hotkey.scancode = KEY_D
-	shortcut = ShortCut.new()
-	shortcut.set_shortcut(hotkey)
-	# and then on BaseButton
-	$VBoxContainer/MarginContainer/HBoxContainer/Next.set_shortcut(shortcut)
-
 	# setting controls for the right species
 	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Right/CenterContainer/Panel/Key.text = right
 	$VBoxContainer/Controls/CenterContainer/HBoxContainer/Left/CenterContainer/Panel/Key.text = left
@@ -98,6 +75,10 @@ func change_species(new_species):
 	
 
 func _input(event):
+	if event.is_action_pressed("p"+str(side+1)+"_right")and not selected:
+		_on_Next_pressed()
+	if event.is_action_pressed("p"+str(side+1)+"_left")and not selected:
+		_on_Previous_pressed()
 	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
 		disable_choice()
 		selected = true

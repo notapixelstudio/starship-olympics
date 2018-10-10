@@ -4,6 +4,8 @@ extends "res://screens/basic_screen.gd"
 var this_path="res://screens/main_screen/main_screen.tscn"
 
 func _ready():
+	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+	
 	global.from_scene = this_path
 	$VBoxContainer.add_constant_override("separation", 6)
 	$VBoxContainer/StartCPU.grab_focus()
@@ -14,7 +16,7 @@ func _ready():
 		bgm_creation.play()
 	
 	"""
-
+	
 func _on_Credits_pressed():
 	change_scene("res://screens/credit_screen/credit_screen.tscn")
 
@@ -36,3 +38,9 @@ func _on_Save_pressed():
 
 func _on_Options_pressed():
 	change_scene("res://screens/option_screen/OptionScreen.tscn")
+
+func _on_joy_connection_changed(device_id, connected):
+    if connected:
+        print(Input.get_joy_name(device_id))
+    else:
+        print("Keyboard")
