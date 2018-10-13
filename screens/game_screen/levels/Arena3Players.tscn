@@ -21,8 +21,8 @@ _sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="WaterBubble" parent="Battlefield" index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 1890, 1280 )
-radius = 150
+position = Vector2( 660, 570 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Ship" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 
@@ -33,17 +33,17 @@ player = "p3"
 [node name="Ship2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 1270, 1200 )
-rotation = 1.5708
+rotation = 4.71239
 player = "p4"
 
 [node name="SquareWall" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 1280, 720 )
+position = Vector2( 358.686, 360.45 )
 rotation = 0.523599
 
 [node name="SquareWall2" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 
-position = Vector2( 2559.53, 957.789 )
+position = Vector2( 978.346, 370.794 )
 rotation = 0.523599
 
 [node name="Background" type="CanvasLayer" parent="." index="1"]
@@ -72,6 +72,9 @@ texture = ExtResource( 5 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="World" type="CanvasLayer" parent="." index="2"]
 
