@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://screens/arena_selection/Map.gd" type="Script" id=1]
 [ext_resource path="res://screens/arena_selection/img/space-background.jpg" type="Texture" id=2]
 [ext_resource path="res://screens/arena_selection/planet.tscn" type="PackedScene" id=3]
-[ext_resource path="res://screens/arena_selection/img/planet_desert.png" type="Texture" id=4]
-[ext_resource path="res://screens/arena_selection/img/planet_ice.png" type="Texture" id=5]
 
 [node name="Map" type="Control"]
 
@@ -40,18 +38,8 @@ stretch_mode = 7
 
 [node name="mantiacs" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 246.426, 290.146 )
-texture = ExtResource( 4 )
-sprite = ExtResource( 4 )
-
 [node name="robolords" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 574.329, 503.774 )
-texture = ExtResource( 5 )
-sprite = ExtResource( 5 )
-
 [node name="trixen" parent="." index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 840.626, 260.336 )
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://screens/arena_selection/img/small_planet_terrain.png" type="Texture" id=1]
+[ext_resource path="res://screens/arena_selection/img/planet_ice.png" type="Texture" id=1]
 [ext_resource path="res://screens/arena_selection/button_navigator.gd" type="Script" id=2]
 [ext_resource path="res://assets/icons8-lock-24.png" type="Texture" id=3]
+[ext_resource path="res://screens/arena_selection/planet.tscn" type="PackedScene" id=4]
 
 [node name="button_navigator" type="TextureButton"]
 
@@ -10,10 +11,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 495.0
-margin_right = 545.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_right = 194.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 100, 100 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -21,7 +21,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -31,51 +30,26 @@ expand = true
 stretch_mode = 5
 script = ExtResource( 2 )
 _sections_unfolded = [ "Rect", "Textures" ]
-locked = true
+locked = false
 
-[node name="Label" type="Label" parent="." index="0"]
+[node name="Tween" type="Tween" parent="." index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -10.0
-margin_top = 50.0
-margin_right = 60.0
-margin_bottom = 64.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "button_navigator"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Margin", "Rect" ]
-
-[node name="Tween" type="Tween" parent="." index="1"]
-
-repeat = true
+repeat = false
 playback_process_mode = 1
 playback_speed = 1.0
 playback/active = false
-playback/repeat = true
+playback/repeat = false
 playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
 
-[node name="locked" type="ColorRect" parent="." index="2"]
+[node name="locked" type="ColorRect" parent="." index="1"]
 
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 4.0
-margin_top = 7.0
-margin_right = 44.0
-margin_bottom = 47.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -83,15 +57,20 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.171875, 0.171875, 0.171875, 0.635373 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="locked" type="TextureRect" parent="locked" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -68.5
+margin_top = -72.0
+margin_right = 68.5
+margin_bottom = 72.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -100,7 +79,19 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 3 )
 expand = true
-stretch_mode = 4
+stretch_mode = 6
+
+[node name="planet_selection" parent="." index="2" instance=ExtResource( 4 )]
+
+margin_left = 97.0
+margin_top = 65.0
+margin_right = 97.0
+margin_bottom = 65.0
+
+[node name="arrow_selection" parent="planet_selection" index="0"]
+
+editor/display_folded = true
+visible = false
 
 [connection signal="focus_entered" from="." to="." method="_on_button_navigator_focus_entered"]
 
@@ -109,3 +100,4 @@ stretch_mode = 4
 [connection signal="pressed" from="." to="." method="_on_button_navigator_pressed"]
 
 
+[editable path="planet_selection"]

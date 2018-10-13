@@ -17,15 +17,12 @@ func locked_planet(new_value):
 		locked_node.visible = locked
 
 func _ready():
-	$Label.text = name
 	# in order to set the first time
 	locked_planet(locked)
 
 func tween_that():
-	tween.interpolate_property(self, "rect_scale", rect_scale*1.1, rect_scale*1.15,
-		1.5, tween.TRANS_BACK, tween.EASE_IN_OUT)
-	tween.interpolate_property(self, "rect_scale", rect_scale*1.15, rect_scale*1.1,
-		1.5, tween.TRANS_BACK, tween.EASE_IN_OUT, 1.5)
+	tween.interpolate_property(self, "rect_scale", rect_scale, rect_scale*1.15,
+		1.0, tween.TRANS_BACK, tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
 	

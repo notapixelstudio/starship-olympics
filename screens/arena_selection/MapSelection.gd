@@ -3,8 +3,7 @@ extends Control
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-onready var map = get_node("Map")
-onready var navigator = get_node("Navigator/Navigator")
+onready var navigator = get_node("Navigator")
 
 func _ready():
 	navigator.connect("show_planet", self, "_on_Navigator_show_planet")

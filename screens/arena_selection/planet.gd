@@ -1,19 +1,9 @@
 tool
-extends Sprite
-
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-export (Texture) var sprite setget identify_planet
+extends Control
 
 var selected = false
-
 onready var arrow = get_node("arrow_selection")
 
-func identify_planet(new_texture):
-	sprite = new_texture
-	texture = new_texture
-	
 func _ready():
 	pass
 	# on_focus()
