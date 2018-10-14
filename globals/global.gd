@@ -11,7 +11,7 @@ const max_lives = 10
 var level
 var array_level
 
-const species = ["mantiacs","robolords", "trixens"]
+const species = ["mantiacs","robolords", "trixens", "another"]
 
 # default unlocked species. The idea is put the locked one to "blank"
 var unlocked_species = ["mantiacs","robolords"]
@@ -32,7 +32,7 @@ var min_unlocked = 1
 var unlocked = 2 setget get_available_species
 var max_unlocked = 3
 
-var default_players = 3
+var default_players = 4
 
 # chosen_species contains the choses species as string
 var chosen_species = {}
