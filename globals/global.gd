@@ -11,7 +11,7 @@ const max_lives = 10
 var level
 var array_level
 
-const species = ["mantiacs","robolords", "trixens"]
+const species = ["mantiacs","robolords", "trixens", "another"]
 
 # default unlocked species. The idea is put the locked one to "blank"
 var unlocked_species = ["mantiacs","robolords"]
@@ -32,7 +32,7 @@ var min_unlocked = 1
 var unlocked = 2 setget get_available_species
 var max_unlocked = 3
 
-var default_players = 2
+var max_players = 4
 
 # chosen_species contains the choses species as string
 var chosen_species = {}
@@ -46,7 +46,7 @@ func _ready():
 	if not level:
 		level = array_level[0]
 	# setting players dictionary
-	for i in range(1,default_players+1):
+	for i in range(1,max_players+1):
 		var pname = "p"+str(i)
 		scores[pname] = lives
 		chosen_species[pname] = species[i-1]
@@ -61,7 +61,7 @@ func get_available_species(new_value):
 
 func reset():
 	reset_selection()
-	for i in range(1,default_players+1):
+	for i in range(1,max_players+1):
 		var pname = "p"+str(i)
 		scores[pname] = lives
 	gameover = false
