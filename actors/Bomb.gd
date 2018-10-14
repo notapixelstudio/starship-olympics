@@ -12,6 +12,8 @@ var width
 var height
 const CLEANUP_DISTANCE = 100
 
+var targets = []
+
 var target = null
 var timeout = 0
 var autolocking_timeout = 0.1
@@ -51,7 +53,28 @@ func detonate():
 
 func try_acquire_target(ship):
 	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
-		target = weakref(ship)
+		acquire_target(ship)
+		
+func acquire_target(ship):
+	target = weakref(ship)
+	$AnimatedSprite.play('locked')
+	targets.push_front(weakref(ship))
+	
+func try_lose_target(ship):
+	for t in targets:
+		if t.get_ref() == ship:
+			targets.erase(t)
+			break
+	
+	# clean up targets from lost refs in front
+	while len(targets) > 0 and targets[0].get_ref() == null:
+		targets.pop_front()
+	
+	if len(targets) > 0:
+		target = targets.pop_front()
+	else:
+		target = null
+		$AnimatedSprite.play('default')
 	
 func _on_Bomb_area_entered(area):
 	# bombs always explode when they touch objects with the Trigger component
