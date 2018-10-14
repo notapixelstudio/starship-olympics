@@ -81,6 +81,8 @@ func change_species(new_species):
 	
 
 func _input(event):
+	if selected and event.is_action_pressed(name.to_lower()+"_fire"):
+		emit_signal("ready_to_fight")
 	if joined:
 		if event.is_action_pressed(name.to_lower()+"_right")and not selected:
 			_on_Next_pressed()
@@ -98,8 +100,7 @@ func _input(event):
 			joined = true
 			enabler.visible = false
 			enable_choice()
-	if selected and event.is_action_pressed(name.to_lower()+"_fire"):
-		emit_signal("ready_to_fight")
+	
 
 func selected():
 	selRectSprite.visible = true

@@ -14,6 +14,7 @@ func _ready():
 #	# Update game logic here.
 #	pass
 func ready_to_fight(n_players):
+	global.num_players = n_players
 	buttons.get_node("Fight").text = str(n_players) + " " + buttons.get_node("Fight").text
 
 func _on_Back_pressed():

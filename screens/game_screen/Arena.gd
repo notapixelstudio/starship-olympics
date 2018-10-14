@@ -7,6 +7,7 @@ var width
 var height
 var someone_died = 0
 
+var n_players = 2
 export (float) var size_multiplier = 1.0
 
 var debug = false
@@ -17,6 +18,7 @@ onready var Pause = get_node("Pause/end_battle")
 
 func _ready():
 	global.this_run_time = OS.get_ticks_msec()
+	n_players = global.num_players
 	
 	Ship = preload('res://actors/Ship.tscn')
 	if global.enemy == "CPU":
@@ -78,7 +80,7 @@ func update_score(dead_player):
 	if global.scores[dead_player] <= 0:
 		global.gameover = true
 	
-	if someone_died >= global.default_players-1:
+	if someone_died >= global.num_players-1:
 		yield(get_tree().create_timer(2.0), "timeout")
 		Pause.update_score()
 

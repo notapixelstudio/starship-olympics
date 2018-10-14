@@ -25,6 +25,7 @@ func _ready():
 func ready_for_fight():
 	if n_players >=2:
 		get_tree().paused = true
+		ready_screen.ready_to_fight(n_players)
 		ready_screen.visible = true
 		ready_screen.get_node("Choose_container").get_child(0).grab_focus()
 		
