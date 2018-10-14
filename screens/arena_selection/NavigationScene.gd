@@ -17,7 +17,9 @@ func _ready():
 	yield(get_tree().create_timer(0.2),"timeout")
 	container.get_child(0).grab_focus()
 
-
+func show_arenas(planet):
+	container.get_node(planet).show_arenas()
+	
 func _on_focus_planet(planet):
 	emit_signal("show_planet", planet)
 

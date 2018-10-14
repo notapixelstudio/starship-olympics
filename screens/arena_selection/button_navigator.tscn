@@ -88,11 +88,6 @@ margin_top = 65.0
 margin_right = 97.0
 margin_bottom = 65.0
 
-[node name="arrow_selection" parent="planet_selection" index="0"]
-
-editor/display_folded = true
-visible = false
-
 [connection signal="focus_entered" from="." to="." method="_on_button_navigator_focus_entered"]
 
 [connection signal="focus_exited" from="." to="." method="_on_button_navigator_focus_exited"]

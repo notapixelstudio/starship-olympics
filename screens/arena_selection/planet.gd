@@ -2,7 +2,6 @@ tool
 extends Control
 
 var selected = false
-onready var arrow = get_node("arrow_selection")
 
 func _ready():
 	pass
@@ -28,21 +27,3 @@ func hide_arenas():
 	$Camera2D.zoom = Vector2(1,1)
 	$Camera2D.current = false
 	$Camera2D.position = Vector2(0,0)
-	
-	
-func show_planet():
-	arrow.visible = true
-	on_focus()
-
-func unshow_planet():
-	arrow.visible = false
-	arrow.get_node("tween").stop_all()
-	
-func on_focus():
-	var tween = arrow.get_node("tween")
-	tween.interpolate_property(arrow, "position", arrow.position, arrow.position + Vector2(0, -15),
-		1.5, tween.TRANS_BACK, tween.EASE_IN_OUT)
-	tween.interpolate_property(arrow, "position", arrow.position + Vector2(0, -15), arrow.position,
-		1.5, tween.TRANS_BACK, tween.EASE_IN_OUT, 1.5)
-	tween.start()
-	yield(tween, "tween_completed")

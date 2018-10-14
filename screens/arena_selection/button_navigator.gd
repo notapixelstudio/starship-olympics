@@ -37,6 +37,8 @@ func _on_button_navigator_focus_exited():
 		rect_scale = Vector2(1,1)
 		emit_signal("exit_focus_planet",name)
 
+func show_arenas():
+	$planet_selection.show_arenas()
 
 func _on_button_navigator_pressed():
 	emit_signal("select_planet", name)
