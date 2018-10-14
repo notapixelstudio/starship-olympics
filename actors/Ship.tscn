@@ -146,7 +146,7 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
-radius = 288.326
+radius = 270.0
 
 [sub_resource type="CircleShape2D" id=13]
 
@@ -275,5 +275,7 @@ shape = SubResource( 13 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
+
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
 
 
