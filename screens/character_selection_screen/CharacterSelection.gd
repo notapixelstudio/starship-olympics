@@ -9,10 +9,11 @@ onready var players = get_node("players_containers")
 onready var ready_screen = get_node("CanvasLayer/ReadyScreen")
 #onready var p1 = $MarginContainer/HBoxContainer/P1
 var p2
+
 func _ready():
 	randomize()
 	# get how many controllers are attached
-	var joypads = Input.get_connected_joypads()
+	var joypads  = Input.get_connected_joypads()
 	for player in players.get_children() :
 		#connect the ready for fight signal
 		player.connect("selected", self, "_on_player_selected", [player.name])
@@ -36,6 +37,7 @@ func _input(event):
 		
 func ready_to_fight():
 	var n_characters = int(len(global.unlocked_species))
+	print(global.available_species)
 	if not ready:
 		if global.enemy == "CPU" :
 			emit_signal("random_choice","p2")
@@ -47,18 +49,12 @@ func ready_to_fight():
 						var p_name = p.name.to_lower()
 						# check if the current selection is still available 
 						if global.available_species.find(p.species)== -1 :
+							print(p.species)
+							print(p.name)
 							p.index_selection = (p.index_selection + 1) % len(global.available_species)
 							p.change_species(global.available_species[p.index_selection])
-						break
-					else:
-						emit_signal("all_ready")
-	else:
-		$MarginContainer/HBoxContainer/VS.text = "Ready to fight"
-		$Button.visible = true
-		$Button.grab_focus()
-		# workaround for the selection shortcut button
-		yield(get_tree().create_timer(0.4), "timeout")
-		$Button.disabled = false
+						
+					
 		
 
 func _on_player_selected(player):

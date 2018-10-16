@@ -15,7 +15,10 @@ func _ready():
 #	pass
 func ready_to_fight(n_players):
 	global.num_players = n_players
-	buttons.get_node("Fight").text = str(n_players) + " " + buttons.get_node("Fight").text
+	buttons.get_node("Fight").text = str(n_players) + " players ready to fight!"
+	yield(get_tree().create_timer(1.0), "timeout")
+	for button in buttons.get_children():
+		button.disabled = false
 
 func _on_Back_pressed():
 	get_tree().paused = false

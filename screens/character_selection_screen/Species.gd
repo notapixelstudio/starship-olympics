@@ -49,7 +49,8 @@ func _ready():
 	
 	# set species from available_species
 	species = global.chosen_species[name.to_lower()]
-	index_selection = global.unlocked_species.find(species)
+	index_selection = global.available_species.find(species)
+	print(name , " is ", species)
 	
 	change_species(species)
 	
@@ -93,6 +94,7 @@ func _input(event):
 			selected = true
 			global.chosen_species[name.to_lower()] = species
 			change_species(species)
+			print("Removing... ", global.available_species[index_selection])
 			global.available_species.remove(index_selection)
 			emit_signal("selected")
 	else:
