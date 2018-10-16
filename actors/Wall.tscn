@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
-[node name="SquareWall" type="StaticBody2D"]
+[node name="Wall" type="StaticBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 16
