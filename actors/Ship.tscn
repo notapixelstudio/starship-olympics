@@ -153,7 +153,7 @@ radius = 270.0
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Ship" type="RigidBody2D" index="0" groups=[
+[node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
 
@@ -275,7 +275,5 @@ shape = SubResource( 13 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
-
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
 
 
