@@ -5,8 +5,9 @@ var Ship
 var player2
 var width
 var height
-var someone_died = false
+var someone_died = 0
 
+var n_players = 2
 export (float) var size_multiplier = 1.0
 
 var debug = false
@@ -17,41 +18,16 @@ onready var Pause = get_node("Pause/end_battle")
 
 func _ready():
 	global.this_run_time = OS.get_ticks_msec()
+	n_players = global.num_players
 	
-	Ship = preload('res://actors/Ship.tscn')
-	if global.enemy == "CPU":
-		player2 = preload('res://actors/AIShip.tscn')
-	else:
-		player2 = Ship
 		
 	debug = global.debug
 	DebugNode.visible = debug
 	
-	someone_died = false
+	someone_died = 0
 	# compute the battlefield size
 	width = OS.window_size.x * size_multiplier
 	height = OS.window_size.y * size_multiplier
-	
-	# create ships
-	var ship1 = Ship.instance()
-	ship1.player = 'p1'
-	ship1.species = global.chosen_species[ship1.player]
-	ship1.rotation = PI
-	ship1.position.x = width-128
-	ship1.position.y = height/2
-	Battlefield.add_child(ship1)
-	
-	var ship2 = player2.instance()
-	ship2.player = 'p2'
-	ship2.species = global.chosen_species[ship2.player]
-	#$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
-	ship2.position.x = 128
-	ship2.position.y = height/2
-	Battlefield.add_child(ship2)
-	
-	# setup AI
-	ship2.target = ship1
-	ship1.target = ship2
 	
 	#Analytics
 	analytics.start_elapsed_time()
@@ -64,6 +40,7 @@ func _ready():
 func update_score(dead_player):
 	# TODO: what if both of them died
 	var updated_label
+	someone_died +=1
 	global.scores[dead_player] -= 1
 	print(dead_player + str(global.scores))
 	
@@ -77,8 +54,7 @@ func update_score(dead_player):
 	if global.scores[dead_player] <= 0:
 		global.gameover = true
 	
-	if not someone_died:
-		someone_died = true
+	if someone_died >= global.num_players-1:
 		yield(get_tree().create_timer(2.0), "timeout")
 		Pause.update_score()
 

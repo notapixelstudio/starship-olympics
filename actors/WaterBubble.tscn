@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 300.0
+radius = 100.0
 
 [node name="WaterBubble" type="Node2D"]
 
@@ -38,7 +38,7 @@ shape = SubResource( 1 )
 
 [node name="Circle" parent="." index="1" instance=ExtResource( 2 )]
 
-radius = 1
+radius = 100
 color = Color( 0.185757, 0.34337, 0.566406, 1 )
 
 

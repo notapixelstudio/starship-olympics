@@ -187,3 +187,7 @@ func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
 		
+func _on_DetectionArea_body_exited(body):
+	if body.has_node('DetectorComponent'):
+		body.try_lose_target(self)
+		

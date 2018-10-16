@@ -26,7 +26,9 @@ func _ready():
 
 	var losing_count = global.scores[other]
 	get_node("MarginContainer/HBoxContainer/"+winner).win(win_count)
-	get_node("MarginContainer/HBoxContainer/"+other).lose(losing_count)
+	for player in global.scores:
+		if not player == winner:
+			get_node("MarginContainer/HBoxContainer/"+player).lose(losing_count)
 	var win_species = global.chosen_species[winner]
 
 	$MarginContainer/HBoxContainer/Label.text = win_species.to_upper() + " WON!"
