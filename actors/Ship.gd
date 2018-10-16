@@ -31,7 +31,7 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
-export var player = 'p1'
+onready var player = name
 
 var Bomb
 var Trail
