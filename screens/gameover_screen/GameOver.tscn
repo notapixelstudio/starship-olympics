@@ -14,7 +14,7 @@ margin_right = 0.0
 margin_bottom = 0.0
 script = ExtResource( 2 )
 _sections_unfolded = [ "Anchor", "Theme" ]
-next_scene = "res://screens/game_screen/Game.tscn"
+next_scene = "res://screens/game_screen/levels/2players.tscn"
 
 [node name="ColorRect" parent="Transition" index="0"]
 
@@ -148,7 +148,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_right = 1009.0
+margin_right = 980.0
 margin_bottom = 400.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -185,7 +185,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 276.0
 margin_top = 149.0
-margin_right = 863.0
+margin_right = 834.0
 margin_bottom = 250.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -204,8 +204,8 @@ _sections_unfolded = [ "Size Flags", "custom_fonts" ]
 
 [node name="p1" parent="MarginContainer/HBoxContainer" index="4" instance=ExtResource( 4 )]
 
-margin_left = 867.0
-margin_right = 1001.0
+margin_left = 838.0
+margin_right = 972.0
 rect_scale = Vector2( 1, 1 )
 _sections_unfolded = [ "Material", "Rect", "Visibility" ]
 player_num = 2
