@@ -1,58 +1,65 @@
 extends Control
 
+var n_players = 0
 
 signal random_choice
 signal all_ready
 var ready = false
-onready var p2 = $MarginContainer/HBoxContainer/P2
-onready var p1 = $MarginContainer/HBoxContainer/P1
+onready var players = get_node("players_containers")
+onready var ready_screen = get_node("CanvasLayer/ReadyScreen")
+#onready var p1 = $MarginContainer/HBoxContainer/P1
+var p2
 
 func _ready():
-	if global.enemy == "CPU":
-		randomize()
-		p2.disable_choice()
-		p2.controls_label.text = 'CPU'
-		p2.controls_container.visible = false
+	randomize()
+	# get how many controllers are attached
+	var joypads  = Input.get_connected_joypads()
+	for player in players.get_children() :
+		#connect the ready for fight signal
+		player.connect("selected", self, "_on_player_selected", [player.name])
+		player.connect("ready_to_fight", self, "ready_for_fight")
+		player.disable_choice()
+		player.controls_label.text = ''
+		player.controls_container.visible = false
+		
 
-
+func ready_for_fight():
+	if n_players >=2:
+		get_tree().paused = true
+		ready_screen.ready_to_fight(n_players)
+		ready_screen.visible = true
+		ready_screen.get_node("Choose_container").get_child(0).grab_focus()
+		
+	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().change_scene(global.from_scene)
 		
 func ready_to_fight():
 	var n_characters = int(len(global.unlocked_species))
+	print(global.available_species)
 	if not ready:
 		if global.enemy == "CPU" :
 			emit_signal("random_choice","p2")
 		else:
-			for p in $MarginContainer/HBoxContainer.get_children():
+			for p in players.get_children():
 				if p.is_in_group("choice"):
 					if not p.selected:
 						ready = false
 						var p_name = p.name.to_lower()
 						# check if the current selection is still available 
 						if global.available_species.find(p.species)== -1 :
+							print(p.species)
+							print(p.name)
 							p.index_selection = (p.index_selection + 1) % len(global.available_species)
 							p.change_species(global.available_species[p.index_selection])
-						break
-					else:
-						emit_signal("all_ready")
-	else:
-		$MarginContainer/HBoxContainer/VS.text = "Ready to fight"
-		$Button.visible = true
-		$Button.grab_focus()
-		# workaround for the selection shortcut button
-		yield(get_tree().create_timer(0.4), "timeout")
-		$Button.disabled = false
+						
+					
 		
 
-func _on_P1_selected():
-	p1.character_container.selected()
-	ready_to_fight()
-
-
-func _on_P2_selected():
-	p2.character_container.selected()
+func _on_player_selected(player):
+	players.find_node(player).selected()
+	n_players += 1
 	ready_to_fight()
 
 # Set chosen_species and start random
@@ -82,12 +89,9 @@ func simulate_choice(final_choice):
 		p2.change_species(global.unlocked_species[(times+final_choice)%n_characters])
 	yield(get_tree().create_timer(0.5), "timeout")
 	p2.change_species(global.unlocked_species[final_choice])
-	p2.character_container.selected()
 	emit_signal("all_ready")
-	
-func _on_Button_pressed():
-	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+global.level))
 
 func _on_Selection_all_ready():
 	ready = true
 	ready_to_fight()
+

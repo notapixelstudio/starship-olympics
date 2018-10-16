@@ -23,6 +23,7 @@ margin_bottom = 730.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -147,7 +148,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_right = 980.0
+margin_right = 1009.0
 margin_bottom = 400.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -158,20 +159,33 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Anchor", "Grow Direction", "Rect", "Size Flags" ]
 
-[node name="p2" parent="MarginContainer/HBoxContainer" index="0" instance=ExtResource( 4 )]
+[node name="p3" parent="MarginContainer/HBoxContainer" index="0" instance=ExtResource( 4 )]
 
 margin_right = 134.0
 rect_scale = Vector2( 1, 1 )
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" index="1"]
+[node name="p4" parent="MarginContainer/HBoxContainer" index="1" instance=ExtResource( 4 )]
+
+visible = false
+margin_left = 138.0
+margin_right = 272.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="p2" parent="MarginContainer/HBoxContainer" index="2" instance=ExtResource( 4 )]
+
+margin_left = 138.0
+margin_right = 272.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 138.0
+margin_left = 276.0
 margin_top = 149.0
-margin_right = 834.0
+margin_right = 863.0
 margin_bottom = 250.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -182,16 +196,16 @@ size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 text = "Someone WON!"
 align = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_fonts" ]
 
-[node name="p1" parent="MarginContainer/HBoxContainer" index="2" instance=ExtResource( 4 )]
+[node name="p1" parent="MarginContainer/HBoxContainer" index="4" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-margin_left = 838.0
-margin_right = 972.0
+margin_left = 867.0
+margin_right = 1001.0
 rect_scale = Vector2( 1, 1 )
 _sections_unfolded = [ "Material", "Rect", "Visibility" ]
 player_num = 2
