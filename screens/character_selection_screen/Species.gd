@@ -1,15 +1,19 @@
-extends CenterContainer
+tool
+extends Control
 
 export (String) var left = "A"
 export (String) var right = "D"
 export (String) var fire = "1"
 export (String) var species = "ROBOLORDS"
-export (int) var side = -1
 
-signal selected 
+var side = -1
+
+signal selected
+signal ready_to_fight
 
 var disabled = false
 var selected = false
+var joined = false
 
 var index_selection
 
@@ -18,6 +22,8 @@ onready var controls_container=$VBoxContainer/Controls/CenterContainer
 onready var character_container=$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer
 onready var characterSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite
 onready var selRectSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect
+
+onready var enabler = get_node("enabler")
 
 func _ready():
 	
@@ -43,7 +49,8 @@ func _ready():
 	
 	# set species from available_species
 	species = global.chosen_species[name.to_lower()]
-	index_selection = global.unlocked_species.find(species)
+	index_selection = global.available_species.find(species)
+	print(name , " is ", species)
 	
 	change_species(species)
 	
@@ -75,17 +82,30 @@ func change_species(new_species):
 	
 
 func _input(event):
-	if event.is_action_pressed("p"+str(side+1)+"_right")and not selected:
-		_on_Next_pressed()
-	if event.is_action_pressed("p"+str(side+1)+"_left")and not selected:
-		_on_Previous_pressed()
-	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
-		disable_choice()
-		selected = true
-		global.chosen_species[name.to_lower()] = species
-		change_species(species)
-		global.available_species.remove(index_selection)
-		emit_signal("selected")
+	if selected and event.is_action_pressed(name.to_lower()+"_fire"):
+		emit_signal("ready_to_fight")
+	if joined:
+		if event.is_action_pressed(name.to_lower()+"_right")and not selected:
+			_on_Next_pressed()
+		if event.is_action_pressed(name.to_lower()+"_left")and not selected:
+			_on_Previous_pressed()
+		if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
+			disable_choice()
+			selected = true
+			global.chosen_species[name.to_lower()] = species
+			change_species(species)
+			print("Removing... ", global.available_species[index_selection])
+			global.available_species.remove(index_selection)
+			emit_signal("selected")
+	else:
+		if event.is_action_pressed(name.to_lower()+"_fire"):
+			joined = true
+			enabler.visible = false
+			enable_choice()
+	
+
+func selected():
+	selRectSprite.visible = true
 
 func _on_Previous_pressed():
 	
@@ -108,7 +128,16 @@ func disable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = true
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = false
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = false
+	controls_container.visible = false
 
+func enable_choice():
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = false
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = false
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = true
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = true
+	controls_container.visible = true
+	
+	
 func mod(a,b):
 	var ret = a%b
 	if ret < 0: 

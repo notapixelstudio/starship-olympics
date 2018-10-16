@@ -6,12 +6,14 @@ extends HBoxContainer
 var species 
 export (int) var player_num 
 
+onready var player = get_node("Player")
 
 var life_scn = preload("res://screens/game_screen/life_rect.tscn")
 
 func _ready():
 	species = global.chosen_species[name.to_lower()]
 	species = species.to_lower()
+	player.species = species
 	var life_texture = load("res://actors/"+species+"_ship_plain.png")
 	for i in range(0,global.lives):
 		var life = life_scn.instance()
