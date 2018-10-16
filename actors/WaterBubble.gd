@@ -9,7 +9,4 @@ func set_radius(new_radius):
 		$Area2D/CollisionShape2D.shape.radius = radius
 	
 func _ready():
-	$Area2D/CollisionShape2D.shape.radius = radius
-	if not Engine.editor_hint:
-		position *= owner.size_multiplier
-	$Circle.radius = radius
+	pass

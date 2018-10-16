@@ -5,7 +5,6 @@ extends StaticBody2D
 # var b = "textvar"
 
 func _ready():
-	position *= owner.size_multiplier
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass

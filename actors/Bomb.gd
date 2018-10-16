@@ -18,6 +18,8 @@ var target = null
 var timeout = 0
 var autolocking_timeout = 0.1
 
+const LIFETIME = 1.5
+
 signal detonate
 
 func _ready():
@@ -26,7 +28,7 @@ func _ready():
 	height = get_node('/root/Arena').height
 	
 	# bombs life
-	timeout = 1.5
+	timeout = LIFETIME
 	
 func _physics_process(delta):
 	autolocking_timeout -= delta
@@ -75,6 +77,7 @@ func try_lose_target(ship):
 	else:
 		target = null
 		$AnimatedSprite.play('default')
+		timeout = LIFETIME
 	
 func _on_Bomb_area_entered(area):
 	# bombs always explode when they touch objects with the Trigger component
