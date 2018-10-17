@@ -1,6 +1,8 @@
 # script ship
 extends RigidBody2D
 
+export (String) var controls = "kb1"
+
 var left
 var right
 var max_velocity = 600
@@ -31,13 +33,16 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
-export var player = 'p1'
+onready var player = name
 
 var Bomb
 var Trail
 var target = null
 
 func _ready():
+	
+	controls = global.controls[name]
+	print(controls)
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
@@ -51,7 +56,7 @@ func _ready():
 	height = OS.window_size.y * get_parent().owner.size_multiplier
 
 func control(delta):
-	rotation_dir = int(Input.is_action_pressed(player+'_right')) - int(Input.is_action_pressed(player+'_left'))
+	rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 		
 	# charge
 	if charging:
@@ -59,11 +64,11 @@ func control(delta):
 	else:
 		charge = 0
 	
-	if not charging and Input.is_action_pressed(player+'_fire') and fire_cooldown <= 0:
+	if not charging and Input.is_action_pressed(controls+'_fire') and fire_cooldown <= 0:
 		charging = true
 		
 	# fire
-	if charging and Input.is_action_just_released(player+'_fire'):
+	if charging and Input.is_action_just_released(controls+'_fire'):
 		fire()
 		charging = false
 		fire_cooldown = 0.1

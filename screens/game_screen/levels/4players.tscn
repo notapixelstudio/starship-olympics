@@ -23,19 +23,25 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( 1280, 720 )
 
 [node name="p1" parent="Battlefield" index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 2432, 720 )
+position = Vector2( 2432, 480 )
 rotation = -3.14159
 
-[node name="p2" parent="Battlefield" index="4" instance=ExtResource( 5 )]
+[node name="p4" parent="Battlefield" index="4" instance=ExtResource( 5 )]
 
-position = Vector2( 128, 720 )
+position = Vector2( 2432, 960 )
+rotation = -3.14159
 
-[node name="Pause" parent="." index="1"]
+[node name="p2" parent="Battlefield" index="5" instance=ExtResource( 5 )]
 
-editor/display_folded = false
+position = Vector2( 128, 480 )
+
+[node name="p3" parent="Battlefield" index="6" instance=ExtResource( 5 )]
+
+position = Vector2( 128, 960 )
 
 
