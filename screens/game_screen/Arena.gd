@@ -20,7 +20,6 @@ func _ready():
 	global.this_run_time = OS.get_ticks_msec()
 	n_players = global.num_players
 	
-		
 	debug = global.debug
 	DebugNode.visible = debug
 	

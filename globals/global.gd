@@ -38,6 +38,7 @@ var num_players = 0
 # chosen_species contains the choses species as string
 var chosen_species = {}
 var scores = {}
+var controls = {}
 
 var this_run_time = 0
 
@@ -51,6 +52,7 @@ func _ready():
 		var pname = "p"+str(i)
 		scores[pname] = lives
 		chosen_species[pname] = species[i-1]
+		controls[pname] = "kb1"
 
 	# if we want to save data from global
 	add_to_group("persist")
@@ -91,7 +93,6 @@ func get_state():
 func load_state(data):
 	for attribute in data:
 		set(attribute, data[attribute])
-
 
 func dir_contents(path):
 	var dir = Directory.new()

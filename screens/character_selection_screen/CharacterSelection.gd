@@ -9,8 +9,13 @@ onready var players = get_node("players_containers")
 onready var ready_screen = get_node("CanvasLayer/ReadyScreen")
 #onready var p1 = $MarginContainer/HBoxContainer/P1
 var p2
+var fire_buttons = []
 
 func _ready():
+	
+	for button in InputMap.get_actions():
+		if "fire" in button:
+			fire_buttons.append(button)
 	randomize()
 	# get how many controllers are attached
 	var joypads  = Input.get_connected_joypads()
@@ -30,6 +35,15 @@ func ready_for_fight():
 		
 	
 func _input(event):
+	for button in fire_buttons:
+		if event.is_action_pressed(button):
+			for player in players.get_children():
+				if not player.joined:
+					fire_buttons.remove(fire_buttons.find(button))
+					player.set_commands(button)
+					break
+					
+		
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().change_scene(global.from_scene)
 		
