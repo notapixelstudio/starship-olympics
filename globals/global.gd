@@ -65,10 +65,10 @@ func get_available_species(new_value):
 
 func change_numplayers(new_value):
 	num_players = new_value
+	scores = {}
 	reset()
 	
 func reset():
-	scores = {}
 	reset_selection()
 	for i in range(1,num_players+1):
 		var pname = "p"+str(i)
