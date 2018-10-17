@@ -80,8 +80,6 @@ func _ready():
 	characterSprite.flip_h = side
 	
 	# set controls to keyboard 2 if flipped
-	if side != 0:
-		$VBoxContainer/Controls/Label.text = ControlsMap[controls]
 
 func change_species(new_species):
 	# print(name,": ", species," new_species->", new_species," index-> ",index_selection,global.chosen_species)
@@ -153,6 +151,9 @@ func set_commands(button):
 			# update globals
 			global.controls[name.to_lower()] = ControlsMap[control]
 			enable_choice()
+
+	$VBoxContainer/Controls.visible = true
+	$VBoxContainer/Controls/Label.text = ControlsMap[controls]
 	
 func mod(a,b):
 	var ret = a%b
