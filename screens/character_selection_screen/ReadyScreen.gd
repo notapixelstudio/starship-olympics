@@ -4,6 +4,7 @@ extends Control
 # var a = 2
 # var b = "textvar"
 onready var buttons = get_node("Choose_container")
+var num_players = 0
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -14,7 +15,7 @@ func _ready():
 #	# Update game logic here.
 #	pass
 func ready_to_fight(n_players):
-	global.num_players = n_players
+	num_players = n_players
 	buttons.get_node("Fight").text = str(n_players) + " players ready to fight!"
 	yield(get_tree().create_timer(1.0), "timeout")
 	for button in buttons.get_children():
@@ -27,4 +28,6 @@ func _on_Back_pressed():
 
 func _on_Fight_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+global.level))
+	global.num_players = num_players
+	# needs to be on global if we want to save it
+	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+str(num_players) + "players.tscn")) #+ "global.level))

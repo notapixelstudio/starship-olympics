@@ -17,10 +17,11 @@ onready var Pause = get_node("Pause/end_battle")
 
 
 func _ready():
+	global.num_players = get_tree().get_nodes_in_group("players").size()
+	
 	global.this_run_time = OS.get_ticks_msec()
 	n_players = global.num_players
 	
-		
 	debug = global.debug
 	DebugNode.visible = debug
 	

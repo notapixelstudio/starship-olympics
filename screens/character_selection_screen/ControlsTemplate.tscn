@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
 [ext_resource path="res://screens/character_selection_screen/Command.tscn" type="PackedScene" id=2]
 
 [node name="Controls" type="VBoxContainer"]
@@ -40,6 +40,7 @@ custom_colors/font_color = Color( 0.690196, 0.745098, 0.772549, 1 )
 text = "KEYBOARD 1"
 align = 1
 valign = 1
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

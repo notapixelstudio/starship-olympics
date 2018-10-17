@@ -33,11 +33,12 @@ var unlocked = 4 setget get_available_species
 var max_unlocked = 4
 
 var max_players = 4
-var num_players = 0
+var num_players = 0 setget change_numplayers
 
 # chosen_species contains the choses species as string
 var chosen_species = {}
 var scores = {}
+var controls = {}
 
 var this_run_time = 0
 
@@ -50,7 +51,9 @@ func _ready():
 	for i in range(1,max_players+1):
 		var pname = "p"+str(i)
 		scores[pname] = lives
+		num_players = max_players
 		chosen_species[pname] = species[i-1]
+		controls[pname] = "kb1"
 
 	# if we want to save data from global
 	add_to_group("persist")
@@ -60,9 +63,14 @@ func get_available_species(new_value):
 	unlocked=new_value
 	reset_selection()
 
+func change_numplayers(new_value):
+	num_players = new_value
+	reset()
+	
 func reset():
+	scores = {}
 	reset_selection()
-	for i in range(1,max_players+1):
+	for i in range(1,num_players+1):
 		var pname = "p"+str(i)
 		scores[pname] = lives
 	gameover = false
@@ -91,7 +99,6 @@ func get_state():
 func load_state(data):
 	for attribute in data:
 		set(attribute, data[attribute])
-
 
 func dir_contents(path):
 	var dir = Directory.new()
