@@ -19,8 +19,6 @@ func _ready():
 		player.connect("selected", self, "_on_player_selected", [player.name])
 		player.connect("ready_to_fight", self, "ready_for_fight")
 		player.disable_choice()
-		player.controls_label.text = ''
-		player.controls_container.visible = false
 		
 
 func ready_for_fight():
@@ -49,9 +47,8 @@ func ready_to_fight():
 						var p_name = p.name.to_lower()
 						# check if the current selection is still available 
 						if global.available_species.find(p.species)== -1 :
-							print(p.species)
-							print(p.name)
-							p.index_selection = (p.index_selection + 1) % len(global.available_species)
+							# randomly choose an available species
+							p.index_selection = (p.index_selection + randi()) % len(global.available_species)
 							p.change_species(global.available_species[p.index_selection])
 						
 					

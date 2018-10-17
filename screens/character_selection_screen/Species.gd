@@ -94,8 +94,7 @@ func _input(event):
 			selected = true
 			global.chosen_species[name.to_lower()] = species
 			change_species(species)
-			print("Removing... ", global.available_species[index_selection])
-			global.available_species.remove(index_selection)
+			global.available_species.remove(global.available_species.find(species))
 			emit_signal("selected")
 	else:
 		if event.is_action_pressed(name.to_lower()+"_fire"):

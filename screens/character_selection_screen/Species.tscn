@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="P1" type="Control" groups=[
+[node name="P1" type="Control" index="0" groups=[
 "choice",
 ]]
 
@@ -245,6 +245,7 @@ margin_bottom = 664.0
 [node name="enabler" type="Control" parent="." index="1"]
 
 editor/display_folded = true
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
