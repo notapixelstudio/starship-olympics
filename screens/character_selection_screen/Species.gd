@@ -50,14 +50,11 @@ func _ready():
 	
 	ship.position = Vector2(50,50)
 	ship.scale = Vector2(0.5, 0.5)
-	characterSprite.position = Vector2(65,200)
-	characterSprite.scale = Vector2(0.43, 0.43)
-	selRectSprite.position = Vector2(65,200)
-	selRectSprite.scale = Vector2(0.43, 0.43)
+	characterSprite.rect_position = Vector2(65,200)
+	#characterSprite.scale = Vector2(0.43, 0.43)
+	selRectSprite.rect_position = Vector2(65,200)
+	#selRectSprite.scale = Vector2(0.43, 0.43)
 	
-	# adjust selection rect position if flipped
-	if side != 0:
-		selRectSprite.position = Vector2(55,200)
 	
 	# set species from available_species
 	species = global.chosen_species[name.to_lower()]
@@ -76,10 +73,6 @@ func _ready():
 	else:
 		ship.get_node("AnimationPlayer").play_backwards("standby")
 	
-	ship.flip_h = not side
-	characterSprite.flip_h = side
-	
-	# set controls to keyboard 2 if flipped
 
 func change_species(new_species):
 	# print(name,": ", species," new_species->", new_species," index-> ",index_selection,global.chosen_species)
