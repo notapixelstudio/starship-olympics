@@ -75,6 +75,7 @@ alignment = 0
 
 [node name="MarginContainer" type="CenterContainer" parent="VBoxContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -132,6 +133,9 @@ stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]
 
 [node name="CharacterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" index="1" instance=ExtResource( 4 )]
+
+margin_left = 79.0
+margin_right = 209.0
 
 [node name="Next" type="TextureButton" parent="VBoxContainer/MarginContainer/HBoxContainer" index="2"]
 
@@ -245,7 +249,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 margin_top = 552.0
 margin_right = 288.0
-margin_bottom = 664.0
+margin_bottom = 592.0
 
 [node name="enabler" type="Control" parent="." index="1"]
 

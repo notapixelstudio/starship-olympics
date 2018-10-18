@@ -126,6 +126,7 @@ func disable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = false
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = false
 	controls_container.visible = false
+	
 
 func enable_choice():
 	joined = true
@@ -134,7 +135,7 @@ func enable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = false
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = true
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = true
-	controls_container.visible = true
+	#controls_container.visible = true
 
 func set_commands(button):
 	joined = true
@@ -143,6 +144,7 @@ func set_commands(button):
 			controls = control
 			# update globals
 			global.controls[name.to_lower()] = ControlsMap[control]
+			get_node("VBoxContainer/Controls").set_commands(ControlsMap[control])
 			enable_choice()
 
 	$VBoxContainer/Controls.visible = true
