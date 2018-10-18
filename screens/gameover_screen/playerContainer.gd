@@ -1,13 +1,10 @@
-extends HBoxContainer
+extends Control
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 var species 
-export (int) var player_num 
 
 onready var player = get_node("Player")
 
+var winner = false 
 var life_scn = preload("res://screens/game_screen/life_rect.tscn")
 
 func _ready():
@@ -20,14 +17,7 @@ func _ready():
 		life.texture = life_texture
 		$Lives.add_child(life)
 	#rect_scale = Vector2(-1,1)
-	if not player_num % 2:
-		var p = $Player
-		remove_child(p)
-		var tmp = $Lives
-		remove_child(tmp)
-		add_child_below_node(self,tmp)
-		add_child(p)
-	$Player.flip(player_num)
+	$Player.flip(winner)
 	
 	
 func setup(species):
@@ -44,6 +34,7 @@ func lose(points):
 	remove_lives(points)
 	
 func win(points):
+	winner = true
 	$Player.win()
 	$Player.selected()
 	remove_lives(points)
