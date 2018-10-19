@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/wall_tile.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -10,7 +12,7 @@ extents = Vector2( 50, 820 )
 custom_solver_bias = 0.0
 extents = Vector2( 1280, 50 )
 
-[node name="OuterWalls" type="Node2D" index="0"]
+[node name="OuterWalls" type="Node2D"]
 
 [node name="left" type="StaticBody2D" parent="." index="0"]
 
@@ -90,14 +92,14 @@ shape = SubResource( 2 )
 
 [node name="line" type="Line2D" parent="." index="4"]
 
-points = PoolVector2Array( 50, 50, 50, 1390, 2510, 1390, 2510, 50, 50, 50 )
-width = 10.0
+points = PoolVector2Array( 50, 100, 50, 1390, 2510, 1390, 2510, 50, 50, 50, 50, 100 )
+width = 40.0
 default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 1 )
 texture_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
-sharp_limit = 2.0
-round_precision = 8
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 10
 _sections_unfolded = [ "Border", "Capping", "Fill" ]
 
 
