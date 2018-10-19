@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://actors/Wall.gd" type="Script" id=1]
+[ext_resource path="res://actors/wall_tile.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -28,7 +29,7 @@ shape = SubResource( 1 )
 
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
+color = Color( 0.847656, 0.847656, 0.847656, 1 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false
@@ -38,5 +39,18 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
+_sections_unfolded = [ "Invert", "Texture" ]
+
+[node name="line" type="Line2D" parent="." index="2"]
+
+points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
+width = 40.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 10
+_sections_unfolded = [ "Border", "Capping", "Fill" ]
 
 

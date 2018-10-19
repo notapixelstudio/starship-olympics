@@ -20,3 +20,8 @@ func refresh():
 	$CollisionShape2D.set_shape(shape)
 	$Polygon2D.set_polygon(points)
 	
+	# close the line with a seamless join
+	var ps = PoolVector2Array(points)
+	ps.remove(0)
+	var p = points[0]+(points[1]-points[0])*0.1
+	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
