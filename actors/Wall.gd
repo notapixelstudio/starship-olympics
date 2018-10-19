@@ -23,5 +23,5 @@ func refresh():
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)
 	ps.remove(0)
-	var p = points[0]+(points[1]-points[0])*0.1
+	var p = points[0]+(points[1]-points[0])*0.5
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])

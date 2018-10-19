@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
-[node name="Wall" type="StaticBody2D" index="0"]
+[node name="Wall" type="StaticBody2D"]
 
 input_pickable = false
 collision_layer = 16
@@ -44,7 +44,7 @@ _sections_unfolded = [ "Invert", "Texture" ]
 [node name="line" type="Line2D" parent="." index="2"]
 
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
-width = 40.0
+width = 60.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
 texture_mode = 1
