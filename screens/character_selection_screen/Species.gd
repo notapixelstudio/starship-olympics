@@ -127,7 +127,7 @@ func deselect():
 	selRectSprite.visible = false
 	
 func _on_Previous_pressed():
-	
+	$select_sound.play()
 	var a = index_selection - 1
 	var b = len(global.available_species)
 	index_selection = mod(a,b)
@@ -136,6 +136,7 @@ func _on_Previous_pressed():
 
 
 func _on_Next_pressed():
+	$select_sound.play()
 	var a = index_selection + 1
 	var b = len(global.available_species)
 	index_selection = mod(a,b)
