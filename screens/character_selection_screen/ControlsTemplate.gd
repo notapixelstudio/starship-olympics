@@ -4,7 +4,12 @@ func set_commands(command):
 	var command_texture = load("res://assets/icon/"+command+".png")
 	$commands.texture = command_texture
 	show_commands()
+func unset_commands(command):
+	hide_commands()
+	$commands.texture = null
 
+func hide_commands():
+	$commands.visible=false
 func show_commands():
 	# $CenterContainer.visible = true
 	$commands.visible = true

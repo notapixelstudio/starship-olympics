@@ -12,7 +12,7 @@ var p2
 var fire_buttons = []
 
 func _ready():
-	
+	print(InputMap.get_action_list("joy1_fire")[0].button_index)
 	for button in InputMap.get_actions():
 		if "fire" in button:
 			fire_buttons.append(button)
@@ -21,7 +21,9 @@ func _ready():
 	var joypads  = Input.get_connected_joypads()
 	for player in players.get_children() :
 		#connect the ready for fight signal
-		player.connect("selected", self, "_on_player_selected", [player.name])
+		player.connect("selected", self, "_on_player_select", [player.name])
+		player.connect("deselected", self, "_on_player_deselect", [player.name])
+		player.connect("leave", self, "_on_player_leaves", [player.name])
 		player.connect("ready_to_fight", self, "ready_for_fight")
 		player.disable_choice()
 		
@@ -43,9 +45,14 @@ func _input(event):
 					player.set_commands(button)
 					break
 					
-		
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene(global.from_scene)
+		var can_change = true
+		for player in players.get_children():
+			if player.joined:
+				can_change = false
+				break
+		if can_change:
+			get_tree().change_scene(global.from_scene)
 		
 func ready_to_fight():
 	var n_characters = int(len(global.unlocked_species))
@@ -67,12 +74,17 @@ func ready_to_fight():
 						
 					
 		
-
-func _on_player_selected(player):
-	players.find_node(player).selected()
+func _on_player_leaves(player):
+	fire_buttons.append(global.controls[player.to_lower()]+"_fire")
+	
+	print(player + " left")
+func _on_player_select(player):
 	n_players += 1
 	ready_to_fight()
 
+func _on_player_deselect(player):
+	n_players -= 1
+	ready_to_fight()
 # Set chosen_species and start random
 func _on_Selection_random_choice(player):
 	var forbidden 
