@@ -1,8 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
-[ext_resource path="res://actors/mantiacs_ship_plain.png" type="Texture" id=2]
-[ext_resource path="res://actors/trail_spark.png" type="Texture" id=3]
+[ext_resource path="res://actors/Circle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/mantiacs_ship_plain.png" type="Texture" id=3]
+[ext_resource path="res://actors/trail_spark.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=14]
+
+custom_solver_bias = 0.0
+radius = 70.0
 
 [sub_resource type="Gradient" id=1]
 
@@ -153,7 +159,7 @@ radius = 270.0
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Ship" type="RigidBody2D" groups=[
+[node name="Ship" type="RigidBody2D" index="0" groups=[
 "players",
 ]]
 
@@ -179,12 +185,36 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
 controls = "kb1"
 
-[node name="Graphics" type="Node2D" parent="." index="0"]
+[node name="Shield" type="Area2D" parent="." index="0"]
+
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 32
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" index="0"]
+
+shape = SubResource( 14 )
+disabled = true
+
+[node name="Circle" parent="Shield" index="1" instance=ExtResource( 2 )]
+
+radius = 70
+color = Color( 0.521505, 0.854209, 1, 1 )
+
+[node name="Graphics" type="Node2D" parent="." index="1"]
 
 [node name="Sprite" type="Sprite" parent="Graphics" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Particles2D" type="Particles2D" parent="Graphics" index="1"]
@@ -205,7 +235,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -234,7 +264,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="Area2D" type="Area2D" parent="." index="2"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -251,7 +281,7 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 11 )
 
-[node name="DetectionArea" type="Area2D" parent="." index="2"]
+[node name="DetectionArea" type="Area2D" parent="." index="3"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -268,9 +298,11 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 12 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
 shape = SubResource( 13 )
+
+[connection signal="body_entered" from="Shield" to="." method="_on_Shield_body_entered"]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
 

@@ -39,6 +39,10 @@ var Bomb
 var Trail
 var target = null
 
+var shield_timeout = 0
+var shield_cooldown = 0
+var shield = false
+
 func _ready():
 	
 	controls = global.controls[name]
@@ -75,7 +79,18 @@ func control(delta):
 		
 	# cooldown
 	fire_cooldown -= delta
-		
+	
+	# shield
+	if shield_cooldown <= 0 and not shield and Input.is_action_pressed(controls+'_action'):
+		shield()
+	
+	if shield:
+		shield_timeout -= delta
+		if shield_timeout <= 0:
+			stop_shield()
+			
+	shield_cooldown -= delta
+	
 	# dash
 	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
 	#	speed_multiplier = 3
@@ -115,8 +130,6 @@ func _integrate_forces(state):
 	
 	state.set_transform(xform)
 	
-	
-
 func _process(delta):
 	if not alive:
 		return
@@ -165,7 +178,7 @@ func _process(delta):
 
 # Fire a bomb
 func fire():
-	var charge_impulse =min(1500*charge, 3500)
+	var charge_impulse = min(1500*charge, 3500)
 	
 	var bomb = Bomb.instance()
 	bomb.origin_ship = self
@@ -176,6 +189,18 @@ func fire():
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
+	
+func shield():
+	$Shield.visible = true
+	$Shield/CollisionShape2D.disabled = false
+	shield_timeout = 0.3
+	shield = true
+	
+func stop_shield():
+	$Shield.visible = false
+	$Shield/CollisionShape2D.disabled = true
+	shield = false
+	shield_cooldown = 0.4
 	
 func die():
 	if alive:
@@ -195,4 +220,9 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_body_exited(body):
 	if body.has_node('DetectorComponent'):
 		body.try_lose_target(self)
+		
+
+func _on_Shield_body_entered(body):
+	if body != self:
+		body.apply_impulse(Vector2(0,0), (body.position-position).normalized()*2000)
 		
