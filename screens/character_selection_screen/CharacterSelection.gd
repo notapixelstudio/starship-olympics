@@ -9,18 +9,23 @@ onready var players = get_node("players_containers")
 onready var ready_screen = get_node("CanvasLayer/ReadyScreen")
 #onready var p1 = $MarginContainer/HBoxContainer/P1
 var p2
+var fire_buttons = []
 
 func _ready():
+	print(InputMap.get_action_list("joy1_fire")[0].button_index)
+	for button in InputMap.get_actions():
+		if "fire" in button:
+			fire_buttons.append(button)
 	randomize()
 	# get how many controllers are attached
 	var joypads  = Input.get_connected_joypads()
 	for player in players.get_children() :
 		#connect the ready for fight signal
-		player.connect("selected", self, "_on_player_selected", [player.name])
+		player.connect("selected", self, "_on_player_select", [player.name])
+		player.connect("deselected", self, "_on_player_deselect", [player.name])
+		player.connect("leave", self, "_on_player_leaves", [player.name])
 		player.connect("ready_to_fight", self, "ready_for_fight")
 		player.disable_choice()
-		player.controls_label.text = ''
-		player.controls_container.visible = false
 		
 
 func ready_for_fight():
@@ -32,8 +37,22 @@ func ready_for_fight():
 		
 	
 func _input(event):
+	for button in fire_buttons:
+		if event.is_action_pressed(button):
+			for player in players.get_children():
+				if not player.joined:
+					fire_buttons.remove(fire_buttons.find(button))
+					player.set_commands(button)
+					break
+					
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene(global.from_scene)
+		var can_change = true
+		for player in players.get_children():
+			if player.joined:
+				can_change = false
+				break
+		if can_change:
+			get_tree().change_scene(global.from_scene)
 		
 func ready_to_fight():
 	var n_characters = int(len(global.unlocked_species))
@@ -49,19 +68,23 @@ func ready_to_fight():
 						var p_name = p.name.to_lower()
 						# check if the current selection is still available 
 						if global.available_species.find(p.species)== -1 :
-							print(p.species)
-							print(p.name)
-							p.index_selection = (p.index_selection + 1) % len(global.available_species)
+							# randomly choose an available species
+							p.index_selection = (p.index_selection + randi()) % len(global.available_species)
 							p.change_species(global.available_species[p.index_selection])
 						
 					
 		
-
-func _on_player_selected(player):
-	players.find_node(player).selected()
+func _on_player_leaves(player):
+	fire_buttons.append(global.controls[player.to_lower()]+"_fire")
+	
+	print(player + " left")
+func _on_player_select(player):
 	n_players += 1
 	ready_to_fight()
 
+func _on_player_deselect(player):
+	n_players -= 1
+	ready_to_fight()
 # Set chosen_species and start random
 func _on_Selection_random_choice(player):
 	var forbidden 

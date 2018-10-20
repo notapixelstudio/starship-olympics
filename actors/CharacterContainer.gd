@@ -19,9 +19,10 @@ func win():
 	$Sprite.texture = load("res://assets/character_"+species+"_1.png")
 	selected()
 
-func flip(player):
+func flip(flip_flag):
 	# flip if it is odd
-	$Sprite.flip_h = player % 2
+	pass
+	#$Sprite.flip_h = flip_flag
 	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

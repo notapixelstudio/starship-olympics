@@ -6,9 +6,9 @@
 [ext_resource path="res://actors/CharacterContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://screens/main_screen/interface/right.png" type="Texture" id=5]
 [ext_resource path="res://screens/main_screen/interface/right_pressed.png" type="Texture" id=6]
-[ext_resource path="res://ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_32.tres" type="DynamicFont" id=7]
 [ext_resource path="res://actors/mantiacs_ship.png" type="Texture" id=8]
-[ext_resource path="res://ui/interface/stats/Attack.tscn" type="PackedScene" id=9]
+[ext_resource path="res://screens/character_selection_screen/ControlsTemplate.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -49,6 +49,11 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material" ]
+controls = 1
+left = "A"
+right = "D"
+fire = "1"
+species = "ROBOLORDS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 
@@ -70,6 +75,7 @@ alignment = 0
 
 [node name="MarginContainer" type="CenterContainer" parent="VBoxContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -127,6 +133,9 @@ stretch_mode = 5
 _sections_unfolded = [ "Rect", "Textures" ]
 
 [node name="CharacterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" index="1" instance=ExtResource( 4 )]
+
+margin_left = 79.0
+margin_right = 209.0
 
 [node name="Next" type="TextureButton" parent="VBoxContainer/MarginContainer/HBoxContainer" index="2"]
 
@@ -240,7 +249,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 margin_top = 552.0
 margin_right = 288.0
-margin_bottom = 664.0
+margin_bottom = 592.0
 
 [node name="enabler" type="Control" parent="." index="1"]
 
