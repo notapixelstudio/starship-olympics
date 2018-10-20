@@ -3,10 +3,10 @@
 [ext_resource path="res://actors/Wall.gd" type="Script" id=1]
 [ext_resource path="res://actors/wall_tile.png" type="Texture" id=2]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConcavePolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+segments = PoolVector2Array( -100, -100, 100, -100, 100, -100, 100, 100, 100, 100, -100, 100, -100, 100, -100, -100 )
 
 [node name="Wall" type="StaticBody2D"]
 
@@ -20,6 +20,7 @@ bounce = 0.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+hollow = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
