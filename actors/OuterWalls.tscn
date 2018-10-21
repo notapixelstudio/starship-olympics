@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/wall_tile.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -31,16 +33,7 @@ shape = SubResource( 1 )
 
 [node name="SolidComponent" type="Node" parent="left" index="1"]
 
-[node name="lleft" type="Line2D" parent="." index="1"]
-
-points = PoolVector2Array( 50, 50, 50, 1390 )
-width = 10.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 202017328
-sharp_limit = 2.0
-round_precision = 8
-
-[node name="right" type="StaticBody2D" parent="." index="2"]
+[node name="right" type="StaticBody2D" parent="." index="1"]
 
 editor/display_folded = true
 position = Vector2( 2560, 720 )
@@ -59,16 +52,7 @@ shape = SubResource( 1 )
 
 [node name="SolidComponent" type="Node" parent="right" index="1"]
 
-[node name="lright" type="Line2D" parent="." index="3"]
-
-points = PoolVector2Array( 2510, 50, 2510, 1390 )
-width = 10.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 202017328
-sharp_limit = 2.0
-round_precision = 8
-
-[node name="top" type="StaticBody2D" parent="." index="4"]
+[node name="top" type="StaticBody2D" parent="." index="2"]
 
 editor/display_folded = true
 position = Vector2( 1280, 0 )
@@ -87,16 +71,7 @@ shape = SubResource( 2 )
 
 [node name="SolidComponent" type="Node" parent="top" index="1"]
 
-[node name="ltop" type="Line2D" parent="." index="5"]
-
-points = PoolVector2Array( 50, 50, 2510, 50 )
-width = 10.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 202017328
-sharp_limit = 2.0
-round_precision = 8
-
-[node name="bottom" type="StaticBody2D" parent="." index="6"]
+[node name="bottom" type="StaticBody2D" parent="." index="3"]
 
 editor/display_folded = true
 position = Vector2( 1280, 1440 )
@@ -115,13 +90,16 @@ shape = SubResource( 2 )
 
 [node name="SolidComponent" type="Node" parent="bottom" index="1"]
 
-[node name="lbottom" type="Line2D" parent="." index="7"]
+[node name="line" type="Line2D" parent="." index="4"]
 
-points = PoolVector2Array( 50, 1390, 2510, 1390 )
-width = 10.0
+points = PoolVector2Array( 50, 100, 50, 1390, 2510, 1390, 2510, 50, 50, 50, 50, 100 )
+width = 60.0
 default_color = Color( 1, 1, 1, 1 )
-texture_mode = 202017328
-sharp_limit = 2.0
-round_precision = 8
+texture = ExtResource( 1 )
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 10
+_sections_unfolded = [ "Border", "Capping", "Fill" ]
 
 

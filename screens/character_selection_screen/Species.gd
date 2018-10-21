@@ -1,15 +1,33 @@
-extends CenterContainer
+extends Control
 
+enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4}
+
+export (Controls) var controls = KB1
 export (String) var left = "A"
 export (String) var right = "D"
 export (String) var fire = "1"
 export (String) var species = "ROBOLORDS"
-export (int) var side = -1
 
-signal selected 
+var side = -1
+
+const ControlsMap = {
+	CPU : "cpu",
+    KB1 : "kb1",
+    KB2 : "kb2",
+    JOY1 : "joy1",
+    Controls.JOY2 : "joy2",
+    Controls.JOY3 : "joy3",
+    Controls.JOY4 : "joy4"
+}
+
+signal selected
+signal deselected
+signal leave
+signal ready_to_fight
 
 var disabled = false
 var selected = false
+var joined = false
 
 var index_selection
 
@@ -18,6 +36,8 @@ onready var controls_container=$VBoxContainer/Controls/CenterContainer
 onready var character_container=$VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer
 onready var characterSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/Sprite
 onready var selRectSprite = $VBoxContainer/MarginContainer/HBoxContainer/CharacterContainer/SelRect
+
+onready var enabler = get_node("enabler")
 
 func _ready():
 	
@@ -32,18 +52,16 @@ func _ready():
 	
 	ship.position = Vector2(50,50)
 	ship.scale = Vector2(0.5, 0.5)
-	characterSprite.position = Vector2(65,200)
-	characterSprite.scale = Vector2(0.43, 0.43)
-	selRectSprite.position = Vector2(65,200)
-	selRectSprite.scale = Vector2(0.43, 0.43)
+	characterSprite.rect_position = Vector2(65,200)
+	#characterSprite.scale = Vector2(0.43, 0.43)
+	selRectSprite.rect_position = Vector2(65,200)
+	#selRectSprite.scale = Vector2(0.43, 0.43)
 	
-	# adjust selection rect position if flipped
-	if side != 0:
-		selRectSprite.position = Vector2(55,200)
 	
 	# set species from available_species
 	species = global.chosen_species[name.to_lower()]
-	index_selection = global.unlocked_species.find(species)
+	index_selection = global.available_species.find(species)
+	print(name , " is ", species)
 	
 	change_species(species)
 	
@@ -57,12 +75,6 @@ func _ready():
 	else:
 		ship.get_node("AnimationPlayer").play_backwards("standby")
 	
-	ship.flip_h = not side
-	characterSprite.flip_h = side
-	
-	# set controls to keyboard 2 if flipped
-	if side != 0:
-		$VBoxContainer/Controls/Label.text = 'KEYBOARD 2'
 
 func change_species(new_species):
 	# print(name,": ", species," new_species->", new_species," index-> ",index_selection,global.chosen_species)
@@ -75,18 +87,45 @@ func change_species(new_species):
 	
 
 func _input(event):
-	if event.is_action_pressed("p"+str(side+1)+"_right")and not selected:
-		_on_Next_pressed()
-	if event.is_action_pressed("p"+str(side+1)+"_left")and not selected:
-		_on_Previous_pressed()
-	if event.is_action_pressed(name.to_lower()+"_fire") and not selected:
-		disable_choice()
-		selected = true
-		global.chosen_species[name.to_lower()] = species
-		change_species(species)
-		global.available_species.remove(index_selection)
-		emit_signal("selected")
+	var this_control = ControlsMap[controls]
+	if selected :
+		if event.is_action_pressed(this_control+"_fire"):
+			emit_signal("ready_to_fight")
+		elif event.is_action_pressed(this_control+"_action"):
+			deselect()
+	elif joined:
+		if event.is_action_pressed(this_control+"_right") and not selected:
+			_on_Next_pressed()
+		if event.is_action_pressed(this_control+"_left") and not selected:
+			_on_Previous_pressed()
+		if event.is_action_pressed(this_control+"_fire") and not selected:
+			selected()
+		if event.is_action_pressed(this_control+"_action") and not selected:
+			leave()
 
+func leave():
+	joined = false
+	enabler.visible = true
+	disable_choice()
+	unset_commands()
+	emit_signal("leave")
+
+func selected():
+	disable_choice()
+	selected = true
+	global.chosen_species[name.to_lower()] = species
+	change_species(species)
+	global.available_species.remove(global.available_species.find(species))
+	emit_signal("selected")
+	selRectSprite.visible = true
+
+func deselect():
+	enable_choice()
+	selected = false
+	global.available_species.append(species)
+	emit_signal("deselected")
+	selRectSprite.visible = false
+	
 func _on_Previous_pressed():
 	
 	var a = index_selection - 1
@@ -108,7 +147,38 @@ func disable_choice():
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = true
 	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = false
 	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = false
+	controls_container.visible = false
+	
 
+func enable_choice():
+	joined = true
+	enabler.visible = false
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.disabled = false
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.disabled = false
+	$VBoxContainer/MarginContainer/HBoxContainer/Previous.visible = true
+	$VBoxContainer/MarginContainer/HBoxContainer/Next.visible = true
+	#controls_container.visible = true
+
+func unset_commands():
+	joined = false
+	get_node("VBoxContainer/Controls").unset_commands(global.controls[name.to_lower()])
+	controls = CPU
+	global.controls[name.to_lower()]
+	
+
+func set_commands(button):
+	joined = true
+	for control in ControlsMap:
+		if ControlsMap[control] in button:
+			controls = control
+			# update globals
+			global.controls[name.to_lower()] = ControlsMap[controls]
+			get_node("VBoxContainer/Controls").set_commands(ControlsMap[control])
+			enable_choice()
+
+	$VBoxContainer/Controls.visible = true
+	$VBoxContainer/Controls/Label.text = ControlsMap[controls]
+	
 func mod(a,b):
 	var ret = a%b
 	if ret < 0: 
