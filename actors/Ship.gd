@@ -87,7 +87,7 @@ func _integrate_forces(state):
 	
 	#rotation = state.linear_velocity.angle()
 	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging)) # thrusters switch off when charging
-	set_applied_torque(rotation_dir * 30000)
+	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
 	var xform = state.get_transform()
