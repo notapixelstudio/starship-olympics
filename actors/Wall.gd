@@ -6,43 +6,53 @@ export (PoolVector2Array) var points setget set_points
 
 export (bool) var hollow setget set_hollow
 
+export (int) var offset setget set_offset
+
+var cshapes = []
+
 func set_points(pts):
 	points = pts
-	if has_node('CollisionShape2D'):
-		refresh()
-		
+	refresh()
+	
 func set_hollow(h):
 	hollow = h
-	if has_node('CollisionShape2D'):
-		refresh()
-		
+	refresh()
+	
+func set_offset(o):
+	offset = o
+	refresh()
+	
 func _ready():
 	refresh()
 	
+func remove_old_shapes():
+	for child in get_children():
+		if child is CollisionShape2D:
+			remove_child(child)
+			child.queue_free()
+	
 func refresh():
-	var shape
+	remove_old_shapes()
 	
 	if points == null or len(points) < 3:
 		points = PoolVector2Array([Vector2(-100,-100),Vector2(100,-100),Vector2(100,100),Vector2(-100,100)]) # clockwise!
 		
 	if hollow:
-		shape = ConcavePolygonShape2D.new()
-		
-		# create segments
-		var segments = PoolVector2Array()
-		for p in points:
-			segments.append(p)
-			segments.append(p)
-			
-		segments.remove(0)
-		segments.append(points[0])
-		
-		shape.set_segments(segments)
+		for i in range(len(points)):
+			var cshape = CollisionShape2D.new()
+			var shape = ConvexPolygonShape2D.new()
+			var a = points[i]
+			var b = points[(i+1) % len(points)]
+			shape.set_points(PoolVector2Array([a,a+a.normalized()*offset,b+b.normalized()*offset,b]))
+			cshape.set_shape(shape)
+			add_child(cshape)
 	else:
-		shape = ConvexPolygonShape2D.new()
+		var cshape = CollisionShape2D.new()
+		var shape = ConvexPolygonShape2D.new()
 		shape.set_points(points)
+		cshape.set_shape(shape)
+		add_child(cshape)
 		
-	$CollisionShape2D.set_shape(shape)
 	$Polygon2D.set_polygon(points)
 	
 	$Polygon2D.visible = not hollow
