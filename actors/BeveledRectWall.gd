@@ -15,8 +15,8 @@ func set_height(h):
 	height = h
 	whb2pts()
 	
-func set_bevel(h):
-	height = h
+func set_bevel(b):
+	bevel = b
 	whb2pts()
 	
 func whb2pts():

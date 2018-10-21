@@ -12,15 +12,18 @@ var cshapes = []
 
 func set_points(pts):
 	points = pts
-	refresh()
+	if has_node('Polygon2D'):
+		refresh()
 	
 func set_hollow(h):
 	hollow = h
-	refresh()
+	if has_node('Polygon2D'):
+		refresh()
 	
 func set_offset(o):
 	offset = o
-	refresh()
+	if has_node('Polygon2D'):
+		refresh()
 	
 func _ready():
 	refresh()
