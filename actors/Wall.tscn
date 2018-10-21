@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://actors/Wall.gd" type="Script" id=1]
 [ext_resource path="res://actors/wall_tile.png" type="Texture" id=2]
 
-[sub_resource type="ConcavePolygonShape2D" id=1]
-
-custom_solver_bias = 0.0
-segments = PoolVector2Array( -100, -100, 100, -100, 100, -100, 100, 100, 100, 100, -100, 100, -100, 100, -100, -100 )
-
-[node name="Wall" type="StaticBody2D"]
+[node name="Wall" type="StaticBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 16
@@ -20,13 +15,10 @@ bounce = 0.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
-hollow = true
+hollow = false
+offset = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-
-shape = SubResource( 1 )
-
-[node name="Polygon2D" type="Polygon2D" parent="." index="1"]
+[node name="Polygon2D" type="Polygon2D" parent="." index="0"]
 
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 uv = PoolVector2Array(  )
@@ -42,7 +34,7 @@ invert_enable = false
 invert_border = 100.0
 _sections_unfolded = [ "Invert", "Texture" ]
 
-[node name="line" type="Line2D" parent="." index="2"]
+[node name="line" type="Line2D" parent="." index="1"]
 
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
 width = 60.0
