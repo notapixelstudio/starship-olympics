@@ -59,7 +59,7 @@ func try_acquire_target(ship):
 		
 func acquire_target(ship):
 	target = weakref(ship)
-	$AnimatedSprite.play('locked')
+	$AnimatedSprite.play('locked_'+ship.species)
 	targets.push_front(weakref(ship))
 	
 func try_lose_target(ship):

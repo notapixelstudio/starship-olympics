@@ -151,9 +151,9 @@ radius = 270.0
 [sub_resource type="CircleShape2D" id=13]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 16.0
 
-[node name="Ship" type="RigidBody2D" groups=[
+[node name="Ship" type="RigidBody2D" index="0" groups=[
 "players",
 ]]
 
@@ -233,6 +233,31 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
+
+[node name="ChargeBar" type="Node2D" parent="Graphics" index="3"]
+
+visible = false
+position = Vector2( -32, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ChargeAxis" type="Line2D" parent="Graphics/ChargeBar" index="0"]
+
+visible = false
+points = PoolVector2Array( 0, 0, -100, 0 )
+width = 2.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="Charge" type="Line2D" parent="Graphics/ChargeBar" index="1"]
+
+points = PoolVector2Array( 0, 0, -100, 0 )
+width = 10.0
+default_color = Color( 1, 0.375, 0, 1 )
+texture_mode = 221806672
+sharp_limit = 2.0
+round_precision = 8
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
