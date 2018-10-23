@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/bomb.png" type="Texture" id=2]
-[ext_resource path="res://actors/bomb_locked.png" type="Texture" id=3]
+[ext_resource path="res://actors/bomb_locked_trixens.png" type="Texture" id=3]
+[ext_resource path="res://actors/bomb_locked_another.png" type="Texture" id=4]
+[ext_resource path="res://actors/bomb_locked_mantiacs.png" type="Texture" id=5]
+[ext_resource path="res://actors/bomb_locked_robolords.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -71,9 +74,24 @@ animations = [ {
 "name": "default",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "locked",
+"name": "locked_trixens",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_another",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_mantiacs",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_robolords",
 "speed": 5.0
 } ]
 
@@ -82,7 +100,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Bomb" type="RigidBody2D"]
+[node name="Bomb" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 4
