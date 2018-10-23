@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/mantiacs_ship_plain.png" type="Texture" id=2]
@@ -146,19 +146,24 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 270.0
 
-[node name="Ship" type="RigidBody2D" groups=[
+[sub_resource type="CircleShape2D" id=13]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[node name="Ship" type="RigidBody2D" index="0" groups=[
 "players",
 ]]
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 2
+collision_mask = 3
 mode = 0
 mass = 1.0
-friction = 1.0
-bounce = 0.0
+friction = 0.0
+bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -172,7 +177,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
-player = "p1"
+controls = "kb1"
 
 [node name="Graphics" type="Node2D" parent="." index="0"]
 
@@ -246,10 +251,29 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 11 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="DetectionArea" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 
 shape = SubResource( 12 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+shape = SubResource( 13 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
 
 
