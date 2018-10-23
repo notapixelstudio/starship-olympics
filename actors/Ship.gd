@@ -19,6 +19,8 @@ var rotation_dir = 0
 const ROTATION_SPEED = 100000000 # to be removed
 
 var charge = 0
+const MAX_CHARGE = 1
+const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
 
 var count = 0
@@ -60,18 +62,28 @@ func control(delta):
 		
 	# charge
 	if charging:
-		charge += delta
+		charge = charge+delta
 	else:
 		charge = 0
+		
+	# charge feedback
+	$Graphics/ChargeBar/Charge.set_point_position(1, $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE)
 	
-	if not charging and Input.is_action_pressed(controls+'_fire') and fire_cooldown <= 0:
+	# overcharge feedback
+	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
+		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
+		
+	if not charging and Input.is_action_just_pressed(controls+'_fire') and fire_cooldown <= 0:
 		charging = true
+		$Graphics/ChargeBar.visible = true
 		
 	# fire
 	if charging and Input.is_action_just_released(controls+'_fire'):
 		fire()
-		charging = false
-		fire_cooldown = 0.1
+		
+	# overcharge
+	if charge > MAX_OVERCHARGE:
+		fire()
 		
 	# cooldown
 	fire_cooldown -= delta
@@ -165,17 +177,22 @@ func _process(delta):
 
 # Fire a bomb
 func fire():
-	var charge_impulse =min(1500*charge, 3500)
+	var charge_impulse = 100 + 3500*min(charge, MAX_CHARGE)
 	
 	var bomb = Bomb.instance()
 	bomb.origin_ship = self
 	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-500-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
+	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
-	apply_impulse(Vector2(0,0), Vector2(charge_impulse,0).rotated(rotation)) # recoil
+	# -200 is to avoid too much acceleration when repeatedly firing bombs
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-200),0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
+	
+	charging = false
+	$Graphics/ChargeBar.visible = false
+	fire_cooldown = 0 # disabled
 	
 func die():
 	if alive:
