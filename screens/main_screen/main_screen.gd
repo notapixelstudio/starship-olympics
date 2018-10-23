@@ -13,7 +13,7 @@ func _ready():
 	global.reset()
 	
 	#background music
-	bgm.stream = load("res://assets/sounds/soundtracks/273300__frankum__electronic-base-and-pop-guitar.wav")
+	bgm.stream = load("res://assets/sounds/soundtracks/273300__frankum__electronic-base-and-pop-guitar.ogg")
 	if !bgm.is_playing():
 		bgm.play()
 
