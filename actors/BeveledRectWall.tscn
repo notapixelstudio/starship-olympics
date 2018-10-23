@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/BeveledRectWall.gd" type="Script" id=2]
+
+[node name="BeveledRectWall" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+points = PoolVector2Array( -200, -100, -150, -150, 150, -150, 200, -100, 200, 100, 150, 150, -150, 150, -200, 100 )
+width = 400
+height = 300
+bevel = 50
+
+[node name="Polygon2D" parent="." index="0"]
+
+polygon = PoolVector2Array( -200, -100, -150, -150, 150, -150, 200, -100, 200, 100, 150, 150, -150, 150, -200, 100 )
+
+[node name="line" parent="." index="1"]
+
+points = PoolVector2Array( -175, -125, -150, -150, 150, -150, 200, -100, 200, 100, 150, 150, -150, 150, -200, 100, -200, -100, -175, -125 )
+
+
