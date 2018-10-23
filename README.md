@@ -29,3 +29,4 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - planets: [here](https://opengameart.org/content/big-space-gun-free-pixel-art-graphics-for-your-game-0)
 - tiny planets : [here](https://opengameart.org/content/pixel-planets)
 - icon lock : [here](https://icons8.com/icon/set/lock/all)
+- icons got from [icons8](https://icons8.com) website
