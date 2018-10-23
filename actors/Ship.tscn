@@ -146,12 +146,12 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=12]
 
 custom_solver_bias = 0.0
-radius = 288.326
+radius = 270.0
 
 [sub_resource type="CircleShape2D" id=13]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 16.0
 
 [node name="Ship" type="RigidBody2D" index="0" groups=[
 "players",
@@ -159,11 +159,11 @@ radius = 10.0
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 2
+collision_mask = 3
 mode = 0
 mass = 1.0
-friction = 1.0
-bounce = 0.0
+friction = 0.0
+bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -177,7 +177,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
-player = "p1"
+controls = "kb1"
 
 [node name="Graphics" type="Node2D" parent="." index="0"]
 

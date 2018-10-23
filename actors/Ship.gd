@@ -1,6 +1,8 @@
 # script ship
 extends RigidBody2D
 
+export (String) var controls = "kb1"
+
 var left
 var right
 var max_velocity = 600
@@ -31,13 +33,16 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
-export var player = 'p1'
+onready var player = name
 
 var Bomb
 var Trail
 var target = null
 
 func _ready():
+	
+	controls = global.controls[name]
+	print(controls)
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
@@ -51,7 +56,7 @@ func _ready():
 	height = OS.window_size.y * get_parent().owner.size_multiplier
 
 func control(delta):
-	rotation_dir = int(Input.is_action_pressed(player+'_right')) - int(Input.is_action_pressed(player+'_left'))
+	rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 		
 	# charge
 	if charging:
@@ -59,11 +64,11 @@ func control(delta):
 	else:
 		charge = 0
 	
-	if not charging and Input.is_action_pressed(player+'_fire') and fire_cooldown <= 0:
+	if not charging and Input.is_action_pressed(controls+'_fire') and fire_cooldown <= 0:
 		charging = true
 		
 	# fire
-	if charging and Input.is_action_just_released(player+'_fire'):
+	if charging and Input.is_action_just_released(controls+'_fire'):
 		fire()
 		charging = false
 		fire_cooldown = 0.1
@@ -82,7 +87,7 @@ func _integrate_forces(state):
 	
 	#rotation = state.linear_velocity.angle()
 	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging)) # thrusters switch off when charging
-	set_applied_torque(rotation_dir * 30000)
+	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
 	var xform = state.get_transform()
@@ -109,6 +114,8 @@ func _integrate_forces(state):
 	#rotation = rot
 	
 	state.set_transform(xform)
+	
+	
 
 func _process(delta):
 	if not alive:
@@ -158,12 +165,14 @@ func _process(delta):
 
 # Fire a bomb
 func fire():
+	var charge_impulse =min(1500*charge, 3500)
+	
 	var bomb = Bomb.instance()
 	bomb.origin_ship = self
 	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-500-1200*charge,0).rotated(rotation)) # the more charge the stronger the impulse
+	bomb.apply_impulse(Vector2(0,0), Vector2(-500-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
-	apply_impulse(Vector2(0,0), Vector2(1200*charge,0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(charge_impulse,0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
@@ -182,4 +191,8 @@ func _on_Ship_area_entered(area):
 func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
+		
+func _on_DetectionArea_body_exited(body):
+	if body.has_node('DetectorComponent'):
+		body.try_lose_target(self)
 		

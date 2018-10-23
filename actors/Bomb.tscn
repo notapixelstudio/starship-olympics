@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/bomb.png" type="Texture" id=2]
+[ext_resource path="res://actors/bomb_locked.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -69,6 +70,11 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "locked",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=6]
@@ -76,15 +82,15 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Bomb" type="RigidBody2D" index="0"]
+[node name="Bomb" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 4
-collision_mask = 10
+collision_mask = 26
 mode = 0
 mass = 1.0
 friction = 1.0
-bounce = 0.0
+bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
