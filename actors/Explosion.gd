@@ -13,10 +13,13 @@ const minRadius = 40
 const maxRadius = 80
 
 signal end_explosion
-
+var explosions = ["res://assets/sounds/gameplay/explosions/SFX_Explosion_05.wav", "res://assets/sounds/gameplay/explosions/SFX_Explosion_08.wav"]
 func _ready():
 	shape = CircleShape2D.new()
 	$CollisionShape2D.set_shape(shape)
+	var index_explosion = randi() % len(explosions)
+	get_node("sound").stream = load(explosions[index_explosion])
+	get_node("sound").play()
 
 func _physics_process(delta):
 	shape.set_radius(radius)

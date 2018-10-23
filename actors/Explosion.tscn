@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://actors/explosion.png" type="Texture" id=2]
 
-[node name="Explosion" type="Area2D"]
+[node name="Explosion" type="Area2D" index="0"]
 
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )
@@ -31,5 +31,16 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="TriggerComponent" type="Node" parent="." index="2"]
 
 [node name="DeadlyComponent" type="Node" parent="." index="3"]
+
+[node name="sound" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
