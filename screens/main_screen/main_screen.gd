@@ -8,7 +8,7 @@ func _ready():
 	
 	global.from_scene = this_path
 	$VBoxContainer.add_constant_override("separation", 6)
-	$VBoxContainer/StartCPU.grab_focus()
+	$VBoxContainer.get_child(0).grab_focus()
 	persistance.load_game()
 	global.reset()
 	"""
