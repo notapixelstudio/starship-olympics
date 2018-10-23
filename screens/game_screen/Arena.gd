@@ -17,6 +17,10 @@ onready var Pause = get_node("Pause/end_battle")
 
 
 func _ready():
+	# background music
+	
+	if !bgm.is_playing():
+		bgm.play()
 	
 	global.this_run_time = OS.get_ticks_msec()
 	n_players = global.num_players
