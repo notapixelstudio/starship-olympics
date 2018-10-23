@@ -8,14 +8,15 @@ func _ready():
 	
 	global.from_scene = this_path
 	$VBoxContainer.add_constant_override("separation", 6)
-	$VBoxContainer/StartCPU.grab_focus()
+	$VBoxContainer.get_child(0).grab_focus()
 	persistance.load_game()
 	global.reset()
-	"""
-	if !bgm_creation.is_playing():
-		bgm_creation.play()
 	
-	"""
+	#background music
+	bgm.stream = load("res://assets/sounds/soundtracks/273300__frankum__electronic-base-and-pop-guitar.wav")
+	if !bgm.is_playing():
+		bgm.play()
+
 	
 func _on_Credits_pressed():
 	change_scene("res://screens/credit_screen/credit_screen.tscn")

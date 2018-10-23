@@ -111,6 +111,7 @@ func leave():
 	emit_signal("leave")
 
 func selected():
+	get_node("selected").play()
 	disable_choice()
 	selected = true
 	global.chosen_species[name.to_lower()] = species
@@ -120,6 +121,7 @@ func selected():
 	selRectSprite.visible = true
 
 func deselect():
+	get_node("deselected").play()
 	enable_choice()
 	selected = false
 	global.available_species.append(species)
@@ -127,7 +129,7 @@ func deselect():
 	selRectSprite.visible = false
 	
 func _on_Previous_pressed():
-	
+	get_node("switch-selection").play()
 	var a = index_selection - 1
 	var b = len(global.available_species)
 	index_selection = mod(a,b)
@@ -136,6 +138,7 @@ func _on_Previous_pressed():
 
 
 func _on_Next_pressed():
+	get_node("switch-selection").play()
 	var a = index_selection + 1
 	var b = len(global.available_species)
 	index_selection = mod(a,b)
@@ -167,6 +170,7 @@ func unset_commands():
 	
 
 func set_commands(button):
+	get_node("joined").play()
 	joined = true
 	for control in ControlsMap:
 		if ControlsMap[control] in button:
