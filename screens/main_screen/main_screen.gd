@@ -11,11 +11,12 @@ func _ready():
 	$VBoxContainer.get_child(0).grab_focus()
 	persistance.load_game()
 	global.reset()
-	"""
-	if !bgm_creation.is_playing():
-		bgm_creation.play()
 	
-	"""
+	#background music
+	bgm.stream = load("res://assets/sounds/soundtracks/273300__frankum__electronic-base-and-pop-guitar.ogg")
+	if !bgm.is_playing():
+		bgm.play()
+
 	
 func _on_Credits_pressed():
 	change_scene("res://screens/credit_screen/credit_screen.tscn")
