@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/theme/utilities/fonts/uroob.tres" type="DynamicFont" id=2]
 [ext_resource path="res://screens/option_screen/ElementOption.tscn" type="PackedScene" id=3]
 
-[node name="OptionScreen" type="Control" index="0"]
+[node name="OptionScreen" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -64,7 +64,8 @@ alignment = 0
 [node name="element0" parent="Options" index="0" instance=ExtResource( 3 )]
 
 margin_right = 224.0
-description = "changed"
+description = "level"
+elem_type = 2
 
 [node name="element1" parent="Options" index="1" instance=ExtResource( 3 )]
 

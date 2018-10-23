@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/bomb.png" type="Texture" id=2]
+[ext_resource path="res://actors/bomb_locked_trixens.png" type="Texture" id=3]
+[ext_resource path="res://actors/bomb_locked_another.png" type="Texture" id=4]
+[ext_resource path="res://actors/bomb_locked_mantiacs.png" type="Texture" id=5]
+[ext_resource path="res://actors/bomb_locked_robolords.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -62,30 +66,68 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Scale" ]
 
-[node name="Bomb" type="Area2D"]
+[sub_resource type="SpriteFrames" id=5]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_trixens",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_another",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_mantiacs",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_robolords",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[node name="Bomb" type="RigidBody2D" index="0"]
 
 input_pickable = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+collision_layer = 4
+collision_mask = 26
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 1.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-velocity = Vector2( 18, 0 )
+_sections_unfolded = [ "Angular", "Collision", "Linear", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
-
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Transform" ]
-
-[node name="Particles2D" type="Particles2D" parent="." index="2"]
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
 
 emitting = true
 amount = 32
@@ -107,8 +149,32 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material" ]
 
-[node name="TriggerComponent" type="Node" parent="." index="3"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 
-[connection signal="area_entered" from="." to="." method="_on_Bomb_area_entered"]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
+animation = "default"
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="TriggerComponent" type="Node" parent="Area2D" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
+
+shape = SubResource( 6 )
+
+[node name="DetectorComponent" type="Node" parent="." index="4"]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Bomb_area_entered"]
 
 

@@ -1,9 +1,9 @@
-extends Panel
+extends Control
 
 var count = 0
 var time = 0.0
 onready var fps = get_node("VBoxContainer/FPS")
-
+onready var elapsed = get_node("VBoxContainer/elapsed_time")
 
 func _process(delta):
 	time += delta
@@ -13,3 +13,5 @@ func _process(delta):
 		fps.text = "FPS: "+str(count)
 		count = 0
 		time = 0.0
+	
+	elapsed.text = "time: " + str(analytics.this_elapsed_time)

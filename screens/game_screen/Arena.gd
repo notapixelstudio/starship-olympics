@@ -5,75 +5,63 @@ var Ship
 var player2
 var width
 var height
-var someone_died = false
+var someone_died = 0
+
+var n_players = 2
+export (float) var size_multiplier = 1.0
 
 var debug = false
-onready var DebugNode = get_node("DebugNode")
+onready var DebugNode = get_node("Debug/DebugNode")
+onready var Battlefield = get_node("Battlefield")
+onready var Pause = get_node("Pause/end_battle")
 
-export(String) var enemy
 
 func _ready():
-	# override for testing
-	if enemy:
-		global.enemy = enemy
 	
-	Ship = preload('res://actors/Ship.tscn')
-	if global.enemy == "CPU":
-		player2 = preload('res://actors/AIShip.tscn')
-	else:
-		player2 = Ship
-	width = get_viewport().size.x
-	height = get_viewport().size.y
+	global.this_run_time = OS.get_ticks_msec()
+	n_players = global.num_players
+	
 	debug = global.debug
 	DebugNode.visible = debug
 	
-	someone_died = false
+	someone_died = 0
+	# compute the battlefield size
+	width = OS.window_size.x * size_multiplier
+	height = OS.window_size.y * size_multiplier
 	
-	# create ships
-	var ship1 = Ship.instance()
-	ship1.player = 'p1'
-	ship1.species = global.chosen_species[ship1.player]
-	ship1.rotation = PI
-	ship1.position.x = width-32
-	ship1.position.y = height/2
-	ship1.velocity = Vector2(-8,0)
-	$Battlefield.add_child(ship1)
+	#Analytics
+	analytics.start_elapsed_time()
 	
-	var ship2 = player2.instance()
-	ship2.player = 'p2'
-	ship2.species = global.chosen_species[ship2.player]
-	#$Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
-	ship2.position.x = 32
-	ship2.position.y = height/2
-	ship2.velocity = Vector2(8,0)
-	$Battlefield.add_child(ship2)
-	
-	# setup AI
-	ship2.target = ship1
-	ship1.target = ship2
+	# setup spawner
+	for spawner in Battlefield.get_children():
+		if spawner.is_in_group("spawner"):
+			spawner.spawn()
 
 func update_score(dead_player):
 	# TODO: what if both of them died
 	var updated_label
+	someone_died +=1
 	global.scores[dead_player] -= 1
 	print(dead_player + str(global.scores))
 	
 	# after X seconds let's stop all, this is done due to avoid double popup
 	# and here it can happen double KO. Needs standoff
 	if global.gameover:
-		if global.scores[dead_player] <= 0:
+		# all players need to be dead for standoff.
+		var all_lives = global.scores.values()
+		print(all_lives)
+		all_lives.sort()
+		print(all_lives)
+		if all_lives.back() <= 0 :
 			global.standoff = true
-		
+
 	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
 		global.gameover = true
 	
-	if not someone_died:
-		someone_died = true
+	if someone_died >= global.num_players-1:
 		yield(get_tree().create_timer(2.0), "timeout")
-		$Popup.update_score()
-		$Popup.popup_centered()
-		get_tree().paused=true
+		Pause.update_score()
 
 func _input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -86,14 +74,15 @@ func _input(event):
 		reset()
 	
 func _process(delta):
-	for node in $Battlefield.get_children():
+	for node in Battlefield.get_children():
 		if node.is_in_group("AI"):
-			$DebugNode/VBoxContainer/AI.text = "AI dist: "+ str(node.dist)
-			$DebugNode/VBoxContainer/pos_dist.text = "AI direction: "+ str(node.pos_dist)
+			DebugNode.get_node("VBoxContainer/AI").text = "AI dist: "+ str(node.dist)
+			DebugNode.get_node("VBoxContainer/pos_dist").text = "AI direction: "+ str(node.pos_dist)
 			var danger = false
 			if node.steer_away:
 				danger= true
-			$DebugNode/VBoxContainer/danger.text = str(danger)
+			DebugNode.get_node("VBoxContainer/danger").text = str(danger)
+			
 			
 func reset():
 	someone_died = false
