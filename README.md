@@ -21,17 +21,22 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 ## Sounds
 - https://freesound.org/people/aidave/downloaded_sounds/
 - https://v-play.net/game-resources/16-sites-featuring-free-game-sounds
-<<<<<<< Updated upstream
 - https://freesound.org/people/uso_sketch/sounds/443865/
-=======
 - https://freesound.org/people/GameAudio/packs/13940/
 - https://freesound.org/people/jalastram/packs/17801/
->>>>>>> Stashed changes
 
-# Images
+
+## Images
 - dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
 - keyboard icons: made by "Nicolae Berbece" (also known as Xelu) - founder of "Those Awesome Guys" - nick@thoseawesomeguys.com
 - planets: [here](https://opengameart.org/content/big-space-gun-free-pixel-art-graphics-for-your-game-0)
 - tiny planets : [here](https://opengameart.org/content/pixel-planets)
 - icon lock : [here](https://icons8.com/icon/set/lock/all)
 - icons got from [icons8](https://icons8.com) website
+- other planets: https://opengameart.org/content/2d-space-shooter-assets
+- Kenneys for some aliens
+
+## Techniques
+### Steering
+- Demo on https://youtu.be/J9RUTUvZvy0
+- https://natureofcode.com/book
