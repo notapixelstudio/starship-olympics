@@ -1,11 +1,10 @@
 extends "res://screens/game_screen/Arena.gd"
 const MAX_BOIDS = 50
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 var boid = preload("res://actors/NPC/EnemyFlock.tscn")
 
 signal created_boid(boid)
+
 func _input(event):
 	if event.is_action_pressed("continue"):
 		if $Label.text == "steering":
@@ -14,7 +13,6 @@ func _input(event):
 			$Label.text = "steering"
 		var bodies = get_tree().get_nodes_in_group( "flock" )
 		for b in bodies:
-			print(b.steering_mode)
 			if b.steering_mode == "steering":
 				b.steering_mode = "fleeing"
 			else:

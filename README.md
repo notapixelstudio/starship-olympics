@@ -25,6 +25,11 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - https://freesound.org/people/GameAudio/packs/13940/
 - https://freesound.org/people/jalastram/packs/17801/
 
+### Utility script
+https://superuser.com/questions/373889/batch-convert-wav-to-mp3-and-ogg
+From a Unix-like (Linux, OSX, etc) commandline, ffmpeg can be used like this:
+
+`for f in *.wav; do ffmpeg -i "$f" -c:a libmp3lame -q:a 2 "${f/%wav/mp3}" -c:a libvorbis -q:a 4 "${f/%wav/ogg}"; done`
 
 ## Images
 - dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
