@@ -30,6 +30,9 @@ func _ready():
 	# bombs life
 	timeout = LIFETIME
 	
+	# sound
+	get_node("sound").play()
+	
 func _physics_process(delta):
 	autolocking_timeout -= delta
 	
@@ -58,8 +61,9 @@ func try_acquire_target(ship):
 		acquire_target(ship)
 		
 func acquire_target(ship):
+	get_node("lock-sound").play()
 	target = weakref(ship)
-	$AnimatedSprite.play('locked')
+	$AnimatedSprite.play('locked_'+ship.species)
 	targets.push_front(weakref(ship))
 	
 func try_lose_target(ship):

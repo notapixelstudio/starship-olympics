@@ -27,7 +27,11 @@ func _on_Back_pressed():
 
 
 func _on_Fight_pressed():
+	# background music
+	bgm.stream = load("res://assets/sounds/soundtracks/250143__foolboymedia__rave-digger.ogg")
+	
 	get_tree().paused = false
 	global.num_players = num_players
 	# needs to be on global if we want to save it
-	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+str(num_players) + "players.tscn")) #+ "global.level))
+	global.level = str(num_players) + "players.tscn"
+	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+global.level))

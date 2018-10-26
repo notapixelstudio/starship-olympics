@@ -17,6 +17,10 @@ onready var Pause = get_node("Pause/end_battle")
 
 
 func _ready():
+	# background music
+	
+	if !bgm.is_playing():
+		bgm.play()
 	
 	global.this_run_time = OS.get_ticks_msec()
 	n_players = global.num_players
@@ -47,9 +51,14 @@ func update_score(dead_player):
 	# after X seconds let's stop all, this is done due to avoid double popup
 	# and here it can happen double KO. Needs standoff
 	if global.gameover:
-		if global.scores[dead_player] <= 0:
+		# all players need to be dead for standoff.
+		var all_lives = global.scores.values()
+		print(all_lives)
+		all_lives.sort()
+		print(all_lives)
+		if all_lives.back() <= 0 :
 			global.standoff = true
-		
+
 	# TODO: gameover condition doesn't need to be here
 	if global.scores[dead_player] <= 0:
 		global.gameover = true

@@ -11,13 +11,17 @@ func _ready():
 	species = global.chosen_species[name.to_lower()]
 	species = species.to_lower()
 	player.species = species
+	# adding to the grid
 	var life_texture = load("res://actors/"+species+"_ship_plain.png")
 	for i in range(0,global.lives):
 		var life = life_scn.instance()
 		life.texture = life_texture
 		$Lives.add_child(life)
-	#rect_scale = Vector2(-1,1)
-	$Player.flip(winner)
+	
+	# counter 
+	get_node("LivesCounter").change_life_texture(life_texture)
+	get_node("LivesCounter").get_lives(global.scores[name.to_lower()])
+	# $Player.flip(winner)
 	
 	
 func setup(species):
