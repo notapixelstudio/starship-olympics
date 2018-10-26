@@ -7,7 +7,7 @@
 [ext_resource path="res://actors/bomb_locked_robolords.png" type="Texture" id=5]
 [ext_resource path="res://actors/bomb_locked_another.png" type="Texture" id=6]
 [ext_resource path="res://assets/sounds/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sounds/gameplay/GUI_Scroll Sound 1.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/gameplay/FF_punch.wav" type="AudioStream" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -102,7 +102,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Bomb" type="RigidBody2D"]
+[node name="Bomb" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 4
@@ -191,13 +191,13 @@ area_mask = 1
 [node name="sound" type="AudioStreamPlayer2D" parent="." index="6"]
 
 stream = ExtResource( 8 )
-volume_db = 0.0
+volume_db = 10.0
 pitch_scale = 1.0
 autoplay = false
 max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
-area_mask = 1
+area_mask = 8
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Bomb_area_entered"]
 
