@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://actors/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/mantiacs_ship_plain.png" type="Texture" id=2]
 [ext_resource path="res://actors/trail_spark.png" type="Texture" id=3]
 [ext_resource path="res://assets/sounds/gameplay/fail.wav" type="AudioStream" id=4]
+[ext_resource path="res://actors/Collector.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Gradient" id=1]
 
@@ -313,8 +314,12 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
+[node name="Collector" parent="." index="5" instance=ExtResource( 5 )]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Ship_area_entered"]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
+
+[connection signal="area_entered" from="Collector" to="." method="_on_Collector_area_entered"]
 
 

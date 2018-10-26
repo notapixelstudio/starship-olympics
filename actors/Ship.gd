@@ -25,6 +25,7 @@ const BOMB_OFFSET = 40
 
 var count = 0
 signal died
+signal collected(what)
 var alive = true 
 
 var species
@@ -217,3 +218,7 @@ func _on_DetectionArea_body_exited(body):
 	if body.has_node('DetectorComponent'):
 		body.try_lose_target(self)
 		
+
+func _on_Collector_area_entered(area):
+	if area.is_in_group("collectables"):
+		emit_signal("collected", area)
