@@ -196,8 +196,12 @@ func fire():
 	
 func die():
 	if alive:
+		get_node("sound").play()
 		alive = false
 		emit_signal("died", player)
+		# deactivate controls and whatnot and wait for the sound to finish
+		sleeping = true
+		yield(get_node("sound"), "finished")
 		queue_free()
 	
 func _on_Ship_area_entered(area):
