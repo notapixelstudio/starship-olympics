@@ -75,8 +75,35 @@ theme = ExtResource( 5 )
 alignment = 1
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_constants" ]
 
-[node name="StartCPU" type="Button" parent="VBoxContainer" index="0"]
+[node name="StartHuman" type="Button" parent="VBoxContainer" index="0"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 290.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 210, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Fight"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Rect", "Theme" ]
+
+[node name="StartCPU" type="Button" parent="VBoxContainer" index="1"]
+
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -101,7 +128,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Rect", "Theme" ]
 
-[node name="StartHuman" type="Button" parent="VBoxContainer" index="1"]
+[node name="Options" type="Button" parent="VBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -110,33 +137,6 @@ anchor_bottom = 0.0
 margin_top = 74.0
 margin_right = 290.0
 margin_bottom = 144.0
-rect_min_size = Vector2( 210, 70 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme = ExtResource( 5 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Human vs Human"
-flat = false
-align = 1
-_sections_unfolded = [ "Margin", "Rect", "Theme" ]
-
-[node name="Options" type="Button" parent="VBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 148.0
-margin_right = 290.0
-margin_bottom = 218.0
 rect_min_size = Vector2( 210, 70 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -161,9 +161,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 222.0
+margin_top = 148.0
 margin_right = 290.0
-margin_bottom = 292.0
+margin_bottom = 218.0
 rect_min_size = Vector2( 0, 70 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -188,9 +188,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 296.0
+margin_top = 222.0
 margin_right = 290.0
-margin_bottom = 366.0
+margin_bottom = 292.0
 rect_min_size = Vector2( 0, 70 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -210,9 +210,9 @@ align = 1
 script = ExtResource( 6 )
 _sections_unfolded = [ "Rect", "Theme" ]
 
-[connection signal="pressed" from="VBoxContainer/StartCPU" to="." method="_on_StartCPU_pressed"]
-
 [connection signal="pressed" from="VBoxContainer/StartHuman" to="." method="_on_StartHuman_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/StartCPU" to="." method="_on_StartCPU_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
 

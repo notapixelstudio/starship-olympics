@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://screens/character_selection_screen/Species.gd" type="Script" id=1]
 [ext_resource path="res://screens/main_screen/interface/left.png" type="Texture" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_32.tres" type="DynamicFont" id=7]
 [ext_resource path="res://actors/mantiacs_ship.png" type="Texture" id=8]
 [ext_resource path="res://screens/character_selection_screen/ControlsTemplate.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/sounds/switch-selection.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sounds/GUI_Select_02.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/GUI_Notification 06.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/GUI_Notification 16.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -75,7 +79,6 @@ alignment = 0
 
 [node name="MarginContainer" type="CenterContainer" parent="VBoxContainer" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -313,5 +316,47 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 stretch_mode = 0
+
+[node name="switch-selection" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="selected" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="joined" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="deselected" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 
