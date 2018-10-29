@@ -7,7 +7,7 @@
 
 [node name="LivesCounter" type="NinePatchRect"]
 
-modulate = Color( 1, 1, 1, 0.314902 )
+modulate = Color( 1, 1, 1, 0.580118 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -32,7 +32,7 @@ anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
 margin_top = -20.0
-margin_right = 36.0
+margin_right = 40.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -47,7 +47,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "Rect", "Visibility", "custom_fonts" ]
 
 [node name="life_texture" parent="." index="1" instance=ExtResource( 4 )]
 
@@ -60,5 +60,15 @@ margin_top = -30.0
 margin_right = 0.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 50, 50 )
+
+[node name="Tween" type="Tween" parent="." index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
 
 
