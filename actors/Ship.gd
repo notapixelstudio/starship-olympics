@@ -233,3 +233,7 @@ func _on_Collector_area_entered(area):
 			points += 1
 			print("emitting signal")
 			emit_signal("collected", self, area)
+			get_node("Collector").collect(area)
+
+
+
