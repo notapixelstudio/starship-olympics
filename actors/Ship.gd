@@ -51,6 +51,7 @@ func _ready():
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "respawn")
+	connect("collected", get_node('/root/Arena'), "score_point")
 	#connect("died", get_node('/root/Arena'), "update_score")
 	# load battlefield size
 
@@ -226,8 +227,9 @@ func _on_DetectionArea_body_exited(body):
 func _on_Collector_area_entered(area):
 	if area.is_in_group("collectables"):
 		if area.this_owner == name:
-			print("sameeeee")
+			print(name + " is respawning")
 			area.queue_free()
 		else:
 			points += 1
-			emit_signal("collected", area)
+			print("emitting signal")
+			emit_signal("collected", self, area)

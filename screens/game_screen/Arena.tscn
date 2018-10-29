@@ -87,4 +87,6 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="Control" parent="HUD" index="0" instance=ExtResource( 5 )]
 
+[connection signal="update_score" from="." to="HUD/Control" method="_on_Arena_update_score"]
+
 

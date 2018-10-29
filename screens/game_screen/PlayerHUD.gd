@@ -8,7 +8,7 @@ func _ready():
 	if name.to_lower() in global.scores:
 		get_scores()
 
-
+	
 func get_scores():
 	var species = global.chosen_species[name.to_lower()].to_lower()
 	get_node("NinePatchRect/Container/Label").text = name

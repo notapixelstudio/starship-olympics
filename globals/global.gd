@@ -50,7 +50,7 @@ func _ready():
 	# setting players dictionary
 	for i in range(1,max_players+1):
 		var pname = "p"+str(i)
-		scores[pname] = lives
+		scores[pname] = 0
 		num_players = max_players
 		chosen_species[pname] = species[i-1]
 		controls[pname] = "kb1"
@@ -72,7 +72,7 @@ func reset():
 	reset_selection()
 	for i in range(1,num_players+1):
 		var pname = "p"+str(i)
-		scores[pname] = lives
+		scores[pname] = 0
 	gameover = false
 	
 	

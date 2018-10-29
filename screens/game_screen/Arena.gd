@@ -15,6 +15,7 @@ onready var DebugNode = get_node("Debug/DebugNode")
 onready var Battlefield = get_node("Battlefield")
 onready var Pause = get_node("Pause/end_battle")
 
+signal update_score(player_name)
 
 func _ready():
 	# background music
@@ -97,6 +98,11 @@ func respawn(player):
 	respawner.position = save_position
 	respawner.name = player_name
 	Battlefield.add_child(respawner)
+
+func score_point(player, area_point):
+	global.scores[player.name] += 1
+	print("This is a " + str(area_point.this_owner)+ "'s piece'")
+	emit_signal("update_score", player.name)
 
 func reset():
 	someone_died = false
