@@ -12,7 +12,6 @@ func _ready():
 	$Standoff.visible = false
 	for player in global.scores:
 		var container = preload("res://screens/game_screen/PlayerContainerDeath.tscn").instance()
-		container.p_name = player
 		container.name = player
 		var i = load("res://actors/"+global.chosen_species[player]+"_ship_plain.png")
 		
@@ -38,7 +37,7 @@ func update_score():
 	var lives = 0
 	for player in guys:
 		lives = player.get_life_count()
-		while(global.scores[player.p_name] < lives):
+		while(global.scores[player.name] < lives):
 			player.remove_life()
 			lives = player.get_life_count()
 		yield(get_tree().create_timer(0.1), "timeout")
