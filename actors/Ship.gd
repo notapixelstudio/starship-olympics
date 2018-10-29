@@ -52,7 +52,6 @@ func _ready():
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "respawn")
 	#connect("died", get_node('/root/Arena'), "update_score")
-
 	# load battlefield size
 
 	width = get_parent().owner.size_multiplier * OS.window_size.x
@@ -199,6 +198,7 @@ func die():
 	if alive:
 		var collectable = Puzzle.instance()
 		collectable.position = position
+		collectable.this_owner = name
 		get_node("sound").play()
 		alive = false
 		emit_signal("died", self)
@@ -225,5 +225,9 @@ func _on_DetectionArea_body_exited(body):
 
 func _on_Collector_area_entered(area):
 	if area.is_in_group("collectables"):
-		points += 1
-		emit_signal("collected", area)
+		if area.this_owner == name:
+			print("sameeeee")
+			area.queue_free()
+		else:
+			points += 1
+			emit_signal("collected", area)
