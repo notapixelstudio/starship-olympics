@@ -1,7 +1,7 @@
 # script arena
 extends Node
 
-var Ship
+var Ship = preload("res://actors/Ship.tscn")
 var player2
 var width
 var height
@@ -41,6 +41,7 @@ func _ready():
 		if spawner.is_in_group("spawner"):
 			spawner.spawn()
 
+# This isn't needed anymore
 func update_score(dead_player):
 	# TODO: what if both of them died
 	var updated_label
@@ -87,7 +88,16 @@ func _process(delta):
 				danger= true
 			DebugNode.get_node("VBoxContainer/danger").text = str(danger)
 			
-			
+
+func respawn(player):
+	var player_name = player.name
+	var save_position = player.position
+	yield(get_tree().create_timer(5.0), "timeout")
+	var respawner = Ship.instance()
+	respawner.position = save_position
+	respawner.name = player_name
+	Battlefield.add_child(respawner)
+
 func reset():
 	someone_died = false
 	get_tree().reload_current_scene()

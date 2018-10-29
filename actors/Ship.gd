@@ -50,8 +50,9 @@ func _ready():
 	controls = global.controls[name]
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
-	connect("died", get_node('/root/Arena'), "update_score")
-	
+	connect("died", get_node('/root/Arena'), "respawn")
+	#connect("died", get_node('/root/Arena'), "update_score")
+
 	# load battlefield size
 
 	width = get_parent().owner.size_multiplier * OS.window_size.x
@@ -200,7 +201,7 @@ func die():
 		collectable.position = position
 		get_node("sound").play()
 		alive = false
-		emit_signal("died", player)
+		emit_signal("died", self)
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")
