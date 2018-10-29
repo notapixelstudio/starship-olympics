@@ -50,8 +50,9 @@ func _ready():
 	controls = global.controls[name]
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
-	connect("died", get_node('/root/Arena'), "update_score")
-	
+	connect("died", get_node('/root/Arena'), "respawn")
+	connect("collected", get_node('/root/Arena'), "score_point")
+	#connect("died", get_node('/root/Arena'), "update_score")
 	# load battlefield size
 
 	width = get_parent().owner.size_multiplier * OS.window_size.x
@@ -198,9 +199,10 @@ func die():
 	if alive:
 		var collectable = Puzzle.instance()
 		collectable.position = position
+		collectable.this_owner = name
 		get_node("sound").play()
 		alive = false
-		emit_signal("died", player)
+		emit_signal("died", self)
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")
@@ -224,5 +226,10 @@ func _on_DetectionArea_body_exited(body):
 
 func _on_Collector_area_entered(area):
 	if area.is_in_group("collectables"):
-		points += 1
-		emit_signal("collected", area)
+		if area.this_owner == name:
+			print(name + " is respawning")
+			area.queue_free()
+		else:
+			points += 1
+			print("emitting signal")
+			emit_signal("collected", self, area)
