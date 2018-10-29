@@ -3,9 +3,10 @@ extends RigidBody2D
 
 export (String) var controls = "kb1"
 
+var points = 0
 var left
 var right
-var max_velocity = 600
+var max_velocity = 100
 var max_steer_force = 2500
 var thrust = 2000
 
@@ -38,23 +39,21 @@ var dash_cooldown = 0
 
 onready var player = name
 
-var Bomb
-var Trail
+var Bomb= preload('res://actors/Bomb.tscn')
+var Trail= preload('res://actors/Trail.tscn')
+var Puzzle = preload("res://actors/Collectable.tscn")
+
 var target = null
 
 func _ready():
-	
+	points = 0
 	controls = global.controls[name]
-	print(controls)
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
-
-	Bomb = preload('res://actors/Bomb.tscn')
-	Trail = preload('res://actors/Trail.tscn')
 	
 	# load battlefield size
-	
+
 	width = get_parent().owner.size_multiplier * OS.window_size.x
 	height = OS.window_size.y * get_parent().owner.size_multiplier
 
@@ -197,6 +196,8 @@ func fire():
 	
 func die():
 	if alive:
+		var collectable = Puzzle.instance()
+		collectable.position = position
 		get_node("sound").play()
 		alive = false
 		emit_signal("died", player)
@@ -204,6 +205,8 @@ func die():
 		sleeping = true
 		yield(get_node("sound"), "finished")
 		queue_free()
+		get_parent().add_child(collectable)
+
 	
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
@@ -221,4 +224,5 @@ func _on_DetectionArea_body_exited(body):
 
 func _on_Collector_area_entered(area):
 	if area.is_in_group("collectables"):
+		points += 1
 		emit_signal("collected", area)
