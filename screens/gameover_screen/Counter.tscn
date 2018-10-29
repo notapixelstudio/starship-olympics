@@ -7,13 +7,14 @@
 
 [node name="LivesCounter" type="NinePatchRect"]
 
+modulate = Color( 1, 1, 1, 0.314902 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 130.0
+margin_right = 80.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 100, 50 )
+rect_min_size = Vector2( 80, 50 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -22,7 +23,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Visibility" ]
 
 [node name="Number" type="Label" parent="." index="0"]
 
@@ -30,9 +31,9 @@ anchor_left = 0.0
 anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
-margin_top = -47.0
-margin_right = 84.0
-margin_bottom = 47.0
+margin_top = -20.0
+margin_right = 36.0
+margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -40,6 +41,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 3 )
+text = "0"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -57,5 +59,6 @@ margin_left = -60.0
 margin_top = -30.0
 margin_right = 0.0
 margin_bottom = 30.0
+rect_min_size = Vector2( 50, 50 )
 
 
