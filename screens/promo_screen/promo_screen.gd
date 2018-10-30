@@ -15,12 +15,8 @@ func _input(event):
 		change_scene()
 
 func _ready():
-	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+	#Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 	var joypads = Input.get_connected_joypads()
-	print(joypads)
-	if joypads:
-		print("NOT")
-		$Control.visible = not $Control.visible
 
 func _on_joy_connection_changed(device_id, connected):
 	if Input.get_connected_joypads():
