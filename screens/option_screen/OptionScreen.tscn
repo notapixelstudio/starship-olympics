@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/theme/utilities/fonts/uroob.tres" type="DynamicFont" id=2]
 [ext_resource path="res://screens/option_screen/ElementOption.tscn" type="PackedScene" id=3]
 
-[node name="OptionScreen" type="Control"]
+[node name="OptionScreen" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -61,23 +61,23 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="element0" parent="Options" index="0" instance=ExtResource( 3 )]
+[node name="element1" parent="Options" index="0" instance=ExtResource( 3 )]
 
 margin_right = 224.0
-description = "level"
-elem_type = 2
-
-[node name="element1" parent="Options" index="1" instance=ExtResource( 3 )]
-
-margin_top = 45.0
-margin_right = 224.0
-margin_bottom = 86.0
 alignment = 2
 description = "lives"
 elem_type = 1
 
+[node name="element0" parent="Options" index="1" instance=ExtResource( 3 )]
+
+visible = false
+margin_right = 224.0
+description = "level"
+elem_type = 2
+
 [node name="element2" parent="Options" index="2" instance=ExtResource( 3 )]
 
+visible = false
 margin_top = 90.0
 margin_right = 224.0
 margin_bottom = 131.0
