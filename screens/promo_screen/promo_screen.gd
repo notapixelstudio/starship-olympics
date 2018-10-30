@@ -16,7 +16,10 @@ func _ready():
 		$Control.visible = not $Control.visible
 
 func _on_joy_connection_changed(device_id, connected):
-	$Control.visible = not $Control.visible
+	if Input.get_connected_joypads():
+		$Control.visible = true
+	else:
+		$Control.visible = false
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
