@@ -2,12 +2,15 @@ extends Control
 
 signal standoff
 signal standoff_ready
-signal reset_signal
+signal reset_signal(level)
 
 onready var close_button = get_node("menu_button/close_button")
 onready var back_to_menu = get_node("menu_button/back_to_menu")
 
+var next_level
+
 func _ready():
+	next_level = global.level
 
 	$Standoff.visible = false
 	for player in global.scores:
@@ -31,7 +34,7 @@ func update_score():
 	visible = true
 	
 	$Standoff.visible = false
-	$elapsed_time.text += str(analytics.this_elapsed_time) + "s"
+	$elapsed_time.text = "elapsed time: " + str(analytics.this_elapsed_time) + "s"
 	var guys = $VBoxContainer.get_children()
 	# animation for the life that ... dies
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -43,6 +46,18 @@ func update_score():
 			lives = player.get_life_count()
 		yield(get_tree().create_timer(0.1), "timeout")
 
+	# check in order to change level according to players alive
+	var alive_players = 0
+	if global.gameover:
+		for p in global.scores:
+			if global.scores[p] > 0:
+				alive_players += 1
+		if alive_players > 1 :
+			global.gameover = false
+			next_level = str(alive_players) + "players.tscn"
+			
+		var all_lives = global.scores.values()
+		all_lives.sort()
 	if global.standoff:
 		$Standoff.visible = true
 		ready_for_standoff()
@@ -72,7 +87,7 @@ func _on_close_button_pressed():
 	if global.gameover:
 		get_tree().change_scene_to(load('res://screens/gameover_screen/GameOver.tscn'))
 	else:
-		emit_signal("reset_signal")
+		emit_signal("reset_signal", next_level)
 
 
 func _on_Timer_timeout():
