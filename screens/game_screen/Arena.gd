@@ -103,6 +103,11 @@ func score_point(player, area_point):
 	global.scores[player.name] += 1
 	print("This is a " + str(area_point.this_owner)+ "'s piece'")
 	emit_signal("update_score", player.name)
+	if global.scores[player.name] >= global.lives:
+		global.gameover = true
+		Pause.update_score()
+		
+
 
 func reset():
 	someone_died = false
