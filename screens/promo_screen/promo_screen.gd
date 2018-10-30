@@ -2,9 +2,16 @@ extends "res://screens/basic_screen.gd"
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
+		var controls
 		set_process_input(false)
-		$AnimationPlayer.play("ready")
-		yield($AnimationPlayer,"animation_finished")
+		if event.is_action_pressed("kb1_fire"):
+			controls = $Keyboard1
+		elif event.is_action_pressed("kb2_fire"):
+			controls = $Keyboard2
+		elif event.is_action_pressed("joy1_fire"):
+			controls = $Joypad1
+		controls.play()
+		yield(controls,"ready")
 		change_scene()
 
 func _ready():
