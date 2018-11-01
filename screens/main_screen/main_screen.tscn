@@ -155,8 +155,36 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Rect", "Theme" ]
 
-[node name="Credits" type="Button" parent="VBoxContainer" index="3"]
+[node name="Help" type="Button" parent="VBoxContainer" index="3"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 148.0
+margin_right = 290.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 210, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Help"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Rect", "Theme" ]
+
+[node name="Credits" type="Button" parent="VBoxContainer" index="4"]
+
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -182,7 +210,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" index="4"]
+[node name="QuitButton" type="Button" parent="VBoxContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -215,6 +243,8 @@ _sections_unfolded = [ "Rect", "Theme" ]
 [connection signal="pressed" from="VBoxContainer/StartCPU" to="." method="_on_StartCPU_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_Help_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 

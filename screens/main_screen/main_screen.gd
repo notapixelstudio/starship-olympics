@@ -45,3 +45,7 @@ func _on_joy_connection_changed(device_id, connected):
         print(Input.get_joy_name(device_id))
     else:
         print("Keyboard")
+
+
+func _on_Help_pressed():
+	change_scene(global.from_scene)

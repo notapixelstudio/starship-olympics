@@ -18,7 +18,7 @@ func _ready():
 	$Options.get_child(0).grab_focus()
 
 func _input(event):
-	if event.is_action_pressed("ui_back"):
+	if event.is_action_pressed("ui_cancel"):
 		get_tree().change_scene(global.from_scene)
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
