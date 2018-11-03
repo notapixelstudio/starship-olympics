@@ -48,4 +48,4 @@ func _on_joy_connection_changed(device_id, connected):
 
 
 func _on_Help_pressed():
-	change_scene(global.from_scene)
+	change_scene("res://screens/promo_screen/promo_screen.tscn")
