@@ -21,12 +21,9 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 ## Sounds
 - https://freesound.org/people/aidave/downloaded_sounds/
 - https://v-play.net/game-resources/16-sites-featuring-free-game-sounds
-<<<<<<< Updated upstream
 - https://freesound.org/people/uso_sketch/sounds/443865/
-=======
 - https://freesound.org/people/GameAudio/packs/13940/
 - https://freesound.org/people/jalastram/packs/17801/
->>>>>>> Stashed changes
 
 # Images
 - dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
