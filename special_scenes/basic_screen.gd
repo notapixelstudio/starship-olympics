@@ -1,32 +1,38 @@
-extends Control
-enum trans_type{IN, OUT}
-export (String, FILE, "*.tscn") var next_scene
-signal transition_finished
+extends Node
 
-func _input(event):
-	pass
+signal combat_started()
+signal combat_finished()
 
+onready var transition = $Overlays/TransitionColor
+onready var local_map = $LocalMap
 
+var transitioning = false
 func _ready():
-	$Transition/ColorRect.rect_size = get_viewport().size + Vector2(20, 20)
-	$Transition/ColorRect.rect_position = Vector2()
-	#Transition back everytime a screen is loaded
-	apply_transition(OUT)
+	start()
+func start():
+	"""
 	
-func change_scene(to = next_scene):
-	#Applies an transition animation then load the next scene
-	set_process_input(false)
-	apply_transition(IN)
-	yield(self, "transition_finished")
-	get_tree().change_scene(to)
+	"""
+	if transitioning:
+		return
+		
+	transitioning = true
+	yield(transition.fade_to_color(), "completed")
+
+
+	# initialize whatever scene
+	yield(transition.fade_from_color(), "completed")
+	transitioning = false
 	
-func apply_transition(mode):
-	#Verifies which kind of transition to be used, IN or OUT then plays
-	#the animation forward or backwards then emits a signal for completion
-	var a = $Animator
-	if mode == 0:
-		a.play("transition")
-	else:
-		a.play_backwards("transition")
-	yield(a, "animation_finished")
-	emit_signal("transition_finished")
+	emit_signal("combat_started")
+	
+	# Get data from the battlers after the battle ended,
+	# Then copy into the Party node to save earned experience,
+	# items, and currentstats
+
+	emit_signal("combat_finished")
+	transitioning = true
+	yield(transition.fade_to_color(), "completed")
+
+	yield(transition.fade_from_color(), "completed")
+	transitioning = false

@@ -1,4 +1,4 @@
-extends "res://screens/basic_screen.gd"
+extends "res://special_scenes/basic_screen.gd"
 
 # TODO: We need a way to get the scene
 var this_path="res://screens/main_screen/main_screen.tscn"

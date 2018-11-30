@@ -6,8 +6,6 @@
 [ext_resource path="res://interface/GameTitle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=5]
 
-
-
 [sub_resource type="InputEventAction" id=1]
 
 device = 0
@@ -18,20 +16,9 @@ pressed = false
 
 shortcut = SubResource( 1 )
 
-[node name="MainScreen" instance=ExtResource( 1 )]
+[node name="MainScreen" index="0" instance=ExtResource( 1 )]
 
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
 script = ExtResource( 2 )
-next_scene = "res://screens/character_selection_screen/CharacterSelection.tscn"
-
-[node name="ColorRect" parent="Transition" index="0"]
-
-margin_left = -200.0
-margin_right = -200.0
-margin_bottom = 0.0
 
 [node name="background" type="TextureRect" parent="." index="2"]
 
