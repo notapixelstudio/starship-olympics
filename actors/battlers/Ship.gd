@@ -3,28 +3,21 @@ extends RigidBody2D
 
 export (String) var controls = "kb1"
 
-var left
-var right
-var max_velocity = 600
-var max_steer_force = 2500
+
 var thrust = 2000
 
 var velocity = Vector2(0,0)
 
-var speed_multiplier = 1
-
 var steer_force = 0
-var rot = 0
 var rotation_dir = 0
-const ROTATION_SPEED = 100000000 # to be removed
 
 var charge = 0
+const max_steer_force = 2500
 const MAX_CHARGE = 1
 const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
 
 var count = 0
-signal died
 var alive = true 
 
 var species
@@ -39,7 +32,9 @@ onready var player = name
 
 var Bomb
 var Trail
-var target = null
+
+const bomb_scene = preload('res://actors/battlers/Bomb.tscn')
+const trail_scene = preload('res://actors/battlers/Trail.tscn')
 
 func _ready():
 	
@@ -48,9 +43,6 @@ func _ready():
 	species = global.chosen_species[player]
 	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
 	connect("died", get_node('/root/Arena'), "update_score")
-
-	Bomb = preload('res://actors/Bomb.tscn')
-	Trail = preload('res://actors/Trail.tscn')
 	
 	# load battlefield size
 	
@@ -104,7 +96,7 @@ func _integrate_forces(state):
 	# force the physics engine
 	var xform = state.get_transform()
 	
-	# wrap
+	# wrap (?)
 	if xform.origin.x > width:
 		xform.origin.x = 0
 	if xform.origin.x < 0:
@@ -119,67 +111,21 @@ func _integrate_forces(state):
 	
 	# store velocity as a readable var
 	velocity = state.linear_velocity
-	
-	# rotate: match rotation with velocity angle
-	
-	#$Graphics.rotation = -rotation + state.linear_velocity.angle()
-	#rotation = rot
-	
 	state.set_transform(xform)
-	
-	
 
 func _process(delta):
 	if not alive:
 		return
 	control(delta)
-	
-#func _physics_process(delta):
-#	if not alive:
-#		return
-#	control(delta)
-#	
-#	var actual_velocity = velocity * speed_multiplier
-#	
-#	position.x += actual_velocity.x
-#	position.y += actual_velocity.y
-#
-#	# fire
-#	if Input.is_action_just_pressed(player+'_fire') and fire_cooldown <= 0 and dash_cooldown <= 0:
-#		fire()
-#		fire_cooldown = 0.1
-#	# cooldown
-#	fire_cooldown -= delta
-#	dash_cooldown -= delta
-#	
-#	# wrap
-#	if position.x > width:
-#		position.x -= width
-#	elif position.x <= 0:
-#		position.x += width
-#		
-#	if position.y > height:
-#		position.y -= height
-#	elif position.y <= 0:
-#		position.y += height
-#		
-#	# trail
-#	if speed_multiplier > 1:
-#		var trail = Trail.instance()
-#		trail.position = position
-#		trail.rotation = rotation + PI/2
-#		get_parent().add_child(trail)
-#	else:
-#		$TrailParticles.emitting = false
-#		
-#	# dash recover
-#	#speed_multiplier = max(1, speed_multiplier - 0.1)
 
-# Fire a bomb
+
 func fire():
+	"""
+	Fire a bomb
+	"""
 	var charge_impulse = 100 + 3500*min(charge, MAX_CHARGE)
 	
-	var bomb = Bomb.instance()
+	var bomb = bomb_scene.instance()
 	bomb.origin_ship = self
 	bomb.player_id = player
 	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
@@ -208,7 +154,6 @@ func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
 		die()
 		
-
 func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
