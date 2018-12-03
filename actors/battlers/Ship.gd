@@ -2,7 +2,7 @@
 extends RigidBody2D
 
 export (String) var controls = "kb1"
-
+export (Resource) var battle_template
 
 var thrust = 2000
 
@@ -29,9 +29,6 @@ var fire_cooldown = 0
 var dash_cooldown = 0
 
 onready var player = name
-
-var Bomb
-var Trail
 
 const bomb_scene = preload('res://actors/battlers/Bomb.tscn')
 const trail_scene = preload('res://actors/battlers/Trail.tscn')
