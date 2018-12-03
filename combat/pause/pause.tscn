@@ -3,11 +3,7 @@
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/pause/pause.gd" type="Script" id=2]
 
-
-
-
-
-[node name="Pause" type="Control"]
+[node name="Pause" type="Control" index="0"]
 
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0.640902 )
@@ -103,7 +99,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="menu_button" type="HBoxContainer" parent="." index="4"]
+[node name="Buttons" type="HBoxContainer" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -123,7 +119,7 @@ custom_constants/separation = 20
 alignment = 0
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="back_to_menu" type="Button" parent="menu_button" index="0"]
+[node name="BackToMenu" type="Button" parent="Buttons" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -148,7 +144,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="close_button" type="Button" parent="menu_button" index="1"]
+[node name="CloseButton" type="Button" parent="Buttons" index="1"]
 
 pause_mode = 2
 anchor_left = 0.0
@@ -175,8 +171,8 @@ flat = false
 align = 1
 _sections_unfolded = [ "Pause", "Rect" ]
 
-[connection signal="pressed" from="menu_button/back_to_menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="Buttons/BackToMenu" to="." method="_on_back_to_menu_pressed"]
 
-[connection signal="pressed" from="menu_button/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Buttons/CloseButton" to="." method="_on_close_button_pressed"]
 
 

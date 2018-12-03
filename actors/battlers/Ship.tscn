@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
-[ext_resource path="res://actors/sprites/mantiacs_ship_plain.png" type="Texture" id=2]
-[ext_resource path="res://actors/sprites/trail_spark.png" type="Texture" id=3]
-[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=4]
+[ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=2]
+[ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=3]
+[ext_resource path="res://actors/battlers/skin/Anothers.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/sprites/trail_spark.png" type="Texture" id=5]
+[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=6]
 
 [sub_resource type="Gradient" id=1]
 
@@ -139,17 +141,31 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="Animation" id=11]
 
-custom_solver_bias = 0.0
-radius = 16.0
+resource_name = "appear"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="Animation" id=12]
+
+resource_name = "idle"
+length = 1.0
+loop = false
+step = 0.1
 
 [sub_resource type="CircleShape2D" id=13]
 
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Ship" type="RigidBody2D" index="0" groups=[
+[sub_resource type="CircleShape2D" id=14]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
 
@@ -174,16 +190,14 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform", "Visibility" ]
 controls = "kb1"
+battle_template = ExtResource( 2 )
 
-[node name="Graphics" type="Node2D" parent="." index="0"]
+[node name="Graphics" type="Position2D" parent="." index="0"]
 
-[node name="Sprite" type="Sprite" parent="Graphics" index="0"]
+script = ExtResource( 3 )
+battler_anim = ExtResource( 4 )
 
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
-
-[node name="Particles2D" type="Particles2D" parent="Graphics" index="1"]
+[node name="Particles2D" type="Particles2D" parent="Graphics" index="0"]
 
 show_behind_parent = true
 position = Vector2( -32, 0 )
@@ -201,13 +215,13 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
-[node name="TrailParticles" type="Particles2D" parent="Graphics" index="2"]
+[node name="TrailParticles" type="Particles2D" parent="Graphics" index="1"]
 
 show_behind_parent = true
 emitting = false
@@ -230,7 +244,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
-[node name="ChargeBar" type="Node2D" parent="Graphics" index="3"]
+[node name="ChargeBar" type="Node2D" parent="Graphics" index="2"]
 
 editor/display_folded = true
 visible = false
@@ -249,12 +263,32 @@ round_precision = 8
 
 [node name="Charge" type="Line2D" parent="Graphics/ChargeBar" index="1"]
 
-points = PoolVector2Array( 0, 0, -100, 0 )
+points = PoolVector2Array( 0, 0, 0, 0 )
 width = 10.0
 default_color = Color( 1, 0.375, 0, 1 )
 texture_mode = 221806672
 sharp_limit = 2.0
 round_precision = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics" index="3"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/appear = SubResource( 11 )
+anims/idle = SubResource( 12 )
+blend_times = [  ]
+
+[node name="Tween" type="Tween" parent="Graphics" index="4"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
@@ -272,15 +306,15 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
 
-shape = SubResource( 11 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="." index="3"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 6 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
