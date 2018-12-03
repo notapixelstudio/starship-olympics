@@ -1,4 +1,5 @@
 # script ship
+tool
 extends RigidBody2D
 
 export (String) var controls = "kb1"
@@ -21,30 +22,30 @@ var count = 0
 var alive = true 
 
 var species
-var width
-var height
+var width = 720
+var height = 720
 
 var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
 onready var player = name
+onready var skin = $Graphics
 
 const bomb_scene = preload('res://actors/battlers/Bomb.tscn')
 const trail_scene = preload('res://actors/battlers/Trail.tscn')
 
 func _ready():
 	
-	controls = global.controls[name]
+	controls = "kb1"
 	print(controls)
-	species = global.chosen_species[player]
-	$Graphics/Sprite.set_texture(load('res://actors/'+species+'_ship.png'))
+	species = "another"
+	
 	connect("died", get_node('/root/Arena'), "update_score")
 	
+	skin.add_child(battle_template.anim.instance())
 	# load battlefield size
 	
-	width = get_parent().owner.size_multiplier * OS.window_size.x
-	height = OS.window_size.y * get_parent().owner.size_multiplier
 
 func control(delta):
 	rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))

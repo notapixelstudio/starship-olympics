@@ -9,7 +9,7 @@ export (PackedScene) var battler_anim
 
 var position_start = Vector2()
 func _ready():
-	hide()
+	pass
 
 func initialize():
 	pass
