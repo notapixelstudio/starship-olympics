@@ -16,9 +16,11 @@ length = 1.0
 loop = false
 step = 0.1
 
-[node name="ShipAnim" type="Position2D" index="0"]
+[node name="ShipAnim" type="Position2D"]
 
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 

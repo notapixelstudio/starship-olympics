@@ -22,8 +22,9 @@ var count = 0
 var alive = true 
 
 var species
-var width = 720
-var height = 720
+var screen_size = Vector2()
+var width = 0
+var height = 0
 
 var charging = false
 var fire_cooldown = 0
@@ -35,10 +36,16 @@ onready var skin = $Graphics
 const bomb_scene = preload('res://actors/battlers/Bomb.tscn')
 const trail_scene = preload('res://actors/battlers/Trail.tscn')
 
+func update_wraparound(screen_size):
+	width = screen_size.x
+	height = screen_size.y
+	print("updated")
+
+func initialize():
+	pass
 func _ready():
 	
 	controls = "kb1"
-	print(controls)
 	species = "another"
 	
 	connect("died", get_node('/root/Arena'), "update_score")
