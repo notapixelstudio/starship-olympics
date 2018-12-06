@@ -11,7 +11,6 @@ config_version=3
 [application]
 
 config/name="superstarfighter"
-run/main_scene="res://screens/promo_screen/promo_screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -19,15 +18,13 @@ config/icon="res://icon.png"
 persistance="*res://globals/persistance.gd"
 global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
-bgm="*res://globals/bgm.gd"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
-window/size/resizable=false
 window/dpi/allow_hidpi=true
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [editor_plugins]
