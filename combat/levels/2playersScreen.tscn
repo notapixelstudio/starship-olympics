@@ -7,6 +7,8 @@
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 
+size_multiplier = 2.0
+
 [node name="Battlefield" parent="." index="0"]
 
 _sections_unfolded = [ "Pause", "Rect", "Transform" ]
@@ -20,11 +22,11 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 840, 360 )
+position = Vector2( 1280, 720 )
 
 [node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 580, 350 )
+position = Vector2( 1280, 720 )
 points = PoolVector2Array( -100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50 )
 
 [node name="p1" type="Position2D" parent="SpawnPositions/Players" index="0"]

@@ -26,7 +26,7 @@ func compute_arena_size():
 	width = OS.window_size.x * size_multiplier
 	height = OS.window_size.y * size_multiplier
 	emit_signal("screensize_changed", Vector2(width, height))
-	print(width, " ", height)
+	print(width, " ", height, "  ")
 	return true
 	
 func _ready():
@@ -60,6 +60,7 @@ func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug
+		OS.window_fullscreen = !OS.window_fullscreen
 		DebugNode.visible = debug
 		
 	# reset by command only through debug
@@ -73,3 +74,7 @@ func reset(level):
 
 func get_num_players():
 	return 4
+
+
+func _on_mantiacs_background_item_rect_changed():
+	print("changed")
