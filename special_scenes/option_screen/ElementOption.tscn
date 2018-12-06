@@ -5,10 +5,7 @@
 [ext_resource path="res://main_screen/buttons/left.png" type="Texture" id=3]
 [ext_resource path="res://main_screen/buttons/right.png" type="Texture" id=4]
 
-
-
-
-[node name="Element" type="HBoxContainer"]
+[node name="Element" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -85,6 +82,7 @@ playback/speed = 1.0
 
 [node name="Value" type="HBoxContainer" parent="." index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

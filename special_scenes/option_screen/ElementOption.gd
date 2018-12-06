@@ -1,8 +1,5 @@
 extends Control
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 export (String) var description = "Life"
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
@@ -87,10 +84,7 @@ func _input(event):
 			value = array_value[index_value]
 			$Value/Value.text = str(value)
 			$Value/left.visible = index_value>min_value
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+
 func shake_node_backwards(node):
 	var actual_d_pos = node.rect_position
 	$Tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
