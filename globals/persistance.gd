@@ -29,7 +29,6 @@ func save_game():
 	save_file.close()
 
 func load_game():
-	print("Loading")
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var save_file = File.new()
 	if not save_file.file_exists(SAVE_PATH):
