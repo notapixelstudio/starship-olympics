@@ -1,6 +1,6 @@
 tool
 
-extends "res://actors/Wall.gd"
+extends "res://actors/environments/Wall.gd"
 
 export (int) var apothem = 100*sqrt(3)/2 setget set_apothem
 export (int) var radius = 100 setget set_radius

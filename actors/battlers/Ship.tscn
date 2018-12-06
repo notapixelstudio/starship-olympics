@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
-[ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=2]
-[ext_resource path="res://actors/battlers/skin/Anothers.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/sprites/trail_spark.png" type="Texture" id=4]
-[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=5]
+[ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=2]
+[ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=3]
+[ext_resource path="res://actors/battlers/skin/Anothers.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/sprites/trail_spark.png" type="Texture" id=5]
+[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=6]
 
 [sub_resource type="Gradient" id=1]
 
@@ -164,7 +165,7 @@ radius = 16.0
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Ship" type="RigidBody2D" index="0" groups=[
+[node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
 
@@ -188,11 +189,13 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform", "Visibility" ]
+controls = "kb1"
+battle_template = ExtResource( 2 )
 
 [node name="Graphics" type="Position2D" parent="." index="0"]
 
-script = ExtResource( 2 )
-battler_anim = ExtResource( 3 )
+script = ExtResource( 3 )
+battler_anim = ExtResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="Graphics" index="0"]
 
@@ -212,7 +215,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -310,7 +313,7 @@ shape = SubResource( 14 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="." index="3"]
 
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false

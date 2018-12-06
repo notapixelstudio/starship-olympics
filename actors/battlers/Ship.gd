@@ -43,6 +43,7 @@ func update_wraparound(screen_size):
 
 func initialize():
 	pass
+	
 func _ready():
 	
 	controls = "kb1"
