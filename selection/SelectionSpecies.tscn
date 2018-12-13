@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://selection/Species.gd" type="Script" id=1]
+[ext_resource path="res://selection/SpeciesChoice.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/audio/switch-selection.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/GUI_Select_02.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/GUI_Notification 06.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/GUI_Notification 16.wav" type="AudioStream" id=6]
+
+[node name="PlayerSelection" type="Control" groups=[
+"choice",
+]]
+
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_top = -360.0
+margin_right = 200.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 200, 360 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Rect" ]
+controls = 1
+species = "ROBOLORDS"
+
+[node name="SpeciesSelection" parent="." index="0" instance=ExtResource( 2 )]
+
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 400.0
+
+[node name="Enabler" type="Control" parent="." index="1"]
+
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Enabler" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.552471 )
+
+[node name="Label" type="Label" parent="Enabler" index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -7.0
+margin_right = 58.0
+margin_bottom = 7.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Press FIRE to JOIN"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SFX" type="Node" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX" index="0"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="selected" type="AudioStreamPlayer2D" parent="SFX" index="1"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="joined" type="AudioStreamPlayer2D" parent="SFX" index="2"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="deselected" type="AudioStreamPlayer" parent="SFX" index="3"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+

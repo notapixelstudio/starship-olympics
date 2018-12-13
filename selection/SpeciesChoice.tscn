@@ -1,0 +1,195 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/species/character_another_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/icon/kb1.png" type="Texture" id=3]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=4]
+[ext_resource path="res://selection/SelectArrow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/sprites/another_ship.png" type="Texture" id=6]
+[ext_resource path="res://assets/label_bg.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "standby"
+length = 10.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ship:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.000255905 ]
+}
+
+[node name="CharacterSelection" type="Control"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1080.0
+margin_bottom = -320.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 200, 400 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Axis Stretch", "Patch Margin", "Rect", "Size Flags" ]
+
+[node name="Character" type="Control" parent="." index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_right = 210.0
+margin_bottom = -30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Character" type="Sprite" parent="Character" index="0"]
+
+position = Vector2( 90, 290 )
+scale = Vector2( 0.7, 0.650162 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Controls" type="Sprite" parent="." index="1"]
+
+position = Vector2( 140, 25 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="player" type="Label" parent="." index="2"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.0
+margin_top = -196.0
+margin_bottom = -156.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "p1"
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="LeftArrow" parent="." index="3" instance=ExtResource( 5 )]
+
+margin_left = 58.0
+margin_top = 372.0
+margin_right = 58.0
+margin_bottom = 372.0
+rect_scale = Vector2( -1, 1 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="Ship" type="Sprite" parent="." index="4"]
+
+position = Vector2( 103.174, 370.57 )
+rotation = 4.46638e-06
+scale = Vector2( 0.5, 0.500019 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
+
+[node name="RightArrow" parent="." index="5" instance=ExtResource( 5 )]
+
+margin_left = 140.0
+margin_top = 374.0
+margin_right = 140.0
+margin_bottom = 374.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/standby = SubResource( 1 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="SpeciesName" type="NinePatchRect" parent="." index="7"]
+
+editor/display_folded = true
+modulate = Color( 1, 1, 1, 0.651922 )
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 28.0
+margin_right = -32.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Label" type="Label" parent="SpeciesName" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -68.0
+margin_top = -20.0
+margin_right = 77.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "SPECIES"
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Tween" type="Tween" parent="." index="8"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+

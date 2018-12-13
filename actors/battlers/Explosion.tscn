@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/battlers/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://actors/sprites/explosion.png" type="Texture" id=2]
+
+[node name="Explosion" type="Area2D"]
+
+input_pickable = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
+
+[node name="Image" type="Node2D" parent="." index="0"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Image" index="0"]
+
+modulate = Color( 1, 1, 1, 0.872941 )
+scale = Vector2( 0.012, 0.012 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+[node name="TriggerComponent" type="Node" parent="." index="2"]
+
+[node name="DeadlyComponent" type="Node" parent="." index="3"]
+
+[node name="sound" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+
