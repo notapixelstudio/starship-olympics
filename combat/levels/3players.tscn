@@ -5,7 +5,7 @@
 [ext_resource path="res://actors/environments/HexWall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=4]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 
 size_multiplier = 2.0
 
@@ -24,32 +24,34 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
-radius = 100.0
+apothem = 86.6025
 
 [node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
 hollow = true
-offset = 100
+offset = 1000
 width = 2460
 height = 1340
 bevel = 200
 
 [node name="p1" type="Position2D" parent="SpawnPositions/Players" index="0"]
 
-position = Vector2( 2432, 480 )
-rotation = -3.14159
+position = Vector2( 1280, 200 )
+rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
 [node name="p2" type="Position2D" parent="SpawnPositions/Players" index="1"]
 
-position = Vector2( 128, 480 )
+position = Vector2( 800, 1000 )
+rotation = -0.523599
 _sections_unfolded = [ "Transform" ]
 
 [node name="p3" type="Position2D" parent="SpawnPositions/Players" index="2"]
 
-position = Vector2( 128, 960 )
+position = Vector2( 1650, 1000 )
+rotation = -2.44346
 _sections_unfolded = [ "Transform" ]
 
 
