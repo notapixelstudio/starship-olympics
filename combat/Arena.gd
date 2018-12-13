@@ -56,6 +56,8 @@ func _ready():
 		ship.rotation = player.rotation
 		ship.height = height
 		ship.width = width
+		ship.controls = player.controls
+		ship.battle_template = player.battler_template
 		Battlefield.add_child(ship)
 		# connect signals
 		ship.connect("dead", self, "update_score")
