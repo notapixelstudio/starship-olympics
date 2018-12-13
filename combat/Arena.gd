@@ -15,8 +15,8 @@ var run_time = 0
 
 onready var DebugNode = $Debug/DebugNode
 onready var Battlefield = $Battlefield
-onready var Pause = $Pause/EndBattle
 onready var SpawnPlayers = $SpawnPositions/Players
+onready var camera = $Camera
 
 const Ship = preload("res://actors/battlers/Ship.tscn")
 
@@ -34,6 +34,7 @@ func compute_arena_size():
 	
 func _ready():
 	compute_arena_size()
+	camera.zoom *= size_multiplier
 	# in order to get the size
 	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
 	run_time = OS.get_ticks_msec()
@@ -70,7 +71,7 @@ func _unhandled_input(event):
 		
 	# reset by command only through debug
 	if event.is_action_pressed('continue') and debug:
-		reset()
+		reset(global.level)
 	
 func reset(level):
 	someone_died = false

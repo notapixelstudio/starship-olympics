@@ -5,28 +5,19 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=4]
 
-[node name="Arena" instance=ExtResource( 1 )]
-
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.0
 
-[node name="Battlefield" parent="." index="0"]
-
-_sections_unfolded = [ "Pause", "Rect", "Transform" ]
-
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-
 editor/display_folded = true
 position = Vector2( 1280, 720 )
 
 [node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
-
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
 hollow = true
@@ -36,25 +27,16 @@ height = 1340
 bevel = 200
 
 [node name="p1" type="Position2D" parent="SpawnPositions/Players" index="0"]
-
 position = Vector2( 2432, 480 )
 rotation = -3.14159
-_sections_unfolded = [ "Transform" ]
 
 [node name="p2" type="Position2D" parent="SpawnPositions/Players" index="1"]
-
 position = Vector2( 128, 480 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="p3" type="Position2D" parent="SpawnPositions/Players" index="2"]
-
 position = Vector2( 128, 960 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="p4" type="Position2D" parent="SpawnPositions/Players" index="3"]
-
 position = Vector2( 2432, 960 )
 rotation = -3.14159
-_sections_unfolded = [ "Transform" ]
-
 
