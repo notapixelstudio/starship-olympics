@@ -9,29 +9,20 @@
 [ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=7]
 [ext_resource path="res://actors/battlers/characters/trixens.tres" type="Resource" id=8]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
-
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.0
 
-[node name="Battlefield" parent="." index="0"]
-
-_sections_unfolded = [ "Pause", "Rect", "Transform" ]
-
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="HexWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
-radius = 100.0
+apothem = 86.6025
 
 [node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
-
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
 hollow = true
@@ -41,24 +32,20 @@ height = 1340
 bevel = 200
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-
 position = Vector2( 800, 1000 )
 rotation = -0.523599
 controls = "joy1"
 battler_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-
 position = Vector2( 1280, 200 )
 rotation = 1.5708
 controls = "joy2"
 battler_template = ExtResource( 7 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-
 position = Vector2( 1650, 1000 )
 rotation = -2.44346
 controls = "joy3"
 battler_template = ExtResource( 8 )
-
 

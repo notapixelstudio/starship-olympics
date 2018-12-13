@@ -21,11 +21,12 @@ var autolocking_timeout = 0.1
 const LIFETIME = 1.5
 
 signal detonate
-
+var explosion
 func _ready():
 	
 	# bombs life
 	timeout = LIFETIME
+	explosion = Explosion.instance()
 	
 	# sound
 	get_node("sound").play()
@@ -45,10 +46,9 @@ func _physics_process(delta):
 	
 func detonate():
 	queue_free()
-	var explosion = Explosion.instance()
-	get_parent().add_child(explosion)
 	explosion.player_id = player_id
 	explosion.position = position
+	get_parent().add_child(explosion)
 
 func try_acquire_target(ship):
 	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting

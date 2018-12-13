@@ -1,88 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://combat/pause/pause.tscn" type="PackedScene" id=2]
 [ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/Camera2D.gd" type="Script" id=4]
 
 [node name="Arena" type="Node"]
-
 script = ExtResource( 1 )
-_sections_unfolded = [ "Pause" ]
-size_multiplier = 1.0
 
-[node name="Battlefield" type="Control" parent="." index="0"]
+[node name="Battlefield" type="Control" parent="."]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Pause", "Transform" ]
+[node name="SpawnPositions" type="Node" parent="."]
 
-[node name="SpawnPositions" type="Node" parent="." index="1"]
+[node name="Players" type="Node" parent="SpawnPositions"]
 
-[node name="Players" type="Node" parent="SpawnPositions" index="0"]
+[node name="Environments" type="Node" parent="SpawnPositions"]
 
-[node name="Environments" type="Node" parent="SpawnPositions" index="1"]
+[node name="Enemies" type="Node" parent="SpawnPositions"]
 
-[node name="Enemies" type="Node" parent="SpawnPositions" index="2"]
-
-[node name="Pause" type="CanvasLayer" parent="." index="2"]
-
+[node name="Pause" type="CanvasLayer" parent="."]
 layer = 2
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="EndBattle" parent="Pause" index="0" instance=ExtResource( 2 )]
-
+[node name="EndBattle" parent="Pause" instance=ExtResource( 2 )]
 visible = false
 
-[node name="Debug" type="CanvasLayer" parent="." index="3"]
-
+[node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="DebugNode" parent="Debug" index="0" instance=ExtResource( 3 )]
-
+[node name="DebugNode" parent="Debug" instance=ExtResource( 3 )]
 visible = false
 
-[node name="Camera" type="Camera2D" parent="." index="4"]
-
+[node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
-rotating = false
 current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-script = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
-
 
