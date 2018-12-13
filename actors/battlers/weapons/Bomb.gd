@@ -1,13 +1,13 @@
 # script bomb
 extends RigidBody2D
 
-#export var velocity = Vector2(6, 0)
-#export var acceleration = Vector2(-0.06, 0)
+# export var velocity = Vector2(6, 0)
+# export var acceleration = Vector2(-0.06, 0)
 
 var origin_ship
 var player_id
 
-const Explosion = preload('res://actors/battlers/Explosion.tscn')
+const Explosion = preload('res://actors/battlers/weapons/Explosion.tscn')
 var width
 var height
 const CLEANUP_DISTANCE = 100
@@ -23,9 +23,6 @@ const LIFETIME = 1.5
 signal detonate
 
 func _ready():
-	# load battlefield size
-	width = get_node('/root/Arena').width
-	height = get_node('/root/Arena').height
 	
 	# bombs life
 	timeout = LIFETIME
@@ -45,9 +42,6 @@ func _physics_process(delta):
 		else:
 			queue_free()
 		
-	# remove bomb if far outside the screen
-	if position.x > width+CLEANUP_DISTANCE or position.x <= -CLEANUP_DISTANCE or position.y > height+CLEANUP_DISTANCE or position.y <= -CLEANUP_DISTANCE:
-		queue_free()
 	
 func detonate():
 	queue_free()

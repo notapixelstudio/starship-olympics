@@ -1,4 +1,6 @@
-# script arena
+"""
+Arena Node that will handle all the combat logic
+"""
 extends Node
 
 var width
@@ -8,6 +10,8 @@ var someone_died = 0
 export (float) var size_multiplier = 1.0
 
 var debug = false
+# analytics
+var run_time = 0
 
 onready var DebugNode = $Debug/DebugNode
 onready var Battlefield = $Battlefield
@@ -17,7 +21,6 @@ onready var SpawnPlayers = $SpawnPositions/Players
 const Ship = preload("res://actors/battlers/Ship.tscn")
 
 signal screensize_changed(screensize)
-var run_time = 0
 
 func compute_arena_size():
 	"""
@@ -41,11 +44,11 @@ func _ready():
 	# Analytics
 	analytics.start_elapsed_time()
 	
-	# setup spawners
+	# setup Bomb spawners
 	for spawner in Battlefield.get_children():
 		if spawner.is_in_group("spawner"):
 			spawner.spawn()
-			
+	
 	for player in SpawnPlayers.get_children():
 		var ship = Ship.instance()
 		ship.position = player.position
@@ -53,6 +56,8 @@ func _ready():
 		ship.height = height
 		ship.width = width
 		Battlefield.add_child(ship)
+		# connect signals
+		ship.connect("dead", self, "update_score")
 		connect("screensize_changed", ship, "update_wraparound")
 		
 	
@@ -75,6 +80,5 @@ func reset(level):
 func get_num_players():
 	return 4
 
-
-func _on_mantiacs_background_item_rect_changed():
+func _on_background_item_rect_changed():
 	print("changed")

@@ -24,7 +24,7 @@ analytics="*res://globals/analytics.gd"
 window/size/width=1280
 window/size/height=720
 window/dpi/allow_hidpi=true
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [editor_plugins]
@@ -134,5 +134,6 @@ joy4_action=[ Object(InputEventJoypadButton,"resource_local_to_scene":false,"res
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.145098, 0.172549, 0.231373, 1 )
 environment/default_environment="res://default_env.tres"
