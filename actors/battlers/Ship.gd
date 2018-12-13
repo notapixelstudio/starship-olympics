@@ -1,14 +1,17 @@
-# script ship
 tool
 extends RigidBody2D
+"""
+Node for the RigidBody and Ship physics
+it will get as export variable the battle template (containing the species values)
+and its keyboard control
+"""
 
 export (String) var controls = "kb1"
 export (Resource) var battle_template
 
-var thrust = 2000
-
 var velocity = Vector2(0,0)
 
+var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
 
@@ -33,28 +36,28 @@ var dash_cooldown = 0
 onready var player = name
 onready var skin = $Graphics
 
-const bomb_scene = preload('res://actors/battlers/Bomb.tscn')
-const trail_scene = preload('res://actors/battlers/Trail.tscn')
+const bomb_scene = preload('res://actors/battlers/weapons/Bomb.tscn')
+const trail_scene = preload('res://actors/battlers/weapons/Trail.tscn')
+
+signal dead
 
 func update_wraparound(screen_size):
-	width = screen_size.x
-	height = screen_size.y
+	# width = screen_size.x
+	# height = screen_size.y
 	print("updated", width, " ", height)
 
 func initialize():
 	pass
 	
 func _ready():
-	
-	controls = "kb1"
 	species = "another"
 	
-	connect("died", get_node('/root/Arena'), "update_score")
-	
+	# let's connect this when creating the instance
+	# connect("died", get_node('/root/Arena'), "update_score")
 	skin.add_child(battle_template.anim.instance())
+	skin.initialize()
 	# load battlefield size
 	
-
 func control(delta):
 	rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 		
@@ -150,7 +153,8 @@ func die():
 	if alive:
 		get_node("sound").play()
 		alive = false
-		emit_signal("died", player)
+		emit_signal("dead", player)
+		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")

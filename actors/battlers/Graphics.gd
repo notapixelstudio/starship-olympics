@@ -5,15 +5,15 @@ const TWEEN_DURATION = 0.3
 onready var tween = $Tween
 onready var anim = $AnimationPlayer
 
-export (PackedScene) var battler_anim
+var battler_anim
 
 var position_start = Vector2()
-func _ready():
-	pass
 
 func initialize():
-	pass
-
+	for child in get_children():
+		if child.is_in_group("anim_species"):
+			battler_anim = child
+	
 func move_forward():
 	var direction = Vector2(-1.0, 0.0) if owner.party_member else Vector2(1.0, 0.0)
 	tween.interpolate_property(
@@ -40,7 +40,7 @@ func return_to_start():
 	yield(tween, "tween_completed")
 
 func play_stagger():
-	battler_anim.play_stagger()
+		yield(battler_anim.play_stagger(), "completed")
 
 func play_death():
 	yield(battler_anim.play_death(), "completed")
