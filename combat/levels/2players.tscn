@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/BeveledRectWall.gd" type="Script" id=4]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=6]
 
 [node name="Arena" instance=ExtResource( 1 )]
+
+size_multiplier = 2.0
 
 [node name="Battlefield" parent="." index="0"]
 
@@ -17,14 +21,41 @@ texture = ExtResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+[node name="BeveledRectWall2" type="StaticBody2D" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 840, 360 )
+position = Vector2( 1280, 720 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 5
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 4 )
+_sections_unfolded = [ "Collision", "Transform" ]
+points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
+hollow = true
+offset = 1000
+width = 2460
+height = 1340
+bevel = 200
 
-[node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+[node name="Wall" type="StaticBody2D" parent="Battlefield" index="2" instance=ExtResource( 5 )]
 
-position = Vector2( 580, 350 )
-points = PoolVector2Array( -100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50 )
+editor/display_folded = true
+position = Vector2( 1280, 720 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 5
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 6 )
+_sections_unfolded = [ "Collision", "Transform" ]
+points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+hollow = false
+offset = 100
 
 [node name="p1" type="Position2D" parent="SpawnPositions/Players" index="0"]
 
