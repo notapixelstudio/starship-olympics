@@ -2,15 +2,15 @@ extends Control
 
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4}
 
-export (Controls) var controls = KB1
+export (Controls) var controls = Controls.KB1 
 export (String) var species = "ROBOLORDS"
 
 # maybe global?
 const ControlsMap = {
-	CPU : "cpu",
-    KB1 : "kb1",
-    KB2 : "kb2",
-    JOY1 : "joy1",
+	Controls.CPU : "cpu",
+    Controls.KB1 : "kb1",
+    Controls.KB2 : "kb2",
+    Controls.JOY1 : "joy1",
     Controls.JOY2 : "joy2",
     Controls.JOY3 : "joy3",
     Controls.JOY4 : "joy4"
@@ -29,9 +29,13 @@ var index_selection
 
 onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection
+
+const species_path : String = "res://selection/species/"
 func _ready():
 	
 	change_species(species)
+	speciesSelection.controls = ControlsMap[controls]
+	speciesSelection.initialize(name)
 	
 	# if CPU or fixed choice
 	if disabled:
@@ -41,7 +45,7 @@ func _ready():
 	
 
 func change_species(new_species):
-	pass
+	speciesSelection.species = load(species_path + new_species.to_lower() + ".tres")
 
 func _input(event):
 	var this_control = ControlsMap[controls]
@@ -102,7 +106,7 @@ func enable_choice():
 func unset_commands():
 	joined = false
 	get_node("VBoxContainer/Controls").unset_commands(global.controls[name.to_lower()])
-	controls = CPU
+	controls = Controls.CPU
 	global.controls[name.to_lower()]
 	
 func set_commands(button):
@@ -115,11 +119,3 @@ func set_commands(button):
 			global.controls[name.to_lower()] = ControlsMap[controls]
 			get_node("VBoxContainer/Controls").set_commands(ControlsMap[control])
 			enable_choice()
-
-# utils
-func mod(a,b):
-	var ret = a%b
-	if ret < 0: 
-		return ret+b
-	else:
-		return ret
