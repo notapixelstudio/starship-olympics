@@ -43,7 +43,7 @@ export (SPECIES) var species = SPECIES.ROBOLORDS
 
 
 func _ready():
-	if controls == Controls.CPU:
+	if controls == Controls.NO or controls == Controls.CPU:
 		disable_choice()
 	change_species(speciesSelection, SpeciesMap[species].to_lower())
 	speciesSelection.controls = ControlsMap[controls]
@@ -114,18 +114,18 @@ func disable_choice():
 	enabler.visible = true
 	speciesSelection.disable()
 	
-
 func enable_choice():
 	joined = true
 	enabler.visible = false
-	pass
 
+# TODO: maybe useless
 func unset_commands():
 	joined = false
 	get_node("VBoxContainer/Controls").unset_commands(global.controls[name.to_lower()])
 	controls = Controls.CPU
 	global.controls[name.to_lower()]
-	
+
+# TODO: maybe useless	
 func set_commands(button):
 	get_node("joined").play()
 	joined = true

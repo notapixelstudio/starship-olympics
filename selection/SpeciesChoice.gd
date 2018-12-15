@@ -45,7 +45,8 @@ func next():
 	global.shake_node(species_name, tween)
 
 func disable():
-	print("ashadsa")
+	$LeftArrow.disable()
+	$RightArrow.disable()
 	anim.stop()
 	set_process_input(false)
 	set_process(false)

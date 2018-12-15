@@ -7,5 +7,13 @@ onready var tween = $Tween
 
 export (float) var MOVE_DURATION = 0.1
 
-func _ready():
+func disable():
+	anim_player.stop()
+	visible = false
+
+func enable():
 	anim_player.play("wiggle")
+	visible = true
+	
+func _ready():
+	enable()
