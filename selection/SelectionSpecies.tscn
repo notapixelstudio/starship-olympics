@@ -15,13 +15,13 @@ margin_right = 200.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 200, 360 )
 script = ExtResource( 1 )
-controls = 3
 
 [node name="SpeciesSelection" parent="." instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 200.0
 margin_bottom = 400.0
+species = null
 
 [node name="Enabler" type="Control" parent="."]
 editor/display_folded = true

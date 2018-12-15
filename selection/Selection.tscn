@@ -2,7 +2,7 @@
 
 [ext_resource path="res://selection/SelectionSpecies.tscn" type="PackedScene" id=1]
 
-[node name="Node" type="Control"]
+[node name="SelectionScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -29,6 +29,7 @@ margin_left = 438.0
 margin_top = 0.0
 margin_right = 638.0
 margin_bottom = 360.0
+species = 3
 
 [node name="P3" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
@@ -45,4 +46,5 @@ margin_left = 846.0
 margin_top = 0.0
 margin_right = 1046.0
 margin_bottom = 360.0
+species = 2
 

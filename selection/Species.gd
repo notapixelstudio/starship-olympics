@@ -1,10 +1,6 @@
 extends Control
 
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4}
-
-export (Controls) var controls = Controls.KB1 
-export (String) var species = "ROBOLORDS"
-
 # maybe global?
 const ControlsMap = {
 	Controls.CPU : "cpu",
@@ -15,6 +11,15 @@ const ControlsMap = {
     Controls.JOY3 : "joy3",
     Controls.JOY4 : "joy4"
 }
+enum SPECIES {MANTIACS, ROBOLORDS, TRIXENS, ANOTHERS}
+
+const SpeciesMap = {
+	SPECIES.MANTIACS : "Mantiacs",
+	SPECIES.ROBOLORDS : "Robolords",
+	SPECIES.TRIXENS : "Trixens",
+	SPECIES.ANOTHERS : "Anothers"
+}
+
 
 signal selected
 signal deselected
@@ -31,9 +36,13 @@ onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection
 
 const species_path : String = "res://selection/species/"
+
+export (Controls) var controls = Controls.KB1 
+export (SPECIES) var species = SPECIES.ROBOLORDS
+
+
 func _ready():
-	
-	change_species(species)
+	change_species(speciesSelection, SpeciesMap[species].to_lower())
 	speciesSelection.controls = ControlsMap[controls]
 	speciesSelection.initialize(name)
 	
@@ -44,8 +53,9 @@ func _ready():
 	# rotate of the ship and flip it
 	
 
-func change_species(new_species):
-	speciesSelection.species = load(species_path + new_species.to_lower() + ".tres")
+func change_species(species_node, new_species):
+	if new_species:
+		species_node.change_species(load(species_path + new_species.to_lower() + ".tres"))
 
 func _input(event):
 	var this_control = ControlsMap[controls]
@@ -76,7 +86,7 @@ func selected():
 	disable_choice()
 	selected = true
 	# global.chosen_species[name.to_lower()] = species
-	change_species(species)
+	change_species(speciesSelection, species)
 	# global.available_species.remove(global.available_species.find(species))
 	emit_signal("selected")
 
