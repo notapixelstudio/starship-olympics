@@ -1,8 +1,9 @@
 extends Control
 
-enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4}
+enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO}
 # maybe global?
 const ControlsMap = {
+	Controls.NO : "no",
 	Controls.CPU : "cpu",
     Controls.KB1 : "kb1",
     Controls.KB2 : "kb2",
@@ -42,6 +43,8 @@ export (SPECIES) var species = SPECIES.ROBOLORDS
 
 
 func _ready():
+	if controls == Controls.CPU:
+		disable_choice()
 	change_species(speciesSelection, SpeciesMap[species].to_lower())
 	speciesSelection.controls = ControlsMap[controls]
 	speciesSelection.initialize(name)
@@ -58,6 +61,8 @@ func change_species(species_node, new_species):
 		species_node.change_species(load(species_path + new_species.to_lower() + ".tres"))
 
 func _input(event):
+	if disabled:
+		return
 	var this_control = ControlsMap[controls]
 	if selected :
 		if event.is_action_pressed(this_control+"_fire"):
@@ -105,7 +110,9 @@ func _on_Next_pressed():
 	speciesSelection.next()
 
 func disable_choice():
-	pass
+	disabled = true
+	enabler.visible = true
+	speciesSelection.disable()
 	
 
 func enable_choice():

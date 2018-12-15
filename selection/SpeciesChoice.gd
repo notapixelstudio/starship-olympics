@@ -14,7 +14,6 @@ onready var anim = $AnimationPlayer
 
 const img_path : String = "res://assets/icon/"
 
-
 func _set_species(new_value : SpeciesSelection):
 	species = new_value
 	
@@ -44,4 +43,10 @@ func previous():
 	
 func next():
 	global.shake_node(species_name, tween)
+
+func disable():
+	print("ashadsa")
+	anim.stop()
+	set_process_input(false)
+	set_process(false)
 	

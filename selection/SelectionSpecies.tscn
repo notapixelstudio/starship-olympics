@@ -13,7 +13,7 @@ anchor_bottom = 0.5
 margin_top = -360.0
 margin_right = 200.0
 margin_bottom = 70.0
-rect_min_size = Vector2( 200, 360 )
+rect_min_size = Vector2( 200, 430 )
 script = ExtResource( 1 )
 
 [node name="SpeciesSelection" parent="." instance=ExtResource( 2 )]
@@ -21,10 +21,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 200.0
 margin_bottom = 400.0
-species = null
 
 [node name="Enabler" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,17 +34,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.552471 )
-
-[node name="Label" type="Label" parent="Enabler"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -58.0
-margin_top = -7.0
-margin_right = 58.0
-margin_bottom = 7.0
-text = "Press FIRE to JOIN"
 
 [node name="SFX" type="Node" parent="."]
 editor/display_folded = true
