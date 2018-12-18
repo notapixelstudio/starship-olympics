@@ -26,6 +26,8 @@ signal selected
 signal deselected
 signal leave
 signal ready_to_fight
+signal prev
+signal next
 
 var disabled = false
 var selected = false
@@ -44,7 +46,7 @@ export (SPECIES) var species = SPECIES.ROBOLORDS
 func _ready():
 	if controls == Controls.NO or controls == Controls.CPU:
 		disable_choice()
-	change_species(speciesSelection, SpeciesMap[species].to_lower())
+	change_species(SpeciesMap[species].to_lower())
 	speciesSelection.controls = ControlsMap[controls]
 	speciesSelection.initialize(name)
 	
@@ -53,9 +55,9 @@ func _ready():
 		disable_choice()
 	
 
-func change_species(species_node, new_species:String):
+func change_species(new_species:String):
 	if new_species:
-		species_node.change_species(load(species_path + new_species.to_lower() + ".tres"))
+		speciesSelection.change_species(load(species_path + new_species.to_lower() + ".tres"))
 
 func _input(event):
 	if disabled:
@@ -85,22 +87,21 @@ func leave():
 func selected():
 	disable_choice()
 	selected = true
-	change_species(speciesSelection, species)
+	change_species(species)
 	emit_signal("selected")
 
 func deselect():
 	get_node("deselected").play()
 	enable_choice()
 	selected = false
-	# global.available_species.append(species)
 	emit_signal("deselected")
 	
 func _on_Previous_pressed():
-	change_species(speciesSelection, "anothers")
+	emit_signal("prev", self)
 	speciesSelection.previous()
 
 func _on_Next_pressed():
-	change_species(speciesSelection, "trixens")
+	emit_signal("next", self)
 	speciesSelection.next()
 
 func disable_choice():
