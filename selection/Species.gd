@@ -41,7 +41,6 @@ const species_path : String = "res://selection/species/"
 export (Controls) var controls = Controls.KB1 
 export (SPECIES) var species = SPECIES.ROBOLORDS
 
-
 func _ready():
 	if controls == Controls.NO or controls == Controls.CPU:
 		disable_choice()
@@ -53,17 +52,15 @@ func _ready():
 	if disabled:
 		disable_choice()
 	
-	# rotate of the ship and flip it
-	
 
-func change_species(species_node, new_species):
+func change_species(species_node, new_species:String):
 	if new_species:
 		species_node.change_species(load(species_path + new_species.to_lower() + ".tres"))
 
 func _input(event):
 	if disabled:
 		return
-	var this_control = ControlsMap[controls]
+	var this_control : String = ControlsMap[controls]
 	if selected :
 		if event.is_action_pressed(this_control+"_fire"):
 			emit_signal("ready_to_fight")
@@ -83,16 +80,12 @@ func leave():
 	joined = false
 	enabler.visible = true
 	disable_choice()
-	unset_commands()
 	emit_signal("leave")
 
 func selected():
-	get_node("selected").play()
 	disable_choice()
 	selected = true
-	# global.chosen_species[name.to_lower()] = species
 	change_species(speciesSelection, species)
-	# global.available_species.remove(global.available_species.find(species))
 	emit_signal("selected")
 
 func deselect():
@@ -103,10 +96,11 @@ func deselect():
 	emit_signal("deselected")
 	
 func _on_Previous_pressed():
+	change_species(speciesSelection, "anothers")
 	speciesSelection.previous()
 
-
 func _on_Next_pressed():
+	change_species(speciesSelection, "trixens")
 	speciesSelection.next()
 
 func disable_choice():
@@ -118,21 +112,3 @@ func enable_choice():
 	joined = true
 	enabler.visible = false
 
-# TODO: maybe useless
-func unset_commands():
-	joined = false
-	get_node("VBoxContainer/Controls").unset_commands(global.controls[name.to_lower()])
-	controls = Controls.CPU
-	global.controls[name.to_lower()]
-
-# TODO: maybe useless	
-func set_commands(button):
-	get_node("joined").play()
-	joined = true
-	for control in ControlsMap:
-		if ControlsMap[control] in button:
-			controls = control
-			# update globals
-			global.controls[name.to_lower()] = ControlsMap[controls]
-			get_node("VBoxContainer/Controls").set_commands(ControlsMap[control])
-			enable_choice()

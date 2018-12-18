@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/species/mantiacs1_character.png" type="Texture" id=2]
-[ext_resource path="res://assets/icon/kb1.png" type="Texture" id=3]
-[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=4]
-[ext_resource path="res://selection/SelectArrow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/sprites/species/mantiacs_ship.png" type="Texture" id=6]
-[ext_resource path="res://assets/interface/label_bg.png" type="Texture" id=7]
+[ext_resource path="res://selection/species/trixens.tres" type="Resource" id=2]
+[ext_resource path="res://assets/sprites/species/trixens1_character.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon/kb1.png" type="Texture" id=4]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=5]
+[ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/species/trixens_ship.png" type="Texture" id=7]
+[ext_resource path="res://assets/interface/label_bg.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -35,6 +36,7 @@ grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 400 )
 script = ExtResource( 1 )
+species = ExtResource( 2 )
 controls = ""
 
 [node name="Character" type="Control" parent="."]
@@ -47,11 +49,11 @@ rect_clip_content = true
 [node name="Character" type="Sprite" parent="Character"]
 position = Vector2( 90, 290 )
 scale = Vector2( 0.7, 0.650162 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Controls" type="Sprite" parent="."]
 position = Vector2( 140, 25 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="Player" type="Label" parent="."]
 anchor_left = 0.5
@@ -61,13 +63,13 @@ anchor_bottom = 0.5
 margin_left = -35.0
 margin_top = -196.0
 margin_bottom = -156.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "p1"
 align = 1
 valign = 1
 uppercase = true
 
-[node name="LeftArrow" parent="." instance=ExtResource( 5 )]
+[node name="LeftArrow" parent="." instance=ExtResource( 6 )]
 margin_left = 52.0
 margin_top = 372.0
 margin_right = 52.0
@@ -78,9 +80,9 @@ rect_scale = Vector2( -1, 1 )
 position = Vector2( 103.174, 370.57 )
 rotation = 3.35041
 scale = Vector2( 0.5, 0.500019 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
-[node name="RightArrow" parent="." instance=ExtResource( 5 )]
+[node name="RightArrow" parent="." instance=ExtResource( 6 )]
 margin_left = 147.0
 margin_top = 374.0
 margin_right = 147.0
@@ -99,7 +101,7 @@ anchor_bottom = 0.5
 margin_left = 28.0
 margin_right = -32.0
 margin_bottom = 80.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="SpeciesName"]
 anchor_left = 0.5
@@ -110,8 +112,8 @@ margin_left = -68.0
 margin_top = -20.0
 margin_right = 77.0
 margin_bottom = 20.0
-custom_fonts/font = ExtResource( 4 )
-text = "MANTIACS"
+custom_fonts/font = ExtResource( 5 )
+text = "TRIXENS"
 align = 1
 valign = 1
 uppercase = true

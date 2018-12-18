@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://selection/Species.gd" type="Script" id=1]
-[ext_resource path="res://selection/SpeciesChoice.tscn" type="PackedScene" id=2]
+[ext_resource path="res://selection/SpeciesBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/switch-selection.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/GUI_Select_02.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/GUI_Notification 06.wav" type="AudioStream" id=5]
@@ -23,6 +23,7 @@ margin_right = 200.0
 margin_bottom = 400.0
 
 [node name="Enabler" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://selection/SelectionSpecies.tscn" type="PackedScene" id=1]
+[ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=1]
 
 [node name="SelectionScreen" type="Control"]
 anchor_right = 1.0
@@ -22,7 +22,7 @@ margin_top = 0.0
 margin_right = 434.0
 margin_bottom = 430.0
 rect_min_size = Vector2( 200, 400 )
-controls = 4
+species = 1
 
 [node name="P2" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
@@ -31,7 +31,7 @@ margin_left = 438.0
 margin_top = 0.0
 margin_right = 638.0
 margin_bottom = 430.0
-species = 3
+species = 1
 
 [node name="P3" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
@@ -40,7 +40,7 @@ margin_left = 642.0
 margin_top = 0.0
 margin_right = 842.0
 margin_bottom = 430.0
-controls = 0
+species = 1
 
 [node name="P4" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
@@ -49,6 +49,5 @@ margin_left = 846.0
 margin_top = 0.0
 margin_right = 1046.0
 margin_bottom = 430.0
-controls = 7
-species = 2
+species = 1
 
