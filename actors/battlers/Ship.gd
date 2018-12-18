@@ -9,6 +9,7 @@ and its keyboard control
 export (String) var controls = "kb1"
 export (Resource) var battle_template
 
+
 var velocity = Vector2(0,0)
 
 var thrust = 2000
@@ -38,6 +39,8 @@ onready var skin = $Graphics
 
 const bomb_scene = preload('res://actors/battlers/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/battlers/weapons/Trail.tscn')
+const puzzle_scene = preload('res://actors/battlers/puzzle/puzzle.tscn')
+
 
 signal dead
 
@@ -149,6 +152,24 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
+func releasePuzzle():
+	var puzzle = puzzle_scene.instance()
+
+
+	puzzle.origin = position
+	puzzle.player_id = player
+	print(battle_template)
+	print(battle_template.puzzle_anim)
+	get_parent().add_child(puzzle)
+	puzzle.initialize(battle_template.puzzle_anim)
+	
+	
+	
+	
+	#puzzle.puzzle_template = load();
+	
+	pass
+
 func die():
 	if alive:
 		get_node("sound").play()
@@ -157,6 +178,7 @@ func die():
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
+		releasePuzzle()
 		yield(get_node("sound"), "finished")
 		queue_free()
 	

@@ -39,11 +39,8 @@ func return_to_start():
 	tween.start()
 	yield(tween, "tween_completed")
 
-func play_stagger():
-		yield(battler_anim.play_stagger(), "completed")
-
 func play_death():
-	yield(battler_anim.play_death(), "completed")
+	yield(battler_anim.play_disappear(), "completed")
 
 func appear():
 	anim.play("appear")
