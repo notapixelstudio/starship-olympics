@@ -119,11 +119,11 @@ func deselect():
 	emit_signal("deselected")
 	
 func _on_Previous_pressed():
-	emit_signal("prev", self)
+	emit_signal("prev")
 	speciesSelection.previous()
 
 func _on_Next_pressed():
-	emit_signal("next", self)
+	emit_signal("next")
 	speciesSelection.next()
 
 func disable_choice():
