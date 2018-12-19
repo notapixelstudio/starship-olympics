@@ -14,9 +14,13 @@ onready var character = $Character/Character
 onready var controls_sprite = $Controls 
 onready var player = $Player
 onready var anim = $AnimationPlayer
+onready var select_rect = $Character/SelectRect
 
 const img_path : String = "res://assets/icon/"
 
+func _ready():
+	select_rect.visible = false
+	
 func _set_species(new_value : SpeciesSelection):
 	species = new_value
 	
@@ -44,6 +48,7 @@ func change_species(new_species:SpeciesSelection):
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
 	character.texture = species.character
+	select_rect.texture = species.select_rect
 
 func previous():
 	global.shake_node(species_name, tween)
@@ -51,6 +56,17 @@ func previous():
 func next():
 	global.shake_node(species_name, tween)
 
+func select():
+	select_rect.visible = true
+	disable()
+
+func deselect():
+	select_rect.visible = false
+
+func enable():
+	$LeftArrow.enable()
+	$RightArrow.enable()
+	
 func disable():
 	$LeftArrow.disable()
 	$RightArrow.disable()

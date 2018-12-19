@@ -76,6 +76,9 @@ func key_to_controls(key:int) -> String:
 	return ControlsMap[key]
 	
 func set_controls(new_controls:String):
+	"""
+	Set controls and disable if NO or CPU
+	"""
 	if key_controls == Controls.NO or key_controls == Controls.CPU:
 		disable_choice()
 	speciesSelection.controls = controls
@@ -95,13 +98,10 @@ func _ready():
 	species = key_to_species(key_species)
 	change_species(species)
 	speciesSelection.initialize(name)
-	print(name, " ",species)
-	
 
 func change_species(new_species:String):
 	key_species = SpeciesToKey[new_species]
 	_set_species(key_species)
-	print(new_species, " ", key_species, " ", name, " ", species)
 	if new_species:
 		speciesSelection.change_species(load(species_path + species.to_lower() + ".tres"))
 
@@ -119,7 +119,7 @@ func _input(event):
 		if event.is_action_pressed(controls+"_left") and not selected:
 			_on_Previous_pressed()
 		if event.is_action_pressed(controls+"_fire") and not selected:
-			selected()
+			select_character()
 		if event.is_action_pressed(controls+"_action") and not selected:
 			leave()
 
@@ -129,10 +129,9 @@ func leave():
 	disable_choice()
 	emit_signal("leave")
 
-func selected():
-	disable_choice()
+func select_character():
 	selected = true
-	change_species(species)
+	speciesSelection.select()
 	emit_signal("selected")
 
 func deselect():
