@@ -9,6 +9,7 @@ and its keyboard control
 export (String) var controls = "kb1"
 export (Resource) var battle_template
 
+
 var velocity = Vector2(0,0)
 
 var thrust = 2000
@@ -38,7 +39,9 @@ onready var skin = $Graphics
 
 const bomb_scene = preload('res://actors/battlers/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/battlers/weapons/Trail.tscn')
+const puzzle_scene = preload('res://actors/battlers/Puzzle.tscn')
 
+var puzzle 
 signal dead
 
 func update_wraparound(screen_size):
@@ -51,7 +54,7 @@ func initialize():
 	
 func _ready():
 	species = "another"
-	
+	puzzle = puzzle_scene.instance()
 	# let's connect this when creating the instance
 	# connect("died", get_node('/root/Arena'), "update_score")
 	skin.add_child(battle_template.anim.instance())
@@ -149,6 +152,13 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
+func releasePuzzle():
+	# Add to Battlefield
+	# using call_deferred in order to aoid the warning (and if the object isn't ready yet
+	# TODO: yield("dead completed") and then adding and initialize the puzzle)
+	get_parent().call_deferred("add_child", puzzle)
+	puzzle.call_deferred("initialize", battle_template.puzzle_anim, self)
+
 func die():
 	if alive:
 		get_node("sound").play()
@@ -157,6 +167,7 @@ func die():
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
+		releasePuzzle()
 		yield(get_node("sound"), "finished")
 		queue_free()
 	
