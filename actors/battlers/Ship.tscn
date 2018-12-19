@@ -1,82 +1,46 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=2]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=4]
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="PhysicsMaterial" id=1]
 
-custom_solver_bias = 0.0
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=3]
 
-custom_solver_bias = 0.0
 radius = 16.0
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 3
-mode = 0
-mass = 1.0
-friction = 0.0
-bounce = 1.0
+collision_mask = 19
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
+continuous_cd = 2
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform", "Visibility" ]
-controls = "kb1"
 battle_template = ExtResource( 2 )
 
-[node name="Graphics" parent="." index="0" instance=ExtResource( 3 )]
+[node name="Graphics" parent="." instance=ExtResource( 3 )]
 
-[node name="HurtBox" type="Area2D" parent="." index="1"]
+[node name="HurtBox" type="Area2D" parent="."]
 
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
+[node name="TriggerComponent" type="Node" parent="HurtBox"]
 
-[node name="TriggerComponent" type="Node" parent="HurtBox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
 
-shape = SubResource( 13 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-
-shape = SubResource( 14 )
-
-[node name="sound" type="AudioStreamPlayer2D" parent="." index="3"]
-
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_Ship_area_entered"]
-
-
