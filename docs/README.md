@@ -4,7 +4,7 @@
 Up to 4 players. Each player controls a starship that represents their alien race in the intergalactic *Superstartfighter* league. Trillions of planets in the whole galaxy are constantly following this sport event. 
 
 # You can't stop
-As a skilled starship pilot, you will have to steer and shoot bombs while contantly moving at full speed. Braking is for losers!
+As a skilled starship pilot, you will have to steer and shoot bombs while constantly moving at full speed. Braking is for losers!
 
 # Physics-based mayhem
 *Superstarfighter* arenas are chock full of moving objects, bombs, and explosions!
