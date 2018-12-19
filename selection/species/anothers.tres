@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/species/anothers1_character.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/species/anothers1_beaten.png" type="Texture" id=2]
+[ext_resource path="res://selection/species/species_selection.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/species/anothers_ship.png" type="Texture" id=4]
+
+[resource]
+
+script = ExtResource( 3 )
+species_name = "Anothers"
+ship = ExtResource( 4 )
+character = ExtResource( 1 )
+character_beaten = ExtResource( 2 )
+

@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Controls",
+"language": "GDScript",
+"path": "res://selection/interface/Command.gd"
+}, {
+"base": "Resource",
+"class": "SpeciesSelection",
+"language": "GDScript",
+"path": "res://selection/species/species_selection.gd"
+} ]
 _global_script_class_icons={
-
+"Controls": "",
+"SpeciesSelection": ""
 }
 
 [application]
