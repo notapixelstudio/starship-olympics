@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
+
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=2]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=3]
@@ -25,16 +26,19 @@ radius = 260.0
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
 ]]
-collision_mask = 3
+
+collision_mask = 19
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
+continuous_cd = 2
+
 script = ExtResource( 1 )
 battle_template = ExtResource( 2 )
 
 [node name="Graphics" parent="." instance=ExtResource( 3 )]
 
+
 [node name="HurtBox" type="Area2D" parent="."]
-editor/display_folded = true
 
 [node name="TriggerComponent" type="Node" parent="HurtBox"]
 
@@ -57,3 +61,4 @@ shape = SubResource( 4 )
 [connection signal="area_entered" from="HurtBox" to="." method="_on_Ship_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
+

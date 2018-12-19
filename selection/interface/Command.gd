@@ -1,9 +1,7 @@
-extends VBoxContainer
+extends Resource
 
-export (String) var key = "<-"
-export (String) var description = "LEFT"
+class_name Controls
 
-func _ready():
-	$CenterContainer/Panel/Key.text = ""
-	$Description.text = description
+export (String) var controls
+export (Texture) var img_controls
 	
