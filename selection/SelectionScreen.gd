@@ -1,14 +1,14 @@
 extends Control
 
 onready var container = $Container
-var available_species : Dictionary 
 var ordered_species : Array
 
-func initialize(available_species):
+func initialize(available_species:Dictionary, controls:Array):
 	ordered_species = available_species.keys()
 	var i = 0
 	for child in container.get_children():
 		child.change_species(ordered_species[i])
+		child.set_controls_by_string(controls[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
 		i +=1

@@ -1,5 +1,8 @@
 tool
 extends Control
+"""
+this Node is a renderer of the Species Selected. No logic in here. 
+"""
 
 export var species : Resource setget _set_species
 export var controls : String

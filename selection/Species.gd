@@ -12,6 +12,16 @@ const ControlsMap = {
     Controls.JOY3 : "joy3",
     Controls.JOY4 : "joy4"
 }
+const controlsToKey = {
+	"no" : Controls.NO,
+	"cpu" : Controls.CPU,
+    "kb1" : Controls.KB1,
+    "kb2" : Controls.KB2,
+    "joy1" : Controls.JOY1,
+    "joy2" : Controls.JOY2,
+    "joy3" : Controls.JOY3,
+    "joy4" : Controls.JOY4
+}
 enum SPECIES {MANTIACS, ROBOLORDS, TRIXENS, ANOTHERS}
 
 const SpeciesMap = {
@@ -46,10 +56,11 @@ onready var speciesSelection = $SpeciesSelection
 
 const species_path : String = "res://selection/species/"
 
-export (Controls) var controls = Controls.KB1 
+export (Controls) var key_controls = Controls.KB1 setget _set_controls_by_key
 export (SPECIES) var key_species = SPECIES.ROBOLORDS setget _set_species
 
 var species : String
+var controls : String
 
 func initialize():
 	pass
@@ -63,13 +74,26 @@ func key_to_species(key:int) -> String:
 
 func key_to_controls(key:int) -> String:
 	return ControlsMap[key]
-
+	
+func set_controls(new_controls:String):
+	if key_controls == Controls.NO or key_controls == Controls.CPU:
+		disable_choice()
+	speciesSelection.controls = controls
+	speciesSelection.initialize(name)
+	
+func set_controls_by_string(new_controls:String):
+	controls = new_controls
+	key_controls = controlsToKey[controls]
+	set_controls(controls)
+	
+func _set_controls_by_key(new_controls:int):
+	key_controls = new_controls
+	controls = key_to_controls(key_controls)
+	set_controls(controls)
+	
 func _ready():
 	species = key_to_species(key_species)
-	if controls == Controls.NO or controls == Controls.CPU:
-		disable_choice()
 	change_species(species)
-	speciesSelection.controls = key_to_controls(controls)
 	speciesSelection.initialize(name)
 	print(name, " ",species)
 	
@@ -84,20 +108,19 @@ func change_species(new_species:String):
 func _input(event):
 	if disabled:
 		return
-	var this_control : String = ControlsMap[controls]
 	if selected :
-		if event.is_action_pressed(this_control+"_fire"):
+		if event.is_action_pressed(controls+"_fire"):
 			emit_signal("ready_to_fight")
-		elif event.is_action_pressed(this_control+"_action"):
+		elif event.is_action_pressed(controls+"_action"):
 			deselect()
 	elif joined:
-		if event.is_action_pressed(this_control+"_right") and not selected:
+		if event.is_action_pressed(controls+"_right") and not selected:
 			_on_Next_pressed()
-		if event.is_action_pressed(this_control+"_left") and not selected:
+		if event.is_action_pressed(controls+"_left") and not selected:
 			_on_Previous_pressed()
-		if event.is_action_pressed(this_control+"_fire") and not selected:
+		if event.is_action_pressed(controls+"_fire") and not selected:
 			selected()
-		if event.is_action_pressed(this_control+"_action") and not selected:
+		if event.is_action_pressed(controls+"_action") and not selected:
 			leave()
 
 func leave():
