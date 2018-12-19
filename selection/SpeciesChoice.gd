@@ -19,6 +19,7 @@ func _set_species(new_value : SpeciesSelection):
 	
 	if not species:
 		return
+		
 	if Engine.is_editor_hint():
 		if has_node("Ship"):
 	        get_node("Ship").texture = species.ship
@@ -29,6 +30,9 @@ func _set_species(new_value : SpeciesSelection):
 	
 
 func initialize(player_id:String):
+	"""
+	Factory for controls and species resource.
+	"""
 	player.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
 	

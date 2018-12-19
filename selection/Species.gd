@@ -21,6 +21,12 @@ const SpeciesMap = {
 	SPECIES.ANOTHERS : "Anothers"
 }
 
+const SpeciesToKey = {
+	"mantiacs" : SPECIES.MANTIACS ,
+	"robolords" : SPECIES.ROBOLORDS ,
+	"trixens" : SPECIES.TRIXENS ,
+	"anothers" : SPECIES.ANOTHERS 
+}
 
 signal selected
 signal deselected
@@ -41,23 +47,39 @@ onready var speciesSelection = $SpeciesSelection
 const species_path : String = "res://selection/species/"
 
 export (Controls) var controls = Controls.KB1 
-export (SPECIES) var species = SPECIES.ROBOLORDS
+export (SPECIES) var key_species = SPECIES.ROBOLORDS setget _set_species
+
+var species : String
+
+func initialize():
+	pass
+
+func _set_species(new_value:int):
+	key_species = new_value
+	species = key_to_species(key_species)
+	
+func key_to_species(key:int) -> String:
+	return SpeciesMap[key].to_lower()
+
+func key_to_controls(key:int) -> String:
+	return ControlsMap[key]
 
 func _ready():
+	species = key_to_species(key_species)
 	if controls == Controls.NO or controls == Controls.CPU:
 		disable_choice()
-	change_species(SpeciesMap[species].to_lower())
-	speciesSelection.controls = ControlsMap[controls]
+	change_species(species)
+	speciesSelection.controls = key_to_controls(controls)
 	speciesSelection.initialize(name)
-	
-	# if CPU or fixed choice
-	if disabled:
-		disable_choice()
+	print(name, " ",species)
 	
 
 func change_species(new_species:String):
+	key_species = SpeciesToKey[new_species]
+	_set_species(key_species)
+	print(new_species, " ", key_species, " ", name, " ", species)
 	if new_species:
-		speciesSelection.change_species(load(species_path + new_species.to_lower() + ".tres"))
+		speciesSelection.change_species(load(species_path + species.to_lower() + ".tres"))
 
 func _input(event):
 	if disabled:
