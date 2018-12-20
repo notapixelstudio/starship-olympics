@@ -10,7 +10,7 @@ var info_player = {
 	}
 	
 var players : Dictionary
-var test_controls = ["kb1", "kb2", "cpu", "no"]
+# var test_controls = ["kb1", "kb2", "cpu", "no"]
+
 func _ready():
-	
-	selection_screen.initialize(global.get_unlocked(), test_controls)
+	selection_screen.initialize(global.get_unlocked())

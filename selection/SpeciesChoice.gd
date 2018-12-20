@@ -58,7 +58,8 @@ func next():
 
 func select():
 	select_rect.visible = true
-	disable()
+	$LeftArrow.disable()
+	$RightArrow.disable()
 
 func deselect():
 	select_rect.visible = false
@@ -66,6 +67,9 @@ func deselect():
 func enable():
 	$LeftArrow.enable()
 	$RightArrow.enable()
+	anim.play("standby")
+	set_process_input(true)
+	set_process(true)
 	
 func disable():
 	$LeftArrow.disable()
