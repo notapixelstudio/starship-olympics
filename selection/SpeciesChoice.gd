@@ -1,5 +1,8 @@
 tool
 extends Control
+"""
+this Node is a renderer of the Species Selected. No logic in here. 
+"""
 
 export var species : Resource setget _set_species
 export var controls : String
@@ -11,14 +14,19 @@ onready var character = $Character/Character
 onready var controls_sprite = $Controls 
 onready var player = $Player
 onready var anim = $AnimationPlayer
+onready var select_rect = $Character/SelectRect
 
 const img_path : String = "res://assets/icon/"
 
+func _ready():
+	select_rect.visible = false
+	
 func _set_species(new_value : SpeciesSelection):
 	species = new_value
 	
 	if not species:
 		return
+		
 	if Engine.is_editor_hint():
 		if has_node("Ship"):
 	        get_node("Ship").texture = species.ship
@@ -29,6 +37,9 @@ func _set_species(new_value : SpeciesSelection):
 	
 
 func initialize(player_id:String):
+	"""
+	Factory for controls and species resource.
+	"""
 	player.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
 	
@@ -37,6 +48,7 @@ func change_species(new_species:SpeciesSelection):
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
 	character.texture = species.character
+	select_rect.texture = species.select_rect
 
 func previous():
 	global.shake_node(species_name, tween)
@@ -44,6 +56,21 @@ func previous():
 func next():
 	global.shake_node(species_name, tween)
 
+func select():
+	select_rect.visible = true
+	$LeftArrow.disable()
+	$RightArrow.disable()
+
+func deselect():
+	select_rect.visible = false
+
+func enable():
+	$LeftArrow.enable()
+	$RightArrow.enable()
+	anim.play("standby")
+	set_process_input(true)
+	set_process(true)
+	
 func disable():
 	$LeftArrow.disable()
 	$RightArrow.disable()

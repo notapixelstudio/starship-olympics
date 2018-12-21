@@ -10,9 +10,19 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "BattlerTemplate",
+"language": "GDScript",
+"path": "res://actors/battlers/characters/BattlerTemplate.gd"
+}, {
+"base": "Resource",
 "class": "Controls",
 "language": "GDScript",
 "path": "res://selection/interface/Command.gd"
+}, {
+"base": "Resource",
+"class": "InfoPlayer",
+"language": "GDScript",
+"path": "res://local_multiplayer/InfoPlayer.gd"
 }, {
 "base": "Resource",
 "class": "SpeciesSelection",
@@ -20,7 +30,9 @@ _global_script_classes=[ {
 "path": "res://selection/species/species_selection.gd"
 } ]
 _global_script_class_icons={
+"BattlerTemplate": "",
 "Controls": "",
+"InfoPlayer": "",
 "SpeciesSelection": ""
 }
 

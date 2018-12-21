@@ -1,8 +1,5 @@
 extends Node
 
-const width = 1280
-const height = 720
-
 const min_lives = 1
 var lives = 5
 const max_lives = 10
@@ -11,33 +8,50 @@ const max_lives = 10
 var level
 var array_level
 
-const SPECIES = ["mantiacs","robolords", "trixens", "another"]
-# default unlocked species. The idea is put the locked one to "blank"
-var unlocked_species = ["mantiacs","robolords","trixens", "another"]
+const SPECIES = ["mantiacs", "robolords", "trixens", "anothers"]
 
-var from_scene = ProjectSettings.get_setting("application/run/main_scene")
+# dictionary of SPECIES with some values (like a bool unlocked)
+var unlocked_species = {
+	"mantiacs": true,
+	"robolords": true,
+ 	"trixens": true,
+	"anothers" : true
+}
 
 var debug = false
-
-var changed = false
-
-var available_species =[]
-
 var this_run_time = 0
 
+# force saving the game
+var force_save = true
+var from_scene = ProjectSettings.get_setting("application/run/main_scene")
+
+func get_unlocked() -> Dictionary:
+	var available : Dictionary
+	var i = 1
+	for species in SPECIES:
+		if unlocked_species[species]:
+			available[species] = i
+			i+=1
+	return available
+
+func _unlock_species(species : String):
+	unlocked_species[species] = true
+
 func _ready():
-	# get the list of levels
-	array_level = dir_contents("res://screens/game_screen/levels")
-	if not level:
-		level = array_level[randi()%len(array_level)]
-	# if we want to save data from global
 	add_to_group("persist")
+	if persistance.load_game() and not force_save:
+		return
+	
+	for this_species in SPECIES:
+		unlocked_species[this_species] = true
+	persistance.save_game()
 	
 
+# utils
 func get_state():
 	# for debug purposes
 	var save_dict = {
-		changed=bool(changed),
+		unlocked_species=unlocked_species,
 		level=level
 	}
 	return save_dict
@@ -63,7 +77,6 @@ func dir_contents(path):
 		print("An error occurred when trying to access the path.")
 	return list_files
 
-# utils
 func mod(a,b):
 	var ret = a%b
 	if ret < 0: 

@@ -12,6 +12,16 @@ const ControlsMap = {
     Controls.JOY3 : "joy3",
     Controls.JOY4 : "joy4"
 }
+const controlsToKey = {
+	"no" : Controls.NO,
+	"cpu" : Controls.CPU,
+    "kb1" : Controls.KB1,
+    "kb2" : Controls.KB2,
+    "joy1" : Controls.JOY1,
+    "joy2" : Controls.JOY2,
+    "joy3" : Controls.JOY3,
+    "joy4" : Controls.JOY4
+}
 enum SPECIES {MANTIACS, ROBOLORDS, TRIXENS, ANOTHERS}
 
 const SpeciesMap = {
@@ -21,11 +31,20 @@ const SpeciesMap = {
 	SPECIES.ANOTHERS : "Anothers"
 }
 
+const SpeciesToKey = {
+	"mantiacs" : SPECIES.MANTIACS ,
+	"robolords" : SPECIES.ROBOLORDS ,
+	"trixens" : SPECIES.TRIXENS ,
+	"anothers" : SPECIES.ANOTHERS 
+}
+const BATTLER_PATH = "res://actors/battlers/characters/" 
 
 signal selected
 signal deselected
 signal leave
 signal ready_to_fight
+signal prev
+signal next
 
 var disabled = false
 var selected = false
@@ -38,42 +57,76 @@ onready var speciesSelection = $SpeciesSelection
 
 const species_path : String = "res://selection/species/"
 
-export (Controls) var controls = Controls.KB1 
-export (SPECIES) var species = SPECIES.ROBOLORDS
+export (Controls) var key_controls = Controls.KB1 setget _set_controls_by_key
+export (SPECIES) var key_species = SPECIES.ROBOLORDS setget _set_species
 
-func _ready():
-	if controls == Controls.NO or controls == Controls.CPU:
+var species : String
+var controls : String
+var battler_template : BattlerTemplate
+
+func initialize():
+	pass
+
+func _set_species(new_value:int):
+	
+	key_species = new_value
+	species = key_to_species(key_species)
+	
+func key_to_species(key:int) -> String:
+	return SpeciesMap[key].to_lower()
+
+func key_to_controls(key:int) -> String:
+	return ControlsMap[key]
+	
+func set_controls(new_controls:String):
+	"""
+	Set controls and disable if NO or CPU
+	"""
+	if key_controls == Controls.NO or key_controls == Controls.CPU:
 		disable_choice()
-	change_species(speciesSelection, SpeciesMap[species].to_lower())
-	speciesSelection.controls = ControlsMap[controls]
+	else:
+		enable_choice()
+	speciesSelection.controls = controls
 	speciesSelection.initialize(name)
 	
-	# if CPU or fixed choice
-	if disabled:
-		disable_choice()
+func set_controls_by_string(new_controls:String):
+	controls = new_controls
+	key_controls = controlsToKey[controls]
+	set_controls(controls)
 	
+func _set_controls_by_key(new_controls:int):
+	key_controls = new_controls
+	controls = key_to_controls(key_controls)
+	set_controls(controls)
+	
+func _ready():
+	species = key_to_species(key_species)
+	change_species(species)
+	speciesSelection.initialize(name)
 
-func change_species(species_node, new_species:String):
+func change_species(new_species:String):
+	key_species = SpeciesToKey[new_species]
+	_set_species(key_species)
 	if new_species:
-		species_node.change_species(load(species_path + new_species.to_lower() + ".tres"))
+		speciesSelection.change_species(load(species_path + species.to_lower() + ".tres"))
 
 func _input(event):
 	if disabled:
 		return
-	var this_control : String = ControlsMap[controls]
 	if selected :
-		if event.is_action_pressed(this_control+"_fire"):
+		if event.is_action_pressed(controls+"_fire"):
+			print("ready")
 			emit_signal("ready_to_fight")
-		elif event.is_action_pressed(this_control+"_action"):
+		elif event.is_action_pressed(controls+"_action"):
 			deselect()
 	elif joined:
-		if event.is_action_pressed(this_control+"_right") and not selected:
+		if event.is_action_pressed(controls+"_right") and not selected:
 			_on_Next_pressed()
-		if event.is_action_pressed(this_control+"_left") and not selected:
+		if event.is_action_pressed(controls+"_left") and not selected:
 			_on_Previous_pressed()
-		if event.is_action_pressed(this_control+"_fire") and not selected:
-			selected()
-		if event.is_action_pressed(this_control+"_action") and not selected:
+		if event.is_action_pressed(controls+"_fire") and not selected:
+			select_character()
+		if event.is_action_pressed(controls+"_action") and not selected:
 			leave()
 
 func leave():
@@ -82,25 +135,24 @@ func leave():
 	disable_choice()
 	emit_signal("leave")
 
-func selected():
-	disable_choice()
+func select_character():
 	selected = true
-	change_species(speciesSelection, species)
+	speciesSelection.select()
+	battler_template = load(BATTLER_PATH + species + ".tres")
 	emit_signal("selected")
 
 func deselect():
 	get_node("deselected").play()
 	enable_choice()
 	selected = false
-	# global.available_species.append(species)
 	emit_signal("deselected")
 	
 func _on_Previous_pressed():
-	change_species(speciesSelection, "anothers")
+	emit_signal("prev")
 	speciesSelection.previous()
 
 func _on_Next_pressed():
-	change_species(speciesSelection, "trixens")
+	emit_signal("next")
 	speciesSelection.next()
 
 func disable_choice():
@@ -110,5 +162,7 @@ func disable_choice():
 	
 func enable_choice():
 	joined = true
+	disabled = false
 	enabler.visible = false
+	speciesSelection.enable()
 
