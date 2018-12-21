@@ -6,6 +6,7 @@ it will get as export variable the battle template (containing the species value
 and its keyboard control
 """
 
+
 export (String) var controls = "kb1"
 export (Resource) var battle_template
 

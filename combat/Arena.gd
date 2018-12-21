@@ -22,6 +22,8 @@ const Ship = preload("res://actors/battlers/Ship.tscn")
 
 signal screensize_changed(screensize)
 
+var ships = []
+
 func compute_arena_size():
 	"""
 	compute the battlefield size
@@ -31,6 +33,18 @@ func compute_arena_size():
 	emit_signal("screensize_changed", Vector2(width, height))
 	print(width, " ", height, "  ")
 	return true
+
+func setup_ship(ship: Node, player : Node):
+	# set controls and species
+	ship.controls = player.controls
+	ship.battle_template = player.battler_template
+	
+func initialize(players:Array):
+	assert(players)
+	for i in range(len(players)):
+		var ship = Ship.instance()
+		setup_ship(ship, players[i])
+		ships.append(ship)
 	
 func _ready():
 	compute_arena_size()
@@ -50,19 +64,27 @@ func _ready():
 		if spawner.is_in_group("spawner"):
 			spawner.spawn()
 	
+
+	var i = 0
 	for player in SpawnPlayers.get_children():
-		var ship = Ship.instance()
+		var ship
+		if ships:
+			assert(len(ships) == SpawnPlayers.get_child_count())
+			ship = ships[i]
+		else:
+			ship = Ship.instance()
+			setup_ship(ship, player)
+		
 		ship.position = player.position
 		ship.rotation = player.rotation
 		ship.height = height
 		ship.width = width
-		ship.controls = player.controls
-		ship.battle_template = player.battler_template
+		ship.name = player.name
 		Battlefield.add_child(ship)
 		# connect signals
 		ship.connect("dead", self, "update_score")
 		connect("screensize_changed", ship, "update_wraparound")
-		
+		i+=1
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")

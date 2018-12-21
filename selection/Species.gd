@@ -37,6 +37,7 @@ const SpeciesToKey = {
 	"trixens" : SPECIES.TRIXENS ,
 	"anothers" : SPECIES.ANOTHERS 
 }
+const BATTLER_PATH = "res://actors/battlers/characters/" 
 
 signal selected
 signal deselected
@@ -61,11 +62,13 @@ export (SPECIES) var key_species = SPECIES.ROBOLORDS setget _set_species
 
 var species : String
 var controls : String
+var battler_template : BattlerTemplate
 
 func initialize():
 	pass
 
 func _set_species(new_value:int):
+	
 	key_species = new_value
 	species = key_to_species(key_species)
 	
@@ -112,6 +115,7 @@ func _input(event):
 		return
 	if selected :
 		if event.is_action_pressed(controls+"_fire"):
+			print("ready")
 			emit_signal("ready_to_fight")
 		elif event.is_action_pressed(controls+"_action"):
 			deselect()
@@ -134,6 +138,7 @@ func leave():
 func select_character():
 	selected = true
 	speciesSelection.select()
+	battler_template = load(BATTLER_PATH + species + ".tres")
 	emit_signal("selected")
 
 func deselect():

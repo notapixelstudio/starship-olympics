@@ -5,11 +5,16 @@ const MIN_PLAYERS = 2
 onready var container = $Container
 var ordered_species : Array
 
-func _ready():
-	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+signal fight
 
 var players_controls : Array
 var num_players : int = 0
+
+
+func _ready():
+	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+
+
 func initialize(available_species:Dictionary):
 	ordered_species = available_species.keys()
 	
@@ -20,10 +25,11 @@ func initialize(available_species:Dictionary):
 		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
+		child.connect("ready_to_fight", self, "ready_to_fight")
 		i +=1
 	var controls = assign_controls(2)
 	for control in controls:
-		add_controls(control)
+		print(add_controls(control))
 	
 func add_controls(key : String) -> bool:
 	"""
@@ -33,6 +39,13 @@ func add_controls(key : String) -> bool:
 	for child in container.get_children():
 		if child.controls == "no":
 			child.set_controls_by_string(key)
+			return true
+	return false
+
+func change_controls(key:String, new_key:String) -> bool:
+	for child in container.get_children():
+		if child.controls == key:
+			child.set_controls_by_string(new_key)
 			return true
 	return false
 	
@@ -63,12 +76,12 @@ func assign_controls(num_keyboards : int) -> Array:
 	return players_controls
 
 # utils
-func get_num_players(players_controls:Array):
-	var num_players = 0
-	for controls in players_controls:
-		if controls != "no":
-			num_players+=1
-	return num_players
+func get_players() -> Array:
+	var players = []
+	for child in container.get_children():
+		if child.controls != "no" and child.selected:
+			players.append(child)
+	return players
 	
 func get_adjacent(operator:int, player_selection : Node):
 	var current_index = ordered_species.find(player_selection.species) 
@@ -76,7 +89,17 @@ func get_adjacent(operator:int, player_selection : Node):
 	player_selection.change_species(ordered_species[current_index])
 	
 func _on_joy_connection_changed(device_id, connected):
-    if connected:
-        print(Input.get_joy_name(device_id))
-    else:
-        print("Keyboard")
+	var joy = "joy"+str(device_id)
+	if connected:
+		add_controls(joy)
+	else:
+		change_controls(joy, "no")
+
+func ready_to_fight():
+	var players = get_players()
+	print(players)
+	if len(players) >= MIN_PLAYERS:
+		emit_signal("fight", players)
+	else:
+		print("not enough players")
+		
