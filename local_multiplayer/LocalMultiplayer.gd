@@ -28,7 +28,6 @@ func combat(selected_players: Array):
 		spawner.controls = player.controls 
 		spawner.battler_template = player.battler_template
 		spawner.name = player.name
-		print(spawner.name, " name ", player.name)
 		spawners.append(spawner)
 		players[player.name] = setup_player(spawner)
 	var num_players : int = len(selected_players)

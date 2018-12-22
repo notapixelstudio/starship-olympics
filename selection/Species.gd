@@ -115,7 +115,6 @@ func _input(event):
 		return
 	if selected :
 		if event.is_action_pressed(controls+"_fire"):
-			print("ready")
 			emit_signal("ready_to_fight")
 		elif event.is_action_pressed(controls+"_action"):
 			deselect()

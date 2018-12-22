@@ -29,7 +29,6 @@ func _ready():
 		$Value/left.visible = true
 		$Value/right.visible = true
 		array_value = global.get("array_"+description)
-		print(array_value)
 		max_value = len(array_value) - 1
 		min_value = 0
 		index_value = array_value.find(value)

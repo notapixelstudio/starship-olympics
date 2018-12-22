@@ -26,11 +26,10 @@ var spawners = []
 
 func initialize(players:Array) -> void:
 	spawners = []
+	# forcing the array to PlayerSpwawner (as check)
 	for player in players:
 		assert(player is PlayerSpawner)
-		print(player.controls, " ", player.battler_template.species_name)
 	spawners = players
-	print(spawners)
 	
 func compute_arena_size():
 	"""
@@ -46,7 +45,6 @@ func update_spawner(spawner:PlayerSpawner) -> bool:
 		return false
 	for player in SpawnPlayers.get_children():
 		if player.name == spawner.name:
-			print(player.name)
 			player.controls = spawner.controls
 			player.battler_template = spawner.battler_template
 			return true
@@ -55,7 +53,6 @@ func setup_ships():
 	if not spawners:
 		return
 	for player in SpawnPlayers.get_children():
-		print(player.controls, " ", player.battler_template.species_name )
 		var ship = ship_scene.instance()
 		ship.controls = player.controls
 		ship.battle_template = player.battler_template
@@ -89,7 +86,6 @@ func _ready():
 	
 	# set the player spawners
 	for spawner in spawners:
-		print(spawner.controls, " ", spawner.battler_template.species_name, " over")
 		update_spawner(spawner)
 	setup_ships()
 	
