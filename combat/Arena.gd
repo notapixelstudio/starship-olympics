@@ -7,7 +7,7 @@ var width
 var height
 var someone_died = 0
 
-export (float) var size_multiplier = 1.0
+export (float) var size_multiplier = 2.0
 
 var debug = false
 # analytics
@@ -18,12 +18,20 @@ onready var Battlefield = $Battlefield
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 
-const Ship = preload("res://actors/battlers/Ship.tscn")
+const ship_scene = preload("res://actors/battlers/Ship.tscn")
 
 signal screensize_changed(screensize)
 
-var ships = []
+var spawners = []
 
+func initialize(players:Array) -> void:
+	spawners = []
+	for player in players:
+		assert(player is PlayerSpawner)
+		print(player.controls, " ", player.battler_template.species_name)
+	spawners = players
+	print(spawners)
+	
 func compute_arena_size():
 	"""
 	compute the battlefield size
@@ -31,20 +39,35 @@ func compute_arena_size():
 	width = OS.window_size.x * size_multiplier
 	height = OS.window_size.y * size_multiplier
 	emit_signal("screensize_changed", Vector2(width, height))
-	print(width, " ", height, "  ")
 	return true
 
-func setup_ship(ship: Node, player : Node):
-	# set controls and species
-	ship.controls = player.controls
-	ship.battle_template = player.battler_template
-	
-func initialize(players:Array):
-	assert(players)
-	for i in range(len(players)):
-		var ship = Ship.instance()
-		setup_ship(ship, players[i])
-		ships.append(ship)
+func update_spawner(spawner:PlayerSpawner) -> bool:
+	if not spawner:
+		return false
+	for player in SpawnPlayers.get_children():
+		if player.name == spawner.name:
+			print(player.name)
+			player.controls = spawner.controls
+			player.battler_template = spawner.battler_template
+			return true
+	return false
+func setup_ships():
+	if not spawners:
+		return
+	for player in SpawnPlayers.get_children():
+		print(player.controls, " ", player.battler_template.species_name )
+		var ship = ship_scene.instance()
+		ship.controls = player.controls
+		ship.battle_template = player.battler_template
+		ship.position = player.position
+		ship.rotation = player.rotation
+		ship.height = height
+		ship.width = width
+		ship.name = player.name
+		Battlefield.add_child(ship)
+		# connect signals
+		ship.connect("dead", self, "update_score", [ship.name])
+		connect("screensize_changed", ship, "update_wraparound")
 	
 func _ready():
 	compute_arena_size()
@@ -64,27 +87,11 @@ func _ready():
 		if spawner.is_in_group("spawner"):
 			spawner.spawn()
 	
-
-	var i = 0
-	for player in SpawnPlayers.get_children():
-		var ship
-		if ships:
-			assert(len(ships) == SpawnPlayers.get_child_count())
-			ship = ships[i]
-		else:
-			ship = Ship.instance()
-			setup_ship(ship, player)
-		
-		ship.position = player.position
-		ship.rotation = player.rotation
-		ship.height = height
-		ship.width = width
-		ship.name = player.name
-		Battlefield.add_child(ship)
-		# connect signals
-		ship.connect("dead", self, "update_score")
-		connect("screensize_changed", ship, "update_wraparound")
-		i+=1
+	# set the player spawners
+	for spawner in spawners:
+		print(spawner.controls, " ", spawner.battler_template.species_name, " over")
+		update_spawner(spawner)
+	setup_ships()
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -107,3 +114,9 @@ func get_num_players():
 
 func _on_background_item_rect_changed():
 	print("changed")
+
+func update_score(player_id):
+	yield(get_tree().create_timer(1), "timeout")
+	for player in SpawnPlayers.get_children():
+		if player.name == player_id:
+			pass

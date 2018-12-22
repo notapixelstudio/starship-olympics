@@ -1,5 +1,7 @@
 extends Control
 
+class_name Species
+
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO}
 # maybe global?
 const ControlsMap = {
@@ -49,8 +51,6 @@ signal next
 var disabled = false
 var selected = false
 var joined = true
-
-var index_selection
 
 onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection

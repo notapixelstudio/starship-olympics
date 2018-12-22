@@ -5,7 +5,7 @@ Node for the RigidBody and Ship physics
 it will get as export variable the battle template (containing the species values)
 and its keyboard control
 """
-
+class_name Ship
 
 export (String) var controls = "kb1"
 export (Resource) var battle_template
@@ -164,7 +164,7 @@ func die():
 	if alive:
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead", player)
+		emit_signal("dead")
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true

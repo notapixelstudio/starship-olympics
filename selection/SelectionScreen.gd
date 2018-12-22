@@ -10,10 +10,8 @@ signal fight
 var players_controls : Array
 var num_players : int = 0
 
-
 func _ready():
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
-
 
 func initialize(available_species:Dictionary):
 	ordered_species = available_species.keys()

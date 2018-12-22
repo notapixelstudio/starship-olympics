@@ -24,6 +24,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://local_multiplayer/InfoPlayer.gd"
 }, {
+"base": "Node",
+"class": "PlayerSpawner",
+"language": "GDScript",
+"path": "res://combat/PlayerSpawner.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://actors/battlers/Ship.gd"
+}, {
+"base": "Control",
+"class": "Species",
+"language": "GDScript",
+"path": "res://selection/Species.gd"
+}, {
 "base": "Resource",
 "class": "SpeciesSelection",
 "language": "GDScript",
@@ -33,6 +48,9 @@ _global_script_class_icons={
 "BattlerTemplate": "",
 "Controls": "",
 "InfoPlayer": "",
+"PlayerSpawner": "",
+"Ship": "",
+"Species": "",
 "SpeciesSelection": ""
 }
 
