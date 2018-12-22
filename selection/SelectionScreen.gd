@@ -10,10 +10,8 @@ signal fight
 var players_controls : Array
 var num_players : int = 0
 
-
 func _ready():
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
-
 
 func initialize(available_species:Dictionary):
 	ordered_species = available_species.keys()
@@ -30,7 +28,20 @@ func initialize(available_species:Dictionary):
 	var controls = assign_controls(2)
 	for control in controls:
 		print(add_controls(control))
-	
+
+# debug
+var pressed = false
+var debug_joy = 0
+func _unhandled_input(event):
+	if event.is_action_pressed("debug"):
+		Input.emit_signal("joy_connection_changed", debug_joy+1, true)
+		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS)
+	elif event.is_action_pressed("debug_cancel"):
+		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS)
+		Input.emit_signal("joy_connection_changed", debug_joy+1, false)
+
+# end debug
+		
 func add_controls(key : String) -> bool:
 	"""
 	Add a controller (keyboard or joypad) as last player
@@ -38,6 +49,11 @@ func add_controls(key : String) -> bool:
 	"""
 	for child in container.get_children():
 		if child.controls == "no":
+			child.set_controls_by_string(key)
+			return true
+	# we will force keyboard to joypad
+	for child in container.get_children():
+		if child.controls.findn("kb") >= 0:
 			child.set_controls_by_string(key)
 			return true
 	return false

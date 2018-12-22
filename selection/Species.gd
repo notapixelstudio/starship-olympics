@@ -1,5 +1,7 @@
 extends Control
 
+class_name Species
+
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO}
 # maybe global?
 const ControlsMap = {
@@ -49,8 +51,6 @@ signal next
 var disabled = false
 var selected = false
 var joined = true
-
-var index_selection
 
 onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection
@@ -115,7 +115,6 @@ func _input(event):
 		return
 	if selected :
 		if event.is_action_pressed(controls+"_fire"):
-			print("ready")
 			emit_signal("ready_to_fight")
 		elif event.is_action_pressed(controls+"_action"):
 			deselect()

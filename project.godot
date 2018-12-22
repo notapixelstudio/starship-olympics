@@ -24,6 +24,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://local_multiplayer/InfoPlayer.gd"
 }, {
+"base": "Node",
+"class": "PlayerSpawner",
+"language": "GDScript",
+"path": "res://combat/PlayerSpawner.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://actors/battlers/Ship.gd"
+}, {
+"base": "Control",
+"class": "Species",
+"language": "GDScript",
+"path": "res://selection/Species.gd"
+}, {
 "base": "Resource",
 "class": "SpeciesSelection",
 "language": "GDScript",
@@ -33,6 +48,9 @@ _global_script_class_icons={
 "BattlerTemplate": "",
 "Controls": "",
 "InfoPlayer": "",
+"PlayerSpawner": "",
+"Ship": "",
+"Species": "",
 "SpeciesSelection": ""
 }
 
@@ -247,6 +265,16 @@ joy3_action={
 joy4_action={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+debug_cancel={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"unicode":0,"echo":false,"script":null)
+ ]
+}
+debug_plus={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 
