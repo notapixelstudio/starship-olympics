@@ -59,6 +59,7 @@ const species_path : String = "res://selection/species/"
 
 export (Controls) var key_controls = Controls.KB1 setget _set_controls_by_key
 export (SPECIES) var key_species = SPECIES.ROBOLORDS setget _set_species
+export (String, "", "kb1", "kb2") var force_to
 
 var species : String
 var controls : String
@@ -127,7 +128,10 @@ func _input(event):
 			select_character()
 		if event.is_action_pressed(controls+"_action") and not selected:
 			leave()
-
+	if force_to and event.is_action_pressed(force_to+"_fire"):
+		set_controls_by_string(force_to)
+		print("forcing to" + force_to)
+		return
 func leave():
 	joined = false
 	enabler.visible = true
