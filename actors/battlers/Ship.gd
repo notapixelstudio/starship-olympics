@@ -170,7 +170,7 @@ func die():
 		sleeping = true
 		releasePuzzle()
 		yield(get_node("sound"), "finished")
-		queue_free()
+		get_parent().remove_child(self)
 	
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
