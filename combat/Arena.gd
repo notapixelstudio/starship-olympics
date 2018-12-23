@@ -52,8 +52,6 @@ func update_spawner(spawner:PlayerSpawner) -> bool:
 	return false
 	
 func setup_ships():
-	if not spawners:
-		return
 	for player in SpawnPlayers.get_children():
 		var ship = ship_scene.instance()
 		ship.controls = player.controls
