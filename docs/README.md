@@ -10,7 +10,7 @@ As a skilled starship pilot, you will have to steer and shoot bombs while consta
 
 # Physics-based mayhem
 *Superstarfighter* arenas are chock full of moving objects, bombs, and explosions!
-
+{% twitter https://twitter.com/notapixelstudio/status/1052244485172805633 %}
 # No downtime
 Pilots can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray!
 
