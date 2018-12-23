@@ -44,11 +44,13 @@ func update_spawner(spawner:PlayerSpawner) -> bool:
 	if not spawner:
 		return false
 	for player in SpawnPlayers.get_children():
-		if player.name == spawner.name:
+		if player.name.to_lower() == spawner.name.to_lower():
 			player.controls = spawner.controls
 			player.battler_template = spawner.battler_template
+			print(player.controls, " ", player.battler_template.species_name)
 			return true
 	return false
+	
 func setup_ships():
 	if not spawners:
 		return
@@ -114,5 +116,5 @@ func _on_background_item_rect_changed():
 func update_score(player_id):
 	yield(get_tree().create_timer(1), "timeout")
 	for player in SpawnPlayers.get_children():
-		if player.name == player_id:
+		if player.name.to_lower() == player_id.to_lower():
 			pass
