@@ -60,7 +60,12 @@ func add_controls(key : String) -> bool:
 
 func change_controls(key:String, new_key:String) -> bool:
 	for child in container.get_children():
+		assert(child is Species)
 		if child.controls == key:
+			
+			# if p1 or p2 and is setting to NO, force to keyboard
+			if child.force_to and new_key == "no":
+				new_key = child.force_to
 			child.set_controls_by_string(new_key)
 			return true
 	return false
