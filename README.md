@@ -1,15 +1,9 @@
 # SuperStarFighter
-Scenes and actors (with basic animation and FSM) templates. Menu>Game>Victory. Written in Godot
+A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs from their back.
 
-## Content
-This template is composed by: 
+![image](https://img.itch.zone/aW1nLzE2MDQ3ODMucG5n/original/wy1zK%2F.png)
 
-- addons: Folder in which are contained [FSM](https://github.com/kubecz3k/FiniteStateMachine) and [tiled-importer](https://github.com/vnen/godot-tiled-importer) plugins 
-- assets: Folder where there are assets for the scenes, in particular assets for the default theme:
-  - textures: contains texture for blocks and panels and labels
-  - utilities: contains fonts and frames
-- characters: Folder where there are the scenes of a generic character, will handle FSM and animation
-- screens: Folder containing generic scenes, all inherited from basic_screen
+
 
 ## Resources used and aknowledgement
 
