@@ -31,7 +31,8 @@ func combat(selected_players: Array):
 		spawners.append(spawner)
 		players[player.name] = setup_player(spawner)
 	var num_players : int = len(selected_players)
-	var level = load(combat_scene + str(num_players) + "players.tscn")
+	var level_path = combat_scene + str(num_players) + "players.tscn"
+	var level = load(level_path)
 	var combat = level.instance()
 	remove_child(selection_screen)
 	combat.initialize(spawners)
