@@ -8,9 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "BattlerTemplate",
+"language": "GDScript",
+"path": "res://actors/battlers/characters/BattlerTemplate.gd"
+}, {
+"base": "Resource",
+"class": "Controls",
+"language": "GDScript",
+"path": "res://selection/interface/Command.gd"
+}, {
+"base": "Resource",
+"class": "InfoPlayer",
+"language": "GDScript",
+"path": "res://local_multiplayer/InfoPlayer.gd"
+}, {
+"base": "Node",
+"class": "PlayerSpawner",
+"language": "GDScript",
+"path": "res://combat/PlayerSpawner.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://actors/battlers/Ship.gd"
+}, {
+"base": "Control",
+"class": "Species",
+"language": "GDScript",
+"path": "res://selection/Species.gd"
+}, {
+"base": "Resource",
+"class": "SpeciesSelection",
+"language": "GDScript",
+"path": "res://selection/species/species_selection.gd"
+} ]
 _global_script_class_icons={
-
+"BattlerTemplate": "",
+"Controls": "",
+"InfoPlayer": "",
+"PlayerSpawner": "",
+"Ship": "",
+"Species": "",
+"SpeciesSelection": ""
 }
 
 [application]

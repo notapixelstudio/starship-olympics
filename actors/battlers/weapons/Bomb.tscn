@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://actors/battlers/weapons/Bomb.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/weapons/bomb.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_mantiacs.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_robolords.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_trixens.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_anothers.png" type="Texture" id=6]
+[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=8]
+
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+radius = 16.0
+
+[sub_resource type="Curve" id=3]
+
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.738922, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.985838, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+emission_shape = 1
+emission_sphere_radius = 8.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 0.443137
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 45.0
+scale = 6.0
+scale_curve = SubResource( 4 )
+color = Color( 1, 1, 1, 0.51498 )
+
+[sub_resource type="SpriteFrames" id=6]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_mantiacs",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_robolords",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_trixens",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "locked_anothers",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+
+radius = 16.0
+
+[node name="Bomb" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 26
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 32
+local_coords = false
+process_material = SubResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 1 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 6 )
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="TriggerComponent" type="Node" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 7 )
+
+[node name="DetectorComponent" type="Node" parent="."]
+
+[node name="lock-sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = 10.0
+area_mask = 8
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Bomb_area_entered"]
