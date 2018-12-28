@@ -142,7 +142,7 @@ func select_character():
 	selected = true
 	speciesSelection.select()
 	battler_template = load(BATTLER_PATH + species + ".tres")
-	emit_signal("selected")
+	emit_signal("selected", species)
 
 func deselect():
 	get_node("deselected").play()

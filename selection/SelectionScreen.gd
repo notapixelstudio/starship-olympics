@@ -2,7 +2,10 @@ extends Control
 
 const MAX_PLAYERS = 4
 const MIN_PLAYERS = 2
+
 onready var container = $Container
+
+var available_species : Dictionary
 var ordered_species : Array
 
 signal fight
@@ -18,12 +21,15 @@ func initialize(available_species:Dictionary):
 	
 	var i = 0
 	for child in container.get_children():
+		assert(child is Species)
 		#set all to no
 		child.set_controls_by_string("no")
 		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
+		child.connect("selected", self, "selected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
+
 		i +=1
 	var controls = assign_controls(2)
 	for control in controls:
@@ -123,4 +129,7 @@ func ready_to_fight():
 		emit_signal("fight", players)
 	else:
 		print("not enough players")
-		
+
+func selected(species:String):
+	var current_index = ordered_species.find(species) 
+	ordered_species[current_index]
