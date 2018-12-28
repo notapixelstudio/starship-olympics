@@ -6,6 +6,7 @@ onready var containerPlayer = $MarginContainer/HBoxContainer
 func _ready():
 	#p1.get_node("Player").species = global.chosen_species["p1"]
 	#p2.get_node("Player").species = global.chosen_species["p2"]
+	# Add to tree the Character container.
 	for player in global.scores:
 		var this_player = playerNode.instance()
 		this_player.species = global.chosen_species[player]
@@ -13,6 +14,7 @@ func _ready():
 		containerPlayer.add_child(this_player)
 	containerPlayer.move_child(containerPlayer.get_node("Label"), containerPlayer.get_child_count() -1 ) 
 		
+	#disable buttons
 	for button in $VBoxContainer.get_children():
 		button.disabled = true
 	
