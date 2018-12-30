@@ -17,10 +17,12 @@ onready var DebugNode = $Debug/DebugNode
 onready var Battlefield = $Battlefield
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
+onready var hud = $Pause/HUD
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 
 signal screensize_changed(screensize)
+signal score_updated
 
 var spawners = []
 
@@ -84,10 +86,13 @@ func _ready():
 		if spawner.is_in_group("spawner"):
 			spawner.spawn()
 	
+	
 	# set the player spawners
 	for spawner in spawners:
 		update_spawner(spawner)
 	setup_ships()
+	# initialize HUD
+	hud.initialize(get_num_players())
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -105,14 +110,24 @@ func reset(level):
 	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+level))
 	#get_tree().reload_current_scene()
 
-func get_num_players():
-	return 4
+func get_num_players()->int:
+	"""
+	Depending on the arena we are in.
+	Works after ready
+	"""
+	return SpawnPlayers.get_child_count()
 
 func _on_background_item_rect_changed():
 	print("changed")
 
-func update_score(ship:Ship):
+func hud_update(player_id : String, score:int):
+	print("let's update")
+	hud._on_Arena_update_score(player_id, score)
+	
+func update_score(ship: Ship):
+	emit_signal("score_updated", ship.name)
 	yield(get_tree().create_timer(1), "timeout")
+	var player_id = ship.name
 	for player in SpawnPlayers.get_children():
 		if player.name.to_lower() == ship.name.to_lower():
 			print(ship.controls, " ", ship.battle_template.species_name)

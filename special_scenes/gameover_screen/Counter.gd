@@ -1,7 +1,7 @@
 extends NinePatchRect
 
-func change_life_texture(new_texture): 
-	get_node("life_texture").texture = new_texture
-	
-func get_lives(lives):
-	get_node("Number").text = str(lives)
+onready var tween = get_node("Tween")
+onready var scores = $Number
+
+func set_score(point : int):
+	scores.text = str(point)	

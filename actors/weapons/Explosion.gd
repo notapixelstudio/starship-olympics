@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Explosion
+
 var radius = 4
 var shape
 

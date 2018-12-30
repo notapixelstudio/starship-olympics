@@ -19,10 +19,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://selection/interface/Command.gd"
 }, {
+"base": "Area2D",
+"class": "Explosion",
+"language": "GDScript",
+"path": "res://actors/weapons/Explosion.gd"
+}, {
 "base": "Resource",
 "class": "InfoPlayer",
 "language": "GDScript",
 "path": "res://local_multiplayer/InfoPlayer.gd"
+}, {
+"base": "MarginContainer",
+"class": "PlayerHUD",
+"language": "GDScript",
+"path": "res://combat/interface/PlayerHUD.gd"
 }, {
 "base": "Node",
 "class": "PlayerSpawner",
@@ -47,7 +57,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BattlerTemplate": "",
 "Controls": "",
+"Explosion": "",
 "InfoPlayer": "",
+"PlayerHUD": "",
 "PlayerSpawner": "",
 "Ship": "",
 "Species": "",

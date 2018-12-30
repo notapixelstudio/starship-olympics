@@ -5,124 +5,41 @@
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/theme/utilities/fonts/uroob.tres" type="DynamicFont" id=4]
 
-
-
-[node name="Gameover" index="0" instance=ExtResource( 1 )]
-
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="Gameover" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 _sections_unfolded = [ "Anchor", "Theme" ]
 next_scene = "res://screens/game_screen/levels/2players.tscn"
 
-[node name="ColorRect" parent="Transition" index="0"]
-
-margin_right = 0.0
-margin_bottom = 730.0
-
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 988.0
 margin_top = 572.0
 margin_right = 1129.0
 margin_bottom = 682.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Rematch" type="Button" parent="VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 141.0
 margin_bottom = 34.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 theme = ExtResource( 3 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Rematch"
-flat = false
-align = 1
-_sections_unfolded = [ "Theme", "custom_styles" ]
 
 [node name="Menu" type="Button" parent="VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 38.0
 margin_right = 141.0
 margin_bottom = 72.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 theme = ExtResource( 3 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Back to menu"
-flat = false
-align = 1
-_sections_unfolded = [ "Theme", "custom_styles" ]
 
 [node name="Quit" type="Button" parent="VBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 76.0
 margin_right = 141.0
 margin_bottom = 110.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 theme = ExtResource( 3 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Quit"
-flat = false
-align = 1
-_sections_unfolded = [ "Theme", "custom_styles" ]
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="3"]
-
-anchor_left = 0.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -130,63 +47,25 @@ margin_left = 140.0
 margin_top = -290.0
 margin_right = -160.0
 margin_bottom = 110.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "custom_constants" ]
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 8.0
 margin_right = 980.0
 margin_bottom = 400.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
-_sections_unfolded = [ "Anchor", "Grow Direction", "Rect", "Size Flags" ]
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 149.0
-margin_right = 972.0
+margin_right = 980.0
 margin_bottom = 250.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 4 )
 text = "Someone WON!"
 align = 1
 autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Size Flags", "custom_fonts" ]
 
 [connection signal="pressed" from="VBoxContainer/Rematch" to="." method="_on_Rematch_pressed"]
-
 [connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
-
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-
-

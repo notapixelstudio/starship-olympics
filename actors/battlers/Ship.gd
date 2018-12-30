@@ -38,9 +38,9 @@ var dash_cooldown = 0
 onready var player = name
 onready var skin = $Graphics
 
-const bomb_scene = preload('res://actors/battlers/weapons/Bomb.tscn')
-const trail_scene = preload('res://actors/battlers/weapons/Trail.tscn')
-const puzzle_scene = preload('res://actors/battlers/Puzzle.tscn')
+const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
+const trail_scene = preload('res://actors/weapons/Trail.tscn')
+const puzzle_scene = preload("res://actors/battlers/collectables/Collectable.tscn")
 
 var puzzle 
 signal dead

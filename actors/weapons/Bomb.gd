@@ -7,7 +7,7 @@ extends RigidBody2D
 var origin_ship
 var player_id
 
-const Explosion = preload('res://actors/battlers/weapons/Explosion.tscn')
+const Explosion = preload('res://actors/weapons/Explosion.tscn')
 var width
 var height
 const CLEANUP_DISTANCE = 100
