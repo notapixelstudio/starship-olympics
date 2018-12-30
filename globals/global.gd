@@ -8,6 +8,7 @@ const max_lives = 10
 var level
 var array_level
 
+const MAX_PLAYERS = 4
 const SPECIES = ["mantiacs", "robolords", "trixens", "anothers"]
 
 # dictionary of SPECIES with some values (like a bool unlocked)

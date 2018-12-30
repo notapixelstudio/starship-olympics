@@ -1,12 +1,24 @@
 extends Control
 
-func _ready():
-	var num_players = 4
-	for i in range(0,4-num_players):
-		get_node("GridContainer/P"+str(4-i)).hide()
+onready var container = $GridContainer
 
+func get_player_hud(player_index:String):
+	return container.get_node(player_index.to_upper())
 
-
-func _on_Arena_update_score(player_name):
-	get_node("GridContainer/"+str(player_name.to_upper())).get_scores()
+func initialize(num_players:int):
+	# hide who doesn't play
+	for i in range(0,global.MAX_PLAYERS-num_players):
+		var player = "p"+str(global.MAX_PLAYERS-i)
+		get_player_hud(player.to_upper()).hide()
 	
+		
+	show()
+		
+func _ready():
+	visible = false
+	
+func _on_Arena_update_score(player_name:String, points:int):
+	var player_hud = get_player_hud(player_name)
+	player_hud.set_score(points)
+
+
