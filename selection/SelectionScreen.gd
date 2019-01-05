@@ -9,7 +9,9 @@ var available_species : Dictionary
 var ordered_species : Array
 
 signal fight
+signal someone_selected
 
+var selected_index = []
 var players_controls : Array
 var num_players : int = 0
 
@@ -113,6 +115,8 @@ func get_players() -> Array:
 func get_adjacent(operator:int, player_selection : Node):
 	var current_index = ordered_species.find(player_selection.species) 
 	current_index = global.mod(current_index + operator,len(ordered_species))
+	while current_index in selected_index:
+		current_index = global.mod(current_index + operator,len(ordered_species))
 	player_selection.change_species(ordered_species[current_index])
 	
 func _on_joy_connection_changed(device_id, connected):
@@ -132,4 +136,9 @@ func ready_to_fight():
 
 func selected(species:String):
 	var current_index = ordered_species.find(species) 
-	ordered_species[current_index]
+	selected_index.append(current_index)
+	for child in container.get_children():
+		if not child.selected and child.species == species:
+			get_adjacent(+1, child)
+	emit_signal("someone_selected", species)
+	
