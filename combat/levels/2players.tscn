@@ -5,11 +5,10 @@
 [ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=6]
-[ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=7]
+[ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=6]
+[ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=7]
 
 [node name="Arena" instance=ExtResource( 1 )]
-size_multiplier = 2.0
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
 scale = Vector2( 2, 2 )
@@ -30,12 +29,12 @@ editor/display_folded = true
 position = Vector2( 1280, 720 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-battler_template = ExtResource( 6 )
-
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 242, 720 )
 rotation = 0.0
 controls = "kb2"
+battler_template = ExtResource( 6 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 battler_template = ExtResource( 7 )
 
 [connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
