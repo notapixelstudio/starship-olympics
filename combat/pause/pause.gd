@@ -6,7 +6,6 @@ signal reset_signal(level)
 
 onready var menu_buttons = $Buttons
 
-
 var next_level
 
 func _ready():

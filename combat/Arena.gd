@@ -65,7 +65,7 @@ func setup_ships():
 		ship.name = player.name
 		Battlefield.add_child(ship)
 		# connect signals
-		ship.connect("dead", self, "update_score", [ship])
+		ship.connect("dead", self, "update_score", [ship.name])
 		connect("screensize_changed", ship, "update_wraparound")
 	
 func _ready():
@@ -124,15 +124,24 @@ func hud_update(player_id : String, score:int):
 	print("let's update")
 	hud._on_Arena_update_score(player_id, score)
 	
-func update_score(ship: Ship):
-	emit_signal("score_updated", ship.name)
+func update_score(ship_name: String):
+	emit_signal("score_updated", ship_name)
 	yield(get_tree().create_timer(1), "timeout")
-	var player_id = ship.name
+	
+	# respawn
+	var player_id = ship_name
 	for player in SpawnPlayers.get_children():
-		if player.name.to_lower() == ship.name.to_lower():
-			print(ship.controls, " ", ship.battle_template.species_name)
+		if player.name.to_lower() == ship_name.to_lower():
+			var ship = ship_scene.instance()
+			ship.controls = player.controls
+			ship.battle_template = player.battler_template
 			ship.position = player.position
 			ship.rotation = player.rotation
-			ship.alive = true
+			ship.height = height
+			ship.width = width
+			ship.name = player.name
 			Battlefield.add_child(ship)
+			# connect signals
+			ship.connect("dead", self, "update_score", [ship.name])
+			connect("screensize_changed", ship, "update_wraparound")
 			
