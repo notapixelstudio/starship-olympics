@@ -20,12 +20,13 @@ centered = false
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
 apothem = 86.6025
+radius = 100.0
 
 [node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 position = Vector2( 1280, 720 )
 points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
 hollow = true
-offset = 1000
+offset = 200
 width = 2460
 height = 1340
 bevel = 200

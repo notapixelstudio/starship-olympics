@@ -7,6 +7,7 @@ export (PoolVector2Array) var points setget set_points
 export (bool) var hollow setget set_hollow
 
 export (int) var offset setget set_offset
+export (int) var elongation setget set_elongation
 
 var cshapes = []
 
@@ -22,6 +23,11 @@ func set_hollow(h):
 	
 func set_offset(o):
 	offset = o
+	if has_node('Polygon2D'):
+		refresh()
+		
+func set_elongation(e):
+	elongation = e
 	if has_node('Polygon2D'):
 		refresh()
 	
@@ -46,7 +52,8 @@ func refresh():
 			var shape = ConvexPolygonShape2D.new()
 			var a = points[i]
 			var b = points[(i+1) % len(points)]
-			shape.set_points(PoolVector2Array([a,a+a.normalized()*offset,b+b.normalized()*offset,b]))
+			var elo = (b-a).normalized()*elongation
+			shape.set_points(PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo]))
 			cshape.set_shape(shape)
 			add_child(cshape)
 	else:
