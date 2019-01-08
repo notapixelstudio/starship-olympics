@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://combat/interface/PlayerHUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=2]
-[ext_resource path="res://special_scenes/gameover_screen/Counter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/gameover_screen/Death.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/gameover_screen/Collectables.tscn" type="PackedScene" id=4]
 
 [node name="P1" type="MarginContainer"]
 margin_right = 100.0
@@ -33,7 +34,7 @@ margin_top = 28.0
 margin_right = 100.0
 margin_bottom = 78.0
 
-[node name="Collectables" parent="NinePatchRect/Container" instance=ExtResource( 3 )]
+[node name="Collectables2" parent="NinePatchRect/Container" instance=ExtResource( 4 )]
 margin_top = 82.0
 margin_right = 100.0
 margin_bottom = 132.0
