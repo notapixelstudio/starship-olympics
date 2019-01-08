@@ -163,4 +163,5 @@ func _on_DetectionArea_area_entered(area):
 		
 func collect(area:Collectable):
 	emit_signal("collected", self.name, area.player_id)
+	area.queue_free()
 	
