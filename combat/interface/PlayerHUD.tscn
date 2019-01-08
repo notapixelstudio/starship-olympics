@@ -7,11 +7,12 @@
 [node name="P1" type="MarginContainer"]
 margin_right = 100.0
 margin_bottom = 80.0
+rect_min_size = Vector2( 100, 150 )
 script = ExtResource( 1 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_right = 100.0
-margin_bottom = 80.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 92, 80 )
 
 [node name="Container" type="VBoxContainer" parent="NinePatchRect"]

@@ -136,7 +136,7 @@ func die():
 	if alive:
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead")
+		emit_signal("dead", self.name)
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
@@ -162,5 +162,5 @@ func _on_DetectionArea_area_entered(area):
 		collect(area)
 		
 func collect(area:Collectable):
-	emit_signal("collected", area.player_id)
+	emit_signal("collected", self.name, area.player_id)
 	

@@ -55,20 +55,7 @@ func update_spawner(spawner:PlayerSpawner) -> bool:
 	
 func setup_ships():
 	for player in SpawnPlayers.get_children():
-		var ship = ship_scene.instance()
-		ship.controls = player.controls
-		ship.battle_template = player.battler_template
-		ship.position = player.position
-		ship.rotation = player.rotation
-		ship.height = height
-		ship.width = width
-		ship.name = player.name
-		print(ship.name)
-		Battlefield.add_child(ship)
-		# connect signals
-		ship.connect("collected", self, "update_score", [ship.name])
-		ship.connect("dead", self, "update_score", [ship.name, ""])
-		connect("screensize_changed", ship, "update_wraparound")
+		setup_ship(player)
 	
 func _ready():
 	compute_arena_size()
@@ -139,17 +126,19 @@ func update_score(ship_name: String, collectable_owner:String = ""):
 	var player_id = ship_name
 	for player in SpawnPlayers.get_children():
 		if player.name.to_lower() == ship_name.to_lower():
-			var ship = ship_scene.instance()
-			ship.controls = player.controls
-			ship.battle_template = player.battler_template
-			ship.position = player.position
-			ship.rotation = player.rotation
-			ship.height = height
-			ship.width = width
-			ship.name = player.name
-			Battlefield.add_child(ship)
-			# connect signals
-			ship.connect("dead", self, "update_score", [ship.name, null])
-			ship.connect("collected", self, "update_score", [ship.name])
-			connect("screensize_changed", ship, "update_wraparound")
-			
+			setup_ship(player)
+
+func setup_ship(player:PlayerSpawner):
+	var ship = ship_scene.instance()
+	ship.controls = player.controls
+	ship.battle_template = player.battler_template
+	ship.position = player.position
+	ship.rotation = player.rotation
+	ship.height = height
+	ship.width = width
+	ship.name = player.name
+	Battlefield.add_child(ship)
+	# connect signals
+	ship.connect("dead", self, "update_score")
+	ship.connect("collected", self, "update_score")
+	connect("screensize_changed", ship, "update_wraparound")
