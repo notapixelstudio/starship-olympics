@@ -10,7 +10,7 @@ var next_level
 
 func _ready():
 	next_level = global.level
-	connect("reset_signal", get_node('/root/Arena'), "reset")
+	# connect("reset_signal", get_node('/root/Arena'), "reset")
 
 
 func update_score():

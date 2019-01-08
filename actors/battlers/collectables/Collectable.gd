@@ -1,5 +1,6 @@
 extends Area2D
 
+class_name Collectable
 var player_id
 
 onready var skin = $Graphics

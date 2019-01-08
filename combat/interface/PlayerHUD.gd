@@ -3,7 +3,8 @@ extends MarginContainer
 class_name PlayerHUD
 
 onready var player = $NinePatchRect/Container/Label
-onready var score = $NinePatchRect/Container/LivesCounter
+onready var deaths = $NinePatchRect/Container/Deaths
+onready var collectables = $NinePatchRect/Container/Collectables
 
 func _ready():
 	set_player_label()
@@ -15,5 +16,8 @@ func set_player_label():
 func get_scores():
 	pass
 	
-func set_score(points:int):
-	score.set_score(points)
+func set_collectables(points:int):
+	collectables.set_score(points)
+
+func set_deaths(points:int):
+	deaths.set_score(points)

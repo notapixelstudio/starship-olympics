@@ -46,6 +46,7 @@ var puzzle
 signal dead
 signal collectable_released
 signal you_can_go
+signal collected
 
 func update_wraparound(screen_size):
 	# width = screen_size.x
@@ -154,4 +155,12 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_body_exited(body):
 	if body.has_node('DetectorComponent'):
 		body.try_lose_target(self)
+
+func _on_DetectionArea_area_entered(area):
+	if area.has_node("CollectableComponent"):
+		assert(area is Collectable)
+		collect(area)
 		
+func collect(area:Collectable):
+	emit_signal("collected", area.player_id)
+	
