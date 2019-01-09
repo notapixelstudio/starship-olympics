@@ -33,7 +33,7 @@ func initialize(available_species:Dictionary):
 		child.connect("ready_to_fight", self, "ready_to_fight")
 
 		i +=1
-	var controls = assign_controls(2)
+	var controls = assign_controls(1)
 	for control in controls:
 		print(add_controls(control))
 
@@ -120,7 +120,7 @@ func get_adjacent(operator:int, player_selection : Node):
 	player_selection.change_species(ordered_species[current_index])
 	
 func _on_joy_connection_changed(device_id, connected):
-	var joy = "joy"+str(device_id)
+	var joy = "joy"+str(device_id+1)
 	if connected:
 		add_controls(joy)
 	else:

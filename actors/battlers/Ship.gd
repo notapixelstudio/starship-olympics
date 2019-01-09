@@ -147,6 +147,9 @@ func die():
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
 		die()
+	elif area.has_node("CollectableComponent"):
+		assert(area is Collectable)
+		collect(area)
 		
 func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
@@ -159,7 +162,7 @@ func _on_DetectionArea_body_exited(body):
 func _on_DetectionArea_area_entered(area):
 	if area.has_node("CollectableComponent"):
 		assert(area is Collectable)
-		collect(area)
+		#collect(area)
 		
 func collect(area:Collectable):
 	emit_signal("collected", self.name, area.player_id)

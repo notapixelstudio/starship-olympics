@@ -88,7 +88,7 @@ func _unhandled_input(event):
 	if debug_pressed:
 		debug = not debug
 		OS.window_fullscreen = !OS.window_fullscreen
-		DebugNode.visible = debug
+		# DebugNode.visible = debug
 		
 	# reset by command only through debug
 	if event.is_action_pressed('continue') and debug:
@@ -120,7 +120,7 @@ func update_score(ship_name: String, collectable_owner:String = ""):
 		print("collected a ", collectable_owner, "'s by ", ship_name)
 		return
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(3), "timeout")
 	
 	# respawn
 	var player_id = ship_name
