@@ -1,6 +1,6 @@
 tool
 
-extends "res://actors/environments/Wall.gd"
+extends Wall
 
 export (int) var width = 200 setget set_width
 export (int) var height = 200 setget set_height

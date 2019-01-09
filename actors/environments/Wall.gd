@@ -2,6 +2,8 @@ tool
 
 extends StaticBody2D
 
+class_name Wall
+
 export (PoolVector2Array) var points setget set_points
 
 export (bool) var hollow setget set_hollow
