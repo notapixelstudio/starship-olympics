@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/battlers/characters/BattlerTemplate.gd"
 }, {
+"base": "Area2D",
+"class": "Collectable",
+"language": "GDScript",
+"path": "res://actors/battlers/collectables/Collectable.gd"
+}, {
 "base": "Resource",
 "class": "Controls",
 "language": "GDScript",
@@ -61,6 +66,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BattlerTemplate": "",
+"Collectable": "",
 "Controls": "",
 "Explosion": "",
 "InfoPlayer": "",

@@ -44,6 +44,9 @@ const puzzle_scene = preload("res://actors/battlers/collectables/Collectable.tsc
 
 var puzzle 
 signal dead
+signal collectable_released
+signal you_can_go
+signal collected
 
 func update_wraparound(screen_size):
 	# width = screen_size.x
@@ -122,22 +125,24 @@ func fire():
 	
 func releasePuzzle():
 	# Add to Battlefield
-	# using call_deferred in order to aoid the warning (and if the object isn't ready yet
+	# using call_deferred in order to avoid the warning (and if the object isn't ready yet
 	# TODO: yield("dead completed") and then adding and initialize the puzzle)
 	get_parent().call_deferred("add_child", puzzle)
 	puzzle.call_deferred("initialize", battle_template.puzzle_anim, self)
+	emit_signal("collectable_released")
+	yield(self, "collectable_released")
 
 func die():
 	if alive:
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead")
+		emit_signal("dead", self.name)
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
-		releasePuzzle()
 		yield(get_node("sound"), "finished")
-		get_parent().remove_child(self)
+		releasePuzzle()
+		queue_free()
 	
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent'):
@@ -150,4 +155,13 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_body_exited(body):
 	if body.has_node('DetectorComponent'):
 		body.try_lose_target(self)
+
+func _on_DetectionArea_area_entered(area):
+	if area.has_node("CollectableComponent"):
+		assert(area is Collectable)
+		collect(area)
 		
+func collect(area:Collectable):
+	emit_signal("collected", self.name, area.player_id)
+	area.queue_free()
+	

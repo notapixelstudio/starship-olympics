@@ -17,8 +17,12 @@ func initialize(num_players:int):
 func _ready():
 	visible = false
 	
-func _on_Arena_update_score(player_name:String, points:int):
+func _on_Arena_update_score(player_name:String, points:int, collectable_owner: String):
 	var player_hud = get_player_hud(player_name)
-	player_hud.set_score(points)
+	print(player_hud, " for player ", player_name)
+	if collectable_owner:
+		player_hud.set_collectables(points)
+	else:
+		player_hud.set_deaths(points)
 
 
