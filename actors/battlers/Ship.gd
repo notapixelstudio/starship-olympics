@@ -44,6 +44,8 @@ const puzzle_scene = preload("res://actors/battlers/collectables/Collectable.tsc
 
 var puzzle 
 signal dead
+signal stop_invincible
+var invincible : bool 
 
 func update_wraparound(screen_size):
 	# width = screen_size.x
@@ -60,9 +62,13 @@ func _ready():
 	# connect("died", get_node('/root/Arena'), "update_score")
 	skin.add_child(battle_template.anim.instance())
 	skin.initialize()
-	# load battlefield size
 	
-
+	# Invincible for the firs MAX seconds
+	invincible = true
+	skin.invincible()
+	yield(skin, "stop_invincible")
+	invincible = false
+	
 func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
@@ -96,6 +102,8 @@ func control(delta):
 func _process(delta):
 	if not alive:
 		return
+	if invincible:
+		print("You can't shoot")
 	control(delta)
 
 
@@ -128,7 +136,7 @@ func releasePuzzle():
 	puzzle.call_deferred("initialize", battle_template.puzzle_anim, self)
 
 func die():
-	if alive:
+	if alive or not invincible:
 		get_node("sound").play()
 		alive = false
 		emit_signal("dead")

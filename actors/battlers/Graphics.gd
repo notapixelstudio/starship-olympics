@@ -9,6 +9,7 @@ var battler_anim
 
 var position_start = Vector2()
 
+signal stop_invincible
 func initialize():
 	for child in get_children():
 		if child.is_in_group("anim_species"):
@@ -45,3 +46,6 @@ func play_death():
 func appear():
 	anim.play("appear")
 
+func invincible():
+	yield(battler_anim.play_invincible(), "completed")
+	emit_signal("stop_invincible")
