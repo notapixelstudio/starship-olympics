@@ -53,6 +53,7 @@ shape = SubResource( 4 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+bus = "Sound"
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_Ship_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
