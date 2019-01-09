@@ -102,8 +102,6 @@ func control(delta):
 func _process(delta):
 	if not alive:
 		return
-	if invincible:
-		print("You can't shoot")
 	control(delta)
 
 
@@ -136,7 +134,8 @@ func releasePuzzle():
 	puzzle.call_deferred("initialize", battle_template.puzzle_anim, self)
 
 func die():
-	if alive or not invincible:
+	if alive and not invincible:
+		print(invincible)
 		get_node("sound").play()
 		alive = false
 		emit_signal("dead")
