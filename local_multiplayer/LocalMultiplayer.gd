@@ -41,7 +41,11 @@ func combat(selected_players: Array):
 	yield(get_tree().create_timer(0.5), "timeout")
 	add_child(combat)
 
-func update_score(player_id:String):
-	var score = players[player_id].update_death()
-	emit_signal("updated", player_id, score)
+func update_score(player_id:String, collectable_owner:String = ""):
+	var score: int = 0
+	if collectable_owner:
+		score = players[player_id].update_collectables()
+	else:
+		score = players[player_id].update_death()
+	emit_signal("updated", player_id, score, collectable_owner)
 	

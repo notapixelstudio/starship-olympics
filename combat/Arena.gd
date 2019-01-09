@@ -55,18 +55,7 @@ func update_spawner(spawner:PlayerSpawner) -> bool:
 	
 func setup_ships():
 	for player in SpawnPlayers.get_children():
-		var ship = ship_scene.instance()
-		ship.controls = player.controls
-		ship.battle_template = player.battler_template
-		ship.position = player.position
-		ship.rotation = player.rotation
-		ship.height = height
-		ship.width = width
-		ship.name = player.name
-		Battlefield.add_child(ship)
-		# connect signals
-		ship.connect("dead", self, "update_score", [ship])
-		connect("screensize_changed", ship, "update_wraparound")
+		setup_ship(player)
 	
 func _ready():
 	compute_arena_size()
@@ -99,7 +88,7 @@ func _unhandled_input(event):
 	if debug_pressed:
 		debug = not debug
 		OS.window_fullscreen = !OS.window_fullscreen
-		DebugNode.visible = debug
+		# DebugNode.visible = debug
 		
 	# reset by command only through debug
 	if event.is_action_pressed('continue') and debug:
@@ -120,19 +109,36 @@ func get_num_players()->int:
 func _on_background_item_rect_changed():
 	print("changed")
 
-func hud_update(player_id : String, score:int):
-	print("let's update")
-	hud._on_Arena_update_score(player_id, score)
+func hud_update(player_id : String, score:int, collectable_owner:String = ""):
+	print("let's update score for ", player_id, " this score ", str(score))
+	hud._on_Arena_update_score(player_id, score, collectable_owner)
 	
-func update_score(ship: Ship):
-	emit_signal("score_updated", ship.name)
-	yield(get_tree().create_timer(1), "timeout")
-	var player_id = ship.name
+func update_score(ship_name: String, collectable_owner:String = ""):
+	print(ship_name)
+	emit_signal("score_updated", ship_name, collectable_owner)
+	if collectable_owner:
+		print("collected a ", collectable_owner, "'s by ", ship_name)
+		return
+	
+	yield(get_tree().create_timer(3), "timeout")
+	
+	# respawn
+	var player_id = ship_name
 	for player in SpawnPlayers.get_children():
-		if player.name.to_lower() == ship.name.to_lower():
-			print(ship.controls, " ", ship.battle_template.species_name)
-			ship.position = player.position
-			ship.rotation = player.rotation
-			ship.alive = true
-			Battlefield.add_child(ship)
-			
+		if player.name.to_lower() == ship_name.to_lower():
+			setup_ship(player)
+
+func setup_ship(player:PlayerSpawner):
+	var ship = ship_scene.instance()
+	ship.controls = player.controls
+	ship.battle_template = player.battler_template
+	ship.position = player.position
+	ship.rotation = player.rotation
+	ship.height = height
+	ship.width = width
+	ship.name = player.name
+	Battlefield.add_child(ship)
+	# connect signals
+	ship.connect("dead", self, "update_score")
+	ship.connect("collected", self, "update_score")
+	connect("screensize_changed", ship, "update_wraparound")

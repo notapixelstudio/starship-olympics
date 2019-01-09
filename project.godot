@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/battlers/characters/BattlerTemplate.gd"
 }, {
+"base": "Area2D",
+"class": "Collectable",
+"language": "GDScript",
+"path": "res://actors/battlers/collectables/Collectable.gd"
+}, {
 "base": "Resource",
 "class": "Controls",
 "language": "GDScript",
@@ -53,9 +58,15 @@ _global_script_classes=[ {
 "class": "SpeciesSelection",
 "language": "GDScript",
 "path": "res://selection/species/species_selection.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
 "BattlerTemplate": "",
+"Collectable": "",
 "Controls": "",
 "Explosion": "",
 "InfoPlayer": "",
@@ -63,7 +74,8 @@ _global_script_class_icons={
 "PlayerSpawner": "",
 "Ship": "",
 "Species": "",
-"SpeciesSelection": ""
+"SpeciesSelection": "",
+"Wall": ""
 }
 
 [application]
