@@ -140,7 +140,6 @@ func releasePuzzle():
 
 func die():
 	if alive and not invincible:
-		print(invincible)
 		get_node("sound").play()
 		alive = false
 		emit_signal("dead", self.name)
@@ -152,7 +151,7 @@ func die():
 		queue_free()
 	
 func _on_Ship_area_entered(area):
-	if area.has_node('DeadlyComponent'):
+	if area.has_node('DeadlyComponent') and not invincible:
 		die()
 	elif area.has_node("CollectableComponent"):
 		assert(area is Collectable)
@@ -161,7 +160,6 @@ func _on_Ship_area_entered(area):
 func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
-		
 func _on_DetectionArea_body_exited(body):
 	if body.has_node('DetectorComponent'):
 		body.try_lose_target(self)
