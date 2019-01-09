@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "SpeciesSelection",
 "language": "GDScript",
 "path": "res://selection/species/species_selection.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
 "BattlerTemplate": "",
@@ -63,7 +68,8 @@ _global_script_class_icons={
 "PlayerSpawner": "",
 "Ship": "",
 "Species": "",
-"SpeciesSelection": ""
+"SpeciesSelection": "",
+"Wall": ""
 }
 
 [application]
