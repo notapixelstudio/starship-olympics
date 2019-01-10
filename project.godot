@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/battlers/characters/BattlerTemplate.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Bomb",
+"language": "GDScript",
+"path": "res://actors/weapons/Bomb.gd"
+}, {
 "base": "Area2D",
 "class": "Collectable",
 "language": "GDScript",
@@ -66,6 +71,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BattlerTemplate": "",
+"Bomb": "",
 "Collectable": "",
 "Controls": "",
 "Explosion": "",
@@ -81,6 +87,7 @@ _global_script_class_icons={
 [application]
 
 config/name="superstarfighter"
+run/main_scene="res://local_multiplayer/LocalMultiplayer.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -88,6 +95,10 @@ config/icon="res://icon.png"
 persistance="*res://globals/persistance.gd"
 global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
+
+[debug]
+
+gdscript/warnings/unused_class_variable=false
 
 [display]
 

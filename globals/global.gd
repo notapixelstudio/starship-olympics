@@ -27,7 +27,7 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func get_unlocked() -> Dictionary:
-	var available : Dictionary
+	var available : Dictionary  = {}
 	var i = 1
 	for species in SPECIES:
 		if unlocked_species[species]:

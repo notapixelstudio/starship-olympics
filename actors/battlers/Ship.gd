@@ -45,7 +45,6 @@ const puzzle_scene = preload("res://actors/battlers/collectables/Collectable.tsc
 var puzzle 
 signal dead
 signal collectable_released
-signal you_can_go
 signal collected
 
 func update_wraparound(screen_size):
@@ -93,7 +92,7 @@ func _integrate_forces(state):
 	velocity = state.linear_velocity
 	state.set_transform(xform)
 
-func control(delta):
+func control(_delta):
 	pass
 
 func _process(delta):

@@ -4,7 +4,10 @@ const SAVE_PATH ="user://savegame.save"
 var _settings = {}
 
 func _ready():
-	load_game()
+	if load_game():
+		print("correctly load game")
+	else:
+		print("Missing info for the game")
 
 func save_game():
 	var save_dict = {}

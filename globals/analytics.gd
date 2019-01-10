@@ -3,7 +3,7 @@ extends Node
 var start_time = 0
 var this_elapsed_time = 0
 
-func _process(delta):
+func _process(_delta):
 	this_elapsed_time = format_time(OS.get_ticks_msec() - start_time)
 
 func start_elapsed_time():
