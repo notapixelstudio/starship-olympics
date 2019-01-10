@@ -27,3 +27,4 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - tiny planets : [here](https://opengameart.org/content/pixel-planets)
 - icon lock : [here](https://icons8.com/icon/set/lock/all)
 - icons got from [icons8](https://icons8.com) website
+- shield from [opengameart](https://opengameart.org/content/shield-effect)
