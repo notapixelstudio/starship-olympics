@@ -4,7 +4,10 @@ const SAVE_PATH ="user://savegame.save"
 var _settings = {}
 
 func _ready():
-	load_game()
+	if load_game():
+		print("correctly load game")
+	else:
+		print("Missing info for the game")
 
 func save_game():
 	var save_dict = {}
@@ -28,8 +31,7 @@ func save_game():
 	# Write the JSON to the file and save to disk
 	save_file.close()
 
-func load_game():
-	print("Loading")
+func load_game() -> bool:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var save_file = File.new()
 	if not save_file.file_exists(SAVE_PATH):
@@ -49,4 +51,5 @@ func load_game():
 		# We find the right node to load node_data into and call its load method
 		get_node(node_path).load_state(node_data)
 	save_file.close()
+	print(data)
 	return true
