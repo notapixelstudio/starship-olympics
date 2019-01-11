@@ -42,16 +42,17 @@ func compute_arena_size():
 	emit_signal("screensize_changed", Vector2(width, height))
 	return true
 
-func update_spawner(spawner:PlayerSpawner) -> bool:
+func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 	if not spawner:
 		return false
-	for player in SpawnPlayers.get_children():
-		if player.name.to_lower() == spawner.name.to_lower():
-			player.controls = spawner.controls
-			player.battler_template = spawner.battler_template
-			print(player.controls, " ", player.battler_template.species_name)
-			return true
-	return false
+	var player = SpawnPlayers.get_child(index)
+	if not player :
+		return false
+	player.name = spawner.name.to_lower()
+	player.controls = spawner.controls
+	player.battler_template = spawner.battler_template
+	print(player.controls, " ", player.battler_template.species_name)
+	return true
 	
 func setup_ships():
 	for player in SpawnPlayers.get_children():
@@ -77,11 +78,13 @@ func _ready():
 	
 	
 	# set the player spawners
+	var i = 0
 	for spawner in spawners:
-		update_spawner(spawner)
+		update_spawner(spawner,i)
+		i+=1
 	setup_ships()
 	# initialize HUD
-	hud.initialize(get_num_players())
+	hud.initialize(spawners)
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")

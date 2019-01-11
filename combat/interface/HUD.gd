@@ -5,11 +5,13 @@ onready var container = $GridContainer
 func get_player_hud(player_index:String):
 	return container.get_node(player_index.to_upper())
 
-func initialize(num_players:int):
+func initialize(players:Array):
 	# hide who doesn't play
-	for i in range(0,global.MAX_PLAYERS-num_players):
-		var player = "p"+str(global.MAX_PLAYERS-i)
-		get_player_hud(player.to_upper()).hide()
+	var i = 0
+	for player in players:
+		assert(player is PlayerSpawner)
+		container.get_node(player.name.to_upper()).show()
+		
 	
 		
 	show()

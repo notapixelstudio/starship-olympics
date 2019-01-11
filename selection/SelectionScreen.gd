@@ -43,9 +43,9 @@ var debug_joy = 0
 func _unhandled_input(event):
 	if event.is_action_pressed("debug"):
 		Input.emit_signal("joy_connection_changed", debug_joy+1, true)
-		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS)
+		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS-1)
 	elif event.is_action_pressed("debug_cancel"):
-		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS)
+		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS-1)
 		Input.emit_signal("joy_connection_changed", debug_joy+1, false)
 
 # end debug
@@ -128,7 +128,7 @@ func _on_joy_connection_changed(device_id, connected):
 
 func ready_to_fight():
 	var players = get_players()
-	print(players)
+	print("players who are going to fight are.. " , players)
 	if len(players) >= MIN_PLAYERS:
 		emit_signal("fight", players)
 	else:

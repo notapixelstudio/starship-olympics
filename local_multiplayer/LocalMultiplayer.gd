@@ -24,6 +24,7 @@ func combat(selected_players: Array):
 	var spawners = []
 	for player in selected_players:
 		assert(player is Species)
+		print(player)
 		var spawner = PlayerSpawner.new()
 		spawner.controls = player.controls 
 		spawner.battler_template = player.battler_template
