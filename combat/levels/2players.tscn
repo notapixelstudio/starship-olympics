@@ -18,7 +18,7 @@ centered = false
 
 [node name="BeveledRectWall2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 position = Vector2( 1600, 920 )
-scale = Vector2( 1.3, 1.3 )
+scale = Vector2( 1.2, 1.2 )
 points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
 hollow = true
 offset = 200
@@ -28,7 +28,11 @@ bevel = 200
 
 [node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 1600, 920 )
+position = Vector2( 880, 910 )
+
+[node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 4 )]
+editor/display_folded = true
+position = Vector2( 2190, 910 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 200, 900 )
