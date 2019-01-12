@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=2]
-
+[ext_resource path="res://animations/Invincible.tres" type="Animation" id=3]
 
 [sub_resource type="Gradient" id=1]
 
@@ -11,242 +11,113 @@ colors = PoolColorArray( 1, 1, 1, 0.77498, 0.521505, 0.966356, 1, 0.80498, 0.241
 
 [sub_resource type="GradientTexture" id=2]
 
-flags = 4
 gradient = SubResource( 1 )
-width = 2048
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="Curve" id=3]
 
-min_value = 0.0
-max_value = 1.0
-bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.021267, 0.31667 ), -0.982902, -0.982902, 0, 0, Vector2( 1, 0.115879 ), 0.117166, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=4]
 
-flags = 4
-width = 2048
 curve = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=5]
 
-render_priority = 0
-trail_divisor = 1
 emission_shape = 4
 emission_point_count = 1
 flag_align_y = true
-flag_rotate_y = false
 flag_disable_z = true
-spread = 45.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
-initial_velocity_random = 0.0
 angular_velocity = 0.0
-angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
 scale = 1.6
 scale_random = 0.5
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Angle", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Resource", "Scale", "Trail" ]
 
 [sub_resource type="Curve" id=6]
 
 min_value = -360.0
 max_value = 360.0
-bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=7]
 
-flags = 4
-width = 2048
 curve = SubResource( 6 )
 
 [sub_resource type="Curve" id=8]
 
-min_value = 0.0
-max_value = 1.0
-bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.223774, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.336574, 0.88501 ), 0.0, 0.0, 0, 0, Vector2( 0.421839, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.543521, 0.792236 ), 0.0, 0.0, 0, 0, Vector2( 0.663426, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.785108, 0.615967 ), 0.0, 0.0, 0, 0, Vector2( 0.889914, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=9]
 
-flags = 4
-width = 2048
 curve = SubResource( 8 )
 
 [sub_resource type="ParticlesMaterial" id=10]
 
-render_priority = 0
-trail_divisor = 1
 emission_shape = 4
 emission_point_count = 1
-flag_align_y = false
-flag_rotate_y = false
 flag_disable_z = true
-spread = 45.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
-initial_velocity_random = 0.0
 angular_velocity = 0.0
-angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
 angle_curve = SubResource( 7 )
 scale = 22.0
-scale_random = 0.0
 scale_curve = SubResource( 9 )
-color = Color( 1, 1, 1, 1 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Angle", "Emission Shape", "Flags", "Gravity", "Scale" ]
 
 [sub_resource type="Animation" id=11]
 
 resource_name = "appear"
-length = 1.0
-loop = false
-step = 0.1
 
 [sub_resource type="Animation" id=12]
 
 resource_name = "idle"
-length = 1.0
-loop = false
-step = 0.1
 
 [node name="Graphics" type="Position2D"]
-
 script = ExtResource( 1 )
 
-[node name="Particles2D" type="Particles2D" parent="." index="0"]
-
+[node name="Particles2D" type="Particles2D" parent="."]
 show_behind_parent = true
 position = Vector2( -32, 0 )
-emitting = true
 amount = 512
 lifetime = 5.0
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
-draw_order = 0
 process_material = SubResource( 5 )
 texture = ExtResource( 2 )
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
-[node name="TrailParticles" type="Particles2D" parent="." index="1"]
-
+[node name="TrailParticles" type="Particles2D" parent="."]
 show_behind_parent = true
 emitting = false
 amount = 200
 lifetime = 1.2
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
-draw_order = 0
 process_material = SubResource( 10 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
-[node name="ChargeBar" type="Node2D" parent="." index="2"]
-
+[node name="ChargeBar" type="Node2D" parent="."]
 editor/display_folded = true
 visible = false
 position = Vector2( -32, 0 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="ChargeAxis" type="Line2D" parent="ChargeBar" index="0"]
-
+[node name="ChargeAxis" type="Line2D" parent="ChargeBar"]
 visible = false
 points = PoolVector2Array( 0, 0, -100, 0 )
 width = 2.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 221806672
-sharp_limit = 2.0
-round_precision = 8
 
-[node name="Charge" type="Line2D" parent="ChargeBar" index="1"]
-
+[node name="Charge" type="Line2D" parent="ChargeBar"]
 points = PoolVector2Array( 0, 0, 0, 0 )
-width = 10.0
 default_color = Color( 1, 0.375, 0, 1 )
 texture_mode = 221806672
-sharp_limit = 2.0
-round_precision = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Invincible = ExtResource( 3 )
 anims/appear = SubResource( 11 )
 anims/idle = SubResource( 12 )
-blend_times = [  ]
 
-[node name="Tween" type="Tween" parent="." index="4"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
+[node name="Tween" type="Tween" parent="."]
 
