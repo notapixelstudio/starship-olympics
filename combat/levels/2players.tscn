@@ -9,14 +9,16 @@
 [ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=7]
 
 [node name="Arena" instance=ExtResource( 1 )]
+size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 2 )
 centered = false
 
 [node name="BeveledRectWall2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1280, 720 )
+position = Vector2( 1600, 920 )
+scale = Vector2( 1.2, 1.2 )
 points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
 hollow = true
 offset = 200
@@ -26,15 +28,20 @@ bevel = 200
 
 [node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 1280, 720 )
+position = Vector2( 880, 910 )
+
+[node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 4 )]
+editor/display_folded = true
+position = Vector2( 2190, 910 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 242, 720 )
+position = Vector2( 200, 900 )
 rotation = 0.0
 controls = "kb2"
 battler_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2900, 900 )
 battler_template = ExtResource( 7 )
 
 [connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

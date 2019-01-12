@@ -105,7 +105,7 @@ func _process(delta):
 	if not alive:
 		return
 	control(delta)
-
+	
 
 func fire():
 	"""
