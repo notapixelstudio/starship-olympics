@@ -9,17 +9,19 @@ var queen = null
 
 var game_over:bool = false
 
-func init(players:Array):
+func initialize(players:Array):
 	for player in players:
-		scores[player] = 0
+		scores[player.name] = 0
 		
 func crown_taken(player_id:String):
 	queen = player_id
+	print("CROWN TAKEN - Queen ship is now " + player_id)
 	
 func crown_lost():
 	queen = null
+	print("CROWN LOST")
 	
-func _process(delta:float):
+func update(delta:float):
 	if game_over:
 		return
 		

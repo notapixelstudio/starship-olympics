@@ -20,11 +20,16 @@ onready var camera = $Camera
 onready var hud = $Pause/HUD
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
+const crown_scene = preload("res://combat/collectables/Collectable.tscn")
 
 signal screensize_changed(screensize)
 signal score_updated
 
 var spawners = []
+
+var CrownMode = load("res://combat/modes/CrownMode.gd")
+var game_mode
+var crown
 
 func initialize(players:Array) -> void:
 	spawners = []
@@ -80,8 +85,20 @@ func _ready():
 	for spawner in spawners:
 		update_spawner(spawner)
 	setup_ships()
+	
+	# set the game mode
+	game_mode = CrownMode.new()
+	var player_ids = []
+	game_mode.initialize(SpawnPlayers.get_children())
+	
+	# maintain a reference to the crown
+	crown = $Battlefield/Crown
+	
 	# initialize HUD
-	hud.initialize(get_num_players())
+	hud.initialize(game_mode)
+	
+func _process(delta):
+	game_mode.update(delta)
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -113,12 +130,12 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	print("let's update score for ", player_id, " this score ", str(score))
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 	
-func update_score(ship_name: String, collectable_owner:String = ""):
-	print(ship_name)
-	emit_signal("score_updated", ship_name, collectable_owner)
-	if collectable_owner:
-		print("collected a ", collectable_owner, "'s by ", ship_name)
-		return
+func ship_just_died(ship_name: String, ship_position:Vector2):
+	# check if we need to lose the crown
+	if ship_name == game_mode.queen:
+		game_mode.crown_lost()
+		$Battlefield.add_child(crown)
+		#crown.position = ship_position
 	
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -127,6 +144,10 @@ func update_score(ship_name: String, collectable_owner:String = ""):
 	for player in SpawnPlayers.get_children():
 		if player.name.to_lower() == ship_name.to_lower():
 			setup_ship(player)
+			
+func crown_taken(ship_name: String):
+	game_mode.crown_taken(ship_name)
+	$Battlefield.remove_child(crown)
 
 func setup_ship(player:PlayerSpawner):
 	var ship = ship_scene.instance()
@@ -139,6 +160,6 @@ func setup_ship(player:PlayerSpawner):
 	ship.name = player.name
 	Battlefield.add_child(ship)
 	# connect signals
-	ship.connect("dead", self, "update_score")
-	ship.connect("collected", self, "update_score")
+	ship.connect("dead", self, "ship_just_died")
+	ship.connect("collected", self, "crown_taken")
 	connect("screensize_changed", ship, "update_wraparound")

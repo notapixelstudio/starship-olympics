@@ -9,8 +9,7 @@
 [ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=7]
 [ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=8]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
-size_multiplier = 2.5
+[node name="Arena" instance=ExtResource( 1 )]
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
 scale = Vector2( 2.5, 2.5 )
@@ -35,7 +34,7 @@ position = Vector2( 880, 910 )
 editor/display_folded = true
 position = Vector2( 2190, 910 )
 
-[node name="Collectable" parent="Battlefield" index="4" instance=ExtResource( 5 )]
+[node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 5 )]
 position = Vector2( 1600, 920 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]

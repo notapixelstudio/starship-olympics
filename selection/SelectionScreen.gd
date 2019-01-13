@@ -33,7 +33,7 @@ func initialize(available_species:Dictionary):
 		child.connect("ready_to_fight", self, "ready_to_fight")
 
 		i +=1
-	var controls = assign_controls(0)
+	var controls = assign_controls(2)
 	for control in controls:
 		print(add_controls(control))
 

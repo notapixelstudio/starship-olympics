@@ -130,7 +130,7 @@ func die():
 	if alive and not invincible:
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead", self.name)
+		emit_signal("dead", self.name, self.position)
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
@@ -157,5 +157,4 @@ func _on_DetectionArea_area_entered(area):
 		#collect(area)
 
 func collect(area:Collectable):
-	emit_signal("collected", self.name, area.player_id)
-	area.queue_free()
+	emit_signal("collected", self.name)
