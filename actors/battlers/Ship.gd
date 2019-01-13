@@ -157,4 +157,5 @@ func _on_DetectionArea_area_entered(area):
 		#collect(area)
 
 func collect(area:Collectable):
-	emit_signal("collected", self.name)
+	if alive:
+		emit_signal("collected", self.name)

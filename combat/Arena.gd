@@ -128,8 +128,6 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 	
 func ship_just_died(ship_name: String, ship_position:Vector2):
-	yield(get_tree().create_timer(0.5), "timeout")
-	
 	# check if we need to lose the crown
 	if ship_name == game_mode.queen:
 		game_mode.crown_lost()
