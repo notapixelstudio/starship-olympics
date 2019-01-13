@@ -29,7 +29,7 @@ var spawners = []
 
 var CrownMode = load("res://combat/modes/CrownMode.gd")
 var game_mode
-var crown
+var crown_outside_game = null
 
 func initialize(players:Array) -> void:
 	spawners = []
@@ -91,9 +91,6 @@ func _ready():
 	var player_ids = []
 	game_mode.initialize(SpawnPlayers.get_children())
 	
-	# maintain a reference to the crown
-	crown = $Battlefield/Crown
-	
 	# initialize HUD
 	hud.initialize(game_mode)
 	
@@ -131,12 +128,15 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 	
 func ship_just_died(ship_name: String, ship_position:Vector2):
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	# check if we need to lose the crown
 	if ship_name == game_mode.queen:
 		game_mode.crown_lost()
-		$Battlefield.add_child(crown)
-		#crown.position = ship_position
-	
+		crown_outside_game.position = ship_position
+		$Battlefield.add_child(crown_outside_game)
+		crown_outside_game = null
+		
 	yield(get_tree().create_timer(3), "timeout")
 	
 	# respawn
@@ -147,7 +147,8 @@ func ship_just_died(ship_name: String, ship_position:Vector2):
 			
 func crown_taken(ship_name: String):
 	game_mode.crown_taken(ship_name)
-	$Battlefield.remove_child(crown)
+	crown_outside_game = $Battlefield/Crown
+	$Battlefield.remove_child($Battlefield/Crown)
 
 func setup_ship(player:PlayerSpawner):
 	var ship = ship_scene.instance()
