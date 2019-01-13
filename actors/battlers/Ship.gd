@@ -40,9 +40,7 @@ onready var skin = $Graphics
 
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/weapons/Trail.tscn')
-const puzzle_scene = preload("res://actors/battlers/collectables/Collectable.tscn")
 
-var puzzle 
 signal dead
 signal stop_invincible
 var invincible : bool
@@ -59,7 +57,6 @@ func initialize():
 	
 func _ready():
 	species = "another"
-	puzzle = puzzle_scene.instance()
 	# let's connect this when creating the instance
 	# connect("died", get_node('/root/Arena'), "update_score")
 	skin.add_child(battle_template.anim.instance())
@@ -128,14 +125,6 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
-func releasePuzzle():
-	# Add to Battlefield
-	# using call_deferred in order to avoid the warning (and if the object isn't ready yet
-	# TODO: yield("dead completed") and then adding and initialize the puzzle)
-	get_parent().call_deferred("add_child", puzzle)
-	puzzle.call_deferred("initialize", battle_template.puzzle_anim, self)
-	emit_signal("collectable_released")
-	yield(self, "collectable_released")
 
 func die():
 	if alive and not invincible:
@@ -146,7 +135,6 @@ func die():
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")
-		releasePuzzle()
 		queue_free()
 	
 func _on_Ship_area_entered(area):
