@@ -28,8 +28,13 @@ func update(delta:float):
 	time_left -= delta
 	
 	if time_left <= 0:
-		# TODO find the player with the highest score
-		print("Time's up. Game over.")
+		var best_score = 0
+		var best_player = null
+		for player in scores.keys():
+			if scores[player] >= best_score:
+				best_player = player
+				best_score = scores[player]
+		print("Time's up. Game over. " + best_player + ' wins.')
 		game_over = true
 		
 	if queen != null:
