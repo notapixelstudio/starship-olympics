@@ -1,9 +1,9 @@
 extends Node
 
-const TIME_LEFT:float = 5*60.0 # 5 minutes
+const TIME_LEFT:float = 90.0
 var time_left:float = TIME_LEFT
 
-const TARGET_SCORE:float = 2*60.0 # 2 minutes
+const TARGET_SCORE:float = 30.0
 var scores:Dictionary = {}
 var queen = null
 
