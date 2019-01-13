@@ -3,7 +3,7 @@ tool
 
 class_name Collectable
 
-var player_id
+var player_id:String = ""
 export var puzzle_anim : PackedScene 
 
 onready var skin = $Graphics
