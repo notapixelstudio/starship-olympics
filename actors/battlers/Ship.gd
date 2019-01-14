@@ -35,6 +35,8 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
+var queen:bool = false
+
 onready var player = name
 onready var skin = $Graphics
 
@@ -103,6 +105,9 @@ func _process(delta):
 		return
 	control(delta)
 	
+	# keep the crown up
+	$Crown.rotation = -rotation
+	
 
 func fire():
 	"""
@@ -137,6 +142,10 @@ func die():
 		yield(get_node("sound"), "finished")
 		queue_free()
 	
+func set_queen(value):
+	queen = value
+	$Crown.visible = queen
+	
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent') and not invincible:
 		die()
@@ -158,4 +167,4 @@ func _on_DetectionArea_area_entered(area):
 
 func collect(area:Collectable):
 	if alive:
-		emit_signal("collected", self.name)
+		emit_signal("collected", self)

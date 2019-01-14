@@ -5,7 +5,7 @@ class_name CrownMode
 const TIME_LEFT:float = 90.0
 var time_left:float = TIME_LEFT
 
-const TARGET_SCORE:float = 3.0
+const TARGET_SCORE:float = 30.0
 var scores:Dictionary = {}
 var queen = null
 
@@ -17,9 +17,10 @@ func initialize(players:Array):
 	for player in players:
 		scores[player.name] = 0
 		
-func crown_taken(player_id:String):
-	queen = player_id
-	print("CROWN TAKEN - Queen ship is now " + player_id)
+func crown_taken(ship):
+	queen = ship
+	queen.set_queen(true)
+	print("CROWN TAKEN - Queen ship is now " + queen.name)
 	
 func crown_lost():
 	queen = null
@@ -42,9 +43,9 @@ func update(delta:float):
 		game_over = true
 		
 	if queen != null:
-		scores[queen] += delta
+		scores[queen.name] += delta
 		
-		if scores[queen] >= TARGET_SCORE:
-			print(queen + " wins.")
+		if scores[queen.name] >= TARGET_SCORE:
+			print(queen.name + " wins.")
 			game_over = true
-			emit_signal("game_over", queen, scores)
+			emit_signal("game_over", queen.name, scores)
