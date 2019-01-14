@@ -21,6 +21,10 @@ func initialize(_game_mode):
 		bar.player = player
 		
 func _process(_delta):
+	# update time left
+	$TimeLeft.text = str(int(floor(game_mode.time_left)))
+	
+	# update scores
 	for bar in $Bars.get_children():
 		bar.set_value(game_mode.scores[bar.player.name])
 		
