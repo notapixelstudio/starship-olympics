@@ -56,8 +56,8 @@ func update_score(player_id:String, collectable_owner:String = ""):
 	emit_signal("updated", player_id, score, collectable_owner)
 
 func gameover(winner:String, scores:Dictionary):
-  get_tree().paused = true
-  var players_scores = {}
+	get_tree().paused = true
+	var players_scores = {}
 	for player in players:
 		var info_player = players[player]
 		info_player.score = float(scores[player])
