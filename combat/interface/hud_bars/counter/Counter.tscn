@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://interface/counter/label_bg.png" type="Texture" id=1]
+[ext_resource path="res://interface/counter/counter.gd" type="Script" id=2]
+[ext_resource path="res://assets/tiles/spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://interface/theme/default_theme.tres" type="Theme" id=4]
+
+[node name="Counter" type="NinePatchRect"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 141.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Axis Stretch", "Patch Margin", "Rect", "Size Flags", "custom_constants" ]
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 98.4835, 36.5986 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 509, 97, 19, 16 )
+_sections_unfolded = [ "Region", "Transform", "texture" ]
+
+[node name="Number" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -40.0
+margin_right = 78.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 4 )
+text = "0/13"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
