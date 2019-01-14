@@ -1,7 +1,7 @@
 extends Node
 
 onready var selection_screen = $SelectionScreen
-onready var gameover_screen = $GameOverScreen
+onready var gameover_screen = $GameOver/GameOverScreen
 const combat_scene = "res://combat/levels/"
 var combat = null
 
@@ -56,12 +56,19 @@ func update_score(player_id:String, collectable_owner:String = ""):
 	emit_signal("updated", player_id, score, collectable_owner)
 
 func gameover(winner:String, scores:Dictionary):
-	combat.queue_free()
-	var players_scores = {}
+  get_tree().paused = true
+  var players_scores = {}
 	for player in players:
 		var info_player = players[player]
 		info_player.score = float(scores[player])
 		players_scores[info_player.id] = info_player.to_dict()
 	gameover_screen.initialize(winner, players_scores)
 	gameover_screen.visible = true
+	gameover_screen.raise()
+	yield(get_tree().create_timer(10), "timeout")
 	
+
+func _on_GameOverScreen_rematch():
+	get_tree().paused = false
+	combat.queue_free()
+	get_tree().reload_current_scene()
