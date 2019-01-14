@@ -20,11 +20,8 @@ centered = false
 [node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 position = Vector2( 1600, 970 )
 
-[node name="Field" type="Node2D" parent="Battlefield" index="2"]
-position = Vector2( 0, 50 )
-
-[node name="OutsideWall" parent="Battlefield/Field" index="0" instance=ExtResource( 4 )]
-position = Vector2( 1600, 900 )
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+position = Vector2( 1600, 950 )
 points = PoolVector2Array( -1500, -375, -1100, -775, 1100, -775, 1500, -375, 1500, 375, 1100, 775, -1100, 775, -1500, 375 )
 hollow = true
 offset = 200
@@ -32,28 +29,28 @@ width = 3000
 height = 1550
 bevel = 400
 
-[node name="LeftOctagonWall" parent="Battlefield/Field" index="1" instance=ExtResource( 4 )]
-position = Vector2( 900, 900 )
+[node name="LeftOctagonWall" parent="Battlefield" index="3" instance=ExtResource( 4 )]
+position = Vector2( 900, 950 )
 points = PoolVector2Array( -200, -100, -100, -200, 100, -200, 200, -100, 200, 100, 100, 200, -100, 200, -200, 100 )
 width = 400
 height = 400
 bevel = 100
 
-[node name="RightOctagonWall" parent="Battlefield/Field" index="2" instance=ExtResource( 4 )]
-position = Vector2( 2300, 900 )
+[node name="RightOctagonWall" parent="Battlefield" index="4" instance=ExtResource( 4 )]
+position = Vector2( 2300, 950 )
 points = PoolVector2Array( -200, -100, -100, -200, 100, -200, 200, -100, 200, 100, 100, 200, -100, 200, -200, 100 )
 width = 400
 height = 400
 bevel = 100
 
-[node name="TopRectWall" parent="Battlefield/Field" index="3" instance=ExtResource( 5 )]
-position = Vector2( 1600, 400 )
+[node name="TopRectWall" parent="Battlefield" index="5" instance=ExtResource( 5 )]
+position = Vector2( 1600, 450 )
 points = PoolVector2Array( -75, -75, 75, -75, 75, 75, -75, 75 )
 width = 150
 height = 150
 
-[node name="BottomRectWall" parent="Battlefield/Field" index="4" instance=ExtResource( 5 )]
-position = Vector2( 1600, 1400 )
+[node name="BottomRectWall" parent="Battlefield" index="6" instance=ExtResource( 5 )]
+position = Vector2( 1600, 1450 )
 points = PoolVector2Array( -75, -75, 75, -75, 75, 75, -75, 75 )
 width = 150
 height = 150
