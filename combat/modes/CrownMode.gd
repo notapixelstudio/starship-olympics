@@ -1,5 +1,7 @@
 extends Node
 
+class_name CrownMode
+
 const TIME_LEFT:float = 90.0
 var time_left:float = TIME_LEFT
 
@@ -8,6 +10,8 @@ var scores:Dictionary = {}
 var queen = null
 
 var game_over:bool = false
+
+signal game_over
 
 func initialize(players:Array):
 	for player in players:

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://selection/interface/Command.gd"
 }, {
+"base": "Node",
+"class": "CrownMode",
+"language": "GDScript",
+"path": "res://combat/modes/CrownMode.gd"
+}, {
 "base": "Area2D",
 "class": "Explosion",
 "language": "GDScript",
@@ -74,6 +79,7 @@ _global_script_class_icons={
 "Bomb": "",
 "Collectable": "",
 "Controls": "",
+"CrownMode": "",
 "Explosion": "",
 "InfoPlayer": "",
 "PlayerHUD": "",

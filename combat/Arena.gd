@@ -20,14 +20,12 @@ onready var camera = $Camera
 onready var hud = $Pause/HUD
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
-const crown_scene = preload("res://combat/collectables/Collectable.tscn")
 
 signal screensize_changed(screensize)
 signal score_updated
 
 var spawners = []
 
-var CrownMode = load("res://combat/modes/CrownMode.gd")
 var game_mode
 var crown_outside_game = null
 
