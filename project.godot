@@ -22,12 +22,17 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Collectable",
 "language": "GDScript",
-"path": "res://actors/battlers/collectables/Collectable.gd"
+"path": "res://combat/collectables/Collectable.gd"
 }, {
 "base": "Resource",
 "class": "Controls",
 "language": "GDScript",
 "path": "res://selection/interface/Command.gd"
+}, {
+"base": "Node",
+"class": "CrownMode",
+"language": "GDScript",
+"path": "res://combat/modes/CrownMode.gd"
 }, {
 "base": "Area2D",
 "class": "Explosion",
@@ -74,6 +79,7 @@ _global_script_class_icons={
 "Bomb": "",
 "Collectable": "",
 "Controls": "",
+"CrownMode": "",
 "Explosion": "",
 "InfoPlayer": "",
 "PlayerHUD": "",
