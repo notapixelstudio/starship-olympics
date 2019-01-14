@@ -18,13 +18,12 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="BeveledRectWall2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1600, 920 )
-scale = Vector2( 1.2, 1.2 )
-points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
+position = Vector2( 1600, 950 )
+points = PoolVector2Array( -1550, -600, -1350, -800, 1350, -800, 1550, -600, 1550, 600, 1350, 800, -1350, 800, -1550, 600 )
 hollow = true
 offset = 200
-width = 2460
-height = 1340
+width = 3100
+height = 1600
 bevel = 200
 
 [node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
