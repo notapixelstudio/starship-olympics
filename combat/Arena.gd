@@ -128,13 +128,16 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	
 func ship_just_died(ship_name: String, ship_position:Vector2):
 	# check if we need to lose the crown
-	if ship_name == game_mode.queen.name:
+	if game_mode.queen != null and ship_name == game_mode.queen.name:
 		game_mode.crown_lost()
 		crown_outside_game.position = ship_position
 		$Battlefield.add_child(crown_outside_game)
 		crown_outside_game = null
 		
 	yield(get_tree().create_timer(3), "timeout")
+	
+	if game_mode.game_over:
+		return
 	
 	# respawn
 	var player_id = ship_name
