@@ -2,9 +2,9 @@
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
-[ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/RectWall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=7]
 [ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=8]
@@ -17,34 +17,55 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="BeveledRectWall2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1550, -600, -1350, -800, 1350, -800, 1550, -600, 1550, 600, 1350, 800, -1350, 800, -1550, 600 )
+[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1600, 970 )
+
+[node name="Field" type="Node2D" parent="Battlefield" index="2"]
+position = Vector2( 0, 50 )
+
+[node name="OutsideWall" parent="Battlefield/Field" index="0" instance=ExtResource( 4 )]
+position = Vector2( 1600, 900 )
+points = PoolVector2Array( -1500, -375, -1100, -775, 1100, -775, 1500, -375, 1500, 375, 1100, 775, -1100, 775, -1500, 375 )
 hollow = true
 offset = 200
-width = 3100
-height = 1600
-bevel = 200
+width = 3000
+height = 1550
+bevel = 400
 
-[node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
-editor/display_folded = true
-position = Vector2( 880, 910 )
+[node name="LeftOctagonWall" parent="Battlefield/Field" index="1" instance=ExtResource( 4 )]
+position = Vector2( 900, 900 )
+points = PoolVector2Array( -200, -100, -100, -200, 100, -200, 200, -100, 200, 100, 100, 200, -100, 200, -200, 100 )
+width = 400
+height = 400
+bevel = 100
 
-[node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 4 )]
-editor/display_folded = true
-position = Vector2( 2190, 910 )
+[node name="RightOctagonWall" parent="Battlefield/Field" index="2" instance=ExtResource( 4 )]
+position = Vector2( 2300, 900 )
+points = PoolVector2Array( -200, -100, -100, -200, 100, -200, 200, -100, 200, 100, 100, 200, -100, 200, -200, 100 )
+width = 400
+height = 400
+bevel = 100
 
-[node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 5 )]
-position = Vector2( 1600, 920 )
+[node name="TopRectWall" parent="Battlefield/Field" index="3" instance=ExtResource( 5 )]
+position = Vector2( 1600, 400 )
+points = PoolVector2Array( -75, -75, 75, -75, 75, 75, -75, 75 )
+width = 150
+height = 150
+
+[node name="BottomRectWall" parent="Battlefield/Field" index="4" instance=ExtResource( 5 )]
+position = Vector2( 1600, 1400 )
+points = PoolVector2Array( -75, -75, 75, -75, 75, 75, -75, 75 )
+width = 150
+height = 150
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 200, 900 )
+position = Vector2( 200, 950 )
 rotation = 0.0
 controls = "kb2"
 battler_template = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2900, 900 )
+position = Vector2( 3000, 950 )
 battler_template = ExtResource( 8 )
 
 [connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
