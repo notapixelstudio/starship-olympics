@@ -11,6 +11,7 @@ signal updated
 
 func setup_player(current_player : PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
+	info_player.id = current_player.name
 	info_player.controls = current_player.controls
 	info_player.species = current_player.battler_template.species_name
 	return info_player
@@ -55,8 +56,13 @@ func update_score(player_id:String, collectable_owner:String = ""):
 	emit_signal("updated", player_id, score, collectable_owner)
 
 func gameover(winner:String, scores:Dictionary):
-	get_tree().paused = true
-	gameover_screen.initialize(winner, scores)
+  get_tree().paused = true
+  var players_scores = {}
+	for player in players:
+		var info_player = players[player]
+		info_player.score = float(scores[player])
+		players_scores[info_player.id] = info_player.to_dict()
+	gameover_screen.initialize(winner, players_scores)
 	gameover_screen.visible = true
 	gameover_screen.raise()
 	yield(get_tree().create_timer(10), "timeout")
