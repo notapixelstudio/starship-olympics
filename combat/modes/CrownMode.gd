@@ -5,7 +5,7 @@ class_name CrownMode
 const TIME_LEFT:float = 90.0
 var time_left:float = TIME_LEFT
 
-const TARGET_SCORE:float = 30.0
+const TARGET_SCORE:float = 3.0
 var scores:Dictionary = {}
 var queen = null
 
@@ -47,3 +47,4 @@ func update(delta:float):
 		if scores[queen] >= TARGET_SCORE:
 			print(queen + " wins.")
 			game_over = true
+			emit_signal("game_over", queen, scores)

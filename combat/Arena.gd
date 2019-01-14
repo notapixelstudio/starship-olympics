@@ -22,7 +22,7 @@ onready var hud = $Pause/HUD
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 
 signal screensize_changed(screensize)
-signal score_updated
+signal gameover
 
 var spawners = []
 
@@ -86,6 +86,7 @@ func _ready():
 	
 	# set the game mode
 	game_mode = CrownMode.new()
+	game_mode.connect("game_over", self, "gameover")
 	var player_ids = []
 	game_mode.initialize(SpawnPlayers.get_children())
 	
@@ -146,6 +147,10 @@ func crown_taken(ship_name: String):
 	crown_outside_game = $Battlefield/Crown
 	$Battlefield.remove_child($Battlefield/Crown)
 
+func gameover(winner:String, scores:Dictionary):
+	print("gameover")
+	emit_signal("gameover", winner, scores)
+	
 func setup_ship(player:PlayerSpawner):
 	var ship = ship_scene.instance()
 	ship.controls = player.controls
