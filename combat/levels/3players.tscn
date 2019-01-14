@@ -10,7 +10,7 @@
 [ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=8]
 [ext_resource path="res://actors/battlers/characters/trixens.tres" type="Resource" id=9]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
 scale = Vector2( 2, 2 )
@@ -22,11 +22,9 @@ position = Vector2( 967.826, 878.604 )
 
 [node name="HexWall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1570.09, 878.629 )
-points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
 
 [node name="HexWall3" parent="Battlefield" index="3" instance=ExtResource( 3 )]
 position = Vector2( 1277.48, 375.098 )
-points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
 
 [node name="BeveledRectWall" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 1280, 720 )

@@ -6,6 +6,7 @@ const TIME_LEFT:float = 90.0
 var time_left:float = TIME_LEFT
 
 const TARGET_SCORE:float = 30.0
+var players:Array
 var scores:Dictionary = {}
 var queen = null
 
@@ -13,7 +14,9 @@ var game_over:bool = false
 
 signal game_over
 
-func initialize(players:Array):
+func initialize(_players:Array):
+	players = _players
+	
 	for player in players:
 		scores[player.name] = 0
 		
