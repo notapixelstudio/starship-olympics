@@ -44,7 +44,7 @@ func update(delta:float):
 				best_score = scores[player]
 		print("Time's up. Game over. " + best_player + ' wins.')
 		game_over = true
-		emit_signal("game_over", queen.name, scores)
+		emit_signal("game_over", best_player, scores)
 		
 	if queen != null:
 		scores[queen.name] += delta
