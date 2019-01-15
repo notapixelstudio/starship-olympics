@@ -11,6 +11,7 @@ func _ready():
 func initialize(winner:String, scores:Dictionary):
 	label.text = scores[winner.to_upper()]["species"].to_upper() + " WON"
 	print(scores)
+	yield(get_tree().create_timer(2), "timeout")
 	$VBoxContainer.get_child(0).grab_focus()
 	# TODO: we should add the species altogether
 
