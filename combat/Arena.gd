@@ -22,9 +22,12 @@ onready var hud = $Pause/HUD
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 
 signal screensize_changed(screensize)
-signal score_updated
+signal gameover
 
 var spawners = []
+
+var game_mode
+var crown_outside_game = null
 
 func initialize(players:Array) -> void:
 	spawners = []
@@ -42,17 +45,16 @@ func compute_arena_size():
 	emit_signal("screensize_changed", Vector2(width, height))
 	return true
 
-func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
+func update_spawner(spawner:PlayerSpawner) -> bool:
 	if not spawner:
 		return false
-	var player = SpawnPlayers.get_child(index)
-	if not player :
-		return false
-	player.name = spawner.name.to_lower()
-	player.controls = spawner.controls
-	player.battler_template = spawner.battler_template
-	print(player.controls, " ", player.battler_template.species_name)
-	return true
+	for player in SpawnPlayers.get_children():
+		if player.name.to_lower() == spawner.name.to_lower():
+			player.controls = spawner.controls
+			player.battler_template = spawner.battler_template
+			print(player.controls, " ", player.battler_template.species_name)
+			return true
+	return false
 	
 func setup_ships():
 	for player in SpawnPlayers.get_children():
@@ -78,13 +80,21 @@ func _ready():
 	
 	
 	# set the player spawners
-	var i = 0
 	for spawner in spawners:
-		update_spawner(spawner,i)
-		i+=1
+		update_spawner(spawner)
 	setup_ships()
+	
+	# set the game mode
+	game_mode = CrownMode.new()
+	game_mode.connect("game_over", self, "gameover")
+	var player_ids = []
+	game_mode.initialize(SpawnPlayers.get_children())
+	
 	# initialize HUD
-	hud.initialize(spawners)
+	hud.initialize(game_mode)
+	
+func _process(delta):
+	game_mode.update(delta)
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -116,21 +126,34 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	print("let's update score for ", player_id, " this score ", str(score))
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 	
-func update_score(ship_name: String, collectable_owner:String = ""):
-	print(ship_name)
-	emit_signal("score_updated", ship_name, collectable_owner)
-	if collectable_owner:
-		print("collected a ", collectable_owner, "'s by ", ship_name)
-		return
-	
+func ship_just_died(ship_name: String, ship_position:Vector2):
+	# check if we need to lose the crown
+	if game_mode.queen != null and ship_name == game_mode.queen.name:
+		game_mode.crown_lost()
+		crown_outside_game.position = ship_position
+		$Battlefield.add_child(crown_outside_game)
+		crown_outside_game = null
+		
 	yield(get_tree().create_timer(3), "timeout")
+	
+	if game_mode.game_over:
+		return
 	
 	# respawn
 	var player_id = ship_name
 	for player in SpawnPlayers.get_children():
 		if player.name.to_lower() == ship_name.to_lower():
 			setup_ship(player)
+			
+func crown_taken(ship):
+	game_mode.crown_taken(ship)
+	crown_outside_game = $Battlefield/Crown
+	$Battlefield.remove_child($Battlefield/Crown)
 
+func gameover(winner:String, scores:Dictionary):
+	print("gameover")
+	emit_signal("gameover", winner, scores)
+	
 func setup_ship(player:PlayerSpawner):
 	var ship = ship_scene.instance()
 	ship.controls = player.controls
@@ -142,6 +165,6 @@ func setup_ship(player:PlayerSpawner):
 	ship.name = player.name
 	Battlefield.add_child(ship)
 	# connect signals
-	ship.connect("dead", self, "update_score")
-	ship.connect("collected", self, "update_score")
+	ship.connect("dead", self, "ship_just_died")
+	ship.connect("collected", self, "crown_taken")
 	connect("screensize_changed", ship, "update_wraparound")

@@ -35,15 +35,17 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
+var queen:bool = false
+
 onready var player = name
 onready var skin = $Graphics
 
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/weapons/Trail.tscn')
-const puzzle_scene = preload("res://actors/battlers/collectables/Collectable.tscn")
 
-var puzzle 
 signal dead
+signal stop_invincible
+var invincible : bool
 signal collectable_released
 signal collected
 
@@ -57,13 +59,16 @@ func initialize():
 	
 func _ready():
 	species = "another"
-	puzzle = puzzle_scene.instance()
 	# let's connect this when creating the instance
 	# connect("died", get_node('/root/Arena'), "update_score")
 	skin.add_child(battle_template.anim.instance())
 	skin.initialize()
-	# load battlefield size
 	
+	# Invincible for the firs MAX seconds
+	invincible = true
+	skin.invincible()
+	yield(skin, "stop_invincible")
+	invincible = false
 
 func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
@@ -99,7 +104,10 @@ func _process(delta):
 	if not alive:
 		return
 	control(delta)
-
+	
+	# keep the crown up
+	$Crown.rotation = -rotation
+	
 
 func fire():
 	"""
@@ -122,38 +130,32 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
-func releasePuzzle():
-	# Add to Battlefield
-	# using call_deferred in order to avoid the warning (and if the object isn't ready yet
-	# TODO: yield("dead completed") and then adding and initialize the puzzle)
-	get_parent().call_deferred("add_child", puzzle)
-	puzzle.call_deferred("initialize", battle_template.puzzle_anim, self)
-	emit_signal("collectable_released")
-	yield(self, "collectable_released")
 
 func die():
-	if alive:
+	if alive and not invincible:
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead", self.name)
+		emit_signal("dead", self.name, self.position)
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")
-		releasePuzzle()
 		queue_free()
 	
+func set_queen(value):
+	queen = value
+	$Crown.visible = queen
+	
 func _on_Ship_area_entered(area):
-	if area.has_node('DeadlyComponent'):
+	if area.has_node('DeadlyComponent') and not invincible:
 		die()
 	elif area.has_node("CollectableComponent"):
 		assert(area is Collectable)
 		collect(area)
-		
+
 func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
-		
 func _on_DetectionArea_body_exited(body):
 	if body.has_node('DetectorComponent'):
 		body.try_lose_target(self)
@@ -162,8 +164,7 @@ func _on_DetectionArea_area_entered(area):
 	if area.has_node("CollectableComponent"):
 		assert(area is Collectable)
 		#collect(area)
-		
+
 func collect(area:Collectable):
-	emit_signal("collected", self.name, area.player_id)
-	area.queue_free()
-	
+	if alive:
+		emit_signal("collected", self)

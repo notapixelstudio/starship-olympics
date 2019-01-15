@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://actors/battlers/collectables/Collectable.gd" type="Script" id=1]
+[ext_resource path="res://combat/collectables/Collectable.gd" type="Script" id=1]
+[ext_resource path="res://combat/collectables/skin/Crown.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
 radius = 62.4056
 
-[node name="Puzzle" type="Area2D"]
+[node name="Collectable" type="Area2D"]
 script = ExtResource( 1 )
+puzzle_anim = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -15,6 +17,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Graphics" type="Position2D" parent="."]
+scale = Vector2( 2, 2 )
 
 [node name="CollectableComponent" type="Node" parent="."]
 

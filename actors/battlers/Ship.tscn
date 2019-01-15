@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -19,7 +20,7 @@ radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
 
-radius = 260.0
+radius = 500.0
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
@@ -36,7 +37,6 @@ shape = SubResource( 2 )
 [node name="Graphics" parent="." instance=ExtResource( 2 )]
 
 [node name="HurtBox" type="Area2D" parent="."]
-editor/display_folded = true
 
 [node name="TriggerComponent" type="Node" parent="HurtBox"]
 
@@ -44,7 +44,6 @@ editor/display_folded = true
 shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-editor/display_folded = true
 input_pickable = false
 collision_layer = 8
 collision_mask = 5
@@ -52,8 +51,14 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 4 )
 
+[node name="Crown" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -150 )
+
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_Ship_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]

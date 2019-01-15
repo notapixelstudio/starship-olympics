@@ -3,6 +3,7 @@ extends RigidBody2D
 
 # export var velocity = Vector2(6, 0)
 # export var acceleration = Vector2(-0.06, 0)
+class_name Bomb
 
 var origin_ship
 var player_id
@@ -51,6 +52,9 @@ func detonate():
 	get_parent().add_child(explosion)
 
 func try_acquire_target(ship):
+	# Do not lock if invincible
+	if ship.invincible:
+		return
 	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
 		acquire_target(ship)
 		
