@@ -18,6 +18,7 @@ onready var Battlefield = $Battlefield
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var hud = $Pause/HUD
+onready var getready = $Pause/GetReady
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 
@@ -92,6 +93,11 @@ func _ready():
 	
 	# initialize HUD
 	hud.initialize(game_mode)
+	
+	get_tree().paused = true
+	getready.start()
+	yield(getready, "finished")
+	get_tree().paused = false
 	
 func _process(delta):
 	game_mode.update(delta)

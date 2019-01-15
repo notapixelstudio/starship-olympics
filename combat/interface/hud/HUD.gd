@@ -14,6 +14,8 @@ const colors = {
 func initialize(_game_mode):
 	game_mode = _game_mode
 	
+	$TimeLeft.text = str(int(floor(game_mode.time_left)))
+	
 	for player in game_mode.players:
 		var bar = Bar.instance()
 		$Bars.add_child(bar)
