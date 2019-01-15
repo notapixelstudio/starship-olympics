@@ -9,7 +9,7 @@ var player_id
 
 var t = 0
 const growT = 0.4
-const stillT = 1.5
+const stillT = 1.0
 const shrinkT = 0.2
 const minRadius = 40
 const maxRadius = 80

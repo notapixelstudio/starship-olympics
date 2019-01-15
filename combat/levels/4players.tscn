@@ -21,32 +21,32 @@ centered = false
 
 [node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 1105.87, 656.912 )
+position = Vector2( 1105.87, 756.912 )
 
 [node name="Wall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 1114.28, 1460.02 )
+position = Vector2( 1114.28, 1560.02 )
 
 [node name="Wall3" parent="Battlefield" index="3" instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 2775.15, 1476.84 )
+position = Vector2( 2775.15, 1576.84 )
 
 [node name="Wall4" parent="Battlefield" index="4" instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 2754.13, 627.479 )
+position = Vector2( 2754.13, 727.479 )
 
 [node name="BeveledRectWall" parent="Battlefield" index="5" instance=ExtResource( 4 )]
-position = Vector2( 1920, 1090 )
+position = Vector2( 1920, 1190 )
 scale = Vector2( 1.5, 1.5 )
-points = PoolVector2Array( -1230, -470, -1030, -670, 1030, -670, 1230, -470, 1230, 470, 1030, 670, -1030, 670, -1230, 470 )
+points = PoolVector2Array( -1230, -400, -1030, -600, 1030, -600, 1230, -400, 1230, 400, 1030, 600, -1030, 600, -1230, 400 )
 hollow = true
 offset = 200
 width = 2460
-height = 1340
+height = 1200
 bevel = 200
 
 [node name="Crown" parent="Battlefield" index="6" instance=ExtResource( 5 )]
-position = Vector2( 1917.36, 1093.23 )
+position = Vector2( 1917.36, 1193.23 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
