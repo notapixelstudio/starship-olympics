@@ -52,6 +52,7 @@ func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 		return false
 	var player = SpawnPlayers.get_child(index)
 	if player:
+		player.name = spawner.name
 		player.controls = spawner.controls
 		player.battler_template = spawner.battler_template
 		print(player.controls, " ", player.battler_template.species_name)
@@ -92,7 +93,7 @@ func _ready():
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "gameover")
 	var player_ids = []
-	game_mode.initialize(SpawnPlayers.get_children())
+	game_mode.initialize(spawners)
 	
 	# initialize HUD
 	hud.initialize(game_mode)

@@ -54,6 +54,7 @@ var joined = true
 
 onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection
+onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
 
@@ -128,10 +129,12 @@ func _input(event):
 			select_character()
 		if event.is_action_pressed(controls+"_action") and not selected:
 			leave()
-	if force_to and event.is_action_pressed(force_to+"_fire"):
+	elif force_to and event.is_action_pressed(force_to+"_fire"):
 		set_controls_by_string(force_to)
 		print("forcing to" + force_to)
 		return
+
+
 func leave():
 	joined = false
 	enabler.visible = true
@@ -145,10 +148,12 @@ func select_character():
 	emit_signal("selected", species)
 
 func deselect():
-	get_node("deselected").play()
+	print("deselected")
+	speciesSelection.deselect()
+	sfx.get_node("deselected").play()
 	enable_choice()
 	selected = false
-	emit_signal("deselected")
+	emit_signal("deselected", species)
 	
 func _on_Previous_pressed():
 	emit_signal("prev")

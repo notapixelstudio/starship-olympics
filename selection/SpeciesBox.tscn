@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/interface/label_bg.png" type="Texture" id=9]
 [ext_resource path="res://animations/shake.anim" type="Animation" id=10]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 
 length = 4.0
 loop = true
@@ -96,7 +96,7 @@ margin_bottom = 374.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "standby"
-anims/standby = SubResource( 2 )
+anims/standby = SubResource( 1 )
 
 [node name="SpeciesName" type="NinePatchRect" parent="."]
 modulate = Color( 1, 1, 1, 0.651922 )

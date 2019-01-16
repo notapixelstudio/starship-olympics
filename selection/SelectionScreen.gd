@@ -30,6 +30,7 @@ func initialize(available_species:Dictionary):
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
 		child.connect("selected", self, "selected")
+		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 
 		i +=1
@@ -137,8 +138,14 @@ func ready_to_fight():
 func selected(species:String):
 	var current_index = ordered_species.find(species) 
 	selected_index.append(current_index)
+	print(selected_index)
 	for child in container.get_children():
 		if not child.selected and child.species == species:
 			get_adjacent(+1, child)
 	emit_signal("someone_selected", species)
-	
+
+func deselected(species:String):
+	var current_index = ordered_species.find(species) 
+	selected_index.remove(selected_index.find(current_index))
+	print(selected_index)
+	print("delestected this: ", species)

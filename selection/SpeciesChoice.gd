@@ -67,6 +67,7 @@ func deselect():
 	select_rect.visible = false
 
 func enable():
+	select_rect.visible = false
 	$LeftArrow.enable()
 	$RightArrow.enable()
 	anim.play("standby")
