@@ -18,7 +18,7 @@ You can find your inner peace by smashing the *fire* button and trying to drop b
 # You can never stop
 As a skilled starship pilot, you will have to steer and drop bombs while constantly moving at full speed. Brakes are for losers!
 
-The only way to reduce your speed is to charge a shot. But this will make you stop for a very short amount of time, before being launched at a crazy speed in the direction you are facing.
+The only way to reduce your speed is to charge a shot. But this will just make you stop for a very short amount of time, before being launched at a crazy speed in the direction you are facing.
 
 # Physics-based mayhem
 *Superstarfighter* arenas are chock full of moving objects, bombs, and explosions. Chasing the crown as it's slinged across a bomb-filled level is no easy feat!
