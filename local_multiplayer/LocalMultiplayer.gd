@@ -5,6 +5,7 @@ onready var gameover_screen = $GameOver/GameOverScreen
 const combat_scene = "res://combat/levels/"
 var combat = null
 
+# dictionary of InfoPlayer of players that will actually play
 var players : Dictionary
 
 signal updated
