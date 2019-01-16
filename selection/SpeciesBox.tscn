@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/species/trixens.tres" type="Resource" id=2]
@@ -9,10 +9,10 @@
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/species/trixens_ship.png" type="Texture" id=8]
 [ext_resource path="res://assets/interface/label_bg.png" type="Texture" id=9]
+[ext_resource path="res://animations/shake.anim" type="Animation" id=10]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 
-resource_name = "standby"
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -84,7 +84,7 @@ rect_scale = Vector2( -1, 1 )
 
 [node name="Ship" type="Sprite" parent="."]
 position = Vector2( 103.174, 370.57 )
-rotation = 3.35041
+rotation = 0.785402
 scale = Vector2( 0.5, 0.500019 )
 texture = ExtResource( 8 )
 
@@ -96,17 +96,14 @@ margin_bottom = 374.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "standby"
-anims/standby = SubResource( 1 )
+anims/standby = SubResource( 2 )
 
 [node name="SpeciesName" type="NinePatchRect" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.651922 )
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
 margin_left = 28.0
-margin_right = -32.0
-margin_bottom = 80.0
+margin_top = 200.0
+margin_right = 168.0
+margin_bottom = 280.0
 texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="SpeciesName"]
@@ -114,15 +111,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -68.0
-margin_top = -20.0
-margin_right = 77.0
-margin_bottom = 20.0
+margin_left = -70.0
+margin_top = -30.0
+margin_right = 75.0
+margin_bottom = 10.0
 custom_fonts/font = ExtResource( 6 )
 text = "TRIXENS"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesName"]
+anims/shake = ExtResource( 10 )
 
 [node name="Tween" type="Tween" parent="."]
 
