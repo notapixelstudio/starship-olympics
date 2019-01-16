@@ -7,7 +7,7 @@ The game is open source and currently under active development. Help is welcome!
 # Local multiplayer arena
 The game supports 2 to 4 players, so you have to find some friends to defeat. Each player then starts by choosing an alien pilot of their liking, to enter the *Superstarfighter* league.
 
-The goal is to take the crown at the center of the arena and to keep it for as long as possible. Sound simple, right? Wrong.
+The goal is to take the crown at the center of the arena and to keep it for as long as possible. Sounds simple, right? Wrong.
 
 Nothing makes other pilots more angry than you zipping away with the crown. That's why each *Superstarfighter* starship has a built-in relief valve for pilots: bombs.
 
@@ -24,7 +24,7 @@ The only way to reduce your speed is to charge a shot. But this will make you st
 *Superstarfighter* arenas are chock full of moving objects, bombs, and explosions. Try to chase the crown as it's slinged across a bomb-filled level!
 
 # No downtime
-A starship pilot can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray.
+A starship pilot can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray. You will never have to wait for your turn again!
 
 # Lots of unlockable content
 In the full version of the game you will be able to unlock new races, pilots and arenas.
