@@ -21,7 +21,7 @@ As a skilled starship pilot, you will have to steer and drop bombs while constan
 The only way to reduce your speed is to charge a shot. But this will make you stop for a very short amount of time, before being launched at a crazy speed in the direction you are facing.
 
 # Physics-based mayhem
-*Superstarfighter* arenas are chock full of moving objects, bombs, and explosions. Try to chase the crown as it's slinged across a bomb-filled level!
+*Superstarfighter* arenas are chock full of moving objects, bombs, and explosions. Chasing the crown as it's slinged across a bomb-filled level is no easy feat!
 
 # No downtime
 A starship pilot can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray. You will never have to wait for your turn again!
