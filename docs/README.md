@@ -5,7 +5,7 @@ The game is open source and currently under active development [here](https://gi
 ![image](https://pbs.twimg.com/media/DpdYUS_WwAAlTdv.jpg:small)
 
 # Local multiplayer arena
-The game supports 2 to 4 players, so you have to find some friends to defeat. Each player then starts by choosing an alien pilot of their liking to enter the *Superstarfighter* league.
+The game supports 2 to 4 players, so you have to find some friends to defeat. Each player starts by choosing an alien pilot of their liking to enter the *Superstarfighter* league.
 
 The goal is to take the crown at the center of the arena and to keep it for as long as possible. Sounds simple, right..? Well...
 
