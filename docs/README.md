@@ -1,4 +1,6 @@
-[migliorare]
+*Superstarfighter* is a fast-paced local party game for up to 4 players. Outmaneuver and shoot your opponents in a 2d top-down arena, and become an intergalactic champion!
+
+*Superstarfighter* is open source and currently under active development. Help is welcome!
 
 # Local multiplayer arena
 Up to 4 players. Each player controls a starship that represents their alien race in the intergalactic *Superstartfighter* league. Trillions of planets in the whole galaxy are constantly following this sport event. 
