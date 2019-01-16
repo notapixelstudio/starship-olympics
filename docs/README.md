@@ -24,7 +24,7 @@ The only way to reduce your speed is to charge a shot. But this will make you st
 *Superstarfighter* arenas are chock full of moving objects, bombs, and explosions. Chasing the crown as it's slinged across a bomb-filled level is no easy feat!
 
 # No downtime
-A starship pilot can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray. You will never have to wait for your turn again!
+A true starship pilot can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray. You will never have to wait for your turn again!
 
 # Lots of unlockable content
 In the full version of the game you will be able to unlock new races, pilots and arenas.
