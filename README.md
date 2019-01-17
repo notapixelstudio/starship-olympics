@@ -1,11 +1,11 @@
-# SuperStarFighter
+# Superstarfighter
 A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs from their back.
 
 ![image](https://img.itch.zone/aW1nLzE2MDQ3ODMucG5n/original/wy1zK%2F.png)
 
 
 
-## Resources used and aknowledgement
+## Resources used and acknowledgements
 
 Fonts: [Londrina](https://www.dafont.com/it/londrina.font?l[]=10&l[]=1)
 Frame Texture: [Freepik](https://www.freepik.com/free-photos-vectors/frame)
