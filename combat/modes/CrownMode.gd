@@ -29,6 +29,9 @@ func crown_lost():
 	queen = null
 	print("CROWN LOST")
 	
+func is_there_a_queen():
+	return queen != null
+	
 func update(delta:float):
 	if game_over:
 		return
