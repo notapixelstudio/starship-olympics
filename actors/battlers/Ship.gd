@@ -10,6 +10,7 @@ class_name Ship
 export (String) var controls = "kb1"
 export (Resource) var battle_template
 
+var arena
 
 var velocity = Vector2(0,0)
 

@@ -162,6 +162,7 @@ func gameover(winner:String, scores:Dictionary):
 	
 func setup_ship(player:PlayerSpawner):
 	var ship = ship_scene.instance()
+	ship.arena = self
 	ship.controls = player.controls
 	ship.battle_template = player.battler_template
 	ship.position = player.position
