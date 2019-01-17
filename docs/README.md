@@ -24,6 +24,8 @@ You can find your inner peace by repeatedly pressing the *fire* button and tryin
 
 ...or you can try a more focused, zen-like approach and keep the button pressed until you can blast them with a precise shot. Just mind the recoil!
 
+![charged shot](charged_shot.gif)
+
 # You can never stop
 As a skilled starship pilot, you will have to steer and drop bombs while constantly moving at full speed. Brakes are for losers!
 
