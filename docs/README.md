@@ -1,3 +1,5 @@
+![banner](banner.gif)
+
 *Superstarfighter* is a fast-paced local party game for up to 4 players. Outmaneuver and shoot your opponents in a 2d top-down arena, and become an intergalactic champion!
 
 The game is open source and currently under active development [here](https://github.com/notapixelstudio/superstarfighter). Help is welcome!
@@ -29,13 +31,19 @@ You can find your inner peace by repeatedly pressing the *fire* button and tryin
 # You can never stop
 As a skilled starship pilot, you will have to steer and drop bombs while constantly moving at full speed. Brakes are for losers!
 
+![never stop](never_stop.gif)
+
 The only way to reduce your speed is to charge a shot. But this will just make you stop for a very short amount of time, before being launched at crazy speed in the direction you are facing.
 
 # Physics-based mayhem
 *Superstarfighter* arenas are chock full of moving objects, bombs, and explosions. Chasing the crown as it's slinged across a bomb-filled level is no easy feat!
 
+![choc full](choc_full.gif)
+
 # No downtime
 A true starship pilot can never rest! As soon as your ship is destroyed, your team provides you with a brand new one to reenter the fray. You will never have to wait for your turn again!
+
+![respawn](respawn.gif)
 
 # Lots of unlockable content
 In the full version of the game you will be able to unlock new races, pilots and arenas.
