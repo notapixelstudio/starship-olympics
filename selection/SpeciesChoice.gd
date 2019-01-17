@@ -15,7 +15,7 @@ onready var controls_sprite = $Controls
 onready var player = $Player
 onready var anim = $AnimationPlayer
 onready var label_anim = $SpeciesName/AnimationPlayer
-onready var select_rect = $Character/SelectRect
+onready var select_rect = $SelectRect
 
 
 const img_path : String = "res://assets/icon/"

@@ -13,6 +13,7 @@
 
 [sub_resource type="Animation" id=1]
 
+resource_name = "standby"
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -40,17 +41,17 @@ script = ExtResource( 1 )
 species = ExtResource( 2 )
 controls = ""
 
+[node name="SelectRect" type="Sprite" parent="."]
+visible = false
+position = Vector2( 80, 204.487 )
+scale = Vector2( 0.7, 0.443871 )
+texture = ExtResource( 3 )
+
 [node name="Character" type="Control" parent="."]
 anchor_bottom = 1.0
 margin_right = 210.0
 margin_bottom = -30.0
 rect_clip_content = true
-
-[node name="SelectRect" type="Sprite" parent="Character"]
-visible = false
-position = Vector2( 80, 300 )
-scale = Vector2( 0.7, 0.650162 )
-texture = ExtResource( 3 )
 
 [node name="Character" type="Sprite" parent="Character"]
 position = Vector2( 90, 290 )
