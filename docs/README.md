@@ -12,6 +12,8 @@ The game supports 2 to 4 players, so you have to find some friends to defeat. Ea
 
 The goal is to take the crown at the center of the arena and to keep it for as long as possible. Sounds simple, right..? Well...
 
+![crown](crown_taking.gif)
+
 Nothing makes other pilots more angry than you zipping away with the crown. That's why each *Superstarfighter* starship has a built-in relief valve for pilots: bombs.
 
 You can find your inner peace by smashing the *fire* button and trying to drop bombs in front of your opponent...
