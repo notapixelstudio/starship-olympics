@@ -26,6 +26,8 @@ You can find your inner peace by repeatedly pressing the *fire* button and tryin
 
 ...or you can try a more focused, zen-like approach and keep the button pressed until you can blast them with a precise shot. Just mind the recoil!
 
+And don't mind if your aim sucks, *Superstarfighter* bombs are equipped with a fierce locking system!
+
 ![charged shot](charged_shot.gif)
 
 # You can never stop
