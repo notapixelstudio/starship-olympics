@@ -48,24 +48,24 @@ bevel = 200
 [node name="Crown" parent="Battlefield" index="6" instance=ExtResource( 5 )]
 position = Vector2( 1917.36, 1193.23 )
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
+[node name="player1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = 0.0
 controls = "joy2"
 battler_template = ExtResource( 7 )
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
+[node name="player2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 1800 )
 rotation = 0.0
 controls = "joy1"
 battler_template = ExtResource( 8 )
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
+[node name="player3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
 position = Vector2( 3400, 400 )
 controls = "joy3"
 battler_template = ExtResource( 9 )
 
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
+[node name="player4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
 position = Vector2( 3400, 1800 )
 controls = "joy4"
 battler_template = ExtResource( 10 )

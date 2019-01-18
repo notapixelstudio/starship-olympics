@@ -42,13 +42,13 @@ width = 300
 height = 300
 bevel = 100
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
+[node name="player1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 200, 950 )
 rotation = 0.0
 controls = "kb2"
 battler_template = ExtResource( 6 )
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
+[node name="player2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 3000, 950 )
 battler_template = ExtResource( 7 )
 

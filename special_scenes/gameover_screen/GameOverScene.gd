@@ -9,7 +9,7 @@ func _ready():
 	$VBoxContainer.get_child(0).grab_focus()
 
 func initialize(winner:String, scores:Dictionary):
-	label.text = scores[winner.to_upper()]["species"].to_upper() + " WON"
+	label.text = scores[winner]["species"].to_upper() + " WON"
 	print(scores)
 	yield(get_tree().create_timer(2), "timeout")
 	$VBoxContainer.get_child(0).grab_focus()

@@ -2,6 +2,8 @@ extends Control
 
 class_name Species
 
+var id:String
+
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO}
 # maybe global?
 const ControlsMap = {
@@ -104,6 +106,8 @@ func _set_controls_by_key(new_controls:int):
 func _ready():
 	species = key_to_species(key_species)
 	change_species(species)
+	id = name.to_lower()
+	print("ID is ", id)
 	speciesSelection.initialize(name)
 
 func change_species(new_species:String):

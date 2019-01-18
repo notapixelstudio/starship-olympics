@@ -11,6 +11,7 @@ var lives : int = 10
 var deaths : int = 0
 var collectables : int  =0
 var score : float = 0.0
+var species_template : BattlerTemplate
 
 func update_death():
 	deaths += 1
