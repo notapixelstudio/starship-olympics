@@ -33,7 +33,7 @@ func initialize(available_species:Dictionary):
 		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 		i +=1
-	var controls = assign_controls(1)
+	var controls = assign_controls(2)
 	for control in controls:
 		print(add_controls(control))
 
@@ -59,12 +59,12 @@ func add_controls(key : String) -> bool:
 	var shift:bool = false
 	var last: String = ""
 	var first = container.get_child(0)
-	if key.findn("joy") >=0 and first.controls != "no":
+	if first.controls != "no":
 		shift = true
 		last = first.controls
 	first.set_controls_by_string(key)
 	print("set ", first.name, " to ", key)
-	var i = 1
+	var i = 0
 	for child in container.get_children():
 		if child.controls == key:
 			i+=1
@@ -88,9 +88,12 @@ func change_controls(key:String, new_key:String) -> bool:
 	var index_to_change : int =0
 	for child in container.get_children():
 		if child.controls == key:
+			print("Found it ", index_to_change, " and control is ", child.controls)
 			break
 		index_to_change += 1
 	last = new_key
+	if container.get_child(count-1).controls.findn( "joy") >=0:
+		last="kb1"
 	for i in range (index_to_change, count):
 		var child = container.get_child(count-i-1)
 		var to_change = last
@@ -112,7 +115,7 @@ func assign_controls(num_keyboards : int) -> Array:
 	# set for keyboards
 	for i in range(num_keyboards):
 		num_players +=1
-		players_controls.append("kb"+str(i+1))
+		players_controls.append("kb"+str(num_keyboards-i))
 		
 	# check on joypad
 	var joypads = Input.get_connected_joypads()
