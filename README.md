@@ -3,7 +3,8 @@ A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs f
 
 ![image](https://img.itch.zone/aW1nLzE2MDQ3ODMucG5n/original/wy1zK%2F.png)
 
-
+[website](https://notapixelstudio.github.io/superstarfighter/)
+[itch.io](https://notapixel.itch.io/superstarfighter)
 
 ## Resources used and acknowledgements
 
