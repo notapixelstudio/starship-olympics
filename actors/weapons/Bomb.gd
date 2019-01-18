@@ -55,6 +55,11 @@ func try_acquire_target(ship):
 	# Do not lock if invincible
 	if ship.invincible:
 		return
+		
+	# If there's a queen ship, avoid locking on partners
+	if ship.arena.game_mode.is_there_a_queen() and not origin_ship.queen and not ship.queen:
+		return
+	 
 	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
 		acquire_target(ship)
 		
