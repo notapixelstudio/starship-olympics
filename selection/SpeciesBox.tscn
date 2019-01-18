@@ -55,17 +55,18 @@ scale = Vector2( 0.7, 0.650162 )
 texture = ExtResource( 4 )
 
 [node name="Controls" type="Sprite" parent="."]
-position = Vector2( 38, 25 )
+position = Vector2( 82, 540 )
 texture = ExtResource( 5 )
 
 [node name="Player" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -35.0
-margin_top = -196.0
-margin_bottom = -156.0
+margin_top = -257.0
+margin_bottom = -217.0
 custom_fonts/font = ExtResource( 6 )
 text = "p1"
 align = 1
