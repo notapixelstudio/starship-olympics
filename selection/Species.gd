@@ -134,8 +134,6 @@ func _input(event):
 			_on_Previous_pressed()
 		if event.is_action_pressed(controls+"_fire") and not selected:
 			select_character()
-		if event.is_action_pressed(controls+"_action") and not selected:
-			leave()
 	elif force_to and event.is_action_pressed(force_to+"_fire"):
 		set_controls_by_string(force_to)
 		print("forcing to" + force_to)
