@@ -13,8 +13,9 @@ signal updated
 func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = selection_species.name
+	info_player.species = selection_species.species
 	info_player.controls = selection_species.controls
-	info_player.species_template = selection_species.battler_template
+	info_player.species_template = selection_species.species_template
 	return info_player
 
 func setup_player(current_player : PlayerSpawner) -> InfoPlayer:
@@ -35,6 +36,7 @@ func combat(selected_players: Array):
 	"""
 	gameover_screen.hide()
 	var spawners = []
+	var i = 1
 	for player in selected_players:
 		assert(player is Species)
 		var player_info = from_species_to_info_player(player)
@@ -42,9 +44,11 @@ func combat(selected_players: Array):
 		spawner.controls = player.controls 
 		spawner.battler_template = player.battler_template
 		spawner.name = player.name
+		spawner.info_player = player_info
 		print(spawner.name , " vs ", player.name, " in combat")
 		spawners.append(spawner)
-		players[player.id] = setup_player(spawner)
+		players[player.id] = player_info
+		i +=1
 	var num_players : int = len(selected_players)
 	print(players)
 	var level_path = combat_scene + str(num_players) + "players.tscn"

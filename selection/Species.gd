@@ -3,6 +3,8 @@ extends Control
 class_name Species
 
 var id:String
+var uid:int
+var species_template : SpeciesSelection
 
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO}
 # maybe global?
@@ -114,7 +116,8 @@ func change_species(new_species:String):
 	key_species = SpeciesToKey[new_species]
 	_set_species(key_species)
 	if new_species:
-		speciesSelection.change_species(load(species_path + species.to_lower() + ".tres"))
+		species_template = load(species_path + species.to_lower() + ".tres")
+		speciesSelection.change_species(species_template)
 
 func _input(event):
 	if disabled:
