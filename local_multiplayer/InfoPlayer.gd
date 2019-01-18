@@ -2,6 +2,7 @@ extends Resource
 
 class_name InfoPlayer
 
+var uid : int = 0
 var id : String = "InfoPlayer"
 var controls : String = "kb1"
 var species : String
@@ -11,6 +12,7 @@ var lives : int = 10
 var deaths : int = 0
 var collectables : int  =0
 var score : float = 0.0
+var species_template : SpeciesSelection
 
 func update_death():
 	deaths += 1
@@ -22,11 +24,13 @@ func update_collectables():
 
 func to_dict():
 	return {
+		"id": uid,
 		"name" : id,
 		"controls": controls,
 		"species" : species,
 		"lives" : lives,
 		"deaths" : deaths,
 		"collectables" : collectables,
-		"score" : score
+		"score" : score,
+		"species_template" : species_template
 		}

@@ -5,9 +5,18 @@ onready var gameover_screen = $GameOver/GameOverScreen
 const combat_scene = "res://combat/levels/"
 var combat = null
 
+# dictionary of InfoPlayer of players that will actually play
 var players : Dictionary
 
 signal updated
+
+func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
+	var info_player = InfoPlayer.new()
+	info_player.id = selection_species.name
+	info_player.species = selection_species.species
+	info_player.controls = selection_species.controls
+	info_player.species_template = selection_species.species_template
+	return info_player
 
 func setup_player(current_player : PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
@@ -23,19 +32,25 @@ func _ready():
 
 func combat(selected_players: Array):
 	"""
-	
+	@param: selected_players : Array[Species] - Selected species from selection screen
 	"""
 	gameover_screen.hide()
 	var spawners = []
+	var i = 1
 	for player in selected_players:
 		assert(player is Species)
+		var player_info = from_species_to_info_player(player)
 		var spawner = PlayerSpawner.new()
 		spawner.controls = player.controls 
 		spawner.battler_template = player.battler_template
 		spawner.name = player.name
+		spawner.info_player = player_info
+		print(spawner.name , " vs ", player.name, " in combat")
 		spawners.append(spawner)
-		players[player.name.to_lower()] = setup_player(spawner)
+		players[player.id] = player_info
+		i +=1
 	var num_players : int = len(selected_players)
+	print(players)
 	var level_path = combat_scene + str(num_players) + "players.tscn"
 	var level = load(level_path)
 	combat = level.instance()

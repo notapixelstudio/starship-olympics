@@ -19,36 +19,45 @@ centered = false
 
 [node name="HexWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 position = Vector2( 1581.72, 1353.74 )
+points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
+apothem = 86.6025
+radius = 100
 
 [node name="HexWall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
 position = Vector2( 2272.28, 1362.17 )
+points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
+apothem = 86.6025
+radius = 100
 
 [node name="HexWall3" parent="Battlefield" index="3" instance=ExtResource( 3 )]
 position = Vector2( 1925.01, 770.342 )
+points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
+apothem = 86.6025
+radius = 100
 
 [node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 1920, 1170 )
 
 [node name="HexWall4" parent="Battlefield" index="5" instance=ExtResource( 3 )]
 position = Vector2( 1920, 1170 )
-points = PoolVector2Array( 1062.32, 0, 531.162, 920, -531.162, 920, -1062.32, 1.30097e-13, -531.162, -920, 531.162, -920 )
+points = PoolVector2Array( 1062.32, 0, 531.16, 919.996, -531.16, 919.996, -1062.32, 1.30097e-13, -531.16, -919.996, 531.16, -919.996 )
 hollow = true
-apothem = 920
+apothem = 919.996
 radius = 1062.32
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
+[node name="player1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 1181.85, 1570.82 )
 rotation = -0.523599
 controls = "joy1"
 battler_template = ExtResource( 6 )
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
+[node name="player2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1920.48, 337.27 )
 rotation = 1.5708
 controls = "joy2"
 battler_template = ExtResource( 7 )
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
+[node name="player3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
 position = Vector2( 2663.64, 1581.3 )
 rotation = -2.61799
 controls = "joy3"

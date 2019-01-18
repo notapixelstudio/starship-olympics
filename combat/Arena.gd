@@ -35,6 +35,7 @@ func initialize(players:Array) -> void:
 	# forcing the array to PlayerSpwawner (as check)
 	for player in players:
 		assert(player is PlayerSpawner)
+		
 	spawners = players
 	
 func compute_arena_size():
@@ -46,15 +47,16 @@ func compute_arena_size():
 	emit_signal("screensize_changed", Vector2(width, height))
 	return true
 
-func update_spawner(spawner:PlayerSpawner) -> bool:
+func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 	if not spawner:
 		return false
-	for player in SpawnPlayers.get_children():
-		if player.name.to_lower() == spawner.name.to_lower():
-			player.controls = spawner.controls
-			player.battler_template = spawner.battler_template
-			print(player.controls, " ", player.battler_template.species_name)
-			return true
+	var player = SpawnPlayers.get_child(index)
+	if player:
+		player.name = spawner.name
+		player.controls = spawner.controls
+		player.battler_template = spawner.battler_template
+		print(player.controls, " ", player.battler_template.species_name)
+		return true
 	return false
 	
 func setup_ships():
@@ -81,15 +83,17 @@ func _ready():
 	
 	
 	# set the player spawners
+	var i = 0
 	for spawner in spawners:
-		update_spawner(spawner)
+		update_spawner(spawner, i)
+		i+=1
 	setup_ships()
 	
 	# set the game mode
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "gameover")
 	var player_ids = []
-	game_mode.initialize(SpawnPlayers.get_children())
+	game_mode.initialize(spawners)
 	
 	# initialize HUD
 	hud.initialize(game_mode)
@@ -170,6 +174,7 @@ func setup_ship(player:PlayerSpawner):
 	ship.height = height
 	ship.width = width
 	ship.name = player.name
+	print(player.name, " vs ", ship.name)
 	Battlefield.add_child(ship)
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")

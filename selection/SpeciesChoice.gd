@@ -14,7 +14,9 @@ onready var character = $Character/Character
 onready var controls_sprite = $Controls 
 onready var player = $Player
 onready var anim = $AnimationPlayer
-onready var select_rect = $Character/SelectRect
+onready var label_anim = $SpeciesName/AnimationPlayer
+onready var select_rect = $SelectRect
+
 
 const img_path : String = "res://assets/icon/"
 
@@ -51,10 +53,10 @@ func change_species(new_species:SpeciesSelection):
 	select_rect.texture = species.select_rect
 
 func previous():
-	global.shake_node(species_name, tween)
+	label_anim.play("shake")
 	
 func next():
-	global.shake_node(species_name, tween)
+	label_anim.play("shake")
 
 func select():
 	select_rect.visible = true
@@ -65,6 +67,7 @@ func deselect():
 	select_rect.visible = false
 
 func enable():
+	select_rect.visible = false
 	$LeftArrow.enable()
 	$RightArrow.enable()
 	anim.play("standby")

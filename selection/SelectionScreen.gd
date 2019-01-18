@@ -30,10 +30,11 @@ func initialize(available_species:Dictionary):
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
 		child.connect("selected", self, "selected")
+		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 
 		i +=1
-	var controls = assign_controls(0)
+	var controls = assign_controls(2)
 	for control in controls:
 		print(add_controls(control))
 
@@ -43,9 +44,9 @@ var debug_joy = 0
 func _unhandled_input(event):
 	if event.is_action_pressed("debug"):
 		Input.emit_signal("joy_connection_changed", debug_joy+1, true)
-		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS)
+		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS-1)
 	elif event.is_action_pressed("debug_cancel"):
-		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS)
+		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS-1)
 		Input.emit_signal("joy_connection_changed", debug_joy+1, false)
 
 # end debug
@@ -128,7 +129,9 @@ func _on_joy_connection_changed(device_id, connected):
 
 func ready_to_fight():
 	var players = get_players()
-	print(players)
+	print("players who are going to fight are.. " , players)
+	for player in players:
+		print(player.name)
 	if len(players) >= MIN_PLAYERS:
 		emit_signal("fight", players)
 	else:
@@ -137,8 +140,14 @@ func ready_to_fight():
 func selected(species:String):
 	var current_index = ordered_species.find(species) 
 	selected_index.append(current_index)
+	print(selected_index)
 	for child in container.get_children():
 		if not child.selected and child.species == species:
 			get_adjacent(+1, child)
 	emit_signal("someone_selected", species)
-	
+
+func deselected(species:String):
+	var current_index = ordered_species.find(species) 
+	selected_index.remove(selected_index.find(current_index))
+	print(selected_index)
+	print("delestected this: ", species)

@@ -2,6 +2,10 @@ extends Control
 
 class_name Species
 
+var id:String
+var uid:int
+var species_template : SpeciesSelection
+
 enum Controls {CPU, KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO}
 # maybe global?
 const ControlsMap = {
@@ -54,6 +58,7 @@ var joined = true
 
 onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection
+onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
 
@@ -103,13 +108,16 @@ func _set_controls_by_key(new_controls:int):
 func _ready():
 	species = key_to_species(key_species)
 	change_species(species)
+	id = name.to_lower()
+	print("ID is ", id)
 	speciesSelection.initialize(name)
 
 func change_species(new_species:String):
 	key_species = SpeciesToKey[new_species]
 	_set_species(key_species)
 	if new_species:
-		speciesSelection.change_species(load(species_path + species.to_lower() + ".tres"))
+		species_template = load(species_path + species.to_lower() + ".tres")
+		speciesSelection.change_species(species_template)
 
 func _input(event):
 	if disabled:
@@ -128,10 +136,12 @@ func _input(event):
 			select_character()
 		if event.is_action_pressed(controls+"_action") and not selected:
 			leave()
-	if force_to and event.is_action_pressed(force_to+"_fire"):
+	elif force_to and event.is_action_pressed(force_to+"_fire"):
 		set_controls_by_string(force_to)
 		print("forcing to" + force_to)
 		return
+
+
 func leave():
 	joined = false
 	enabler.visible = true
@@ -145,10 +155,12 @@ func select_character():
 	emit_signal("selected", species)
 
 func deselect():
-	get_node("deselected").play()
+	print("deselected")
+	speciesSelection.deselect()
+	sfx.get_node("deselected").play()
 	enable_choice()
 	selected = false
-	emit_signal("deselected")
+	emit_signal("deselected", species)
 	
 func _on_Previous_pressed():
 	emit_signal("prev")
