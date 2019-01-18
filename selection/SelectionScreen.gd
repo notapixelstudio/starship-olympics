@@ -32,9 +32,8 @@ func initialize(available_species:Dictionary):
 		child.connect("selected", self, "selected")
 		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
-
 		i +=1
-	var controls = assign_controls(2)
+	var controls = assign_controls(1)
 	for control in controls:
 		print(add_controls(control))
 
@@ -50,33 +49,56 @@ func _unhandled_input(event):
 		Input.emit_signal("joy_connection_changed", debug_joy+1, false)
 
 # end debug
-		
+
 func add_controls(key : String) -> bool:
 	"""
-	Add a controller (keyboard or joypad) as last player
-	return false if reach limit of MAX_PLAYERS
+	Add a controller (keyboard or joypad) and move other to the right
+	return false if reach limit of MAX_PLAYERS.
+	If no, shift backwards
 	"""
+	var shift:bool = false
+	var last: String = ""
+	var first = container.get_child(0)
+	if key.findn("joy") >=0 and first.controls != "no":
+		shift = true
+		last = first.controls
+	first.set_controls_by_string(key)
+	print("set ", first.name, " to ", key)
+	var i = 1
 	for child in container.get_children():
-		if child.controls == "no":
-			child.set_controls_by_string(key)
-			return true
-	# we will force keyboard to joypad
-	for child in container.get_children():
-		if child.controls.findn("kb") >= 0:
-			child.set_controls_by_string(key)
-			return true
-	return false
+		if child.controls == key:
+			i+=1
+			continue
+			
+		if shift:
+			var tmp = child.controls
+			print(child.name , " with ", last, ". It was ", tmp)
+			child.set_controls_by_string(last)
+			last = tmp
+		print( "child ", i, " with controls ", child.controls)
+		i+=1
+	return true
 
 func change_controls(key:String, new_key:String) -> bool:
+	var shift_backwards : bool = false
+	var last : String = ""
+	#iterate backwards
+	print("CHANGE TO ", new_key, ":")
+	var count = container.get_child_count()
+	var index_to_change : int =0
 	for child in container.get_children():
-		assert(child is Species)
 		if child.controls == key:
-			
-			# if p1 or p2 and is setting to NO, force to keyboard
-			if child.force_to and new_key == "no":
-				new_key = child.force_to
-			child.set_controls_by_string(new_key)
-			return true
+			break
+		index_to_change += 1
+	last = new_key
+	for i in range (index_to_change, count):
+		var child = container.get_child(count-i-1)
+		var to_change = last
+		last = child.controls
+		assert(child is Species)
+		print("index is ", count-i, " and control is ", last)
+		child.set_controls_by_string(to_change)
+		
 	return false
 	
 func assign_controls(num_keyboards : int) -> Array:
@@ -86,11 +108,12 @@ func assign_controls(num_keyboards : int) -> Array:
 	"""
 	players_controls = []
 	var num_players = 0
+	
 	# set for keyboards
 	for i in range(num_keyboards):
 		num_players +=1
 		players_controls.append("kb"+str(i+1))
-	
+		
 	# check on joypad
 	var joypads = Input.get_connected_joypads()
 	for i in range(len(joypads)):
@@ -98,11 +121,8 @@ func assign_controls(num_keyboards : int) -> Array:
 		players_controls.append("joy"+str(i+1))
 		if len(players_controls) >= MAX_PLAYERS:
 			break
-
-	# now put NO on the rest of players
-	for i in range(num_players, MAX_PLAYERS):
-		players_controls.append("no")
 	
+	# now put NO on the rest of players
 	return players_controls
 
 # utils
