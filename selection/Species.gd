@@ -88,9 +88,10 @@ func set_controls(new_controls:String):
 	Set controls and disable if NO or CPU
 	"""
 	if key_controls == Controls.NO or key_controls == Controls.CPU:
+		deselect()
 		disable_choice()
 	else:
-		enable_choice()
+		deselect()
 	speciesSelection.controls = controls
 	speciesSelection.initialize(name)
 	
@@ -178,5 +179,6 @@ func enable_choice():
 	joined = true
 	disabled = false
 	speciesSelection.modulate = Color(1,1,1,1)
+	selected = false
 	speciesSelection.enable()
 
