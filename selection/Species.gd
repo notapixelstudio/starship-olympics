@@ -56,7 +56,6 @@ var disabled = false
 var selected = false
 var joined = true
 
-onready var enabler = $Enabler
 onready var speciesSelection = $SpeciesSelection
 onready var sfx = $SFX
 
@@ -145,7 +144,7 @@ func _input(event):
 
 func leave():
 	joined = false
-	enabler.visible = true
+	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	disable_choice()
 	emit_signal("leave")
 
@@ -173,13 +172,13 @@ func _on_Next_pressed():
 
 func disable_choice():
 	disabled = true
-	enabler.visible = true
+	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
 	
 func enable_choice():
 	joined = true
 	disabled = false
+	speciesSelection.modulate = Color(1,1,1,1)
 	selected = false
-	enabler.visible = false
 	speciesSelection.enable()
 

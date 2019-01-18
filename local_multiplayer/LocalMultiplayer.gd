@@ -10,6 +10,7 @@ var players : Dictionary
 
 signal updated
 
+
 func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = selection_species.name
@@ -26,6 +27,7 @@ func setup_player(current_player : PlayerSpawner) -> InfoPlayer:
 	return info_player
 	
 func _ready():
+	players = {}
 	gameover_screen.hide()
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")

@@ -22,6 +22,7 @@ const img_path : String = "res://assets/icon/"
 
 func _ready():
 	select_rect.visible = false
+	character.modulate = Color(0.8,0.8,0.8,1)
 	
 func _set_species(new_value : SpeciesSelection):
 	species = new_value
@@ -60,14 +61,17 @@ func next():
 
 func select():
 	select_rect.visible = true
+	character.modulate = Color(1,1,1,1)
 	$LeftArrow.disable()
 	$RightArrow.disable()
 
 func deselect():
 	select_rect.visible = false
+	character.modulate = Color(0.8,0.8,0.8,1)
 
 func enable():
 	select_rect.visible = false
+	character.modulate = Color(0.8,0.8,0.8,1)
 	$LeftArrow.enable()
 	$RightArrow.enable()
 	anim.play("standby")

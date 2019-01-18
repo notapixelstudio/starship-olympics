@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/species/trixens.tres" type="Resource" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=6]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/species/trixens_ship.png" type="Texture" id=8]
-[ext_resource path="res://assets/interface/label_bg.png" type="Texture" id=9]
-[ext_resource path="res://animations/shake.anim" type="Animation" id=10]
+[ext_resource path="res://animations/shake.anim" type="Animation" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -30,10 +29,9 @@ tracks/0/keys = {
 }
 
 [node name="CharacterSelection" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1080.0
-margin_bottom = -320.0
+margin_top = -14.0
+margin_right = 200.0
+margin_bottom = 436.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 400 )
@@ -42,34 +40,34 @@ species = ExtResource( 2 )
 controls = ""
 
 [node name="SelectRect" type="Sprite" parent="."]
-visible = false
-position = Vector2( 80, 204.487 )
-scale = Vector2( 0.7, 0.443871 )
+position = Vector2( 75.9339, 240.894 )
+scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 3 )
 
 [node name="Character" type="Control" parent="."]
-anchor_bottom = 1.0
 margin_right = 210.0
-margin_bottom = -30.0
+margin_bottom = 450.0
 rect_clip_content = true
 
 [node name="Character" type="Sprite" parent="Character"]
+modulate = Color( 0.8, 0.8, 0.8, 1 )
 position = Vector2( 90, 290 )
-scale = Vector2( 0.7, 0.650162 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
 
 [node name="Controls" type="Sprite" parent="."]
-position = Vector2( 38, 25 )
+position = Vector2( 82, 540 )
 texture = ExtResource( 5 )
 
 [node name="Player" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -35.0
-margin_top = -196.0
-margin_bottom = -156.0
+margin_top = -257.0
+margin_bottom = -217.0
 custom_fonts/font = ExtResource( 6 )
 text = "p1"
 align = 1
@@ -77,35 +75,33 @@ valign = 1
 uppercase = true
 
 [node name="LeftArrow" parent="." instance=ExtResource( 7 )]
-margin_left = 52.0
-margin_top = 372.0
-margin_right = 52.0
-margin_bottom = 372.0
+margin_left = 36.0
+margin_top = 450.0
+margin_right = 36.0
+margin_bottom = 450.0
 rect_scale = Vector2( -1, 1 )
 
 [node name="Ship" type="Sprite" parent="."]
-position = Vector2( 103.174, 370.57 )
+position = Vector2( 87.174, 450 )
 rotation = 0.785402
 scale = Vector2( 0.5, 0.500019 )
 texture = ExtResource( 8 )
 
 [node name="RightArrow" parent="." instance=ExtResource( 7 )]
-margin_left = 147.0
-margin_top = 374.0
-margin_right = 147.0
-margin_bottom = 374.0
+margin_left = 131.0
+margin_top = 450.0
+margin_right = 131.0
+margin_bottom = 450.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "standby"
 anims/standby = SubResource( 1 )
 
-[node name="SpeciesName" type="NinePatchRect" parent="."]
-modulate = Color( 1, 1, 1, 0.651922 )
+[node name="SpeciesName" type="Control" parent="."]
 margin_left = 13.0
-margin_top = 200.0
+margin_top = 480.0
 margin_right = 153.0
-margin_bottom = 280.0
-texture = ExtResource( 9 )
+margin_bottom = 510.0
 
 [node name="Label" type="Label" parent="SpeciesName"]
 anchor_left = 0.5
@@ -113,9 +109,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -70.0
-margin_top = -30.0
+margin_top = -5.0
 margin_right = 75.0
-margin_bottom = 10.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 6 )
 text = "TRIXENS"
 align = 1
@@ -123,7 +119,7 @@ valign = 1
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesName"]
-anims/shake = ExtResource( 10 )
+anims/shake = ExtResource( 9 )
 
 [node name="Tween" type="Tween" parent="."]
 
