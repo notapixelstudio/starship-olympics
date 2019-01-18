@@ -29,8 +29,9 @@ tracks/0/keys = {
 }
 
 [node name="CharacterSelection" type="Control"]
+margin_top = -14.0
 margin_right = 200.0
-margin_bottom = 450.0
+margin_bottom = 436.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 400 )
@@ -39,8 +40,8 @@ species = ExtResource( 2 )
 controls = ""
 
 [node name="SelectRect" type="Sprite" parent="."]
-position = Vector2( 74.1844, 230.98 )
-scale = Vector2( 0.660969, 0.506674 )
+position = Vector2( 75.9339, 240.894 )
+scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 3 )
 
 [node name="Character" type="Control" parent="."]
@@ -49,8 +50,9 @@ margin_bottom = 450.0
 rect_clip_content = true
 
 [node name="Character" type="Sprite" parent="Character"]
+modulate = Color( 0.8, 0.8, 0.8, 1 )
 position = Vector2( 90, 290 )
-scale = Vector2( 0.7, 0.650162 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
 
 [node name="Controls" type="Sprite" parent="."]
