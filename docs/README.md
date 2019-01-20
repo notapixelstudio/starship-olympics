@@ -49,3 +49,6 @@ A true starship pilot can never rest! As soon as your ship is destroyed, your te
 
 # Lots of unlockable content
 In the full version of the game you will be able to unlock new races, pilots and arenas.
+
+
+![unlocked-species](/assets/sprites/species/anothers1_beaten.png)
