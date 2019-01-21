@@ -16,5 +16,8 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+editor/display_folded = false
 
 [connection signal="rematch" from="GameOver/GameOverScreen" to="." method="_on_GameOverScreen_rematch"]
+
+[editable path="ParallaxBackground"]
