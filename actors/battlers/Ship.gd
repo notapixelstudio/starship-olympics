@@ -59,6 +59,7 @@ func initialize():
 	pass
 	
 func _ready():
+	print(rotation)
 	species = "another"
 	# let's connect this when creating the instance
 	# connect("died", get_node('/root/Arena'), "update_score")
@@ -104,6 +105,7 @@ func control(_delta):
 func _process(delta):
 	if not alive:
 		return
+		
 	control(delta)
 	
 	# keep the crown up

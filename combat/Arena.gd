@@ -9,6 +9,7 @@ var someone_died = 0
 
 export (float) var size_multiplier = 2.0
 
+var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
 var run_time = 0
@@ -20,7 +21,7 @@ onready var camera = $Camera
 onready var hud = $Pause/HUD
 onready var getready = $Pause/GetReady
 
-const ship_scene = preload("res://actors/battlers/Ship.tscn")
+const ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
@@ -66,6 +67,7 @@ func setup_ships():
 func _ready():
 	compute_arena_size()
 	camera.zoom *= size_multiplier
+	# Engine.time_scale = 0.2
 	# in order to get the size
 	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
 	run_time = OS.get_ticks_msec()
@@ -93,20 +95,26 @@ func _ready():
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "gameover")
 	var player_ids = []
+	if not spawners:
+		spawners = $SpawnPositions/Players.get_children()
 	game_mode.initialize(spawners)
 	
 	# initialize HUD
 	hud.initialize(game_mode)
 	
-	get_tree().paused = true
-	getready.start()
-	yield(getready, "finished")
-	get_tree().paused = false
+	#get_tree().paused = true
+	#getready.start()
+	#yield(getready, "finished")
+	#	get_tree().paused = false
 	
 func _process(delta):
 	game_mode.update(delta)
 	
 func _unhandled_input(event):
+	if event.is_action_pressed("ui_accept"):
+		print("accept")
+		debug = not debug
+		get_tree().paused = debug
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug
