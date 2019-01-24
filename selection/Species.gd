@@ -28,20 +28,20 @@ const controlsToKey = {
     "joy3" : Controls.JOY3,
     "joy4" : Controls.JOY4
 }
-enum SPECIES {MANTIACS, ROBOLORDS, TRIXENS, ANOTHERS}
+enum SPECIES {MANTIACS, ROBOLORDS, TRIXENS, TSUNAMIANS}
 
 const SpeciesMap = {
 	SPECIES.MANTIACS : "Mantiacs",
 	SPECIES.ROBOLORDS : "Robolords",
 	SPECIES.TRIXENS : "Trixens",
-	SPECIES.ANOTHERS : "Anothers"
+	SPECIES.TSUNAMIANS : "Tsunamians"
 }
 
 const SpeciesToKey = {
 	"mantiacs" : SPECIES.MANTIACS ,
 	"robolords" : SPECIES.ROBOLORDS ,
 	"trixens" : SPECIES.TRIXENS ,
-	"anothers" : SPECIES.ANOTHERS 
+	"tsunamians" : SPECIES.TSUNAMIANS 
 }
 const BATTLER_PATH = "res://actors/battlers/characters/" 
 
