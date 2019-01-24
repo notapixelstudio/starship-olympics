@@ -1,4 +1,7 @@
 extends Node2D
+"""
+Debug node for movement and vectors
+"""
 
 # GDquest colors
 var colors = {

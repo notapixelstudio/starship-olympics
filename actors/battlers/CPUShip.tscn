@@ -62,10 +62,11 @@ offset = Vector2( 0, -150 )
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 
-[node name="Movement" type="Node2D" parent="."]
+[node name="Debug" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="Movement"]
+[node name="Label" type="Label" parent="Debug"]
 margin_left = -230.0
 margin_top = -160.0
 margin_right = 220.0
@@ -73,7 +74,7 @@ margin_bottom = -50.0
 custom_fonts/font = ExtResource( 6 )
 align = 1
 
-[node name="Label2" type="Label" parent="Movement"]
+[node name="Label2" type="Label" parent="Debug"]
 margin_left = -230.0
 margin_top = -100.0
 margin_right = 220.0

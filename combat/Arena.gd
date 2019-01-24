@@ -21,7 +21,8 @@ onready var camera = $Camera
 onready var hud = $Pause/HUD
 onready var getready = $Pause/GetReady
 
-const ship_scene = preload("res://actors/battlers/CPUShip.tscn")
+const ship_scene = preload("res://actors/battlers/Ship.tscn")
+const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
@@ -102,10 +103,10 @@ func _ready():
 	# initialize HUD
 	hud.initialize(game_mode)
 	
-	#get_tree().paused = true
-	#getready.start()
-	#yield(getready, "finished")
-	#	get_tree().paused = false
+	get_tree().paused = true
+	getready.start()
+	yield(getready, "finished")
+	get_tree().paused = false
 	
 func _process(delta):
 	game_mode.update(delta)
@@ -173,7 +174,11 @@ func gameover(winner:String, scores:Dictionary):
 	emit_signal("gameover", winner, scores)
 	
 func setup_ship(player:PlayerSpawner):
-	var ship = ship_scene.instance()
+	var ship 
+	if player.is_cpu():
+		ship = cpu_ship_scene.instance()
+	else:
+		ship = ship_scene.instance()
 	ship.arena = self
 	ship.controls = player.controls
 	ship.battle_template = player.battler_template

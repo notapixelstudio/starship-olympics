@@ -1,21 +1,24 @@
 extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
-const THRESHOLD = 0.08
+const THRESHOLD = 0.07
 
 var target_velocity = Vector2()
 var steering = Vector2()
 var front = Vector2()
 
-static func is_left(a,b,check) -> int:
+static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
+	"""
+	Given two points a, b will return the side check is on.
+ 	@return integer code for which side of the line ab c is on.  
+	1 means left turn, -1 means right turn.  Returns
+ 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
+	"""
 	var cross = ((b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x))
 	
 	if cross > -THRESHOLD and cross < THRESHOLD:
 		return 0
-	if cross > 0:
-		return 1
-	else:
-		return -1
+	return int(sign(cross))
 
 static func angle_to_angle(from, to):
     return fposmod(to-from + PI, PI*2) - PI
@@ -43,7 +46,7 @@ func choose_dir(target):
 		target_velocity = distance_to_target.normalized()
 		front = Vector2(cos(rotation), sin(rotation))
 		
-		direction_to_take = is_left(Vector2(0,0), front, target_velocity)
+		direction_to_take = find_side(Vector2(0,0), front, target_velocity)
 		
 		return direction_to_take
 
@@ -54,6 +57,7 @@ func control(delta):
 	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
 		print("click")
 		arena.mouse_target = get_global_mouse_position()
+	
 	rotation_dir = choose_dir(arena.mouse_target)
 	# charge
 	if charging:
@@ -83,7 +87,7 @@ func control(delta):
 		
 	# cooldown
 	fire_cooldown -= delta
-	$Movement.rotation = -rotation
+	$Debug.rotation = -rotation
 	
 	# dash
 	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:

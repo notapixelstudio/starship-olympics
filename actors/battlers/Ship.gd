@@ -59,7 +59,6 @@ func initialize():
 	pass
 	
 func _ready():
-	print(rotation)
 	species = "another"
 	# let's connect this when creating the instance
 	# connect("died", get_node('/root/Arena'), "update_score")
