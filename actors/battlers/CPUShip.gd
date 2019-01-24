@@ -34,15 +34,15 @@ func _input(event):
 	if event.is_action_pressed("kb1_fire"):
 		alive = not alive
 		
-func choose_dir(target):
+func choose_dir(target:Node2D):
 	var direction_to_take = 0
-	if not target :
+	if not target or not target.is_inside_tree():
 		var chance = randi() % 100
 		for dir in this_range.keys():
 			if chance < dir:
 				return this_range[dir]
 	else:
-		var distance_to_target = (target-position)
+		var distance_to_target = (target.position-position)
 		target_velocity = distance_to_target.normalized()
 		front = Vector2(cos(rotation), sin(rotation))
 		
@@ -58,7 +58,7 @@ func control(delta):
 		print("click")
 		arena.mouse_target = get_global_mouse_position()
 	
-	rotation_dir = choose_dir(arena.mouse_target)
+	rotation_dir = choose_dir(arena.crown)
 	# charge
 	if charging:
 		charge = charge+delta
