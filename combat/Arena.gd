@@ -9,6 +9,7 @@ var someone_died = 0
 
 export (float) var size_multiplier = 2.0
 
+var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
 var run_time = 0
@@ -19,8 +20,11 @@ onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var hud = $Pause/HUD
 onready var getready = $Pause/GetReady
+# Crown might be null, if someone has it or ... if the mode is not crownmode
+onready var crown = $Battlefield/Crown
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
+const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
@@ -28,7 +32,6 @@ signal gameover
 var spawners = []
 
 var game_mode
-var crown_outside_game = null
 
 func initialize(players:Array) -> void:
 	spawners = []
@@ -66,6 +69,7 @@ func setup_ships():
 func _ready():
 	compute_arena_size()
 	camera.zoom *= size_multiplier
+	# Engine.time_scale = 0.2
 	# in order to get the size
 	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
 	run_time = OS.get_ticks_msec()
@@ -93,6 +97,8 @@ func _ready():
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "gameover")
 	var player_ids = []
+	if not spawners:
+		spawners = $SpawnPositions/Players.get_children()
 	game_mode.initialize(spawners)
 	
 	# initialize HUD
@@ -139,10 +145,10 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 func ship_just_died(ship_name: String, ship_position:Vector2):
 	# check if we need to lose the crown
 	if game_mode.queen != null and ship_name == game_mode.queen.name:
+		print(crown.position)
 		game_mode.crown_lost()
-		crown_outside_game.position = ship_position
-		$Battlefield.add_child(crown_outside_game)
-		crown_outside_game = null
+		crown.position = ship_position
+		$Battlefield.add_child(crown)
 		
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -157,15 +163,18 @@ func ship_just_died(ship_name: String, ship_position:Vector2):
 			
 func crown_taken(ship):
 	game_mode.crown_taken(ship)
-	crown_outside_game = $Battlefield/Crown
-	$Battlefield.remove_child($Battlefield/Crown)
+	$Battlefield.remove_child(crown)
 
 func gameover(winner:String, scores:Dictionary):
 	print("gameover")
 	emit_signal("gameover", winner, scores)
 	
 func setup_ship(player:PlayerSpawner):
-	var ship = ship_scene.instance()
+	var ship 
+	if player.is_cpu():
+		ship = cpu_ship_scene.instance()
+	else:
+		ship = ship_scene.instance()
 	ship.arena = self
 	ship.controls = player.controls
 	ship.battle_template = player.battler_template

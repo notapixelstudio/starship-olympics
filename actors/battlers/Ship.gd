@@ -104,6 +104,7 @@ func control(_delta):
 func _process(delta):
 	if not alive:
 		return
+		
 	control(delta)
 	
 	# keep the crown up
