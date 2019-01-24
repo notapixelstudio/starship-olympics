@@ -9,14 +9,14 @@ var level
 var array_level
 
 const MAX_PLAYERS = 4
-const SPECIES = ["mantiacs", "robolords", "trixens", "anothers"]
+const SPECIES = ["mantiacs", "robolords", "trixens", "tsunamians"]
 
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
 	"mantiacs": true,
 	"robolords": true,
  	"trixens": true,
-	"anothers" : true
+	"tsunamians" : true
 }
 
 var debug = false
