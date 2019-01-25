@@ -138,7 +138,16 @@ func _input(event):
 		set_controls_by_string(force_to)
 		print("forcing to" + force_to)
 		return
-
+		
+var wait :float = 0.0
+func _process(delta):
+	wait -= delta
+	if Input.is_action_pressed(controls+"_right") and wait<=0 and not selected:
+		_on_Next_pressed()
+		wait = 0.07
+	if Input.is_action_pressed(controls+"_left") and wait<=0 and not selected:
+		_on_Previous_pressed()
+		wait = 0.07
 
 func leave():
 	joined = false
