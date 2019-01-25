@@ -17,7 +17,7 @@ func save_game():
 	# Create a file
 	var save_file = File.new()
 	save_file.open(SAVE_PATH, File.WRITE)
-	print(save_file.get_path_absolute())
+	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
 	print(save_dict)
 	# Serialize the data dictionary to JSON
 	save_file.store_line(to_json(save_dict))

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/species/trixens.tres" type="Resource" id=2]
-[ext_resource path="res://assets/sprites/species/trixens1_selected_rect.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/species/trixens1_character.png" type="Texture" id=4]
 [ext_resource path="res://assets/icon/kb1.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=6]
@@ -40,6 +40,8 @@ species = ExtResource( 2 )
 controls = ""
 
 [node name="SelectRect" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 0, 1 )
 position = Vector2( 75.9339, 240.894 )
 scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 3 )

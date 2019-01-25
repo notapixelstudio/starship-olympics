@@ -24,7 +24,7 @@ func _ready():
 	select_rect.visible = false
 	character.modulate = Color(0.8,0.8,0.8,1)
 	
-func _set_species(new_value : SpeciesSelection):
+func _set_species(new_value : SpeciesTemplate):
 	species = new_value
 	
 	if not species:
@@ -41,16 +41,16 @@ func _set_species(new_value : SpeciesSelection):
 
 func initialize(player_id:String):
 	"""
-	Factory for controls and species resource.
+	Factory for controls and species resource
 	"""
 	player.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
 	
-func change_species(new_species:SpeciesSelection):
+func change_species(new_species:SpeciesTemplate):
 	species = new_species
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
-	character.texture = species.character
+	character.texture = species.character_ok
 	select_rect.texture = species.select_rect
 
 func previous():
