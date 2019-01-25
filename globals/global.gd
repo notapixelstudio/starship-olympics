@@ -9,29 +9,32 @@ var level
 var array_level
 
 const MAX_PLAYERS = 4
-const SPECIES = ["mantiacs", "robolords", "trixens", "anothers"]
+const max_species = 5
+enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
+
 
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
-	"mantiacs": true,
-	"robolords": true,
- 	"trixens": true,
-	"anothers" : true
+	ALL_SPECIES.SPECIES0: true,
+	ALL_SPECIES.SPECIES1: true,
+	ALL_SPECIES.SPECIES2: true,
+	ALL_SPECIES.SPECIES3 : true,
+	ALL_SPECIES.SPECIES4 : false
 }
-
-var debug = false
-var this_run_time = 0
 
 # force saving the game
 var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func get_unlocked() -> Dictionary:
+	"""
+	Get all available unlocked species, and return a dictionary that has as keys the enum of the species
+	"""
 	var available : Dictionary  = {}
 	var i = 1
-	for species in SPECIES:
+	for species in unlocked_species:
 		if unlocked_species[species]:
-			available[species] = i
+			available[species] = {}
 			i+=1
 	return available
 
@@ -40,12 +43,10 @@ func _unlock_species(species : String):
 
 func _ready():
 	add_to_group("persist")
-	if persistance.load_game() and not force_save:
-		return
-	
-	for this_species in SPECIES:
-		unlocked_species[this_species] = true
-	persistance.save_game()
+	print(ALL_SPECIES)
+	if force_save:
+		persistance.save_game()
+	persistance.load_game()
 	
 
 # utils
@@ -69,7 +70,7 @@ func dir_contents(path):
 		var file_name = dir.get_next()
 		while (file_name != ""):
 			if dir.current_is_dir():
-				pass
+				continue
 			else:
 				if file_name.ends_with(".tscn"):
 					list_files.append(file_name)

@@ -59,9 +59,6 @@ func initialize():
 	pass
 	
 func _ready():
-	species = "another"
-	# let's connect this when creating the instance
-	# connect("died", get_node('/root/Arena'), "update_score")
 	skin.add_child(battle_template.anim.instance())
 	skin.initialize()
 	
