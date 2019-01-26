@@ -1,14 +1,17 @@
 extends Control
 
 class_name Species
+"""
+Class for Specis logic
+"""
+
 
 var id:String
 var uid:int
-var species_template : SpeciesTemplate
+export (Resource) var species_template # : SpeciesTemplate
 
 # enum duplicates in global
 enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
-enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 
 signal selected
 signal deselected
@@ -27,21 +30,18 @@ onready var sfx = $SFX
 const species_path : String = "res://selection/species/"
 
 export (CONTROLS) var key_controls = CONTROLS.KB1
-export (ALL_SPECIES) var species  = ALL_SPECIES.SPECIES0 
 export (String, "", "kb1", "kb2") var force_to
+export (Resource) var species_resource 
 
 var controls : String
-var species_templates : Dictionary # Dict[String, Resource]
 
 func set_controls(new_controls:String):
 	"""
 	Set controls and disable if NO or CPU
 	"""
 	if key_controls == CONTROLS.NO or key_controls == CONTROLS.CPU:
-		deselect()
 		disable_choice()
-	else:
-		deselect()
+	deselect()
 	speciesSelection.controls = controls
 	speciesSelection.initialize(name)
 	
@@ -51,18 +51,17 @@ func _set_controls_by_key(new_controls:int):
 	set_controls(controls)
 	
 func _ready():
-	species_templates = global.get_species_templates()
-	species_template = species_templates[species]
 	_set_controls_by_key(key_controls)
-	change_species(species)
+	change_species(species_template)
 	id = name.to_lower()
 	print("ID is ", id)
+	print("Controls is ", controls)
 	speciesSelection.initialize(name)
 
-func change_species(new_species:int):
+func change_species(new_species: SpeciesTemplate):
 	# get the resource from the global
 	if new_species:
-		species_template = load(species_path + species.to_lower() + ".tres")
+		species_template = new_species
 		speciesSelection.change_species(species_template)
 
 func _input(event):
@@ -91,7 +90,7 @@ func leave():
 func select_character():
 	selected = true
 	speciesSelection.select()
-	emit_signal("selected", species)
+	emit_signal("selected", species_template)
 
 func deselect():
 	print("deselected")
@@ -99,7 +98,7 @@ func deselect():
 	sfx.get_node("deselected").play()
 	enable_choice()
 	selected = false
-	emit_signal("deselected", species)
+	emit_signal("deselected", species_template)
 	
 func _on_Previous_pressed():
 	emit_signal("prev")

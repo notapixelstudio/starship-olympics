@@ -2,11 +2,13 @@ extends Control
 
 const MAX_PLAYERS = 4
 const MIN_PLAYERS = 2
+const NUM_KEYBOARDS = 2
 
+enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 onready var container = $Container
 
 var available_species : Dictionary
-var ordered_species : Array
+var ordered_species : Array # Array[String]
 
 signal fight
 signal someone_selected
@@ -33,22 +35,9 @@ func initialize(available_species:Dictionary):
 		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 		i +=1
-	var controls = assign_controls(2)
+	var controls = assign_controls(NUM_KEYBOARDS)
 	for control in controls:
 		print(add_controls(control))
-
-# debug
-var pressed = false
-var debug_joy = 0
-func _unhandled_input(event):
-	if event.is_action_pressed("debug"):
-		Input.emit_signal("joy_connection_changed", debug_joy+1, true)
-		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS-1)
-	elif event.is_action_pressed("debug_cancel"):
-		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS-1)
-		Input.emit_signal("joy_connection_changed", debug_joy+1, false)
-
-# end debug
 
 func add_controls(key : String) -> bool:
 	"""
@@ -56,6 +45,7 @@ func add_controls(key : String) -> bool:
 	return false if reach limit of MAX_PLAYERS.
 	If no, shift backwards
 	"""
+	# TODO: check this
 	var shift:bool = false
 	var last: String = ""
 	var first = container.get_child(0)
@@ -160,8 +150,8 @@ func ready_to_fight():
 	else:
 		print("not enough players")
 
-func selected(species:String):
-	var current_index = ordered_species.find(species) 
+func selected(species:SpeciesTemplate):
+	var current_index = ordered_species.find(species.species_name) 
 	selected_index.append(current_index)
 	print(selected_index)
 	for child in container.get_children():
@@ -169,7 +159,7 @@ func selected(species:String):
 			get_adjacent(+1, child)
 	emit_signal("someone_selected", species)
 
-func deselected(species:String):
+func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
 	print(selected_index)

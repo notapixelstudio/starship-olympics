@@ -9,6 +9,9 @@ const MAXLIVES = 10
 var level
 var array_level
 
+# templates
+var templates : Dictionary # {int : Resources}
+
 # Controls
 enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
 
@@ -57,12 +60,13 @@ var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func get_unlocked() -> Dictionary:
 	"""
-	Get all available unlocked species, and return a dictionary that has as keys the enum of the species
+	Get all available unlocked species. 
+	@return: Dictionary [enum : resource] that has as keys the enum of the species
 	"""
 	var available : Dictionary  = {}
 	for species in unlocked_species:
 		if unlocked_species[species]:
-			available[species] = {}
+			available[species] = templates[species]
 			
 	return available
 
@@ -86,7 +90,8 @@ func _ready():
 	add_to_group("persist")
 	print(ALL_SPECIES)
 	print(ALL_SPECIES.keys()[1])
-	print(get_species_templates())
+	templates = get_species_templates()
+	print(get_unlocked())
 	if force_save:
 		persistance.save_game()
 	persistance.load_game()
