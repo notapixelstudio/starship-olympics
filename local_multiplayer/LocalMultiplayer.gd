@@ -82,7 +82,7 @@ func gameover(winner:String, scores:Dictionary):
 	gameover_screen.initialize(winner, players_scores)
 	gameover_screen.visible = true
 	gameover_screen.raise()
-	yield(get_tree().create_timer(10), "timeout")
+	
 	
 
 func _on_GameOverScreen_rematch():

@@ -177,7 +177,7 @@ func setup_ship(player:PlayerSpawner):
 		ship = ship_scene.instance()
 	ship.arena = self
 	ship.controls = player.controls
-	ship.battle_template = player.battler_template
+	ship.species_template = player.battler_template
 	ship.position = player.position
 	ship.rotation = player.rotation
 	ship.height = height

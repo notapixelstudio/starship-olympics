@@ -41,8 +41,13 @@ const MAX_PLAYERS = 4
 
 # Species handler
 const SPECIES_PATH = "res://selection/species"
-enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
-
+var ALL_SPECIES = {
+	SPECIES0 = "species0.tres",
+	SPECIES1 = "species1.tres",
+	SPECIES2 = "species2.tres",
+	SPECIES3 = "species3.tres",
+	SPECIES4 = "species4.tres",
+	}
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
 	ALL_SPECIES.SPECIES0: true,
@@ -51,12 +56,33 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES3 : true,
 	ALL_SPECIES.SPECIES4 : false
 }
-
+var colors = {
+	WHITE = Color(1.0, 1.0, 1.0),
+	YELLOW = Color(1.0, .757, .027),
+	GREEN = Color(.282, .757, .255),
+	BLUE = Color(.098, .463, .824),
+	PINK = Color(.914, .118, .388)
+}
 # force saving the game
 var force_save = true
 
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
+
+func _ready():
+	add_to_group("persist")
+	print(ALL_SPECIES)
+	print(unlocked_species)
+	print("white is ", colors.WHITE)
+	templates = get_species_templates()
+	print(templates)
+	if force_save:
+		persistance.save_game()
+	if persistance.load_game():
+		print("Successfully load the game")
+	else:
+		print("Something went wrong while loading the game data")
+
 
 func get_unlocked() -> Dictionary:
 	"""
@@ -78,23 +104,15 @@ func get_species_templates() -> Dictionary:
 		if i > len(resources) -1:
 			print("This species: " + species.to_lower(), " is not available")
 		else:
-			species_templates[ALL_SPECIES[species]] = load(SPECIES_PATH.plus_file(resources[i]))
+			var filename : String = ALL_SPECIES[species]
+			print(filename)
+			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
 			i+=1
 	return species_templates
 
 
 func _unlock_species(species : String):
 	unlocked_species[species] = true
-
-func _ready():
-	add_to_group("persist")
-	print(ALL_SPECIES)
-	print(ALL_SPECIES.keys()[1])
-	templates = get_species_templates()
-	print(get_unlocked())
-	if force_save:
-		persistance.save_game()
-	persistance.load_game()
 
 # utils
 func get_state():

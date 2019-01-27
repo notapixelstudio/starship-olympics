@@ -11,7 +11,6 @@ var available_species : Dictionary
 var ordered_species : Array # Array[String]
 
 signal fight
-signal someone_selected
 
 var selected_index = []
 var players_controls : Array
@@ -21,13 +20,15 @@ func _ready():
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
 func initialize(available_species:Dictionary):
-	ordered_species = available_species.keys()
+	ordered_species = []
+	for species_id in available_species:
+		ordered_species.append(available_species[species_id])
 	
 	var i = 0
 	for child in container.get_children():
 		assert(child is Species)
 		#set all to no
-		child.set_controls_by_string("no")
+		child.set_controls(global.Controls.NO)
 		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
@@ -49,10 +50,10 @@ func add_controls(key : String) -> bool:
 	var shift:bool = false
 	var last: String = ""
 	var first = container.get_child(0)
-	if first.controls != "no":
+	if first.controls != global.Controls.NO:
 		shift = true
 		last = first.controls
-	first.set_controls_by_string(key)
+	first.set_controls(key)
 	print("set ", first.name, " to ", key)
 	var i = 0
 	for child in container.get_children():
@@ -157,7 +158,6 @@ func selected(species:SpeciesTemplate):
 	for child in container.get_children():
 		if not child.selected and child.species == species:
 			get_adjacent(+1, child)
-	emit_signal("someone_selected", species)
 
 func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 

@@ -29,29 +29,24 @@ onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
 
-export (CONTROLS) var key_controls = CONTROLS.KB1
+export (CONTROLS) var controls = CONTROLS.KB1
 export (String, "", "kb1", "kb2") var force_to
 export (Resource) var species_resource 
 
-var controls : String
-
-func set_controls(new_controls:String):
+func set_controls(new_controls:int):
 	"""
 	Set controls and disable if NO or CPU
 	"""
-	if key_controls == CONTROLS.NO or key_controls == CONTROLS.CPU:
+	if controls == CONTROLS.NO or controls == CONTROLS.CPU:
 		disable_choice()
 	deselect()
-	speciesSelection.controls = controls
+	controls = new_controls
+	speciesSelection.controls = global.CONTROLSMAP[controls]
 	speciesSelection.initialize(name)
 	
-func _set_controls_by_key(new_controls:int):
-	key_controls = new_controls
-	controls = global.CONTROLSMAP[key_controls]
-	set_controls(controls)
 	
 func _ready():
-	_set_controls_by_key(key_controls)
+	set_controls(controls)
 	change_species(species_template)
 	id = name.to_lower()
 	print("ID is ", id)
