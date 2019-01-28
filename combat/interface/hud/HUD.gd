@@ -8,7 +8,7 @@ const colors = {
 	'mantiacs': Color(0,1,0,1),
 	'robolords': Color(1,0,0,1),
 	'trixens': Color(1,1,0,1),
-	'anothers': Color(0,0,1,1)
+	'tsunamians': Color(0,0,1,1)
 }
 
 func initialize(_game_mode):

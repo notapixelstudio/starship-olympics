@@ -135,6 +135,7 @@ func get_adjacent(operator:int, player_selection : Node):
 func _on_joy_connection_changed(device_id, connected):
 	var joy = "joy"+str(device_id+1)
 	if connected:
+		print("Recognise controller: ", Input.get_joy_name(device_id))
 		add_controls(joy)
 	else:
 		change_controls(joy, "no")
