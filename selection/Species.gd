@@ -9,7 +9,7 @@ Class for Species logic. Will be set controls and Species template
 
 var id:String
 var uid:int
-export (Resource) var species_template # : SpeciesTemplate
+
 
 # enum duplicates in global
 enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
@@ -21,7 +21,7 @@ signal ready_to_fight
 signal prev
 signal next
 
-var disabled = false
+var disabled = true
 var selected = false
 var joined = true
 
@@ -32,7 +32,7 @@ const species_path : String = "res://selection/species/"
 
 export (CONTROLS) var key_controls = CONTROLS.KB1
 export (String, "", "kb1", "kb2") var force_to
-export (Resource) var species_resource 
+export (Resource) var species_template # : SpeciesTemplate
 
 # this will be the String of controls
 var controls : String
@@ -41,11 +41,12 @@ func set_controls(new_controls:String):
 	"""
 	Set controls and disable if NO or CPU
 	"""
+	deselect()
 	var k_controls = global.CONTROLSMAP_TO_KEY[new_controls]
 	controls = new_controls
 	if k_controls == CONTROLS.NO or k_controls == CONTROLS.CPU:
 		disable_choice()
-	deselect()
+	
 	speciesSelection.controls = controls
 	speciesSelection.initialize(name)
 	
@@ -94,7 +95,6 @@ func select_character():
 	emit_signal("selected", species_template)
 
 func deselect():
-	print("deselected")
 	speciesSelection.deselect()
 	sfx.get_node("deselected").play()
 	enable_choice()
@@ -113,8 +113,7 @@ func disable_choice():
 	disabled = true
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
-	set_process_input(false)
-	set_process(false)
+	
 	
 func enable_choice():
 	joined = true
@@ -122,6 +121,5 @@ func enable_choice():
 	speciesSelection.modulate = Color(1,1,1,1)
 	selected = false
 	speciesSelection.enable()
-	set_process_input(true)
-	set_process(true)
+	
 

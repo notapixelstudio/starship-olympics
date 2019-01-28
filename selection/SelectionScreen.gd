@@ -150,11 +150,12 @@ func ready_to_fight():
 		print("not enough players")
 
 func selected(species:SpeciesTemplate):
-	var current_index = ordered_species.find(species.species_name) 
+	var current_index = ordered_species.find(species) 
 	selected_index.append(current_index)
 	print(selected_index)
 	for child in container.get_children():
-		if not child.selected and child.species == species:
+		print(species.species_name, " vs child: ", child.species_template.species_name)
+		if not child.selected and child.species_template == species:
 			get_adjacent(+1, child)
 
 func deselected(species:SpeciesTemplate):

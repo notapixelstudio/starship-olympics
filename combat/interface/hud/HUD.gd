@@ -19,7 +19,7 @@ func initialize(_game_mode):
 	for player in game_mode.players:
 		var bar = Bar.instance()
 		$Bars.add_child(bar)
-		bar.initialize(colors[player.battler_template.species_name], game_mode.TARGET_SCORE)
+		bar.initialize(player.species_template.color, game_mode.TARGET_SCORE)
 		bar.player = player
 		
 func _process(_delta):

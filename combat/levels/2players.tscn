@@ -5,10 +5,11 @@
 [ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/battlers/characters/robolords.tres" type="Resource" id=6]
-[ext_resource path="res://actors/battlers/characters/mantiacs.tres" type="Resource" id=7]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
+[ext_resource path="res://selection/species/species3.tres" type="Resource" id=7]
 
-[node name="Arena" instance=ExtResource( 1 )]
+
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
@@ -46,10 +47,10 @@ bevel = 100
 position = Vector2( 200, 950 )
 rotation = 0.0
 controls = "kb2"
-battler_template = ExtResource( 6 )
+species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 3000, 950 )
-battler_template = ExtResource( 7 )
+species_template = ExtResource( 7 )
 
 [connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

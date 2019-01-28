@@ -10,11 +10,10 @@ var players : Dictionary
 
 signal updated
 
-
 func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = selection_species.name
-	info_player.species = selection_species.species
+	info_player.species = selection_species.species_template.species_name
 	info_player.controls = selection_species.controls
 	info_player.species_template = selection_species.species_template
 	return info_player
@@ -44,7 +43,7 @@ func combat(selected_players: Array):
 		var player_info = from_species_to_info_player(player)
 		var spawner = PlayerSpawner.new()
 		spawner.controls = player.controls 
-		spawner.battler_template = player.battler_template
+		spawner.species_template = player.species_template
 		spawner.name = player.name
 		spawner.info_player = player_info
 		print(spawner.name , " vs ", player.name, " in combat")

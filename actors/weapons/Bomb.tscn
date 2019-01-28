@@ -3,9 +3,9 @@
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/weapons/bomb.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/weapons/bomb_locked_mantiacs.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_robolords.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_anothers.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/weapons/bomb_locked_trixens.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_anothers.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_robolords.png" type="Texture" id=6]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=8]
 
@@ -50,22 +50,22 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "locked_mantiacs",
+"name": "locked_0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "locked_robolords",
+"name": "locked_4",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "locked_trixens",
+"name": "locked_2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "locked_anothers",
+"name": "locked_1",
 "speed": 5.0
 } ]
 
