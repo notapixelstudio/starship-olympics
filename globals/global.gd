@@ -42,11 +42,11 @@ const MAX_PLAYERS = 4
 # Species handler
 const SPECIES_PATH = "res://selection/species"
 var ALL_SPECIES = {
-	SPECIES0 = "species0.tres",
-	SPECIES1 = "species1.tres",
-	SPECIES2 = "species2.tres",
-	SPECIES3 = "species3.tres",
-	SPECIES4 = "species4.tres",
+	SPECIES0 = "species0",
+	SPECIES1 = "species1",
+	SPECIES2 = "species2",
+	SPECIES3 = "species3",
+	SPECIES4 = "species4",
 	}
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
@@ -104,7 +104,7 @@ func get_species_templates() -> Dictionary:
 		if i > len(resources) -1:
 			print("This species: " + species.to_lower(), " is not available")
 		else:
-			var filename : String = ALL_SPECIES[species]
+			var filename : String = ALL_SPECIES[species] + ".tres"
 			print(filename)
 			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
 			i+=1

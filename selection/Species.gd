@@ -1,8 +1,9 @@
 extends Control
 
 class_name Species
+
 """
-Class for Specis logic
+Class for Species logic. Will be set controls and Species template
 """
 
 
@@ -29,28 +30,33 @@ onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
 
-export (CONTROLS) var controls = CONTROLS.KB1
+export (CONTROLS) var key_controls = CONTROLS.KB1
 export (String, "", "kb1", "kb2") var force_to
 export (Resource) var species_resource 
 
-func set_controls(new_controls:int):
+# this will be the String of controls
+var controls : String
+
+func set_controls(new_controls:String):
 	"""
 	Set controls and disable if NO or CPU
 	"""
-	if controls == CONTROLS.NO or controls == CONTROLS.CPU:
+	var k_controls = global.CONTROLSMAP_TO_KEY[new_controls]
+	controls = new_controls
+	if k_controls == CONTROLS.NO or k_controls == CONTROLS.CPU:
 		disable_choice()
 	deselect()
-	controls = new_controls
-	speciesSelection.controls = global.CONTROLSMAP[controls]
+	speciesSelection.controls = controls
 	speciesSelection.initialize(name)
 	
 	
 func _ready():
+	disabled = true
+	controls = global.CONTROLSMAP[key_controls]
 	set_controls(controls)
 	change_species(species_template)
 	id = name.to_lower()
 	print("ID is ", id)
-	print("Controls is ", controls)
 	speciesSelection.initialize(name)
 
 func change_species(new_species: SpeciesTemplate):
@@ -107,6 +113,8 @@ func disable_choice():
 	disabled = true
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
+	set_process_input(false)
+	set_process(false)
 	
 func enable_choice():
 	joined = true
@@ -114,4 +122,6 @@ func enable_choice():
 	speciesSelection.modulate = Color(1,1,1,1)
 	selected = false
 	speciesSelection.enable()
+	set_process_input(true)
+	set_process(true)
 

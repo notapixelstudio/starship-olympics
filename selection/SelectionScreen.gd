@@ -8,7 +8,7 @@ enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 onready var container = $Container
 
 var available_species : Dictionary
-var ordered_species : Array # Array[String]
+var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
 
@@ -19,16 +19,15 @@ var num_players : int = 0
 func _ready():
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
-func initialize(available_species:Dictionary):
-	ordered_species = []
-	for species_id in available_species:
-		ordered_species.append(available_species[species_id])
+func initialize(_available_species:Dictionary):
+	available_species = _available_species
+	ordered_species = available_species.values()
 	
 	var i = 0
 	for child in container.get_children():
 		assert(child is Species)
 		#set all to no
-		child.set_controls(global.Controls.NO)
+		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
 		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
@@ -40,7 +39,7 @@ func initialize(available_species:Dictionary):
 	for control in controls:
 		print(add_controls(control))
 
-func add_controls(key : String) -> bool:
+func add_controls(new_controls : String) -> bool:
 	"""
 	Add a controller (keyboard or joypad) and move other to the right
 	return false if reach limit of MAX_PLAYERS.
@@ -50,21 +49,20 @@ func add_controls(key : String) -> bool:
 	var shift:bool = false
 	var last: String = ""
 	var first = container.get_child(0)
-	if first.controls != global.Controls.NO:
+	if first.controls != global.CONTROLSMAP[global.Controls.NO]:
 		shift = true
 		last = first.controls
-	first.set_controls(key)
-	print("set ", first.name, " to ", key)
+	first.set_controls(new_controls)
 	var i = 0
 	for child in container.get_children():
-		if child.controls == key:
+		if child.controls == new_controls:
 			i+=1
 			continue
 			
 		if shift:
 			var tmp = child.controls
 			print(child.name , " with ", last, ". It was ", tmp)
-			child.set_controls_by_string(last)
+			child.set_controls(last)
 			last = tmp
 		print( "child ", i, " with controls ", child.controls)
 		i+=1
@@ -128,7 +126,7 @@ func get_players() -> Array:
 	return players
 	
 func get_adjacent(operator:int, player_selection : Node):
-	var current_index = ordered_species.find(player_selection.species) 
+	var current_index = ordered_species.find(player_selection.species_template) 
 	current_index = global.mod(current_index + operator,len(ordered_species))
 	while current_index in selected_index:
 		current_index = global.mod(current_index + operator,len(ordered_species))
