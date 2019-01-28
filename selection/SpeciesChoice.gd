@@ -35,7 +35,7 @@ func change_species(new_species:SpeciesTemplate):
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
 	character.texture = species.character_ok
-	select_rect.texture = species.select_rect
+	select_rect.modulate = species.color
 
 func previous():
 	label_anim.play("shake")

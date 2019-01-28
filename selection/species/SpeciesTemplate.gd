@@ -2,6 +2,7 @@ extends Resource
 
 class_name SpeciesTemplate
 
+export (int) var id
 export (String) var species_name
 export (StreamTexture) var ship
 export (Texture) var character_ok
