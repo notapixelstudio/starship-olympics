@@ -1,22 +1,20 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://assets/sprites/species/trixens1_beaten.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/species/trixens1_character.png" type="Texture" id=2]
 [ext_resource path="res://selection/species/SpeciesTemplate.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/species/trixens1_selected_rect.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/species/trixens_ship.png" type="Texture" id=5]
-[ext_resource path="res://actors/battlers/skin/Trixens.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/species/trixens_ship.png" type="Texture" id=4]
+[ext_resource path="res://actors/battlers/skin/Trixens.tscn" type="PackedScene" id=5]
 
 [resource]
 
 script = ExtResource( 3 )
 id = 2
 species_name = "trixens"
-ship = ExtResource( 5 )
+ship = ExtResource( 4 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 1 )
-select_rect = ExtResource( 4 )
 species_id = null
 color = Color( 1, 1, 0, 1 )
-ship_anim = ExtResource( 6 )
+ship_anim = ExtResource( 5 )
 
