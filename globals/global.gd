@@ -53,8 +53,8 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES0: true,
 	ALL_SPECIES.SPECIES1: true,
 	ALL_SPECIES.SPECIES2: true,
-	ALL_SPECIES.SPECIES3 : true,
-	ALL_SPECIES.SPECIES4 : false
+	ALL_SPECIES.SPECIES3 : false,
+	ALL_SPECIES.SPECIES4 : true
 }
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
