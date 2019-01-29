@@ -1,67 +1,142 @@
 extends Node
 
-const min_lives = 1
+# OPTIONS need a min and a MAX
+const MINLIVES = 1
 var lives = 5
-const max_lives = 10
+const MAXLIVES = 10
 
 # levels
 var level
 var array_level
 
-const MAX_PLAYERS = 4
-const SPECIES = ["mantiacs", "robolords", "trixens", "tsunamians"]
+# templates
+var templates : Dictionary # {int : Resources}
 
-# dictionary of SPECIES with some values (like a bool unlocked)
-var unlocked_species = {
-	"mantiacs": true,
-	"robolords": true,
- 	"trixens": true,
-	"tsunamians" : true
+# Controls
+enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
+
+const CONTROLSMAP = {
+	Controls.NO : "no",
+	Controls.CPU : "cpu",
+    Controls.KB1 : "kb1",
+    Controls.KB2 : "kb2",
+    Controls.JOY1 : "joy1",
+    Controls.JOY2 : "joy2",
+    Controls.JOY3 : "joy3",
+    Controls.JOY4 : "joy4"
 }
 
-var debug = false
-var this_run_time = 0
+const CONTROLSMAP_TO_KEY = {
+	"no" : Controls.NO,
+	"cpu" : Controls.CPU,
+    "kb1" : Controls.KB1,
+    "kb2" : Controls.KB2,
+    "joy1" : Controls.JOY1,
+    "joy2" : Controls.JOY2,
+    "joy3" : Controls.JOY3,
+    "joy4" : Controls.JOY4
+}
 
+const MAX_PLAYERS = 4
+
+# Species handler
+const SPECIES_PATH = "res://selection/species"
+var ALL_SPECIES = {
+	SPECIES0 = "species0",
+	SPECIES1 = "species1",
+	SPECIES2 = "species2",
+	SPECIES3 = "species3",
+	SPECIES4 = "species4",
+	}
+# dictionary of SPECIES with some values (like a bool unlocked)
+var unlocked_species = {
+	ALL_SPECIES.SPECIES0: true,
+	ALL_SPECIES.SPECIES1: true,
+	ALL_SPECIES.SPECIES2: true,
+	ALL_SPECIES.SPECIES3 : true,
+	ALL_SPECIES.SPECIES4 : false
+}
+var colors = {
+	WHITE = Color(1.0, 1.0, 1.0),
+	YELLOW = Color(1.0, .757, .027),
+	GREEN = Color(.282, .757, .255),
+	BLUE = Color(.098, .463, .824),
+	PINK = Color(.914, .118, .388)
+}
 # force saving the game
 var force_save = true
+
+# 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
+func _ready():
+	add_to_group("persist")
+	print(ALL_SPECIES)
+	print(unlocked_species)
+	print("white is ", colors.WHITE)
+	templates = get_species_templates()
+	print(templates)
+	if force_save:
+		persistance.save_game()
+	if persistance.load_game():
+		print("Successfully load the game")
+	else:
+		print("Something went wrong while loading the game data")
+
+
 func get_unlocked() -> Dictionary:
+	"""
+	Get all available unlocked species. 
+	@return: Dictionary [enum : resource] that has as keys the enum of the species
+	"""
 	var available : Dictionary  = {}
-	var i = 1
-	for species in SPECIES:
+	for species in unlocked_species:
 		if unlocked_species[species]:
-			available[species] = i
-			i+=1
+			available[species] = templates[species]
+			
 	return available
+
+func get_species_templates() -> Dictionary:
+	var species_templates = {}
+	var resources = dir_contents(SPECIES_PATH, ".tres")
+	var i = 0
+	for species in ALL_SPECIES:
+		if i > len(resources) -1:
+			print("This species: " + species.to_lower(), " is not available")
+		else:
+			var filename : String = ALL_SPECIES[species] + ".tres"
+			print(filename)
+			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
+			i+=1
+	return species_templates
+
 
 func _unlock_species(species : String):
 	unlocked_species[species] = true
 
-func _ready():
-	add_to_group("persist")
-	if persistance.load_game() and not force_save:
-		return
-	
-	for this_species in SPECIES:
-		unlocked_species[this_species] = true
-	persistance.save_game()
-	
-
 # utils
 func get_state():
-	# for debug purposes
+	"""
+	get_state will return everything we need to be persistent in the game
+	"""
 	var save_dict = {
 		unlocked_species=unlocked_species,
 		level=level
 	}
 	return save_dict
 
-func load_state(data):
+func load_state(data:Dictionary):
+	"""
+	Set back everything we need to load
+	"""
 	for attribute in data:
 		set(attribute, data[attribute])
 
-func dir_contents(path):
+func dir_contents(path:String, extension:String = ".tscn"):
+	"""
+	@param path:String given the path 
+	@return a list of filename
+	"""
 	var dir = Directory.new()
 	var list_files = []
 	if dir.open(path) == OK:
@@ -71,7 +146,7 @@ func dir_contents(path):
 			if dir.current_is_dir():
 				pass
 			else:
-				if file_name.ends_with(".tscn"):
+				if file_name.ends_with(extension):
 					list_files.append(file_name)
 			file_name = dir.get_next()
 	else:
@@ -79,6 +154,9 @@ func dir_contents(path):
 	return list_files
 
 func mod(a,b):
+	"""
+	Modulus: Maybe fposmod and fmod will do the trick by its own
+	"""
 	var ret = a%b
 	if ret < 0: 
 		return ret+b

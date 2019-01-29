@@ -2,14 +2,15 @@ extends Control
 
 const MAX_PLAYERS = 4
 const MIN_PLAYERS = 2
+const NUM_KEYBOARDS = 2
 
+enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 onready var container = $Container
 
 var available_species : Dictionary
-var ordered_species : Array
+var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
-signal someone_selected
 
 var selected_index = []
 var players_controls : Array
@@ -18,14 +19,15 @@ var num_players : int = 0
 func _ready():
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
-func initialize(available_species:Dictionary):
-	ordered_species = available_species.keys()
+func initialize(_available_species:Dictionary):
+	available_species = _available_species
+	ordered_species = available_species.values()
 	
 	var i = 0
 	for child in container.get_children():
 		assert(child is Species)
 		#set all to no
-		child.set_controls_by_string("no")
+		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
 		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
@@ -33,47 +35,34 @@ func initialize(available_species:Dictionary):
 		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 		i +=1
-	var controls = assign_controls(2)
+	var controls = assign_controls(NUM_KEYBOARDS)
 	for control in controls:
 		print(add_controls(control))
 
-# debug
-var pressed = false
-var debug_joy = 0
-func _unhandled_input(event):
-	if event.is_action_pressed("debug"):
-		Input.emit_signal("joy_connection_changed", debug_joy+1, true)
-		debug_joy = global.mod((debug_joy + 1), MAX_PLAYERS-1)
-	elif event.is_action_pressed("debug_cancel"):
-		debug_joy = global.mod((debug_joy - 1), MAX_PLAYERS-1)
-		Input.emit_signal("joy_connection_changed", debug_joy+1, false)
-
-# end debug
-
-func add_controls(key : String) -> bool:
+func add_controls(new_controls : String) -> bool:
 	"""
 	Add a controller (keyboard or joypad) and move other to the right
 	return false if reach limit of MAX_PLAYERS.
 	If no, shift backwards
 	"""
+	# TODO: check this
 	var shift:bool = false
 	var last: String = ""
 	var first = container.get_child(0)
-	if first.controls != "no":
+	if first.controls != global.CONTROLSMAP[global.Controls.NO]:
 		shift = true
 		last = first.controls
-	first.set_controls_by_string(key)
-	print("set ", first.name, " to ", key)
+	first.set_controls(new_controls)
 	var i = 0
 	for child in container.get_children():
-		if child.controls == key:
+		if child.controls == new_controls:
 			i+=1
 			continue
 			
 		if shift:
 			var tmp = child.controls
 			print(child.name , " with ", last, ". It was ", tmp)
-			child.set_controls_by_string(last)
+			child.set_controls(last)
 			last = tmp
 		print( "child ", i, " with controls ", child.controls)
 		i+=1
@@ -137,7 +126,7 @@ func get_players() -> Array:
 	return players
 	
 func get_adjacent(operator:int, player_selection : Node):
-	var current_index = ordered_species.find(player_selection.species) 
+	var current_index = ordered_species.find(player_selection.species_template) 
 	current_index = global.mod(current_index + operator,len(ordered_species))
 	while current_index in selected_index:
 		current_index = global.mod(current_index + operator,len(ordered_species))
@@ -161,16 +150,16 @@ func ready_to_fight():
 	else:
 		print("not enough players")
 
-func selected(species:String):
+func selected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.append(current_index)
 	print(selected_index)
 	for child in container.get_children():
-		if not child.selected and child.species == species:
+		print(species.species_name, " vs child: ", child.species_template.species_name)
+		if not child.selected and child.species_template == species:
 			get_adjacent(+1, child)
-	emit_signal("someone_selected", species)
 
-func deselected(species:String):
+func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
 	print(selected_index)

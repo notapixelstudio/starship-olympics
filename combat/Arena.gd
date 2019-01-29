@@ -57,8 +57,7 @@ func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 	if player:
 		player.name = spawner.name
 		player.controls = spawner.controls
-		player.battler_template = spawner.battler_template
-		print(player.controls, " ", player.battler_template.species_name)
+		player.species_template = spawner.species_template
 		return true
 	return false
 	
@@ -177,7 +176,7 @@ func setup_ship(player:PlayerSpawner):
 		ship = ship_scene.instance()
 	ship.arena = self
 	ship.controls = player.controls
-	ship.battle_template = player.battler_template
+	ship.species_template = player.species_template
 	ship.position = player.position
 	ship.rotation = player.rotation
 	ship.height = height

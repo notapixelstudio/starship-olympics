@@ -8,7 +8,7 @@ and its keyboard control
 class_name Ship
 
 export (String) var controls = "kb1"
-export (Resource) var battle_template
+export (Resource) var species_template
 
 var arena
 
@@ -59,10 +59,7 @@ func initialize():
 	pass
 	
 func _ready():
-	species = "another"
-	# let's connect this when creating the instance
-	# connect("died", get_node('/root/Arena'), "update_score")
-	skin.add_child(battle_template.anim.instance())
+	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	
 	# Invincible for the firs MAX seconds

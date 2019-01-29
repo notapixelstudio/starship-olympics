@@ -4,7 +4,7 @@ extends Control
 this Node is a renderer of the Species Selected. No logic in here. 
 """
 
-export var species : Resource setget _set_species
+export var species : Resource 
 export var controls : String
 
 onready var ship = $Ship
@@ -17,41 +17,25 @@ onready var anim = $AnimationPlayer
 onready var label_anim = $SpeciesName/AnimationPlayer
 onready var select_rect = $SelectRect
 
-
 const img_path : String = "res://assets/icon/"
 
 func _ready():
 	select_rect.visible = false
 	character.modulate = Color(0.8,0.8,0.8,1)
 	
-func _set_species(new_value : SpeciesSelection):
-	species = new_value
-	
-	if not species:
-		return
-		
-	if Engine.is_editor_hint():
-		if has_node("Ship"):
-	        get_node("Ship").texture = species.ship
-		if has_node("Character/Character"):
-	        get_node("Character/Character").texture = species.character
-		if has_node("SpeciesName/Label"):
-        get_node("SpeciesName/Label").text = species.species_name.to_upper()
-	
-
 func initialize(player_id:String):
 	"""
-	Factory for controls and species resource.
+	Factory for controls and species resource
 	"""
 	player.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
 	
-func change_species(new_species:SpeciesSelection):
+func change_species(new_species:SpeciesTemplate):
 	species = new_species
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
-	character.texture = species.character
-	select_rect.texture = species.select_rect
+	character.texture = species.character_ok
+	select_rect.modulate = species.color
 
 func previous():
 	label_anim.play("shake")

@@ -3,12 +3,6 @@ extends Node
 const SAVE_PATH ="user://savegame.save"
 var _settings = {}
 
-func _ready():
-	if load_game():
-		print("correctly load game")
-	else:
-		print("Missing info for the game")
-
 func save_game():
 	var save_dict = {}
 	# Get all the save data from persistent nodes
@@ -23,7 +17,7 @@ func save_game():
 	# Create a file
 	var save_file = File.new()
 	save_file.open(SAVE_PATH, File.WRITE)
-	print(save_file.get_path_absolute())
+	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
 	print(save_dict)
 	# Serialize the data dictionary to JSON
 	save_file.store_line(to_json(save_dict))
@@ -51,5 +45,4 @@ func load_game() -> bool:
 		# We find the right node to load node_data into and call its load method
 		get_node(node_path).load_state(node_data)
 	save_file.close()
-	print(data)
 	return true

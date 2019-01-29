@@ -13,7 +13,7 @@ func initialize(winner:String, scores:Dictionary):
 	var uid_winner = scores[winner]["id"]
 	label.text = scores[winner]["species"].to_upper() + " WON"
 	var template = scores[winner]["species_template"]
-	container.get_node("winner").set_species(template.character)
+	container.get_node("winner").set_species(template.character_ok)
 	var loser_ref = container.get_node("winner")
 	for player in scores:
 		if player == winner:
