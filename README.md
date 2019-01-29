@@ -1,4 +1,8 @@
 # Superstarfighter
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://GitHub.com/Naereen/StrapDown.js/tags/)
+[![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/)
+
 A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs from their back.
 
 ![image](https://img.itch.zone/aW1nLzE2MDQ3ODMucG5n/original/wy1zK%2F.png)
