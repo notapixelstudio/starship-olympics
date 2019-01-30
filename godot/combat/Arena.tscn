@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://combat/pause/pause.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/Node2D.gd" type="Script" id=5]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=6]
+[ext_resource path="res://assets/theme/londrina_font.tres" type="DynamicFont" id=7]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
@@ -33,7 +36,22 @@ layer = 0
 [node name="DebugNode" parent="Debug" instance=ExtResource( 4 )]
 visible = false
 
+[node name="Rect" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
+drag_margin_left = 0.44
+drag_margin_top = 0.43
+drag_margin_right = 0.51
+drag_margin_bottom = 0.54
+editor_draw_drag_margin = true
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Camera"]
+margin_top = 656.288
+margin_right = 42.0
+margin_bottom = 722.288
+custom_fonts/font = ExtResource( 7 )
 

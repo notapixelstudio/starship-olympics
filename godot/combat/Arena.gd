@@ -47,8 +47,10 @@ func compute_arena_size():
 	"""
 	width = OS.window_size.x * size_multiplier
 	height = OS.window_size.y * size_multiplier
+	print(Vector2(width, height))
+	print(OS.window_size)
 	emit_signal("screensize_changed", Vector2(width, height))
-	return true
+	return Vector2(width, height)
 
 func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 	if not spawner:
@@ -68,6 +70,7 @@ func setup_ships():
 func _ready():
 	compute_arena_size()
 	camera.zoom *= size_multiplier
+	
 	# Engine.time_scale = 0.2
 	# in order to get the size
 	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
@@ -103,13 +106,17 @@ func _ready():
 	# initialize HUD
 	hud.initialize(game_mode)
 	
+	"""
 	get_tree().paused = true
 	getready.start()
 	yield(getready, "finished")
 	get_tree().paused = false
+	"""
+	camera._initialize(compute_arena_size(), size_multiplier)
 	
-func _process(delta):
+func _process(delta):	
 	game_mode.update(delta)
+	$Rect.rect = camera.get_rectangle(camera.ships)
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
@@ -140,7 +147,8 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	print("let's update score for ", player_id, " this score ", str(score))
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
-	
+
+var ships
 func ship_just_died(ship_name: String, ship_position:Vector2):
 	# check if we need to lose the crown
 	if game_mode.queen != null and ship_name == game_mode.queen.name:
@@ -160,6 +168,7 @@ func ship_just_died(ship_name: String, ship_position:Vector2):
 		if player.name.to_lower() == ship_name.to_lower():
 			setup_ship(player)
 			
+	
 func crown_taken(ship):
 	game_mode.crown_taken(ship)
 	$Battlefield.remove_child(crown)

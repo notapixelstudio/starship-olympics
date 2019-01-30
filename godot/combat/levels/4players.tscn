@@ -6,14 +6,12 @@
 [ext_resource path="res://actors/environments/BeveledRectWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://selection/species/species0.tres" type="Resource" id=7]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
-[ext_resource path="res://selection/species/species2.tres" type="Resource" id=9]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=7]
+[ext_resource path="res://selection/species/species2.tres" type="Resource" id=8]
+[ext_resource path="res://selection/species/species0.tres" type="Resource" id=9]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
 
-
-
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 3.0
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
@@ -54,21 +52,22 @@ position = Vector2( 1917.36, 1193.23 )
 position = Vector2( 400, 400 )
 rotation = 0.0
 controls = "joy2"
-battler_template = ExtResource( 7 )
+species_template = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 1800 )
 rotation = 0.0
 controls = "joy1"
-battler_template = ExtResource( 8 )
+species_template = ExtResource( 8 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
 position = Vector2( 3400, 400 )
 controls = "joy3"
-battler_template = ExtResource( 9 )
+species_template = ExtResource( 9 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
 position = Vector2( 3400, 1800 )
 controls = "joy4"
-battler_template = ExtResource( 10 )
+species_template = ExtResource( 10 )
 
