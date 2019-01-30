@@ -40,23 +40,31 @@ func get_rectangle(positions):
 		maxy = max(maxy, p.position.y)
 	return Rect2(Vector2(minx-PADDING, miny-PADDING), Vector2((maxx-minx) + 2*PADDING, (maxy-miny) + 2*PADDING))
 
-var previous_dir = 1
+var previous_dir = Vector2(1, 1)
 func _process(delta):
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)
 	$Label.text = str(zoom)
 	#smooth movement
 	var inpx = get_parent().get_node("Rect").rect.position.x
+	var inpy = get_parent().get_node("Rect").rect.position.y
 	wait_in_frame-=1
 	if position.x <= inpx:
 		inpx = 1
 	else:
 		inpx = -1
-	if previous_dir != inpx:
-		wait_in_frame = FRAME_DELAY
-		previous_dir = inpx
+	
+	if position.y <= inpy:
+		inpy = 1
+	else:
+		inpy = -1
 		
-	var inpy = (int(Input.is_action_pressed("ui_down"))
-	                   - int(Input.is_action_pressed("ui_up")))
+	
+	if previous_dir.x != inpx:
+		wait_in_frame = FRAME_DELAY
+		previous_dir.x = inpx
+	if previous_dir.y != inpy:
+		wait_in_frame = FRAME_DELAY
+		previous_dir.y = inpy
 
 	if wait_in_frame < 0:
 		# change position
