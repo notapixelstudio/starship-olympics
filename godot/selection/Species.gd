@@ -41,7 +41,7 @@ func set_controls(new_controls:String):
 	"""
 	Set controls and disable if NO or CPU
 	"""
-	deselect()
+	deselect(true)
 	var k_controls = global.CONTROLSMAP_TO_KEY[new_controls]
 	controls = new_controls
 	if k_controls == CONTROLS.NO or k_controls == CONTROLS.CPU:
@@ -92,20 +92,24 @@ func leave():
 func select_character():
 	selected = true
 	speciesSelection.select()
+	sfx.get_node("selected").play()
 	emit_signal("selected", species_template)
 
-func deselect():
+func deselect(silent : bool = false):
 	speciesSelection.deselect()
-	sfx.get_node("deselected").play()
+	if not silent:
+		sfx.get_node("deselected").play()
 	enable_choice()
 	selected = false
 	emit_signal("deselected", species_template)
 	
 func _on_Previous_pressed():
+	sfx.get_node("switch-selection").play()
 	emit_signal("prev")
 	speciesSelection.previous()
 
 func _on_Next_pressed():
+	sfx.get_node("switch-selection").play()
 	emit_signal("next")
 	speciesSelection.next()
 

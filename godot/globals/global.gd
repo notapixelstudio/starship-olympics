@@ -71,11 +71,7 @@ var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
 	add_to_group("persist")
-	print(ALL_SPECIES)
-	print(unlocked_species)
-	print("white is ", colors.WHITE)
 	templates = get_species_templates()
-	print(templates)
 	if force_save:
 		persistance.save_game()
 	if persistance.load_game():
