@@ -17,6 +17,7 @@ var players_controls : Array
 var num_players : int = 0
 
 func _ready():
+	Soundtrack.play("Lobby")
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
 func initialize(_available_species:Dictionary):
