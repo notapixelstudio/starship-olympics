@@ -70,8 +70,19 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
-	print(OS.get_name())
-	print(OS.get_unique_id())
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err == OK: # if not, something went wrong with the file loading
+		# Look for the display/width pair, and default to 1024 if missing
+		GameAnalytics.game_key = config.get_value("analytics", "game_key")
+		GameAnalytics.secret_key = config.get_value("analytics", "secret_key")
+		GameAnalytics.base_url = config.get_value("analytics", "base_url")
+		# Store a variable if and only if it hasn't been defined yet
+		
+	config.save("user://settings.cfg")
+
+	GameAnalytics.request_init()
+	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_user_event())
 	add_to_group("persist")
 	templates = get_species_templates()
 	if force_save:
@@ -81,6 +92,10 @@ func _ready():
 	else:
 		print("Something went wrong while loading the game data")
 
+func _exit_tree():
+	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
+	GameAnalytics.submit_events()
+	
 
 func get_unlocked() -> Dictionary:
 	"""
@@ -100,10 +115,10 @@ func get_species_templates() -> Dictionary:
 	var i = 0
 	for species in ALL_SPECIES:
 		if i > len(resources) -1:
-			print("This species: " + species.to_lower(), " is not available")
+			pass
+			# print("This species: " + species.to_lower(), " is not available")
 		else:
 			var filename : String = ALL_SPECIES[species] + ".tres"
-			print(filename)
 			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
 			i+=1
 	return species_templates

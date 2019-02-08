@@ -35,6 +35,11 @@ func combat(selected_players: Array):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
 	"""
+	# TEST: analytics for selection
+	var num_players : int = len(selected_players)
+	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
+	
+
 	gameover_screen.hide()
 	var spawners = []
 	var i = 1
@@ -49,9 +54,9 @@ func combat(selected_players: Array):
 		print(spawner.name , " vs ", player.name, " in combat")
 		spawners.append(spawner)
 		players[player.id] = player_info
+		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:"+player.species_template.species_name,i ))
 		i +=1
-	var num_players : int = len(selected_players)
-	print(players)
+	
 	var level_path = combat_scene + str(num_players) + "players.tscn"
 	var level = load(level_path)
 	combat = level.instance()
@@ -62,6 +67,8 @@ func combat(selected_players: Array):
 	connect("updated", combat, "hud_update")
 	yield(get_tree().create_timer(0.5), "timeout")
 	add_child(combat)
+	# TEST: send the queue
+	GameAnalytics.submit_events()
 
 func update_score(player_id:String, collectable_owner:String = ""):
 	var score: int = 0
