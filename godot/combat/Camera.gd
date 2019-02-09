@@ -2,10 +2,10 @@ extends Camera2D
 
 export var panSpeed = 10.0
 export var speed = 6.0
-export var zoomspeed = 1.0
+export var zoomspeed = 2.0
 export var zoommargin = 0.1
 
-export var zoomMin = 1.5
+export var zoomMin = 0.9
 export var marginX = 200.0
 export var marginY = 200.0
 export(float, 0.1, 0.5) var zoom_offset : float = 0.2
@@ -29,6 +29,7 @@ var previous_dir = Vector2(1, 1)
 
 func _ready():
 	viewport_rect = get_viewport_rect()
+	print("offset is: ", offset)
 	
 
 func initialize(rect_extention:Vector2, _zoom_max:float):
@@ -48,21 +49,13 @@ func _process(delta: float) -> void:
 	var offset_to_be = calculate_center(camera_rect)
 	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
 	
-	if previous_dir.x != int(abs(offset_to_be.x)<abs(offset.x)):
-		wait_in_frame = FRAME_DELAY
-		previous_dir.x = int(abs(offset_to_be.x)<abs(offset.x))
-	
-	if previous_dir.y != int(abs(offset_to_be.y)<abs(offset.y)):
-		wait_in_frame = FRAME_DELAY
-		previous_dir.y = int(abs(offset_to_be.y)<abs(offset.y))
-	
 	if wait_in_frame < 0:
 		# change position
 		offset.x = lerp(offset.x, offset_to_be.x,speed * delta)
 		offset.y = lerp(offset.y, offset_to_be.y, speed * delta)
-		offset.x = clamp(offset.x, (margin_min.x - rect_extents.x), (arena_size.x-rect_extents.x))
-		offset.y = clamp(offset.y, (margin_min.y - rect_extents.y), (arena_size.y-rect_extents.y))
-		
+		offset.x = clamp(offset.x, (rect_extents.x*2 - offset.x ), (arena_size.x-rect_extents.x))
+		offset.y = clamp(offset.y, (rect_extents.y*2 - offset.y ), (arena_size.y-rect_extents.y))
+		print(rect_extents.x - offset.x , " vs ", offset.x)
 		zoom.x = lerp(zoom.x, zoom_to_be.x, zoomspeed * delta)
 		zoom.y = lerp(zoom.y, zoom_to_be.y, zoomspeed * delta)
 		zoom.x = clamp(zoom_to_be.x, zoomMin, zoomMax)
