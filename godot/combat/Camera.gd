@@ -1,8 +1,8 @@
 extends Camera2D
 
 export var panSpeed = 10.0
-export var speed = 6.0
-export var zoomspeed = 2.0
+export var speed = 3.0
+export var zoomspeed = 0.8
 export var zoommargin = 0.1
 
 export var zoomMin = 0.9
@@ -14,6 +14,7 @@ export var debug_mode : bool = true
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
 
+export var enabled:bool = false
 var zoomfactor = 1.0
 var zooming = false
 var margin_min = Vector2(0,0)
@@ -29,16 +30,14 @@ var previous_dir = Vector2(1, 1)
 
 func _ready():
 	viewport_rect = get_viewport_rect()
-	print("offset is: ", offset)
 	
-
 func initialize(rect_extention:Vector2, _zoom_max:float):
 	ships = get_tree().get_nodes_in_group("players")
 	zoomMax = _zoom_max
 	arena_size = rect_extention
 	margin_min = arena_size/2
 	offset = arena_size/2
-	set_process(len(ships) > 0)
+	set_process(enabled)
 
 func _process(delta: float) -> void:
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
@@ -55,7 +54,7 @@ func _process(delta: float) -> void:
 		offset.y = lerp(offset.y, offset_to_be.y, speed * delta)
 		offset.x = clamp(offset.x, (rect_extents.x*2 - offset.x ), (arena_size.x-rect_extents.x))
 		offset.y = clamp(offset.y, (rect_extents.y*2 - offset.y ), (arena_size.y-rect_extents.y))
-		print(rect_extents.x - offset.x , " vs ", offset.x)
+		
 		zoom.x = lerp(zoom.x, zoom_to_be.x, zoomspeed * delta)
 		zoom.y = lerp(zoom.y, zoom_to_be.y, zoomspeed * delta)
 		zoom.x = clamp(zoom_to_be.x, zoomMin, zoomMax)
