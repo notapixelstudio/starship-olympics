@@ -106,17 +106,17 @@ func _ready():
 	# initialize HUD
 	hud.initialize(game_mode)
 	
+	camera.initialize(compute_arena_size(), size_multiplier)
 	"""
 	get_tree().paused = true
 	getready.start()
 	yield(getready, "finished")
 	get_tree().paused = false
 	"""
-	camera._initialize(compute_arena_size(), size_multiplier)
+
 	
 func _process(delta):	
 	game_mode.update(delta)
-	$Rect.rect = camera.get_rectangle(camera.ships)
 	
 func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")

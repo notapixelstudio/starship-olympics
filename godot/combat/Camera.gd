@@ -8,93 +8,112 @@ export var zoommargin = 0.1
 export var zoomMin = 1.5
 export var marginX = 200.0
 export var marginY = 200.0
+export(float, 0.1, 0.5) var zoom_offset : float = 0.2
+export var debug_mode : bool = true
+
+var camera_rect : = Rect2()
+var viewport_rect : = Rect2()
+
 var zoomfactor = 1.0
 var zooming = false
 var margin_min = Vector2(0,0)
 var margin_max = Vector2(1280, 720)
 var rect_extents = Vector2(1280,720)
 var arena_size = Vector2()
-var zoomMax = 3.0
+var zoomMax = 2.0
 const PADDING = 200
 var ships
 const FRAME_DELAY = 20
 var wait_in_frame = FRAME_DELAY
+var previous_dir = Vector2(1, 1)
 
-func _initialize(rect_extention:Vector2, _zoom_max:float):
+func _ready():
+	viewport_rect = get_viewport_rect()
+	
+
+func initialize(rect_extention:Vector2, _zoom_max:float):
 	ships = get_tree().get_nodes_in_group("players")
 	zoomMax = _zoom_max
 	arena_size = rect_extention
+	margin_min = arena_size/2
+	offset = arena_size/2
+	set_process(len(ships) > 0)
 
-
-func get_rectangle(positions):
-	var vertexA = Vector2()
-	var vertexD = Vector2()
-	var minx = positions[0].position.x
-	var maxx = 0
-	var maxy = 0
-	var miny = positions[0].position.y
-	for p in positions:
-		minx = min(minx,p.position.x)
-		maxx = max(maxx, p.position.x)
-		miny = min(miny, p.position.y)
-		maxy = max(maxy, p.position.y)
-	return Rect2(Vector2(minx-PADDING, miny-PADDING), Vector2((maxx-minx) + 2*PADDING, (maxy-miny) + 2*PADDING))
-
-var previous_dir = Vector2(1, 1)
-func _process(delta):
-	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)
-	$Label.text = str(zoom)
-	#smooth movement
-	var inpx = get_parent().get_node("Rect").rect.position.x
-	var inpy = get_parent().get_node("Rect").rect.position.y
-	wait_in_frame-=1
-	if position.x <= inpx:
-		inpx = 1
-	else:
-		inpx = -1
+func _process(delta: float) -> void:
+	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
+	camera_rect = Rect2(ships[0].global_position, Vector2())
+	for ship in ships:
+		camera_rect = camera_rect.expand(ship.global_position)
 	
-	if position.y <= inpy:
-		inpy = 1
-	else:
-		inpy = -1
-		
+	var offset_to_be = calculate_center(camera_rect)
+	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
 	
-	if previous_dir.x != inpx:
+	if previous_dir.x != int(abs(offset_to_be.x)<abs(offset.x)):
 		wait_in_frame = FRAME_DELAY
-		previous_dir.x = inpx
-	if previous_dir.y != inpy:
+		previous_dir.x = int(abs(offset_to_be.x)<abs(offset.x))
+	
+	if previous_dir.y != int(abs(offset_to_be.y)<abs(offset.y)):
 		wait_in_frame = FRAME_DELAY
-		previous_dir.y = inpy
-
+		previous_dir.y = int(abs(offset_to_be.y)<abs(offset.y))
+	
 	if wait_in_frame < 0:
 		# change position
-		position.x = lerp(position.x, position.x + inpx *speed * zoom.x,speed * delta)
-		position.y = lerp(position.y, position.y + inpy *speed * zoom.y,speed * delta)
-		position.x = clamp(position.x, margin_min.x, (arena_size.x-rect_extents.x))
-		position.y = clamp(position.y, margin_min.y, (arena_size.y-rect_extents.y))
+		offset.x = lerp(offset.x, offset_to_be.x,speed * delta)
+		offset.y = lerp(offset.y, offset_to_be.y, speed * delta)
+		offset.x = clamp(offset.x, (margin_min.x - rect_extents.x), (arena_size.x-rect_extents.x))
+		offset.y = clamp(offset.y, (margin_min.y - rect_extents.y), (arena_size.y-rect_extents.y))
+		
+		zoom.x = lerp(zoom.x, zoom_to_be.x, zoomspeed * delta)
+		zoom.y = lerp(zoom.y, zoom_to_be.y, zoomspeed * delta)
+		zoom.x = clamp(zoom_to_be.x, zoomMin, zoomMax)
+		zoom.y = clamp(zoom_to_be.y, zoomMin, zoomMax)
+		
+	else:
+		print("We have to wait ", wait_in_frame, " frames")
+	
+	
+	if debug_mode:
+		update()
+	
+	wait_in_frame-=1
+	
+	"""
+	if wait_in_frame < 0:
+		# change position
+		offset.x = lerp(offset.x, offset.x + inpx *speed * zoom.x,speed * delta)
+		offset.y = lerp(offset.y, offset.y + inpy *speed * zoom.y,speed * delta)
+		offset.x = clamp(offset.x, margin_min.x, (arena_size.x-rect_extents.x))
+		offset.y = clamp(offset.y, margin_min.y, (arena_size.y-rect_extents.y))
 
 	else:
 		print("We have to wait ", wait_in_frame, " frames")
-		
+	"""
 
-	
-	zoomfactor -= 0.01 * zoomspeed
-	#zoom in
-	zoom.x = lerp(zoom.x, zoom.x * zoomfactor, zoomspeed * delta)
-	zoom.y = lerp(zoom.y, zoom.y * zoomfactor, zoomspeed * delta)
+	# zoomfactor -= 0.01 * zoomspeed
+	# zoom in
+	# zoom.x = lerp(zoom.x, zoom.x * zoomfactor, zoomspeed * delta)
+	# zoom.y = lerp(zoom.y, zoom.y * zoomfactor, zoomspeed * delta)
 
-	zoom.x = clamp(zoom.x, zoomMin, zoomMax)
-	zoom.y = clamp(zoom.y, zoomMin, zoomMax)
+	# zoom.x = clamp(zoom.x, zoomMin, zoomMax)
+	# zoom.y = clamp(zoom.y, zoomMin, zoomMax)
 
-	if not zooming:
-		zoomfactor = 1.0
+	# if not zooming:
+	#	zoomfactor = 1.0
+
+func calculate_center(rect: Rect2) -> Vector2:
+	return Vector2(
+		rect.position.x + rect.size.x / 2,
+		rect.position.y + rect.size.y / 2)
+
+func calculate_zoom(rect: Rect2, viewport_size: Vector2) -> Vector2:
+	var max_zoom = max(
+		max(1, rect.size.x / viewport_size.x + zoom_offset),
+		max(1, rect.size.y / viewport_size.y  + zoom_offset))
+	return Vector2(max_zoom, max_zoom)
 
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		zooming = not zooming
-		zoomfactor -= 0.01 * zoomspeed
-	if event.is_action_pressed("ui_cancel"):
-		zooming = not zooming
-		zoomfactor += 0.01 * zoomspeed
-	
+func _draw() -> void:
+	if not debug_mode:
+		return
+	draw_rect(camera_rect, Color("#ffffff"), false)
+	draw_circle(calculate_center(camera_rect), 5, Color("#ffffff"))
