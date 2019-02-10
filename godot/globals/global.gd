@@ -70,6 +70,8 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
+	print(OS.get_name())
+	print(OS.get_unique_id())
 	add_to_group("persist")
 	templates = get_species_templates()
 	if force_save:
