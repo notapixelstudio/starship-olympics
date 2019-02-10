@@ -8,7 +8,6 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=7]
 
-
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
@@ -52,5 +51,11 @@ species_template = ExtResource( 6 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 3000, 950 )
 species_template = ExtResource( 7 )
+
+[node name="Camera" parent="." index="4"]
+current = true
+smoothing_speed = 0.3
+zoom_offset = 0.5
+enabled = true
 
 [connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
