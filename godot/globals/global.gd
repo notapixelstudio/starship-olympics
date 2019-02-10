@@ -84,6 +84,9 @@ func _ready():
 	else:
 		print("There was nothing")
 		config.set_value("analytics", "enabled", true)
+		config.set_value("analytics", "game_key", GameAnalytics.game_key)
+		config.set_value("analytics", "secret_key", GameAnalytics.secret_key)
+		config.set_value("analytics", "base_url", GameAnalytics.base_url)
 	config.save("user://settings.cfg")
 
 	GameAnalytics.request_init()
