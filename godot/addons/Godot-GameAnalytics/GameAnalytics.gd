@@ -28,6 +28,9 @@ var response_data
 var response_code
 var uuid = UUID.v4()
 
+# if analytics are enabled
+var enabled = false
+
 # TODO: get from the dict
 var platform = Utils.os_dict[OS.get_name()]
 var os_version = Utils.os_dict[OS.get_name()] + " 10.14.3"
@@ -192,6 +195,9 @@ func request_init():
 
 # submitting all events that are in the queue to the events URL
 func submit_events():
+	if not enabled :
+		print("Analytics not enabled")
+		return
 	#try:
 	# Refreshing url_events since game key might have been changed externally
 	url_events = "/v2/" + game_key + "/events"

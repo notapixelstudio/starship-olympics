@@ -1,5 +1,6 @@
 extends Node
 
+var enable_analytics = false
 # OPTIONS need a min and a MAX
 const MINLIVES = 1
 var lives = 5
@@ -70,20 +71,20 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
+	add_to_group("persist")
+	
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
 	if err == OK: # if not, something went wrong with the file loading
-		# Look for the display/width pair, and default to 1024 if missing
 		GameAnalytics.game_key = config.get_value("analytics", "game_key")
 		GameAnalytics.secret_key = config.get_value("analytics", "secret_key")
 		GameAnalytics.base_url = config.get_value("analytics", "base_url")
+		GameAnalytics.enabled =  config.get_value("analytics", "enabled", true )
 		# Store a variable if and only if it hasn't been defined yet
 		
 	config.save("user://settings.cfg")
 
 	GameAnalytics.request_init()
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_user_event())
-	add_to_group("persist")
 	templates = get_species_templates()
 	if force_save:
 		persistance.save_game()

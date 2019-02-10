@@ -99,10 +99,10 @@ config/icon="res://icon.png"
 [autoload]
 
 persistance="*res://globals/persistance.gd"
-GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
 Soundtrack="*res://globals/Soundtrack.tscn"
+GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 
 [debug]
 
@@ -318,10 +318,6 @@ debug_plus={
 "deadzone": 0.5,
 "events": [  ]
 }
-
-[logging]
-
-file_logging/enable_file_logging=true
 
 [physics]
 
