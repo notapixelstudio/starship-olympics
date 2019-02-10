@@ -82,6 +82,7 @@ func _ready():
 		GameAnalytics.enabled =  config.get_value("analytics", "enabled", true )
 		# Store a variable if and only if it hasn't been defined yet
 	else:
+		print("There was nothing")
 		config.set_value("analytics", "enabled", true)
 	config.save("user://settings.cfg")
 
