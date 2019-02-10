@@ -1,5 +1,6 @@
 extends Node
 
+var enable_analytics = false
 # OPTIONS need a min and a MAX
 const MINLIVES = 1
 var lives = 5
@@ -73,6 +74,24 @@ func _ready():
 	print(OS.get_name())
 	print(OS.get_unique_id())
 	add_to_group("persist")
+	
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err == OK: # if not, something went wrong with the file loading
+		GameAnalytics.game_key = config.get_value("analytics", "game_key")
+		GameAnalytics.secret_key = config.get_value("analytics", "secret_key")
+		GameAnalytics.base_url = config.get_value("analytics", "base_url")
+		GameAnalytics.enabled =  config.get_value("analytics", "enabled", true )
+		# Store a variable if and only if it hasn't been defined yet
+	else:
+		print("There was nothing")
+		config.set_value("analytics", "enabled", true)
+		config.set_value("analytics", "game_key", GameAnalytics.game_key)
+		config.set_value("analytics", "secret_key", GameAnalytics.secret_key)
+		config.set_value("analytics", "base_url", GameAnalytics.base_url)
+	config.save("user://settings.cfg")
+
+	GameAnalytics.request_init()
 	templates = get_species_templates()
 	if force_save:
 		persistance.save_game()
@@ -81,6 +100,10 @@ func _ready():
 	else:
 		print("Something went wrong while loading the game data")
 
+func _exit_tree():
+	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
+	GameAnalytics.submit_events()
+	
 
 func get_unlocked() -> Dictionary:
 	"""
@@ -100,10 +123,10 @@ func get_species_templates() -> Dictionary:
 	var i = 0
 	for species in ALL_SPECIES:
 		if i > len(resources) -1:
-			print("This species: " + species.to_lower(), " is not available")
+			pass
+			# print("This species: " + species.to_lower(), " is not available")
 		else:
 			var filename : String = ALL_SPECIES[species] + ".tres"
-			print(filename)
 			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
 			i+=1
 	return species_templates
