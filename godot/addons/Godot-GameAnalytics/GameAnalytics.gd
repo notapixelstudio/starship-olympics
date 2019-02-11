@@ -80,6 +80,8 @@ func add_to_event_queue(event_dict: Dictionary):
 
 # requesting init URL and returning result
 func request_init():
+	if not enabled:
+		return
 	var init_payload = {
 		'platform': platform,
 		'os_version': os_version,

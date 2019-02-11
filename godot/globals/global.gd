@@ -1,5 +1,6 @@
 extends Node
 
+const SETTINGS_FILENAME = "res://export.cfg"
 var enable_analytics = false
 # OPTIONS need a min and a MAX
 const MINLIVES = 1
@@ -76,7 +77,7 @@ func _ready():
 	add_to_group("persist")
 	
 	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
+	var err = config.load(SETTINGS_FILENAME)
 	if err == OK: # if not, something went wrong with the file loading
 		GameAnalytics.game_key = config.get_value("analytics", "game_key")
 		GameAnalytics.secret_key = config.get_value("analytics", "secret_key")
@@ -89,7 +90,7 @@ func _ready():
 		config.set_value("analytics", "game_key", GameAnalytics.game_key)
 		config.set_value("analytics", "secret_key", GameAnalytics.secret_key)
 		config.set_value("analytics", "base_url", GameAnalytics.base_url)
-	config.save("user://settings.cfg")
+	config.save(SETTINGS_FILENAME)
 
 	GameAnalytics.request_init()
 	templates = get_species_templates()
