@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
-[ext_resource path="res://combat/pause/pause.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=5]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=6]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
@@ -27,13 +28,16 @@ visible = false
 
 [node name="HUD" parent="Pause" instance=ExtResource( 3 )]
 
+[node name="Pause" parent="Pause" instance=ExtResource( 4 )]
+visible = false
+
 [node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 4 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 5 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://combat/pause/pause.gd" type="Script" id=2]
+[ext_resource path="res://combat/pause/GetReady.gd" type="Script" id=2]
 [ext_resource path="res://combat/pause/getready.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -97,7 +97,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[node name="Pause" type="Control"]
+[node name="GetReady" type="Control"]
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0.640902 )
 anchor_right = 1.0
@@ -148,7 +148,6 @@ margin_right = 55.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 3 )
 text = "FIGHT!"
-percent_visible = -0.166667
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "GetReady"

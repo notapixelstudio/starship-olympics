@@ -38,21 +38,14 @@ func combat(selected_players: Array):
 	# TEST: analytics for selection
 	var num_players : int = len(selected_players)
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
-	
 
 	gameover_screen.hide()
 	var spawners = []
 	var i = 1
 	for player in selected_players:
 		assert(player is Species)
-		var player_info = from_species_to_info_player(player)
-		var spawner = PlayerSpawner.new()
-		spawner.controls = player.controls 
-		spawner.species_template = player.species_template
-		spawner.name = player.name
-		spawner.info_player = player_info
-		print(spawner.name , " vs ", player.name, " in combat")
-		spawners.append(spawner)
+		var player_info : InfoPlayer = from_species_to_info_player(player)
+		spawners.append(from_info_to_spawner(player_info))
 		players[player.id] = player_info
 		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:"+player.species_template.species_name,i ))
 		i +=1
@@ -62,7 +55,6 @@ func combat(selected_players: Array):
 	combat = level.instance()
 	remove_child(selection_screen)
 	combat.initialize(spawners)
-	#combat.connect("score_updated", self, "update_score")
 	combat.connect("gameover", self, "gameover")
 	connect("updated", combat, "hud_update")
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -70,6 +62,14 @@ func combat(selected_players: Array):
 	# TEST: send the queue
 	GameAnalytics.submit_events()
 
+func from_info_to_spawner(player_info):
+	var spawner = PlayerSpawner.new()
+	spawner.controls = player_info.controls 
+	spawner.species_template = player_info.species_template
+	spawner.name = player_info.id
+	spawner.info_player = player_info
+	return spawner
+	
 func update_score(player_id:String, collectable_owner:String = ""):
 	var score: int = 0
 	if collectable_owner:
@@ -90,8 +90,19 @@ func gameover(winner:String, scores:Dictionary):
 	gameover_screen.raise()
 	
 	
-
 func _on_GameOverScreen_rematch():
+	gameover_screen.visible = false
 	get_tree().paused = false
 	combat.queue_free()
-	get_tree().reload_current_scene()
+	var spawners = []
+	for player in players:
+		spawners.append(from_info_to_spawner(players[player]))
+	var level_path = combat_scene + str(len(spawners)) + "players.tscn"
+	var level = load(level_path)
+	combat = level.instance()
+	# remove_child(selection_screen)
+	combat.initialize(spawners)
+	combat.connect("gameover", self, "gameover")
+	connect("updated", combat, "hud_update")
+	yield(get_tree().create_timer(0.5), "timeout")
+	add_child(combat)

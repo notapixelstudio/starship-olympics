@@ -46,7 +46,6 @@ theme = ExtResource( 2 )
 text = "Rematch"
 
 [node name="Menu" type="Button" parent="VBoxContainer"]
-visible = false
 margin_top = 61.0
 margin_right = 222.0
 margin_bottom = 118.0
@@ -54,9 +53,9 @@ theme = ExtResource( 2 )
 text = "Back to menu"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-margin_top = 61.0
+margin_top = 122.0
 margin_right = 222.0
-margin_bottom = 118.0
+margin_bottom = 179.0
 theme = ExtResource( 2 )
 text = "Quit"
 
@@ -94,4 +93,5 @@ align = 1
 autowrap = true
 
 [connection signal="pressed" from="VBoxContainer/Rematch" to="." method="_on_Rematch_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
