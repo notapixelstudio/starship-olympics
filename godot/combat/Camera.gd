@@ -5,7 +5,7 @@ export var speed = 3.0
 export var zoomspeed = 0.8
 export var zoommargin = 0.1
 
-export var zoomMin = 2
+export var zoomMin = 1.5
 export var marginX = 200.0
 export var marginY = 200.0
 export(float, 0.1, 0.5) var zoom_offset : float = 0.2
@@ -37,34 +37,34 @@ func initialize(rect_extention:Vector2, _zoom_max:float):
 	arena_size = rect_extention
 	margin_min = arena_size/2
 	offset = arena_size/2
+	print("Offset at initialise is: ", offset)
 	set_process(enabled)
 
 func _process(delta: float) -> void:
 	ships = get_tree().get_nodes_in_group("players")
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
-	camera_rect = Rect2(ships[0].global_position, Vector2())
+	if len(ships):
+		camera_rect = Rect2(ships[0].global_position, Vector2())
 	for ship in ships:
 		camera_rect = camera_rect.expand(ship.global_position)
 	
 	var offset_to_be = calculate_center(camera_rect)
 	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
-	if abs(offset_to_be.x) < abs(offset.x) or abs(offset_to_be.y) < abs(offset.y):
-		wait_in_frame = FRAME_DELAY
 	if wait_in_frame < 0:
+		
 		# change position
-		offset.x = lerp(offset.x, offset_to_be.x,speed * delta)
+		offset.x = lerp(offset.x, offset_to_be.x, speed * delta)
 		offset.y = lerp(offset.y, offset_to_be.y, speed * delta)
-		offset.x = clamp(offset.x, (rect_extents.x*2 - offset.x), (arena_size.x-rect_extents.x))
-		offset.y = clamp(offset.y, (rect_extents.y*2 - offset.y), (arena_size.y-rect_extents.y))
-		"""
-		zoom.x = lerp(zoom.x, zoom_to_be.x, zoomspeed * delta)
-		zoom.y = lerp(zoom.y, zoom_to_be.y, zoomspeed * delta)
-		zoom.x = clamp(zoom_to_be.x, zoomMin, zoomMax)
-		zoom.y = clamp(zoom_to_be.y, zoomMin, zoomMax)
-		"""
+		offset.x = clamp(offset.x, (rect_extents.x ), (arena_size.x-rect_extents.x))
+		offset.y = clamp(offset.y, (rect_extents.y ), (arena_size.y-rect_extents.y))
+
 	else:
 		pass
-	
+
+	zoom.x = lerp(zoom.x, zoom_to_be.x, zoomspeed * delta)
+	zoom.y = lerp(zoom.y, zoom_to_be.y, zoomspeed * delta)
+	zoom.x = clamp(zoom_to_be.x, zoomMin, zoomMax)
+	zoom.y = clamp(zoom_to_be.y, zoomMin, zoomMax)
 	
 	if debug_mode:
 		update()
@@ -78,6 +78,12 @@ func _process(delta: float) -> void:
 		offset.y = lerp(offset.y, offset.y + inpy *speed * zoom.y,speed * delta)
 		offset.x = clamp(offset.x, margin_min.x, (arena_size.x-rect_extents.x))
 		offset.y = clamp(offset.y, margin_min.y, (arena_size.y-rect_extents.y))
+		
+		# zoom.x = lerp(zoom.x, zoom.x * zoomfactor, zoomspeed * delta)
+		zoom.y = lerp(zoom.y, zoom.y * zoomfactor, zoomspeed * delta)
+
+		zoom.x = clamp(zoom.x, zoomMin, zoomMax)
+		zoom.y = clamp(zoom.y, zoomMin, zoomMax)
 
 	else:
 		print("We have to wait ", wait_in_frame, " frames")
