@@ -11,6 +11,10 @@ func _ready():
 	$VBoxContainer.get_child(0).grab_focus()
 
 func initialize(winner:String, scores:Dictionary):
+	# let's remove the losers node, if they exists
+	for i in range (2, container.get_child_count()):
+		container.get_child(i).queue_free()
+		
 	var uid_winner = scores[winner]["id"]
 	label.text = scores[winner]["species"].to_upper() + " WON"
 	var template = scores[winner]["species_template"]
@@ -31,7 +35,6 @@ func initialize(winner:String, scores:Dictionary):
 	# TODO: we should add the species altogether
 
 func _on_Rematch_pressed():
-	print("rematch")
 	emit_signal("rematch")
 
 func _on_Quit_pressed():

@@ -100,7 +100,7 @@ func _on_GameOverScreen_rematch():
 	var level_path = combat_scene + str(len(spawners)) + "players.tscn"
 	var level = load(level_path)
 	combat = level.instance()
-	remove_child(selection_screen)
+	# remove_child(selection_screen)
 	combat.initialize(spawners)
 	combat.connect("gameover", self, "gameover")
 	connect("updated", combat, "hud_update")
