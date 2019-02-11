@@ -25,7 +25,9 @@ const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
 
 var count = 0
-var alive = true 
+var alive = true
+var stunned = false
+var stun_countdown = 0
 
 var species
 var screen_size = Vector2()
@@ -72,7 +74,8 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	#rotation = state.linear_velocity.angle()
-	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging)) # thrusters switch off when charging
+	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+	
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
@@ -107,6 +110,9 @@ func _process(delta):
 	# keep the crown up
 	$Crown.rotation = -rotation
 	
+	stun_countdown -= delta
+	if stun_countdown <= 0:
+		unstun()
 
 func fire():
 	"""
@@ -145,6 +151,14 @@ func set_queen(value):
 	queen = value
 	$Crown.visible = queen
 	
+func stun():
+	stunned = true
+	stun_countdown = 1
+	
+func unstun():
+	stunned = false
+	stun_countdown = 0
+	
 func _on_Ship_area_entered(area):
 	if area.has_node('DeadlyComponent') and not invincible:
 		die()
@@ -152,6 +166,10 @@ func _on_Ship_area_entered(area):
 		assert(area is Collectable)
 		collect(area)
 
+func _on_Ship_body_entered(body):
+	if body.has_node('StunningComponent'):
+		stun()
+	
 func _on_DetectionArea_body_entered(body):
 	if body.has_node('DetectorComponent'):
 		body.try_acquire_target(self)
