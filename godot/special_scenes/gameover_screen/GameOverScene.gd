@@ -5,6 +5,7 @@ onready var label = $MarginContainer/HBoxContainer/Label
 onready var container = $MarginContainer/HBoxContainer
 
 signal rematch
+signal back_to_menu
 
 func _ready():
 	$VBoxContainer.get_child(0).grab_focus()
@@ -33,6 +34,9 @@ func _on_Rematch_pressed():
 	print("rematch")
 	emit_signal("rematch")
 
-
 func _on_Quit_pressed():
 	get_tree().quit()
+
+func _on_Menu_pressed():
+	get_tree().paused = false
+	get_tree().reload_current_scene()

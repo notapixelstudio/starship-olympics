@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 		zoom.y = clamp(zoom_to_be.y, zoomMin, zoomMax)
 		"""
 	else:
-		print("We have to wait ", wait_in_frame, " frames")
+		pass
 	
 	
 	if debug_mode:

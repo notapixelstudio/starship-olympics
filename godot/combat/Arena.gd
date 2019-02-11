@@ -20,6 +20,7 @@ onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var hud = $Pause/HUD
 onready var getready = $Pause/GetReady
+onready var pause = $Pause/Pause
 # Crown might be null, if someone has it or ... if the mode is not crownmode
 onready var crown = $Battlefield/Crown
 
@@ -118,8 +119,10 @@ func _ready():
 	
 func _process(delta):	
 	game_mode.update(delta)
-	
+
 func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		pause.start()
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug
