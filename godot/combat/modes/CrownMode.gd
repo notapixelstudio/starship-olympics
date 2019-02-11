@@ -5,7 +5,7 @@ class_name CrownMode
 const TIME_LEFT:float = 90.0
 var time_left:float = TIME_LEFT
 
-const TARGET_SCORE:float = 1.0
+const TARGET_SCORE:float = 30.0
 var players:Array
 var scores:Dictionary = {}
 var queen = null
