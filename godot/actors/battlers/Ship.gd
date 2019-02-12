@@ -24,7 +24,7 @@ const MAX_CHARGE = 1
 const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
 
-const THRESHOLD_DIR = 0.07
+const THRESHOLD_DIR = 0.3
 
 var count = 0
 var alive = true
@@ -68,6 +68,9 @@ func _ready():
 	
 	# Invincible for the firs MAX seconds
 	invincible = true
+	sleeping=true
+	yield(get_tree().create_timer(0.5), "timeout")
+	sleeping=false
 	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false

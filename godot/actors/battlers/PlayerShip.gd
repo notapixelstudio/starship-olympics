@@ -5,6 +5,7 @@ export var absolute_controls : bool= true
 
 func control(delta):
 	if absolute_controls:
+		
 		var target_vel = Vector2()
 		target_vel.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
 		target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
