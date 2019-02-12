@@ -1,24 +1,10 @@
 extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
-const THRESHOLD = 0.07
 
 var target_velocity = Vector2()
 var steering = Vector2()
 var front = Vector2()
-
-static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
-	"""
-	Given two points a, b will return the side check is on.
- 	@return integer code for which side of the line ab c is on.  
-	1 means left turn, -1 means right turn.  Returns
- 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
-	"""
-	var cross = ((b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x))
-	
-	if cross > -THRESHOLD and cross < THRESHOLD:
-		return 0
-	return int(sign(cross))
 
 static func angle_to_angle(from, to):
     return fposmod(to-from + PI, PI*2) - PI

@@ -24,6 +24,8 @@ const MAX_CHARGE = 1
 const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
 
+const THRESHOLD_DIR = 0.07
+
 var count = 0
 var alive = true
 var stunned = false
@@ -104,7 +106,7 @@ func control(_delta):
 func _process(delta):
 	if not alive:
 		return
-		
+	
 	control(delta)
 	
 	# keep the crown up
@@ -185,3 +187,16 @@ func _on_DetectionArea_area_entered(area):
 func collect(area:Collectable):
 	if alive:
 		emit_signal("collected", self)
+
+static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
+	"""
+	Given two points a, b will return the side check is on.
+ 	@return integer code for which side of the line ab c is on.  
+	1 means left turn, -1 means right turn.  Returns
+ 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
+	"""
+	var cross = ((b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x))
+	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR and sign(cross)==sign(b.x):
+		print(cross)
+		return 0
+	return int(sign(cross))
