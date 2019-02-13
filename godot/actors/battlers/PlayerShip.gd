@@ -2,7 +2,19 @@ extends Ship
 
 const THRESHOLD = 0.07
 export var absolute_controls : bool= true
-
+var device_controller_id : int
+func _ready():
+	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+	
+	if "joy" in controls:
+		print("THIS IS A CONTROLLER ")
+		
+func die():
+	print("DIE FROM PLAYER")
+	# randomize the vibration
+	Input.start_joy_vibration(device_controller_id,1.0,1.0,2)   
+	.die()
+	
 func joypad_handling():
 	
 	var target = Vector2()
