@@ -158,7 +158,7 @@ func set_queen(value):
 	
 func stun():
 	stunned = true
-	stun_countdown = 1
+	stun_countdown = 0.3
 	
 func unstun():
 	stunned = false
@@ -199,7 +199,9 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
  	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
 	"""
 	var cross = ((b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x))
+	if sign(check.x)!= sign(b.x):
+		cross = sign(check.x)
+	
 	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR and sign(cross)==sign(b.x):
-		print(cross)
 		return 0
 	return int(sign(cross))

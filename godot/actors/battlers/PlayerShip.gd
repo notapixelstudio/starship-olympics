@@ -8,6 +8,8 @@ func _ready():
 	
 	if "joy" in controls:
 		print("THIS IS A CONTROLLER ")
+	if "kb" in controls:
+		absolute_controls = false
 		
 func die():
 	print("DIE FROM PLAYER")
@@ -43,6 +45,8 @@ func control(delta):
 			target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 		
 		var front = Vector2(cos(rotation), sin(rotation))
+		if target_vel == Vector2():
+			rotation_dir = 0
 		rotation_dir = find_side(Vector2(0,0), front, target_vel)
 		
 	else:
