@@ -198,10 +198,11 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	1 means left turn, -1 means right turn.  Returns
  	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
 	"""
-	var cross = ((b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x))
-	if sign(check.x)!= sign(b.x):
-		cross = sign(check.x)
-	
+	var possible_dirs : Array = [-1,1]
+	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
+	if check == -b:
+		cross = possible_dirs[randi()%len(possible_dirs)]
+		
 	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR and sign(cross)==sign(b.x):
 		return 0
 	return int(sign(cross))
