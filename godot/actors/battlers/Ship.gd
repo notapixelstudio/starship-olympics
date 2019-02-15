@@ -9,11 +9,12 @@ class_name Ship
 
 export (String) var controls = "kb1"
 export (Resource) var species_template
+export var absolute_controls : bool= true
 
 var arena
 
 var velocity = Vector2(0,0)
-
+var target_velocity = Vector2()
 var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
@@ -74,12 +75,19 @@ func _ready():
 	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false
-
-func _integrate_forces(state):
-	steer_force = max_steer_force * rotation_dir
+static func magnitude(a:Vector2):
+	return sqrt(a.x*a.x+a.y*a.y)
 	
+var last_velocity = Vector2()
+func _integrate_forces(state):
+	
+	steer_force = max_steer_force * rotation_dir
+	set_applied_force(Vector2())
 	#rotation = state.linear_velocity.angle()
-	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+	#apply_impulse(Vector2(),target_velocity*thrust)	
+	add_central_force(target_velocity*thrust)
+
+	# set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 	
 	set_applied_torque(rotation_dir * 75000)
 	
@@ -87,6 +95,7 @@ func _integrate_forces(state):
 	var xform = state.get_transform()
 	
 	# wrap (?)
+
 	if xform.origin.x > width:
 		xform.origin.x = 0
 	if xform.origin.x < 0:
@@ -95,7 +104,7 @@ func _integrate_forces(state):
 		xform.origin.y = 0
 	if xform.origin.y < 0:
 		xform.origin.y = height
-	
+
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
@@ -131,7 +140,7 @@ func fire():
 	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
 	# -200 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-200),0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-400),0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)

@@ -2,7 +2,6 @@ extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
 
-var target_velocity = Vector2()
 var steering = Vector2()
 var front = Vector2()
 
