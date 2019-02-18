@@ -2,13 +2,12 @@ extends Camera2D
 
 export var panSpeed = 10.0
 export var speed = 2.0
-export var zoomspeed = 0.8
 export var zoommargin = 0.1
 
 export var zoomMin = 1.7
 export var marginX = 200.0
 export var marginY = 200.0
-export(float, 0.1, 0.5) var zoom_offset : float = 0.5
+export(float, 0.1, 1.0) var zoom_offset : float = 0.9
 export var debug_mode : bool = true
 
 var camera_rect : = Rect2()
@@ -30,6 +29,10 @@ var wait_in_frame = FRAME_DELAY
 var previous_dir = Vector2(1, 1)
 var previous_zoom = Vector2(1,1)
 
+var screw : bool = false
+const ZOOM_SPEED = 0.06
+const IN_CAMERA = "in_camera"
+
 func _ready():
 	viewport_rect = get_viewport_rect()
 	
@@ -43,7 +46,7 @@ func initialize(rect_extention:Vector2, _zoom_max:float):
 	set_process(enabled)
 
 func _process(delta: float) -> void:
-	ships = get_tree().get_nodes_in_group("players")
+	ships = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if len(ships):
 		camera_rect = Rect2(ships[0].global_position, Vector2())
@@ -65,12 +68,19 @@ func _process(delta: float) -> void:
 
 	else:
 		pass
-
-	zoom.x = lerp(zoom.x, zoom_to_be.x, zoomspeed * delta)
-	zoom.y = lerp(zoom.y, zoom_to_be.y, zoomspeed * delta)
-	zoom.x = clamp(zoom_to_be.x, zoomMin, zoomMax)
-	zoom.y = clamp(zoom_to_be.y, zoomMin, zoomMax)
 	
+	if (zoom_to_be.x-zoom.x>0.2):
+		screw = true
+		#$Tween.interpolate_property(self, "zoom", zoom, zoom_to_be, 0.2,
+		#	Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		# yield($Tween.start(), "tween_completed")
+		
+	
+	zoom.x = lerp(zoom.x, zoom_to_be.x, ZOOM_SPEED)
+	zoom.y = lerp(zoom.y, zoom_to_be.y, ZOOM_SPEED)
+	zoom.x = clamp(zoom.x, zoomMin, zoomMax)
+	zoom.y = clamp(zoom.y, zoomMin, zoomMax)
+
 	if debug_mode:
 		update()
 	
