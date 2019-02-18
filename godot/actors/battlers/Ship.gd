@@ -75,6 +75,7 @@ func _ready():
 	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false
+	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
@@ -88,7 +89,7 @@ func _integrate_forces(state):
 	add_central_force(target_velocity*thrust)
 
 	# set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
-	
+	# rotation = atan2(target_velocity.y, target_velocity.x)
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
@@ -211,7 +212,9 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
 	if check == -b:
 		cross = possible_dirs[randi()%len(possible_dirs)]
-		
-	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR and sign(cross)==sign(b.x):
-		return 0
+
+	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR :
+		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
+			return 0
+	
 	return int(sign(cross))
