@@ -6,24 +6,21 @@
 [ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
-
 friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
-
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id=3]
-
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
-
 radius = 500.0
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
+"in_camera",
 ]]
 collision_mask = 19
 physics_material_override = SubResource( 1 )

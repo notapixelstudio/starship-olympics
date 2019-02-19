@@ -5,11 +5,11 @@
 [ext_resource path="res://actors/environments/HexWall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://selection/species/species0.tres" type="Resource" id=6]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=7]
-[ext_resource path="res://selection/species/species2.tres" type="Resource" id=8]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
+[ext_resource path="res://selection/species/species3.tres" type="Resource" id=7]
+[ext_resource path="res://selection/species/species4.tres" type="Resource" id=8]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 3.0
 
 [node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
@@ -49,17 +49,17 @@ radius = 1062.32
 position = Vector2( 1181.85, 1570.82 )
 rotation = -0.523599
 controls = "joy1"
-battler_template = ExtResource( 6 )
+species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1920.48, 337.27 )
 rotation = 1.5708
 controls = "joy2"
-battler_template = ExtResource( 7 )
+species_template = ExtResource( 7 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
 position = Vector2( 2663.64, 1581.3 )
 rotation = -2.61799
 controls = "joy3"
-battler_template = ExtResource( 8 )
+species_template = ExtResource( 8 )
 
