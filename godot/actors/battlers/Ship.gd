@@ -24,6 +24,8 @@ const MAX_CHARGE = 1
 const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
 
+const THRESHOLD_DIR = 0.3
+
 var count = 0
 var alive = true
 var stunned = false
@@ -66,6 +68,9 @@ func _ready():
 	
 	# Invincible for the firs MAX seconds
 	invincible = true
+	sleeping=true
+	yield(get_tree().create_timer(0.5), "timeout")
+	sleeping=false
 	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false
@@ -104,7 +109,7 @@ func control(_delta):
 func _process(delta):
 	if not alive:
 		return
-		
+	
 	control(delta)
 	
 	# keep the crown up
@@ -138,6 +143,7 @@ func fire():
 
 func die():
 	if alive and not invincible:
+		sleeping = true
 		get_node("sound").play()
 		alive = false
 		emit_signal("dead", self.name, self.position)
@@ -153,7 +159,7 @@ func set_queen(value):
 	
 func stun():
 	stunned = true
-	stun_countdown = 1
+	stun_countdown = 0.3
 	
 func unstun():
 	stunned = false
@@ -185,3 +191,19 @@ func _on_DetectionArea_area_entered(area):
 func collect(area:Collectable):
 	if alive:
 		emit_signal("collected", self)
+
+static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
+	"""
+	Given two points a, b will return the side check is on.
+ 	@return integer code for which side of the line ab c is on.  
+	1 means left turn, -1 means right turn.  Returns
+ 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
+	"""
+	var possible_dirs : Array = [-1,1]
+	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
+	if check == -b:
+		cross = possible_dirs[randi()%len(possible_dirs)]
+		
+	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR and sign(cross)==sign(b.x):
+		return 0
+	return int(sign(cross))
