@@ -20,22 +20,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.352941 )
 
-[node name="pause-window" type="TextureRect" parent="."]
-margin_left = 314.721
-margin_top = 82.0513
-margin_right = 960.721
-margin_bottom = 617.051
+[node name="Window" type="Sprite" parent="."]
+position = Vector2( 651.635, 357.94 )
+scale = Vector2( 0.745386, 0.745386 )
 texture = ExtResource( 3 )
-expand = true
-stretch_mode = 1
 
-[node name="Title" type="Label" parent="."]
+[node name="GuiElements" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -325.0
+margin_top = -274.0
+margin_right = 349.0
+margin_bottom = 288.0
+
+[node name="Title" type="Label" parent="GuiElements"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -133.237
-margin_top = 92.3718
-margin_right = 114.763
-margin_bottom = 170.372
+margin_left = -124.0
+margin_right = 124.0
+margin_bottom = 78.0002
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "Pause"
@@ -43,15 +48,15 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="GetReady" type="Label" parent="."]
+[node name="GetReady" type="Label" parent="GuiElements"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 366.597
-margin_top = 46.7731
-margin_right = 614.597
-margin_bottom = 124.773
+margin_left = -129.576
+margin_top = -97.1794
+margin_right = 118.424
+margin_bottom = -19.1791
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "Continue?"
@@ -59,34 +64,43 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Buttons" type="VBoxContainer" parent="."]
-editor/display_folded = true
-margin_left = 546.334
-margin_top = 339.407
-margin_right = 728.334
-margin_bottom = 518.407
+[node name="Buttons" type="VBoxContainer" parent="GuiElements"]
+margin_left = 238.414
+margin_top = 278.602
+margin_right = 420.414
+margin_bottom = 518.602
+alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Continue" type="Button" parent="Buttons"]
-margin_right = 182.0
-margin_bottom = 57.0
-text = "Continue"
-
-[node name="Restart" type="Button" parent="Buttons"]
+[node name="Continue" type="Button" parent="GuiElements/Buttons"]
 margin_top = 61.0
 margin_right = 182.0
 margin_bottom = 118.0
-text = "Restart"
+text = "Continue"
 
-[node name="QuitMatch" type="Button" parent="Buttons"]
+[node name="Restart" type="Button" parent="GuiElements/Buttons"]
 margin_top = 122.0
 margin_right = 182.0
 margin_bottom = 179.0
+text = "Restart"
+
+[node name="Button" type="Button" parent="GuiElements/Buttons"]
+visible = false
+margin_top = 122.0
+margin_right = 182.0
+margin_bottom = 179.0
+
+[node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
+margin_top = 183.0
+margin_right = 182.0
+margin_bottom = 240.0
 text = "Quit match"
 
-[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="Buttons/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]
