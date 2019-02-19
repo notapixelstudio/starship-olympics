@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/pause/PauseMode.gd" type="Script" id=2]
-[ext_resource path="res://combat/pause/getready.tres" type="DynamicFont" id=3]
-[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=4]
+[ext_resource path="res://assets/interface/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://combat/pause/getready.tres" type="DynamicFont" id=4]
+[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=5]
 
 [node name="Pause" type="Control"]
 pause_mode = 2
@@ -19,14 +20,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.352941 )
 
+[node name="pause-window" type="TextureRect" parent="."]
+margin_left = 314.721
+margin_top = 82.0513
+margin_right = 960.721
+margin_bottom = 617.051
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -124.0
-margin_right = 124.0
-margin_bottom = 78.0
+margin_left = -133.237
+margin_top = 92.3718
+margin_right = 114.763
+margin_bottom = 170.372
 theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "Pause"
 align = 1
 valign = 1
@@ -42,19 +53,19 @@ margin_top = 46.7731
 margin_right = 614.597
 margin_bottom = 124.773
 theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "Continue?"
 align = 1
 valign = 1
 uppercase = true
-percent_visible = -0.125
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-margin_left = 1082.09
-margin_top = 487.202
-margin_right = 1264.09
-margin_bottom = 666.202
-script = ExtResource( 4 )
+editor/display_folded = true
+margin_left = 546.334
+margin_top = 339.407
+margin_right = 728.334
+margin_bottom = 518.407
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
