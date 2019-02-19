@@ -143,6 +143,7 @@ func fire():
 
 func die():
 	if alive and not invincible:
+		sleeping = true
 		get_node("sound").play()
 		alive = false
 		emit_signal("dead", self.name, self.position)
