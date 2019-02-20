@@ -3,16 +3,26 @@ extends Control
 enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 export (String) var description = "Life"
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
+export (bool) var is_it_global = false
+
 var value 
 var min_value
 var max_value
 var index_value
 var array_value
+
 const focus_color = Color(1,0,0)
 
 func _exit_tree():
 	print(description, " -> ", value)
+
+func initialize(_description, _value, _min_value, _max_value):
+	description = _description
+	value = _value
+	min_value = _min_value
+	max_value = _max_value
 	
+"""
 func _ready():
 	$Description.text = description
 	value = global.get(description)
@@ -36,9 +46,6 @@ func _ready():
 		$Value/right.visible = index_value<max_value
 		
 	set_process_input(false)
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
 
 func _input(event):
 	if elem_type == ON_OFF:
@@ -118,3 +125,4 @@ func mod(a,b):
 		return ret+b
 	else:
 		return ret
+"""

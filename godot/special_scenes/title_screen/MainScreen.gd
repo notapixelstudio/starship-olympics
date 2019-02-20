@@ -1,23 +1,26 @@
-extends "res://special_scenes/BasicScreen.gd"
+extends BasicScreen
 
 # TODO: We need a way to get the scene
-var this_path="res://screens/main_screen/main_screen.tscn"
-
-
-func _on_Save_pressed():
-	persistance.save_game()
-	if persistance.load_game():
-		$VBoxContainer/Save/Label.text = "good job!"
-		global.reset()
-
-func _on_joy_connection_changed(device_id, connected):
-    if connected:
-        print(Input.get_joy_name(device_id))
-    else:
-        print("Keyboard")
-
-
-
+onready var title = $TitleScreen
+onready var options = $Options
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+func _ready():
+	remove_child(options)
+	
+func _on_TitleScreen_option_selected():
+	remove_child(title)
+	add_child(options)
+	options.enable_all()
+
+func _on_TitleScreen_entered():
+	$GameTitle.visible = true
+
+
+func _on_Options_back():
+	add_child(title)
+	remove_child(options)
+	$GameTitle.visible = false
+	title.initialize()

@@ -8,12 +8,13 @@
 [sub_resource type="Environment" id=1]
 background_mode = 4
 background_energy = 0.0
-auto_exposure_scale = 0.02
+auto_exposure_scale = 0.0208042
 auto_exposure_min_luma = 0.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "intro"
-length = 5.0
+length = 0.5
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("WorldEnvironment:environment:glow_enabled")
 tracks/0/interp = 1
@@ -33,10 +34,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.00801472, 0.4, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1.68179, 1 ),
 "update": 0,
-"values": [ Vector2( 867.166, 161.16 ), Vector2( 1598.23, -382.681 ) ]
+"values": [ Vector2( 867.166, 161.16 ), Vector2( 867.166, 161.16 ), Vector2( 867.166, 161.16 ), Vector2( 1598.23, -382.681 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Control/hands2:position")
@@ -45,46 +46,46 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 2.7 ),
+"transitions": PoolRealArray( 1, 1.56917, 1 ),
 "update": 0,
-"values": [ Vector2( 218.623, 454.018 ), Vector2( -565.935, 717.023 ) ]
+"values": [ Vector2( 218.623, 454.018 ), Vector2( 218.623, 454.018 ), Vector2( -565.935, 717.023 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Control/hands3:position")
-tracks/3/interp = 1
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 2.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 2.7 ),
+"transitions": PoolRealArray( 1, 0.63728, 1 ),
 "update": 0,
-"values": [ Vector2( 340.074, 41.8004 ), Vector2( -3.17007, -510.956 ) ]
+"values": [ Vector2( 340.074, 41.8004 ), Vector2( 340.074, 41.8004 ), Vector2( -3.17007, -510.956 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Control/hands4:position")
-tracks/4/interp = 1
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 2.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.001, 0.2, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 0.63728, 1 ),
 "update": 0,
-"values": [ Vector2( 718.979, 603.472 ), Vector2( 1316.31, 1312.25 ) ]
+"values": [ Vector2( 718.979, 603.472 ), Vector2( 763.226, 655.974 ), Vector2( 763.226, 655.974 ), Vector2( 1316.31, 1312.25 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Control/hands5:position")
-tracks/5/interp = 1
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 2.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 2.7 ),
+"transitions": PoolRealArray( 1, 0.574349, 1 ),
 "update": 0,
-"values": [ Vector2( 389.109, 634.676 ), Vector2( 246.462, 1321.16 ) ]
+"values": [ Vector2( 389.109, 634.676 ), Vector2( 389.109, 634.676 ), Vector2( 246.462, 1321.16 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("WorldEnvironment:environment:auto_exposure_enabled")
@@ -219,7 +220,7 @@ texture = ExtResource( 4 )
 
 [node name="hands4" type="Sprite" parent="Control"]
 self_modulate = Color( 0.360784, 0.270588, 0.270588, 1 )
-position = Vector2( 718.979, 603.472 )
+position = Vector2( 765.141, 658.247 )
 scale = Vector2( 2.35066, 2.35066 )
 texture = ExtResource( 4 )
 
@@ -232,4 +233,10 @@ texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/intro = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 1032.28, 341.08 )
+texture = ExtResource( 3 )
+energy = 4.23
+range_height = -100.0
 

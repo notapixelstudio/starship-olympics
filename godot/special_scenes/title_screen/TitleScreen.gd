@@ -1,13 +1,24 @@
-extends Node
+extends Control
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal option_selected
+signal entered
 
-# Called when the node enters the scene tree for the first time.
+onready var buttons = $Buttons
+onready var animation = $Animator
+
+func initialize():
+	animation.stop(true)
+	animation.play("fade_in")
+	yield(animation, "animation_finished")
+	for button in buttons.get_children():
+		button.disabled = false
+	buttons.get_child(0).grab_focus()
+	emit_signal("entered")
+	
 func _ready():
-	pass # Replace with function body.
+	initialize()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Options_pressed():
+	animation.play("fade_out")
+	yield(animation, "animation_finished")
+	emit_signal("option_selected")

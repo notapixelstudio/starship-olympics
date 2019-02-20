@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/shaders/TransitionColor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://special_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://interface/GameTitle.tscn" type="PackedScene" id=7]
+
+[node name="MainScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Overlays" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+
+[node name="TitleScreen" parent="." instance=ExtResource( 5 )]
+editor/display_folded = true
+
+[node name="Options" parent="." instance=ExtResource( 6 )]
+visible = false
+mouse_filter = 1
+
+[node name="GameTitle" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[connection signal="entered" from="TitleScreen" to="." method="_on_TitleScreen_entered"]
+[connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
+[connection signal="back" from="Options" to="." method="_on_Options_back"]
