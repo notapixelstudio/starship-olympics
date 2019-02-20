@@ -1,0 +1,235 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://special_scenes/splash_screen/SplashScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/background/parallax-space-backgound.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://special_scenes/splash_screen/hands.png" type="Texture" id=4]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+background_energy = 0.0
+auto_exposure_scale = 0.02
+auto_exposure_min_luma = 0.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "intro"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("WorldEnvironment:environment:glow_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 2.4 ),
+"transitions": PoolRealArray( 1, 0.784584, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/hands:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 867.166, 161.16 ), Vector2( 1598.23, -382.681 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control/hands2:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 218.623, 454.018 ), Vector2( -565.935, 717.023 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Control/hands3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 340.074, 41.8004 ), Vector2( -3.17007, -510.956 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Control/hands4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 718.979, 603.472 ), Vector2( 1316.31, 1312.25 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Control/hands5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 389.109, 634.676 ), Vector2( 246.462, 1321.16 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("WorldEnvironment:environment:auto_exposure_enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.6, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("WorldEnvironment:environment:auto_exposure_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.6, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.02, 0.1 ]
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("icon:modulate:r")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("icon:modulate:g")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("icon:modulate:b")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("icon:modulate:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2.5, 3.3, 5 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("icon:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 588.184, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/13/type = "bezier"
+tracks/13/path = NodePath("icon:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"points": PoolRealArray( 365.206, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[node name="SplashScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="parallax-space-backgound" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="icon" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 588.184, 365.206 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="hands" type="Sprite" parent="Control"]
+self_modulate = Color( 0.360784, 0.270588, 0.270588, 1 )
+position = Vector2( 867.166, 161.16 )
+rotation = -1.74533
+scale = Vector2( 2.35066, 2.35066 )
+texture = ExtResource( 4 )
+
+[node name="hands2" type="Sprite" parent="Control"]
+modulate = Color( 0.466667, 0.427451, 0.427451, 1 )
+self_modulate = Color( 0.360784, 0.270588, 0.270588, 1 )
+position = Vector2( 218.623, 454.018 )
+rotation = 1.5708
+scale = Vector2( 2.35066, 2.35066 )
+texture = ExtResource( 4 )
+
+[node name="hands3" type="Sprite" parent="Control"]
+self_modulate = Color( 0.360784, 0.270588, 0.270588, 1 )
+position = Vector2( 340.074, 41.8004 )
+rotation = 3.14159
+scale = Vector2( 2.35066, 2.35066 )
+texture = ExtResource( 4 )
+
+[node name="hands4" type="Sprite" parent="Control"]
+self_modulate = Color( 0.360784, 0.270588, 0.270588, 1 )
+position = Vector2( 718.979, 603.472 )
+scale = Vector2( 2.35066, 2.35066 )
+texture = ExtResource( 4 )
+
+[node name="hands5" type="Sprite" parent="Control"]
+self_modulate = Color( 0.360784, 0.270588, 0.270588, 1 )
+position = Vector2( 389.109, 634.676 )
+rotation = 0.698132
+scale = Vector2( 2.24367, 2.35066 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/intro = SubResource( 2 )
+

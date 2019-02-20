@@ -72,8 +72,6 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
-	print(OS.get_name())
-	print(OS.get_unique_id())
 	add_to_group("persist")
 	
 	var config = ConfigFile.new()
@@ -92,7 +90,7 @@ func _ready():
 		config.set_value("analytics", "base_url", GameAnalytics.base_url)
 	config.save(SETTINGS_FILENAME)
 
-	GameAnalytics.request_init()
+	# GameAnalytics.request_init()
 	templates = get_species_templates()
 	if force_save:
 		persistance.save_game()

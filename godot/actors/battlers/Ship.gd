@@ -57,7 +57,6 @@ signal collected
 func update_wraparound(screen_size):
 	# width = screen_size.x
 	# height = screen_size.y
-	print("updated", width, " ", height)
 
 func initialize():
 	pass

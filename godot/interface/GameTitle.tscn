@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://special_scenes/title_screen/font/fontania72.tres" type="DynamicFont" id=2]
 
 [node name="GameTitle" type="Label"]
 anchor_left = 0.5
@@ -9,6 +10,7 @@ margin_left = -263.0
 margin_right = 263.0
 margin_bottom = 201.0
 theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.705882, 0.85098, 0.262745, 1 )
 custom_colors/font_color_shadow = Color( 0.00503206, 0.0078125, 0.000549316, 1 )
 text = "SuperStarFighter"

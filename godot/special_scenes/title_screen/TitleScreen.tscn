@@ -2,10 +2,10 @@
 
 [ext_resource path="res://special_scenes/BasicScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/TransitionColor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/background/background.png" type="Texture" id=3]
-[ext_resource path="res://assets/logo_ssf_olympic.png" type="Texture" id=4]
-[ext_resource path="res://interface/GameTitle.tscn" type="PackedScene" id=5]
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/logo_ssf_olympic.png" type="Texture" id=3]
+[ext_resource path="res://interface/GameTitle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=5]
+[ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "transition"
@@ -22,32 +22,28 @@ script = ExtResource( 1 )
 anims/transition = SubResource( 1 )
 
 [node name="Overlays" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 2 )]
 transition = 0.0
 smoothness = 0.0
 
-[node name="background" type="TextureRect" parent="."]
-self_modulate = Color( 0.925781, 0.925781, 0.925781, 1 )
-margin_left = -4.0
-margin_right = 1291.0
-margin_bottom = 738.0
+[node name="logo_ssf_olympic" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -265.0
+margin_right = 192.0
+margin_bottom = -15.0
 texture = ExtResource( 3 )
 expand = true
+stretch_mode = 7
 
-[node name="logo_ssf_olympic" type="Sprite" parent="."]
-position = Vector2( 919.455, 249.073 )
-scale = Vector2( 0.220136, 0.222569 )
-texture = ExtResource( 4 )
-
-[node name="GameTitle" parent="." instance=ExtResource( 5 )]
-margin_left = -313.0
-margin_top = 39.0
-margin_right = 213.0
-margin_bottom = 240.0
+[node name="GameTitle" parent="." instance=ExtResource( 4 )]
 
 [node name="Buttons" type="VBoxContainer" parent="."]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -57,7 +53,7 @@ margin_top = -49.4766
 margin_right = 145.0
 margin_bottom = 242.523
 mouse_default_cursor_shape = 3
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 alignment = 1
 __meta__ = {
 "_edit_group_": true
@@ -105,6 +101,8 @@ margin_right = 290.0
 margin_bottom = 292.0
 rect_min_size = Vector2( 0, 70 )
 text = "Quit"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
 
 [connection signal="pressed" from="Buttons/StartHuman" to="." method="_on_StartHuman_pressed"]
 [connection signal="pressed" from="Buttons/StartCPU" to="." method="_on_StartCPU_pressed"]
