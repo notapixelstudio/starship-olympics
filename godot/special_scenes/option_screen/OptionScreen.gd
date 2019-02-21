@@ -1,6 +1,6 @@
 extends Control
 
-onready var buttons = $margin_container/v_box_container/Options
+onready var buttons = $margin_container/v_box_container
 
 
 func _ready():

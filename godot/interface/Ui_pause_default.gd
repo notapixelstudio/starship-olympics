@@ -7,6 +7,9 @@ onready var animation = $AnimationPlayer
 
 func _ready():
 	visible=true
+	container.get_child(0).grab_focus()
+	
+	
 func disable_all():
 	animation.play("hide")
 	yield(animation, "animation_finished")

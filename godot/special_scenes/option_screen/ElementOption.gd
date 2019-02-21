@@ -3,15 +3,17 @@ extends Control
 enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 export (String) var description = "Life"
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
-export (bool) var is_it_global = false
+export (bool) var is_global = false
+export (NodePath) var node_owner_path
 
 var value 
 var min_value
 var max_value
 var index_value
 var array_value
+var node_owner
 
-const focus_color = Color(1,0,0)
+const focus_color = Color(1,1,1)
 
 func _exit_tree():
 	print(description, " -> ", value)
@@ -22,74 +24,86 @@ func initialize(_description, _value, _min_value, _max_value):
 	min_value = _min_value
 	max_value = _max_value
 	
-"""
+onready var description_node = $Container/Description
+onready var value_node = $Container/ValueContainer/Value
+onready var left = $Container/ValueContainer/left
+onready var right = $Container/ValueContainer/right
+onready var container = $Container
+
 func _ready():
-	$Description.text = description
-	value = global.get(description)
-	$Value/Value.text = str(value)
-	if elem_type == NUMBER:
-		$Value/left.visible = true
-		$Value/right.visible = true
-		min_value = global.get("min_"+description)
-		max_value = global.get("max_"+description)
-		$Value/left.visible = value>min_value
-		$Value/right.visible = value<max_value
+	if is_global:
+		node_owner = global
+	else:
+		node_owner = get_node(node_owner_path)
+	description_node.text = description
+	value = node_owner.get(description)
+	value_node.text = str(value)
+	if elem_type == OPTION_TYPE.NUMBER:
+		left.visible = true
+		right.visible = true
+		min_value = node_owner.get("min_"+description)
+		max_value = node_owner.get("max_"+description)
+		left.visible = value>min_value
+		right.visible = value<max_value
 		
-	if elem_type == ARRAY:
-		$Value/left.visible = true
-		$Value/right.visible = true
-		array_value = global.get("array_"+description)
+	if elem_type == OPTION_TYPE.ARRAY:
+		left.visible = true
+		right.visible = true
+		array_value = node_owner.get("array_"+description)
 		max_value = len(array_value) - 1
 		min_value = 0
 		index_value = array_value.find(value)
-		$Value/left.visible = index_value>min_value
-		$Value/right.visible = index_value<max_value
+		left.visible = index_value>min_value
+		right.visible = index_value<max_value
 		
 	set_process_input(false)
 
 func _input(event):
-	if elem_type == ON_OFF:
+	if has_focus():
+		print("focussiamoci")
+	if elem_type == OPTION_TYPE.ON_OFF:
 		if event.is_action_pressed("ui_accept"):
-			shake_node($Value)
-			value = ($Value/Value.text == 'True')
+			shake_node(value_node)
+			value = (value_node.text == 'True')
 			value = not value
-			$Value/Value.text = str(value)
+			value_node.text = str(value)
 			
-	if elem_type == NUMBER:
-		if event.is_action_pressed("ui_right") and $Value/right.visible:
-			$Value/left.visible = true
-			shake_node($Value)
-			value = int($Value/Value.text)
+	if elem_type == OPTION_TYPE.NUMBER:
+		if event.is_action_pressed("ui_right") and right.visible:
+			print("Destra")
+			left.visible = true
+			shake_node(value_node)
+			value = int(value_node.text)
 			value +=1
-			$Value/Value.text = str(value)
-			$Value/right.visible = value<max_value
-		elif event.is_action_pressed("ui_left") and $Value/left.visible:
-			$Value/right.visible = true
-			shake_node_backwards($Value)
-			value = int($Value/Value.text)
+			value_node.text = str(value)
+			right.visible = value<max_value
+		elif event.is_action_pressed("ui_left") and left.visible:
+			right.visible = true
+			shake_node_backwards(value_node)
+			value = int(value_node.text)
 			value -=1
-			$Value/Value.text = str(value)
-			$Value/left.visible = value>min_value
+			value_node.text = str(value)
+			left.visible = value>min_value
 
-	if elem_type == ARRAY:
-		if event.is_action_pressed("ui_right") and $Value/right.visible:
-			$Value/left.visible = true
-			shake_node($Value)
-			value = str($Value/Value.text)
+	if elem_type == OPTION_TYPE.ARRAY:
+		if event.is_action_pressed("ui_right") and right.visible:
+			left.visible = true
+			shake_node(value_node)
+			value = str(value_node.text)
 			index_value = array_value.find(value)
 			index_value = mod((index_value + 1), len(array_value))
 			value = array_value[index_value]
-			$Value/Value.text = str(value)
-			$Value/right.visible = index_value<max_value
-		elif event.is_action_pressed("ui_left") and $Value/left.visible:
-			$Value/right.visible = true
-			shake_node_backwards($Value)
-			value = str($Value/Value.text)
+			value_node.text = str(value)
+			right.visible = index_value<max_value
+		elif event.is_action_pressed("ui_left") and left.visible:
+			right.visible = true
+			shake_node_backwards(value_node)
+			value = str(value_node.text)
 			index_value = array_value.find(value)
 			index_value = mod((index_value - 1), len(array_value))
 			value = array_value[index_value]
-			$Value/Value.text = str(value)
-			$Value/left.visible = index_value>min_value
+			value_node.text = str(value)
+			left.visible = index_value>min_value
 
 func shake_node_backwards(node):
 	var actual_d_pos = node.rect_position
@@ -107,16 +121,15 @@ func shake_node(node):
 
 func _on_Element_focus_entered():
 	set_process_input(true)
-	var d= $Description
-	shake_node(d)
-	d.modulate = focus_color
-	$Value/Value.modulate = focus_color
+	shake_node(description_node)
+	description_node.modulate = focus_color.darkened(0.1)
+	value_node.modulate = focus_color.darkened(0.1)
 	
 
 func _on_Element_focus_exited():
-	for node in get_children():
+	for node in container.get_children():
 		node.modulate = Color(1,1,1)
-	$Value/Value.modulate = Color(1,1,1)
+	value_node.modulate = Color(1,1,1)
 	set_process_input(false)
 	
 func mod(a,b):
@@ -125,4 +138,4 @@ func mod(a,b):
 		return ret+b
 	else:
 		return ret
-"""
+

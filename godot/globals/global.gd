@@ -3,9 +3,9 @@ extends Node
 const SETTINGS_FILENAME = "res://export.cfg"
 var enable_analytics = false
 # OPTIONS need a min and a MAX
-const MINLIVES = 1
+const min_lives = 1
 var lives = 5
-const MAXLIVES = 10
+const max_lives = 10
 
 # levels
 var level
