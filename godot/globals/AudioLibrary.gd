@@ -4,7 +4,6 @@ var this_sound:String
 
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	connect("finished", self, "next_song")
 	
 func play(sound : String = "", force_stop = false):
 	if force_stop:

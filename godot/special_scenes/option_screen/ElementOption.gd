@@ -59,8 +59,6 @@ func _ready():
 	set_process_input(false)
 
 func _input(event):
-	if has_focus():
-		print("focussiamoci")
 	if elem_type == OPTION_TYPE.ON_OFF:
 		if event.is_action_pressed("ui_accept"):
 			shake_node(value_node)
@@ -70,7 +68,6 @@ func _input(event):
 			
 	if elem_type == OPTION_TYPE.NUMBER:
 		if event.is_action_pressed("ui_right") and right.visible:
-			print("Destra")
 			left.visible = true
 			shake_node(value_node)
 			value = int(value_node.text)
