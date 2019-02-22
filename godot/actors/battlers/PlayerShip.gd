@@ -12,9 +12,9 @@ func _ready():
 		absolute_controls = false
 		
 func die():
-	print("DIE FROM PLAYER")
-	# randomize the vibration
-	Input.start_joy_vibration(device_controller_id,1.0,1.0,2)   
+	if "joy" in controls:
+		# Vibrate if joypad
+		Input.start_joy_vibration(device_controller_id, 0.5, 0.5, 1)   
 	.die()
 	
 func joypad_handling():
@@ -47,7 +47,6 @@ func control(delta):
 		# this works for absolute controls in keyboard
 		# target_vel.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
 		# target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
-			
 		var front = Vector2(cos(rotation), sin(rotation))
 		
 		if target_vel == Vector2():
