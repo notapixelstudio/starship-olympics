@@ -82,15 +82,17 @@ static func magnitude(a:Vector2):
 var last_velocity = Vector2()
 func _integrate_forces(state):
 	
+	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
+	
 	if not absolute_controls:
-		set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
-		set_applied_force(Vector2())
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
 		add_central_force(target_velocity*thrust*int(not charging and not stunned))
+		
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine

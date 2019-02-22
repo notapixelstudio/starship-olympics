@@ -6,7 +6,6 @@ const DEADZONE = 0.5
 var device_controller_id : int
 func _ready():
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
-	
 	if "joy" in controls:
 		print("THIS IS A CONTROLLER ")
 	if "kb" in controls:
@@ -39,25 +38,27 @@ func joypad_handling():
 	return target
 			
 func control(delta):
-	
-	if absolute_controls:
-		var target_vel = Vector2()
-		# Check for joypad
-		if "joy" in controls:
-			target_vel = joypad_handling()
-		else:
-			target_vel.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
-			target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
+	var target_vel = Vector2()
+	if "joy" in controls:
+		target_vel = joypad_handling()
+			
+	if not target_vel == Vector2():
+		absolute_controls = true
+		# this works for absolute controls in keyboard
+		# target_vel.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
+		# target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 			
 		var front = Vector2(cos(rotation), sin(rotation))
 		
 		if target_vel == Vector2():
+			# this in order to keep the velocity constant
 			pass
 		else:
 			target_velocity = target_vel.normalized()
 		rotation_dir = find_side(Vector2(0,0), front, target_velocity)
 		
 	else:
+		absolute_controls = false
 		rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 		
 	# charge
