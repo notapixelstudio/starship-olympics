@@ -86,7 +86,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	#rotation = state.linear_velocity.angle()
 	#apply_impulse(Vector2(),target_velocity*thrust)	
-	add_central_force(target_velocity*thrust)
+	add_central_force(target_velocity*thrust*int(not charging and not stunned))
 
 	# set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 	# rotation = atan2(target_velocity.y, target_velocity.x)
