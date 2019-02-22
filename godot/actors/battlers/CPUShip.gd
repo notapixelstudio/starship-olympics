@@ -40,10 +40,14 @@ func choose_fire():
 
 func control(delta):
 	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
-		print("click")
 		arena.mouse_target = get_global_mouse_position()
-	
-	rotation_dir = choose_dir(arena.crown)
+	var this_target = arena.crown
+	if not this_target or not this_target.is_inside_tree():
+		this_target = arena.game_mode.queen
+	if self == this_target:
+		this_target = null
+		
+	rotation_dir = choose_dir(this_target)
 	# charge
 	if charging:
 		charge = charge+delta
