@@ -54,5 +54,8 @@ species_template = ExtResource( 7 )
 
 [node name="Camera" parent="." index="4"]
 smoothing_speed = 0.3
+debug_mode = false
+enabled = true
+
 
 [connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
