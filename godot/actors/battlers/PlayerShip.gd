@@ -1,6 +1,7 @@
 extends Ship
 
 const THRESHOLD = 0.07
+const DEADZONE = 0.5
 
 var device_controller_id : int
 func _ready():
@@ -31,11 +32,14 @@ func joypad_handling():
 	# xAxis is a value from +/0 0-1 depending on how hard the stick is being pressed
 	target.x = Input.get_joy_axis(analogic.device, JOY_AXIS_0)  
 	target.y = Input.get_joy_axis(analogic.device, JOY_AXIS_1)
-
-	
+	if abs(target.x) < DEADZONE:
+		target.x = 0
+	if abs(target.y) < DEADZONE:
+		target.y = 0
 	return target
 			
 func control(delta):
+	
 	if absolute_controls:
 		var target_vel = Vector2()
 		# Check for joypad
@@ -46,6 +50,7 @@ func control(delta):
 			target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 			
 		var front = Vector2(cos(rotation), sin(rotation))
+		
 		if target_vel == Vector2():
 			pass
 		else:
