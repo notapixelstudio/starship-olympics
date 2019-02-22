@@ -37,7 +37,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "standby"
 
-[node name="color_rect" type="ColorRect"]
+[node name="Options" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -81,19 +81,26 @@ text = "Options"
 align = 1
 
 [node name="element1" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+anchor_right = 0.0
 margin_top = 21.0
 margin_right = 448.0
-margin_bottom = 52.0
+margin_bottom = 46.0
 mouse_filter = 1
+elem_type = 1
 
-[node name="CheckButton" type="CheckButton" parent="panel/margin_container/v_box_container"]
-margin_top = 56.0
+[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+margin_top = 50.0
 margin_right = 448.0
-margin_bottom = 92.0
+margin_bottom = 327.0
+size_flags_vertical = 3
+
+[node name="CheckButton" type="CheckBox" parent="panel/margin_container/v_box_container"]
+margin_top = 331.0
+margin_right = 448.0
+margin_bottom = 367.0
 text = "Add analytics"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "show"
 anims/hide = SubResource( 1 )
 anims/show = SubResource( 2 )
 anims/standby = SubResource( 3 )

@@ -35,9 +35,11 @@ func _ready():
 		node_owner = global
 	else:
 		node_owner = get_node(node_owner_path)
+		
 	description_node.text = description
 	value = node_owner.get(description)
 	value_node.text = str(value)
+	
 	if elem_type == OPTION_TYPE.NUMBER:
 		left.visible = true
 		right.visible = true
@@ -74,6 +76,7 @@ func _input(event):
 			value +=1
 			value_node.text = str(value)
 			right.visible = value<max_value
+			
 		elif event.is_action_pressed("ui_left") and left.visible:
 			right.visible = true
 			shake_node_backwards(value_node)
@@ -101,7 +104,7 @@ func _input(event):
 			value = array_value[index_value]
 			value_node.text = str(value)
 			left.visible = index_value>min_value
-
+	node_owner.set(description, value)
 func shake_node_backwards(node):
 	var actual_d_pos = node.rect_position
 	$Tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)

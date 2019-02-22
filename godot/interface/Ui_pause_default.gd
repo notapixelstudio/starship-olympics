@@ -2,12 +2,12 @@ extends ColorRect
 
 signal back
 
-onready var container = $panel/margin_container
+onready var container = $panel/margin_container/v_box_container
 onready var animation = $AnimationPlayer
 
 func _ready():
 	visible=true
-	container.get_child(0).grab_focus()
+	enable_all()
 	
 	
 func disable_all():
@@ -17,6 +17,9 @@ func disable_all():
 
 func enable_all():
 	animation.play("show")
+	container.get_child(1).grab_focus()
+	yield(animation, "animation_finished")
+
 	
 func _input(event):
 	if event.is_action_pressed("ui_back"):
