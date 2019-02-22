@@ -14,7 +14,7 @@ export var absolute_controls : bool= true
 var arena
 
 var velocity = Vector2(0,0)
-var target_velocity = Vector2()
+var target_velocity = Vector2(1,0)
 var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
@@ -83,13 +83,14 @@ var last_velocity = Vector2()
 func _integrate_forces(state):
 	
 	steer_force = max_steer_force * rotation_dir
-	set_applied_force(Vector2())
-	#rotation = state.linear_velocity.angle()
-	#apply_impulse(Vector2(),target_velocity*thrust)	
-	add_central_force(target_velocity*thrust*int(not charging and not stunned))
-
-	# set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
-	# rotation = atan2(target_velocity.y, target_velocity.x)
+	if not absolute_controls:
+		set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		# rotation = atan2(target_velocity.y, target_velocity.x)
+	else:
+		set_applied_force(Vector2())
+		#rotation = state.linear_velocity.angle()
+		#apply_impulse(Vector2(),target_velocity*thrust)	
+		add_central_force(target_velocity*thrust*int(not charging and not stunned))
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
@@ -133,7 +134,7 @@ func fire():
 	"""
 	Fire a bomb
 	"""
-	var charge_impulse = 100 + 3500*min(charge, MAX_CHARGE)
+	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
 	var bomb = bomb_scene.instance()
 	bomb.origin_ship = self
@@ -141,7 +142,7 @@ func fire():
 	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
 	# -200 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-400),0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-200),0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)

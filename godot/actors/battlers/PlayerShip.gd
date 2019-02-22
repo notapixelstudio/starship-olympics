@@ -10,7 +10,7 @@ func _ready():
 	if "joy" in controls:
 		print("THIS IS A CONTROLLER ")
 	if "kb" in controls:
-		absolute_controls = true
+		absolute_controls = false
 		
 func die():
 	print("DIE FROM PLAYER")
