@@ -9,41 +9,40 @@
 [ext_resource path="res://selection/species/species3.tres" type="Resource" id=7]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=8]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
-size_multiplier = 3.0
+[node name="Arena" instance=ExtResource( 1 )]
+size_multiplier = 4.0
 
-[node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-scale = Vector2( 3, 3 )
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
-[node name="HexWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+[node name="HexWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1581.72, 1353.74 )
 points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
 apothem = 86.6025
 radius = 100
 
-[node name="HexWall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
+[node name="HexWall2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 position = Vector2( 2272.28, 1362.17 )
 points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
 apothem = 86.6025
 radius = 100
 
-[node name="HexWall3" parent="Battlefield" index="3" instance=ExtResource( 3 )]
+[node name="HexWall3" parent="Battlefield" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1925.01, 770.342 )
 points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
 apothem = 86.6025
 radius = 100
 
-[node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 4 )]
+[node name="Crown" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 position = Vector2( 1920, 1170 )
 
-[node name="HexWall4" parent="Battlefield" index="5" instance=ExtResource( 3 )]
+[node name="HexWall4" parent="Battlefield" index="4" instance=ExtResource( 3 )]
 position = Vector2( 1920, 1170 )
-points = PoolVector2Array( 1062.32, 0, 531.16, 919.996, -531.16, 919.996, -1062.32, 1.30097e-13, -531.16, -919.996, 531.16, -919.996 )
+points = PoolVector2Array( 1600, 0, 800, 1385.64, -800, 1385.64, -1600, 1.95943e-13, -800, -1385.64, 800, -1385.64 )
 hollow = true
-apothem = 919.996
-radius = 1062.32
+apothem = 1385.64
+radius = 1600
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 1181.85, 1570.82 )

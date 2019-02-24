@@ -10,6 +10,9 @@
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
 
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
 [node name="Battlefield" type="Control" parent="."]
 
 [node name="SpawnPositions" type="Node" parent="."]

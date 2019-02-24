@@ -100,14 +100,14 @@ func _integrate_forces(state):
 	
 	# wrap (?)
 
-	if xform.origin.x > width:
-		xform.origin.x = 0
-	if xform.origin.x < 0:
-		xform.origin.x = width
-	if xform.origin.y > height:
-		xform.origin.y = 0
-	if xform.origin.y < 0:
-		xform.origin.y = height
+	#if xform.origin.x > width:
+	#	xform.origin.x = 0
+	#if xform.origin.x < 0:
+	#	xform.origin.x = width
+	#if xform.origin.y > height:
+	#	xform.origin.y = 0
+	#if xform.origin.y < 0:
+	#	xform.origin.y = height
 
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)

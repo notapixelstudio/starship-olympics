@@ -14,28 +14,27 @@
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 3.0
 
-[node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-scale = Vector2( 3, 3 )
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+[node name="Wall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 editor/display_folded = true
 position = Vector2( 1105.87, 756.912 )
 
-[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
+[node name="Wall2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 editor/display_folded = true
 position = Vector2( 1114.28, 1560.02 )
 
-[node name="Wall3" parent="Battlefield" index="3" instance=ExtResource( 3 )]
+[node name="Wall3" parent="Battlefield" index="2" instance=ExtResource( 3 )]
 editor/display_folded = true
 position = Vector2( 2775.15, 1576.84 )
 
-[node name="Wall4" parent="Battlefield" index="4" instance=ExtResource( 3 )]
+[node name="Wall4" parent="Battlefield" index="3" instance=ExtResource( 3 )]
 editor/display_folded = true
 position = Vector2( 2754.13, 727.479 )
 
-[node name="BeveledRectWall" parent="Battlefield" index="5" instance=ExtResource( 4 )]
+[node name="BeveledRectWall" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 1920, 1190 )
 scale = Vector2( 1.5, 1.5 )
 points = PoolVector2Array( -1230, -400, -1030, -600, 1030, -600, 1230, -400, 1230, 400, 1030, 600, -1030, 600, -1230, 400 )
@@ -45,35 +44,34 @@ width = 2460
 height = 1200
 bevel = 200
 
-[node name="Crown" parent="Battlefield" index="6" instance=ExtResource( 5 )]
+[node name="Crown" parent="Battlefield" index="5" instance=ExtResource( 5 )]
 position = Vector2( 1917.36, 1193.23 )
+
+[node name="SpawnPositions" parent="." index="2"]
+editor/display_folded = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = 0.0
 controls = "joy2"
 species_template = ExtResource( 7 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 1800 )
 rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 8 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
 position = Vector2( 3400, 400 )
 controls = "joy3"
 species_template = ExtResource( 9 )
-cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
 position = Vector2( 3400, 1800 )
 controls = "joy4"
 species_template = ExtResource( 10 )
-cpu = true
 
-[node name="Camera" parent="." index="4"]
+[node name="Camera" parent="." index="5"]
 zoom_offset = 0.797
 
