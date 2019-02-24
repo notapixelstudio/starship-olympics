@@ -14,7 +14,7 @@ func _ready():
 func die():
 	if "joy" in controls:
 		# Vibrate if joypad
-		Input.start_joy_vibration(device_controller_id, 0.5, 0.5, 1)   
+		Input.start_joy_vibration(device_controller_id, 1, 1, 0.3)   
 	.die()
 	
 func joypad_handling():
