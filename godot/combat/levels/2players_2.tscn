@@ -9,7 +9,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=8]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -21,10 +21,10 @@ position = Vector2( 1600, 970 )
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1500, -375, -1100, -775, 1100, -775, 1500, -375, 1500, 375, 1100, 775, -1100, 775, -1500, 375 )
+points = PoolVector2Array( -1300, -375, -900, -775, 900, -775, 1300, -375, 1300, 375, 900, 775, -900, 775, -1300, 375 )
 hollow = true
 offset = 200
-width = 3000
+width = 2600
 height = 1550
 bevel = 400
 
@@ -40,14 +40,17 @@ points = PoolVector2Array( -40, -300, 40, -300, 40, 300, -40, 300 )
 width = 80
 height = 600
 
+[node name="SpawnPositions" parent="." index="2"]
+editor/display_folded = false
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 200, 950 )
+position = Vector2( 400, 950 )
 rotation = 0.0
 controls = "kb2"
 species_template = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 3000, 950 )
+position = Vector2( 2800, 950 )
 species_template = ExtResource( 8 )
 
 [node name="Camera" parent="." index="5"]

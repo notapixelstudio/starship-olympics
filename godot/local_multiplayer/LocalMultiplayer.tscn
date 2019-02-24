@@ -16,6 +16,7 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+layer = -2
 
 [connection signal="rematch" from="GameOver/GameOverScreen" to="." method="_on_GameOverScreen_rematch"]
 
