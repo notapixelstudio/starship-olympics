@@ -66,6 +66,10 @@ func nested_get(ancestor: Node, path:String, separator:String = "."):
 	"""
 	var nests = path.split(separator)
 	var object = ancestor
+	var parent
 	for property in nests:
 		object = object.get(property)
+		if object is Node:
+			parent = object
+	print("THIS IS THE PARENT ", parent.name) 
 	return object

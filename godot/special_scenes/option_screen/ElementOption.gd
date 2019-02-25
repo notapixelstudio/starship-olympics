@@ -14,20 +14,27 @@ func _initialize():
 		left.visible = value>min_value
 		right.visible = value<max_value
 	if elem_type == OPTION_TYPE.ARRAY:
+		# it might not be ready yet
 		yield(get_tree().create_timer(2), "timeout")
-		print(node_owner.get("array_"+description))
-		print(description)
-		print(node_owner.get(description))
 		array_value = nested_get(node_owner, optional_path)
 		
-		# it might not be ready yet
 		value = nested_get(node_owner, description)
+		var parent_subpath = description.find_last(".")
 		
+		var all_path = description.split(".")
+		
+		if parent_subpath > 0:
+			var new_description = description
+			new_description.erase(parent_subpath, len(description))
+			node_owner = nested_get(node_owner, new_description)
+			
 		max_value = len(array_value) - 1
 		min_value = 0
 		index_value = array_value.find(value)
 		left.visible = index_value>min_value
 		right.visible = index_value<max_value
+		
+		description = all_path[len(all_path)-1]
 	value_node.text = str(value)
 
 onready var value_node = $Container/ValueContainer/Value

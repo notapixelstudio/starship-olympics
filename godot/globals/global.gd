@@ -18,14 +18,6 @@ var templates : Dictionary # {int : Resources}
 
 # Soundtrack
 onready var bgm = Soundtrack
-var array_song
-var song setget change_song
-
-func change_song(new_song):
-	song = new_song
-	if not song == Soundtrack.this_sound:
-		Soundtrack.play(song, true)
-
 # Controls
 enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
 
@@ -85,10 +77,6 @@ var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
 	# prepare arrays
-	yield(get_tree().create_timer(2), "timeout")
-	array_song = bgm.array_songs
-	
-	song = Soundtrack.current_sound
 	
 	add_to_group("persist")
 	
