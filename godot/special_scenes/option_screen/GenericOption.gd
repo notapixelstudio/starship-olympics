@@ -49,13 +49,7 @@ func _ready():
 	if elem_type == OPTION_TYPE.NUMBER:
 		min_value = node_owner.get("min_"+description)
 		max_value = node_owner.get("max_"+description)
-		
-	if elem_type == OPTION_TYPE.ARRAY:
-
-		array_value = node_owner.get("array_"+description)
-		max_value = len(array_value) - 1
-		min_value = 0
-		var index_value = array_value.find(value)
+	
 	
 	set_process_input(false)
 	

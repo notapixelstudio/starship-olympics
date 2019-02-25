@@ -14,11 +14,23 @@ func _initialize():
 		left.visible = value>min_value
 		right.visible = value<max_value
 	if elem_type == OPTION_TYPE.ARRAY:
+		yield(get_tree().create_timer(1.6), "timeout")
+		print(node_owner.get("array_"+description))
+		print(description)
+		print(node_owner.get(description))
+		array_value = node_owner.get("array_"+description)
+		
+		# it might not be ready yet
+		array_value = Soundtrack.array_songs
+		value = Soundtrack.this_sound
+		
+		max_value = len(array_value) - 1
+		min_value = 0
 		index_value = array_value.find(value)
 		left.visible = index_value>min_value
 		right.visible = index_value<max_value
 	value_node.text = str(value)
-	
+
 onready var value_node = $Container/ValueContainer/Value
 onready var left = $Container/ValueContainer/left
 onready var right = $Container/ValueContainer/right
@@ -72,6 +84,7 @@ func _input(event):
 			value_node.text = str(value)
 			left.visible = index_value>min_value
 	node_owner.set(description, value)
+	
 func shake_node_backwards(node):
 	var actual_d_pos = node.rect_position
 	$Tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)

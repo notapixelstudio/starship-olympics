@@ -41,3 +41,4 @@ func next_song():
 func song_is_playing(song):
 	print("This song is playing: ", song.name)
 	current_sound = song
+	Soundtrack.this_sound = current_sound.name
