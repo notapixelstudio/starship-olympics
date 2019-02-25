@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/shaders/TransitionColor.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-
 resource_name = "_SETUP"
 length = 0.01
 tracks/0/type = "value"
@@ -21,7 +20,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "to_color"
 length = 0.7
 tracks/0/type = "value"
@@ -50,7 +48,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transition")

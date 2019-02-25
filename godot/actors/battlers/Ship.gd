@@ -9,11 +9,12 @@ class_name Ship
 
 export (String) var controls = "kb1"
 export (Resource) var species_template
+export var absolute_controls : bool= true
 
 var arena
 
 var velocity = Vector2(0,0)
-
+var target_velocity = Vector2(1,0)
 var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
@@ -23,6 +24,8 @@ const max_steer_force = 2500
 const MAX_CHARGE = 1
 const MAX_OVERCHARGE = 2
 const BOMB_OFFSET = 40
+
+const THRESHOLD_DIR = 0.3
 
 var count = 0
 var alive = true
@@ -52,10 +55,10 @@ var invincible : bool
 signal collectable_released
 signal collected
 
-func update_wraparound(screen_size):
-	# width = screen_size.x
-	# height = screen_size.y
-	print("updated", width, " ", height)
+#func update_wraparound(screen_size):
+#	# width = screen_size.x
+#	# height = screen_size.y
+	
 
 func initialize():
 	pass
@@ -66,22 +69,37 @@ func _ready():
 	
 	# Invincible for the firs MAX seconds
 	invincible = true
+	sleeping=true
+	yield(get_tree().create_timer(0.5), "timeout")
+	sleeping=false
 	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false
-
+	
+static func magnitude(a:Vector2):
+	return sqrt(a.x*a.x+a.y*a.y)
+	
+var last_velocity = Vector2()
 func _integrate_forces(state):
+	
+	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
-	#rotation = state.linear_velocity.angle()
-	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
-	
+	if not absolute_controls:
+		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		# rotation = atan2(target_velocity.y, target_velocity.x)
+	else:
+		#rotation = state.linear_velocity.angle()
+		#apply_impulse(Vector2(),target_velocity*thrust)	
+		add_central_force(target_velocity*thrust*int(not charging and not stunned))
+		
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
 	var xform = state.get_transform()
 	
 	# wrap (?)
+
 	if xform.origin.x > width:
 		xform.origin.x = 0
 	if xform.origin.x < 0:
@@ -90,7 +108,7 @@ func _integrate_forces(state):
 		xform.origin.y = 0
 	if xform.origin.y < 0:
 		xform.origin.y = height
-	
+
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
@@ -104,7 +122,7 @@ func control(_delta):
 func _process(delta):
 	if not alive:
 		return
-		
+	
 	control(delta)
 	
 	# keep the crown up
@@ -118,7 +136,7 @@ func fire():
 	"""
 	Fire a bomb
 	"""
-	var charge_impulse = 100 + 3500*min(charge, MAX_CHARGE)
+	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
 	var bomb = bomb_scene.instance()
 	bomb.origin_ship = self
@@ -138,6 +156,7 @@ func fire():
 
 func die():
 	if alive and not invincible:
+		sleeping = true
 		get_node("sound").play()
 		alive = false
 		emit_signal("dead", self.name, self.position)
@@ -153,7 +172,7 @@ func set_queen(value):
 	
 func stun():
 	stunned = true
-	stun_countdown = 1
+	stun_countdown = 0.3
 	
 func unstun():
 	stunned = false
@@ -185,3 +204,21 @@ func _on_DetectionArea_area_entered(area):
 func collect(area:Collectable):
 	if alive:
 		emit_signal("collected", self)
+
+static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
+	"""
+	Given two points a, b will return the side check is on.
+ 	@return integer code for which side of the line ab c is on.  
+	1 means left turn, -1 means right turn.  Returns
+ 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
+	"""
+	var possible_dirs : Array = [-1,1]
+	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
+	if check == -b:
+		cross = possible_dirs[randi()%len(possible_dirs)]
+
+	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR :
+		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
+			return 0
+	
+	return int(sign(cross))

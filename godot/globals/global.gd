@@ -1,11 +1,13 @@
 extends Node
 
 const SETTINGS_FILENAME = "res://export.cfg"
-var enable_analytics = false
+
+var enable_analytics = true
+
 # OPTIONS need a min and a MAX
-const MINLIVES = 1
-var lives = 5
-const MAXLIVES = 10
+const min_lives = 1
+var lives = 2
+const max_lives = 10
 
 # levels
 var level
@@ -14,6 +16,11 @@ var array_level
 # templates
 var templates : Dictionary # {int : Resources}
 
+# DEBUG
+var debug : bool = false
+
+# Soundtrack
+onready var bgm = Soundtrack
 # Controls
 enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
 
@@ -55,7 +62,7 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES0: true,
 	ALL_SPECIES.SPECIES1: true,
 	ALL_SPECIES.SPECIES2: true,
-	ALL_SPECIES.SPECIES3 : false,
+	ALL_SPECIES.SPECIES3 : true,
 	ALL_SPECIES.SPECIES4 : true
 }
 var colors = {
@@ -72,8 +79,8 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
-	print(OS.get_name())
-	print(OS.get_unique_id())
+	# prepare arrays
+	
 	add_to_group("persist")
 	
 	var config = ConfigFile.new()
@@ -92,7 +99,7 @@ func _ready():
 		config.set_value("analytics", "base_url", GameAnalytics.base_url)
 	config.save(SETTINGS_FILENAME)
 
-	GameAnalytics.request_init()
+	# GameAnalytics.request_init()
 	templates = get_species_templates()
 	if force_save:
 		persistance.save_game()

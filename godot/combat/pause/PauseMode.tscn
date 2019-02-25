@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/pause/PauseMode.gd" type="Script" id=2]
-[ext_resource path="res://combat/pause/getready.tres" type="DynamicFont" id=3]
-[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=4]
+[ext_resource path="res://assets/interface/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
+[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=5]
 
 [node name="Pause" type="Control"]
 pause_mode = 2
@@ -19,63 +20,78 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.352941 )
 
-[node name="Title" type="Label" parent="."]
+[node name="Window" type="Sprite" parent="."]
+position = Vector2( 651.635, 357.94 )
+scale = Vector2( 0.745386, 0.745386 )
+texture = ExtResource( 3 )
+
+[node name="GuiElements" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -329.0
+margin_top = -274.0
+margin_right = 349.0
+margin_bottom = 288.0
+theme = ExtResource( 4 )
+
+[node name="Title" type="Label" parent="GuiElements"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -124.0
 margin_right = 124.0
-margin_bottom = 78.0
+margin_bottom = 78.0002
 theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 3 )
 text = "Pause"
 align = 1
 valign = 1
 uppercase = true
 
-[node name="GetReady" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 366.597
-margin_top = 46.7731
-margin_right = 614.597
-margin_bottom = 124.773
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 3 )
-text = "Continue?"
-align = 1
-valign = 1
-uppercase = true
-percent_visible = -0.125
-
-[node name="Buttons" type="VBoxContainer" parent="."]
-margin_left = 1082.09
-margin_top = 487.202
-margin_right = 1264.09
-margin_bottom = 666.202
-script = ExtResource( 4 )
+[node name="Buttons" type="VBoxContainer" parent="GuiElements"]
+editor/display_folded = true
+margin_left = 238.414
+margin_top = 278.602
+margin_right = 420.414
+margin_bottom = 518.602
+alignment = 2
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Continue" type="Button" parent="Buttons"]
+[node name="Continue" type="Button" parent="GuiElements/Buttons"]
+margin_top = 57.0
 margin_right = 182.0
-margin_bottom = 57.0
+margin_bottom = 114.0
 text = "Continue"
 
-[node name="Restart" type="Button" parent="Buttons"]
-margin_top = 61.0
+[node name="Restart" type="Button" parent="GuiElements/Buttons"]
+margin_top = 118.0
 margin_right = 182.0
-margin_bottom = 118.0
+margin_bottom = 175.0
 text = "Restart"
 
-[node name="QuitMatch" type="Button" parent="Buttons"]
+[node name="Button" type="Button" parent="GuiElements/Buttons"]
+visible = false
 margin_top = 122.0
 margin_right = 182.0
 margin_bottom = 179.0
+
+[node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
+margin_top = 179.0
+margin_right = 182.0
+margin_bottom = 236.0
 text = "Quit match"
 
-[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="Buttons/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]
+[node name="TextureButton" type="TextureButton" parent="GuiElements/Buttons"]
+margin_top = 240.0
+margin_right = 182.0
+margin_bottom = 240.0
+stretch_mode = 5
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]
