@@ -1,12 +1,16 @@
 tool
 extends Node2D
-export var radius = 100 setget set_radius
+export (int) var radius setget set_radius
 
 
 func set_radius(new_radius):
 	radius = new_radius
-	if Engine.editor_hint:
-		$Area2D/CollisionShape2D.shape.radius = radius
+	if has_node('Circle'):
+		refresh()
 	
 func _ready():
-	pass
+	refresh()
+	
+func refresh():
+	$Area2D/CollisionShape2D.shape.radius = radius
+	$Circle.radius = radius
