@@ -1,64 +1,31 @@
-extends Control
-
-enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
-export (String) var description = "Life"
-export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
-export (bool) var is_global = false
-export (NodePath) var node_owner_path
-
-var value 
-var min_value
-var max_value
-var index_value
-var array_value
-var node_owner
+extends GenericOption
 
 const focus_color = Color(1,1,1)
+var index_value
 
 func _exit_tree():
 	print(description, " -> ", value)
 
-func initialize(_description, _value, _min_value, _max_value):
-	description = _description
-	value = _value
-	min_value = _min_value
-	max_value = _max_value
+func _initialize():
+	left.visible = true
+	right.visible = true
 	
-onready var description_node = $Container/Description
+	if elem_type == OPTION_TYPE.NUMBER:
+		left.visible = value>min_value
+		right.visible = value<max_value
+	if elem_type == OPTION_TYPE.ARRAY:
+		index_value = array_value.find(value)
+		left.visible = index_value>min_value
+		right.visible = index_value<max_value
+	value_node.text = str(value)
+	
 onready var value_node = $Container/ValueContainer/Value
 onready var left = $Container/ValueContainer/left
 onready var right = $Container/ValueContainer/right
 onready var container = $Container
 
 func _ready():
-	if is_global:
-		node_owner = global
-	else:
-		node_owner = get_node(node_owner_path)
-		
-	description_node.text = description
-	value = node_owner.get(description)
-	value_node.text = str(value)
-	
-	if elem_type == OPTION_TYPE.NUMBER:
-		left.visible = true
-		right.visible = true
-		min_value = node_owner.get("min_"+description)
-		max_value = node_owner.get("max_"+description)
-		left.visible = value>min_value
-		right.visible = value<max_value
-		
-	if elem_type == OPTION_TYPE.ARRAY:
-		left.visible = true
-		right.visible = true
-		array_value = node_owner.get("array_"+description)
-		max_value = len(array_value) - 1
-		min_value = 0
-		index_value = array_value.find(value)
-		left.visible = index_value>min_value
-		right.visible = index_value<max_value
-		
-	set_process_input(false)
+	_initialize()
 
 func _input(event):
 	if elem_type == OPTION_TYPE.ON_OFF:

@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
-[ext_resource path="res://special_scenes/option_screen/GenericOption.gd" type="Script" id=2]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.gd" type="Script" id=1]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
+[ext_resource path="res://special_scenes/option_screen/CheckBoxOption.gd" type="Script" id=3]
 
-[node name="ElementCheckbox" type="CheckButton"]
-margin_right = 190.0
-margin_bottom = 36.0
+[node name="MarginContainer" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+description_node_path = NodePath("ElementCheckbox")
+
+[node name="ElementCheckbox" type="CheckBox" parent="."]
+margin_right = 125.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 31 )
-theme = ExtResource( 1 )
+theme = ExtResource( 2 )
 text = "Wsjasaj"
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="ElementCheckbox"]
 
-[connection signal="focus_entered" from="." to="." method="_on_Element_focus_entered"]
-[connection signal="focus_exited" from="." to="." method="_on_Element_focus_exited"]
+[connection signal="toggled" from="ElementCheckbox" to="." method="_on_ElementCheckbox_toggled"]

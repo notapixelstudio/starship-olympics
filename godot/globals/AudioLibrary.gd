@@ -5,8 +5,12 @@ class_name AudioLibrary
 var this_sound:String
 var current_sound : AudioStreamPlayer
 
+signal play_song
+
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
+	for audio_lib in get_children():
+		connect("play_song", self, "song_is_playing")
 	
 func play(sound : String = "", force_stop = false):
 	if force_stop:
@@ -17,7 +21,9 @@ func play(sound : String = "", force_stop = false):
 		var i = randi()%get_child_count()
 		this_sound = get_child(i).name
 	current_sound = get_node(this_sound)
-	print("I am ", name, " and This song is ", current_sound.name, " titled ", this_sound)
+	if current_sound is AudioStreamPlayer:
+		emit_signal("play_song", current_sound)
+		print("I am ", name, " and This song is ", current_sound.name, " titled ", this_sound)
 	current_sound.play()
 
 func stop():
@@ -29,4 +35,9 @@ func list_songs():
 	return get_children()
 
 func next_song():
-	pass
+	var i = list_songs().find(current_sound)
+	get_child(i+1 % get_child_count()).play()
+
+func song_is_playing(song):
+	print("This song is playing: ", song.name)
+	current_sound = song

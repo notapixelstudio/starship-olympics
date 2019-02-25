@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Ui_pause_default.gd" type="Script" id=2]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hide"
@@ -88,17 +89,31 @@ margin_bottom = 46.0
 mouse_filter = 1
 elem_type = 1
 
-[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+[node name="element2" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+anchor_right = 0.0
 margin_top = 50.0
+margin_right = 448.0
+margin_bottom = 75.0
+mouse_filter = 1
+description = "songs"
+elem_type = 2
+is_global = false
+node_owner_path = NodePath("../../../..")
+
+[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+margin_top = 79.0
 margin_right = 448.0
 margin_bottom = 327.0
 size_flags_vertical = 3
 
-[node name="CheckButton" type="CheckBox" parent="panel/margin_container/v_box_container"]
+[node name="Analytics" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
 margin_top = 331.0
 margin_right = 448.0
 margin_bottom = 367.0
-text = "Add analytics"
+description = "enable_analytics"
+label_description = "Send anonimous statistics"
+is_global = true
+description_node_path = NodePath("../Analytics/ElementCheckbox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide = SubResource( 1 )

@@ -17,6 +17,7 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 description = "lives"
 is_global = true
+description_node_path = NodePath("Container/Description")
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -42,14 +43,15 @@ valign = 1
 [node name="Padding" type="Label" parent="Container"]
 margin_left = 59.0
 margin_top = 9.0
-margin_right = 144.0
+margin_right = 150.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 148.0
+margin_left = 154.0
 margin_right = 195.0
 margin_bottom = 36.0
+custom_constants/separation = 7
 
 [node name="left" type="TextureButton" parent="Container/ValueContainer"]
 margin_right = 10.0
@@ -61,17 +63,17 @@ expand = true
 stretch_mode = 5
 
 [node name="Value" type="Label" parent="Container/ValueContainer"]
-margin_left = 14.0
+margin_left = 17.0
 margin_top = 9.0
-margin_right = 33.0
+margin_right = 24.0
 margin_bottom = 26.0
-text = "10"
+text = "1"
 align = 1
 valign = 1
 
 [node name="right" type="TextureButton" parent="Container/ValueContainer"]
-margin_left = 37.0
-margin_right = 47.0
+margin_left = 31.0
+margin_right = 41.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 10, 0 )
 texture_normal = ExtResource( 5 )

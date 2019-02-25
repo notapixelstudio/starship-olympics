@@ -16,6 +16,7 @@ func initialize():
 	emit_signal("entered")
 	
 func _ready():
+	Soundtrack.play("Lobby4", true)
 	initialize()
 
 func _on_Options_pressed():

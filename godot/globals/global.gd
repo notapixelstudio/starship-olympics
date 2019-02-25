@@ -1,10 +1,12 @@
 extends Node
 
 const SETTINGS_FILENAME = "res://export.cfg"
-var enable_analytics = false
+
+var enable_analytics = true
+
 # OPTIONS need a min and a MAX
 const min_lives = 1
-var lives = 5
+var lives = 2
 const max_lives = 10
 
 # levels
@@ -13,6 +15,10 @@ var array_level
 
 # templates
 var templates : Dictionary # {int : Resources}
+
+# Soundtrack
+onready var bgm = Soundtrack
+var array_songs
 
 # Controls
 enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
@@ -72,6 +78,8 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
+	# prepare arrays
+	array_songs = bgm.array_songs
 	add_to_group("persist")
 	
 	var config = ConfigFile.new()

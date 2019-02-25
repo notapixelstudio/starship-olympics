@@ -1,5 +1,7 @@
 extends ColorRect
 
+var array_songs
+
 signal back
 
 onready var container = $panel/margin_container/v_box_container
@@ -8,7 +10,7 @@ onready var animation = $AnimationPlayer
 func _ready():
 	visible=true
 	enable_all()
-	
+	array_songs = Soundtrack.array_songs
 	
 func disable_all():
 	animation.play("hide")
