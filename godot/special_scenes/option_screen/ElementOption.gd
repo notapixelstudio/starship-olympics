@@ -18,11 +18,10 @@ func _initialize():
 		print(node_owner.get("array_"+description))
 		print(description)
 		print(node_owner.get(description))
-		array_value = node_owner.get("array_"+description)
+		array_value = nested_get(node_owner, optional_path)
 		
 		# it might not be ready yet
-		value = nested_get(description)
-		value = node_owner.get(description)
+		value = nested_get(node_owner, description)
 		
 		max_value = len(array_value) - 1
 		min_value = 0

@@ -5,6 +5,7 @@ class_name GenericOption
 enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 
 export (String) var description = "Life"
+export (String) var optional_path 
 export (String) var label_description
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
 export (bool) var is_global = false
@@ -56,12 +57,15 @@ func _ready():
 func _on_ElementCheckbox_pressed():
 	print()
 	
-func nested_get(path:String):
-	var nests = path.split(".")
-	print(nests)
-	var no = node_owner
-	for i in nests:
-		print(no.name)
-		no = no.get(i)
-	print(no)
-	return no
+func nested_get(ancestor: Node, path:String, separator:String = "."):
+	"""
+	:param Node ancestor: Ancestor node that has the nested references
+	:param str path: String separated by 'separator' that indicates the path
+	:param str separator: separator for the 
+	:return value from path, NULL if does not exists
+	"""
+	var nests = path.split(separator)
+	var object = ancestor
+	for property in nests:
+		object = object.get(property)
+	return object
