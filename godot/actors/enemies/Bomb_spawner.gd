@@ -11,7 +11,7 @@ func _ready():
 func spawn():
 	$Dashed_container.visible = false
 	var bomb = Bomb.instance()
-	bomb.ephemeral = false
+	bomb.standalone = true
 	bomb.position = position
 	bomb.connect("detonate", self, "ready_to_respawn",[], CONNECT_ONESHOT)
 	get_parent().add_child(bomb)

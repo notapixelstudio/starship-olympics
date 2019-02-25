@@ -4,7 +4,7 @@
 [ext_resource path="res://actors/weapons/Circle.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 300.0
+radius = 200.0
 
 [node name="WaterBubble" type="Node2D"]
 position = Vector2( 640, 130 )
@@ -14,8 +14,8 @@ radius = 100
 [node name="Area2D" type="Area2D" parent="."]
 space_override = 1
 gravity_vec = Vector2( 0, 0 )
-linear_damp = 10.0
-angular_damp = 100.0
+linear_damp = 5.0
+angular_damp = 80.0
 collision_layer = 2
 collision_mask = 5
 __meta__ = {

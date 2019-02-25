@@ -9,7 +9,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=8]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -17,20 +17,20 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="WaterBubble" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 2200, 500 )
-radius = 200
+position = Vector2( 2700, 50 )
+radius = 700
 
 [node name="WaterBubble2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1000, 1400 )
-radius = 200
+position = Vector2( 500, 1850 )
+radius = 700
 
 [node name="WaterBubble3" parent="Battlefield" index="2" instance=ExtResource( 3 )]
-position = Vector2( 1000, 500 )
-radius = 200
+position = Vector2( 500, 50 )
+radius = 700
 
 [node name="WaterBubble4" parent="Battlefield" index="3" instance=ExtResource( 3 )]
-position = Vector2( 2200, 1400 )
-radius = 200
+position = Vector2( 2700, 1850 )
+radius = 700
 
 [node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 1600, 970 )
