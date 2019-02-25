@@ -195,7 +195,6 @@ func setup_ship(player:PlayerSpawner):
 	ship.height = height
 	ship.width = width
 	ship.name = player.name
-	print(player.name, " vs ", ship.name)
 	Battlefield.add_child(ship)
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")

@@ -25,7 +25,6 @@ func _ready():
 	
 func _on_Arena_update_score(player_name:String, points:int, collectable_owner: String):
 	var player_hud = get_player_hud(player_name)
-	print(player_hud, " for player ", player_name)
 	if collectable_owner:
 		player_hud.set_collectables(points)
 	else:

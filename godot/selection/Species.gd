@@ -57,7 +57,6 @@ func _ready():
 	set_controls(controls)
 	change_species(species_template)
 	id = name.to_lower()
-	print("ID is ", id)
 	speciesSelection.initialize(name)
 
 func change_species(new_species: SpeciesTemplate):
