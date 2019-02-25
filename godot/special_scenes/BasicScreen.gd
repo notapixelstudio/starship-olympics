@@ -8,17 +8,13 @@ onready var transition = $Overlays/TransitionColor
 onready var buttons = $Buttons
 var transitioning = false
 
-func _ready():
-	
-	switch()
-
 
 func switch():
 	if transitioning:
 		return
-
 	transitioning = true
 	# initialize whatever scene
-	yield(transition.fade_from_color(), "completed")
+	yield(transition.fade_to_color(), "completed")
 	transitioning = false
+	emit_signal("finished")
 	

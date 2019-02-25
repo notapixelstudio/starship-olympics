@@ -16,6 +16,9 @@ var array_level
 # templates
 var templates : Dictionary # {int : Resources}
 
+# DEBUG
+var debug : bool = false
+
 # Soundtrack
 onready var bgm = Soundtrack
 # Controls

@@ -141,6 +141,7 @@ __meta__ = {
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )
+disabled = true
 text = "Fight"
 
 [node name="StartCPU" type="Button" parent="Buttons"]
@@ -148,6 +149,7 @@ visible = false
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )
+disabled = true
 shortcut = SubResource( 2 )
 text = "Human vs CPU"
 
@@ -156,6 +158,7 @@ margin_top = 74.0
 margin_right = 290.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 210, 70 )
+disabled = true
 text = "Options"
 
 [node name="Help" type="Button" parent="Buttons"]
@@ -163,6 +166,7 @@ margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 210, 70 )
+disabled = true
 text = "Help"
 
 [node name="Credits" type="Button" parent="Buttons"]
@@ -171,6 +175,7 @@ margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 0, 70 )
+disabled = true
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="Buttons"]
@@ -178,6 +183,7 @@ margin_top = 222.0
 margin_right = 290.0
 margin_bottom = 292.0
 rect_min_size = Vector2( 0, 70 )
+disabled = true
 text = "Quit"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
@@ -200,4 +206,5 @@ stretch_mode = 7
 
 [node name="GameTitle" parent="." instance=ExtResource( 4 )]
 
+[connection signal="pressed" from="Buttons/StartHuman" to="." method="_on_StartHuman_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]

@@ -101,8 +101,26 @@ label_description = "Song"
 elem_type = 2
 node_owner_path = NodePath("../../../..")
 
-[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+[node name="Analytics2" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
 margin_top = 79.0
+margin_right = 448.0
+margin_bottom = 115.0
+description = "debug"
+label_description = "debug mode"
+is_global = true
+
+[node name="element3" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 119.0
+margin_right = 448.0
+margin_bottom = 144.0
+mouse_filter = 1
+description = "debug"
+label_description = "Debug mode"
+node_owner_path = NodePath("../../../..")
+
+[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+margin_top = 148.0
 margin_right = 448.0
 margin_bottom = 327.0
 size_flags_vertical = 3
@@ -112,7 +130,7 @@ margin_top = 331.0
 margin_right = 448.0
 margin_bottom = 367.0
 description = "enable_analytics"
-label_description = "Send anonimous statistics"
+label_description = "Send anonymous gameplay statistics"
 is_global = true
 description_node_path = NodePath("../Analytics/ElementCheckbox")
 

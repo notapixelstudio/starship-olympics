@@ -10,7 +10,6 @@ onready var animation = $AnimationPlayer
 func _ready():
 	visible=true
 	enable_all()
-	array_songs = Soundtrack.array_songs
 	
 func disable_all():
 	animation.play("hide")

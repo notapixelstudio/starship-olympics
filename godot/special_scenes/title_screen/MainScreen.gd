@@ -18,9 +18,14 @@ func _on_TitleScreen_option_selected():
 func _on_TitleScreen_entered():
 	$GameTitle.visible = true
 
-
 func _on_Options_back():
 	add_child(title)
 	remove_child(options)
 	$GameTitle.visible = false
 	title.initialize()
+
+
+func _on_TitleScreen_start_multiplayer():
+	switch()
+	yield(self, "finished")
+	get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
