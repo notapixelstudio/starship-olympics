@@ -34,6 +34,8 @@ var speed = 0.3
 const IN_CAMERA = "in_camera"
 
 func _ready():
+	if enabled:
+		current = true
 	viewport_rect = get_viewport_rect()
 	
 func initialize(rect_extention:Vector2, _zoom_max:float):

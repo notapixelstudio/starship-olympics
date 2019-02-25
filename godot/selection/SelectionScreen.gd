@@ -89,7 +89,6 @@ func change_controls(key:String, new_key:String) -> bool:
 		var to_change = last
 		last = child.controls
 		assert(child is Species)
-		print("index is ", count-i, " and control is ", last)
 		child.set_controls_by_string(to_change)
 		
 	return false
@@ -154,14 +153,11 @@ func ready_to_fight():
 func selected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.append(current_index)
-	print(selected_index)
 	for child in container.get_children():
-		print(species.species_name, " vs child: ", child.species_template.species_name)
 		if not child.selected and child.species_template == species:
 			get_adjacent(+1, child)
 
 func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
-	print(selected_index)
 	print("delestected this: ", species)

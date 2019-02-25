@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AudioLibrary",
+"language": "GDScript",
+"path": "res://globals/AudioLibrary.gd"
+}, {
+"base": "Node",
+"class": "BasicScreen",
+"language": "GDScript",
+"path": "res://special_scenes/BasicScreen.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Bomb",
 "language": "GDScript",
@@ -33,6 +43,11 @@ _global_script_classes=[ {
 "class": "Explosion",
 "language": "GDScript",
 "path": "res://actors/weapons/Explosion.gd"
+}, {
+"base": "Control",
+"class": "GenericOption",
+"language": "GDScript",
+"path": "res://special_scenes/option_screen/GenericOption.gd"
 }, {
 "base": "Resource",
 "class": "InfoPlayer",
@@ -75,11 +90,14 @@ _global_script_classes=[ {
 "path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
+"AudioLibrary": "",
+"BasicScreen": "",
 "Bomb": "",
 "Collectable": "",
 "Controls": "",
 "CrownMode": "",
 "Explosion": "",
+"GenericOption": "",
 "InfoPlayer": "",
 "PlayerHUD": "",
 "PlayerSpawner": "",
@@ -93,15 +111,15 @@ _global_script_class_icons={
 [application]
 
 config/name="superstarfighter"
-run/main_scene="res://local_multiplayer/LocalMultiplayer.tscn"
+run/main_scene="res://special_scenes/title_screen/MainScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 persistance="*res://globals/persistance.gd"
+Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
-Soundtrack="*res://globals/Soundtrack.tscn"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 
 [debug]

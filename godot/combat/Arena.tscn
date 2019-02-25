@@ -16,7 +16,6 @@ layer = -1
 [node name="Battlefield" type="Control" parent="."]
 
 [node name="SpawnPositions" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Players" type="Node" parent="SpawnPositions"]
 
@@ -36,6 +35,7 @@ visible = false
 visible = false
 
 [node name="Debug" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 0
 
 [node name="DebugNode" parent="Debug" instance=ExtResource( 5 )]

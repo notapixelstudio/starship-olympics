@@ -76,7 +76,6 @@ func _ready():
 # adding an event to the queue for later submit
 func add_to_event_queue(event_dict: Dictionary):
 	state_config['event_queue'].append(event_dict)
-	print(event_dict)
 
 # requesting init URL and returning result
 func request_init():
@@ -190,7 +189,6 @@ func request_init():
 		state_config['enabled'] = true
 	else:
 		state_config['enabled'] = false
-		print("WE ARE NOT")
 	
 	# TODO: adjust ts ? 
 	return status_code
