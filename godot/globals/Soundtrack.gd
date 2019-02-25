@@ -13,7 +13,6 @@ func _get_songs():
 func play(sound : String = "", force_stop = false):
 	if force_stop:
 		stop()
-	
 	var found = false
 	for album in get_children():
 		if sound == album.name:
@@ -32,7 +31,7 @@ func play(sound : String = "", force_stop = false):
 	current_album.play(sound)
 	array_songs = list_songs()
 	current_song = this_sound
-	print(array_songs)
+	print(array_songs, current_song)
 
 func list_songs():
 	var songs = []

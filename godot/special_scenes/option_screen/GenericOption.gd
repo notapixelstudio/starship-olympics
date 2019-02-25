@@ -56,3 +56,12 @@ func _ready():
 func _on_ElementCheckbox_pressed():
 	print()
 	
+func nested_get(path:String):
+	var nests = path.split(".")
+	print(nests)
+	var no = node_owner
+	for i in nests:
+		print(no.name)
+		no = no.get(i)
+	print(no)
+	return no
