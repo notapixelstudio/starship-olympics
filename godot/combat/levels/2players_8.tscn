@@ -17,32 +17,28 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="WaterBubble" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 2200, 500 )
-radius = 200
+position = Vector2( 2200, 950 )
 
 [node name="WaterBubble2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1000, 1400 )
-radius = 200
+position = Vector2( 1000, 950 )
 
 [node name="WaterBubble3" parent="Battlefield" index="2" instance=ExtResource( 3 )]
-position = Vector2( 1000, 500 )
-radius = 200
+position = Vector2( 1600, 500 )
 
 [node name="WaterBubble4" parent="Battlefield" index="3" instance=ExtResource( 3 )]
-position = Vector2( 2200, 1400 )
-radius = 200
+position = Vector2( 1600, 1400 )
 
 [node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 1600, 970 )
 
 [node name="OutsideWall" parent="Battlefield" index="5" instance=ExtResource( 5 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1100, -800, -1000, -900, 1000, -900, 1100, -800, 1100, 800, 1000, 900, -1000, 900, -1100, 800 )
+points = PoolVector2Array( -1100, -300, -500, -900, 500, -900, 1100, -300, 1100, 300, 500, 900, -500, 900, -1100, 300 )
 hollow = true
 offset = 200
 width = 2200
 height = 1800
-bevel = 100
+bevel = 600
 
 [node name="SpawnPositions" parent="." index="2"]
 editor/display_folded = false
