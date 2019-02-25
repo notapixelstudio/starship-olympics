@@ -16,7 +16,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1600, 970 )
+position = Vector2( 1600, 950 )
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
@@ -30,15 +30,11 @@ bevel = 400
 [node name="LeftOctagonWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 position = Vector2( 1100, 950 )
 points = PoolVector2Array( -100, -45, -45, -100, 45, -100, 100, -45, 100, 45, 45, 100, -45, 100, -100, 45 )
-width = 200
-height = 200
 bevel = 55
 
 [node name="RightOctagonWall" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 position = Vector2( 2100, 950 )
 points = PoolVector2Array( -100, -45, -45, -100, 45, -100, 100, -45, 100, 45, 45, 100, -45, 100, -100, 45 )
-width = 200
-height = 200
 bevel = 55
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]

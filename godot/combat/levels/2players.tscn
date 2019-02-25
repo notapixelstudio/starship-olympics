@@ -17,17 +17,18 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="TriggerLine" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+position = Vector2( 1600, 0 )
 
 [node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 4 )]
-position = Vector2( 1600, 970 )
+position = Vector2( 1600, 950 )
 
 [node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 5 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1000, -300, -400, -900, 400, -900, 1000, -300, 1000, 300, 400, 900, -400, 900, -1000, 300 )
+points = PoolVector2Array( -950, -350, -350, -950, 350, -950, 950, -350, 950, 350, 350, 950, -350, 950, -950, 350 )
 hollow = true
 offset = 200
-width = 2000
-height = 1800
+width = 1900
+height = 1900
 bevel = 600
 
 [node name="SpawnPositions" parent="." index="2"]

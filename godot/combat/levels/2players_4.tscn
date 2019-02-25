@@ -9,7 +9,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=8]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -17,7 +17,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1600, 970 )
+position = Vector2( 1600, 950 )
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
@@ -29,16 +29,16 @@ height = 1800
 bevel = 600
 
 [node name="Spawner" parent="Battlefield" index="2" instance=ExtResource( 5 )]
-position = Vector2( 1600, 870 )
+position = Vector2( 1600, 850 )
 
 [node name="Spawner2" parent="Battlefield" index="3" instance=ExtResource( 5 )]
-position = Vector2( 1600, 1070 )
+position = Vector2( 1600, 1050 )
 
 [node name="Spawner3" parent="Battlefield" index="4" instance=ExtResource( 5 )]
-position = Vector2( 1700, 970 )
+position = Vector2( 1700, 950 )
 
 [node name="Spawner4" parent="Battlefield" index="5" instance=ExtResource( 5 )]
-position = Vector2( 1500, 970 )
+position = Vector2( 1500, 950 )
 
 [node name="SpawnPositions" parent="." index="2"]
 editor/display_folded = false
