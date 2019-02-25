@@ -48,7 +48,7 @@ func _ready():
 func _input(event):
 	if elem_type == OPTION_TYPE.ON_OFF:
 		if event.is_action_pressed("ui_accept"):
-			shake_node(value_node)
+			# shake_node(value_node)
 			value = (value_node.text == 'True')
 			value = not value
 			value_node.text = str(value)
@@ -56,7 +56,7 @@ func _input(event):
 	if elem_type == OPTION_TYPE.NUMBER:
 		if event.is_action_pressed("ui_right") and right.visible:
 			left.visible = true
-			shake_node(value_node)
+			# shake_node(value_node)
 			value = int(value_node.text)
 			value +=1
 			value_node.text = str(value)
@@ -64,7 +64,7 @@ func _input(event):
 			
 		elif event.is_action_pressed("ui_left") and left.visible:
 			right.visible = true
-			shake_node_backwards(value_node)
+			# shake_node_backwards(value_node)
 			value = int(value_node.text)
 			value -=1
 			value_node.text = str(value)
@@ -73,7 +73,7 @@ func _input(event):
 	if elem_type == OPTION_TYPE.ARRAY:
 		if event.is_action_pressed("ui_right") and right.visible:
 			left.visible = true
-			shake_node(value_node)
+			# shake_node(value_node)
 			value = str(value_node.text)
 			index_value = array_value.find(value)
 			index_value = mod((index_value + 1), len(array_value))
@@ -82,7 +82,7 @@ func _input(event):
 			right.visible = index_value<max_value
 		elif event.is_action_pressed("ui_left") and left.visible:
 			right.visible = true
-			shake_node_backwards(value_node)
+			# shake_node_backwards(value_node)
 			value = str(value_node.text)
 			index_value = array_value.find(value)
 			index_value = mod((index_value - 1), len(array_value))
@@ -92,17 +92,15 @@ func _input(event):
 	node_owner.set(description, value)
 func shake_node_backwards(node):
 	var actual_d_pos = node.rect_position
-	$Tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
-	$Tween.interpolate_method(node, "set_position", node.rect_position - Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
+	$Tween.interpolate_method(node, "set_scale", node.rect_scale, node.rect_scale - Vector2(0.2, 0.2), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
+	$Tween.interpolate_method(node, "set_scale", node.rect_scale - Vector2(0.2, 0.2), node.rect_scale, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	$Tween.start()
-	yield($Tween,"tween_completed")
 
 func shake_node(node):
 	var actual_d_pos = node.rect_position
 	$Tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position + Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	$Tween.interpolate_method(node, "set_position", node.rect_position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	$Tween.start()
-	yield($Tween,"tween_completed")
 
 func _on_Element_focus_entered():
 	set_process_input(true)
