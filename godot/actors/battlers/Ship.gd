@@ -143,8 +143,8 @@ func fire():
 	bomb.player_id = player
 	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
-	# -200 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-200),0).rotated(rotation)) # recoil
+	# -300 is to avoid too much acceleration when repeatedly firing bombs
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
