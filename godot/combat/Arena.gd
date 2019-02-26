@@ -69,7 +69,7 @@ func setup_ships():
 		setup_ship(player)
 	
 func _ready():
-	Soundtrack.play("Arena", true)
+	Soundtrack.play("Fight", true)
 	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
