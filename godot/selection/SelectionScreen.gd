@@ -144,6 +144,7 @@ func ready_to_fight():
 	var players = get_players()
 	print("players who are going to fight are.. " , players)
 	if len(players) >= MIN_PLAYERS:
+		
 		emit_signal("fight", players)
 	else:
 		print("not enough players")

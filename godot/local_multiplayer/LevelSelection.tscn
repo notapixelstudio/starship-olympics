@@ -1,43 +1,74 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://local_multiplayer/LevelSelection.gd" type="Script" id=1]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://local_multiplayer/LevelSelection.gd" type="Script" id=2]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=3]
 
-
-[node name="LevelSelection" type="Control"]
+[node name="LevelSelection" type="ColorRect"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -642.0
-margin_bottom = -323.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.313726 )
+script = ExtResource( 2 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-pause_mode = 1
-editor/display_folded = true
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="panel" type="Panel" parent="."]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.682353 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -351.5
+margin_top = -266.5
+margin_right = 351.5
+margin_bottom = 266.5
+
+[node name="label" type="Label" parent="panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -224.0
+margin_right = 224.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Select the arena"
+align = 1
+valign = 1
+
+[node name="ViewportContainer" type="ViewportContainer" parent="panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -328.584
+margin_top = -216.705
+margin_right = 951.416
+margin_bottom = 503.295
 rect_scale = Vector2( 0.5, 0.5 )
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+[node name="Viewport" type="Viewport" parent="panel/ViewportContainer"]
+pause_mode = 1
 size = Vector2( 1280, 720 )
 handle_input_locally = false
 render_target_update_mode = 3
 gui_disable_input = true
 
-[node name="Element" parent="." instance=ExtResource( 2 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -31.0
-margin_right = 0.0
-margin_bottom = -6.0
+[node name="Element" parent="panel" instance=ExtResource( 3 )]
+pause_mode = 2
+anchor_right = 0.0
+margin_left = 112.97
+margin_top = 425.569
+margin_right = 560.97
+margin_bottom = 450.569
 description = "current_level"
 optional_path = "array_levels"
 label_description = "Level"
 elem_type = 2
 is_global = false
-node_owner_path = NodePath("../../SceneSelection")
-description_node_path = NodePath("../../SceneSelection/Element/Container/Description")
+node_owner_path = NodePath("../../../LevelSelection")
 
-[connection signal="value_changed" from="Element" to="." method="_on_Element_value_changed"]
+[connection signal="value_changed" from="panel/Element" to="." method="_on_Element_value_changed"]

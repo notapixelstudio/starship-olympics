@@ -6,9 +6,11 @@ var current_level : String
 
 const LEVEL_PATH = "res://combat/levels/"
 var scene_in_viewport : Node
-onready var level_scene = $ViewportContainer/Viewport
+onready var level_scene = $panel/ViewportContainer/Viewport
 
 func _ready():
+	# if you want to make the ships move. Comment the following lines
+	get_tree().paused = true
 	_initialize()
 
 
@@ -18,7 +20,7 @@ func _initialize(players_scene:String=""):
 	scene_in_viewport = load(LEVEL_PATH+current_level).instance()
 	scene_in_viewport.mockup = true
 	level_scene.add_child(scene_in_viewport)
-	get_tree().paused = true
+	
 
 
 func _on_Element_value_changed(what):
