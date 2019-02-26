@@ -19,34 +19,27 @@ centered = false
 [node name="TriggerLine" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1600, 0 )
 
-[node name="TriggerLine2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 650, 950 )
-rotation = -1.5708
-
-[node name="Crown" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
 
-[node name="OutsideWall" parent="Battlefield" index="3" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 5 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -950, -350, -350, -950, 350, -950, 950, -350, 950, 350, 350, 950, -350, 950, -950, 350 )
+points = PoolVector2Array( -1800, -100, -1400, -500, 1400, -500, 1800, -100, 1800, 100, 1400, 500, -1400, 500, -1800, 100 )
 hollow = true
 offset = 200
-width = 1900
-height = 1900
-bevel = 600
-
-[node name="SpawnPositions" parent="." index="2"]
-editor/display_folded = false
+width = 3600
+height = 1000
+bevel = 400
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 1000, 950 )
-rotation = 1.5708
+position = Vector2( 200, 950 )
+rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2200, 950 )
-rotation = -1.5708
+position = Vector2( 3000, 950 )
+rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 8 )
 
