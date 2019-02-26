@@ -27,18 +27,15 @@ width = 2200
 height = 1800
 bevel = 600
 
-[node name="SpawnPositions" parent="." index="2"]
-editor/display_folded = false
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1000, 950 )
-rotation = 3.14159
+position = Vector2( 700, 950 )
+rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 2200, 950 )
-rotation = 0.0
+position = Vector2( 2500, 950 )
+rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 7 )
 

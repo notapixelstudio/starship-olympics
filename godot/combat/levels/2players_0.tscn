@@ -8,7 +8,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=7]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -20,31 +20,35 @@ position = Vector2( 1600, 950 )
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1500, -375, -1100, -775, 1100, -775, 1500, -375, 1500, 375, 1100, 775, -1100, 775, -1500, 375 )
+points = PoolVector2Array( -1250, -300, -650, -900, 650, -900, 1250, -300, 1250, 300, 650, 900, -650, 900, -1250, 300 )
 hollow = true
 offset = 200
-width = 3000
-height = 1550
-bevel = 400
+width = 2500
+height = 1800
+bevel = 600
 
 [node name="LeftOctagonWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
-position = Vector2( 1100, 950 )
-points = PoolVector2Array( -100, -45, -45, -100, 45, -100, 100, -45, 100, 45, 45, 100, -45, 100, -100, 45 )
-bevel = 55
+position = Vector2( 800, 950 )
+points = PoolVector2Array( -300, -220, -220, -300, 220, -300, 300, -220, 300, 220, 220, 300, -220, 300, -300, 220 )
+width = 600
+height = 600
+bevel = 80
 
 [node name="RightOctagonWall" parent="Battlefield" index="3" instance=ExtResource( 4 )]
-position = Vector2( 2100, 950 )
-points = PoolVector2Array( -100, -45, -45, -100, 45, -100, 100, -45, 100, 45, 45, 100, -45, 100, -100, 45 )
-bevel = 55
+position = Vector2( 2400, 950 )
+points = PoolVector2Array( -300, -220, -220, -300, 220, -300, 300, -220, 300, 220, 220, 300, -220, 300, -300, 220 )
+width = 600
+height = 600
+bevel = 80
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 200, 950 )
+position = Vector2( 800, 350 )
 rotation = 0.0
 controls = "kb2"
 species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 3000, 950 )
+position = Vector2( 2400, 1550 )
 species_template = ExtResource( 7 )
 
 [node name="Camera" parent="." index="5"]

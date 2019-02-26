@@ -17,33 +17,33 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="WaterBubble" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1600, 950 )
-radius = 200
+position = Vector2( 1600, 1850 )
+radius = 850
 
-[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="WaterBubble2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1600, 50 )
+radius = 850
+
+[node name="Crown" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
 
-[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield" index="3" instance=ExtResource( 5 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1100, -300, -500, -900, 500, -900, 1100, -300, 1100, 300, 500, 900, -500, 900, -1100, 300 )
+points = PoolVector2Array( -1200, -300, -600, -900, 600, -900, 1200, -300, 1200, 300, 600, 900, -600, 900, -1200, 300 )
 hollow = true
 offset = 200
-width = 2200
+width = 2400
 height = 1800
 bevel = 600
 
-[node name="SpawnPositions" parent="." index="2"]
-editor/display_folded = false
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 1000, 950 )
-rotation = 3.14159
+position = Vector2( 700, 950 )
+rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2200, 950 )
-rotation = 0.0
+position = Vector2( 2500, 950 )
 controls = "joy2"
 species_template = ExtResource( 8 )
 

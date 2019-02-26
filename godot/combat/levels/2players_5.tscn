@@ -40,18 +40,14 @@ position = Vector2( 1980, 1700 )
 [node name="Spawner4" parent="Battlefield" index="5" instance=ExtResource( 5 )]
 position = Vector2( 1220, 200 )
 
-[node name="SpawnPositions" parent="." index="2"]
-editor/display_folded = false
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 1100, 950 )
-rotation = 3.14159
+position = Vector2( 800, 950 )
+rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2100, 950 )
-rotation = 0.0
+position = Vector2( 2400, 950 )
 controls = "joy2"
 species_template = ExtResource( 8 )
 
