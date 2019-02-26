@@ -65,8 +65,8 @@ func _process(delta: float) -> void:
 
 		offset.x = lerp(offset.x, offset_to_be.x, ZOOM_SPEED)
 		offset.y = lerp(offset.y, offset_to_be.y, ZOOM_SPEED)
-		offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
-		offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
+		#offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
+		#offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
 
 	else:
 		pass
