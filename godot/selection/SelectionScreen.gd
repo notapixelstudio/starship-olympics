@@ -143,8 +143,6 @@ func _on_joy_connection_changed(device_id, connected):
 func ready_to_fight():
 	var players = get_players()
 	print("players who are going to fight are.. " , players)
-	for player in players:
-		print(player.name)
 	if len(players) >= MIN_PLAYERS:
 		emit_signal("fight", players)
 	else:

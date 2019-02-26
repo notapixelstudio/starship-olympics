@@ -4,6 +4,8 @@ class_name GenericOption
 
 enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 
+signal value_changed
+
 export (String) var description = "Life"
 export (String) var optional_path 
 export (String) var label_description
@@ -20,6 +22,7 @@ var array_value
 
 func _set_value(new_value):
 	value = new_value
+	emit_signal("value_changed", value)
 	if node_owner:
 		print("let's change that to")
 		node_owner.set(description, value)
@@ -73,5 +76,4 @@ func nested_get(ancestor: Node, path:String, separator:String = "."):
 		object = object.get(property)
 		if object is Node:
 			parent = object
-	print("THIS IS THE PARENT ", parent.name) 
 	return object
