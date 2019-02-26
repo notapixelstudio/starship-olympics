@@ -14,7 +14,7 @@ export var absolute_controls : bool= true
 var arena
 
 var velocity = Vector2(0,0)
-var target_velocity = Vector2(1,0)
+var target_velocity = Vector2(0,0)
 var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
