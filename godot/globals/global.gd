@@ -80,7 +80,6 @@ var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
 	# prepare arrays
-	
 	add_to_group("persist")
 	
 	var config = ConfigFile.new()
@@ -127,7 +126,7 @@ func get_unlocked() -> Dictionary:
 
 func get_species_templates() -> Dictionary:
 	var species_templates = {}
-	var resources = dir_contents(SPECIES_PATH, ".tres")
+	var resources = dir_contents(SPECIES_PATH, "species", ".tres")
 	var i = 0
 	for species in ALL_SPECIES:
 		if i > len(resources) -1:

@@ -14,15 +14,15 @@ script = ExtResource( 2 )
 
 [node name="panel" type="Panel" parent="."]
 pause_mode = 2
-modulate = Color( 1, 1, 1, 0.682353 )
+modulate = Color( 1, 1, 1, 0.988235 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -351.5
-margin_top = -266.5
-margin_right = 351.5
-margin_bottom = 266.5
+margin_left = -435.5
+margin_top = -330.0
+margin_right = 435.5
+margin_bottom = 330.0
 
 [node name="label" type="Label" parent="panel"]
 pause_mode = 2
@@ -59,11 +59,14 @@ gui_disable_input = true
 
 [node name="Element" parent="panel" instance=ExtResource( 3 )]
 pause_mode = 2
-anchor_right = 0.0
-margin_left = 112.97
-margin_top = 425.569
-margin_right = 560.97
-margin_bottom = 450.569
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -224.0
+margin_top = -155.0
+margin_right = 224.0
+margin_bottom = -130.0
 description = "current_level"
 optional_path = "array_levels"
 label_description = "Level"

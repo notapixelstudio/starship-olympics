@@ -3,6 +3,7 @@ extends Node
 onready var selection_screen = $SelectionScreen
 onready var gameover_screen = $GameOver/GameOverScreen
 const combat_scene = "res://combat/levels/"
+const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 var combat = null
 
 # dictionary of InfoPlayer of players that will actually play
@@ -49,8 +50,14 @@ func combat(selected_players: Array):
 		players[player.id] = player_info
 		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:"+player.species_template.species_name,i ))
 		i +=1
-	
-	var level_path = combat_scene + str(num_players) + "players.tscn"
+	# LEVEL SELECTION
+	var level_selection = level_selection_scene.instance()
+	add_child(level_selection)
+	level_selection._initialize(str(num_players))
+	yield(level_selection, "arena_selected")
+	var level_path = combat_scene + level_selection.current_level
+	remove_child(level_selection)
+	# END LEVEL SELECTION
 	var level = load(level_path)
 	combat = level.instance()
 	remove_child(selection_screen)
