@@ -161,11 +161,12 @@ func load_state(data:Dictionary):
 	for attribute in data:
 		set(attribute, data[attribute])
 
-func dir_contents(path:String, extension:String = ".tscn"):
+func dir_contents(path:String, starts_with:String = "", extension:String = ".tscn"):
 	"""
 	@param path:String given the path 
 	@return a list of filename
 	"""
+		
 	var dir = Directory.new()
 	var list_files = []
 	if dir.open(path) == OK:
@@ -176,7 +177,8 @@ func dir_contents(path:String, extension:String = ".tscn"):
 				pass
 			else:
 				if file_name.ends_with(extension):
-					list_files.append(file_name)
+					if not starts_with or file_name.find(starts_with) >= 0: 
+						list_files.append(file_name)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
