@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/sprites/crown_1.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
@@ -20,7 +19,7 @@ animations = [ {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 

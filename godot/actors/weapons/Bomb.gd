@@ -19,6 +19,7 @@ var target = null
 var timeout = 0
 var autolocking_timeout = 0.1
 
+var standalone = false
 const LIFETIME = 1.5
 
 signal detonate
@@ -41,7 +42,7 @@ func _physics_process(delta):
 		# destroy bomb after timeout
 		if timeout > 0:
 			timeout -= delta
-		else:
+		elif not standalone:
 			queue_free()
 		
 	
@@ -57,7 +58,7 @@ func try_acquire_target(ship):
 		return
 		
 	# If there's a queen ship, avoid locking on partners
-	if ship.arena.game_mode.is_there_a_queen() and not origin_ship.queen and not ship.queen:
+	if ship.arena.game_mode.is_there_a_queen() and not ship.queen and not standalone and not origin_ship.queen:
 		return
 	 
 	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
