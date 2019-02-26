@@ -10,6 +10,8 @@ export var controls : String
 onready var ship = $Ship
 onready var tween = $Tween
 onready var species_name = $SpeciesName/Label
+onready var tagline1 = $SpeciesName/Tagline1
+onready var tagline2 = $SpeciesName/Tagline2
 onready var character = $Character/Character
 onready var controls_sprite = $Controls 
 onready var player = $Player
@@ -34,6 +36,8 @@ func change_species(new_species:SpeciesTemplate):
 	species = new_species
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
+	tagline1.text = species.tagline1
+	tagline2.text = species.tagline2
 	character.texture = species.character_ok
 	select_rect.modulate = species.color
 
