@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://local_multiplayer/TestViewport.gd" type="Script" id=1]
+[ext_resource path="res://local_multiplayer/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=2]
 
-[node name="SceneSelection" type="Control"]
+
+[node name="LevelSelection" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -642.0
-margin_bottom = -318.0
+margin_bottom = -323.0
 script = ExtResource( 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
@@ -28,9 +29,9 @@ gui_disable_input = true
 [node name="Element" parent="." instance=ExtResource( 2 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -17.0
+margin_top = -31.0
 margin_right = 0.0
-margin_bottom = 0.0
+margin_bottom = -6.0
 description = "current_level"
 optional_path = "array_levels"
 label_description = "Level"
