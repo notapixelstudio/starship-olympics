@@ -117,7 +117,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print("Connecting..")
 		OS.delay_msec(500)
 
-	assert(requests.get_status() == HTTPClient.STATUS_CONNECTED)
+	# assert(requests.get_status() == HTTPClient.STATUS_CONNECTED)
 	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_init, headers, data_json)
 	if response_code:
@@ -146,7 +146,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		else:
 			# Or just plain Content-Length
 			var bl = requests.get_response_body_length()
-			print("Response Length: ", bl)
+			# print("Response Length: ", bl)
 
 		# This method works for both anyway
 		var rb = PoolByteArray() # Array that will hold the data
@@ -193,7 +193,6 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 
 # requesting init URL and returning result
 func request_init():
-	print("REQUESTING INITING")
 	if not enabled:
 		print("Analytics not enabled")
 		return
@@ -210,6 +209,7 @@ func request_init():
 	
 # submitting all events that are in the queue to the events URL
 func submit_events():
+
 	# Refreshing url_events since game key might have been changed externally
 	if not enabled :
 		print("Analytics not enabled")

@@ -82,7 +82,7 @@ var colors = {
 	PINK = Color(.914, .118, .388)
 }
 # force saving the game
-var force_save = true
+var force_save = false
 
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
@@ -113,7 +113,7 @@ func _ready():
 func _exit_tree():
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
 	GameAnalytics.submit_events()
-	print("Quitting")
+	print("Thanks for playing")
 	
 
 func get_unlocked() -> Dictionary:

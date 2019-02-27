@@ -11,4 +11,3 @@ func _ready():
 func _on_ElementCheckbox_toggled(button_pressed):
 	value = button_pressed
 	node_owner.set(description, value)
-	print(value, " has been pressed")

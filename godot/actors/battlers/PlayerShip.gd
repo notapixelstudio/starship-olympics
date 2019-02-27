@@ -6,8 +6,6 @@ const DEADZONE = 0.5
 var device_controller_id : int
 func _ready():
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
-	if "joy" in controls:
-		print("THIS IS A CONTROLLER ")
 	if "kb" in controls:
 		absolute_controls = false
 		

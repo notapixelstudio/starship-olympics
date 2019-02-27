@@ -48,8 +48,6 @@ func compute_arena_size():
 	"""
 	width = OS.window_size.x * size_multiplier
 	height = OS.window_size.y * size_multiplier
-	print(Vector2(width, height))
-	print(OS.window_size)
 	emit_signal("screensize_changed", Vector2(width, height))
 	return Vector2(width, height)
 
@@ -149,17 +147,15 @@ func get_num_players()->int:
 	return SpawnPlayers.get_child_count()
 
 func _on_background_item_rect_changed():
-	print("changed")
+	print("Windows changed")
 
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
-	print("let's update score for ", player_id, " this score ", str(score))
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
 var ships
 func ship_just_died(ship_name: String, ship_position:Vector2):
 	# check if we need to lose the crown
 	if game_mode.queen != null and ship_name == game_mode.queen.name:
-		print(crown.position)
 		game_mode.crown_lost()
 		crown.position = ship_position
 		$Battlefield.add_child(crown)

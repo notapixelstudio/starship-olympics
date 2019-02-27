@@ -62,10 +62,8 @@ func add_controls(new_controls : String) -> bool:
 			
 		if shift:
 			var tmp = child.controls
-			print(child.name , " with ", last, ". It was ", tmp)
 			child.set_controls(last)
 			last = tmp
-		print( "child ", i, " with controls ", child.controls)
 		i+=1
 	return true
 
@@ -73,12 +71,11 @@ func change_controls(key:String, new_key:String) -> bool:
 	var shift_backwards : bool = false
 	var last : String = ""
 	#iterate backwards
-	print("CHANGE TO ", new_key, ":")
 	var count = container.get_child_count()
 	var index_to_change : int =0
 	for child in container.get_children():
 		if child.controls == key:
-			print("Found it ", index_to_change, " and control is ", child.controls)
+			# print("Found it ", index_to_change, " and control is ", child.controls)
 			break
 		index_to_change += 1
 	last = new_key
@@ -142,7 +139,7 @@ func _on_joy_connection_changed(device_id, connected):
 
 func ready_to_fight():
 	var players = get_players()
-	print("players who are going to fight are.. " , players)
+	print("players who are going to fight are... " , players)
 	if len(players) >= MIN_PLAYERS:
 		emit_signal("fight", players)
 	else:
@@ -158,4 +155,3 @@ func selected(species:SpeciesTemplate):
 func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
-	print("delestected this: ", species)
