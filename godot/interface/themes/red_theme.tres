@@ -9,23 +9,22 @@
 [ext_resource path="res://interface/red/red_boxTick.png" type="Texture" id=7]
 [ext_resource path="res://interface/grey/grey_circle.png" type="Texture" id=8]
 [ext_resource path="res://interface/grey/grey_box.png" type="Texture" id=9]
-[ext_resource path="res://interface/themes/red/empty.tres" type="StyleBox" id=10]
-[ext_resource path="res://interface/red/red_cross.png" type="Texture" id=11]
-[ext_resource path="res://interface/red/red_checkmark.png" type="Texture" id=12]
-[ext_resource path="res://interface/themes/red/panel.tres" type="StyleBox" id=13]
-[ext_resource path="res://interface/themes/red/Focus.tres" type="StyleBox" id=14]
-[ext_resource path="res://interface/themes/red/scroll.tres" type="StyleBox" id=15]
-[ext_resource path="res://interface/themes/red/grabber.tres" type="StyleBox" id=16]
-[ext_resource path="res://interface/themes/red/grabber_highlight.tres" type="StyleBox" id=17]
-[ext_resource path="res://interface/themes/red/grabber_pressed.tres" type="StyleBox" id=18]
-[ext_resource path="res://interface/themes/red/scroll_focus.tres" type="StyleBox" id=19]
+[ext_resource path="res://interface/red/red_boxCross.png" type="Texture" id=10]
+[ext_resource path="res://interface/themes/red/panel.tres" type="StyleBox" id=11]
+[ext_resource path="res://interface/themes/red/Focus.tres" type="StyleBox" id=12]
+[ext_resource path="res://interface/themes/red/scroll.tres" type="StyleBox" id=13]
+[ext_resource path="res://interface/red/red_cross.png" type="Texture" id=14]
+[ext_resource path="res://interface/themes/red/grabber.tres" type="StyleBox" id=15]
+[ext_resource path="res://interface/themes/red/grabber_highlight.tres" type="StyleBox" id=16]
+[ext_resource path="res://interface/themes/red/grabber_pressed.tres" type="StyleBox" id=17]
+[ext_resource path="res://interface/themes/red/scroll_focus.tres" type="StyleBox" id=18]
+[ext_resource path="res://interface/themes/red/empty.tres" type="StyleBox" id=19]
 [ext_resource path="res://interface/themes/red/tab_bg.tres" type="StyleBox" id=20]
 [ext_resource path="res://interface/themes/red/tab_fg.tres" type="StyleBox" id=21]
 [ext_resource path="res://interface/fonts/kenvector_future_14.tres" type="DynamicFont" id=22]
 [ext_resource path="res://interface/themes/theme.gd" type="Script" id=23]
 
 [resource]
-
 default_font = ExtResource( 22 )
 BoxContainer/constants/separation = 4
 Button/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
@@ -53,11 +52,11 @@ CheckBox/icons/checked = ExtResource( 6 )
 CheckBox/icons/radio_checked = ExtResource( 7 )
 CheckBox/icons/radio_unchecked = ExtResource( 8 )
 CheckBox/icons/unchecked = ExtResource( 9 )
-CheckBox/styles/disabled = ExtResource( 10 )
-CheckBox/styles/focus = ExtResource( 10 )
-CheckBox/styles/hover = ExtResource( 10 )
-CheckBox/styles/normal = ExtResource( 10 )
-CheckBox/styles/pressed = ExtResource( 10 )
+CheckBox/styles/disabled = ExtResource( 1 )
+CheckBox/styles/focus = ExtResource( 2 )
+CheckBox/styles/hover = ExtResource( 3 )
+CheckBox/styles/normal = ExtResource( 4 )
+CheckBox/styles/pressed = ExtResource( 5 )
 CheckButton/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 CheckButton/colors/font_color_disabled = Color( 0.933333, 0.933333, 0.933333, 1 )
 CheckButton/colors/font_color_hover = Color( 0.946666, 0.946666, 0.946666, 1 )
@@ -65,12 +64,12 @@ CheckButton/colors/font_color_pressed = Color( 0.746666, 0.746666, 0.746666, 1 )
 CheckButton/colors/icon_color_hover = Color( 0.946666, 0.946666, 0.946666, 1 )
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
-CheckButton/icons/off = ExtResource( 11 )
-CheckButton/icons/on = ExtResource( 12 )
-CheckButton/styles/disabled = ExtResource( 10 )
-CheckButton/styles/hover = ExtResource( 10 )
-CheckButton/styles/normal = ExtResource( 10 )
-CheckButton/styles/pressed = ExtResource( 10 )
+CheckButton/icons/off = ExtResource( 10 )
+CheckButton/icons/on = ExtResource( 6 )
+CheckButton/styles/disabled = ExtResource( 1 )
+CheckButton/styles/hover = ExtResource( 3 )
+CheckButton/styles/normal = ExtResource( 4 )
+CheckButton/styles/pressed = ExtResource( 5 )
 ColorPicker/constants/h_width = 30
 ColorPicker/constants/label_width = 10
 ColorPicker/constants/margin = 8
@@ -103,7 +102,7 @@ Editor/colors/warning_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 Editor/constants/dark_theme = 1
 Editor/constants/scale = 1
 Editor/constants/thumb_size = 64
-EditorAbout/styles/panel = ExtResource( 13 )
+EditorAbout/styles/panel = ExtResource( 11 )
 EditorFonts/fonts/doc = null
 EditorFonts/fonts/doc_source = null
 EditorFonts/fonts/doc_title = null
@@ -679,14 +678,14 @@ EditorIcons/icons/ZoomReset = null
 EditorIcons/icons/bool = null
 EditorIcons/icons/float = null
 EditorIcons/icons/int = null
-EditorSettingsDialog/styles/panel = ExtResource( 13 )
+EditorSettingsDialog/styles/panel = ExtResource( 11 )
 EditorStyles/styles/Background = null
 EditorStyles/styles/BottomPanelDebuggerOverride = null
 EditorStyles/styles/Content = null
 EditorStyles/styles/DebuggerPanel = null
 EditorStyles/styles/DebuggerTabBG = null
 EditorStyles/styles/DebuggerTabFG = null
-EditorStyles/styles/Focus = ExtResource( 14 )
+EditorStyles/styles/Focus = ExtResource( 12 )
 EditorStyles/styles/Information3dViewport = null
 EditorStyles/styles/MenuHover = null
 EditorStyles/styles/MenuPanel = null
@@ -705,14 +704,14 @@ GraphEdit/icons/minus = null
 GraphEdit/icons/more = null
 GraphEdit/icons/reset = null
 GraphEdit/icons/snap = null
-GraphEdit/styles/bg = ExtResource( 15 )
+GraphEdit/styles/bg = ExtResource( 13 )
 GraphNode/colors/close_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 GraphNode/colors/title_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 GraphNode/constants/close_h_offset = 20
 GraphNode/constants/close_offset = 20
 GraphNode/constants/port_offset = 14
 GraphNode/constants/title_h_offset = -16
-GraphNode/icons/close = ExtResource( 11 )
+GraphNode/icons/close = ExtResource( 14 )
 GraphNode/icons/port = null
 GraphNode/icons/resizer = null
 GraphNode/styles/breakpoint = null
@@ -729,19 +728,19 @@ HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = ExtResource( 16 )
-HScrollBar/styles/grabber_highlight = ExtResource( 17 )
-HScrollBar/styles/grabber_pressed = ExtResource( 18 )
-HScrollBar/styles/scroll = ExtResource( 15 )
-HScrollBar/styles/scroll_focus = ExtResource( 19 )
+HScrollBar/styles/grabber = ExtResource( 15 )
+HScrollBar/styles/grabber_highlight = ExtResource( 16 )
+HScrollBar/styles/grabber_pressed = ExtResource( 17 )
+HScrollBar/styles/scroll = ExtResource( 13 )
+HScrollBar/styles/scroll_focus = ExtResource( 18 )
 HSeparator/styles/separator = null
 HSlider/icons/grabber = null
 HSlider/icons/grabber_highlight = null
-HSlider/styles/grabber_area = ExtResource( 19 )
-HSlider/styles/slider = ExtResource( 15 )
+HSlider/styles/grabber_area = ExtResource( 18 )
+HSlider/styles/slider = ExtResource( 13 )
 HSplitContainer/constants/separation = 8
 HSplitContainer/icons/grabber = null
-HSplitContainer/styles/bg = ExtResource( 15 )
+HSplitContainer/styles/bg = ExtResource( 13 )
 ItemList/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 ItemList/colors/font_color_selected = Color( 0.933333, 0.933333, 0.933333, 1 )
 ItemList/colors/guide_color = Color( 0.933333, 0.933333, 0.933333, 1 )
@@ -749,7 +748,7 @@ ItemList/constants/hseparation = 2
 ItemList/constants/icon_margin = 4
 ItemList/constants/line_separation = 2
 ItemList/constants/vseparation = 2
-ItemList/styles/bg = ExtResource( 15 )
+ItemList/styles/bg = ExtResource( 13 )
 ItemList/styles/bg_focus = null
 ItemList/styles/cursor = null
 ItemList/styles/cursor_unfocused = null
@@ -761,7 +760,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
-Label/styles/normal = ExtResource( 10 )
+Label/styles/normal = ExtResource( 19 )
 LineEdit/colors/cursor_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 LineEdit/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 LineEdit/colors/read_only = Color( 0.933333, 0.933333, 0.933333, 1 )
@@ -795,10 +794,10 @@ OptionButton/styles/focus = ExtResource( 2 )
 OptionButton/styles/hover = ExtResource( 3 )
 OptionButton/styles/normal = ExtResource( 4 )
 OptionButton/styles/pressed = ExtResource( 5 )
-Panel/styles/panel = ExtResource( 13 )
+Panel/styles/panel = ExtResource( 11 )
 Panel/styles/panelf = null
 Panel/styles/panelnc = null
-PanelContainer/styles/panel = ExtResource( 13 )
+PanelContainer/styles/panel = ExtResource( 11 )
 PopupMenu/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.933333, 0.933333, 0.933333, 1 )
 PopupMenu/colors/font_color_disabled = Color( 0.933333, 0.933333, 0.933333, 1 )
@@ -816,14 +815,14 @@ PopupMenu/styles/disabled = ExtResource( 1 )
 PopupMenu/styles/focus = ExtResource( 2 )
 PopupMenu/styles/hover = ExtResource( 3 )
 PopupMenu/styles/normal = ExtResource( 4 )
-PopupMenu/styles/panel = ExtResource( 13 )
+PopupMenu/styles/panel = ExtResource( 11 )
 PopupMenu/styles/pressed = ExtResource( 5 )
 PopupMenu/styles/separator = null
-PopupPanel/styles/panel = ExtResource( 13 )
+PopupPanel/styles/panel = ExtResource( 11 )
 ProgressBar/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
-ProgressBar/styles/bg = ExtResource( 15 )
-ProgressBar/styles/fg = ExtResource( 19 )
-ProjectSettingsEditor/styles/panel = ExtResource( 13 )
+ProgressBar/styles/bg = ExtResource( 13 )
+ProgressBar/styles/fg = ExtResource( 18 )
+ProjectSettingsEditor/styles/panel = ExtResource( 11 )
 RichTextLabel/colors/default_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 RichTextLabel/styles/focus = ExtResource( 2 )
 RichTextLabel/styles/normal = ExtResource( 4 )
@@ -837,13 +836,13 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_hl = null
-TabContainer/styles/panel = ExtResource( 13 )
+TabContainer/styles/panel = ExtResource( 11 )
 TabContainer/styles/tab_bg = ExtResource( 20 )
 TabContainer/styles/tab_fg = ExtResource( 21 )
 Tabs/colors/font_color_bg = Color( 0.933333, 0.933333, 0.933333, 1 )
 Tabs/colors/font_color_fg = Color( 0.933333, 0.933333, 0.933333, 1 )
 Tabs/constants/hseparation = 4
-Tabs/icons/close = ExtResource( 11 )
+Tabs/icons/close = ExtResource( 14 )
 Tabs/icons/decrement = null
 Tabs/icons/decrement_highlight = null
 Tabs/icons/increment = null
@@ -869,7 +868,7 @@ ToolButton/styles/normal = ExtResource( 4 )
 ToolButton/styles/pressed = ExtResource( 5 )
 TooltipLabel/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 TooltipLabel/colors/font_color_shadow = Color( 0.090196, 0.584314, 0.909804, 1 )
-TooltipPanel/styles/panel = ExtResource( 13 )
+TooltipPanel/styles/panel = ExtResource( 11 )
 Tree/colors/custom_button_font_highlight = Color( 0.933333, 0.933333, 0.933333, 1 )
 Tree/colors/drop_position_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 Tree/colors/font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
@@ -909,30 +908,28 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = ExtResource( 16 )
-VScrollBar/styles/grabber_highlight = ExtResource( 17 )
-VScrollBar/styles/grabber_pressed = ExtResource( 18 )
-VScrollBar/styles/scroll = ExtResource( 15 )
-VScrollBar/styles/scroll_focus = ExtResource( 19 )
+VScrollBar/styles/grabber = ExtResource( 15 )
+VScrollBar/styles/grabber_highlight = ExtResource( 16 )
+VScrollBar/styles/grabber_pressed = ExtResource( 17 )
+VScrollBar/styles/scroll = ExtResource( 13 )
+VScrollBar/styles/scroll_focus = ExtResource( 18 )
 VSeparator/styles/separator = null
 VSlider/icons/grabber = null
 VSlider/icons/grabber_highlight = null
-VSlider/styles/grabber_area = ExtResource( 19 )
-VSlider/styles/slider = ExtResource( 15 )
+VSlider/styles/grabber_area = ExtResource( 18 )
+VSlider/styles/slider = ExtResource( 13 )
 VSplitContainer/constants/separation = 8
 VSplitContainer/icons/grabber = null
-VSplitContainer/styles/bg = ExtResource( 15 )
+VSplitContainer/styles/bg = ExtResource( 13 )
 WindowDialog/colors/title_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 WindowDialog/constants/close_h_ofs = 22
 WindowDialog/constants/close_v_ofs = 20
 WindowDialog/constants/title_height = 24
 WindowDialog/fonts/title_font = null
-WindowDialog/icons/close = ExtResource( 11 )
+WindowDialog/icons/close = ExtResource( 14 )
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = ExtResource( 13 )
+WindowDialog/styles/panel = ExtResource( 11 )
 script = ExtResource( 23 )
-_sections_unfolded = [ "CheckBox/icons", "CheckButton/icons", "Editor/colors", "GraphEdit/icons", "HScrollBar/icons", "HSlider/icons", "HSplitContainer/icons", "OptionButton/icons", "TabContainer", "Tabs" ]
-name = "nill"
 main_color = Color( 0.909804, 0.415686, 0.0901961, 1 )
 font_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 

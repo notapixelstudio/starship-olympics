@@ -31,9 +31,6 @@ width = 1900
 height = 1900
 bevel = 600
 
-[node name="SpawnPositions" parent="." index="2"]
-editor/display_folded = false
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 1000, 950 )
 rotation = 1.5708
@@ -50,3 +47,5 @@ species_template = ExtResource( 8 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="Pause/Pause"]
