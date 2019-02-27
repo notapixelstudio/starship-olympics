@@ -16,8 +16,8 @@ export var enabled:bool = false
 var zoomfactor = 1.0
 var zooming = false
 var margin_min = Vector2(0,0)
-var margin_max = Vector2(1280, 720)
-var rect_extents = Vector2(1280,720)
+var margin_max = Vector2()
+var rect_extents = Vector2()
 var arena_size = Vector2()
 var zoomMax = 1.0
 const PADDING = 200
@@ -80,8 +80,8 @@ func _process(delta: float) -> void:
 	
 	zoom.x = lerp(zoom.x, zoom_to_be.x, ZOOM_SPEED)
 	zoom.y = lerp(zoom.y, zoom_to_be.y, ZOOM_SPEED)
-	zoom.x = clamp(zoom.x, zoomMin, zoomMax)
-	zoom.y = clamp(zoom.y, zoomMin, zoomMax)
+	zoom.x = max(zoom.x, zoomMin)
+	zoom.y = max(zoom.y, zoomMin)
 
 	if debug_mode:
 		update()
