@@ -30,3 +30,7 @@ func _on_Options_pressed():
 
 func _on_StartHuman_pressed():
 	emit_signal("start_multiplayer")
+
+
+func _on_QuitButton_pressed():
+	get_tree().quit()

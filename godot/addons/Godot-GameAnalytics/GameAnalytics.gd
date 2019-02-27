@@ -25,7 +25,7 @@ const Utils = preload("utils.gd")
 const THRESHOLD_DIFF_TS = 10
 
 # device information
-var DEBUG = true
+var DEBUG = false
 var returned
 var uuid = UUID.v4()
 
@@ -72,7 +72,6 @@ var state_config = {
 var requests = HTTPClient.new()
 
 func _ready():
-	print("DEvice is ", device)
 	# generate session id
 	generate_new_session_id()
 	
@@ -138,7 +137,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		
 		if DEBUG:
 			print("code: ", requests.get_response_code()) # Show response code
-			print("**headers:\\n", headers) # Show headers
+			print("**headers: ", headers) # Show headers
 
 		# Getting the HTTP Body
 		if requests.is_response_chunked():
@@ -163,9 +162,9 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 				rb = rb + chunk # Append to read buffer
 
 		# Done!
-		print("bytes got: ", rb.size())
+		# print("bytes got: ", rb.size())
 		response_string = rb.get_string_from_ascii()
-		print("Response: ", response_string)
+		# print("Response: ", response_string)
 		
 	status_code = requests.get_response_code()
 
@@ -176,25 +175,25 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 	if status_code != 200:
 		post_to_log("Init request did not return 200!")
 		post_to_log(response_string)
-
-	if 'enabled' in response_dict and response_dict['enabled']:
-		print("We are enabled")
-		state_config['enabled'] = true
-	else:
-		state_config['enabled'] = false
-		print("We are not enabled")
 	
 	if response_string:
 		response_dict = parse_json(response_string)
 		if DEBUG:
 			print(response_string)
 	
+	if 'enabled' in response_dict and response_dict['enabled']:
+		print("We are enabled")
+		state_config['enabled'] = true
+	else:
+		state_config['enabled'] = false
+		print("We are not enabled")
 	# TODO: adjust ts ? 
 	# TODO: We should return if enabled or not
 	return status_code
 
 # requesting init URL and returning result
 func request_init():
+	print("REQUESTING INITING")
 	if not enabled:
 		print("Analytics not enabled")
 		return
@@ -345,7 +344,6 @@ func annotate_event_with_default_values():
 	return default_annotations
 
 func print_verbose(message):
-	print(message)
 	if verbose_log:
 		post_to_log(message)
 

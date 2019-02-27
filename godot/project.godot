@@ -113,6 +113,8 @@ _global_script_class_icons={
 game_key="5c6bcb5402204249437fb5a7a80a4959"
 secret_key="16813a12f718bc5c620f56944e1abc3ea13ccbac"
 base_url="http://sandbox-api.gameanalytics.com"
+game_key.debug="5c6bcb5402204249437fb5a7a80a4959"
+game_key.release="5c6bcb5402204249437fb5a7a80a4959"
 
 [application]
 
@@ -362,6 +364,10 @@ kb1_down={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [physics]
 

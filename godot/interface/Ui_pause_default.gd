@@ -20,8 +20,11 @@ func enable_all():
 	animation.play("show")
 	container.get_child(1).grab_focus()
 	yield(animation, "animation_finished")
-
 	
 func _input(event):
 	if event.is_action_pressed("ui_back"):
 		disable_all()
+
+func _exit_tree():
+	# Let's save the changes
+	persistance.save_game()

@@ -24,9 +24,7 @@ func _set_value(new_value):
 	value = new_value
 	emit_signal("value_changed", value)
 	if node_owner:
-		print("let's change that to")
 		node_owner.set(description, value)
-		print(description , " -> ", value, " -> ", node_owner.get(description))
 	else:
 		print("Setter has been called without a proper setup")
 		
@@ -57,10 +55,7 @@ func _ready():
 		max_value = node_owner.get("max_"+description)
 	
 	set_process_input(false)
-	print(description, " -> ", value)
 	
-func _on_ElementCheckbox_pressed():
-	print()
 	
 func nested_get(ancestor: Node, path:String, separator:String = "."):
 	"""
