@@ -13,6 +13,11 @@ const max_lives = 10
 var level
 var array_level
 
+var audio_on : bool setget _audio_on
+
+func _audio_on(new_value):
+	audio_on = new_value
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
 # templates
 var templates : Dictionary # {int : Resources}
 
@@ -176,7 +181,7 @@ func dir_contents(path:String, starts_with:String = "", extension:String = ".tsc
 				pass
 			else:
 				if file_name.ends_with(extension):
-					if not starts_with or file_name.find(starts_with) >= 0: 
+					if not starts_with or file_name.find(starts_with) == 0: 
 						list_files.append(file_name)
 			file_name = dir.get_next()
 	else:

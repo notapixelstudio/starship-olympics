@@ -23,42 +23,55 @@ script = ExtResource( 2 )
 
 [node name="Lobby1" type="AudioStreamPlayer" parent="Lobby" index="0"]
 stream = ExtResource( 3 )
+bus = "Music"
 
 [node name="Lobby2" type="AudioStreamPlayer" parent="Lobby" index="1"]
 stream = ExtResource( 4 )
+bus = "Music"
 
 [node name="Lobby3" type="AudioStreamPlayer" parent="Lobby" index="2"]
 stream = ExtResource( 5 )
+bus = "Music"
 
 [node name="Lobby4" type="AudioStreamPlayer" parent="Lobby" index="3"]
 stream = ExtResource( 6 )
+bus = "Music"
 
 [node name="Lobby5" type="AudioStreamPlayer" parent="Lobby" index="4"]
 stream = ExtResource( 7 )
+bus = "Music"
 
 [node name="Lobby6" type="AudioStreamPlayer" parent="Lobby" index="5"]
 stream = ExtResource( 8 )
+bus = "Music"
 
 [node name="Lobby7" type="AudioStreamPlayer" parent="Lobby" index="6"]
 stream = ExtResource( 9 )
+bus = "Music"
 
 [node name="Fight" parent="." index="1" instance=ExtResource( 1 )]
 
 [node name="Level1" type="AudioStreamPlayer" parent="Fight" index="0"]
 stream = ExtResource( 10 )
+bus = "Music"
 
 [node name="Level2" type="AudioStreamPlayer" parent="Fight" index="1"]
 stream = ExtResource( 11 )
+bus = "Music"
 
 [node name="Level3" type="AudioStreamPlayer" parent="Fight" index="2"]
 stream = ExtResource( 12 )
+bus = "Music"
 
 [node name="Level4" type="AudioStreamPlayer" parent="Fight" index="3"]
 stream = ExtResource( 13 )
+bus = "Music"
 
 [node name="Level5" type="AudioStreamPlayer" parent="Fight" index="4"]
 stream = ExtResource( 14 )
+bus = "Music"
 
 [node name="Level6" type="AudioStreamPlayer" parent="Fight" index="5"]
 stream = ExtResource( 15 )
+bus = "Music"
 
