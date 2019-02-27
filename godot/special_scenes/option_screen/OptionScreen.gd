@@ -13,3 +13,7 @@ func _input(event):
 
 func _on_Label_focus_entered():
 	$Label.modulate = Color(0,1,1)
+
+func _exit_tree():
+	# Let's save the changes
+	persistance.save_game()

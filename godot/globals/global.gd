@@ -2,7 +2,11 @@ extends Node
 
 const SETTINGS_FILENAME = "res://export.cfg"
 
-var enable_analytics = true
+var enable_analytics : bool = true setget _set_analytics
+
+func _set_analytics(new_value):
+	enable_analytics = new_value
+	GameAnalytics.enabled = enable_analytics
 
 # OPTIONS need a min and a MAX
 const min_lives = 1
@@ -78,32 +82,17 @@ var colors = {
 	PINK = Color(.914, .118, .388)
 }
 # force saving the game
-var force_save = true
+var force_save = false
 
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
-	# prepare arrays
+	print("Starting game...")
+	print("FORCE SAVE is ", force_save, " - if true the user file will be overwritten")
 	add_to_group("persist")
 	
-	var config = ConfigFile.new()
-	var err = config.load(SETTINGS_FILENAME)
-	if err == OK: # if not, something went wrong with the file loading
-		GameAnalytics.game_key = config.get_value("analytics", "game_key")
-		GameAnalytics.secret_key = config.get_value("analytics", "secret_key")
-		GameAnalytics.base_url = config.get_value("analytics", "base_url")
-		GameAnalytics.enabled =  config.get_value("analytics", "enabled", true )
-		# Store a variable if and only if it hasn't been defined yet
-	else:
-		print("There was nothing")
-		config.set_value("analytics", "enabled", true)
-		config.set_value("analytics", "game_key", GameAnalytics.game_key)
-		config.set_value("analytics", "secret_key", GameAnalytics.secret_key)
-		config.set_value("analytics", "base_url", GameAnalytics.base_url)
-	config.save(SETTINGS_FILENAME)
-
-	# GameAnalytics.request_init()
+	
 	templates = get_species_templates()
 	if force_save:
 		persistance.save_game()
@@ -111,10 +100,20 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-
+	
+	# SET game analytics parameters
+	GameAnalytics.base_url = ProjectSettings.get_setting("Analytics/base_url")
+	GameAnalytics.game_key = ProjectSettings.get_setting("Analytics/game_key")
+	GameAnalytics.secret_key = ProjectSettings.get_setting("Analytics/secret_key")
+	GameAnalytics.enabled = enable_analytics
+	# END Game Analytics
+	if enable_analytics:
+		GameAnalytics.request_init()
+	
 func _exit_tree():
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
 	GameAnalytics.submit_events()
+	print("Thanks for playing")
 	
 
 func get_unlocked() -> Dictionary:
@@ -154,7 +153,7 @@ func get_state():
 	"""
 	var save_dict = {
 		unlocked_species=unlocked_species,
-		level=level
+		enable_analytics=enable_analytics
 	}
 	return save_dict
 

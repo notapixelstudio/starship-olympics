@@ -67,7 +67,7 @@ func try_acquire_target(ship):
 func acquire_target(ship):
 	get_node("lock-sound").play()
 	target = weakref(ship)
-	print(ship.species_template.species_name)
+	# print("target acquired: ", ship.species_template.species_name)
 	$AnimatedSprite.play('locked_'+str(ship.species_template.id))
 	targets.push_front(weakref(ship))
 	

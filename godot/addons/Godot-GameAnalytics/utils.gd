@@ -8,13 +8,7 @@ const os_dict = {
     "Server" : "NA", 
     "Windows": "windows", 
     "UWP" : "NA", 
-    "X11": "NA"
+    "X11": "linux"
 }
-# enum": ["ios", , "windows", "windows_phone", "blackberry", "roku", "tizen", "nacl", "mac_osx", "tvos", 
-#"webplayer", "ps4", "xboxone", "uwp_mobile", "uwp_desktop", "uwp_console", "uwp_iot", "uwp_surfacehub", 
-#"webgl", "xbox360", "ps3", "psm", "vita", "wiiu", "samsung_tv", "linux", "watch_os"]
 
-#"pattern": "^(ios|android|windows|windows_phone|blackberry|roku|tizen|nacl|mac_osx|tvos|
-#webplayer|ps4|xboxone|uwp_mobile|uwp_desktop|uwp_console
-#|uwp_iot|uwp_surfacehub|webgl|xbox360|ps3|psm|vita|wiiu|samsung_tv|linux|watch_os) [0-9]{0,5}(\\.[0-9]{0,5}){0,2}$",
-            
+# check validation schema in "validation_schema.json" from GA https://gameanalytics.com/docs/item/rest-api-doc#default-annotations-shared:
