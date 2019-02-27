@@ -15,9 +15,9 @@ func _initialize():
 		right.visible = value<max_value
 	if elem_type == OPTION_TYPE.ARRAY:
 		# it might not be ready yet
-		yield(get_tree().create_timer(0.9), "timeout")
+		yield(get_tree().create_timer(0.2), "timeout")
 		array_value = nested_get(node_owner, optional_path)
-		value = nested_get(node_owner, description)
+		self.value = nested_get(node_owner, description)
 		var parent_subpath = description.find_last(".")
 		var all_path = description.split(".")
 		
