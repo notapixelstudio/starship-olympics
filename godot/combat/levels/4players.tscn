@@ -20,11 +20,11 @@ centered = false
 [node name="BeveledRectWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1920, 1190 )
 scale = Vector2( 1.5, 1.5 )
-points = PoolVector2Array( -950, -550, -550, -950, 550, -950, 950, -550, 950, 550, 550, 950, -550, 950, -950, 550 )
+points = PoolVector2Array( -850, -450, -450, -850, 450, -850, 850, -450, 850, 450, 450, 850, -450, 850, -850, 450 )
 hollow = true
 offset = 200
-width = 1900
-height = 1900
+width = 1700
+height = 1700
 bevel = 400
 
 [node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 4 )]
@@ -57,3 +57,5 @@ species_template = ExtResource( 9 )
 [node name="Camera" parent="." index="5"]
 zoom_offset = 0.797
 
+
+[editable path="Pause/Pause"]

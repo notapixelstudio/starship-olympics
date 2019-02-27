@@ -5,7 +5,7 @@ extends RigidBody2D
 # export var acceleration = Vector2(-0.06, 0)
 class_name Bomb
 
-var origin_ship
+var origin_ship: RigidBody2D
 var player_id
 
 const Explosion = preload('res://actors/weapons/Explosion.tscn')
@@ -57,10 +57,10 @@ func try_acquire_target(ship):
 	if ship.invincible:
 		return
 		
-	# If there's a queen ship, avoid locking on partners
-	if ship.arena.game_mode.is_there_a_queen() and not ship.queen and not standalone and not origin_ship.queen:
+	# If there's a queen ship, avoid locking on partners	if origin_ship.que
+	if ship.arena.game_mode.is_there_a_queen() and is_instance_valid(ship) and not ship.is_queued_for_deletion() and not ship.queen and not standalone and is_instance_valid(origin_ship) and not origin_ship.is_queued_for_deletion() and not origin_ship.queen:
 		return
-	 
+	
 	if autolocking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
 		acquire_target(ship)
 		

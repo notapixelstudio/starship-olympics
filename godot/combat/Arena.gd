@@ -29,6 +29,7 @@ const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
+signal rematch
 
 var spawners = []
 var mockup = false
