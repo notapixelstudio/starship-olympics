@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://local_multiplayer/LevelSelection.gd" type="Script" id=2]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/interface/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=4]
 
 [node name="LevelSelection" type="ColorRect"]
 pause_mode = 2
@@ -12,17 +13,22 @@ theme = ExtResource( 1 )
 color = Color( 0, 0, 0, 0.313726 )
 script = ExtResource( 2 )
 
-[node name="panel" type="Panel" parent="."]
+[node name="pause-window" type="Sprite" parent="."]
+position = Vector2( 612.724, 320.736 )
+scale = Vector2( 0.797916, 0.797916 )
+texture = ExtResource( 3 )
+
+[node name="panel" type="Control" parent="."]
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0.988235 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -435.5
-margin_top = -330.0
-margin_right = 435.5
-margin_bottom = 330.0
+margin_left = -455.203
+margin_top = -308.327
+margin_right = 415.797
+margin_bottom = 351.673
 
 [node name="label" type="Label" parent="panel"]
 pause_mode = 2
@@ -57,7 +63,7 @@ handle_input_locally = false
 render_target_update_mode = 3
 gui_disable_input = true
 
-[node name="Element" parent="panel" instance=ExtResource( 3 )]
+[node name="Element" parent="panel" instance=ExtResource( 4 )]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 1.0
