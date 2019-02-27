@@ -58,6 +58,7 @@ margin_bottom = 176.0
 mouse_filter = 1
 
 [node name="margin_container" type="MarginContainer" parent="panel"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 8
@@ -81,15 +82,16 @@ margin_bottom = 17.0
 text = "Options"
 align = 1
 
-[node name="element1" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+[node name="Useless" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
 anchor_right = 0.0
 margin_top = 21.0
 margin_right = 448.0
 margin_bottom = 46.0
 mouse_filter = 1
 elem_type = 1
+description_node_path = NodePath("../Useless/Container/Description")
 
-[node name="element2" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+[node name="Songs" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
 anchor_right = 0.0
 margin_top = 50.0
 margin_right = 448.0
@@ -100,33 +102,34 @@ optional_path = "bgm.array_songs"
 label_description = "Song"
 elem_type = 2
 node_owner_path = NodePath("../../../..")
+description_node_path = NodePath("../Songs/Container/Description")
 
-[node name="Analytics2" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
+[node name="DebugMode" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
 margin_top = 79.0
 margin_right = 448.0
-margin_bottom = 115.0
+margin_bottom = 123.0
 description = "debug"
 label_description = "debug mode"
 is_global = true
+description_node_path = NodePath("../DebugMode/ElementCheckbox")
 
-[node name="element3" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
-anchor_right = 0.0
-margin_top = 119.0
+[node name="Mute" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
+margin_top = 127.0
 margin_right = 448.0
-margin_bottom = 144.0
-mouse_filter = 1
-description = "debug"
-label_description = "Debug mode"
-node_owner_path = NodePath("../../../..")
+margin_bottom = 171.0
+description = "audio_on"
+label_description = "Music"
+is_global = true
+description_node_path = NodePath("../Mute/ElementCheckbox")
 
 [node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
-margin_top = 148.0
+margin_top = 175.0
 margin_right = 448.0
-margin_bottom = 327.0
+margin_bottom = 319.0
 size_flags_vertical = 3
 
 [node name="Analytics" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
-margin_top = 331.0
+margin_top = 323.0
 margin_right = 448.0
 margin_bottom = 367.0
 description = "enable_analytics"

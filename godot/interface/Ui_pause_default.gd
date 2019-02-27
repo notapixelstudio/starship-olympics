@@ -8,8 +8,8 @@ onready var container = $panel/margin_container/v_box_container
 onready var animation = $AnimationPlayer
 
 func _ready():
-	visible=true
 	enable_all()
+	visible=true
 	
 func disable_all():
 	animation.play("hide")

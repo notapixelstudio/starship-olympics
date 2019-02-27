@@ -8,54 +8,38 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=7]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
-[node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-scale = Vector2( 2.5, 2.5 )
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1600, 970 )
-
-[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+[node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1500, -375, -1100, -775, 1100, -775, 1500, -375, 1500, 375, 1100, 775, -1100, 775, -1500, 375 )
+
+[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+position = Vector2( 1600, 950 )
+points = PoolVector2Array( -1100, -300, -500, -900, 500, -900, 1100, -300, 1100, 300, 500, 900, -500, 900, -1100, 300 )
 hollow = true
 offset = 200
-width = 3000
-height = 1550
-bevel = 400
-
-[node name="LeftOctagonWall" parent="Battlefield" index="3" instance=ExtResource( 4 )]
-position = Vector2( 900, 950 )
-points = PoolVector2Array( -150, -50, -50, -150, 50, -150, 150, -50, 150, 50, 50, 150, -50, 150, -150, 50 )
-width = 300
-height = 300
-bevel = 100
-
-[node name="RightOctagonWall" parent="Battlefield" index="4" instance=ExtResource( 4 )]
-position = Vector2( 2300, 950 )
-points = PoolVector2Array( -150, -50, -50, -150, 50, -150, 150, -50, 150, 50, 50, 150, -50, 150, -150, 50 )
-width = 300
-height = 300
-bevel = 100
+width = 2200
+height = 1800
+bevel = 600
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 200, 950 )
+position = Vector2( 700, 950 )
 rotation = 0.0
-controls = "kb2"
+controls = "joy1"
 species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 3000, 950 )
+position = Vector2( 2500, 950 )
+rotation = 3.14159
+controls = "joy2"
 species_template = ExtResource( 7 )
 
-[node name="Camera" parent="." index="4"]
+[node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
-debug_mode = false
-enabled = true
 
-
-[connection signal="item_rect_changed" from="Battlefield/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

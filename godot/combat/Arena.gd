@@ -31,7 +31,7 @@ signal screensize_changed(screensize)
 signal gameover
 
 var spawners = []
-
+var mockup = false
 var game_mode
 
 func initialize(players:Array) -> void:
@@ -69,7 +69,10 @@ func setup_ships():
 		setup_ship(player)
 	
 func _ready():
-	Soundtrack.play("Arena", true)
+	if not mockup:
+		Soundtrack.play("Fight", true)
+	else:
+		$Pause/HUD.visible = false
 	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
