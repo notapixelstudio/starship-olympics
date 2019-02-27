@@ -10,6 +10,7 @@ var cpu: bool = false
 var playable : bool = true
 var lives : int = 10
 var deaths : int = 0
+var kills : int = 0
 var collectables : int  =0
 var score : float = 0.0
 var species_template : SpeciesTemplate
@@ -32,5 +33,6 @@ func to_dict():
 		"deaths" : deaths,
 		"collectables" : collectables,
 		"score" : score,
+		"kills" : kills,
 		"species_template" : species_template
 		}
