@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/pause/PauseMode.gd" type="Script" id=2]
 [ext_resource path="res://assets/interface/pause-window.png" type="Texture" id=3]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
-[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=5]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=7]
 
 [node name="Pause" type="Control"]
 pause_mode = 2
@@ -48,47 +50,111 @@ align = 1
 valign = 1
 uppercase = true
 
+[node name="Control" type="Control" parent="GuiElements"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -91.0
+margin_right = 91.0
+
+[node name="panel" type="Panel" parent="GuiElements/Control"]
+modulate = Color( 1, 1, 1, 0.682353 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = -176.0
+margin_right = 232.0
+margin_bottom = 176.0
+
+[node name="margin_container" type="MarginContainer" parent="GuiElements/Control/panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="v_box_container" type="VBoxContainer" parent="GuiElements/Control/panel/margin_container"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 456.0
+margin_bottom = 344.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 4
+
+[node name="label" type="Label" parent="GuiElements/Control/panel/margin_container/v_box_container"]
+margin_right = 448.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "options"
+align = 1
+valign = 1
+
+[node name="CameraZoom" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 5 )]
+margin_top = 21.0
+margin_right = 448.0
+margin_bottom = 57.0
+description_node_path = NodePath("../CameraZoom/ElementCheckbox")
+
+[node name="CameraDebug" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 5 )]
+margin_top = 61.0
+margin_right = 448.0
+margin_bottom = 97.0
+description_node_path = NodePath("../CameraDebug/ElementCheckbox")
+
+[node name="Songs" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+margin_top = 101.0
+margin_right = 448.0
+margin_bottom = 126.0
+description = "bgm."
+description_node_path = NodePath("../Songs/Container/Description")
+
+[node name="Padding" type="Control" parent="GuiElements/Control/panel/margin_container/v_box_container"]
+margin_top = 130.0
+margin_right = 448.0
+margin_bottom = 336.0
+size_flags_vertical = 3
+
 [node name="Buttons" type="VBoxContainer" parent="GuiElements"]
-editor/display_folded = true
 margin_left = 238.414
 margin_top = 278.602
 margin_right = 420.414
 margin_bottom = 518.602
 alignment = 2
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Continue" type="Button" parent="GuiElements/Buttons"]
-margin_top = 57.0
+margin_top = 128.0
 margin_right = 182.0
-margin_bottom = 114.0
+margin_bottom = 153.0
 text = "Continue"
 
 [node name="Restart" type="Button" parent="GuiElements/Buttons"]
-margin_top = 118.0
+margin_top = 157.0
 margin_right = 182.0
-margin_bottom = 175.0
+margin_bottom = 182.0
 text = "Restart"
 
-[node name="Button" type="Button" parent="GuiElements/Buttons"]
-visible = false
-margin_top = 122.0
+[node name="Options" type="Button" parent="GuiElements/Buttons"]
+margin_top = 186.0
 margin_right = 182.0
-margin_bottom = 179.0
+margin_bottom = 211.0
+text = "options"
 
 [node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
-margin_top = 179.0
-margin_right = 182.0
-margin_bottom = 236.0
-text = "Quit match"
-
-[node name="TextureButton" type="TextureButton" parent="GuiElements/Buttons"]
-margin_top = 240.0
+margin_top = 215.0
 margin_right = 182.0
 margin_bottom = 240.0
-stretch_mode = 5
+text = "Quit match"
 
 [node name="Tween" type="Tween" parent="."]
 

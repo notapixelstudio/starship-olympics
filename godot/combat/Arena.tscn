@@ -34,6 +34,22 @@ visible = false
 [node name="Pause" parent="Pause" instance=ExtResource( 4 )]
 visible = false
 
+[node name="CameraZoom" parent="Pause/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="1"]
+description = "enabled"
+label_description = "Camera enabled"
+node_owner_path = NodePath("../../../../../../../../Camera")
+
+[node name="CameraDebug" parent="Pause/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="2"]
+description = "debug_mode"
+label_description = "debug mode"
+node_owner_path = NodePath("../../../../../../../../Camera")
+
+[node name="Songs" parent="Pause/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="3"]
+description = "bgm.current_song"
+optional_path = "bgm.array_songs"
+label_description = "Song"
+elem_type = 2
+
 [node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
@@ -42,8 +58,11 @@ layer = 0
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
+pause_mode = 2
 current = true
 script = ExtResource( 6 )
 debug_mode = false
 enabled = true
 
+
+[editable path="Pause/Pause"]

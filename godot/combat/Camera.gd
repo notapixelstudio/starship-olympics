@@ -85,6 +85,10 @@ func _process(delta: float) -> void:
 
 	if debug_mode:
 		update()
+	if enabled:
+		current = true
+	else: 
+		current = false
 	
 	wait_in_frame-=1
 	
