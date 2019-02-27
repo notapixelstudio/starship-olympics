@@ -30,7 +30,7 @@ And don't mind if your aim sucks, *Superstarfighter* bombs are equipped with a f
 
 ![charged shot](charged_shot.gif)
 
-# You can never stop
+# Non-stop action
 As a skilled starship pilot, you will have to steer and drop bombs while constantly moving at full speed. Brakes are for losers!
 
 ![never stop](never_stop.gif)

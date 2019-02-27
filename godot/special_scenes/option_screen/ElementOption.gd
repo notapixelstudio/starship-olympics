@@ -15,12 +15,10 @@ func _initialize():
 		right.visible = value<max_value
 	if elem_type == OPTION_TYPE.ARRAY:
 		# it might not be ready yet
-		yield(get_tree().create_timer(2), "timeout")
+		yield(get_tree().create_timer(0.2), "timeout")
 		array_value = nested_get(node_owner, optional_path)
-		
-		value = nested_get(node_owner, description)
+		self.value = nested_get(node_owner, description)
 		var parent_subpath = description.find_last(".")
-		
 		var all_path = description.split(".")
 		
 		if parent_subpath > 0:
@@ -50,7 +48,7 @@ func _input(event):
 		if event.is_action_pressed("ui_accept"):
 			# shake_node(value_node)
 			value = (value_node.text == 'True')
-			value = not value
+			self.value = not value
 			value_node.text = str(value)
 			
 	if elem_type == OPTION_TYPE.NUMBER:
@@ -59,6 +57,7 @@ func _input(event):
 			# shake_node(value_node)
 			value = int(value_node.text)
 			value +=1
+			self.value = value
 			value_node.text = str(value)
 			right.visible = value<max_value
 			
@@ -67,6 +66,7 @@ func _input(event):
 			# shake_node_backwards(value_node)
 			value = int(value_node.text)
 			value -=1
+			self.value = value
 			value_node.text = str(value)
 			left.visible = value>min_value
 
@@ -77,7 +77,7 @@ func _input(event):
 			value = str(value_node.text)
 			index_value = array_value.find(value)
 			index_value = mod((index_value + 1), len(array_value))
-			value = array_value[index_value]
+			self.value = array_value[index_value]
 			value_node.text = str(value)
 			right.visible = index_value<max_value
 		elif event.is_action_pressed("ui_left") and left.visible:
@@ -86,9 +86,10 @@ func _input(event):
 			value = str(value_node.text)
 			index_value = array_value.find(value)
 			index_value = mod((index_value - 1), len(array_value))
-			value = array_value[index_value]
+			self.value = array_value[index_value]
 			value_node.text = str(value)
 			left.visible = index_value>min_value
+
 	node_owner.set(description, value)
 func shake_node_backwards(node):
 	var actual_d_pos = node.rect_position

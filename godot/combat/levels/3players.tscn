@@ -2,64 +2,43 @@
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
-[ext_resource path="res://actors/environments/HexWall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/collectables/Collectable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/HexWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
 [ext_resource path="res://selection/species/species3.tres" type="Resource" id=7]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=8]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
-size_multiplier = 3.0
+[node name="Arena" instance=ExtResource( 1 )]
+size_multiplier = 4.0
 
-[node name="mantiacs_background" type="Sprite" parent="Battlefield" index="0"]
-scale = Vector2( 3, 3 )
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
-[node name="HexWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1581.72, 1353.74 )
-points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
-apothem = 86.6025
-radius = 100
-
-[node name="HexWall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
-position = Vector2( 2272.28, 1362.17 )
-points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
-apothem = 86.6025
-radius = 100
-
-[node name="HexWall3" parent="Battlefield" index="3" instance=ExtResource( 3 )]
-position = Vector2( 1925.01, 770.342 )
-points = PoolVector2Array( 100, 0, 50, 86.6025, -50, 86.6025, -100, 1.22465e-14, -50, -86.6025, 50, -86.6025 )
-apothem = 86.6025
-radius = 100
-
-[node name="Crown" parent="Battlefield" index="4" instance=ExtResource( 4 )]
+[node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1920, 1170 )
 
-[node name="HexWall4" parent="Battlefield" index="5" instance=ExtResource( 3 )]
+[node name="HexWall4" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1920, 1170 )
-points = PoolVector2Array( 1062.32, 0, 531.16, 919.996, -531.16, 919.996, -1062.32, 1.30097e-13, -531.16, -919.996, 531.16, -919.996 )
+points = PoolVector2Array( 1400, 0, 700, 1212.44, -700, 1212.44, -1400, 1.71451e-13, -700, -1212.44, 700, -1212.44 )
 hollow = true
-apothem = 919.996
-radius = 1062.32
+apothem = 1212.44
+radius = 1400
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1181.85, 1570.82 )
-rotation = -0.523599
+position = Vector2( 1253, 1555 )
+rotation = 1.0472
 controls = "joy1"
 species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1920.48, 337.27 )
-rotation = 1.5708
-controls = "joy2"
+position = Vector2( 1920, 400 )
 species_template = ExtResource( 7 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( 2663.64, 1581.3 )
-rotation = -2.61799
+position = Vector2( 2587, 1555 )
+rotation = -1.0472
 controls = "joy3"
 species_template = ExtResource( 8 )
 

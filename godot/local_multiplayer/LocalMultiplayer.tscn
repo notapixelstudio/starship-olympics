@@ -11,11 +11,13 @@ script = ExtResource( 1 )
 [node name="SelectionScreen" parent="." instance=ExtResource( 2 )]
 
 [node name="GameOver" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="GameOverScreen" parent="GameOver" instance=ExtResource( 3 )]
 visible = false
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+layer = -2
 
 [connection signal="rematch" from="GameOver/GameOverScreen" to="." method="_on_GameOverScreen_rematch"]
 

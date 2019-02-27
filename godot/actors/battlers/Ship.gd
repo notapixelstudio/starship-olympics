@@ -9,11 +9,12 @@ class_name Ship
 
 export (String) var controls = "kb1"
 export (Resource) var species_template
+export var absolute_controls : bool= true
 
 var arena
 
 var velocity = Vector2(0,0)
-
+var target_velocity = Vector2(0,0)
 var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
@@ -74,28 +75,40 @@ func _ready():
 	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false
-
+	
+static func magnitude(a:Vector2):
+	return sqrt(a.x*a.x+a.y*a.y)
+	
+var last_velocity = Vector2()
 func _integrate_forces(state):
+	
+	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
-	#rotation = state.linear_velocity.angle()
-	set_applied_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
-	
+	if not absolute_controls:
+		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		# rotation = atan2(target_velocity.y, target_velocity.x)
+	else:
+		#rotation = state.linear_velocity.angle()
+		#apply_impulse(Vector2(),target_velocity*thrust)	
+		add_central_force(target_velocity*thrust*int(not charging and not stunned))
+		
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine
 	var xform = state.get_transform()
 	
 	# wrap (?)
-	if xform.origin.x > width:
-		xform.origin.x = 0
-	if xform.origin.x < 0:
-		xform.origin.x = width
-	if xform.origin.y > height:
-		xform.origin.y = 0
-	if xform.origin.y < 0:
-		xform.origin.y = height
-	
+
+	#if xform.origin.x > width:
+	#	xform.origin.x = 0
+	#if xform.origin.x < 0:
+	#	xform.origin.x = width
+	#if xform.origin.y > height:
+	#	xform.origin.y = 0
+	#if xform.origin.y < 0:
+	#	xform.origin.y = height
+
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
@@ -123,15 +136,15 @@ func fire():
 	"""
 	Fire a bomb
 	"""
-	var charge_impulse = 100 + 3500*min(charge, MAX_CHARGE)
+	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
 	var bomb = bomb_scene.instance()
 	bomb.origin_ship = self
 	bomb.player_id = player
 	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
 	
-	# -200 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-200),0).rotated(rotation)) # recoil
+	# -300 is to avoid too much acceleration when repeatedly firing bombs
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
 	get_parent().add_child(bomb)
@@ -203,7 +216,9 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
 	if check == -b:
 		cross = possible_dirs[randi()%len(possible_dirs)]
-		
-	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR and sign(cross)==sign(b.x):
-		return 0
+
+	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR :
+		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
+			return 0
+	
 	return int(sign(cross))

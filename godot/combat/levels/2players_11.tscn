@@ -8,7 +8,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=6]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=7]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -16,26 +16,33 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1600, 950 )
+position = Vector2( 1600, -100 )
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
-points = PoolVector2Array( -1100, -300, -500, -900, 500, -900, 1100, -300, 1100, 300, 500, 900, -500, 900, -1100, 300 )
+points = PoolVector2Array( -1300, -900, -900, -1300, 900, -1300, 1300, -900, 1300, 900, 900, 1300, -900, 1300, -1300, 900 )
 hollow = true
 offset = 200
-width = 2200
-height = 1800
-bevel = 600
+width = 2600
+height = 2600
+bevel = 400
+
+[node name="BeveledRectWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+position = Vector2( 1600, 950 )
+points = PoolVector2Array( -800, -700, -700, -800, 700, -800, 800, -700, 800, 700, 700, 800, -700, 800, -800, 700 )
+width = 1600
+height = 1600
+bevel = 100
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 700, 950 )
-rotation = 0.0
+position = Vector2( 550, 1650 )
+rotation = -1.5708
 controls = "joy1"
 species_template = ExtResource( 6 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 2500, 950 )
-rotation = 3.14159
+position = Vector2( 2650, 1650 )
+rotation = -1.5708
 controls = "joy2"
 species_template = ExtResource( 7 )
 
