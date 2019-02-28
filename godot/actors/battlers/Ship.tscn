@@ -16,11 +16,11 @@ radius = 16.0
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 500.0
+radius = 300.0
 
 [node name="Ship" type="RigidBody2D" groups=[
-"players",
 "in_camera",
+"players",
 ]]
 collision_mask = 19
 physics_material_override = SubResource( 1 )
@@ -63,6 +63,3 @@ stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_Ship_area_entered"]
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]

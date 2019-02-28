@@ -131,6 +131,10 @@ func _process(delta):
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
+		
+	for body in $DetectionArea.get_overlapping_bodies():
+		if body.has_node("DetectorComponent"):
+			body.try_acquire_target(self)
 
 func fire():
 	"""
@@ -189,18 +193,6 @@ func _on_Ship_body_entered(body):
 	if body.has_node('StunningComponent'):
 		stun()
 	
-func _on_DetectionArea_body_entered(body):
-	if body.has_node('DetectorComponent'):
-		body.try_acquire_target(self)
-func _on_DetectionArea_body_exited(body):
-	if body.has_node('DetectorComponent'):
-		body.try_lose_target(self)
-
-func _on_DetectionArea_area_entered(area):
-	if area.has_node("CollectableComponent"):
-		assert(area is Collectable)
-		#collect(area)
-
 func collect(area:Collectable):
 	if alive:
 		emit_signal("collected", self)
