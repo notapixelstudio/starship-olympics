@@ -62,19 +62,24 @@ signal collected
 
 func initialize():
 	pass
+
+func _enter_tree():
+	alive = true
+	# Invincible for the firs MAX seconds
+	invincible = true
+	sleeping=true
+	if skin:
+		skin.invincible()
+	yield(get_tree().create_timer(0.5), "timeout")
+	sleeping=false
+	
+	yield(skin, "stop_invincible")
+	invincible = false
 	
 func _ready():
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
-	
-	# Invincible for the firs MAX seconds
-	invincible = true
-	sleeping=true
-	yield(get_tree().create_timer(0.5), "timeout")
-	sleeping=false
 	skin.invincible()
-	yield(skin, "stop_invincible")
-	invincible = false
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -163,12 +168,12 @@ func die():
 		sleeping = true
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead", self.name, self.position)
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")
-		queue_free()
+		emit_signal("dead", self)
+		
 	
 func set_queen(value):
 	queen = value
