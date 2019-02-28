@@ -154,12 +154,16 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
 var ships
-func ship_just_died(ship_name: String, ship_position:Vector2):
+func ship_just_died(ship: Ship):
+	"""
+	remove from it, and reput it after a bit
+	"""
+	Battlefield.remove_child(ship)
 	# check if we need to lose the crown
-	if game_mode.queen != null and ship_name == game_mode.queen.name:
+	if game_mode.queen != null and ship == game_mode.queen:
 		game_mode.crown_lost()
-		crown.position = ship_position
-		$Battlefield.add_child(crown)
+		crown.position = ship.position
+		Battlefield.add_child(crown)
 		
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -167,10 +171,7 @@ func ship_just_died(ship_name: String, ship_position:Vector2):
 		return
 	
 	# respawn
-	var player_id = ship_name
-	for player in SpawnPlayers.get_children():
-		if player.name.to_lower() == ship_name.to_lower():
-			setup_ship(player)
+	Battlefield.add_child(ship)
 			
 	
 func crown_taken(ship):
