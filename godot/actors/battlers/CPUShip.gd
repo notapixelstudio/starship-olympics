@@ -18,25 +18,29 @@ static func which_quadrant(angle:float):
 func _input(event):
 	if event.is_action_pressed("kb1_fire"):
 		alive = not alive
-		
+const MAX_DIR_WAIT = 20
+var wait_direction = MAX_WAIT
 func choose_dir(target:Node2D):
 	var direction_to_take = 0
 	if not target or not target.is_inside_tree():
-		var chance = randi() % 100
-		for dir in this_range.keys():
-			if chance < dir:
-				return this_range[dir]
+		if wait_direction < 0:
+			target_velocity = Vector2(rand_range(-1,1), rand_range(-1,1)).normalized()
+			wait_direction = randi() % MAX_DIR_WAIT
 	else:
 		var distance_to_target = (target.position-position)
 		target_velocity = distance_to_target.normalized()
-		front = Vector2(cos(rotation), sin(rotation))
+	front = Vector2(cos(rotation), sin(rotation))
+	direction_to_take = find_side(Vector2(0,0), front, target_velocity)
 		
-		direction_to_take = find_side(Vector2(0,0), front, target_velocity)
-		
-		return direction_to_take
+	return direction_to_take
 
 func choose_fire():
 	return false
+
+func _ready():
+	absolute_controls = true
+const MAX_WAIT = 200
+var wait = MAX_WAIT
 
 func control(delta):
 	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
@@ -48,6 +52,7 @@ func control(delta):
 		this_target = null
 		
 	rotation_dir = choose_dir(this_target)
+	
 	# charge
 	if charging:
 		charge = charge+delta
@@ -69,7 +74,11 @@ func control(delta):
 		charging = true
 		$Graphics/ChargeBar.visible = true
 		
-	
+	if wait < 0:
+		fire()
+		wait = randi() % MAX_WAIT
+	wait -= 1
+	wait_direction -= 1
 	# overcharge
 	if charge > MAX_OVERCHARGE:
 		fire()
