@@ -24,7 +24,7 @@ func start():
 func _unhandled_input(event):
 	if unpause_ready and event.is_action_pressed("pause"):
 		unpause()
-		unpause_ready = false
+		
 	
 func _on_Continue_pressed():
 	unpause()
@@ -37,6 +37,7 @@ func unpause():
 	gui.visible = false
 	yield($Tween, "tween_completed")
 	visible = false
+	unpause_ready = false
 	get_tree().paused = false
 
 func _on_Restart_pressed():
