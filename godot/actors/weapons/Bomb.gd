@@ -37,14 +37,13 @@ func _ready():
 func _physics_process(delta):
 	locking_timeout -= delta
 	
-	if target != null:
+	if target != null and target.get_ref() != null:
+		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50) # need a meaningful way to do this
+		
 		if target_timeout > 0:
 			target_timeout -= delta
 		else:
 			lose_target()
-	
-	if target != null and target.get_ref() != null:
-		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50) # need a meaningful way to do this
 	else:
 		# destroy bomb after timeout
 		if timeout > 0:
@@ -61,7 +60,7 @@ func detonate():
 
 func try_acquire_target(ship):
 	# Do not lock if already locked onto the same target, but keep the target time
-	if ship == target:
+	if target != null and target.get_ref() != null and target.get_ref() == ship:
 		target_timeout = TARGET_TIMEOUT
 		return
 		
@@ -77,6 +76,7 @@ func try_acquire_target(ship):
 		acquire_target(ship)
 		
 func acquire_target(ship):
+	print('TARGET ACQUIRED')
 	get_node("lock-sound").play()
 	target = weakref(ship)
 	# print("target acquired: ", ship.species_template.species_name)
