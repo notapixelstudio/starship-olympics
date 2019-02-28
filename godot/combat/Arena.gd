@@ -122,7 +122,7 @@ func _process(delta):
 	game_mode.update(delta)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("pause"):
 		pause.start()
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
