@@ -19,6 +19,7 @@ var num_players : int = 0
 func _ready():
 	Soundtrack.play("Lobby", true)
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+	
 
 func initialize(_available_species:Dictionary):
 	available_species = _available_species
@@ -36,7 +37,10 @@ func initialize(_available_species:Dictionary):
 		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 		i +=1
-	var controls = assign_controls(NUM_KEYBOARDS)
+	var joypads = Input.get_connected_joypads()
+	print(len(joypads))
+	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
+	var controls = assign_controls(actual_players)
 	for control in controls:
 		print(add_controls(control))
 
@@ -86,7 +90,7 @@ func change_controls(key:String, new_key:String) -> bool:
 		var to_change = last
 		last = child.controls
 		assert(child is Species)
-		child.set_controls_by_string(to_change)
+		child.set_controls(to_change)
 		
 	return false
 	

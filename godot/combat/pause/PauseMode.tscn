@@ -98,25 +98,25 @@ valign = 1
 [node name="CameraZoom" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 5 )]
 margin_top = 21.0
 margin_right = 448.0
-margin_bottom = 57.0
+margin_bottom = 65.0
 description_node_path = NodePath("../CameraZoom/ElementCheckbox")
 
 [node name="CameraDebug" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 5 )]
-margin_top = 61.0
+margin_top = 69.0
 margin_right = 448.0
-margin_bottom = 97.0
+margin_bottom = 113.0
 description_node_path = NodePath("../CameraDebug/ElementCheckbox")
 
 [node name="Songs" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 6 )]
 anchor_right = 0.0
-margin_top = 101.0
+margin_top = 117.0
 margin_right = 448.0
-margin_bottom = 126.0
+margin_bottom = 142.0
 description = "bgm."
 description_node_path = NodePath("../Songs/Container/Description")
 
 [node name="Padding" type="Control" parent="GuiElements/Control/panel/margin_container/v_box_container"]
-margin_top = 130.0
+margin_top = 146.0
 margin_right = 448.0
 margin_bottom = 336.0
 size_flags_vertical = 3

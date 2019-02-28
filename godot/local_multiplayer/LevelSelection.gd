@@ -1,7 +1,7 @@
 extends Control
 
 var array_levels : Array
-var current_level : String = "2players.tscn"
+var current_level : String 
 
 
 const LEVEL_PATH = "res://combat/levels/"
@@ -21,8 +21,10 @@ func _input(event):
 		
 func _initialize(players_scene:String=""):
 	array_levels = global.dir_contents(LEVEL_PATH, players_scene)
+	current_level = players_scene + "players.tscn"
 	scene_in_viewport = load(LEVEL_PATH+current_level).instance()
 	scene_in_viewport.mockup = true
+	yield(self, "ready")
 	level_scene.add_child(scene_in_viewport)
 	
 
