@@ -64,6 +64,8 @@ func initialize():
 	pass
 
 func _enter_tree():
+	charging = false
+	charge = 0
 	alive = true
 	# Invincible for the firs MAX seconds
 	invincible = true
@@ -72,11 +74,14 @@ func _enter_tree():
 		skin.invincible()
 	yield(get_tree().create_timer(0.5), "timeout")
 	sleeping=false
-	
 	yield(skin, "stop_invincible")
 	invincible = false
+
+func _exit_tree():
+	$Crown.visible = false
 	
 func _ready():
+	$Crown.visible = false
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	skin.invincible()
