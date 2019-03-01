@@ -21,9 +21,9 @@ onready var camera = $Camera
 onready var hud = $Pause/HUD
 onready var getready = $Pause/GetReady
 onready var pause = $Pause/Pause
-# Crown might be null, if someone has it or ... if the mode is not crownmode
-onready var crown = $Battlefield/Crown
 
+# Crown might be null, if someone has it or ... if the mode is not crownmode
+const crown_scene = preload("res://combat/collectables/Crown.tscn")
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
@@ -158,12 +158,15 @@ func ship_just_died(ship: Ship):
 	"""
 	remove from it, and reput it after a bit
 	"""
-	Battlefield.remove_child(ship)
+	Battlefield.call_deferred("remove_child", ship)
 	# check if we need to lose the crown
 	if game_mode.queen != null and ship == game_mode.queen:
 		game_mode.crown_lost()
+		print("SHIP IS ALIVE? ", ship.alive)
+		var crown = crown_scene.instance()
+		crown.linear_velocity = ship.linear_velocity
 		crown.position = ship.position
-		Battlefield.add_child(crown)
+		Battlefield.call_deferred("add_child", crown)
 		
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -171,12 +174,13 @@ func ship_just_died(ship: Ship):
 		return
 	
 	# respawn
-	Battlefield.add_child(ship)
+	Battlefield.call_deferred("add_child", ship)
 			
 	
-func crown_taken(ship):
+func entity_taken(ship: Ship, entity: Entity):
+	# TODO: JUST FOR CROWN
 	game_mode.crown_taken(ship)
-	$Battlefield.remove_child(crown)
+	entity.call_deferred("queue_free")
 
 func gameover(winner:String, scores:Dictionary):
 	print("gameover")
@@ -199,5 +203,5 @@ func setup_ship(player:PlayerSpawner):
 	Battlefield.add_child(ship)
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
-	ship.connect("collected", self, "crown_taken")
+	ship.connect("collected", self, "entity_taken")
 	connect("screensize_changed", ship, "update_wraparound")

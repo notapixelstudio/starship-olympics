@@ -49,14 +49,15 @@ func _physics_process(delta):
 		if timeout > 0:
 			timeout -= delta
 		elif not standalone:
-			queue_free()
+			call_deferred("queue_free")
 		
 	
 func detonate():
-	queue_free()
 	explosion.player_id = player_id
 	explosion.position = position
-	get_parent().add_child(explosion)
+	emit_signal("detonate")
+	get_parent().call_deferred("add_child", explosion)
+	call_deferred("queue_free")
 
 func try_acquire_target(ship):
 	# Do not lock if already locked onto the same target, but keep the target time
@@ -76,7 +77,6 @@ func try_acquire_target(ship):
 		acquire_target(ship)
 		
 func acquire_target(ship):
-	print('TARGET ACQUIRED')
 	get_node("lock-sound").play()
 	target = weakref(ship)
 	# print("target acquired: ", ship.species_template.species_name)
