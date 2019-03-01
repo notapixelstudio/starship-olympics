@@ -23,7 +23,7 @@ onready var getready = $Pause/GetReady
 onready var pause = $Pause/Pause
 
 # Crown might be null, if someone has it or ... if the mode is not crownmode
-const crown_scene = preload("res://combat/collectables/Collectable.tscn")
+const crown_scene = preload("res://combat/collectables/Crown.tscn")
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
