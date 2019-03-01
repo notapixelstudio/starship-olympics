@@ -210,3 +210,13 @@ func shake_node(node, tween):
 	tween.interpolate_method(node, "set_position", node.rect_position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
 	yield(tween,"tween_completed")
+	
+func get_base_entity(node : Node):
+	if node is Entity:
+		return node
+	if node == get_node("/root"):
+		return null
+	if not node:
+		return null
+	return get_base_entity(node.get_parent())
+	

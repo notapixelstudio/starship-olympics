@@ -78,6 +78,7 @@ func _enter_tree():
 	invincible = false
 
 func _exit_tree():
+	queen = false
 	$Crown.visible = false
 	
 func _ready():
@@ -161,7 +162,7 @@ func fire():
 	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
 	
 	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
-	get_parent().add_child(bomb)
+	arena.call_deferred("add_child", bomb)
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
@@ -170,13 +171,10 @@ func fire():
 
 func die():
 	if alive and not invincible:
-		sleeping = true
-		get_node("sound").play()
 		alive = false
-		skin.play_death()
+		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
-		sleeping = true
-		yield(get_node("sound"), "finished")
+		yield(get_tree(), "idle_frame")
 		emit_signal("dead", self)
 		
 	
@@ -193,19 +191,21 @@ func unstun():
 	stun_countdown = 0
 	
 func _on_Ship_area_entered(area):
+	var entity = global.get_base_entity(area)
+	
 	if area.has_node('DeadlyComponent') and not invincible:
 		die()
-	elif area.has_node("CollectableComponent"):
-		assert(area is Collectable)
-		collect(area)
+	elif entity is Entity and entity.has_node("CollectableComponent"):
+		assert(entity is Entity)
+		collect(entity)
 
 func _on_Ship_body_entered(body):
 	if body.has_node('StunningComponent'):
 		stun()
 	
-func collect(area:Collectable):
+func collect(entity: Entity):
 	if alive:
-		emit_signal("collected", self)
+		emit_signal("collected", self, entity)
 
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""
