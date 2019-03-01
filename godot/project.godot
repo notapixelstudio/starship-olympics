@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Component",
 "language": "GDScript",
-"path": "res://core/Component.gd"
+"path": "res://addons/ECM/Component.gd"
 }, {
 "base": "Resource",
 "class": "Controls",
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://core/Entity.gd"
+"path": "res://addons/ECM/Entity.gd"
 }, {
 "base": "Area2D",
 "class": "Explosion",
@@ -63,6 +63,11 @@ _global_script_classes=[ {
 "class": "InfoPlayer",
 "language": "GDScript",
 "path": "res://local_multiplayer/InfoPlayer.gd"
+}, {
+"base": "Node",
+"class": "Manager",
+"language": "GDScript",
+"path": "res://addons/ECM/Manager.gd"
 }, {
 "base": "MarginContainer",
 "class": "PlayerHUD",
@@ -111,6 +116,7 @@ _global_script_class_icons={
 "Explosion": "",
 "GenericOption": "",
 "InfoPlayer": "",
+"Manager": "",
 "PlayerHUD": "",
 "PlayerSpawner": "",
 "Ship": "",
@@ -141,6 +147,7 @@ Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
+ECM="*res://addons/ECM/ECM.gd"
 
 [debug]
 
@@ -156,7 +163,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Godot-GameAnalytics" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics" )
 
 [input]
 
