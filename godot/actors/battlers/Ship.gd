@@ -191,12 +191,11 @@ func unstun():
 	stun_countdown = 0
 	
 func _on_Ship_area_entered(area):
-	var entity = global.get_base_entity(area)
+	var entity = ECM.find_base_entity(area)
 	
 	if area.has_node('DeadlyComponent') and not invincible:
 		die()
-	elif entity is Entity and entity.has_node("CollectableComponent"):
-		assert(entity is Entity)
+	elif entity and entity.has("Collectable"):
 		try_collect(entity)
 
 func _on_Ship_body_entered(body):
@@ -204,11 +203,9 @@ func _on_Ship_body_entered(body):
 		stun()
 	
 func try_collect(entity: Entity):
-	var collectable = entity.get_node("CollectableComponent")
-	
-	if alive and collectable.is_collectable():
-		collectable.collect()
-		emit_signal("collected", self, entity)
+	if alive:
+		entity.get_node("Collectable").disable()
+		emit_signal("collected", self, entity.get_host())
 
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""
