@@ -62,19 +62,29 @@ signal collected
 
 func initialize():
 	pass
-	
-func _ready():
-	skin.add_child(species_template.ship_anim.instance())
-	skin.initialize()
-	
+
+func _enter_tree():
+	charging = false
+	charge = 0
+	alive = true
 	# Invincible for the firs MAX seconds
 	invincible = true
 	sleeping=true
+	if skin:
+		skin.invincible()
 	yield(get_tree().create_timer(0.5), "timeout")
 	sleeping=false
-	skin.invincible()
 	yield(skin, "stop_invincible")
 	invincible = false
+
+func _exit_tree():
+	$Crown.visible = false
+	
+func _ready():
+	$Crown.visible = false
+	skin.add_child(species_template.ship_anim.instance())
+	skin.initialize()
+	skin.invincible()
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -131,6 +141,10 @@ func _process(delta):
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
+		
+	for body in $DetectionArea.get_overlapping_bodies():
+		if body.has_node("DetectorComponent"):
+			body.try_acquire_target(self)
 
 func fire():
 	"""
@@ -159,12 +173,12 @@ func die():
 		sleeping = true
 		get_node("sound").play()
 		alive = false
-		emit_signal("dead", self.name, self.position)
 		skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		sleeping = true
 		yield(get_node("sound"), "finished")
-		queue_free()
+		emit_signal("dead", self)
+		
 	
 func set_queen(value):
 	queen = value
@@ -189,18 +203,6 @@ func _on_Ship_body_entered(body):
 	if body.has_node('StunningComponent'):
 		stun()
 	
-func _on_DetectionArea_body_entered(body):
-	if body.has_node('DetectorComponent'):
-		body.try_acquire_target(self)
-func _on_DetectionArea_body_exited(body):
-	if body.has_node('DetectorComponent'):
-		body.try_lose_target(self)
-
-func _on_DetectionArea_area_entered(area):
-	if area.has_node("CollectableComponent"):
-		assert(area is Collectable)
-		#collect(area)
-
 func collect(area:Collectable):
 	if alive:
 		emit_signal("collected", self)
