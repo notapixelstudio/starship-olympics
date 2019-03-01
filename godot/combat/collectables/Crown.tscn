@@ -10,8 +10,9 @@ radius = 40.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 62.4056
 
-[node name="Collectable" type="RigidBody2D"]
+[node name="Crown" type="RigidBody2D"]
 gravity_scale = 0.0
+linear_damp = 1.0
 script = ExtResource( 1 )
 
 [node name="CollectableComponent" type="Node" parent="."]
