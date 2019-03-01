@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://combat/collectables/Crown.gd" type="Script" id=1]
-[ext_resource path="res://combat/collectables/Collectable.gd" type="Script" id=2]
-[ext_resource path="res://combat/collectables/skin/Crown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/collectables/CollectableComponent.gd" type="Script" id=2]
+[ext_resource path="res://combat/collectables/Collectable.gd" type="Script" id=3]
+[ext_resource path="res://combat/collectables/skin/Crown.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -16,13 +17,14 @@ linear_damp = 1.0
 script = ExtResource( 1 )
 
 [node name="CollectableComponent" type="Node" parent="."]
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource( 2 )
-puzzle_anim = ExtResource( 3 )
+script = ExtResource( 3 )
+puzzle_anim = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
 

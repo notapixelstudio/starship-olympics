@@ -197,14 +197,17 @@ func _on_Ship_area_entered(area):
 		die()
 	elif entity is Entity and entity.has_node("CollectableComponent"):
 		assert(entity is Entity)
-		collect(entity)
+		try_collect(entity)
 
 func _on_Ship_body_entered(body):
 	if body.has_node('StunningComponent'):
 		stun()
 	
-func collect(entity: Entity):
-	if alive:
+func try_collect(entity: Entity):
+	var collectable = entity.get_node("CollectableComponent")
+	
+	if alive and collectable.is_collectable():
+		collectable.collect()
 		emit_signal("collected", self, entity)
 
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
