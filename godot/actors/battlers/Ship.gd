@@ -70,13 +70,8 @@ func _enter_tree():
 	sleeping=false
 	yield(skin, "stop_invincible")
 	invincible = false
-
-func _exit_tree():
-	queen = false
-	$Crown.visible = false
 	
 func _ready():
-	$Crown.visible = false
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	skin.invincible()
@@ -131,9 +126,6 @@ func _process(delta):
 	
 	control(delta)
 	
-	# keep the crown up
-	$Crown.rotation = -rotation
-	
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
@@ -169,11 +161,6 @@ func die():
 		yield(get_tree(), "idle_frame")
 		emit_signal("dead", self)
 		
-	
-func set_queen(value):
-	queen = value
-	$Crown.visible = queen
-	
 func stun():
 	stunned = true
 	stun_countdown = 0.3

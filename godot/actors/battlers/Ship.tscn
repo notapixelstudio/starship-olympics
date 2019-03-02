@@ -1,14 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=3]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=8]
-[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=9]
+[ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
+[ext_resource path="res://assets/audio/gameplay/fail.wav" type="AudioStream" id=5]
+[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
+[ext_resource path="res://combat/components/Royal.gd" type="Script" id=9]
+[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=11]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -35,28 +37,10 @@ contacts_reported = 10
 contact_monitor = true
 script = ExtResource( 1 )
 
-[node name="Entity2D" type="Node2D" parent="."]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-
-[node name="Stunning" type="Node" parent="Entity2D"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
-[node name="Trigger" type="Node" parent="Entity2D"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Graphics" parent="." instance=ExtResource( 6 )]
+[node name="Graphics" parent="." instance=ExtResource( 2 )]
 
 [node name="NearArea" type="Area2D" parent="."]
 
@@ -69,21 +53,44 @@ collision_layer = 8
 collision_mask = 5
 
 [node name="Entity" type="Node" parent="DetectionArea"]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 4 )
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 4 )
 
-[node name="Crown" type="Sprite" parent="."]
-visible = false
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 8 )
-offset = Vector2( 0, -150 )
-
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 5 )
+
+[node name="Entity2D" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="Stunning" type="Node" parent="Entity2D"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 8 )
+}
+
+[node name="Trigger" type="Node" parent="Entity2D"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 8 )
+}
+
+[node name="Royal" type="Node2D" parent="Entity2D"]
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+
+[node name="Crown" type="Sprite" parent="Entity2D/Royal"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+offset = Vector2( 0, -150 )
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
