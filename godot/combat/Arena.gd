@@ -204,4 +204,5 @@ func setup_ship(player:PlayerSpawner):
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("collected", self, "entity_taken")
+	ship.connect("collision", $StunManager, "ship_collided")
 	connect("screensize_changed", ship, "update_wraparound")
