@@ -197,10 +197,6 @@ func _on_Ship_area_entered(area):
 		die()
 	elif entity and entity.has("Collectable"):
 		try_collect(entity)
-
-signal collision
-func _on_Ship_body_entered(body):
-	emit_signal("collision", self, body)
 	
 func try_collect(entity: Entity):
 	if alive:
