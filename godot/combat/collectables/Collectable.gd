@@ -1,16 +1,14 @@
-extends Area2D
 tool
+extends Node2D
 
-class_name Collectable
-
-export var puzzle_anim : PackedScene 
+export var skin_anim : PackedScene 
 
 onready var skin = $Graphics
 
 func _ready():
-	initialize(puzzle_anim)
+	initialize(skin_anim)
 	
-func initialize(new_puzzle_anim : PackedScene):
-	puzzle_anim = new_puzzle_anim
-	$Graphics.add_child(puzzle_anim.instance())
+func initialize(anim : PackedScene):
+	skin_anim = anim
+	$Graphics.add_child(skin_anim.instance())
 	
