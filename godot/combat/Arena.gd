@@ -205,7 +205,6 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
-	connect("screensize_changed", ship, "update_wraparound")
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 func spawn_bomb(pos, impulse, ship):
