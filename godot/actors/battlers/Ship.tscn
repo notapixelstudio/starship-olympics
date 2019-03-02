@@ -51,11 +51,11 @@ shape = SubResource( 2 )
 
 [node name="Graphics" parent="." instance=ExtResource( 6 )]
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="NearArea" type="Area2D" parent="."]
 
-[node name="TriggerComponent" type="Node" parent="HurtBox"]
+[node name="TriggerComponent" type="Node" parent="NearArea"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
 shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -75,4 +75,4 @@ offset = Vector2( 0, -150 )
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 
-[connection signal="area_entered" from="HurtBox" to="." method="_on_Ship_area_entered"]
+[connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
