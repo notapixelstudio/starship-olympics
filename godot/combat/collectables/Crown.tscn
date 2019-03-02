@@ -20,6 +20,8 @@ radius = 62.4056
 [node name="Crown" type="RigidBody2D"]
 mass = 0.1
 physics_material_override = SubResource( 1 )
+collision_layer = 512
+collision_mask = 16
 gravity_scale = 0.0
 linear_damp = 1.0
 script = ExtResource( 1 )
