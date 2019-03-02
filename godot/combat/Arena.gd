@@ -63,10 +63,6 @@ func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 		return true
 	return false
 	
-func setup_ships():
-	for player in SpawnPlayers.get_children():
-		setup_ship(player)
-	
 func _ready():
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -97,7 +93,8 @@ func _ready():
 	for spawner in spawners:
 		update_spawner(spawner, i)
 		i+=1
-	setup_ships()
+		
+	spawn_ships()
 	
 	# set the game mode
 	game_mode = CrownMode.new()
@@ -180,10 +177,14 @@ func gameover(winner:String, scores:Dictionary):
 	print("gameover")
 	emit_signal("gameover", winner, scores)
 	
+func spawn_ships():
+	for player in SpawnPlayers.get_children():
+		spawn_ship(player)
+	
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
-func setup_ship(player:PlayerSpawner):
+func spawn_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
 		ship = cpu_ship_scene.instance()
