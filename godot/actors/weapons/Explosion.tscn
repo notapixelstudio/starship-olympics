@@ -23,6 +23,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Trigger" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
 [node name="Image" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Image"]
@@ -31,8 +37,6 @@ scale = Vector2( 0.012, 0.012 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="TriggerComponent" type="Node" parent="."]
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 

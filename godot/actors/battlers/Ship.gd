@@ -46,7 +46,6 @@ var queen:bool = false
 onready var player = name
 onready var skin = $Graphics
 
-const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/weapons/Trail.tscn')
 
 signal dead
@@ -130,6 +129,7 @@ func _integrate_forces(state):
 func control(_delta):
 	pass
 
+signal detection
 func _process(delta):
 	if not alive:
 		return
@@ -144,25 +144,22 @@ func _process(delta):
 		unstun()
 		
 	for body in $DetectionArea.get_overlapping_bodies():
-		if body.has_node("DetectorComponent"):
-			body.try_acquire_target(self)
-
+		emit_signal("detection", body, self)
+		
 func fire():
 	"""
 	Fire a bomb
 	"""
 	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
-	var bomb = bomb_scene.instance()
-	bomb.origin_ship = self
-	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
-	
 	# -300 is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
 	
-	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
-	arena.call_deferred("add_child", bomb)
+	arena.spawn_bomb(
+	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+	  Vector2(-charge_impulse,0).rotated(rotation),
+	  self
+	)
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false

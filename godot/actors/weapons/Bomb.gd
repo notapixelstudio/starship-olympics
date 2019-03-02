@@ -23,7 +23,7 @@ var target_timeout = TARGET_TIMEOUT
 var standalone = false
 const LIFETIME = 1.5
 
-signal detonate
+
 var explosion
 func _ready():
 	
@@ -33,6 +33,16 @@ func _ready():
 	
 	# sound
 	get_node("sound").play()
+	
+func initialize(pos : Vector2, impulse, ship):
+	position = pos
+	if impulse:
+		apply_impulse(Vector2(0,0), impulse)
+	if ship:
+		origin_ship = ship
+		player_id = ship.player
+	else:
+		standalone = true
 	
 func _physics_process(delta):
 	locking_timeout -= delta
@@ -92,9 +102,7 @@ func lose_target():
 	$AnimatedSprite.play('default')
 	timeout = LIFETIME
 	
-func _on_Bomb_area_entered(area):
-	# bombs always explode when they touch objects with the Trigger component
-	if area.has_node('TriggerComponent'):
-		emit_signal("detonate")
-		detonate()
-		
+signal near_area_entered
+func _on_NearArea_area_entered(area):
+	emit_signal("near_area_entered", area, self)
+	

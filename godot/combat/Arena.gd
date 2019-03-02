@@ -207,5 +207,14 @@ func setup_ship(player:PlayerSpawner):
 	ship.connect("dead", self, "ship_just_died")
 	#ship.connect("collected", self, "entity_taken")
 	ship.connect("near_area_entered", combat_manager, "ship_near_area_entered")
+	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	connect("screensize_changed", ship, "update_wraparound")
+	
+const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
+func spawn_bomb(pos, impulse, ship):
+	var bomb = bomb_scene.instance()
+	bomb.initialize(pos, impulse, ship)
+	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
+	Battlefield.add_child(bomb)
+	
