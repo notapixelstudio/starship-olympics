@@ -186,6 +186,7 @@ func gameover(winner:String, scores:Dictionary):
 	print("gameover")
 	emit_signal("gameover", winner, scores)
 	
+onready var stun_manager = $StunManager
 func setup_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
@@ -204,4 +205,5 @@ func setup_ship(player:PlayerSpawner):
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("collected", self, "entity_taken")
+	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	connect("screensize_changed", ship, "update_wraparound")

@@ -191,16 +191,12 @@ func unstun():
 	stun_countdown = 0
 	
 func _on_Ship_area_entered(area):
-	var entity = ECM.find_base_entity(area)
+	var entity = ECM.E(area)
 	
 	if area.has_node('DeadlyComponent') and not invincible:
 		die()
 	elif entity and entity.has("Collectable"):
 		try_collect(entity)
-
-func _on_Ship_body_entered(body):
-	if body.has_node('StunningComponent'):
-		stun()
 	
 func try_collect(entity: Entity):
 	if alive:
