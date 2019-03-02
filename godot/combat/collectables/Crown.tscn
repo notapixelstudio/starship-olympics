@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://combat/collectables/Crown.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://combat/collectables/Collectable.gd" type="Script" id=6]
 [ext_resource path="res://combat/collectables/skin/Crown.tscn" type="PackedScene" id=7]
 
+[sub_resource type="PhysicsMaterial" id=3]
+bounce = 100.0
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
 
@@ -15,6 +18,8 @@ radius = 40.0
 radius = 62.4056
 
 [node name="Crown" type="RigidBody2D"]
+mass = 0.1
+physics_material_override = SubResource( 3 )
 gravity_scale = 0.0
 linear_damp = 1.0
 script = ExtResource( 1 )
