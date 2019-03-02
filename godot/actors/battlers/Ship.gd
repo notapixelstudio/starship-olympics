@@ -51,7 +51,7 @@ const trail_scene = preload('res://actors/weapons/Trail.tscn')
 signal dead
 signal stop_invincible
 var invincible : bool
-signal collectable_released
+
 signal collected
 
 #func update_wraparound(screen_size):
@@ -190,17 +190,9 @@ func unstun():
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
-	#var entity = ECM.E(area)
-	
-	#if area.has_node('DeadlyComponent') and not invincible:
-	#	die()
-	#elif entity and entity.has("Collectable"):
-	#	try_collect(entity)
-	
-#func try_collect(entity: Entity):
-#	if alive:
-#		entity.get_node("Collectable").disable()
-#		emit_signal("collected", self, entity.get_host())
+
+func is_alive():
+	return alive
 
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""

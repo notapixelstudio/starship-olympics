@@ -175,19 +175,14 @@ func ship_just_died(ship: Ship):
 	
 	# respawn
 	Battlefield.call_deferred("add_child", ship)
-			
 	
-func entity_taken(ship: Ship, entity: Entity):
-	# TODO: JUST FOR CROWN
-	game_mode.crown_taken(ship)
-	entity.call_deferred("queue_free")
-
 func gameover(winner:String, scores:Dictionary):
 	print("gameover")
 	emit_signal("gameover", winner, scores)
 	
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
+onready var collect_manager = $CollectManager
 func setup_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
@@ -205,8 +200,8 @@ func setup_ship(player:PlayerSpawner):
 	Battlefield.add_child(ship)
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
-	#ship.connect("collected", self, "entity_taken")
 	ship.connect("near_area_entered", combat_manager, "ship_near_area_entered")
+	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	connect("screensize_changed", ship, "update_wraparound")

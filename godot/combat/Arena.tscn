@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=3]
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=4]
-[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=7]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=9]
+[ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=5]
+[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=8]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=10]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
@@ -21,6 +22,12 @@ __meta__ = {
 
 [node name="StunManager" type="Node" parent="."]
 script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="CollectManager" type="Node" parent="."]
+script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -41,12 +48,12 @@ layer = -1
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GetReady" parent="Pause" instance=ExtResource( 5 )]
+[node name="GetReady" parent="Pause" instance=ExtResource( 6 )]
 visible = false
 
-[node name="HUD" parent="Pause" instance=ExtResource( 6 )]
+[node name="HUD" parent="Pause" instance=ExtResource( 7 )]
 
-[node name="Pause" parent="Pause" instance=ExtResource( 7 )]
+[node name="Pause" parent="Pause" instance=ExtResource( 8 )]
 visible = false
 
 [node name="CameraZoom" parent="Pause/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="1"]
@@ -69,13 +76,13 @@ elem_type = 2
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 8 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 9 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 debug_mode = false
 enabled = true
 
