@@ -190,6 +190,7 @@ func spawn_ship(player:PlayerSpawner):
 		ship = cpu_ship_scene.instance()
 	else:
 		ship = ship_scene.instance()
+		
 	ship.arena = self
 	ship.controls = player.controls
 	ship.species_template = player.species_template
@@ -198,7 +199,9 @@ func spawn_ship(player:PlayerSpawner):
 	ship.height = height
 	ship.width = width
 	ship.name = player.name
+	
 	Battlefield.add_child(ship)
+	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("near_area_entered", combat_manager, "ship_near_area_entered")
@@ -206,10 +209,15 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	
+	return ship
+	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 func spawn_bomb(pos, impulse, ship):
 	var bomb = bomb_scene.instance()
 	bomb.initialize(pos, impulse, ship)
+	
 	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
+	
 	Battlefield.add_child(bomb)
 	
+	return bomb

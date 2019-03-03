@@ -61,7 +61,7 @@ func _physics_process(delta):
 		elif not standalone:
 			call_deferred("queue_free")
 		
-	
+signal detonate
 func detonate():
 	explosion.player_id = player_id
 	explosion.position = position
