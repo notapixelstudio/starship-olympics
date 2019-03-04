@@ -46,19 +46,13 @@ var queen:bool = false
 onready var player = name
 onready var skin = $Graphics
 
-const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/weapons/Trail.tscn')
 
 signal dead
 signal stop_invincible
 var invincible : bool
-signal collectable_released
-signal collected
 
-#func update_wraparound(screen_size):
-#	# width = screen_size.x
-#	# height = screen_size.y
-	
+signal collected
 
 func initialize():
 	pass
@@ -76,13 +70,8 @@ func _enter_tree():
 	sleeping=false
 	yield(skin, "stop_invincible")
 	invincible = false
-
-func _exit_tree():
-	queen = false
-	$Crown.visible = false
 	
 func _ready():
-	$Crown.visible = false
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	skin.invincible()
@@ -130,39 +119,34 @@ func _integrate_forces(state):
 func control(_delta):
 	pass
 
+signal detection
 func _process(delta):
 	if not alive:
 		return
 	
 	control(delta)
 	
-	# keep the crown up
-	$Crown.rotation = -rotation
-	
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
 		
 	for body in $DetectionArea.get_overlapping_bodies():
-		if body.has_node("DetectorComponent"):
-			body.try_acquire_target(self)
-
+		emit_signal("detection", body, self)
+		
 func fire():
 	"""
 	Fire a bomb
 	"""
 	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
-	var bomb = bomb_scene.instance()
-	bomb.origin_ship = self
-	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
-	
 	# -300 is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
 	
-	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
-	arena.call_deferred("add_child", bomb)
+	arena.spawn_bomb(
+	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+	  Vector2(-charge_impulse,0).rotated(rotation),
+	  self
+	)
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
@@ -177,11 +161,6 @@ func die():
 		yield(get_tree(), "idle_frame")
 		emit_signal("dead", self)
 		
-	
-func set_queen(value):
-	queen = value
-	$Crown.visible = queen
-	
 func stun():
 	stunned = true
 	stun_countdown = 0.3
@@ -190,18 +169,12 @@ func unstun():
 	stunned = false
 	stun_countdown = 0
 	
-func _on_Ship_area_entered(area):
-	var entity = ECM.E(area)
-	
-	if area.has_node('DeadlyComponent') and not invincible:
-		die()
-	elif entity and entity.has("Collectable"):
-		try_collect(entity)
-	
-func try_collect(entity: Entity):
-	if alive:
-		entity.get_node("Collectable").disable()
-		emit_signal("collected", self, entity.get_host())
+signal near_area_entered
+func _on_NearArea_area_entered(area):
+	emit_signal("near_area_entered", area, self)
+
+func is_alive():
+	return alive
 
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""
