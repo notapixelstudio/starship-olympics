@@ -1,7 +1,6 @@
 extends Position2D
 
 onready var anim = $AnimationPlayer
-onready var shield = $Shield
 signal completed
 	
 	

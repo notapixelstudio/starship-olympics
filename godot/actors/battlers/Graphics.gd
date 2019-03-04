@@ -12,7 +12,7 @@ func _enter_tree():
 	$Particles2D.amount = 512
 	
 func _exit_tree():
-	$Particles2D.amount = 0
+	$Particles2D.amount = 1
 	
 signal stop_invincible
 func initialize():
