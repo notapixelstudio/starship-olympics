@@ -8,7 +8,8 @@ const LEVEL_PATH = "res://combat/levels/"
 var scene_in_viewport : Node
 onready var level_scene = $panel/ViewportContainer/Viewport
 signal arena_selected
-var inititi = false
+var back = false
+
 func _ready():
 	# if you want to make the ships move. Comment the following lines
 	get_tree().paused = true
@@ -17,6 +18,9 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
+		emit_signal("arena_selected")
+	elif event.is_action_pressed("ui_cancel"):
+		back = true
 		emit_signal("arena_selected")
 		
 func _initialize(players_scene:String=""):

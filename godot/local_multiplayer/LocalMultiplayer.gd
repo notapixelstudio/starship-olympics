@@ -55,8 +55,14 @@ func combat(selected_players: Array):
 	level_selection._initialize(str(num_players))
 	add_child(level_selection)
 	yield(level_selection, "arena_selected")
+	print("back is ", level_selection.back)
+	if level_selection.back:
+		level_selection.queue_free()
+		print("back is ", level_selection.back)
+		return
+	print("back is ", level_selection.back)
 	var level_path = combat_scene + level_selection.current_level
-	remove_child(level_selection)
+	level_selection.queue_free()
 	# END LEVEL SELECTION
 	selected_level = load(level_path)
 	combat = selected_level.instance()
