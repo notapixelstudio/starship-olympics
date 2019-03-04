@@ -69,16 +69,16 @@ func _input(event):
 	if disabled:
 		return
 	if selected :
-		if event.is_action_pressed(controls+"_fire"):
+		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")
-		elif event.is_action_pressed(controls+"_action"):
+		elif event.is_action_pressed(controls+"_cancel"):
 			deselect()
 	elif joined:
 		if event.is_action_pressed(controls+"_right") and not selected:
 			_on_Next_pressed()
 		if event.is_action_pressed(controls+"_left") and not selected:
 			_on_Previous_pressed()
-		if event.is_action_pressed(controls+"_fire") and not selected:
+		if event.is_action_pressed(controls+"_accept") and not selected:
 			select_character()
 
 
