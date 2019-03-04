@@ -15,7 +15,7 @@ func _ready():
 	get_tree().paused = true
 	#_initialize()
 	# let's wait a bit to avoid the immediate selection of the arena
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	can_choose = true
 	$panel/Element.grab_focus()
 
