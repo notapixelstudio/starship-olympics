@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/weapons/Bomb.gd"
 }, {
-"base": "Area2D",
-"class": "Collectable",
-"language": "GDScript",
-"path": "res://combat/collectables/Collectable.gd"
-}, {
 "base": "Node",
 "class": "Component",
 "language": "GDScript",
@@ -108,7 +103,6 @@ _global_script_class_icons={
 "AudioLibrary": "",
 "BasicScreen": "",
 "Bomb": "",
-"Collectable": "",
 "Component": "",
 "Controls": "",
 "CrownMode": "",
@@ -384,6 +378,13 @@ pause={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":3,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="ships"
+2d_physics/layer_3="bombs"
+2d_physics/layer_5="walls"
+2d_physics/layer_10="crown"
 
 [logging]
 
