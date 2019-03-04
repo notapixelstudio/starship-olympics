@@ -31,7 +31,14 @@ func _ready():
 	gameover_screen.hide()
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
+	selection_screen.connect("back", self, "back")
 
+func back():
+	# This goes back to the previous scene
+	# TODO: maybe this is not the right way
+	get_tree().change_scene(global.from_scene)
+	
+	
 func combat(selected_players: Array):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
@@ -55,12 +62,10 @@ func combat(selected_players: Array):
 	level_selection._initialize(str(num_players))
 	add_child(level_selection)
 	yield(level_selection, "arena_selected")
-	print("back is ", level_selection.back)
 	if level_selection.back:
 		level_selection.queue_free()
-		print("back is ", level_selection.back)
 		return
-	print("back is ", level_selection.back)
+
 	var level_path = combat_scene + level_selection.current_level
 	level_selection.queue_free()
 	# END LEVEL SELECTION

@@ -11,6 +11,7 @@ var available_species : Dictionary
 var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
+signal back
 
 var selected_index = []
 var players_controls : Array
@@ -159,3 +160,9 @@ func selected(species:SpeciesTemplate):
 func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if len(get_players())<=0:
+			emit_signal("back")
+			
