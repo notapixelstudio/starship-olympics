@@ -9,16 +9,20 @@ var scene_in_viewport : Node
 onready var level_scene = $panel/ViewportContainer/Viewport
 signal arena_selected
 var back = false
-
+var can_choose = false
 func _ready():
 	# if you want to make the ships move. Comment the following lines
 	get_tree().paused = true
 	#_initialize()
+	# let's wait a bit to avoid the immediate selection of the arena
+	yield(get_tree().create_timer(1.5), "timeout")
+	can_choose = true
 	$panel/Element.grab_focus()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		emit_signal("arena_selected")
+		if can_choose:
+			emit_signal("arena_selected")
 	elif event.is_action_pressed("ui_cancel"):
 		back = true
 		emit_signal("arena_selected")
