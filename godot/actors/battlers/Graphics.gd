@@ -8,12 +8,7 @@ onready var anim = $AnimationPlayer
 var battler_anim
 
 var position_start = Vector2()
-func _enter_tree():
-	$Particles2D.amount = 512
-	
-func _exit_tree():
-	$Particles2D.amount = 1
-	
+
 signal stop_invincible
 func initialize():
 	for child in get_children():

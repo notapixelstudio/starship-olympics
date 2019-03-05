@@ -23,9 +23,11 @@ var target_timeout = TARGET_TIMEOUT
 var standalone = false
 const LIFETIME = 1.5
 
+var entity : Entity
 
 var explosion
 func _ready():
+	entity = ECM.E(self)
 	
 	# bombs life
 	timeout = LIFETIME
@@ -48,7 +50,7 @@ func _physics_process(delta):
 	locking_timeout -= delta
 	
 	if target != null and target.get_ref() != null:
-		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50) # need a meaningful way to do this
+		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*50*int(entity.has('Thrusters'))) # need a meaningful way to do this
 		
 		if target_timeout > 0:
 			target_timeout -= delta

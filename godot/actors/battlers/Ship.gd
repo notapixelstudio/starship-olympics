@@ -54,6 +54,8 @@ var invincible : bool
 
 signal collected
 
+var entity : Entity
+
 func initialize():
 	pass
 
@@ -75,6 +77,7 @@ func _ready():
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	skin.invincible()
+	entity = ECM.E(self)
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -86,12 +89,12 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
-		add_central_force(target_velocity*thrust*int(not charging and not stunned))
+		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
 		
 	set_applied_torque(rotation_dir * 75000)
 	

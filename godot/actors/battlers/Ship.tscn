@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://combat/components/Royal.gd" type="Script" id=9]
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=11]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -25,9 +27,36 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 300.0
 
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.0179949, 0.177378, 0.66838 )
+colors = PoolColorArray( 1, 1, 1, 0.77498, 0.521505, 0.966356, 1, 0.80498, 0.241273, 0.578066, 1, 0.218152, 0.137097, 0.43372, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.021267, 0.31667 ), -0.982902, -0.982902, 0, 0, Vector2( 1, 0.115879 ), 0.117166, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 4
+emission_point_count = 1
+flag_align_y = true
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.6
+scale_random = 0.5
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
+
 [node name="Ship" type="RigidBody2D" groups=[
-"players",
 "in_camera",
+"players",
 ]]
 collision_mask = 19
 physics_material_override = SubResource( 1 )
@@ -92,5 +121,20 @@ __meta__ = {
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 11 )
 offset = Vector2( 0, -150 )
+
+[node name="Thrusters" type="Node2D" parent="Entity2D"]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+
+[node name="Particles2D" type="Particles2D" parent="Entity2D/Thrusters"]
+show_behind_parent = true
+position = Vector2( -32, 0 )
+amount = 512
+lifetime = 5.0
+local_coords = false
+process_material = SubResource( 9 )
+texture = ExtResource( 13 )
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
