@@ -143,7 +143,7 @@ func fire():
 	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
 	# -300 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-350),0).rotated(rotation)) # recoil
 	
 	arena.spawn_bomb(
 	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
