@@ -108,7 +108,6 @@ margin_right = 1046.0
 margin_bottom = 535.0
 
 [node name="Fight" type="NinePatchRect" parent="."]
-editor/display_folded = true
 margin_left = 381.0
 margin_top = 650.0
 margin_right = 822.0
@@ -120,7 +119,7 @@ patch_margin_bottom = 4
 
 [node name="Sprite" type="Sprite" parent="Fight"]
 position = Vector2( 215, 24 )
-scale = Vector2( 0.555293, 0.555293 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fight/Sprite"]
@@ -166,4 +165,6 @@ points = PoolVector2Array( 740, 676, 1280, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
+
+[node name="Tween" type="Tween" parent="."]
 
