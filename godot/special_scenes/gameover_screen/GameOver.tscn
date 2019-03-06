@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://special_scenes/gameover_screen/GameOverScene.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=2]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
 [ext_resource path="res://local_multiplayer/Character.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/theme/utilities/fonts/uroob.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_42.tres" type="DynamicFont" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "transition"
@@ -34,6 +34,7 @@ margin_top = 520.0
 margin_right = 1252.0
 margin_bottom = 699.0
 mouse_filter = 2
+theme = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -41,21 +42,23 @@ __meta__ = {
 [node name="Rematch" type="Button" parent="VBoxContainer"]
 margin_right = 222.0
 margin_bottom = 57.0
-theme = ExtResource( 2 )
+size_flags_vertical = 3
 text = "Rematch"
 
 [node name="Menu" type="Button" parent="VBoxContainer"]
 margin_top = 61.0
 margin_right = 222.0
 margin_bottom = 118.0
-theme = ExtResource( 2 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Back to menu"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 margin_top = 122.0
 margin_right = 222.0
 margin_bottom = 179.0
-theme = ExtResource( 2 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Quit"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -82,9 +85,9 @@ rect_min_size = Vector2( 200, 0 )
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 margin_left = 204.0
-margin_top = 149.0
+margin_top = 174.0
 margin_right = 1194.0
-margin_bottom = 250.0
+margin_bottom = 226.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Someone WON!"
