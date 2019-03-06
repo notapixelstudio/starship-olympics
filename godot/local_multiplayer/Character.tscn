@@ -4,13 +4,14 @@
 [ext_resource path="res://assets/sprites/species/trixens1_character.png" type="Texture" id=2]
 
 [node name="Character" type="Control"]
-margin_right = 210.0
-margin_bottom = 315.0
+margin_right = 160.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 160, 350 )
 rect_clip_content = true
 script = ExtResource( 1 )
 
 [node name="Character" type="Sprite" parent="."]
-position = Vector2( 108, 326 )
-scale = Vector2( 0.7, 0.7 )
+position = Vector2( 78, 225 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 

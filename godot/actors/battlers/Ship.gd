@@ -7,6 +7,10 @@ and its keyboard control
 """
 class_name Ship
 
+# statistics
+var kills = 0
+var deaths = 0
+
 export (String) var controls = "kb1"
 export (Resource) var species_template
 export var absolute_controls : bool= true
@@ -159,6 +163,7 @@ func fire():
 func die():
 	if alive and not invincible:
 		alive = false
+		deaths += 1
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")

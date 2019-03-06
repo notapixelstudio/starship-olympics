@@ -150,7 +150,6 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-var ships
 func ship_just_died(ship: Ship):
 	"""
 	remove from it, and reput it after a bit
@@ -159,7 +158,6 @@ func ship_just_died(ship: Ship):
 	# check if we need to lose the crown
 	if game_mode.queen != null and ship == game_mode.queen:
 		game_mode.crown_lost()
-		print("SHIP IS ALIVE? ", ship.alive)
 		var crown = crown_scene.instance()
 		crown.linear_velocity = ship.linear_velocity
 		crown.position = ship.position
