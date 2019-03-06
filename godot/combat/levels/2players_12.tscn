@@ -17,15 +17,12 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Ice" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1000, 950 )
+scale = Vector2( 8, 2 )
 
-[node name="Ice2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 2200, 950 )
-
-[node name="Crown" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( 1600, 950 )
 
-[node name="OutsideWall" parent="Battlefield" index="3" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 5 )]
 position = Vector2( 1600, 950 )
 points = PoolVector2Array( -1300, -400, -900, -800, 900, -800, 1300, -400, 1300, 400, 900, 800, -900, 800, -1300, 400 )
 hollow = true
@@ -51,7 +48,5 @@ smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="entered" from="Battlefield/Ice" to="FieldsManager" method="_on_Ice_entered"]
 [connection signal="exited" from="Battlefield/Ice" to="FieldsManager" method="_on_Ice_exited"]
-[connection signal="entered" from="Battlefield/Ice2" to="FieldsManager" method="_on_Ice_entered"]
-[connection signal="exited" from="Battlefield/Ice2" to="FieldsManager" method="_on_Ice_exited"]
 
 [editable path="Pause/Pause"]
