@@ -20,7 +20,7 @@ func _ready():
 	# disable all buttons at first
 	for button in buttons.get_children():
 		button.disabled = true
-	Soundtrack.play("Lobby", true)
+	Soundtrack.play("Lobby5", true)
 	initialize()
 
 func _on_Options_pressed():

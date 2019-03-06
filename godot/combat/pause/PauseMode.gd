@@ -3,6 +3,7 @@ extends Control
 onready var buttons = $GuiElements/Buttons
 onready var pause_window = $Window
 onready var gui = $GuiElements
+var unpause_ready = false
 
 func _ready():
 	gui.visible = false
@@ -18,9 +19,17 @@ func start():
 	yield($Tween, "tween_completed")
 	gui.visible = true
 	buttons.enable()
+	unpause_ready = true
 
-
+func _unhandled_input(event):
+	if unpause_ready and event.is_action_pressed("pause"):
+		unpause()
+		
+	
 func _on_Continue_pressed():
+	unpause()
+	
+func unpause():
 	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0.75), Vector2(0.75, 0), 0.1,
 	 Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
@@ -28,6 +37,7 @@ func _on_Continue_pressed():
 	gui.visible = false
 	yield($Tween, "tween_completed")
 	visible = false
+	unpause_ready = false
 	get_tree().paused = false
 
 func _on_Restart_pressed():

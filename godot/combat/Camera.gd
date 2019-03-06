@@ -37,10 +37,10 @@ func _ready():
 	if enabled:
 		current = true
 	viewport_rect = get_viewport_rect()
+	viewport_rect.size.y -= marginY/2
 	
 func initialize(rect_extention:Vector2, _zoom_max:float):
 	ships = get_tree().get_nodes_in_group("players")
-	zoomMax = _zoom_max
 	arena_size = rect_extention
 	margin_min = arena_size/2
 	offset = arena_size/2
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 		previous_dir.y = int(int(offset_to_be.y) > int(offset.y))
 
 		offset.x = lerp(offset.x, offset_to_be.x, ZOOM_SPEED)
-		offset.y = lerp(offset.y, offset_to_be.y, ZOOM_SPEED)
+		offset.y = lerp(offset.y, offset_to_be.y-marginY, ZOOM_SPEED)
 		#offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
 		#offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
 

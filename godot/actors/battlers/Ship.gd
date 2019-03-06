@@ -46,35 +46,38 @@ var queen:bool = false
 onready var player = name
 onready var skin = $Graphics
 
-const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const trail_scene = preload('res://actors/weapons/Trail.tscn')
 
 signal dead
 signal stop_invincible
 var invincible : bool
-signal collectable_released
+
 signal collected
 
-#func update_wraparound(screen_size):
-#	# width = screen_size.x
-#	# height = screen_size.y
-	
+var entity : Entity
 
 func initialize():
 	pass
+
+func _enter_tree():
+	charging = false
+	charge = 0
+	alive = true
+	# Invincible for the firs MAX seconds
+	invincible = true
+	sleeping=true
+	if skin:
+		skin.invincible()
+	yield(get_tree().create_timer(0.5), "timeout")
+	sleeping=false
+	yield(skin, "stop_invincible")
+	invincible = false
 	
 func _ready():
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
-	
-	# Invincible for the firs MAX seconds
-	invincible = true
-	sleeping=true
-	yield(get_tree().create_timer(0.5), "timeout")
-	sleeping=false
 	skin.invincible()
-	yield(skin, "stop_invincible")
-	invincible = false
+	entity = ECM.E(self)
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -86,12 +89,12 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
-		add_central_force(target_velocity*thrust*int(not charging and not stunned))
+		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
 		
 	set_applied_torque(rotation_dir * 75000)
 	
@@ -119,35 +122,34 @@ func _integrate_forces(state):
 func control(_delta):
 	pass
 
+signal detection
 func _process(delta):
 	if not alive:
 		return
 	
 	control(delta)
 	
-	# keep the crown up
-	$Crown.rotation = -rotation
-	
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
-
+		
+	for body in $DetectionArea.get_overlapping_bodies():
+		emit_signal("detection", body, self)
+		
 func fire():
 	"""
 	Fire a bomb
 	"""
 	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
 	
-	var bomb = bomb_scene.instance()
-	bomb.origin_ship = self
-	bomb.player_id = player
-	bomb.apply_impulse(Vector2(0,0), Vector2(-charge_impulse,0).rotated(rotation)) # the more charge the stronger the impulse
-	
 	# -300 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-300),0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-350),0).rotated(rotation)) # recoil
 	
-	bomb.position = position + Vector2(-BOMB_OFFSET,0).rotated(rotation) # this keeps the bomb away from the ship
-	get_parent().add_child(bomb)
+	arena.spawn_bomb(
+	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+	  Vector2(-charge_impulse,0).rotated(rotation),
+	  self
+	)
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
@@ -156,20 +158,12 @@ func fire():
 
 func die():
 	if alive and not invincible:
-		sleeping = true
-		get_node("sound").play()
 		alive = false
-		emit_signal("dead", self.name, self.position)
-		skin.play_death()
+		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
-		sleeping = true
-		yield(get_node("sound"), "finished")
-		queue_free()
-	
-func set_queen(value):
-	queen = value
-	$Crown.visible = queen
-	
+		yield(get_tree(), "idle_frame")
+		emit_signal("dead", self)
+		
 func stun():
 	stunned = true
 	stun_countdown = 0.3
@@ -178,32 +172,12 @@ func unstun():
 	stunned = false
 	stun_countdown = 0
 	
-func _on_Ship_area_entered(area):
-	if area.has_node('DeadlyComponent') and not invincible:
-		die()
-	elif area.has_node("CollectableComponent"):
-		assert(area is Collectable)
-		collect(area)
+signal near_area_entered
+func _on_NearArea_area_entered(area):
+	emit_signal("near_area_entered", area, self)
 
-func _on_Ship_body_entered(body):
-	if body.has_node('StunningComponent'):
-		stun()
-	
-func _on_DetectionArea_body_entered(body):
-	if body.has_node('DetectorComponent'):
-		body.try_acquire_target(self)
-func _on_DetectionArea_body_exited(body):
-	if body.has_node('DetectorComponent'):
-		body.try_lose_target(self)
-
-func _on_DetectionArea_area_entered(area):
-	if area.has_node("CollectableComponent"):
-		assert(area is Collectable)
-		#collect(area)
-
-func collect(area:Collectable):
-	if alive:
-		emit_signal("collected", self)
+func is_alive():
+	return alive
 
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""

@@ -21,14 +21,15 @@ onready var camera = $Camera
 onready var hud = $Pause/HUD
 onready var getready = $Pause/GetReady
 onready var pause = $Pause/Pause
-# Crown might be null, if someone has it or ... if the mode is not crownmode
-onready var crown = $Battlefield/Crown
 
+# Crown might be null, if someone has it or ... if the mode is not crownmode
+const crown_scene = preload("res://combat/collectables/Crown.tscn")
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
+signal rematch
 
 var spawners = []
 var mockup = false
@@ -62,10 +63,6 @@ func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 		return true
 	return false
 	
-func setup_ships():
-	for player in SpawnPlayers.get_children():
-		setup_ship(player)
-	
 func _ready():
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -96,7 +93,8 @@ func _ready():
 	for spawner in spawners:
 		update_spawner(spawner, i)
 		i+=1
-	setup_ships()
+		
+	spawn_ships()
 	
 	# set the game mode
 	game_mode = CrownMode.new()
@@ -122,7 +120,7 @@ func _process(delta):
 	game_mode.update(delta)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("pause"):
 		pause.start()
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
@@ -153,12 +151,19 @@ func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
 var ships
-func ship_just_died(ship_name: String, ship_position:Vector2):
+func ship_just_died(ship: Ship):
+	"""
+	remove from it, and reput it after a bit
+	"""
+	Battlefield.call_deferred("remove_child", ship)
 	# check if we need to lose the crown
-	if game_mode.queen != null and ship_name == game_mode.queen.name:
+	if game_mode.queen != null and ship == game_mode.queen:
 		game_mode.crown_lost()
-		crown.position = ship_position
-		$Battlefield.add_child(crown)
+		print("SHIP IS ALIVE? ", ship.alive)
+		var crown = crown_scene.instance()
+		crown.linear_velocity = ship.linear_velocity
+		crown.position = ship.position
+		Battlefield.call_deferred("add_child", crown)
 		
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -166,26 +171,26 @@ func ship_just_died(ship_name: String, ship_position:Vector2):
 		return
 	
 	# respawn
-	var player_id = ship_name
-	for player in SpawnPlayers.get_children():
-		if player.name.to_lower() == ship_name.to_lower():
-			setup_ship(player)
-			
+	Battlefield.call_deferred("add_child", ship)
 	
-func crown_taken(ship):
-	game_mode.crown_taken(ship)
-	$Battlefield.remove_child(crown)
-
 func gameover(winner:String, scores:Dictionary):
 	print("gameover")
 	emit_signal("gameover", winner, scores)
 	
-func setup_ship(player:PlayerSpawner):
+func spawn_ships():
+	for player in SpawnPlayers.get_children():
+		spawn_ship(player)
+	
+onready var combat_manager = $CombatManager
+onready var stun_manager = $StunManager
+onready var collect_manager = $CollectManager
+func spawn_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
 		ship = cpu_ship_scene.instance()
 	else:
 		ship = ship_scene.instance()
+		
 	ship.arena = self
 	ship.controls = player.controls
 	ship.species_template = player.species_template
@@ -194,8 +199,25 @@ func setup_ship(player:PlayerSpawner):
 	ship.height = height
 	ship.width = width
 	ship.name = player.name
+	
 	Battlefield.add_child(ship)
+	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
-	ship.connect("collected", self, "crown_taken")
-	connect("screensize_changed", ship, "update_wraparound")
+	ship.connect("near_area_entered", combat_manager, "ship_near_area_entered")
+	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
+	ship.connect("detection", combat_manager, "ship_within_detection_distance")
+	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
+	
+	return ship
+	
+const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
+func spawn_bomb(pos, impulse, ship):
+	var bomb = bomb_scene.instance()
+	bomb.initialize(pos, impulse, ship)
+	
+	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
+	
+	Battlefield.add_child(bomb)
+	
+	return bomb

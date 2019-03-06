@@ -1,4 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=1]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=2]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=3]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=4]
 
 [sub_resource type="SegmentShape2D" id=1]
 b = Vector2( 0, 1900 )
@@ -9,9 +14,19 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
 
-[node name="TriggerComponent" type="Node" parent="Area2D"]
+[node name="Trigger" type="Node" parent="Entity"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )

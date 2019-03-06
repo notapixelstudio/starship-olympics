@@ -5,7 +5,7 @@ onready var gameover_screen = $GameOver/GameOverScreen
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 var combat = null
-
+var selected_level
 # dictionary of InfoPlayer of players that will actually play
 var players : Dictionary
 
@@ -31,7 +31,14 @@ func _ready():
 	gameover_screen.hide()
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
+	selection_screen.connect("back", self, "back")
 
+func back():
+	# This goes back to the previous scene
+	# TODO: maybe this is not the right way
+	get_tree().change_scene(global.from_scene)
+	
+	
 func combat(selected_players: Array):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
@@ -52,14 +59,18 @@ func combat(selected_players: Array):
 		i +=1
 	# LEVEL SELECTION
 	var level_selection = level_selection_scene.instance()
-	add_child(level_selection)
 	level_selection._initialize(str(num_players))
+	add_child(level_selection)
 	yield(level_selection, "arena_selected")
+	if level_selection.back:
+		level_selection.queue_free()
+		return
+
 	var level_path = combat_scene + level_selection.current_level
-	remove_child(level_selection)
+	level_selection.queue_free()
 	# END LEVEL SELECTION
-	var level = load(level_path)
-	combat = level.instance()
+	selected_level = load(level_path)
+	combat = selected_level.instance()
 	remove_child(selection_screen)
 	combat.initialize(spawners)
 	combat.connect("gameover", self, "gameover")
@@ -104,9 +115,7 @@ func _on_GameOverScreen_rematch():
 	var spawners = []
 	for player in players:
 		spawners.append(from_info_to_spawner(players[player]))
-	var level_path = combat_scene + str(len(spawners)) + "players.tscn"
-	var level = load(level_path)
-	combat = level.instance()
+	combat = selected_level.instance()
 	# remove_child(selection_screen)
 	combat.initialize(spawners)
 	combat.connect("gameover", self, "gameover")
