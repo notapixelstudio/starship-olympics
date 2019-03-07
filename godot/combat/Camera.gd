@@ -21,6 +21,7 @@ var rect_extents = Vector2()
 var arena_size = Vector2()
 var zoomMax = 1.0
 const PADDING = 200
+# TODO: ships is not a good name
 var ships
 const FRAME_DELAY = 10
 var wait_in_frame = FRAME_DELAY
@@ -36,6 +37,14 @@ const IN_CAMERA = "in_camera"
 func _ready():
 	if enabled:
 		current = true
+	ships = get_tree().get_nodes_in_group(IN_CAMERA)
+	if len(ships):
+		camera_rect = Rect2(ships[0].global_position, Vector2())
+	for ship in ships:
+		print(ship.name, ship.position)
+		camera_rect = camera_rect.expand(ship.global_position)
+
+	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	viewport_rect = get_viewport_rect()
 	viewport_rect.size.y -= marginY/2
 	

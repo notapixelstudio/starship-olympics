@@ -108,13 +108,12 @@ func _ready():
 	hud.initialize(game_mode)
 	
 	camera.initialize(compute_arena_size(), size_multiplier)
-	"""
+	
 	get_tree().paused = true
 	getready.start()
 	yield(getready, "finished")
 	get_tree().paused = false
-	"""
-
+	
 	
 func _process(delta):	
 	game_mode.update(delta)
