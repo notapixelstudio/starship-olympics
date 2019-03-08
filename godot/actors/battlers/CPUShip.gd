@@ -2,6 +2,8 @@ extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
 
+const MAX_DIR_WAIT = 20
+var wait_direction = MAX_WAIT
 var steering = Vector2()
 var front = Vector2()
 
@@ -15,11 +17,11 @@ static func which_quadrant(angle:float):
 	return int(tmp/(PI/2))%4+1
 	
 
-func _input(event):
-	if event.is_action_pressed("kb1_fire"):
-		alive = not alive
-const MAX_DIR_WAIT = 20
-var wait_direction = MAX_WAIT
+func _input(_event):
+	pass
+	
+
+
 func choose_dir(target:Node2D):
 	var direction_to_take = 0
 	if not target or not target.is_inside_tree():
