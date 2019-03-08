@@ -16,13 +16,15 @@ static func which_quadrant(angle:float):
 		 tmp += (2*PI)
 	return int(tmp/(PI/2))%4+1
 	
-
 func _input(_event):
 	pass
-	
 
 
 func choose_dir(target:Node2D):
+	"""
+	# Follow the Crown or the crown holder if you are not it
+	# if you are just run away
+	"""
 	var direction_to_take = 0
 	if not target or not target.is_inside_tree():
 		if wait_direction < 0:
