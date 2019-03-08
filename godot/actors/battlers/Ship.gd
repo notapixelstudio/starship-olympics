@@ -21,8 +21,10 @@ var rotation_dir = 0
 
 var charge = 0
 const max_steer_force = 2500
-const MAX_CHARGE = 1
-const MAX_OVERCHARGE = 2
+const MAX_CHARGE = 0.6
+const MAX_OVERCHARGE = 1.3
+const CHARGE_BASE = 90
+const CHARGE_MULTIPLIER = 4200
 const BOMB_OFFSET = 40
 
 const THRESHOLD_DIR = 0.3
@@ -140,9 +142,9 @@ func fire():
 	"""
 	Fire a bomb
 	"""
-	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
+	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER*min(charge, MAX_CHARGE)
 	
-	# -300 is to avoid too much acceleration when repeatedly firing bombs
+	# -350 is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-350),0).rotated(rotation)) # recoil
 	
 	arena.spawn_bomb(
