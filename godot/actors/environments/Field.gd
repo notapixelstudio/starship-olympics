@@ -2,16 +2,13 @@ tool
 
 extends Node2D
 
-export var shape : Resource setget set_shape # FIXME should be GShape
-
-func set_shape(value):
-	shape = value
-	if Engine.is_editor_hint():
-		_refresh()
-		
 func _ready():
 	_refresh()
 	
+func _on_GShape_changed():
+	_refresh()
+	
 func _refresh():
-	$Polygon2D.polygon = shape.to_PoolVector2Array()
+	$Polygon2D.polygon = $GShape.to_PoolVector2Array()
+	$Area2D/CollisionShape2D.shape = $GShape.to_Shape2D()
 	

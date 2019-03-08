@@ -1,20 +1,27 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GShape.svg" type="Texture" id=2]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_icon": ExtResource( 2 )
-}
-width = 100
-height = 100
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -100, -30, -80, -50, 80, -50, 100, -30, 100, 30, 80, 50, -80, 50, -100, 30, -100, -30 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
-shape = SubResource( 1 )
+
+[node name="GShape" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -100, -30, -80, -50, 80, -50, 100, -30, 100, 30, 80, 50, -80, 50, -100, 30 )
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[connection signal="changed" from="GShape" to="." method="_on_GShape_changed"]
