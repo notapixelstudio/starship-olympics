@@ -6,7 +6,6 @@ export (int) var width = 100 setget set_width, get_width
 export (int) var height = 100 setget set_height, get_height
 
 func set_width(value):
-	print('stocazzo')
 	width = value
 	_update()
 	

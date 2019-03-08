@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=2]
+[ext_resource path="res://addons/geometry/icons/GShape.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 
 [sub_resource type="Resource" id=1]
-script = ExtResource( 2 )
-width = 300
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+width = 100
 height = 100
 
 [node name="Node2D" type="Node2D"]
