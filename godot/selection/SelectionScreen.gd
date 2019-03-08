@@ -11,13 +11,15 @@ var available_species : Dictionary
 var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
+signal back
 
 var selected_index = []
 var players_controls : Array
 var num_players : int = 0
 
 func _ready():
-	Soundtrack.play("Lobby", true)
+	# Soundtrack.play("Lobby", true)
+	$Fight.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 	
 
@@ -155,7 +157,23 @@ func selected(species:SpeciesTemplate):
 	for child in container.get_children():
 		if not child.selected and child.species_template == species:
 			get_adjacent(+1, child)
+	var players = get_players()
+	if len(players) >= MIN_PLAYERS:
+		$Fight.visible = true
+		global.shake_node($Fight, $Tween)
+		$Fight/Sprite/AnimationPlayer.play("wiggle")
 
 func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
+	var players = get_players()
+	if len(players) < MIN_PLAYERS:
+		global.shake_node($Fight, $Tween)
+		$Fight/Sprite/AnimationPlayer.play("idle")
+		$Fight.visible = false
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if len(get_players())<=0:
+			emit_signal("back")
+			

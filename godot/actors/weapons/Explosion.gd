@@ -43,7 +43,7 @@ func _physics_process(delta):
 	else:
 		# destroy the explosion
 		emit_signal("end_explosion")
-		queue_free()
+		call_deferred("queue_free")
 		
 func sigmoid(x, dt, amp):
   return x/dt*amp

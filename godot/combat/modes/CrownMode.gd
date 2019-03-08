@@ -22,10 +22,11 @@ func initialize(_players:Array):
 		
 func crown_taken(ship):
 	queen = ship
-	queen.set_queen(true)
+	ECM.E(queen).get('Royal').enable()
 	print("CROWN TAKEN - Queen ship is now " + queen.name)
 	
 func crown_lost():
+	ECM.E(queen).get('Royal').disable()
 	queen = null
 	print("CROWN LOST")
 	

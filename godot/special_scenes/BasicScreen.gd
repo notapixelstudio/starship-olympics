@@ -5,7 +5,6 @@ signal started()
 signal finished()
 
 onready var transition = $Overlays/TransitionColor
-onready var buttons = $Buttons
 var transitioning = false
 
 
