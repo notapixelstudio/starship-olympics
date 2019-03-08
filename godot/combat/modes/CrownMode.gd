@@ -2,10 +2,10 @@ extends Node
 
 class_name CrownMode
 
-const TIME_LEFT:float = 90.0
-var time_left:float = TIME_LEFT
+const BASE_TIME_LEFT:float = 15.0
+var time_left:float
 
-const TARGET_SCORE:float = 30.0
+const TARGET_SCORE:float = 40.0
 var players:Array
 var scores:Dictionary = {}
 var queen = null
@@ -20,6 +20,8 @@ func initialize(_players:Array):
 	for player in players:
 		scores[player.name] = 0
 		
+	time_left = BASE_TIME_LEFT + TARGET_SCORE*len(players)
+	
 func crown_taken(ship):
 	queen = ship
 	ECM.E(queen).get('Royal').enable()
