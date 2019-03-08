@@ -49,6 +49,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/weapons/Explosion.gd"
 }, {
+"base": "GShape",
+"class": "GPolygon",
+"language": "GDScript",
+"path": "res://addons/geometry/GPolygon.gd"
+}, {
+"base": "GPolygon",
+"class": "GRect",
+"language": "GDScript",
+"path": "res://addons/geometry/GRect.gd"
+}, {
+"base": "Resource",
+"class": "GShape",
+"language": "GDScript",
+"path": "res://addons/geometry/GShape.gd"
+}, {
 "base": "Control",
 "class": "GenericOption",
 "language": "GDScript",
@@ -108,6 +123,9 @@ _global_script_class_icons={
 "CrownMode": "",
 "Entity": "",
 "Explosion": "",
+"GPolygon": "",
+"GRect": "",
+"GShape": "",
 "GenericOption": "",
 "InfoPlayer": "",
 "Manager": "",
@@ -159,7 +177,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry" )
 
 [input]
 
