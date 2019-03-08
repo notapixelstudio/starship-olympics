@@ -43,7 +43,7 @@ func get_gshape():
 	
 func _get_configuration_warning():
 	if not get_gshape():
-		return 'This node needs a GShape child!\n'
+		return 'Please provide a GShape as child node to define the geometry.\n'
 	return ''
 	
 func refresh():
@@ -53,6 +53,9 @@ func refresh():
 	
 	if not gshape:
 		return
+		
+	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
+		gshape.connect('changed', self, '_on_GShape_changed')
 		
 	var points = gshape.to_PoolVector2Array()
 	
