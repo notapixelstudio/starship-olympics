@@ -7,6 +7,7 @@ func _enter_tree():
 	add_custom_type("GConvexPolygon", "Node", preload("GConvexPolygon.gd"), preload("icons/GConvexPolygon.svg"))
 	add_custom_type("GRect", "Node", preload("GRect.gd"), preload("icons/GRect.svg"))
 	add_custom_type("GHexagon", "Node", preload("GHexagon.gd"), preload("icons/GHexagon.svg"))
+	add_custom_type("GCircle", "Node", preload("GCircle.gd"), preload("icons/GCircle.svg"))
 	add_custom_type("GBeveledRect", "Node", preload("GBeveledRect.gd"), preload("icons/GBeveledRect.svg"))
 	
 func _exit_tree():
@@ -15,5 +16,6 @@ func _exit_tree():
 	remove_custom_type("GConvexPolygon")
 	remove_custom_type("GRect")
 	remove_custom_type("GHexagon")
+	remove_custom_type("GCircle")
 	remove_custom_type("GBeveledRect")
 	
