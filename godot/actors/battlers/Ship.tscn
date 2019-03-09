@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=11]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=13]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -56,8 +57,8 @@ scale_curve = SubResource( 8 )
 color_ramp = SubResource( 6 )
 
 [node name="Ship" type="RigidBody2D" groups=[
-"in_camera",
 "players",
+"in_camera",
 ]]
 collision_mask = 19
 physics_material_override = SubResource( 1 )
@@ -140,5 +141,7 @@ lifetime = 5.0
 local_coords = false
 process_material = SubResource( 9 )
 texture = ExtResource( 13 )
+
+[node name="Debug" parent="." instance=ExtResource( 14 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
