@@ -52,7 +52,7 @@ func _physics_process(delta):
 	if entity.has('Thrusters'):
 		thrust = 50
 	else:
-		thrust = 0
+		thrust = 20
 		
 	if target != null and target.get_ref() != null:
 		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*thrust) # need a meaningful way to do this
