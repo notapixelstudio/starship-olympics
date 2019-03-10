@@ -48,7 +48,7 @@ flag_align_y = true
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
-angular_velocity = 0.0
+angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 1.6
@@ -57,8 +57,8 @@ scale_curve = SubResource( 8 )
 color_ramp = SubResource( 6 )
 
 [node name="Ship" type="RigidBody2D" groups=[
-"players",
 "in_camera",
+"players",
 ]]
 collision_mask = 19
 physics_material_override = SubResource( 1 )
@@ -145,3 +145,6 @@ texture = ExtResource( 13 )
 [node name="Debug" parent="." instance=ExtResource( 14 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
+[connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
+[connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
+[connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]

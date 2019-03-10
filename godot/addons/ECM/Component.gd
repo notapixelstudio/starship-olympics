@@ -2,7 +2,7 @@ extends Node
 
 class_name Component
 
-var enabled : bool = true
+export var enabled : bool = true
 
 func set_enabled(value : bool):
 	enabled = value

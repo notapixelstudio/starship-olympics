@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Field" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Fluid" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="Trigger" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="Deadly" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 8.0
+texture_mode = 50
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 517
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

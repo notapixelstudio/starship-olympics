@@ -1,27 +1,27 @@
 tool
 
-extends OldWall
+extends GShape
 
-export (int) var apothem = 100*sqrt(3)/2 setget set_apothem
+class_name GHexagon
+
 export (int) var radius = 100 setget set_radius
 
-func set_apothem(a):
-	apothem = a
-	radius = a/sqrt(3)*2
-	ar2pts()
-	
-func set_radius(r):
-	radius = r
-	apothem = r*sqrt(3)/2
-	ar2pts()
-	
-func ar2pts():
-	set_points(PoolVector2Array([
+func set_radius(value):
+	radius = value
+	emit_signal('changed')
+
+func to_PoolVector2Array():
+	return PoolVector2Array([
 		Vector2(radius*cos(0),radius*sin(0)),
 		Vector2(radius*cos(PI/3),radius*sin(PI/3)),
 		Vector2(radius*cos(2*PI/3),radius*sin(2*PI/3)),
 		Vector2(radius*cos(PI),radius*sin(PI)),
 		Vector2(radius*cos(4*PI/3),radius*sin(4*PI/3)),
 		Vector2(radius*cos(5*PI/3),radius*sin(5*PI/3))
-	])) # clockwise!
+	]) # clockwise!
+	
+func to_Shape2D():
+	var shape = ConvexPolygonShape2D.new()
+	shape.set_point_cloud(to_PoolVector2Array())
+	return shape
 	

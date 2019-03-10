@@ -1,6 +1,6 @@
 tool
 
-extends Wall
+extends OldWall
 
 export (int) var width = 200 setget set_width
 export (int) var height = 200 setget set_height

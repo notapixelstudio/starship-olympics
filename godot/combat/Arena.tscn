@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=3]
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=4]
 [ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=5]
-[ext_resource path="res://combat/managers/FieldsManager.gd" type="Script" id=6]
+[ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=6]
 [ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=9]
@@ -33,7 +33,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
-[node name="FieldsManager" type="Node" parent="."]
+[node name="EnvironmentsManager" type="Node" parent="."]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )

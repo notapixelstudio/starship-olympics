@@ -183,6 +183,7 @@ func spawn_ships():
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
+onready var environments_manager = $EnvironmentsManager
 func spawn_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
@@ -205,6 +206,8 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("near_area_entered", combat_manager, "ship_near_area_entered")
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
+	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
+	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	
@@ -216,6 +219,8 @@ func spawn_bomb(pos, impulse, ship):
 	bomb.initialize(pos, impulse, ship)
 	
 	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
+	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
+	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	
 	Battlefield.add_child(bomb)
 	

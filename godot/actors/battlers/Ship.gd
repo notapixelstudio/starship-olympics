@@ -177,7 +177,15 @@ func unstun():
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
-
+func _on_NearArea_body_entered(body):
+	emit_signal("near_area_entered", body, self)
+	
+signal near_area_exited
+func _on_NearArea_area_exited(area):
+	emit_signal("near_area_exited", area, self)
+func _on_NearArea_body_exited(body):
+	emit_signal("near_area_exited", body, self)
+	
 func is_alive():
 	return alive
 

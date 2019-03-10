@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/OldWall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
@@ -11,9 +11,9 @@
 collision_layer = 16
 collision_mask = 5
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+points = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+offset = 100
+elongation = 100
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -27,20 +27,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Deadly" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-enabled = false
-
-[node name="Trigger" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-enabled = false
-
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.847656, 0.847656, 0.847656, 1 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
@@ -50,7 +36,6 @@ points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 
 width = 60.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 6 )
-texture_mode = 1
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10
