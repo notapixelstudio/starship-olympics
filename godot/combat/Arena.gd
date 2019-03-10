@@ -10,7 +10,7 @@ var someone_died = 0
 export (float) var size_multiplier = 2.0
 
 var mouse_target  = Vector2(1600, 970)
-var debug = false
+export (bool) var debug = false
 # analytics
 var run_time = 0
 
@@ -109,10 +109,11 @@ func _ready():
 	
 	camera.initialize(compute_arena_size(), size_multiplier)
 	
-	get_tree().paused = true
-	getready.start()
-	yield(getready, "finished")
-	get_tree().paused = false
+	if not debug:
+		get_tree().paused = true
+		getready.start()
+		yield(getready, "finished")
+		get_tree().paused = false
 	
 	
 func _process(delta):	

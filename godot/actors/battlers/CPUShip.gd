@@ -1,12 +1,49 @@
 extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
-
+onready var raycast = $RayCast2D
 const MAX_DIR_WAIT = 20
 var wait_direction = MAX_WAIT
 var steering = Vector2()
 var front = Vector2()
+var target 
+var hit_pos
+var laser_color = Color(1.0, .329, .298)
 
+func _draw():
+	if target:
+		for hit in hit_pos:
+			draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+			draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+func aim():
+	hit_pos = []
+	if not target:
+		return
+	var space_state = get_world_2d().direct_space_state
+	var shapeTarget = target.get_node('CollisionShape2D').shape
+	var target_extents
+	if shapeTarget is CircleShape2D:
+		target_extents = Vector2(shapeTarget.radius, shapeTarget.radius)
+	else:
+		target_extents = shapeTarget.extents 
+	target_extents -= Vector2(5, 5)
+		
+	var nw = target.position - target_extents
+	var se = target.position + target_extents
+	var ne = target.position + Vector2(target_extents.x, -target_extents.y)
+	var sw = target.position + Vector2(-target_extents.x, target_extents.y)
+	for pos in [target.position, nw, ne, se, sw]:
+		var result = space_state.intersect_ray(position,
+				pos, [self], collision_mask)
+		if result:
+			hit_pos.append(result.position)
+			if result.collider is Ship:
+				rotation = (target.position - position).angle()
+				break
+
+func _physics_process(delta):
+	update()
+		
 static func angle_to_angle(from, to):
     return fposmod(to-from + PI, PI*2) - PI
 
@@ -25,17 +62,18 @@ func choose_dir(target:Node2D):
 	# Follow the Crown or the crown holder if you are not it
 	# if you are just run away
 	"""
+	front = Vector2(cos(rotation), sin(rotation))
 	var direction_to_take = 0
 	if not target or not target.is_inside_tree():
+		raycast.cast_to = front * 100
 		if wait_direction < 0:
 			target_velocity = Vector2(rand_range(-1,1), rand_range(-1,1)).normalized()
 			wait_direction = randi() % MAX_DIR_WAIT
 	else:
 		var distance_to_target = (target.position-position)
 		target_velocity = distance_to_target.normalized()
-	front = Vector2(cos(rotation), sin(rotation))
+	
 	direction_to_take = find_side(Vector2(0,0), front, target_velocity)
-		
 	return direction_to_take
 
 func choose_fire():
@@ -47,15 +85,21 @@ const MAX_WAIT = 200
 var wait = MAX_WAIT
 
 func control(delta):
+	target = null
 	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
 		arena.mouse_target = get_global_mouse_position()
-	var this_target = arena.crown
-	if not this_target or not this_target.is_inside_tree():
-		this_target = arena.game_mode.queen
-	if self == this_target:
-		this_target = null
+	if len(get_tree().get_nodes_in_group("crown")):
+		target = get_tree().get_nodes_in_group("crown")[0]
+	
+	if not target:
+		target = arena.game_mode.queen
+	
+	if self == target:
+		target = null
 		
-	rotation_dir = choose_dir(this_target)
+	aim()
+	
+	rotation_dir = choose_dir(target)
 	
 	# charge
 	if charging:
