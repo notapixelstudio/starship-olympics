@@ -7,7 +7,6 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 50 )
 
 [node name="Field" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,6 +28,13 @@ __meta__ = {
 enabled = false
 
 [node name="Trigger" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="Deadly" type="Node" parent="Entity"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )

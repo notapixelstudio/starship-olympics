@@ -2,7 +2,7 @@ tool
 
 extends Node2D
 
-enum TYPE { trigger, water }
+enum TYPE { trigger, water, hostile }
 export(TYPE) var type = TYPE.water setget set_type
 
 func set_type(value):
@@ -28,19 +28,19 @@ func refresh():
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
 	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
 	
+	$Entity/Fluid.enabled = type == TYPE.water
+	$Entity/Trigger.enabled = type == TYPE.trigger or type == TYPE.hostile
+	$Entity/Deadly.enabled = type == TYPE.hostile
+	
 	if type == TYPE.water:
 		$Polygon2D.color = Color(0,0.2,0.8,0.5)
 		$Line2D.default_color = Color(0,0.2,0.6,1)
-		$Entity/Fluid.enabled = true
-	else:
-		$Entity/Fluid.enabled = false
-		
-	if type == TYPE.trigger:
+	elif type == TYPE.trigger:
 		$Polygon2D.color = Color(1,1,1,0.3)
 		$Line2D.default_color = Color(1,1,1,1)
-		$Entity/Trigger.enabled = true
-	else:
-		$Entity/Trigger.enabled = false
+	elif type == TYPE.hostile:
+		$Polygon2D.color = Color(1,0,0,0.3)
+		$Line2D.default_color = Color(1,0,0,1)
 		
 func get_gshape():
 	for child in get_children():
