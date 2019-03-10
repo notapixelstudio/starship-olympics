@@ -34,6 +34,7 @@ func _ready():
 	
 	# let's put some distance from the battlefield and the bars
 	viewport_rect.size.y -= marginY/2
+	offset.y -= marginY
 	
 func initialize(rect_extention:Vector2, _zoom_max:float):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
