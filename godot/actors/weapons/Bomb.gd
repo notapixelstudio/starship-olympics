@@ -52,7 +52,7 @@ func _physics_process(delta):
 	if entity.has('Thrusters'):
 		thrust = 50
 	else:
-		thrust = 20
+		thrust = 0
 		
 	if target != null and target.get_ref() != null:
 		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*thrust) # need a meaningful way to do this
@@ -112,4 +112,8 @@ func lose_target():
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
+	
+signal near_area_exited
+func _on_NearArea_area_exited(area):
+	emit_signal("near_area_exited", area, self)
 	

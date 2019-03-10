@@ -5,8 +5,6 @@ extends Node2D
 func _ready():
 	refresh()
 	
-	get_tree().connect('tree_changed', self, 'refresh')
-	
 func _on_GShape_changed():
 	refresh()
 	
@@ -32,4 +30,12 @@ func _get_configuration_warning():
 	if not get_gshape():
 		return 'Please provide a GShape as child node to define the geometry.\n'
 	return ''
+	
+signal entered
+func _on_Area2D_body_entered(body):
+	emit_signal("entered", self, body)
+	
+signal exited
+func _on_Area2D_body_exited(body):
+	emit_signal("exited", self, body)
 	
