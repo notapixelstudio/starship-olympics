@@ -39,7 +39,6 @@ func initialize(rect_extention:Vector2, _zoom_max:float):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
 	arena_size = rect_extention
 	margin_min = arena_size/2
-	offset = arena_size/2
 	print("Offset at initialise is: ", offset)
 	set_process(enabled)
 
