@@ -3,14 +3,14 @@ tool
 extends Node2D
 
 func _ready():
-	_refresh()
+	refresh()
 	
-	get_tree().connect('tree_changed', self, '_refresh')
+	get_tree().connect('tree_changed', self, 'refresh')
 	
 func _on_GShape_changed():
-	_refresh()
+	refresh()
 	
-func _refresh():
+func refresh():
 	var gshape = get_gshape()
 	
 	if not gshape:

@@ -2,7 +2,9 @@ tool
 
 extends StaticBody2D
 
-class_name NewWall
+class_name OldWall
+
+export (PoolVector2Array) var points setget set_points
 
 export (bool) var hollow setget set_hollow
 
@@ -10,6 +12,11 @@ export (int) var offset setget set_offset
 export (int) var elongation setget set_elongation
 
 var cshapes = []
+
+func set_points(pts):
+	points = pts
+	if has_node('Polygon2D'):
+		refresh()
 	
 func set_hollow(h):
 	hollow = h
@@ -35,30 +42,12 @@ func remove_old_shapes():
 			remove_child(child)
 			child.queue_free()
 	
-func get_gshape():
-	for child in get_children():
-		if child is GShape:
-			return child
-	return null
-	
-func _get_configuration_warning():
-	if not get_gshape():
-		return 'Please provide a GShape as child node to define the geometry.\n'
-	return ''
-	
 func refresh():
 	remove_old_shapes()
 	
-	var gshape = get_gshape()
-	
-	if not gshape:
-		return
+	if points == null or len(points) < 3:
+		points = PoolVector2Array([Vector2(-100,-100),Vector2(100,-100),Vector2(100,100),Vector2(-100,100)]) # clockwise!
 		
-	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
-		gshape.connect('changed', self, '_on_GShape_changed')
-		
-	var points = gshape.to_PoolVector2Array()
-	
 	if hollow:
 		for i in range(len(points)):
 			var cshape = CollisionShape2D.new()
@@ -85,6 +74,3 @@ func refresh():
 	ps.remove(0)
 	var p = points[0]+(points[1]-points[0])*0.5
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
-
-func _on_GShape_changed():
-	refresh()

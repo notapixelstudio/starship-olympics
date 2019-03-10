@@ -95,9 +95,9 @@ _global_script_classes=[ {
 "path": "res://addons/ECM/Manager.gd"
 }, {
 "base": "StaticBody2D",
-"class": "NewWall",
+"class": "OldWall",
 "language": "GDScript",
-"path": "res://actors/environments/NewWall.gd"
+"path": "res://actors/environments/OldWall.gd"
 }, {
 "base": "MarginContainer",
 "class": "PlayerHUD",
@@ -128,11 +128,6 @@ _global_script_classes=[ {
 "class": "SpeciesTemplate",
 "language": "GDScript",
 "path": "res://selection/species/SpeciesTemplate.gd"
-}, {
-"base": "StaticBody2D",
-"class": "Wall",
-"language": "GDScript",
-"path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
 "AudioLibrary": "",
@@ -152,14 +147,13 @@ _global_script_class_icons={
 "GenericOption": "",
 "InfoPlayer": "",
 "Manager": "",
-"NewWall": "",
+"OldWall": "",
 "PlayerHUD": "",
 "PlayerSpawner": "",
 "Ship": "",
 "Species": "",
 "SpeciesContainer": "",
-"SpeciesTemplate": "",
-"Wall": ""
+"SpeciesTemplate": ""
 }
 
 [Analytics]

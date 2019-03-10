@@ -1,6 +1,6 @@
 tool
 
-extends Wall
+extends OldWall
 
 export (int) var apothem = 100*sqrt(3)/2 setget set_apothem
 export (int) var radius = 100 setget set_radius
