@@ -26,9 +26,21 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+enabled = false
+
+[node name="Trigger" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 8.0
+texture_mode = 50
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 128
