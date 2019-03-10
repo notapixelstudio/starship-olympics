@@ -18,6 +18,7 @@ radius = 62.4056
 
 [node name="Crown" type="RigidBody2D" groups=[
 "in_camera",
+"crown",
 ]]
 mass = 0.1
 physics_material_override = SubResource( 1 )
@@ -36,7 +37,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
