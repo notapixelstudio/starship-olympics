@@ -98,6 +98,9 @@ func _integrate_forces(state):
 		#apply_impulse(Vector2(),target_velocity*thrust)	
 		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
 		
+	if entity.has('Flowing'):
+		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow_vector())
+		
 	set_applied_torque(rotation_dir * 75000)
 	
 	# force the physics engine

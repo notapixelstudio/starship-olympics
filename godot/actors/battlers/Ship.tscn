@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -8,14 +8,15 @@
 [ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
-[ext_resource path="res://combat/components/Royal.gd" type="Script" id=9]
-[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=11]
-[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=13]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
+[ext_resource path="res://combat/components/Royal.gd" type="Script" id=10]
+[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=12]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=13]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=14]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=15]
 
-[sub_resource type="PhysicsMaterial" id=1]
+[sub_resource type="PhysicsMaterial" id=4]
 friction = 0.0
 bounce = 1.0
 
@@ -25,7 +26,7 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=10]
 radius = 300.0
 
 [sub_resource type="Gradient" id=5]
@@ -61,7 +62,7 @@ color_ramp = SubResource( 6 )
 "players",
 ]]
 collision_mask = 19
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource( 4 )
 gravity_scale = 0.0
 continuous_cd = 2
 contacts_reported = 10
@@ -79,8 +80,6 @@ shape = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-editor/display_folded = true
-visible = false
 input_pickable = false
 collision_layer = 8
 collision_mask = 5
@@ -92,13 +91,12 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 
 [node name="Entity2D" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
@@ -116,21 +114,27 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 
-[node name="Royal" type="Node2D" parent="Entity2D"]
+[node name="Flowing" type="Node" parent="Entity2D"]
 script = ExtResource( 9 )
 __meta__ = {
-"_editor_icon": ExtResource( 10 )
+"_editor_icon": ExtResource( 8 )
+}
+
+[node name="Royal" type="Node2D" parent="Entity2D"]
+script = ExtResource( 10 )
+__meta__ = {
+"_editor_icon": ExtResource( 11 )
 }
 
 [node name="Crown" type="Sprite" parent="Entity2D/Royal"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 0, -150 )
 
 [node name="Thrusters" type="Node2D" parent="Entity2D"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 __meta__ = {
-"_editor_icon": ExtResource( 10 )
+"_editor_icon": ExtResource( 11 )
 }
 
 [node name="Particles2D" type="Particles2D" parent="Entity2D/Thrusters"]
@@ -140,9 +144,9 @@ amount = 512
 lifetime = 5.0
 local_coords = false
 process_material = SubResource( 9 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
-[node name="Debug" parent="." instance=ExtResource( 14 )]
+[node name="Debug" parent="." instance=ExtResource( 15 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
