@@ -23,9 +23,6 @@ onready var getready = $Pause/GetReady
 onready var pause = $Pause/Pause
 
 # Crown might be null, if someone has it or ... if the mode is not crownmode
-const crown_scene = preload("res://combat/collectables/Crown.tscn")
-const ship_scene = preload("res://actors/battlers/Ship.tscn")
-const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
@@ -155,15 +152,7 @@ func ship_just_died(ship: Ship):
 	remove from it, and reput it after a bit
 	"""
 	Battlefield.call_deferred("remove_child", ship)
-	# check if we need to lose the crown
-	if game_mode.queen != null and ship == game_mode.queen:
-		game_mode.crown_lost()
-		print("SHIP IS ALIVE? ", ship.alive)
-		var crown = crown_scene.instance()
-		crown.linear_velocity = ship.linear_velocity
-		crown.position = ship.position
-		Battlefield.call_deferred("add_child", crown)
-		
+	
 	yield(get_tree().create_timer(3), "timeout")
 	
 	if game_mode.game_over:
@@ -184,6 +173,9 @@ onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
+
+const ship_scene = preload("res://actors/battlers/Ship.tscn")
+const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 func spawn_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
@@ -210,6 +202,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
+	ship.connect("crown_dropped", self, "_on_crown_dropped")
 	
 	return ship
 	
@@ -225,3 +218,15 @@ func spawn_bomb(pos, impulse, ship):
 	Battlefield.add_child(bomb)
 	
 	return bomb
+	
+const crown_scene = preload("res://combat/collectables/Crown.tscn")
+func spawn_crown(pos, linear_velocity):
+	var crown = crown_scene.instance()
+	crown.linear_velocity = linear_velocity
+	crown.position = pos
+	Battlefield.add_child(crown)
+	
+func _on_crown_dropped(ship):
+	game_mode.crown_lost()
+	spawn_crown(ship.position, ship.linear_velocity)
+	

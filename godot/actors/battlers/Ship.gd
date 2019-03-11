@@ -43,8 +43,6 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
-var queen:bool = false
-
 onready var player = name
 onready var skin = $Graphics
 
@@ -167,7 +165,14 @@ func die():
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
+		drop()
 		emit_signal("dead", self)
+		
+signal crown_dropped
+func drop():
+	if entity.has('Royal'):
+		entity.get_node('Royal').disable()
+		emit_signal("crown_dropped", self)
 		
 func stun():
 	stunned = true
