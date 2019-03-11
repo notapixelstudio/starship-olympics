@@ -1,12 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://actors/environments/components/Flow.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/no_crown.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 50 )
 
 [node name="Field" type="Node2D"]
 script = ExtResource( 1 )
@@ -41,6 +46,20 @@ __meta__ = {
 }
 enabled = false
 
+[node name="Flow" type="Node" parent="Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="CrownDropper" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 
@@ -54,6 +73,19 @@ collision_mask = 517
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="CrownCollider" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 32768
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrownCollider"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="CrownCollider"]
+modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+texture = ExtResource( 7 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
