@@ -11,7 +11,7 @@
 [ext_resource path="res://selection/species/species2.tres" type="Resource" id=9]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -21,10 +21,12 @@ centered = false
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+modulate = Color( 1, 0, 0, 1 )
 rotation = 0.523599
 hollow = true
 offset = 200
 elongation = 100
+type = 1
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 5 )

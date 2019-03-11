@@ -20,7 +20,43 @@ centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 
-[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+position = Vector2( -860, -500 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+radius = 500
+sides = 6.0
+
+[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource( 4 )]
+position = Vector2( 860, -500 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall2" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+radius = 500
+sides = 6.0
+
+[node name="Wall3" parent="Battlefield" index="3" instance=ExtResource( 4 )]
+position = Vector2( 0, 995 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall3" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+radius = 500
+sides = 6.0
+
+[node name="OutsideWall" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 rotation = 0.523599
 hollow = true
 offset = 200
@@ -31,7 +67,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-radius = 1300
+radius = 1500
 sides = 6.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
