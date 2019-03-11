@@ -4,15 +4,16 @@ var host
 
 func _ready():
 	host = ECM.E(self).get_host()
-	print('and the host is...', host)
-	
-	disable()
+	refresh()
 	
 # intercept changes in enabled state to make children invisible if disabled
 func set_enabled(value : bool):
 	.set_enabled(value)
 	
-	$Crown.visible = value
+	refresh()
+	
+func refresh():
+	$Crown.visible = enabled
 	
 func _process(delta):
 	# keep the crown up
