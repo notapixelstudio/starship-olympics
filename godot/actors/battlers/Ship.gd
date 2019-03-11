@@ -43,8 +43,6 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
-var queen:bool = false
-
 onready var player = name
 onready var skin = $Graphics
 
@@ -97,6 +95,9 @@ func _integrate_forces(state):
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
 		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
+		
+	if entity.has('Flowing'):
+		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow_vector())
 		
 	set_applied_torque(rotation_dir * 75000)
 	
@@ -164,7 +165,14 @@ func die():
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
+		drop()
 		emit_signal("dead", self)
+		
+signal crown_dropped
+func drop():
+	if entity.has('Royal'):
+		entity.get_node('Royal').disable()
+		emit_signal("crown_dropped", self)
 		
 func stun():
 	stunned = true
