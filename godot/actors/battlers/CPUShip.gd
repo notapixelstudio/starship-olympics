@@ -49,7 +49,7 @@ var wait = MAX_WAIT
 func control(delta):
 	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
 		arena.mouse_target = get_global_mouse_position()
-	var this_target = arena.crown
+	var this_target = get_parent().get_node("Crown")
 	if not this_target or not this_target.is_inside_tree():
 		this_target = arena.game_mode.queen
 	if self == this_target:
