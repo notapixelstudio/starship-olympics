@@ -33,6 +33,7 @@ var mockup = false
 var game_mode
 
 func initialize(players:Array) -> void:
+	# TODO: we should pass a dictionary with information that goes around and not this Spawner object
 	spawners = []
 	# forcing the array to PlayerSpwawner (as check)
 	for player in players:
@@ -99,9 +100,11 @@ func _ready():
 	var player_ids = []
 	if not spawners:
 		spawners = $SpawnPositions/Players.get_children()
-	for s in $SpawnPositions/Players.get_children():
-		if s.cpu:
-			spawners.append(s)
+	else:
+		# this is for adding CPU for those levels that have the option to
+		for s in $SpawnPositions/Players.get_children():
+			if s.cpu:
+				spawners.append(s)
 	game_mode.initialize(spawners)
 	
 	# initialize HUD
