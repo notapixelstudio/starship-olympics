@@ -2,7 +2,7 @@ extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
 
-const MAX_DIR_WAIT = 20
+const MAX_DIR_WAIT = 200
 var wait_direction = MAX_WAIT
 var steering = Vector2()
 var front = Vector2()
@@ -22,7 +22,16 @@ func _input(_event):
 var laser_color = Color(1.0, .329, .298)
 const MAX_SEE_AHEAD = Vector2(50,40)
 var hit_pos = []
+
+enum BEHAVIOUR {SEEK, AVOID, FLEE}
+
+func dist(a: Vector2, b: Vector2):
+	return sqrt((a.x - b.x) * (a.x - b.x)  + (a.y - b.y) * (a.y - b.y))
+
 func seek_ahead(potential_target):
+	var res = { "action": BEHAVIOUR.SEEK,
+				"target": potential_target
+			}
 	# see if we have some obstacle in front of us
 	var ahead = front * MAX_SEE_AHEAD + position
 	var half_ahead = front * MAX_SEE_AHEAD * 0.5 + position
@@ -57,9 +66,9 @@ func seek_ahead(potential_target):
 				pos, [self], collision_mask)
 			if result:
 				hit_pos.append(result.position)
-				if result.collider != potential_target:
-					print("THERE IS A DANGER: ", result.collider.name)
+				if result.collider != potential_target and not result.collider is Ship:
 					target = result.collider
+					print("THERE IS A DANGER: ", result.collider.name)
 					found = true
 					break
 
