@@ -41,7 +41,7 @@ func update(delta:float):
 		
 	time_left -= delta
 	
-	if time_left <= 0:
+	if time_left < 0:
 		var best_score = 0
 		var best_player = null
 		for player in scores.keys():
