@@ -26,7 +26,9 @@ onready var pause = $Pause/Pause
 
 signal screensize_changed(screensize)
 signal gameover
-signal rematch
+signal restart
+signal back_to_menu
+
 
 var spawners = []
 var mockup = false
@@ -106,10 +108,12 @@ func _ready():
 	
 	camera.initialize(compute_arena_size(), size_multiplier)
 	
+	
 	get_tree().paused = true
-	getready.start()
-	yield(getready, "finished")
-	get_tree().paused = false
+	if not mockup:
+		getready.start()
+		yield(getready, "finished")
+		get_tree().paused = false
 	
 	
 func _process(delta):	
@@ -230,3 +234,10 @@ func _on_crown_dropped(ship):
 	game_mode.crown_lost()
 	spawn_crown(ship.position, ship.linear_velocity)
 	
+
+func _on_Pause_back_to_menu():
+	emit_signal("back_to_menu")
+
+
+func _on_Pause_restart():
+	emit_signal("restart")
