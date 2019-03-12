@@ -99,6 +99,9 @@ func _ready():
 	var player_ids = []
 	if not spawners:
 		spawners = $SpawnPositions/Players.get_children()
+	for s in $SpawnPositions/Players.get_children():
+		if s.cpu:
+			spawners.append(s)
 	game_mode.initialize(spawners)
 	
 	# initialize HUD
