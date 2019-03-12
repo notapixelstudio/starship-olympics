@@ -11,7 +11,7 @@
 [ext_resource path="res://selection/species/species2.tres" type="Resource" id=9]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -33,7 +33,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-radius = 1300
+radius = 1200
 sides = 6.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
