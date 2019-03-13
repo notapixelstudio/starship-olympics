@@ -44,6 +44,7 @@ func unpause():
 	get_tree().paused = false
 
 func _on_Restart_pressed():
+	print("restarto")
 	emit_signal("restart")
 
 func _on_QuitMatch_pressed():

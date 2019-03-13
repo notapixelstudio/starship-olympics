@@ -2,7 +2,7 @@ extends Camera2D
 
 export var zoomMin = 1.7
 export var marginX = 0
-export var marginY = 200.0
+export var marginY = 300.0
 export(float, 0.1, 1.0) var zoom_offset : float = 0.9
 export(float, 0.01, 0.5) var zoom_speed : float = 0.13
 export(float, 0.01, 0.5) var offset_speed : float = 0.09
@@ -80,12 +80,12 @@ func _process(_delta: float) -> void:
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
 		rect.position.x + rect.size.x / 2,
-		rect.position.y + rect.size.y / 2)
+		rect.position.y + rect.size.y / 2 + marginY)
 
 func calculate_zoom(rect: Rect2, viewport_size: Vector2) -> Vector2:
 	var max_zoom = max(
-		max(1, rect.size.x / viewport_size.x + zoom_offset),
-		max(1, rect.size.y / viewport_size.y  + zoom_offset))
+		max(1.5, rect.size.x / viewport_size.x + zoom_offset),
+		max(1.5, rect.size.y / viewport_size.y  + zoom_offset))
 	return Vector2(max_zoom, max_zoom)
 
 
