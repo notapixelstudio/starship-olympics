@@ -33,7 +33,7 @@ func back():
 	# TODO: maybe this is not the right way
 	get_tree().change_scene(global.from_scene)
 	
-var sel_players = []
+
 func combat(selected_players: Array):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
@@ -44,12 +44,11 @@ func combat(selected_players: Array):
 
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
 
-	sel_players = []
+
 	var i = 1
 	for player in selected_players:
 		assert(player is Species)
 		var player_info : InfoPlayer = from_species_to_info_player(player)
-		sel_players.append(from_info_to_spawner(player_info))
 		players[player.id] = player_info
 		# Prepare GameAnalytics event to send
 		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:" + player.species_template.species_name, i))
@@ -80,7 +79,7 @@ func start_level(_level):
 	selected_level = load(level_path)
 	combat = selected_level.instance()
 	remove_child(selection_screen)
-	combat.initialize(sel_players)
+	combat.initialize(players)
 	combat.connect("gameover", self, "gameover")
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("back_to_menu", self, "_on_Pause_back_to_menu", [combat])
