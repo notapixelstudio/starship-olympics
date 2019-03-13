@@ -1,6 +1,5 @@
 extends Control
 
-signal standoff
 signal standoff_ready
 signal reset_signal(level)
 
