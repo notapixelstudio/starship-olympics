@@ -13,7 +13,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=12]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -33,7 +33,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 2100
+width = 1800
 height = 1900
 bevel = 600
 
@@ -49,13 +49,13 @@ a = Vector2( 0, -950 )
 b = Vector2( 0, 950 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( -900, 0 )
+position = Vector2( -700, 0 )
 rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( 900, 0 )
+position = Vector2( 700, 0 )
 rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 12 )

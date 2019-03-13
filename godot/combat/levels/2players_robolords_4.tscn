@@ -3,13 +3,13 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
-[ext_resource path="res://selection/species/species4.tres" type="Resource" id=9]
-[ext_resource path="res://combat/PlayerSpawner.gd" type="Script" id=10]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=9]
+[ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
 [ext_resource path="res://selection/species/drones.tres" type="Resource" id=11]
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
@@ -20,8 +20,21 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+position = Vector2( 0, -500 )
 
-[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="Field" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Field" index="5"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+width = 1500
+height = 400
+bevel = 100
+
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 7 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -32,26 +45,24 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 2200
-height = 1800
+width = 2100
+height = 1700
 bevel = 600
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -900, 0 )
-rotation = 0.0
-controls = "joy1"
-species_template = ExtResource( 8 )
-
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 900, 0 )
-rotation = 3.14159
-controls = "joy2"
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
+position = Vector2( -500, 400 )
+rotation = -1.5708
 species_template = ExtResource( 9 )
 
-[node name="p3" type="Position2D" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
-position = Vector2( 0, -500 )
-rotation = 1.5708
-script = ExtResource( 10 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
+position = Vector2( 500, 400 )
+rotation = -1.5708
+controls = "kb2"
+species_template = ExtResource( 10 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
+position = Vector2( 0, 400 )
+rotation = -1.5708
 controls = "joy2"
 species_template = ExtResource( 11 )
 cpu = true

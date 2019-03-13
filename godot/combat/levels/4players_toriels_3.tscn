@@ -32,8 +32,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-a = Vector2( -535, -1295 )
-b = Vector2( 535, 1295 )
+a = Vector2( -500, -1200 )
+b = Vector2( 500, 1200 )
 
 [node name="Field2" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 rotation = 1.5708
@@ -44,21 +44,22 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-a = Vector2( -535, -1295 )
-b = Vector2( 535, 1295 )
+a = Vector2( -500, -1200 )
+b = Vector2( 500, 1200 )
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource( 7 )]
 rotation = 0.392699
 hollow = true
 offset = 200
 elongation = 100
+type = 0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Wall" index="3"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
-radius = 1400
+radius = 1300
 sides = 8.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]

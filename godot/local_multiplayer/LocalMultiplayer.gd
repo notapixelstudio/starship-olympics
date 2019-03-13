@@ -21,13 +21,6 @@ func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	info_player.controls = selection_species.controls
 	info_player.species_template = selection_species.species_template
 	return info_player
-
-func setup_player(current_player : PlayerSpawner) -> InfoPlayer:
-	var info_player = InfoPlayer.new()
-	info_player.id = current_player.name
-	info_player.controls = current_player.controls
-	info_player.species = current_player.battler_template.species_name
-	return info_player
 	
 func _ready():
 	players = {}
@@ -44,9 +37,11 @@ var sel_players = []
 func combat(selected_players: Array):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
+	It will transform the selected_players array in a dictionary of info players
 	"""
 	# TEST: analytics for selection
 	var num_players : int = len(selected_players)
+
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
 
 	sel_players = []
@@ -56,8 +51,10 @@ func combat(selected_players: Array):
 		var player_info : InfoPlayer = from_species_to_info_player(player)
 		sel_players.append(from_info_to_spawner(player_info))
 		players[player.id] = player_info
-		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:"+player.species_template.species_name,i ))
+		# Prepare GameAnalytics event to send
+		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:" + player.species_template.species_name, i))
 		i +=1
+	
 	# LEVEL SELECTION
 	var level_selection = level_selection_scene.instance()
 	level_selection._initialize(str(num_players))
@@ -79,6 +76,7 @@ var current_level : String # we will save here which level we are playing
 func start_level(_level):
 	var level_path = combat_scene + _level
 	# END LEVEL SELECTION
+
 	selected_level = load(level_path)
 	combat = selected_level.instance()
 	remove_child(selection_screen)
@@ -118,12 +116,10 @@ func _on_GameOverScreen_rematch(node):
 	node.queue_free()
 	get_tree().paused = false
 	combat.queue_free()
-	var spawners = []
-	for player in players:
-		spawners.append(from_info_to_spawner(players[player]))
+	
 	combat = selected_level.instance()
 	# remove_child(selection_screen)
-	combat.initialize(spawners)
+	combat.initialize(players)
 	combat.connect("gameover", self, "gameover")
 	connect("updated", combat, "hud_update")
 	yield(get_tree().create_timer(0.5), "timeout")

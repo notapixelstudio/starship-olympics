@@ -31,16 +31,34 @@ signal back_to_menu
 
 
 var spawners = []
+var info_players = {}
 var mockup = false
 var game_mode
 
-func initialize(players:Array) -> void:
+func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
+	var info_player = InfoPlayer.new()
+	info_player.id = current_player.name
+	info_player.controls = current_player.controls
+	info_player.species = current_player.species_template.species_name
+	info_player.species_template = current_player.species_template
+	return info_player
+
+func from_info_to_spawner(player_info):
+	var spawner = PlayerSpawner.new()
+	spawner.controls = player_info.controls 
+	spawner.species_template = player_info.species_template
+	spawner.name = player_info.id
+	spawner.info_player = player_info
+	return spawner
+
+func initialize(players:Dictionary) -> void:
+	# TODO: we should pass a dictionary with information that goes around and not this Spawner object
 	spawners = []
-	# forcing the array to PlayerSpwawner (as check)
+	info_players = {}
 	for player in players:
-		assert(player is PlayerSpawner)
-		
-	spawners = players
+		var info_player = players[player]
+		spawners.append(from_info_to_spawner(info_player))
+	info_players = players
 	
 func compute_arena_size():
 	"""
@@ -98,9 +116,16 @@ func _ready():
 	# set the game mode
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "gameover")
-	var player_ids = []
+
 	if not spawners:
 		spawners = $SpawnPositions/Players.get_children()
+	else:
+		# this is for adding CPU for those levels that have the option to
+		for s in $SpawnPositions/Players.get_children():
+			if s.cpu:
+				spawners.append(s)
+				var info_player = from_spawner_to_infoplayer(s) 
+				info_players[s.name] = info_player
 	game_mode.initialize(spawners)
 	
 	# initialize HUD
@@ -135,7 +160,6 @@ func _unhandled_input(event):
 func reset(level):
 	someone_died = false
 	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+level))
-	#get_tree().reload_current_scene()
 
 func get_num_players()->int:
 	"""
@@ -150,7 +174,6 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-var ships
 func ship_just_died(ship: Ship):
 	"""
 	remove from it, and reput it after a bit
@@ -180,6 +203,8 @@ onready var environments_manager = $EnvironmentsManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
+
+
 func spawn_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
