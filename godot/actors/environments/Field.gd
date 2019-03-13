@@ -53,6 +53,9 @@ func refresh():
 		$Polygon2D.color = Color(0.5,0,0.5,0.3)
 		$Line2D.default_color = Color(0.5,0,0.5,1)
 		
+	# keep the symbols up
+	$CrownCollider/Sprite.rotation = -rotation
+	
 func get_gshape():
 	for child in get_children():
 		if child is GShape:
