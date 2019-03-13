@@ -25,19 +25,19 @@ centered = false
 position = Vector2( -380, -215 )
 
 [node name="Spawner5" parent="Battlefield" index="2" instance=ExtResource( 4 )]
-position = Vector2( -380, 215 )
+position = Vector2( -760, -430 )
 
 [node name="Spawner2" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 position = Vector2( 380, -215 )
 
 [node name="Spawner6" parent="Battlefield" index="4" instance=ExtResource( 4 )]
-position = Vector2( 380, 215 )
+position = Vector2( 760, -430 )
 
 [node name="Spawner3" parent="Battlefield" index="5" instance=ExtResource( 4 )]
 position = Vector2( 0, 420 )
 
 [node name="Spawner4" parent="Battlefield" index="6" instance=ExtResource( 4 )]
-position = Vector2( 0, -420 )
+position = Vector2( 0, 840 )
 
 [node name="OutsideWall" parent="Battlefield" index="7" instance=ExtResource( 5 )]
 rotation = 0.523599
@@ -51,7 +51,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
-radius = 1000
+radius = 1500
 sides = 6.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
