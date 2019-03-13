@@ -61,6 +61,7 @@ visible = false
 [node name="HUD" parent="Pause" instance=ExtResource( 8 )]
 
 [node name="Pause" parent="Pause" instance=ExtResource( 9 )]
+editor/display_folded = true
 visible = false
 
 [node name="CameraZoom" parent="Pause/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="1"]
@@ -93,5 +94,7 @@ script = ExtResource( 11 )
 debug_mode = false
 enabled = true
 
+[connection signal="back_to_menu" from="Pause/Pause" to="." method="_on_Pause_back_to_menu"]
+[connection signal="restart" from="Pause/Pause" to="." method="_on_Pause_restart"]
 
 [editable path="Pause/Pause"]

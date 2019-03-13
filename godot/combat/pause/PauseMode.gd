@@ -5,6 +5,9 @@ onready var pause_window = $Window
 onready var gui = $GuiElements
 var unpause_ready = false
 
+signal back_to_menu
+signal restart
+
 func _ready():
 	gui.visible = false
 	visible = false
@@ -41,9 +44,9 @@ func unpause():
 	get_tree().paused = false
 
 func _on_Restart_pressed():
-	pass
+	emit_signal("restart")
 
 func _on_QuitMatch_pressed():
 	# Get back to selection screen
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	emit_signal("back_to_menu")

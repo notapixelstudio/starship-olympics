@@ -1,7 +1,10 @@
 extends Node
 
 onready var selection_screen = $SelectionScreen
-onready var gameover_screen = $GameOver/GameOverScreen
+onready var gameover_screen = $GameOver
+
+export (PackedScene) var gameover_scene
+
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 var combat = null
@@ -21,7 +24,6 @@ func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	
 func _ready():
 	players = {}
-	gameover_screen.hide()
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
@@ -31,7 +33,7 @@ func back():
 	# TODO: maybe this is not the right way
 	get_tree().change_scene(global.from_scene)
 	
-	
+var sel_players = []
 func combat(selected_players: Array):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
@@ -42,12 +44,12 @@ func combat(selected_players: Array):
 
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
 
-	gameover_screen.hide()
-	
+	sel_players = []
 	var i = 1
 	for player in selected_players:
 		assert(player is Species)
 		var player_info : InfoPlayer = from_species_to_info_player(player)
+		sel_players.append(from_info_to_spawner(player_info))
 		players[player.id] = player_info
 		# Prepare GameAnalytics event to send
 		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:" + player.species_template.species_name, i))
@@ -61,43 +63,57 @@ func combat(selected_players: Array):
 	if level_selection.back:
 		level_selection.queue_free()
 		return
-	var level_path = combat_scene + level_selection.current_level
+	current_level = level_selection.current_level
+	start_level(current_level)
+
 	level_selection.queue_free()
+	
+	# TEST: send the queue
+	GameAnalytics.submit_events()
+
+var current_level : String # we will save here which level we are playing
+
+func start_level(_level):
+	var level_path = combat_scene + _level
 	# END LEVEL SELECTION
 
 	selected_level = load(level_path)
 	combat = selected_level.instance()
 	remove_child(selection_screen)
-	combat.initialize(players)
+	combat.initialize(sel_players)
 	combat.connect("gameover", self, "gameover")
+	combat.connect("restart", self, "_on_Pause_restart", [combat])
+	combat.connect("back_to_menu", self, "_on_Pause_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
 	yield(get_tree().create_timer(0.5), "timeout")
 	add_child(combat)
-	# TEST: send the queue
-	GameAnalytics.submit_events()
 	
-func update_score(player_id:String, collectable_owner:String = ""):
-	var score: int = 0
-	if collectable_owner:
-		score = players[player_id].update_collectables()
-	else:
-		score = players[player_id].update_death()
-	emit_signal("updated", player_id, score, collectable_owner)
 
+func from_info_to_spawner(player_info):
+	var spawner = PlayerSpawner.new()
+	spawner.controls = player_info.controls 
+	spawner.species_template = player_info.species_template
+	spawner.name = player_info.id
+	spawner.info_player = player_info
+	return spawner
+	
 func gameover(winner:String, scores:Dictionary):
 	get_tree().paused = true
 	var players_scores = {}
+	var gameover = gameover_scene.instance()
+	gameover.connect("rematch", self, "_on_GameOverScreen_rematch", [gameover])
+	gameover.connect("back_to_menu", self, "_on_GameOverScreen_back_to_menu", [gameover])
+	gameover_screen.add_child(gameover)
 	for player in players:
 		var info_player = players[player]
 		info_player.score = float(scores[player])
 		players_scores[info_player.id] = info_player.to_dict()
-	gameover_screen.initialize(winner, players_scores)
-	gameover_screen.visible = true
-	gameover_screen.raise()
+	gameover.initialize(winner, players_scores)
+	gameover.visible = true
+	gameover.raise()
 	
-	
-func _on_GameOverScreen_rematch():
-	gameover_screen.visible = false
+func _on_GameOverScreen_rematch(node):
+	node.queue_free()
 	get_tree().paused = false
 	combat.queue_free()
 	
@@ -108,3 +124,21 @@ func _on_GameOverScreen_rematch():
 	connect("updated", combat, "hud_update")
 	yield(get_tree().create_timer(0.5), "timeout")
 	add_child(combat)
+
+
+func _on_GameOverScreen_back_to_menu(node):
+	print("RESTARTO")
+	node.queue_free()
+	combat.queue_free()
+	get_tree().paused = false
+	add_child(selection_screen)
+	
+func _on_Pause_restart(_combat):
+	combat.queue_free()
+	get_tree().paused = false
+	start_level(current_level)
+
+func _on_Pause_back_to_menu(_combat):
+	_combat.queue_free()
+	get_tree().paused = false
+	add_child(selection_screen)
