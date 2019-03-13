@@ -2,10 +2,10 @@ extends Node
 
 class_name CrownMode
 
-const BASE_TIME_LEFT:float = 1.0
+const BASE_TIME_LEFT:float = 15.0
 var time_left:float
 
-const TARGET_SCORE:float = 1.0
+const TARGET_SCORE:float = 40.0
 var players:Array
 var scores:Dictionary = {}
 var queen = null
