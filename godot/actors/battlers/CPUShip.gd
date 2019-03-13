@@ -73,10 +73,11 @@ func seek_ahead(potential_target):
 					break
 
 		return target
-func _draw():
-	for hit in hit_pos:
-		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
-		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+
+#func _draw():
+#	for hit in hit_pos:
+#		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+#		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
 	
 func _physics_process(delta):
 	update()
