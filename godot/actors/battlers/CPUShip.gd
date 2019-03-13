@@ -2,7 +2,7 @@ extends Ship
 
 var this_range = {60:-1, 55:0, 100:1}
 
-const MAX_DIR_WAIT = 20
+const MAX_DIR_WAIT = 200
 var wait_direction = MAX_WAIT
 var steering = Vector2()
 var front = Vector2()
@@ -19,7 +19,67 @@ static func which_quadrant(angle:float):
 func _input(_event):
 	pass
 
+var laser_color = Color(1.0, .329, .298)
+const MAX_SEE_AHEAD = Vector2(50,40)
+var hit_pos = []
 
+enum BEHAVIOUR {SEEK, AVOID, FLEE}
+
+func dist(a: Vector2, b: Vector2):
+	return sqrt((a.x - b.x) * (a.x - b.x)  + (a.y - b.y) * (a.y - b.y))
+
+func seek_ahead(potential_target):
+	var res = { "action": BEHAVIOUR.SEEK,
+				"target": potential_target
+			}
+	# see if we have some obstacle in front of us
+	var ahead = front * MAX_SEE_AHEAD + position
+	var half_ahead = front * MAX_SEE_AHEAD * 0.5 + position
+	var targets = []
+	for body in $DetectionArea.get_overlapping_bodies():
+		targets.append(body)
+		# get all the bodies inside the area
+	for areas in $DetectionArea.get_overlapping_bodies():
+		# get all areas inside the area
+		targets.append(areas)
+	
+	hit_pos = []
+	var space_state = get_world_2d().direct_space_state
+	var found = false
+	for pos_target in targets:
+		if found:
+			break
+		var shapeTarget = pos_target.get_node('CollisionShape2D').shape
+		var target_extents
+		if shapeTarget is CircleShape2D:
+			target_extents = Vector2(shapeTarget.radius, shapeTarget.radius)
+		else:
+			target_extents = shapeTarget.extents 
+		target_extents -= Vector2(5, 5)
+
+		var nw = pos_target.position - target_extents
+		var se = pos_target.position + target_extents
+		var ne = pos_target.position + Vector2(target_extents.x, -target_extents.y)
+		var sw = pos_target.position + Vector2(-target_extents.x, target_extents.y)
+		for pos in [pos_target.position, nw, ne, se, sw]:
+			var result = space_state.intersect_ray(position,
+				pos, [self], collision_mask)
+			if result:
+				hit_pos.append(result.position)
+				if result.collider != potential_target and not result.collider is Ship:
+					target = result.collider
+					print("THERE IS A DANGER: ", result.collider.name)
+					found = true
+					break
+
+		return target
+func _draw():
+	for hit in hit_pos:
+		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+	
+func _physics_process(delta):
+	update()
 func choose_dir(target:Node2D):
 	"""
 	# Follow the Crown or the crown holder if you are not it
@@ -45,17 +105,18 @@ func _ready():
 	absolute_controls = true
 const MAX_WAIT = 200
 var wait = MAX_WAIT
-
+var target 
 func control(delta):
-	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
-		arena.mouse_target = get_global_mouse_position()
 	var this_target = get_parent().get_node("Crown")
 	if not this_target or not this_target.is_inside_tree():
 		this_target = arena.game_mode.queen
 	if self == this_target:
 		this_target = null
-		
-	rotation_dir = choose_dir(this_target)
+	
+	# check if there is a danger closer
+	target = this_target
+	target = seek_ahead(this_target)
+	rotation_dir = choose_dir(target)
 	
 	# charge
 	if charging:
