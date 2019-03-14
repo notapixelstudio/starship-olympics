@@ -8,6 +8,7 @@ func _on_QuitButton_pressed():
 	get_tree().quit()
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	remove_child(options)
 	
 func _on_TitleScreen_option_selected():
