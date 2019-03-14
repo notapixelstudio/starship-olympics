@@ -265,4 +265,5 @@ func _on_Pause_back_to_menu():
 
 
 func _on_Pause_restart():
+	print("restarto combat")
 	emit_signal("restart")

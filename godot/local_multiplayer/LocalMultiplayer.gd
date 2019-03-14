@@ -118,14 +118,7 @@ func _on_GameOverScreen_rematch(node):
 	node.queue_free()
 	get_tree().paused = false
 	combat.queue_free()
-	
-	combat = selected_level.instance()
-	# remove_child(selection_screen)
-	combat.initialize(players)
-	combat.connect("gameover", self, "gameover")
-	connect("updated", combat, "hud_update")
-	yield(get_tree().create_timer(0.5), "timeout")
-	add_child(combat)
+	start_level(current_level)
 
 
 func _on_GameOverScreen_back_to_menu(node):
@@ -136,7 +129,8 @@ func _on_GameOverScreen_back_to_menu(node):
 	add_child(selection_screen)
 	
 func _on_Pause_restart(_combat):
-	combat.queue_free()
+	_combat.queue_free()
+	print("restart multiplayer")
 	get_tree().paused = false
 	start_level(current_level)
 
