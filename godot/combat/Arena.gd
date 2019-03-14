@@ -58,7 +58,7 @@ func initialize(players:Dictionary) -> void:
 	for player in players:
 		var info_player = players[player]
 		spawners.append(from_info_to_spawner(info_player))
-	info_players = players
+	info_players = players.duplicate()
 	
 func compute_arena_size():
 	"""
