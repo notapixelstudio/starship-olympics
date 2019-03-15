@@ -15,3 +15,7 @@ func to_closed_PoolVector2Array():
 	
 func to_Shape2D():
 	pass
+
+func get_extents() -> Vector2:
+	return Vector2()
+	
