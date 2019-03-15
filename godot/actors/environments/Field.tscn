@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -12,6 +12,16 @@
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50, 50 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 680.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
 
 [node name="Field" type="Node2D"]
 script = ExtResource( 1 )
@@ -52,6 +62,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 enabled = false
+charge = -10
 
 [node name="CrownDropper" type="Node" parent="Entity"]
 script = ExtResource( 4 )
@@ -86,6 +97,10 @@ disabled = true
 [node name="Sprite" type="Sprite" parent="CrownCollider"]
 modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
 texture = ExtResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 100
+process_material = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

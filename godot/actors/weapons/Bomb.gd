@@ -69,7 +69,7 @@ func _physics_process(delta):
 			call_deferred("queue_free")
 			
 	if entity.has('Flowing'):
-		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow_vector())
+		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
 signal detonate
 func detonate():
