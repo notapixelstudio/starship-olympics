@@ -106,9 +106,8 @@ func gameover(winner:String, scores:Dictionary):
 	gameover.connect("rematch", self, "_on_GameOverScreen_rematch", [gameover])
 	gameover.connect("back_to_menu", self, "_on_GameOverScreen_back_to_menu", [gameover])
 	gameover_screen.add_child(gameover)
-	for player in players:
-		var info_player = players[player]
-		info_player.score = float(scores[player])
+	for player in scores:
+		var info_player = scores[player]
 		players_scores[info_player.id] = info_player.to_dict()
 	gameover.initialize(winner, players_scores)
 	gameover.visible = true

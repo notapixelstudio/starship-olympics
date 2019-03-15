@@ -115,7 +115,7 @@ func _ready():
 	
 	# set the game mode
 	game_mode = CrownMode.new()
-	game_mode.connect("game_over", self, "gameover")
+	game_mode.connect("game_over", self, "on_gamemode_gameover")
 
 	if not spawners:
 		spawners = $SpawnPositions/Players.get_children()
@@ -126,7 +126,7 @@ func _ready():
 				spawners.append(s)
 				var info_player = from_spawner_to_infoplayer(s) 
 				info_players[s.name] = info_player
-	game_mode.initialize(spawners)
+	game_mode.initialize(info_players)
 	
 	# initialize HUD
 	hud.initialize(game_mode)
@@ -188,8 +188,7 @@ func ship_just_died(ship: Ship):
 	# respawn
 	Battlefield.call_deferred("add_child", ship)
 	
-func gameover(winner:String, scores:Dictionary):
-	print("gameover")
+func on_gamemode_gameover(winner:String, scores: Dictionary):
 	emit_signal("gameover", winner, scores)
 	
 func spawn_ships():

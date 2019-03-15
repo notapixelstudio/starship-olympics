@@ -22,6 +22,12 @@ func update_collectables():
 	collectables += 1
 	return collectables
 
+func set_score(new_score: float):
+	score = 0.0
+
+func get_score():
+	return score 
+
 func to_dict():
 	return {
 		"id": uid,

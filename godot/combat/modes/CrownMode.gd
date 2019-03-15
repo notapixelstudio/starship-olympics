@@ -2,10 +2,10 @@ extends Node
 
 class_name CrownMode
 
-const BASE_TIME_LEFT:float = 15.0
+const BASE_TIME_LEFT:float = 1.0
 var time_left:float
 
-const TARGET_SCORE:float = 40.0
+const TARGET_SCORE:float = 1.0
 var players:Array
 var scores:Dictionary = {}
 var queen = null
@@ -14,11 +14,11 @@ var game_over:bool = false
 
 signal game_over
 
-func initialize(_players:Array):
-	players = _players
+func initialize(_players: Dictionary):
+	scores = _players
 	
-	for player in players:
-		scores[player.name] = 0
+	for player in scores:
+		scores[player].set_score(0.0)
 		
 	time_left = BASE_TIME_LEFT + TARGET_SCORE*len(players)
 	
@@ -44,18 +44,18 @@ func update(delta:float):
 	if time_left < 0:
 		var best_score = 0
 		var best_player = null
-		for player in scores.keys():
-			if scores[player] >= best_score:
+		for player in scores:
+			if scores[player].get_score() >= best_score:
 				best_player = player
-				best_score = scores[player]
+				best_score = scores[player].get_score()
 		print("Time's up. Game over. " + best_player + ' wins.')
 		game_over = true
 		emit_signal("game_over", best_player, scores)
 		
 	if queen != null:
-		scores[queen.name] += delta
+		scores[queen.name]["score"] += delta
 		
-		if scores[queen.name] >= TARGET_SCORE:
+		if scores[queen.name].get_score() >= TARGET_SCORE:
 			print(queen.name + " wins.")
 			game_over = true
 			emit_signal("game_over", queen.name, scores)
