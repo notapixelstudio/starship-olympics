@@ -23,25 +23,42 @@ onready var getready = $Pause/GetReady
 onready var pause = $Pause/Pause
 
 # Crown might be null, if someone has it or ... if the mode is not crownmode
-const crown_scene = preload("res://combat/collectables/Crown.tscn")
-const ship_scene = preload("res://actors/battlers/Ship.tscn")
-const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
-signal rematch
+signal restart
+signal back_to_menu
+
 
 var spawners = []
+var info_players = {}
 var mockup = false
 var game_mode
 
-func initialize(players:Array) -> void:
+func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
+	var info_player = InfoPlayer.new()
+	info_player.id = current_player.name
+	info_player.controls = current_player.controls
+	info_player.species = current_player.species_template.species_name
+	info_player.species_template = current_player.species_template
+	return info_player
+
+func from_info_to_spawner(player_info):
+	var spawner = PlayerSpawner.new()
+	spawner.controls = player_info.controls 
+	spawner.species_template = player_info.species_template
+	spawner.name = player_info.id
+	spawner.info_player = player_info
+	return spawner
+
+func initialize(players:Dictionary) -> void:
+	# TODO: we should pass a dictionary with information that goes around and not this Spawner object
 	spawners = []
-	# forcing the array to PlayerSpwawner (as check)
+	info_players = {}
 	for player in players:
-		assert(player is PlayerSpawner)
-		
-	spawners = players
+		var info_player = players[player]
+		spawners.append(from_info_to_spawner(info_player))
+	info_players = players
 	
 func compute_arena_size():
 	"""
@@ -99,9 +116,16 @@ func _ready():
 	# set the game mode
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "gameover")
-	var player_ids = []
+
 	if not spawners:
 		spawners = $SpawnPositions/Players.get_children()
+	else:
+		# this is for adding CPU for those levels that have the option to
+		for s in $SpawnPositions/Players.get_children():
+			if s.cpu:
+				spawners.append(s)
+				var info_player = from_spawner_to_infoplayer(s) 
+				info_players[s.name] = info_player
 	game_mode.initialize(spawners)
 	
 	# initialize HUD
@@ -109,10 +133,12 @@ func _ready():
 	
 	camera.initialize(compute_arena_size(), size_multiplier)
 	
+	
 	get_tree().paused = true
-	getready.start()
-	yield(getready, "finished")
-	get_tree().paused = false
+	if not mockup:
+		getready.start()
+		yield(getready, "finished")
+		get_tree().paused = false
 	
 	
 func _process(delta):	
@@ -134,7 +160,6 @@ func _unhandled_input(event):
 func reset(level):
 	someone_died = false
 	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+level))
-	#get_tree().reload_current_scene()
 
 func get_num_players()->int:
 	"""
@@ -149,21 +174,12 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-var ships
 func ship_just_died(ship: Ship):
 	"""
 	remove from it, and reput it after a bit
 	"""
 	Battlefield.call_deferred("remove_child", ship)
-	# check if we need to lose the crown
-	if game_mode.queen != null and ship == game_mode.queen:
-		game_mode.crown_lost()
-		print("SHIP IS ALIVE? ", ship.alive)
-		var crown = crown_scene.instance()
-		crown.linear_velocity = ship.linear_velocity
-		crown.position = ship.position
-		Battlefield.call_deferred("add_child", crown)
-		
+	
 	yield(get_tree().create_timer(3), "timeout")
 	
 	if game_mode.game_over:
@@ -184,6 +200,11 @@ onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
+
+const ship_scene = preload("res://actors/battlers/Ship.tscn")
+const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
+
+
 func spawn_ship(player:PlayerSpawner):
 	var ship 
 	if player.is_cpu():
@@ -210,6 +231,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
+	ship.connect("crown_dropped", self, "_on_crown_dropped")
 	
 	return ship
 	
@@ -225,3 +247,23 @@ func spawn_bomb(pos, impulse, ship):
 	Battlefield.add_child(bomb)
 	
 	return bomb
+	
+const crown_scene = preload("res://combat/collectables/Crown.tscn")
+func spawn_crown(pos, linear_velocity):
+	var crown = crown_scene.instance()
+	crown.linear_velocity = linear_velocity
+	crown.position = pos
+	Battlefield.add_child(crown)
+	
+func _on_crown_dropped(ship):
+	game_mode.crown_lost()
+	spawn_crown(ship.position, ship.linear_velocity)
+	
+
+func _on_Pause_back_to_menu():
+	emit_signal("back_to_menu")
+
+
+func _on_Pause_restart():
+	print("restarto combat")
+	emit_signal("restart")

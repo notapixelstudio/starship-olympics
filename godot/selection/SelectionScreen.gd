@@ -159,15 +159,21 @@ func selected(species:SpeciesTemplate):
 			get_adjacent(+1, child)
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
+		deselected = false
 		$Fight.visible = true
 		global.shake_node($Fight, $Tween)
 		$Fight/Sprite/AnimationPlayer.play("wiggle")
+
+# this is in order to avoid to leave the screen if there is just one player
+# TODO: it should be with signals
+var deselected = false
 
 func deselected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species) 
 	selected_index.remove(selected_index.find(current_index))
 	var players = get_players()
 	if len(players) < MIN_PLAYERS:
+		deselected = true
 		global.shake_node($Fight, $Tween)
 		$Fight/Sprite/AnimationPlayer.play("idle")
 		$Fight.visible = false
@@ -175,5 +181,10 @@ func deselected(species:SpeciesTemplate):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if len(get_players())<=0:
-			emit_signal("back")
+			if not deselected:
+				emit_signal("back")
+			else:
+				deselected = false
+		
+		
 			

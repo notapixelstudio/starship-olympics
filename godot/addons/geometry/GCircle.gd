@@ -29,3 +29,6 @@ func to_Shape2D():
 	shape.set_point_cloud(to_PoolVector2Array())
 	return shape
 	
+func get_extents() -> Vector2:
+	return Vector2(2*radius, 2*radius)
+	
