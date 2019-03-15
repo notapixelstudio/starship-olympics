@@ -23,3 +23,6 @@ func to_Shape2D():
 	shape.set_extents(Vector2(width/2, height/2))
 	return shape
 	
+func get_extents() -> Vector2:
+	return Vector2(width, height)
+	
