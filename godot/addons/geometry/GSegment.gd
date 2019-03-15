@@ -24,3 +24,8 @@ func to_Shape2D():
 	shape.b = b
 	return shape
 	
+func get_extents() -> Vector2:
+	var width = max(a.x, b.x) - min(a.x, b.x)
+	var height = max(a.y, b.y) - min(a.y, b.y)
+	return Vector2(width, height)
+	
