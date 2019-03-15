@@ -14,8 +14,9 @@
 extents = Vector2( 50, 50 )
 
 [sub_resource type="ParticlesMaterial" id=3]
-emission_shape = 1
-emission_sphere_radius = 680.0
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
@@ -99,7 +100,10 @@ modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
 texture = ExtResource( 7 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
 amount = 100
+lifetime = 2.0
+fract_delta = false
 process_material = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -36,6 +36,7 @@ func refresh():
 	$Entity/CrownDropper.enabled = type == TYPE.castle
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
+	$Particles2D.emitting = type == TYPE.flow
 	
 	if type == TYPE.water:
 		$Polygon2D.color = Color(0,0.2,0.8,0.5)
@@ -56,6 +57,27 @@ func refresh():
 	# keep the symbols up
 	$CrownCollider/Sprite.rotation = -rotation
 	
+	# configure particles
+	if type == TYPE.flow:
+		var material = $Particles2D.process_material
+		
+		if $Entity/Flow.type == $Entity/Flow.TYPE.center:
+			material.radial_accel = $Entity/Flow.charge * 6
+		else:
+			material.radial_accel = 0
+			
+		# TODO direction flows
+		
+		if gshape is GCircle:
+			material.emission_shape = ParticlesMaterial.EMISSION_SHAPE_SPHERE
+			material.emission_sphere_radius = gshape.radius
+		elif gshape is GRect:
+			material.emission_shape = ParticlesMaterial.EMISSION_SHAPE_BOX
+			material.emission_box_extents = Vector3(gshape.width/2, gshape.height/2, 0)
+		else:
+			# other shapes are unupported
+			$Particles2D.emitting = false
+			
 func get_gshape():
 	for child in get_children():
 		if child is GShape:
