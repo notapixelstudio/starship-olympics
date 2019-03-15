@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/weapons/wall_tile.png" type="Texture" id=6]
+[ext_resource path="res://addons/rect_extents_gizmo/utils/RectExtents.gd" type="Script" id=7]
 
 [node name="Wall" type="StaticBody2D"]
 collision_layer = 16
@@ -54,4 +55,8 @@ texture_mode = 1
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10
+
+[node name="RectExtents" type="Node2D" parent="."]
+script = ExtResource( 7 )
+offset = Vector2( 0, 0 )
 

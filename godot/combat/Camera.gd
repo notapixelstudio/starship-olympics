@@ -31,16 +31,14 @@ func _ready():
 		offset = elements_in_camera[0].position
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	viewport_rect = get_viewport_rect()
-	
 	# let's put some distance from the battlefield and the bars
 	viewport_rect.size.y -= marginY/2
 	offset.y -= marginY
 	
-func initialize(rect_extention:Vector2, _zoom_max:float):
+func initialize(rect_extention:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
-	arena_size = rect_extention
+	camera_rect = rect_extention
 	margin_min = arena_size/2
-	print("Offset at initialise is: ", offset)
 	set_process(enabled)
 
 func _process(_delta: float) -> void:

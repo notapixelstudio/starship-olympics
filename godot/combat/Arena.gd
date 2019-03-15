@@ -64,10 +64,7 @@ func compute_arena_size():
 	"""
 	compute the battlefield size
 	"""
-	width = OS.window_size.x * size_multiplier
-	height = OS.window_size.y * size_multiplier
-	emit_signal("screensize_changed", Vector2(width, height))
-	return Vector2(width, height)
+	return Battlefield.get_node("OutsideWall").extents.get_rect()
 
 func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
 	if not spawner:
@@ -85,7 +82,7 @@ func _ready():
 		Soundtrack.play("Fight", true)
 	else:
 		$Pause/HUD.visible = false
-	compute_arena_size()
+	
 	camera.zoom *= size_multiplier
 	
 	# Engine.time_scale = 0.2
@@ -131,7 +128,7 @@ func _ready():
 	# initialize HUD
 	hud.initialize(game_mode)
 	
-	camera.initialize(compute_arena_size(), size_multiplier)
+	camera.initialize(compute_arena_size())
 	
 	
 	get_tree().paused = true
