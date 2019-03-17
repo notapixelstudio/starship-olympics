@@ -11,7 +11,6 @@ enum TYPE { solid, hostile }
 export(TYPE) var type = TYPE.solid setget set_type
 
 onready var extents = $RectExtents
-onready var gshape = $GBeveledRect
 var cshapes = []
 
 func set_hollow(value):
@@ -31,6 +30,10 @@ func set_type(value):
 	refresh()
 	
 func _ready():
+	var gshape
+	for node in get_children():
+		if node is GShape:
+			gshape = node
 	extents.size = gshape.get_extents()
 	refresh()
 	
