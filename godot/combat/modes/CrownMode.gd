@@ -18,6 +18,7 @@ func initialize(_players: Array):
 	scores = {}
 	
 	for player in _players:
+		player.start()
 		var team = player.species_template.species_name
 		scores[team] = player
 		

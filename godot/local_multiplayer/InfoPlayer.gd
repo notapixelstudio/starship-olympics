@@ -28,6 +28,13 @@ func set_score(new_score: float):
 func get_score():
 	return score 
 
+func start():
+	# This reset the scores
+	# TODO: change name. 
+	score = 0.0
+	lives = 10
+	deaths = 0
+	
 func to_dict():
 	return {
 		"id": uid,
