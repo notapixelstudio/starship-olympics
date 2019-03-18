@@ -165,14 +165,13 @@ func ship_just_died(ship: Ship):
 	Battlefield.call_deferred("add_child", ship)
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
+	get_tree().paused = true
 	var game_over = gameover_scene.instance()
+	game_over.connect("rematch", self, "_on_Pause_restart")
+	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
 	game_over.raise()
 	game_over.initialize(winner, scores)
-	
-func spawn_ships(spawners):
-	for player in SpawnPlayers.get_children():
-		spawn_ship(player)
 	
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
@@ -181,6 +180,11 @@ onready var environments_manager = $EnvironmentsManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
+
+func spawn_ships(spawners):
+	for player in SpawnPlayers.get_children():
+		spawn_ship(player)
+	
 
 func spawn_ship(player:PlayerSpawner):
 	var ship 
@@ -238,9 +242,10 @@ func _on_crown_dropped(ship):
 	
 
 func _on_Pause_back_to_menu():
+	print("backo from combatto")
 	emit_signal("back_to_menu")
 
 
 func _on_Pause_restart():
-	print("restarto combat")
+	print("restarto from combatto")
 	emit_signal("restart")
