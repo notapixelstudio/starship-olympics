@@ -47,6 +47,9 @@ position = Vector2( 200, 200 )
 [node name="Spawner4" parent="Battlefield" index="5" instance=ExtResource( 7 )]
 position = Vector2( -200, 200 )
 
+[node name="SpawnPositions" parent="." index="6"]
+editor/display_folded = false
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -900, 0 )
 rotation = 0.0
@@ -64,4 +67,4 @@ smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]

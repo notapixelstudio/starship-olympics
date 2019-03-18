@@ -5,7 +5,7 @@ class_name CrownMode
 const BASE_TIME_LEFT:float = 1.0
 var time_left:float
 
-const TARGET_SCORE:float = 1.0
+const TARGET_SCORE:float = 4.0
 var players:Array
 var scores:Dictionary = {}
 var queen = null
@@ -14,18 +14,19 @@ var game_over:bool = false
 
 signal game_over
 
-func initialize(_players: Dictionary):
-	scores = _players
+func initialize(_players: Array):
+	scores = {}
 	
-	for player in scores:
-		scores[player].set_score(0.0)
+	for player in _players:
+		var team = player.species_template.species_name
+		scores[team] = player
 		
-	time_left = BASE_TIME_LEFT + TARGET_SCORE*len(players)
+	time_left = BASE_TIME_LEFT + TARGET_SCORE*len(scores)
 	
 func crown_taken(ship):
 	queen = ship
 	ECM.E(queen).get('Royal').enable()
-	print("CROWN TAKEN - Queen ship is now " + queen.name)
+	print("CROWN TAKEN - Queen ship is now " + queen.species)
 	
 func crown_lost():
 	ECM.E(queen).get('Royal').disable()
@@ -48,14 +49,14 @@ func update(delta:float):
 			if scores[player].get_score() >= best_score:
 				best_player = player
 				best_score = scores[player].get_score()
-		print("Time's up. Game over. " + best_player + ' wins.')
+		# print("Time's up. Game over. " + best_player + ' wins.')
 		game_over = true
 		emit_signal("game_over", best_player, scores)
 		
 	if queen != null:
-		scores[queen.name]["score"] += delta
+		scores[queen.species]["score"] += delta
 		
-		if scores[queen.name].get_score() >= TARGET_SCORE:
-			print(queen.name + " wins.")
+		if scores[queen.species].get_score() >= TARGET_SCORE:
+			print(queen.species + " wins.")
 			game_over = true
-			emit_signal("game_over", queen.name, scores)
+			emit_signal("game_over", queen.species, scores)

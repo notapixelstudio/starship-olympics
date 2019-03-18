@@ -78,6 +78,7 @@ func _ready():
 	skin.initialize()
 	skin.invincible()
 	entity = ECM.E(self)
+	species = species_template.species_name
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
