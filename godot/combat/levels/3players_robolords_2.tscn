@@ -12,7 +12,7 @@
 [ext_resource path="res://selection/species/species2.tres" type="Resource" id=10]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=11]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -137,4 +137,4 @@ smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]
