@@ -31,7 +31,7 @@ signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
 var mockup = false
-var game_mode
+var scores
 
 func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
@@ -82,10 +82,12 @@ func _ready():
 	
 	# setup Bomb spawners
 	
-	# set the game mode
-	game_mode = CrownMode.new()
-	game_mode.connect("game_over", self, "on_gamemode_gameover")
-
+	scores = Scores.new()
+	scores.connect("game_over", self, "on_gamemode_gameover")
+	
+	$CrownModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('score', scores, "add_score")
+	
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
@@ -99,10 +101,10 @@ func _ready():
 	spawn_ships(array_players)
 	for info in array_players:
 		print(info.to_dict())
-	game_mode.initialize(array_players)
+	scores.initialize(array_players)
 	
 	# initialize HUD
-	hud.initialize(game_mode)
+	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
 	
@@ -114,8 +116,8 @@ func _ready():
 		camera.activate_camera()
 	
 	
-func _process(delta):	
-	game_mode.update(delta)
+func _process(delta):
+	scores.update(delta)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
@@ -155,7 +157,7 @@ func ship_just_died(ship: Ship):
 	
 	yield(get_tree().create_timer(3), "timeout")
 	
-	if game_mode.game_over:
+	if scores.game_over:
 		return
 	
 	# respawn
@@ -174,6 +176,7 @@ onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
+onready var deathmatch_mode_manager = $DeathmatchModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -210,6 +213,8 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("crown_dropped", self, "_on_crown_dropped")
+	ship.connect("near_area_entered", deathmatch_mode_manager, "_on_ship_near_area_entered")
+	
 	
 	return ship
 	
@@ -234,15 +239,14 @@ func spawn_crown(pos, linear_velocity):
 	Battlefield.add_child(crown)
 	
 func _on_crown_dropped(ship):
-	game_mode.crown_lost()
+	ECM.E(ship).get('Royal').disable() # move in a suitable manager
 	spawn_crown(ship.position, ship.linear_velocity)
 	
-
 func _on_Pause_back_to_menu():
 	print("backo from combatto")
 	emit_signal("back_to_menu")
-
-
+	
 func _on_Pause_restart():
 	print("restarto from combatto")
 	emit_signal("restart")
+	
