@@ -89,6 +89,7 @@ func _ready():
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	
 	$CrownModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('score', scores, "add_score")
 	
 	# set up the spawners
 	var i = 0
@@ -178,6 +179,7 @@ onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
+onready var deathmatch_mode_manager = $DeathmatchModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -214,6 +216,8 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("crown_dropped", self, "_on_crown_dropped")
+	ship.connect("near_area_entered", deathmatch_mode_manager, "_on_ship_near_area_entered")
+	
 	
 	return ship
 	

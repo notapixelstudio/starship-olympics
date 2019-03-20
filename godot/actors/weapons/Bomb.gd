@@ -73,7 +73,7 @@ func _physics_process(delta):
 		
 signal detonate
 func detonate():
-	explosion.player_id = player_id
+	explosion.origin_ship = origin_ship
 	explosion.position = position
 	emit_signal("detonate")
 	get_parent().call_deferred("add_child", explosion)

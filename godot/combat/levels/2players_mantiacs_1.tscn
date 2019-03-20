@@ -47,7 +47,7 @@ position = Vector2( 200, 200 )
 [node name="Spawner4" parent="Battlefield" index="5" instance=ExtResource( 7 )]
 position = Vector2( -200, 200 )
 
-[node name="SpawnPositions" parent="." index="7"]
+[node name="SpawnPositions" parent="." index="8"]
 editor/display_folded = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
@@ -61,7 +61,7 @@ rotation = 3.14159
 controls = "kb2"
 species_template = ExtResource( 10 )
 
-[node name="Camera" parent="." index="10"]
+[node name="Camera" parent="." index="11"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

@@ -49,5 +49,5 @@ func update(delta:float):
 func add_score(team : String, amount : float):
 	assert team in scores_index
 	
-	scores_index[team]["score"] += amount
+	scores_index[team]["score"] = max(0, scores_index[team]["score"] + amount)
 	
