@@ -90,9 +90,9 @@ func try_acquire_target(ship):
 		return
 		
 	# If there's a queen ship, avoid locking on partners
-	if not standalone and ship.arena.game_mode.is_there_a_queen() and not ECM.E(ship).has('Royal') and not ECM.E(origin_ship).has('Royal'):
+	if not standalone and len(ECM.entities_with('Royal')) > 0 and not ECM.E(ship).has('Royal') and not ECM.E(origin_ship).has('Royal'):
 		return
-	
+		
 	if locking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
 		acquire_target(ship)
 		

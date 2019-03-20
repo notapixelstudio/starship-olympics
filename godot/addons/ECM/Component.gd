@@ -4,8 +4,26 @@ class_name Component
 
 export var enabled : bool = true
 
+func _enter_tree():
+	if enabled:
+		_add_to_corresponding_group()
+		
+func _exit_tree():
+	_remove_from_corresponding_group()
+	
+func _add_to_corresponding_group():
+	get_entity().add_to_group('component__'+name)
+	
+func _remove_from_corresponding_group():
+	get_entity().remove_from_group('component__'+name)
+	
 func set_enabled(value : bool):
 	enabled = value
+	
+	if enabled:
+		_add_to_corresponding_group()
+	else:
+		_remove_from_corresponding_group()
 
 func enable():
 	set_enabled(true)
