@@ -43,7 +43,6 @@ func initialize(rect_extention:Rect2):
 	margin_min = arena_size/2
 	offset = calculate_center(camera_rect)
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
-	print(zoom)
 	offset.y -= marginY
 	set_process(false)
 
@@ -57,15 +56,12 @@ func _process(_delta: float) -> void:
 	
 	var offset_to_be = calculate_center(camera_rect)
 	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
-	if wait_in_frame < 0:
-		offset.x = lerp(offset.x, offset_to_be.x, offset_speed)
-		offset.y = lerp(offset.y, offset_to_be.y-marginY, offset_speed)
-		# offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
-		# offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
 
-	else:
-		pass
-	
+	offset.x = lerp(offset.x, offset_to_be.x, offset_speed)
+	offset.y = lerp(offset.y, offset_to_be.y-marginY, offset_speed)
+	# offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
+	# offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
+
 	# zoom x and y is uguale
 	if zoom_to_be.x > zoom.x:
 		zoom_speed = zoom_speed_enlarge
