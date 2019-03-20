@@ -3,9 +3,11 @@ extends Camera2D
 export var zoomMin = 1.7
 export var marginX = 0
 export var marginY = 300.0
+export (float) var zoom_speed_enlarge = 0.13
+export (float) var zoom_speed_shrink = 0.02
 export(float, 0.1, 1.0) var zoom_offset : float = 0.9
-export(float, 0.01, 0.5) var zoom_speed : float = 0.13
-export(float, 0.01, 0.5) var offset_speed : float = 0.09
+export(float, 0.01, 0.5) var zoom_speed : float = 0.02
+export(float, 0.01, 0.5) var offset_speed : float = 0.02
 export var debug_mode : bool = true
 
 var camera_rect : = Rect2()
@@ -54,7 +56,6 @@ func _process(_delta: float) -> void:
 	var offset_to_be = calculate_center(camera_rect)
 	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
 	if wait_in_frame < 0:
-		
 		offset.x = lerp(offset.x, offset_to_be.x, offset_speed)
 		offset.y = lerp(offset.y, offset_to_be.y-marginY, offset_speed)
 		#offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
@@ -63,6 +64,12 @@ func _process(_delta: float) -> void:
 	else:
 		pass
 	
+	# zoom x and y is uguale
+	if zoom_to_be.x > zoom.x:
+		zoom_speed = zoom_speed_enlarge
+	else: 
+		zoom_speed = zoom_speed_shrink
+	print(zoom_speed)
 	zoom.x = lerp(zoom.x, zoom_to_be.x, zoom_speed)
 	zoom.y = lerp(zoom.y, zoom_to_be.y, zoom_speed)
 	zoom.x = max(zoom.x, zoomMin)
