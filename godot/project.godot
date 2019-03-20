@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/PlayerSpawner.gd"
 }, {
+"base": "Node2D",
+"class": "RectExtents",
+"language": "GDScript",
+"path": "res://addons/rect_extents_gizmo/utils/RectExtents.gd"
+}, {
 "base": "Node",
 "class": "Scores",
 "language": "GDScript",
@@ -149,6 +154,7 @@ _global_script_class_icons={
 "Manager": "",
 "PlayerHUD": "",
 "PlayerSpawner": "",
+"RectExtents": "",
 "Scores": "",
 "Ship": "",
 "Species": "",
@@ -195,7 +201,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "rect_extents_gizmo" )
 
 [input]
 

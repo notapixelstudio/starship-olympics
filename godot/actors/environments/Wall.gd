@@ -10,6 +10,7 @@ export (int) var elongation setget set_elongation
 enum TYPE { solid, hostile }
 export(TYPE) var type = TYPE.solid setget set_type
 
+onready var extents = $RectExtents
 var cshapes = []
 
 func set_hollow(value):
@@ -29,6 +30,11 @@ func set_type(value):
 	refresh()
 	
 func _ready():
+	var gshape
+	for node in get_children():
+		if node is GShape:
+			gshape = node
+	extents.size = gshape.get_extents()
 	refresh()
 	
 func remove_old_shapes():

@@ -59,10 +59,7 @@ func compute_arena_size():
 	"""
 	compute the battlefield size
 	"""
-	width = OS.window_size.x * size_multiplier
-	height = OS.window_size.y * size_multiplier
-	emit_signal("screensize_changed", Vector2(width, height))
-	return Vector2(width, height)
+	return Battlefield.get_node("OutsideWall").extents.get_rect()
 
 func _ready():
 	if not mockup:
@@ -109,14 +106,14 @@ func _ready():
 	# initialize HUD
 	hud.initialize(scores)
 	
-	camera.initialize(compute_arena_size(), size_multiplier)
-	
+	camera.initialize(compute_arena_size())
 	
 	get_tree().paused = true
 	if not mockup:
 		getready.start()
 		yield(getready, "finished")
 		get_tree().paused = false
+		camera.activate_camera()
 	
 	
 func _process(delta):
