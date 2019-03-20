@@ -15,6 +15,7 @@ var game_over:bool = false
 signal game_over
 
 func initialize(_players: Array):
+	scores = []
 	scores_index = {}
 	
 	for player in _players:
@@ -44,7 +45,7 @@ func update(delta:float):
 	if leader["score"] >= TARGET_SCORE or time_left < 0:
 		print('Game Over - ', leader["species"], ' won.')
 		game_over = true
-		emit_signal("game_over", leader, scores_index)
+		emit_signal("game_over", leader["species"], scores_index)
 		
 func add_score(team : String, amount : float):
 	assert team in scores_index
