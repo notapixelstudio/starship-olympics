@@ -106,12 +106,12 @@ func _ready():
 	
 	camera.initialize(compute_arena_size())
 	
-	
 	get_tree().paused = true
 	if not mockup:
 		getready.start()
 		yield(getready, "finished")
 		get_tree().paused = false
+		camera.activate_camera()
 	
 	
 func _process(delta):	

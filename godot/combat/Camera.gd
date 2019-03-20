@@ -5,7 +5,7 @@ export var marginX = 0
 export var marginY = 300.0
 export (float) var zoom_speed_enlarge = 0.13
 export (float) var zoom_speed_shrink = 0.02
-export(float, 0.1, 1.0) var zoom_offset : float = 0.9
+export(float, 0.1, 1.0) var zoom_offset : float = 0.75
 export(float, 0.01, 0.5) var zoom_speed : float = 0.02
 export(float, 0.01, 0.5) var offset_speed : float = 0.02
 export var debug_mode : bool = true
@@ -35,13 +35,17 @@ func _ready():
 	viewport_rect = get_viewport_rect()
 	# let's put some distance from the battlefield and the bars
 	viewport_rect.size.y -= marginY/2
-	offset.y -= marginY
+	
 	
 func initialize(rect_extention:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
 	camera_rect = rect_extention
 	margin_min = arena_size/2
-	set_process(enabled)
+	offset = calculate_center(camera_rect)
+	zoom = calculate_zoom(camera_rect, viewport_rect.size)
+	print(zoom)
+	offset.y -= marginY
+	set_process(false)
 
 func _process(_delta: float) -> void:
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
@@ -56,8 +60,8 @@ func _process(_delta: float) -> void:
 	if wait_in_frame < 0:
 		offset.x = lerp(offset.x, offset_to_be.x, offset_speed)
 		offset.y = lerp(offset.y, offset_to_be.y-marginY, offset_speed)
-		#offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
-		#offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
+		# offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
+		# offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
 
 	else:
 		pass
@@ -67,7 +71,7 @@ func _process(_delta: float) -> void:
 		zoom_speed = zoom_speed_enlarge
 	else: 
 		zoom_speed = zoom_speed_shrink
-	print(zoom_speed)
+	
 	zoom.x = lerp(zoom.x, zoom_to_be.x, zoom_speed)
 	zoom.y = lerp(zoom.y, zoom_to_be.y, zoom_speed)
 	zoom.x = max(zoom.x, zoomMin)
@@ -89,8 +93,8 @@ func calculate_center(rect: Rect2) -> Vector2:
 
 func calculate_zoom(rect: Rect2, viewport_size: Vector2) -> Vector2:
 	var max_zoom = max(
-		max(1.5, rect.size.x / viewport_size.x + zoom_offset),
-		max(1.5, rect.size.y / viewport_size.y  + zoom_offset))
+		max(1.75, rect.size.x / viewport_size.x + zoom_offset),
+		max(1.75, rect.size.y / viewport_size.y  + zoom_offset))
 	return Vector2(max_zoom, max_zoom)
 
 
@@ -99,3 +103,6 @@ func _draw() -> void:
 		return
 	draw_rect(camera_rect, Color("#ffffff"), false)
 	draw_circle(calculate_center(camera_rect), 5, Color("#ffffff"))
+
+func activate_camera():
+	set_process(enabled)
