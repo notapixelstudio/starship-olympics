@@ -7,6 +7,7 @@ var width
 var height
 var someone_died = 0
 
+export (PackedScene) var gameover_scene
 export (float) var size_multiplier = 2.0
 
 var mouse_target  = Vector2(1600, 970)
@@ -18,20 +19,17 @@ onready var DebugNode = $Debug/DebugNode
 onready var Battlefield = $Battlefield
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
-onready var hud = $Pause/HUD
-onready var getready = $Pause/GetReady
-onready var pause = $Pause/Pause
-
-# Crown might be null, if someone has it or ... if the mode is not crownmode
+onready var canvas = $CanvasLayer
+onready var hud = $CanvasLayer/HUD
+onready var getready = $CanvasLayer/GetReady
+onready var pause = $CanvasLayer/Pause
 
 signal screensize_changed(screensize)
 signal gameover
 signal restart
 signal back_to_menu
 
-
-var spawners = []
-var info_players = {}
+var array_players = [] # Dictionary of InfoPlayers
 var mockup = false
 var game_mode
 
@@ -41,6 +39,7 @@ func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
 	info_player.controls = current_player.controls
 	info_player.species = current_player.species_template.species_name
 	info_player.species_template = current_player.species_template
+	info_player.cpu = current_player.cpu
 	return info_player
 
 func from_info_to_spawner(player_info):
@@ -52,13 +51,9 @@ func from_info_to_spawner(player_info):
 	return spawner
 
 func initialize(players:Dictionary) -> void:
-	# TODO: we should pass a dictionary with information that goes around and not this Spawner object
-	spawners = []
-	info_players = {}
-	for player in players:
-		var info_player = players[player]
-		spawners.append(from_info_to_spawner(info_player))
-	info_players = players
+	array_players = []
+	for p in players:
+		array_players.append(players[p])
 	
 func compute_arena_size():
 	"""
@@ -66,23 +61,12 @@ func compute_arena_size():
 	"""
 	return Battlefield.get_node("OutsideWall").extents.get_rect()
 
-func update_spawner(spawner:PlayerSpawner, index:int) -> bool:
-	if not spawner:
-		return false
-	var player = SpawnPlayers.get_child(index)
-	if player:
-		player.name = spawner.name
-		player.controls = spawner.controls
-		player.species_template = spawner.species_template
-		return true
-	return false
-	
 func _ready():
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
-		$Pause/HUD.visible = false
-	
+		hud.visible = false
+	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
 	# Engine.time_scale = 0.2
@@ -97,33 +81,25 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 	# setup Bomb spawners
-	for spawner in Battlefield.get_children():
-		if spawner.is_in_group("spawner"):
-			spawner.spawn()
-	
-	
-	# set the player spawners
-	var i = 0
-	for spawner in spawners:
-		update_spawner(spawner, i)
-		i+=1
-		
-	spawn_ships()
 	
 	# set the game mode
 	game_mode = CrownMode.new()
-	game_mode.connect("game_over", self, "gameover")
+	game_mode.connect("game_over", self, "on_gamemode_gameover")
 
-	if not spawners:
-		spawners = $SpawnPositions/Players.get_children()
-	else:
-		# this is for adding CPU for those levels that have the option to
-		for s in $SpawnPositions/Players.get_children():
-			if s.cpu:
-				spawners.append(s)
-				var info_player = from_spawner_to_infoplayer(s) 
-				info_players[s.name] = info_player
-	game_mode.initialize(spawners)
+	# set up the spawners
+	var i = 0
+	for s in $SpawnPositions/Players.get_children():
+		if len(array_players) >= i+1:
+			s.controls = array_players[i].controls
+			s.species_template = array_players[i].species_template
+		else:
+			array_players.append(from_spawner_to_infoplayer(s))
+		i += 1
+	print(array_players)
+	spawn_ships(array_players)
+	for info in array_players:
+		print(info.to_dict())
+	game_mode.initialize(array_players)
 	
 	# initialize HUD
 	hud.initialize(game_mode)
@@ -185,13 +161,14 @@ func ship_just_died(ship: Ship):
 	# respawn
 	Battlefield.call_deferred("add_child", ship)
 	
-func gameover(winner:String, scores:Dictionary):
-	print("gameover")
-	emit_signal("gameover", winner, scores)
-	
-func spawn_ships():
-	for player in SpawnPlayers.get_children():
-		spawn_ship(player)
+func on_gamemode_gameover(winner:String, scores: Dictionary):
+	get_tree().paused = true
+	var game_over = gameover_scene.instance()
+	game_over.connect("rematch", self, "_on_Pause_restart")
+	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
+	canvas.add_child(game_over)
+	game_over.raise()
+	game_over.initialize(winner, scores)
 	
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
@@ -201,6 +178,10 @@ onready var environments_manager = $EnvironmentsManager
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
+func spawn_ships(spawners):
+	for player in SpawnPlayers.get_children():
+		spawn_ship(player)
+	
 
 func spawn_ship(player:PlayerSpawner):
 	var ship 
@@ -258,9 +239,10 @@ func _on_crown_dropped(ship):
 	
 
 func _on_Pause_back_to_menu():
+	print("backo from combatto")
 	emit_signal("back_to_menu")
 
 
 func _on_Pause_restart():
-	print("restarto combat")
+	print("restarto from combatto")
 	emit_signal("restart")
