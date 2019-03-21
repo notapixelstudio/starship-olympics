@@ -160,7 +160,7 @@ func fire():
 	fire_cooldown = 0 # disabled
 	
 
-func die(killer : Entity):
+func die(killer : Ship):
 	if alive and not invincible:
 		alive = false
 		# skin.play_death()
