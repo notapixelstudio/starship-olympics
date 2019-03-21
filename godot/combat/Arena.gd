@@ -81,7 +81,9 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 	# setup Bomb spawners
-	
+	for spawner in get_tree().get_nodes_in_group("spawner"):
+		spawner.spawn()
+		
 	scores = Scores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	
