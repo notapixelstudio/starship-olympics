@@ -149,7 +149,7 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship: Ship):
+func ship_just_died(ship: Ship, killer : Entity):
 	"""
 	remove from it, and reput it after a bit
 	"""
@@ -164,7 +164,7 @@ func ship_just_died(ship: Ship):
 	Battlefield.call_deferred("add_child", ship)
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
-	yield(get_tree(),"idle_frame") # wait for UI redraw
+	yield(get_tree(),"idle_frame") # wait for UI redraw (esp. bars)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
 	game_over.connect("rematch", self, "_on_Pause_restart")
@@ -214,8 +214,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("crown_dropped", self, "_on_crown_dropped")
-	ship.connect("near_area_entered", deathmatch_mode_manager, "_on_ship_near_area_entered")
-	
+	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	
 	return ship
 	

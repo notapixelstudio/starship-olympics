@@ -1,15 +1,11 @@
 extends Manager
 
 signal score
-func _on_ship_near_area_entered(other : CollisionObject2D, ship : Ship):
-	var entity = ECM.E(other)
+func _on_ship_killed(ship : Ship, killer_entity : Entity):
+	var killer = killer_entity.get_host()
 	
-	if not entity:
-		return
+	if killer is Explosion and killer.origin_ship != ship: # duck typing
+		emit_signal('score', killer.origin_ship.species, 10)
+	else:
+		emit_signal('score', ship.species, -10)
 		
-	if entity.has('Deadly'):
-		if entity.get_host() is Explosion and entity.get_host().origin_ship != ship: # duck typing
-			emit_signal('score', entity.get_host().origin_ship.species, 10)
-		else:
-			emit_signal('score', ship.species, -10)
-			

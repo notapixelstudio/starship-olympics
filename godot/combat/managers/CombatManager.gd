@@ -7,7 +7,7 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 		return
 		
 	if entity.has('Deadly'):
-		ship.die()
+		ship.die(entity)
 		
 func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
 	var entity = ECM.E(other)
