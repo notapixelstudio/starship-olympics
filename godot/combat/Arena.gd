@@ -164,6 +164,7 @@ func ship_just_died(ship: Ship):
 	Battlefield.call_deferred("add_child", ship)
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
+	yield(get_tree(),"idle_frame") # wait for UI redraw
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
 	game_over.connect("rematch", self, "_on_Pause_restart")
