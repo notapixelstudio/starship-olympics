@@ -67,7 +67,11 @@ func _physics_process(delta):
 		
 signal detonate
 func detonate():
-	ECM.E(explosion).get('Owned').set_owned_by(entity.get('Owned').get_owned_by())
+	if entity.has('Owned'):
+		ECM.E(explosion).get('Owned').set_owned_by(entity.get('Owned').get_owned_by())
+	else:
+		ECM.E(explosion).get('Owned').disable()
+		
 	explosion.position = position
 	emit_signal("detonate")
 	get_parent().call_deferred("add_child", explosion)

@@ -15,6 +15,8 @@ const maxRadius = 80
 signal end_explosion
 var explosions = ["res://assets/sounds/gameplay/explosions/SFX_Explosion_05.wav", "res://assets/sounds/gameplay/explosions/SFX_Explosion_08.wav"]
 
+var entity
+
 func _ready():
 	shape = CircleShape2D.new()
 	$CollisionShape2D.set_shape(shape)
