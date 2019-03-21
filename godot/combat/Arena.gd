@@ -81,7 +81,10 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 	# setup Bomb spawners
-	
+	for spawner in Battlefield.get_children():
+		if spawner.is_in_group("spawner"):
+			spawner.spawn()
+
 	# set the game mode
 	game_mode = CrownMode.new()
 	game_mode.connect("game_over", self, "on_gamemode_gameover")
