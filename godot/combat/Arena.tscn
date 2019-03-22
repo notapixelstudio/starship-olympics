@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -7,11 +7,13 @@
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
 [ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=6]
 [ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=7]
-[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=10]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=12]
+[ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=8]
+[ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=9]
+[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=12]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=13]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=14]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
@@ -41,6 +43,19 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
+[node name="CrownModeManager" type="Node" parent="."]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="DeathmatchModeManager" type="Node" parent="."]
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+enabled = false
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -58,12 +73,12 @@ editor/display_folded = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 8 )]
+[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 10 )]
 visible = false
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 9 )]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 11 )]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 10 )]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 12 )]
 editor/display_folded = true
 visible = false
 
@@ -87,13 +102,13 @@ elem_type = 2
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 11 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 13 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 debug_mode = false
 enabled = true
 

@@ -31,7 +31,7 @@ signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
 var mockup = false
-var game_mode
+var scores
 
 func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
@@ -81,13 +81,14 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 	# setup Bomb spawners
-	for spawner in Battlefield.get_children():
-		if spawner.is_in_group("spawner"):
-			spawner.spawn()
+	for spawner in get_tree().get_nodes_in_group("spawner"):
+		spawner.spawn()
 
-	# set the game mode
-	game_mode = CrownMode.new()
-	game_mode.connect("game_over", self, "on_gamemode_gameover")
+	scores = Scores.new()
+	scores.connect("game_over", self, "on_gamemode_gameover")
+
+	$CrownModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('score', scores, "add_score")
 
 	# set up the spawners
 	var i = 0
@@ -102,23 +103,23 @@ func _ready():
 	spawn_ships(array_players)
 	for info in array_players:
 		print(info.to_dict())
-	game_mode.initialize(array_players)
+	scores.initialize(array_players)
 	
 	# initialize HUD
-	hud.initialize(game_mode)
+	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
-	
+
 	get_tree().paused = true
 	if not mockup:
 		getready.start()
 		yield(getready, "finished")
 		get_tree().paused = false
 		camera.activate_camera()
+
 	
-	
-func _process(delta):	
-	game_mode.update(delta)
+func _process(delta):
+	scores.update(delta)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
@@ -150,7 +151,7 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship: Ship):
+func ship_just_died(ship: Ship, killer : Entity):
 	"""
 	remove from it, and reput it after a bit
 	"""
@@ -158,13 +159,14 @@ func ship_just_died(ship: Ship):
 	
 	yield(get_tree().create_timer(3), "timeout")
 	
-	if game_mode.game_over:
+	if scores.game_over:
 		return
 	
 	# respawn
 	Battlefield.call_deferred("add_child", ship)
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
+	yield(get_tree(),"idle_frame") # wait for UI redraw (esp. bars)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
 	game_over.connect("rematch", self, "_on_Pause_restart")
@@ -172,11 +174,12 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	canvas.add_child(game_over)
 	game_over.raise()
 	game_over.initialize(winner, scores)
-	
+
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
+onready var deathmatch_mode_manager = $DeathmatchModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -184,7 +187,7 @@ const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 func spawn_ships(spawners):
 	for player in SpawnPlayers.get_children():
 		spawn_ship(player)
-	
+
 
 func spawn_ship(player:PlayerSpawner):
 	var ship 
@@ -213,7 +216,8 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("crown_dropped", self, "_on_crown_dropped")
-	
+	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
+
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -237,15 +241,11 @@ func spawn_crown(pos, linear_velocity):
 	Battlefield.add_child(crown)
 	
 func _on_crown_dropped(ship):
-	game_mode.crown_lost()
+	ECM.E(ship).get('Royal').disable() # move in a suitable manager
 	spawn_crown(ship.position, ship.linear_velocity)
-	
 
 func _on_Pause_back_to_menu():
-	print("backo from combatto")
 	emit_signal("back_to_menu")
 
-
 func _on_Pause_restart():
-	print("restarto from combatto")
 	emit_signal("restart")

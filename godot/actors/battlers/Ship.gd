@@ -160,14 +160,14 @@ func fire():
 	fire_cooldown = 0 # disabled
 	
 
-func die():
+func die(killer : Ship):
 	if alive and not invincible:
 		alive = false
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
 		drop()
-		emit_signal("dead", self)
+		emit_signal("dead", self, killer)
 		
 signal crown_dropped
 func drop():
