@@ -58,7 +58,6 @@ margin_bottom = 176.0
 mouse_filter = 1
 
 [node name="margin_container" type="MarginContainer" parent="panel"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 8
@@ -122,8 +121,32 @@ label_description = "Music"
 is_global = true
 description_node_path = NodePath("../Mute/ElementCheckbox")
 
-[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+[node name="Volume" type="Label" parent="panel/margin_container/v_box_container"]
 margin_top = 175.0
+margin_right = 448.0
+margin_bottom = 192.0
+text = "Volume music"
+align = 1
+
+[node name="HSlider" type="HSlider" parent="panel/margin_container/v_box_container"]
+margin_top = 196.0
+margin_right = 448.0
+margin_bottom = 204.0
+
+[node name="Volume2" type="Label" parent="panel/margin_container/v_box_container"]
+margin_top = 208.0
+margin_right = 448.0
+margin_bottom = 225.0
+text = "Volume SFX"
+align = 1
+
+[node name="HSlider2" type="HSlider" parent="panel/margin_container/v_box_container"]
+margin_top = 229.0
+margin_right = 448.0
+margin_bottom = 237.0
+
+[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+margin_top = 241.0
 margin_right = 448.0
 margin_bottom = 319.0
 size_flags_vertical = 3
