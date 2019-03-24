@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://special_scenes/option_screen/ElemSlider.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/switch-selection.wav" type="AudioStream" id=2]
 
 [node name="Music" type="MarginContainer"]
 margin_top = 175.0
@@ -26,5 +27,9 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 tick_count = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "SFX"
 
 [connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
