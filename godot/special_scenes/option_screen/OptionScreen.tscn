@@ -144,6 +144,10 @@ align = 1
 margin_top = 229.0
 margin_right = 448.0
 margin_bottom = 237.0
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 1
 
 [node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
 margin_top = 241.0
@@ -165,3 +169,5 @@ anims/hide = SubResource( 1 )
 anims/show = SubResource( 2 )
 anims/standby = SubResource( 3 )
 
+[connection signal="value_changed" from="panel/margin_container/v_box_container/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="panel/margin_container/v_box_container/HSlider2" to="." method="_on_HSlider2_value_changed"]
