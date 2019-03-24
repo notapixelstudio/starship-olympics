@@ -28,11 +28,3 @@ func _input(event):
 func _exit_tree():
 	# Let's save the changes
 	persistance.save_game()
-
-func _on_HSlider_value_changed(value):
-	pass # Replace with function body.
-
-
-func _on_HSlider2_value_changed(value):
-	var db_volume = linear2db(value)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_volume)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Ui_pause_default.gd" type="Script" id=2]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=3]
 [ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hide"
@@ -121,36 +122,20 @@ label_description = "Music"
 is_global = true
 description_node_path = NodePath("../Mute/ElementCheckbox")
 
-[node name="Volume" type="Label" parent="panel/margin_container/v_box_container"]
-margin_top = 175.0
-margin_right = 448.0
-margin_bottom = 192.0
-text = "Volume music"
-align = 1
+[node name="Master" parent="panel/margin_container/v_box_container" instance=ExtResource( 5 )]
 
-[node name="HSlider" type="HSlider" parent="panel/margin_container/v_box_container"]
-margin_top = 196.0
-margin_right = 448.0
-margin_bottom = 204.0
-
-[node name="Volume2" type="Label" parent="panel/margin_container/v_box_container"]
+[node name="Music" parent="panel/margin_container/v_box_container" instance=ExtResource( 5 )]
 margin_top = 208.0
-margin_right = 448.0
-margin_bottom = 225.0
-text = "Volume SFX"
-align = 1
-
-[node name="HSlider2" type="HSlider" parent="panel/margin_container/v_box_container"]
-margin_top = 229.0
-margin_right = 448.0
 margin_bottom = 237.0
-max_value = 1.0
-step = 0.1
-value = 0.5
-tick_count = 1
+bus_name = "Music"
+
+[node name="SFX" parent="panel/margin_container/v_box_container" instance=ExtResource( 5 )]
+margin_top = 241.0
+margin_bottom = 270.0
+bus_name = "SFX"
 
 [node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
-margin_top = 241.0
+margin_top = 274.0
 margin_right = 448.0
 margin_bottom = 319.0
 size_flags_vertical = 3
@@ -169,5 +154,3 @@ anims/hide = SubResource( 1 )
 anims/show = SubResource( 2 )
 anims/standby = SubResource( 3 )
 
-[connection signal="value_changed" from="panel/margin_container/v_box_container/HSlider" to="." method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="panel/margin_container/v_box_container/HSlider2" to="." method="_on_HSlider2_value_changed"]
