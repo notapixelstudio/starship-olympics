@@ -12,7 +12,7 @@
 [ext_resource path="res://selection/species/species0.tres" type="Resource" id=10]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=11]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 3.0
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -21,12 +21,13 @@ centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
+type = 0
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Wall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
@@ -63,4 +64,4 @@ species_template = ExtResource( 11 )
 zoom_offset = 0.797
 
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]

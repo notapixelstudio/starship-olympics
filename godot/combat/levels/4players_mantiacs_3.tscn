@@ -21,14 +21,14 @@ centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 modulate = Color( 1, 0, 0, 1 )
 hollow = true
 offset = 200
 elongation = 100
 type = 1
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Wall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
@@ -65,4 +65,4 @@ species_template = ExtResource( 11 )
 zoom_offset = 0.797
 
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]
