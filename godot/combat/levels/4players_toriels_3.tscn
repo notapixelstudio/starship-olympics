@@ -47,14 +47,14 @@ __meta__ = {
 a = Vector2( -500, -1200 )
 b = Vector2( 500, 1200 )
 
-[node name="Wall" parent="Battlefield" index="3" instance=ExtResource( 7 )]
+[node name="OutsideWall" parent="Battlefield" index="3" instance=ExtResource( 7 )]
 rotation = 0.392699
 hollow = true
 offset = 200
 elongation = 100
 type = 0
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall" index="3"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
@@ -90,4 +90,4 @@ species_template = ExtResource( 14 )
 zoom_offset = 0.797
 
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]
