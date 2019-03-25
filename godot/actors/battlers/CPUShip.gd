@@ -3,7 +3,7 @@ extends Ship
 var this_range = {60:-1, 55:0, 100:1}
 
 const MAX_DIR_WAIT = 200
-var wait_direction = MAX_WAIT
+var wait_direction = 0
 var steering = Vector2()
 var front = Vector2()
 
