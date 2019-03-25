@@ -32,6 +32,7 @@ func initialize(winner:String, scores:Dictionary):
 	# TODO: we should add the species altogether
 
 func _on_Rematch_pressed():
+	print("rematcho")
 	emit_signal("rematch")
 
 func _on_Quit_pressed():
@@ -39,5 +40,5 @@ func _on_Quit_pressed():
 
 func _on_Menu_pressed():
 	# TODO: It will be whoever receive the signal to unpause
-	get_tree().paused = false
+	print("backo")
 	emit_signal("back_to_menu")

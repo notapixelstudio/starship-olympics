@@ -35,11 +35,6 @@ _global_script_classes=[ {
 "path": "res://selection/interface/Command.gd"
 }, {
 "base": "Node",
-"class": "CrownMode",
-"language": "GDScript",
-"path": "res://combat/modes/CrownMode.gd"
-}, {
-"base": "Node",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://addons/ECM/Entity.gd"
@@ -99,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/ECM/Manager.gd"
 }, {
+"base": "Manager",
+"class": "ModeManager",
+"language": "GDScript",
+"path": "res://combat/managers/modes/ModeManager.gd"
+}, {
 "base": "MarginContainer",
 "class": "PlayerHUD",
 "language": "GDScript",
@@ -108,6 +108,16 @@ _global_script_classes=[ {
 "class": "PlayerSpawner",
 "language": "GDScript",
 "path": "res://combat/PlayerSpawner.gd"
+}, {
+"base": "Node2D",
+"class": "RectExtents",
+"language": "GDScript",
+"path": "res://addons/rect_extents_gizmo/utils/RectExtents.gd"
+}, {
+"base": "Node",
+"class": "Scores",
+"language": "GDScript",
+"path": "res://combat/Scores.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Ship",
@@ -135,7 +145,6 @@ _global_script_class_icons={
 "Bomb": "",
 "Component": "",
 "Controls": "",
-"CrownMode": "",
 "Entity": "",
 "Explosion": "",
 "GBeveledRect": "",
@@ -148,8 +157,11 @@ _global_script_class_icons={
 "GenericOption": "",
 "InfoPlayer": "",
 "Manager": "",
+"ModeManager": "",
 "PlayerHUD": "",
 "PlayerSpawner": "",
+"RectExtents": "",
+"Scores": "",
 "Ship": "",
 "Species": "",
 "SpeciesContainer": "",
@@ -195,7 +207,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "rect_extents_gizmo" )
 
 [input]
 

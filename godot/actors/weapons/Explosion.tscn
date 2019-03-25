@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/weapons/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/weapons/explosion.png" type="Texture" id=6]
+[ext_resource path="res://combat/components/Owned.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/weapons/explosion.png" type="Texture" id=7]
 
 [node name="Explosion" type="Area2D"]
 input_pickable = false
@@ -29,12 +30,18 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Owned" type="Node" parent="Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
 [node name="Image" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Image"]
 modulate = Color( 1, 1, 1, 0.872941 )
 scale = Vector2( 0.012, 0.012 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

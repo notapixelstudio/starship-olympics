@@ -78,6 +78,7 @@ func _ready():
 	skin.initialize()
 	skin.invincible()
 	entity = ECM.E(self)
+	species = species_template.species_name
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -159,14 +160,14 @@ func fire():
 	fire_cooldown = 0 # disabled
 	
 
-func die():
+func die(killer : Ship):
 	if alive and not invincible:
 		alive = false
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
 		drop()
-		emit_signal("dead", self)
+		emit_signal("dead", self, killer)
 		
 signal crown_dropped
 func drop():
