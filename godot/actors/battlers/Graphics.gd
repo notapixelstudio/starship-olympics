@@ -44,7 +44,8 @@ func play_death():
 	yield(battler_anim.play_disappear(), "completed")
 
 func appear():
-	anim.play("appear")
+	yield(battler_anim.play_appear(), "completed")
+	
 
 func invincible():
 	yield(battler_anim.play_invincible(), "completed")

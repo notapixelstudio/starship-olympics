@@ -1,0 +1,18 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "appear"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 7 ),
+"transitions": PoolRealArray( 1, 0.210224, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ), Vector2( 5, 5 ), Vector2( 1.5, 1.5 ) ]
+}
+

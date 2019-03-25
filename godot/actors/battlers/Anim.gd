@@ -6,7 +6,9 @@ signal completed
 	
 func play_appear():
 	anim.play("appear")
+	print("We are inside here")
 	yield(anim, "animation_finished")
+	emit_signal("completed")
 
 func play_disappear():
 	anim.play("disappear")
