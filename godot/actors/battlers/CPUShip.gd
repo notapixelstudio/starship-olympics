@@ -117,13 +117,11 @@ const MAX_WAIT = 200
 var wait = MAX_WAIT
 var target 
 func control(delta):
-	var this_target = get_parent().get_node("Crown")
+	var this_target = nearest_in(ECM.hosts_with('Valuable'))
+	
 	if not this_target or not this_target.is_inside_tree():
-		var royals = ECM.hosts_with('Royal')
-		if len(royals) > 0:
-			this_target = nearest_in(royals)
-		else:
-			this_target = null
+		this_target = nearest_in(ECM.hosts_with('Royal'))
+
 	if self == this_target:
 		this_target = null
 	
