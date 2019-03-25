@@ -20,3 +20,9 @@ func E(node : Node) -> Entity:
 func entities_with(component : String):
 	return get_tree().get_nodes_in_group('component__'+component)
 	
+func hosts_with(component : String):
+	var hosts = []
+	for e in entities_with(component):
+		hosts.append(e.get_host())
+	return hosts
+	
