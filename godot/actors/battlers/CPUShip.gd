@@ -26,7 +26,16 @@ var hit_pos = []
 enum BEHAVIOUR {SEEK, AVOID, FLEE}
 
 func dist(a: Vector2, b: Vector2):
-	return sqrt((a.x - b.x) * (a.x - b.x)  + (a.y - b.y) * (a.y - b.y))
+	return (a-b).length()
+
+func nearest_in(objects):
+	var nearest = null
+	var min_dist
+	for object in objects:
+		if not nearest or dist(nearest.position, position) < min_dist:
+			nearest = object
+			min_dist = dist(nearest.position, position)
+	return nearest
 
 func seek_ahead(potential_target):
 	var res = { "action": BEHAVIOUR.SEEK,
@@ -110,7 +119,11 @@ var target
 func control(delta):
 	var this_target = get_parent().get_node("Crown")
 	if not this_target or not this_target.is_inside_tree():
-		this_target = arena.game_mode.queen
+		var royals = ECM.hosts_with('Royal')
+		if len(royals) > 0:
+			this_target = nearest_in(royals)
+		else:
+			this_target = null
 	if self == this_target:
 		this_target = null
 	
