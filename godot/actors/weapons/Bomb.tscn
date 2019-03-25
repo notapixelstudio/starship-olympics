@@ -52,32 +52,32 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "locked_1",
+"name": "locked_0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "locked_0",
+"name": "locked_4",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "locked_4",
+"name": "locked_3",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "locked_3",
+"name": "locked_2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "locked_2",
+"name": "locked_99",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "locked_99",
+"name": "locked_1",
 "speed": 5.0
 } ]
 
@@ -125,6 +125,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+enabled = false
 
 [node name="Owned" type="Node" parent="Entity"]
 script = ExtResource( 7 )
