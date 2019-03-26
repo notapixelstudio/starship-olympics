@@ -22,7 +22,7 @@ func enable_all():
 	yield(animation, "animation_finished")
 	
 func _input(event):
-	if event.is_action_pressed("ui_back"):
+	if event.is_action_pressed("ui_cancel"):
 		disable_all()
 
 func _exit_tree():

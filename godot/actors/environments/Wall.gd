@@ -2,38 +2,39 @@ tool
 
 extends StaticBody2D
 
-class_name Wall
-
-export (PoolVector2Array) var points setget set_points
-
 export (bool) var hollow setget set_hollow
 
 export (int) var offset setget set_offset
 export (int) var elongation setget set_elongation
 
+enum TYPE { solid, hostile }
+export(TYPE) var type = TYPE.solid setget set_type
+
+onready var extents = $RectExtents
 var cshapes = []
 
-func set_points(pts):
-	points = pts
-	if has_node('Polygon2D'):
-		refresh()
+func set_hollow(value):
+	hollow = value
+	refresh()
 	
-func set_hollow(h):
-	hollow = h
-	if has_node('Polygon2D'):
-		refresh()
+func set_offset(value):
+	offset = value
+	refresh()
 	
-func set_offset(o):
-	offset = o
-	if has_node('Polygon2D'):
-		refresh()
-		
-func set_elongation(e):
-	elongation = e
-	if has_node('Polygon2D'):
-		refresh()
+func set_elongation(value):
+	elongation = value
+	refresh()
+	
+func set_type(value):
+	type = value
+	refresh()
 	
 func _ready():
+	var gshape
+	for node in get_children():
+		if node is GShape:
+			gshape = node
+	extents.size = gshape.get_extents()
 	refresh()
 	
 func remove_old_shapes():
@@ -42,12 +43,30 @@ func remove_old_shapes():
 			remove_child(child)
 			child.queue_free()
 	
+func get_gshape():
+	for child in get_children():
+		if child is GShape:
+			return child
+	return null
+	
+func _get_configuration_warning():
+	if not get_gshape():
+		return 'Please provide a GShape as child node to define the geometry.\n'
+	return ''
+	
 func refresh():
 	remove_old_shapes()
 	
-	if points == null or len(points) < 3:
-		points = PoolVector2Array([Vector2(-100,-100),Vector2(100,-100),Vector2(100,100),Vector2(-100,100)]) # clockwise!
+	var gshape = get_gshape()
+	
+	if not gshape:
+		return
 		
+	if not gshape.is_connected('changed', self, 'refresh'):
+		gshape.connect('changed', self, 'refresh')
+		
+	var points = gshape.to_PoolVector2Array()
+	
 	if hollow:
 		for i in range(len(points)):
 			var cshape = CollisionShape2D.new()
@@ -74,3 +93,14 @@ func refresh():
 	ps.remove(0)
 	var p = points[0]+(points[1]-points[0])*0.5
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
+	
+	# wall types
+	if type == TYPE.hostile:
+		modulate = Color(1,0,0,1)
+		$Entity/Deadly.enabled = true
+		$Entity/Trigger.enabled = true
+	elif type == TYPE.solid:
+		modulate = Color(1,1,1,1)
+		$Entity/Deadly.enabled = false
+		$Entity/Trigger.enabled = false
+		

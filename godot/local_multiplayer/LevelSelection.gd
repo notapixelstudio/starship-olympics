@@ -29,7 +29,7 @@ func _input(event):
 		
 func _initialize(players_scene:String=""):
 	array_levels = global.dir_contents(LEVEL_PATH, players_scene)
-	current_level = players_scene + "players.tscn"
+	current_level = players_scene + "players_toriels_1.tscn"
 	scene_in_viewport = load(LEVEL_PATH+current_level).instance()
 	scene_in_viewport.mockup = true
 	yield(self, "ready")

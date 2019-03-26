@@ -7,8 +7,6 @@ onready var container = $MarginContainer/HBoxContainer
 signal rematch
 signal back_to_menu
 
-func _ready():
-	$VBoxContainer.get_child(0).grab_focus()
 
 func initialize(winner:String, scores:Dictionary):
 	# let's remove the losers node, if they exists
@@ -29,17 +27,18 @@ func initialize(winner:String, scores:Dictionary):
 		container.add_child(loser)
 		loser.set_species(template.character_beaten)
 		
-	print(scores)
 	yield(get_tree().create_timer(2), "timeout")
 	$VBoxContainer.get_child(0).grab_focus()
 	# TODO: we should add the species altogether
 
 func _on_Rematch_pressed():
+	print("rematcho")
 	emit_signal("rematch")
 
 func _on_Quit_pressed():
 	get_tree().quit()
 
 func _on_Menu_pressed():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	# TODO: It will be whoever receive the signal to unpause
+	print("backo")
+	emit_signal("back_to_menu")

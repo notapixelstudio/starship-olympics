@@ -1,85 +1,75 @@
 extends Camera2D
 
-export var panSpeed = 10.0
-export var zoommargin = 0.1
-
 export var zoomMin = 1.7
-export var marginX = 200.0
-export var marginY = 200.0
-export(float, 0.1, 1.0) var zoom_offset : float = 0.9
+export var marginX = 0
+export var marginY = 300.0
+export (float) var zoom_speed_enlarge = 0.13
+export (float) var zoom_speed_shrink = 0.02
+export(float, 0.1, 1.0) var zoom_offset : float = 0.75
+export(float, 0.01, 0.5) var zoom_speed : float = 0.02
+export(float, 0.01, 0.5) var offset_speed : float = 0.02
 export var debug_mode : bool = true
 
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
 
 export var enabled:bool = false
-var zoomfactor = 1.0
-var zooming = false
 var margin_min = Vector2(0,0)
 var margin_max = Vector2()
 var rect_extents = Vector2()
 var arena_size = Vector2()
-var zoomMax = 1.0
-const PADDING = 200
-var ships
+
+var elements_in_camera
 const FRAME_DELAY = 10
 var wait_in_frame = FRAME_DELAY
 
-var previous_dir = Vector2(1, 1)
-var previous_zoom = Vector2(1,1)
-
-var screw : bool = false
-const ZOOM_SPEED = 0.04
-var speed = 0.3
 const IN_CAMERA = "in_camera"
 
 func _ready():
 	if enabled:
 		current = true
+	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
+	if len(elements_in_camera):
+		offset = elements_in_camera[0].position
+	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	viewport_rect = get_viewport_rect()
+	# let's put some distance from the battlefield and the bars
 	viewport_rect.size.y -= marginY/2
 	
-func initialize(rect_extention:Vector2, _zoom_max:float):
-	ships = get_tree().get_nodes_in_group("players")
-	arena_size = rect_extention
+	
+func initialize(rect_extention:Rect2):
+	elements_in_camera = get_tree().get_nodes_in_group("players")
+	camera_rect = rect_extention
 	margin_min = arena_size/2
-	offset = arena_size/2
-	print("Offset at initialise is: ", offset)
-	set_process(enabled)
+	offset = calculate_center(camera_rect)
+	zoom = calculate_zoom(camera_rect, viewport_rect.size)
+	offset.y -= marginY
+	set_process(false)
 
-func _process(delta: float) -> void:
-	ships = get_tree().get_nodes_in_group(IN_CAMERA)
+func _process(_delta: float) -> void:
+	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
-	if len(ships):
-		camera_rect = Rect2(ships[0].global_position, Vector2())
-	for ship in ships:
+	if len(elements_in_camera):
+		camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
+	for ship in elements_in_camera:
 		camera_rect = camera_rect.expand(ship.global_position)
 	
 	var offset_to_be = calculate_center(camera_rect)
 	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
-	if wait_in_frame < 0:
-		
-		# change position
-		previous_dir.x = int(int(offset_to_be.x) > int(offset.x))
-		previous_dir.y = int(int(offset_to_be.y) > int(offset.y))
 
-		offset.x = lerp(offset.x, offset_to_be.x, ZOOM_SPEED)
-		offset.y = lerp(offset.y, offset_to_be.y-marginY, ZOOM_SPEED)
-		#offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
-		#offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
+	offset.x = lerp(offset.x, offset_to_be.x, offset_speed)
+	offset.y = lerp(offset.y, offset_to_be.y-marginY, offset_speed)
+	# offset.x = clamp(offset.x, rect_extents.x, (arena_size.x-rect_extents.x))
+	# offset.y = clamp(offset.y, rect_extents.y-marginY, (arena_size.y-rect_extents.y))
 
-	else:
-		pass
+	# zoom x and y is uguale
+	if zoom_to_be.x > zoom.x:
+		zoom_speed = zoom_speed_enlarge
+	else: 
+		zoom_speed = zoom_speed_shrink
 	
-	if (zoom_to_be.x-zoom.x>0.2):
-		screw = true
-		#$Tween.interpolate_property(self, "zoom", zoom, zoom_to_be, 0.2,
-		#	Tween.TRANS_BACK, Tween.EASE_IN_OUT)
-		# yield($Tween.start(), "tween_completed")
-		
-	
-	zoom.x = lerp(zoom.x, zoom_to_be.x, ZOOM_SPEED)
-	zoom.y = lerp(zoom.y, zoom_to_be.y, ZOOM_SPEED)
+	zoom.x = lerp(zoom.x, zoom_to_be.x, zoom_speed)
+	zoom.y = lerp(zoom.y, zoom_to_be.y, zoom_speed)
 	zoom.x = max(zoom.x, zoomMin)
 	zoom.y = max(zoom.y, zoomMin)
 
@@ -95,12 +85,12 @@ func _process(delta: float) -> void:
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
 		rect.position.x + rect.size.x / 2,
-		rect.position.y + rect.size.y / 2)
+		rect.position.y + rect.size.y / 2 + marginY)
 
 func calculate_zoom(rect: Rect2, viewport_size: Vector2) -> Vector2:
 	var max_zoom = max(
-		max(1, rect.size.x / viewport_size.x + zoom_offset),
-		max(1, rect.size.y / viewport_size.y  + zoom_offset))
+		max(1.75, rect.size.x / viewport_size.x + zoom_offset),
+		max(1.75, rect.size.y / viewport_size.y  + zoom_offset))
 	return Vector2(max_zoom, max_zoom)
 
 
@@ -109,3 +99,6 @@ func _draw() -> void:
 		return
 	draw_rect(camera_rect, Color("#ffffff"), false)
 	draw_circle(calculate_center(camera_rect), 5, Color("#ffffff"))
+
+func activate_camera():
+	set_process(enabled)

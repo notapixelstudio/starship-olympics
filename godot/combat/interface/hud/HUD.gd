@@ -9,7 +9,7 @@ func initialize(_game_mode):
 	
 	$TimeLeft.text = str(int(floor(game_mode.time_left)))
 	
-	for player in game_mode.players:
+	for player in game_mode.scores:
 		var bar = Bar.instance()
 		$Bars.add_child(bar)
 		bar.initialize(player.species_template.color, game_mode.TARGET_SCORE)
@@ -21,5 +21,6 @@ func _process(_delta):
 	
 	# update scores
 	for bar in $Bars.get_children():
-		bar.set_value(game_mode.scores[bar.player.name])
+		var player : InfoPlayer = game_mode.scores_index[bar.player.species]
+		bar.set_value(player.score)
 		

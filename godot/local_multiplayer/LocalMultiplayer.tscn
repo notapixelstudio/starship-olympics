@@ -1,24 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
-[ext_resource path="res://selection/SelectionScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
+[ext_resource path="res://selection/SelectionScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
 
 [node name="LocalMultiplayer" type="Node"]
 script = ExtResource( 1 )
+gameover_scene = ExtResource( 2 )
 
-[node name="SelectionScreen" parent="." instance=ExtResource( 2 )]
-
-[node name="GameOver" type="CanvasLayer" parent="."]
-editor/display_folded = true
-
-[node name="GameOverScreen" parent="GameOver" instance=ExtResource( 3 )]
-visible = false
+[node name="SelectionScreen" parent="." instance=ExtResource( 3 )]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+editor/display_folded = false
 layer = -2
 
-[connection signal="rematch" from="GameOver/GameOverScreen" to="." method="_on_GameOverScreen_rematch"]
 
 [editable path="ParallaxBackground"]

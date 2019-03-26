@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
+[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=5]
+[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=6]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=9]
+[ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -400, -692.82, 800, 0, -400, 692.82, -400, -692.82 )
+
+[node name="Arena" index="0" instance=ExtResource( 1 )]
+size_multiplier = 2.5
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+position = Vector2( 0, -1050 )
+
+[node name="Field" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+position = Vector2( 0, 300 )
+rotation = -1.5708
+type = 3
+
+[node name="Flow" parent="Battlefield/Field/Entity" index="3"]
+enabled = true
+flow_vector = Vector2( 0, -30 )
+
+[node name="Polygon2D" parent="Battlefield/Field" index="1"]
+color = Color( 1, 1, 0, 0.3 )
+polygon = PoolVector2Array( 800, 0, -400, 692.82, -400, -692.82 )
+
+[node name="Line2D" parent="Battlefield/Field" index="2"]
+points = PoolVector2Array( 800, 0, -400, 692.82, -400, -692.82, 800, 0 )
+default_color = Color( 1, 1, 0, 1 )
+
+[node name="CollisionShape2D" parent="Battlefield/Field/Area2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Field" index="4"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+radius = 800
+precision = 1600.0
+
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 7 )]
+rotation = -1.5708
+hollow = true
+offset = 200
+elongation = 100
+
+[node name="GCircle" type="Node" parent="Battlefield/OutsideWall" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+radius = 1400
+precision = 2800.0
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
+position = Vector2( -950, 550 )
+rotation = 0.0
+controls = "joy1"
+species_template = ExtResource( 9 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
+position = Vector2( 950, 550 )
+controls = "joy2"
+species_template = ExtResource( 10 )
+
+[node name="Camera" parent="." index="9"]
+smoothing_speed = 0.3
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="Battlefield/Field"]
+
+[editable path="Pause/Pause"]

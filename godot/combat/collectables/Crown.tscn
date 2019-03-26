@@ -1,41 +1,54 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=1]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=2]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=3]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=4]
-[ext_resource path="res://combat/collectables/SkinGraphics.gd" type="Script" id=5]
-[ext_resource path="res://combat/collectables/skin/CrownAnim.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/collectables/Crown.gd" type="Script" id=1]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://combat/collectables/SkinGraphics.gd" type="Script" id=6]
+[ext_resource path="res://combat/collectables/skin/CrownAnim.tscn" type="PackedScene" id=7]
 
-[sub_resource type="PhysicsMaterial" id=4]
+[sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=2]
 radius = 40.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 62.4056
 
-[node name="Crown" type="RigidBody2D"]
+[node name="Crown" type="RigidBody2D" groups=[
+"in_camera",
+]]
+collision_layer = 512
+collision_mask = 32784
 mass = 0.1
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 linear_damp = 1.0
+script = ExtResource( 1 )
 
 [node name="Entity" type="Node" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": ExtResource( 3 )
 }
 
 [node name="Collectable" type="Node" parent="Entity"]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 4 )
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -44,8 +57,8 @@ shape = SubResource( 3 )
 
 [node name="Graphics" type="Position2D" parent="."]
 scale = Vector2( 2, 2 )
-script = ExtResource( 5 )
-anim = ExtResource( 6 )
+script = ExtResource( 6 )
+anim = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

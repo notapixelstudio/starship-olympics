@@ -25,8 +25,10 @@ var rotation_dir = 0
 
 var charge = 0
 const max_steer_force = 2500
-const MAX_CHARGE = 1
-const MAX_OVERCHARGE = 2
+const MAX_CHARGE = 0.6
+const MAX_OVERCHARGE = 1.3
+const CHARGE_BASE = 90
+const CHARGE_MULTIPLIER = 4200
 const BOMB_OFFSET = 40
 
 const THRESHOLD_DIR = 0.3
@@ -44,8 +46,6 @@ var height = 0
 var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
-
-var queen:bool = false
 
 onready var player = name
 onready var skin = $Graphics
@@ -82,6 +82,7 @@ func _ready():
 	skin.initialize()
 	skin.invincible()
 	entity = ECM.E(self)
+	species = species_template.species_name
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -99,6 +100,9 @@ func _integrate_forces(state):
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
 		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
+		
+	if entity.has('Flowing'):
+		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
 	set_applied_torque(rotation_dir * 75000)
 	
@@ -144,9 +148,9 @@ func fire():
 	"""
 	Fire a bomb
 	"""
-	var charge_impulse = 100 + 4000*min(charge, MAX_CHARGE)
+	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER*min(charge, MAX_CHARGE)
 	
-	# -300 is to avoid too much acceleration when repeatedly firing bombs
+	# -350 is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-350),0).rotated(rotation)) # recoil
 	
 	arena.spawn_bomb(
@@ -160,14 +164,21 @@ func fire():
 	fire_cooldown = 0 # disabled
 	
 
-func die():
+func die(killer : Ship):
 	if alive and not invincible:
 		alive = false
 		deaths += 1
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
-		emit_signal("dead", self)
+		drop()
+		emit_signal("dead", self, killer)
+		
+signal crown_dropped
+func drop():
+	if entity.has('Royal'):
+		entity.get_node('Royal').disable()
+		emit_signal("crown_dropped", self)
 		
 func stun():
 	stunned = true
@@ -180,7 +191,15 @@ func unstun():
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
-
+func _on_NearArea_body_entered(body):
+	emit_signal("near_area_entered", body, self)
+	
+signal near_area_exited
+func _on_NearArea_area_exited(area):
+	emit_signal("near_area_exited", area, self)
+func _on_NearArea_body_exited(body):
+	emit_signal("near_area_exited", body, self)
+	
 func is_alive():
 	return alive
 

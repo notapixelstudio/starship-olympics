@@ -23,6 +23,19 @@ func update_collectables():
 	collectables += 1
 	return collectables
 
+func set_score(new_score: float):
+	score = 0.0
+
+func get_score():
+	return score 
+
+func start():
+	# This reset the scores
+	# TODO: change name. 
+	score = 0.0
+	lives = 10
+	deaths = 0
+	
 func to_dict():
 	return {
 		"id": uid,
