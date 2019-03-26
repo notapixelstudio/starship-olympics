@@ -79,7 +79,6 @@ func _ready():
 	skin.invincible()
 	entity = ECM.E(self)
 	species = species_template.species_name
-	skin.appear()
 	
 	
 	
