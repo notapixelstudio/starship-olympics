@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "appear"
-length = 3.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 2
@@ -10,7 +10,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 3 ),
+"times": PoolRealArray( 0, 0.5, 1.5 ),
 "transitions": PoolRealArray( 1, 0.210224, 1 ),
 "update": 0,
 "values": [ Vector2( 5, 5 ), Vector2( 5, 5 ), Vector2( 0.5, 0.5 ) ]
