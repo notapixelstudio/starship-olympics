@@ -1,16 +1,14 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/battlers/Anim.gd" type="Script" id=1]
-[ext_resource path="res://animations/Invincible.tres" type="Animation" id=2]
+[ext_resource path="res://animations/Appearing.tres" type="Animation" id=2]
+[ext_resource path="res://animations/Invincible.tres" type="Animation" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
 
 [sub_resource type="Animation" id=2]
 resource_name = "disappear"
-
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
 
 [node name="Anim" type="Position2D" groups=[
 "anim_species",
@@ -19,8 +17,8 @@ scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/appear = SubResource( 1 )
-anims/disappear = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/invincible = ExtResource( 2 )
+anims/appear = ExtResource( 2 )
+anims/disappear = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/invincible = ExtResource( 3 )
 

@@ -68,8 +68,8 @@ func _enter_tree():
 	sleeping=true
 	if skin:
 		skin.invincible()
-	yield(get_tree().create_timer(0.5), "timeout")
 	sleeping=false
+	yield(get_tree().create_timer(0.5), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
 	
@@ -79,6 +79,8 @@ func _ready():
 	skin.invincible()
 	entity = ECM.E(self)
 	species = species_template.species_name
+	
+	
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)

@@ -99,8 +99,8 @@ func _ready():
 		else:
 			array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
-	print(array_players)
-	spawn_ships(array_players)
+
+
 	for info in array_players:
 		print(info.to_dict())
 	scores.initialize(array_players)
@@ -113,11 +113,19 @@ func _ready():
 	get_tree().paused = true
 	if not mockup:
 		getready.start()
-		yield(getready, "finished")
+		yield(get_tree().create_timer(1), "timeout")
+		for s in $SpawnPositions/Players.get_children():
+			var spawner = s as PlayerSpawner
+			spawner.appears()
+			yield(spawner, "entered_battlefield")
+			spawn_ship(spawner)
 		get_tree().paused = false
 		camera.activate_camera()
 
-	
+	else:
+		spawn_ships()
+
+
 func _process(delta):
 	scores.update(delta)
 
@@ -184,7 +192,7 @@ onready var deathmatch_mode_manager = $DeathmatchModeManager
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
-func spawn_ships(spawners):
+func spawn_ships():
 	for player in SpawnPlayers.get_children():
 		spawn_ship(player)
 

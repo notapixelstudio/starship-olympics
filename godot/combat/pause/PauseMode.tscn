@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/pause/PauseMode.gd" type="Script" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
 [ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=7]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/pause/Buttons.gd" type="Script" id=8]
 
 [node name="Pause" type="Control"]
 pause_mode = 2
@@ -115,45 +116,58 @@ margin_bottom = 142.0
 description = "bgm."
 description_node_path = NodePath("../Songs/Container/Description")
 
-[node name="Padding" type="Control" parent="GuiElements/Control/panel/margin_container/v_box_container"]
+[node name="Music" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 7 )]
 margin_top = 146.0
+margin_bottom = 175.0
+
+[node name="Music2" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 7 )]
+margin_top = 179.0
+margin_bottom = 208.0
+bus_name = "Music"
+
+[node name="Music3" parent="GuiElements/Control/panel/margin_container/v_box_container" instance=ExtResource( 7 )]
+margin_top = 212.0
+margin_bottom = 241.0
+bus_name = "SFX"
+
+[node name="Padding" type="Control" parent="GuiElements/Control/panel/margin_container/v_box_container"]
+margin_top = 245.0
 margin_right = 448.0
 margin_bottom = 336.0
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements"]
-margin_left = 238.414
-margin_top = 278.602
-margin_right = 420.414
-margin_bottom = 518.602
+margin_left = 238.0
+margin_top = 406.0
+margin_right = 420.0
+margin_bottom = 518.0
 alignment = 2
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Continue" type="Button" parent="GuiElements/Buttons"]
-margin_top = 128.0
 margin_right = 182.0
-margin_bottom = 153.0
+margin_bottom = 25.0
 text = "Continue"
 
 [node name="Restart" type="Button" parent="GuiElements/Buttons"]
-margin_top = 157.0
+margin_top = 29.0
 margin_right = 182.0
-margin_bottom = 182.0
+margin_bottom = 54.0
 text = "Restart"
 
 [node name="Options" type="Button" parent="GuiElements/Buttons"]
-margin_top = 186.0
+margin_top = 58.0
 margin_right = 182.0
-margin_bottom = 211.0
+margin_bottom = 83.0
 text = "options"
 
 [node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
-margin_top = 215.0
+margin_top = 87.0
 margin_right = 182.0
-margin_bottom = 240.0
+margin_bottom = 112.0
 text = "Quit match"
 
 [node name="Tween" type="Tween" parent="."]

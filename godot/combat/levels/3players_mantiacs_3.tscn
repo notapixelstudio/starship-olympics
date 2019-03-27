@@ -36,6 +36,9 @@ __meta__ = {
 radius = 1200
 sides = 6.0
 
+[node name="SpawnPositions" parent="." index="6"]
+editor/display_folded = false
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 0, -850 )
 rotation = 1.5708
@@ -56,7 +59,8 @@ species_template = ExtResource( 10 )
 
 [node name="Camera" parent="." index="9"]
 smoothing_speed = 0.3
+debug_mode = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]
