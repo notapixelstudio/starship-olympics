@@ -14,7 +14,7 @@
 [ext_resource path="res://selection/species/species0.tres" type="Resource" id=12]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=13]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 3.0
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -25,6 +25,10 @@ centered = false
 
 [node name="Wall2" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( -975, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall2" index="3"]
 script = ExtResource( 5 )
@@ -36,6 +40,10 @@ height = 250
 
 [node name="Wall3" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 position = Vector2( 975, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall3" index="3"]
 script = ExtResource( 5 )
@@ -48,6 +56,10 @@ height = 250
 [node name="Wall4" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 position = Vector2( 0, 975 )
 rotation = 1.5708
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall4" index="3"]
 script = ExtResource( 5 )
@@ -60,6 +72,10 @@ height = 250
 [node name="Wall5" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 0, -975 )
 rotation = 1.5708
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall5" index="3"]
 script = ExtResource( 5 )
@@ -69,12 +85,13 @@ __meta__ = {
 width = 700
 height = 250
 
-[node name="Wall" parent="Battlefield" index="5" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield" index="5" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
+type = 0
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Wall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
@@ -111,4 +128,4 @@ species_template = ExtResource( 13 )
 zoom_offset = 0.797
 
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]

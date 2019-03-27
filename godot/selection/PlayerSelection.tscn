@@ -25,13 +25,17 @@ margin_bottom = 400.0
 
 [node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="selected" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 5 )
+bus = "SFX"
 
 [node name="joined" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 7 )
+bus = "SFX"
 

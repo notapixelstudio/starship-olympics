@@ -34,13 +34,13 @@ width = 2550
 height = 2550
 bevel = 600
 
-[node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 7 )]
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 7 )]
 hollow = true
 offset = 200
 elongation = 100
 type = 0
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Wall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
