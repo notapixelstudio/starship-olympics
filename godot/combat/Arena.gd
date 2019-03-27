@@ -93,29 +93,39 @@ func _ready():
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
+		var spawner = s as PlayerSpawner
 		if len(array_players) >= i+1:
 			s.controls = array_players[i].controls
 			s.species_template = array_players[i].species_template
 		else:
 			array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
-	print(array_players)
-	spawn_ships(array_players)
+
+	
 	for info in array_players:
 		print(info.to_dict())
 	game_mode.initialize(array_players)
 	
 	# initialize HUD
 	hud.initialize(game_mode)
+
 	
 	camera.initialize(compute_arena_size())
 	
+
 	get_tree().paused = true
 	if not mockup:
 		getready.start()
-		yield(getready, "finished")
+		yield(get_tree().create_timer(1), "timeout")
+		for s in $SpawnPositions/Players.get_children():
+			var spawner = s as PlayerSpawner
+			spawner.appears()
+			yield(spawner, "entered_battlefield")
+			spawn_ship(spawner)
 		get_tree().paused = false
 		camera.activate_camera()
+	else:
+		spawn_ships()
 	
 	
 func _process(delta):	
@@ -182,7 +192,7 @@ onready var environments_manager = $EnvironmentsManager
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 
-func spawn_ships(spawners):
+func spawn_ships():
 	for player in SpawnPlayers.get_children():
 		spawn_ship(player)
 	
