@@ -111,6 +111,7 @@ func next_level():
 
 	if len(played_levels) >= len(levels):
 		played_levels = []
+		levels.shuffle()
 	
 func from_info_to_spawner(player_info):
 	var spawner = PlayerSpawner.new()
