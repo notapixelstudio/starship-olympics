@@ -68,8 +68,8 @@ func _enter_tree():
 	sleeping=true
 	if skin:
 		skin.invincible()
-	yield(get_tree().create_timer(0.5), "timeout")
 	sleeping=false
+	yield(get_tree().create_timer(0.5), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
 	
