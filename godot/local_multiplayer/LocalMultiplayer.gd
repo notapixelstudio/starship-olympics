@@ -56,7 +56,7 @@ func combat(selected_players: Array):
 	
 	# LEVEL SELECTION
 	var level_selection = level_selection_scene.instance()
-	level_selection._initialize(str(num_players))
+	level_selection.initialize(str(num_players), players)
 	add_child(level_selection)
 	yield(level_selection, "arena_selected")
 	if level_selection.back:

@@ -10,6 +10,7 @@ onready var level_scene = $panel/ViewportContainer/Viewport
 signal arena_selected
 var back = false
 var can_choose = false
+var these_players = {}
 func _ready():
 	# if you want to make the ships move. Comment the following lines
 	get_tree().paused = true
@@ -27,7 +28,8 @@ func _input(event):
 		back = true
 		emit_signal("arena_selected")
 		
-func _initialize(players_scene:String=""):
+func initialize(players_scene:String="", species={}):
+	these_players = species
 	array_levels = global.dir_contents(LEVEL_PATH, players_scene)
 	current_level = players_scene + "players_toriels_1.tscn"
 	scene_in_viewport = load(LEVEL_PATH+current_level).instance()
@@ -40,6 +42,7 @@ func _on_Element_value_changed(what):
 	level_scene.remove_child(scene_in_viewport)
 	scene_in_viewport = load(LEVEL_PATH+what).instance()
 	scene_in_viewport.mockup = true
+	scene_in_viewport.initialize(these_players)
 	level_scene.add_child(scene_in_viewport)
 
 func _exit_tree():
