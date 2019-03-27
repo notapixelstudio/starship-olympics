@@ -4,9 +4,6 @@ extends RigidBody2D
 class_name Bomb
 
 const Explosion = preload('res://actors/weapons/Explosion.tscn')
-var width
-var height
-const CLEANUP_DISTANCE = 100
 
 var target = null
 var timeout = 0
@@ -24,7 +21,7 @@ var explosion
 func _ready():
 	# bombs life
 	timeout = LIFETIME
-	explosion = Explosion.instance()
+	explosion = Explosion.instance() # there will be just one explosion per bomb
 	
 	# sound
 	get_node("sound").play()
@@ -37,8 +34,10 @@ func initialize(pos : Vector2, impulse, ship):
 		apply_impulse(Vector2(0,0), impulse)
 	if ship:
 		entity.get('Owned').set_owned_by(ship)
+		ECM.E($Core).get('Owned').set_owned_by(ship)
 	else:
 		entity.get('Owned').disable()
+		ECM.E($Core).get('Owned').disable()
 	
 func _physics_process(delta):
 	locking_timeout -= delta

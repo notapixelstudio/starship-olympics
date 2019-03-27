@@ -172,14 +172,18 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Owned" type="Node" parent="Core/Entity"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
 [node name="lock-sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 15 )
-bus = "SFX"
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 16 )
 volume_db = 10.0
-bus = "SFX"
 area_mask = 8
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
