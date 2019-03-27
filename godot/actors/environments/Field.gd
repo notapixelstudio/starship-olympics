@@ -2,7 +2,7 @@ tool
 
 extends Node2D
 
-enum TYPE { trigger, water, hostile, flow, castle }
+enum TYPE { trigger, water, hostile, flow, castle, hill }
 export(TYPE) var type = TYPE.water setget set_type
 
 func set_type(value):
@@ -29,14 +29,16 @@ func refresh():
 	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
 	$CrownCollider/CollisionShape2D.shape = gshape.to_Shape2D()
 	
-	$Entity/Fluid.enabled = type == TYPE.water
-	$Entity/Trigger.enabled = type == TYPE.trigger or type == TYPE.hostile
-	$Entity/Deadly.enabled = type == TYPE.hostile
-	$Entity/Flow.enabled = type == TYPE.flow
-	$Entity/CrownDropper.enabled = type == TYPE.castle
+	($Entity/Fluid as Component).set_enabled(type == TYPE.water)
+	($Entity/Trigger as Component).set_enabled(type == TYPE.trigger or type == TYPE.hostile)
+	($Entity/Deadly as Component).set_enabled(type == TYPE.hostile)
+	($Entity/Flow as Component).set_enabled(type == TYPE.flow)
+	($Entity/CrownDropper as Component).set_enabled(type == TYPE.castle)
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
+	($Entity/Valuable as Component).set_enabled(type == TYPE.hill)
+	($Entity/Throne as Component).set_enabled(type == TYPE.hill)
 	
 	if type == TYPE.water:
 		$Polygon2D.color = Color(0,0.2,0.8,0.5)
@@ -53,6 +55,9 @@ func refresh():
 	elif type == TYPE.castle:
 		$Polygon2D.color = Color(0.5,0,0.5,0.3)
 		$Line2D.default_color = Color(0.5,0,0.5,1)
+	elif type == TYPE.hill:
+		$Polygon2D.color = Color(1,0.5,0,0.3)
+		$Line2D.default_color = Color(1,0.5,0,1)
 		
 	# keep the symbols up
 	$CrownCollider/Sprite.rotation = -rotation

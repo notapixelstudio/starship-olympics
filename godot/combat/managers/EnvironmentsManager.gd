@@ -19,6 +19,9 @@ func _on_sth_entered(sth, other):
 		
 	if sth_entity.has('CrownDropper') and other_entity.get_host() is Ship: # FIXME use Royal
 		other_entity.get_host().drop()
+
+	if sth_entity.has('Throne') and other_entity.could_have('Royal'):
+		other_entity.get_node('Royal').enable()
 		
 func _on_sth_exited(sth, other):
 	var sth_entity = ECM.E(sth)
@@ -36,3 +39,5 @@ func _on_sth_exited(sth, other):
 	if sth_entity.has('CrownDropper') and other_entity.get_host() is Ship: # FIXME use Royal
 		other_entity.get_host().drop()
 		
+	if sth_entity.has('Throne') and other_entity.has('Royal'):
+		other_entity.get_node('Royal').disable()
