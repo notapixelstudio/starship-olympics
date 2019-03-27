@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://map/Map.gd" type="Script" id=2]
+[ext_resource path="res://assets/interface/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=4]
+
+[node name="Map" type="ColorRect"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.313726 )
+script = ExtResource( 2 )
+
+[node name="pause-window" type="Sprite" parent="."]
+position = Vector2( 612.724, 320.736 )
+scale = Vector2( 0.797916, 0.797916 )
+texture = ExtResource( 3 )
+
+[node name="panel" type="Control" parent="."]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.988235 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -455.203
+margin_top = -308.327
+margin_right = 415.797
+margin_bottom = 351.673
+
+[node name="label" type="Label" parent="panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -224.0
+margin_right = 224.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Select the arena"
+align = 1
+valign = 1
+
+[node name="ViewportContainer" type="ViewportContainer" parent="panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -328.584
+margin_top = -216.705
+margin_right = 951.416
+margin_bottom = 503.295
+rect_scale = Vector2( 0.5, 0.5 )
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="panel/ViewportContainer"]
+pause_mode = 1
+size = Vector2( 1280, 720 )
+handle_input_locally = false
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Element" parent="panel" instance=ExtResource( 4 )]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -224.0
+margin_top = -155.0
+margin_right = 224.0
+margin_bottom = -130.0
+description = "current_planet"
+optional_path = "array_planets"
+label_description = "Planet"
+elem_type = 2
+is_global = false
+node_owner_path = NodePath("../..")
+description_node_path = NodePath("../../../Map/panel/Element/Container/Description")
+
+[connection signal="value_changed" from="panel/Element" to="." method="_on_Element_value_changed"]

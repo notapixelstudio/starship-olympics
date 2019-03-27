@@ -27,6 +27,7 @@ onready var pause = $CanvasLayer/Pause
 signal screensize_changed(screensize)
 signal gameover
 signal restart
+signal rematch
 signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
@@ -167,7 +168,7 @@ func ship_just_died(ship: Ship):
 func on_gamemode_gameover(winner:String, scores: Dictionary):
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
-	game_over.connect("rematch", self, "_on_Pause_restart")
+	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
 	game_over.raise()
@@ -245,6 +246,8 @@ func _on_Pause_back_to_menu():
 	print("backo from combatto")
 	emit_signal("back_to_menu")
 
+func _on_GameOver_rematch():
+	emit_signal("rematch")
 
 func _on_Pause_restart():
 	print("restarto from combatto")
