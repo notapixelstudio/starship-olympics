@@ -6,7 +6,8 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 	if not entity:
 		return
 		
-	if entity.has('Collectable') and ship.is_alive():
+	# FIXME this should be more generic, royals have nothing to do here
+	if entity.has('Collectable') and ship.is_alive() and not ECM.E(ship).has('Royal'):
 		entity.get('Collectable').disable() # this makes sure we don't enter here twice
 		
 		# FIXME: this assumes the only collectable item is the Crown
