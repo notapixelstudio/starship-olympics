@@ -52,8 +52,6 @@ signal dead
 signal stop_invincible
 var invincible : bool
 
-signal collected
-
 var entity : Entity
 
 func initialize():
@@ -168,14 +166,7 @@ func die(killer : Ship):
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
-		drop()
 		emit_signal("dead", self, killer)
-		
-signal crown_dropped
-func drop():
-	if entity.has('Royal'):
-		entity.get_node('Royal').disable()
-		emit_signal("crown_dropped", self)
 		
 func stun():
 	stunned = true

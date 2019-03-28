@@ -72,6 +72,20 @@ __meta__ = {
 }
 enabled = false
 
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
+[node name="Throne" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+enabled = false
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 

@@ -87,10 +87,17 @@ func _ready():
 
 	scores = Scores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
+	
+	
+	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
+	$CollectManager.connect('collected', self, "_on_sth_collected")
+	$CollectManager.connect('dropped', $CrownModeManager, "_on_sth_dropped")
+	$CollectManager.connect('dropped', self, "_on_sth_dropped")
+	$EnvironmentsManager.connect('repel_cargo', $CollectManager, "_on_cargo_repelled")
 
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
-
+	
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
@@ -189,6 +196,7 @@ onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager
 onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
+onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
@@ -225,9 +233,9 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", combat_manager, "ship_within_detection_distance")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
-	ship.connect("crown_dropped", self, "_on_crown_dropped")
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
-
+	ship.connect("dead", collect_manager, "_on_ship_killed")
+	
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -243,17 +251,18 @@ func spawn_bomb(pos, impulse, ship):
 	
 	return bomb
 	
-const crown_scene = preload("res://combat/collectables/Crown.tscn")
-func spawn_crown(pos, linear_velocity):
-	var crown = crown_scene.instance()
-	crown.linear_velocity = linear_velocity
-	crown.position = pos
-	Battlefield.add_child(crown)
+func _on_sth_collected(collector, collectee):
+	$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
 	
-func _on_crown_dropped(ship):
-	ECM.E(ship).get('Royal').disable() # move in a suitable manager
-	spawn_crown(ship.position, ship.linear_velocity)
-
+func _on_sth_dropped(dropper, droppee):
+	$Battlefield.add_child(droppee)
+	droppee.position = dropper.position
+	droppee.linear_velocity = dropper.linear_velocity
+	
+	# wait a bit, then make the item collectable again
+	yield(get_tree().create_timer(0.2), "timeout")
+	ECM.E(droppee).get('Collectable').enable()
+	
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")
 
