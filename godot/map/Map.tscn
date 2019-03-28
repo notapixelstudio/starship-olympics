@@ -43,25 +43,8 @@ text = "Select the arena"
 align = 1
 valign = 1
 
-[node name="ViewportContainer" type="ViewportContainer" parent="panel"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -328.584
-margin_top = -216.705
-margin_right = 951.416
-margin_bottom = 503.295
-rect_scale = Vector2( 0.5, 0.5 )
-stretch = true
-
-[node name="Viewport" type="Viewport" parent="panel/ViewportContainer"]
-pause_mode = 1
-size = Vector2( 1280, 720 )
-handle_input_locally = false
-render_target_update_mode = 3
-gui_disable_input = true
+[node name="Sprite" type="Sprite" parent="panel"]
+position = Vector2( 400, 200 )
 
 [node name="Element" parent="panel" instance=ExtResource( 4 )]
 pause_mode = 2
