@@ -11,7 +11,6 @@ func initialize(_game_mode):
 	var i = 0
 
 	for player in game_mode.scores:
-		var player = game_mode.scores[p_name]
 		var bar = Bar.instance()
 		bar.position += Vector2(0, 25)*i
 		$Bars.add_child(bar)
