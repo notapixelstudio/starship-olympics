@@ -52,8 +52,6 @@ signal dead
 signal stop_invincible
 var invincible : bool
 
-signal collected
-
 var entity : Entity
 
 func initialize():
@@ -100,7 +98,7 @@ func _integrate_forces(state):
 		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
 		
 	if entity.has('Flowing'):
-		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow_vector())
+		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
 	set_applied_torque(rotation_dir * 75000)
 	
@@ -162,20 +160,13 @@ func fire():
 	fire_cooldown = 0 # disabled
 	
 
-func die():
+func die(killer : Ship):
 	if alive and not invincible:
 		alive = false
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
-		drop()
-		emit_signal("dead", self)
-		
-signal crown_dropped
-func drop():
-	if entity.has('Royal'):
-		entity.get_node('Royal').disable()
-		emit_signal("crown_dropped", self)
+		emit_signal("dead", self, killer)
 		
 func stun():
 	stunned = true

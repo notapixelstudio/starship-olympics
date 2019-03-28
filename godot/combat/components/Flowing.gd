@@ -1,10 +1,11 @@
 extends Component
 
-var flow_vector : Vector2 setget set_flow_vector, get_flow_vector
+var flow setget set_flow, get_flow
+var flow_vector : Vector2
 
-func set_flow_vector(value):
-	flow_vector = value
+func set_flow(value):
+	flow = value
 	
-func get_flow_vector():
-	return flow_vector
+func get_flow():
+	return flow
 	

@@ -39,7 +39,18 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
-enabled = false
+
+[node name="Keepable" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

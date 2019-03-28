@@ -10,11 +10,11 @@ func _ready():
 	if "kb" in controls:
 		absolute_controls = false
 		
-func die():
+func die(killer : Ship):
 	if "joy" in controls:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.3)
-	.die()
+	.die(killer)
 	
 func joypad_handling():
 	

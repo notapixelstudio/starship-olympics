@@ -3,7 +3,7 @@ extends Ship
 var this_range = {60:-1, 55:0, 100:1}
 
 const MAX_DIR_WAIT = 200
-var wait_direction = MAX_WAIT
+var wait_direction = 0
 var steering = Vector2()
 var front = Vector2()
 
@@ -26,7 +26,16 @@ var hit_pos = []
 enum BEHAVIOUR {SEEK, AVOID, FLEE}
 
 func dist(a: Vector2, b: Vector2):
-	return sqrt((a.x - b.x) * (a.x - b.x)  + (a.y - b.y) * (a.y - b.y))
+	return (a-b).length()
+
+func nearest_in(objects):
+	var nearest = null
+	var min_dist
+	for object in objects:
+		if not nearest or dist(nearest.position, position) < min_dist:
+			nearest = object
+			min_dist = dist(nearest.position, position)
+	return nearest
 
 func seek_ahead(potential_target):
 	var res = { "action": BEHAVIOUR.SEEK,
@@ -108,9 +117,14 @@ const MAX_WAIT = 200
 var wait = MAX_WAIT
 var target 
 func control(delta):
-	var this_target = get_parent().get_node("Crown")
+	var this_target = null
+	
+	if not ECM.E(self).has('Royal'):
+		this_target = nearest_in(ECM.hosts_with('Valuable'))
+		
 	if not this_target or not this_target.is_inside_tree():
-		this_target = arena.game_mode.queen
+		this_target = nearest_in(ECM.hosts_with('Royal'))
+
 	if self == this_target:
 		this_target = null
 	

@@ -1,17 +1,9 @@
 # script bomb
 extends RigidBody2D
 
-# export var velocity = Vector2(6, 0)
-# export var acceleration = Vector2(-0.06, 0)
 class_name Bomb
 
-var origin_ship: RigidBody2D
-var player_id
-
 const Explosion = preload('res://actors/weapons/Explosion.tscn')
-var width
-var height
-const CLEANUP_DISTANCE = 100
 
 var target = null
 var timeout = 0
@@ -20,31 +12,32 @@ var locking_timeout = LOCKING_TIMEOUT
 const TARGET_TIMEOUT = 1
 var target_timeout = TARGET_TIMEOUT
 
-var standalone = false
 const LIFETIME = 1.5
 
 var entity : Entity
 
 var explosion
+
 func _ready():
-	entity = ECM.E(self)
-	
 	# bombs life
 	timeout = LIFETIME
-	explosion = Explosion.instance()
+	explosion = Explosion.instance() # there will be just one explosion per bomb
 	
 	# sound
 	get_node("sound").play()
 	
 func initialize(pos : Vector2, impulse, ship):
+	entity = ECM.E(self)
+	
 	position = pos
 	if impulse:
 		apply_impulse(Vector2(0,0), impulse)
 	if ship:
-		origin_ship = ship
-		player_id = ship.player
+		entity.get('Owned').set_owned_by(ship)
+		ECM.E($Core).get('Owned').set_owned_by(ship)
 	else:
-		standalone = true
+		entity.get('Owned').disable()
+		ECM.E($Core).get('Owned').disable()
 	
 func _physics_process(delta):
 	locking_timeout -= delta
@@ -65,15 +58,19 @@ func _physics_process(delta):
 		# destroy bomb after timeout
 		if timeout > 0:
 			timeout -= delta
-		elif not standalone:
+		elif entity.has('Owned'):
 			call_deferred("queue_free")
 			
 	if entity.has('Flowing'):
-		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow_vector())
+		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
 signal detonate
 func detonate():
-	explosion.player_id = player_id
+	if entity.has('Owned'):
+		ECM.E(explosion).get('Owned').set_owned_by(entity.get('Owned').get_owned_by())
+	else:
+		ECM.E(explosion).get('Owned').disable()
+		
 	explosion.position = position
 	emit_signal("detonate")
 	get_parent().call_deferred("add_child", explosion)
@@ -90,10 +87,10 @@ func try_acquire_target(ship):
 		return
 		
 	# If there's a queen ship, avoid locking on partners
-	if not standalone and ship.arena.game_mode.is_there_a_queen() and not ECM.E(ship).has('Royal') and not ECM.E(origin_ship).has('Royal'):
+	if entity.has('Owned') and len(ECM.entities_with('Royal')) > 0 and not ECM.E(ship).has('Royal') and not ECM.E(entity.get('Owned').get_owned_by()).has('Royal'):
 		return
-	
-	if locking_timeout <= 0 or ship != origin_ship: # avoid pursuing the ship of origin right after shooting
+		
+	if locking_timeout <= 0 or ship != entity.get('Owned').get_owned_by(): # avoid pursuing the ship of origin right after shooting
 		acquire_target(ship)
 		
 func acquire_target(ship):

@@ -6,10 +6,10 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
-[ext_resource path="res://selection/species/species4.tres" type="Resource" id=9]
-[ext_resource path="res://selection/species/drones.tres" type="Resource" id=10]
+[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=9]
+[ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -19,8 +19,12 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Crown" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+position = Vector2( 0, 300 )
 
-[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 4 )]
+[node name="Crown2" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, -300 )
+
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -35,24 +39,29 @@ width = 2200
 height = 1800
 bevel = 600
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
+[node name="Field" parent="Battlefield" index="3" instance=ExtResource( 7 )]
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Field" index="6"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+width = 300
+height = 300
+bevel = 20
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -900, 0 )
 rotation = 0.0
 controls = "joy1"
-species_template = ExtResource( 8 )
+species_template = ExtResource( 9 )
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 900, 0 )
 rotation = 3.14159
 controls = "joy2"
-species_template = ExtResource( 9 )
-
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
-position = Vector2( 0, -500 )
-rotation = 1.5708
-controls = "joy2"
 species_template = ExtResource( 10 )
-cpu = true
 
 [node name="Camera" parent="." index="11"]
 smoothing_speed = 0.3

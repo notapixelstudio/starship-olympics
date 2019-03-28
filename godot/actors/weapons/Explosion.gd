@@ -5,8 +5,6 @@ class_name Explosion
 var radius = 4
 var shape
 
-var player_id
-
 var t = 0
 const growT = 0.4
 const stillT = 1.0
