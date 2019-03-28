@@ -27,6 +27,7 @@ onready var pause = $CanvasLayer/Pause
 signal screensize_changed(screensize)
 signal gameover
 signal restart
+signal rematch
 signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
@@ -93,6 +94,7 @@ func _ready():
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
+		var spawner = s as PlayerSpawner
 		if len(array_players) >= i+1:
 			s.controls = array_players[i].controls
 			s.species_template = array_players[i].species_template
@@ -177,7 +179,7 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	yield(get_tree(),"idle_frame") # wait for UI redraw (esp. bars)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
-	game_over.connect("rematch", self, "_on_Pause_restart")
+	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
 	game_over.raise()
@@ -254,6 +256,9 @@ func _on_crown_dropped(ship):
 
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")
+
+func _on_GameOver_rematch():
+	emit_signal("rematch")
 
 func _on_Pause_restart():
 	emit_signal("restart")
