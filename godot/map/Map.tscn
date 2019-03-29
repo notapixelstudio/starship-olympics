@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -7,6 +7,23 @@
 [ext_resource path="res://interface/fonts/kenvector_future_20.tres" type="DynamicFont" id=5]
 [ext_resource path="res://interface/fonts/kenvector_future_14.tres" type="DynamicFont" id=6]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "float"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 430, 260 ), Vector2( 430, 270 ), Vector2( 430, 260 ) ]
+}
 
 [node name="Map" type="ColorRect"]
 pause_mode = 2
@@ -50,7 +67,12 @@ align = 1
 valign = 1
 
 [node name="Sprite" type="Sprite" parent="panel"]
-position = Vector2( 430, 260 )
+position = Vector2( 430, 266.96 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="panel/Sprite"]
+autoplay = "float"
+anims/float = SubResource( 1 )
 
 [node name="Name" type="Label" parent="panel"]
 pause_mode = 2
