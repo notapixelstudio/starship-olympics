@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://combat/levels/2players_the_blood_moon_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/2players_the_blood_moon_2.tscn" type="PackedScene" id=2]
@@ -6,14 +6,17 @@
 [ext_resource path="res://combat/levels/2players_the_blood_moon_4.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/map/the_blood_moon.png" type="Texture" id=5]
 [ext_resource path="res://map/Planet.gd" type="Script" id=6]
+[ext_resource path="res://selection/species/species0.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 6 )
 name = "The Blood Moon"
 tagline1 = "Mantiacs' dreadful penal colony"
 tagline2 = "(also a theme park)"
+species = ExtResource( 7 )
 levels_2players = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
 levels_3players = null
 levels_4players = null
 planet_sprite = ExtResource( 5 )
+game_mode = "deathmatch"
 

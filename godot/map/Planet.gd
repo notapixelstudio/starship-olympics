@@ -14,5 +14,7 @@ export var levels_4players : Array
 
 export var planet_sprite : StreamTexture
 
+export var game_mode : String
+
 func get_levels(num_players : int) -> Array:
     return get("levels_" + str(num_players) + "players")

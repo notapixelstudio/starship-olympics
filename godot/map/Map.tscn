@@ -89,6 +89,41 @@ text = "name"
 align = 1
 valign = 1
 
+[node name="Flag" type="Sprite" parent="panel"]
+position = Vector2( 190, 255 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Species" type="Label" parent="panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -350.0
+margin_top = 285.0
+margin_right = -140.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "species"
+align = 1
+valign = 1
+
+[node name="GameMode" type="Label" parent="panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 120.0
+margin_top = 285.0
+margin_right = 330.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "game mode"
+align = 1
+valign = 1
+
 [node name="Tagline1" type="Label" parent="panel"]
 pause_mode = 2
 anchor_left = 0.5
