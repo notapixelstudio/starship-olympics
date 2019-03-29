@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 430, 260 ), Vector2( 430, 270 ), Vector2( 430, 260 ) ]
+"values": [ Vector2( 430, 270 ), Vector2( 430, 280 ), Vector2( 430, 270 ) ]
 }
 
 [node name="Map" type="ColorRect"]
@@ -67,7 +67,7 @@ align = 1
 valign = 1
 
 [node name="Sprite" type="Sprite" parent="panel"]
-position = Vector2( 430, 266.96 )
+position = Vector2( 430, 270 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="panel/Sprite"]
