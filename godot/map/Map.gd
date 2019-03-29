@@ -31,4 +31,7 @@ func _exit_tree():
 func _on_Element_value_changed(value):
 	var c : Planet = load(PLANETS_PATH + value)
 	$panel/Sprite.texture = c.planet_sprite
+	$panel/Name.text = c.name
+	$panel/Tagline1.text = c.tagline1
+	$panel/Tagline2.text = c.tagline2
 	
