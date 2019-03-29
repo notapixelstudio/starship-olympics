@@ -7,6 +7,10 @@ The game is open source and currently under active development [here on GitHub](
 ![players](https://pbs.twimg.com/media/DpdYUS_WwAAlTdv.jpg:small)
 [![gameplay video](http://img.youtube.com/vi/jl5VKzsDDiY/0.jpg)](http://www.youtube.com/watch?v=jl5VKzsDDiY)
 
+Download here!
+[![qrcode](qrcode.png)](https://notapixel.itch.io/superstarfighter)
+
+
 # Local multiplayer arena
 The game supports 2 to 4 players, so you have to find some friends to defeat. Each player starts by choosing an alien pilot of their liking to enter the *Superstarfighter* league.
 
