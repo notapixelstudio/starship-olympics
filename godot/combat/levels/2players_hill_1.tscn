@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
@@ -11,6 +11,31 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=11]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Pulse"
+length = 8.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -2.7, 0, 2.7, 0, 1.99978, -2.26, 0, 2.26, 0, 1, -2.75, 0.0217367, 2.75, -0.0217367 ),
+"times": PoolRealArray( 0, 4.02, 8 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -2.56, 0, 2.56, 0, 1.99978, -2.38, -0.0217367, 2.38, 0.0217367, 0.999889, -2.99, 0, 2.99, 0 ),
+"times": PoolRealArray( 0, 4.03, 8 )
+}
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -35,6 +60,7 @@ height = 1800
 bevel = 600
 
 [node name="Field" parent="Battlefield" index="1" instance=ExtResource( 6 )]
+scale = Vector2( 0.978152, 0.956415 )
 type = 5
 
 [node name="GCircle" type="Node" parent="Battlefield/Field" index="6"]
@@ -44,6 +70,10 @@ __meta__ = {
 }
 radius = 300
 precision = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Field" index="7"]
+autoplay = "Pulse"
+anims/Pulse = SubResource( 1 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -900, 0 )
