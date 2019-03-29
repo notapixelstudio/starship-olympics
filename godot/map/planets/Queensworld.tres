@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=9 format=2]
+[gd_resource type="Resource" load_steps=13 format=2]
 
 [ext_resource path="res://combat/levels/2players_queensworld_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/2players_queensworld_2.tscn" type="PackedScene" id=2]
@@ -6,16 +6,20 @@
 [ext_resource path="res://combat/levels/2players_queensworld_4.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/levels/2players_queensworld_5.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/levels/2players_queensworld_6.tscn" type="PackedScene" id=6]
-[ext_resource path="res://global_map/img/planet_terrain_selected.png" type="Texture" id=7]
-[ext_resource path="res://map/Planet.gd" type="Script" id=8]
+[ext_resource path="res://combat/levels/3players_queensworld_1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/levels/3players_queensworld_2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/levels/3players_queensworld_3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/levels/3players_queensworld_4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://global_map/img/planet_terrain_selected.png" type="Texture" id=11]
+[ext_resource path="res://map/Planet.gd" type="Script" id=12]
 
 [resource]
-script = ExtResource( 8 )
+script = ExtResource( 12 )
 name = "Queensworld"
 tagline1 = null
 tagline2 = null
 levels_2players = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
-levels_3players = null
+levels_3players = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
 levels_4players = null
-planet_sprite = ExtResource( 7 )
+planet_sprite = ExtResource( 11 )
 
