@@ -32,7 +32,7 @@ signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
 var mockup = false
-var scores
+var scores : Scores
 
 func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
