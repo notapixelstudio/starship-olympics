@@ -23,8 +23,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.978152, -2.7, 0, 2.7, 0, 1.99978, -2.26, 0, 2.26, 0, 0.978152, -2.75, 0.0217367, 2.75, -0.0217367 ),
-"times": PoolRealArray( 0.00999999, 4.02, 8.05 )
+"points": PoolRealArray( 1, -2.7, 0, 2.7, 0, 1.99978, -2.26, 0, 2.26, 0, 1, -2.75, 0.0217367, 2.75, -0.0217367 ),
+"times": PoolRealArray( 0, 4.02, 8 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath(".:scale:y")
@@ -33,8 +33,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0.956415, -2.56, 0, 2.56, 0, 1.99978, -2.38, -0.0217367, 2.38, 0.0217367, 0.999889, -2.99, 0, 2.99, 0 ),
-"times": PoolRealArray( 0.03, 4.03, 8.04 )
+"points": PoolRealArray( 1, -2.56, 0, 2.56, 0, 1.99978, -2.38, -0.0217367, 2.38, 0.0217367, 0.999889, -2.99, 0, 2.99, 0 ),
+"times": PoolRealArray( 0, 4.03, 8 )
 }
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
@@ -60,7 +60,7 @@ height = 1800
 bevel = 600
 
 [node name="Field" parent="Battlefield" index="1" instance=ExtResource( 6 )]
-scale = Vector2( 1.25918, 1.23369 )
+scale = Vector2( 0.978152, 0.956415 )
 type = 5
 
 [node name="GCircle" type="Node" parent="Battlefield/Field" index="6"]
@@ -72,6 +72,7 @@ radius = 300
 precision = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Field" index="7"]
+autoplay = "Pulse"
 anims/Pulse = SubResource( 1 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
