@@ -38,7 +38,7 @@ func refresh():
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
 	($Entity/Valuable as Component).set_enabled(type == TYPE.hill)
-	($Entity/Throne as Component).set_enabled(type == TYPE.hill)
+	($Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	
 	if type == TYPE.water:
 		$Polygon2D.color = Color(0,0.2,0.8,0.5)
@@ -58,6 +58,7 @@ func refresh():
 	elif type == TYPE.hill:
 		$Polygon2D.color = Color(1,0.5,0,0.3)
 		$Line2D.default_color = Color(1,0.5,0,1)
+		$Entity/Hill/Crown.modulate = Color(1,0.5,0,1)
 		
 	# keep the symbols up
 	$CrownCollider/Sprite.rotation = -rotation
