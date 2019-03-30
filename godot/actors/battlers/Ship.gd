@@ -78,7 +78,7 @@ func _ready():
 	entity = ECM.E(self)
 	species = species_template.species_name
 	
-	
+	entity.get('Conqueror').set_species(species_template)
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)

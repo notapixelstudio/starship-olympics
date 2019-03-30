@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -10,12 +10,13 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
 [ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
-[ext_resource path="res://combat/components/Royal.gd" type="Script" id=11]
-[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=13]
-[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=14]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=15]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=16]
+[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=11]
+[ext_resource path="res://combat/components/Royal.gd" type="Script" id=12]
+[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=14]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=15]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=16]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -62,7 +63,7 @@ color_ramp = SubResource( 6 )
 "players",
 "in_camera",
 ]]
-collision_mask = 19
+collision_mask = 1043
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 continuous_cd = 2
@@ -129,22 +130,28 @@ __meta__ = {
 }
 enabled = false
 
-[node name="Royal" type="Node2D" parent="Entity2D"]
+[node name="Conqueror" type="Node" parent="Entity2D"]
 script = ExtResource( 11 )
 __meta__ = {
-"_editor_icon": ExtResource( 12 )
+"_editor_icon": ExtResource( 8 )
+}
+
+[node name="Royal" type="Node2D" parent="Entity2D"]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 13 )
 }
 enabled = false
 
 [node name="Crown" type="Sprite" parent="Entity2D/Royal"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 offset = Vector2( 0, -150 )
 
 [node name="Thrusters" type="Node2D" parent="Entity2D"]
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 __meta__ = {
-"_editor_icon": ExtResource( 12 )
+"_editor_icon": ExtResource( 13 )
 }
 
 [node name="Particles2D" type="Particles2D" parent="Entity2D/Thrusters"]
@@ -154,9 +161,9 @@ amount = 512
 lifetime = 5.0
 local_coords = false
 process_material = SubResource( 9 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
-[node name="Debug" parent="." instance=ExtResource( 16 )]
+[node name="Debug" parent="." instance=ExtResource( 17 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

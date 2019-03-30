@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://actors/environments/Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=4]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/flag.png" type="Texture" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 10.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 100.0
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 1024
+collision_mask = 1045
+mass = 5.0
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Conquerable" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Flag" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+

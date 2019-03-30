@@ -98,6 +98,7 @@ func _ready():
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
 	$RaceModeManager.connect('score', scores, "add_score")
+	$ConquestModeManager.connect('score', scores, "add_score")
 	
 	# set up the spawners
 	var i = 0
@@ -199,6 +200,7 @@ onready var collect_manager = $CollectManager
 onready var environments_manager = $EnvironmentsManager
 onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
+onready var conquest_mode_manager = $ConquestModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -236,6 +238,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
+	ship.connect("body_entered", conquest_mode_manager, "_on_ship_collided", [ship])
 	
 	return ship
 	
