@@ -97,6 +97,7 @@ func _ready():
 
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
+	$RaceModeManager.connect('score', scores, "add_score")
 	
 	# set up the spawners
 	var i = 0
