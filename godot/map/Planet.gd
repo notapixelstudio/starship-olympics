@@ -8,6 +8,7 @@ export var tagline2 : String
 
 export var species : Resource # SpeciesTemplate
 
+export var levels_1players : Array
 export var levels_2players : Array
 export var levels_3players : Array
 export var levels_4players : Array
