@@ -28,7 +28,6 @@ centered = false
 hollow = true
 offset = 200
 elongation = 100
-type = 0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 5 )
@@ -41,10 +40,6 @@ bevel = 600
 
 [node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 position = Vector2( -900, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall" index="3"]
 script = ExtResource( 7 )
@@ -56,10 +51,6 @@ height = 400
 
 [node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 position = Vector2( 900, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall2" index="3"]
 script = ExtResource( 7 )
@@ -92,9 +83,9 @@ rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 14 )
 
-[node name="Camera" parent="." index="9"]
+[node name="Camera" parent="." index="11"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]

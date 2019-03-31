@@ -2,7 +2,7 @@ extends Node
 
 class_name Scores
 
-const BASE_TIME_LEFT:float = 15.0
+const BASE_TIME_LEFT:float = 40.0
 var time_left:float
 
 const TARGET_SCORE:float = 40.0
