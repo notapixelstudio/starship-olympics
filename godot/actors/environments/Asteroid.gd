@@ -36,6 +36,11 @@ func refresh():
 		$Polygon2D.color = Color(0.3,0.3,0.3,1)
 		$Line2D.default_color = Color(1,1,1,1)
 		
+	if type == TYPE.conquerable:
+		add_to_group('in_camera')
+	else:
+		remove_from_group('in_camera')
+		
 func _process(delta):
 	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled and ($Entity/Conquerable as Conquerable).get_species() != null:
 		modulate = ($Entity/Conquerable as Conquerable).get_species().color

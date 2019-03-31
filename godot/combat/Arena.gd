@@ -176,7 +176,7 @@ func ship_just_died(ship: Ship, killer : Entity):
 	"""
 	Battlefield.call_deferred("remove_child", ship)
 	
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	
 	if scores.game_over:
 		return

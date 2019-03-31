@@ -34,7 +34,7 @@ radius = 900
 precision = 50.0
 
 [node name="Asteroid" parent="Battlefield" index="1" instance=ExtResource( 6 )]
-position = Vector2( 0, 400 )
+position = Vector2( 0, 500 )
 type = 1
 
 [node name="GCircle" type="Node" parent="Battlefield/Asteroid" index="3"]
@@ -46,7 +46,7 @@ radius = 80
 precision = 10.0
 
 [node name="Asteroid2" parent="Battlefield" index="2" instance=ExtResource( 6 )]
-position = Vector2( 0, -400 )
+position = Vector2( 0, -500 )
 type = 1
 
 [node name="GCircle" type="Node" parent="Battlefield/Asteroid2" index="3"]
@@ -69,7 +69,7 @@ radius = 80
 precision = 10.0
 
 [node name="Asteroid4" parent="Battlefield" index="4" instance=ExtResource( 6 )]
-position = Vector2( -400, 0 )
+position = Vector2( -500, 0 )
 type = 1
 
 [node name="GCircle" type="Node" parent="Battlefield/Asteroid4" index="3"]
@@ -81,7 +81,7 @@ radius = 80
 precision = 10.0
 
 [node name="Asteroid5" parent="Battlefield" index="5" instance=ExtResource( 6 )]
-position = Vector2( 400, 0 )
+position = Vector2( 500, 0 )
 type = 1
 
 [node name="GCircle" type="Node" parent="Battlefield/Asteroid5" index="3"]
