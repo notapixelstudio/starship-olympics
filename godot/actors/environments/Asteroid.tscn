@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/environments/Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/flag.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/flag.png" type="Texture" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 10.0
@@ -33,6 +34,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -42,5 +49,5 @@ texture_mode = 1
 shape = SubResource( 2 )
 
 [node name="Flag" type="Sprite" parent="."]
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
