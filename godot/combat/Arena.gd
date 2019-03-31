@@ -94,11 +94,15 @@ func _ready():
 	$CollectManager.connect('dropped', $CrownModeManager, "_on_sth_dropped")
 	$CollectManager.connect('dropped', self, "_on_sth_dropped")
 	$EnvironmentsManager.connect('repel_cargo', $CollectManager, "_on_cargo_repelled")
-
+	$CollectManager.connect('collected', $CollectModeManager, "_on_sth_collected")
+	$CollectManager.connect('coins_dropped', $CollectModeManager, "_on_coins_dropped")
+	$CollectManager.connect('coins_dropped', self, "_on_coins_dropped")
+	
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
 	$RaceModeManager.connect('score', scores, "add_score")
 	$ConquestModeManager.connect('score', scores, "add_score")
+	$CollectModeManager.connect('score', scores, "add_score")
 	
 	# set up the spawners
 	var i = 0
@@ -266,6 +270,14 @@ func _on_sth_dropped(dropper, droppee):
 	# wait a bit, then make the item collectable again
 	yield(get_tree().create_timer(0.2), "timeout")
 	ECM.E(droppee).get('Collectable').enable()
+	
+const coin_scene = preload("res://combat/collectables/Coin.tscn")
+func _on_coins_dropped(dropper, amount):
+	for i in range(amount):
+		var coin = coin_scene.instance()
+		$Battlefield.add_child(coin)
+		coin.position = dropper.position
+		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 	
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")
