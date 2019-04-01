@@ -61,7 +61,7 @@ func refresh():
 		$Line2D.default_color = Color(1,0.5,0,1)
 		$Entity/Hill/Crown.modulate = Color(1,0.5,0,1)
 	elif type == TYPE.basket:
-		assert ($Entity as Entity).has('Owned')
+		#assert ($Entity as Entity).has('Owned')
 		
 		var species = ($Entity as Entity).get('Owned').get_owned_by()
 		$Polygon2D.color = species.color.darkened(10)
