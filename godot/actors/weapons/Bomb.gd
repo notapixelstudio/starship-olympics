@@ -8,7 +8,7 @@ const Explosion = preload('res://actors/weapons/Explosion.tscn')
 var target = null
 var timeout = 0
 const LOCKING_TIMEOUT = 1
-var locking_timeout = LOCKING_TIMEOUT
+var locking_timeout = 0
 const TARGET_TIMEOUT = 1
 var target_timeout = TARGET_TIMEOUT
 
@@ -82,6 +82,10 @@ func try_acquire_target(ship):
 		target_timeout = TARGET_TIMEOUT
 		return
 		
+	# avoid changing target too often
+	if locking_timeout > 0:
+		return
+		
 	# Do not lock if invincible
 	if ship.invincible:
 		return
@@ -90,7 +94,7 @@ func try_acquire_target(ship):
 	if entity.has('Owned') and len(ECM.entities_with('Royal')) > 0 and not ECM.E(ship).has('Royal') and not ECM.E(entity.get('Owned').get_owned_by()).has('Royal'):
 		return
 		
-	if locking_timeout <= 0 or ship != entity.get('Owned').get_owned_by(): # avoid pursuing the ship of origin right after shooting
+	if not entity.has('Owned') or ship.species != entity.get('Owned').get_owned_by().species: # avoid pursuing the ship of origin right after shooting
 		acquire_target(ship)
 		
 func acquire_target(ship):
@@ -99,7 +103,6 @@ func acquire_target(ship):
 	# print("target acquired: ", ship.species_template.species_name)
 	$AnimatedSprite.play('locked_'+str(ship.species_template.id))
 	
-	# avoid changing target too often
 	locking_timeout = LOCKING_TIMEOUT
 	
 	target_timeout = TARGET_TIMEOUT

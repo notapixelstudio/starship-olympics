@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
+[ext_resource path="res://combat/collectables/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
+[ext_resource path="res://selection/species/drones.tres" type="Resource" id=9]
+
+[node name="Arena" instance=ExtResource( 1 )]
+size_multiplier = 2.5
+
+[node name="CrownModeManager" parent="." index="5"]
+enabled = false
+
+[node name="ConquestModeManager" parent="." index="8"]
+enabled = false
+
+[node name="CollectModeManager" parent="." index="9"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+hollow = true
+offset = 200
+elongation = 100
+type = 0
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+width = 1800
+height = 1800
+bevel = 700
+
+[node name="Coin" parent="Battlefield" index="1" instance=ExtResource( 6 )]
+position = Vector2( -600, 0 )
+
+[node name="Coin6" parent="Battlefield" index="2" instance=ExtResource( 6 )]
+position = Vector2( -400, 0 )
+
+[node name="Coin3" parent="Battlefield" index="3" instance=ExtResource( 6 )]
+position = Vector2( -500, 0 )
+
+[node name="Coin5" parent="Battlefield" index="4" instance=ExtResource( 6 )]
+position = Vector2( -300, 0 )
+
+[node name="Coin7" parent="Battlefield" index="5" instance=ExtResource( 6 )]
+position = Vector2( -210, -50 )
+
+[node name="Coin8" parent="Battlefield" index="6" instance=ExtResource( 6 )]
+position = Vector2( -157.943, -131.339 )
+
+[node name="Coin9" parent="Battlefield" index="7" instance=ExtResource( 6 )]
+position = Vector2( -164.45, -228.945 )
+
+[node name="Coin10" parent="Battlefield" index="8" instance=ExtResource( 6 )]
+position = Vector2( -219.761, -310.284 )
+
+[node name="Coin2" parent="Battlefield" index="9" instance=ExtResource( 6 )]
+position = Vector2( 600, 0 )
+rotation = 3.14159
+
+[node name="Coin11" parent="Battlefield" index="10" instance=ExtResource( 6 )]
+position = Vector2( 400, 0 )
+rotation = 3.14159
+
+[node name="Coin4" parent="Battlefield" index="11" instance=ExtResource( 6 )]
+position = Vector2( 500, 0 )
+rotation = 3.14159
+
+[node name="Coin12" parent="Battlefield" index="12" instance=ExtResource( 6 )]
+position = Vector2( 300, 0 )
+rotation = 3.14159
+
+[node name="Coin13" parent="Battlefield" index="13" instance=ExtResource( 6 )]
+position = Vector2( 210, 50 )
+rotation = 3.14159
+
+[node name="Coin14" parent="Battlefield" index="14" instance=ExtResource( 6 )]
+position = Vector2( 157.943, 131.339 )
+rotation = 3.14159
+
+[node name="Coin15" parent="Battlefield" index="15" instance=ExtResource( 6 )]
+position = Vector2( 164.45, 228.945 )
+rotation = 3.14159
+
+[node name="Coin16" parent="Battlefield" index="16" instance=ExtResource( 6 )]
+position = Vector2( 219.761, 310.284 )
+rotation = 3.14159
+
+[node name="Coin20" parent="Battlefield" index="17" instance=ExtResource( 6 )]
+position = Vector2( 188.706, -543.529 )
+rotation = -1.5708
+
+[node name="Coin23" parent="Battlefield" index="18" instance=ExtResource( 6 )]
+position = Vector2( 221.241, -656.543 )
+rotation = -1.5708
+
+[node name="Coin17" parent="Battlefield" index="19" instance=ExtResource( 6 )]
+position = Vector2( 171.241, -746.543 )
+rotation = -1.5708
+
+[node name="Coin24" parent="Battlefield" index="20" instance=ExtResource( 6 )]
+position = Vector2( 89.9025, -798.6 )
+rotation = -1.5708
+
+[node name="Coin18" parent="Battlefield" index="21" instance=ExtResource( 6 )]
+position = Vector2( -7.70398, -792.093 )
+rotation = -1.5708
+
+[node name="Coin22" parent="Battlefield" index="22" instance=ExtResource( 6 )]
+position = Vector2( -89.0427, -736.782 )
+rotation = -1.5708
+
+[node name="Coin26" parent="Battlefield" index="23" instance=ExtResource( 6 )]
+position = Vector2( -191.96, 537.021 )
+rotation = 1.5708
+
+[node name="Coin28" parent="Battlefield" index="24" instance=ExtResource( 6 )]
+position = Vector2( -224.495, 650.035 )
+rotation = 1.5708
+
+[node name="Coin29" parent="Battlefield" index="25" instance=ExtResource( 6 )]
+position = Vector2( -174.495, 740.035 )
+rotation = 1.5708
+
+[node name="Coin30" parent="Battlefield" index="26" instance=ExtResource( 6 )]
+position = Vector2( -93.1564, 792.092 )
+rotation = 1.5708
+
+[node name="Coin31" parent="Battlefield" index="27" instance=ExtResource( 6 )]
+position = Vector2( 4.45007, 785.585 )
+rotation = 1.5708
+
+[node name="Coin32" parent="Battlefield" index="28" instance=ExtResource( 6 )]
+position = Vector2( 85.7888, 730.275 )
+rotation = 1.5708
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
+position = Vector2( -700, 0 )
+rotation = 0.0
+controls = "joy1"
+species_template = ExtResource( 8 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
+position = Vector2( 700, 0 )
+rotation = 3.14159
+controls = "joy2"
+species_template = ExtResource( 9 )
+
+[node name="Camera" parent="." index="15"]
+smoothing_speed = 0.3
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="CanvasLayer/Pause"]

@@ -85,8 +85,10 @@ func refresh():
 		add_child(cshape)
 		
 	$Polygon2D.set_polygon(points)
+	$Grid.set_polygon(points)
 	
 	$Polygon2D.visible = not hollow
+	$Grid.visible = hollow
 	
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)
