@@ -21,6 +21,7 @@ func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
 	if entity.has('Trigger'):
 		bomb.detonate()
 		
+# FIXME remove (careful with the Detector component, maybe it should be deleted in favor of Targeting)
 func ship_within_detection_distance(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	

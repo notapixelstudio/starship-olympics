@@ -7,7 +7,7 @@ export (bool) var hollow setget set_hollow
 export (int) var offset setget set_offset
 export (int) var elongation setget set_elongation
 
-enum TYPE { solid, hostile }
+enum TYPE { solid, hostile, ghost }
 export(TYPE) var type = TYPE.solid setget set_type
 
 onready var extents = $RectExtents
@@ -67,26 +67,29 @@ func refresh():
 		
 	var points = gshape.to_PoolVector2Array()
 	
-	if hollow:
-		for i in range(len(points)):
+	if not type == TYPE.ghost:
+		if hollow:
+			for i in range(len(points)):
+				var cshape = CollisionShape2D.new()
+				var shape = ConvexPolygonShape2D.new()
+				var a = points[i]
+				var b = points[(i+1) % len(points)]
+				var elo = (b-a).normalized()*elongation
+				shape.set_points(PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo]))
+				cshape.set_shape(shape)
+				add_child(cshape)
+		else:
 			var cshape = CollisionShape2D.new()
 			var shape = ConvexPolygonShape2D.new()
-			var a = points[i]
-			var b = points[(i+1) % len(points)]
-			var elo = (b-a).normalized()*elongation
-			shape.set_points(PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo]))
+			shape.set_points(points)
 			cshape.set_shape(shape)
 			add_child(cshape)
-	else:
-		var cshape = CollisionShape2D.new()
-		var shape = ConvexPolygonShape2D.new()
-		shape.set_points(points)
-		cshape.set_shape(shape)
-		add_child(cshape)
-		
+			
 	$Polygon2D.set_polygon(points)
+	$Grid.set_polygon(points)
 	
-	$Polygon2D.visible = not hollow
+	$Polygon2D.visible = not hollow and not type == TYPE.ghost
+	$Grid.visible = hollow and not type == TYPE.ghost
 	
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)
@@ -103,4 +106,6 @@ func refresh():
 		modulate = Color(1,1,1,1)
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
+	elif type == TYPE.ghost:
+		modulate = Color(0.2,0.7,1,0.2)
 		

@@ -10,6 +10,7 @@ var someone_died = 0
 export (PackedScene) var gameover_scene
 export (float) var size_multiplier = 2.0
 
+var mockup: bool = false
 var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
@@ -31,7 +32,7 @@ signal rematch
 signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
-var mockup = false
+
 var scores : Scores
 
 func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
@@ -93,6 +94,7 @@ func _ready():
 	$CollectManager.connect('collected', self, "_on_sth_collected")
 	$CollectManager.connect('dropped', $CrownModeManager, "_on_sth_dropped")
 	$CollectManager.connect('dropped', self, "_on_sth_dropped")
+	$CollectManager.connect("stolen", $CrownModeManager, "_on_sth_stolen")
 	$EnvironmentsManager.connect('repel_cargo', $CollectManager, "_on_cargo_repelled")
 	$CollectManager.connect('collected', $CollectModeManager, "_on_sth_collected")
 	$CollectManager.connect('coins_dropped', $CollectModeManager, "_on_coins_dropped")
@@ -208,6 +210,7 @@ onready var environments_manager = $EnvironmentsManager
 onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_mode_manager = $ConquestModeManager
+onready var targeting_manager = $TargetingManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -241,7 +244,8 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
-	ship.connect("detection", combat_manager, "ship_within_detection_distance")
+	ship.connect("detection", combat_manager, "ship_within_detection_distance") # FIXME remove
+	ship.connect("detection", targeting_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")

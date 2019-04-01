@@ -89,9 +89,9 @@ rotation = -2.61799
 controls = "joy3"
 species_template = ExtResource( 13 )
 
-[node name="Camera" parent="." index="9"]
+[node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]

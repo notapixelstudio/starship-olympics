@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/no_crown.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://actors/environments/components/Hill.gd" type="Script" id=8]
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/crown_symbol.png" type="Texture" id=10]
+[ext_resource path="res://combat/components/Owned.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -117,6 +118,20 @@ __meta__ = {
 
 [node name="Crown" type="Sprite" parent="Entity/Hill"]
 texture = ExtResource( 10 )
+
+[node name="Basket" type="Node" parent="Entity"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Owned" type="Node" parent="Entity"]
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
 
 [node name="Particles2D" type="Particles2D" parent="."]
 emitting = false

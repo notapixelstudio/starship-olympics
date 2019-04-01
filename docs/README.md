@@ -3,6 +3,7 @@
 *Superstarfighter* is a fast-paced local party game for up to 4 players. Outmaneuver and shoot your opponents in a 2d top-down arena, and become an intergalactic champion!
 
 Download here!
+
 [![qrcode](qrcode.png)](https://notapixel.itch.io/superstarfighter)
 
 The game is open source and currently under active development [here on GitHub](https://github.com/notapixelstudio/superstarfighter). Help is welcome! You can try our current prototype [here on itch.io](https://notapixel.itch.io/superstarfighter).
