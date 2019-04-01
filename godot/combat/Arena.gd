@@ -179,6 +179,7 @@ func ship_just_died(ship: Ship, killer : Entity):
 	remove from it, and reput it after a bit
 	"""
 	Battlefield.call_deferred("remove_child", ship)
+	Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 	
 	yield(get_tree().create_timer(2), "timeout")
 	
@@ -186,7 +187,9 @@ func ship_just_died(ship: Ship, killer : Entity):
 		return
 	
 	# respawn
+	Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
 	Battlefield.call_deferred("add_child", ship)
+	
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
 	yield(get_tree(),"idle_frame") # wait for UI redraw (esp. bars)

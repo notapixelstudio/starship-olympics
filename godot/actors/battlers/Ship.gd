@@ -47,6 +47,9 @@ onready var player = name
 onready var skin = $Graphics
 
 const trail_scene = preload('res://actors/weapons/Trail.tscn')
+const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
+
+var dead_ship_instance
 
 signal dead
 signal stop_invincible
@@ -72,6 +75,8 @@ func _enter_tree():
 	invincible = false
 	
 func _ready():
+	dead_ship_instance = dead_ship_scene.instance()
+	dead_ship_instance.ship = self
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	skin.invincible()
