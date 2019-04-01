@@ -1,6 +1,7 @@
 extends Manager
-
 signal collected
+signal stolen
+
 func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	
@@ -16,7 +17,11 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 			
 		if entity.has('Keepable') and is_loadable:
 			ECM.E(ship).get('Cargo').load(entity.get_host())
-			
+	
+	if entity.has("Cargo") and entity.could_have("Cargo"):
+		emit_signal("stolen", ship, entity.get_host())
+		
+	
 signal dropped
 func drop_cargo(dropper):
 	var what = ECM.E(dropper).get('Cargo').unload()
