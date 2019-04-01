@@ -10,7 +10,7 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/species/drones.tres" type="Resource" id=9]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="CrownModeManager" parent="." index="4"]
@@ -30,6 +30,7 @@ centered = false
 hollow = true
 offset = 200
 elongation = 100
+type = 0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
 script = ExtResource( 4 )
