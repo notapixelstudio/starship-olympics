@@ -10,6 +10,7 @@ var someone_died = 0
 export (PackedScene) var gameover_scene
 export (float) var size_multiplier = 2.0
 
+var mockup: bool = false
 var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
@@ -31,7 +32,7 @@ signal rematch
 signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
-var mockup = false
+
 var scores : Scores
 
 func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
@@ -93,6 +94,7 @@ func _ready():
 	$CollectManager.connect('collected', self, "_on_sth_collected")
 	$CollectManager.connect('dropped', $CrownModeManager, "_on_sth_dropped")
 	$CollectManager.connect('dropped', self, "_on_sth_dropped")
+	$CollectManager.connect("stolen", $CrownModeManager, "_on_sth_stolen")
 	$EnvironmentsManager.connect('repel_cargo', $CollectManager, "_on_cargo_repelled")
 	$CollectManager.connect('collected', $CollectModeManager, "_on_sth_collected")
 	$CollectManager.connect('coins_dropped', $CollectModeManager, "_on_coins_dropped")
