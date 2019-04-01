@@ -1,22 +1,24 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
-[ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=6]
-[ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=7]
-[ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=8]
-[ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=9]
-[ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=10]
-[ext_resource path="res://combat/managers/ConquestModeManager.gd" type="Script" id=11]
-[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=12]
-[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=15]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=16]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=17]
+[ext_resource path="res://combat/managers/TargetingManager.gd" type="Script" id=6]
+[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
+[ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=8]
+[ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=9]
+[ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=10]
+[ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=11]
+[ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=12]
+[ext_resource path="res://combat/managers/ConquestModeManager.gd" type="Script" id=13]
+[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=15]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=16]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=17]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=19]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
@@ -34,46 +36,59 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="CollectManager" type="Node" parent="."]
+[node name="TargetingManager" type="Node" parent="."]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="EnvironmentsManager" type="Node" parent="."]
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
+[node name="TargetLocked" type="AudioStreamPlayer2D" parent="TargetingManager"]
+stream = ExtResource( 7 )
 
-[node name="CrownModeManager" type="Node" parent="."]
+[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="TargetingManager"]
+stream = ExtResource( 7 )
+pitch_scale = 0.5
+
+[node name="CollectManager" type="Node" parent="."]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="DeathmatchModeManager" type="Node" parent="."]
+[node name="EnvironmentsManager" type="Node" parent="."]
 script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="CrownModeManager" type="Node" parent="."]
+script = ExtResource( 10 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="DeathmatchModeManager" type="Node" parent="."]
+script = ExtResource( 11 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 enabled = false
 
 [node name="RaceModeManager" type="Node" parent="."]
-script = ExtResource( 10 )
+script = ExtResource( 12 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 enabled = false
 
 [node name="ConquestModeManager" type="Node" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
 [node name="CollectModeManager" type="Node" parent="."]
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
@@ -95,12 +110,12 @@ layer = -1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 13 )]
+[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 15 )]
 visible = false
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 14 )]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 16 )]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 15 )]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 17 )]
 editor/display_folded = true
 visible = false
 
@@ -124,13 +139,13 @@ elem_type = 2
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 16 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 18 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 17 )
+script = ExtResource( 19 )
 debug_mode = false
 enabled = true
 
