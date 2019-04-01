@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://combat/collectables/Coin.gd" type="Script" id=1]
+[ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/coin.png" type="Texture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=2]
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -12,7 +15,9 @@ radius = 40.0
 "in_camera",
 ]]
 collision_layer = 2048
-collision_mask = 1042
+collision_mask = 16021
+mass = 5.0
+physics_material_override = SubResource( 2 )
 gravity_scale = 0.0
 script = ExtResource( 1 )
 

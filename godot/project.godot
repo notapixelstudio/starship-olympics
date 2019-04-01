@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/Crown.gd"
 }, {
+"base": "RigidBody2D",
+"class": "DeadShip",
+"language": "GDScript",
+"path": "res://actors/battlers/DeadShip.gd"
+}, {
 "base": "Node",
 "class": "Entity",
 "language": "GDScript",
@@ -186,6 +191,7 @@ _global_script_class_icons={
 "Conquerable": "",
 "Controls": "",
 "Crown": "",
+"DeadShip": "",
 "Entity": "",
 "Explosion": "",
 "GBeveledRect": "",
@@ -583,6 +589,7 @@ joy4_cancel={
 2d_physics/layer_11="asteroids"
 2d_physics/layer_12="coins"
 2d_physics/layer_13="bull"
+2d_physics/layer_14="deadship"
 2d_physics/layer_16="castle"
 
 [logging]

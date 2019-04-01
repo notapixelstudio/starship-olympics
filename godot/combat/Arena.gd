@@ -190,6 +190,7 @@ func ship_just_died(ship: Ship, killer : Entity):
 	
 	# respawn
 	Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
+	ship.position = ship.dead_ship_instance.position
 	Battlefield.call_deferred("add_child", ship)
 	
 	
