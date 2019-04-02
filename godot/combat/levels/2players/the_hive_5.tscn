@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
@@ -10,6 +10,35 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Shrink"
+length = 90.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 90 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2100, 900 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 90 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2100, 900 ]
+}
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -24,7 +53,22 @@ enabled = true
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWallGhost" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+modulate = Color( 0.2, 0.7, 1, 0.2 )
+offset = 200
+elongation = 100
+type = 2
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWallGhost" index="3"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+width = 2100
+height = 2100
+bevel = 400
+
+[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -34,24 +78,15 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
-width = 2200
-height = 2000
-bevel = 800
+width = 2100
+height = 2100
+bevel = 400
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-position = Vector2( 106.066, 106.066 )
-rotation = 0.785398
-
-[node name="GRect" type="Node" parent="Battlefield/Wall" index="4"]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_icon": ExtResource( 7 )
-}
-width = 100
-height = 100
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6"]
+autoplay = "Shrink"
+anims/Shrink = SubResource( 1 )
 
 [node name="Wall2" parent="Battlefield" index="2" instance=ExtResource( 3 )]
-position = Vector2( -106.066, -106.066 )
 rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Wall2" index="4"]

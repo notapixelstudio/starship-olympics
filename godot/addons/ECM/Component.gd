@@ -15,8 +15,9 @@ func _add_to_corresponding_group():
 	get_entity().add_to_group('component__'+name)
 	
 func _remove_from_corresponding_group():
-	get_entity().remove_from_group('component__'+name)
-	
+	if get_entity().is_in_group('component__'+name):
+		get_entity().remove_from_group('component__'+name)
+		
 func set_enabled(value : bool):
 	enabled = value
 	
