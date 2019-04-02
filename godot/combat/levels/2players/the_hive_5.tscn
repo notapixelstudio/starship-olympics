@@ -37,7 +37,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 90 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 2100, 900 ]
+"values": [ 1800, 900 ]
 }
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -65,7 +65,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 width = 2100
-height = 2100
+height = 1800
 bevel = 400
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
@@ -79,7 +79,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 width = 2100
-height = 2100
+height = 1800
 bevel = 400
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6"]
