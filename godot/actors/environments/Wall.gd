@@ -91,6 +91,8 @@ func refresh():
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost
 	$Grid.visible = hollow and not type == TYPE.ghost
 	
+	$Grid.set_texture_rotation(rotation)
+	
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)
 	ps.remove(0)
