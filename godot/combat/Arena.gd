@@ -9,6 +9,7 @@ var someone_died = 0
 
 export (PackedScene) var gameover_scene
 export (float) var size_multiplier = 2.0
+export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 
 var mockup: bool = false
 var mouse_target  = Vector2(1600, 970)
@@ -63,7 +64,19 @@ func compute_arena_size():
 	"""
 	return Battlefield.get_node("OutsideWall").extents.get_rect()
 
+func set_time_scale(value):
+	time_scale = value
+	update_time_scale()
+	
+func get_time_scale():
+	return time_scale
+	
+func update_time_scale():
+	Engine.time_scale = time_scale
+	
 func _ready():
+	update_time_scale()
+	
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
