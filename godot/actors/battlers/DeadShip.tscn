@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/coin.png" type="Texture" id=4]
+[ext_resource path="res://actors/battlers/juice/Death.tscn" type="PackedScene" id=5]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 40.0
 
 [node name="DeadShip" type="RigidBody2D" groups=[
@@ -17,7 +18,7 @@ radius = 40.0
 collision_layer = 2048
 collision_mask = 16021
 mass = 5.0
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 script = ExtResource( 1 )
 
@@ -32,5 +33,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+
+[node name="Death" parent="." instance=ExtResource( 5 )]
 

@@ -11,3 +11,10 @@ func set_ship(new_value):
 func _enter_tree():
 	linear_velocity = ship.linear_velocity
 	position = ship.position
+	$Death.play()
+
+func get_killed_by(killer):
+	if not killer:
+		return
+	print(killer.species , " with color ", killer.species_template.color)
+	$Death.modulate = killer.species_template.color

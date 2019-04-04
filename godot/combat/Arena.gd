@@ -189,11 +189,12 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship: Ship, killer : Entity):
+func ship_just_died(ship: Ship, killer):
 	"""
 	remove from it, and reput it after a bit
 	"""
 	Battlefield.call_deferred("remove_child", ship)
+	ship.dead_ship_instance.get_killed_by(killer)
 	Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 	
 	yield(get_tree().create_timer(2), "timeout")
