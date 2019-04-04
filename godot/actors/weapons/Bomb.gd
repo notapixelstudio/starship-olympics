@@ -30,10 +30,11 @@ func initialize(pos : Vector2, impulse, ship):
 	if ship:
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
+		$Sprite.modulate = ship.species_template.color
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
-	
+		
 func _physics_process(delta):
 	var thrust : float = entity.get('Thrusters').get_speed()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,15 +9,9 @@
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=7]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=8]
 [ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=9]
-[ext_resource path="res://assets/sprites/weapons/bomb.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_0.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_4.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_3.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_1.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_2.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_99.png" type="Texture" id=16]
-[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_3.png" type="Texture" id=10]
+[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -44,44 +38,6 @@ angle = 45.0
 scale = 6.0
 scale_curve = SubResource( 4 )
 color = Color( 1, 1, 1, 0.51498 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "default",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "locked_0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "locked_4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "locked_3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "locked_1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "locked_2",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "locked_99",
-"speed": 5.0
-} ]
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 16.0
@@ -143,11 +99,9 @@ amount = 32
 local_coords = false
 process_material = SubResource( 5 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 1 )
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 6 )
-playing = true
+texture = ExtResource( 10 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -181,10 +135,10 @@ __meta__ = {
 }
 
 [node name="lock-sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 17 )
+stream = ExtResource( 11 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 18 )
+stream = ExtResource( 12 )
 volume_db = 10.0
 area_mask = 8
 
