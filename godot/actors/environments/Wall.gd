@@ -101,13 +101,15 @@ func refresh():
 	
 	# wall types
 	if type == TYPE.hostile:
-		modulate = Color(1,0,0,1)
+		$Polygon2D.modulate = Color(1,0,0,1)
+		$line.modulate = Color(1,0,0,1)
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		modulate = Color(1,1,1,1)
+		$Polygon2D.modulate = Color(1,1,1,1)
+		$line.modulate = Color(1,1,1,1)
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		modulate = Color(0.2,0.7,1,0.2)
+		$line.modulate = Color(0.2,0.7,1,0.2)
 		

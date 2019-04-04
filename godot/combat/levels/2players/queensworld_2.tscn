@@ -78,6 +78,7 @@ centered = false
 hollow = true
 offset = 200
 elongation = 100
+type = 0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 5 )
@@ -94,6 +95,10 @@ anims/Pulse = SubResource( 1 )
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource( 4 )]
 position = Vector2( -1050, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall" index="3"]
 script = ExtResource( 7 )
@@ -105,6 +110,10 @@ height = 300
 
 [node name="Wall2" parent="Battlefield" index="4" instance=ExtResource( 4 )]
 position = Vector2( 1050, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Wall2" index="3"]
 script = ExtResource( 7 )

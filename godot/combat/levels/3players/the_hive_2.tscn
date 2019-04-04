@@ -1,18 +1,53 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=4]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=5]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/species/species2.tres" type="Resource" id=9]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=10]
 
+[sub_resource type="Animation" id=1]
+resource_name = "Flash"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:type")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.5, 1.9, 2, 2.2, 3.5, 3.9 ),
+"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
+}
+
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
+
+[node name="CrownModeManager" parent="." index="5"]
+enabled = false
+
+[node name="DeathmatchModeManager" parent="." index="6"]
+enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
@@ -30,14 +65,17 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
-radius = 1500
+radius = 1100
 sides = 6.0
 
-[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 6 )]
-
-[node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 3 )]
-position = Vector2( -860, -500 )
+[node name="Wall" type="StaticBody2D" parent="Battlefield" index="1" instance=ExtResource( 3 )]
 rotation = 0.523599
+collision_layer = 16
+collision_mask = 5
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
 hollow = false
 offset = 0
 elongation = 0
@@ -48,40 +86,12 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
-radius = 500
+radius = 150
 sides = 6.0
 
-[node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 3 )]
-position = Vector2( 860, -500 )
-rotation = 0.523599
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall2" index="3"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-radius = 500
-sides = 6.0
-
-[node name="Wall3" parent="Battlefield" index="4" instance=ExtResource( 3 )]
-position = Vector2( 0, 995 )
-rotation = 0.523599
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall3" index="3"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-radius = 500
-sides = 6.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Wall" index="7"]
+autoplay = "Flash"
+anims/Flash = SubResource( 1 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 0, -850 )
