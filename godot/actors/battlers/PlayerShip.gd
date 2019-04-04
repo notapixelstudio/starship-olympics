@@ -86,10 +86,4 @@ func control(delta):
 		
 	# cooldown
 	fire_cooldown -= delta
-		
-	# dash
-	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
-	#	speed_multiplier = 3
-	#	$TrailParticles.emitting = true
-	#	dash_cooldown = 1
 	

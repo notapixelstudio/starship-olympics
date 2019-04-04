@@ -21,7 +21,7 @@ func _ready():
 	var index_explosion = randi() % len(explosions)
 	get_node("sound").stream = load(explosions[index_explosion])
 	get_node("sound").play()
-
+	
 func _physics_process(delta):
 	shape.set_radius(radius)
 	#$Circle.set_radius(radius+8) # the actual hitbox is smaller than the rendered circle

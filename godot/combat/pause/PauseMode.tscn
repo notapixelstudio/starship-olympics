@@ -138,9 +138,9 @@ size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements"]
 margin_left = 238.0
-margin_top = 406.0
+margin_top = 380.0
 margin_right = 420.0
-margin_bottom = 518.0
+margin_bottom = 521.0
 alignment = 2
 script = ExtResource( 8 )
 __meta__ = {
@@ -158,20 +158,27 @@ margin_right = 182.0
 margin_bottom = 54.0
 text = "Restart"
 
-[node name="Options" type="Button" parent="GuiElements/Buttons"]
+[node name="SkipLevel" type="Button" parent="GuiElements/Buttons"]
 margin_top = 58.0
 margin_right = 182.0
 margin_bottom = 83.0
-text = "options"
+text = "Skip Level"
 
-[node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
+[node name="Options" type="Button" parent="GuiElements/Buttons"]
 margin_top = 87.0
 margin_right = 182.0
 margin_bottom = 112.0
+text = "options"
+
+[node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
+margin_top = 116.0
+margin_right = 182.0
+margin_bottom = 141.0
 text = "Quit match"
 
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/SkipLevel" to="." method="_on_SkipLevel_pressed"]
 [connection signal="pressed" from="GuiElements/Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]

@@ -5,12 +5,7 @@ class_name Bomb
 
 const Explosion = preload('res://actors/weapons/Explosion.tscn')
 
-var target = null
 var timeout = 0
-const LOCKING_TIMEOUT = 1
-var locking_timeout = LOCKING_TIMEOUT
-const TARGET_TIMEOUT = 1
-var target_timeout = TARGET_TIMEOUT
 
 const LIFETIME = 1.5
 
@@ -35,26 +30,15 @@ func initialize(pos : Vector2, impulse, ship):
 	if ship:
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
+		$Sprite.modulate = ship.species_template.color
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
-	
+		
 func _physics_process(delta):
-	locking_timeout -= delta
-	var thrust: float
-	if entity.has('Thrusters'):
-		thrust = 50
-	else:
-		thrust = 20
-		
-	if target != null and target.get_ref() != null:
-		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*thrust) # need a meaningful way to do this
-		
-		if target_timeout > 0:
-			target_timeout -= delta
-		else:
-			lose_target()
-	else:
+	var thrust : float = entity.get('Thrusters').get_speed()
+	
+	if entity.has('Pursuer') and not entity.get('Pursuer').get_target():
 		# destroy bomb after timeout
 		if timeout > 0:
 			timeout -= delta
@@ -75,39 +59,6 @@ func detonate():
 	emit_signal("detonate")
 	get_parent().call_deferred("add_child", explosion)
 	call_deferred("queue_free")
-
-func try_acquire_target(ship):
-	# Do not lock if already locked onto the same target, but keep the target time
-	if target != null and target.get_ref() != null and target.get_ref() == ship:
-		target_timeout = TARGET_TIMEOUT
-		return
-		
-	# Do not lock if invincible
-	if ship.invincible:
-		return
-		
-	# If there's a queen ship, avoid locking on partners
-	if entity.has('Owned') and len(ECM.entities_with('Royal')) > 0 and not ECM.E(ship).has('Royal') and not ECM.E(entity.get('Owned').get_owned_by()).has('Royal'):
-		return
-		
-	if locking_timeout <= 0 or ship != entity.get('Owned').get_owned_by(): # avoid pursuing the ship of origin right after shooting
-		acquire_target(ship)
-		
-func acquire_target(ship):
-	get_node("lock-sound").play()
-	target = weakref(ship)
-	# print("target acquired: ", ship.species_template.species_name)
-	$AnimatedSprite.play('locked_'+str(ship.species_template.id))
-	
-	# avoid changing target too often
-	locking_timeout = LOCKING_TIMEOUT
-	
-	target_timeout = TARGET_TIMEOUT
-	
-func lose_target():
-	target = null
-	$AnimatedSprite.play('default')
-	timeout = LIFETIME
 	
 signal near_area_entered
 func _on_NearArea_area_entered(area):
