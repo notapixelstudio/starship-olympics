@@ -13,10 +13,10 @@ func set_target(value):
 func get_target():
 	return target
 	
-func reset_keep_target_timeout():
+func set_keep_target_timeout():
 	keep_target_t = keep_target_timeout
 	
-func reset_detection_insensitive_timeout():
+func set_detection_insensitive_timeout():
 	detection_insensitive_t = detection_insensitive_timeout
 	
 func update_timeouts(delta):

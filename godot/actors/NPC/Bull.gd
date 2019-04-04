@@ -12,8 +12,8 @@ func _process(delta):
 	t += delta
 	$Sprite.rotation -= rotation
 	
-	if entity.has('Targeting'):
-		var target = entity.get('Targeting').get_target()
+	var target = entity.get('Pursuer').get_target()
+	if entity.has('Pursuer') and target:
 		$Sprite.rotation = (position-target.position).angle() - PI/2
 		$Sprite/Eye.modulate = target.species_template.color
 	else:

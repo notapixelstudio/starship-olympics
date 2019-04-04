@@ -224,7 +224,7 @@ onready var environments_manager = $EnvironmentsManager
 onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_mode_manager = $ConquestModeManager
-onready var targeting_manager = $TargetingManager
+onready var pursue_manager = $PursueManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -265,8 +265,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
-	ship.connect("detection", combat_manager, "ship_within_detection_distance") # FIXME remove
-	ship.connect("detection", targeting_manager, "_on_ship_detected")
+	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")

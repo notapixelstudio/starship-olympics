@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -8,15 +8,16 @@
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=6]
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=7]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=8]
-[ext_resource path="res://assets/sprites/weapons/bomb.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_0.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_4.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_3.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_1.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_2.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_99.png" type="Texture" id=15]
-[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=17]
+[ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=9]
+[ext_resource path="res://assets/sprites/weapons/bomb.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_0.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_4.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_3.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_1.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_2.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_99.png" type="Texture" id=16]
+[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=18]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -46,37 +47,37 @@ color = Color( 1, 1, 1, 0.51498 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "locked_0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "locked_4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "locked_3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "locked_1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "locked_2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "locked_99",
 "speed": 5.0
@@ -109,12 +110,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Detector" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
 [node name="Thrusters" type="Node" parent="Entity"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -130,6 +125,12 @@ enabled = false
 
 [node name="Owned" type="Node" parent="Entity"]
 script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="Pursuer" type="Node" parent="Entity"]
+script = ExtResource( 9 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
@@ -180,10 +181,10 @@ __meta__ = {
 }
 
 [node name="lock-sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 16 )
+stream = ExtResource( 17 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 17 )
+stream = ExtResource( 18 )
 volume_db = 10.0
 area_mask = 8
 

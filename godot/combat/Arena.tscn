@@ -5,7 +5,7 @@
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
-[ext_resource path="res://combat/managers/TargetingManager.gd" type="Script" id=6]
+[ext_resource path="res://combat/managers/PursueManager.gd" type="Script" id=6]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
 [ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=8]
 [ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=9]
@@ -36,16 +36,16 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="TargetingManager" type="Node" parent="."]
+[node name="PursueManager" type="Node" parent="."]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="TargetLocked" type="AudioStreamPlayer2D" parent="TargetingManager"]
+[node name="TargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
 stream = ExtResource( 7 )
 
-[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="TargetingManager"]
+[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
 stream = ExtResource( 7 )
 pitch_scale = 0.5
 
