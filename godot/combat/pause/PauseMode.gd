@@ -7,6 +7,7 @@ var unpause_ready = false
 
 signal back_to_menu
 signal restart
+signal skip
 
 func _ready():
 	gui.visible = false
@@ -46,7 +47,11 @@ func unpause():
 func _on_Restart_pressed():
 	print("restarto")
 	emit_signal("restart")
-
+	
+func _on_SkipLevel_pressed():
+	print("skipo")
+	emit_signal("skip")
+	
 func _on_QuitMatch_pressed():
 	# Get back to selection screen
 	get_tree().paused = false

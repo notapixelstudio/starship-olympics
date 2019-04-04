@@ -2,7 +2,7 @@ extends Node
 
 const SETTINGS_FILENAME = "res://export.cfg"
 
-var enable_analytics : bool = true setget _set_analytics
+var enable_analytics : bool = false setget _set_analytics
 
 func _set_analytics(new_value):
 	enable_analytics = new_value
