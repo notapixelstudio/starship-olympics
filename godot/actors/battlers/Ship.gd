@@ -46,7 +46,6 @@ var dash_cooldown = 0
 onready var player = name
 onready var skin = $Graphics
 
-const trail_scene = preload('res://actors/weapons/Trail.tscn')
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
 
 var dead_ship_instance
@@ -60,10 +59,12 @@ var entity : Entity
 func initialize():
 	pass
 
+signal spawned
 func _enter_tree():
 	charging = false
 	charge = 0
 	alive = true
+	emit_signal('spawned', self)
 	# Invincible for the firs MAX seconds
 	invincible = true
 	sleeping=true

@@ -69,7 +69,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="CrownModeManager" parent="." index="5"]
@@ -86,6 +86,7 @@ centered = false
 hollow = true
 offset = 200
 elongation = 100
+type = 0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 4 )
@@ -102,6 +103,10 @@ modulate = Color( 0.329412, 0.639216, 1, 1 )
 [node name="Wall3" parent="Battlefield/Node2D2" index="0" instance=ExtResource( 3 )]
 position = Vector2( 0, -400 )
 rotation = 0.785398
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Node2D2/Wall3" index="4"]
 script = ExtResource( 6 )
@@ -121,6 +126,10 @@ modulate = Color( 0.854902, 0.333333, 1, 1 )
 [node name="Wall4" parent="Battlefield/Node2D" index="0" instance=ExtResource( 3 )]
 position = Vector2( 0, 400 )
 rotation = 0.785398
+hollow = false
+offset = 0
+elongation = 0
+type = 0
 
 [node name="GRect" type="Node" parent="Battlefield/Node2D/Wall4" index="4"]
 script = ExtResource( 6 )
@@ -130,7 +139,7 @@ __meta__ = {
 width = 300
 height = 300
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Node2D/Wall4" index="7"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Node2D/Wall4" index="6"]
 autoplay = "Flash"
 anims/Flash = SubResource( 2 )
 

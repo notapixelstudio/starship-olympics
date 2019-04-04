@@ -228,6 +228,7 @@ onready var targeting_manager = $TargetingManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
+const trail_scene = preload("res://actors/battlers/Trail.tscn")
 
 func spawn_ships():
 	for player in SpawnPlayers.get_children():
@@ -235,7 +236,7 @@ func spawn_ships():
 
 
 func spawn_ship(player:PlayerSpawner):
-	var ship 
+	var ship
 	if player.is_cpu():
 		ship = cpu_ship_scene.instance()
 	else:
@@ -251,6 +252,12 @@ func spawn_ship(player:PlayerSpawner):
 	ship.name = player.name
 	
 	Battlefield.add_child(ship)
+	
+	# create and link trail
+	var trail = trail_scene.instance()
+	trail.initialize(ship)
+	
+	Battlefield.add_child(trail)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
