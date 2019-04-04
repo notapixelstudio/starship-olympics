@@ -15,7 +15,6 @@ var arena
 
 var velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
-var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
 
@@ -91,17 +90,18 @@ static func magnitude(a:Vector2):
 	
 var last_velocity = Vector2()
 func _integrate_forces(state):
+	var thrust = entity.get('Thrusters').get_speed()
 	
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
-		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
+		add_central_force(target_velocity*thrust*int(not charging and not stunned))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))

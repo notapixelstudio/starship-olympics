@@ -12,7 +12,7 @@ func _on_sth_entered(sth, other):
 		return
 		
 	if sth_entity.has('Fluid') and other_entity.has('Thrusters'):
-		other_entity.get_node('Thrusters').disable()
+		other_entity.get_node('Thrusters').set_reduced_speed()
 		
 	if sth_entity.has('Flow') and other_entity.could_have('Flowing'):
 		other_entity.get_node('Flowing').set_flow(sth_entity.get_node('Flow'))
@@ -32,7 +32,7 @@ func _on_sth_exited(sth, other):
 		return
 		
 	if sth_entity.has('Fluid') and other_entity.could_have('Thrusters'):
-		other_entity.get_node('Thrusters').enable()
+		other_entity.get_node('Thrusters').set_full_speed()
 		
 	if sth_entity.has('Flow') and other_entity.has('Flowing'):
 		other_entity.get_node('Flowing').disable()

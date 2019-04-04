@@ -25,6 +25,6 @@ func _physics_process(delta):
 		var target = targeter_e.get('Targeting').get_target()
 		
 		if targeter_e.has('Thrusters'):
-			var thrust = 50 # FIXME read from thrusters
-			targeter.apply_impulse(Vector2(0,0), (target.position - targeter.position).normalized()*thrust) # need a meaningful way to do this
-		
+			var thrust = targeter_e.get('Thrusters').get_speed()
+			targeter.apply_impulse(Vector2(0,0), (target.position - targeter.position).normalized()*thrust)
+			

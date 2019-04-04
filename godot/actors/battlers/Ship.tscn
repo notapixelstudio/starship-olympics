@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -15,7 +15,8 @@
 [ext_resource path="res://combat/components/Royal.gd" type="Script" id=13]
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=15]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=16]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=16]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PhysicsMaterial" id=6]
 friction = 0.0
@@ -128,12 +129,14 @@ texture = ExtResource( 15 )
 offset = Vector2( 0, -150 )
 
 [node name="Thrusters" type="Node" parent="Entity2D"]
-script = ExtResource( 7 )
+script = ExtResource( 16 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
+full_speed = 2000.0
+reduced_speed = 0.0
 
-[node name="Debug" parent="." instance=ExtResource( 16 )]
+[node name="Debug" parent="." instance=ExtResource( 17 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

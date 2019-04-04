@@ -41,12 +41,8 @@ func initialize(pos : Vector2, impulse, ship):
 	
 func _physics_process(delta):
 	locking_timeout -= delta
-	var thrust: float
-	if entity.has('Thrusters'):
-		thrust = 50
-	else:
-		thrust = 20
-		
+	var thrust : float = entity.get('Thrusters').get_speed()
+	
 	if target != null and target.get_ref() != null:
 		apply_impulse(Vector2(0,0), (target.get_ref().position - position).normalized()*thrust) # need a meaningful way to do this
 		

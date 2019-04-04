@@ -24,6 +24,7 @@ centered = false
 
 [node name="Water" parent="Battlefield" index="1" instance=ExtResource( 4 )]
 position = Vector2( -750, 0 )
+type = 1
 
 [node name="GCircle" type="Node" parent="Battlefield/Water" index="4"]
 script = ExtResource( 5 )
@@ -35,6 +36,7 @@ precision = 10.0
 
 [node name="Water2" parent="Battlefield" index="2" instance=ExtResource( 4 )]
 position = Vector2( 750, 0 )
+type = 1
 
 [node name="GCircle" type="Node" parent="Battlefield/Water2" index="4"]
 script = ExtResource( 5 )
@@ -48,7 +50,6 @@ precision = 10.0
 hollow = true
 offset = 200
 elongation = 100
-type = 0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
 script = ExtResource( 8 )
@@ -71,9 +72,9 @@ rotation = -1.5708
 controls = "joy2"
 species_template = ExtResource( 12 )
 
-[node name="Camera" parent="." index="9"]
+[node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Pause/Pause"]
+[editable path="CanvasLayer/Pause"]
