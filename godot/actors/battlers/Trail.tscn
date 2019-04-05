@@ -31,7 +31,9 @@ scale_random = 0.5
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
-[node name="Trail" type="Node2D"]
+[node name="Trail" type="Node2D" groups=[
+"Background",
+]]
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
