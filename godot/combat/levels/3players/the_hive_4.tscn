@@ -13,7 +13,7 @@
 [ext_resource path="res://selection/species/species2.tres" type="Resource" id=11]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=12]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "Rotation"
 length = 12.0
 loop = true
@@ -30,24 +30,7 @@ tracks/0/keys = {
 "values": [ 30.0, -90.0, -210.0, -330.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Rotation"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8, 12 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 30.0, -90.0, -210.0, -330.0 ]
-}
-
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Rotation"
 length = 12.0
 loop = true
@@ -82,7 +65,22 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Rotation"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 30.0, -90.0, -210.0, -330.0 ]
+}
+
+[sub_resource type="Animation" id=5]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -98,7 +96,7 @@ tracks/0/keys = {
 "values": [ 0.0, 120.0, 240.0, 360.0 ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="CrownModeManager" parent="." index="5"]
@@ -111,13 +109,13 @@ enabled = true
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 rotation = 0.523599
 hollow = true
 offset = 200
 elongation = 100
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/OutsideWall" index="3"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -125,16 +123,16 @@ __meta__ = {
 radius = 1600
 sides = 6.0
 
-[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6"]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6"]
 playback_speed = 0.5
-anims/Rotation = SubResource( 7 )
+anims/Rotation = SubResource( 1 )
 
-[node name="Rotator" type="Node2D" parent="Battlefield" index="1"]
+[node name="Rotator" type="Node2D" parent="Battlefield/Middleground" index="0"]
 
-[node name="TriggerLine" parent="Battlefield/Rotator" index="0" instance=ExtResource( 6 )]
+[node name="TriggerLine" parent="Battlefield/Middleground/Rotator" index="0" instance=ExtResource( 6 )]
 type = 0
 
-[node name="GSegment" type="Node" parent="Battlefield/Rotator/TriggerLine" index="6"]
+[node name="GSegment" type="Node" parent="Battlefield/Middleground/Rotator/TriggerLine" index="6"]
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
@@ -142,10 +140,10 @@ __meta__ = {
 a = Vector2( 0, 0 )
 b = Vector2( -750, 450 )
 
-[node name="TriggerLine2" parent="Battlefield/Rotator" index="1" instance=ExtResource( 6 )]
+[node name="TriggerLine2" parent="Battlefield/Middleground/Rotator" index="1" instance=ExtResource( 6 )]
 type = 0
 
-[node name="GSegment2" type="Node" parent="Battlefield/Rotator/TriggerLine2" index="6"]
+[node name="GSegment2" type="Node" parent="Battlefield/Middleground/Rotator/TriggerLine2" index="6"]
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
@@ -153,10 +151,10 @@ __meta__ = {
 a = Vector2( 0, 0 )
 b = Vector2( 750, 450 )
 
-[node name="TriggerLine3" parent="Battlefield/Rotator" index="2" instance=ExtResource( 6 )]
+[node name="TriggerLine3" parent="Battlefield/Middleground/Rotator" index="2" instance=ExtResource( 6 )]
 type = 0
 
-[node name="GSegment3" type="Node" parent="Battlefield/Rotator/TriggerLine3" index="6"]
+[node name="GSegment3" type="Node" parent="Battlefield/Middleground/Rotator/TriggerLine3" index="6"]
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
@@ -164,11 +162,11 @@ __meta__ = {
 a = Vector2( 0, 0 )
 b = Vector2( 0, -900 )
 
-[node name="Wall4" parent="Battlefield/Rotator" index="3" instance=ExtResource( 3 )]
+[node name="Wall4" parent="Battlefield/Middleground/Rotator" index="3" instance=ExtResource( 3 )]
 position = Vector2( 0, -900 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Rotator/Wall4" index="5"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Rotator/Wall4" index="5"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -176,16 +174,16 @@ __meta__ = {
 radius = 200
 sides = 6.0
 
-[node name="AnimationPlayer4" type="AnimationPlayer" parent="Battlefield/Rotator/Wall4" index="6"]
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="Battlefield/Middleground/Rotator/Wall4" index="6"]
 autoplay = "Rotation"
 playback_speed = 0.5
-anims/Rotation = SubResource( 5 )
+anims/Rotation = SubResource( 2 )
 
-[node name="Wall5" parent="Battlefield/Rotator" index="4" instance=ExtResource( 3 )]
+[node name="Wall5" parent="Battlefield/Middleground/Rotator" index="4" instance=ExtResource( 3 )]
 position = Vector2( 750, 450 )
 rotation = 0.523599
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Rotator/Wall5" index="5"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Rotator/Wall5" index="5"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -193,32 +191,32 @@ __meta__ = {
 radius = 200
 sides = 6.0
 
-[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Rotator/Wall5" index="6"]
-autoplay = "Rotation"
-playback_speed = 0.5
-anims/Rotation = SubResource( 6 )
-
-[node name="Wall6" parent="Battlefield/Rotator" index="5" instance=ExtResource( 3 )]
-position = Vector2( -750, 450 )
-rotation = 0.523599
-
-[node name="GRegularPolygon3" type="Node" parent="Battlefield/Rotator/Wall6" index="5"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-radius = 200
-sides = 6.0
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Rotator/Wall6" index="6"]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Middleground/Rotator/Wall5" index="6"]
 autoplay = "Rotation"
 playback_speed = 0.5
 anims/Rotation = SubResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Rotator" index="6"]
+[node name="Wall6" parent="Battlefield/Middleground/Rotator" index="5" instance=ExtResource( 3 )]
+position = Vector2( -750, 450 )
+rotation = 0.523599
+
+[node name="GRegularPolygon3" type="Node" parent="Battlefield/Middleground/Rotator/Wall6" index="5"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+radius = 200
+sides = 6.0
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Rotator/Wall6" index="6"]
 autoplay = "Rotation"
 playback_speed = 0.5
 anims/Rotation = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Rotator" index="6"]
+autoplay = "Rotation"
+playback_speed = 0.5
+anims/Rotation = SubResource( 5 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( 0, 850 )
