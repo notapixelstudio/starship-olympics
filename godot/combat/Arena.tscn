@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -20,6 +20,58 @@
 [ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=18]
 [ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=19]
 [ext_resource path="res://combat/Camera.gd" type="Script" id=20]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Game Over"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:time_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ 1.0, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Battlefield/Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Battlefield/Middleground:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
@@ -102,11 +154,11 @@ layer = -1
 [node name="Battlefield" type="Node" parent="."]
 script = ExtResource( 15 )
 
-[node name="Background" type="Node" parent="Battlefield"]
+[node name="Background" type="Node2D" parent="Battlefield"]
 
-[node name="Middleground" type="Node" parent="Battlefield"]
+[node name="Middleground" type="Node2D" parent="Battlefield"]
 
-[node name="Foreground" type="Node" parent="Battlefield"]
+[node name="Foreground" type="Node2D" parent="Battlefield"]
 
 [node name="SpawnPositions" type="Node" parent="."]
 
@@ -157,6 +209,9 @@ current = true
 script = ExtResource( 20 )
 debug_mode = false
 enabled = true
+
+[node name="GameOver" type="AnimationPlayer" parent="."]
+"anims/Game Over" = SubResource( 1 )
 
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]

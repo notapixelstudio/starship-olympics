@@ -210,7 +210,8 @@ func ship_just_died(ship: Ship, killer : Entity):
 	
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
-	yield(get_tree(),"idle_frame") # wait for UI redraw (esp. bars)
+	$GameOver.play('Game Over')
+	yield($GameOver, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
