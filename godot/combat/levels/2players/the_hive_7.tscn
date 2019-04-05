@@ -82,13 +82,12 @@ enabled = true
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 hollow = true
 offset = 200
 elongation = 100
-type = 0
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -97,18 +96,14 @@ width = 2000
 height = 1800
 bevel = 800
 
-[node name="Node2D2" type="Node2D" parent="Battlefield" index="1"]
+[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="0"]
 modulate = Color( 0.329412, 0.639216, 1, 1 )
 
-[node name="Wall3" parent="Battlefield/Node2D2" index="0" instance=ExtResource( 3 )]
+[node name="Wall3" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 3 )]
 position = Vector2( 0, -400 )
 rotation = 0.785398
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
-[node name="GRect" type="Node" parent="Battlefield/Node2D2/Wall3" index="4"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D2/Wall3" index="4"]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
@@ -116,22 +111,18 @@ __meta__ = {
 width = 300
 height = 300
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Node2D2/Wall3" index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2/Wall3" index="6"]
 autoplay = "Flash"
 anims/Flash = SubResource( 1 )
 
-[node name="Node2D" type="Node2D" parent="Battlefield" index="2"]
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="1"]
 modulate = Color( 0.854902, 0.333333, 1, 1 )
 
-[node name="Wall4" parent="Battlefield/Node2D" index="0" instance=ExtResource( 3 )]
+[node name="Wall4" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 3 )]
 position = Vector2( 0, 400 )
 rotation = 0.785398
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
-[node name="GRect" type="Node" parent="Battlefield/Node2D/Wall4" index="4"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D/Wall4" index="4"]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
@@ -139,7 +130,7 @@ __meta__ = {
 width = 300
 height = 300
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Node2D/Wall4" index="6"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D/Wall4" index="6"]
 autoplay = "Flash"
 anims/Flash = SubResource( 2 )
 

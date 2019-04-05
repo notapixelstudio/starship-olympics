@@ -27,12 +27,12 @@ enabled = true
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 hollow = true
 offset = 200
 elongation = 100
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -41,10 +41,10 @@ width = 1700
 height = 1800
 bevel = 600
 
-[node name="Field" parent="Battlefield" index="1" instance=ExtResource( 6 )]
+[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 type = 0
 
-[node name="GSegment" type="Node" parent="Battlefield/Field" index="4"]
+[node name="GSegment" type="Node" parent="Battlefield/Middleground/Field" index="4"]
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
@@ -52,11 +52,11 @@ __meta__ = {
 a = Vector2( 0, -500 )
 b = Vector2( 0, 500 )
 
-[node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 3 )]
+[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
 position = Vector2( 0, 500 )
 rotation = 0.785398
 
-[node name="GRect" type="Node" parent="Battlefield/Wall" index="4"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 9 )
 __meta__ = {
 "_editor_icon": ExtResource( 10 )
@@ -64,11 +64,11 @@ __meta__ = {
 width = 100
 height = 100
 
-[node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 3 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
 position = Vector2( 0, -500 )
 rotation = 0.785398
 
-[node name="GRect" type="Node" parent="Battlefield/Wall2" index="4"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 9 )
 __meta__ = {
 "_editor_icon": ExtResource( 10 )
