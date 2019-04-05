@@ -23,13 +23,12 @@ enabled = true
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 hollow = true
 offset = 200
 elongation = 100
-type = 0
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -38,27 +37,27 @@ width = 2000
 height = 1600
 bevel = 400
 
-[node name="Spawner9" parent="Battlefield" index="1" instance=ExtResource( 6 )]
+[node name="Spawner9" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -300, 200 )
 owned_by_player = "p1"
 
-[node name="Spawner11" parent="Battlefield" index="2" instance=ExtResource( 6 )]
+[node name="Spawner11" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
 position = Vector2( -500, 600 )
 owned_by_player = "p1"
 
-[node name="Spawner6" parent="Battlefield" index="3" instance=ExtResource( 6 )]
+[node name="Spawner6" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( 100, -600 )
 owned_by_player = "p2"
 
-[node name="Spawner10" parent="Battlefield" index="4" instance=ExtResource( 6 )]
+[node name="Spawner10" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( 300, -200 )
 owned_by_player = "p2"
 
-[node name="Spawner12" parent="Battlefield" index="5" instance=ExtResource( 6 )]
+[node name="Spawner12" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
 position = Vector2( 500, -600 )
 owned_by_player = "p2"
 
-[node name="Spawner8" parent="Battlefield" index="6" instance=ExtResource( 6 )]
+[node name="Spawner8" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( -100, 600 )
 owned_by_player = "p1"
 

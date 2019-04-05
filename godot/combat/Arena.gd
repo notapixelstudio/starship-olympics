@@ -154,8 +154,8 @@ func _ready():
 	# setup Bomb spawners
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
-		if bomb_spawner.owned_by_player and $Battlefield.has_node(bomb_spawner.owned_by_player):
-			bomb_spawner.owner_ship = $Battlefield.get_node(bomb_spawner.owned_by_player)
+		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
+			bomb_spawner.owner_ship = $Battlefield/Foreground.get_node(bomb_spawner.owned_by_player)
 		bomb_spawner.spawn()
 		
 func _process(delta):

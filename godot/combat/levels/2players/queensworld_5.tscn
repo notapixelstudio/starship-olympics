@@ -5,10 +5,10 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=6]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/geometry/GSegment.gd" type="Script" id=8]
-[ext_resource path="res://addons/geometry/icons/GSegment.svg" type="Texture" id=9]
+[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/geometry/GSegment.gd" type="Script" id=7]
+[ext_resource path="res://addons/geometry/icons/GSegment.svg" type="Texture" id=8]
+[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=12]
@@ -30,20 +30,20 @@ tracks/0/keys = {
 "values": [ 2000, 900 ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWallGhost" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWallGhost" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
 offset = 200
 elongation = 100
 type = 2
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWallGhost" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -52,12 +52,12 @@ width = 2000
 height = 1900
 bevel = 400
 
-[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 3 )]
 hollow = true
 offset = 200
 elongation = 100
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -66,22 +66,22 @@ width = 2000
 height = 1900
 bevel = 400
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6"]
 autoplay = "Shrink"
 anims/Shrink = SubResource( 1 )
 
-[node name="Crown" parent="Battlefield" index="2" instance=ExtResource( 6 )]
-
-[node name="Field" parent="Battlefield" index="3" instance=ExtResource( 7 )]
+[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 type = 0
 
-[node name="GSegment" type="Node" parent="Battlefield/Field" index="4"]
-script = ExtResource( 8 )
+[node name="GSegment" type="Node" parent="Battlefield/Middleground/Field" index="4"]
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 8 )
 }
 a = Vector2( 0, -950 )
 b = Vector2( 0, 950 )
+
+[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -700, 0 )
