@@ -14,10 +14,10 @@
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
-[node name="CrownModeManager" parent="." index="4"]
+[node name="CrownModeManager" parent="." index="5"]
 enabled = false
 
-[node name="DeathmatchModeManager" parent="." index="5"]
+[node name="DeathmatchModeManager" parent="." index="6"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -25,7 +25,6 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
-modulate = Color( 1, 0, 0, 1 )
 hollow = true
 offset = 200
 elongation = 100
@@ -65,7 +64,7 @@ rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 10 )
 
-[node name="Camera" parent="." index="11"]
+[node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
