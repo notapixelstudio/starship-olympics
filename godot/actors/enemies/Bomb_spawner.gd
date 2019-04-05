@@ -1,18 +1,18 @@
 extends Node2D
 
-const Bomb = preload("res://actors/weapons/Bomb.tscn")
-
 var arena
+export (Resource) var owned_by_species 
+export (String) var owned_by_player
+export (PackedScene) var bomb_scene
+var owner_ship
 
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	$Dashed_container.visible = false
-	arena = get_parent().get_parent() # WARNING traversing the tree is error prone
+func initialize(_arena):
+	arena = _arena
 
 func spawn():
 	$Dashed_container.visible = false
-	var bomb = arena.spawn_bomb(position, null, null)
+	var bomb = arena.spawn_bomb(position, null, owner_ship)
+	ECM.E(bomb).get("StandAlone").enable()
 	bomb.connect("detonate", self, "ready_to_respawn",[], CONNECT_ONESHOT)
 	
 func ready_to_respawn():

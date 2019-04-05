@@ -42,7 +42,7 @@ func _physics_process(delta):
 		# destroy bomb after timeout
 		if timeout > 0:
 			timeout -= delta
-		elif entity.has('Owned'):
+		elif not entity.has('StandAlone'):
 			call_deferred("queue_free")
 			
 	if entity.has('Flowing'):
