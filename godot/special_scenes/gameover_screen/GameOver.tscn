@@ -39,11 +39,11 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Rematch" type="Button" parent="VBoxContainer"]
+[node name="Continue" type="Button" parent="VBoxContainer"]
 margin_right = 222.0
 margin_bottom = 57.0
 size_flags_vertical = 3
-text = "Rematch"
+text = "Continue"
 
 [node name="Menu" type="Button" parent="VBoxContainer"]
 margin_top = 61.0
@@ -94,6 +94,6 @@ text = "Someone WON!"
 align = 1
 autowrap = true
 
-[connection signal="pressed" from="VBoxContainer/Rematch" to="." method="_on_Rematch_pressed"]
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_Rematch_pressed"]
 [connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
