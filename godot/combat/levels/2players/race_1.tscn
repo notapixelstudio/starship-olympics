@@ -12,41 +12,22 @@
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
-[node name="CrownModeManager" parent="." index="4"]
+[node name="CrownModeManager" parent="." index="5"]
 enabled = false
 
-[node name="RaceModeManager" parent="." index="6"]
+[node name="RaceModeManager" parent="." index="7"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Line2D" type="Line2D" parent="Battlefield" index="0"]
-points = PoolVector2Array( -1342.86, 2.56384, -603.769, 3.05444 )
-width = 40.0
-default_color = Color( 1, 1, 1, 0.14902 )
-texture_mode = 1
-
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource( 3 )]
-offset = 200
-elongation = 100
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Wall" index="4"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-width = 1200
-height = 1000
-bevel = 100
-
-[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 hollow = true
 offset = 200
 elongation = 100
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -54,6 +35,25 @@ __meta__ = {
 width = 2700
 height = 1800
 bevel = 300
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="1"]
+points = PoolVector2Array( -1342.86, 2.56384, -603.769, 3.05444 )
+width = 40.0
+default_color = Color( 1, 1, 1, 0.14902 )
+texture_mode = 1
+
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
+offset = 200
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+width = 1200
+height = 1000
+bevel = 100
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1150, 0 )
@@ -67,7 +67,7 @@ rotation = -1.5708
 controls = "joy2"
 species_template = ExtResource( 8 )
 
-[node name="Camera" parent="." index="13"]
+[node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

@@ -18,14 +18,13 @@ size_multiplier = 2.5
 texture = ExtResource( 2 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
 rotation = 0.523599
 hollow = true
 offset = 200
 elongation = 100
-type = 0
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/OutsideWall" index="3"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -33,17 +32,11 @@ __meta__ = {
 radius = 1500
 sides = 6.0
 
-[node name="Crown" parent="Battlefield" index="1" instance=ExtResource( 6 )]
-
-[node name="Wall" parent="Battlefield" index="2" instance=ExtResource( 3 )]
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
 position = Vector2( -860, -500 )
 rotation = 0.523599
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall" index="3"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -51,15 +44,11 @@ __meta__ = {
 radius = 500
 sides = 6.0
 
-[node name="Wall2" parent="Battlefield" index="3" instance=ExtResource( 3 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
 position = Vector2( 860, -500 )
 rotation = 0.523599
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall2" index="3"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -67,21 +56,19 @@ __meta__ = {
 radius = 500
 sides = 6.0
 
-[node name="Wall3" parent="Battlefield" index="4" instance=ExtResource( 3 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
 position = Vector2( 0, 995 )
 rotation = 0.523599
-hollow = false
-offset = 0
-elongation = 0
-type = 0
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Wall3" index="3"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="3"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 radius = 500
 sides = 6.0
+
+[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 6 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 0, -850 )

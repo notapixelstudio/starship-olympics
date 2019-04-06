@@ -18,7 +18,6 @@ var debug = false
 var run_time = 0
 
 onready var DebugNode = $Debug/DebugNode
-onready var Battlefield = $Battlefield
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var canvas = $CanvasLayer
@@ -62,7 +61,7 @@ func compute_arena_size():
 	"""
 	compute the battlefield size
 	"""
-	return Battlefield.get_node("OutsideWall").extents.get_rect()
+	return $Battlefield/Background/OutsideWall.extents.get_rect()
 
 func set_time_scale(value):
 	time_scale = value
@@ -155,8 +154,8 @@ func _ready():
 	# setup Bomb spawners
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
-		if bomb_spawner.owned_by_player and Battlefield.has_node(bomb_spawner.owned_by_player):
-			bomb_spawner.owner_ship = Battlefield.get_node(bomb_spawner.owned_by_player)
+		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
+			bomb_spawner.owner_ship = $Battlefield/Foreground.get_node(bomb_spawner.owned_by_player)
 		bomb_spawner.spawn()
 		
 func _process(delta):
@@ -196,8 +195,8 @@ func ship_just_died(ship: Ship, killer : Entity):
 	"""
 	remove from it, and reput it after a bit
 	"""
-	Battlefield.call_deferred("remove_child", ship)
-	Battlefield.call_deferred("add_child", ship.dead_ship_instance)
+	$Battlefield.call_deferred("remove_child", ship)
+	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 	
 	yield(get_tree().create_timer(2), "timeout")
 	
@@ -205,9 +204,9 @@ func ship_just_died(ship: Ship, killer : Entity):
 		return
 	
 	# respawn
-	Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
+	$Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
 	ship.position = ship.dead_ship_instance.position
-	Battlefield.call_deferred("add_child", ship)
+	$Battlefield.call_deferred("add_child", ship)
 	
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
@@ -254,13 +253,13 @@ func spawn_ship(player:PlayerSpawner):
 	ship.width = width
 	ship.name = player.name
 	
-	Battlefield.add_child(ship)
+	$Battlefield.add_child(ship)
 	
 	# create and link trail
 	var trail = trail_scene.instance()
 	trail.initialize(ship)
 	
-	Battlefield.add_child(trail)
+	$Battlefield.add_child(trail)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
@@ -285,7 +284,7 @@ func spawn_bomb(pos, impulse, ship):
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	
-	Battlefield.add_child(bomb)
+	$Battlefield.add_child(bomb)
 	
 	return bomb
 	
