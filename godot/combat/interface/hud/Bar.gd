@@ -3,7 +3,7 @@ extends Node2D
 class_name Bar
 
 onready var progressbar = $ProgressBar
-onready var sprite = $Sprite
+onready var sprite = $Ship/Sprite
 
 var sprite_off
 var sprite_on
@@ -25,7 +25,8 @@ func set_value(value):
 	else:
 		sprite.texture = sprite_off
 	progressbar.value = value
-
+	$Ship.position.x = progressbar.value*progressbar.rect_size.x/progressbar.max_value
+	
 func get_value():
 	return progressbar.value
 
