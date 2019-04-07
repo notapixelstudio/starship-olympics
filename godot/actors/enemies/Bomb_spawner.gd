@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name BombSpawner
+
 var arena
 export (Resource) var owned_by_species 
 export (String) var owned_by_player

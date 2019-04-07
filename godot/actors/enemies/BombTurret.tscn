@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/enemies/BombTurret.gd" type="Script" id=1]
+[ext_resource path="res://actors/weapons/Bomb.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/weapons/dashed-circle.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[node name="BombTurret" type="StaticBody2D" groups=[
+"in_camera",
+]]
+script = ExtResource( 1 )
+bomb_scene = ExtResource( 2 )
+
+[node name="Turret" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
