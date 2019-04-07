@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/coin.png" type="Texture" id=4]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=4]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/coin.png" type="Texture" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -15,11 +17,13 @@ radius = 40.0
 "Foreground",
 "in_camera",
 ]]
-collision_layer = 2048
+collision_layer = 8192
 collision_mask = 16021
 mass = 5.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
+contacts_reported = 10
+contact_monitor = true
 script = ExtResource( 1 )
 
 [node name="Entity" type="Node" parent="."]
@@ -28,9 +32,15 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
+[node name="Teleportable" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

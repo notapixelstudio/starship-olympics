@@ -6,7 +6,7 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/grid.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/weapons/wall_tile.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/wall_tile.png" type="Texture" id=7]
 [ext_resource path="res://addons/rect_extents_gizmo/utils/RectExtents.gd" type="Script" id=8]
 
 [node name="Wall" type="StaticBody2D"]
@@ -61,7 +61,6 @@ points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 
 width = 60.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 7 )
-texture_mode = 1
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10

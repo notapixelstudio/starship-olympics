@@ -42,6 +42,8 @@ var charging = false
 var fire_cooldown = 0
 var dash_cooldown = 0
 
+var teleport_to = null
+
 onready var player = name
 onready var skin = $Graphics
 
@@ -111,8 +113,11 @@ func _integrate_forces(state):
 	# force the physics engine
 	var xform = state.get_transform()
 	
-	# wrap (?)
-
+	# teleport
+	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
+		xform.origin = entity.get('Teleportable').get_destination()
+		entity.get('Teleportable').teleport_done()
+		
 	#if xform.origin.x > width:
 	#	xform.origin.x = 0
 	#if xform.origin.x < 0:
