@@ -14,7 +14,7 @@ func initialize(_game_mode):
 		var bar = Bar.instance()
 		bar.position += Vector2(0, 25)*i
 		$Bars.add_child(bar)
-		bar.initialize(player.species_template.color, game_mode.TARGET_SCORE)
+		bar.initialize(player.species_template, game_mode.TARGET_SCORE)
 		bar.player = player
 		i+=1
 
