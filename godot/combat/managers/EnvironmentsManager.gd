@@ -12,7 +12,7 @@ func _on_sth_entered(sth, other):
 		return
 		
 	if sth_entity.has('Fluid') and other_entity.has('Thrusters'):
-		other_entity.get_node('Thrusters').disable()
+		other_entity.get_node('Thrusters').set_reduced_speed()
 		
 	if sth_entity.has('Flow') and other_entity.could_have('Flowing'):
 		other_entity.get_node('Flowing').set_flow(sth_entity.get_node('Flow'))
@@ -21,7 +21,7 @@ func _on_sth_entered(sth, other):
 	if sth_entity.has('CrownDropper') and other_entity.has('Cargo') and other_entity.get('Cargo').what is Crown:
 		emit_signal('repel_cargo', other_entity.get_host())
 
-	if sth_entity.has('Throne') and other_entity.could_have('Royal'):
+	if sth_entity.has('Hill') and other_entity.could_have('Royal'):
 		other_entity.get_node('Royal').enable()
 		
 func _on_sth_exited(sth, other):
@@ -32,10 +32,10 @@ func _on_sth_exited(sth, other):
 		return
 		
 	if sth_entity.has('Fluid') and other_entity.could_have('Thrusters'):
-		other_entity.get_node('Thrusters').enable()
+		other_entity.get_node('Thrusters').set_full_speed()
 		
 	if sth_entity.has('Flow') and other_entity.has('Flowing'):
 		other_entity.get_node('Flowing').disable()
 		
-	if sth_entity.has('Throne') and other_entity.has('Royal'):
+	if sth_entity.has('Hill') and other_entity.has('Royal'):
 		other_entity.get_node('Royal').disable()

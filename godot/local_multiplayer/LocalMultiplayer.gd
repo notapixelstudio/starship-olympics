@@ -112,6 +112,10 @@ func next_level():
 	if len(played_levels) >= len(levels):
 		played_levels = []
 		levels.shuffle()
+		
+		# do not repeat the same level twice in a row
+		if current_level == levels[0]:
+			played_levels.append(levels[0])
 	
 func from_info_to_spawner(player_info):
 	var spawner = PlayerSpawner.new()

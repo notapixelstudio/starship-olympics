@@ -15,7 +15,6 @@ var arena
 
 var velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
-var thrust = 2000
 var steer_force = 0
 var rotation_dir = 0
 
@@ -46,7 +45,9 @@ var dash_cooldown = 0
 onready var player = name
 onready var skin = $Graphics
 
-const trail_scene = preload('res://actors/weapons/Trail.tscn')
+const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
+
+var dead_ship_instance
 
 signal dead
 signal stop_invincible
@@ -57,45 +58,50 @@ var entity : Entity
 func initialize():
 	pass
 
+signal spawned
 func _enter_tree():
 	charging = false
 	charge = 0
 	alive = true
+	emit_signal('spawned', self)
 	# Invincible for the firs MAX seconds
 	invincible = true
 	sleeping=true
 	if skin:
 		skin.invincible()
 	sleeping=false
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
 	
 func _ready():
+	dead_ship_instance = dead_ship_scene.instance()
+	dead_ship_instance.ship = self
 	skin.add_child(species_template.ship_anim.instance())
 	skin.initialize()
 	skin.invincible()
 	entity = ECM.E(self)
 	species = species_template.species_name
 	
-	
+	entity.get('Conqueror').set_species(species_template)
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
 var last_velocity = Vector2()
 func _integrate_forces(state):
+	var thrust = entity.get('Thrusters').get_speed()
 	
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(thrust,steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)	
-		add_central_force(target_velocity*thrust*int(entity.has('Thrusters') and not charging and not stunned))
+		add_central_force(target_velocity*thrust*int(not charging and not stunned))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))

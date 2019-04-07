@@ -2,7 +2,7 @@ extends Node
 
 class_name Scores
 
-const BASE_TIME_LEFT:float = 15.0
+const BASE_TIME_LEFT:float = 40.0
 var time_left:float
 
 const TARGET_SCORE:float = 40.0
@@ -21,8 +21,9 @@ func initialize(_players: Array):
 	for player in _players:
 		player.start()
 		var team = player.species_template.species_name
-		scores_index[team] = player
-		scores.append(scores_index[team])
+		if not team in scores_index:
+			scores_index[team] = player
+			scores.append(scores_index[team])
 		
 	time_left = BASE_TIME_LEFT + TARGET_SCORE*len(scores)
 	
