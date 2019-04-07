@@ -32,9 +32,9 @@ radius = 16.0
 radius = 300.0
 
 [node name="Ship" type="RigidBody2D" groups=[
-"in_camera",
 "players",
 "Foreground",
+"in_camera",
 ]]
 collision_mask = 1043
 physics_material_override = SubResource( 1 )
@@ -118,6 +118,7 @@ __meta__ = {
 }
 
 [node name="Royal" type="Node2D" parent="Entity2D"]
+editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 14 )

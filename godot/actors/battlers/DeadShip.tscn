@@ -12,8 +12,8 @@ bounce = 1.0
 radius = 40.0
 
 [node name="DeadShip" type="RigidBody2D" groups=[
-"in_camera",
 "Foreground",
+"in_camera",
 ]]
 collision_layer = 2048
 collision_mask = 16021
@@ -29,7 +29,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
