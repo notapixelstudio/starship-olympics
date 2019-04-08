@@ -1,6 +1,6 @@
 extends Manager
 
-func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
+func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	
 	if not entity:
