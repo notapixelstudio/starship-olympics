@@ -70,6 +70,9 @@ func refresh():
 	# keep the symbols up
 	$CrownCollider/Sprite.rotation = -rotation
 	
+	# hill symbol on top
+	$Entity/Hill.position.y = -gshape.get_extents().y/2 - 60
+	
 	# configure particles
 	if type == TYPE.flow:
 		var material = $Particles2D.process_material

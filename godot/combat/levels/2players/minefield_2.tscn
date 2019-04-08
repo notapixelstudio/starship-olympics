@@ -38,7 +38,7 @@ __meta__ = {
 }
 width = 2200
 height = 1600
-bevel = 400
+bevel = 600
 
 [node name="Spawner5" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -700, -400 )
@@ -66,8 +66,8 @@ script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
-a = Vector2( 0, -700 )
-b = Vector2( 0, 700 )
+a = Vector2( 0, -500 )
+b = Vector2( 0, 500 )
 
 [node name="RPortal" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
 position = Vector2( 0, 750 )
@@ -79,8 +79,8 @@ script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
-a = Vector2( 0, -700 )
-b = Vector2( 0, 700 )
+a = Vector2( 0, -500 )
+b = Vector2( 0, 500 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1000, 0 )
