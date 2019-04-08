@@ -2,7 +2,7 @@ tool
 
 extends Node2D
 
-enum TYPE { trigger, water, hostile, flow, castle, hill, basket }
+enum TYPE { trigger, water, hostile, flow, castle, hill, basket, ghost }
 export(TYPE) var type = TYPE.water setget set_type
 
 func set_type(value):
@@ -41,6 +41,8 @@ func refresh():
 	($Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Entity/Basket as Component).set_enabled(type == TYPE.basket)
 	
+	$Polygon2D.visible = type != TYPE.ghost
+	
 	if type == TYPE.water:
 		$Polygon2D.color = Color(0,0.2,0.8,0.5)
 		$Line2D.default_color = Color(0,0.2,0.6,1)
@@ -66,6 +68,8 @@ func refresh():
 		var species = ($Entity as Entity).get('Owned').get_owned_by()
 		$Polygon2D.color = species.color.darkened(10)
 		$Line2D.default_color = species.color
+	elif type == TYPE.ghost:
+		$Line2D.default_color = Color(0.2,0.7,1,0.3)
 		
 	# keep the symbols up
 	$CrownCollider/Sprite.rotation = -rotation
