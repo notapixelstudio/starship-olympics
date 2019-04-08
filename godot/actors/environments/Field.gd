@@ -26,8 +26,8 @@ func refresh():
 		
 	$Polygon2D.polygon = gshape.to_PoolVector2Array()
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
-	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
-	$CrownCollider/CollisionShape2D.shape = gshape.to_Shape2D()
+	$Area2D/CollisionShape2D.set_shape(gshape.to_Shape2D())
+	$CrownCollider/CollisionShape2D.set_shape(gshape.to_Shape2D())
 	
 	($Entity/Fluid as Component).set_enabled(type == TYPE.water)
 	($Entity/Trigger as Component).set_enabled(type == TYPE.trigger or type == TYPE.hostile)
