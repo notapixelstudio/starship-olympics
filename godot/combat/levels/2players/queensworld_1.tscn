@@ -23,7 +23,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Decorations" type="Node2D" parent="Battlefield/Background" index="0"]
-modulate = Color( 1, 1, 1, 0.533333 )
+modulate = Color( 1, 1, 1, 0.14902 )
 
 [node name="CircuitSmall" type="Sprite" parent="Battlefield/Background/Decorations" index="0"]
 position = Vector2( -1100, -350 )
@@ -126,7 +126,7 @@ bevel = 600
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 12 )]
 position = Vector2( -900, 0 )
 rotation = 0.0
-controls = "joy1"
+controls = "kb2"
 species_template = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 12 )]
