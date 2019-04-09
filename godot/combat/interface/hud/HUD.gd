@@ -5,6 +5,8 @@ var Bar = preload('res://combat/interface/hud/Bar.tscn')
 var game_mode
 
 onready var Bars = $Content/Bars
+onready var Leading = $Content/LeaderPanel/Headshot
+onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
 
 func initialize(_game_mode):
@@ -41,8 +43,12 @@ func _process(_delta):
 	for bar in bars:
 		bar.new_position = Vector2(0, 25)*i
 		i += 1
-
-
+		
+	# leading player
+	var leading = bars[0]
+	Leading.set_species(leading.player.species_template)
+	LeadingLabel.text = leading.player.species
+	
 func compare_by_score(a:Bar, b:Bar):
 	if a.get_value() > b.get_value():
 		return true

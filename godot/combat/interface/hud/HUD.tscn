@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://combat/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/HUD/hud.png" type="Texture" id=2]
 [ext_resource path="res://assets/HUD/bars_bottom.png" type="Texture" id=3]
-[ext_resource path="res://assets/theme/londrina_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://special_scenes/session_screen/Headshot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/fonts/kenvector_future_14.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/theme/londrina_font.tres" type="DynamicFont" id=6]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -26,6 +28,20 @@ texture = ExtResource( 3 )
 [node name="LeaderPanel" type="Control" parent="Content"]
 margin_right = 150.0
 margin_bottom = 150.0
+
+[node name="Headshot" parent="Content/LeaderPanel" instance=ExtResource( 4 )]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 160.0
+rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="Label" type="Label" parent="Content/LeaderPanel"]
+margin_left = 10.0
+margin_top = 122.0
+margin_right = 102.0
+margin_bottom = 159.0
+custom_fonts/font = ExtResource( 5 )
 
 [node name="BarsBackground" type="ColorRect" parent="Content"]
 anchor_right = 1.0
@@ -53,7 +69,7 @@ margin_left = 50.0
 margin_top = 100.0
 margin_right = 150.0
 margin_bottom = 150.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 6 )
 text = "230"
 align = 1
 valign = 1
