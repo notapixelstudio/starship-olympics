@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://special_scenes/session_screen/PilotStats.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/species/robolords1_character.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/species/toriels1_character.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/species/trixens1_character.png" type="Texture" id=4]
+
+
+[node name="Session" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 123.043
+margin_top = 23.9821
+margin_right = 705.043
+margin_bottom = 713.982
+custom_constants/separation = 30
+
+[node name="Control" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 0.0
+margin_right = 582.0
+margin_bottom = 150.0
+
+[node name="Control2" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 180.0
+margin_right = 582.0
+margin_bottom = 330.0
+
+[node name="Sprite" parent="VBoxContainer/Control2/Headshot" index="0"]
+texture = ExtResource( 2 )
+
+[node name="Stats" parent="VBoxContainer/Control2" index="1"]
+margin_right = 582.0
+
+[node name="Control3" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 360.0
+margin_right = 582.0
+margin_bottom = 510.0
+
+[node name="Sprite" parent="VBoxContainer/Control3/Headshot" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Stats" parent="VBoxContainer/Control3" index="1"]
+margin_right = 582.0
+
+[node name="Control4" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 540.0
+margin_right = 582.0
+margin_bottom = 690.0
+
+[node name="Sprite" parent="VBoxContainer/Control4/Headshot" index="0"]
+texture = ExtResource( 4 )
+
+[node name="Stats" parent="VBoxContainer/Control4" index="1"]
+margin_right = 582.0
+
+
+[editable path="VBoxContainer/Control2"]
+
+[editable path="VBoxContainer/Control3"]
+
+[editable path="VBoxContainer/Control4"]
