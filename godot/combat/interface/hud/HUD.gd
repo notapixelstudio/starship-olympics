@@ -22,7 +22,9 @@ func initialize(_game_mode):
 		i+=1
 		
 	# adjust background
-	$Content/BarsBackground.rect_size.y = 15 + 25 * len(game_mode.scores)
+	var h = 15 + 25 * len(game_mode.scores)
+	$Content/BarsBackground.rect_size.y = h
+	$Content/BarsBottom.rect_position.y = h
 
 func _process(_delta):
 	# update time left
