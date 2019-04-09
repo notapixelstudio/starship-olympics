@@ -13,6 +13,7 @@ const laser_color = Color(1.0, .329, .298)
 var target_pos = []
 
 const BOMB_OFFSET = 60
+var target
 
 func initialize(_arena):
 	arena = _arena
@@ -23,8 +24,8 @@ func change_owner(ship: Ship):
 func _process(delta):
 	aim()
 	update()
-	if target_pos:
-		var res = (position - target_pos[0]).angle()
+	if target:
+		var res = (position - target).angle()
 		res = abs(fposmod(res, PI*2))
 		rotation = abs(fposmod(rotation, PI*2))
 		if abs(rotation - res) > PI:
@@ -32,7 +33,17 @@ func _process(delta):
 		rotation = lerp(rotation, res, 0.1)
 		print(rotation, " vs ", res)
 
-		
+func dist(a: Vector2, b: Vector2):
+	return (b-a).length()
+
+func nearest_in(objects):
+	var nearest = null
+	var min_dist
+	for object in objects:
+		if not nearest or dist(object, position) < min_dist:
+			nearest = object
+			min_dist = dist(nearest, position)
+	return nearest
 	
 func aim():
 	target_pos = []
@@ -45,6 +56,7 @@ func aim():
 		var result = space_state.intersect_ray(position, pos, [self], collision_mask)
 		if result:
 			target_pos.append(result.position)
+	target = nearest_in(target_pos)
 
 func _draw():
 	for hit in target_pos:
@@ -56,7 +68,8 @@ func shoot():
 	Fire a bomb
 	"""
 	var charge_impulse = 2.5
-	var target = target_pos[0]
+	if not target:
+		return
 	var target_impulse = target - position
 	var bomb = arena.spawn_bomb(
 	  position + target_impulse.normalized(),
