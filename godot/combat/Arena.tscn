@@ -1,0 +1,225 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://combat/Arena.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
+[ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
+[ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
+[ext_resource path="res://combat/managers/PursueManager.gd" type="Script" id=6]
+[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
+[ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=8]
+[ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=9]
+[ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=10]
+[ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=11]
+[ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=12]
+[ext_resource path="res://combat/managers/ConquestModeManager.gd" type="Script" id=13]
+[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/Battlefield.gd" type="Script" id=15]
+[ext_resource path="res://assets/HUD/hud.png" type="Texture" id=16]
+[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=19]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=20]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=21]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Game Over"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:time_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ 1.0, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Battlefield/Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Battlefield/Middleground:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+
+[node name="Arena" type="Node"]
+script = ExtResource( 1 )
+gameover_scene = ExtResource( 2 )
+
+[node name="CombatManager" type="Node" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="StunManager" type="Node" parent="."]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="PursueManager" type="Node" parent="."]
+editor/display_folded = true
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="TargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
+stream = ExtResource( 7 )
+
+[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
+stream = ExtResource( 7 )
+pitch_scale = 0.5
+
+[node name="CollectManager" type="Node" parent="."]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="EnvironmentsManager" type="Node" parent="."]
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="CrownModeManager" type="Node" parent="."]
+script = ExtResource( 10 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="DeathmatchModeManager" type="Node" parent="."]
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+enabled = false
+
+[node name="RaceModeManager" type="Node" parent="."]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+enabled = false
+
+[node name="ConquestModeManager" type="Node" parent="."]
+script = ExtResource( 13 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="CollectModeManager" type="Node" parent="."]
+script = ExtResource( 14 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+enabled = false
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Battlefield" type="Node" parent="."]
+script = ExtResource( 15 )
+
+[node name="Background" type="Node2D" parent="Battlefield"]
+
+[node name="Middleground" type="Node2D" parent="Battlefield"]
+
+[node name="Foreground" type="Node2D" parent="Battlefield"]
+
+[node name="SpawnPositions" type="Node" parent="."]
+
+[node name="Players" type="Node2D" parent="SpawnPositions"]
+
+[node name="Environments" type="Node2D" parent="SpawnPositions"]
+
+[node name="Enemies" type="Node2D" parent="SpawnPositions"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="HUDBackground" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 16 )
+centered = false
+
+[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 17 )]
+visible = false
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 18 )]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 19 )]
+editor/display_folded = true
+visible = false
+
+[node name="CameraZoom" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="1"]
+description = "enabled"
+label_description = "Camera enabled"
+node_owner_path = NodePath("../../../../../../../../Camera")
+
+[node name="CameraDebug" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="2"]
+description = "debug_mode"
+label_description = "debug mode"
+node_owner_path = NodePath("../../../../../../../../Camera")
+
+[node name="Songs" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="3"]
+description = "bgm.current_song"
+optional_path = "bgm.array_songs"
+label_description = "Song"
+elem_type = 2
+
+[node name="Debug" type="CanvasLayer" parent="."]
+editor/display_folded = true
+layer = 0
+
+[node name="DebugNode" parent="Debug" instance=ExtResource( 20 )]
+visible = false
+
+[node name="Camera" type="Camera2D" parent="."]
+pause_mode = 2
+current = true
+script = ExtResource( 21 )
+debug_mode = false
+enabled = true
+
+[node name="GameOver" type="AnimationPlayer" parent="."]
+"anims/Game Over" = SubResource( 1 )
+
+[connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
+[connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
+[connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
+
+[editable path="CanvasLayer/Pause"]

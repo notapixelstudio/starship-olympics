@@ -1,0 +1,12 @@
+CGF Locust Resistance FONT!
+
+NOTE: This font is 100% Free! I feel that fonts shouldn't cost money so all the fonts I make will be FREE.
+
+There are 2 fonts included, CGF Locust Resistance(Caps are clean, Uncaps are a little dirty)  and CGF Locust Resistance Massacre(Uncaps intensely Dirty, Caps "dirty")
+ALSO: To type the Gears of war skull symbol on either font,  Press the Question mark (?).
+
+I would like to see how this font is used so please feel free to email me your work and to comment on this font
+[Guitarfreak26123@yahoo.com]
+
+Thanks!
+Chris Garrett

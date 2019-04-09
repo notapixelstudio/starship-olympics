@@ -1,0 +1,151 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
+[ext_resource path="res://selection/species/species3.tres" type="Resource" id=2]
+[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/species/trixens1_character.png" type="Texture" id=4]
+[ext_resource path="res://assets/icon/kb1.png" type="Texture" id=5]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=6]
+[ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/species/trixens_ship.png" type="Texture" id=8]
+[ext_resource path="res://assets/theme/utilities/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://animations/shake.anim" type="Animation" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "standby"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ship:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.000255905, 360.0 ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 10
+font_data = ExtResource( 9 )
+
+[node name="CharacterSelection" type="Control"]
+margin_top = -14.0
+margin_right = 200.0
+margin_bottom = 436.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 200, 400 )
+script = ExtResource( 1 )
+species = ExtResource( 2 )
+controls = ""
+
+[node name="SelectRect" type="Sprite" parent="."]
+visible = false
+position = Vector2( 75.9339, 240.894 )
+scale = Vector2( 0.586605, 0.485262 )
+texture = ExtResource( 3 )
+
+[node name="Character" type="Control" parent="."]
+editor/display_folded = true
+margin_right = 210.0
+margin_bottom = 450.0
+rect_clip_content = true
+
+[node name="Character" type="Sprite" parent="Character"]
+modulate = Color( 0.8, 0.8, 0.8, 1 )
+position = Vector2( 90, 290 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
+
+[node name="Controls" type="Sprite" parent="."]
+position = Vector2( 82, 580 )
+texture = ExtResource( 5 )
+
+[node name="Player" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.0
+margin_top = -257.0
+margin_bottom = -217.0
+custom_fonts/font = ExtResource( 6 )
+text = "p1"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="LeftArrow" parent="." instance=ExtResource( 7 )]
+margin_left = 36.0
+margin_top = 450.0
+margin_right = 36.0
+margin_bottom = 450.0
+rect_scale = Vector2( -1, 1 )
+
+[node name="Ship" type="Sprite" parent="."]
+position = Vector2( 87.174, 450 )
+rotation = 0.785402
+scale = Vector2( 0.5, 0.500019 )
+texture = ExtResource( 8 )
+
+[node name="RightArrow" parent="." instance=ExtResource( 7 )]
+margin_left = 131.0
+margin_top = 450.0
+margin_right = 131.0
+margin_bottom = 450.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "standby"
+anims/standby = SubResource( 1 )
+
+[node name="SpeciesName" type="VBoxContainer" parent="."]
+margin_left = 13.0
+margin_top = 485.0
+margin_right = 153.0
+margin_bottom = 554.0
+
+[node name="Label" type="Label" parent="SpeciesName"]
+margin_right = 140.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 6 )
+text = "TRIXENS"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ColorRect" type="ColorRect" parent="SpeciesName"]
+margin_top = 30.0
+margin_right = 140.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="Tagline1" type="Label" parent="SpeciesName"]
+margin_top = 36.0
+margin_right = 140.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 2 )
+text = "tagline"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Tagline2" type="Label" parent="SpeciesName"]
+margin_top = 53.0
+margin_right = 140.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 2 )
+text = "tagline"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesName"]
+anims/shake = ExtResource( 10 )
+
+[node name="Tween" type="Tween" parent="."]
+

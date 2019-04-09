@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
+[ext_resource path="res://animations/Invincible.tres" type="Animation" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "appear"
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+
+[node name="Graphics" type="Position2D"]
+script = ExtResource( 1 )
+
+[node name="ChargeBar" type="Node2D" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( -32, 0 )
+
+[node name="ChargeAxis" type="Line2D" parent="ChargeBar"]
+visible = false
+points = PoolVector2Array( 0, 0, -100, 0 )
+width = 2.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+
+[node name="Charge" type="Line2D" parent="ChargeBar"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 1, 0.375, 0, 1 )
+texture_mode = 221806672
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Invincible = ExtResource( 2 )
+anims/appear = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+

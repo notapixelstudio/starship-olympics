@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=10 format=2]
+
+[ext_resource path="res://combat/levels/2players/silicastle_1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/levels/2players/silicastle_2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/2players/silicastle_3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/2players/silicastle_4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/2players/silicastle_5.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/2players/silicastle_6.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/weapons/bomb.png" type="Texture" id=7]
+[ext_resource path="res://map/Planet.gd" type="Script" id=8]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=9]
+
+[resource]
+script = ExtResource( 8 )
+name = "Silicastle"
+tagline1 = "Future robolords"
+tagline2 = "levels"
+species = ExtResource( 9 )
+levels_1players = null
+levels_2players = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+levels_3players = null
+levels_4players = null
+planet_sprite = ExtResource( 7 )
+game_mode = "multiple"
+

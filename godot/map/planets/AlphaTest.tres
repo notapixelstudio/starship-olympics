@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=10 format=2]
+
+[ext_resource path="res://combat/levels/1player/hill_1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/levels/1player/conquest_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/1player/collect_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/2players/hill_1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/2players/conquest_1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/2players/collect_1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/background/parallax-space-ring-planet.png" type="Texture" id=7]
+[ext_resource path="res://map/Planet.gd" type="Script" id=8]
+[ext_resource path="res://selection/species/drones.tres" type="Resource" id=9]
+
+[resource]
+script = ExtResource( 8 )
+name = "Alpha Test"
+tagline1 = "Future levels"
+tagline2 = "still not good enough"
+species = ExtResource( 9 )
+levels_1players = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ]
+levels_2players = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+levels_3players = null
+levels_4players = null
+planet_sprite = ExtResource( 7 )
+game_mode = "multiple"
+
