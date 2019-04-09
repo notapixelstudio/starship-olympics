@@ -14,6 +14,7 @@ var target_pos = []
 
 const BOMB_OFFSET = 60
 var target
+var is_shooting
 
 func initialize(_arena):
 	arena = _arena
@@ -31,7 +32,6 @@ func _process(delta):
 		if abs(rotation - res) > PI:
 			res = res - PI *2
 		rotation = lerp(rotation, res, 0.1)
-		print(rotation, " vs ", res)
 
 func dist(a: Vector2, b: Vector2):
 	return (b-a).length()
@@ -46,6 +46,8 @@ func nearest_in(objects):
 	return nearest
 	
 func aim():
+	if is_shooting:
+		return
 	target_pos = []
 	var ships = get_tree().get_nodes_in_group("players")
 	var space_state = get_world_2d().direct_space_state
@@ -59,9 +61,9 @@ func aim():
 	target = nearest_in(target_pos)
 
 func _draw():
-	for hit in target_pos:
-		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
-		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+	if is_shooting:
+		draw_circle((target - position).rotated(-rotation), 5, laser_color)
+		draw_line(Vector2(), (target - position).rotated(-rotation), laser_color)
 
 func shoot():
 	"""
@@ -70,12 +72,17 @@ func shoot():
 	var charge_impulse = 2.5
 	if not target:
 		return
+	is_shooting = true
 	var target_impulse = target - position
+	print(target_impulse)
+	yield(get_tree().create_timer(1), "timeout")
+	target_impulse = target - position
 	var bomb = arena.spawn_bomb(
 	  position + target_impulse.normalized(),
 	  charge_impulse * target_impulse,
 	  owner_ship
 	)
+	is_shooting = false
 func _on_Timer_timeout():
 	shoot()
 
