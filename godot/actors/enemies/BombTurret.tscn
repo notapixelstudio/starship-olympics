@@ -2,20 +2,28 @@
 
 [ext_resource path="res://actors/enemies/BombTurret.gd" type="Script" id=1]
 [ext_resource path="res://actors/weapons/Bomb.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/weapons/dashed-circle.png" type="Texture" id=3]
+[ext_resource path="res://actors/enemies/towerDefense_tile249.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
 
 [node name="BombTurret" type="StaticBody2D" groups=[
 "in_camera",
+"turret",
 ]]
 script = ExtResource( 1 )
 bomb_scene = ExtResource( 2 )
 
 [node name="Turret" type="Sprite" parent="."]
+position = Vector2( 5.96046e-07, -5.96046e-08 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

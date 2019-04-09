@@ -12,6 +12,8 @@ onready var sprite = $Turret
 const laser_color = Color(1.0, .329, .298)
 var target_pos = []
 
+const BOMB_OFFSET = 60
+
 func initialize(_arena):
 	arena = _arena
 
@@ -21,6 +23,16 @@ func change_owner(ship: Ship):
 func _process(delta):
 	aim()
 	update()
+	if target_pos:
+		var res = (position - target_pos[0]).angle()
+		res = abs(fposmod(res, PI*2))
+		rotation = abs(fposmod(rotation, PI*2))
+		if abs(rotation - res) > PI:
+			res = res - PI *2
+		rotation = lerp(rotation, res, 0.1)
+		print(rotation, " vs ", res)
+
+		
 	
 func aim():
 	target_pos = []
@@ -38,12 +50,19 @@ func _draw():
 	for hit in target_pos:
 		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
 		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
-	
+
 func shoot():
-	var bomb = arena.spawn_bomb(position, null, owner_ship)
-	ECM.E(bomb).get("StandAlone").enable()
-	bomb.connect("detonate", self, "ready_to_respawn",[], CONNECT_ONESHOT)
-	
-func ready_to_respawn():
-	yield(get_tree().create_timer(5.0), "timeout")
+	"""
+	Fire a bomb
+	"""
+	var charge_impulse = 2.5
+	var target = target_pos[0]
+	var target_impulse = target - position
+	var bomb = arena.spawn_bomb(
+	  position + target_impulse.normalized(),
+	  charge_impulse * target_impulse,
+	  owner_ship
+	)
+func _on_Timer_timeout():
 	shoot()
+

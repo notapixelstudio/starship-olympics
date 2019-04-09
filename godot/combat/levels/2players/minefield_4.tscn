@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://actors/enemies/BombTurret.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
+[ext_resource path="res://selection/species/species4.tres" type="Resource" id=9]
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -41,12 +42,17 @@ height = 1600
 bevel = 400
 
 [node name="BombTurret" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( -109, -98 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -800, 0 )
 rotation = 0.0
 species_template = ExtResource( 8 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
+position = Vector2( 800, 0 )
+rotation = 3.14159
+controls = "joy2"
+species_template = ExtResource( 9 )
 
 [node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3

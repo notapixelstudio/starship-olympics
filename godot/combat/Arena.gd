@@ -157,7 +157,9 @@ func _ready():
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
 			bomb_spawner.owner_ship = $Battlefield/Foreground.get_node(bomb_spawner.owned_by_player)
 		bomb_spawner.spawn()
-		
+	for turret in get_tree().get_nodes_in_group("turret"):
+		turret.initialize(self)
+	
 func _process(delta):
 	scores.update(delta)
 
