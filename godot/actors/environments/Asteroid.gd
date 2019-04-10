@@ -43,7 +43,7 @@ func refresh():
 		
 func _process(delta):
 	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled and ($Entity/Conquerable as Conquerable).get_species() != null:
-		modulate = ($Entity/Conquerable as Conquerable).get_species().color
+		modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
 		
 func get_gshape():
 	for child in get_children():

@@ -34,6 +34,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/weapons/Bomb.gd"
 }, {
+"base": "Node2D",
+"class": "BombSpawner",
+"language": "GDScript",
+"path": "res://actors/enemies/Bomb_spawner.gd"
+}, {
+"base": "CollisionObject2D",
+"class": "BombTurret",
+"language": "GDScript",
+"path": "res://actors/enemies/BombTurret.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Bull",
 "language": "GDScript",
@@ -190,6 +200,8 @@ _global_script_class_icons={
 "Bar": "",
 "BasicScreen": "",
 "Bomb": "",
+"BombSpawner": "",
+"BombTurret": "",
 "Bull": "",
 "Coin": "",
 "Component": "",
@@ -596,7 +608,6 @@ joy4_cancel={
 2d_physics/layer_12="coins"
 2d_physics/layer_13="bull"
 2d_physics/layer_14="deadship"
-2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
 
 [logging]
