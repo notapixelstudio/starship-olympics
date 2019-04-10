@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://local_multiplayer/UI/ParallaxBackground.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/background/parallax-space-backgound.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/background/parallax-space-stars.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/background/parallax-space-far-planets.png" type="Texture" id=4]
+[ext_resource path="res://local_multiplayer/UI/ParallaxSprite.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/background/parallax-space-ring-planet.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/background/parallax-space-big-planet.png" type="Texture" id=7]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+editor/display_folded = true
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 7
+
+[node name="Stars" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.5, 0.5 )
+motion_offset = Vector2( 1, 1 )
+motion_mirroring = Vector2( 1280, 720 )
+
+[node name="parallax-space-stars" type="Sprite" parent="Stars"]
+scale = Vector2( 4.5, 4.5 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 272, 160 )
+
+[node name="FarAwayPlanets" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 1480, 720 )
+
+[node name="parallax-space-far-planets" type="Sprite" parent="FarAwayPlanets"]
+position = Vector2( 740, 212 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="Saturn" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.2, 0.9 )
+motion_mirroring = Vector2( 1400, 720 )
+
+[node name="parallax-space-ring-planet" type="Sprite" parent="Saturn"]
+position = Vector2( 130, 580 )
+rotation = 0.872665
+texture = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="Jupiter" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 2600, 720 )
+
+[node name="parallax-space-big-planet" type="Sprite" parent="Jupiter"]
+position = Vector2( 818.4, 535.454 )
+rotation = 0.523599
+texture = ExtResource( 7 )
+script = ExtResource( 5 )
+

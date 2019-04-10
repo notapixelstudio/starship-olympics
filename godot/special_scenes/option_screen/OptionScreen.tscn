@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/Ui_pause_default.gd" type="Script" id=2]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("panel/margin_container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/path = NodePath("panel/margin_container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "standby"
+
+[node name="Options" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.313726 )
+script = ExtResource( 2 )
+
+[node name="panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.682353 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = -207.0
+margin_right = 232.0
+margin_bottom = 176.0
+mouse_filter = 1
+
+[node name="margin_container" type="MarginContainer" parent="panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="v_box_container" type="VBoxContainer" parent="panel/margin_container"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 456.0
+margin_bottom = 375.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 4
+
+[node name="Title" type="Label" parent="panel/margin_container/v_box_container"]
+margin_right = 448.0
+margin_bottom = 17.0
+text = "Options"
+align = 1
+
+[node name="Useless" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 21.0
+margin_right = 448.0
+margin_bottom = 46.0
+mouse_filter = 1
+elem_type = 1
+description_node_path = NodePath("../Useless/Container/Description")
+
+[node name="Songs" parent="panel/margin_container/v_box_container" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 50.0
+margin_right = 448.0
+margin_bottom = 75.0
+mouse_filter = 1
+description = "bgm.current_song"
+optional_path = "bgm.array_songs"
+label_description = "Song"
+elem_type = 2
+node_owner_path = NodePath("../../../..")
+description_node_path = NodePath("../Songs/Container/Description")
+
+[node name="DebugMode" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
+margin_top = 79.0
+margin_right = 448.0
+margin_bottom = 123.0
+description = "debug"
+label_description = "debug mode"
+is_global = true
+description_node_path = NodePath("../DebugMode/ElementCheckbox")
+
+[node name="Mute" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
+margin_top = 127.0
+margin_right = 448.0
+margin_bottom = 171.0
+description = "audio_on"
+label_description = "Music"
+is_global = true
+description_node_path = NodePath("../Mute/ElementCheckbox")
+
+[node name="Master" parent="panel/margin_container/v_box_container" instance=ExtResource( 5 )]
+
+[node name="Music" parent="panel/margin_container/v_box_container" instance=ExtResource( 5 )]
+margin_top = 208.0
+margin_bottom = 237.0
+bus_name = "Music"
+
+[node name="SFX" parent="panel/margin_container/v_box_container" instance=ExtResource( 5 )]
+margin_top = 241.0
+margin_bottom = 270.0
+bus_name = "SFX"
+
+[node name="Padding" type="Control" parent="panel/margin_container/v_box_container"]
+margin_top = 274.0
+margin_right = 448.0
+margin_bottom = 319.0
+size_flags_vertical = 3
+
+[node name="Analytics" parent="panel/margin_container/v_box_container" instance=ExtResource( 4 )]
+margin_top = 323.0
+margin_right = 448.0
+margin_bottom = 367.0
+description = "enable_analytics"
+label_description = "Send anonymous gameplay statistics"
+is_global = true
+description_node_path = NodePath("../Analytics/ElementCheckbox")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hide = SubResource( 1 )
+anims/show = SubResource( 2 )
+anims/standby = SubResource( 3 )
+
