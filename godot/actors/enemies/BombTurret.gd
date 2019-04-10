@@ -6,7 +6,7 @@ var arena
 export (Resource) var owned_by_species 
 export (String) var owned_by_player
 export (PackedScene) var bomb_scene
-var owner_ship
+var owner_ship: Ship
 onready var sprite = $Turret
 
 const laser_color = Color(1.0, .329, .298)
@@ -25,6 +25,12 @@ func change_owner(ship: Ship):
 func _process(delta):
 	aim()
 	update()
+	
+	if ($Entity/Conquerable as Component).enabled:
+		owner_ship = ($Entity/Conquerable as Conquerable).get_species()
+
+	if owner_ship:
+			modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
 	if target:
 		var res = (position - target).angle()
 		res = abs(fposmod(res, PI*2))
@@ -77,6 +83,8 @@ func shoot():
 	print(target_impulse)
 	yield(get_tree().create_timer(1), "timeout")
 	target_impulse = target - position
+
+		
 	var bomb = arena.spawn_bomb(
 	  position + target_impulse.normalized(),
 	  charge_impulse * target_impulse,
