@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends CollisionObject2D
 
 class_name BombTurret
 
@@ -61,7 +61,7 @@ func aim():
 		if ship == owner_ship:
 			continue
 		var pos = ship.position
-		var result = space_state.intersect_ray(position, pos, [self], collision_mask)
+		var result = space_state.intersect_ray(position, pos, [self])
 		if result:
 			target_pos.append(result.position)
 	target = nearest_in(target_pos)
