@@ -57,7 +57,7 @@ position = Vector2( -800, 0 )
 rotation = 0.0
 species_template = ExtResource( 9 )
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
