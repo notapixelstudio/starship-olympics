@@ -19,9 +19,12 @@ script = ExtResource( 1 )
 modulate = Color( 1, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 900.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 900, 20 )
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 960.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 940, 20 )
+rect_clip_content = true
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 percent_visible = false
@@ -29,6 +32,7 @@ percent_visible = false
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Ship" type="Node2D" parent="."]
+position = Vector2( 20, 10 )
 
 [node name="Shadow" type="Sprite" parent="Ship"]
 modulate = Color( 1, 1, 1, 0.639216 )

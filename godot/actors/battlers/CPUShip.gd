@@ -32,7 +32,7 @@ func nearest_in(objects):
 	var nearest = null
 	var min_dist
 	for object in objects:
-		if not nearest or dist(nearest.position, position) < min_dist:
+		if not nearest or dist(object.position, position) < min_dist:
 			nearest = object
 			min_dist = dist(nearest.position, position)
 	return nearest
