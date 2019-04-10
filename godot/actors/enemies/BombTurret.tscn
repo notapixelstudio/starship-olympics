@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://actors/enemies/BombTurret.gd" type="Script" id=1]
+[ext_resource path="res://actors/weapons/Bomb.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/enemies/towerDefense_tile249.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=5]
+[ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=6]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=7]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[node name="BombTurret" type="StaticBody2D" groups=[
+"turret",
+"in_camera",
+]]
+script = ExtResource( 1 )
+bomb_scene = ExtResource( 2 )
+
+[node name="Turret" type="Sprite" parent="."]
+position = Vector2( 5.96046e-07, -5.96046e-08 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="Conquerable" type="Node" parent="Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
