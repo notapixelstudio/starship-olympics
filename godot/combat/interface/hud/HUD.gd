@@ -4,7 +4,7 @@ var Bar = preload('res://combat/interface/hud/Bar.tscn')
 
 var game_mode
 
-onready var Bars = $Content/Bars
+onready var Bars = $Bars
 onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
@@ -25,8 +25,8 @@ func initialize(_game_mode):
 		
 	# adjust background
 	var h = 15 + 25 * len(game_mode.scores)
-	$Content/BarsBackground.rect_size.y = h
-	$Content/BarsBottom.rect_position.y = h
+	$BarsBackground.rect_size.y = h
+	$BarsBottom.rect_position.y = h
 
 func _process(_delta):
 	# update time left
