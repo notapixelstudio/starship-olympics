@@ -25,7 +25,7 @@ func set_value(value):
 	else:
 		sprite.texture = sprite_off
 	progressbar.value = value
-	$Ship.position.x = progressbar.value*progressbar.rect_size.x/progressbar.max_value
+	$Ship.position.x = 20 + progressbar.value*progressbar.rect_size.x/progressbar.max_value
 	
 func get_value():
 	return progressbar.value

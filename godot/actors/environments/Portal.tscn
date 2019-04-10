@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/Portal.gd" type="Script" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -30, -730, 30, -730, 30, 730, -30, 730 )
+
+[node name="Portal" type="Node2D" groups=[
+"in_camera",
+]]
+script = ExtResource( 1 )
+linked_to_path = NodePath("")
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color( 0.4, 0, 0.603922, 1 )
+points = PoolVector2Array( 0, -300, 0, 300 )
+width = 60.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 8197
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

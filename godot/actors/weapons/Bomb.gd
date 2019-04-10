@@ -48,6 +48,17 @@ func _physics_process(delta):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
+func _integrate_forces(state):
+	# force the physics engine
+	var xform = state.get_transform()
+	
+	# teleport
+	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
+		xform.origin = entity.get('Teleportable').get_destination()
+		entity.get('Teleportable').teleport_done()
+		
+	state.set_transform(xform)
+	
 signal detonate
 func detonate():
 	if entity.has('Owned'):

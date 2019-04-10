@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=7]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=8]
 [ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=9]
-[ext_resource path="res://assets/sprites/weapons/bomb_locked_3.png" type="Texture" id=10]
-[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=12]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/weapons/bomb_locked_3.png" type="Texture" id=11]
+[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -95,6 +96,12 @@ __meta__ = {
 script = ExtResource( 4 )
 enabled = false
 
+[node name="Teleportable" type="Node" parent="Entity"]
+script = ExtResource( 10 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
@@ -105,7 +112,7 @@ process_material = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -139,10 +146,10 @@ __meta__ = {
 }
 
 [node name="lock-sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = 10.0
 area_mask = 8
 

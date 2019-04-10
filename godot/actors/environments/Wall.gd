@@ -111,5 +111,5 @@ func refresh():
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		$line.modulate = Color(0.2,0.7,1,0.2)
+		$line.modulate = Color(0.2,0.7,1,0.3)
 		

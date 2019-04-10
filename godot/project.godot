@@ -145,6 +145,11 @@ _global_script_classes=[ {
 "path": "res://combat/PlayerSpawner.gd"
 }, {
 "base": "Node2D",
+"class": "Portal",
+"language": "GDScript",
+"path": "res://actors/environments/Portal.gd"
+}, {
+"base": "Node2D",
 "class": "RectExtents",
 "language": "GDScript",
 "path": "res://addons/rect_extents_gizmo/utils/RectExtents.gd"
@@ -207,6 +212,7 @@ _global_script_class_icons={
 "ModeManager": "",
 "Planet": "",
 "PlayerSpawner": "",
+"Portal": "",
 "RectExtents": "",
 "Scores": "",
 "Ship": "",
@@ -590,6 +596,7 @@ joy4_cancel={
 2d_physics/layer_12="coins"
 2d_physics/layer_13="bull"
 2d_physics/layer_14="deadship"
+2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
 
 [logging]
