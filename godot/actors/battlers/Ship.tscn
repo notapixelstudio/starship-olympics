@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -16,7 +16,8 @@
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=15]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=16]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=17]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=18]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -32,11 +33,11 @@ radius = 16.0
 radius = 300.0
 
 [node name="Ship" type="RigidBody2D" groups=[
-"in_camera",
 "players",
 "Foreground",
+"in_camera",
 ]]
-collision_mask = 1043
+collision_mask = 1171
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 continuous_cd = 2
@@ -118,6 +119,7 @@ __meta__ = {
 }
 
 [node name="Royal" type="Node2D" parent="Entity2D"]
+editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 14 )
@@ -137,7 +139,13 @@ __meta__ = {
 full_speed = 2000.0
 reduced_speed = 0.0
 
-[node name="Debug" parent="." instance=ExtResource( 17 )]
+[node name="Teleportable" type="Node" parent="Entity2D"]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_icon": ExtResource( 8 )
+}
+
+[node name="Debug" parent="." instance=ExtResource( 18 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

@@ -149,15 +149,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/Planet.gd"
 }, {
-"base": "MarginContainer",
-"class": "PlayerHUD",
-"language": "GDScript",
-"path": "res://combat/interface/PlayerHUD.gd"
-}, {
 "base": "Node2D",
 "class": "PlayerSpawner",
 "language": "GDScript",
 "path": "res://combat/PlayerSpawner.gd"
+}, {
+"base": "Node2D",
+"class": "Portal",
+"language": "GDScript",
+"path": "res://actors/environments/Portal.gd"
 }, {
 "base": "Node2D",
 "class": "RectExtents",
@@ -223,8 +223,8 @@ _global_script_class_icons={
 "Manager": "",
 "ModeManager": "",
 "Planet": "",
-"PlayerHUD": "",
 "PlayerSpawner": "",
+"Portal": "",
 "RectExtents": "",
 "Scores": "",
 "Ship": "",
@@ -608,6 +608,7 @@ joy4_cancel={
 2d_physics/layer_12="coins"
 2d_physics/layer_13="bull"
 2d_physics/layer_14="deadship"
+2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
 
 [logging]

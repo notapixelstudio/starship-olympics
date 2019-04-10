@@ -13,9 +13,9 @@
 [ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=11]
 [ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=12]
 [ext_resource path="res://combat/managers/ConquestModeManager.gd" type="Script" id=13]
-[ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=14]
-[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=15]
-[ext_resource path="res://combat/Battlefield.gd" type="Script" id=16]
+[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/Battlefield.gd" type="Script" id=15]
+[ext_resource path="res://assets/HUD/hud.png" type="Texture" id=16]
 [ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=19]
@@ -142,14 +142,8 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="ConquestManager" type="Node" parent="."]
-script = ExtResource( 14 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
-
 [node name="CollectModeManager" type="Node" parent="."]
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
@@ -159,7 +153,7 @@ enabled = false
 layer = -1
 
 [node name="Battlefield" type="Node" parent="."]
-script = ExtResource( 16 )
+script = ExtResource( 15 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 
@@ -177,6 +171,10 @@ script = ExtResource( 16 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="HUDBackground" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 16 )
+centered = false
 
 [node name="GetReady" parent="CanvasLayer" instance=ExtResource( 17 )]
 visible = false

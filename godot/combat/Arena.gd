@@ -222,7 +222,6 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.raise()
 	game_over.initialize(winner, scores)
 
 onready var combat_manager = $CombatManager
@@ -269,7 +268,8 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
-	ship.connect("near_area_entered", combat_manager, "ship_near_area_entered")
+	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
+	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
