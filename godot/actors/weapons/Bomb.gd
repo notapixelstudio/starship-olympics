@@ -43,6 +43,8 @@ func _physics_process(delta):
 		if timeout > 0:
 			timeout -= delta
 		elif not entity.has('StandAlone'):
+			get_parent().call_deferred("remove_child", self)
+			yield(get_tree().create_timer(1), "timeout")
 			call_deferred("queue_free")
 			
 	if entity.has('Flowing'):
