@@ -4,7 +4,7 @@ var array_songs
 
 signal back
 
-onready var container = $panel/margin_container/v_box_container
+onready var container = $Panel/Items
 onready var animation = $AnimationPlayer
 
 func _ready():
@@ -18,8 +18,9 @@ func disable_all():
 
 func enable_all():
 	animation.play("show")
-	container.get_child(1).grab_focus()
+	# container.get_child(0).grab_focus()
 	yield(animation, "animation_finished")
+	container.get_child(0).grab_focus()
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -12,16 +12,17 @@
 [ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=10]
 [ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=11]
 [ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=12]
-[ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=13]
-[ext_resource path="res://combat/managers/ConquestModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/managers/ConquestModeManager.gd" type="Script" id=13]
+[ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=14]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=15]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=16]
-[ext_resource path="res://assets/HUD/hud.png" type="Texture" id=17]
-[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=19]
-[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=20]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=21]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=22]
+[ext_resource path="res://combat/pause/GetReady.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/CameraDebug.gd" type="Script" id=20]
+[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=21]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=22]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=23]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Game Over"
@@ -92,7 +93,6 @@ __meta__ = {
 }
 
 [node name="PursueManager" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -100,10 +100,12 @@ __meta__ = {
 
 [node name="TargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
 stream = ExtResource( 7 )
 pitch_scale = 0.5
+bus = "SFX"
 
 [node name="CollectManager" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -137,13 +139,14 @@ __meta__ = {
 }
 enabled = false
 
-[node name="ConquestManager" type="Node" parent="."]
+[node name="ConquestModeManager" type="Node" parent="."]
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+enabled = false
 
-[node name="ConquestModeManager" type="Node" parent="."]
+[node name="ConquestManager" type="Node" parent="."]
 script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -168,6 +171,8 @@ script = ExtResource( 16 )
 
 [node name="Foreground" type="Node2D" parent="Battlefield"]
 
+[node name="Overlay" type="Node2D" parent="Battlefield"]
+
 [node name="SpawnPositions" type="Node" parent="."]
 
 [node name="Players" type="Node2D" parent="SpawnPositions"]
@@ -179,16 +184,12 @@ script = ExtResource( 16 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="HUDBackground" type="Sprite" parent="CanvasLayer"]
-texture = ExtResource( 17 )
-centered = false
-
-[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 18 )]
+[node name="GetReady" parent="CanvasLayer" instance=ExtResource( 17 )]
 visible = false
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 19 )]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 18 )]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 20 )]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 19 )]
 editor/display_folded = true
 visible = false
 
@@ -208,17 +209,24 @@ optional_path = "bgm.array_songs"
 label_description = "Song"
 elem_type = 2
 
+[node name="CameraDebug" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 20 )
+
+[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 21 )]
+pause_mode = 2
+visible = false
+
 [node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 21 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 22 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 debug_mode = false
 enabled = true
 

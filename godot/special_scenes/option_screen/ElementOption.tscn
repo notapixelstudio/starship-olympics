@@ -7,9 +7,9 @@
 [ext_resource path="res://interface/grey/grey_arrowRightGrey.png" type="Texture" id=5]
 [ext_resource path="res://interface/grey/grey_arrowRightWhite.png" type="Texture" id=6]
 
-[node name="Element" type="MarginContainer"]
+[node name="Element" type="Panel"]
 anchor_right = 1.0
-margin_right = -1076.0
+margin_right = -880.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 25 )
 focus_mode = 2
@@ -22,8 +22,8 @@ description_node_path = NodePath("Container/Description")
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Container" type="HBoxContainer" parent="."]
-margin_right = 204.0
-margin_bottom = 36.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Padding2" type="Label" parent="Container"]
 margin_top = 9.0
@@ -43,13 +43,14 @@ valign = 1
 [node name="Padding" type="Label" parent="Container"]
 margin_left = 59.0
 margin_top = 9.0
-margin_right = 126.0
+margin_right = 224.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 130.0
-margin_right = 197.0
+editor/display_folded = true
+margin_left = 228.0
+margin_right = 393.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 custom_constants/separation = 7
@@ -67,7 +68,7 @@ stretch_mode = 3
 
 [node name="Value" type="Label" parent="Container/ValueContainer"]
 margin_left = 17.0
-margin_right = 50.0
+margin_right = 148.0
 margin_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -78,8 +79,8 @@ align = 1
 valign = 1
 
 [node name="right" type="TextureButton" parent="Container/ValueContainer"]
-margin_left = 57.0
-margin_right = 67.0
+margin_left = 155.0
+margin_right = 165.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 5
@@ -90,9 +91,9 @@ expand = true
 stretch_mode = 3
 
 [node name="Padding3" type="Label" parent="Container"]
-margin_left = 201.0
+margin_left = 397.0
 margin_top = 9.0
-margin_right = 203.0
+margin_right = 399.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 2, 0 )
 

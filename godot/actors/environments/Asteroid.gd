@@ -33,7 +33,7 @@ func refresh():
 	$Flag.set_visible(type == TYPE.conquerable)
 	
 	if type == TYPE.solid or type == TYPE.conquerable:
-		$Polygon2D.color = Color(0.3,0.3,0.3,1)
+		$Polygon2D.color = Color(0.6,0.6,0.6,0.5)
 		$Line2D.default_color = Color(1,1,1,1)
 		
 	if type == TYPE.conquerable:

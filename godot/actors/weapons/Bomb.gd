@@ -10,7 +10,7 @@ var timeout = 0
 const LIFETIME = 1.5
 
 var entity : Entity
-
+onready var trail = $Trail2D
 var explosion
 
 func _ready():
@@ -54,6 +54,7 @@ func _integrate_forces(state):
 	
 	# teleport
 	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
+		trail.erase_trail()
 		xform.origin = entity.get('Teleportable').get_destination()
 		entity.get('Teleportable').teleport_done()
 		
@@ -69,6 +70,8 @@ func detonate():
 	explosion.position = position
 	emit_signal("detonate")
 	get_parent().call_deferred("add_child", explosion)
+	get_parent().call_deferred("remove_child", self)
+	yield(get_tree().create_timer(1), "timeout")
 	call_deferred("queue_free")
 	
 signal near_area_entered

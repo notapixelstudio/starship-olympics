@@ -6,12 +6,16 @@ var uid : int = 0
 var id : String = "InfoPlayer"
 var controls : String = "kb1"
 var species : String
+var kills : int = 0
+var selfkills : int = 0
 var cpu: bool = false
 var playable : bool = true
 var lives : int = 10
 var deaths : int = 0
+var bombs: int = 0
 var collectables : int  =0
 var score : float = 0.0
+var session_score : int = 0
 var species_template : SpeciesTemplate
 
 func update_death():
@@ -33,7 +37,6 @@ func start():
 	# TODO: change name. 
 	score = 0.0
 	lives = 10
-	deaths = 0
 	
 func to_dict():
 	return {
@@ -43,6 +46,8 @@ func to_dict():
 		"species" : species,
 		"lives" : lives,
 		"deaths" : deaths,
+		"kills" : kills,
+		"selfkills": selfkills,
 		"collectables" : collectables,
 		"score" : score,
 		"species_template" : species_template

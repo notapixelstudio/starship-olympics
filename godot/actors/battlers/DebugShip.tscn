@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://actors/battlers/Movement.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/londrina_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://actors/battlers/ShipDebug.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/kenvector_future_32.tres" type="DynamicFont" id=2]
+
 
 [node name="Debug" type="Node2D"]
-editor/display_folded = true
 visible = false
 script = ExtResource( 1 )
 
@@ -13,14 +13,6 @@ margin_left = -230.0
 margin_top = -160.0
 margin_right = 220.0
 margin_bottom = -50.0
-custom_fonts/font = ExtResource( 2 )
-align = 1
-
-[node name="Label2" type="Label" parent="."]
-margin_left = -230.0
-margin_top = -100.0
-margin_right = 220.0
-margin_bottom = 10.0
 custom_fonts/font = ExtResource( 2 )
 align = 1
 

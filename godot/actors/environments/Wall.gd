@@ -1,14 +1,17 @@
 tool
 
 extends StaticBody2D
+class_name Wall
 
 export (bool) var hollow setget set_hollow
 
 export (int) var offset setget set_offset
 export (int) var elongation setget set_elongation
 
-enum TYPE { solid, hostile, ghost }
+enum TYPE { solid, hostile, ghost, decoration }
 export(TYPE) var type = TYPE.solid setget set_type
+
+export var hide_line : bool = false
 
 onready var extents = $RectExtents
 var cshapes = []
@@ -67,7 +70,7 @@ func refresh():
 		
 	var points = gshape.to_PoolVector2Array()
 	
-	if not type == TYPE.ghost:
+	if not type == TYPE.ghost and not type == TYPE.decoration:
 		if hollow:
 			for i in range(len(points)):
 				var cshape = CollisionShape2D.new()
@@ -88,8 +91,9 @@ func refresh():
 	$Polygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
 	
-	$Polygon2D.visible = not hollow and not type == TYPE.ghost
-	$Grid.visible = hollow and not type == TYPE.ghost
+	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
+	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration
+	$line.visible = not hide_line
 	
 	$Grid.set_texture_rotation(rotation)
 	
@@ -111,5 +115,10 @@ func refresh():
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		$line.modulate = Color(0.2,0.7,1,0.3)
+		$line.modulate = Color(0.2,0.7,1,0.5)
+	elif type == TYPE.decoration:
+		$line.modulate = Color(1,1,1,1)
 		
+	# workaround for losing texture mode
+	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
+	

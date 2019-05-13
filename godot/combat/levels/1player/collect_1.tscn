@@ -10,16 +10,13 @@
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/species/drones.tres" type="Resource" id=9]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="CrownModeManager" parent="." index="5"]
 enabled = false
 
-[node name="ConquestModeManager" parent="." index="8"]
-enabled = false
-
-[node name="CollectModeManager" parent="." index="9"]
+[node name="CollectModeManager" parent="." index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -156,7 +153,7 @@ rotation = 3.14159
 species_template = ExtResource( 9 )
 cpu = true
 
-[node name="Camera" parent="." index="15"]
+[node name="Camera" parent="." index="16"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

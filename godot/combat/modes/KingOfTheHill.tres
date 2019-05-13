@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/modes/sharp-crown.png" type="Texture" id=1]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+is_mutator = false
+name = "King of The hill"
+icon = ExtResource( 1 )
+description = "Try to stay on the Zone for as long as you can"
+tagline_pro = "...or at least more than your opponents"
+tagline_cons = ""
+

@@ -1,11 +1,15 @@
 extends Ship
 
+onready var debug_ship = $Debug
+
 var this_range = {60:-1, 55:0, 100:1}
 
-const MAX_DIR_WAIT = 200
-var wait_direction = 0
+const MAX_DIR_WAIT = 900
 var steering = Vector2()
 var front = Vector2()
+
+const DANGER_ZONE = 200
+const MAX_AVOIDANCE_FORCE = 10
 
 static func angle_to_angle(from, to):
     return fposmod(to-from + PI, PI*2) - PI
@@ -16,14 +20,12 @@ static func which_quadrant(angle:float):
 		 tmp += (2*PI)
 	return int(tmp/(PI/2))%4+1
 	
-func _input(_event):
-	pass
-
 var laser_color = Color(1.0, .329, .298)
-const MAX_SEE_AHEAD = Vector2(50,40)
+const MAX_SEE_AHEAD = 200
 var hit_pos = []
+var behaviour_mode = "seek"
 
-enum BEHAVIOUR {SEEK, AVOID, FLEE}
+enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER}
 
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
@@ -37,85 +39,130 @@ func nearest_in(objects):
 			min_dist = dist(nearest.position, position)
 	return nearest
 
+const CIRCLE_DIST = 50
+const CIRCLE_RADIUS = 10
+const ANGLE_CHANGE = PI/4
+var wander_angle = 0
+func set_angle(vector: Vector2, value: float)->Vector2:
+	var leng = vector.length()
+	vector.x = cos(value) * leng
+	vector.y = sin(value) * leng
+	return vector
+var wander_force = Vector2()
+func wander():
+	# https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-wander--gamedev-1624
+	var circle_center = front * CIRCLE_DIST
+	# let's use front
+	var displacement = (front * CIRCLE_RADIUS).rotated(deg2rad(rand_range(-30,30)))
+	# Change wanderAngle just a bit, so it
+	# won't have the same value in the
+	# next game frame.
+	wander_angle += randi() * ANGLE_CHANGE - ANGLE_CHANGE * .5
+	wander_force = circle_center + displacement
+	return (wander_force)
+	
+
+func get_ahead()-> PoolVector2Array:
+	var pool = PoolVector2Array()
+	for pixels in [-45, -20, 0, 20, 45]:
+		pool.append(front.rotated(deg2rad(pixels)) * MAX_SEE_AHEAD)
+	return pool
+
+const MAX_AVOID = 10
+var avoid_lock = 0
 func seek_ahead(potential_target):
-	var res = { "action": BEHAVIOUR.SEEK,
-				"target": potential_target
-			}
-	# see if we have some obstacle in front of us
-	var ahead = front * MAX_SEE_AHEAD + position
-	var half_ahead = front * MAX_SEE_AHEAD * 0.5 + position
-	var targets = []
-	for body in $DetectionArea.get_overlapping_bodies():
-		targets.append(body)
-		# get all the bodies inside the area
-	for areas in $DetectionArea.get_overlapping_bodies():
-		# get all areas inside the area
-		targets.append(areas)
-	
-	hit_pos = []
+	# https://docs.godotengine.org/en/3.1/tutorials/physics/ray-casting.html
+	# https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732
 	var space_state = get_world_2d().direct_space_state
-	var found = false
-	for pos_target in targets:
-		if found:
-			break
-		var shapeTarget = pos_target.get_node('CollisionShape2D').shape
-		var target_extents
-		if shapeTarget is CircleShape2D:
-			target_extents = Vector2(shapeTarget.radius, shapeTarget.radius)
-		else:
-			target_extents = shapeTarget.extents 
-		target_extents -= Vector2(5, 5)
-
-		var nw = pos_target.position - target_extents
-		var se = pos_target.position + target_extents
-		var ne = pos_target.position + Vector2(target_extents.x, -target_extents.y)
-		var sw = pos_target.position + Vector2(-target_extents.x, target_extents.y)
-		for pos in [pos_target.position, nw, ne, se, sw]:
-			var result = space_state.intersect_ray(position,
-				pos, [self], collision_mask)
-			if result:
-				hit_pos.append(result.position)
-				if result.collider != potential_target and not result.collider is Ship:
-					target = result.collider
-					print("THERE IS A DANGER: ", result.collider.name)
-					found = true
-					break
-
-		return target
-
-#func _draw():
-#	for hit in hit_pos:
-#		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
-#		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+	# use global coordinates, not local to node
+	avoid_lock -=1
+	#if avoid_lock > 0:
+	# return avoidance
+	# see if we have some obstacle in front of us
+	var becareful = get_ahead()
+	hit_pos = []
+	for ahead in becareful:
+		var danger1 = position + ahead
+		var danger2 = position + ahead * 0.5
+		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
+		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) # 1183 considering bombs and explosions
+		# we need to see if we can avoid the castle
+		if entity.could_have("Royal") and entity.has("Royal"):
+			ray_collision_mask += pow(2, 15)
+		var result = space_state.intersect_ray(position, danger1, [self], ray_collision_mask, true, true)
+		hit_pos.append(danger1)
+		if result and result.position != potential_target:
+			avoidance = position - result.position
+			avoidance = avoidance.normalized() * MAX_AVOIDANCE_FORCE
+			behaviour_mode = "avoid"
+			avoid_lock = MAX_AVOID
+			return (avoidance)
+	avoidance = Vector2()
+	if potential_target != null:
+		behaviour_mode = "seek"
+		return (potential_target - position)
+	else:
+		behaviour_mode = "wander"
+		return wander()
 	
-func _physics_process(delta):
-	update()
-func choose_dir(target:Node2D):
+var avoidance
+
+# func _draw():
+# 	if not debug_enabled:
+# 		return
+# 	for hit in hit_pos:
+# 		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+# 		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+	
+# func _physics_process(delta):
+# 	if not debug_enabled:
+# 		return
+# 	 update()
+
+var last_target_pos = Vector2()
+
+func choose_dir(target):
 	"""
 	# Follow the Crown or the crown holder if you are not it
 	# if you are just run away
 	"""
 	var direction_to_take = 0
-	if not target or not target.is_inside_tree():
-		if wait_direction < 0:
-			target_velocity = Vector2(rand_range(-1,1), rand_range(-1,1)).normalized()
-			wait_direction = randi() % MAX_DIR_WAIT
+	var target_pos = last_target_pos
+	if target != null:
+		target_pos = target
 	else:
-		var distance_to_target = (target.position-position)
-		target_velocity = distance_to_target.normalized()
+		target_pos = front
+	last_target_pos = target_pos
+	var distance_to_target = target_pos
+	target_velocity = distance_to_target.normalized()
+	
 	front = Vector2(cos(rotation), sin(rotation))
 	direction_to_take = find_side(Vector2(0,0), front, target_velocity)
-		
+	
 	return direction_to_take
 
+var wait_for_chargedshot = 30
+const MIN_WAIT_SHOT = 2*30 #frame
 func choose_fire():
+	if wait_for_chargedshot < 0:
+		# next charged shot will be
+		wait_for_chargedshot = MIN_WAIT_SHOT*2 + randi()%MIN_WAIT_SHOT
+		charging_time = randi()%(MIN_WAIT_SHOT)
+		print("we are going to wait these something: ", str(charging_time))
+		return true
+	# randomly choose to charge shot
 	return false
 
 func _ready():
+	cpu = true
 	absolute_controls = true
+
 const MAX_WAIT = 200
 var wait = MAX_WAIT
 var target 
+
+var charging_time : int = 0
+
 func control(delta):
 	var this_target = null
 	
@@ -128,8 +175,10 @@ func control(delta):
 	if self == this_target:
 		this_target = null
 	
+	if this_target:
+		this_target = this_target.position
+	
 	# check if there is a danger closer
-	target = this_target
 	target = seek_ahead(this_target)
 	rotation_dir = choose_dir(target)
 	
@@ -146,26 +195,19 @@ func control(delta):
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 	
-	# fire
-	if charging and this_range[randi()%len(this_range)]:
-		fire()
-		
 	if not charging and choose_fire() and fire_cooldown <= 0:
 		charging = true
 		$Graphics/ChargeBar.visible = true
 		
-	if wait < 0:
-		fire()
-		wait = randi() % MAX_WAIT
-	wait -= 1
-	wait_direction -= 1
+	charging_time -= 1
+	wait_for_chargedshot -= 1
+	
 	# overcharge
-	if charge > MAX_OVERCHARGE:
+	if charge > MAX_OVERCHARGE or (charging and charging_time < 0):
 		fire()
 		
 	# cooldown
 	fire_cooldown -= delta
-	$Debug.rotation = -rotation
 	
 	# dash
 	#if Input.is_action_just_pressed(player+'_dash') and dash_cooldown <= 0:
@@ -173,3 +215,11 @@ func control(delta):
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
 	
+func calculate_center(rect: Rect2) -> Vector2:
+	return Vector2(
+		rect.position.x + rect.size.x / 2,
+		rect.position.y + rect.size.y / 2)
+
+func _on_DetectionArea_body_entered(body):
+	if body is Ship and body != self:
+		fire()

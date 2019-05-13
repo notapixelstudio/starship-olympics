@@ -6,6 +6,7 @@ const DEADZONE = 0.5
 
 var device_controller_id : int
 func _ready():
+	cpu = false
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	if "kb" in controls:
 		absolute_controls = false

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/weapons/Bomb.gd"
 }, {
+"base": "BombSpawner",
+"class": "BombDropper",
+"language": "GDScript",
+"path": "res://actors/enemies/Bomb_dropper.gd"
+}, {
 "base": "Node2D",
 "class": "BombSpawner",
 "language": "GDScript",
@@ -105,6 +110,11 @@ _global_script_classes=[ {
 "path": "res://addons/geometry/GConvexPolygon.gd"
 }, {
 "base": "GShape",
+"class": "GEllipse",
+"language": "GDScript",
+"path": "res://addons/geometry/GEllipse.gd"
+}, {
+"base": "GShape",
 "class": "GRect",
 "language": "GDScript",
 "path": "res://addons/geometry/GRect.gd"
@@ -124,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/geometry/GShape.gd"
 }, {
+"base": "Resource",
+"class": "GameMode",
+"language": "GDScript",
+"path": "res://combat/modes/GameMode.gd"
+}, {
 "base": "Control",
 "class": "GenericOption",
 "language": "GDScript",
@@ -139,15 +154,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/ECM/Manager.gd"
 }, {
+"base": "MapPoint",
+"class": "MapPlanet",
+"language": "GDScript",
+"path": "res://map/MapPlanet.gd"
+}, {
+"base": "Node2D",
+"class": "MapPoint",
+"language": "GDScript",
+"path": "res://map/MapPoint.gd"
+}, {
 "base": "Manager",
 "class": "ModeManager",
 "language": "GDScript",
 "path": "res://combat/managers/modes/ModeManager.gd"
 }, {
+"base": "Node2D",
+"class": "PilotStats",
+"language": "GDScript",
+"path": "res://special_scenes/session_screen/PilotStats.gd"
+}, {
 "base": "Resource",
 "class": "Planet",
 "language": "GDScript",
-"path": "res://map/Planet.gd"
+"path": "res://map/planets/Planet.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerSpawner",
@@ -192,7 +222,17 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Trail",
 "language": "GDScript",
+"path": "res://actors/battlers/TrailNode.gd"
+}, {
+"base": "Line2D",
+"class": "Trail2D",
+"language": "GDScript",
 "path": "res://actors/battlers/Trail.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
 "Asteroid": "",
@@ -200,6 +240,7 @@ _global_script_class_icons={
 "Bar": "",
 "BasicScreen": "",
 "Bomb": "",
+"BombDropper": "",
 "BombSpawner": "",
 "BombTurret": "",
 "Bull": "",
@@ -214,14 +255,19 @@ _global_script_class_icons={
 "GBeveledRect": "",
 "GCircle": "",
 "GConvexPolygon": "",
+"GEllipse": "",
 "GRect": "",
 "GRegularPolygon": "",
 "GSegment": "",
 "GShape": "",
+"GameMode": "",
 "GenericOption": "",
 "InfoPlayer": "",
 "Manager": "",
+"MapPlanet": "",
+"MapPoint": "",
 "ModeManager": "",
+"PilotStats": "",
 "Planet": "",
 "PlayerSpawner": "",
 "Portal": "",
@@ -231,7 +277,9 @@ _global_script_class_icons={
 "Species": "",
 "SpeciesContainer": "",
 "SpeciesTemplate": "",
-"Trail": ""
+"Trail": "",
+"Trail2D": "",
+"Wall": ""
 }
 
 [Analytics]
@@ -265,6 +313,7 @@ gdscript/warnings/unused_class_variable=false
 
 window/size/width=1280
 window/size/height=720
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
@@ -274,6 +323,13 @@ window/size/fullscreen.debug=false
 [editor_plugins]
 
 enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "rect_extents_gizmo" )
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": true,
+"loop_offset": 0
+}
 
 [input]
 
@@ -592,6 +648,54 @@ joy4_cancel={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":3,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+joy1_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+joy2_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+joy3_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":2,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":2,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+joy4_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":3,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":3,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+joy1_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+joy2_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+joy3_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":2,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":2,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+joy4_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":3,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":3,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -608,6 +712,7 @@ joy4_cancel={
 2d_physics/layer_12="coins"
 2d_physics/layer_13="bull"
 2d_physics/layer_14="deadship"
+2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
 
 [logging]

@@ -9,6 +9,7 @@ var next_level
 signal finished
 
 func _ready():
+	visible = false
 	next_level = global.level
 	# connect("reset_signal", get_node('/root/Arena'), "reset")
 

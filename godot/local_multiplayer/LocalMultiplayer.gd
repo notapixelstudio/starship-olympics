@@ -4,7 +4,9 @@ onready var selection_screen = $SelectionScreen
 
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
-const map_scene = preload("res://map/Map.tscn")
+export var map_scene: PackedScene
+
+onready var parallax = $ParallaxBackground
 
 var combat = null
 var selected_level
@@ -32,8 +34,7 @@ func back():
 	# TODO: maybe this is not the right way
 	get_tree().change_scene(global.from_scene)
 	
-var current_planet : Planet
-var current_level : PackedScene
+var current_level : Dictionary
 var levels : Array
 var played_levels : Array
 
@@ -71,31 +72,54 @@ func combat(selected_players: Array):
 	#current_level = level_selection.current_level
 	
 	# PLANET SELECTION
+	remove_child(selection_screen)
+	remove_child(parallax)
 	var map = map_scene.instance()
+	map.initialize(players)
 	add_child(map)
 	yield(map, "done")
+	yield(get_tree(), "idle_frame")
 	if map.back:
 		map.queue_free()
+		add_child(parallax)
+		add_child(selection_screen)
 		return
-	current_planet = load('res://map/planets/' + map.current_planet)
-	
+		
 	# logic to get the correct levels
-	levels = current_planet.get_levels(num_players)
+	levels = []
 	played_levels = []
-
-	next_level()
-	start_level(current_level)
-
+	var MAX_LEVELS: float = 8.0
+	var how_many_levels_from_each_planet = ceil(MAX_LEVELS / len(map.current_planets))
+	
+	for planet in map.current_planets:
+		for i in range(how_many_levels_from_each_planet):
+			levels.append({"planet": planet, "level":planet.fetch_level(num_players)})
+	
 	#level_selection.queue_free()
 	map.queue_free()
+	add_child(parallax)
+	
+	next_level()
 	
 	# TEST: send the queue
 	GameAnalytics.submit_events()
 
+func next_level():
+	if len(played_levels) >= len(levels):
+		add_child(selection_screen)
+		return
+		
+	current_level = levels[len(played_levels)]
+	played_levels.append(current_level)
+	
+	start_level(current_level)
+	
 func start_level(_level):
 	selected_level = _level
-	combat = selected_level.instance()
-	remove_child(selection_screen)
+	var planet: Planet = selected_level["planet"]
+	combat = selected_level["level"].instance()
+	combat.planet_name = planet.name
+	combat.game_mode = planet.game_mode
 	combat.initialize(players)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
@@ -103,19 +127,6 @@ func start_level(_level):
 	connect("updated", combat, "hud_update")
 	yield(get_tree().create_timer(0.5), "timeout")
 	add_child(combat)
-	
-func next_level():
-	current_level = levels[len(played_levels)]
-
-	played_levels.append(current_level)
-
-	if len(played_levels) >= len(levels):
-		played_levels = []
-		levels.shuffle()
-		
-		# do not repeat the same level twice in a row
-		if current_level == levels[0]:
-			played_levels.append(levels[0])
 	
 func from_info_to_spawner(player_info):
 	var spawner = PlayerSpawner.new()
@@ -125,14 +136,12 @@ func from_info_to_spawner(player_info):
 	spawner.info_player = player_info
 	return spawner
 	
-
 func _on_GameOver_rematch(node):
 	node.queue_free()
 	get_tree().paused = false
 	combat.queue_free()
 	next_level()
-	start_level(current_level)
-
+	
 func _on_Pause_restart(_combat):
 	_combat.queue_free()
 	get_tree().paused = false

@@ -14,7 +14,6 @@ func initialize():
 	for child in get_children():
 		if child.is_in_group("anim_species"):
 			battler_anim = child
-	
 func move_forward():
 	var direction = Vector2(-1.0, 0.0) if owner.party_member else Vector2(1.0, 0.0)
 	tween.interpolate_property(

@@ -23,6 +23,7 @@ const Utils = preload("utils.gd")
 
 # 
 const THRESHOLD_DIFF_TS = 10
+const MAX_RETRY = 5
 
 # device information
 var DEBUG = false
@@ -112,11 +113,15 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print("We could not connect. What should we do now?")
 
 	# Wait until resolved and/or connected
+	var i = MAX_RETRY
 	while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
+		if i <= 0:
+			break
 		requests.poll()
 		print("Connecting..")
 		OS.delay_msec(500)
-
+		i -=1
+	
 	# assert(requests.get_status() == HTTPClient.STATUS_CONNECTED)
 	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_init, headers, data_json)
@@ -124,8 +129,10 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print("Well, we could not connect here either")
 
 	var response_string : String # will containe the response
-
+	i = MAX_RETRY
 	while requests.get_status() == HTTPClient.STATUS_REQUESTING:
+		if i <= 0:
+			break
 		# Keep polling until the request is going on
 		requests.poll()
 		print("Requesting..")
@@ -279,20 +286,20 @@ func get_test_design_event(event_id, value):
 	return event_dict
 	
 static func merge_dir(target, patch):
-    for key in patch:
-        target[key] = patch[key]
+	for key in patch:
+		target[key] = patch[key]
 
 static func merge_dir2(target, patch):
-    for key in patch:
-        if target.has(key):
-            var tv = target[key]
-            if typeof(tv) == TYPE_DICTIONARY:
-                merge_dir(tv, patch[key])
-            else:
-                target[key] = patch[key]
-        else:
-            target[key] = patch[key]
-			
+	for key in patch:
+		if target.has(key):
+			var tv = target[key]
+			if typeof(tv) == TYPE_DICTIONARY:
+				merge_dir(tv, patch[key])
+			else:
+				target[key] = patch[key]
+		else:
+			target[key] = patch[key]
+
 func get_gzip_string(string_for_gzip):
 	# ZIP function
 	pass

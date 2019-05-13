@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=1]
+[ext_resource path="res://combat/levels/2players/megacrown.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/3players/megacrown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/4players/megacrown.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=5]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=6]
+[ext_resource path="res://selection/species/species1.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 6 )
+name = "Megacrown"
+tagline1 = "Mega"
+tagline2 = "Crown"
+species = ExtResource( 7 )
+levels_1players = null
+levels_2players = [ ExtResource( 2 ) ]
+levels_3players = [ ExtResource( 3 ) ]
+levels_4players = [ ExtResource( 4 ) ]
+planet_sprite = ExtResource( 5 )
+game_mode = ExtResource( 1 )
+

@@ -3,12 +3,18 @@ extends Control
 var Bar = preload('res://combat/interface/hud/Bar.tscn')
 
 var game_mode
-
+var draw: bool = true
 onready var Bars = $Bars
 onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
 
+func set_planet(planet: String, mode: GameMode):
+	if planet:
+		$Content/ModePanel/PlanetName.text = planet
+		$Content/ModePanel/ModeIcon.texture = (mode as GameMode).icon
+
+	
 func initialize(_game_mode):
 	game_mode = _game_mode
 	print("initializing HUD")
@@ -34,9 +40,15 @@ func _process(_delta):
 
 	# update scores
 	var bars = Bars.get_children()
+	var last_value = bars[0].get_value()
 	for bar in bars:
 		var player : InfoPlayer = game_mode.scores_index[bar.player.species]
 		bar.set_value(player.score)
+		if last_value == bar.get_value():
+			draw = true
+		else:
+			draw = false
+		
 
 	bars.sort_custom(self, "compare_by_score")
 	var i = 0
@@ -45,12 +57,13 @@ func _process(_delta):
 		i += 1
 		
 	# leading player
-	var leading = bars[0]
-	Leading.set_species(leading.player.species_template)
-	LeadingLabel.text = leading.player.species
+	if not draw:
+		var leading = bars[0]
+		Leading.set_species(leading.player.species_template)
+		LeadingLabel.text = leading.player.species
+	else:
+		Leading.set_species(null)
+		LeadingLabel.text = ""
 	
 func compare_by_score(a:Bar, b:Bar):
-	if a.get_value() > b.get_value():
-		return true
-	else:
-		return false
+	return a.get_value() > b.get_value()

@@ -8,6 +8,7 @@ func _enter_tree():
 	add_custom_type("GRect", "Node", preload("GRect.gd"), preload("icons/GRect.svg"))
 	add_custom_type("GRegularPolygon", "Node", preload("GRegularPolygon.gd"), preload("icons/GRegularPolygon.svg"))
 	add_custom_type("GCircle", "Node", preload("GCircle.gd"), preload("icons/GCircle.svg"))
+	add_custom_type("GEllipse", "Node", preload("GEllipse.gd"), preload("icons/GCircle.svg"))
 	add_custom_type("GBeveledRect", "Node", preload("GBeveledRect.gd"), preload("icons/GBeveledRect.svg"))
 	add_custom_type("GSegment", "Node", preload("GSegment.gd"), preload("icons/GSegment.svg"))
 	
@@ -18,6 +19,7 @@ func _exit_tree():
 	remove_custom_type("GRect")
 	remove_custom_type("GRegularPolygon")
 	remove_custom_type("GCircle")
+	remove_custom_type("GEllipse")
 	remove_custom_type("GBeveledRect")
 	remove_custom_type("GSegment")
 	

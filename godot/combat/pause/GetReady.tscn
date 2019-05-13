@@ -135,6 +135,8 @@ uppercase = true
 percent_visible = 0.0
 
 [node name="Fight" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -148,7 +150,6 @@ text = "FIGHT!"
 align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "GetReady"
 anims/Fight = SubResource( 1 )
 anims/GetReady = SubResource( 2 )
 

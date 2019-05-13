@@ -104,6 +104,7 @@ func shake_node(node):
 	$Tween.start()
 
 func _on_Element_focus_entered():
+	add_stylebox_override("panel", load("res://interface/themes/grey/focus.tres"))
 	set_process_input(true)
 	shake_node(description_node)
 	description_node.modulate = focus_color.darkened(0.1)
@@ -111,6 +112,7 @@ func _on_Element_focus_entered():
 	
 
 func _on_Element_focus_exited():
+	add_stylebox_override("panel", load("res://interface/themes/grey/normal.tres"))
 	for node in container.get_children():
 		node.modulate = Color(1,1,1)
 	value_node.modulate = Color(1,1,1)

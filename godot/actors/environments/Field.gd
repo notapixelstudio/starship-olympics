@@ -42,9 +42,13 @@ func refresh():
 	($Entity/Basket as Component).set_enabled(type == TYPE.basket)
 	
 	$Polygon2D.visible = type != TYPE.ghost
-	
+	# $Line2D.visible = type != TYPE.water
+	material = null
 	if type == TYPE.water:
-		$Polygon2D.color = Color(0,0.2,0.8,0.5)
+		#$Polygon2D.color = Color(0,0.2,0.8,0.5)
+		$Polygon2D.color = Color(1,1,1,1)
+		material = load("res://assets/shaders/water_shader.tres")
+		$Polygon2D.texture_offset = gshape.get_extents()
 		$Line2D.default_color = Color(0,0.2,0.6,1)
 	elif type == TYPE.trigger:
 		$Polygon2D.color = Color(1,1,1,0.3)

@@ -10,6 +10,7 @@ var someone_died = 0
 export (PackedScene) var gameover_scene
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
+export var game_mode : Resource # Gamemode - might be useful
 
 var mockup: bool = false
 var mouse_target  = Vector2(1600, 970)
@@ -24,6 +25,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var getready = $CanvasLayer/GetReady
 onready var pause = $CanvasLayer/Pause
+onready var mode_description = $CanvasLayer/DescriptionMode
 
 signal screensize_changed(screensize)
 signal gameover
@@ -32,6 +34,7 @@ signal rematch
 signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
+var planet_name : String
 
 var scores : Scores
 
@@ -72,10 +75,10 @@ func get_time_scale():
 	
 func update_time_scale():
 	Engine.time_scale = time_scale
-	
+
+signal update_stats
+
 func _ready():
-	update_time_scale()
-	
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
@@ -97,6 +100,7 @@ func _ready():
 
 	scores = Scores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
+	connect("update_stats", scores, "update_stats")
 	
 	
 	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
@@ -131,14 +135,18 @@ func _ready():
 
 	for info in array_players:
 		print(info.to_dict())
-	scores.initialize(array_players)
+	scores.initialize(array_players, game_mode.max_timeout)
 	
 	# initialize HUD
 	hud.initialize(scores)
+	hud.set_planet(planet_name, game_mode)
 	
 	camera.initialize(compute_arena_size())
 
 	get_tree().paused = true
+	mode_description.gamemode = game_mode
+	mode_description.appears()
+	yield(mode_description, "ready_to_fight")
 	if not mockup:
 		getready.start()
 		yield(get_tree().create_timer(1), "timeout")
@@ -161,7 +169,9 @@ func _ready():
 		bomb_spawner.spawn()
 	for turret in get_tree().get_nodes_in_group("turret"):
 		turret.initialize(self)
-	
+		
+	update_time_scale()
+
 func _process(delta):
 	scores.update(delta)
 
@@ -195,14 +205,28 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship: Ship, killer : Entity):
+func ship_just_died(ship: Ship, killer : Ship):
 	"""
 	remove from it, and reput it after a bit
 	"""
+	# stats
+	# TODO: maybe somewhere else
+	emit_signal("update_stats", ship.species, 1, "deaths")
+	if killer and killer is Ship and killer != ship:
+		emit_signal("update_stats", killer.species, 1, "kills")
+	else:
+		emit_signal("update_stats", ship.species, 1, "selfkills")
+	
 	$Battlefield.call_deferred("remove_child", ship)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
+	var respawn_timeout = 2
+	if len(ECM.entities_with('Royal')) > 0:
+		if ECM.E(ship).has('Royal'):
+			respawn_timeout = 3
+		else:
+			respawn_timeout = 1
 	
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
 	if scores.game_over:
 		return
@@ -235,7 +259,7 @@ onready var pursue_manager = $PursueManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
-const trail_scene = preload("res://actors/battlers/Trail.tscn")
+const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
 func spawn_ships():
 	for player in SpawnPlayers.get_children():
@@ -292,6 +316,8 @@ func spawn_bomb(pos, impulse, ship):
 	
 	$Battlefield.add_child(bomb)
 	
+	if ship:
+		emit_signal("update_stats", ship.species, 1, "bombs")
 	return bomb
 	
 func _on_sth_collected(collector, collectee):

@@ -47,6 +47,9 @@ func refresh():
 		Vector2(b.x-offset,b.y+offset)
 	]))
 	
+	# workaround for losing texture mode
+	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
+	
 func _on_Area2D_body_entered(body):
 	var entity = ECM.E(body)
 	
@@ -62,5 +65,6 @@ func _on_Area2D_body_entered(body):
 		teleportable.disable()
 		teleportable.set_destination(linked_to.position + offset)
 		yield(get_tree().create_timer(0.1), 'timeout')
-		teleportable.enable()
+		if teleportable:
+			teleportable.enable()
 		

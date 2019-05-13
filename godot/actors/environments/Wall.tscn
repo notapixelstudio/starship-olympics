@@ -9,7 +9,9 @@
 [ext_resource path="res://assets/sprites/wall_tile.png" type="Texture" id=7]
 [ext_resource path="res://addons/rect_extents_gizmo/utils/RectExtents.gd" type="Script" id=8]
 
-[node name="Wall" type="StaticBody2D"]
+[node name="Wall" type="StaticBody2D" groups=[
+"wall",
+]]
 collision_layer = 16
 collision_mask = 5
 script = ExtResource( 1 )
@@ -61,7 +63,7 @@ points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 
 width = 60.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 7 )
-texture_mode = 1
+texture_mode = 325458256
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10

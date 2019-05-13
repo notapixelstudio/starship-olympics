@@ -30,12 +30,12 @@ radius = 16.0
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 300.0
+radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
-"Foreground",
 "in_camera",
+"Foreground",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -49,6 +49,7 @@ script = ExtResource( 1 )
 shape = SubResource( 2 )
 
 [node name="Graphics" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 1.5, 1.5 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2

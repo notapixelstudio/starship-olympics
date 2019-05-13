@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ 600, 50 ]
 }
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -103,7 +103,7 @@ controls = "joy2"
 species_template = ExtResource( 11 )
 cpu = true
 
-[node name="Camera" parent="." index="15"]
+[node name="Camera" parent="." index="16"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

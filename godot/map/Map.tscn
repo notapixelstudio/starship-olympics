@@ -1,175 +1,296 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
-[ext_resource path="res://assets/interface/pause-window.png" type="Texture" id=3]
-[ext_resource path="res://interface/fonts/kenvector_future_32.tres" type="DynamicFont" id=4]
-[ext_resource path="res://interface/fonts/kenvector_future_20.tres" type="DynamicFont" id=5]
-[ext_resource path="res://interface/fonts/kenvector_future_14.tres" type="DynamicFont" id=6]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=7]
+[ext_resource path="res://map/PlaylistItem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://map/Way.tscn" type="PackedScene" id=5]
+[ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://map/planets/TheBloodMoon.tres" type="Resource" id=8]
+[ext_resource path="res://map/planets/Queensworld.tres" type="Resource" id=9]
+[ext_resource path="res://map/planets/UmidorII.tres" type="Resource" id=10]
+[ext_resource path="res://map/planets/Megacrown.tres" type="Resource" id=11]
+[ext_resource path="res://map/planets/Silicastle.tres" type="Resource" id=12]
+[ext_resource path="res://map/planets/Trixx.tres" type="Resource" id=13]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=14]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=15]
+[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=16]
+[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=18]
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=19]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=20]
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=21]
+[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=22]
 
-[sub_resource type="Animation" id=1]
-resource_name = "float"
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 430, 270 ), Vector2( 430, 280 ), Vector2( 430, 270 ) ]
-}
-
-[node name="Map" type="ColorRect"]
-pause_mode = 2
+[node name="Map" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-color = Color( 0, 0, 0, 0.313726 )
 script = ExtResource( 2 )
+playlist_item = ExtResource( 3 )
+cursor_scene = ExtResource( 4 )
 
-[node name="pause-window" type="Sprite" parent="."]
-position = Vector2( 612.724, 320.736 )
-scale = Vector2( 0.797916, 0.797916 )
-texture = ExtResource( 3 )
-
-[node name="panel" type="Control" parent="."]
+[node name="Content" type="Node2D" parent="."]
 pause_mode = 2
-modulate = Color( 1, 1, 1, 0.988235 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -455.203
-margin_top = -308.327
-margin_right = 415.797
-margin_bottom = 351.673
+
+[node name="Ways" type="Node2D" parent="Content"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="label" type="Label" parent="panel"]
-pause_mode = 2
+[node name="Way" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 300, 200 )
+
+[node name="Way2" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 400, 300 )
+rotation = 1.5708
+
+[node name="Way18" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 400, 500 )
+rotation = 1.5708
+
+[node name="Way8" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 400, 100 )
+rotation = 1.5708
+
+[node name="Way9" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 400, -100 )
+rotation = 1.5708
+
+[node name="Way10" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 400, -300 )
+rotation = 1.5708
+
+[node name="Way11" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 400, -500 )
+rotation = 1.5708
+
+[node name="Way6" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 800, 300 )
+rotation = 1.5708
+
+[node name="Way7" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 800, 500 )
+rotation = 1.5708
+
+[node name="Way19" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 800, 700 )
+rotation = 1.5708
+
+[node name="Way3" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 700, 200 )
+
+[node name="Way14" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 1100, 200 )
+
+[node name="Way15" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 1300, 200 )
+
+[node name="Way16" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 1500, 200 )
+
+[node name="Way17" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 1700, 200 )
+
+[node name="Way4" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 500, 200 )
+
+[node name="Way13" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 900, 200 )
+
+[node name="Way12" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 500, -600 )
+
+[node name="Way20" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 300, -600 )
+
+[node name="Way5" parent="Content/Ways" instance=ExtResource( 5 )]
+position = Vector2( 300, 600 )
+
+[node name="Waypoints" type="Node2D" parent="Content"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, 200 )
+
+[node name="Waypoint3" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, 0 )
+
+[node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, -200 )
+
+[node name="Waypoint7" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, -400 )
+
+[node name="Waypoint8" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, -600 )
+
+[node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 600, 200 )
+
+[node name="Waypoint9" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 1000, 200 )
+
+[node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 1200, 200 )
+
+[node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 1400, 200 )
+
+[node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 1600, 200 )
+
+[node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 800, 400 )
+
+[node name="Waypoint15" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 800, 600 )
+
+[node name="Waypoint2" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, 400 )
+
+[node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 6 )]
+position = Vector2( 400, 600 )
+
+[node name="Planets" type="Node2D" parent="Content"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TheHive" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 200, 200 )
+
+[node name="TheBloodMoon" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 200, 600 )
+planet = ExtResource( 8 )
+
+[node name="Queensworld" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 800, 200 )
+planet = ExtResource( 9 )
+
+[node name="Umidor2" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 600, -600 )
+planet = ExtResource( 10 )
+
+[node name="Umidor3" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 200, -600 )
+planet = ExtResource( 11 )
+
+[node name="Silicastle" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 800, 800 )
+planet = ExtResource( 12 )
+
+[node name="Trixx" parent="Content/Planets" instance=ExtResource( 7 )]
+position = Vector2( 1800, 200 )
+planet = ExtResource( 13 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 14 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera" parent="." instance=ExtResource( 15 )]
+marginX = -320
+marginY = 0.0
+zoom_offset = 1.574
+
+[node name="CanvasLayerTop" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="HUD" type="Panel" parent="CanvasLayerTop"]
+modulate = Color( 1, 1, 1, 0.705882 )
+margin_left = 961.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+
+[node name="Intro" type="Label" parent="CanvasLayerTop/HUD"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -224.0
-margin_right = 224.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Select a planet"
+margin_left = -159.5
+margin_top = 6.0
+margin_right = 159.5
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 16 )
+text = "Choose up to X planets"
 align = 1
 valign = 1
 
-[node name="Sprite" type="Sprite" parent="panel"]
-position = Vector2( 430, 270 )
-scale = Vector2( 0.5, 0.5 )
+[node name="Items" type="VBoxContainer" parent="CanvasLayerTop/HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 47.0
+margin_right = 1.0
+margin_bottom = -289.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="panel/Sprite"]
-autoplay = "float"
-anims/float = SubResource( 1 )
-
-[node name="Name" type="Label" parent="panel"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -400.0
-margin_top = 110.0
-margin_right = 400.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 4 )
-text = "name"
-align = 1
-valign = 1
-
-[node name="Flag" type="Sprite" parent="panel"]
-position = Vector2( 190, 255 )
-rotation = -1.5708
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Species" type="Label" parent="panel"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -350.0
-margin_top = 285.0
-margin_right = -140.0
-margin_bottom = 300.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 5 )
-text = "species"
-align = 1
-valign = 1
-
-[node name="GameMode" type="Label" parent="panel"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 120.0
-margin_top = 285.0
-margin_right = 330.0
-margin_bottom = 300.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 5 )
-text = "game mode"
-align = 1
-valign = 1
-
-[node name="Tagline1" type="Label" parent="panel"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -400.0
-margin_top = 395.0
-margin_right = 400.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 5 )
-text = "tagline 1"
-align = 1
-valign = 1
-
-[node name="Tagline2" type="Label" parent="panel"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -400.0
-margin_top = 430.0
-margin_right = 400.0
-margin_bottom = 38.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
-text = "tagline 2"
-align = 1
-valign = 1
-
-[node name="Element" parent="panel" instance=ExtResource( 7 )]
-pause_mode = 2
+[node name="Legend" type="VBoxContainer" parent="CanvasLayerTop/HUD"]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -224.0
-margin_top = -155.0
-margin_right = 224.0
-margin_bottom = -130.0
-description = "current_planet"
-optional_path = "array_planets"
-label_description = "Planet"
-elem_type = 2
-is_global = false
-node_owner_path = NodePath("../..")
-description_node_path = NodePath("../../../Map/panel/Element/Container/Description")
+margin_left = -159.5
+margin_top = -283.0
+margin_right = 159.5
+margin_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[connection signal="value_changed" from="panel/Element" to="." method="_on_Element_value_changed"]
+[node name="Label" type="Label" parent="CanvasLayerTop/HUD/Legend"]
+margin_right = 319.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 16 )
+text = "Legend"
+align = 1
+valign = 1
+
+[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
+margin_top = 33.0
+margin_bottom = 62.0
+mode = ExtResource( 18 )
+
+[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
+margin_top = 66.0
+margin_bottom = 95.0
+mode = ExtResource( 19 )
+
+[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
+margin_top = 99.0
+margin_bottom = 128.0
+mode = ExtResource( 20 )
+
+[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
+margin_top = 132.0
+margin_bottom = 161.0
+mode = ExtResource( 21 )
+
+[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
+margin_top = 165.0
+margin_bottom = 194.0
+mode = ExtResource( 22 )
+
+[node name="Button" type="Button" parent="CanvasLayerTop/HUD"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -159.5
+margin_top = -52.0
+margin_right = 159.5
+rect_min_size = Vector2( 0, 52 )
+text = "Fight"
+

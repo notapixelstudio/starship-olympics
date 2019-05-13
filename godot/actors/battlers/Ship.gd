@@ -7,12 +7,13 @@ and its keyboard control
 """
 class_name Ship
 
+export var debug_enabled = false
 export (String) var controls = "kb1"
 export (Resource) var species_template
 export var absolute_controls : bool= true
 
 var arena
-
+var cpu = false
 var velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
 var steer_force = 0
@@ -98,7 +99,7 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(thrust, steer_force*int(thrust != 0)).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
@@ -115,6 +116,7 @@ func _integrate_forces(state):
 	
 	# teleport
 	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
+		emit_signal('spawned', self)
 		xform.origin = entity.get('Teleportable').get_destination()
 		entity.get('Teleportable').teleport_done()
 		
