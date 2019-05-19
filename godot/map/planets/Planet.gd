@@ -28,6 +28,7 @@ func get_levels(num_players : int) -> Array:
     return get("levels_" + str(num_players) + "players")
 
 func fetch_level(num_players : int) -> PackedScene:
+	""" Get one level from their pool """
 	var levels = get("levels_" + str(num_players) + "players")
 	var played_levels = get("played_levels_" + str(num_players) + "players")
 	

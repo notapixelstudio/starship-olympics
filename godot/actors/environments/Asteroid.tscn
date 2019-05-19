@@ -8,17 +8,17 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=6]
 [ext_resource path="res://assets/sprites/flag.png" type="Texture" id=7]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 bounce = 30.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 100.0
 
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 1024
 collision_mask = 1045
 mass = 5.0
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 angular_damp = 1.0
 script = ExtResource( 1 )
@@ -45,9 +45,10 @@ __meta__ = {
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 4.0
+texture_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Flag" type="Sprite" parent="."]
 texture = ExtResource( 7 )

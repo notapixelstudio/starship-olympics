@@ -11,6 +11,7 @@ func _enter_tree():
 	add_custom_type("GEllipse", "Node", preload("GEllipse.gd"), preload("icons/GCircle.svg"))
 	add_custom_type("GBeveledRect", "Node", preload("GBeveledRect.gd"), preload("icons/GBeveledRect.svg"))
 	add_custom_type("GSegment", "Node", preload("GSegment.gd"), preload("icons/GSegment.svg"))
+	add_custom_type("GRoundedRect", "Node", preload("GRoundedRect.gd"), preload("icons/GRoundedRect.svg"))
 	
 func _exit_tree():
 	# Clean-up of the plugin goes here
@@ -22,4 +23,5 @@ func _exit_tree():
 	remove_custom_type("GEllipse")
 	remove_custom_type("GBeveledRect")
 	remove_custom_type("GSegment")
+	remove_custom_type("GRoundedRect")
 	

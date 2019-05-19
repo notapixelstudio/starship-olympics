@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/textures/base_texture.png" type="Texture" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/crown_symbol.png" type="Texture" id=11]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=12]
+[ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=13]
+[ext_resource path="res://assets/sprites/flag.png" type="Texture" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -26,7 +28,6 @@ emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 1.54143e-43
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 radial_accel = -200.0
@@ -41,14 +42,17 @@ __meta__ = {
 [node name="Polygon2D" type="Polygon2D" parent="."]
 material = SubResource( 1 )
 use_parent_material = true
+color = Color( 0.3, 0.3, 0.3, 0.3 )
 texture = ExtResource( 2 )
 polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 8.0
+default_color = Color( 0.6, 0.6, 0.6, 0.6 )
 texture_mode = 50
 
 [node name="Area2D" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 128
 collision_mask = 517
 
@@ -56,6 +60,7 @@ collision_mask = 517
 shape = SubResource( 2 )
 
 [node name="CrownCollider" type="StaticBody2D" parent="."]
+editor/display_folded = true
 visible = false
 collision_layer = 32768
 collision_mask = 512
@@ -118,6 +123,7 @@ __meta__ = {
 enabled = false
 
 [node name="Hill" type="Node2D" parent="Entity"]
+editor/display_folded = true
 script = ExtResource( 9 )
 __meta__ = {
 "_editor_icon": ExtResource( 10 )
@@ -140,12 +146,21 @@ __meta__ = {
 }
 enabled = false
 
+[node name="Conquerable" type="Node" parent="Entity"]
+script = ExtResource( 13 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
 [node name="Particles2D" type="Particles2D" parent="."]
 emitting = false
 amount = 100
 lifetime = 2.0
 fract_delta = false
 process_material = SubResource( 4 )
+
+[node name="Flag" type="Sprite" parent="."]
+texture = ExtResource( 14 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

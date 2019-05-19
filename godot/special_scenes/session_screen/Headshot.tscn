@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://special_scenes/session_screen/Headshot.gd" type="Script" id=1]
+[ext_resource path="res://selection/species/species3.tres" type="Resource" id=2]
+[ext_resource path="res://assets/sprites/species/toriels1_character.png" type="Texture" id=3]
 
 [node name="Headshot" type="Control"]
 margin_right = 150.0
@@ -8,8 +10,10 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
 rect_clip_content = true
 script = ExtResource( 1 )
+species = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 56.1742, 185.985 )
 scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
 

@@ -2,11 +2,17 @@ tool
 
 extends Node2D
 
-enum TYPE { trigger, water, hostile, flow, castle, hill, basket, ghost }
+enum TYPE { trigger, water, hostile, flow, castle, hill, basket, ghost, conquerable }
 export(TYPE) var type = TYPE.water setget set_type
+
+export var flag_offset : int = 0 setget set_flag_offset
 
 func set_type(value):
 	type = value
+	refresh()
+	
+func set_flag_offset(value):
+	flag_offset = value
 	refresh()
 	
 func _ready():
@@ -101,6 +107,29 @@ func refresh():
 		else:
 			# other shapes are unupported
 			$Particles2D.emitting = false
+	
+	# conquerable
+	($Entity/Conquerable as Component).set_enabled(type == TYPE.conquerable)
+	$Flag.set_visible(type == TYPE.conquerable)
+	
+	# move flag symbol
+	$Flag.position.y = -flag_offset
+	
+	if type == TYPE.conquerable:
+		add_to_group('in_camera')
+	else:
+		remove_from_group('in_camera')
+		
+func _process(delta):
+	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled and ($Entity/Conquerable as Conquerable).get_species() != null:
+		$Polygon2D.color = Color(1,1,1,0.3)
+		$Line2D.default_color = Color(1,1,1,0.6)
+		modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
+	else:
+		$Polygon2D.color = Color(0.3,0.3,0.3,0.3)
+		$Line2D.default_color = Color(0.6,0.6,0.6,0.6)
+		modulate = Color(1,1,1,1)
+
 			
 func get_gshape():
 	for child in get_children():

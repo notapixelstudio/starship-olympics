@@ -53,6 +53,7 @@ func _ready():
 			planet.not_available = true
 	
 	intro.text = intro.text.replace("X", str(num_players))
+
 func initialize(players):
 	var i = 0
 	for player_id in players:
@@ -94,7 +95,8 @@ func _on_cursor_select(cursor):
 	if cell is MapPlanet and (cell as MapPlanet).not_available:
 		return
 		
-	cursor.disable()
+	# if we want to give just ONE choice we would disable
+	# cursor.disable()
 	
 	var item = playlist_item.instance()
 	item.species = cursor.species 
@@ -102,8 +104,6 @@ func _on_cursor_select(cursor):
 	item.name = cursor.name
 	playlist.add_child(item)
 	
-	button.visible = true
-	button.grab_focus()
 	
 func _on_cursor_cancel(cursor):
 	# TODO: get the item in a better way
@@ -117,11 +117,14 @@ func _on_cursor_cancel(cursor):
 	item.queue_free()
 	cursor.enable()
 	
-	if playlist.get_child_count() <= 1:
-		button.visible = false
 		
 func get_cell(object):
 	return matrix[int(object.position.x/CELLSIZE)][int(object.position.y/CELLSIZE)]
+
+func timeout_chosen():
+	for item in playlist.get_children():
+		current_planets.append(item.planet)
+	emit_signal('done')
 
 signal done
 func on_cursor_proceed(cursor):
@@ -134,3 +137,9 @@ func _process(delta):
 	for planet in get_tree().get_nodes_in_group("planets"):
 		planet.info_planet.scale = camera.zoom
 		i+=1
+	$CanvasLayerTop/HUD/GameStart/Tot.text = str(int($CanvasLayerTop/Timer.time_left))
+
+func _on_Timer_timeout():
+	for item in playlist.get_children():
+		current_planets.append(item.planet)
+	emit_signal('done')

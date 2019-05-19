@@ -5,7 +5,7 @@
 
 A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs from their back.
 
-![image](https://img.itch.zone/aW1nLzE2MDQ3ODMucG5n/original/wy1zK%2F.png)
+![image](docs/img/logo_grid.png)
 
 [website](https://notapixelstudio.github.io/superstarfighter/)
 [itch.io](https://notapixel.itch.io/superstarfighter)
@@ -25,6 +25,8 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - https://freesound.org/people/GameAudio/packs/13940/
 - https://freesound.org/people/jalastram/packs/17801/
 
+## Soundtrack
+- Mattek - Paradoxal Activity
 
 # Images
 - dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)

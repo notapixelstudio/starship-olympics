@@ -114,7 +114,7 @@ func _ready():
 	$CollectManager.connect('coins_dropped', self, "_on_coins_dropped")
 	$ConquestManager.connect('conquered', $ConquestModeManager, "_on_sth_conquered")
 	$ConquestManager.connect('deconquered', $ConquestModeManager, "_on_sth_deconquered")
-
+		
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
 	$RaceModeManager.connect('score', scores, "add_score")
@@ -302,6 +302,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("body_entered", conquest_manager, "_on_ship_collided", [ship])
+	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	
 	return ship
 	

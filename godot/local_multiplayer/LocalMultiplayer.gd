@@ -5,7 +5,13 @@ onready var selection_screen = $SelectionScreen
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
-
+# temporary for all levels
+var all_levels = [
+	preload("res://map/planets/SoloCrown.tres"),
+	preload("res://map/planets/SoloSnatch.tres"),
+	preload("res://map/planets/SoloFlag.tres"),
+	preload("res://map/planets/SoloDeath.tres")
+	]
 onready var parallax = $ParallaxBackground
 
 var combat = null
@@ -88,12 +94,20 @@ func combat(selected_players: Array):
 	# logic to get the correct levels
 	levels = []
 	played_levels = []
-	var MAX_LEVELS: float = 8.0
-	var how_many_levels_from_each_planet = ceil(MAX_LEVELS / len(map.current_planets))
-	
+	var count = 0
 	for planet in map.current_planets:
-		for i in range(how_many_levels_from_each_planet):
+		var planet_info = {"planet": planet, "level":planet.fetch_level(num_players)}
+		# avoid duplicate
+		var last_planet = levels.back()
+		if not last_planet or planet != levels.back()["planet"]:
 			levels.append({"planet": planet, "level":planet.fetch_level(num_players)})
+			count += 1
+	print(str(count), " levels have been chosen")
+	if count <=0:
+		print("No levels has been chosen, let's fill it out")
+		for planet in all_levels:
+			levels.append({"planet": planet, "level":planet.fetch_level(num_players)})
+		levels.shuffle()
 	
 	#level_selection.queue_free()
 	map.queue_free()
@@ -105,11 +119,17 @@ func combat(selected_players: Array):
 	GameAnalytics.submit_events()
 
 func next_level():
+	""" Choose next level from the array of selected. If over, choose randomly"""
 	if len(played_levels) >= len(levels):
-		add_child(selection_screen)
-		return
-		
+		var num_players = len(players)
+		# we played all the levels, refill
+		for planet in all_levels:
+			levels.append({"planet": planet, "level":planet.fetch_level(num_players)})
+		levels.shuffle()
+	
 	current_level = levels[len(played_levels)]
+	print("next level will be ", current_level)
+	# skip if we just played it
 	played_levels.append(current_level)
 	
 	start_level(current_level)

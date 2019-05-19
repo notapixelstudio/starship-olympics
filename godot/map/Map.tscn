@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -7,21 +7,22 @@
 [ext_resource path="res://map/Way.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=7]
-[ext_resource path="res://map/planets/TheBloodMoon.tres" type="Resource" id=8]
-[ext_resource path="res://map/planets/Queensworld.tres" type="Resource" id=9]
-[ext_resource path="res://map/planets/UmidorII.tres" type="Resource" id=10]
-[ext_resource path="res://map/planets/Megacrown.tres" type="Resource" id=11]
-[ext_resource path="res://map/planets/Silicastle.tres" type="Resource" id=12]
-[ext_resource path="res://map/planets/Trixx.tres" type="Resource" id=13]
-[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=14]
-[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=15]
-[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=16]
-[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=18]
-[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=19]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=20]
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=21]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=22]
+[ext_resource path="res://map/planets/SoloDeath.tres" type="Resource" id=8]
+[ext_resource path="res://map/planets/TheBloodMoon.tres" type="Resource" id=9]
+[ext_resource path="res://map/planets/SoloCrown.tres" type="Resource" id=10]
+[ext_resource path="res://map/planets/UmidorII.tres" type="Resource" id=11]
+[ext_resource path="res://map/planets/Megacrown.tres" type="Resource" id=12]
+[ext_resource path="res://map/planets/SoloSnatch.tres" type="Resource" id=13]
+[ext_resource path="res://map/planets/SoloFlag.tres" type="Resource" id=14]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=15]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=16]
+[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=17]
+[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=19]
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=20]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=21]
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=22]
+[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=23]
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -35,6 +36,7 @@ cursor_scene = ExtResource( 4 )
 pause_mode = 2
 
 [node name="Ways" type="Node2D" parent="Content"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -109,6 +111,7 @@ position = Vector2( 300, -600 )
 position = Vector2( 300, 600 )
 
 [node name="Waypoints" type="Node2D" parent="Content"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -162,30 +165,31 @@ __meta__ = {
 
 [node name="TheHive" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 200, 200 )
+planet = ExtResource( 8 )
 
 [node name="TheBloodMoon" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 200, 600 )
-planet = ExtResource( 8 )
+planet = ExtResource( 9 )
 
 [node name="Queensworld" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 800, 200 )
-planet = ExtResource( 9 )
+planet = ExtResource( 10 )
 
 [node name="Umidor2" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 600, -600 )
-planet = ExtResource( 10 )
+planet = ExtResource( 11 )
 
 [node name="Umidor3" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 200, -600 )
-planet = ExtResource( 11 )
+planet = ExtResource( 12 )
 
 [node name="Silicastle" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 800, 800 )
-planet = ExtResource( 12 )
+planet = ExtResource( 13 )
 
 [node name="Trixx" parent="Content/Planets" instance=ExtResource( 7 )]
 position = Vector2( 1800, 200 )
-planet = ExtResource( 13 )
+planet = ExtResource( 14 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -193,13 +197,13 @@ planet = ExtResource( 13 )
 layer = -1
 
 [node name="Background" type="Sprite" parent="CanvasLayer"]
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera" parent="." instance=ExtResource( 15 )]
+[node name="Camera" parent="." instance=ExtResource( 16 )]
 marginX = -320
 marginY = 0.0
 zoom_offset = 1.574
@@ -222,7 +226,7 @@ margin_left = -159.5
 margin_top = 6.0
 margin_right = 159.5
 margin_bottom = 35.0
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 17 )
 text = "Choose up to X planets"
 align = 1
 valign = 1
@@ -252,45 +256,67 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayerTop/HUD/Legend"]
 margin_right = 319.0
 margin_bottom = 29.0
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 17 )
 text = "Legend"
 align = 1
 valign = 1
 
-[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
+[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 18 )]
 margin_top = 33.0
 margin_bottom = 62.0
-mode = ExtResource( 18 )
-
-[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
-margin_top = 66.0
-margin_bottom = 95.0
 mode = ExtResource( 19 )
 
-[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
-margin_top = 99.0
-margin_bottom = 128.0
+[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 18 )]
+margin_top = 66.0
+margin_bottom = 95.0
 mode = ExtResource( 20 )
 
-[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
-margin_top = 132.0
-margin_bottom = 161.0
+[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 18 )]
+margin_top = 99.0
+margin_bottom = 128.0
 mode = ExtResource( 21 )
 
-[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 17 )]
-margin_top = 165.0
-margin_bottom = 194.0
+[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 18 )]
+margin_top = 132.0
+margin_bottom = 161.0
 mode = ExtResource( 22 )
 
-[node name="Button" type="Button" parent="CanvasLayerTop/HUD"]
-visible = false
+[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 18 )]
+margin_top = 165.0
+margin_bottom = 194.0
+mode = ExtResource( 23 )
+
+[node name="GameStart" type="HBoxContainer" parent="CanvasLayerTop/HUD"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -159.5
-margin_top = -52.0
-margin_right = 159.5
-rect_min_size = Vector2( 0, 52 )
-text = "Fight"
+margin_left = -146.0
+margin_top = -65.0
+margin_right = 146.0
 
+[node name="Intro" type="Label" parent="CanvasLayerTop/HUD/GameStart"]
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 41.0
+text = "Match will start in "
+
+[node name="Tot" type="Label" parent="CanvasLayerTop/HUD/GameStart"]
+margin_left = 204.0
+margin_top = 24.0
+margin_right = 204.0
+margin_bottom = 41.0
+
+[node name="Seconds" type="Label" parent="CanvasLayerTop/HUD/GameStart"]
+margin_left = 208.0
+margin_top = 24.0
+margin_right = 292.0
+margin_bottom = 41.0
+text = "Seconds"
+
+[node name="Timer" type="Timer" parent="CanvasLayerTop"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="CanvasLayerTop/Timer" to="." method="_on_Timer_timeout"]
