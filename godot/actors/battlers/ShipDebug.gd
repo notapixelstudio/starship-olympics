@@ -38,7 +38,7 @@ func _draw():
 
 
 func draw_vector(vector, offset, _color):
-	if vector == Vector2():
+	if vector == Vector2() or not vector:
 		return
 	draw_line(offset * MUL, vector * MUL, _color, WIDTH)
 	var dir = vector.normalized()

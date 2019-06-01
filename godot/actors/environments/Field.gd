@@ -43,7 +43,7 @@ func refresh():
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
-	($Entity/Valuable as Component).set_enabled(type == TYPE.hill)
+	($Entity/Valuable as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
 	($Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Entity/Basket as Component).set_enabled(type == TYPE.basket)
 	
@@ -121,14 +121,15 @@ func refresh():
 		remove_from_group('in_camera')
 		
 func _process(delta):
-	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled and ($Entity/Conquerable as Conquerable).get_species() != null:
-		$Polygon2D.color = Color(1,1,1,0.3)
-		$Line2D.default_color = Color(1,1,1,0.6)
-		modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
-	else:
-		$Polygon2D.color = Color(0.3,0.3,0.3,0.3)
-		$Line2D.default_color = Color(0.6,0.6,0.6,0.6)
-		modulate = Color(1,1,1,1)
+	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled:
+		if ($Entity/Conquerable as Conquerable).get_species() != null:
+			$Polygon2D.color = Color(1,1,1,0.3)
+			$Line2D.default_color = Color(1,1,1,0.6)
+			modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
+		else:
+			$Polygon2D.color = Color(0.3,0.3,0.3,0.3)
+			$Line2D.default_color = Color(0.6,0.6,0.6,0.6)
+			modulate = Color(1,1,1,1)
 
 			
 func get_gshape():

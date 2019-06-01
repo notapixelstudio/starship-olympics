@@ -17,6 +17,7 @@ var collectables : int  =0
 var score : float = 0.0
 var session_score : int = 0
 var species_template : SpeciesTemplate
+var team: String = ""
 
 func update_death():
 	deaths += 1
@@ -50,5 +51,6 @@ func to_dict():
 		"selfkills": selfkills,
 		"collectables" : collectables,
 		"score" : score,
-		"species_template" : species_template
+		"species_template" : species_template,
+		"cpu": cpu
 		}

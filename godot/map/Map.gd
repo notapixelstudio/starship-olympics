@@ -96,7 +96,7 @@ func _on_cursor_select(cursor):
 		return
 		
 	# if we want to give just ONE choice we would disable
-	# cursor.disable()
+	cursor.disable()
 	
 	var item = playlist_item.instance()
 	item.species = cursor.species 

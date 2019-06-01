@@ -7,7 +7,7 @@ export var player_stats_scene : PackedScene
 onready var animator = $AnimationPlayer
 onready var container = $Chart
 
-func initialize(scores, max_points = 3):
+func initialize(scores, winner: String, max_points = 3):
 	# sorted before and sorted after
 	var i = 0
 	for player in scores:
@@ -15,7 +15,7 @@ func initialize(scores, max_points = 3):
 		player_stats.max_points = max_points
 		player_stats.position = pad*i
 		container.add_child(player_stats)
-		if i == 0:
+		if (player as InfoPlayer).species == winner:
 			player_stats.just_won = true
 		player_stats.player_info = player
 		print(player.species," ", player.session_score, ", ", pad* i, ", ", player_stats.position)

@@ -11,6 +11,7 @@ export (PackedScene) var gameover_scene
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
+export var planet_name : String
 
 var mockup: bool = false
 var mouse_target  = Vector2(1600, 970)
@@ -34,7 +35,7 @@ signal rematch
 signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
-var planet_name : String
+
 
 var scores : Scores
 
@@ -128,6 +129,7 @@ func _ready():
 		if len(array_players) >= i+1:
 			s.controls = array_players[i].controls
 			s.species_template = array_players[i].species_template
+			s.cpu = array_players[i].cpu
 		else:
 			array_players.append(from_spawner_to_infoplayer(s))
 		i += 1

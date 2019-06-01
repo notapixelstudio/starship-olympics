@@ -16,6 +16,16 @@ func die(killer : Ship):
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.3)
 	.die(killer)
+
+
+func keyboard_handling():
+	var target = Vector2()
+	# this works for absolute controls in keyboard
+	if absolute_controls:
+		target.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
+		target.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
+		
+	return target
 	
 func joypad_handling():
 	
@@ -39,15 +49,16 @@ func joypad_handling():
 			
 func control(delta):
 	var target_vel = Vector2()
+	var front = Vector2(cos(rotation), sin(rotation))
 	if "joy" in controls:
 		target_vel = joypad_handling()
-			
+	else:
+		target_vel = keyboard_handling()
 	if not target_vel == Vector2():
 		absolute_controls = true
 		# this works for absolute controls in keyboard
 		# target_vel.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
 		# target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
-		var front = Vector2(cos(rotation), sin(rotation))
 		
 		if target_vel == Vector2():
 			# this in order to keep the velocity constant

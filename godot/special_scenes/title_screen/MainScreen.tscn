@@ -32,7 +32,6 @@ mouse_filter = 1
 
 [node name="GameTitle" parent="." instance=ExtResource( 7 )]
 visible = false
-
 [connection signal="entered" from="TitleScreen" to="." method="_on_TitleScreen_entered"]
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]

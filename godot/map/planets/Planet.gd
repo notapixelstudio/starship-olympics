@@ -32,8 +32,10 @@ func fetch_level(num_players : int) -> PackedScene:
 	var levels = get("levels_" + str(num_players) + "players")
 	var played_levels = get("played_levels_" + str(num_players) + "players")
 	
-	var current_level = levels[len(played_levels)]
+	var current_level = levels[len(played_levels)].instance()
 	played_levels.append(current_level)
+	current_level.game_mode = game_mode
+	current_level.planet_name = name
 	
 	if len(played_levels) >= len(levels):
 		set("played_levels_" + str(num_players) + "players", [])

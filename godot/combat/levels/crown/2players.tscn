@@ -2,7 +2,7 @@
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=3]
+[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
@@ -13,6 +13,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/species/species1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/species/species4.tres" type="Resource" id=13]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pulse"
@@ -45,7 +46,6 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 5 )
@@ -63,7 +63,6 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 5 )
@@ -81,7 +80,6 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost3" index="3"]
 script = ExtResource( 5 )
@@ -96,8 +94,6 @@ bevel = 800
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )

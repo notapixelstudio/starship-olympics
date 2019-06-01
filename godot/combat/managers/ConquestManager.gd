@@ -20,7 +20,7 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 			emit_signal('conquered', species, entity.get_host())
 			
 			# AI
-			if entity.get('Conquerable').get_species().species == "drones":
+			if ship.cpu:
 				entity.get('Valuable').disable()
 			else:
 				entity.get('Valuable').enable()
