@@ -5,22 +5,11 @@ class_name Bomb
 
 const Explosion = preload('res://actors/weapons/Explosion.tscn')
 
-var timeout = 0
-
-const LIFETIME = 1.5
-
 var entity : Entity
+onready var life_time = $LifeTime
 onready var trail = $Trail2D
-var explosion
+onready var explosion = Explosion.instance()
 
-func _ready():
-	# bombs life
-	timeout = LIFETIME
-	explosion = Explosion.instance() # there will be just one explosion per bomb
-	
-	# sound
-	get_node("sound").play()
-	
 func initialize(pos : Vector2, impulse, ship):
 	entity = ECM.E(self)
 	
@@ -38,18 +27,11 @@ func initialize(pos : Vector2, impulse, ship):
 func _physics_process(delta):
 	var thrust : float = entity.get('Thrusters').get_speed()
 	
-	if entity.has('Pursuer') and not entity.get('Pursuer').get_target():
-		# destroy bomb after timeout
-		if timeout > 0:
-			timeout -= delta
-		elif not entity.has('StandAlone'):
-			get_parent().call_deferred("remove_child", self)
-			yield(get_tree().create_timer(1), "timeout")
-			call_deferred("queue_free")
-			
+	process_life_time()
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
-		
+
+
 func _integrate_forces(state):
 	# force the physics engine
 	var xform = state.get_transform()
@@ -61,7 +43,8 @@ func _integrate_forces(state):
 		entity.get('Teleportable').teleport_done()
 		
 	state.set_transform(xform)
-	
+
+
 signal detonate
 func detonate():
 	if entity.has('Owned'):
@@ -75,12 +58,28 @@ func detonate():
 	get_parent().call_deferred("remove_child", self)
 	yield(get_tree().create_timer(1), "timeout")
 	call_deferred("queue_free")
-	
+
+
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
-	
+
+
 signal near_area_exited
 func _on_NearArea_area_exited(area):
 	emit_signal("near_area_exited", area, self)
 	
+
+func _on_LifeTime_timeout():
+	if entity.has('Pursuer') and not entity.get('Pursuer').get_target():
+		if not entity.has('StandAlone'):
+			get_parent().call_deferred("remove_child", self)
+			yield(get_tree().create_timer(1), "timeout")
+			call_deferred("queue_free")
+
+
+func process_life_time():
+	if not entity.has('Pursuer') and entity.get('Pursuer').get_target():
+		life_time.paused = true
+	else:
+		life_time.paused = false

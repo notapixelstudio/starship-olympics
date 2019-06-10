@@ -36,6 +36,7 @@ script = ExtResource( 1 )
 
 [node name="Trail2D" type="Line2D" parent="."]
 modulate = Color( 1, 1, 1, 0.313726 )
+points = PoolVector2Array( -1, -2 )
 width = 15.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 2699552
@@ -135,8 +136,13 @@ bus = "SFX"
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 14 )
 volume_db = 10.0
+autoplay = true
 bus = "SFX"
 area_mask = 8
 
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]
