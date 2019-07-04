@@ -8,6 +8,7 @@ onready var buttons = $Buttons
 onready var animation = $Animator
 
 func initialize():
+	TranslationServer.set_locale(OS.get_locale())
 	animation.stop(true)
 	animation.play("fade_in")
 	yield(animation, "animation_finished")
