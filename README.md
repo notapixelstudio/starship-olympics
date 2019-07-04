@@ -10,6 +10,12 @@ A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs f
 [website](https://notapixelstudio.github.io/superstarfighter/)
 [itch.io](https://notapixel.itch.io/superstarfighter)
 
+## Development
+
+**This project is being developed with Godot 3.1.1.** If you're running the project
+from this repository, you should use Godot 3.1.1; development builds of Godot
+won't work.
+
 ## Resources used and acknowledgements
 
 Fonts: [Londrina](https://www.dafont.com/it/londrina.font?l[]=10&l[]=1)
@@ -18,17 +24,20 @@ Scenes structure and theme: inspired by [PigDev](https://pigdev.itch.io/)
 Character structure: inspired by [GDquest](https://www.youtube.com/channelavalaible/UCxboW7x0jZqFdvMdCFKTMsQ)
 - https://www.1001fonts.com/science-fiction-fonts.html?page=13&items=10
 
-## Sounds
+### Sounds
+
 - https://freesound.org/people/aidave/downloaded_sounds/
 - https://v-play.net/game-resources/16-sites-featuring-free-game-sounds
 - https://freesound.org/people/uso_sketch/sounds/443865/
 - https://freesound.org/people/GameAudio/packs/13940/
 - https://freesound.org/people/jalastram/packs/17801/
 
-## Soundtrack
+### Soundtrack
+
 - Mattek - Paradoxal Activity
 
-# Images
+### Images
+
 - dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
 - keyboard icons: made by "Nicolae Berbece" (also known as Xelu) - founder of "Those Awesome Guys" - nick@thoseawesomeguys.com
 - planets: [here](https://opengameart.org/content/big-space-gun-free-pixel-art-graphics-for-your-game-0)
