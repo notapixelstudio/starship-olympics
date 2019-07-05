@@ -3,7 +3,13 @@
 [![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://GitHub.com/Naereen/StrapDown.js/tags/)
 [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/)
 
-A fast arena game for 2 to 4 players, in which ships can't stop and fire bombs from their back.
+- 1 to 4 players fast-paced arcade combat party game
+- Intuitive and expressive single-button controls: everyone can pick up a controller and play!
+- 20+ games in one (eventually! :D)
+- Solo, versus, co-op modes
+- Free and open source, made with love and FOSS software
+
+Help us shaping this game by joining our Discord: https://discord.gg/3k4NzEj
 
 ![image](docs/img/logo_grid.png)
 
