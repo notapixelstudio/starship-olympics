@@ -11,7 +11,7 @@
 
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
 
-<img src="docs/img/logo_grid.png" alt="Superstarfighter Logo"width="200">
+<img src="docs/img/logo_grid.png" alt="Superstarfighter Logo" width="200">
 
 ## Development
 
