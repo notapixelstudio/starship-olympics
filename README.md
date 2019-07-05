@@ -9,12 +9,9 @@
 - Solo, versus, co-op modes
 - Free and open source, made with love and FOSS software
 
-Help us shaping this game by joining our Discord: https://discord.gg/3k4NzEj
+Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
 
-![image](docs/img/logo_grid.png)
-
-[website](https://notapixelstudio.github.io/superstarfighter/)
-[itch.io](https://notapixel.itch.io/superstarfighter)
+![image](docs/img/logo_grid.png | width=200)
 
 ## Development
 
