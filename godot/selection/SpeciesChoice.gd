@@ -43,7 +43,8 @@ func change_species(new_species:SpeciesTemplate):
 	species = new_species
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
-	tagline1.text = species.tagline1
+	#forcing multiple line
+	tagline1.text = tr(species.tagline1.replace(" ", "\n"))
 	tagline2.text = species.tagline2
 	character.texture = species.character_ok
 	select_rect.modulate = species.color
