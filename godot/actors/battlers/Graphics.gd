@@ -1,47 +1,31 @@
 extends Position2D
+tool
 
+export var ship_texture : Texture setget change_texture
 const TWEEN_DURATION = 0.3
-
-onready var tween = $Tween
-onready var anim = $AnimationPlayer
-
-var battler_anim
 
 var position_start = Vector2()
 
 signal stop_invincible
-func initialize():
-	for child in get_children():
-		if child.is_in_group("anim_species"):
-			battler_anim = child
-func move_forward():
-	var direction = Vector2(-1.0, 0.0) if owner.party_member else Vector2(1.0, 0.0)
-	tween.interpolate_property(
-		self,
-		'position',
-		position_start,
-		position_start + 0.1 * direction,
-		TWEEN_DURATION,
-		Tween.TRANS_QUAD,
-		Tween.EASE_OUT)
-	tween.start()
-	yield(tween, "tween_completed")
+signal completed
 
-func return_to_start():
-	tween.interpolate_property(
-		self,
-		'position',
-		position,
-		position_start,
-		TWEEN_DURATION,
-		Tween.TRANS_QUAD,
-		Tween.EASE_OUT)
-	tween.start()
-	yield(tween, "tween_completed")
+onready var tween = $Tween
+onready var anim = $AnimationPlayer
 
-func play_death():
-	yield(battler_anim.play_disappear(), "completed")
+func change_texture(new_value):
+	ship_texture = new_value
+	if $Sprite:
+		$Sprite.texture = ship_texture
+		
+func play_disappear():
+	anim.play("disappear")
+	yield(anim, "animation_finished")
+
+func play_idle():
+	anim.play("idle")
+	yield(anim, "animation_finished")
 
 func invincible():
-	yield(battler_anim.play_invincible(), "completed")
+	anim.play("invincible")
+	yield(anim, "animation_finished")
 	emit_signal("stop_invincible")

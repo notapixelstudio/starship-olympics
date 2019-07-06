@@ -19,22 +19,26 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_dir = 0
 
+var THRUST = 2000
+
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
 const MAX_OVERCHARGE = 1.3
-const CHARGE_BASE = 90
-const CHARGE_MULTIPLIER = 4200
+const CHARGE_BASE = 200
+const ANTI_RECOIL_OFFSET = 260
+const CHARGE_MULTIPLIER = 4500
 const BOMB_OFFSET = 40
+const BOMB_BOOST = 200
 
 const THRESHOLD_DIR = 0.3
-
+var info_player
 var count = 0
 var alive = true
 var stunned = false
 var stun_countdown = 0
 
-var species
+var species: String
 var screen_size = Vector2()
 var width = 0
 var height = 0
@@ -80,8 +84,7 @@ func _enter_tree():
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
-	skin.add_child(species_template.ship_anim.instance())
-	skin.initialize()
+	skin.ship_texture = (species_template as SpeciesTemplate).ship
 	skin.invincible()
 	entity = ECM.E(self)
 	species = species_template.species_name
@@ -93,18 +96,18 @@ static func magnitude(a:Vector2):
 	
 var last_velocity = Vector2()
 func _integrate_forces(state):
-	var thrust = entity.get('Thrusters').get_speed()
+	entity.get('Thrusters').apply_damp(self)
 	
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(thrust, steer_force*int(thrust != 0)).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
-		#apply_impulse(Vector2(),target_velocity*thrust)	
-		add_central_force(target_velocity*thrust*int(not charging and not stunned))
+		#apply_impulse(Vector2(),target_velocity*THRUST)	
+		add_central_force(target_velocity*THRUST*int(not charging and not stunned))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -157,14 +160,14 @@ func fire():
 	"""
 	Fire a bomb
 	"""
-	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER*min(charge, MAX_CHARGE)
+	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
 	
-	# -350 is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0,charge_impulse-350),0).rotated(rotation)) # recoil
+	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
+	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
 	arena.spawn_bomb(
 	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-	  Vector2(-charge_impulse,0).rotated(rotation),
+	  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
 	  self
 	)
 	

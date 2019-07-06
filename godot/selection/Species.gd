@@ -36,6 +36,7 @@ export (Resource) var species_template # : SpeciesTemplate
 
 # this will be the String of controls
 var controls : String
+var is_team : bool = false
 
 func set_controls(new_controls:String):
 	"""
@@ -48,7 +49,7 @@ func set_controls(new_controls:String):
 		disable_choice()
 	
 	speciesSelection.controls = controls
-	speciesSelection.initialize(name)
+	speciesSelection.initialize("P"+str(uid))
 	
 	
 func _ready():
@@ -57,7 +58,7 @@ func _ready():
 	set_controls(controls)
 	change_species(species_template)
 	id = name.to_lower()
-	speciesSelection.initialize(name)
+	speciesSelection.initialize("P"+str(uid))
 
 func change_species(new_species: SpeciesTemplate):
 	# get the resource from the global
@@ -81,7 +82,21 @@ func _input(event):
 		if event.is_action_pressed(controls+"_accept") and not selected:
 			select_character()
 
+func set_team(team_name: String):
+	var condition = not disabled
+	if not disabled:
+		speciesSelection.set_team(team_name)
+		if selected:
+			is_team = true
+	return condition
 
+func unset_team():
+	var condition = not disabled
+	if not disabled:
+		speciesSelection.unset_team()
+		is_team = false
+	return condition
+	
 func leave():
 	joined = false
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
@@ -96,6 +111,7 @@ func select_character():
 
 func deselect(silent : bool = false):
 	speciesSelection.deselect()
+	unset_team()
 	if not silent:
 		sfx.get_node("deselected").play()
 	enable_choice()

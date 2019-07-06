@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/DiamondSpawner.gd" type="Script" id=1]
+[ext_resource path="res://combat/collectables/Coin.tscn" type="PackedScene" id=2]
+
+[node name="DiamondSpawner" type="Position2D"]
+script = ExtResource( 1 )
+diamond_scene = ExtResource( 2 )
+

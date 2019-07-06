@@ -2,7 +2,7 @@ extends Position2D
 
 onready var anim = $AnimationPlayer
 signal completed
-	
+
 func play_disappear():
 	anim.play("disappear")
 	yield(anim, "animation_finished")

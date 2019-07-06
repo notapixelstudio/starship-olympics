@@ -11,7 +11,7 @@ signal entered_battlefield
 
 var id : String
 var uid : int
-var info_player : InfoPlayer
+onready var info_player : InfoPlayer
 onready var sprite = $Sprite
 onready var animation = $AnimationPlayer
 
@@ -19,6 +19,10 @@ func _ready():
 	visible = false
 	
 func appears():
+	var device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+	if "joy" in controls:
+		# Vibrate if joypad
+		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)
 	var s  = species_template as SpeciesTemplate 
 	sprite.texture = s.ship
 	visible = true

@@ -7,6 +7,8 @@ signal start_multiplayer
 onready var buttons = $Buttons
 onready var animation = $Animator
 
+var can_press = false
+
 func initialize():
 	animation.stop(true)
 	animation.play("fade_in")
@@ -15,6 +17,7 @@ func initialize():
 		button.disabled = false
 	buttons.get_child(0).grab_focus()
 	emit_signal("entered")
+	can_press = true
 	
 func _ready():
 	# disable all buttons at first
@@ -28,6 +31,12 @@ func _on_Options_pressed():
 	yield(animation, "animation_finished")
 	emit_signal("option_selected")
 
+func _input(event):
+	if can_press:
+		if event is InputEventKey or event is InputEventJoypadButton: 
+			emit_signal("start_multiplayer")
+	
+	
 func _on_StartHuman_pressed():
 	emit_signal("start_multiplayer")
 

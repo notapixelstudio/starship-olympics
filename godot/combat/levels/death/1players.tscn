@@ -10,8 +10,10 @@
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=8]
 [ext_resource path="res://addons/geometry/icons/GConvexPolygon.svg" type="Texture" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/species/drones.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
+[ext_resource path="res://selection/characters/drones.tres" type="Resource" id=12]
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pulse"
@@ -66,6 +68,7 @@ bevel = 100
 hollow = true
 offset = 200
 elongation = 100
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )

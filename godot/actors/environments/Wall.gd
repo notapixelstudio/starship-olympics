@@ -11,7 +11,11 @@ export (int) var elongation setget set_elongation
 enum TYPE { solid, hostile, ghost, decoration }
 export(TYPE) var type = TYPE.solid setget set_type
 
-export var hide_line : bool = false
+export var hide_line : bool = false setget set_hide_line
+export var hide_grid : bool = false setget set_hide_grid
+
+export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
+export var grid_rotation : float = 0 setget set_grid_rotation
 
 onready var extents = $RectExtents
 var cshapes = []
@@ -30,6 +34,22 @@ func set_elongation(value):
 	
 func set_type(value):
 	type = value
+	refresh()
+	
+func set_hide_line(value):
+	hide_line = value
+	refresh()
+	
+func set_hide_grid(value):
+	hide_grid = value
+	refresh()
+	
+func set_grid_color(value):
+	grid_color = value
+	refresh()
+	
+func set_grid_rotation(value):
+	grid_rotation = value
 	refresh()
 	
 func _ready():
@@ -92,10 +112,10 @@ func refresh():
 	$Grid.set_polygon(points)
 	
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
-	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration
+	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
 	$line.visible = not hide_line
 	
-	$Grid.set_texture_rotation(rotation)
+	$Grid.set_texture_rotation(rotation + deg2rad(grid_rotation))
 	
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)
@@ -115,10 +135,17 @@ func refresh():
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		$line.modulate = Color(0.2,0.7,1,0.5)
+		$line.modulate = Color(0.2,0.7,1,0.8)
 	elif type == TYPE.decoration:
 		$line.modulate = Color(1,1,1,1)
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
+	# grid color
+	$Grid.modulate = grid_color
+	
+func animate(animation_name: String):
+	if $AnimationPlayer:
+		if $AnimationPlayer.assigned_animation != animation_name:
+			$AnimationPlayer.play(animation_name)

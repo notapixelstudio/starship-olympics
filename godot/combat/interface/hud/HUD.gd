@@ -10,9 +10,9 @@ onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
 
 func set_planet(planet: String, mode: GameMode):
-	if planet:
-		$Content/ModePanel/PlanetName.text = planet
-		$Content/ModePanel/ModeIcon.texture = (mode as GameMode).icon
+	$Content/ModePanel/PlanetName.text = planet
+	$Content/ModePanel/ModeIcon.texture = (mode as GameMode).logo
+	$Content/ModePanel/ModeIcon.visible = true
 
 	
 func initialize(_game_mode):
@@ -25,7 +25,7 @@ func initialize(_game_mode):
 		var bar = Bar.instance()
 		bar.position += Vector2(0, 25)*i
 		Bars.add_child(bar)
-		bar.initialize(player.species_template, game_mode.TARGET_SCORE)
+		bar.initialize(player.species_template, game_mode.target_score)
 		bar.player = player
 		i+=1
 		
@@ -36,7 +36,7 @@ func initialize(_game_mode):
 
 func _process(_delta):
 	# update time left
-	TimeLeft.text = str(int(floor(game_mode.time_left)))
+	TimeLeft.text = str(int(ceil(game_mode.time_left)))
 
 	# update scores
 	var bars = Bars.get_children()

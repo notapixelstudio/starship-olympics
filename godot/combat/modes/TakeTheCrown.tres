@@ -1,16 +1,18 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://assets/modes/crown.png" type="Texture" id=1]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
-[ext_resource path="res://assets/video/takethecrown.ogv" type="VideoStream" id=3]
+[ext_resource path="res://assets/icon/crown_logo.png" type="Texture" id=2]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
 
 [resource]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 is_mutator = false
 name = "Take the crown"
 icon = ExtResource( 1 )
-description = "Wear the crown for as long as you can!"
+logo = ExtResource( 2 )
+description = "wear the crown as long as you can"
 tagline_pro = "If killing is not enough, steal it by bumping in the queen"
 tagline_cons = "getting killed will make you lose the crown, if you have it"
 max_timeout = 120
-video_example = ExtResource( 3 )
+max_score = 40
+cumulative = false

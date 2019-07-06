@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://selection/SelectionScreen.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=2]
-[ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=3]
-[ext_resource path="res://interface/joypad/PS4_Cross.png" type="Texture" id=4]
+[ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=3]
+[ext_resource path="res://selection/Fight.gd" type="Script" id=4]
+[ext_resource path="res://interface/joypad/PS4_Cross.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -51,20 +52,6 @@ patch_margin_top = 2
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="Label" type="Label" parent="Info"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -114.5
-margin_top = -15.5
-margin_right = 142.5
-margin_bottom = 15.5
-custom_fonts/font = ExtResource( 2 )
-text = "SELECT 1 TO 4 PLAYERS"
-align = 1
-valign = 1
-
 [node name="Container" type="HBoxContainer" parent="."]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -73,7 +60,7 @@ margin_top = -305.0
 margin_bottom = 230.0
 alignment = 1
 
-[node name="player1" parent="Container" instance=ExtResource( 3 )]
+[node name="player1" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_left = 234.0
@@ -82,7 +69,7 @@ margin_right = 434.0
 margin_bottom = 535.0
 rect_min_size = Vector2( 200, 400 )
 
-[node name="player2" parent="Container" instance=ExtResource( 3 )]
+[node name="player2" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_left = 438.0
@@ -90,7 +77,7 @@ margin_top = 0.0
 margin_right = 638.0
 margin_bottom = 535.0
 
-[node name="player3" parent="Container" instance=ExtResource( 3 )]
+[node name="player3" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_left = 642.0
@@ -98,7 +85,7 @@ margin_top = 0.0
 margin_right = 842.0
 margin_bottom = 535.0
 
-[node name="player4" parent="Container" instance=ExtResource( 3 )]
+[node name="player4" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_left = 846.0
@@ -106,64 +93,115 @@ margin_top = 0.0
 margin_right = 1046.0
 margin_bottom = 535.0
 
-[node name="Fight" type="NinePatchRect" parent="."]
-margin_left = 381.0
-margin_top = 650.0
-margin_right = 822.0
-margin_bottom = 700.0
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+[node name="Tween" type="Tween" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Fight"]
-position = Vector2( 215, 24 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
+[node name="TopHUD" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 18.0
+margin_bottom = 44.0
+custom_constants/separation = 13
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Fight/Sprite"]
-anims/idle = SubResource( 1 )
-anims/wiggle = SubResource( 2 )
+[node name="Control" type="Control" parent="TopHUD"]
+editor/display_folded = true
+margin_right = 500.0
+margin_bottom = 26.0
+rect_clip_content = true
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Fight"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 31.5
-margin_top = -15.0
-margin_right = 101.5
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 2 )
-text = "FIGHT!"
-align = 1
-valign = 1
-
-[node name="TopRightLine" type="Line2D" parent="."]
-position = Vector2( 0, -634 )
-points = PoolVector2Array( 800, 676, 1280, 676 )
-width = 4.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 91
-
-[node name="TopLeftLine" type="Line2D" parent="."]
-position = Vector2( 0, -634 )
+[node name="TopLeftLine" type="Line2D" parent="TopHUD/Control"]
+position = Vector2( 0, -664 )
 points = PoolVector2Array( 0, 676, 480, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
-[node name="BottomLeftLine" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 676, 540, 676 )
-width = 4.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 91
+[node name="Label" type="Label" parent="TopHUD"]
+margin_left = 513.0
+margin_right = 766.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "SELECT 1 TO 4 PLAYERS"
+align = 1
+valign = 1
 
-[node name="BottomRightLine" type="Line2D" parent="."]
+[node name="Control2" type="Control" parent="TopHUD"]
+margin_left = 779.0
+margin_right = 1280.0
+margin_bottom = 26.0
+rect_clip_content = true
+size_flags_horizontal = 3
+
+[node name="BottomRightLine2" type="Line2D" parent="TopHUD/Control2"]
+position = Vector2( -770, -660 )
 points = PoolVector2Array( 740, 676, 1280, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
-[node name="Tween" type="Tween" parent="."]
+[node name="BottomHUD" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -46.0
+margin_bottom = -20.0
+custom_constants/separation = 25
 
+[node name="Control" type="Control" parent="BottomHUD"]
+margin_right = 569.0
+margin_bottom = 26.0
+rect_clip_content = true
+size_flags_horizontal = 3
+
+[node name="TopLeftLine" type="Line2D" parent="BottomHUD/Control"]
+position = Vector2( 1.00986, -664 )
+scale = Vector2( 1.25247, 1 )
+points = PoolVector2Array( 0, 676, 480, 676 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 91
+
+[node name="Fight" type="HBoxContainer" parent="BottomHUD"]
+margin_left = 594.0
+margin_right = 685.0
+margin_bottom = 26.0
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="BottomHUD/Fight"]
+margin_right = 30.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Sprite" type="Sprite" parent="BottomHUD/Fight"]
+position = Vector2( 9.5, 8.5 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomHUD/Fight/Sprite"]
+anims/idle = SubResource( 1 )
+anims/wiggle = SubResource( 2 )
+
+[node name="Label" type="Label" parent="BottomHUD/Fight"]
+margin_left = 34.0
+margin_right = 91.0
+margin_bottom = 26.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "play"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Control2" type="Control" parent="BottomHUD"]
+margin_left = 710.0
+margin_right = 1280.0
+margin_bottom = 26.0
+rect_clip_content = true
+size_flags_horizontal = 3
+
+[node name="BottomRightLine2" type="Line2D" parent="BottomHUD/Control2"]
+position = Vector2( -1073.52, -664 )
+scale = Vector2( 1.4124, 1 )
+points = PoolVector2Array( 740, 676, 1280, 676 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 91

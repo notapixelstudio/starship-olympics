@@ -58,21 +58,31 @@ const CONTROLSMAP_TO_KEY = {
 const MAX_PLAYERS = 4
 
 # Species handler
-const SPECIES_PATH = "res://selection/species"
+const SPECIES_PATH = "res://selection/characters"
 var ALL_SPECIES = {
-	SPECIES0 = "species0",
-	SPECIES1 = "species1",
-	SPECIES2 = "species2",
-	SPECIES3 = "species3",
-	SPECIES4 = "species4",
-	}
+	SPECIES0 = "mantiacs_1",
+	SPECIES1 = "robolords_1",
+	SPECIES2 = "trixens_1",
+	SPECIES3 = "toriels_1",
+	SPECIES4 = "takonauts_1",
+	SPECIES5 = "mantiacs_2",
+	SPECIES6 = "robolords_2",
+	SPECIES7 = "trixens_2",
+	SPECIES8 = "toriels_2",
+	SPECIES9 = "takonauts_2"
+}
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
 	ALL_SPECIES.SPECIES0: true,
 	ALL_SPECIES.SPECIES1: true,
 	ALL_SPECIES.SPECIES2: true,
 	ALL_SPECIES.SPECIES3 : true,
-	ALL_SPECIES.SPECIES4 : true
+	ALL_SPECIES.SPECIES4 : true,
+	ALL_SPECIES.SPECIES5: true,
+	ALL_SPECIES.SPECIES6: false,
+	ALL_SPECIES.SPECIES7: true,
+	ALL_SPECIES.SPECIES8 : false,
+	ALL_SPECIES.SPECIES9 : false
 }
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
@@ -131,7 +141,7 @@ func get_unlocked() -> Dictionary:
 
 func get_species_templates() -> Dictionary:
 	var species_templates = {}
-	var resources = dir_contents(SPECIES_PATH, "species", ".tres")
+	var resources = dir_contents(SPECIES_PATH, "", ".tres")
 	var i = 0
 	for species in ALL_SPECIES:
 		if i > len(resources) -1:

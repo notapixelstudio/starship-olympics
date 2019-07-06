@@ -14,7 +14,7 @@ onready var tagline1 = $SpeciesName/Tagline1
 onready var tagline2 = $SpeciesName/Tagline2
 onready var character = $Character/Character
 onready var controls_sprite = $Controls 
-onready var player = $Player
+onready var player_infotext = $PlayerInfo/PlayerID
 onready var anim = $AnimationPlayer
 onready var label_anim = $SpeciesName/AnimationPlayer
 onready var select_rect = $SelectRect
@@ -24,12 +24,19 @@ const img_path : String = "res://assets/icon/"
 func _ready():
 	select_rect.visible = false
 	character.modulate = Color(0.8,0.8,0.8,1)
+
+func set_team(team_name: String):
+	$TeamMode.visible = true
+	$TeamMode/Label.text = ("TEAM\n" + team_name).to_upper()
+
+func unset_team():
+	$TeamMode.visible = false
 	
 func initialize(player_id:String):
 	"""
 	Factory for controls and species resource
 	"""
-	player.text = player_id
+	player_infotext.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
 	
 func change_species(new_species:SpeciesTemplate):
@@ -60,6 +67,7 @@ func deselect():
 func enable():
 	select_rect.visible = false
 	character.modulate = Color(0.8,0.8,0.8,1)
+	$PlayerInfo.visible = true
 	$LeftArrow.enable()
 	$RightArrow.enable()
 	anim.play("standby")
@@ -67,6 +75,7 @@ func enable():
 	set_process(true)
 	
 func disable():
+	$PlayerInfo.visible = false
 	$LeftArrow.disable()
 	$RightArrow.disable()
 	anim.stop()

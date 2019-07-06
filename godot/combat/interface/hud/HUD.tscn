@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://combat/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/HUD/bars_bottom.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://special_scenes/session_screen/Headshot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/kenvector_future_14.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/fonts/score_font.TTF" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/modes/deathmatch.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 44
@@ -20,7 +19,9 @@ font_data = ExtResource( 6 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 30
+size = 28
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [node name="HUD" type="Control"]
@@ -57,7 +58,6 @@ texture = ExtResource( 3 )
 stretch_mode = 3
 
 [node name="Content" type="Control" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 rect_min_size = Vector2( 0, 100 )
 
@@ -71,6 +71,7 @@ margin_top = 10.0
 margin_right = 160.0
 margin_bottom = 160.0
 rect_scale = Vector2( 0.7, 0.7 )
+species = null
 
 [node name="Label" type="Label" parent="Content/LeaderPanel"]
 margin_left = 10.0
@@ -101,6 +102,7 @@ margin_right = 1280.0
 margin_bottom = 150.0
 
 [node name="PlanetName" type="Label" parent="Content/ModePanel"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -61.5
@@ -113,18 +115,9 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="ModeIcon" type="TextureRect" parent="Content/ModePanel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -15.0
-margin_top = -15.0
-margin_right = 15.0
-margin_bottom = 15.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 6
+[node name="ModeIcon" type="Sprite" parent="Content/ModePanel"]
+position = Vector2( 79.8569, 64.8733 )
+scale = Vector2( 0.15, 0.15 )
 
 [node name="TimeLeft" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
@@ -143,4 +136,3 @@ valign = 1
 uppercase = true
 
 [node name="Tween" type="Tween" parent="Content"]
-

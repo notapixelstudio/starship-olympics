@@ -36,7 +36,7 @@ func initialize(pos : Vector2, impulse, ship):
 		ECM.E($Core).get('Owned').disable()
 		
 func _physics_process(delta):
-	var thrust : float = entity.get('Thrusters').get_speed()
+	entity.get('Thrusters').apply_damp(self)
 	
 	if entity.has('Pursuer') and not entity.get('Pursuer').get_target():
 		# destroy bomb after timeout

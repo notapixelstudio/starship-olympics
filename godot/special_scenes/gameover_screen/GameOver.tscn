@@ -120,7 +120,7 @@ __meta__ = {
 margin_right = 222.0
 margin_bottom = 57.0
 size_flags_vertical = 3
-text = "Continue"
+text = "CONTINUE"
 
 [node name="Menu" type="Button" parent="VBoxContainer"]
 margin_top = 61.0
@@ -128,7 +128,7 @@ margin_right = 222.0
 margin_bottom = 118.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Back to menu"
+text = "BACK TO MENU"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 margin_top = 122.0
@@ -136,7 +136,7 @@ margin_right = 222.0
 margin_bottom = 179.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Quit"
+text = "QUIT"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 0.5
@@ -181,7 +181,6 @@ margin_left = -499.281
 margin_top = -265.103
 margin_right = 232.719
 margin_bottom = 169.897
-
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_Rematch_pressed"]
 [connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

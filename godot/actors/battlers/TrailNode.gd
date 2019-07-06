@@ -13,8 +13,7 @@ func initialize(_ship : Ship):
 	ship.connect('dead', self, '_on_sth_dead')
 
 func _ready():
-	var c = Color(ship.species_template.color)
-	c.a = 0.4
+	var c = Color(ship.species_template.color_2)
 	trail.modulate = c
 	
 func _process(delta):

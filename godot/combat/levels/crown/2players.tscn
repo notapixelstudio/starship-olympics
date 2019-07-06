@@ -11,9 +11,8 @@
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=9]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=12]
-[ext_resource path="res://selection/species/species4.tres" type="Resource" id=13]
-
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pulse"
@@ -46,6 +45,10 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 5 )
@@ -63,6 +66,10 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 5 )
@@ -80,6 +87,10 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost3" index="3"]
 script = ExtResource( 5 )
@@ -94,6 +105,11 @@ bevel = 800
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
+hide_grid = false
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )
@@ -146,10 +162,10 @@ position = Vector2( 600, 0 )
 rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 13 )
+cpu = true
 
 [node name="Camera" parent="." index="16"]
 smoothing_speed = 0.3
-
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

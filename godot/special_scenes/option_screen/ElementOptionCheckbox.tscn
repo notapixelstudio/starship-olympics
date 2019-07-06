@@ -19,5 +19,4 @@ text = "Checkbox ?"
 script = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="ElementCheckbox"]
-
 [connection signal="toggled" from="ElementCheckbox" to="." method="_on_ElementCheckbox_toggled"]

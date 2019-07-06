@@ -11,8 +11,8 @@
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=9]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://selection/species/species1.tres" type="Resource" id=12]
-[ext_resource path="res://selection/species/drones.tres" type="Resource" id=13]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/drones.tres" type="Resource" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pulse"
@@ -79,6 +79,7 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+grid_rotation = 10.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost3" index="3"]
 script = ExtResource( 5 )
@@ -93,6 +94,7 @@ bevel = 800
 hollow = true
 offset = 200
 elongation = 100
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )
@@ -139,7 +141,6 @@ sides = 4.0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
 position = Vector2( -600, 0 )
 rotation = 0.0
-controls = "joy1"
 species_template = ExtResource( 12 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]

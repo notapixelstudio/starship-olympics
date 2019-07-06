@@ -4,10 +4,11 @@
 [ext_resource path="res://actors/battlers/Trail.tscn" type="PackedScene" id=2]
 
 [node name="Trail" type="Position2D" groups=[
-"Background",
+"TrailLayer",
 ]]
 script = ExtResource( 1 )
 
 [node name="Trail" parent="." instance=ExtResource( 2 )]
-trail_length = 40
-
+width = 22.0
+trail_length = 30
+auto_z_index = false

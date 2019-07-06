@@ -1,41 +1,53 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=3]
-[ext_resource path="res://assets/modes/sharp-crown.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/Montserrat40.tres" type="DynamicFont" id=5]
-[ext_resource path="res://assets/fonts/LondrinaSolid-Regular.otf" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/video/takethecrown.ogv" type="VideoStream" id=7]
+[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=4]
+[ext_resource path="res://assets/sounds/UI_effects/thud.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 30
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 30
-font_data = ExtResource( 6 )
-
-[sub_resource type="Animation" id=4]
-length = 0.5
+[sub_resource type="Animation" id=1]
+resource_name = "describeme"
+length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Description:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("Description2/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "blink" ),
+"times": PoolRealArray( 0.8 )
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, -0.5 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( 2.5, 2.5 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:visible")
+tracks/1/path = NodePath("Description:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -44,155 +56,182 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Panel2:rect_position")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 0.153893 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 220 ), Vector2( 0, 150 ) ]
+"values": [ Vector2( 640, 313 ), Vector2( 1205, 60 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Panel2:modulate")
+tracks/1/path = NodePath("Sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.145098 ) ]
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:modulate")
+tracks/2/path = NodePath("Description:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.9 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "ready"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 640, 313 ), Vector2( 1205, 60 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Description:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Description2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=7]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
 [node name="DescriptionMode" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 gamemode = ExtResource( 3 )
 
-[node name="Panel" type="Panel" parent="."]
-modulate = Color( 1, 1, 1, 0.988235 )
-anchor_right = 1.0
-margin_bottom = 104.0
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1205, 60 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 4 )
 
-[node name="Container" type="HBoxContainer" parent="Panel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ready"
+anims/describeme = SubResource( 1 )
+anims/getin = SubResource( 2 )
+anims/getout = SubResource( 3 )
+anims/ready = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 15.0
+mix_target = 1
+bus = "SFX"
+
+[node name="Description" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -223.5
-margin_top = -60.0
-margin_right = 223.5
-margin_bottom = 60.0
+margin_left = -625.0
+margin_top = 190.0
+margin_right = 633.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 5 )
+text = "Bombazza"
+align = 1
+valign = 1
+uppercase = true
 
-[node name="Icon" type="TextureRect" parent="Panel/Container"]
-margin_right = 100.0
-margin_bottom = 120.0
-rect_min_size = Vector2( 100, 120 )
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-
-[node name="Title" type="Label" parent="Panel/Container"]
-margin_left = 104.0
-margin_top = 41.0
-margin_right = 344.0
-margin_bottom = 79.0
-custom_fonts/font = ExtResource( 5 )
-text = "King of The hill"
-
-[node name="Panel2" type="Panel" parent="."]
+[node name="Description2" type="Label" parent="."]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -140.0
-margin_bottom = 183.0
+margin_left = -618.436
+margin_top = 281.954
+margin_right = 639.564
+margin_bottom = 331.954
+custom_fonts/font = SubResource( 6 )
+text = "press FIRE to continue"
+align = 1
+valign = 1
+uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel2"]
-margin_left = 50.0
-margin_top = 43.0
-margin_right = 800.0
-margin_bottom = 267.0
-
-[node name="Description" type="Label" parent="Panel2/VBoxContainer"]
-margin_right = 750.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 400, 0 )
-custom_fonts/font = SubResource( 1 )
-text = "Description of the mode"
-autowrap = true
-
-[node name="Control" type="Control" parent="Panel2/VBoxContainer"]
-margin_top = 51.0
-margin_right = 750.0
-margin_bottom = 144.0
-size_flags_vertical = 3
-
-[node name="Pro" type="Label" parent="Panel2/VBoxContainer"]
-margin_top = 148.0
-margin_right = 750.0
-margin_bottom = 184.0
-custom_fonts/font = SubResource( 2 )
-text = "A pro"
-autowrap = true
-
-[node name="Cons" type="Label" parent="Panel2/VBoxContainer"]
-margin_top = 188.0
-margin_right = 750.0
-margin_bottom = 224.0
-custom_fonts/font = SubResource( 3 )
-text = "A cons"
-autowrap = true
-
-[node name="VideoPlayer" type="VideoPlayer" parent="Panel2"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -434.0
-margin_top = -136.0
-margin_right = -4.0
-margin_bottom = 136.0
-rect_min_size = Vector2( 430, 270 )
-stream = ExtResource( 7 )
-autoplay = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/getin = SubResource( 4 )
-anims/getout = SubResource( 5 )
-
-[connection signal="finished" from="Panel2/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Description2"]
+anims/blink = SubResource( 7 )

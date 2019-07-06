@@ -6,7 +6,6 @@ func _on_ship_killed(ship : Ship, killer : Ship):
 		return
 		
 	if killer and killer.species != ship.species:
-		emit_signal('score', killer.species, 8)
-	else:
-		emit_signal('score', ship.species, -4)
+		emit_signal('score', killer.species, base_point)
+
 		

@@ -28,6 +28,7 @@ emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
+angular_velocity = 7.70714e-44
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 radial_accel = -200.0
@@ -161,6 +162,5 @@ process_material = SubResource( 4 )
 
 [node name="Flag" type="Sprite" parent="."]
 texture = ExtResource( 14 )
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

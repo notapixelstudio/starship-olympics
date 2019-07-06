@@ -79,7 +79,7 @@ func refresh():
 		$Polygon2D.color = species.color.darkened(10)
 		$Line2D.default_color = species.color
 	elif type == TYPE.ghost:
-		$Line2D.default_color = Color(0.2,0.7,1,0.3)
+		$Line2D.default_color = Color(0.2,0.7,1,0.2)
 		
 	# keep the symbols up
 	$CrownCollider/Sprite.rotation = -rotation
@@ -110,13 +110,15 @@ func refresh():
 	
 	# conquerable
 	($Entity/Conquerable as Component).set_enabled(type == TYPE.conquerable)
-	$Flag.set_visible(type == TYPE.conquerable)
+	$Flag.set_visible(false)
+	# $Flag.set_visible(type == TYPE.conquerable)
 	
 	# move flag symbol
 	$Flag.position.y = -flag_offset
 	
 	if type == TYPE.conquerable:
-		add_to_group('in_camera')
+		# add_to_group('in_camera')
+		pass
 	else:
 		remove_from_group('in_camera')
 		
@@ -127,8 +129,8 @@ func _process(delta):
 			$Line2D.default_color = Color(1,1,1,0.6)
 			modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
 		else:
-			$Polygon2D.color = Color(0.3,0.3,0.3,0.3)
-			$Line2D.default_color = Color(0.6,0.6,0.6,0.6)
+			$Polygon2D.color = Color(0.3,0.3,0.3,0.1)
+			$Line2D.default_color = Color(0.6,0.6,0.6,0.3)
 			modulate = Color(1,1,1,1)
 
 			

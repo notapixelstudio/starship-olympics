@@ -10,12 +10,13 @@ var all_planets = [
 	preload("res://map/planets/SoloCrown.tres"),
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
-	preload("res://map/planets/SoloDeath.tres")
+	preload("res://map/planets/SoloDeath.tres"),
+#	preload("res://map/planets/MinefieldDeathmatch.tres")
 	]
 	
 var all_species = [
-	preload('res://selection/species/species0.tres'),
-	preload('res://selection/species/species1.tres')
+	[preload('res://selection/characters/mantiacs_1.tres'), preload('res://selection/characters/mantiacs_2.tres')],
+	[preload('res://selection/characters/robolords_1.tres'), preload('res://selection/characters/robolords_2.tres')]
 ]
 onready var parallax = $ParallaxBackground
 
@@ -32,6 +33,9 @@ func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	info_player.species = selection_species.species_template.species_name
 	info_player.controls = selection_species.controls
 	info_player.species_template = selection_species.species_template
+	info_player.team = selection_species.is_team
+	print("Is that a teammate")
+	print(info_player.team)
 	return info_player
 	
 func _ready():
@@ -49,7 +53,7 @@ var current_level
 var levels : Array
 var played_levels : Array
 
-func combat(selected_players: Array):
+func combat(selected_players: Array, fight_mode : String):
 	"""
 	@param: selected_players : Array[Species] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
@@ -67,25 +71,38 @@ func combat(selected_players: Array):
 	for player in selected_players:
 		assert(player is Species)
 		var player_info : InfoPlayer = from_species_to_info_player(player)
+		player_info.id = player.id
 		players[player.id] = player_info
 		# Prepare GameAnalytics event to send
 		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:" + player.species_template.species_name, i))
 		i += 1
 
-	if num_players == 1:
+	if fight_mode == 'solo' or fight_mode == 'co-op':
 		var other_species
-		if selected_players[0].species_template.species_name != all_species[0].species_name:
+		if selected_players[0].species_template.species_name != all_species[0][0].species_name:
 			other_species = all_species[0]
 		else:
 			other_species = all_species[1]
 
 		var info_player = InfoPlayer.new()
 		info_player.id = 'cpu'
-		info_player.species = other_species.species_name
+		info_player.species = other_species[0].species_name
 		info_player.cpu = true
-		info_player.species_template = other_species
+		info_player.species_template = other_species[0]
+		
 		players['cpu'] = info_player
-	
+		
+		if fight_mode == 'co-op':
+			info_player.team = true
+			
+			var info_player2 = InfoPlayer.new()
+			info_player2.id = 'cpu'
+			info_player2.team = true
+			info_player2.species = other_species[1].species_name
+			info_player2.cpu = true
+			info_player2.species_template = other_species[1]
+			players['cpu2'] = info_player2
+			
 	# LEVEL SELECTION
 	#var level_selection = level_selection_scene.instance()
 	#level_selection.initialize(str(num_players), players)
@@ -111,6 +128,9 @@ func combat(selected_players: Array):
 		add_child(selection_screen)
 		return
 	"""
+
+	all_planets.shuffle() # shuffle the planets at start
+
 	# logic to get the correct levels
 	# TODO: depends if the cursor can select multiple planets
 	levels = []

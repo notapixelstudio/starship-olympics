@@ -51,11 +51,9 @@ texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="Grid" type="Polygon2D" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0.368627 )
 color = Color( 0.847656, 0.847656, 0.847656, 1 )
 texture = ExtResource( 6 )
-texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
@@ -73,4 +71,3 @@ script = ExtResource( 8 )
 size = Vector2( 40, 40 )
 color = Color( 1, 0.054902, 0.654902, 1 )
 offset = Vector2( 0, 0 )
-

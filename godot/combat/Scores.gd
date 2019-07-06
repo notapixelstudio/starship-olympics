@@ -3,22 +3,27 @@ extends Node
 
 class_name Scores
 
-const BASE_TIME_LEFT:float = 40.0
 var time_left:float
 
-const TARGET_SCORE:float = 40.0
+var target_score: float = 100
 
 var scores_index:Dictionary = {}
 var scores:Array
 
 var draw: bool = true
 var game_over:bool = false
+var cumulative_points = 0
 
 signal game_over
 
-func initialize(_players: Array, max_timeout: int = 120):
+func initialize(_players: Array, game_mode: GameMode, max_score: float = 0):
 	scores = []
 	scores_index = {}
+	target_score = game_mode.max_score
+	if max_score:
+		target_score = max_score
+	
+	cumulative_points = -1
 	
 	for player in _players:
 		player.start()
@@ -27,7 +32,9 @@ func initialize(_players: Array, max_timeout: int = 120):
 			scores_index[team] = player
 			scores.append(scores_index[team])
 		
-	time_left = min(BASE_TIME_LEFT + TARGET_SCORE*len(scores), max_timeout)
+	time_left = game_mode.max_timeout
+	if game_mode.cumulative:
+		cumulative_points=0
 	
 func sort_scores():
 	scores.sort_custom(self, 'score_cmp')
@@ -45,8 +52,8 @@ func update(delta:float):
 	
 	var leader = scores[0]
 	
-	
-	if leader["score"] >= TARGET_SCORE or time_left <= 0:
+	if leader["score"] >= target_score or time_left <= 0 or (cumulative_points>=target_score):
+		print(" CI SIAMOOOOOO: ", str(cumulative_points), " vs ", str(target_score))
 		var draw = true
 		var last_value = leader["score"]
 		for player in scores:
@@ -64,6 +71,10 @@ func update(delta:float):
 func add_score(team : String, amount : float):
 	assert team in scores_index
 	scores_index[team]["score"] = max(0, scores_index[team]["score"] + amount)
+	
+	if cumulative_points >= 0:
+		cumulative_points += amount
+	 
 
 func update_stats(team: String, amount: int, stat: String):
 	# TODO: make it work for team

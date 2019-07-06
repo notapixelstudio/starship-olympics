@@ -1,18 +1,16 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
-[ext_resource path="res://animations/Invincible.tres" type="Animation" id=2]
-
-[sub_resource type="Animation" id=1]
-resource_name = "appear"
-
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=2]
+[ext_resource path="res://animations/Appearing.tres" type="Animation" id=3]
+[ext_resource path="res://animations/Invincible.tres" type="Animation" id=4]
 
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )
+ship_texture = ExtResource( 2 )
 
 [node name="ChargeBar" type="Node2D" parent="."]
+editor/display_folded = true
 visible = false
 position = Vector2( -32, 0 )
 
@@ -29,9 +27,12 @@ default_color = Color( 1, 0.375, 0, 1 )
 texture_mode = 221806672
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Invincible = ExtResource( 2 )
-anims/appear = SubResource( 1 )
-anims/idle = SubResource( 2 )
+anims/appearing = ExtResource( 3 )
+anims/invincible = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 

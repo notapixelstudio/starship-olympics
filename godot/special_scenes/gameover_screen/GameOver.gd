@@ -45,7 +45,7 @@ func initialize(winner:String, scores:Dictionary, win_points: int = 3):
 	animator.play("transition")
 	yield(animator, "animation_finished")
 	array_scores.sort_custom(self, "sort_by_score")
-	session.initialize(array_scores, winner)
+	session.initialize(array_scores, winner, win_points)
 	
 	var info_winner = array_scores[0]
 	if info_winner.session_score >= win_points:

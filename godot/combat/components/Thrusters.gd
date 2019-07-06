@@ -1,21 +1,19 @@
 extends Component
 
-enum STATUS { full, reduced }
+export var default_damp : float = 2
+export var viscous_damp : float = 8
 
-export (STATUS) var status = STATUS.full
+var hindrance_count : int = 0
 
-export var full_speed : float = 50
-export var reduced_speed : float = 20
+func add_hindrance():
+	hindrance_count += 1
 
-func set_full_speed():
-	status = STATUS.full
-
-func set_reduced_speed():
-	status = STATUS.reduced
+func remove_hindrance():
+	hindrance_count -= 1
 	
-func get_speed():
-	if status == STATUS.full:
-		return full_speed
-	if status == STATUS.reduced:
-		return reduced_speed
+func apply_damp(sth : RigidBody2D):
+	if hindrance_count <= 0:
+		sth.linear_damp = default_damp
+	else:
+		sth.linear_damp = viscous_damp
 		

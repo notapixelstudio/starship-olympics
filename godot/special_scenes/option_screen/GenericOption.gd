@@ -41,7 +41,7 @@ func _ready():
 		label_description = description
 
 	description_node = get_node(description_node_path)
-	description_node.text = label_description
+	description_node.text = label_description.to_upper()
 	
 	if is_global:
 		node_owner = global

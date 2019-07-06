@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://selection/Species.gd" type="Script" id=1]
-[ext_resource path="res://selection/species/species3.tres" type="Resource" id=2]
+[ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=2]
 [ext_resource path="res://selection/SpeciesBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/audio/switch-selection.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/GUI_Select_02.wav" type="AudioStream" id=5]
@@ -38,4 +38,3 @@ bus = "SFX"
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 7 )
 bus = "SFX"
-

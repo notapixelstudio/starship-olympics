@@ -12,11 +12,13 @@ func _ready():
 		absolute_controls = false
 		
 func die(killer : Ship):
+	vibration_feedback()
+	.die(killer)
+
+func vibration_feedback():
 	if "joy" in controls:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.3)
-	.die(killer)
-
 
 func keyboard_handling():
 	var target = Vector2()
