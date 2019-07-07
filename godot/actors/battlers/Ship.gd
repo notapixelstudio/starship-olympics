@@ -207,6 +207,9 @@ func _on_NearArea_body_exited(body):
 func is_alive():
 	return alive
 
+func update_score(species_template, score, pos):
+	$PlayerInfo.update_score(score)
+	
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""
 	Given two points a, b will return the side check is on.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=2]
@@ -9,10 +9,12 @@
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=7]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=8]
 [ext_resource path="res://animations/wall_flash_solid-hostile.tres" type="Animation" id=9]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
-[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
-[ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=14]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=15]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -35,7 +37,11 @@ centered = false
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
+hide_grid = false
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
+grid_rotation = 0.0
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
@@ -50,6 +56,14 @@ precision = 50.0
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="5"]
 script = ExtResource( 7 )
@@ -65,11 +79,16 @@ anims/wall_flash = ExtResource( 9 )
 [node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 position = Vector2( -900, 0 )
 rotation = 0.785398
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall3" index="0"]
-anims/wall_flash = ExtResource( 9 )
-
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="6"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="5"]
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
@@ -77,160 +96,80 @@ __meta__ = {
 width = 150
 height = 150
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( -600, 600 )
-rotation = -0.785398
-species_template = ExtResource( 11 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall3" index="6"]
+anims/wall_flash = ExtResource( 9 )
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( 600, -600 )
-rotation = 2.35619
-controls = "joy1"
-species_template = ExtResource( 12 )
-cpu = true
+[node name="DiamondSpawner" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
 
-[node name="DiamondSpawner" parent="SpawnPositions/Environments" index="0" instance=ExtResource( 13 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner" index="0" instance=ExtResource( 11 )]
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner" index="0"]
-
-[node name="DiamondSpawner2" parent="SpawnPositions/Environments" index="1" instance=ExtResource( 13 )]
-position = Vector2( -1300, 0 )
+[node name="DiamondSpawner2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
+position = Vector2( -600, 700 )
 wave = 1
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner2" index="0"]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner2" index="0" instance=ExtResource( 11 )]
 
-[node name="DiamondSpawner4" parent="SpawnPositions/Environments" index="2" instance=ExtResource( 13 )]
-position = Vector2( 1300, 0 )
+[node name="DiamondSpawner4" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
+position = Vector2( 600, -700 )
 wave = 1
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner4" index="0"]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner4" index="0" instance=ExtResource( 11 )]
 
-[node name="DiamondSpawner3" parent="SpawnPositions/Environments" index="3" instance=ExtResource( 13 )]
+[node name="DiamondSpawner3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
 position = Vector2( 0, -700 )
-wave = 2
+wave = 1
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner3" index="0"]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner3" index="0" instance=ExtResource( 11 )]
 
-[node name="DiamondSpawner5" parent="SpawnPositions/Environments" index="4" instance=ExtResource( 13 )]
+[node name="DiamondSpawner5" parent="Battlefield/Middleground" index="6" instance=ExtResource( 10 )]
 position = Vector2( 0, 700 )
+wave = 1
+
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner5" index="0" instance=ExtResource( 11 )]
+
+[node name="DiamondSpawner6" parent="Battlefield/Middleground" index="7" instance=ExtResource( 10 )]
 wave = 2
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner5" index="0"]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner6" index="0" instance=ExtResource( 11 )]
+position = Vector2( -150, -150 )
 
-[node name="DiamondSpawner6" parent="SpawnPositions/Environments" index="5" instance=ExtResource( 13 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner6" index="1" instance=ExtResource( 11 )]
+position = Vector2( 150, -150 )
+
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner6" index="2" instance=ExtResource( 11 )]
+position = Vector2( 150, 150 )
+
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner6" index="3" instance=ExtResource( 11 )]
+position = Vector2( -150, 150 )
+
+[node name="DiamondSpawner7" parent="Battlefield/Middleground" index="8" instance=ExtResource( 10 )]
 wave = 3
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner6" index="0"]
-position = Vector2( -100, -100 )
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner7" index="0" instance=ExtResource( 11 )]
+position = Vector2( -150, -150 )
 
-[node name="Position2D2" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner6" index="1"]
-position = Vector2( 100, -100 )
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner7" index="1" instance=ExtResource( 11 )]
+position = Vector2( 150, -150 )
 
-[node name="Position2D3" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner6" index="2"]
-position = Vector2( 100, 100 )
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner7" index="2" instance=ExtResource( 11 )]
+position = Vector2( 150, 150 )
 
-[node name="Position2D4" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner6" index="3"]
-position = Vector2( -100, 100 )
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner7" index="3" instance=ExtResource( 11 )]
+position = Vector2( -150, 150 )
 
-[node name="DiamondSpawner7" parent="SpawnPositions/Environments" index="6" instance=ExtResource( 13 )]
-position = Vector2( -1000, 100 )
-wave = 4
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner7" index="4" instance=ExtResource( 12 )]
 
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner7" index="0"]
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 13 )]
+position = Vector2( -600, 600 )
+rotation = -0.785398
+controls = "joy1"
+species_template = ExtResource( 14 )
 
-[node name="DiamondSpawner8" parent="SpawnPositions/Environments" index="7" instance=ExtResource( 13 )]
-position = Vector2( -800, 100 )
-wave = 4
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner8" index="0"]
-
-[node name="DiamondSpawner9" parent="SpawnPositions/Environments" index="8" instance=ExtResource( 13 )]
-position = Vector2( -800, -100 )
-wave = 4
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner9" index="0"]
-
-[node name="DiamondSpawner10" parent="SpawnPositions/Environments" index="9" instance=ExtResource( 13 )]
-position = Vector2( -1000, -100 )
-wave = 4
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner10" index="0"]
-
-[node name="DiamondSpawner11" parent="SpawnPositions/Environments" index="10" instance=ExtResource( 13 )]
-position = Vector2( 800, -100 )
-wave = 4
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner11" index="0"]
-
-[node name="DiamondSpawner12" parent="SpawnPositions/Environments" index="11" instance=ExtResource( 13 )]
-position = Vector2( 800, 100 )
-wave = 4
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner12" index="0"]
-
-[node name="DiamondSpawner17" parent="SpawnPositions/Environments" index="12" instance=ExtResource( 13 )]
-position = Vector2( 900, 0 )
-wave = 5
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner17" index="0"]
-position = Vector2( 100, -100 )
-
-[node name="Position2D2" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner17" index="1"]
-position = Vector2( 100, 100 )
-
-[node name="Position2D3" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner17" index="2"]
-position = Vector2( -100, 100 )
-
-[node name="Position2D4" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner17" index="3"]
-position = Vector2( -100, -100 )
-
-[node name="DiamondSpawner18" parent="SpawnPositions/Environments" index="13" instance=ExtResource( 13 )]
-editor/display_folded = true
-position = Vector2( -900, 0 )
-wave = 5
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner18" index="0"]
-position = Vector2( 100, -100 )
-
-[node name="Position2D2" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner18" index="1"]
-position = Vector2( 100, 100 )
-
-[node name="Position2D3" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner18" index="2"]
-position = Vector2( -100, 100 )
-
-[node name="Position2D4" type="Position2D" parent="SpawnPositions/Environments/DiamondSpawner18" index="3"]
-position = Vector2( -100, -100 )
-
-[node name="TrailRight" parent="SpawnPositions/Environments" index="14" instance=ExtResource( 13 )]
-position = Vector2( 700, -200 )
-wave = 5
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/TrailRight" index="0"]
-position = Vector2( -50, -100 )
-
-[node name="Position2D2" type="Position2D" parent="SpawnPositions/Environments/TrailRight" index="1"]
-
-[node name="Position2D3" type="Position2D" parent="SpawnPositions/Environments/TrailRight" index="2"]
-position = Vector2( 50, 100 )
-
-[node name="Position2D4" type="Position2D" parent="SpawnPositions/Environments/TrailRight" index="3"]
-position = Vector2( 0, 200 )
-
-[node name="TrailLeft" parent="SpawnPositions/Environments" index="15" instance=ExtResource( 13 )]
-position = Vector2( -700, -200 )
-wave = 5
-
-[node name="Position2D4" type="Position2D" parent="SpawnPositions/Environments/TrailLeft" index="0"]
-position = Vector2( 50, -150 )
-
-[node name="Position2D" type="Position2D" parent="SpawnPositions/Environments/TrailLeft" index="1"]
-position = Vector2( 0, -50 )
-
-[node name="Position2D2" type="Position2D" parent="SpawnPositions/Environments/TrailLeft" index="2"]
-position = Vector2( -50, 50 )
-
-[node name="Position2D3" type="Position2D" parent="SpawnPositions/Environments/TrailLeft" index="3"]
-position = Vector2( 0, 150 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]
+position = Vector2( 600, -600 )
+rotation = 2.35619
+controls = "joy2"
+species_template = ExtResource( 15 )
 
 [node name="Pause" parent="CanvasLayer" index="1"]
 editor/display_folded = false

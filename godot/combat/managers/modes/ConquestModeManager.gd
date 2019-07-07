@@ -4,5 +4,5 @@ signal score
 
 func _on_sth_conquered(conquered_by, what):
 	if enabled:
-		emit_signal('score', conquered_by.species, base_point)
+		emit_signal('score', conquered_by.species, score_multiplier)
 		

@@ -49,3 +49,17 @@ func update_rotation():
 func update_crown():
 	$Scaled/Crown.set_visible(target_entity.has('Royal'))
 	
+var partial_score = 0
+func update_score(score):
+	partial_score += score
+	$Scaled/Colored/PointsScored.set_points(partial_score)
+	
+
+func _on_Royal_enabled():
+	$Scaled/Colored/PointsScored.visible = true
+
+func _on_Royal_disabled():
+	$Scaled/Colored/PointsScored.appear()
+	yield($Scaled/Colored/PointsScored, "end")
+	$Scaled/Colored/PointsScored.visible = false
+	

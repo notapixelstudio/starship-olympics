@@ -113,14 +113,17 @@ func _ready():
 	
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('show_score', self, "spawn_points_scored")
 	$RaceModeManager.connect('score', scores, "add_score")
 	$ConquestModeManager.connect('score', scores, "add_score")
 	$CollectModeManager.connect('score', scores, "add_score")
+	$CollectModeManager.connect('show_score', self, "spawn_points_scored")
 	$CollectModeManager.connect('spawn_next', self, "_on_coins_finished")
 	
-	if $SpawnPositions/Environments.get_child_count():
+	# environment spawner: coins, etc.
+	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
-		$CollectModeManager.initialize($SpawnPositions/Environments.get_children())
+		$CollectModeManager.initialize(get_tree().get_nodes_in_group("spawner_group"))
 
 	# set up the spawners
 	var i = 0
@@ -157,14 +160,12 @@ func _ready():
 	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
-	$Battlefield/Background.visible = false
-	$Battlefield/Middleground.visible = false
+	$Battlefield.visible = false
 	get_tree().paused = true
 	mode_description.gamemode = game_mode
 	mode_description.appears()
 	yield(mode_description, "ready_to_fight")
-	$Battlefield/Background.visible = true
-	$Battlefield/Middleground.visible = true
+	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
 	
 	if not mockup:
@@ -272,7 +273,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 			else:
 				respawn_timeout = 1
 	elif $ConquestModeManager.enabled:
-		respawn_timeout = 1
+		respawn_timeout = 1.5
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -354,6 +355,9 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
+	
+	$CrownModeManager.connect('show_score', ship, "update_score")
+	
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -371,10 +375,20 @@ func spawn_bomb(pos, impulse, ship):
 		emit_signal("update_stats", ship.species, 1, "bombs")
 	return bomb
 
-
+const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
+func spawn_points_scored(species_template, score, pos):
+	var points_scored = points_scored_scene.instance()
+	points_scored.set_points(score)
+	points_scored.scale = camera.zoom
+	points_scored.position = pos
+	points_scored.modulate = species_template.color
+	$Battlefield.add_child(points_scored)
 
 func _on_sth_collected(collector, collectee):
-	$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+	if collectee.get_parent().is_in_group("spawner_group"):
+		collectee.get_parent().call_deferred('remove', collectee)
+	else:
+		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
 
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
@@ -385,21 +399,20 @@ func _on_sth_dropped(dropper, droppee):
 	yield(get_tree().create_timer(0.2), "timeout")
 	ECM.E(droppee).get('Collectable').enable()
 	
-const coin_scene = preload("res://combat/collectables/Coin.tscn")
-func _on_coins_dropped(dropper, amount):
-	for i in range(amount):
-		var coin = coin_scene.instance()
-		$Battlefield.add_child(coin)
-		coin.position = dropper.position
-		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
+#func _on_coins_dropped(dropper, amount):
+#	for i in range(amount):
+#		var coin = coin_scene.instance()
+#		$Battlefield.add_child(coin)
+#		coin.position = dropper.position
+#		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
 func _on_coins_finished(diamonds, wait_time=1, animate: bool = false):
 	if wait_time :
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 
-	var collectables = diamonds.spawn()
-	for collectable in collectables:
-		$Battlefield.add_child(collectable)
+	diamonds.spawn()
+	#for collectable in collectables:
+	#	$Battlefield.add_child(collectable)
 	if animate:
 		for wall in $Battlefield/Middleground.get_children():
 			if wall is Wall:

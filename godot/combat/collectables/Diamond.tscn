@@ -1,11 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://combat/collectables/Coin.gd" type="Script" id=1]
+[ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/diamond.png" type="Texture" id=6]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.0
@@ -39,9 +40,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 3 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
