@@ -5,7 +5,7 @@ onready var sfx_effect  = $AudioStreamPlayer
 onready var label = $VBoxContainer/Volume
 
 func _ready():
-	label.text = label.text + " " + bus_name
+	label.text = tr(label.text + " " + bus_name)
 
 
 func _on_HSlider_value_changed(value):

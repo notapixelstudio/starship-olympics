@@ -2,16 +2,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Superstarfighter\n"
 "POT-Creation-Date: 2019-07-04 15:40+0200\n"
-"PO-Revision-Date: 2019-07-05 09:40+0200\n"
+"PO-Revision-Date: 2019-07-08 14:55+0200\n"
 "Last-Translator: Urtzi Odriozola Lizaso <urtzi.odriozola@gmail.com>\n"
-"Language-Team: Game Erauntsia <gamerauntsia@gmail.com>\n"
+"Language-Team: \n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: eu\n"
+
+msgid "press any key to continue"
+msgstr "sakatu edozein tekla jarraitzeko"
+
+msgid "play solo"
+msgstr "jolastu bakarrik"
+
+msgid "play versus"
+msgstr "jolastu aurka"
+
+msgid "press FIRE to continue"
+msgstr "sakatu tiro jarraitzeko"
 
 msgid "Options"
 msgstr "Aukerak"
@@ -22,20 +34,46 @@ msgstr "Borroka"
 msgid "Help"
 msgstr "Laguntza"
 
-msgid "Quit"
-msgstr "Irten"
+msgid "P1"
+msgstr "J1"
 
+msgid "P2"
+msgstr "J2"
+
+msgid "P3"
+msgstr "J3"
+
+msgid "P4"
+msgstr "J4"
+
+msgid "player1"
+msgstr "j1"
+
+msgid "player2"
+msgstr "j2"
+
+msgid "player3"
+msgstr "j3"
+
+msgid "player4"
+msgstr "j4"
+
+msgid "cpu"
+msgstr "puz"
+
+
+# species:
 msgid "mantiacs"
 msgstr "mantiak"
 
 msgid "MANTIACS"
 msgstr "MANTIAK"
 
-msgid "playful"
-msgstr "hiltzaile"
+msgid "TEAM\nTRIXENS"
+msgstr "TRIXEN\nTALDEA"
 
-msgid "slaughterers"
-msgstr "jostalariak"
+msgid "playful slaughterers"
+msgstr "hiltzaile jostalariak"
 
 msgid "robolords"
 msgstr "robojaunak"
@@ -43,11 +81,11 @@ msgstr "robojaunak"
 msgid "ROBOLORDS"
 msgstr "ROBOJAUNAK"
 
-msgid "silicon-based"
-msgstr "Silikonazko"
+msgid "TEAM\nROBOLORDS"
+msgstr "ROBOJAUN\nTALDEA"
 
-msgid "aristocrats"
-msgstr "aristokratak"
+msgid "silicon-based aristocrats"
+msgstr "silikonazko aristokratak"
 
 msgid "trixens"
 msgstr "trixenak"
@@ -55,11 +93,14 @@ msgstr "trixenak"
 msgid "TRIXENS"
 msgstr "TRIXENAK"
 
-msgid "adorable"
-msgstr "inperialista"
+msgid "TEAM\nTRIXENS"
+msgstr "TRIXEN\nTALDEA"
 
-msgid "imperialists"
-msgstr "maitagarriak"
+msgid "adorable imperialists"
+msgstr "inperialista maitagarriak"
+
+msgid "empathetic conquerors"
+msgstr "konkistatzaile enpatikoak"
 
 msgid "toriels"
 msgstr "torielak"
@@ -67,23 +108,26 @@ msgstr "torielak"
 msgid "TORIELS"
 msgstr "TORIELAK"
 
-msgid "overprotective"
-msgstr "artzain"
+msgid "TEAM\nTORIELS"
+msgstr "TORIEL\nTALDEA"
 
-msgid "shepherds"
-msgstr "ultrababesleak"
+msgid "overprotective shepherds"
+msgstr "artzain ultrababesleak"
 
 msgid "takonauts"
 msgstr "takonautak"
 
-msgid "TAKONAUTS"
-msgstr "TAKONAUTAK"
+msgid "UMIDORIANS"
+msgstr "UMIDORIANAK"
 
-msgid "lovecraftian"
-msgstr "langile sutsu"
+msgid "TEAM\nUMIDORIANS"
+msgstr "UMIDORIAN\nTALDEA"
 
-msgid "libertines"
-msgstr "libertarioak"
+msgid "lovecraftian libertines"
+msgstr "langile sutsu libertarioak"
+
+msgid "fancy horrors"
+msgstr "fantasiazko izuak"
 
 msgid "drones"
 msgstr "droneak"
@@ -91,11 +135,11 @@ msgstr "droneak"
 msgid "DRONES"
 msgstr "DRONEAK"
 
-msgid "deranged"
-msgstr "erotutako"
+msgid "TEAM\nDRONES"
+msgstr "DRONE\nTALDEA"
 
-msgid "appliances"
-msgstr "gailuak"
+msgid "deranged appliances"
+msgstr "erotutako gailuak"
 
 msgid "FIGHT!"
 msgstr "BORROKATU!"
@@ -113,7 +157,20 @@ msgid "NOONE WON"
 msgstr "INOR EZ DA IRABAZLE"
 
 msgid "Deathmatch"
-msgstr ""
+msgstr "Hil arteko borroka"
+
+# sports and descriptions
+msgid "collect {score} diamonds"
+msgstr "bildu {score} diamante"
+
+msgid "{score} kills to win"
+msgstr "{score} erailketa irabazteko"
+
+msgid "wear the crown as long as you can"
+msgstr "jantzi koroa ahal bezain denbora luzez"
+
+msgid "fill more cells than opponents"
+msgstr "bete aurkariak baino gelaxka gehiago"
 
 msgid "Take out your opponents one bomb after another"
 msgstr "Akabatu aurkariak bonba bat bestearen atzetik botata"
@@ -124,12 +181,48 @@ msgstr "Beste espezien hilketa, ohorezko hilketa da"
 msgid "A self kill, apart from being embarassing, make you lose point"
 msgstr "Norberaren hilketa, lotsagarria izateaz gain, puntu galera da"
 
-msgid "Continue"
-msgstr "Jarraitu"
+# Option menu and Pause menu
+msgid "CONTINUE"
+msgstr "JARRAITU"
 
-msgid "Back to menu"
-msgstr "Itzuli menura"
+msgid "RESTART"
+msgstr "BERRABIARAZI"
 
+msgid "SKIP LEVEL"
+msgstr "SALTO MAILA"
+
+msgid "OPTIONS"
+msgstr "AUKERAK"
+
+msgid "QUIT MATCH"
+msgstr "IRTEN PARTIDATIK"
+
+msgid "Volume Master"
+msgstr "Bolumen orokorra"
+
+msgid "Volume Music"
+msgstr "Musika bolumena"
+
+msgid "Volume SFX"
+msgstr "Efektu bolumena"
+
+msgid "Camera enabled"
+msgstr "Kamera gaituta"
+
+msgid "debug mode"
+msgstr "debug modua"
+
+msgid "Pause"
+msgstr "Geldirik"
+
+msgid "QUIT"
+msgstr "IRTEN"
+
+msgid "BACK TO MENU"
+msgstr "ITZULI MENURA"
+
+
+# Maps
 msgid "Capture the flags"
 msgstr "Banderak harrapatu"
 
@@ -148,8 +241,12 @@ msgstr "Diru-gosea da bidea!"
 msgid "Collect all the coins before your opponents does"
 msgstr "Bildu txanpon guztiak zure aurkariak egin aurretik"
 
-msgid "The Universe provides enough to satisfy everyone's need, but not every species' greed"
-msgstr "Unibertsoak guztion beharrak asetzeko adina ematen du, baina ez espezie guztien zikoizkeria"
+msgid ""
+"The Universe provides enough to satisfy everyone's need, but not every "
+"species' greed"
+msgstr ""
+"Unibertsoak guztion beharrak asetzeko adina ematen du, baina ez espezie "
+"guztien zikoizkeria"
 
 msgid "Getting killed will make you lose most of the coins"
 msgstr "Hiltzen bazaituzte, txanpon gehienak galduko dituzu"
@@ -166,6 +263,7 @@ msgstr "Hilketa ez bada nahikoa, lapurtu ezazu erreginarekin talka eginda"
 msgid "Getting killed will make you lose the crown, if you have it"
 msgstr "Hiltzen bazaituzte koroa galduko duzu, jantzita baldin baduzu"
 
+# Game over stats
 msgid " st"
 msgstr " na"
 
