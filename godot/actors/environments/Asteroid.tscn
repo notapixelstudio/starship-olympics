@@ -17,7 +17,7 @@ radius = 100.0
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 1024
 collision_mask = 1045
-mass = 5.0
+mass = 15.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 angular_damp = 1.0
@@ -46,6 +46,7 @@ enabled = false
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 4.0
+texture_mode = -121671224
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

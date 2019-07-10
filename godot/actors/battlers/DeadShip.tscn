@@ -14,12 +14,12 @@ bounce = 1.0
 radius = 40.0
 
 [node name="DeadShip" type="RigidBody2D" groups=[
-"in_camera",
 "Foreground",
+"in_camera",
 ]]
 collision_layer = 8192
 collision_mask = 16021
-mass = 5.0
+mass = 10.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 10
@@ -44,4 +44,3 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
