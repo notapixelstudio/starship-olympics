@@ -99,6 +99,10 @@ func _ready():
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
 	
+	$Battlefield/Background/Grid/THEGRIDLINE.nodeA = $Battlefield/Background/Grid/GridPoint224/RigidBody2D
+	$Battlefield/Background/Grid/THEGRIDLINE.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
+	$Battlefield/Background/Grid/THEGRIDLINE2.nodeA = $Battlefield/Background/Grid/GridPoint225/RigidBody2D
+	$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
 	
 	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
 	$CollectManager.connect('collected', self, "_on_sth_collected")

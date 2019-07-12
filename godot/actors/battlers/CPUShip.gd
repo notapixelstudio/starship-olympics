@@ -196,8 +196,7 @@ func control(delta):
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 	
 	if not charging and choose_fire() and fire_cooldown <= 0:
-		charging = true
-		$Graphics/ChargeBar.visible = true
+		charge()
 		
 	charging_time -= 1
 	wait_for_chargedshot -= 1

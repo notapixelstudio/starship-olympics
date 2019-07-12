@@ -17,9 +17,9 @@ radius = 100.0
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 1024
 collision_mask = 1045
-mass = 15.0
+mass = 8.0
 physics_material_override = SubResource( 1 )
-gravity_scale = 0.0
+gravity_scale = 2.0
 angular_damp = 1.0
 script = ExtResource( 1 )
 
