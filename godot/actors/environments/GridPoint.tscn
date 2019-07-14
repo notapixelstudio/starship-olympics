@@ -1,18 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/sprites/weapons/bomb_frame_2.png" type="Texture" id=1]
+[ext_resource path="res://actors/environments/GridPoint.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/weapons/bomb_frame_2.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
 
 [node name="GridPoint" type="Node2D"]
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+editor/display_folded = true
 collision_layer = 65536
-collision_mask = 128
+collision_mask = 130
 mass = 5.0
 gravity_scale = 2.0
 linear_damp = 2.0
@@ -26,7 +29,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="RigidBody2D"]
 modulate = Color( 0, 0.890196, 1, 0.270588 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("../RigidBody2D")

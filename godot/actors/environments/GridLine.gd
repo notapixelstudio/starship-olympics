@@ -1,5 +1,6 @@
 extends Line2D
 
+class_name GridLine
 # The target node to track
 var nodeA: Node2D
 var nodeB: Node2D 
