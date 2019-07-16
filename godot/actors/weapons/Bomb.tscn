@@ -60,6 +60,7 @@ script = ExtResource( 2 )
 trail_length = 80
 
 [node name="Entity" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -110,6 +111,7 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+editor/display_folded = true
 rotation = 2.44386
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
@@ -120,6 +122,7 @@ playback_speed = 0.5
 anims/rotate = SubResource( 3 )
 
 [node name="NearArea" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 4
 collision_mask = 5
 
@@ -127,6 +130,7 @@ collision_mask = 5
 shape = SubResource( 4 )
 
 [node name="Core" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
@@ -157,7 +161,15 @@ bus = "SFX"
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 14 )
 volume_db = 10.0
+autoplay = true
 bus = "SFX"
 area_mask = 8
+
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]
