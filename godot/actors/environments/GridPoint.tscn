@@ -13,7 +13,7 @@ __meta__ = {
 }
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-editor/display_folded = true
+input_pickable = true
 collision_layer = 65536
 collision_mask = 130
 mass = 5.0
@@ -27,6 +27,7 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="RigidBody2D"]
+visible = false
 modulate = Color( 0, 0.890196, 1, 0.270588 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
@@ -35,3 +36,4 @@ texture = ExtResource( 2 )
 node_a = NodePath("../RigidBody2D")
 node_b = NodePath("../../../OutsideWall")
 softness = 8.0
+

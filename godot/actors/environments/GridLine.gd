@@ -10,7 +10,6 @@ var nodeB: Node2D
 
 
 func _process(delta):
-	print(points)
 	if nodeA and nodeB:
 		
 		points = PoolVector2Array([nodeA.global_position, nodeB.global_position])

@@ -2,20 +2,25 @@ extends Node2D
 
 export var grid_point_scene : PackedScene 
 export var line_scene : PackedScene
-export var offset: Vector2 = Vector2(50, 50)
+export var offset: Vector2 = Vector2(100, 100)
 
 onready var lines = $Lines
+
+func _ready():
+	initialize(Rect2(0,0, 1600, 1600))
+
 func initialize(rect: Rect2):
 	var grid = []
 	var count_x = 0
 	var count_y = 0
 	var grid_point_original  = grid_point_scene.instance()
-	for y in range(-rect.size.y/2, rect.size.y/2, offset.x):
+	for y in range(-rect.size.y/2, rect.size.y/2+offset.y, offset.y):
 		grid.append([])
 		count_x = 0
-		for x in range(-rect.size.x/5+offset.y, rect.size.x/5, offset.y):
+		for x in range(-rect.size.x/2+offset.y, rect.size.x/2, offset.x):
 			
 			var grid_point = grid_point_original.duplicate()
+			
 			grid_point.position = Vector2(x, y)
 			grid_point.name = str(x) + str(y)
 			add_child(grid_point)
