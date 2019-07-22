@@ -1,9 +1,18 @@
-tool
 extends Area2D
+
+export var influence_radius := 1208.0
 
 export var enabled : bool = false setget set_enabled
 
 var ship : Ship
+
+func get_influence_radius():
+	return $CollisionShape2D.shape.radius
+	
+func get_gravity():
+	if not enabled:
+		return 0
+	return gravity
 
 func set_enabled(v):
 	enabled = v

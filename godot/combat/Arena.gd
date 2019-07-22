@@ -162,8 +162,10 @@ func _ready():
 	# initialize HUD
 	hud.initialize(scores)
 	
+	# TODO: Sto coso fa schifo
 	camera.initialize(compute_arena_size())
-	grid.initialize(compute_arena_size())
+	grid._init_grid(compute_arena_size())
+	$Battlefield/Background/Viewport.size = compute_arena_size().size*0.03125*1.1
 	
 	$Battlefield.visible = false
 	get_tree().paused = true
@@ -219,6 +221,7 @@ const COUNTDOWN_LIMIT = 5.0
 
 func _process(delta):
 	scores.update(delta)
+	
 	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		$CanvasLayer/Countdown/AudioStreamPlayer.play()
 	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:

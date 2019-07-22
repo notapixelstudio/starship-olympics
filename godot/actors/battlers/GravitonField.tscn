@@ -3,9 +3,11 @@
 [ext_resource path="res://actors/battlers/GravitonField.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 600.0
+radius = 400.0
 
-[node name="GravitonField" type="Area2D"]
+[node name="GravitonField" type="Area2D" groups=[
+"gravity_wells",
+]]
 space_override = 3
 gravity_point = true
 gravity_distance_scale = 0.001

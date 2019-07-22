@@ -41,9 +41,9 @@ size = 24
 font_data = ExtResource( 19 )
 
 [node name="Ship" type="RigidBody2D" groups=[
-"in_camera",
-"Foreground",
 "players",
+"Foreground",
+"in_camera",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -186,6 +186,12 @@ texture = ExtResource( 21 )
 offset = Vector2( 0, -150 )
 
 [node name="GravitonField" parent="." instance=ExtResource( 22 )]
+
+[node name="Entity" type="Node" parent="GravitonField"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]

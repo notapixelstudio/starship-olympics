@@ -2,7 +2,7 @@ extends Node2D
 
 export var grid_point_scene : PackedScene 
 export var line_scene : PackedScene
-export var offset: Vector2 = Vector2(100, 100)
+export var offset: Vector2 = Vector2(200, 200)
 
 onready var lines = $Lines
 

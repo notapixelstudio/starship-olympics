@@ -19,3 +19,10 @@ func to_Shape2D():
 func get_extents() -> Vector2:
 	return Vector2()
 	
+func to_PoolVector2Array_offset(vec, scale=1):
+	var points = to_PoolVector2Array()
+	var new_points = []
+	for p in points:
+		new_points.append((p + vec)*scale)
+	return PoolVector2Array(new_points)
+	

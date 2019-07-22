@@ -170,11 +170,11 @@ func fire():
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
-	#arena.spawn_bomb(
-	#  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-	#  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-	#  self
-	#)
+	arena.spawn_bomb(
+	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+	  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
+	  self
+	)
 	
 	# repeal
 	$GravitonField.repeal(charge_impulse)
