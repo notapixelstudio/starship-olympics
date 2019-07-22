@@ -3,7 +3,7 @@ extends Node2D
 var points = PoolVector2Array()
 
 var frame_count: int = 0
-onready var outside_wall_shape = (get_node('../../OutsideWall') as Wall).get_gshape()
+onready var outside_wall_shape = (get_node('../../../OutsideWall') as Wall).get_gshape()
 onready var light = (get_node('../../Light2D') as Light2D)
 onready var viewport = get_node("..")
 func _process(delta):

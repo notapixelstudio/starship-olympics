@@ -46,10 +46,7 @@ enabled = true
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="1"]
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
-
-[node name="OutsideWallGhost2" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
+[node name="OutsideWallGhost2" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
 hollow = true
 offset = 200
@@ -69,7 +66,7 @@ width = 2800
 height = 1400
 bevel = 100
 
-[node name="OutsideWall" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -294,7 +291,6 @@ points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1000, -400 )
 rotation = 0.0
-controls = "joy1"
 species_template = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]

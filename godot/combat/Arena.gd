@@ -26,7 +26,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/Grid
+onready var grid = $Battlefield/Background/GridPack/Grid
 
 signal screensize_changed(screensize)
 signal gameover
@@ -165,7 +165,7 @@ func _ready():
 	# TODO: Sto coso fa schifo
 	camera.initialize(compute_arena_size())
 	grid._init_grid(compute_arena_size())
-	$Battlefield/Background/Viewport.size = compute_arena_size().size*0.03125*1.1
+	$Battlefield/Background/GridPack/MaskViewPort.size = compute_arena_size().size*0.03125*1.1
 	
 	$Battlefield.visible = false
 	get_tree().paused = true
