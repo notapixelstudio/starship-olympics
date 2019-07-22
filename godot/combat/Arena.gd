@@ -159,13 +159,13 @@ func _ready():
 	
 	scores.initialize(array_players, game_mode, max_score)
 	
+	grid._init_grid(compute_arena_size())
+	$Battlefield/Background/GridPack/MaskViewPort.size = compute_arena_size().size*0.03125*1.1
+	
 	# initialize HUD
 	hud.initialize(scores)
 	
-	# TODO: Sto coso fa schifo
 	camera.initialize(compute_arena_size())
-	grid._init_grid(compute_arena_size())
-	$Battlefield/Background/GridPack/MaskViewPort.size = compute_arena_size().size*0.03125*1.1
 	
 	$Battlefield.visible = false
 	get_tree().paused = true
