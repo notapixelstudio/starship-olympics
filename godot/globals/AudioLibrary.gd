@@ -26,7 +26,7 @@ func play(sound : String = "", force_stop = false):
 	current_sound = get_node(this_sound)
 	if current_sound is AudioStreamPlayer:
 		emit_signal("play_song", current_sound)
-		print("I am ", name, " and This song is ", current_sound.name, " titled ", this_sound)
+		print_debug("I am ", name, " and This song is ", current_sound.name, " titled ", this_sound)
 	current_sound.play()
 
 func stop():
@@ -42,6 +42,6 @@ func next_song():
 	get_child(i+1 % get_child_count()).play()
 
 func song_is_playing(song):
-	print("This song is playing: ", song.name)
+	print_debug("This song is playing: ", song.name)
 	current_sound = song
 	Soundtrack.this_sound = current_sound.name

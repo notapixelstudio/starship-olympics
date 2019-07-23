@@ -17,8 +17,8 @@ func save_game():
 	# Create a file
 	var save_file = File.new()
 	save_file.open(SAVE_PATH, File.WRITE)
-	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
-	print(save_dict)
+	print_debug("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
+	print_debug(save_dict)
 	# Serialize the data dictionary to JSON
 	save_file.store_line(to_json(save_dict))
 	
@@ -29,7 +29,7 @@ func load_game() -> bool:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var save_file = File.new()
 	if not save_file.file_exists(SAVE_PATH):
-		print("The save file does not exist.")
+		print_debug("The save file does not exist.")
 		return false
 	save_file.open(SAVE_PATH, File.READ)
 

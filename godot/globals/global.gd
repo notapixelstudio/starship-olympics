@@ -98,8 +98,8 @@ var force_save = true
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
 func _ready():
-	print("Starting game...")
-	print("FORCE SAVE is ", force_save, " - if true the user file will be overwritten")
+	print_debug("Starting game...")
+	print_debug("FORCE SAVE is ", force_save, " - if true the user file will be overwritten")
 	add_to_group("persist")
 	
 	
@@ -107,9 +107,9 @@ func _ready():
 	if force_save:
 		persistance.save_game()
 	if persistance.load_game():
-		print("Successfully load the game")
+		print_debug("Successfully load the game")
 	else:
-		print("Something went wrong while loading the game data")
+		print_debug("Something went wrong while loading the game data")
 	
 	# SET game analytics parameters
 	GameAnalytics.base_url = ProjectSettings.get_setting("Analytics/base_url")
@@ -121,7 +121,7 @@ func _ready():
 		GameAnalytics.request_init()
 	
 func _exit_tree():
-	print("Thanks for playing")
+	print_debug("Thanks for playing")
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
 	GameAnalytics.submit_events()
 	
@@ -146,7 +146,7 @@ func get_species_templates() -> Dictionary:
 	for species in ALL_SPECIES:
 		if i > len(resources) -1:
 			pass
-			# print("This species: " + species.to_lower(), " is not available")
+			# print_debug("This species: " + species.to_lower(), " is not available")
 		else:
 			var filename : String = ALL_SPECIES[species] + ".tres"
 			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
@@ -195,7 +195,7 @@ func dir_contents(path:String, starts_with:String = "", extension:String = ".tsc
 						list_files.append(file_name)
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		print_debug("An error occurred when trying to access the path.")
 	return list_files
 
 func mod(a,b):

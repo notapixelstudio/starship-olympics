@@ -148,7 +148,6 @@ func choose_fire():
 		# next charged shot will be
 		wait_for_chargedshot = MIN_WAIT_SHOT*2 + randi()%MIN_WAIT_SHOT
 		charging_time = randi()%(MIN_WAIT_SHOT)
-		print("we are going to wait these something: ", str(charging_time))
 		return true
 	# randomly choose to charge shot
 	return false

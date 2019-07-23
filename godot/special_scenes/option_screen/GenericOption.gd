@@ -26,7 +26,7 @@ func _set_value(new_value):
 	if node_owner:
 		node_owner.set(description, value)
 	else:
-		print("Setter has been called without a proper setup")
+		print_debug("Setter has been called without a proper setup")
 		
 func _initialize():
 	# description_node.text = description

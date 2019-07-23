@@ -80,7 +80,6 @@ func shoot():
 		return
 	is_shooting = true
 	var target_impulse = target - position
-	print(target_impulse)
 	yield(get_tree().create_timer(1), "timeout")
 	target_impulse = target - position
 

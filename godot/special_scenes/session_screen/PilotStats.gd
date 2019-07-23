@@ -26,7 +26,7 @@ func set_info(value: InfoPlayer):
 func change_position(new_value):
 	new_position = new_value
 	if position != new_position and not $Tween.is_active():
-		print("we should change from here: ", position, " to here: ", new_position)
+		print_debug("we should change from here: ", position, " to here: ", new_position)
 		$Tween.interpolate_property(self, "position", self.position, new_position, 0.5, 
 			Tween.TRANS_CUBIC, Tween.EASE_IN, 0)
 		$Tween.start()

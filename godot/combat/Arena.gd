@@ -132,7 +132,7 @@ func _ready():
 			s.species_template = array_players[i].species_template
 			s.cpu = array_players[i].cpu
 			s.info_player = array_players[i]
-			print("Is this a teammatto?" + str(s.info_player.team))
+			print_debug("Is this a teammatto?" + str(s.info_player.team))
 		else:
 			s.info_player = InfoPlayer.new()
 			s.info_player.cpu = s.cpu
@@ -145,7 +145,7 @@ func _ready():
 
 
 	for info in array_players:
-		print(info.to_dict())
+		print_debug(info.to_dict())
 	
 	var max_score = 0
 	if game_mode.cumulative:
@@ -194,7 +194,7 @@ func _ready():
 
 	# setup Bomb spawners
 	for c in $Battlefield/Foreground.get_children():
-		print(c.name)
+		print_debug(c.name)
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
@@ -245,7 +245,7 @@ func get_num_players()->int:
 	return SpawnPlayers.get_child_count()
 
 func _on_background_item_rect_changed():
-	print("Windows changed")
+	print_debug("Windows changed")
 
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)

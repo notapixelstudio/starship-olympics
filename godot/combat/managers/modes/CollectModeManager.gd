@@ -46,7 +46,7 @@ func _on_sth_collected(collector, collectee):
 				return
 			var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
 			spawners_per_wave[current_wave].shuffle()
-			print(spawners_per_wave[current_wave])
+			print_debug(spawners_per_wave[current_wave])
 			var animate_wall = false
 			if current_wave == max_waves - 1:
 				animate_wall = true

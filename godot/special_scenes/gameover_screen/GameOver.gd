@@ -49,7 +49,7 @@ func initialize(winner:String, scores:Dictionary, win_points: int = 3):
 	
 	var info_winner = array_scores[0]
 	if info_winner.session_score >= win_points:
-		print((info_winner as InfoPlayer).species + " won everything")
+		print_debug((info_winner as InfoPlayer).species + " won everything")
 		$VBoxContainer.get_child(0).visible = false
 		$VBoxContainer.get_child(1).grab_focus()
 	else:
@@ -58,7 +58,7 @@ func initialize(winner:String, scores:Dictionary, win_points: int = 3):
 	
 
 func _on_Rematch_pressed():
-	print("rematcho")
+	print_debug("rematcho")
 	emit_signal("rematch")
 
 func _on_Quit_pressed():
@@ -66,7 +66,7 @@ func _on_Quit_pressed():
 
 func _on_Menu_pressed():
 	# TODO: It will be whoever receive the signal to unpause
-	print("backo")
+	print_debug("backo")
 	emit_signal("back_to_menu")
 
 func sort_by_score(a: InfoPlayer, b: InfoPlayer):

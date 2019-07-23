@@ -1,7 +1,7 @@
 extends AudioLibrary
 
 func _ready():
-	print("I'll be handling everything from now on. I am the master")
+	print_debug("I'll be handling everything from now on. I am the master")
 	
 var array_songs setget , _get_songs
 var current_album

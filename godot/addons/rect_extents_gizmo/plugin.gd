@@ -34,7 +34,7 @@ const STROKE_COLOR = Color("#f50956")
 const FILL_COLOR = Color("#ffffff")
 
 func edit(object: Object) -> void:
-	print("edit %s" % object.get_path())
+	print_debug("edit %s" % object.get_path())
 	rect_extents = object
 
 func make_visible(visible: bool) -> void:
@@ -113,7 +113,7 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 				if not anchor['rect'].has_point(event.position):
 					continue
 				dragged_anchor = anchor
-				print("Drag start: %s" % dragged_anchor)
+				print_debug("Drag start: %s" % dragged_anchor)
 				rect_drag_start = {
 					'size': rect_extents.size,
 					'offset': rect_extents.offset,

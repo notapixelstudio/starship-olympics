@@ -34,8 +34,8 @@ func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	info_player.controls = selection_species.controls
 	info_player.species_template = selection_species.species_template
 	info_player.team = selection_species.is_team
-	print("Is that a teammate")
-	print(info_player.team)
+	print_debug("Is that a teammate")
+	print_debug(info_player.team)
 	return info_player
 	
 func _ready():
@@ -173,15 +173,15 @@ func next_level():
 	
 	# let's make sure that it is not the same of the previous one.
 	current_level = levels.back()
-	print("last planet was, ", last_planet, " now is ", new_planet)
-	print("next level will be ", num_players, current_level.planet_name)
+	print_debug("last planet was, ", last_planet, " now is ", new_planet)
+	print_debug("next level will be ", num_players, current_level.planet_name)
 	# skip if we just played it
 	start_level(current_level)
 	played_levels.append(new_planet)
 	
 func start_level(_level):
 	combat = _level
-	print(players)
+	print_debug(players)
 	combat.initialize(players)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
@@ -213,7 +213,7 @@ func _on_Pause_restart(_combat):
 	start_level(same_level.fetch_level(len(players)))
 
 func _back_to_menu(node):
-	print("RESTARTO")
+	print_debug("RESTARTO")
 	node.queue_free()
 	combat.queue_free()
 	get_tree().paused = false

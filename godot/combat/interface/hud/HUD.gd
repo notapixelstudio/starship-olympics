@@ -17,7 +17,7 @@ func set_planet(planet: String, mode: GameMode):
 	
 func initialize(_game_mode):
 	game_mode = _game_mode
-	print("initializing HUD")
+	print_debug("initializing HUD")
 	TimeLeft.text = str(int(floor(game_mode.time_left)))
 	var i = 0
 

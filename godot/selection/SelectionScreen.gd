@@ -42,11 +42,11 @@ func initialize(_available_species:Dictionary):
 		# it gives the name of the player
 		child.uid = i
 	var joypads = Input.get_connected_joypads()
-	print(len(joypads))
+	print_debug(len(joypads))
 	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
 	var controls = assign_controls(actual_players)
 	for control in controls:
-		print(add_controls(control))
+		print_debug(add_controls(control))
 
 func add_controls(new_controls : String) -> bool:
 	"""
@@ -83,7 +83,7 @@ func change_controls(key:String, new_key:String) -> bool:
 	var index_to_change : int =0
 	for child in container.get_children():
 		if child.controls == key:
-			# print("Found it ", index_to_change, " and control is ", child.controls)
+			# print_debug("Found it ", index_to_change, " and control is ", child.controls)
 			break
 		index_to_change += 1
 	last = new_key
@@ -140,18 +140,18 @@ func get_adjacent(operator:int, player_selection : Node):
 func _on_joy_connection_changed(device_id, connected):
 	var joy = "joy"+str(device_id+1)
 	if connected:
-		print("Recognise controller: ", Input.get_joy_name(device_id))
+		print_debug("Recognise controller: ", Input.get_joy_name(device_id))
 		add_controls(joy)
 	else:
 		change_controls(joy, "no")
 
 func ready_to_fight():
 	var players = get_players()
-	print("players who are going to fight are... " , players)
+	print_debug("players who are going to fight are... " , players)
 	if len(players) >= MIN_PLAYERS:
 		emit_signal("fight", players, fight_mode)
 	else:
-		print("not enough players")
+		print_debug("not enough players")
 
 func selected(species:SpeciesTemplate):
 	var current_index = ordered_species.find(species)
