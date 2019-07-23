@@ -1,15 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://special_scenes/session_screen/PilotStats.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/session_screen/Headshot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://special_scenes/session_screen/Stat.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/neuropolitical/neuropolitical rg.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://special_scenes/session_screen/StarsContainer.gd" type="Script" id=5]
-[ext_resource path="res://special_scenes/session_screen/Star.tscn" type="PackedScene" id=6]
-
-[sub_resource type="DynamicFont" id=1]
-size = 30
-font_data = ExtResource( 4 )
+[ext_resource path="res://special_scenes/session_screen/StarsContainer.gd" type="Script" id=4]
+[ext_resource path="res://special_scenes/session_screen/Star.tscn" type="PackedScene" id=5]
 
 [node name="PilotStats" type="Node2D"]
 scale = Vector2( 0.8, 0.8 )
@@ -70,7 +65,6 @@ margin_left = 504.0
 margin_top = 96.0
 margin_right = 544.0
 margin_bottom = 134.0
-custom_fonts/font = SubResource( 1 )
 text = "4"
 align = 1
 valign = 1
@@ -84,5 +78,6 @@ margin_left = 496.0
 margin_top = 37.5
 margin_right = 654.0
 margin_bottom = 87.5
-script = ExtResource( 5 )
-star_scene = ExtResource( 6 )
+script = ExtResource( 4 )
+star_scene = ExtResource( 5 )
+
