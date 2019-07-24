@@ -10,7 +10,8 @@ signal play_song
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	for audio_lib in get_children():
-		connect("play_song", self, "song_is_playing")
+		if not is_connected("play_song", self, "song_is_playing"):
+			connect("play_song", self, "song_is_playing")
 	
 func play(sound : String = "", force_stop = false):
 	if force_stop:
