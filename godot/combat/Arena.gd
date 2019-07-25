@@ -228,7 +228,6 @@ func _process(delta):
 		$CanvasLayer/Countdown.text = str(int(ceil(scores.time_left)))
 	else:
 		$CanvasLayer/Countdown.text = ""
-
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		pause.start()
