@@ -14,13 +14,13 @@ func _process(delta):
 	if frame_count % 3:
 		return
 	
-	points = outside_wall_shape.to_PoolVector2Array_offset(outside_wall_shape.get_extents()/2*1.1, 0.03125)
+	points = outside_wall_shape.to_PoolVector2Array_offset(outside_wall_shape.get_extents()/2*1.1, 0.04166666667)
 	light.texture = viewport.get_texture()
 		
 	update()
 
 func _ready():
-	points = outside_wall_shape.to_PoolVector2Array_offset(outside_wall_shape.get_extents()/2*1.1, 0.03125)
+	points = outside_wall_shape.to_PoolVector2Array_offset(outside_wall_shape.get_extents()/2*1.1, 0.04166666667)
 	light.texture = viewport.get_texture()
 	
 func _draw():
