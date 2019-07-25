@@ -39,7 +39,7 @@ offset = 200
 elongation = 100
 type = 0
 hide_line = false
-hide_grid = false
+hide_grid = true
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
 grid_rotation = 0.0
 
@@ -52,6 +52,9 @@ width = 3000
 height = 1800
 radius = 900
 precision = 50.0
+
+[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
+grid_color = Color( 0.945098, 0, 1, 0.588235 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( 900, 0 )

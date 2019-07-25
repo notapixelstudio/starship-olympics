@@ -159,7 +159,7 @@ func _physics_process(delta):
 func charge():
 	charging = true
 	$Graphics/ChargeBar.visible = true
-	$GravitonField.enabled = true
+	#$GravitonField.enabled = true
 	
 func fire():
 	"""
@@ -178,7 +178,7 @@ func fire():
 	
 	# repeal
 	$GravitonField.repeal(charge_impulse)
-	$GravitonField.enabled = false
+	#$GravitonField.enabled = false
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false

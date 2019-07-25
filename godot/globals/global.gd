@@ -97,6 +97,10 @@ var force_save = true
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
+func _input(event):
+	if event.is_action_pressed("fullscreen"):
+		OS.window_fullscreen = not OS.window_fullscreen
+		
 func _ready():
 	print("Starting game...")
 	print("FORCE SAVE is ", force_save, " - if true the user file will be overwritten")

@@ -728,6 +728,11 @@ joy4_down={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":3,"axis":1,"axis_value":1.0,"script":null)
  ]
 }
+fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777220,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -746,6 +751,7 @@ joy4_down={
 2d_physics/layer_14="deadship"
 2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
+2d_physics/layer_17="graviton_field"
 
 [locale]
 

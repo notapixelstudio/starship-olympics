@@ -47,6 +47,7 @@ func _init_grid(rect: Rect2):
 		
 const MULTIPLIER = 0.25
 var count_frame = 0
+
 func _process(delta):
 	count_frame += 1
 	if count_frame % 2:
@@ -88,7 +89,7 @@ class Point:
 		# elastic velocity
 		var diff = anchor - position
 		var desired_velocity = diff * 24
-		velocity = velocity.linear_interpolate(desired_velocity, 0.2)
+		velocity = velocity.linear_interpolate(desired_velocity, 0.15)
 		
 		# gravity velocity
 		for well in gravity_wells:
