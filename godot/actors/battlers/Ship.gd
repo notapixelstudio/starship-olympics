@@ -143,7 +143,7 @@ func control(_delta):
 	pass
 
 signal detection
-func _process(delta):
+func _physics_process(delta):
 	if not alive:
 		return
 	
