@@ -10,9 +10,10 @@ var v_cells
 var h_cells
 
 # Iterates through x and y axis, adding cells for each iteration
-func _init_grid(rect: Rect2):
-	v_cells = ceil(rect.size.y/cell_size.y)+1
-	h_cells = ceil(rect.size.x/cell_size.x) + 1 
+func init_grid(arena_size: Vector2):
+	
+	v_cells = ceil(arena_size.y/cell_size.y)+1
+	h_cells = ceil(arena_size.x/cell_size.x) + 1 
 	position = -cell_size * Vector2(h_cells-1, v_cells-1)/2.0
 	# Temporarily store the cells so we can set their neighbors that they'll draw to
 	grid.resize(v_cells)

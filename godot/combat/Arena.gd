@@ -26,7 +26,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/GridPack/Grid
+onready var grid = $Battlefield/Background/GridPack
 
 signal screensize_changed(screensize)
 signal gameover
@@ -159,13 +159,12 @@ func _ready():
 	
 	scores.initialize(array_players, game_mode, max_score)
 	
-	grid._init_grid(compute_arena_size())
-	$Battlefield/Background/GridPack/MaskViewPort.size = compute_arena_size().size*0.04166666667*1.1
 	
 	# initialize HUD
 	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
+	
 	
 	$Battlefield.visible = false
 	get_tree().paused = true
@@ -174,6 +173,8 @@ func _ready():
 	yield(mode_description, "ready_to_fight")
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
+
+	grid.init_grid(compute_arena_size().size)
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
