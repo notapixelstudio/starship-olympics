@@ -34,9 +34,9 @@ func nearest_in(objects):
 	var nearest = null
 	var min_dist
 	for object in objects:
-		if not nearest or dist(object.position, position) < min_dist:
+		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
-			min_dist = dist(nearest.position, position)
+			min_dist = dist(nearest.global_position, position)
 	return nearest
 
 const CIRCLE_DIST = 50
@@ -176,7 +176,7 @@ func control(delta):
 		this_target = null
 	
 	if this_target:
-		this_target = this_target.position
+		this_target = this_target.global_position
 	
 	# check if there is a danger closer
 	target = seek_ahead(this_target)
