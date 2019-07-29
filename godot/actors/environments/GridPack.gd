@@ -10,13 +10,10 @@ onready var mask = $MaskViewPort/Mask
 onready var light = $Light2D
 onready var viewport = $MaskViewPort
 onready var grid = $Grid
-signal sasa
 
 func init_grid(arena_size: Vector2):
 	grid.init_grid(arena_size)
 	viewport.size = arena_size * float(1.0/scale_mask_texture.x) * factor_viewport_multiplier
-	emit_signal("sasa")
-	print(viewport.size)
 	
 func _ready():
 	mask.multiplier = factor_viewport_multiplier
