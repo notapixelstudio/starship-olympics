@@ -2,6 +2,7 @@ extends Node2D
 
 export var grid_color : Color = Color.gray
 export var cell_size := Vector2.ONE * 100
+export var enabled : bool = true
 
 var active_points = []
 var grid = []
@@ -11,6 +12,9 @@ var h_cells
 
 # Iterates through x and y axis, adding cells for each iteration
 func init_grid(arena_size: Vector2):
+	set_process(enabled)
+	if not enabled:
+		return
 	
 	v_cells = ceil(arena_size.y/cell_size.y)+1
 	h_cells = ceil(arena_size.x/cell_size.x) + 1 

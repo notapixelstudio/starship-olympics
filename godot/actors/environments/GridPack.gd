@@ -5,6 +5,7 @@ export var cell_size := Vector2.ONE * 100
 export var frames_wait := 3
 export var scale_mask_texture := Vector2.ONE
 export var factor_viewport_multiplier := 1.1
+export var enabled : bool = true
 
 onready var mask = $MaskViewPort/Mask
 onready var light = $Light2D
@@ -22,4 +23,9 @@ func _ready():
 	mask.scale_texture = scale_mask_texture
 	grid.grid_color = grid_color
 	grid.cell_size = cell_size
+	
+
+	mask.set_process(enabled)
+	light.enabled = enabled
+	grid.set_process(enabled)
 	

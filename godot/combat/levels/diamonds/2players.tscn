@@ -61,6 +61,9 @@ height = 1800
 radius = 900
 precision = 50.0
 
+[node name="Middleground" parent="Battlefield" index="2"]
+editor/display_folded = true
+
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398

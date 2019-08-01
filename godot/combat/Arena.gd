@@ -147,7 +147,7 @@ func _ready():
 			s.info_player.id = "cpu"
 		else:
 			s.info_player.id = s.name
-			array_players.append(from_spawner_to_infoplayer(s))
+		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
 
 

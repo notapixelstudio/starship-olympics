@@ -178,6 +178,7 @@ script = ExtResource( 16 )
 
 [node name="GridPack" type="Node2D" parent="Battlefield/Background"]
 pause_mode = 2
+modulate = Color( 1, 1, 1, 0.705882 )
 script = ExtResource( 17 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 scale_mask_texture = Vector2( 24, 24 )
@@ -283,6 +284,7 @@ enabled = true
 
 [node name="GameOver" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 2 )
+
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
