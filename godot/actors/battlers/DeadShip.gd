@@ -12,8 +12,8 @@ func _ready():
 func set_ship(new_value):
 	ship = new_value
 	$Sprite.modulate = ship.species_template.color
-	$Sprite.modulate = $Sprite.modulate.darkened(0.5)
-	$Sprite.modulate.a = 0.75
+	$Sprite.modulate = $Sprite.modulate.darkened(0.2)
+	$Sprite.modulate.a = 0.85
 	$Sprite.texture = ship.species_template.ship
 	
 func _enter_tree():
