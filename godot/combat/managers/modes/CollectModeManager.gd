@@ -59,6 +59,7 @@ func _handle_waves():
 		current_wave += 1
 		elements_spawned = 0
 	if current_wave >= max_waves:
+		reset_wave_timer()
 		initialize(spawners, 1.5, current_wave - 1)
 		return
 	spawners_per_wave[current_wave].shuffle()
