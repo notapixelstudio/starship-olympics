@@ -42,19 +42,21 @@ func _on_sth_collected(collector, collectee):
 		var something_in = false
 		yield(get_tree(), "idle_frame")
 		if not get_tree().get_nodes_in_group(COINGROUP):
-			if not len(spawners_per_wave[current_wave]):
-				current_wave += 1
-			if current_wave >= max_waves:
-				initialize(spawners, 1.5, current_wave-1)
-				return
-			var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
-			spawners_per_wave[current_wave].shuffle()
-			print(spawners_per_wave[current_wave])
-			var animate_wall = false
-			if current_wave == max_waves - 1:
-				animate_wall = true
-			emit_signal('spawn_next', next_spawner, 1, animate_wall) 
+			_handle_waves()
 		
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.species, -score_multiplier*amount)
+
+func _handle_waves():
+		if not len(spawners_per_wave[current_wave]):
+			current_wave += 1
+		if current_wave >= max_waves:
+			initialize(spawners, 1.5, current_wave - 1)
+			return
+		var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
+		spawners_per_wave[current_wave].shuffle()
+		emit_signal('spawn_next', next_spawner, 1)
+
 	
+func reset_timer():
+	$Timer.start()
