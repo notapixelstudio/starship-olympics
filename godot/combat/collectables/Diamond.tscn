@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/sprites/diamond.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+radius = 60.0
 
 [node name="Coin" type="RigidBody2D" groups=[
 "Foreground",
@@ -45,3 +45,4 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
