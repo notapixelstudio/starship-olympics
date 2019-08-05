@@ -143,7 +143,7 @@ func control(_delta):
 	pass
 
 signal detection
-func _process(delta):
+func _physics_process(delta):
 	if not alive:
 		return
 	
@@ -156,6 +156,11 @@ func _process(delta):
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
 		
+func charge():
+	charging = true
+	$Graphics/ChargeBar.visible = true
+	#$GravitonField.enabled = true
+	
 func fire():
 	"""
 	Fire a bomb
@@ -170,6 +175,10 @@ func fire():
 	  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
 	  self
 	)
+	
+	# repeal
+	$GravitonField.repeal(charge_impulse)
+	#$GravitonField.enabled = false
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false

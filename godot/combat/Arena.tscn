@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -16,19 +16,22 @@
 [ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=14]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=15]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=16]
-[ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=19]
-[ext_resource path="res://combat/CameraDebug.gd" type="Script" id=20]
-[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/fonts/elbaris/Elbaris Outline.ttf" type="DynamicFontData" id=22]
-[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=23]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=24]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=25]
+[ext_resource path="res://actors/environments/GridPack.gd" type="Script" id=17]
+[ext_resource path="res://actors/environments/gravity-well/Grid.gd" type="Script" id=18]
+[ext_resource path="res://actors/environments/gravity-well/Mask.gd" type="Script" id=19]
+[ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=20]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=21]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=22]
+[ext_resource path="res://combat/CameraDebug.gd" type="Script" id=23]
+[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=24]
+[ext_resource path="res://assets/fonts/elbaris/Elbaris Outline.ttf" type="DynamicFontData" id=25]
+[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=26]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=27]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=28]
 
 [sub_resource type="DynamicFont" id=1]
 size = 600
-font_data = ExtResource( 22 )
+font_data = ExtResource( 25 )
 
 [sub_resource type="Animation" id=2]
 length = 0.2
@@ -165,6 +168,10 @@ __meta__ = {
 }
 enabled = false
 
+[node name="Timer" type="Timer" parent="CollectModeManager"]
+wait_time = 6.0
+autostart = true
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -173,6 +180,33 @@ script = ExtResource( 16 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 
+[node name="GridPack" type="Node2D" parent="Battlefield/Background"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.705882 )
+script = ExtResource( 17 )
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+scale_mask_texture = Vector2( 24, 24 )
+
+[node name="Light2D" type="Light2D" parent="Battlefield/Background/GridPack"]
+scale = Vector2( 24, 24 )
+mode = 3
+range_item_cull_mask = 2
+
+[node name="Grid" type="Node2D" parent="Battlefield/Background/GridPack"]
+light_mask = 2
+script = ExtResource( 18 )
+
+[node name="MaskViewPort" type="Viewport" parent="Battlefield/Background/GridPack"]
+size = Vector2( 1000, 1000 )
+transparent_bg = true
+hdr = false
+usage = 1
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="Mask" type="Node2D" parent="Battlefield/Background/GridPack/MaskViewPort"]
+script = ExtResource( 19 )
+
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
 [node name="Middleground" type="Node2D" parent="Battlefield"]
@@ -180,8 +214,9 @@ script = ExtResource( 16 )
 [node name="Foreground" type="Node2D" parent="Battlefield"]
 
 [node name="Overlay" type="Node2D" parent="Battlefield"]
+editor/display_folded = true
 
-[node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 17 )]
+[node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 20 )]
 
 [node name="SpawnPositions" type="Node" parent="."]
 
@@ -194,9 +229,9 @@ script = ExtResource( 16 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 18 )]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 21 )]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 19 )]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 22 )]
 editor/display_folded = true
 visible = false
 
@@ -211,12 +246,12 @@ label_description = "debug mode"
 node_owner_path = NodePath("../../../../../../../../Camera")
 
 [node name="CameraDebug" type="Node2D" parent="CanvasLayer"]
-script = ExtResource( 20 )
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 21 )]
+[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 24 )]
 visible = false
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
@@ -235,19 +270,19 @@ align = 1
 valign = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
-stream = ExtResource( 23 )
+stream = ExtResource( 26 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 24 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 27 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 25 )
+script = ExtResource( 28 )
 debug_mode = false
 enabled = true
 

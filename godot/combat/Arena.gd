@@ -26,6 +26,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
+onready var grid = $Battlefield/Background/GridPack
 
 signal screensize_changed(screensize)
 signal gameover
@@ -99,6 +100,8 @@ func _ready():
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
 	
+	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeA = $Battlefield/Background/Grid/GridPoint225/RigidBody2D
+	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
 	
 	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
 	$CollectManager.connect('collected', self, "_on_sth_collected")
@@ -139,11 +142,12 @@ func _ready():
 		else:
 			s.info_player = InfoPlayer.new()
 			s.info_player.cpu = s.cpu
-			if s.cpu:
-				s.info_player.id = "cpu"
-			else:
-				s.info_player.id = s.name
-			array_players.append(from_spawner_to_infoplayer(s))
+		
+		if s.cpu:
+			s.info_player.id = "cpu"
+		else:
+			s.info_player.id = s.name
+		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
 
 
@@ -156,10 +160,13 @@ func _ready():
 	
 	scores.initialize(array_players, game_mode, max_score)
 	
+	
 	# initialize HUD
 	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
+	
+	
 	$Battlefield.visible = false
 	get_tree().paused = true
 	mode_description.gamemode = game_mode
@@ -167,6 +174,8 @@ func _ready():
 	yield(mode_description, "ready_to_fight")
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
+
+	grid.init_grid(compute_arena_size().size)
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -214,13 +223,13 @@ const COUNTDOWN_LIMIT = 5.0
 
 func _process(delta):
 	scores.update(delta)
+	
 	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		$CanvasLayer/Countdown/AudioStreamPlayer.play()
 	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:
 		$CanvasLayer/Countdown.text = str(int(ceil(scores.time_left)))
 	else:
 		$CanvasLayer/Countdown.text = ""
-
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		pause.start()
@@ -305,6 +314,7 @@ onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_manager = $ConquestManager
 onready var pursue_manager = $PursueManager
+onready var collect_mode_manager = $CollectModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -406,17 +416,15 @@ func _on_sth_dropped(dropper, droppee):
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
-func _on_coins_finished(diamonds, wait_time=1, animate: bool = false):
-	if wait_time :
+func _on_coins_finished(diamonds, wait_time=1):
+	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 
 	diamonds.spawn()
+	collect_mode_manager.on_wave_ready()
+	
 	#for collectable in collectables:
 	#	$Battlefield.add_child(collectable)
-	if animate:
-		for wall in $Battlefield/Middleground.get_children():
-			if wall is Wall:
-				wall.animate("wall_flash")
 		
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")

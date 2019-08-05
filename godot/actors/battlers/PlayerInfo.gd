@@ -8,13 +8,12 @@ export var secondary_texture : Texture
 onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
 onready var player_id = $Scaled/Colored/PlayerID
 onready var target_entity = ECM.E(target)
+onready var point_score = $Scaled/Colored/PointsScored
 
 func _ready():
 	if target.info_player:
 		player_id.text = tr(target.info_player.id)
 	$Scaled/Colored.modulate = target.species_template.color
-	print("sHOULD WE be a timmatto?" + str(target.info_player.team))
-	print("We are " + str(target.species_template.id))
 	if target.species_template.id >= 100 and target.info_player.team:
 		$Scaled/Colored/Circle.set_texture(secondary_texture)
 	else:
@@ -52,14 +51,16 @@ func update_crown():
 var partial_score = 0
 func update_score(score):
 	partial_score += score
-	$Scaled/Colored/PointsScored.set_points(partial_score)
+	point_score.set_points(partial_score)
 	
 
 func _on_Royal_enabled():
-	$Scaled/Colored/PointsScored.visible = true
+	return
+	point_score.show()
 
 func _on_Royal_disabled():
-	$Scaled/Colored/PointsScored.appear()
-	yield($Scaled/Colored/PointsScored, "end")
-	$Scaled/Colored/PointsScored.visible = false
+	return
+	point_score.appear()
+	yield(point_score, "end")
+	point_score.hide()
 	
