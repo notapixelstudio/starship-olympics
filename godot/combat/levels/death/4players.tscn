@@ -34,7 +34,7 @@ tracks/0/keys = {
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 30.0
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -47,9 +47,6 @@ enabled = true
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
-
-[node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
