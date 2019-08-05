@@ -14,6 +14,8 @@ var max_waves: int
 var how_many_spawners: int
 var current_spawners = 0
 
+export var min_elements_per_wave = 3
+var elements_spawned := 0
 onready var wave_timer = $Timer
 
 func initialize(_spawners, wait_time = 0, wave = 0):
@@ -33,6 +35,7 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	max_waves = waves
 	spawners_per_wave[current_wave].shuffle()
 	var next_spawner = spawners_per_wave[current_wave].pop_back()
+	elements_spawned += 1
 	emit_signal("spawn_next", next_spawner, wait_time)
 	
 func _on_sth_collected(collector, collectee):
@@ -52,13 +55,15 @@ func _process(delta):
 		
 func _handle_waves():
 	wave_ready = false
-	if not len(spawners_per_wave[current_wave]):
+	if not len(spawners_per_wave[current_wave]) or elements_spawned>=min_elements_per_wave:
 		current_wave += 1
+		elements_spawned = 0
 	if current_wave >= max_waves:
 		initialize(spawners, 1.5, current_wave - 1)
 		return
 	spawners_per_wave[current_wave].shuffle()
 	var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
+	elements_spawned += 1
 	reset_wave_timer()
 	emit_signal('spawn_next', next_spawner, 1)
 		
