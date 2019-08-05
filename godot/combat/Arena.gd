@@ -416,7 +416,6 @@ func _on_sth_dropped(dropper, droppee):
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
 func _on_coins_finished(diamonds, wait_time=1, animate: bool = false):
-	$CollectModeManager.reset_timer()
 	if wait_time :
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 

@@ -14,6 +14,8 @@ var max_waves: int
 var how_many_spawners: int
 var current_spawners = 0
 
+onready var wave_timer = $Timer
+
 func initialize(_spawners, wait_time = 0, wave = 0):
 	current_wave = wave
 	spawners = _spawners
@@ -39,14 +41,14 @@ func _on_sth_collected(collector, collectee):
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.species, score)
 		emit_signal('show_score', collector.species_template, score, collectee.global_position)
-		var something_in = false
-		yield(get_tree(), "idle_frame")
-		if not get_tree().get_nodes_in_group(COINGROUP):
-			_handle_waves()
 		
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.species, -score_multiplier*amount)
 
+func _process(delta):
+	if not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0:
+		_handle_waves()
+		
 func _handle_waves():
 		if not len(spawners_per_wave[current_wave]):
 			current_wave += 1
@@ -55,8 +57,8 @@ func _handle_waves():
 			return
 		var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
 		spawners_per_wave[current_wave].shuffle()
+		reset_wave_timer()
 		emit_signal('spawn_next', next_spawner, 1)
-
-	
-func reset_timer():
-	$Timer.start()
+		
+func reset_wave_timer():
+	wave_timer.start()
