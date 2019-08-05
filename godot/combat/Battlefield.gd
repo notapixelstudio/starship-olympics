@@ -15,6 +15,7 @@ func add_child(node: Node, legible_unique_name=false):
 func remove_child(node):
 	var container = _get_container(node)
 	container.remove_child(node)
+	
 
 func _get_container(node):
 	for group in groups:

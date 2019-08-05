@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -19,7 +19,9 @@
 [ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=17]
 [ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=18]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=19]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=20]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=21]
+[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=22]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -40,15 +42,16 @@ font_data = ExtResource( 19 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "in_camera",
-"Foreground",
 "players",
+"Foreground",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
-gravity_scale = 0.0
+gravity_scale = 2.0
 continuous_cd = 2
 contacts_reported = 10
 contact_monitor = true
+angular_damp = 40.0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -167,17 +170,32 @@ align = 1
 valign = 1
 uppercase = true
 
+[node name="PointsScored" parent="PlayerInfo/Scaled/Colored" instance=ExtResource( 20 )]
+visible = false
+position = Vector2( 0, -47.5 )
+still = true
+
 [node name="Circle" type="Sprite" parent="PlayerInfo/Scaled/Colored"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 17 )
 
 [node name="Crown" type="Sprite" parent="PlayerInfo/Scaled"]
-visible = false
 position = Vector2( 0, 0.749992 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 offset = Vector2( 0, -150 )
+
+[node name="GravitonField" parent="." instance=ExtResource( 22 )]
+
+[node name="Entity" type="Node" parent="GravitonField"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
 [connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]
+[connection signal="disabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_disabled"]
+[connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]

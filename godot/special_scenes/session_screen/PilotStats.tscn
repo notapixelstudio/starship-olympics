@@ -22,7 +22,6 @@ margin_bottom = 149.0
 rect_min_size = Vector2( 400, 100 )
 
 [node name="Headshot" parent="Container" instance=ExtResource( 2 )]
-species = null
 
 [node name="Stats" type="Panel" parent="Container"]
 margin_left = 154.0
@@ -41,6 +40,7 @@ margin_top = 0.0
 margin_right = 142.0
 margin_bottom = 30.0
 key = "kills"
+stats_value = "0"
 
 [node name="Stat3" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
 margin_left = 182.0
@@ -48,12 +48,14 @@ margin_top = 0.0
 margin_right = 324.0
 margin_bottom = 30.0
 key = "deaths"
+stats_value = "0"
 
 [node name="Stat4" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
 margin_top = 34.0
 margin_right = 142.0
 margin_bottom = 64.0
 key = "selfkills"
+stats_value = "0"
 
 [node name="Stat5" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
 margin_left = 182.0
@@ -61,6 +63,7 @@ margin_top = 34.0
 margin_right = 324.0
 margin_bottom = 64.0
 key = "bombs"
+stats_value = "0"
 
 [node name="Tween" type="Tween" parent="."]
 

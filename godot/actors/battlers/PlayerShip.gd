@@ -87,8 +87,7 @@ func control(delta):
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 		
 	if not charging and Input.is_action_just_pressed(controls+'_fire') and fire_cooldown <= 0:
-		charging = true
-		$Graphics/ChargeBar.visible = true
+		charge()
 		
 	# fire
 	if charging and Input.is_action_just_released(controls+'_fire'):

@@ -46,7 +46,10 @@ enabled = true
 texture = ExtResource( 3 )
 centered = false
 
-[node name="OutsideWallGhost2" parent="Battlefield/Background" index="0" instance=ExtResource( 4 )]
+[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="OutsideWallGhost2" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
 hollow = true
 offset = 200
@@ -66,13 +69,13 @@ width = 2800
 height = 1400
 bevel = 100
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
 type = 0
 hide_line = false
-hide_grid = false
+hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 grid_rotation = 0.0
 
