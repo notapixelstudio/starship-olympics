@@ -41,9 +41,9 @@ size = 24
 font_data = ExtResource( 19 )
 
 [node name="Ship" type="RigidBody2D" groups=[
-"in_camera",
-"players",
 "Foreground",
+"players",
+"in_camera",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -146,6 +146,13 @@ script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
+
+[node name="Dashing" type="Node" parent="Entity2D"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 8 )
+}
+enabled = false
 
 [node name="Debug" parent="." instance=ExtResource( 15 )]
 

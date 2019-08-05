@@ -24,6 +24,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
+const MIN_DASHING_CHARGE = 0.1
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -153,6 +154,10 @@ func _physics_process(delta):
 	if stun_countdown <= 0:
 		unstun()
 		
+	dash_cooldown -= delta
+	if dash_cooldown <= 0:
+		entity.get('Dashing').disable()
+		
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
 		
@@ -184,6 +189,10 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
+	if charge > MIN_DASHING_CHARGE:
+		entity.get('Dashing').enable()
+		dash_cooldown = 0.2
+		
 
 func die(killer : Ship):
 	if alive and not invincible:

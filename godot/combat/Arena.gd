@@ -315,6 +315,7 @@ onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_manager = $ConquestManager
 onready var pursue_manager = $PursueManager
 onready var collect_mode_manager = $CollectModeManager
+onready var snake_trail_manager = $SnakeTrailManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -365,6 +366,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
+	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
 	
 	$CrownModeManager.connect('show_score', ship, "update_score")
 	
@@ -379,7 +381,7 @@ func spawn_bomb(pos, impulse, ship):
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	
-	$Battlefield.add_child(bomb)
+	#$Battlefield.add_child(bomb)
 	
 	if ship:
 		emit_signal("update_stats", ship.species, 1, "bombs")
