@@ -11,7 +11,7 @@ onready var target_entity = ECM.E(target)
 
 func _ready():
 	if target.info_player:
-		player_id.text = target.info_player.id
+		player_id.text = tr(target.info_player.id)
 	$Scaled/Colored.modulate = target.species_template.color
 	print("sHOULD WE be a timmatto?" + str(target.info_player.team))
 	print("We are " + str(target.species_template.id))

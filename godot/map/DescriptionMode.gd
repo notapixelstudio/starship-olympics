@@ -13,7 +13,7 @@ func _ready():
 func refresh():
 	if $Sprite and gamemode:
 		$Sprite.texture = gamemode.logo
-		$Description.text = gamemode.description.replace("{score}", str(gamemode.max_score))
+		$Description.text = tr(gamemode.description).format({"score": str(gamemode.max_score)})
 	
 func set_gamemode(value: GameMode):
 	gamemode = value
