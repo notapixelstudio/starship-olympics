@@ -169,7 +169,8 @@ __meta__ = {
 enabled = false
 
 [node name="Timer" type="Timer" parent="CollectModeManager"]
-wait_time = 10.0
+wait_time = 6.0
+autostart = true
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1

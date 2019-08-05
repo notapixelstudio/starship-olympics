@@ -314,6 +314,7 @@ onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_manager = $ConquestManager
 onready var pursue_manager = $PursueManager
+onready var collect_mode_manager = $CollectModeManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -415,18 +416,15 @@ func _on_sth_dropped(dropper, droppee):
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
-func _on_coins_finished(diamonds, wait_time=1, animate: bool = false):
-	if wait_time :
+func _on_coins_finished(diamonds, wait_time=1):
+	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 
 	diamonds.spawn()
-
+	collect_mode_manager.on_wave_ready()
+	
 	#for collectable in collectables:
 	#	$Battlefield.add_child(collectable)
-	if animate:
-		for wall in $Battlefield/Middleground.get_children():
-			if wall is Wall:
-				wall.animate("wall_flash")
 		
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")

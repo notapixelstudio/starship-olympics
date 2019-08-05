@@ -64,9 +64,6 @@ height = 1800
 radius = 900
 precision = 50.0
 
-[node name="Middleground" parent="Battlefield" index="2"]
-editor/display_folded = true
-
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398
@@ -182,9 +179,8 @@ species_template = ExtResource( 14 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
-controls = "joy2"
+controls = "kb2"
 species_template = ExtResource( 15 )
-cpu = true
 
 [node name="Pause" parent="CanvasLayer" index="1"]
 editor/display_folded = false

@@ -45,20 +45,26 @@ func _on_sth_collected(collector, collectee):
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.species, -score_multiplier*amount)
 
+var wave_ready = true
 func _process(delta):
-	if not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0:
+	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0):
 		_handle_waves()
 		
 func _handle_waves():
-		if not len(spawners_per_wave[current_wave]):
-			current_wave += 1
-		if current_wave >= max_waves:
-			initialize(spawners, 1.5, current_wave - 1)
-			return
-		var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
-		spawners_per_wave[current_wave].shuffle()
-		reset_wave_timer()
-		emit_signal('spawn_next', next_spawner, 1)
+	wave_ready = false
+	if not len(spawners_per_wave[current_wave]):
+		current_wave += 1
+	if current_wave >= max_waves:
+		initialize(spawners, 1.5, current_wave - 1)
+		return
+	spawners_per_wave[current_wave].shuffle()
+	var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
+	reset_wave_timer()
+	emit_signal('spawn_next', next_spawner, 1)
 		
 func reset_wave_timer():
 	wave_timer.start()
+	
+func on_wave_ready():
+	wave_ready = true
+	
