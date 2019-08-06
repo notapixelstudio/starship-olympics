@@ -14,7 +14,6 @@ export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
 
 var mockup: bool = false
-var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
 var run_time = 0
@@ -80,7 +79,19 @@ func update_time_scale():
 
 signal update_stats
 
+func setup_level(mode : Resource):
+	assert(mode is GameMode)
+	$CrownModeManager.enabled = mode.crown
+	$DeathmatchModeManager.enable = mode.death
+	$CollectModeManager.enable = mode.collect
+	$ConquestModeManager.enable = mode.conquest
+	
+
 func _ready():
+
+	# Setup goal, Gear and mode managers
+	setup_level(game_mode)
+
 	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
