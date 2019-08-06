@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/SnakeDeathmatch.tres" type="Resource" id=2]
@@ -11,22 +11,6 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Pulse"
-length = 8.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("GBeveledRect:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2, 8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 2800, 2800, 1200 ]
-}
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -42,27 +26,7 @@ centered = false
 [node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="OutsideWallGhost2" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
-modulate = Color( 0.2, 0.7, 1, 0.2 )
-hollow = true
-offset = 200
-elongation = 100
-type = 2
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-width = 2800
-height = 1400
-bevel = 100
-
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -80,11 +44,6 @@ __meta__ = {
 width = 2800
 height = 1400
 bevel = 100
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6"]
-autoplay = "Pulse"
-playback_speed = 0.1
-anims/Pulse = SubResource( 1 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( -100, -700 )
