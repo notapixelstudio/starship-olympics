@@ -6,8 +6,10 @@ var ship : Ship
 var ship_e : Entity
 
 onready var trail = $Trail
-onready var collision_shape = $Trail/DashArea/CollisionShape2D
-onready var dash_area = $Trail/DashArea
+onready var collision_shape = $Trail/NearArea/CollisionShape2D
+onready var near_area = $Trail/NearArea
+onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
+onready var far_area = $Trail/FarArea
 
 export var trail_texture : Texture
 
@@ -36,7 +38,11 @@ func configure(deadly: bool):
 	
 func _ready():
 	collision_shape.shape = ConcavePolygonShape2D.new()
-	(ECM.E(dash_area).get('Owned') as Owned).set_owned_by(ship)
+	farcollision_shape.shape = ConcavePolygonShape2D.new()
+	
+	(ECM.E(near_area).get('Owned') as Owned).set_owned_by(ship)
+	(ECM.E(far_area).get('Owned') as Owned).set_owned_by(ship)
+	
 	var c = Color(ship.species_template.color_2)
 	trail.modulate = c
 	

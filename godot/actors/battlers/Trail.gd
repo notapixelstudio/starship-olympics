@@ -37,10 +37,14 @@ enum PersistWhen {
 }
 
 ##### PROPERTIES #####
-onready var area_shape = $DashArea/CollisionShape2D
-onready var area = $DashArea
+onready var area_shape = $NearArea/CollisionShape2D
+onready var area = $NearArea
+onready var fararea = $FarArea
+onready var fararea_shape = $FarArea/CollisionShape2D
 
 var segments = []
+var farsegments = []
+
 # The target node to track
 var target: Node2D setget set_target
 
@@ -161,12 +165,21 @@ func set_target_path(p_value: NodePath):
 	
 var entity
 
+const GRACE_POINTS = 15
 func add_point_to_segment(point):
-	if len(points) == 0: 
+	if len(points) == 0:
 		return
 	segments.append(points[len(points)-1])
 	segments.append(point)
 	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+
+	
+	# FarArea
+	if len(points) < GRACE_POINTS: 
+		return
+	farsegments.append(points[len(points)-GRACE_POINTS])
+	farsegments.append(points[len(points)-GRACE_POINTS+1])
+	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 
 func remove_point_to_segment(point):
 	if len(points) == 0: 
@@ -174,5 +187,8 @@ func remove_point_to_segment(point):
 	# Twice, because!
 	segments.pop_front()
 	segments.pop_front()
+	farsegments.pop_front()
+	farsegments.pop_front()
 	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 	
