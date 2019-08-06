@@ -126,6 +126,7 @@ func _ready():
 	
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('broadcast_score', scores, "broadcast_score")
 	$DeathmatchModeManager.connect('show_score', self, "spawn_points_scored")
 	$RaceModeManager.connect('score', scores, "add_score")
 	$ConquestModeManager.connect('score', scores, "add_score")
