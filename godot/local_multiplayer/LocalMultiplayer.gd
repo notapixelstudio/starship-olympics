@@ -11,8 +11,8 @@ var all_planets = [
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
 	preload("res://map/planets/SoloDeath.tres"),
-	preload("res://map/planets/EelectronPlanet.tres"),
-#	preload("res://map/planets/MinefieldDeathmatch.tres")
+	# preload("res://map/planets/EelectronPlanet.tres"),
+	# preload("res://map/planets/MinefieldDeathmatch.tres")
 	]
 	
 var all_species = [
