@@ -11,5 +11,6 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 		
 	if entity.has('DashThroughDeadly') and not (ECM.E(ship).has('Dashing')):
 		var killer = entity.get('Owned').get_owned_by()
-		ship.die(killer)
+		if killer != ship or not entity.has("NoSelfDeadly"):
+			ship.die(killer)
 		

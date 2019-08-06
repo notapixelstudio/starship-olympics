@@ -21,25 +21,55 @@ trail_texture = ExtResource( 2 )
 [node name="Trail" parent="." instance=ExtResource( 3 )]
 gradient = SubResource( 1 )
 
-[node name="DashArea" type="Area2D" parent="Trail"]
+[node name="NearArea" type="Area2D" parent="Trail"]
 collision_layer = 524288
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/DashArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/NearArea"]
 
-[node name="Entity" type="Node" parent="Trail/DashArea"]
+[node name="Entity" type="Node" parent="Trail/NearArea"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="DashThroughDeadly" type="Node" parent="Trail/DashArea/Entity"]
+[node name="DashThroughDeadly" type="Node" parent="Trail/NearArea/Entity"]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
 
-[node name="Owned" type="Node" parent="Trail/DashArea/Entity"]
+[node name="NoSelfDeadly" type="Node" parent="Trail/NearArea/Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="Owned" type="Node" parent="Trail/NearArea/Entity"]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="FarArea" type="Area2D" parent="Trail"]
+collision_layer = 524288
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/FarArea"]
+
+[node name="Entity" type="Node" parent="Trail/FarArea"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="DashThroughDeadly" type="Node" parent="Trail/FarArea/Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="Owned" type="Node" parent="Trail/FarArea/Entity"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
