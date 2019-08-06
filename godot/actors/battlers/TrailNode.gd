@@ -5,14 +5,24 @@ class_name Trail
 var ship : Ship
 var ship_e : Entity
 
+
 onready var trail = $Trail
 onready var collision_shape = $Trail/NearArea/CollisionShape2D
 onready var near_area = $Trail/NearArea
 onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
 onready var far_area = $Trail/FarArea
 
+export var trail_length: int setget set_trail_length
 export var trail_texture : Texture
 
+var trail_f : float = 0.0
+
+func set_trail_length(value:int):
+	trail_length = value
+	if trail:
+		trail.trail_length = trail_length
+		
+	
 func is_deadly():
 	return not collision_shape.disabled
 
@@ -25,11 +35,13 @@ func initialize(_ship : Ship):
 	
 func configure(deadly: bool):
 	if deadly:
+		add_to_group("Trails")
 		trail.trail_length = 200
 		trail.auto_alpha_gradient = false
 		collision_shape.disabled = false
 		trail.texture = null
 	else:
+		remove_from_group("Trails")
 		collision_shape.disabled = true
 		trail.trail_length = 25
 		trail.texture = trail_texture
@@ -37,6 +49,8 @@ func configure(deadly: bool):
 	
 	
 func _ready():
+	trail_f = trail_length
+	
 	collision_shape.shape = ConcavePolygonShape2D.new()
 	farcollision_shape.shape = ConcavePolygonShape2D.new()
 	

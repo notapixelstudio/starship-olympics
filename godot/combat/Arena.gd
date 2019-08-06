@@ -325,7 +325,7 @@ onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_manager = $ConquestManager
 onready var pursue_manager = $PursueManager
 onready var collect_mode_manager = $CollectModeManager
-onready var snake_trail_manager = $SnakeTrailManager
+onready var snake_trail_manager = $TrailManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
