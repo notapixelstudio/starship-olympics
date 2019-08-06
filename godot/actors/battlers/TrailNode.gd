@@ -4,9 +4,12 @@ class_name Trail
 
 var ship : Ship
 var ship_e : Entity
+
 onready var trail = $Trail
 onready var collision_shape = $Trail/DashArea/CollisionShape2D
 onready var dash_area = $Trail/DashArea
+
+export var trail_texture : Texture
 
 func is_deadly():
 	return not collision_shape.disabled
@@ -23,9 +26,11 @@ func configure(deadly: bool):
 		trail.trail_length = 200
 		trail.auto_alpha_gradient = false
 		collision_shape.disabled = false
+		trail.texture = null
 	else:
 		collision_shape.disabled = true
 		trail.trail_length = 25
+		trail.texture = trail_texture
 	
 	
 	
