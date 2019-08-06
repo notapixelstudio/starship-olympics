@@ -82,11 +82,10 @@ signal update_stats
 func setup_level(mode : Resource):
 	assert(mode is GameMode)
 	$CrownModeManager.enabled = mode.crown
-	$DeathmatchModeManager.enable = mode.death
-	$CollectModeManager.enable = mode.collect
-	$ConquestModeManager.enable = mode.conquest
+	$DeathmatchModeManager.enabled = mode.death
+	$CollectModeManager.enabled = mode.collect
+	$ConquestModeManager.enabled = mode.hive
 	
-
 func _ready():
 
 	# Setup goal, Gear and mode managers
