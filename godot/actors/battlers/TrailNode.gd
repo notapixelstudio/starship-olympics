@@ -4,9 +4,15 @@ class_name Trail
 
 var ship : Ship
 var ship_e : Entity
-onready var trail = $Trail
-onready var collision_shape = $Area2D/CollisionShape2D
 
+onready var trail = $Trail
+onready var collision_shape = $Trail/DashArea/CollisionShape2D
+onready var dash_area = $Trail/DashArea
+
+export var trail_texture : Texture
+
+func is_deadly():
+	return not collision_shape.disabled
 
 func initialize(_ship : Ship):
 	ship = _ship
@@ -14,10 +20,23 @@ func initialize(_ship : Ship):
 	ship.connect('spawned', self, '_on_sth_spawned')
 	ship.connect('dead', self, '_on_sth_dead')
 	
-	if $Trail/Area2D:
-		(ECM.E($Trail/Area2D).get('Owned') as Owned).set_owned_by(ship)
-
+	
+func configure(deadly: bool):
+	if deadly:
+		trail.trail_length = 200
+		trail.auto_alpha_gradient = false
+		collision_shape.disabled = false
+		trail.texture = null
+	else:
+		collision_shape.disabled = true
+		trail.trail_length = 25
+		trail.texture = trail_texture
+	
+	
+	
 func _ready():
+	collision_shape.shape = ConcavePolygonShape2D.new()
+	(ECM.E(dash_area).get('Owned') as Owned).set_owned_by(ship)
 	var c = Color(ship.species_template.color_2)
 	trail.modulate = c
 	

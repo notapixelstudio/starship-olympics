@@ -363,7 +363,13 @@ func spawn_ship(player:PlayerSpawner):
 	trail.initialize(ship)
 	
 	$Battlefield.add_child(trail)
-	
+	yield(trail, "ready")
+	# Check on gears
+	ship.set_bombs_enabled((game_mode as GameMode).shoot_bombs)
+	trail.configure((game_mode as GameMode).deadly_trails)
+	print("bombs? ", ship.bombs_enabled)
+	print("trail deadly= ", trail.is_deadly())
+
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
@@ -391,7 +397,7 @@ func spawn_bomb(pos, impulse, ship):
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	
-	#$Battlefield.add_child(bomb)
+	$Battlefield.add_child(bomb)
 	
 	if ship:
 		emit_signal("update_stats", ship.species, 1, "bombs")
