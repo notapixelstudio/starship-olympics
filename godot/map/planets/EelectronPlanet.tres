@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
+[ext_resource path="res://combat/levels/flowsnake/2players.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/snake_deathmatch/2players.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/snake_crown/2players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/snake_diamonds/2players.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=6]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=7]
+
+[resource]
+script = ExtResource( 7 )
+name = "Eelectron"
+tagline1 = "Solo"
+tagline2 = "Death"
+levels_1players = [  ]
+levels_2players = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+levels_3players = [  ]
+levels_4players = [  ]
+planet_sprite = ExtResource( 6 )
+game_mode = ExtResource( 1 )
+
