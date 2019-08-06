@@ -33,9 +33,12 @@ tracks/0/keys = {
 "values": [ 985, 50 ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
+
+[node name="CrownModeManager" parent="." index="5"]
+enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
@@ -189,7 +192,7 @@ controls = "kb2"
 species_template = ExtResource( 15 )
 cpu = true
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

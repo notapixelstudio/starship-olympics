@@ -85,7 +85,7 @@ func seek_ahead(potential_target):
 		var danger1 = position + ahead
 		var danger2 = position + ahead * 0.5
 		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
-		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) # 1183 considering bombs and explosions
+		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
 		# we need to see if we can avoid the castle
 		if entity.could_have("Royal") and entity.has("Royal"):
 			ray_collision_mask += pow(2, 15)
@@ -148,7 +148,6 @@ func choose_fire():
 		# next charged shot will be
 		wait_for_chargedshot = MIN_WAIT_SHOT*2 + randi()%MIN_WAIT_SHOT
 		charging_time = randi()%(MIN_WAIT_SHOT)
-		print("we are going to wait these something: ", str(charging_time))
 		return true
 	# randomly choose to charge shot
 	return false

@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=3]
+[ext_resource path="res://combat/modes/SnakeCollect.tres" type="Resource" id=2]
+[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GRoundedRect.svg" type="Texture" id=6]
@@ -27,15 +27,12 @@ min_elements_per_wave = 4
 [node name="Timer" parent="CollectModeManager" index="0"]
 wait_time = 5.0
 
-[node name="BackgroundLayer" parent="." index="12"]
-editor/display_folded = true
-
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0.945098, 0, 1, 0.588235 )
+grid_color = Color( 0, 0.764706, 1, 0.552941 )
 
 [node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
 grid_color = Color( 0.945098, 0, 1, 0.588235 )

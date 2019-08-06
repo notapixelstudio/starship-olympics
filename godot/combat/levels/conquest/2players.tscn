@@ -11,12 +11,9 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
-
-[node name="CrownModeManager" parent="." index="5"]
-enabled = false
 
 [node name="ConquestModeManager" parent="." index="8"]
 enabled = true
@@ -4038,7 +4035,7 @@ margin_top = -403.0
 margin_right = 285.0
 margin_bottom = 317.0
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
