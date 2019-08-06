@@ -24,6 +24,13 @@ export var game_mode : Resource # GameMode
 export var secondary_game_mode : Resource # GameMode
 export var mutator : Resource # GameMode
 
+func shuffle_levels(num_players : int) -> void:
+	levels_1players.shuffle()
+	levels_2players.shuffle()
+	levels_3players.shuffle()
+	levels_4players.shuffle()
+	get("levels_" + str(num_players) + "players").shuffle()
+	
 func get_levels(num_players : int) -> Array:
     return get("levels_" + str(num_players) + "players")
 
@@ -34,7 +41,6 @@ func fetch_level(num_players : int) -> PackedScene:
 	
 	var current_level = levels[len(played_levels)].instance()
 	played_levels.append(current_level)
-	current_level.game_mode = game_mode
 	current_level.planet_name = name
 	
 	if len(played_levels) >= len(levels):

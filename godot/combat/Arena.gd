@@ -366,6 +366,7 @@ func spawn_ship(player:PlayerSpawner):
 	yield(trail, "ready")
 	# Check on gears
 	ship.set_bombs_enabled((game_mode as GameMode).shoot_bombs)
+	print(game_mode.name)
 	trail.configure((game_mode as GameMode).deadly_trails)
 	print("bombs? ", ship.bombs_enabled)
 	print("trail deadly= ", trail.is_deadly())

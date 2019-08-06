@@ -11,6 +11,7 @@ var all_planets = [
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
 	preload("res://map/planets/SoloDeath.tres"),
+	preload("res://map/planets/EelectronPlanet.tres"),
 #	preload("res://map/planets/MinefieldDeathmatch.tres")
 	]
 	
@@ -130,6 +131,8 @@ func combat(selected_players: Array, fight_mode : String):
 	"""
 
 	all_planets.shuffle() # shuffle the planets at start
+	for planet in all_planets:
+		planet.shuffle_levels(num_players)
 
 	# logic to get the correct levels
 	# TODO: depends if the cursor can select multiple planets
@@ -137,6 +140,8 @@ func combat(selected_players: Array, fight_mode : String):
 	played_levels = []
 	var count = 0
 	for planet in map.current_planets:
+		print("never here")
+		planet.shuffle_levels(num_players)
 		var arena = planet.fetch_level(num_players)
 		# avoid duplicate
 		var last_planet = levels.back()
@@ -158,12 +163,14 @@ func combat(selected_players: Array, fight_mode : String):
 func next_level():
 	""" Choose next level from the array of selected. If over, choose randomly """
 	var last_planet = played_levels.back()
+	var num_players = len(players)
+	
 	if len(played_levels) >= len(all_planets):
 		played_levels = []
 		levels = []
 		all_planets.shuffle()
 
-	var num_players = len(players)
+	
 	var new_planet = all_planets.pop_back()
 	all_planets.push_front(new_planet)
 	if last_planet == new_planet:
@@ -210,6 +217,7 @@ func _on_Pause_restart(_combat):
 	var same_level = played_levels.back()
 	_combat.queue_free()
 	get_tree().paused = false
+	
 	start_level(same_level.fetch_level(len(players)))
 
 func _back_to_menu(node):
