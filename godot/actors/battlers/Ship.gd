@@ -24,6 +24,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
+const MIN_DASHING_CHARGE = 0.1
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -66,6 +67,12 @@ func initialize():
 	pass
 
 signal spawned
+var bombs_enabled : bool = true setget set_bombs_enabled
+
+func set_bombs_enabled(value: bool):
+	bombs_enabled = value
+
+
 func _enter_tree():
 	charging = false
 	charge = 0
@@ -153,6 +160,10 @@ func _physics_process(delta):
 	if stun_countdown <= 0:
 		unstun()
 		
+	dash_cooldown -= delta
+	if dash_cooldown <= 0:
+		entity.get('Dashing').disable()
+		
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
 		
@@ -170,11 +181,12 @@ func fire():
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
-	arena.spawn_bomb(
-	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-	  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-	  self
-	)
+	if bombs_enabled:
+		arena.spawn_bomb(
+		  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+		  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
+		  self
+		)
 	
 	# repeal
 	$GravitonField.repeal(charge_impulse)
@@ -184,6 +196,10 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
+	if charge > MIN_DASHING_CHARGE:
+		entity.get('Dashing').enable()
+		dash_cooldown = 0.2
+		
 
 func die(killer : Ship):
 	if alive and not invincible:

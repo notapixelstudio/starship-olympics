@@ -1,22 +1,23 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=1]
 [ext_resource path="res://combat/levels/diamonds/1players.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/levels/diamonds/2players.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/diamonds/3players.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/diamonds/4players.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=6]
-[ext_resource path="res://map/planets/Planet.gd" type="Script" id=7]
+[ext_resource path="res://combat/levels/snake_diamonds/2players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/diamonds/3players.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/diamonds/4players.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=7]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=8]
 
 [resource]
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 name = "SoloCollect"
 tagline1 = "Solo"
 tagline2 = "Collect"
 levels_1players = [ ExtResource( 2 ) ]
-levels_2players = [ ExtResource( 3 ) ]
-levels_3players = [ ExtResource( 4 ) ]
-levels_4players = [ ExtResource( 5 ) ]
-planet_sprite = ExtResource( 6 )
+levels_2players = [ ExtResource( 3 ), ExtResource( 4 ) ]
+levels_3players = [ ExtResource( 5 ) ]
+levels_4players = [ ExtResource( 6 ) ]
+planet_sprite = ExtResource( 7 )
 game_mode = ExtResource( 1 )
 

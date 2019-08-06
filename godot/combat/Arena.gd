@@ -14,7 +14,6 @@ export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
 
 var mockup: bool = false
-var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
 var run_time = 0
@@ -80,7 +79,18 @@ func update_time_scale():
 
 signal update_stats
 
+func setup_level(mode : Resource):
+	assert(mode is GameMode)
+	$CrownModeManager.enabled = mode.crown
+	$DeathmatchModeManager.enabled = mode.death
+	$CollectModeManager.enabled = mode.collect
+	$ConquestModeManager.enabled = mode.hive
+	
 func _ready():
+
+	# Setup goal, Gear and mode managers
+	setup_level(game_mode)
+
 	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
@@ -116,6 +126,7 @@ func _ready():
 	
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('broadcast_score', scores, "broadcast_score")
 	$DeathmatchModeManager.connect('show_score', self, "spawn_points_scored")
 	$RaceModeManager.connect('score', scores, "add_score")
 	$ConquestModeManager.connect('score', scores, "add_score")
@@ -315,6 +326,7 @@ onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_manager = $ConquestManager
 onready var pursue_manager = $PursueManager
 onready var collect_mode_manager = $CollectModeManager
+onready var snake_trail_manager = $TrailManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -352,7 +364,14 @@ func spawn_ship(player:PlayerSpawner):
 	trail.initialize(ship)
 	
 	$Battlefield.add_child(trail)
-	
+	yield(trail, "ready")
+	# Check on gears
+	ship.set_bombs_enabled((game_mode as GameMode).shoot_bombs)
+	print(game_mode.name)
+	trail.configure((game_mode as GameMode).deadly_trails)
+	print("bombs? ", ship.bombs_enabled)
+	print("trail deadly= ", trail.is_deadly())
+
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
@@ -365,6 +384,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
+	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
 	
 	$CrownModeManager.connect('show_score', ship, "update_score")
 	

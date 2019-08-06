@@ -13,4 +13,16 @@ export var max_timeout : int = 120
 export var max_score: int = 100
 export var cumulative: bool = false
 
+# goal manager
+export var death : bool = false
+export var crown : bool = false
+export var hive : bool = false
+export var collect : bool = false
+export var flowsnake : bool = false
+
+# gear 
+export var shoot_bombs : bool = true
+export var deadly_trails : bool = false
+
+
 

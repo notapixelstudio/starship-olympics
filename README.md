@@ -1,17 +1,18 @@
-# Superstarfighter
+# SuperStarfighter
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://GitHub.com/Naereen/StrapDown.js/tags/)
-[![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/)
+<!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
 - 1 to 4 players fast-paced arcade combat party game
 - Intuitive and expressive single-button controls: everyone can pick up a controller and play!
-- 20+ games in one (eventually! :D)
+- 20+ games in one (eventually! currently 7 :D)
 - Solo, versus, co-op modes
-- Free and open source, made with love and FOSS software
+- Made with love, and Free and Open Source Software
+- Also free and open source itself :)
 
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
 
-<img src="docs/img/logo_grid.png" alt="Superstarfighter Logo" width="400">
+<a href="https://notapixel.itch.io/superstarfighter"><img src="docs/itch-banner.png"/></a>
 
 ## Development
 
@@ -48,3 +49,9 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - icon lock : [here](https://icons8.com/icon/set/lock/all)
 - icons got from [icons8](https://icons8.com) website
 - shield from [opengameart](https://opengameart.org/content/shield-effect)
+- icons from the excellent https://game-icons.net project! (Lorc http://lorcblog.blogspot.com/ and Darkzaitzev https://www.deviantart.com/darkzaitzev)
+
+## Github pages development
+In order to develop and test in local go on `docs` folder and type (needs `gem` and `bundler` installed) :
+
+`gem install jekyll bundler`

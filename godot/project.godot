@@ -194,6 +194,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/managers/modes/ModeManager.gd"
 }, {
+"base": "Component",
+"class": "Owned",
+"language": "GDScript",
+"path": "res://combat/components/Owned.gd"
+}, {
 "base": "Node2D",
 "class": "PilotStats",
 "language": "GDScript",
@@ -297,6 +302,7 @@ _global_script_class_icons={
 "MapPlanet": "",
 "MapPoint": "",
 "ModeManager": "",
+"Owned": "",
 "PilotStats": "",
 "Planet": "",
 "PlayerSpawner": "",
@@ -752,6 +758,7 @@ fullscreen={
 2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
 2d_physics/layer_17="graviton_field"
+2d_physics/layer_20="trails"
 
 [locale]
 
