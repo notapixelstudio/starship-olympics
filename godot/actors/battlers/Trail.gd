@@ -37,13 +37,13 @@ enum PersistWhen {
 }
 
 ##### PROPERTIES #####
-onready var area = $Area2D/CollisionShape2D
+onready var area_shape = $DashArea/CollisionShape2D
+onready var area = $DashArea
+
 var segments = []
 # The target node to track
 var target: Node2D setget set_target
 
-func _ready():
-	area.shape = ConcavePolygonShape2D.new()
 	
 # The NodePath to the target
 export var target_path: NodePath = @".." setget set_target_path
@@ -85,13 +85,13 @@ func _notification(p_what: int):
 
 
 func add_custom_point(point):
-	if area:
+	if area and not area_shape.disabled:
 		add_point_to_segment(point)
 	add_point(point)
 
 
 func remove_custom_point(point):
-	if area:
+	if area and not area_shape.disabled:
 		remove_point_to_segment(point)
 	remove_point(point)
 
@@ -166,7 +166,7 @@ func add_point_to_segment(point):
 		return
 	segments.append(points[len(points)-1])
 	segments.append(point)
-	(area.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 
 func remove_point_to_segment(point):
 	if len(points) == 0: 
@@ -174,5 +174,5 @@ func remove_point_to_segment(point):
 	# Twice, because!
 	segments.pop_front()
 	segments.pop_front()
-	(area.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	
