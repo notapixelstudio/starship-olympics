@@ -48,3 +48,4 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - icon lock : [here](https://icons8.com/icon/set/lock/all)
 - icons got from [icons8](https://icons8.com) website
 - shield from [opengameart](https://opengameart.org/content/shield-effect)
+- icons from the excellent https://game-icons.net project! (Lorc http://lorcblog.blogspot.com/ and Darkzaitzev https://www.deviantart.com/darkzaitzev)
