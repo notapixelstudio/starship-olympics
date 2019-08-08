@@ -1,0 +1,735 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Installation - Minimal Mistakes</title>
+<meta name="description" content="Instructions for installing the theme for new and existing Jekyll based sites.">
+
+
+  <meta name="author" content="Michael Rose">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Minimal Mistakes">
+<meta property="og:title" content="Installation">
+<meta property="og:url" content="http://localhost:4000/minimal-mistakes/docs/installation/">
+
+
+  <meta property="og:description" content="Instructions for installing the theme for new and existing Jekyll based sites.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/minimal-mistakes/assets/images/site-logo.png">
+
+
+
+  <meta name="twitter:site" content="@mmistakes">
+  <meta name="twitter:title" content="Installation">
+  <meta name="twitter:description" content="Instructions for installing the theme for new and existing Jekyll based sites.">
+  <meta name="twitter:url" content="http://localhost:4000/minimal-mistakes/docs/installation/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://localhost:4000/minimal-mistakes/assets/images/site-logo.png">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-08-13T04:22:46-04:00">
+
+
+
+  <meta property="article:modified_time" content="2018-11-25T19:32:34-05:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/minimal-mistakes/docs/installation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Michael Rose",
+      "url": "http://localhost:4000/minimal-mistakes/",
+      "sameAs": ["https://twitter.com/mmistakes","https://www.facebook.com/michaelrose"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/minimal-mistakes/feed.xml" type="application/atom+xml" rel="alternate" title="Minimal Mistakes Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/minimal-mistakes/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/minimal-mistakes/">
+          Minimal Mistakes
+          <span class="site-subtitle">A Jekyll theme</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/minimal-mistakes/docs/quick-start-guide/" >Quick-Start Guide</a>
+            </li><li class="masthead__menu-item">
+              <a href="/minimal-mistakes/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/minimal-mistakes/year-archive/" >Sample Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/minimal-mistakes/collection-archive/" >Sample Collections</a>
+            </li><li class="masthead__menu-item">
+              <a href="/minimal-mistakes/terms/" >Terms &amp; Privacy Policy</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting Started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/quick-start-guide/" class="">Quick-Start Guide</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/structure/" class="">Structure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/installation/" class="active">Installation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/upgrading/" class="">Upgrading</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Customization</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/configuration/" class="">Configuration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/overriding-theme-defaults/" class="">Overriding Theme Defaults</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/navigation/" class="">Navigation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/ui-text/" class="">UI Text</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/authors/" class="">Authors</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/layouts/" class="">Layouts</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Content</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/posts/" class="">Working with Posts</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/pages/" class="">Working with Pages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/collections/" class="">Working with Collections</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/helpers/" class="">Helpers</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/utility-classes/" class="">Utility Classes</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Extras</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/stylesheets/" class="">Stylesheets</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/javascript/" class="">JavaScript</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Meta</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/history/" class="">History</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/contributing/" class="">Contributing</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/docs-2-2/" class="">Old 2.2 Docs</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/docs/license/" class="">License</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/minimal-mistakes/terms/" class="">Terms &amp; Privacy Policy</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Installation">
+    <meta itemprop="description" content="Instructions for installing the theme for new and existing Jekyll based sites.">
+    <meta itemprop="datePublished" content="August 13, 2019">
+    <meta itemprop="dateModified" content="November 25, 2018">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Installation
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#install-the-theme">Install the theme</a></li>
+  <li><a href="#theme-migration">Theme migration</a></li>
+  <li><a href="#install-dependencies">Install dependencies</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="install-the-theme">Install the theme</h2>
+
+<p><strong>1.</strong> For a <strong>new site</strong>, install the <code class="highlighter-rouge">minimal-mistakes-jekyll</code> gem, remote theme, or fork the Minimal Mistakes repo on GitHub following the steps outlined in the <a href="/minimal-mistakes/docs/quick-start-guide/"><em>Quick-Start Guide</em></a>.</p>
+
+<p>If you plan to host with GitHub Pages be sure to properly setup <a href="https://github.com/benbalter/jekyll-remote-theme"><strong>jekyll-remote-theme</strong></a> as it is required for the theme to work properly.</p>
+
+<p><strong>2.</strong> For an <strong>existing site</strong> follow the steps outlined in the <a href="/minimal-mistakes/docs/quick-start-guide/"><em>Quick-Start Guide</em></a>. Then work through the guidelines below for migration and setup.</p>
+
+<p><strong>3.</strong> For those who’d like to make substantial edits to the theme, download as a ZIP file to customize.</p>
+
+<p><a href="https://github.com/mmistakes/minimal-mistakes/archive/master.zip" class="btn btn--success"><i class="fas fa-download"></i> Download Minimal Mistakes Theme</a></p>
+
+<p class="notice--info"><strong>ProTip:</strong> Be sure to remove <code class="highlighter-rouge">/docs</code> and <code class="highlighter-rouge">/test</code> if you forked or downloaded Minimal Mistakes. These folders contain documentation and test pages for the theme and you probably don’t littering up in your repo.</p>
+
+<p class="notice--warning"><strong>Note:</strong> The theme uses the <a href="https://github.com/benbalter/jekyll-include-cache">jekyll-include-cache</a> plugin which will need to be installed in your <code class="highlighter-rouge">Gemfile</code> and added to the <code class="highlighter-rouge">plugins</code> array of <code class="highlighter-rouge">_config.yml</code>. Otherwise you’ll throw <code class="highlighter-rouge">Unknown tag 'include_cached'</code> errors at build.</p>
+
+<h2 id="theme-migration">Theme migration</h2>
+
+<p>To move over any existing content you’ll want to copy the contents of your <code class="highlighter-rouge">_posts</code> folder to the new site. Along with any pages, collections, data files, images, or other assets you may have.</p>
+
+<p>Next you’ll need to convert posts and pages to use the proper layouts and settings. In most cases you simply need to update <code class="highlighter-rouge">_config.yml</code> to your liking and set the correct <code class="highlighter-rouge">layout</code> in their YAML Front Matter.</p>
+
+<p><a href="https://jekyllrb.com/docs/configuration/#front-matter-defaults"><strong>Front Matter defaults</strong></a> are your friend and I encourage you to leverage them instead of setting a layout and other global options in each post/page’s YAML Front Matter.</p>
+
+<p>Posts can be configured to use the <code class="highlighter-rouge">single</code> layout — with reading time, comments, social sharing links, and related posts enabled. Adding the following to <code class="highlighter-rouge">_config.yml</code> will set these defaults for all posts:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">defaults</span><span class="pi">:</span>
+  <span class="c1"># _posts</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">posts</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">layout</span><span class="pi">:</span> <span class="s">single</span>
+      <span class="na">read_time</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">comments</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">share</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">related</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p class="notice--info"><strong>Post/Page Settings</strong>: Be sure to read through the “Working with…” documentation to learn about all the options available to you. The theme has been designed to be flexible — with numerous settings for each.</p>
+
+<h2 id="install-dependencies">Install dependencies</h2>
+
+<p>If this is your first time using Jekyll be sure to read through the <a href="https://jekyllrb.com/docs/home/">official documentation</a> before jumping in. This guide assumes you have Ruby v2 installed and a basic understanding of how Jekyll works.</p>
+
+<p>To keep your sanity and better manage dependencies I strongly urge you to <a href="http://bundler.io/">install Bundler</a> with <code class="highlighter-rouge">gem install bundler</code> and use the following <code class="highlighter-rouge">Gemfile</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="c1"># Hello! This is where you manage which Jekyll version is used to run.</span>
+<span class="c1"># When you want to use a different version, change it below, save the</span>
+<span class="c1"># file and run `bundle install`. Run Jekyll with `bundle exec`, like so:</span>
+<span class="c1">#</span>
+<span class="c1">#     bundle exec jekyll serve</span>
+<span class="c1">#</span>
+<span class="c1"># This will help ensure the proper Jekyll version is running.</span>
+<span class="c1"># Happy Jekylling!</span>
+
+<span class="c1"># gem "github-pages", group: :jekyll_plugins</span>
+
+<span class="c1"># To upgrade, run `bundle update`.</span>
+
+<span class="n">gem</span> <span class="s2">"jekyll"</span>
+<span class="n">gem</span> <span class="s2">"minimal-mistakes-jekyll"</span>
+
+<span class="c1"># The following plugins are automatically loaded by the theme-gem:</span>
+<span class="c1">#   gem "jekyll-paginate"</span>
+<span class="c1">#   gem "jekyll-sitemap"</span>
+<span class="c1">#   gem "jekyll-gist"</span>
+<span class="c1">#   gem "jekyll-feed"</span>
+<span class="c1">#   gem "jemoji"</span>
+<span class="c1">#   gem "jekyll-data"</span>
+<span class="c1">#   gem "jekyll-include-cache"</span>
+<span class="c1">#</span>
+<span class="c1"># If you have any other plugins, put them here!</span>
+<span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p class="notice--info"><strong>ProTip:</strong> To be bleeding edge install the latest (unreleased) version of Minimal Mistakes by adding this line to your <code class="highlighter-rouge">Gemfile</code>: <code class="highlighter-rouge">gem "minimal-mistakes-jekyll", :github =&gt; "mmistakes/minimal-mistakes"</code>.</p>
+
+<p>To maintain a local Jekyll environment in sync with GitHub Pages replace the <code class="highlighter-rouge">gem "jekyll"</code> line with <code class="highlighter-rouge">gem "github-pages", group: :jekyll_plugins</code> and run the following:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle install
+</code></pre></div></div>
+
+<p class="notice--warning"><strong>Note:</strong> The <a href="https://github.com/github/pages-gem">GitHub Pages gem</a> installs additional dependencies that may need to be added to your <code class="highlighter-rouge">Gemfile</code> if you decide to remove the <code class="highlighter-rouge">gem "github-pages"</code> eg. <code class="highlighter-rouge">jekyll-paginate</code>, <code class="highlighter-rouge">jekyll-sitemap</code>, <code class="highlighter-rouge">jekyll-feed</code>, <code class="highlighter-rouge">jekyll-include-cache</code>, etc.</p>
+
+<figure>
+  <img src="/minimal-mistakes/assets/images/mm-bundle-install.gif" alt="bundle install in Terminal window" />
+</figure>
+
+<p>Depending on what gems you already have installed you may have to run <code class="highlighter-rouge">bundle update</code> to clear up any dependency issues. Bundler is usually pretty good at letting you know what gems need updating or have issues installing, to further investigate.</p>
+
+<p>When using Bundler to manage gems you’ll want to run Jekyll using <code class="highlighter-rouge">bundle exec jekyll serve</code> and <code class="highlighter-rouge">bundle exec jekyll build</code>.</p>
+
+<p>Doing so executes the gem versions specified in <code class="highlighter-rouge">Gemfile.lock</code>. Sure you can test your luck with a naked <code class="highlighter-rouge">jekyll serve</code>, but I wouldn’t suggest it. A lot of Jekyll errors originate from outdated or conflicting gems fighting with each other. So do yourself a favor and just use Bundler.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-11-25">November 25, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/minimal-mistakes/docs/structure/" class="pagination--pager" title="Structure
+">Previous</a>
+    
+    
+      <a href="/minimal-mistakes/docs/upgrading/" class="pagination--pager" title="Upgrading
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <div align="center" style="margin: 1em 0;">
+        <ins class="adsbygoogle"
+             style="display:block; border-bottom: initial;"
+             data-ad-client="ca-pub-7328585512091257"
+             data-ad-slot="3049671934"
+             data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/mmistakes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    <li><a href="/minimal-mistakes/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Michael Rose. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/minimal-mistakes/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'QB6HVGBSBA',
+  apiKey: '9d5014e5bbc77372547bce778dfa5663',
+  indexName: 'minimal_mistakes',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="/minimal-mistakes${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
