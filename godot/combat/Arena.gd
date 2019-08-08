@@ -133,6 +133,7 @@ func _ready():
 	$CollectModeManager.connect('score', scores, "add_score")
 	$CollectModeManager.connect('show_score', self, "spawn_points_scored")
 	$CollectModeManager.connect('spawn_next', self, "_on_coins_finished")
+	$GoalModeManager.connect('score', scores, "add_score")
 	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
@@ -161,7 +162,10 @@ func _ready():
 		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
 
-
+	# set up portal signals to use them as goals
+	for portal in get_tree().get_nodes_in_group("portals"):
+		portal.connect('teleported', $GoalModeManager, "_on_goal_entered")
+		
 	for info in array_players:
 		print(info.to_dict())
 	

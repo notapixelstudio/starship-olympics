@@ -5,7 +5,9 @@ extends Node2D
 class_name Portal
 
 export var linked_to_path : NodePath
-var linked_to : Portal
+
+export var goal_owner : NodePath
+var species
 
 export var offset : float = 30 setget set_offset
 
@@ -17,6 +19,11 @@ func _on_GShape_changed():
 	refresh()
 	
 func _ready():
+	# set color if goal is owned by a player
+	if goal_owner:
+		species = get_node(goal_owner).species_template.species_name
+		modulate = get_node(goal_owner).species_template.color
+	
 	refresh()
 	
 func get_gshape():
@@ -34,7 +41,6 @@ func refresh():
 	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
 		gshape.connect('changed', self, '_on_GShape_changed')
 		
-	linked_to = get_node(linked_to_path)
 	var points = gshape.to_PoolVector2Array()
 	$Line2D.points = points
 	
@@ -50,6 +56,7 @@ func refresh():
 	# workaround for losing texture mode
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
+signal teleported
 func _on_Area2D_body_entered(body):
 	var entity = ECM.E(body)
 	
@@ -63,8 +70,9 @@ func _on_Area2D_body_entered(body):
 		offset.x = -offset.x
 		offset = offset.rotated(rotation)
 		teleportable.disable()
-		teleportable.set_destination(linked_to.position + offset)
+		teleportable.set_destination((get_node(linked_to_path) as Portal).position + offset)
 		yield(get_tree().create_timer(0.1), 'timeout')
+		emit_signal("teleported", entity.get_host(), self)
 		if teleportable:
 			teleportable.enable()
 		
