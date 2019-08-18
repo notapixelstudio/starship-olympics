@@ -8,23 +8,23 @@ header:
     - label: "<i class='fas fa-download'></i> Download now from itch.io"
       url: "https://notapixel.itch.io/superstarfighter"
 excerpt: >
-  <img style='max-width: 100%;' src='/superstarfighter/assets/images/logo500.png'/><br />
+  <img style='max-width: 100%;' src='assets/ssf/logo500.png'/><br />
   1 to 4 players arcade combat party game.<br />
   Beat your meat friends in this fast-paced intergalactic competition!<br />
   <small><a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a></small>
 feature_row:
-  - image_path: /assets/images/mm-responsive-feature.png
+  - image_path: /assets/ssf/mockup.png
     alt: "game modes"
     title: "Lots of game modes"
     excerpt: "Play many different intergalactic *sports*, each adding its own twist to the competition. Fly solo or with a teammate, and beat your friends or the game's AI."
     url: "/docs/sports/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
-  - image_path: /assets/images/mm-customizable-feature.png
+  - image_path: /assets/ssf/gameplay-people.png
     alt: "simple controls"
     title: "Super simple controls"
     excerpt: "Defeat your opponents with just a single button - Everyone can pick up a controller and play!"
-  - image_path: /assets/images/mm-free-feature.png
+  - image_path: /assets/ssf/species.png
     alt: "100% FOSS"
     title: "100% FOSS"
     excerpt: "Made with love and Free Software, and also free and open source itself."
