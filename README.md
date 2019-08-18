@@ -12,7 +12,7 @@
 
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
 
-<iframe frameborder="0" src="https://itch.io/embed/323953?dark=true" width="552" height="167"></iframe>
+<a href="https://notapixel.itch.io/superstarfighter"><img src="godot/logo_grid_icon.ico"/></a>
 
 ## Development
 
