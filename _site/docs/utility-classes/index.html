@@ -1,0 +1,878 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Utility Classes - SuperStarfighter</title>
+<meta name="description" content="CSS classes for aligning text/image, styling buttons and notices, and more.">
+
+
+  <meta name="author" content="notapixel Studio">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SuperStarfighter">
+<meta property="og:title" content="Utility Classes">
+<meta property="og:url" content="http://localhost:4000/superstarfighter/docs/utility-classes/">
+
+
+  <meta property="og:description" content="CSS classes for aligning text/image, styling buttons and notices, and more.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/superstarfighter/assets/images/site-logo.png">
+
+
+
+  <meta name="twitter:site" content="@notapixelstudio">
+  <meta name="twitter:title" content="Utility Classes">
+  <meta name="twitter:description" content="CSS classes for aligning text/image, styling buttons and notices, and more.">
+  <meta name="twitter:url" content="http://localhost:4000/superstarfighter/docs/utility-classes/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://localhost:4000/superstarfighter/assets/images/site-logo.png">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-08-18T12:36:06-04:00">
+
+
+
+  <meta property="article:modified_time" content="2018-11-25T19:46:43-05:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/superstarfighter/docs/utility-classes/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "notapixel Studio",
+      "url": "http://localhost:4000/superstarfighter/",
+      "sameAs": ["https://twitter.com/notapixelstudio"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/superstarfighter/feed.xml" type="application/atom+xml" rel="alternate" title="SuperStarfighter Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/superstarfighter/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/superstarfighter/"><img src="/superstarfighter/assets/images/logo500.png" alt=""></a>
+        
+        <a class="site-title" href="/superstarfighter/">
+          SuperStarfighter
+          <span class="site-subtitle">1 to 4 players arcade combat party game</span>
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting Started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/quick-start-guide/" class="">Quick-Start Guide</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/structure/" class="">Structure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/installation/" class="">Installation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/upgrading/" class="">Upgrading</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Customization</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/configuration/" class="">Configuration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/overriding-theme-defaults/" class="">Overriding Theme Defaults</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/navigation/" class="">Navigation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/ui-text/" class="">UI Text</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/authors/" class="">Authors</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/layouts/" class="">Layouts</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Content</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/posts/" class="">Working with Posts</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/pages/" class="">Working with Pages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/collections/" class="">Working with Collections</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/helpers/" class="">Helpers</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/utility-classes/" class="active">Utility Classes</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Extras</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/stylesheets/" class="">Stylesheets</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/javascript/" class="">JavaScript</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Meta</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/history/" class="">History</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/contributing/" class="">Contributing</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/docs-2-2/" class="">Old 2.2 Docs</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/license/" class="">License</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/terms/" class="">Terms &amp; Privacy Policy</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Utility Classes">
+    <meta itemprop="description" content="CSS classes for aligning text/image, styling buttons and notices, and more.">
+    <meta itemprop="datePublished" content="August 18, 2019">
+    <meta itemprop="dateModified" content="November 25, 2018">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Utility Classes
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-cogs"></i> Utility Classes</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#text-alignment">Text alignment</a></li>
+  <li><a href="#image-alignment">Image alignment</a></li>
+  <li><a href="#buttons">Buttons</a></li>
+  <li><a href="#notices">Notices</a>
+     -  <a href="#">Notice Headline:</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>Using the Kramdown Markdown renderer with Jekyll allows you to add <a href="http://kramdown.gettalong.org/quickref.html#block-attributes">block</a> and <a href="http://kramdown.gettalong.org/quickref.html#inline-attributes">inline attributes</a>. This is nice if you want to add custom styling to text and image, and still write in Markdown.</p>
+
+<p class="notice--warning"><strong>Jekyll 3:</strong> Kramdown is the default for <code class="highlighter-rouge">jekyll new</code> sites and those hosted on GitHub Pages. Not using Kramdown? That’s OK. The following classes are still available when used with standard HTML.</p>
+
+<h2 id="text-alignment">Text alignment</h2>
+
+<p>Align text blocks with the following classes.</p>
+
+<p class="text-left">Left aligned text <code class="highlighter-rouge">.text-left</code></p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Left aligned text
+{: .text-left}
+</code></pre></div></div>
+
+<hr />
+
+<p class="text-center">Center aligned text. <code class="highlighter-rouge">.text-center</code></p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Center aligned text.
+{: .text-center}
+</code></pre></div></div>
+
+<hr />
+
+<p class="text-right">Right aligned text. <code class="highlighter-rouge">.text-right</code></p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Right aligned text.
+{: .text-right}
+</code></pre></div></div>
+
+<hr />
+
+<p class="text-justify"><strong>Justified text.</strong> <code class="highlighter-rouge">.text-justify</code> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel eleifend odio, eu elementum purus. In hac habitasse platea dictumst. Fusce sed sapien eleifend, sollicitudin neque non, faucibus est. Proin tempus nisi eu arcu facilisis, eget venenatis eros consequat.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Justified text.
+{: .text-justify}
+</code></pre></div></div>
+
+<hr />
+
+<p class="text-nowrap">No wrap text. <code class="highlighter-rouge">.text-nowrap</code></p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No wrap text.
+{: .text-nowrap}
+</code></pre></div></div>
+
+<h2 id="image-alignment">Image alignment</h2>
+
+<p>Position images with the following classes.</p>
+
+<p><img src="/superstarfighter/assets/images/image-alignment-580x300.jpg" alt="image-center" class="align-center" /></p>
+
+<p>The image above happens to be <strong>centered</strong>.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-center</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-center}
+</code></pre></div></div>
+
+<hr />
+
+<p><img src="/superstarfighter/assets/images/image-alignment-150x150.jpg" alt="image-left" class="align-left" /> The rest of this paragraph is filler for the sake of seeing the text wrap around the 150×150 image, which is <strong>left aligned</strong>. There should be plenty of room above, below, and to the right of the image. Just look at him there — Hey guy! Way to rock that left side. I don’t care what the right aligned image says, you look great. Don’t let anyone else tell you differently.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-left</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-left}
+</code></pre></div></div>
+
+<hr />
+
+<p><img src="/superstarfighter/assets/images/image-alignment-300x200.jpg" alt="image-right" class="align-right" /></p>
+
+<p>And now we’re going to shift things to the <strong>right align</strong>. Again, there should be plenty of room above, below, and to the left of the image. Just look at him there — Hey guy! Way to rock that right side. I don’t care what the left aligned image says, you look great. Don’t let anyone else tell you differently.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-right</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-right}
+</code></pre></div></div>
+
+<hr />
+
+<p class="full"><img src="/superstarfighter/assets/images/image-alignment-1200x4002.jpg" alt="full" /></p>
+
+<p>The image above should extend outside of the parent container on right.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">full</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>
+{: .full}
+</code></pre></div></div>
+
+<h2 id="buttons">Buttons</h2>
+
+<p>Make any link standout more when applying the <code class="highlighter-rouge">.btn .btn--primary</code> classes.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn--primary"</span><span class="nt">&gt;</span>Link Text<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Button Type</th>
+      <th>Example</th>
+      <th>Class</th>
+      <th>Kramdown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Default</td>
+      <td><a href="#link" class="btn">Text</a></td>
+      <td><code class="highlighter-rouge">.btn</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn}</code></td>
+    </tr>
+    <tr>
+      <td>Primary</td>
+      <td><a href="#link" class="btn btn--primary">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--primary</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--primary}</code></td>
+    </tr>
+    <tr>
+      <td>Success</td>
+      <td><a href="#link" class="btn btn--success">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--success</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--success}</code></td>
+    </tr>
+    <tr>
+      <td>Warning</td>
+      <td><a href="#link" class="btn btn--warning">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--warning</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--warning}</code></td>
+    </tr>
+    <tr>
+      <td>Danger</td>
+      <td><a href="#link" class="btn btn--danger">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--danger</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--danger}</code></td>
+    </tr>
+    <tr>
+      <td>Info</td>
+      <td><a href="#link" class="btn btn--info">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--info</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--info}</code></td>
+    </tr>
+    <tr>
+      <td>Inverse</td>
+      <td><a href="#link" class="btn btn--inverse">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--inverse</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--inverse}</code></td>
+    </tr>
+    <tr>
+      <td>Light Outline</td>
+      <td><a href="#link" class="btn btn--light-outline">Text</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--light-outline</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--light-outline}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Button Size</th>
+      <th>Example</th>
+      <th>Class</th>
+      <th>Kramdown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X-Large</td>
+      <td><a href="#" class="btn btn--primary btn--x-large">X-Large Button</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--primary .btn--x-large</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--primary .btn--x-large}</code></td>
+    </tr>
+    <tr>
+      <td>Large</td>
+      <td><a href="#" class="btn btn--primary btn--large">Large Button</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--primary .btn--large</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--primary .btn--large}</code></td>
+    </tr>
+    <tr>
+      <td>Default</td>
+      <td><a href="#" class="btn btn--primary">Default Button</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--primary</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--primary }</code></td>
+    </tr>
+    <tr>
+      <td>Small</td>
+      <td><a href="#" class="btn btn--primary btn--small">Small Button</a></td>
+      <td><code class="highlighter-rouge">.btn .btn--primary .btn--small</code></td>
+      <td><code class="highlighter-rouge">[Text](#link){: .btn .btn--primary .btn--small}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="notices">Notices</h2>
+
+<p>Call attention to a block of text.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Notice Type</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Default</td>
+      <td><code class="highlighter-rouge">.notice</code></td>
+    </tr>
+    <tr>
+      <td>Primary</td>
+      <td><code class="highlighter-rouge">.notice--primary</code></td>
+    </tr>
+    <tr>
+      <td>Info</td>
+      <td><code class="highlighter-rouge">.notice--info</code></td>
+    </tr>
+    <tr>
+      <td>Warning</td>
+      <td><code class="highlighter-rouge">.notice--warning</code></td>
+    </tr>
+    <tr>
+      <td>Success</td>
+      <td><code class="highlighter-rouge">.notice--success</code></td>
+    </tr>
+    <tr>
+      <td>Danger</td>
+      <td><code class="highlighter-rouge">.notice--danger</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="notice"><strong>Watch out!</strong> This paragraph of text has been <a href="#">emphasized</a> with the <code class="highlighter-rouge">{: .notice}</code> class.</p>
+
+<p class="notice--primary"><strong>Watch out!</strong> This paragraph of text has been <a href="#">emphasized</a> with the <code class="highlighter-rouge">{: .notice--primary}</code> class.</p>
+
+<p class="notice--info"><strong>Watch out!</strong> This paragraph of text has been <a href="#">emphasized</a> with the <code class="highlighter-rouge">{: .notice--info}</code> class.</p>
+
+<p class="notice--warning"><strong>Watch out!</strong> This paragraph of text has been <a href="#">emphasized</a> with the <code class="highlighter-rouge">{: .notice--warning}</code> class.</p>
+
+<p class="notice--success"><strong>Watch out!</strong> This paragraph of text has been <a href="#">emphasized</a> with the <code class="highlighter-rouge">{: .notice--success}</code> class.</p>
+
+<p class="notice--danger"><strong>Watch out!</strong> This paragraph of text has been <a href="#">emphasized</a> with the <code class="highlighter-rouge">{: .notice--danger}</code> class.</p>
+
+<div class="notice--info">
+  <h4>Notice Headline:</h4>
+  
+<p>You can also add the <code class="highlighter-rouge">.notice</code> class to a <code class="highlighter-rouge">&lt;div&gt;</code> element.</p>
+
+<ul>
+  <li>Bullet point 1</li>
+  <li>Bullet point 2</li>
+</ul>
+
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-11-25">November 25, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/superstarfighter/docs/helpers/" class="pagination--pager" title="Helpers
+">Previous</a>
+    
+    
+      <a href="/superstarfighter/docs/stylesheets/" class="pagination--pager" title="Stylesheets
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <div align="center" style="margin: 1em 0;">
+        <ins class="adsbygoogle"
+             style="display:block; border-bottom: initial;"
+             data-ad-client="ca-pub-7328585512091257"
+             data-ad-slot="3049671934"
+             data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/notapixelstudio" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/notapixelstudio" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/notapixelstudio" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    <li><a href="/superstarfighter/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 notapixel Studio. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/superstarfighter/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'QB6HVGBSBA',
+  apiKey: '9d5014e5bbc77372547bce778dfa5663',
+  indexName: 'minimal_mistakes',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="/superstarfighter${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

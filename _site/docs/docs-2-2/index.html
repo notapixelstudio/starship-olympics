@@ -1,0 +1,944 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>2.2 Documentation - SuperStarfighter</title>
+<meta name="description" content="Setup and installation instructions for Minimal Mistakes 2.2 (deprecated).">
+
+
+  <meta name="author" content="notapixel Studio">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SuperStarfighter">
+<meta property="og:title" content="2.2 Documentation">
+<meta property="og:url" content="http://localhost:4000/superstarfighter/docs/docs-2-2/">
+
+
+  <meta property="og:description" content="Setup and installation instructions for Minimal Mistakes 2.2 (deprecated).">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/superstarfighter/assets/images/site-logo.png">
+
+
+
+  <meta name="twitter:site" content="@notapixelstudio">
+  <meta name="twitter:title" content="2.2 Documentation">
+  <meta name="twitter:description" content="Setup and installation instructions for Minimal Mistakes 2.2 (deprecated).">
+  <meta name="twitter:url" content="http://localhost:4000/superstarfighter/docs/docs-2-2/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://localhost:4000/superstarfighter/assets/images/site-logo.png">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-08-18T12:36:06-04:00">
+
+
+
+  <meta property="article:modified_time" content="2018-03-20T16:00:34-04:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/superstarfighter/docs/docs-2-2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "notapixel Studio",
+      "url": "http://localhost:4000/superstarfighter/",
+      "sameAs": ["https://twitter.com/notapixelstudio"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/superstarfighter/feed.xml" type="application/atom+xml" rel="alternate" title="SuperStarfighter Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/superstarfighter/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/superstarfighter/"><img src="/superstarfighter/assets/images/logo500.png" alt=""></a>
+        
+        <a class="site-title" href="/superstarfighter/">
+          SuperStarfighter
+          <span class="site-subtitle">1 to 4 players arcade combat party game</span>
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting Started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/quick-start-guide/" class="">Quick-Start Guide</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/structure/" class="">Structure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/installation/" class="">Installation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/upgrading/" class="">Upgrading</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Customization</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/configuration/" class="">Configuration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/overriding-theme-defaults/" class="">Overriding Theme Defaults</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/navigation/" class="">Navigation</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/ui-text/" class="">UI Text</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/authors/" class="">Authors</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/layouts/" class="">Layouts</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Content</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/posts/" class="">Working with Posts</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/pages/" class="">Working with Pages</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/collections/" class="">Working with Collections</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/helpers/" class="">Helpers</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/utility-classes/" class="">Utility Classes</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Extras</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/stylesheets/" class="">Stylesheets</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/javascript/" class="">JavaScript</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Meta</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/history/" class="">History</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/contributing/" class="">Contributing</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/docs-2-2/" class="active">Old 2.2 Docs</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/docs/license/" class="">License</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/superstarfighter/terms/" class="">Terms &amp; Privacy Policy</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="2.2 Documentation">
+    <meta itemprop="description" content="Setup and installation instructions for Minimal Mistakes 2.2 (deprecated).">
+    <meta itemprop="datePublished" content="August 18, 2019">
+    <meta itemprop="dateModified" content="March 20, 2018">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">2.2 Documentation
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#installation">Installation</a></li>
+  <li><a href="#running-jekyll">Running Jekyll</a></li>
+  <li><a href="#scaffolding">Scaffolding</a></li>
+  <li><a href="#site-setup">Site Setup</a>
+    <ul>
+      <li><a href="#site-wide-configuration">Site Wide Configuration</a>
+        <ul>
+          <li><a href="#title">title</a></li>
+          <li><a href="#url">url</a></li>
+          <li><a href="#google-analytics-and-webmaster-tools">Google Analytics and Webmaster Tools</a></li>
+        </ul>
+      </li>
+      <li><a href="#navigation-links">Navigation Links</a></li>
+    </ul>
+  </li>
+  <li><a href="#adding-new-content-with-octopress">Adding New Content with Octopress</a>
+    <ul>
+      <li><a href="#new-post">New Post</a></li>
+      <li><a href="#new-page">New Page</a></li>
+    </ul>
+  </li>
+  <li><a href="#layouts-and-content">Layouts and Content</a>
+    <ul>
+      <li><a href="#post-and-page">Post and Page</a></li>
+      <li><a href="#post-index-page">Post Index Page</a></li>
+      <li><a href="#feature-images">Feature Images</a></li>
+      <li><a href="#thumbnails-for-og-and-twitter-cards">Thumbnails for OG and Twitter Cards</a></li>
+      <li><a href="#author-override">Author Override</a></li>
+      <li><a href="#kramdown-table-of-contents">Kramdown Table of Contents</a></li>
+      <li><a href="#paragraph-indentation">Paragraph Indentation</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#social-sharing-links">Social Sharing Links</a></li>
+    </ul>
+  </li>
+  <li><a href="#further-customization">Further Customization</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="installation">Installation</h2>
+
+<p>Minimal Mistakes now requires <a href="http://jekyllrb.com/">Jekyll</a> 3.0. Make sure to run <code class="highlighter-rouge">bundle update</code> if you aren’t on the latest version to update all gem dependencies.</p>
+
+<p>If you are creating a new Jekyll site using Minimal Mistakes follow these steps:</p>
+
+<ol>
+  <li>Fork the <a href="http://github.com/mmistakes/minimal-mistakes/fork">Minimal Mistakes repo</a>.</li>
+  <li>Clone the repo you just forked and rename it.</li>
+  <li><a href="http://bundler.io">Install Bundler</a> <code class="highlighter-rouge">gem install bundler</code> and Run <code class="highlighter-rouge">bundle install</code> to install all dependencies (Jekyll, <a href="https://github.com/jekyll/jekyll-sitemap">Jekyll-Sitemap</a>, <a href="https://github.com/octopress/octopress">Octopress</a>, etc)</li>
+  <li>Update <code class="highlighter-rouge">config.yml</code>, add navigation, and replace demo posts and pages with your own. Full details below.</li>
+</ol>
+
+<p>If you want to use Minimal Mistakes with an existing Jekyll site follow these steps:</p>
+
+<ol>
+  <li><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/2.2.1">Download Minimal Mistakes</a> and unzip.</li>
+  <li>Rename <code class="highlighter-rouge">minimal-mistakes-master</code> to something meaningful ie: <code class="highlighter-rouge">new-site</code></li>
+  <li>Run <code class="highlighter-rouge">bundle install</code> to install all dependencies (Jekyll, <a href="https://github.com/jekyll/jekyll-sitemap">Jekyll-Sitemap</a>, <a href="https://github.com/octopress/octopress">Octopress</a>, etc)</li>
+  <li>Remove demo posts/pages and replace with your own posts, pages, and any other content you want to move over.</li>
+  <li>Update posts’ and pages’ YAML to match variables used by Minimal Mistakes. Full details below.</li>
+  <li>Update <code class="highlighter-rouge">_config.yml</code> and add navigation links. Full details below.</li>
+</ol>
+
+<p class="notice"><strong>Pro-tip:</strong> Delete the <code class="highlighter-rouge">gh-pages</code> branch after cloning and start fresh by branching off <code class="highlighter-rouge">master</code>. There is a bunch of garbage in <code class="highlighter-rouge">gh-pages</code> used for the theme’s demo site that I’m guessing you won’t want.</p>
+
+<h2 id="running-jekyll">Running Jekyll</h2>
+
+<p>The preferred method for running Jekyll is with <code class="highlighter-rouge">bundle exec</code>, but if you’re willing to deal gem conflicts feel free to go cowboy with a <code class="highlighter-rouge">jekyll serve</code> or <code class="highlighter-rouge">jekyll build</code>.</p>
+
+<blockquote>
+  <p>In some cases, running executables without bundle exec may work, if the executable happens to be installed in your system and does not pull in any gems that conflict with your bundle.</p>
+
+  <p>However, this is unreliable and is the source of considerable pain. Even if it looks like it works, it may not work in the future or on another machine.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<h2 id="scaffolding">Scaffolding</h2>
+
+<p>How Minimal Mistakes is organized and what the various files are. All posts, layouts, includes, stylesheets, assets, and whatever else is grouped nicely under the root folder. The compiled Jekyll site outputs to <code class="highlighter-rouge">_site/</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minimal-mistakes/
+├── _includes/
+|    ├── author-bio.html        <span class="c"># bio stuff layout. pulls optional owner data from _config.yml</span>
+|    ├── browser-upgrade   <span class="c"># prompt to install a modern browser for &lt; IE9</span>
+|    ├── disqus-comments   <span class="c"># Disqus comments script</span>
+|    ├── footer            <span class="c"># site footer</span>
+|    ├── head              <span class="c"># site head</span>
+|    ├── navigation        <span class="c"># site top navigation</span>
+|    ├── open-graph.html        <span class="c"># Twitter Cards and Open Graph meta data</span>
+|    └── scripts           <span class="c"># site scripts</span>
+├── _layouts/
+|    ├── home.html               <span class="c"># homepage layout</span>
+|    ├── page.html               <span class="c"># page layout</span>
+|    ├── post-index.html         <span class="c"># post index layout</span>
+|    └── post.html               <span class="c"># single post layout</span>
+├── _posts/                      <span class="c"># MarkDown formatted posts</span>
+├── _sass/                       <span class="c"># Sass stylesheets</span>
+├── _templates/                  <span class="c"># used by Octopress to define YAML variables for new posts/pages</span>
+├── about/                       <span class="c"># sample about page</span>
+├── assets/
+|    ├── css/                    <span class="c"># compiled stylesheets</span>
+|    ├── fonts/                  <span class="c"># webfonts</span>
+|    ├── js/
+|    |   ├── _main.js            <span class="c"># main JavaScript file, plugin settings, etc</span>
+|    |   ├── plugins/            <span class="c"># scripts and jQuery plugins to combine with _main.js</span>
+|    |   ├── scripts.min.js      <span class="c"># concatenated and minified _main.js + plugin scripts</span>
+|    |   └── vendor/             <span class="c"># vendor scripts to leave alone and load as is</span>
+|    └── less/
+├── images/                      <span class="c"># images for posts and pages</span>
+├── 404.md                       <span class="c"># 404 page</span>
+├── feed.xml                     <span class="c"># Atom feed template</span>
+├── index.md                     <span class="c"># sample homepage. lists 5 latest posts</span>
+├── posts/                       <span class="c"># sample post index page. lists all posts in reverse chronology</span>
+└── theme-setup/                 <span class="c"># theme setup page. safe to remove</span>
+</code></pre></div></div>
+
+<h2 id="site-setup">Site Setup</h2>
+
+<p>A quick checklist of the files you’ll want to edit to get up and running.</p>
+
+<h3 id="site-wide-configuration">Site Wide Configuration</h3>
+
+<p><code class="highlighter-rouge">_config.yml</code> is your friend. Open it up and personalize it. Most variables are self explanatory but here’s an explanation of each if needed:</p>
+
+<h4 id="title">title</h4>
+
+<p>The title of your site… shocker!</p>
+
+<p>Example <code class="highlighter-rouge">title: My Awesome Site</code></p>
+
+<h4 id="url">url</h4>
+
+<p>Used to generate absolute urls in <code class="highlighter-rouge">sitemap.xml</code>, <code class="highlighter-rouge">feed.xml</code>, and for generating canonical URLs in <code class="highlighter-rouge">&lt;head&gt;</code>. When developing locally either comment this out or use something like <code class="highlighter-rouge">http://localhost:4000</code> so all assets load properly. <em>Don’t include a trailing <code class="highlighter-rouge">/</code></em>.</p>
+
+<p>Examples:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">url</span><span class="pi">:</span> <span class="s">http://mmistakes.github.io/minimal-mistakes</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">http://localhost:4000</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">//cooldude.github.io</span>
+<span class="na">url</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<h4 id="google-analytics-and-webmaster-tools">Google Analytics and Webmaster Tools</h4>
+
+<p>Google Analytics UA and Webmaster Tool verification tags can be entered under <code class="highlighter-rouge">owner</code> in <code class="highlighter-rouge">_config.yml</code>. For more information on obtaining these meta tags check <a href="http://support.google.com/webmasters/bin/answer.py?hl=en&amp;answer=35179">Google Webmaster Tools</a> and <a href="https://ssl.bing.com/webmaster/configure/verify/ownership">Bing Webmaster Tools</a> support.</p>
+
+<h3 id="navigation-links">Navigation Links</h3>
+
+<p>To set what links appear in the top navigation edit <code class="highlighter-rouge">_data/navigation.yml</code>. Use the following format to set the URL and title for as many links as you’d like. <em>External links will open in a new window.</em></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Portfolio</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">/portfolio/</span>
+
+<span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Made Mistakes</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">http://mademistakes.com</span>
+</code></pre></div></div>
+
+<h2 id="adding-new-content-with-octopress">Adding New Content with Octopress</h2>
+
+<p>While completely optional, I’ve included Octopress and some starter templates to automate the creation of new posts and pages. To take advantage of it start by installing the <a href="https://github.com/octopress/octopress">Octopress</a> gem if it isn’t already.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem install octopress
+</code></pre></div></div>
+
+<h3 id="new-post">New Post</h3>
+
+<p>Default command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>octopress new post <span class="s2">"Post Title"</span>
+</code></pre></div></div>
+
+<p>Default works great if you want all your posts in one directory, but if you’re like me and want to group them into subfolders like <code class="highlighter-rouge">/posts</code>, <code class="highlighter-rouge">/portfolio</code>, etc. Then this is the command for you. By specifying the DIR it will create a new post in that folder and populate the <code class="highlighter-rouge">categories:</code> YAML with the same value.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>octopress new post <span class="s2">"New Portfolio Post Title"</span> <span class="nt">--dir</span> portfolio
+</code></pre></div></div>
+
+<h3 id="new-page">New Page</h3>
+
+<p>To create a new page use the following command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>octopress new page new-page/
+</code></pre></div></div>
+
+<p>This will create a page at <code class="highlighter-rouge">/new-page/index.md</code></p>
+
+<h2 id="layouts-and-content">Layouts and Content</h2>
+
+<p>Explanations of the various <code class="highlighter-rouge">_layouts</code> included with the theme and when to use them.</p>
+
+<h3 id="post-and-page">Post and Page</h3>
+
+<p>These two layouts are very similar. Both have an author sidebar, allow for large feature images at the top, and optional Disqus comments. The only real difference is the post layout includes related posts at the end of the page.</p>
+
+<h3 id="post-index-page">Post Index Page</h3>
+
+<p>A <a href="http://localhost:4000/posts/">sample index page</a> listing all posts grouped by the year they were published has been provided. The name can be customized to your liking by editing a few references. For example, to change <strong>Posts</strong> to <strong>Writing</strong> update the following:</p>
+
+<p>In <code class="highlighter-rouge">_config.yml</code> under <code class="highlighter-rouge">links:</code> rename the title and URL to the following:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">links</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Writing</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">/writing/</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Rename <code class="highlighter-rouge">posts/index.md</code> to <code class="highlighter-rouge">writing/index.md</code> and update the YAML front matter accordingly.</li>
+  <li>Update the <strong>View all posts</strong> link in the <code class="highlighter-rouge">post.html</code> layout found in <code class="highlighter-rouge">_layouts</code> to match title and URL set previously.</li>
+</ul>
+
+<h3 id="feature-images">Feature Images</h3>
+
+<p>A good rule of thumb is to keep feature images nice and wide so you don’t push the body text too far down. An image cropped around around 1024 x 256 pixels will keep file size down with an acceptable resolution for most devices. If you want to serve these images responsively I’d suggest looking at the <a href="https://github.com/robwierzbowski/jekyll-picture-tag">Jekyll Picture Tag</a> plugin<sup id="fnref:plugins"><a href="#fn:plugins" class="footnote">1</a></sup>.</p>
+
+<p>The post and page layouts make the assumption that the feature images live in the <code class="highlighter-rouge">images/</code> folder. To add a feature image to a post or page just include the filename in the front matter like so. It’s probably best to host all your images from this folder, but you can hotlink from external sources if you desire.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span>
+  <span class="na">feature</span><span class="pi">:</span> <span class="s">feature-image-filename.jpg</span>
+  <span class="na">thumb</span><span class="pi">:</span> <span class="s">thumbnail-image.jpg</span> <span class="c1">#keep it square 200x200 px is good</span>
+</code></pre></div></div>
+
+<p>To add attribution to a feature image use the following YAML front matter on posts or pages. Image credits appear directly below the feature image with a link back to the original source if supplied.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span>
+  <span class="na">feature</span><span class="pi">:</span> <span class="s">feature-image-filename.jpg</span>
+  <span class="na">credit</span><span class="pi">:</span> <span class="s">Michael Rose</span> <span class="c1">#name of the person or site you want to credit</span>
+  <span class="na">creditlink</span><span class="pi">:</span> <span class="s">http://mademistakes.com</span> <span class="c1">#url to their site or licensing</span>
+</code></pre></div></div>
+
+<h3 id="thumbnails-for-og-and-twitter-cards">Thumbnails for OG and Twitter Cards</h3>
+
+<p>Feature and thumbnail images are used by <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> as well. If you don’t assign a thumbnail the default graphic <em>(default-thumb.png)</em> is used. I’d suggest changing this to something more meaningful — your logo or avatar are good options.</p>
+
+<p class="notice"><strong>Pro-Tip</strong>: You need to <a href="https://dev.twitter.com/docs/cards">apply for Twitter Cards</a> before they will begin showing up when links to your site are shared.</p>
+
+<h3 id="author-override">Author Override</h3>
+
+<p>By making use of data files you can assign different authors for each post.</p>
+
+<p>Start by modifying <code class="highlighter-rouge">authors.yml</code> file in the <code class="highlighter-rouge">_data</code> folder and add your authors using the following format.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Authors</span>
+
+<span class="na">billy_rick</span><span class="pi">:</span>
+  <span class="na">name        </span><span class="pi">:</span> <span class="s2">"</span><span class="s">Billy</span><span class="nv"> </span><span class="s">Rick"</span>
+  <span class="na">web         </span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://thewhip.com"</span>
+  <span class="na">email       </span><span class="pi">:</span> <span class="s2">"</span><span class="s">billy@rick.com"</span>
+  <span class="na">bio         </span><span class="pi">:</span> <span class="s2">"</span><span class="s">What</span><span class="nv"> </span><span class="s">do</span><span class="nv"> </span><span class="s">you</span><span class="nv"> </span><span class="s">want,</span><span class="nv"> </span><span class="s">jewels?</span><span class="nv"> </span><span class="s">I</span><span class="nv"> </span><span class="s">am</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">very</span><span class="nv"> </span><span class="s">extravagant</span><span class="nv"> </span><span class="s">man."</span>
+  <span class="na">avatar      </span><span class="pi">:</span> <span class="s2">"</span><span class="s">bio-photo-2.jpg"</span>
+  <span class="na">twitter     </span><span class="pi">:</span> <span class="s2">"</span><span class="s">extravagantman"</span>
+  <span class="na">google_plus </span><span class="pi">:</span> <span class="s2">"</span><span class="s">BillyRick"</span>
+
+<span class="na">cornelius_fiddlebone</span><span class="pi">:</span>
+  <span class="na">name        </span><span class="pi">:</span> <span class="s2">"</span><span class="s">Cornelius</span><span class="nv"> </span><span class="s">Fiddlebone"</span>
+  <span class="na">email       </span><span class="pi">:</span> <span class="s2">"</span><span class="s">cornelius@thewhip.com"</span>
+  <span class="na">bio         </span><span class="pi">:</span> <span class="s2">"</span><span class="s">I</span><span class="nv"> </span><span class="s">ordered</span><span class="nv"> </span><span class="s">what?"</span>
+  <span class="na">avatar      </span><span class="pi">:</span> <span class="s2">"</span><span class="s">bio-photo.jpg"</span>
+  <span class="na">twitter     </span><span class="pi">:</span> <span class="s2">"</span><span class="s">rhymeswithsackit"</span>
+  <span class="na">google_plus </span><span class="pi">:</span> <span class="s2">"</span><span class="s">CorneliusFiddlebone"</span>
+</code></pre></div></div>
+
+<p>To assign Billy Rick as an author for our post. We’d add the following YAML front matter to a post:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">author</span><span class="pi">:</span> <span class="s">billy_rick</span>
+</code></pre></div></div>
+
+<h3 id="kramdown-table-of-contents">Kramdown Table of Contents</h3>
+
+<p>To include an auto-generated <strong>table of contents</strong> for posts and pages, add the following <code class="highlighter-rouge">_include</code> before the actual content. <a href="http://kramdown.rubyforge.org/converter/html.html#toc">Kramdown will take care of the rest</a> and convert all headlines into list of links.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include toc.html %}
+</code></pre></div></div>
+
+<h3 id="paragraph-indentation">Paragraph Indentation</h3>
+
+<p>By default the margin below paragraphs has been removed and indent added to each. This is an intentional design decision to mimic the look of type set in a printed book or manuscript.</p>
+
+<figure>
+  <img src="/superstarfighter/assets/images/paragraph-indent.png" alt="screen shot of paragraphs with default indent style set" />
+  <figcaption>Example of the default paragraph style (indented first line and bottom margin removed).</figcaption>
+</figure>
+
+<p>To disable the indents and add spacing between paragraphs change the following line in <code class="highlighter-rouge">_sass/variables.scss</code> from <code class="highlighter-rouge">true !default</code> to <code class="highlighter-rouge">false</code> like so.</p>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$paragraph-indent</span><span class="p">:</span> <span class="bp">false</span><span class="p">;</span>
+</code></pre></div></div>
+
+<figure>
+  <img src="/superstarfighter/assets/images/paragraph-no-indent.png" alt="screen shot of paragraphs with indent style disabled" />
+  <figcaption>Example of paragraphs with $paragraph-indent disabled.</figcaption>
+</figure>
+
+<h3 id="videos">Videos</h3>
+
+<p>Video embeds are responsive and scale with the width of the main content block with the help of <a href="http://fitvidsjs.com/">FitVids</a>.</p>
+
+<p>Not sure if this only effects Kramdown or if it’s an issue with Markdown in general. But adding YouTube video embeds causes errors when building your Jekyll site. To fix add a space between the <code class="highlighter-rouge">&lt;iframe&gt;</code> tags and remove <code class="highlighter-rouge">allowfullscreen</code>. Example below:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;iframe</span> <span class="na">width=</span><span class="s">"560"</span> <span class="na">height=</span><span class="s">"315"</span> <span class="na">src=</span><span class="s">"http://www.youtube.com/embed/PWf4WUoMXwg"</span> <span class="na">frameborder=</span><span class="s">"0"</span><span class="nt">&gt;</span> <span class="nt">&lt;/iframe&gt;</span>
+</code></pre></div></div>
+
+<h3 id="social-sharing-links">Social Sharing Links</h3>
+
+<p>Social sharing links for Twitter, Facebook, and Google+ are included on posts/pages by default. To hide them on specific posts or pages add <code class="highlighter-rouge">share: false</code> to the YAML Front Matter. If you’d like to use different social networks modify <code class="highlighter-rouge">_includes/social-share</code> to your liking. Icons are set using <a href="http://fontawesome.io">Font Awesome</a>.</p>
+
+<h2 id="further-customization">Further Customization</h2>
+
+<p>Jekyll 2.x added support for Sass files making it much easier to modify a theme’s fonts and colors. By editing values found in <code class="highlighter-rouge">_sass/variables.scss</code> you can fine tune the site’s colors and typography.</p>
+
+<p>For example if you wanted a red background instead of white you’d change <code class="highlighter-rouge">$bodycolor: #fff;</code> to <code class="highlighter-rouge">$bodycolor: $cc0033;</code>.</p>
+
+<p>To modify the site’s JavaScript files I setup a Grunt build script to lint/concatenate/minify all scripts into <code class="highlighter-rouge">scripts.min.js</code>. <a href="http://nodejs.org/">Install Node.js</a>, then <a href="http://gruntjs.com/getting-started">install Grunt</a>, and then finally install the dependencies for the theme contained in <code class="highlighter-rouge">package.json</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install
+</code></pre></div></div>
+
+<p>From the theme’s root, use <code class="highlighter-rouge">grunt</code> concatenate JavaScript files, and optimize .jpg, .png, and .svg files in the <code class="highlighter-rouge">images/</code> folder. You can also use <code class="highlighter-rouge">grunt dev</code> in combination with <code class="highlighter-rouge">jekyll build --watch</code> to watch for updates JS files that Grunt will then automatically re-build as you write your code which will in turn auto-generate your Jekyll site when developing locally.</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:plugins">
+      <p>If you’re using GitHub Pages to host your site be aware that plugins are disabled. You’ll need to build your site locally and then manually deploy if you want to use this sweet plugin. <a href="#fnref:plugins" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-20">March 20, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/superstarfighter/docs/contributing/" class="pagination--pager" title="Contributing
+">Previous</a>
+    
+    
+      <a href="/superstarfighter/docs/license/" class="pagination--pager" title="License
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <div align="center" style="margin: 1em 0;">
+        <ins class="adsbygoogle"
+             style="display:block; border-bottom: initial;"
+             data-ad-client="ca-pub-7328585512091257"
+             data-ad-slot="3049671934"
+             data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/notapixelstudio" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/notapixelstudio" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://instagram.com/notapixelstudio" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    <li><a href="/superstarfighter/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 notapixel Studio. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/superstarfighter/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'QB6HVGBSBA',
+  apiKey: '9d5014e5bbc77372547bce778dfa5663',
+  indexName: 'minimal_mistakes',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="/superstarfighter${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
