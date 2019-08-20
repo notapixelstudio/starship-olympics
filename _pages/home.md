@@ -21,7 +21,7 @@ feature_row:
     url: "/docs/sports/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
-  - image_path: /assets/ssf/gameplay-people.png
+  - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
     title: "Super simple controls"
     excerpt: "Defeat your opponents with just a single button - Everyone can pick up a controller and play!"
