@@ -18,9 +18,6 @@ feature_row:
     alt: "game modes"
     title: "Lots of game modes"
     excerpt: "Play many different intergalactic *sports*, each adding its own twist to the competition. Fly solo or with a teammate, and beat your friends or the game's AI."
-    url: "/docs/sports/"
-    btn_class: "btn--primary"
-    btn_label: "Learn more"
   - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
     title: "Super simple controls"
