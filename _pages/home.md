@@ -29,6 +29,9 @@ feature_row:
     alt: "100% FOSS"
     title: "100% FOSS"
     excerpt: "Made with love and Free Software, and also free and open source itself."
+    url: "https://github.com/notapixelstudio/superstarfighter"
+    btn_class: "btn--primary"
+    btn_label: "Get the code"
 ---
 
 {% include feature_row %}
