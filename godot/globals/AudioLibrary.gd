@@ -16,7 +16,7 @@ func play(sound : String = "", force_stop = false):
 	if force_stop:
 		stop()
 	if sound == name:
-	    # if name is the same meaning that we reached the category
+		# if name is the same meaning that we reached the category
 		sound = ""
 	if sound:
 		this_sound = sound
