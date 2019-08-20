@@ -10,8 +10,9 @@ header:
 excerpt: >
   <img style='max-width: 100%;' src='assets/ssf/logo500.png'/><br />
   1 to 4 players arcade combat party game.<br />
-  Beat your meat friends in this fast-paced intergalactic competition!<br />
-  <small><a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a></small>
+  Fight your meat friends in this fast-paced intergalactic competition!<br />
+  <small><a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a></small><br />
+  Currently under active development!
 feature_row:
   - image_path: /assets/ssf/mockup.png
     alt: "game modes"
