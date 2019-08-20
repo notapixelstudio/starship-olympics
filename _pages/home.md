@@ -14,7 +14,7 @@ excerpt: >
   <small><a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a></small><br />
   Currently under active development!
 feature_row:
-  - image_path: /assets/ssf/mockup.png
+  - image_path: /assets/ssf/sports.png
     alt: "game modes"
     title: "Lots of game modes"
     excerpt: "Play many different intergalactic *sports*, each adding its own twist to the competition. Fly solo or with a teammate, and beat your friends or the game's AI."
