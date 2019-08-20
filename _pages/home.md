@@ -3,7 +3,7 @@ layout: splash
 permalink: /
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/mm-home-page-feature.jpg
+  overlay_image: /assets/ssf/mockup.png
   actions:
     - label: "<i class='fas fa-download'></i> Download now from itch.io"
       url: "https://notapixel.itch.io/superstarfighter"
