@@ -25,7 +25,7 @@ feature_row:
     alt: "simple controls"
     title: "Super simple controls"
     excerpt: "Defeat your opponents with just a single button - Everyone can pick up a controller and play!"
-  - image_path: /assets/ssf/species.png
+  - image_path: /assets/ssf/ssf-foss.png
     alt: "100% FOSS"
     title: "100% FOSS"
     excerpt: "Made with love and Free Software, and also free and open source itself."
