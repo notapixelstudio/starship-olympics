@@ -9,10 +9,11 @@ header:
       url: "https://notapixel.itch.io/superstarfighter"
 excerpt: >
   <img style='max-width: 100%;' src='assets/ssf/logo500.png'/><br />
-  1 to 4 players arcade combat party game.<br />
-  Fight your meat friends in this fast-paced intergalactic competition!<br />
+  1 to 4 players arcade combat party game
+intro: 
+  - excerpt: 'Fight your meat friends in this fast-paced intergalactic competition!<br />
   <small><a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a></small><br />
-  Currently under active development!
+  Currently under active development!'
 feature_row:
   - image_path: /assets/ssf/sports.png
     alt: "game modes"
@@ -30,5 +31,7 @@ feature_row:
     btn_class: "btn--primary"
     btn_label: "Get the code"
 ---
+
+{% include feature_row id="intro" type="center" %}
 
 {% include feature_row %}
