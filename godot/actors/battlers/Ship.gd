@@ -183,9 +183,9 @@ func fire():
 	
 	if bombs_enabled:
 		arena.spawn_bomb(
-		  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-		  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-		  self
+			position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
+			self
 		)
 	
 	# repeal

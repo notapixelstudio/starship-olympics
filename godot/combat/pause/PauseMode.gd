@@ -15,8 +15,7 @@ func _ready():
 	
 	
 func start():
-	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15,
-	 Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
 	visible = true
 	get_tree().paused = true
@@ -34,8 +33,7 @@ func _on_Continue_pressed():
 	unpause()
 	
 func unpause():
-	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0.75), Vector2(0.75, 0), 0.1,
-	 Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0.75), Vector2(0.75, 0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
 	buttons.disable()
 	gui.visible = false

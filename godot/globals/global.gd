@@ -36,23 +36,23 @@ enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
 const CONTROLSMAP = {
 	Controls.NO : "no",
 	Controls.CPU : "cpu",
-    Controls.KB1 : "kb1",
-    Controls.KB2 : "kb2",
-    Controls.JOY1 : "joy1",
-    Controls.JOY2 : "joy2",
-    Controls.JOY3 : "joy3",
-    Controls.JOY4 : "joy4"
+	Controls.KB1 : "kb1",
+	Controls.KB2 : "kb2",
+	Controls.JOY1 : "joy1",
+	Controls.JOY2 : "joy2",
+	Controls.JOY3 : "joy3",
+	Controls.JOY4 : "joy4"
 }
 
 const CONTROLSMAP_TO_KEY = {
 	"no" : Controls.NO,
 	"cpu" : Controls.CPU,
-    "kb1" : Controls.KB1,
-    "kb2" : Controls.KB2,
-    "joy1" : Controls.JOY1,
-    "joy2" : Controls.JOY2,
-    "joy3" : Controls.JOY3,
-    "joy4" : Controls.JOY4
+	"kb1" : Controls.KB1,
+	"kb2" : Controls.KB2,
+	"joy1" : Controls.JOY1,
+	"joy2" : Controls.JOY2,
+	"joy3" : Controls.JOY3,
+	"joy4" : Controls.JOY4
 }
 
 const MAX_PLAYERS = 4

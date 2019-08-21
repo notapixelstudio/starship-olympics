@@ -44,4 +44,4 @@ func _physics_process(delta):
 		call_deferred("queue_free")
 		
 func sigmoid(x, dt, amp):
-  return x/dt*amp
+	return x/dt*amp
