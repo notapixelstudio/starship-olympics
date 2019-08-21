@@ -1,4 +1,5 @@
 ---
+title: 'wa'
 layout: splash
 permalink: /
 header:
