@@ -7,6 +7,7 @@ var enable_analytics : bool = false setget _set_analytics
 func _set_analytics(new_value):
 	enable_analytics = new_value
 	GameAnalytics.enabled = enable_analytics
+	
 
 # OPTIONS need a min and a MAX
 const min_lives = 1
@@ -16,6 +17,8 @@ const max_lives = 10
 # levels
 var level
 var array_level
+
+var array_popo = ["sapo", "sidadsa", "dsa"]
 
 var audio_on : bool setget _audio_on
 
