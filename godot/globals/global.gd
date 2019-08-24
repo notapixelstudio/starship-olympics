@@ -42,6 +42,29 @@ func _audio_on(new_value):
 	audio_on = new_value
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
 
+var master_volume : int setget _set_master_volume
+var min_master_volume : int = 0
+var max_master_volume: int = 100
+
+func _set_master_volume(new_value): 
+	master_volume = new_value
+
+var music_volume : int setget _set_music_volume
+var min_music_volume : int = 0
+var max_music_volume: int = 100
+
+func _set_music_volume(new_value): 
+	music_volume = new_value
+	
+var sfx_volume : int setget _set_sfx_volume
+var min_sfx_volume : int = 0
+var max_sfx_volume: int = 100
+
+func _set_sfx_volume(new_value): 
+	sfx_volume = new_value
+	var db_volume = linear2db(linear2db(float(sfx_volume)/100))
+	var bus_name = "SFX"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 
 # templates
 var templates : Dictionary # {int : Resources}
@@ -197,7 +220,11 @@ func get_state():
 		unlocked_species=unlocked_species,
 		enable_analytics=enable_analytics,
 		language=language,
-		version=version
+		version=version,
+		music_volume=music_volume,
+		master_volume=master_volume,
+		sfx_volume=sfx_volume
+		
 	}
 	return save_dict
 

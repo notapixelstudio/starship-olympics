@@ -18,4 +18,6 @@ text = "Checkbox ?"
 script = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="ElementCheckbox"]
+[connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
 [connection signal="toggled" from="ElementCheckbox" to="." method="_on_ElementCheckbox_toggled"]

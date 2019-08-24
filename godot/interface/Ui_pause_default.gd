@@ -7,6 +7,8 @@ signal back
 onready var container = $Panel/Items
 onready var animation = $AnimationPlayer
 
+var focus_index = 0
+
 func _ready():
 	enable_all()
 	visible=true
@@ -20,12 +22,20 @@ func enable_all():
 	animation.play("show")
 	# container.get_child(0).grab_focus()
 	yield(animation, "animation_finished")
-	container.get_child(0).grab_focus()
+	container.get_child(focus_index).grab_focus()
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		disable_all()
+	if event.is_action_pressed("ui_up"):
+		focus_index = clamp(focus_index-1, 0, container.get_child_count() -1)
+		container.get_child(focus_index).grab_focus()
+	if event.is_action_pressed("ui_down"):
+		focus_index = clamp(focus_index+1, 0, container.get_child_count() -1)
+		container.get_child(focus_index).grab_focus()
+	
 
 func _exit_tree():
 	# Let's save the changes
+	print("saving")
 	persistance.save_game()
