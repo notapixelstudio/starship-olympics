@@ -7,7 +7,25 @@ var enable_analytics : bool = false setget _set_analytics
 func _set_analytics(new_value):
 	enable_analytics = new_value
 	GameAnalytics.enabled = enable_analytics
-	
+
+var available_languages = {
+	"english": "en",
+	"español": "es",
+	"italiano": "it",
+	"euskara": "eu",
+	"français": "fr"
+	}
+onready var language: String setget _set_language, _get_language
+var array_language: Array = ["english", "italiano", "español", "euskara", "français"]
+
+func _set_language(value:String):
+	language = value
+	TranslationServer.set_locale(available_languages[language])
+
+func _get_language():
+	return language
+
+var version = "0.5.0"
 
 # OPTIONS need a min and a MAX
 const min_lives = 1
@@ -18,13 +36,13 @@ const max_lives = 10
 var level
 var array_level
 
-var array_popo = ["sapo", "sidadsa", "dsa"]
-
 var audio_on : bool setget _audio_on
 
 func _audio_on(new_value):
 	audio_on = new_value
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
+
+
 # templates
 var templates : Dictionary # {int : Resources}
 
@@ -87,6 +105,7 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES8 : false,
 	ALL_SPECIES.SPECIES9 : false
 }
+
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
 	YELLOW = Color(1.0, .757, .027),
@@ -94,8 +113,6 @@ var colors = {
 	BLUE = Color(.098, .463, .824),
 	PINK = Color(.914, .118, .388)
 }
-# force saving the game
-var force_save = true
 
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
@@ -106,13 +123,20 @@ func _input(event):
 		
 func _ready():
 	print("Starting game...")
-	print("FORCE SAVE is ", force_save, " - if true the user file will be overwritten")
 	add_to_group("persist")
 	
+	#setup language
+	var generic_locale = TranslationServer.get_locale().split("_")[0]
+	language = TranslationServer.get_locale_name(generic_locale).to_lower()
 	
 	templates = get_species_templates()
-	if force_save:
+	var saved_data = persistance.get_saved_data()
+	var k = get_path()
+	var global_key = String(get_path())
+	if not saved_data or check_version(saved_data[global_key]["version"], version):
+		print("We need to update the saved game")
 		persistance.save_game()
+		
 	if persistance.load_game():
 		print("Successfully load the game")
 	else:
@@ -123,10 +147,10 @@ func _ready():
 	GameAnalytics.game_key = ProjectSettings.get_setting("Analytics/game_key")
 	GameAnalytics.secret_key = ProjectSettings.get_setting("Analytics/secret_key")
 	GameAnalytics.enabled = enable_analytics
-	# END Game Analytics
 	if enable_analytics:
 		GameAnalytics.request_init()
-	
+	# END Game Analytics
+
 func _exit_tree():
 	print("Thanks for playing")
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
@@ -171,7 +195,9 @@ func get_state():
 	"""
 	var save_dict = {
 		unlocked_species=unlocked_species,
-		enable_analytics=enable_analytics
+		enable_analytics=enable_analytics,
+		language=language,
+		version=version
 	}
 	return save_dict
 
@@ -238,3 +264,10 @@ func get_base_entity(node : Node):
 		return null
 	return get_base_entity(node.get_parent())
 	
+func check_version(saved_version: String, version: String):
+	# Will check if the version of the saved data is smaller the current
+	var this_minor = saved_version.split(".")[1]
+	var minor = version.split(".")[1]
+	print(this_minor, " vs ", minor)
+	return this_minor < minor
+		

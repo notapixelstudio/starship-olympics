@@ -2,8 +2,8 @@
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Ui_pause_default.gd" type="Script" id=2]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=3]
-[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hide"
@@ -52,22 +52,21 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ARRAY" parent="Panel/Items" instance=ExtResource( 3 )]
-anchor_right = 0.0
+[node name="ONOFF" parent="Panel/Items" instance=ExtResource( 3 )]
 margin_right = 445.0
-margin_bottom = 25.0
-elem_type = 2
-element_path = "popo"
-label_description = "canzoni"
-node_owner_path = NodePath("../../..")
-
-[node name="ONOFF" parent="Panel/Items" instance=ExtResource( 4 )]
-margin_top = 29.0
-margin_right = 445.0
-margin_bottom = 73.0
+margin_bottom = 44.0
 is_global = true
 element_path = "enable_analytics"
 label_description = "analytics"
+
+[node name="Element" parent="Panel/Items" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_top = 48.0
+margin_right = 445.0
+margin_bottom = 73.0
+elem_type = 2
+element_path = "language"
+label_description = "language"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide = SubResource( 1 )
