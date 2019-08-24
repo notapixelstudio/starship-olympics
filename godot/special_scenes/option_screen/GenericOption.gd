@@ -47,6 +47,7 @@ func _set_value(new_value):
 	emit_signal("value_changed", value)
 	if node_owner:
 		node_owner.set(variable_name, value)
+		print(variable_name, " in " , node_owner.name, " for this ", str(value))
 	else:
 		print("Setter has been called without a proper setup")
 		
