@@ -34,11 +34,24 @@ func _on_Options_pressed():
 func _input(event):
 	if can_press:
 		if event is InputEventKey or event is InputEventJoypadButton: 
-			emit_signal("start_multiplayer")
+			enable_buttons()
+
+	
+func enable_buttons():
+	can_press = false
+	$Buttons.visible = true
+	$Description2.visible = false
+	$Description2/AnimationPlayer.stop()
+	yield(get_tree().create_timer(5), "timeout")
+	can_press = true
+	for button in $Buttons.get_children():
+		button.disabled = false
 	
 	
 func _on_StartHuman_pressed():
-	emit_signal("start_multiplayer")
+	if can_press:
+		print("we're ready to og")
+		emit_signal("start_multiplayer")
 
 
 func _on_QuitButton_pressed():
