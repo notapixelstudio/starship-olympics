@@ -5,16 +5,15 @@ onready var sfx_effect  = $AudioStreamPlayer
 onready var value_node = $VBoxContainer/HSlider
 onready var description_node = $VBoxContainer/Volume
 
+func _process(delta):
+	description_node.text = tr("Volume" + " " + bus_name)	
 func _initialize():
 	value = node_owner.get(variable_name)
 	yield(get_tree().create_timer(0.2), "timeout")
-	print("value slider "+bus_name+" "+str(value))
 	value_node.value = value
 	
 func _ready():
-	description_node.text = tr(description_node.text + " " + bus_name)
-	print(node_owner.get(variable_name))
-	
+	description_node.text = tr(description_node.text + " " + bus_name)	
 	_initialize()
 	
 
