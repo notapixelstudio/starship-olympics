@@ -1,14 +1,18 @@
 extends Control
 
 export var gamemode : Resource setget set_gamemode
-
+export var n_players : int = 1
 onready var animator = $AnimationPlayer
-
+onready var container = $HBoxContainer
 signal ready_to_fight
 
 func _ready():
 	refresh()
 	$Description2.visible = false
+	for i in range(n_players-1):
+		var pointer = $HBoxContainer/P1.duplicate()
+		container.add_child(pointer)
+		
 
 func refresh():
 	if $Sprite and gamemode:

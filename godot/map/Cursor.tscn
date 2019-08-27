@@ -3,8 +3,6 @@
 [ext_resource path="res://map/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=2]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "Rotation"
 length = 6.0
@@ -23,8 +21,8 @@ tracks/0/keys = {
 }
 
 [node name="Cursor" type="Node2D" groups=[
-"map_cursor",
 "in_camera",
+"map_cursor",
 ]]
 script = ExtResource( 1 )
 player_controls = ""
@@ -42,4 +40,3 @@ texture = ExtResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Rotation"
 anims/Rotation = SubResource( 1 )
-

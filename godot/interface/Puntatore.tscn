@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://interface/Pointer.gd" type="Script" id=1]
+[ext_resource path="res://interface/grey/grey_arrowDownWhite.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="P1" type="Position2D"]
+position = Vector2( 0, -15 )
+script = ExtResource( 1 )
+player_controls = "kb1"
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, 9 )
+scale = Vector2( 1.7, 1.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0, 8 )
+texture = ExtResource( 2 )
+
+[node name="PlayerID" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -30.0
+margin_right = 20.0
+margin_bottom = 3.0
+custom_fonts/font = SubResource( 1 )
+text = "P1"
+align = 1
+valign = 1
