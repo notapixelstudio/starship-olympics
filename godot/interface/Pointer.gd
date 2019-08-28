@@ -1,4 +1,4 @@
-extends Node2D
+extends Position2D
 
 var enabled
 

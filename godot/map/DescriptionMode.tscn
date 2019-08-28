@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=4]
 [ext_resource path="res://assets/sounds/UI_effects/thud.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://interface/Puntatore.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "describeme"
@@ -217,6 +219,39 @@ text = "Bombazza"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -66.0
+margin_right = 300.0
+margin_bottom = -40.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_right = 72.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 7 )
+text = "FIGHT"
+flat = true
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+margin_left = 76.0
+margin_right = 538.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+margin_left = 542.0
+margin_right = 600.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 7 )
+text = "SKIP"
+flat = true
+
+[node name="P1" parent="HBoxContainer" instance=ExtResource( 8 )]
 
 [node name="Description2" type="Label" parent="."]
 anchor_left = 0.5

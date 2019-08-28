@@ -11,8 +11,8 @@
 [ext_resource path="res://assets/theme/utilities/fonts/montserrat_eb_20.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://animations/shake.anim" type="Animation" id=11]
-[ext_resource path="res://interface/grey/grey_arrowDownWhite.png" type="Texture" id=12]
-[ext_resource path="res://animations/wiggle_updown.tres" type="Animation" id=13]
+[ext_resource path="res://animations/wiggle_updown.tres" type="Animation" id=12]
+[ext_resource path="res://interface/grey/grey_arrowDownWhite.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "standby"
@@ -35,13 +35,13 @@ tracks/0/keys = {
 size = 10
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=8]
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 24
 outline_size = 4
 font_data = ExtResource( 10 )
@@ -154,32 +154,32 @@ anims/shake = ExtResource( 11 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "wiggle"
+anims/wiggle = ExtResource( 12 )
+
 [node name="PlayerInfo" type="Position2D" parent="."]
-position = Vector2( 86, 33.5228 )
+position = Vector2( 86, 36.2047 )
 
 [node name="Sprite" type="Sprite" parent="PlayerInfo"]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, 9 )
 scale = Vector2( 1.7, 1.8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="Sprite2" type="Sprite" parent="PlayerInfo"]
 position = Vector2( 0, 8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="PlayerID" type="Label" parent="PlayerInfo"]
 margin_left = -20.0
 margin_top = -30.0
 margin_right = 20.0
 margin_bottom = 3.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
 text = "P1"
 align = 1
 valign = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerInfo"]
-autoplay = "wiggle"
-anims/wiggle = ExtResource( 13 )
 
 [node name="TeamMode" type="Control" parent="."]
 anchor_left = 0.5
@@ -194,7 +194,7 @@ margin_bottom = 215.0
 [node name="Label" type="Label" parent="TeamMode"]
 anchor_right = 1.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "TEAM
 TRIXENS"

@@ -19,8 +19,6 @@ func _initialize():
 	left.visible = true
 	right.visible = true
 	
-	
-	
 	if elem_type == OPTION_TYPE.NUMBER:
 		left.visible = value>min_value
 		right.visible = value<max_value
@@ -43,8 +41,6 @@ func _initialize():
 		left.visible = index_value>min_value
 		right.visible = index_value<max_value
 		
-		
-		
 	value_node.text = str(value)
 
 
@@ -60,7 +56,6 @@ func _ready():
 		min_value = node_owner.get("min_"+variable_name)
 		max_value = node_owner.get("max_"+variable_name)
 	
-	yield(get_tree().create_timer(0.2), "timeout")
 	_initialize()
 
 func _input(event):
@@ -94,7 +89,8 @@ func _input(event):
 		if event.is_action_pressed("ui_right") and right.visible:
 			left.visible = true
 			# shake_node(value_node)
-			value = str(value_node.text)
+			#value = str(value_node.text)
+			value = node_owner.get(variable_name)
 			index_value = array_value.find(value)
 			index_value = mod((index_value + 1), len(array_value))
 			

@@ -5,7 +5,7 @@ resource_name = "wiggle"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("PlayerInfo:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -16,4 +16,3 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 86, 40 ), Vector2( 86, 32 ) ]
 }
-

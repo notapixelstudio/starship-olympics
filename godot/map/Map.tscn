@@ -296,21 +296,21 @@ margin_top = -65.0
 margin_right = 146.0
 
 [node name="Intro" type="Label" parent="CanvasLayerTop/HUD/GameStart"]
-margin_top = 24.0
-margin_right = 200.0
+margin_top = 23.0
+margin_right = 136.0
 margin_bottom = 41.0
 text = "Match will start in "
 
 [node name="Tot" type="Label" parent="CanvasLayerTop/HUD/GameStart"]
-margin_left = 204.0
-margin_top = 24.0
-margin_right = 204.0
+margin_left = 140.0
+margin_top = 23.0
+margin_right = 140.0
 margin_bottom = 41.0
 
 [node name="Seconds" type="Label" parent="CanvasLayerTop/HUD/GameStart"]
-margin_left = 208.0
-margin_top = 24.0
-margin_right = 292.0
+margin_left = 144.0
+margin_top = 23.0
+margin_right = 207.0
 margin_bottom = 41.0
 text = "Seconds"
 
@@ -318,5 +318,4 @@ text = "Seconds"
 wait_time = 5.0
 one_shot = true
 autostart = true
-
 [connection signal="timeout" from="CanvasLayerTop/Timer" to="." method="_on_Timer_timeout"]
