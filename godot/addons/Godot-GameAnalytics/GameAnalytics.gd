@@ -31,7 +31,12 @@ var returned
 var uuid = UUID.v4()
 
 # if analytics are enabled
-var enabled = false
+var enabled = false setget _set_analytics
+
+func _set_analytics(value: bool):
+	enabled = value
+	print_debug("Analytics enabled? " + str(enabled))
+	
 
 # TODO: get from the dict
 var platform = Utils.os_dict[OS.get_name()]
