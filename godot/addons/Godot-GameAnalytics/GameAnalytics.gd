@@ -118,7 +118,6 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print("We could not connect. What should we do now?")
 
 	# Wait until resolved and/or connected
-	var i = MAX_RETRY
 	for i in range(MAX_RETRY):
 	# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
 		requests.poll()
@@ -137,14 +136,17 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print("Well, we could not connect here either")
 
 	var response_string : String # will containe the response
-	i = MAX_RETRY
-	while requests.get_status() == HTTPClient.STATUS_REQUESTING:
-		if i <= 0:
-			break
-		# Keep polling until the request is going on
-		requests.poll()
-		print("Requesting..")
-		OS.delay_msec(500)
+	
+	for i in range(MAX_RETRY):
+		# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
+			requests.poll()
+			print("Requesting..")
+			if requests.get_status() == HTTPClient.STATUS_CONNECTED:
+				break
+			print_debug("Wait 0.5s")
+			# let's wait one second before retrying
+			yield(get_tree().create_timer(0.5), "timeout")
+			i -=1
 	
 	if requests.has_response():
 		# If there is a response..
