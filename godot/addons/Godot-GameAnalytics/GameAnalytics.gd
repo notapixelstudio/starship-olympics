@@ -114,12 +114,15 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 
 	# Wait until resolved and/or connected
 	var i = MAX_RETRY
-	while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
-		if i <= 0:
-			break
+	for i in range(MAX_RETRY):
+	# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
 		requests.poll()
 		print("Connecting..")
-		OS.delay_msec(500)
+		if requests.get_status() == HTTPClient.STATUS_CONNECTED:
+			break
+		print_debug("Wait 0.5s")
+		# let's wait one second before retrying
+		yield(get_tree().create_timer(0.5), "timeout")
 		i -=1
 	
 	# assert(requests.get_status() == HTTPClient.STATUS_CONNECTED)
