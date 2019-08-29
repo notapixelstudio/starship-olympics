@@ -34,7 +34,7 @@ feature_row:
 
 {% include feature_row id="intro" type="center" %}
 
-### Watch the Gameplay trailer
+### Watch the Gameplay Video
 
 {% include video id="2LCui4mYV5I" provider="youtube" type="center" %}
 
