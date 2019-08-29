@@ -17,16 +17,16 @@ intro:
 feature_row:
   - image_path: /assets/ssf/sports.png
     alt: "game modes"
-    title: "Lots of game modes"
+    title: "Lots of Game Modes"
     excerpt: "Play many different intergalactic *sports*, each adding its own twist to the competition. Fly solo or with a teammate, and beat your friends or the game's AI."
   - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
-    title: "Super simple controls"
+    title: "Super Simple Controls"
     excerpt: "Defeat your opponents with just a single button - Everyone can pick up a controller and play!"
   - image_path: /assets/ssf/ssf-foss.png
     alt: "100% FOSS"
     title: "100% FOSS"
-    excerpt: "Made with love and Free Software, and also free and open source itself."
+    excerpt: "Made with love and free software, so feel free to explore our code!"
     url: "https://github.com/notapixelstudio/superstarfighter"
     btn_class: "btn--primary"
     btn_label: "Get the code"
@@ -34,8 +34,10 @@ feature_row:
 
 {% include feature_row id="intro" type="center" %}
 
-{% include feature_row %}
-
-### Watch the Gameplay trailer
+### Watch the Gameplay Video
 
 {% include video id="2LCui4mYV5I" provider="youtube" type="center" %}
+
+---
+
+{% include feature_row %}
