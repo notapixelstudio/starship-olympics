@@ -38,4 +38,6 @@ feature_row:
 
 {% include video id="2LCui4mYV5I" provider="youtube" type="center" %}
 
+---
+
 {% include feature_row %}
