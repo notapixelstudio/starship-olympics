@@ -10,11 +10,14 @@
 -->
 <html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
   <head>
+    {% gtm head %}
     {% include head.html %}
     {% include head/custom.html %}
+    <link rel="shortcut icon" type="image/png" href="assets/ssf/favicon.ico">
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+    {% gtm body %}
     {% include_cached skip-links.html %}
     {% include browser-upgrade.html %}
     {% include masthead.html %}
