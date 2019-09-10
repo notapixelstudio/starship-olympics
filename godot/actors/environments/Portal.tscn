@@ -4,11 +4,11 @@
 [ext_resource path="res://assets/sprites/wall_tile.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( -50, -400, 50, -400, 50, 400, -50, 400 )
+points = PoolVector2Array( -50, -350, 50, -350, 50, 350, -50, 350 )
 
 [node name="Portal" type="Node2D" groups=[
-"portals",
 "in_camera",
+"portals",
 ]]
 script = ExtResource( 1 )
 linked_to_path = NodePath("")
@@ -20,6 +20,7 @@ points = PoolVector2Array( 0, -300, 0, 300 )
 width = 200.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
+texture_mode = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16384

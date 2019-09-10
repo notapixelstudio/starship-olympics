@@ -114,6 +114,7 @@ func _ready():
 	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
 	
 	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
+	$CollectManager.connect('collected', $GoalModeManager, "_on_sth_collected")
 	$CollectManager.connect('collected', self, "_on_sth_collected")
 	$CollectManager.connect('dropped', $CrownModeManager, "_on_sth_dropped")
 	$CollectManager.connect('dropped', self, "_on_sth_dropped")
@@ -123,6 +124,8 @@ func _ready():
 	$CollectManager.connect('coins_dropped', $CollectModeManager, "_on_coins_dropped")
 	$CollectManager.connect('coins_dropped', self, "_on_coins_dropped")
 	$ConquestManager.connect('conquered', $ConquestModeManager, "_on_sth_conquered")
+	$GoalModeManager.connect('dropped', self, "_on_sth_dropped")
+	$CollectManager.connect("stolen", $GoalModeManager, "_on_sth_stolen")
 	
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
@@ -389,6 +392,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
+	ship.connect("ring_body_entered", collect_manager, "_on_ship_ring_body_entered")
 	
 	$CrownModeManager.connect('show_score', ship, "update_score")
 	

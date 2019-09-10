@@ -5,7 +5,7 @@ signal stolen
 func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	
-	if not entity:
+	if not entity or entity == ECM.E(ship):
 		return
 		
 	if entity.has('Collectable') and ship.is_alive():
@@ -22,10 +22,20 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 		if entity.has('Keepable') and is_loadable:
 			ECM.E(ship).get('Cargo').load(entity.get_host())
 	
-	if entity.has("Cargo") and entity.could_have("Cargo"):
-		emit_signal("stolen", ship, entity.get_host())
+	#if entity.has("Cargo") and ECM.E(ship).could_have("Cargo"):
+	#	emit_signal("stolen", ship, entity.get_host())
 		
 	
+func ship_ring_body_entered(other : CollisionObject2D, ship : Ship):
+	var entity = ECM.E(other)
+	
+	if not entity:
+		return
+		
+	if entity.has("Cargo") and ECM.E(ship).could_have("Cargo"):
+		emit_signal("stolen", ship, entity.get_host())
+		
+		
 signal dropped
 signal coins_dropped
 func drop_cargo(dropper):

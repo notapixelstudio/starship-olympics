@@ -39,7 +39,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 16.0
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 8.0
@@ -122,7 +122,6 @@ playback_speed = 0.5
 anims/rotate = SubResource( 3 )
 
 [node name="NearArea" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 4
 collision_mask = 5
 
@@ -168,7 +167,6 @@ area_mask = 8
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
-
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]

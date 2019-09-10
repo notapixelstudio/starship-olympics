@@ -29,7 +29,7 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
 const CHARGE_MULTIPLIER = 4500
-const BOMB_OFFSET = 40
+const BOMB_OFFSET = 60
 const BOMB_BOOST = 200
 
 const THRESHOLD_DIR = 0.3
@@ -203,6 +203,7 @@ func fire():
 
 func die(killer : Ship):
 	if alive and not invincible:
+		entity.get('Ringed').disable()
 		alive = false
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -252,3 +253,15 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 			return 0
 	
 	return int(sign(cross))
+
+func _on_Ringed_disabled():
+	$Ring.visible = false
+	$Ring/CollisionShape2D.disabled = true
+	
+func _on_Ringed_enabled():
+	$Ring.visible = true
+	$Ring/CollisionShape2D.disabled = false
+	
+func _on_Ring_body_entered(body):
+	emit_signal('ring_body_entered', body, self)
+	
