@@ -48,6 +48,10 @@ var max_master_volume: int = 100
 
 func _set_master_volume(new_value): 
 	master_volume = new_value
+	var db_volume = linear2db(float(new_value)/100)
+	var bus_name = "Master"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
+	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 
 var music_volume : int setget _set_music_volume
 var min_music_volume : int = 0
@@ -55,6 +59,10 @@ var max_music_volume: int = 100
 
 func _set_music_volume(new_value): 
 	music_volume = new_value
+	var db_volume = linear2db(float(new_value)/100)
+	var bus_name = "Music"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
+	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 	
 var sfx_volume : int setget _set_sfx_volume
 var min_sfx_volume : int = 0
@@ -62,9 +70,10 @@ var max_sfx_volume: int = 100
 
 func _set_sfx_volume(new_value): 
 	sfx_volume = new_value
-	var db_volume = linear2db(linear2db(float(sfx_volume)/100))
+	var db_volume = linear2db(float(sfx_volume)/100)
 	var bus_name = "SFX"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
+	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 
 # templates
 var templates : Dictionary # {int : Resources}

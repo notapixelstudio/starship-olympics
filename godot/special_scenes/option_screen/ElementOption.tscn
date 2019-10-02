@@ -1,21 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://interface/grey/grey_arrowLeftGrey.png" type="Texture" id=4]
 [ext_resource path="res://interface/grey/grey_arrowLeftWhite.png" type="Texture" id=5]
 [ext_resource path="res://interface/grey/grey_arrowRightGrey.png" type="Texture" id=6]
 [ext_resource path="res://interface/grey/grey_arrowRightWhite.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 3 )
+font_data = ExtResource( 8 )
 
 [node name="Element" type="Panel"]
 anchor_right = 1.0
 margin_right = -880.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 25 )
+rect_min_size = Vector2( 0, 50 )
 focus_mode = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -28,43 +29,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Padding2" type="Label" parent="Container"]
-margin_top = 7.0
+margin_top = 12.0
 margin_right = 10.0
-margin_bottom = 28.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 10, 0 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="Description" type="Label" parent="Container"]
 margin_left = 14.0
-margin_top = 7.0
-margin_right = 50.0
-margin_bottom = 28.0
-custom_fonts/font = SubResource( 1 )
+margin_top = 12.0
+margin_right = 59.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 3 )
 text = "Life"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="Padding" type="Label" parent="Container"]
-margin_left = 54.0
-margin_top = 7.0
-margin_right = 222.0
-margin_bottom = 28.0
+margin_left = 63.0
+margin_top = 12.0
+margin_right = 226.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 226.0
-margin_right = 394.0
-margin_bottom = 36.0
+margin_left = 230.0
+margin_right = 393.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_constants/separation = 7
 
 [node name="left" type="TextureButton" parent="Container/ValueContainer"]
 margin_right = 10.0
-margin_bottom = 36.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
@@ -75,22 +76,22 @@ stretch_mode = 3
 
 [node name="Value" type="Label" parent="Container/ValueContainer"]
 margin_left = 17.0
-margin_right = 151.0
-margin_bottom = 36.0
+margin_right = 146.0
+margin_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "1"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="right" type="TextureButton" parent="Container/ValueContainer"]
-margin_left = 158.0
-margin_right = 168.0
-margin_bottom = 36.0
+margin_left = 153.0
+margin_right = 163.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
@@ -100,10 +101,10 @@ expand = true
 stretch_mode = 3
 
 [node name="Padding3" type="Label" parent="Container"]
-margin_left = 398.0
-margin_top = 7.0
-margin_right = 400.0
-margin_bottom = 28.0
+margin_left = 397.0
+margin_top = 14.0
+margin_right = 399.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 2, 0 )
 custom_fonts/font = SubResource( 1 )
 uppercase = true
