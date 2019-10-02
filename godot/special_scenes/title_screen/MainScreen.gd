@@ -12,6 +12,7 @@ func _on_QuitButton_pressed():
 func _ready():
 	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$Label.text = tr("DEMO BUILD - v"+ str(global.version))
 	remove_child(options)
 	
 func _on_TitleScreen_option_selected():

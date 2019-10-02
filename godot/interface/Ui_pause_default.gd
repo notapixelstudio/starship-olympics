@@ -39,3 +39,6 @@ func _exit_tree():
 	# Let's save the changes
 	print("saving")
 	persistance.save_game()
+
+func _on_Button_pressed():
+	disable_all()
