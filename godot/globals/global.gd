@@ -165,7 +165,8 @@ func _ready():
 	var saved_data = persistance.get_saved_data()
 	var k = get_path()
 	var global_key = String(get_path())
-	if not saved_data or not "version" in saved_data or check_version(saved_data[global_key]["version"], version):
+	
+	if not saved_data or not "version" in saved_data[global_key] or check_version(saved_data[global_key]["version"], version):
 		print("We need to update the saved game")
 		persistance.save_game()
 		

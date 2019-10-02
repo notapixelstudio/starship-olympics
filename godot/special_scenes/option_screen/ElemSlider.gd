@@ -16,8 +16,6 @@ func _ready():
 	description_node.text = tr(description_node.text + " " + bus_name)	
 	_initialize()
 	
-
-
 func _on_HSlider_value_changed(new_value: int):
 	self.value = new_value
 	sfx_effect.play()

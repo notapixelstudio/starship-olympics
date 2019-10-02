@@ -1,15 +1,92 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/shaders/TransitionColor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
-[ext_resource path="res://special_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=5]
-[ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://special_scenes/title_screen/TitleScreen.gd" type="Script" id=5]
+[ext_resource path="res://logo.png" type="Texture" id=6]
+[ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=8]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 7 )
+[sub_resource type="Animation" id=3]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("logo_ssf_olympic:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("logo_ssf_olympic:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 0.615572, 1 ),
+"update": 0,
+"values": [ Vector2( 640, 295 ), Vector2( 640, 295 ), Vector2( 640, 210 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 0.63728, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "option_selected"
+
+[sub_resource type="InputEventAction" id=1]
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 10 )
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
@@ -25,12 +102,110 @@ smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
-[node name="TitleScreen" parent="." instance=ExtResource( 5 )]
-editor/display_folded = true
+[node name="TitleScreen" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
 
-[node name="Options" parent="." instance=ExtResource( 6 )]
+[node name="Animator" type="AnimationPlayer" parent="TitleScreen"]
+anims/fade_in = SubResource( 3 )
+anims/fade_out = SubResource( 4 )
+anims/option_selected = SubResource( 5 )
+
+[node name="logo_ssf_olympic" type="Sprite" parent="TitleScreen"]
+position = Vector2( 640, 210 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="Options" parent="." instance=ExtResource( 7 )]
 visible = false
 mouse_filter = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -145.0
+margin_top = 34.0
+margin_right = 145.0
+margin_bottom = 326.0
+mouse_default_cursor_shape = 3
+theme = ExtResource( 8 )
+alignment = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StartHuman" type="Button" parent="Buttons"]
+margin_top = 37.0
+margin_right = 290.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+text = "Fight"
+flat = true
+
+[node name="StartCPU" type="Button" parent="Buttons"]
+visible = false
+margin_right = 290.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+shortcut = SubResource( 2 )
+text = "Human vs CPU"
+flat = true
+
+[node name="Options" type="Button" parent="Buttons"]
+margin_top = 111.0
+margin_right = 290.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+text = "Options"
+flat = true
+
+[node name="Help" type="Button" parent="Buttons"]
+visible = false
+margin_top = 148.0
+margin_right = 290.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+text = "Help"
+flat = true
+
+[node name="Credits" type="Button" parent="Buttons"]
+visible = false
+margin_top = 148.0
+margin_right = 290.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 0, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+text = "Credits"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+margin_top = 185.0
+margin_right = 290.0
+margin_bottom = 255.0
+rect_min_size = Vector2( 0, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+text = "Quit"
+flat = true
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.478431 )
@@ -40,10 +215,14 @@ anchor_bottom = 1.0
 margin_top = -17.0
 margin_right = -35.0
 margin_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 6 )
 text = "Demo build - 0.5"
 align = 2
 uppercase = true
+
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
+[connection signal="pressed" from="Buttons/StartHuman" to="TitleScreen" method="_on_StartHuman_pressed"]
+[connection signal="pressed" from="Buttons/Options" to="TitleScreen" method="_on_Options_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="TitleScreen" method="_on_QuitButton_pressed"]
