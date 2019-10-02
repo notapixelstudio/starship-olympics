@@ -241,18 +241,7 @@ layer = 2
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 22 )]
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 23 )]
-editor/display_folded = true
 visible = false
-
-[node name="CameraZoom" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="1"]
-description = "enabled"
-label_description = "Camera enabled"
-node_owner_path = NodePath("../../../../../../../../Camera")
-
-[node name="CameraDebug" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="2"]
-description = "debug_mode"
-label_description = "debug mode"
-node_owner_path = NodePath("../../../../../../../../Camera")
 
 [node name="CameraDebug" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 24 )
@@ -297,9 +286,6 @@ enabled = true
 
 [node name="GameOver" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 2 )
-
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
-
-[editable path="CanvasLayer/Pause"]
