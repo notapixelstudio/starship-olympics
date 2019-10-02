@@ -12,7 +12,6 @@ shortcut = SubResource( 1 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "fade_in"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("logo_ssf_olympic:modulate")
 tracks/0/interp = 1
@@ -180,6 +179,7 @@ anims/option_selected = SubResource( 5 )
 position = Vector2( 640, 210 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+
 [connection signal="pressed" from="Buttons/StartHuman" to="." method="_on_StartHuman_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
