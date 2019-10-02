@@ -3,7 +3,7 @@ extends Resource
 class_name InfoPlayer
 
 var uid : int = 0
-var id : String = "InfoPlayer"
+var id : String = "P1"
 var controls : String = "kb1"
 var species : String
 var kills : int = 0
@@ -41,7 +41,8 @@ func start():
 	
 func to_dict():
 	return {
-		"id": uid,
+		"uid": uid,
+		"id": id,
 		"name" : id,
 		"controls": controls,
 		"species" : species,

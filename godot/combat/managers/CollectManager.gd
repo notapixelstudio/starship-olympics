@@ -14,7 +14,7 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 		if not entity.has('Keepable') or entity.has('Keepable') and is_loadable:
 			entity.get('Collectable').disable() # this makes sure we don't enter here twice
 			
-			if other is Coin and ECM.E(ship).has('CoinBag'):
+			if other is Diamond and ECM.E(ship).has('CoinBag'):
 				ECM.E(ship).get('CoinBag').add_coin()
 				
 			emit_signal('collected', ship, entity.get_host())

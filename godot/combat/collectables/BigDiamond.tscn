@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/collectables/BigDiamond.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/diamond_big.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 90.0
+
+[node name="BigDiamond" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, 7 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 1 )

@@ -18,13 +18,22 @@ func _remove_from_corresponding_group():
 	if get_entity().is_in_group('component__'+name):
 		get_entity().remove_from_group('component__'+name)
 		
+signal enabled
+signal disabled
 func set_enabled(value : bool):
+	var old_enabled = enabled
+	
 	enabled = value
 	
 	if enabled:
 		_add_to_corresponding_group()
 	else:
 		_remove_from_corresponding_group()
+		
+	if old_enabled == false and enabled == true:
+		emit_signal('enabled')
+	elif old_enabled == true and enabled == false:
+		emit_signal('disabled')
 
 func enable():
 	set_enabled(true)

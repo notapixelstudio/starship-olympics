@@ -37,10 +37,18 @@ enum PersistWhen {
 }
 
 ##### PROPERTIES #####
+onready var area_shape = $NearArea/CollisionShape2D
+onready var area = $NearArea
+onready var fararea = $FarArea
+onready var fararea_shape = $FarArea/CollisionShape2D
+
+var segments = []
+var farsegments = []
 
 # The target node to track
 var target: Node2D setget set_target
 
+	
 # The NodePath to the target
 export var target_path: NodePath = @".." setget set_target_path
 # If not persisting, the number of points that should be allowed in the trail
@@ -79,34 +87,47 @@ func _notification(p_what: int):
 			self.target_path = @""
 			self.trail_length = 0
 
+
+func add_custom_point(point):
+	if area and not area_shape.disabled:
+		add_point_to_segment(point)
+	add_point(point)
+
+
+func remove_custom_point(point):
+	if area and not area_shape.disabled:
+		remove_point_to_segment(point)
+	remove_point(point)
+
+		
 #warning-ignore:unused_argument
 func _process(delta: float):
 	if target:
 		match persistance:
 			Persistance.OFF:
-				add_point(target.global_position)
+				add_custom_point(target.global_position)
 				while get_point_count() > trail_length:
-					remove_point(0)
+					remove_custom_point(0)
 			Persistance.ALWAYS:
-				add_point(target.global_position)
+				add_custom_point(target.global_position)
 				pass
 			Persistance.CONDITIONAL:
 				match persistance_condition:
 					PersistWhen.ON_MOVEMENT:
 						var moved: bool = get_point_position(get_point_count()-1) != target.global_position if get_point_count() else false
 						if not get_point_count() or moved:
-							add_point(target.global_position)
+							add_custom_point(target.global_position)
 						else:
 							#warning-ignore:unused_variable
 							for i in range(degen_rate):
-								remove_point(0)
+								remove_custom_point(0)
 					PersistWhen.CUSTOM:
 						if _should_grow():
-							add_point(target.global_position)
+							add_custom_point(target.global_position)
 						if _should_shrink():
 							#warning-ignore:unused_variable
 							for i in range(degen_rate):
-								remove_point(0)
+								remove_custom_point(0)
 
 ##### OVERRIDES #####
 
@@ -123,7 +144,7 @@ func _should_shrink() -> bool:
 func erase_trail():
 	set_process(false)
 	for i in range(get_point_count()):
-		remove_point(0)
+		remove_custom_point(0)
 	yield(get_tree().create_timer(0.01), "timeout")
 	set_process(true)
 
@@ -141,5 +162,33 @@ func set_target(p_value: Node2D):
 func set_target_path(p_value: NodePath):
 	target_path = p_value
 	target = get_node(p_value) as Node2D if has_node(p_value) else null
+	
 var entity
+
+const GRACE_POINTS = 15
+func add_point_to_segment(point):
+	if len(points) == 0:
+		return
+	segments.append(points[len(points)-1])
+	segments.append(point)
+	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+
+	
+	# FarArea
+	if len(points) < GRACE_POINTS: 
+		return
+	farsegments.append(points[len(points)-GRACE_POINTS])
+	farsegments.append(points[len(points)-GRACE_POINTS+1])
+	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
+
+func remove_point_to_segment(point):
+	if len(points) == 0: 
+		return
+	# Twice, because!
+	segments.pop_front()
+	segments.pop_front()
+	farsegments.pop_front()
+	farsegments.pop_front()
+	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 	

@@ -24,6 +24,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
+const MIN_DASHING_CHARGE = 0.1
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -66,6 +67,12 @@ func initialize():
 	pass
 
 signal spawned
+var bombs_enabled : bool = true setget set_bombs_enabled
+
+func set_bombs_enabled(value: bool):
+	bombs_enabled = value
+
+
 func _enter_tree():
 	charging = false
 	charge = 0
@@ -143,7 +150,7 @@ func control(_delta):
 	pass
 
 signal detection
-func _process(delta):
+func _physics_process(delta):
 	if not alive:
 		return
 	
@@ -153,9 +160,18 @@ func _process(delta):
 	if stun_countdown <= 0:
 		unstun()
 		
+	dash_cooldown -= delta
+	if dash_cooldown <= 0:
+		entity.get('Dashing').disable()
+		
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
 		
+func charge():
+	charging = true
+	$Graphics/ChargeBar.visible = true
+	#$GravitonField.enabled = true
+	
 func fire():
 	"""
 	Fire a bomb
@@ -165,16 +181,25 @@ func fire():
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
-	arena.spawn_bomb(
-	  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-	  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-	  self
-	)
+	if bombs_enabled:
+		arena.spawn_bomb(
+			position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
+			self
+		)
+	
+	# repeal
+	$GravitonField.repeal(charge_impulse)
+	#$GravitonField.enabled = false
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
 	
+	if charge > MIN_DASHING_CHARGE:
+		entity.get('Dashing').enable()
+		dash_cooldown = 0.2
+		
 
 func die(killer : Ship):
 	if alive and not invincible:
@@ -207,6 +232,9 @@ func _on_NearArea_body_exited(body):
 func is_alive():
 	return alive
 
+func update_score(species_template, score, pos):
+	$PlayerInfo.update_score(score)
+	
 static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""
 	Given two points a, b will return the side check is on.

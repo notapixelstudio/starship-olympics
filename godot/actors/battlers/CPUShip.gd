@@ -12,12 +12,12 @@ const DANGER_ZONE = 200
 const MAX_AVOIDANCE_FORCE = 10
 
 static func angle_to_angle(from, to):
-    return fposmod(to-from + PI, PI*2) - PI
+	return fposmod(to-from + PI, PI*2) - PI
 
 static func which_quadrant(angle:float):
 	var tmp = fposmod(angle , (2*PI) )
 	if (angle < 0):
-		 tmp += (2*PI)
+		tmp += (2*PI)
 	return int(tmp/(PI/2))%4+1
 	
 var laser_color = Color(1.0, .329, .298)
@@ -34,9 +34,9 @@ func nearest_in(objects):
 	var nearest = null
 	var min_dist
 	for object in objects:
-		if not nearest or dist(object.position, position) < min_dist:
+		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
-			min_dist = dist(nearest.position, position)
+			min_dist = dist(nearest.global_position, position)
 	return nearest
 
 const CIRCLE_DIST = 50
@@ -85,7 +85,7 @@ func seek_ahead(potential_target):
 		var danger1 = position + ahead
 		var danger2 = position + ahead * 0.5
 		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
-		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) # 1183 considering bombs and explosions
+		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
 		# we need to see if we can avoid the castle
 		if entity.could_have("Royal") and entity.has("Royal"):
 			ray_collision_mask += pow(2, 15)
@@ -175,7 +175,7 @@ func control(delta):
 		this_target = null
 	
 	if this_target:
-		this_target = this_target.position
+		this_target = this_target.global_position
 	
 	# check if there is a danger closer
 	target = seek_ahead(this_target)
@@ -195,8 +195,7 @@ func control(delta):
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 	
 	if not charging and choose_fire() and fire_cooldown <= 0:
-		charging = true
-		$Graphics/ChargeBar.visible = true
+		charge()
 		
 	charging_time -= 1
 	wait_for_chargedshot -= 1

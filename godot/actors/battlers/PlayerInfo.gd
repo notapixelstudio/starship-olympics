@@ -8,6 +8,7 @@ export var secondary_texture : Texture
 onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
 onready var player_id = $Scaled/Colored/PlayerID
 onready var target_entity = ECM.E(target)
+onready var point_score = $Scaled/Colored/PointsScored
 
 func _ready():
 	if target.info_player:
@@ -46,4 +47,20 @@ func update_rotation():
 	
 func update_crown():
 	$Scaled/Crown.set_visible(target_entity.has('Royal'))
+	
+var partial_score = 0
+func update_score(score):
+	partial_score += score
+	point_score.set_points(partial_score)
+	
+
+func _on_Royal_enabled():
+	return
+	point_score.show()
+
+func _on_Royal_disabled():
+	return
+	point_score.appear()
+	yield(point_score, "end")
+	point_score.hide()
 	

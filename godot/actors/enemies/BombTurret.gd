@@ -85,9 +85,9 @@ func shoot():
 
 		
 	var bomb = arena.spawn_bomb(
-	  position + target_impulse.normalized(),
-	  charge_impulse * target_impulse,
-	  owner_ship
+		position + target_impulse.normalized(),
+		charge_impulse * target_impulse,
+		owner_ship
 	)
 	is_shooting = false
 func _on_Timer_timeout():

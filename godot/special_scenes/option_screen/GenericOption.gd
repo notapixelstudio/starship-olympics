@@ -6,25 +6,47 @@ enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 
 signal value_changed
 
-export (String) var description = "Life"
-export (String) var optional_path 
-export (String) var label_description
+### Properties ###
+# Type could be {ON_OFF, NUMBER, ARRAY}
 export (OPTION_TYPE) var elem_type = OPTION_TYPE.ON_OFF
+# Flag if the value is global
 export (bool) var is_global = false
-export (NodePath) var node_owner_path
-export (NodePath) var description_node_path
+# path of element, defaul separator is "."
+export (String) var element_path 
+# Text of the label that is going to appear on the Option
+export (String) var label_description
 
+export (NodePath) var node_owner_path
+
+var value setget _set_value
+var variable_name: String
 var node_owner
-var value setget _set_value 
 var min_value
 var max_value
 var array_value
+
+func _ready():
+	var parent_subpath = element_path.find_last(".")
+	var all_path = element_path.split(".")
+	
+	if parent_subpath > 0:
+		var new_description = element_path
+		new_description.erase(parent_subpath, len(element_path))
+		node_owner = nested_get(node_owner, new_description)
+	
+	variable_name = all_path[len(all_path)-1]
+	
+	if is_global:
+		node_owner = global
+	else:
+		node_owner = get_node(node_owner_path)
+	set_process_input(false)
 
 func _set_value(new_value):
 	value = new_value
 	emit_signal("value_changed", value)
 	if node_owner:
-		node_owner.set(description, value)
+		node_owner.set(variable_name, value)
 	else:
 		print_debug("Setter has been called without a proper setup")
 		
@@ -33,28 +55,6 @@ func _initialize():
 	# value_node.text = str(value)
 	# set node and animations if needed
 	pass
-
-var description_node
-
-func _ready():
-	if not label_description:
-		label_description = description
-
-	description_node = get_node(description_node_path)
-	description_node.text = label_description.to_upper()
-	
-	if is_global:
-		node_owner = global
-	else:
-		node_owner = get_node(node_owner_path)
-		
-	value = node_owner.get(description)
-	
-	if elem_type == OPTION_TYPE.NUMBER:
-		min_value = node_owner.get("min_"+description)
-		max_value = node_owner.get("max_"+description)
-	
-	set_process_input(false)
 	
 	
 func nested_get(ancestor: Node, path:String, separator:String = "."):

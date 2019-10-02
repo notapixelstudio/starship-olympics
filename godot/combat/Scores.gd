@@ -15,6 +15,11 @@ var game_over:bool = false
 var cumulative_points = 0
 
 signal game_over
+func start():
+	set_process(true)
+
+func stop():
+	set_process(false)
 
 func initialize(_players: Array, game_mode: GameMode, max_score: float = 0):
 	scores = []
@@ -35,6 +40,7 @@ func initialize(_players: Array, game_mode: GameMode, max_score: float = 0):
 	time_left = game_mode.max_timeout
 	if game_mode.cumulative:
 		cumulative_points=0
+	stop()
 	
 func sort_scores():
 	scores.sort_custom(self, 'score_cmp')
@@ -74,7 +80,13 @@ func add_score(team : String, amount : float):
 	
 	if cumulative_points >= 0:
 		cumulative_points += amount
-	 
+
+func broadcast_score(team : String, amount : float):
+	assert team in scores_index
+	for team_player in scores_index:
+		if team_player != team:
+			add_score(team_player, amount)
+
 
 func update_stats(team: String, amount: int, stat: String):
 	# TODO: make it work for team

@@ -14,7 +14,6 @@ export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
 
 var mockup: bool = false
-var mouse_target  = Vector2(1600, 970)
 var debug = false
 # analytics
 var run_time = 0
@@ -26,6 +25,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
+onready var grid = $Battlefield/Background/GridPack
 
 signal screensize_changed(screensize)
 signal gameover
@@ -79,7 +79,18 @@ func update_time_scale():
 
 signal update_stats
 
+func setup_level(mode : Resource):
+	assert(mode is GameMode)
+	$CrownModeManager.enabled = mode.crown
+	$DeathmatchModeManager.enabled = mode.death
+	$CollectModeManager.enabled = mode.collect
+	$ConquestModeManager.enabled = mode.hive
+	
 func _ready():
+
+	# Setup goal, Gear and mode managers
+	setup_level(game_mode)
+
 	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
@@ -99,6 +110,8 @@ func _ready():
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
 	
+	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeA = $Battlefield/Background/Grid/GridPoint225/RigidBody2D
+	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
 	
 	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
 	$CollectManager.connect('collected', self, "_on_sth_collected")
@@ -113,14 +126,18 @@ func _ready():
 	
 	$CrownModeManager.connect('score', scores, "add_score")
 	$DeathmatchModeManager.connect('score', scores, "add_score")
+	$DeathmatchModeManager.connect('broadcast_score', scores, "broadcast_score")
+	$DeathmatchModeManager.connect('show_score', self, "spawn_points_scored")
 	$RaceModeManager.connect('score', scores, "add_score")
 	$ConquestModeManager.connect('score', scores, "add_score")
 	$CollectModeManager.connect('score', scores, "add_score")
+	$CollectModeManager.connect('show_score', self, "spawn_points_scored")
 	$CollectModeManager.connect('spawn_next', self, "_on_coins_finished")
 	
-	if $SpawnPositions/Environments.get_child_count():
+	# environment spawner: coins, etc.
+	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
-		$CollectModeManager.initialize($SpawnPositions/Environments.get_children())
+		$CollectModeManager.initialize(get_tree().get_nodes_in_group("spawner_group"))
 
 	# set up the spawners
 	var i = 0
@@ -136,11 +153,12 @@ func _ready():
 		else:
 			s.info_player = InfoPlayer.new()
 			s.info_player.cpu = s.cpu
-			if s.cpu:
-				s.info_player.id = "cpu"
-			else:
-				s.info_player.id = s.name
-			array_players.append(from_spawner_to_infoplayer(s))
+		
+		if s.cpu:
+			s.info_player.id = "cpu"
+		else:
+			s.info_player.id = s.name
+		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
 
 
@@ -153,19 +171,22 @@ func _ready():
 	
 	scores.initialize(array_players, game_mode, max_score)
 	
+	
 	# initialize HUD
 	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
-	$Battlefield/Background.visible = false
-	$Battlefield/Middleground.visible = false
+	
+	
+	$Battlefield.visible = false
 	get_tree().paused = true
 	mode_description.gamemode = game_mode
 	mode_description.appears()
 	yield(mode_description, "ready_to_fight")
-	$Battlefield/Background.visible = true
-	$Battlefield/Middleground.visible = true
+	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
+
+	grid.init_grid(compute_arena_size().size)
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -213,13 +234,13 @@ const COUNTDOWN_LIMIT = 5.0
 
 func _process(delta):
 	scores.update(delta)
+	
 	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		$CanvasLayer/Countdown/AudioStreamPlayer.play()
 	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:
 		$CanvasLayer/Countdown.text = str(int(ceil(scores.time_left)))
 	else:
 		$CanvasLayer/Countdown.text = ""
-
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		pause.start()
@@ -272,7 +293,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 			else:
 				respawn_timeout = 1
 	elif $ConquestModeManager.enabled:
-		respawn_timeout = 1
+		respawn_timeout = 1.5
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -304,6 +325,8 @@ onready var crown_mode_manager = $CrownModeManager
 onready var deathmatch_mode_manager = $DeathmatchModeManager
 onready var conquest_manager = $ConquestManager
 onready var pursue_manager = $PursueManager
+onready var collect_mode_manager = $CollectModeManager
+onready var snake_trail_manager = $TrailManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -341,7 +364,14 @@ func spawn_ship(player:PlayerSpawner):
 	trail.initialize(ship)
 	
 	$Battlefield.add_child(trail)
-	
+	yield(trail, "ready")
+	# Check on gears
+	ship.set_bombs_enabled((game_mode as GameMode).shoot_bombs)
+	print(game_mode.name)
+	trail.configure((game_mode as GameMode).deadly_trails)
+	print("bombs? ", ship.bombs_enabled)
+	print("trail deadly= ", trail.is_deadly())
+
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
@@ -354,6 +384,10 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
+	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
+	
+	$CrownModeManager.connect('show_score', ship, "update_score")
+	
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -371,10 +405,20 @@ func spawn_bomb(pos, impulse, ship):
 		emit_signal("update_stats", ship.species, 1, "bombs")
 	return bomb
 
-
+const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
+func spawn_points_scored(species_template, score, pos):
+	var points_scored = points_scored_scene.instance()
+	points_scored.set_points(score)
+	points_scored.scale = camera.zoom
+	points_scored.position = pos
+	points_scored.modulate = species_template.color
+	$Battlefield.add_child(points_scored)
 
 func _on_sth_collected(collector, collectee):
-	$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+	if collectee.get_parent().is_in_group("spawner_group"):
+		collectee.get_parent().call_deferred('remove', collectee)
+	else:
+		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
 
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
@@ -385,25 +429,22 @@ func _on_sth_dropped(dropper, droppee):
 	yield(get_tree().create_timer(0.2), "timeout")
 	ECM.E(droppee).get('Collectable').enable()
 	
-const coin_scene = preload("res://combat/collectables/Coin.tscn")
-func _on_coins_dropped(dropper, amount):
-	for i in range(amount):
-		var coin = coin_scene.instance()
-		$Battlefield.add_child(coin)
-		coin.position = dropper.position
-		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
+#func _on_coins_dropped(dropper, amount):
+#	for i in range(amount):
+#		var coin = coin_scene.instance()
+#		$Battlefield.add_child(coin)
+#		coin.position = dropper.position
+#		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
-func _on_coins_finished(diamonds, wait_time=1, animate: bool = false):
-	if wait_time :
+func _on_coins_finished(diamonds, wait_time=1):
+	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 
-	var collectables = diamonds.spawn()
-	for collectable in collectables:
-		$Battlefield.add_child(collectable)
-	if animate:
-		for wall in $Battlefield/Middleground.get_children():
-			if wall is Wall:
-				wall.animate("wall_flash")
+	diamonds.spawn()
+	collect_mode_manager.on_wave_ready()
+	
+	#for collectable in collectables:
+	#	$Battlefield.add_child(collectable)
 		
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")

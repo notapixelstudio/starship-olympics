@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://special_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 7 )
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
@@ -36,7 +40,8 @@ anchor_bottom = 1.0
 margin_top = -17.0
 margin_right = -35.0
 margin_bottom = 1.0
-text = "Demo build - 0.4.1"
+custom_fonts/font = SubResource( 1 )
+text = "Demo build - 0.5"
 align = 2
 uppercase = true
 

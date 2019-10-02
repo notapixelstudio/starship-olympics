@@ -8,6 +8,25 @@ func _set_analytics(new_value):
 	enable_analytics = new_value
 	GameAnalytics.enabled = enable_analytics
 
+var available_languages = {
+	"english": "en",
+	"español": "es",
+	"italiano": "it",
+	"euskara": "eu",
+	"français": "fr"
+	}
+onready var language: String setget _set_language, _get_language
+var array_language: Array = ["english", "italiano", "español", "euskara", "français"]
+
+func _set_language(value:String):
+	language = value
+	TranslationServer.set_locale(available_languages[language])
+
+func _get_language():
+	return language
+
+var version = "0.5.0"
+
 # OPTIONS need a min and a MAX
 const min_lives = 1
 var lives = 2
@@ -22,6 +41,40 @@ var audio_on : bool setget _audio_on
 func _audio_on(new_value):
 	audio_on = new_value
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
+
+var master_volume : int setget _set_master_volume
+var min_master_volume : int = 0
+var max_master_volume: int = 100
+
+func _set_master_volume(new_value): 
+	master_volume = new_value
+	var db_volume = linear2db(float(new_value)/100)
+	var bus_name = "Master"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
+	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
+
+var music_volume : int setget _set_music_volume
+var min_music_volume : int = 0
+var max_music_volume: int = 100
+
+func _set_music_volume(new_value): 
+	music_volume = new_value
+	var db_volume = linear2db(float(new_value)/100)
+	var bus_name = "Music"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
+	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
+	
+var sfx_volume : int setget _set_sfx_volume
+var min_sfx_volume : int = 0
+var max_sfx_volume: int = 100
+
+func _set_sfx_volume(new_value): 
+	sfx_volume = new_value
+	var db_volume = linear2db(float(sfx_volume)/100)
+	var bus_name = "SFX"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
+	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
+
 # templates
 var templates : Dictionary # {int : Resources}
 
@@ -36,23 +89,23 @@ enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
 const CONTROLSMAP = {
 	Controls.NO : "no",
 	Controls.CPU : "cpu",
-    Controls.KB1 : "kb1",
-    Controls.KB2 : "kb2",
-    Controls.JOY1 : "joy1",
-    Controls.JOY2 : "joy2",
-    Controls.JOY3 : "joy3",
-    Controls.JOY4 : "joy4"
+	Controls.KB1 : "kb1",
+	Controls.KB2 : "kb2",
+	Controls.JOY1 : "joy1",
+	Controls.JOY2 : "joy2",
+	Controls.JOY3 : "joy3",
+	Controls.JOY4 : "joy4"
 }
 
 const CONTROLSMAP_TO_KEY = {
 	"no" : Controls.NO,
 	"cpu" : Controls.CPU,
-    "kb1" : Controls.KB1,
-    "kb2" : Controls.KB2,
-    "joy1" : Controls.JOY1,
-    "joy2" : Controls.JOY2,
-    "joy3" : Controls.JOY3,
-    "joy4" : Controls.JOY4
+	"kb1" : Controls.KB1,
+	"kb2" : Controls.KB2,
+	"joy1" : Controls.JOY1,
+	"joy2" : Controls.JOY2,
+	"joy3" : Controls.JOY3,
+	"joy4" : Controls.JOY4
 }
 
 const MAX_PLAYERS = 4
@@ -84,6 +137,7 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES8 : false,
 	ALL_SPECIES.SPECIES9 : false
 }
+
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
 	YELLOW = Color(1.0, .757, .027),
@@ -91,37 +145,46 @@ var colors = {
 	BLUE = Color(.098, .463, .824),
 	PINK = Color(.914, .118, .388)
 }
-# force saving the game
-var force_save = true
 
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
+func _input(event):
+	if event.is_action_pressed("fullscreen"):
+		OS.window_fullscreen = not OS.window_fullscreen
+		
 func _ready():
-	print_debug("Starting game...")
-	print_debug("FORCE SAVE is ", force_save, " - if true the user file will be overwritten")
+	print("Starting game...")
 	add_to_group("persist")
 	
+	#setup language
+	var generic_locale = TranslationServer.get_locale().split("_")[0]
+	language = TranslationServer.get_locale_name(generic_locale).to_lower()
 	
 	templates = get_species_templates()
-	if force_save:
+	var saved_data = persistance.get_saved_data()
+	var k = get_path()
+	var global_key = String(get_path())
+	if not saved_data or check_version(saved_data[global_key]["version"], version):
+		print("We need to update the saved game")
 		persistance.save_game()
+		
 	if persistance.load_game():
-		print_debug("Successfully load the game")
+		print("Successfully load the game")
 	else:
-		print_debug("Something went wrong while loading the game data")
+		print("Something went wrong while loading the game data")
 	
 	# SET game analytics parameters
 	GameAnalytics.base_url = ProjectSettings.get_setting("Analytics/base_url")
 	GameAnalytics.game_key = ProjectSettings.get_setting("Analytics/game_key")
 	GameAnalytics.secret_key = ProjectSettings.get_setting("Analytics/secret_key")
 	GameAnalytics.enabled = enable_analytics
-	# END Game Analytics
 	if enable_analytics:
 		GameAnalytics.request_init()
-	
+	# END Game Analytics
+
 func _exit_tree():
-	print_debug("Thanks for playing")
+	print("Thanks for playing")
 	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
 	GameAnalytics.submit_events()
 	
@@ -146,7 +209,7 @@ func get_species_templates() -> Dictionary:
 	for species in ALL_SPECIES:
 		if i > len(resources) -1:
 			pass
-			# print_debug("This species: " + species.to_lower(), " is not available")
+			# print("This species: " + species.to_lower(), " is not available")
 		else:
 			var filename : String = ALL_SPECIES[species] + ".tres"
 			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
@@ -164,7 +227,13 @@ func get_state():
 	"""
 	var save_dict = {
 		unlocked_species=unlocked_species,
-		enable_analytics=enable_analytics
+		enable_analytics=enable_analytics,
+		language=language,
+		version=version,
+		music_volume=music_volume,
+		master_volume=master_volume,
+		sfx_volume=sfx_volume
+		
 	}
 	return save_dict
 
@@ -195,7 +264,7 @@ func dir_contents(path:String, starts_with:String = "", extension:String = ".tsc
 						list_files.append(file_name)
 			file_name = dir.get_next()
 	else:
-		print_debug("An error occurred when trying to access the path.")
+		print("An error occurred when trying to access the path.")
 	return list_files
 
 func mod(a,b):
@@ -231,3 +300,10 @@ func get_base_entity(node : Node):
 		return null
 	return get_base_entity(node.get_parent())
 	
+func check_version(saved_version: String, version: String):
+	# Will check if the version of the saved data is smaller the current
+	var this_minor = saved_version.split(".")[1]
+	var minor = version.split(".")[1]
+	print(this_minor, " vs ", minor)
+	return this_minor < minor
+		
