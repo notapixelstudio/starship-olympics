@@ -21,7 +21,6 @@
 script = ExtResource( 2 )
 
 [node name="Lobby" parent="." index="0" instance=ExtResource( 1 )]
-editor/display_folded = true
 
 [node name="Lobby1" type="AudioStreamPlayer" parent="Lobby" index="0"]
 stream = ExtResource( 3 )
@@ -81,4 +80,3 @@ bus = "Music"
 [node name="Level7" type="AudioStreamPlayer" parent="Fight" index="6"]
 stream = ExtResource( 16 )
 bus = "Music"
-

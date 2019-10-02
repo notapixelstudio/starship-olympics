@@ -192,6 +192,7 @@ __meta__ = {
 layer = -1
 
 [node name="Battlefield" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 18 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
@@ -252,12 +253,10 @@ editor/display_folded = true
 visible = false
 
 [node name="CameraZoom" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="1"]
-description = "enabled"
 label_description = "Camera enabled"
 node_owner_path = NodePath("../../../../../../../../Camera")
 
 [node name="CameraDebug" parent="CanvasLayer/Pause/GuiElements/Control/panel/margin_container/v_box_container" index="2"]
-description = "debug_mode"
 label_description = "debug mode"
 node_owner_path = NodePath("../../../../../../../../Camera")
 
@@ -304,6 +303,7 @@ enabled = true
 
 [node name="GameOver" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 2 )
+
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]

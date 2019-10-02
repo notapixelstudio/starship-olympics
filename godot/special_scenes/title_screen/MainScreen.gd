@@ -10,6 +10,7 @@ func _on_QuitButton_pressed():
 	get_tree().quit()
 
 func _ready():
+	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	remove_child(options)
 	

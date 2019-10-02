@@ -1,7 +1,6 @@
 extends Node
 
 const SAVE_PATH ="user://savegame.save"
-var _settings = {}
 
 func save_game():
 	var save_dict = {}
@@ -25,17 +24,26 @@ func save_game():
 	# Write the JSON to the file and save to disk
 	save_file.close()
 
+func get_saved_data() -> Dictionary:
+		# When we load a file, we must check that it exists before we try to open it or it'll crash the game
+		var save_file = File.new()
+		if not save_file.file_exists(SAVE_PATH):
+			print("The save file does not exist.")
+			return {}
+		save_file.open(SAVE_PATH, File.READ)
+	
+		# parse file data - convert the JSON back to a dictionary
+		var data = {}
+		data = parse_json(save_file.get_as_text())
+		save_file.close()
+		return data
+	
+	
 func load_game() -> bool:
-	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
-	var save_file = File.new()
-	if not save_file.file_exists(SAVE_PATH):
-		print("The save file does not exist.")
+	var data = get_saved_data()
+	
+	if not data:
 		return false
-	save_file.open(SAVE_PATH, File.READ)
-
-	# parse file data - convert the JSON back to a dictionary
-	var data = {}
-	data = parse_json(save_file.get_as_text())
 
 	# The dict keys on the first level are paths to the nodes
 	for node_path in data.keys():
@@ -44,5 +52,4 @@ func load_game() -> bool:
 		var node_data = data[node_path]
 		# We find the right node to load node_data into and call its load method
 		get_node(node_path).load_state(node_data)
-	save_file.close()
 	return true

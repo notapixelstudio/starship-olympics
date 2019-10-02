@@ -8,10 +8,9 @@
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 1 )
-description_node_path = NodePath("ElementCheckbox")
 
 [node name="ElementCheckbox" type="CheckBox" parent="."]
-margin_right = 161.0
+margin_right = 137.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 0, 31 )
 theme = ExtResource( 2 )
@@ -19,4 +18,6 @@ text = "Checkbox ?"
 script = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="ElementCheckbox"]
+[connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
 [connection signal="toggled" from="ElementCheckbox" to="." method="_on_ElementCheckbox_toggled"]

@@ -12,12 +12,12 @@ const DANGER_ZONE = 200
 const MAX_AVOIDANCE_FORCE = 10
 
 static func angle_to_angle(from, to):
-    return fposmod(to-from + PI, PI*2) - PI
+	return fposmod(to-from + PI, PI*2) - PI
 
 static func which_quadrant(angle:float):
 	var tmp = fposmod(angle , (2*PI) )
 	if (angle < 0):
-		 tmp += (2*PI)
+		tmp += (2*PI)
 	return int(tmp/(PI/2))%4+1
 	
 var laser_color = Color(1.0, .329, .298)
