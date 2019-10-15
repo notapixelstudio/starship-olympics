@@ -82,4 +82,7 @@ func disable():
 	anim.stop()
 	set_process_input(false)
 	set_process(false)
-	
+
+func disable_arrows():
+	$LeftArrow.disable()
+	$RightArrow.disable()

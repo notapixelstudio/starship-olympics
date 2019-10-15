@@ -31,7 +31,7 @@ func get_saved_data() -> Dictionary:
 			print("The save file does not exist.")
 			return {}
 		save_file.open(SAVE_PATH, File.READ)
-	
+		print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
 		# parse file data - convert the JSON back to a dictionary
 		var data = {}
 		data = parse_json(save_file.get_as_text())

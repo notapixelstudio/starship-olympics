@@ -32,7 +32,7 @@ func initialize(_available_species:Dictionary):
 		assert(child is Species)
 		#set all to no
 		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
-		child.change_species(ordered_species[i*2])
+		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
 		child.connect("selected", self, "selected")
