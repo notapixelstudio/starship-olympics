@@ -10,7 +10,7 @@ signal rematch
 signal back_to_menu
 
 
-func initialize(winner:String, scores:Dictionary, win_points: int = 3):
+func initialize(winner:String, scores:Dictionary, win_points: int = 1):
 	# let's remove the losers node, if they exists
 	for i in range (2, container.get_child_count()):
 		container.get_child(i).queue_free()

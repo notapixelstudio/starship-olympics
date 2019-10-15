@@ -72,7 +72,7 @@ func _input(event):
 	if selected :
 		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")
-		elif event.is_action_pressed(controls+"_cancel"):
+		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 			deselect()
 	elif joined:
 		if event.is_action_pressed(controls+"_right") and not selected and not global.demo:
