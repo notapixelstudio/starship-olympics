@@ -38,6 +38,8 @@ var array_level
 
 var audio_on : bool setget _audio_on
 
+var demo : bool = true
+
 func _audio_on(new_value):
 	audio_on = new_value
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
@@ -183,6 +185,7 @@ func _ready():
 	if enable_analytics:
 		GameAnalytics.request_init()
 	# END Game Analytics
+	
 
 func _exit_tree():
 	print("Thanks for playing")
@@ -233,7 +236,8 @@ func get_state():
 		version=version,
 		music_volume=music_volume,
 		master_volume=master_volume,
-		sfx_volume=sfx_volume
+		sfx_volume=sfx_volume,
+		demo=demo
 		
 	}
 	return save_dict

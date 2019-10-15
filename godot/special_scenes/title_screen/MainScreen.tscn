@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "fade_in"
 tracks/0/type = "value"
 tracks/0/path = NodePath("logo_ssf_olympic:modulate")
@@ -62,7 +62,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -77,13 +77,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "option_selected"
 
-[sub_resource type="InputEventAction" id=1]
+[sub_resource type="InputEventAction" id=4]
 
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
 [sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 10 )
@@ -108,9 +108,9 @@ anchor_bottom = 1.0
 script = ExtResource( 5 )
 
 [node name="Animator" type="AnimationPlayer" parent="TitleScreen"]
-anims/fade_in = SubResource( 3 )
-anims/fade_out = SubResource( 4 )
-anims/option_selected = SubResource( 5 )
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+anims/option_selected = SubResource( 3 )
 
 [node name="logo_ssf_olympic" type="Sprite" parent="TitleScreen"]
 position = Vector2( 640, 210 )
@@ -157,7 +157,7 @@ rect_min_size = Vector2( 210, 70 )
 custom_fonts/font = ExtResource( 9 )
 disabled = true
 action_mode = 0
-shortcut = SubResource( 2 )
+shortcut = SubResource( 5 )
 text = "Human vs CPU"
 flat = true
 

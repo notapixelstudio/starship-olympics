@@ -75,9 +75,9 @@ func _input(event):
 		elif event.is_action_pressed(controls+"_cancel"):
 			deselect()
 	elif joined:
-		if event.is_action_pressed(controls+"_right") and not selected:
+		if event.is_action_pressed(controls+"_right") and not selected and not global.demo:
 			_on_Next_pressed()
-		if event.is_action_pressed(controls+"_left") and not selected:
+		if event.is_action_pressed(controls+"_left") and not selected and not global.demo:
 			_on_Previous_pressed()
 		if event.is_action_pressed(controls+"_accept") and not selected:
 			select_character()
@@ -140,5 +140,7 @@ func enable_choice():
 	speciesSelection.modulate = Color(1,1,1,1)
 	selected = false
 	speciesSelection.enable()
+	if global.demo:
+		speciesSelection.disable_arrows()
 	
 
