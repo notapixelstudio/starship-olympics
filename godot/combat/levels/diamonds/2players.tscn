@@ -27,7 +27,7 @@ min_elements_per_wave = 4
 [node name="Timer" parent="CollectModeManager" index="0"]
 wait_time = 5.0
 
-[node name="BackgroundLayer" parent="." index="12"]
+[node name="BackgroundLayer" parent="." index="13"]
 editor/display_folded = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -337,13 +337,10 @@ rotation = 2.35619
 controls = "joy2"
 species_template = ExtResource( 15 )
 
-[node name="Pause" parent="CanvasLayer" index="1"]
-editor/display_folded = false
-
 [node name="Control" parent="CanvasLayer/Pause/GuiElements" index="1"]
 editor/display_folded = true
 
-[node name="Camera" parent="." index="17"]
+[node name="Camera" parent="." index="18"]
 smoothing_speed = 0.3
 [connection signal="timeout" from="CollectModeManager/Timer" to="CollectModeManager" method="_handle_waves"]
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

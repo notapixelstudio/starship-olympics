@@ -80,7 +80,10 @@ func add_score(team : String, amount : float):
 	
 	if cumulative_points >= 0:
 		cumulative_points += amount
-
+		
+func get_score(team : String):
+	return scores_index[team]["score"]
+	
 func broadcast_score(team : String, amount : float):
 	assert team in scores_index
 	for team_player in scores_index:

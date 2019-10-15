@@ -11,8 +11,8 @@
 radius = 60.0
 
 [node name="Coin" type="RigidBody2D" groups=[
-"Foreground",
 "in_camera",
+"Foreground",
 "coin",
 ]]
 collision_layer = 2048
@@ -45,4 +45,3 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-

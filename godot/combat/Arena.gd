@@ -134,6 +134,8 @@ func _ready():
 	$CollectModeManager.connect('show_score', self, "spawn_points_scored")
 	$CollectModeManager.connect('spawn_next', self, "_on_coins_finished")
 	
+	$CollectModeManager.connect('play_sfx', $SFXManager, "_on_play_sfx", [scores])
+	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
@@ -149,7 +151,6 @@ func _ready():
 			s.species_template = array_players[i].species_template
 			s.cpu = array_players[i].cpu
 			s.info_player = array_players[i]
-			print("Is this a teammatto?" + str(s.info_player.team))
 		else:
 			s.info_player = InfoPlayer.new()
 			s.info_player.cpu = s.cpu

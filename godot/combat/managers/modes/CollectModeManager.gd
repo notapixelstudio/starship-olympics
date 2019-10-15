@@ -8,6 +8,7 @@ var current_wave = 0
 signal score
 signal show_score
 signal spawn_next
+signal play_sfx
 var spawners: Array
 var spawners_per_wave : Dictionary
 var max_waves: int
@@ -44,6 +45,7 @@ func _on_sth_collected(collector, collectee):
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.species, score)
 		emit_signal('show_score', collector.species_template, score, collectee.global_position)
+		emit_signal('play_sfx', collector.species, 'diamond_scored')
 		
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.species, -score_multiplier*amount)
