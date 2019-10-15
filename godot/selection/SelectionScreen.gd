@@ -22,7 +22,6 @@ func _ready():
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
-
 func initialize(_available_species:Dictionary):
 	available_species = _available_species
 	ordered_species = available_species.values()
@@ -42,7 +41,6 @@ func initialize(_available_species:Dictionary):
 		# it gives the name of the player
 		child.uid = i
 	var joypads = Input.get_connected_joypads()
-	print(len(joypads))
 	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
 	var controls = assign_controls(actual_players)
 	for control in controls:
@@ -228,3 +226,9 @@ func _process(delta):
 		if at_least_one_character_in_team_selected and not at_least_one_solo_selected:
 			fight_mode = "co-op"
 	fight_node.set_label('play %s' % fight_mode)
+
+func deselect():
+	for child in container.get_children():
+		if child.disabled:
+			continue
+		child.deselect()
