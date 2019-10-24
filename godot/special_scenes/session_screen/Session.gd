@@ -7,7 +7,7 @@ export var player_stats_scene : PackedScene
 onready var animator = $AnimationPlayer
 onready var container = $Chart
 
-func initialize(scores, winner: String, max_points = 1):
+func initialize(scores, winner: String, max_points = 3):
 	# sorted before and sorted after
 	var i = 0
 	for player in scores:

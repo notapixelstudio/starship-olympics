@@ -242,7 +242,7 @@ func _process(delta):
 	else:
 		$CanvasLayer/Countdown.text = ""
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and not global.demo:
 		pause.start()
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
