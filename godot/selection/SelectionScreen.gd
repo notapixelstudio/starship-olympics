@@ -181,7 +181,7 @@ func deselected(species:SpeciesTemplate):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and not global.demo:
 		if len(get_players())<=0:
 			if not deselected:
 				emit_signal("back")
