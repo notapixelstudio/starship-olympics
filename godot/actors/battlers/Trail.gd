@@ -37,10 +37,10 @@ enum PersistWhen {
 }
 
 ##### PROPERTIES #####
-onready var area_shape = $NearArea/CollisionShape2D
-onready var area = $NearArea
-onready var fararea = $FarArea
-onready var fararea_shape = $FarArea/CollisionShape2D
+onready var area_shape = get_node_or_null("NearArea/CollisionShape2D")
+onready var area = get_node_or_null("NearArea")
+onready var fararea = get_node_or_null("FarArea")
+onready var fararea_shape = get_node_or_null("FarArea/CollisionShape2D")
 
 var segments = []
 var farsegments = []

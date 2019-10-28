@@ -6,9 +6,6 @@
 [node name="CPU" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="NearArea" parent="." index="2"]
-editor/display_folded = true
-
 [node name="Debug" parent="." index="6"]
 visible = true
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

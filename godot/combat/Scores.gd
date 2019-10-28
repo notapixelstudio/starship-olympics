@@ -75,14 +75,12 @@ func update(delta:float):
 		emit_signal("game_over", winner, scores_index)
 		
 func add_score(team : String, amount : float):
-	assert team in scores_index
 	scores_index[team]["score"] = max(0, scores_index[team]["score"] + amount)
 	
 	if cumulative_points >= 0:
 		cumulative_points += amount
 
 func broadcast_score(team : String, amount : float):
-	assert team in scores_index
 	for team_player in scores_index:
 		if team_player != team:
 			add_score(team_player, amount)
