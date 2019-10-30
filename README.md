@@ -29,6 +29,16 @@ Scenes structure and theme: inspired by [PigDev](https://pigdev.itch.io/)
 Character structure: inspired by [GDquest](https://www.youtube.com/channelavalaible/UCxboW7x0jZqFdvMdCFKTMsQ)
 - https://www.1001fonts.com/science-fiction-fonts.html?page=13&items=10
 
+
+## Assets
+
+Since this game is in Development the following list might change often
+
+### Soundtrack
+
+- [Mattek - Paradoxal Activity](https://soundcloud.com/themattek/mattek-paradoxal-activity)
+- https://freesound.org/people/salvob41/downloaded_sounds/
+
 ### Sounds
 
 - https://freesound.org/people/aidave/downloaded_sounds/
@@ -37,22 +47,7 @@ Character structure: inspired by [GDquest](https://www.youtube.com/channelavalai
 - https://freesound.org/people/GameAudio/packs/13940/
 - https://freesound.org/people/jalastram/packs/17801/
 
-### Soundtrack
-
-- Mattek - Paradoxal Activity
-
 ### Images
 
-- dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
-- keyboard icons: made by "Nicolae Berbece" (also known as Xelu) - founder of "Those Awesome Guys" - nick@thoseawesomeguys.com
-- planets: [here](https://opengameart.org/content/big-space-gun-free-pixel-art-graphics-for-your-game-0)
-- tiny planets : [here](https://opengameart.org/content/pixel-planets)
-- icon lock : [here](https://icons8.com/icon/set/lock/all)
 - icons got from [icons8](https://icons8.com) website
-- shield from [opengameart](https://opengameart.org/content/shield-effect)
 - icons from the excellent https://game-icons.net project! (Lorc http://lorcblog.blogspot.com/ and Darkzaitzev https://www.deviantart.com/darkzaitzev)
-
-## Github pages development
-In order to develop and test in local go on `docs` folder and type (needs `gem` and `bundler` installed) :
-
-`gem install jekyll bundler`
