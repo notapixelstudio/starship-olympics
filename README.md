@@ -4,6 +4,8 @@
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/notapixelstudio)
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
+<a href="https://notapixel.itch.io/superstarfighter"><img src="mocklogo.png"/></a>
+
 - 1 to 4 players fast-paced arcade combat party game
 - Intuitive and expressive single-button controls: everyone can pick up a controller and play!
 - 20+ games in one (eventually! currently 7 :D)
@@ -11,15 +13,13 @@
 - Made with love, and Free and Open Source Software
 - Also free and open source itself :)
 
+## Follow the development
+
+Join our discord or follow us on Twitter (@notapixelstudio)
+
+<img src="https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png" alt="Join our Discord Server" title="Join our Discord Server"> <img src="https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png" alt="Follow us on Twitter" title="Follow us on Twitter">
+
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
-
-<a href="https://notapixel.itch.io/superstarfighter"><img src="godot/logo_grid_icon.ico"/></a>
-
-## Development
-
-**This project is being developed with Godot 3.1.1.** If you're running the project
-from this repository, you should use Godot 3.1.1; development builds of Godot
-won't work.
 
 ## Resources used and acknowledgements
 
