@@ -7,7 +7,7 @@ const level_selection_scene = preload("res://local_multiplayer/LevelSelection.ts
 export var map_scene: PackedScene
 # temporary for all levels
 var all_planets = [
-	ResourceLoader.interactive_loader("res://map/planets/SoloCrown.tres"),
+	preload("res://map/planets/SoloCrown.tres"),
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
 	preload("res://map/planets/SoloDeath.tres"),
