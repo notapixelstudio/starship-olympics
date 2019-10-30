@@ -25,7 +25,6 @@ func _process(delta):
 		return
 		
 	for royal in ECM.entities_with('Royal'):
-		assert royal.get_host() is Ship
 		
 		emit_signal('score', royal.get_host().species, delta)
 		emit_signal('show_score', royal.get_host().species_template, delta, royal.get_host().position)

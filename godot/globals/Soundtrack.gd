@@ -1,13 +1,18 @@
 extends AudioLibrary
 
+func _ready():
+	print_debug("I'll be handling everything from now on. I am the master")
+	
 var array_songs setget , _get_songs
 var current_album
 var current_song setget change_song
 
 func change_song(new_song):
-	if new_song != current_song:
+	if new_song != current_song :
 		play(new_song, true)
 	current_song = new_song
+
+
 
 func _get_songs():
 	return list_songs()
@@ -24,6 +29,7 @@ func play(sound : String = "", force_stop = false):
 			if song.name == sound:
 				current_album = album
 				found = true
+				
 				break
 		if found:
 			break
@@ -33,7 +39,6 @@ func play(sound : String = "", force_stop = false):
 	current_song = this_sound
 
 func list_songs():
-	current_album = get_child(0)
 	var songs = []
 	if current_album:
 		for song in current_album.get_children():

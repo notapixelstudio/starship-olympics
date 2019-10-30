@@ -32,7 +32,7 @@ func shuffle_levels(num_players : int) -> void:
 	get("levels_" + str(num_players) + "players").shuffle()
 	
 func get_levels(num_players : int) -> Array:
-    return get("levels_" + str(num_players) + "players")
+	return get("levels_" + str(num_players) + "players")
 
 func fetch_level(num_players : int) -> PackedScene:
 	""" Get one level from their pool """
