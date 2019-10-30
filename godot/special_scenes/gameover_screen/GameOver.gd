@@ -49,7 +49,7 @@ func initialize(winner:String, scores:Dictionary, win_points: int = 3):
 	
 	var info_winner = array_scores[0]
 	if info_winner.session_score >= win_points:
-		print_debug((info_winner as InfoPlayer).species + " won everything")
+		print_debug(info_winner.species + " won everything")
 		$VBoxContainer.get_child(0).visible = false
 		$VBoxContainer.get_child(1).grab_focus()
 	else:
