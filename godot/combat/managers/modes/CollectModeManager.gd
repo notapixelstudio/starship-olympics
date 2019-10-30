@@ -40,7 +40,6 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	
 func _on_sth_collected(collector, collectee):
 	if collectee is Diamond:
-		assert collector is Ship
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.species, score)
 		emit_signal('show_score', collector.species_template, score, collectee.global_position)

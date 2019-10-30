@@ -59,7 +59,7 @@ func update(delta:float):
 	var leader = scores[0]
 	
 	if leader["score"] >= target_score or time_left <= 0 or (cumulative_points>=target_score):
-		print(" CI SIAMOOOOOO: ", str(cumulative_points), " vs ", str(target_score))
+		print_debug(" CI SIAMOOOOOO: ", str(cumulative_points), " vs ", str(target_score))
 		var draw = true
 		var last_value = leader["score"]
 		for player in scores:
@@ -70,19 +70,17 @@ func update(delta:float):
 		var winner = leader["species"]
 		if draw:
 			winner = "noone"
-		print('Game Over - ', winner, ' won.')
+		print_debug('Game Over - ', winner, ' won.')
 		game_over = true
 		emit_signal("game_over", winner, scores_index)
 		
 func add_score(team : String, amount : float):
-	assert team in scores_index
 	scores_index[team]["score"] = max(0, scores_index[team]["score"] + amount)
 	
 	if cumulative_points >= 0:
 		cumulative_points += amount
 
 func broadcast_score(team : String, amount : float):
-	assert team in scores_index
 	for team_player in scores_index:
 		if team_player != team:
 			add_score(team_player, amount)

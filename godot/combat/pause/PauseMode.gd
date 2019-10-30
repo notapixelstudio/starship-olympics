@@ -43,11 +43,11 @@ func unpause():
 	get_tree().paused = false
 
 func _on_Restart_pressed():
-	print("restarto")
+	print_debug("restarto")
 	emit_signal("restart")
 	
 func _on_SkipLevel_pressed():
-	print("skipo")
+	print_debug("skipo")
 	emit_signal("skip")
 	
 func _on_QuitMatch_pressed():

@@ -107,15 +107,15 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 	
 	# debug purposes
 	if DEBUG:
-		print(base_url)
-		print(url_init)
-		print(data_json)
-		print(Marshalls.raw_to_base64(hmac_sha256(data_json, secret_key)))
+		print_debug(base_url)
+		print_debug(url_init)
+		print_debug(data_json)
+		print_debug(Marshalls.raw_to_base64(hmac_sha256(data_json, secret_key)))
 		
 	var err = requests.connect_to_host(self.base_url,80)
 	
 	if err:
-		print("We could not connect. What should we do now?")
+		print_debug("We could not connect. What should we do now?")
 
 	# Wait until resolved and/or connected
 	for i in range(MAX_RETRY):
@@ -133,7 +133,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_init, headers, data_json)
 	if response_code:
-		print("Well, we could not connect here either")
+		print_debug("Well, we could not connect here either")
 
 	var response_string : String # will containe the response
 	
@@ -153,17 +153,17 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		headers = requests.get_response_headers_as_dictionary() # Get response headers
 		
 		if DEBUG:
-			print("code: ", requests.get_response_code()) # Show response code
-			print("**headers: ", headers) # Show headers
+			print_debug("code: ", requests.get_response_code()) # Show response code
+			print_debug("**headers: ", headers) # Show headers
 
 		# Getting the HTTP Body
 		if requests.is_response_chunked():
 			# Does it use chunks?
-			print("Response is Chunked!")
+			print_debug("Response is Chunked!")
 		else:
 			# Or just plain Content-Length
 			var bl = requests.get_response_body_length()
-			# print("Response Length: ", bl)
+			# print_debug("Response Length: ", bl)
 
 		# This method works for both anyway
 		var rb = PoolByteArray() # Array that will hold the data
@@ -179,9 +179,9 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 				rb = rb + chunk # Append to read buffer
 
 		# Done!
-		# print("bytes got: ", rb.size())
+		# print_debug("bytes got: ", rb.size())
 		response_string = rb.get_string_from_ascii()
-		# print("Response: ", response_string)
+		# print_debug("Response: ", response_string)
 		
 	status_code = requests.get_response_code()
 
@@ -196,14 +196,14 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 	if response_string:
 		response_dict = parse_json(response_string)
 		if DEBUG:
-			print(response_string)
+			print_debug(response_string)
 	
 	if 'enabled' in response_dict and response_dict['enabled']:
-		print("We are enabled")
+		print_debug("We are enabled")
 		state_config['enabled'] = true
 	else:
 		state_config['enabled'] = false
-		print("We are not enabled")
+		print_debug("We are not enabled")
 	# TODO: adjust ts ? 
 	# TODO: We should return if enabled or not
 	return status_code
@@ -211,7 +211,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 # requesting init URL and returning result
 func request_init():
 	if not enabled:
-		print("Analytics not enabled")
+		print_debug("Analytics not enabled")
 		return
 	
 	var init_payload = {
@@ -229,7 +229,7 @@ func submit_events():
 
 	# Refreshing url_events since game key might have been changed externally
 	if not enabled :
-		print("Analytics not enabled")
+		print_debug("Analytics not enabled")
 		return
 	
 	var event_list_json = to_json(state_config['event_queue'])
@@ -365,7 +365,7 @@ func print_verbose(message):
 		post_to_log(message)
 
 func post_to_log(message):
-	print(message)
+	print_debug(message)
 
 func hmac_sha256(message, key):
 	var x = 0
