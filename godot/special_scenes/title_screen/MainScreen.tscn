@@ -219,7 +219,6 @@ custom_fonts/font = SubResource( 6 )
 text = "Demo build - 0.5"
 align = 2
 uppercase = true
-
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
