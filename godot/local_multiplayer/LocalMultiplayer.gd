@@ -28,6 +28,10 @@ var players : Dictionary
 
 signal updated
 
+func _unhandled_input(event):
+	if event.is_action_pressed("force_pause"):
+		get_tree().reload_current_scene()
+
 func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = selection_species.name
