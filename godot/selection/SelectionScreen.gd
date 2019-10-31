@@ -42,6 +42,8 @@ func initialize(_available_species:Dictionary):
 		child.uid = i
 	var joypads = Input.get_connected_joypads()
 	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
+	if global.demo:
+		actual_players = 0
 	var controls = assign_controls(actual_players)
 	for control in controls:
 		print_debug(add_controls(control))
