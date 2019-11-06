@@ -23,7 +23,6 @@ func enable_all():
 	animation.play("show")
 	# container.get_child(0).grab_focus()
 	yield(animation, "animation_finished")
-
 	container.get_child(focus_index).grab_focus()
 	
 func _input(event):

@@ -13,8 +13,7 @@ var available_languages = {
 	"español": "es",
 	"italiano": "it",
 	"euskara": "eu",
-	"français": "fr",
-	"deutsch": "de"
+	"français": "fr"
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français"]
