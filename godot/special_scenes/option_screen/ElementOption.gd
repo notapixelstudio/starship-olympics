@@ -20,6 +20,7 @@ func _initialize():
 	right.visible = true
 	
 	if elem_type == OPTION_TYPE.NUMBER:
+		self.value = node_owner.get(variable_name)
 		left.visible = value>min_value
 		right.visible = value<max_value
 	if elem_type == OPTION_TYPE.ARRAY:

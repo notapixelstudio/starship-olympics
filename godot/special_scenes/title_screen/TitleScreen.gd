@@ -6,7 +6,6 @@ signal start_multiplayer
 
 
 onready var animation = $Animator
-
 var can_press = false
 
 func initialize():

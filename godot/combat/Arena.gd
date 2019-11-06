@@ -320,7 +320,7 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.initialize(winner, scores)
+	game_over.initialize(winner, scores, global.win)
 
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager

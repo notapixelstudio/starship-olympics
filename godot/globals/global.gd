@@ -13,7 +13,8 @@ var available_languages = {
 	"español": "es",
 	"italiano": "it",
 	"euskara": "eu",
-	"français": "fr"
+	"français": "fr",
+	"deutsch": "de"
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français"]
@@ -28,9 +29,9 @@ func _get_language():
 var version = "0.5.0"
 
 # OPTIONS need a min and a MAX
-const min_lives = 1
-var lives = 2
-const max_lives = 10
+const min_win = 1
+var win = 3
+const max_win = 5
 
 # levels
 var level
@@ -231,6 +232,7 @@ func get_state():
 	get_state will return everything we need to be persistent in the game
 	"""
 	var save_dict = {
+		win=win,
 		unlocked_species=unlocked_species,
 		enable_analytics=enable_analytics,
 		language=language,

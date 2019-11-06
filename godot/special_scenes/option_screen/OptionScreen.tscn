@@ -68,27 +68,36 @@ elem_type = 2
 element_path = "language"
 label_description = "language"
 
-[node name="ONOFF" parent="Panel/Items" instance=ExtResource( 5 )]
+[node name="Win" parent="Panel/Items" instance=ExtResource( 4 )]
+anchor_right = 0.0
 margin_top = 56.0
 margin_right = 445.0
 margin_bottom = 106.0
+elem_type = 1
+element_path = "win"
+label_description = "max win"
+
+[node name="ONOFF" parent="Panel/Items" instance=ExtResource( 5 )]
+margin_top = 112.0
+margin_right = 445.0
+margin_bottom = 162.0
 is_global = true
 element_path = "enable_analytics"
 label_description = "analytics"
 
 [node name="Music" parent="Panel/Items" instance=ExtResource( 6 )]
-margin_top = 112.0
+margin_top = 168.0
 margin_right = 445.0
-margin_bottom = 162.0
+margin_bottom = 218.0
 elem_type = 1
 is_global = true
 element_path = "master_volume"
 label_description = "Volume Master"
 
 [node name="Music2" parent="Panel/Items" instance=ExtResource( 6 )]
-margin_top = 168.0
+margin_top = 224.0
 margin_right = 445.0
-margin_bottom = 218.0
+margin_bottom = 274.0
 elem_type = 1
 is_global = true
 element_path = "music_volume"
@@ -96,9 +105,9 @@ label_description = "Volume Music"
 bus_name = "Music"
 
 [node name="Music3" parent="Panel/Items" instance=ExtResource( 6 )]
-margin_top = 224.0
+margin_top = 280.0
 margin_right = 445.0
-margin_bottom = 274.0
+margin_bottom = 330.0
 elem_type = 1
 is_global = true
 element_path = "sfx_volume"
@@ -106,7 +115,7 @@ label_description = "Volume SFX"
 bus_name = "SFX"
 
 [node name="Control" type="Control" parent="Panel/Items"]
-margin_top = 280.0
+margin_top = 336.0
 margin_right = 445.0
 margin_bottom = 341.0
 size_flags_vertical = 3
