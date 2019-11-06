@@ -12,9 +12,6 @@ onready var description_node = $Container/Description
 const focus_color = Color(1,1,1)
 var index_value
 
-func _exit_tree():
-	print(variable_name, " -> ", value)
-
 func _initialize():
 	left.visible = true
 	right.visible = true
