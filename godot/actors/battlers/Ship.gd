@@ -52,6 +52,7 @@ var teleport_to = null
 
 onready var player = name
 onready var skin = $Graphics
+onready var charging_sfx = $charging
 
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
 
@@ -171,6 +172,7 @@ func charge():
 	charging = true
 	$Graphics/ChargeBar.visible = true
 	#$GravitonField.enabled = true
+	charging_sfx.play()
 	
 func fire():
 	"""
@@ -195,6 +197,7 @@ func fire():
 	charging = false
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = 0 # disabled
+	charging_sfx.stop()
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
