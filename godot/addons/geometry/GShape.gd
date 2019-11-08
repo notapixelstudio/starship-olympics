@@ -6,6 +6,12 @@ class_name GShape
 
 signal changed
 
+export (Vector2) var center_offset = Vector2.ZERO setget set_center_offset
+
+func set_center_offset(value):
+	center_offset = value
+	emit_signal("changed")
+
 func to_PoolVector2Array():
 	pass
 	
@@ -24,5 +30,11 @@ func to_PoolVector2Array_offset(vec, scale=1):
 	var new_points = []
 	for p in points:
 		new_points.append((p + vec)*scale)
+	return PoolVector2Array(new_points)
+	
+func _apply_offset(points):
+	var new_points = []
+	for p in points:
+		new_points.append(p + center_offset)
 	return PoolVector2Array(new_points)
 	
