@@ -4,20 +4,20 @@
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
-[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=5]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=6]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=7]
-[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=8]
-[ext_resource path="res://combat/components/Cargo.gd" type="Script" id=9]
-[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=10]
-[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=11]
-[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=13]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
-[ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=15]
-[ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=17]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/audio/gameplay/charging.ogg" type="AudioStream" id=5]
+[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
+[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
+[ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
+[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=11]
+[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=12]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=13]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=14]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=16]
+[ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=18]
 [ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=20]
 [ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=21]
@@ -38,12 +38,11 @@ radius = 400.0
 
 [sub_resource type="DynamicFont" id=5]
 size = 24
-font_data = ExtResource( 19 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
-"Foreground",
 "in_camera",
+"Foreground",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -86,6 +85,7 @@ stream = ExtResource( 5 )
 bus = "SFX_effect"
 
 [node name="Entity2D" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
@@ -158,6 +158,7 @@ enabled = false
 [node name="Debug" parent="." instance=ExtResource( 15 )]
 
 [node name="PlayerInfo" type="Position2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 16 )
 primary_texture = ExtResource( 17 )
 secondary_texture = ExtResource( 18 )
@@ -178,7 +179,7 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="PointsScored" parent="PlayerInfo/Scaled/Colored" instance=ExtResource( 20 )]
+[node name="PointsScored" parent="PlayerInfo/Scaled/Colored" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( 0, -47.5 )
 still = true
