@@ -89,4 +89,5 @@ texture = ExtResource( 5 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+
 [connection signal="entered" from="Field" to="." method="_on_Field_entered"]
