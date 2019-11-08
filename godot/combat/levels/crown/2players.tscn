@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ 785, 50 ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -131,7 +131,6 @@ position = Vector2( 800, 0 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 0 )
 rotation = 0.0
-controls = "joy1"
 species_template = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
@@ -142,7 +141,6 @@ species_template = ExtResource( 11 )
 
 [node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
-
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]
