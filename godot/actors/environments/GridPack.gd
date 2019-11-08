@@ -4,7 +4,7 @@ export var grid_color : Color = Color.gray
 export var cell_size := Vector2.ONE * 100
 export var frames_wait := 3
 export var scale_mask_texture := Vector2.ONE
-export var factor_viewport_multiplier := 1.1
+export var factor_viewport_multiplier := 1.5
 export var enabled : bool = true
 
 onready var mask = $MaskViewPort/Mask
@@ -12,8 +12,9 @@ onready var light = $Light2D
 onready var viewport = $MaskViewPort
 onready var grid = $Grid
 
-func init_grid(arena_size: Vector2):
+func init_grid(arena_size: Vector2, offset := Vector2.ZERO):
 	grid.init_grid(arena_size)
+	grid.position += offset
 	viewport.size = arena_size * float(1.0/scale_mask_texture.x) * factor_viewport_multiplier
 	
 func _ready():

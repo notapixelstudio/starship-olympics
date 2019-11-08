@@ -185,8 +185,9 @@ func _ready():
 	yield(mode_description, "ready_to_fight")
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
-
-	grid.init_grid(compute_arena_size().size)
+	
+	# FIXME
+	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
