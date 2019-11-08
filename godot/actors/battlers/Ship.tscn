@@ -4,23 +4,23 @@
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
-[ext_resource path="res://assets/sounds/gameplay/charge_rise4.ogg" type="AudioStream" id=5]
-[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
-[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
-[ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
-[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=11]
-[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=12]
-[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=13]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=14]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=15]
-[ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=16]
-[ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=17]
-[ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=18]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=19]
-[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=20]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=21]
+[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=6]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=7]
+[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=8]
+[ext_resource path="res://combat/components/Cargo.gd" type="Script" id=9]
+[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=10]
+[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=11]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=13]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=15]
+[ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=17]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=20]
+[ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=21]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=22]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -169,9 +169,9 @@ scale = Vector2( 0.8, 0.8 )
 
 [node name="PlayerID" type="Label" parent="PlayerInfo/Scaled/Colored"]
 margin_left = -46.0833
-margin_top = 55.0
+margin_top = 48.75
 margin_right = 46.9167
-margin_bottom = 91.0
+margin_bottom = 84.75
 custom_fonts/font = SubResource( 5 )
 text = "P1"
 align = 1
@@ -184,14 +184,19 @@ position = Vector2( 0, -47.5 )
 still = true
 
 [node name="Circle" type="Sprite" parent="PlayerInfo/Scaled/Colored"]
+position = Vector2( 0, -3.75 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 17 )
 
 [node name="Crown" type="Sprite" parent="PlayerInfo/Scaled"]
-position = Vector2( 0, 0.749992 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 21 )
+position = Vector2( 0, 10.75 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 20 )
 offset = Vector2( 0, -150 )
+
+[node name="RoyalGlow" parent="PlayerInfo/Scaled" instance=ExtResource( 21 )]
+visible = false
+scale = Vector2( 0.55, 0.55 )
 
 [node name="GravitonField" parent="." instance=ExtResource( 22 )]
 

@@ -55,10 +55,12 @@ func update_score(score):
 	
 
 func _on_Royal_enabled():
+	$Scaled/RoyalGlow.visible = true
 	return
 	point_score.show()
 
 func _on_Royal_disabled():
+	$Scaled/RoyalGlow.visible = false
 	return
 	point_score.appear()
 	yield(point_score, "end")
