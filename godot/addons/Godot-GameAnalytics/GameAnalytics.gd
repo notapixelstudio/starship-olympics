@@ -26,7 +26,7 @@ const THRESHOLD_DIFF_TS = 10
 const MAX_RETRY = 5
 
 # device information
-var DEBUG = false
+var DEBUG = true
 var returned
 var uuid = UUID.v4()
 
@@ -51,13 +51,12 @@ var build_version = '0.0.1'
 var engine_version = "Godot " + Engine.get_version_info()["string"]
 
 # sandbox game keys
-var game_key = "5c6bcb5402204249437fb5a7a80a4959"
-var secret_key = "16813a12f718bc5c620f56944e1abc3ea13ccbac"
+var game_key 
+var secret_key 
 
 # sandbox API urls
 var base_url = "http://sandbox-api.gameanalytics.com"
-var url_init = "/v2/" + game_key + "/init"
-var url_events = "/v2/" + game_key + "/events"
+
 
 # settings
 var use_gzip = false
@@ -97,6 +96,11 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		"Authorization: " + Marshalls.raw_to_base64(hmac_sha256(data_json, self.secret_key)),
 		"Content-Type: application/json"
 	]
+	
+	print(data_json)
+	print(self.game_key)
+	print(self.secret_key)
+	print(headers)
 
 	# if gzip enabled add the encoding header
 	if self.use_gzip:
@@ -108,7 +112,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 	# debug purposes
 	if DEBUG:
 		print_debug(base_url)
-		print_debug(url_init)
+		print_debug(url_endpoint)
 		print_debug(data_json)
 		print_debug(Marshalls.raw_to_base64(hmac_sha256(data_json, secret_key)))
 		
@@ -131,7 +135,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 	
 	# assert(requests.get_status() == HTTPClient.STATUS_CONNECTED)
 	
-	var response_code = requests.request(HTTPClient.METHOD_POST, url_init, headers, data_json)
+	var response_code = requests.request(HTTPClient.METHOD_POST, url_endpoint, headers, data_json)
 	if response_code:
 		print_debug("Well, we could not connect here either")
 
