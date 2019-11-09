@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -17,10 +17,11 @@
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=15]
 [ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=16]
 [ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=17]
-[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=19]
-[ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=20]
-[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=21]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=20]
+[ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=21]
+[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=22]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -37,11 +38,12 @@ radius = 400.0
 
 [sub_resource type="DynamicFont" id=5]
 size = 24
+font_data = ExtResource( 18 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
-"in_camera",
 "players",
+"in_camera",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -156,7 +158,6 @@ enabled = false
 [node name="Debug" parent="." instance=ExtResource( 14 )]
 
 [node name="PlayerInfo" type="Position2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 15 )
 primary_texture = ExtResource( 16 )
 secondary_texture = ExtResource( 17 )
@@ -177,7 +178,7 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="PointsScored" parent="PlayerInfo/Scaled/Colored" instance=ExtResource( 18 )]
+[node name="PointsScored" parent="PlayerInfo/Scaled/Colored" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( 0, -47.5 )
 still = true
@@ -190,14 +191,14 @@ texture = ExtResource( 16 )
 [node name="Crown" type="Sprite" parent="PlayerInfo/Scaled"]
 position = Vector2( 0, 10.75 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 offset = Vector2( 0, -150 )
 
-[node name="RoyalGlow" parent="PlayerInfo/Scaled" instance=ExtResource( 20 )]
+[node name="RoyalGlow" parent="PlayerInfo/Scaled" instance=ExtResource( 21 )]
 visible = false
 scale = Vector2( 0.55, 0.55 )
 
-[node name="GravitonField" parent="." instance=ExtResource( 21 )]
+[node name="GravitonField" parent="." instance=ExtResource( 22 )]
 
 [node name="Entity" type="Node" parent="GravitonField"]
 script = ExtResource( 3 )
