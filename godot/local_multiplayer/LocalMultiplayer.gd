@@ -70,7 +70,7 @@ func combat(selected_players: Array, fight_mode : String):
 	players = {}
 	var num_players : int = len(selected_players)
 
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
+	GameAnalytics.add_to_event_queue(GameAnalytics.get_design_event("selection:num_players", num_players))
 
 	var i = 1
 	for player in selected_players:
@@ -79,7 +79,7 @@ func combat(selected_players: Array, fight_mode : String):
 		player_info.id = player.id
 		players[player.id] = player_info
 		# Prepare GameAnalytics event to send
-		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:" + player.species_template.species_name, i))
+		GameAnalytics.add_to_event_queue(GameAnalytics.get_design_event("selection:species:" + player.species_template.species_name, i))
 		i += 1
 
 	if fight_mode == 'solo' or fight_mode == 'co-op':

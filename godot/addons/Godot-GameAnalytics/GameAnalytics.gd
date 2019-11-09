@@ -76,6 +76,8 @@ var state_config = {
 }
 var requests = HTTPClient.new()
 
+signal message_sent
+
 func _ready():
 	# generate session id
 	generate_new_session_id()
@@ -194,7 +196,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		post_to_log("Please verify your Authorization code is working correctly and that your are using valid game keys.")
 		
 	if status_code != 200:
-		post_to_log("Init request did not return 200!")
+		post_to_log("Request did not return 200!")
 		post_to_log(response_string)
 	
 	if response_string:
@@ -234,11 +236,13 @@ func submit_events():
 	# Refreshing url_events since game key might have been changed externally
 	if not enabled :
 		print_debug("Analytics not enabled")
+		emit_signal("message_sent")
 		return
 	
 	var event_list_json = to_json(state_config['event_queue'])
 	
 	get_response("events", event_list_json)
+	emit_signal("message_sent")
 
 # ------------------ HELPER METHODS ---------------------- #
 
@@ -273,7 +277,7 @@ func get_test_business_event_dict():
 	return event_dict
 
 
-func get_test_user_event():
+func get_user_event():
 	var event_dict = {
 		'category': 'user'
 	}
@@ -281,7 +285,7 @@ func get_test_user_event():
 	return event_dict
 
 
-func get_test_session_end_event(length_in_seconds):
+func get_session_end_event(length_in_seconds):
 	var event_dict = {
 		'category': 'session_end',
 		'length': length_in_seconds
@@ -290,7 +294,7 @@ func get_test_session_end_event(length_in_seconds):
 	return event_dict
 
 
-func get_test_design_event(event_id, value):
+func get_design_event(event_id, value):
 	var event_dict = {
 		'category': 'design',
 		'event_id': event_id,

@@ -33,4 +33,5 @@ func _on_StartHuman_pressed():
 
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	global.end_game()
+	#get_tree().quit()

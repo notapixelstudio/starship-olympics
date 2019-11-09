@@ -185,13 +185,20 @@ func _ready():
 	GameAnalytics.enabled = enable_analytics
 	if enable_analytics:
 		GameAnalytics.request_init()
+		print(GameAnalytics.get_user_event())
+		GameAnalytics.submit_events()
 	# END Game Analytics
 	
 
-func _exit_tree():
+func end_game():
 	print("Thanks for playing")
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
+	GameAnalytics.add_to_event_queue(GameAnalytics.get_session_end_event(OS.get_ticks_msec()))
+	
 	GameAnalytics.submit_events()
+	if global.enable_analytics:
+		yield(GameAnalytics, "message_sent")
+	get_tree().quit()
+	
 	
 	
 
