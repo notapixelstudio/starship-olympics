@@ -26,7 +26,7 @@ const THRESHOLD_DIFF_TS = 10
 const MAX_RETRY = 5
 
 # device information
-var DEBUG = true
+var DEBUG = false
 var returned
 var uuid = UUID.v4()
 
@@ -35,11 +35,20 @@ var enabled = false setget _set_analytics
 
 func _set_analytics(value: bool):
 	enabled = value
+	# SET game analytics parameters for the game
+	base_url = ProjectSettings.get_setting("Analytics/base_url")
+	game_key = ProjectSettings.get_setting("Analytics/game_key")
+	secret_key = ProjectSettings.get_setting("Analytics/secret_key")
+
 	print_debug("Analytics enabled? " + str(enabled))
-	
+	if enabled:
+		request_init()
+	else:
+		end_session()
 
 # TODO: get from the dict
 var platform = Utils.os_dict[OS.get_name()]
+
 # white space to get the pattern for the OS version
 var os_version = Utils.os_dict[OS.get_name()] + " " 
 var sdk_version = 'rest api v2'
@@ -47,7 +56,7 @@ var device = OS.get_model_name()
 var manufacturer = Utils.os_dict[OS.get_name()]
 
 # game information
-var build_version = '0.0.1'
+var build_version = '0.6.0'
 var engine_version = "Godot " + Engine.get_version_info()["string"]
 
 # sandbox game keys
@@ -75,24 +84,21 @@ var state_config = {
 	'event_queue': []
 }
 var requests = HTTPClient.new()
+# var http_request = HTTPRequest.new()
 
 signal message_sent
+signal response_ready
 
 func _ready():
 	# generate session id
 	generate_new_session_id()
 	
-	# SET game analytics parameters for the game
-	base_url = ProjectSettings.get_setting("Analytics/base_url")
-	game_key = ProjectSettings.get_setting("Analytics/game_key")
-	secret_key = ProjectSettings.get_setting("Analytics/secret_key")
-
 	# Connect to global
 	
-	if enable_analytics:
-		GameAnalytics.request_init()
-		print(GameAnalytics.get_user_event())
-		GameAnalytics.submit_events()
+	if enabled:
+		request_init()
+		get_user_event()
+		submit_events()
 	# END Game Analytics
 	
 # adding an event to the queue for later submit
@@ -102,7 +108,8 @@ func add_to_event_queue(event_dict: Dictionary):
 func get_event_queue():
 	return state_config['event_queue']
 
-func send_data(endpoint:String, data_json:String, port:int = 80)-> int:
+func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
+	# return dictionary : e.g.: {"status": 200, "response": {}}
 	
 	var url_endpoint = "/v2/"+self.game_key+"/"+endpoint
 	
@@ -141,30 +148,26 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> int:
 		requests.poll()
 		print("Connecting..")
 		if requests.get_status() == HTTPClient.STATUS_CONNECTED:
+			print("Connected to ", base_url)
 			break
 		print("Wait 0.5s")
 		# let's wait one second before retrying
 		yield(get_tree().create_timer(0.5), "timeout")
 		i -=1
 	
-	# assert(requests.get_status() == HTTPClient.STATUS_CONNECTED)
-	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_endpoint, headers, data_json)
-	if response_code:
-		print_debug("Well, we could not connect here either")
 
-	var response_string : String # will containe the response
+	var response_string : String # will contain the response
 	
 	for i in range(MAX_RETRY):
 		# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
-			requests.poll()
-			print("Requesting..")
-			if requests.get_status() == HTTPClient.STATUS_CONNECTED:
-				break
-			print_debug("Wait 0.5s")
-			# let's wait one second before retrying
-			yield(get_tree().create_timer(0.5), "timeout")
-			i -=1
+		requests.poll()
+		if requests.get_status() == HTTPClient.STATUS_CONNECTED:
+			break
+		print("Wait 0.5s")
+		# let's wait one second before retrying
+		yield(get_tree().create_timer(0.5), "timeout")
+		i -=1
 	
 	if requests.has_response():
 		# If there is a response..
@@ -177,7 +180,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> int:
 		# Getting the HTTP Body
 		if requests.is_response_chunked():
 			# Does it use chunks?
-			print_debug("Response is Chunked!")
+			print("Response is Chunked!")
 		else:
 			# Or just plain Content-Length
 			var bl = requests.get_response_body_length()
@@ -185,7 +188,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> int:
 
 		# This method works for both anyway
 		var rb = PoolByteArray() # Array that will hold the data
-
+		
 		while requests.get_status() == HTTPClient.STATUS_BODY:
 			# While there is body left to be read
 			requests.poll()
@@ -203,25 +206,29 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> int:
 		
 	status_code = requests.get_response_code()
 
-	if status_code == 401:
-		post_to_log("Submit events failed due to UNAUTHORIZED.")
-		post_to_log("Please verify your Authorization code is working correctly and that your are using valid game keys.")
+	match status_code:
+		401:
+			post_to_log("Submit events failed due to UNAUTHORIZED.")
+			post_to_log("Please verify your Authorization code is working correctly and that your are using valid game keys.")
 		
-	if status_code != 200:
-		post_to_log("Request did not return 200!")
-		post_to_log(response_string)
+		200:
+			post_to_log("Response received corretly")
+			emit_signal("message_sent")
+		_:
+			post_to_log("Request did not return 200!")
+			post_to_log(response_string)
 	
-	if response_string:
-		response_dict = parse_json(response_string)
-		if DEBUG:
-			print_debug(response_string)
+	if endpoint == "init":
+		if response_string:
+			response_dict = parse_json(response_string)
 	
-	if 'enabled' in response_dict and response_dict['enabled']:
-		print_debug("We are enabled")
-		state_config['enabled'] = true
-	else:
-		state_config['enabled'] = false
-		print_debug("We are not enabled")
+		if 'enabled' in response_dict and response_dict['enabled']:
+			print("We are enabled")
+			state_config['enabled'] = true
+		else:
+			state_config['enabled'] = false
+			print("We are not enabled")
+	print(state_config)
 	# TODO: adjust ts ? 
 	# TODO: We should return if enabled or not
 	return status_code
@@ -239,8 +246,9 @@ func request_init():
 	}
 	
 	# Refreshing url_init since game key might have been changed externally
-	get_response("init", to_json(init_payload))
-
+	send_data("init", to_json(init_payload))
+	
+	return 
 	
 # submitting all events that are in the queue to the events URL
 func submit_events():
@@ -248,16 +256,20 @@ func submit_events():
 	# Refreshing url_events since game key might have been changed externally
 	if not enabled :
 		print_debug("Analytics not enabled")
-		emit_signal("message_sent")
 		return
 	
 	var event_list_json = to_json(state_config['event_queue'])
 	
-	get_response("events", event_list_json)
-	emit_signal("message_sent")
+	print(send_data("events", event_list_json))
+
+func get_event(category, events: Dictionary):
+	var event_dict ={"category": category}
+	for key in events:
+		event_dict[key]= events[key]
+	merge_dir(event_dict, annotate_event_with_default_values())
+	return event_dict
 
 # ------------------ HELPER METHODS ---------------------- #
-
 
 func generate_new_session_id():
 	state_config['session_id'] = uuid
@@ -275,6 +287,26 @@ func update_client_ts_offset(server_ts):
 		state_config['client_ts_offset'] = offset
 	print_verbose('Client TS offset calculated to: ' + str(offset))
 
+static func merge_dir(target, patch):
+	for key in patch:
+		target[key] = patch[key]
+
+static func merge_dir2(target, patch):
+	for key in patch:
+		if target.has(key):
+			var tv = target[key]
+			if typeof(tv) == TYPE_DICTIONARY:
+				merge_dir(tv, patch[key])
+			else:
+				target[key] = patch[key]
+		else:
+			target[key] = patch[key]
+
+func get_gzip_string(string_for_gzip):
+	# ZIP function
+	pass
+
+# ------------------ EXAMPLE METHODS ---------------------- #
 func get_test_business_event_dict():
 	var event_dict = {
 		'category': 'business',
@@ -296,6 +328,10 @@ func get_user_event():
 	merge_dir(event_dict, annotate_event_with_default_values())
 	return event_dict
 
+func end_session():
+	var length_in_seconds = max(OS.get_ticks_msec()/1000, 172800)
+	get_session_end_event(length_in_seconds)
+	submit_events()
 
 func get_session_end_event(length_in_seconds):
 	var event_dict = {
@@ -303,14 +339,6 @@ func get_session_end_event(length_in_seconds):
 		'length': length_in_seconds
 	}
 	merge_dir(event_dict, annotate_event_with_default_values())
-	return event_dict
-
-func get_event(category, events: Dictionary):
-	var event_dict ={"category": category}
-	for key in events:
-		event_dict[key]: events[key]
-	merge_dir(event_dict, annotate_event_with_default_values())
-	
 	return event_dict
 
 func get_design_event(event_id, value):
@@ -322,26 +350,6 @@ func get_design_event(event_id, value):
 	merge_dir(event_dict, annotate_event_with_default_values())
 	return event_dict
 	
-static func merge_dir(target, patch):
-	for key in patch:
-		target[key] = patch[key]
-
-static func merge_dir2(target, patch):
-	for key in patch:
-		if target.has(key):
-			var tv = target[key]
-			if typeof(tv) == TYPE_DICTIONARY:
-				merge_dir(tv, patch[key])
-			else:
-				target[key] = patch[key]
-		else:
-			target[key] = patch[key]
-
-func get_gzip_string(string_for_gzip):
-	# ZIP function
-	pass
-
-
 func annotate_event_with_default_values():
 	# add default annotations (will alter the dict by reference)
 	# func annotate_event_with_default_values(event_dict):

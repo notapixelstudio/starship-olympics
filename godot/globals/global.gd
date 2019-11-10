@@ -1,12 +1,11 @@
 extends Node
 
-const SETTINGS_FILENAME = "res://export.cfg"
-
 var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 
 func _set_analytics(new_value):
 	enable_analytics = new_value
+	GameAnalytics.build_version = version
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "")
 
@@ -183,9 +182,8 @@ func _ready():
 
 func end_game():
 	print("Thanks for playing")
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_session_end_event(OS.get_ticks_msec()))
+	GameAnalytics.end_session()
 	
-	GameAnalytics.submit_events()
 	if global.enable_analytics:
 		yield(GameAnalytics, "message_sent")
 	get_tree().quit()
