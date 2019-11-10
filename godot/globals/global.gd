@@ -183,13 +183,9 @@ func _ready():
 func end_game():
 	print("Thanks for playing")
 	GameAnalytics.end_session()
-	
 	if global.enable_analytics:
 		yield(GameAnalytics, "message_sent")
 	get_tree().quit()
-	
-	
-	
 
 func get_unlocked() -> Dictionary:
 	"""

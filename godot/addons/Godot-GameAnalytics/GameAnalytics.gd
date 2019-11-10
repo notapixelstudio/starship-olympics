@@ -162,7 +162,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 	for i in range(MAX_RETRY):
 		# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
 		requests.poll()
-		if requests.get_status() == HTTPClient.STATUS_CONNECTED:
+		if requests.get_status() == HTTPClient.STATUS_BODY:
 			break
 		print("Wait 0.5s")
 		# let's wait one second before retrying
