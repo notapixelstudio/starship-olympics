@@ -3,10 +3,12 @@ extends Node
 const SETTINGS_FILENAME = "res://export.cfg"
 
 var enable_analytics : bool = false setget _set_analytics
+signal send_statistics
 
 func _set_analytics(new_value):
 	enable_analytics = new_value
 	GameAnalytics.enabled = enable_analytics
+	connect("send_statistics", GameAnalytics, "")
 
 var available_languages = {
 	"english": "en",
@@ -177,17 +179,6 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-	
-	# SET game analytics parameters
-	GameAnalytics.base_url = ProjectSettings.get_setting("Analytics/base_url")
-	GameAnalytics.game_key = ProjectSettings.get_setting("Analytics/game_key")
-	GameAnalytics.secret_key = ProjectSettings.get_setting("Analytics/secret_key")
-	GameAnalytics.enabled = enable_analytics
-	if enable_analytics:
-		GameAnalytics.request_init()
-		print(GameAnalytics.get_user_event())
-		GameAnalytics.submit_events()
-	# END Game Analytics
 	
 
 func end_game():

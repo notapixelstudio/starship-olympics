@@ -82,11 +82,27 @@ func _ready():
 	# generate session id
 	generate_new_session_id()
 	
+	# SET game analytics parameters for the game
+	base_url = ProjectSettings.get_setting("Analytics/base_url")
+	game_key = ProjectSettings.get_setting("Analytics/game_key")
+	secret_key = ProjectSettings.get_setting("Analytics/secret_key")
+
+	# Connect to global
+	
+	if enable_analytics:
+		GameAnalytics.request_init()
+		print(GameAnalytics.get_user_event())
+		GameAnalytics.submit_events()
+	# END Game Analytics
+	
 # adding an event to the queue for later submit
 func add_to_event_queue(event_dict: Dictionary):
 	state_config['event_queue'].append(event_dict)
 
-func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
+func get_event_queue():
+	return state_config['event_queue']
+
+func send_data(endpoint:String, data_json:String, port:int = 80)-> int:
 	
 	var url_endpoint = "/v2/"+self.game_key+"/"+endpoint
 	
@@ -98,18 +114,10 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		"Authorization: " + Marshalls.raw_to_base64(hmac_sha256(data_json, self.secret_key)),
 		"Content-Type: application/json"
 	]
-	
-	print(data_json)
-	print(self.game_key)
-	print(self.secret_key)
-	print(headers)
 
 	# if gzip enabled add the encoding header
 	if self.use_gzip:
 		headers['Content-Encoding'] = 'gzip'
-	
-	var response_dict: Dictionary
-	var status_code: int
 	
 	# debug purposes
 	if DEBUG:
@@ -117,11 +125,15 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print_debug(url_endpoint)
 		print_debug(data_json)
 		print_debug(Marshalls.raw_to_base64(hmac_sha256(data_json, secret_key)))
+
+	var response_dict: Dictionary
+	var status_code: int
 		
 	var err = requests.connect_to_host(self.base_url,80)
 	
 	if err:
 		print_debug("We could not connect. What should we do now?")
+		print(err)
 
 	# Wait until resolved and/or connected
 	for i in range(MAX_RETRY):
@@ -130,7 +142,7 @@ func get_response(endpoint:String, data_json:String, port:int = 80)-> int:
 		print("Connecting..")
 		if requests.get_status() == HTTPClient.STATUS_CONNECTED:
 			break
-		print_debug("Wait 0.5s")
+		print("Wait 0.5s")
 		# let's wait one second before retrying
 		yield(get_tree().create_timer(0.5), "timeout")
 		i -=1
@@ -293,6 +305,13 @@ func get_session_end_event(length_in_seconds):
 	merge_dir(event_dict, annotate_event_with_default_values())
 	return event_dict
 
+func get_event(category, events: Dictionary):
+	var event_dict ={"category": category}
+	for key in events:
+		event_dict[key]: events[key]
+	merge_dir(event_dict, annotate_event_with_default_values())
+	
+	return event_dict
 
 func get_design_event(event_id, value):
 	var event_dict = {
@@ -338,8 +357,8 @@ func annotate_event_with_default_values():
 	var default_annotations = {
 		'v': 2,										# (required: Yes)
 		'user_id': idfa,                            # (required: Yes)
-		#'ios_idfa': idfa,                          # (required: No - required on iOS)
-		#'ios_idfv': idfv,                          # (required: No - send if found)
+		# 'ios_idfa': idfa,                         # (required: No - required on iOS)
+		# 'ios_idfv': idfv,                         # (required: No - send if found)
 		# 'google_aid'                              # (required: No - required on Android)
 		# 'android_id',                             # (required: No - send if set)
 		# 'googleplus_id',                          # (required: No - send if set)
@@ -347,7 +366,7 @@ func annotate_event_with_default_values():
 		# 'limit_ad_tracking',                      # (required: No - send if true)
 		# 'logon_gamecenter',                       # (required: No - send if true)
 		# 'logon_googleplay                         # (required: No - send if true)
-		#'gender': 'male',                          # (required: No - send if set)
+		# 'gender': 'male',                         # (required: No - send if set)
 		# 'birth_year                               # (required: No - send if set)
 		# 'progression                              # (required: No - send if a progression attempt is in progress)
 		#'custom_01': 'ninja',                      # (required: No - send if set)
