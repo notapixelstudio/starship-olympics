@@ -141,8 +141,8 @@ func choose_dir(target):
 	
 	return direction_to_take
 
-var wait_for_chargedshot = 10
-const MIN_WAIT_SHOT = 2*3 #frame
+var wait_for_chargedshot = 30
+const MIN_WAIT_SHOT = 2*30 #frame
 func choose_fire():
 	if wait_for_chargedshot < 0:
 		# next charged shot will be
