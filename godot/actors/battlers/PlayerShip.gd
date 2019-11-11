@@ -3,6 +3,7 @@ extends Ship
 
 const THRESHOLD = 0.07
 const DEADZONE = 0.5
+const FIRE_TICK = 0.1
 
 var device_controller_id : int
 func _ready():
@@ -98,5 +99,5 @@ func control(delta):
 		fire()
 		
 	# cooldown
-	fire_cooldown -= delta
+	fire_cooldown -= delta*arena.time_scale
 	

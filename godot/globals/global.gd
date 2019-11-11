@@ -2,6 +2,8 @@ extends Node
 
 const SETTINGS_FILENAME = "res://export.cfg"
 
+const E = 2.71828
+
 var enable_analytics : bool = false setget _set_analytics
 
 func _set_analytics(new_value):
@@ -313,3 +315,6 @@ func check_version(saved_version: String, version: String):
 	print(this_minor, " vs ", minor)
 	return this_minor < minor
 		
+func sigmoid(x, width):
+	return 1-1/(1+pow(E, -10*(x/width-0.5)))
+	

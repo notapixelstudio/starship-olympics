@@ -31,6 +31,7 @@ const ANTI_RECOIL_OFFSET = 260
 const CHARGE_MULTIPLIER = 4500
 const BOMB_OFFSET = 40
 const BOMB_BOOST = 200
+const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
 var info_player
@@ -45,7 +46,7 @@ var width = 0
 var height = 0
 
 var charging = false
-var fire_cooldown = 0
+var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 
 var teleport_to = null
@@ -196,7 +197,7 @@ func fire():
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
-	fire_cooldown = 0 # disabled
+	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	
 	if charge > MIN_DASHING_CHARGE:

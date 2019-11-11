@@ -236,6 +236,8 @@ const COUNTDOWN_LIMIT = 5.0
 func _process(delta):
 	scores.update(delta)
 	
+	slomo()
+	
 	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		$CanvasLayer/Countdown/AudioStreamPlayer.play()
 	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:
@@ -463,3 +465,10 @@ func _on_Pause_restart():
 func _on_Pause_skip():
 	emit_signal("rematch") # WARNING this should be different if we are keeping scores
 	
+const max_slomo_elements = 6
+func slomo():
+	if len(get_tree().get_nodes_in_group('slomo')) > max_slomo_elements:
+		self.time_scale = lerp(time_scale, 0.5, 0.2)
+	else:
+		self.time_scale = lerp(time_scale, 1, 0.1)
+		

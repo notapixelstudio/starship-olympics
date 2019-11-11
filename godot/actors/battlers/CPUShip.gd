@@ -141,8 +141,8 @@ func choose_dir(target):
 	
 	return direction_to_take
 
-var wait_for_chargedshot = 30
-const MIN_WAIT_SHOT = 2*30 #frame
+var wait_for_chargedshot = 10
+const MIN_WAIT_SHOT = 2*3 #frame
 func choose_fire():
 	if wait_for_chargedshot < 0:
 		# next charged shot will be
@@ -198,7 +198,7 @@ func control(delta):
 		charge()
 		
 	charging_time -= 1
-	wait_for_chargedshot -= 1
+	wait_for_chargedshot -= 1*arena.time_scale
 	
 	# overcharge
 	if charge > MAX_OVERCHARGE or (charging and charging_time < 0):

@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 1185, 50 ]
+"values": [ 1585, 1200 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -59,8 +59,32 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("NoCrownZone3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoCrownZone4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -89,13 +113,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 3600
-height = 2400
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
+width = 3200
+height = 3200
+bevel = 1585
+bevel_nw = 1585
+bevel_ne = 1585
+bevel_sw = 1585
+bevel_se = 1585
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
@@ -109,13 +133,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 3600
-height = 2400
-bevel = 1185
-bevel_nw = 1185
-bevel_ne = 1185
-bevel_sw = 1185
-bevel_se = 1185
+width = 3200
+height = 3200
+bevel = 1200
+bevel_nw = 1200
+bevel_ne = 1200
+bevel_sw = 1200
+bevel_se = 1200
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
 hollow = true
@@ -129,13 +153,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 3600
-height = 2400
-bevel = 1185
-bevel_nw = 1185
-bevel_ne = 1185
-bevel_sw = 1185
-bevel_se = 1185
+width = 3200
+height = 3200
+bevel = 1585
+bevel_nw = 1585
+bevel_ne = 1585
+bevel_sw = 1585
+bevel_se = 1585
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6"]
 autoplay = "Pulse"
@@ -143,12 +167,22 @@ playback_speed = 0.5
 anims/Pulse = SubResource( 1 )
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
-position = Vector2( -850, 0 )
+position = Vector2( -800, 0 )
+rotation = 6.28319
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
-position = Vector2( 850, 0 )
+position = Vector2( 800, 0 )
+rotation = 6.28319
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2"]
+[node name="NoCrownZone3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
+position = Vector2( 0, 800 )
+rotation = 6.28319
+
+[node name="NoCrownZone4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
+position = Vector2( 0, -800 )
+rotation = 6.28319
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="4"]
 autoplay = "Rotate"
 playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
@@ -156,27 +190,28 @@ anims/Rotate = SubResource( 2 )
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -750, 0 )
+position = Vector2( -600, 0 )
 rotation = 0.0
-controls = "joy1"
 species_template = ExtResource( 10 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 750, 0 )
+position = Vector2( 600, 0 )
 rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 11 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( 0, -750 )
-rotation = 1.5708
+position = Vector2( 0, 600 )
+rotation = -1.5708
 controls = "joy3"
 species_template = ExtResource( 12 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( 0, 750 )
-rotation = -1.5708
+position = Vector2( 0, -600 )
+rotation = 1.5708
 controls = "joy4"
 species_template = ExtResource( 13 )
 cpu = true

@@ -3,7 +3,7 @@ extends RigidBody2D
 
 class_name Bomb
 
-const Explosion = preload('res://actors/weapons/Explosion.tscn')
+var Explosion = load('res://actors/weapons/Explosion.tscn')
 
 var entity : Entity
 onready var life_time = $LifeTime
@@ -71,15 +71,17 @@ func _on_NearArea_area_exited(area):
 	
 
 func _on_LifeTime_timeout():
-	if entity.has('Pursuer') and not entity.get('Pursuer').get_target():
-		if not entity.has('StandAlone'):
-			get_parent().call_deferred("remove_child", self)
-			yield(get_tree().create_timer(1), "timeout")
-			call_deferred("queue_free")
+	if not entity.has('StandAlone'):
+		get_parent().call_deferred("remove_child", self)
+		yield(get_tree().create_timer(1), "timeout")
+		call_deferred("queue_free")
 
 
 func process_life_time():
-	if not entity.has('Pursuer') and entity.get('Pursuer').get_target():
+	# pause lifetime if we are pursuing a target
+	if entity.has('Pursuer') and entity.get('Pursuer').get_target() != null:
 		life_time.paused = true
-	else:
-		life_time.paused = false
+		return
+	
+	life_time.paused = false
+	
