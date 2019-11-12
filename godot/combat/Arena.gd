@@ -13,6 +13,9 @@ export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
 
+export var score_to_win_override : float = 0
+export var match_duration_override : float = 0
+
 var mockup: bool = false
 var debug = false
 # analytics
@@ -165,11 +168,10 @@ func _ready():
 	for info in array_players:
 		print_debug(info.to_dict())
 	
-	var max_score = 0
 	if game_mode.cumulative:
-		max_score = len(get_tree().get_nodes_in_group('cell'))
+		score_to_win_override = len(get_tree().get_nodes_in_group('cell'))
 	
-	scores.initialize(array_players, game_mode, max_score)
+	scores.initialize(array_players, game_mode, score_to_win_override, match_duration_override)
 	
 	
 	# initialize HUD
