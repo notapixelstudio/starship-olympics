@@ -69,8 +69,7 @@ func combat(selected_players: Array, fight_mode : String):
 
 	players = {}
 	var num_players : int = len(selected_players)
-
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_design_event("selection:num_players", num_players))
+	global.send_stats("design", {"selection:num_players": num_players})
 
 	var i = 1
 	for player in selected_players:
