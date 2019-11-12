@@ -77,13 +77,14 @@ func combat(selected_players: Array, fight_mode : String):
 		var player_info : InfoPlayer = from_species_to_info_player(player)
 		player_info.id = player.id
 		players[player.id] = player_info
-		# Prepare GameAnalytics event to send
-		var info_dict = player_info.to_stats()
-		for key in info_dict:
-			var value = info_dict[key]
-			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": value})
 		i += 1
-
+	
+	# Statistics
+	for player_id in players:
+		var info = players[player_id]
+		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.species, "id": info.id})})
+		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
+	
 	if fight_mode == 'solo' or fight_mode == 'co-op':
 		var other_species
 		if selected_players[0].species_template.species_name != all_species[0][0].species_name:

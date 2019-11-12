@@ -45,14 +45,13 @@ func to_dict():
 		"id": id,
 		"name" : id,
 		"controls": controls,
-		"species" : species,
+		"species_name" : species,
 		"lives" : lives,
 		"deaths" : deaths,
 		"kills" : kills,
 		"selfkills": selfkills,
 		"collectables" : collectables,
 		"score" : score,
-		"species_template" : species_template,
 		"cpu": cpu
 	}
 

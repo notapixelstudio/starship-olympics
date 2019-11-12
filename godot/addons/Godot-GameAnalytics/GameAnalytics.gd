@@ -107,6 +107,9 @@ func add_to_event_queue(event_dict: Dictionary):
 func get_event_queue():
 	return state_config['event_queue']
 
+func reset_event_queue():
+	state_config['event_queue'] = []
+
 func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 	# return dictionary : e.g.: {"status": 200, "response": {}}
 	
@@ -145,28 +148,26 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 	for i in range(MAX_RETRY):
 	# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
 		requests.poll()
-		print("Connecting..")
 		if requests.get_status() == HTTPClient.STATUS_CONNECTED:
 			print("Connected to ", base_url)
 			break
-		print("Wait 0.5s")
 		# let's wait one second before retrying
 		yield(get_tree().create_timer(0.5), "timeout")
-		i -=1
+		
 	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_endpoint, headers, data_json)
 
 	var response_string : String # will contain the response
-	
+	var count = 0
 	for i in range(MAX_RETRY):
 		# while requests.get_status() == HTTPClient.STATUS_CONNECTING or requests.get_status() == HTTPClient.STATUS_RESOLVING:
 		requests.poll()
 		if requests.get_status() == HTTPClient.STATUS_BODY:
 			break
-		print("Wait 0.5s")
 		# let's wait one second before retrying
 		yield(get_tree().create_timer(0.5), "timeout")
-		i -=1
+		count = i
+	print("Waited {wait_time}s".format({"wait_time": 0.5 * count}))
 	
 	if requests.has_response():
 		# If there is a response..
@@ -211,8 +212,10 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 			post_to_log("Please verify your Authorization code is working correctly and that your are using valid game keys.")
 		
 		200:
-			post_to_log("Response received corretly")
+			post_to_log("Response received correctly")
+			print(state_config)
 			emit_signal("message_sent")
+			reset_event_queue()
 		_:
 			post_to_log("Request did not return 200!")
 			post_to_log(response_string)
@@ -227,9 +230,10 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 		else:
 			state_config['enabled'] = false
 			print("We are not enabled")
-	print(state_config)
+	
 	# TODO: adjust ts ? 
 	# TODO: We should return if enabled or not
+	# TODO: This should be syncronous
 	return status_code
 
 # requesting init URL and returning result
@@ -258,8 +262,9 @@ func submit_events():
 		return
 	
 	var event_list_json = to_json(state_config['event_queue'])
-	
-	print(send_data("events", event_list_json))
+	send_data("events", event_list_json)
+
+
 
 func add_event(category, events: Dictionary = {}) -> Dictionary:
 	var event_dict = {}
@@ -275,7 +280,7 @@ func add_event(category, events: Dictionary = {}) -> Dictionary:
 		"progression":
 			pass
 		"design":
-			event_dict = get_design_event(events.event_id, events.value)
+			event_dict = get_design_event(events.event_id, events.get("value", -1))
 		"error":
 			pass
 		"_":

@@ -59,7 +59,6 @@ func update(delta:float):
 	var leader = scores[0]
 	
 	if leader["score"] >= target_score or time_left <= 0 or (cumulative_points>=target_score):
-		print_debug(" CI SIAMOOOOOO: ", str(cumulative_points), " vs ", str(target_score))
 		var draw = true
 		var last_value = leader["score"]
 		for player in scores:
