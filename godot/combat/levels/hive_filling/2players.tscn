@@ -11,7 +11,7 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -32,17 +32,15 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 1400
 sides = 6.0
 
@@ -55,6 +53,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -67,6 +66,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -79,6 +79,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -91,6 +92,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -103,6 +105,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -115,6 +118,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -127,6 +131,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -139,6 +144,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -151,6 +157,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -163,6 +170,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -175,6 +183,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -187,6 +196,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -199,6 +209,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -211,6 +222,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -223,6 +235,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -235,6 +248,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -247,6 +261,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -259,6 +274,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -271,6 +287,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -283,6 +300,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -295,6 +313,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -307,6 +326,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -319,6 +339,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -331,6 +352,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -343,6 +365,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -355,6 +378,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -367,6 +391,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -379,6 +404,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -391,6 +417,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -403,6 +430,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -415,6 +443,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -427,6 +456,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -439,6 +469,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -451,6 +482,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -463,6 +495,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -475,6 +508,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -487,6 +521,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -499,6 +534,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -511,6 +547,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -523,6 +560,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -535,6 +573,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -547,6 +586,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -559,6 +599,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -571,6 +612,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -583,6 +625,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -595,6 +638,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -607,6 +651,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -619,6 +664,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -631,6 +677,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -643,6 +690,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -655,6 +703,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -667,6 +716,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -679,6 +729,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -691,6 +742,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -703,6 +755,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -715,6 +768,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -727,6 +781,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -739,6 +794,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -751,6 +807,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -763,6 +820,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -775,6 +833,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -787,6 +846,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -799,6 +859,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -811,6 +872,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -823,6 +885,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -835,6 +898,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -847,6 +911,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -859,6 +924,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -871,6 +937,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -883,6 +950,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -895,6 +963,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -907,6 +976,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -919,6 +989,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -931,6 +1002,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -943,6 +1015,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -955,6 +1028,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -967,6 +1041,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -979,6 +1054,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -991,6 +1067,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1003,6 +1080,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1015,6 +1093,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1027,6 +1106,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1039,6 +1119,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1051,6 +1132,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1063,6 +1145,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1075,6 +1158,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1087,6 +1171,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1099,6 +1184,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1111,6 +1197,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1123,6 +1210,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1135,6 +1223,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1147,6 +1236,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1159,6 +1249,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1171,6 +1262,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1183,6 +1275,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1195,6 +1288,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1207,6 +1301,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1219,6 +1314,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1231,6 +1327,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1243,6 +1340,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1255,6 +1353,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1267,6 +1366,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1279,6 +1379,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1291,6 +1392,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1303,6 +1405,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1315,6 +1418,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1327,6 +1431,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1339,6 +1444,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1351,6 +1457,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1363,6 +1470,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1375,6 +1483,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1387,6 +1496,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1399,6 +1509,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1411,6 +1522,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1423,6 +1535,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1435,6 +1548,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1447,6 +1561,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1459,6 +1574,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1471,6 +1587,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1483,6 +1600,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1495,6 +1613,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1507,6 +1626,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1519,6 +1639,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1531,6 +1652,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1543,6 +1665,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1555,6 +1678,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1567,6 +1691,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1579,6 +1704,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1591,6 +1717,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1603,6 +1730,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1615,6 +1743,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1627,6 +1756,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1639,6 +1769,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1651,6 +1782,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1663,6 +1795,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1675,6 +1808,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1687,6 +1821,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1699,6 +1834,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1711,6 +1847,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1723,6 +1860,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1735,6 +1873,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1747,6 +1886,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1759,6 +1899,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1771,6 +1912,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1783,6 +1925,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1795,6 +1938,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1807,6 +1951,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1819,6 +1964,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1831,6 +1977,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1843,6 +1990,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1855,6 +2003,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1867,6 +2016,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1879,6 +2029,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1891,6 +2042,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1903,6 +2055,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1915,6 +2068,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1927,6 +2081,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1939,6 +2094,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1951,6 +2107,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1963,6 +2120,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1975,6 +2133,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1987,6 +2146,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -1999,6 +2159,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2011,6 +2172,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2023,6 +2185,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2035,6 +2198,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2047,6 +2211,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2059,6 +2224,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2071,6 +2237,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2083,6 +2250,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2095,6 +2263,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2107,6 +2276,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2119,6 +2289,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2131,6 +2302,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2143,6 +2315,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2155,6 +2328,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2167,6 +2341,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2179,6 +2354,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2191,6 +2367,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2203,6 +2380,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2215,6 +2393,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2227,6 +2406,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2239,6 +2419,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2251,6 +2432,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2263,6 +2445,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2275,6 +2458,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2287,6 +2471,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2299,6 +2484,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2311,6 +2497,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2323,6 +2510,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2335,6 +2523,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2347,6 +2536,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2359,6 +2549,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2371,6 +2562,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2383,6 +2575,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2395,6 +2588,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2407,6 +2601,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2419,6 +2614,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2431,6 +2627,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2443,6 +2640,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2455,6 +2653,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2467,6 +2666,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2479,6 +2679,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2491,6 +2692,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2503,6 +2705,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2515,6 +2718,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2527,6 +2731,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2539,6 +2744,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2551,6 +2757,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2563,6 +2770,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2575,6 +2783,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2587,6 +2796,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2599,6 +2809,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2611,6 +2822,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2623,6 +2835,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2635,6 +2848,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2647,6 +2861,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2659,6 +2874,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2671,6 +2887,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2683,6 +2900,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2695,6 +2913,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2707,6 +2926,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2719,6 +2939,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2731,6 +2952,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2743,6 +2965,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2755,6 +2978,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2767,6 +2991,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2779,6 +3004,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2791,6 +3017,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2803,6 +3030,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2815,6 +3043,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2827,6 +3056,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2839,6 +3069,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2851,6 +3082,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2863,6 +3095,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2875,6 +3108,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2887,6 +3121,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2899,6 +3134,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2911,6 +3147,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2923,6 +3160,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2935,6 +3173,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2947,6 +3186,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2959,6 +3199,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2971,6 +3212,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2983,6 +3225,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -2995,6 +3238,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3007,6 +3251,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3019,6 +3264,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3031,6 +3277,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3043,6 +3290,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3055,6 +3303,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3067,6 +3316,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3079,6 +3329,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3091,6 +3342,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3103,6 +3355,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3115,6 +3368,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3127,6 +3381,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3139,6 +3394,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3151,6 +3407,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3163,6 +3420,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3175,6 +3433,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3187,6 +3446,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3199,6 +3459,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3211,6 +3472,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3223,6 +3485,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3235,6 +3498,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3247,6 +3511,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3259,6 +3524,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3271,6 +3537,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3283,6 +3550,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3295,6 +3563,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3307,6 +3576,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3319,6 +3589,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3331,6 +3602,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3343,6 +3615,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3355,6 +3628,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3367,6 +3641,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3379,6 +3654,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3391,6 +3667,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3403,6 +3680,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3415,6 +3693,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3427,6 +3706,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3439,6 +3719,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3451,6 +3732,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3463,6 +3745,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3475,6 +3758,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3487,6 +3771,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3499,6 +3784,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3511,6 +3797,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3523,6 +3810,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3535,6 +3823,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3547,6 +3836,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3559,6 +3849,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3571,6 +3862,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3583,6 +3875,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3595,6 +3888,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3607,6 +3901,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3619,6 +3914,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3631,6 +3927,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3643,6 +3940,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3655,6 +3953,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3667,6 +3966,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3679,6 +3979,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3691,6 +3992,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3703,6 +4005,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3715,6 +4018,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3727,6 +4031,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3739,6 +4044,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3751,6 +4057,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3763,6 +4070,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3775,6 +4083,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3787,6 +4096,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3799,6 +4109,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3811,6 +4122,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3823,6 +4135,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3835,6 +4148,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3847,6 +4161,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3859,6 +4174,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3871,6 +4187,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3883,6 +4200,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3894,6 +4212,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3906,6 +4225,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3918,6 +4238,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3930,6 +4251,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3942,6 +4264,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3954,6 +4277,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3966,6 +4290,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3978,6 +4303,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -3990,6 +4316,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -4002,6 +4329,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
@@ -4014,13 +4342,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 0, 860 )
 rotation = -1.5708
-controls = "joy1"
 species_template = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
@@ -4028,6 +4356,7 @@ position = Vector2( 0, -860 )
 rotation = 1.5708
 controls = "joy2"
 species_template = ExtResource( 10 )
+cpu = true
 
 [node name="Countdown" parent="CanvasLayer" index="4"]
 margin_left = -240.0

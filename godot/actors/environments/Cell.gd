@@ -40,8 +40,9 @@ func _on_Conquerable_changed():
 		#$Line2D.default_color = Color(1,1,1,0.1)
 		$SpriteFilled.modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
 		$SpriteFilled.visible = true
-		$AnimationPlayer.play('Appear')
+		$AnimationPlayer.queue('Appear')
 		
 func flash():
-	$AnimationPlayer.queue('Flash')
+	if $AnimationPlayer.current_animation != 'Flash' and len($AnimationPlayer.get_queue()) <= 1:
+		$AnimationPlayer.queue('Flash')
 	

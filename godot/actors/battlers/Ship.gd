@@ -105,8 +105,6 @@ static func magnitude(a:Vector2):
 	
 var last_velocity = Vector2()
 func _integrate_forces(state):
-	entity.get('Thrusters').apply_damp(self)
-	
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	

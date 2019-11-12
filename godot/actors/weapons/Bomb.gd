@@ -25,8 +25,6 @@ func initialize(pos : Vector2, impulse, ship):
 		ECM.E($Core).get('Owned').disable()
 		
 func _physics_process(delta):
-	entity.get('Thrusters').apply_damp(self)
-	
 	process_life_time()
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
