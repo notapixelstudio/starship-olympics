@@ -25,7 +25,8 @@ func play_idle():
 	anim.play("idle")
 	yield(anim, "animation_finished")
 
-func invincible():
+func invincible(offset = 0):
 	anim.play("invincible")
+	anim.seek(offset)
 	yield(anim, "animation_finished")
 	emit_signal("stop_invincible")

@@ -8,4 +8,5 @@ script = ExtResource( 2 )
 
 [node name="Debug" parent="." index="6"]
 visible = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

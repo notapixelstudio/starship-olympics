@@ -21,7 +21,7 @@ func start():
 func stop():
 	set_process(false)
 
-func initialize(_players: Array, game_mode: GameMode, max_score: float = 0):
+func initialize(_players: Array, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
 	scores = []
 	scores_index = {}
 	target_score = game_mode.max_score
@@ -38,6 +38,9 @@ func initialize(_players: Array, game_mode: GameMode, max_score: float = 0):
 			scores.append(scores_index[team])
 		
 	time_left = game_mode.max_timeout
+	if max_timeout:
+		time_left = max_timeout
+		
 	if game_mode.cumulative:
 		cumulative_points=0
 	stop()
