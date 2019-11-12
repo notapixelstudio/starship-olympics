@@ -94,7 +94,7 @@ func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
 	skin.ship_texture = (species_template as SpeciesTemplate).ship
-	skin.invincible()
+	skin.invincible(1.0)
 	entity = ECM.E(self)
 	species = species_template.species_name
 	
