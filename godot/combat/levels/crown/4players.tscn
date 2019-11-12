@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -89,6 +89,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 3600
 height = 2400
 bevel = 50
@@ -109,6 +110,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 3600
 height = 2400
 bevel = 1185
@@ -129,6 +131,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 3600
 height = 2400
 bevel = 1185
@@ -160,12 +163,14 @@ position = Vector2( -750, 0 )
 rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 10 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 750, 0 )
 rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 11 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( 0, -750 )
@@ -183,6 +188,7 @@ cpu = true
 
 [node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]
