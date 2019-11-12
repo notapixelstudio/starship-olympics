@@ -19,9 +19,7 @@ Procedure:
 """
 # From https://github.com/xsellier/godot-uuid
 const UUID = preload("uuid/uuid.gd")
-const Utils = preload("utils.gd")
-
-# 
+const Utils = preload("utils.gd") 
 const THRESHOLD_DIFF_TS = 10
 const MAX_RETRY = 5
 
@@ -43,6 +41,7 @@ func _set_analytics(value: bool):
 	print_debug("Analytics enabled? " + str(enabled))
 	if enabled:
 		request_init()
+		add_event("user")
 	else:
 		end_session()
 
@@ -262,11 +261,30 @@ func submit_events():
 	
 	print(send_data("events", event_list_json))
 
-func get_event(category, events: Dictionary):
-	var event_dict ={"category": category}
-	for key in events:
-		event_dict[key]= events[key]
-	merge_dir(event_dict, annotate_event_with_default_values())
+func add_event(category, events: Dictionary = {}) -> Dictionary:
+	var event_dict = {}
+	match category:
+		"user":
+			event_dict = get_user_event()
+		"session_end":
+			event_dict = get_session_end_event()
+		"business":
+			event_dict = get_business_event_dict(events.amount, events.currency, events.event_id, events.transaction_num)
+		"resource":
+			pass
+		"progression":
+			pass
+		"design":
+			event_dict = get_design_event(events.event_id, events.value)
+		"error":
+			pass
+		"_":
+			print("{} Not available".format(category))	
+	
+	add_to_event_queue(event_dict)
+	if len(get_event_queue()) >= 5:
+		submit_events()
+	
 	return event_dict
 
 # ------------------ HELPER METHODS ---------------------- #
@@ -307,7 +325,8 @@ func get_gzip_string(string_for_gzip):
 	pass
 
 # ------------------ EXAMPLE METHODS ---------------------- #
-func get_test_business_event_dict():
+func get_business_event_dict(amount, currency, event_id, transaction_num, cart_type = null, receipt_info = null ):
+	# https://restapidocs.gameanalytics.com/#business
 	var event_dict = {
 		'category': 'business',
 		'amount': 999,
@@ -329,11 +348,12 @@ func get_user_event():
 	return event_dict
 
 func end_session():
-	var length_in_seconds = max(OS.get_ticks_msec()/1000, 172800)
-	get_session_end_event(length_in_seconds)
+	
+	add_event("session_end")
 	submit_events()
 
-func get_session_end_event(length_in_seconds):
+func get_session_end_event():
+	var length_in_seconds = min(OS.get_ticks_msec()/1000, 172800)
 	var event_dict = {
 		'category': 'session_end',
 		'length': length_in_seconds

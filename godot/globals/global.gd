@@ -7,7 +7,7 @@ func _set_analytics(new_value):
 	enable_analytics = new_value
 	GameAnalytics.build_version = version
 	GameAnalytics.enabled = enable_analytics
-	connect("send_statistics", GameAnalytics, "")
+	connect("send_statistics", GameAnalytics, "add_event")
 
 var available_languages = {
 	"english": "en",
@@ -305,4 +305,7 @@ func check_version(saved_version: String, version: String):
 	var minor = version.split(".")[1]
 	print(this_minor, " vs ", minor)
 	return this_minor < minor
-		
+
+
+func send_stats(category: String, stats: Dictionary):
+	emit_signal("send_statistics", category, stats)

@@ -54,4 +54,13 @@ func to_dict():
 		"score" : score,
 		"species_template" : species_template,
 		"cpu": cpu
-		}
+	}
+
+func to_stats():
+	return {
+		"bombs" : bombs,
+		"deaths" : deaths,
+		"kills" : kills,
+		"selfkills": selfkills,
+		"score" : score
+	}

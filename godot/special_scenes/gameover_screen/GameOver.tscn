@@ -6,8 +6,6 @@
 [ext_resource path="res://assets/theme/montserrat_eb_42.tres" type="DynamicFont" id=4]
 [ext_resource path="res://special_scenes/session_screen/Session.tscn" type="PackedScene" id=5]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 tracks/0/type = "value"
@@ -120,19 +118,20 @@ __meta__ = {
 
 [node name="Continue" type="Button" parent="VBoxContainer"]
 margin_right = 222.0
-margin_bottom = 57.0
+margin_bottom = 87.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
 [node name="Menu" type="Button" parent="VBoxContainer"]
-margin_top = 61.0
+margin_top = 91.0
 margin_right = 222.0
-margin_bottom = 118.0
+margin_bottom = 179.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "BACK TO MENU"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
+visible = false
 margin_top = 122.0
 margin_right = 222.0
 margin_bottom = 179.0
