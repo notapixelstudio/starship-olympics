@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -88,6 +88,39 @@ shortcut = SubResource( 4 )
 [sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 10 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 32
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 800 ), Vector2( 0, 450 ) ]
+}
+
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -103,6 +136,7 @@ smoothness = 0.0
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="TitleScreen" type="Control" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -220,9 +254,24 @@ text = "Demo build - 0.5"
 align = 2
 uppercase = true
 
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 440.0
+margin_bottom = 480.0
+custom_fonts/font = SubResource( 7 )
+text = "THANK YOU FOR PLAYING"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
+anims/appear = SubResource( 8 )
+
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
 [connection signal="pressed" from="Buttons/StartHuman" to="TitleScreen" method="_on_StartHuman_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="TitleScreen" method="_on_Options_pressed"]
-[connection signal="pressed" from="Buttons/QuitButton" to="TitleScreen" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

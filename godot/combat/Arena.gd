@@ -352,7 +352,12 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.initialize(winner, scores)
+	game_over.initialize(winner, scores, global.win)
+	for team in scores:
+		var player = scores[team]
+		var stats =player.to_stats() 
+		for key in stats:
+			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": stats[key]}) 
 
 onready var combat_manager = $CombatManager
 onready var stun_manager = $StunManager

@@ -48,7 +48,7 @@ custom_constants/separation = 4
 
 [node name="label" type="Label" parent="panel/margin_container/v_box_container"]
 margin_right = 448.0
-margin_bottom = 38.0
+margin_bottom = 36.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Paused"
@@ -56,41 +56,41 @@ align = 1
 valign = 1
 
 [node name="button" type="Button" parent="panel/margin_container/v_box_container"]
-margin_top = 42.0
+margin_top = 40.0
 margin_right = 448.0
-margin_bottom = 80.0
+margin_bottom = 76.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Main Menu"
 
 [node name="button2" type="Button" parent="panel/margin_container/v_box_container"]
-margin_top = 84.0
+margin_top = 80.0
 margin_right = 448.0
-margin_bottom = 122.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Graphic Options"
 
 [node name="button3" type="Button" parent="panel/margin_container/v_box_container"]
-margin_top = 126.0
+margin_top = 120.0
 margin_right = 448.0
-margin_bottom = 164.0
+margin_bottom = 156.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Audio Options"
 
 [node name="button4" type="Button" parent="panel/margin_container/v_box_container"]
-margin_top = 168.0
+margin_top = 160.0
 margin_right = 448.0
-margin_bottom = 206.0
+margin_bottom = 196.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Game Options"
 
 [node name="label2" type="Label" parent="panel/margin_container/v_box_container"]
-margin_top = 210.0
+margin_top = 200.0
 margin_right = 448.0
-margin_bottom = 248.0
+margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Difficulty"
@@ -99,34 +99,34 @@ valign = 1
 
 [node name="h_box_container" type="HBoxContainer" parent="panel/margin_container/v_box_container"]
 editor/display_folded = true
-margin_top = 252.0
+margin_top = 240.0
 margin_right = 448.0
-margin_bottom = 290.0
+margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="check_box" type="CheckBox" parent="panel/margin_container/v_box_container/h_box_container"]
-margin_right = 106.0
-margin_bottom = 38.0
+margin_right = 109.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 group = SubResource( 1 )
 text = "Easy"
 
 [node name="check_box2" type="CheckBox" parent="panel/margin_container/v_box_container/h_box_container"]
-margin_left = 110.0
-margin_right = 227.0
-margin_bottom = 38.0
+margin_left = 113.0
+margin_right = 222.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 group = SubResource( 1 )
 text = "Normal"
 
 [node name="check_box3" type="CheckBox" parent="panel/margin_container/v_box_container/h_box_container"]
-margin_left = 231.0
-margin_right = 337.0
-margin_bottom = 38.0
+margin_left = 226.0
+margin_right = 335.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 pressed = true
@@ -134,18 +134,18 @@ group = SubResource( 1 )
 text = "Hard"
 
 [node name="check_box4" type="CheckBox" parent="panel/margin_container/v_box_container/h_box_container"]
-margin_left = 341.0
+margin_left = 339.0
 margin_right = 448.0
-margin_bottom = 38.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 group = SubResource( 1 )
 text = "Insane"
 
 [node name="check_button" type="CheckButton" parent="panel/margin_container/v_box_container"]
-margin_top = 294.0
+margin_top = 288.0
 margin_right = 448.0
-margin_bottom = 336.0
+margin_bottom = 332.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Show Enemies' Health Bar"
@@ -153,4 +153,3 @@ text = "Show Enemies' Health Bar"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide = SubResource( 2 )
 anims/show = SubResource( 3 )
-

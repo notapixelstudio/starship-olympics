@@ -4,9 +4,7 @@ signal option_selected
 signal entered
 signal start_multiplayer
 
-
 onready var animation = $Animator
-
 var can_press = false
 
 func initialize():
@@ -33,6 +31,3 @@ func _on_StartHuman_pressed():
 		print("we're ready to og")
 		emit_signal("start_multiplayer")
 
-
-func _on_QuitButton_pressed():
-	get_tree().quit()

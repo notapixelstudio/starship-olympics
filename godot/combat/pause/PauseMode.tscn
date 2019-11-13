@@ -52,53 +52,6 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Control" type="Control" parent="GuiElements"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="panel" type="Panel" parent="GuiElements/Control"]
-modulate = Color( 1, 1, 1, 0.682353 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -232.0
-margin_top = -176.0
-margin_right = 227.0
-margin_bottom = 251.0
-
-[node name="margin_container" type="MarginContainer" parent="GuiElements/Control/panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
-
-[node name="v_box_container" type="VBoxContainer" parent="GuiElements/Control/panel/margin_container"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 451.0
-margin_bottom = 419.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 4
-
-[node name="label" type="Label" parent="GuiElements/Control/panel/margin_container/v_box_container"]
-margin_right = 443.0
-margin_bottom = 18.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "OPTIONS"
-align = 1
-valign = 1
-
-[node name="Padding" type="Control" parent="GuiElements/Control/panel/margin_container/v_box_container"]
-margin_top = 22.0
-margin_right = 443.0
-margin_bottom = 411.0
-size_flags_vertical = 3
-
 [node name="Buttons" type="VBoxContainer" parent="GuiElements"]
 margin_left = 238.0
 margin_top = 380.0

@@ -1,14 +1,16 @@
 extends Node
 
 const SETTINGS_FILENAME = "res://export.cfg"
-
 const E = 2.71828
 
 var enable_analytics : bool = false setget _set_analytics
+signal send_statistics
 
 func _set_analytics(new_value):
 	enable_analytics = new_value
+	GameAnalytics.build_version = version
 	GameAnalytics.enabled = enable_analytics
+	connect("send_statistics", GameAnalytics, "add_event")
 
 var available_languages = {
 	"english": "en",
@@ -30,9 +32,9 @@ func _get_language():
 var version = "0.5.0"
 
 # OPTIONS need a min and a MAX
-const min_lives = 1
-var lives = 2
-const max_lives = 10
+const min_win = 1
+var win = 3
+const max_win = 5
 
 # levels
 var level
@@ -180,22 +182,13 @@ func _ready():
 	else:
 		print("Something went wrong while loading the game data")
 	
-	# SET game analytics parameters
-	GameAnalytics.base_url = ProjectSettings.get_setting("Analytics/base_url")
-	GameAnalytics.game_key = ProjectSettings.get_setting("Analytics/game_key")
-	GameAnalytics.secret_key = ProjectSettings.get_setting("Analytics/secret_key")
-	GameAnalytics.enabled = enable_analytics
-	if enable_analytics:
-		GameAnalytics.request_init()
-	# END Game Analytics
-	
 
-func _exit_tree():
+func end_game():
 	print("Thanks for playing")
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_session_end_event(OS.get_ticks_msec()))
-	GameAnalytics.submit_events()
-	
-	
+	GameAnalytics.end_session()
+	if global.enable_analytics:
+		yield(GameAnalytics, "message_sent")
+	get_tree().quit()
 
 func get_unlocked() -> Dictionary:
 	"""
@@ -233,6 +226,7 @@ func get_state():
 	get_state will return everything we need to be persistent in the game
 	"""
 	var save_dict = {
+		win=win,
 		unlocked_species=unlocked_species,
 		enable_analytics=enable_analytics,
 		language=language,
@@ -314,6 +308,9 @@ func check_version(saved_version: String, version: String):
 	var minor = version.split(".")[1]
 	print(this_minor, " vs ", minor)
 	return this_minor < minor
+
+func send_stats(category: String, stats: Dictionary):
+	emit_signal("send_statistics", category, stats)
 		
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))

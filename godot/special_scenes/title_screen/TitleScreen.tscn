@@ -1,14 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/TitleScreen.gd" type="Script" id=1]
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://logo.png" type="Texture" id=4]
-
-[sub_resource type="InputEventAction" id=1]
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[ext_resource path="res://logo.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=3]
 resource_name = "fade_in"
@@ -84,92 +77,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="Buttons" type="VBoxContainer" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -145.0
-margin_top = 34.0
-margin_right = 145.0
-margin_bottom = 326.0
-mouse_default_cursor_shape = 3
-theme = ExtResource( 2 )
-alignment = 1
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StartHuman" type="Button" parent="Buttons"]
-margin_top = 37.0
-margin_right = 290.0
-margin_bottom = 107.0
-rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-action_mode = 0
-text = "Fight"
-flat = true
-
-[node name="StartCPU" type="Button" parent="Buttons"]
-visible = false
-margin_right = 290.0
-margin_bottom = 70.0
-rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-action_mode = 0
-shortcut = SubResource( 2 )
-text = "Human vs CPU"
-flat = true
-
-[node name="Options" type="Button" parent="Buttons"]
-margin_top = 111.0
-margin_right = 290.0
-margin_bottom = 181.0
-rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-action_mode = 0
-text = "Options"
-flat = true
-
-[node name="Help" type="Button" parent="Buttons"]
-visible = false
-margin_top = 148.0
-margin_right = 290.0
-margin_bottom = 218.0
-rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-action_mode = 0
-text = "Help"
-flat = true
-
-[node name="Credits" type="Button" parent="Buttons"]
-visible = false
-margin_top = 148.0
-margin_right = 290.0
-margin_bottom = 218.0
-rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-action_mode = 0
-text = "Credits"
-flat = true
-
-[node name="QuitButton" type="Button" parent="Buttons"]
-margin_top = 185.0
-margin_right = 290.0
-margin_bottom = 255.0
-rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-action_mode = 0
-text = "Quit"
-flat = true
-
 [node name="Animator" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 3 )
 anims/fade_out = SubResource( 4 )
@@ -178,8 +85,4 @@ anims/option_selected = SubResource( 5 )
 [node name="logo_ssf_olympic" type="Sprite" parent="."]
 position = Vector2( 640, 210 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
-
-[connection signal="pressed" from="Buttons/StartHuman" to="." method="_on_StartHuman_pressed"]
-[connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+texture = ExtResource( 2 )
