@@ -22,6 +22,7 @@ const UUID = preload("uuid/uuid.gd")
 const Utils = preload("utils.gd") 
 const THRESHOLD_DIFF_TS = 10
 const MAX_RETRY = 5
+const WAIT_TIME = 0.3
 
 # device information
 var DEBUG = false
@@ -152,7 +153,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 			print("Connected to ", base_url)
 			break
 		# let's wait one second before retrying
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(WAIT_TIME), "timeout")
 		
 	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_endpoint, headers, data_json)
@@ -165,9 +166,9 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 		if requests.get_status() == HTTPClient.STATUS_BODY:
 			break
 		# let's wait one second before retrying
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(WAIT_TIME), "timeout")
 		count = i
-	print("Waited {wait_time}s".format({"wait_time": 0.5 * count}))
+	print("Waited {wait_time}s".format({"wait_time": float(WAIT_TIME * count)}))
 	
 	if requests.has_response():
 		# If there is a response..
@@ -214,11 +215,13 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 		200:
 			post_to_log("Response received correctly")
 			print(state_config)
-			emit_signal("message_sent")
+			
 			reset_event_queue()
 		_:
 			post_to_log("Request did not return 200!")
 			post_to_log(response_string)
+	
+	emit_signal("message_sent")
 	
 	if endpoint == "init":
 		if response_string:
