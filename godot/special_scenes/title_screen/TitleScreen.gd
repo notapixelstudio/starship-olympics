@@ -31,6 +31,3 @@ func _on_StartHuman_pressed():
 		print("we're ready to og")
 		emit_signal("start_multiplayer")
 
-
-func _on_QuitButton_pressed():
-	get_tree().quit()

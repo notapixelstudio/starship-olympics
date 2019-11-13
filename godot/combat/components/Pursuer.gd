@@ -20,6 +20,9 @@ func set_detection_insensitive_timeout():
 	detection_insensitive_t = detection_insensitive_timeout
 	
 func update_timeouts(delta):
+	if not enabled:
+		return
+		
 	keep_target_t -= delta
 	detection_insensitive_t -= delta
 	

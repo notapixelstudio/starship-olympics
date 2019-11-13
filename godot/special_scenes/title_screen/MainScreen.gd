@@ -8,7 +8,10 @@ onready var buttons = $Buttons
 export var multiplayer_scene : PackedScene
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	disable_buttons()
+	$Label2/AnimationPlayer.play("appear")
+	global.end_game()
+	#get_tree().quit()
 
 func _ready():
 	# TranslationServer.set_locale("es")

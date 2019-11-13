@@ -6,11 +6,13 @@ var radius = 4
 var shape
 
 var t = 0
-const growT = 0.4
-const stillT = 0.4
+const growT = 0.3
+const stillT = 0.3
 const shrinkT = 0.2
 const minRadius = 40
 const maxRadius = 80
+
+onready var repeal_field_width = $RepealField/CollisionShape2D.get_shape().radius
 
 signal end_explosion
 var explosions = ["res://assets/audio/gameplay/explosions//SFX_Explosion_05.wav", "res://assets/audio/gameplay/explosions//SFX_Explosion_08.wav"]
@@ -41,7 +43,23 @@ func _physics_process(delta):
 	else:
 		# destroy the explosion
 		emit_signal("end_explosion")
+		get_parent().call_deferred("remove_child", self)
+		yield(get_tree().create_timer(1), "timeout")
 		call_deferred("queue_free")
+		
+	for body in $RepealField.get_overlapping_bodies():
+		if body is Bomb:
+			var vec = body.position-position
+			body.apply_central_impulse(vec.normalized()*global.sigmoid(vec.length(), repeal_field_width)*30)
 		
 func sigmoid(x, dt, amp):
 	return x/dt*amp
+	
+
+func _on_RepealField_body_entered(body):
+	if body is Bomb:
+		ECM.E(body).get('Pursuer').set_target(null)
+		ECM.E(body).get('Pursuer').disable()
+		yield(get_tree().create_timer(1), "timeout")
+		ECM.E(body).get('Pursuer').enable()
+		

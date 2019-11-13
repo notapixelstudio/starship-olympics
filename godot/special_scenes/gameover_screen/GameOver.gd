@@ -62,7 +62,8 @@ func _on_Rematch_pressed():
 	emit_signal("rematch")
 
 func _on_Quit_pressed():
-	get_tree().quit()
+	global.end_game()
+	#get_tree().quit()
 
 func _on_Menu_pressed():
 	# TODO: It will be whoever receive the signal to unpause

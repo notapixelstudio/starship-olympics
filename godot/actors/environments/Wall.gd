@@ -17,6 +17,8 @@ export var hide_grid : bool = false setget set_hide_grid
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
 
+export var fill_color : Color = Color('#454545') setget set_fill_color
+
 onready var extents = $RectExtents
 var cshapes = []
 
@@ -50,6 +52,10 @@ func set_grid_color(value):
 	
 func set_grid_rotation(value):
 	grid_rotation = value
+	refresh()
+	
+func set_fill_color(value):
+	fill_color = value
 	refresh()
 	
 func _ready():
@@ -110,6 +116,8 @@ func refresh():
 			
 	$Polygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
+	
+	$Polygon2D.color = fill_color
 	
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
