@@ -11,16 +11,6 @@ func _on_sth_entered(sth, other):
 	if not sth_entity or not other_entity:
 		return
 		
-	if sth_entity.has('Fluid') and other_entity.has('Thrusters'):
-		var do_it = false
-		if other_entity.has('Conqueror') and not(sth_entity.has('Conquerable') and sth_entity.get('Conquerable').get_species().species == other_entity.get('Conqueror').get_species().species):
-			do_it = true
-		elif other_entity.has('Owned') and not(sth_entity.has('Conquerable') and sth_entity.get('Conquerable').get_species().species == other_entity.get('Owned').get_owned_by().species):
-			do_it = true
-		if do_it:
-			other_entity.get_node('Thrusters').add_hindrance()
-			if sth is Cell:
-				sth.flash()
 		
 	if sth_entity.has('Flow') and other_entity.could_have('Flowing'):
 		other_entity.get_node('Flowing').set_flow(sth_entity.get_node('Flow'))
@@ -39,18 +29,34 @@ func _on_sth_exited(sth, other):
 	if not sth_entity or not other_entity:
 		return
 		
-	if sth_entity.has('Fluid') and other_entity.could_have('Thrusters'):
-		var do_it = false
-		if other_entity.has('Conqueror') and not(sth_entity.has('Conquerable') and sth_entity.get('Conquerable').get_species().species == other_entity.get('Conqueror').get_species().species):
-			do_it = true
-		elif other_entity.has('Owned') and not(sth_entity.has('Conquerable') and sth_entity.get('Conquerable').get_species().species == other_entity.get('Owned').get_owned_by().species):
-			do_it = true
-		if do_it:
-			other_entity.get_node('Thrusters').remove_hindrance()
-		
 	if sth_entity.has('Flow') and other_entity.has('Flowing'):
 		other_entity.get_node('Flowing').disable()
 		
 	if sth_entity.has('Hill') and other_entity.has('Royal'):
 		other_entity.get_node('Royal').disable()
+		
+func _physics_process(delta):
+	for fluid in ECM.entities_with('Fluid'):
+		var did_it = false
+		for body in fluid.get_host().get_overlapping_bodies():
+			var body_e = ECM.E(body)
+			
+			if not(body_e.has('Thrusters')):
+				continue
+				
+			var do_it = false
+			if body_e.has('Conqueror') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species().species == body_e.get('Conqueror').get_species().species):
+				do_it = true
+			if body_e.has('Owned') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species().species == body_e.get('Owned').get_owned_by().species):
+				do_it = true
+			if do_it:
+				body_e.get('Thrusters').add_hindrance()
+				did_it = true
+				
+		if did_it and fluid.get_host() is Cell:
+			fluid.get_host().flash()
+			
+	for e_w_thrusters in ECM.entities_with('Thrusters'):
+		e_w_thrusters.get('Thrusters').apply_damp()
+		e_w_thrusters.get('Thrusters').reset_hindrances()
 		

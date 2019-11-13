@@ -31,6 +31,7 @@ const ANTI_RECOIL_OFFSET = 260
 const CHARGE_MULTIPLIER = 4500
 const BOMB_OFFSET = 40
 const BOMB_BOOST = 200
+const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
 var info_player
@@ -45,7 +46,7 @@ var width = 0
 var height = 0
 
 var charging = false
-var fire_cooldown = 0
+var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 
 var teleport_to = null
@@ -93,7 +94,7 @@ func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
 	skin.ship_texture = (species_template as SpeciesTemplate).ship
-	skin.invincible()
+	skin.invincible(1.0)
 	entity = ECM.E(self)
 	species = species_template.species_name
 	
@@ -104,8 +105,6 @@ static func magnitude(a:Vector2):
 	
 var last_velocity = Vector2()
 func _integrate_forces(state):
-	entity.get('Thrusters').apply_damp(self)
-	
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
@@ -196,7 +195,7 @@ func fire():
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
-	fire_cooldown = 0 # disabled
+	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	
 	if charge > MIN_DASHING_CHARGE:
