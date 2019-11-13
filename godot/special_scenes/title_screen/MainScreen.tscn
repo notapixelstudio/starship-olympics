@@ -146,7 +146,7 @@ rect_min_size = Vector2( 210, 70 )
 custom_fonts/font = ExtResource( 9 )
 disabled = true
 action_mode = 0
-text = "Fight"
+text = "FIGHT"
 flat = true
 
 [node name="StartCPU" type="Button" parent="Buttons"]
@@ -169,7 +169,7 @@ rect_min_size = Vector2( 210, 70 )
 custom_fonts/font = ExtResource( 9 )
 disabled = true
 action_mode = 0
-text = "Options"
+text = "OPTIONS"
 flat = true
 
 [node name="Help" type="Button" parent="Buttons"]
@@ -204,7 +204,7 @@ rect_min_size = Vector2( 0, 70 )
 custom_fonts/font = ExtResource( 9 )
 disabled = true
 action_mode = 0
-text = "Quit"
+text = "QUIT"
 flat = true
 
 [node name="Label" type="Label" parent="."]
@@ -219,6 +219,7 @@ custom_fonts/font = SubResource( 6 )
 text = "Demo build - 0.5"
 align = 2
 uppercase = true
+
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
