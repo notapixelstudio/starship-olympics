@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/weapons/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -6,8 +6,90 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=6]
-[ext_resource path="res://assets/sprites/weapons/explosion.png" type="Texture" id=7]
-[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sprites/explosion_halo.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/weapons/explosion.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/circle_glow.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/weapons/explosion_spikes.png" type="Texture" id=10]
+[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Wow"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, -2, 1 ),
+"update": 0,
+"values": [ 40.0, 80.0, 80.0, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Image:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 1.2, 1.2 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Spikes:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.9, 0.9 ), Vector2( 2, 2 ), Vector2( 1.2, 1.2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Spikes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("explosion_halo:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ), Vector2( 4.24, 4.24 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("explosion_halo:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.6 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 0.01
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 500.0
@@ -45,21 +127,46 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Image" type="Node2D" parent="."]
-editor/display_folded = true
-
-[node name="Sprite" type="Sprite" parent="Image"]
-modulate = Color( 1, 1, 1, 0.872941 )
-scale = Vector2( 0.012, 0.012 )
+[node name="explosion_halo" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 4.24, 4.24 )
 texture = ExtResource( 7 )
 
+[node name="Image" type="Node2D" parent="."]
+scale = Vector2( 1e-05, 1e-05 )
+
+[node name="Sprite" type="Sprite" parent="Image"]
+modulate = Color( 1, 1, 1, 0.847059 )
+texture = ExtResource( 8 )
+
+[node name="circle_glow" type="Sprite" parent="Image"]
+visible = false
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 9 )
+
+[node name="Spikes" type="Node2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="Sprite" type="Sprite" parent="Spikes"]
+position = Vector2( 1, 20 )
+texture = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Wow"
+anims/Wow = SubResource( 2 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 volume_db = -2.0
 bus = "SFX_effect"
 
-[node name="GravitonField" parent="." instance=ExtResource( 8 )]
+[node name="GravitonField" parent="." instance=ExtResource( 11 )]
+visible = false
 gravity = -1024.0
 collision_mask = 10752
 multiplier = 0.6
@@ -67,6 +174,7 @@ timeout = 0.1
 enabled = true
 
 [node name="RepealField" type="Area2D" parent="."]
+visible = false
 collision_layer = 65536
 collision_mask = 4
 
@@ -78,4 +186,5 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
 shape = SubResource( 1 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
 [connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]
