@@ -5,7 +5,7 @@ class_name Explosion
 onready var repeal_field_width = $RepealField/CollisionShape2D.get_shape().radius
 
 signal end_explosion
-var explosions = ["res://assets/sounds/gameplay/explosions/SFX_Explosion_05.wav", "res://assets/sounds/gameplay/explosions/SFX_Explosion_08.wav"]
+var explosions = ["res://assets/audio/gameplay/explosions//SFX_Explosion_05.wav", "res://assets/audio/gameplay/explosions//SFX_Explosion_08.wav"]
 
 func _ready():
 	$Spikes.rotation = randf()*2*PI

@@ -168,6 +168,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 		# let's wait one second before retrying
 		yield(get_tree().create_timer(WAIT_TIME), "timeout")
 		count = i
+		
 	print("Waited {wait_time}s".format({"wait_time": float(WAIT_TIME * count)}))
 	
 	if requests.has_response():

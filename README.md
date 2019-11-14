@@ -15,39 +15,36 @@
 
 ## Follow the development
 
-Join our discord or follow us on Twitter (@notapixelstudio)
+Join our discord or follow us on Twitter ([@notapixelstudio](twitter.com/notapixelstudio)) or on [Instagram](instagram.com/notapixelstudio) 
 
-<img src="https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png" alt="Join our Discord Server" title="Join our Discord Server"> <img src="https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png" alt="Follow us on Twitter" title="Follow us on Twitter">
+[<img src="https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png" alt="Join our Discord Server" title="Join our Discord Server">](https://discord.gg/3k4NzEj) [<img src="https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png" alt="Follow us on Twitter" title="Follow us on Twitter">](twitter.com/notapixelstudio) [<img src="https://img.itch.zone/aW1nLzI2ODI2MjkucG5n/original/6qfdLm.png" alt="Follow us Instagram" title="Follow us on Instagram">](instagram.com/notapixelstudio)
 
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
 
 ## Resources used and acknowledgements
 
-Fonts: [Londrina](https://www.dafont.com/it/londrina.font?l[]=10&l[]=1)
-Frame Texture: [Freepik](https://www.freepik.com/free-photos-vectors/frame)
-Scenes structure and theme: inspired by [PigDev](https://pigdev.itch.io/)
-Character structure: inspired by [GDquest](https://www.youtube.com/channelavalaible/UCxboW7x0jZqFdvMdCFKTMsQ)
-- https://www.1001fonts.com/science-fiction-fonts.html?page=13&items=10
-
+All the resources hereby cited are free and royalty-free. Made by the community or contributors.
 
 ## Assets
 
-Since this game is in Development the following list might change often
+(Since this game is in Development the following list might change often)
 
 ### Soundtrack
 
 - [Mattek - Paradoxal Activity](https://soundcloud.com/themattek/mattek-paradoxal-activity)
-- https://freesound.org/people/salvob41/downloaded_sounds/
+- Sounds and music from [freesound](https://freesound.org/people/salvob41/downloaded_sounds)
 
 ### Sounds
 
-- https://freesound.org/people/aidave/downloaded_sounds/
-- https://v-play.net/game-resources/16-sites-featuring-free-game-sounds
-- https://freesound.org/people/uso_sketch/sounds/443865/
-- https://freesound.org/people/GameAudio/packs/13940/
-- https://freesound.org/people/jalastram/packs/17801/
+- [Aidave from freesound](https://freesound.org/people/aidave/downloaded_sounds)
+- [List of free sounds](https://v-play.net/game-resources/16-sites-featuring-free-game-sounds)
+- [Uso_sketch](https://freesound.org/people/uso_sketch/sounds/443865)
+- [GameAudio](https://freesound.org/people/GameAudio/packs/13940/)
+- [Jalastram](https://freesound.org/people/jalastram/packs/17801)
 
 ### Images
 
 - icons got from [icons8](https://icons8.com) website
-- icons from the excellent https://game-icons.net project! (Lorc http://lorcblog.blogspot.com/ and Darkzaitzev https://www.deviantart.com/darkzaitzev)
+- icons from the excellent https://game-icons.net project!
+- [Lorc](http://lorcblog.blogspot.com)
+- [Darkzaitzev](https://www.deviantart.com/darkzaitzev))
