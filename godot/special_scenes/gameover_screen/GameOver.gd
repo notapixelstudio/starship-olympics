@@ -20,7 +20,7 @@ func initialize(winner:String, scores:Dictionary, win_points: int = 3):
 	var loser_ref = container.get_node("winner")
 	var template
 	if winner == "noone":
-		label.text = "NOONE WON"
+		label.text = "NO ONE WON"
 		container.get_node("winner").visible = false
 	else:
 		var uid_winner = scores[winner]["id"]

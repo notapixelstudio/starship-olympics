@@ -268,7 +268,6 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
 anims/appear = SubResource( 8 )
-
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]

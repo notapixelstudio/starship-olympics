@@ -229,7 +229,7 @@ func _ready():
 			var spawner = s as PlayerSpawner
 			spawner.appears()
 			# waiting for the ship to be entered
-			yield(get_tree().create_timer(1), "timeout")
+			yield(get_tree().create_timer(0.5), "timeout")
 			spawn_ship(spawner)
 			j += 1
 			# wait for the last ship
