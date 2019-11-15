@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Arena",
+"language": "GDScript",
+"path": "res://combat/Arena.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Asteroid",
 "language": "GDScript",
@@ -270,6 +275,7 @@ _global_script_classes=[ {
 "path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
+"Arena": "",
 "Asteroid": "",
 "AudioLibrary": "",
 "Bar": "",

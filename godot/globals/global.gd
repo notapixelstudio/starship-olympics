@@ -163,6 +163,7 @@ func _input(event):
 		
 func _ready():
 	print("Starting game...")
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
 	#setup language

@@ -35,10 +35,11 @@ func appears():
 	yield(get_tree().create_timer(0.8), "timeout")
 	animator.play("describeme")
 	yield(self, "letsfight")
+	
+	
+func disappears():
 	animator.play("getout")
 	$Description2.queue_free()
 	yield(animator, "animation_finished")
 	emit_signal("ready_to_fight")
 	queue_free()
-	
-	

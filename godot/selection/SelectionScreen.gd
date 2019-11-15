@@ -12,6 +12,7 @@ var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
 signal back
+signal start_demo
 
 var selected_index = []
 var players_controls : Array

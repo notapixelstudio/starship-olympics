@@ -167,7 +167,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# TEST: send the queue
 	GameAnalytics.submit_events()
 
-func next_level():
+func next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
 	var last_planet = played_levels.back()
 	var num_players = len(players)
@@ -190,18 +190,21 @@ func next_level():
 	print_debug("last planet was, ", last_planet, " now is ", new_planet)
 	print_debug("next level will be ", num_players, current_level.planet_name)
 	# skip if we just played it
-	start_level(current_level)
+	start_level(current_level, demo)
 	played_levels.append(new_planet)
 	
-func start_level(_level):
+func start_level(_level, demo = false):
 	combat = _level
-	print_debug(players)
 	combat.initialize(players)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
 	
+	for child in get_children():
+		if child is Arena:
+			call_deferred("remove_child", child)
+	combat.demo = demo
 	add_child(combat)
 	
 func from_info_to_spawner(player_info):
@@ -239,3 +242,17 @@ func _on_Pause_back_to_menu(_combat):
 	_combat.queue_free()
 	get_tree().paused = false
 	add_child(selection_screen)
+
+
+func _on_Timer_timeout():
+	var demo_players = []
+	for i in range((randi() % 2)+1):
+		var other_species = all_species[i]
+		var info_player = InfoPlayer.new()
+		info_player.id = 'cpu'
+		info_player.species = other_species[0].species_name
+		info_player.cpu = true
+		info_player.species_template = other_species[0]
+		players["cpu{id}".format({"id": i})] = info_player
+	remove_child(selection_screen)
+	next_level(true)
