@@ -47,4 +47,4 @@ All the resources hereby cited are free and royalty-free. Made by the community 
 - icons got from [icons8](https://icons8.com) website
 - icons from the excellent https://game-icons.net project!
 - [Lorc](http://lorcblog.blogspot.com)
-- [Darkzaitzev](https://www.deviantart.com/darkzaitzev))
+- [Darkzaitzev](https://www.deviantart.com/darkzaitzev)

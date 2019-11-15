@@ -17,10 +17,11 @@ var available_languages = {
 	"español": "es",
 	"italiano": "it",
 	"euskara": "eu",
-	"français": "fr"
+	"français": "fr",
+	"deutsch": "de"
 	}
 onready var language: String setget _set_language, _get_language
-var array_language: Array = ["english", "italiano", "español", "euskara", "français"]
+var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
 
 func _set_language(value:String):
 	language = value
