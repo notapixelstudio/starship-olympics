@@ -212,8 +212,8 @@ func _ready():
 			wall.add_child(gshape)
 			wall.position = cell.position
 			wall.rotation = cell.rotation
-			wall.fill_color = Color(0.8,0.8,0.8,1)
-			wall.modulate = Color(0.5,0.5,0.5,1)
+			#wall.fill_color = Color(0.8,0.8,0.8,1)
+			#wall.modulate = Color(0.5,0.5,0.5,1)
 			wall.scale = Vector2(0.8,0.8)
 			$Battlefield.add_child(wall)
 			cell.queue_free()
