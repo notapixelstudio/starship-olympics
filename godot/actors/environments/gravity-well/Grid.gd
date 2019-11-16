@@ -10,7 +10,7 @@ var lines = []
 var v_cells
 var h_cells
 
-const max_velocity = 1200
+const max_velocity = 4000
 
 # Iterates through x and y axis, adding cells for each iteration
 func init_grid(arena_size: Vector2):

@@ -167,6 +167,7 @@ area_mask = 8
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 1.3
 autostart = true
+
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]

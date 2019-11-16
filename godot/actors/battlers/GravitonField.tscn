@@ -10,12 +10,11 @@ radius = 500.0
 [node name="GravitonField" type="Area2D" groups=[
 "gravity_wells",
 ]]
-space_override = 3
 gravity_point = true
 gravity_distance_scale = 0.001
 gravity_vec = Vector2( 0, 0 )
 gravity = 1024.0
-collision_layer = 65536
+collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
 
@@ -28,3 +27,4 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 disabled = true
+

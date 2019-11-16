@@ -81,10 +81,11 @@ shape = SubResource( 1 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0 )
-scale = Vector2( 0.8, 0.8 )
+modulate = Color( 0.305882, 1, 0.968627, 0.377534 )
+scale = Vector2( 0.890761, 0.890761 )
 texture = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
 playback_speed = 2.0
 anims/Blink = SubResource( 2 )
+
