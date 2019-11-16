@@ -64,7 +64,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("explosion_halo:scale")
+tracks/4/path = NodePath("Halo/explosion_halo:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -76,7 +76,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0.8, 0.8 ), Vector2( 4.24, 4.24 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("explosion_halo:modulate")
+tracks/5/path = NodePath("Halo/explosion_halo:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -127,8 +127,10 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="explosion_halo" type="Sprite" parent="."]
-modulate = Color( 1, 0.862745, 0.564706, 0.6 )
+[node name="Halo" type="Node2D" parent="."]
+
+[node name="explosion_halo" type="Sprite" parent="Halo"]
+modulate = Color( 1, 0.862745, 0.564706, 0.831373 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 7 )
 
@@ -136,7 +138,7 @@ texture = ExtResource( 7 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="Sprite" type="Sprite" parent="Image"]
-modulate = Color( 1, 1, 1, 0.576471 )
+modulate = Color( 1, 1, 1, 0.784314 )
 texture = ExtResource( 8 )
 
 [node name="circle_glow" type="Sprite" parent="Image"]
