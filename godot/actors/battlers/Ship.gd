@@ -190,7 +190,7 @@ func fire():
 		)
 	
 	# repeal
-	$GravitonField.repeal(charge_impulse)
+	#$GravitonField.repeal(charge_impulse)
 	#$GravitonField.enabled = false
 	
 	charging = false

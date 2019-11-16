@@ -10,12 +10,13 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
-[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
+match_duration_override = 60.0
 
 [node name="ConquestModeManager" parent="." index="8"]
 enabled = true
@@ -26,6 +27,7 @@ centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
 visible = false
+grid_color = Color( 1, 1, 1, 0.329412 )
 enabled = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
@@ -33,12 +35,8 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-fill_color = Color( 0.270588, 0.270588, 0.270588, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
@@ -46,11 +44,8 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 center_offset = Vector2( 0, 0 )
-radius = 1400
+radius = 1500
 sides = 6.0
-
-[node name="Middleground" parent="Battlefield" index="2"]
-editor/display_folded = true
 
 [node name="Cell" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -300, -860 )
@@ -65,7 +60,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell248" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
+[node name="Cell332" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
+position = Vector2( -250, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell332" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell248" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
 position = Vector2( 150, -86 )
 rotation = 0.523599
 
@@ -78,7 +86,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell253" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
+[node name="Cell253" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
 position = Vector2( 150, 86 )
 rotation = 0.523599
 
@@ -91,7 +99,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell19" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
+[node name="Cell19" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
 position = Vector2( -350, -774 )
 rotation = 0.523599
 
@@ -104,7 +112,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell32" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
+[node name="Cell32" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
 position = Vector2( -400, -688 )
 rotation = 0.523599
 
@@ -117,7 +125,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell41" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+[node name="Cell41" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
 position = Vector2( -450, -602 )
 rotation = 0.523599
 
@@ -130,7 +138,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell48" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
+[node name="Cell48" parent="Battlefield/Middleground" index="7" instance=ExtResource( 7 )]
 position = Vector2( -500, -516 )
 rotation = 0.523599
 
@@ -143,7 +151,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell66" parent="Battlefield/Middleground" index="7" instance=ExtResource( 7 )]
+[node name="Cell66" parent="Battlefield/Middleground" index="8" instance=ExtResource( 7 )]
 position = Vector2( -550, -430 )
 rotation = 0.523599
 
@@ -156,7 +164,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell72" parent="Battlefield/Middleground" index="8" instance=ExtResource( 7 )]
+[node name="Cell72" parent="Battlefield/Middleground" index="9" instance=ExtResource( 7 )]
 position = Vector2( -600, -344 )
 rotation = 0.523599
 
@@ -169,7 +177,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell83" parent="Battlefield/Middleground" index="9" instance=ExtResource( 7 )]
+[node name="Cell83" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
 position = Vector2( -650, -258 )
 rotation = 0.523599
 
@@ -182,7 +190,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell94" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
+[node name="Cell94" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
 position = Vector2( -700, -172 )
 rotation = 0.523599
 
@@ -195,7 +203,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell107" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
+[node name="Cell107" parent="Battlefield/Middleground" index="12" instance=ExtResource( 7 )]
 position = Vector2( -750, -86 )
 rotation = 0.523599
 
@@ -208,7 +216,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell116" parent="Battlefield/Middleground" index="12" instance=ExtResource( 7 )]
+[node name="Cell116" parent="Battlefield/Middleground" index="13" instance=ExtResource( 7 )]
 position = Vector2( -800, 0 )
 rotation = 0.523599
 
@@ -221,7 +229,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell126" parent="Battlefield/Middleground" index="13" instance=ExtResource( 7 )]
+[node name="Cell126" parent="Battlefield/Middleground" index="14" instance=ExtResource( 7 )]
 position = Vector2( -750, 86 )
 rotation = 0.523599
 
@@ -234,7 +242,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell142" parent="Battlefield/Middleground" index="14" instance=ExtResource( 7 )]
+[node name="Cell142" parent="Battlefield/Middleground" index="15" instance=ExtResource( 7 )]
 position = Vector2( -700, 172 )
 rotation = 0.523599
 
@@ -247,7 +255,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell149" parent="Battlefield/Middleground" index="15" instance=ExtResource( 7 )]
+[node name="Cell149" parent="Battlefield/Middleground" index="16" instance=ExtResource( 7 )]
 position = Vector2( -650, 258 )
 rotation = 0.523599
 
@@ -260,7 +268,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell160" parent="Battlefield/Middleground" index="16" instance=ExtResource( 7 )]
+[node name="Cell160" parent="Battlefield/Middleground" index="17" instance=ExtResource( 7 )]
 position = Vector2( -600, 344 )
 rotation = 0.523599
 
@@ -273,7 +281,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell170" parent="Battlefield/Middleground" index="17" instance=ExtResource( 7 )]
+[node name="Cell170" parent="Battlefield/Middleground" index="18" instance=ExtResource( 7 )]
 position = Vector2( -550, 430 )
 rotation = 0.523599
 
@@ -286,7 +294,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell180" parent="Battlefield/Middleground" index="18" instance=ExtResource( 7 )]
+[node name="Cell180" parent="Battlefield/Middleground" index="19" instance=ExtResource( 7 )]
 position = Vector2( -500, 516 )
 rotation = 0.523599
 
@@ -299,7 +307,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell189" parent="Battlefield/Middleground" index="19" instance=ExtResource( 7 )]
+[node name="Cell189" parent="Battlefield/Middleground" index="20" instance=ExtResource( 7 )]
 position = Vector2( -450, 602 )
 rotation = 0.523599
 
@@ -312,7 +320,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell207" parent="Battlefield/Middleground" index="20" instance=ExtResource( 7 )]
+[node name="Cell207" parent="Battlefield/Middleground" index="21" instance=ExtResource( 7 )]
 position = Vector2( -400, 688 )
 rotation = 0.523599
 
@@ -325,7 +333,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell215" parent="Battlefield/Middleground" index="21" instance=ExtResource( 7 )]
+[node name="Cell215" parent="Battlefield/Middleground" index="22" instance=ExtResource( 7 )]
 position = Vector2( -350, 774 )
 rotation = 0.523599
 
@@ -338,7 +346,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell223" parent="Battlefield/Middleground" index="22" instance=ExtResource( 7 )]
+[node name="Cell223" parent="Battlefield/Middleground" index="23" instance=ExtResource( 7 )]
 position = Vector2( -300, 860 )
 rotation = 0.523599
 
@@ -351,7 +359,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell233" parent="Battlefield/Middleground" index="23" instance=ExtResource( 7 )]
+[node name="Cell366" parent="Battlefield/Middleground" index="24" instance=ExtResource( 7 )]
+position = Vector2( -350, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell366" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell233" parent="Battlefield/Middleground" index="25" instance=ExtResource( 7 )]
 position = Vector2( 300, 0 )
 rotation = 0.523599
 
@@ -364,7 +385,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell10" parent="Battlefield/Middleground" index="24" instance=ExtResource( 7 )]
+[node name="Cell10" parent="Battlefield/Middleground" index="26" instance=ExtResource( 7 )]
 position = Vector2( -400, -860 )
 rotation = 0.523599
 
@@ -377,7 +398,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell21" parent="Battlefield/Middleground" index="25" instance=ExtResource( 7 )]
+[node name="Cell335" parent="Battlefield/Middleground" index="27" instance=ExtResource( 7 )]
+position = Vector2( -350, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell335" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell21" parent="Battlefield/Middleground" index="28" instance=ExtResource( 7 )]
 position = Vector2( -450, -774 )
 rotation = 0.523599
 
@@ -390,7 +424,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell23" parent="Battlefield/Middleground" index="26" instance=ExtResource( 7 )]
+[node name="Cell23" parent="Battlefield/Middleground" index="29" instance=ExtResource( 7 )]
 position = Vector2( -500, -688 )
 rotation = 0.523599
 
@@ -403,7 +437,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell44" parent="Battlefield/Middleground" index="27" instance=ExtResource( 7 )]
+[node name="Cell44" parent="Battlefield/Middleground" index="30" instance=ExtResource( 7 )]
 position = Vector2( -550, -602 )
 rotation = 0.523599
 
@@ -416,7 +450,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell50" parent="Battlefield/Middleground" index="28" instance=ExtResource( 7 )]
+[node name="Cell50" parent="Battlefield/Middleground" index="31" instance=ExtResource( 7 )]
 position = Vector2( -600, -516 )
 rotation = 0.523599
 
@@ -429,7 +463,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell64" parent="Battlefield/Middleground" index="29" instance=ExtResource( 7 )]
+[node name="Cell64" parent="Battlefield/Middleground" index="32" instance=ExtResource( 7 )]
 position = Vector2( -650, -430 )
 rotation = 0.523599
 
@@ -442,7 +476,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell75" parent="Battlefield/Middleground" index="30" instance=ExtResource( 7 )]
+[node name="Cell75" parent="Battlefield/Middleground" index="33" instance=ExtResource( 7 )]
 position = Vector2( -700, -344 )
 rotation = 0.523599
 
@@ -455,7 +489,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell85" parent="Battlefield/Middleground" index="31" instance=ExtResource( 7 )]
+[node name="Cell85" parent="Battlefield/Middleground" index="34" instance=ExtResource( 7 )]
 position = Vector2( -750, -258 )
 rotation = 0.523599
 
@@ -468,7 +502,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell92" parent="Battlefield/Middleground" index="32" instance=ExtResource( 7 )]
+[node name="Cell92" parent="Battlefield/Middleground" index="35" instance=ExtResource( 7 )]
 position = Vector2( -800, -172 )
 rotation = 0.523599
 
@@ -481,7 +515,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell103" parent="Battlefield/Middleground" index="33" instance=ExtResource( 7 )]
+[node name="Cell103" parent="Battlefield/Middleground" index="36" instance=ExtResource( 7 )]
 position = Vector2( -850, -86 )
 rotation = 0.523599
 
@@ -494,7 +528,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell114" parent="Battlefield/Middleground" index="34" instance=ExtResource( 7 )]
+[node name="Cell114" parent="Battlefield/Middleground" index="37" instance=ExtResource( 7 )]
 position = Vector2( -900, 0 )
 rotation = 0.523599
 
@@ -507,7 +541,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell132" parent="Battlefield/Middleground" index="35" instance=ExtResource( 7 )]
+[node name="Cell132" parent="Battlefield/Middleground" index="38" instance=ExtResource( 7 )]
 position = Vector2( -850, 86 )
 rotation = 0.523599
 
@@ -520,7 +554,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell136" parent="Battlefield/Middleground" index="36" instance=ExtResource( 7 )]
+[node name="Cell136" parent="Battlefield/Middleground" index="39" instance=ExtResource( 7 )]
 position = Vector2( -800, 172 )
 rotation = 0.523599
 
@@ -533,7 +567,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell146" parent="Battlefield/Middleground" index="37" instance=ExtResource( 7 )]
+[node name="Cell146" parent="Battlefield/Middleground" index="40" instance=ExtResource( 7 )]
 position = Vector2( -750, 258 )
 rotation = 0.523599
 
@@ -546,7 +580,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell159" parent="Battlefield/Middleground" index="38" instance=ExtResource( 7 )]
+[node name="Cell159" parent="Battlefield/Middleground" index="41" instance=ExtResource( 7 )]
 position = Vector2( -700, 344 )
 rotation = 0.523599
 
@@ -559,7 +593,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell171" parent="Battlefield/Middleground" index="39" instance=ExtResource( 7 )]
+[node name="Cell171" parent="Battlefield/Middleground" index="42" instance=ExtResource( 7 )]
 position = Vector2( -650, 430 )
 rotation = 0.523599
 
@@ -572,7 +606,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell184" parent="Battlefield/Middleground" index="40" instance=ExtResource( 7 )]
+[node name="Cell184" parent="Battlefield/Middleground" index="43" instance=ExtResource( 7 )]
 position = Vector2( -600, 516 )
 rotation = 0.523599
 
@@ -585,7 +619,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell191" parent="Battlefield/Middleground" index="41" instance=ExtResource( 7 )]
+[node name="Cell191" parent="Battlefield/Middleground" index="44" instance=ExtResource( 7 )]
 position = Vector2( -550, 602 )
 rotation = 0.523599
 
@@ -598,7 +632,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell205" parent="Battlefield/Middleground" index="42" instance=ExtResource( 7 )]
+[node name="Cell205" parent="Battlefield/Middleground" index="45" instance=ExtResource( 7 )]
 position = Vector2( -500, 688 )
 rotation = 0.523599
 
@@ -611,7 +645,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell210" parent="Battlefield/Middleground" index="43" instance=ExtResource( 7 )]
+[node name="Cell210" parent="Battlefield/Middleground" index="46" instance=ExtResource( 7 )]
 position = Vector2( -450, 774 )
 rotation = 0.523599
 
@@ -624,7 +658,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell225" parent="Battlefield/Middleground" index="44" instance=ExtResource( 7 )]
+[node name="Cell225" parent="Battlefield/Middleground" index="47" instance=ExtResource( 7 )]
 position = Vector2( -400, 860 )
 rotation = 0.523599
 
@@ -637,7 +671,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell240" parent="Battlefield/Middleground" index="45" instance=ExtResource( 7 )]
+[node name="Cell367" parent="Battlefield/Middleground" index="48" instance=ExtResource( 7 )]
+position = Vector2( -450, 946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell367" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell240" parent="Battlefield/Middleground" index="49" instance=ExtResource( 7 )]
 position = Vector2( 200, 0 )
 rotation = 0.523599
 
@@ -650,8 +697,8 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell11" parent="Battlefield/Middleground" index="46" instance=ExtResource( 7 )]
-position = Vector2( -500, -860 )
+[node name="Cell11" parent="Battlefield/Middleground" index="50" instance=ExtResource( 7 )]
+position = Vector2( -500, -861 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell11" index="3"]
@@ -663,8 +710,60 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell14" parent="Battlefield/Middleground" index="47" instance=ExtResource( 7 )]
-position = Vector2( -550, -774 )
+[node name="Cell387" parent="Battlefield/Middleground" index="51" instance=ExtResource( 7 )]
+position = Vector2( -550, -948 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell387" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell354" parent="Battlefield/Middleground" index="52" instance=ExtResource( 7 )]
+position = Vector2( 1000, 172 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell354" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell334" parent="Battlefield/Middleground" index="53" instance=ExtResource( 7 )]
+position = Vector2( -450, -947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell334" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell364" parent="Battlefield/Middleground" index="54" instance=ExtResource( 7 )]
+position = Vector2( 1050, 86 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell364" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell14" parent="Battlefield/Middleground" index="55" instance=ExtResource( 7 )]
+position = Vector2( -550, -773 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell14" index="3"]
@@ -676,8 +775,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell26" parent="Battlefield/Middleground" index="48" instance=ExtResource( 7 )]
-position = Vector2( -600, -688 )
+[node name="Cell396" parent="Battlefield/Middleground" index="56" instance=ExtResource( 7 )]
+position = Vector2( -600, -860 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell396" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell362" parent="Battlefield/Middleground" index="57" instance=ExtResource( 7 )]
+position = Vector2( 950, 258 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell362" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell26" parent="Battlefield/Middleground" index="58" instance=ExtResource( 7 )]
+position = Vector2( -600, -686 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell26" index="3"]
@@ -689,8 +814,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell35" parent="Battlefield/Middleground" index="49" instance=ExtResource( 7 )]
-position = Vector2( -650, -602 )
+[node name="Cell394" parent="Battlefield/Middleground" index="59" instance=ExtResource( 7 )]
+position = Vector2( -650, -773 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell394" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell360" parent="Battlefield/Middleground" index="60" instance=ExtResource( 7 )]
+position = Vector2( 900, 345 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell360" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell35" parent="Battlefield/Middleground" index="61" instance=ExtResource( 7 )]
+position = Vector2( -650, -600 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell35" index="3"]
@@ -702,8 +853,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell52" parent="Battlefield/Middleground" index="50" instance=ExtResource( 7 )]
-position = Vector2( -700, -516 )
+[node name="Cell395" parent="Battlefield/Middleground" index="62" instance=ExtResource( 7 )]
+position = Vector2( -700, -687 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell395" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell361" parent="Battlefield/Middleground" index="63" instance=ExtResource( 7 )]
+position = Vector2( 850, 431 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell361" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell52" parent="Battlefield/Middleground" index="64" instance=ExtResource( 7 )]
+position = Vector2( -700, -514 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell52" index="3"]
@@ -715,8 +892,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell61" parent="Battlefield/Middleground" index="51" instance=ExtResource( 7 )]
-position = Vector2( -750, -430 )
+[node name="Cell397" parent="Battlefield/Middleground" index="65" instance=ExtResource( 7 )]
+position = Vector2( -750, -601 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell397" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell363" parent="Battlefield/Middleground" index="66" instance=ExtResource( 7 )]
+position = Vector2( 800, 517 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell363" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell61" parent="Battlefield/Middleground" index="67" instance=ExtResource( 7 )]
+position = Vector2( -750, -428 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell61" index="3"]
@@ -728,8 +931,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell74" parent="Battlefield/Middleground" index="52" instance=ExtResource( 7 )]
-position = Vector2( -800, -344 )
+[node name="Cell388" parent="Battlefield/Middleground" index="68" instance=ExtResource( 7 )]
+position = Vector2( -800, -515 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell388" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell355" parent="Battlefield/Middleground" index="69" instance=ExtResource( 7 )]
+position = Vector2( 750, 603 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell355" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell74" parent="Battlefield/Middleground" index="70" instance=ExtResource( 7 )]
+position = Vector2( -800, -342 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell74" index="3"]
@@ -741,8 +970,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell82" parent="Battlefield/Middleground" index="53" instance=ExtResource( 7 )]
-position = Vector2( -850, -258 )
+[node name="Cell392" parent="Battlefield/Middleground" index="71" instance=ExtResource( 7 )]
+position = Vector2( -850, -429 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell392" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell358" parent="Battlefield/Middleground" index="72" instance=ExtResource( 7 )]
+position = Vector2( 700, 689 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell358" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell82" parent="Battlefield/Middleground" index="73" instance=ExtResource( 7 )]
+position = Vector2( -850, -256 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell82" index="3"]
@@ -754,8 +1009,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell90" parent="Battlefield/Middleground" index="54" instance=ExtResource( 7 )]
-position = Vector2( -900, -172 )
+[node name="Cell391" parent="Battlefield/Middleground" index="74" instance=ExtResource( 7 )]
+position = Vector2( -900, -343 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell391" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell357" parent="Battlefield/Middleground" index="75" instance=ExtResource( 7 )]
+position = Vector2( 650, 775 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell357" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell90" parent="Battlefield/Middleground" index="76" instance=ExtResource( 7 )]
+position = Vector2( -900, -170 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell90" index="3"]
@@ -767,8 +1048,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell105" parent="Battlefield/Middleground" index="55" instance=ExtResource( 7 )]
-position = Vector2( -950, -86 )
+[node name="Cell393" parent="Battlefield/Middleground" index="77" instance=ExtResource( 7 )]
+position = Vector2( -950, -257 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell393" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell359" parent="Battlefield/Middleground" index="78" instance=ExtResource( 7 )]
+position = Vector2( 600, 861 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell359" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell105" parent="Battlefield/Middleground" index="79" instance=ExtResource( 7 )]
+position = Vector2( -950, -84 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell105" index="3"]
@@ -780,8 +1087,34 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell120" parent="Battlefield/Middleground" index="56" instance=ExtResource( 7 )]
-position = Vector2( -1000, 0 )
+[node name="Cell390" parent="Battlefield/Middleground" index="80" instance=ExtResource( 7 )]
+position = Vector2( -1000, -171 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell390" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell356" parent="Battlefield/Middleground" index="81" instance=ExtResource( 7 )]
+position = Vector2( 550, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell356" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell120" parent="Battlefield/Middleground" index="82" instance=ExtResource( 7 )]
+position = Vector2( -1000, 2 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell120" index="3"]
@@ -793,7 +1126,33 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell130" parent="Battlefield/Middleground" index="57" instance=ExtResource( 7 )]
+[node name="Cell389" parent="Battlefield/Middleground" index="83" instance=ExtResource( 7 )]
+position = Vector2( -1050, -85 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell389" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell381" parent="Battlefield/Middleground" index="84" instance=ExtResource( 7 )]
+position = Vector2( -1100, 0 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell381" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell130" parent="Battlefield/Middleground" index="85" instance=ExtResource( 7 )]
 position = Vector2( -950, 86 )
 rotation = 0.523599
 
@@ -806,7 +1165,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell138" parent="Battlefield/Middleground" index="58" instance=ExtResource( 7 )]
+[node name="Cell380" parent="Battlefield/Middleground" index="86" instance=ExtResource( 7 )]
+position = Vector2( -1050, 86 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell380" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell138" parent="Battlefield/Middleground" index="87" instance=ExtResource( 7 )]
 position = Vector2( -900, 172 )
 rotation = 0.523599
 
@@ -819,7 +1191,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell152" parent="Battlefield/Middleground" index="59" instance=ExtResource( 7 )]
+[node name="Cell384" parent="Battlefield/Middleground" index="88" instance=ExtResource( 7 )]
+position = Vector2( -1000, 172 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell384" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell152" parent="Battlefield/Middleground" index="89" instance=ExtResource( 7 )]
 position = Vector2( -850, 258 )
 rotation = 0.523599
 
@@ -832,7 +1217,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell163" parent="Battlefield/Middleground" index="60" instance=ExtResource( 7 )]
+[node name="Cell385" parent="Battlefield/Middleground" index="90" instance=ExtResource( 7 )]
+position = Vector2( -950, 258 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell385" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell163" parent="Battlefield/Middleground" index="91" instance=ExtResource( 7 )]
 position = Vector2( -800, 344 )
 rotation = 0.523599
 
@@ -845,7 +1243,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell176" parent="Battlefield/Middleground" index="61" instance=ExtResource( 7 )]
+[node name="Cell383" parent="Battlefield/Middleground" index="92" instance=ExtResource( 7 )]
+position = Vector2( -900, 344 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell383" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell176" parent="Battlefield/Middleground" index="93" instance=ExtResource( 7 )]
 position = Vector2( -750, 430 )
 rotation = 0.523599
 
@@ -858,7 +1269,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell187" parent="Battlefield/Middleground" index="62" instance=ExtResource( 7 )]
+[node name="Cell378" parent="Battlefield/Middleground" index="94" instance=ExtResource( 7 )]
+position = Vector2( -850, 430 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell378" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell187" parent="Battlefield/Middleground" index="95" instance=ExtResource( 7 )]
 position = Vector2( -700, 516 )
 rotation = 0.523599
 
@@ -871,8 +1295,21 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell196" parent="Battlefield/Middleground" index="63" instance=ExtResource( 7 )]
-position = Vector2( -650, 602 )
+[node name="Cell377" parent="Battlefield/Middleground" index="96" instance=ExtResource( 7 )]
+position = Vector2( -800, 516 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell377" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell196" parent="Battlefield/Middleground" index="97" instance=ExtResource( 7 )]
+position = Vector2( -650, 600 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell196" index="3"]
@@ -884,8 +1321,21 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell200" parent="Battlefield/Middleground" index="64" instance=ExtResource( 7 )]
-position = Vector2( -600, 688 )
+[node name="Cell382" parent="Battlefield/Middleground" index="98" instance=ExtResource( 7 )]
+position = Vector2( -750, 600 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell382" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell200" parent="Battlefield/Middleground" index="99" instance=ExtResource( 7 )]
+position = Vector2( -600, 686 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell200" index="3"]
@@ -897,8 +1347,21 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell213" parent="Battlefield/Middleground" index="65" instance=ExtResource( 7 )]
-position = Vector2( -550, 774 )
+[node name="Cell376" parent="Battlefield/Middleground" index="100" instance=ExtResource( 7 )]
+position = Vector2( -700, 686 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell376" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell213" parent="Battlefield/Middleground" index="101" instance=ExtResource( 7 )]
+position = Vector2( -550, 772 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell213" index="3"]
@@ -910,8 +1373,21 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell231" parent="Battlefield/Middleground" index="66" instance=ExtResource( 7 )]
-position = Vector2( -500, 860 )
+[node name="Cell379" parent="Battlefield/Middleground" index="102" instance=ExtResource( 7 )]
+position = Vector2( -650, 772 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell379" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell231" parent="Battlefield/Middleground" index="103" instance=ExtResource( 7 )]
+position = Vector2( -500, 858 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell231" index="3"]
@@ -923,7 +1399,33 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell239" parent="Battlefield/Middleground" index="67" instance=ExtResource( 7 )]
+[node name="Cell386" parent="Battlefield/Middleground" index="104" instance=ExtResource( 7 )]
+position = Vector2( -600, 858 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell386" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell369" parent="Battlefield/Middleground" index="105" instance=ExtResource( 7 )]
+position = Vector2( -550, 946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell369" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell239" parent="Battlefield/Middleground" index="106" instance=ExtResource( 7 )]
 position = Vector2( 100, 0 )
 rotation = 0.523599
 
@@ -936,7 +1438,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell2" parent="Battlefield/Middleground" index="68" instance=ExtResource( 7 )]
+[node name="Cell2" parent="Battlefield/Middleground" index="107" instance=ExtResource( 7 )]
 position = Vector2( -200, -860 )
 rotation = 0.523599
 
@@ -949,7 +1451,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell247" parent="Battlefield/Middleground" index="69" instance=ExtResource( 7 )]
+[node name="Cell333" parent="Battlefield/Middleground" index="108" instance=ExtResource( 7 )]
+position = Vector2( -150, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell333" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell247" parent="Battlefield/Middleground" index="109" instance=ExtResource( 7 )]
 position = Vector2( 250, -86 )
 rotation = 0.523599
 
@@ -962,7 +1477,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell267" parent="Battlefield/Middleground" index="70" instance=ExtResource( 7 )]
+[node name="Cell267" parent="Battlefield/Middleground" index="110" instance=ExtResource( 7 )]
 position = Vector2( 200, -172 )
 rotation = 0.523599
 
@@ -975,7 +1490,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell274" parent="Battlefield/Middleground" index="71" instance=ExtResource( 7 )]
+[node name="Cell274" parent="Battlefield/Middleground" index="111" instance=ExtResource( 7 )]
 position = Vector2( 200, 172 )
 rotation = 0.523599
 
@@ -988,7 +1503,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell259" parent="Battlefield/Middleground" index="72" instance=ExtResource( 7 )]
+[node name="Cell259" parent="Battlefield/Middleground" index="112" instance=ExtResource( 7 )]
 position = Vector2( 250, 86 )
 rotation = 0.523599
 
@@ -1001,7 +1516,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell18" parent="Battlefield/Middleground" index="73" instance=ExtResource( 7 )]
+[node name="Cell18" parent="Battlefield/Middleground" index="113" instance=ExtResource( 7 )]
 position = Vector2( -250, -774 )
 rotation = 0.523599
 
@@ -1014,7 +1529,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell28" parent="Battlefield/Middleground" index="74" instance=ExtResource( 7 )]
+[node name="Cell28" parent="Battlefield/Middleground" index="114" instance=ExtResource( 7 )]
 position = Vector2( -300, -688 )
 rotation = 0.523599
 
@@ -1027,7 +1542,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell34" parent="Battlefield/Middleground" index="75" instance=ExtResource( 7 )]
+[node name="Cell34" parent="Battlefield/Middleground" index="115" instance=ExtResource( 7 )]
 position = Vector2( -350, -602 )
 rotation = 0.523599
 
@@ -1040,7 +1555,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell53" parent="Battlefield/Middleground" index="76" instance=ExtResource( 7 )]
+[node name="Cell53" parent="Battlefield/Middleground" index="116" instance=ExtResource( 7 )]
 position = Vector2( -400, -516 )
 rotation = 0.523599
 
@@ -1053,7 +1568,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell60" parent="Battlefield/Middleground" index="77" instance=ExtResource( 7 )]
+[node name="Cell60" parent="Battlefield/Middleground" index="117" instance=ExtResource( 7 )]
 position = Vector2( -450, -430 )
 rotation = 0.523599
 
@@ -1066,7 +1581,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell68" parent="Battlefield/Middleground" index="78" instance=ExtResource( 7 )]
+[node name="Cell68" parent="Battlefield/Middleground" index="118" instance=ExtResource( 7 )]
 position = Vector2( -500, -344 )
 rotation = 0.523599
 
@@ -1079,7 +1594,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell78" parent="Battlefield/Middleground" index="79" instance=ExtResource( 7 )]
+[node name="Cell78" parent="Battlefield/Middleground" index="119" instance=ExtResource( 7 )]
 position = Vector2( -550, -258 )
 rotation = 0.523599
 
@@ -1092,7 +1607,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell95" parent="Battlefield/Middleground" index="80" instance=ExtResource( 7 )]
+[node name="Cell95" parent="Battlefield/Middleground" index="120" instance=ExtResource( 7 )]
 position = Vector2( -600, -172 )
 rotation = 0.523599
 
@@ -1105,7 +1620,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell101" parent="Battlefield/Middleground" index="81" instance=ExtResource( 7 )]
+[node name="Cell101" parent="Battlefield/Middleground" index="121" instance=ExtResource( 7 )]
 position = Vector2( -650, -86 )
 rotation = 0.523599
 
@@ -1118,7 +1633,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell118" parent="Battlefield/Middleground" index="82" instance=ExtResource( 7 )]
+[node name="Cell118" parent="Battlefield/Middleground" index="122" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 rotation = 0.523599
 
@@ -1131,7 +1646,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell128" parent="Battlefield/Middleground" index="83" instance=ExtResource( 7 )]
+[node name="Cell128" parent="Battlefield/Middleground" index="123" instance=ExtResource( 7 )]
 position = Vector2( -650, 86 )
 rotation = 0.523599
 
@@ -1144,7 +1659,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell134" parent="Battlefield/Middleground" index="84" instance=ExtResource( 7 )]
+[node name="Cell134" parent="Battlefield/Middleground" index="124" instance=ExtResource( 7 )]
 position = Vector2( -600, 172 )
 rotation = 0.523599
 
@@ -1157,7 +1672,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell150" parent="Battlefield/Middleground" index="85" instance=ExtResource( 7 )]
+[node name="Cell150" parent="Battlefield/Middleground" index="125" instance=ExtResource( 7 )]
 position = Vector2( -550, 258 )
 rotation = 0.523599
 
@@ -1170,7 +1685,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell161" parent="Battlefield/Middleground" index="86" instance=ExtResource( 7 )]
+[node name="Cell161" parent="Battlefield/Middleground" index="126" instance=ExtResource( 7 )]
 position = Vector2( -500, 344 )
 rotation = 0.523599
 
@@ -1183,7 +1698,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell174" parent="Battlefield/Middleground" index="87" instance=ExtResource( 7 )]
+[node name="Cell174" parent="Battlefield/Middleground" index="127" instance=ExtResource( 7 )]
 position = Vector2( -450, 430 )
 rotation = 0.523599
 
@@ -1196,7 +1711,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell183" parent="Battlefield/Middleground" index="88" instance=ExtResource( 7 )]
+[node name="Cell183" parent="Battlefield/Middleground" index="128" instance=ExtResource( 7 )]
 position = Vector2( -400, 516 )
 rotation = 0.523599
 
@@ -1209,7 +1724,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell190" parent="Battlefield/Middleground" index="89" instance=ExtResource( 7 )]
+[node name="Cell190" parent="Battlefield/Middleground" index="129" instance=ExtResource( 7 )]
 position = Vector2( -350, 602 )
 rotation = 0.523599
 
@@ -1222,7 +1737,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell206" parent="Battlefield/Middleground" index="90" instance=ExtResource( 7 )]
+[node name="Cell206" parent="Battlefield/Middleground" index="130" instance=ExtResource( 7 )]
 position = Vector2( -300, 688 )
 rotation = 0.523599
 
@@ -1235,7 +1750,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell214" parent="Battlefield/Middleground" index="91" instance=ExtResource( 7 )]
+[node name="Cell214" parent="Battlefield/Middleground" index="131" instance=ExtResource( 7 )]
 position = Vector2( -250, 774 )
 rotation = 0.523599
 
@@ -1248,7 +1763,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell224" parent="Battlefield/Middleground" index="92" instance=ExtResource( 7 )]
+[node name="Cell224" parent="Battlefield/Middleground" index="132" instance=ExtResource( 7 )]
 position = Vector2( -200, 860 )
 rotation = 0.523599
 
@@ -1261,7 +1776,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell242" parent="Battlefield/Middleground" index="93" instance=ExtResource( 7 )]
+[node name="Cell365" parent="Battlefield/Middleground" index="133" instance=ExtResource( 7 )]
+position = Vector2( -250, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell365" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell242" parent="Battlefield/Middleground" index="134" instance=ExtResource( 7 )]
 position = Vector2( 400, 0 )
 rotation = 0.523599
 
@@ -1274,7 +1802,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell3" parent="Battlefield/Middleground" index="94" instance=ExtResource( 7 )]
+[node name="Cell3" parent="Battlefield/Middleground" index="135" instance=ExtResource( 7 )]
 position = Vector2( -100, -860 )
 rotation = 0.523599
 
@@ -1287,7 +1815,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell244" parent="Battlefield/Middleground" index="95" instance=ExtResource( 7 )]
+[node name="Cell337" parent="Battlefield/Middleground" index="136" instance=ExtResource( 7 )]
+position = Vector2( -50, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell337" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell244" parent="Battlefield/Middleground" index="137" instance=ExtResource( 7 )]
 position = Vector2( 350, -86 )
 rotation = 0.523599
 
@@ -1300,7 +1841,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell261" parent="Battlefield/Middleground" index="96" instance=ExtResource( 7 )]
+[node name="Cell261" parent="Battlefield/Middleground" index="138" instance=ExtResource( 7 )]
 position = Vector2( 300, -172 )
 rotation = 0.523599
 
@@ -1313,7 +1854,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell277" parent="Battlefield/Middleground" index="97" instance=ExtResource( 7 )]
+[node name="Cell277" parent="Battlefield/Middleground" index="139" instance=ExtResource( 7 )]
 position = Vector2( 250, -258 )
 rotation = 0.523599
 
@@ -1326,7 +1867,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell283" parent="Battlefield/Middleground" index="98" instance=ExtResource( 7 )]
+[node name="Cell283" parent="Battlefield/Middleground" index="140" instance=ExtResource( 7 )]
 position = Vector2( 250, 258 )
 rotation = 0.523599
 
@@ -1339,7 +1880,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell269" parent="Battlefield/Middleground" index="99" instance=ExtResource( 7 )]
+[node name="Cell269" parent="Battlefield/Middleground" index="141" instance=ExtResource( 7 )]
 position = Vector2( 300, 172 )
 rotation = 0.523599
 
@@ -1352,7 +1893,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell252" parent="Battlefield/Middleground" index="100" instance=ExtResource( 7 )]
+[node name="Cell252" parent="Battlefield/Middleground" index="142" instance=ExtResource( 7 )]
 position = Vector2( 350, 86 )
 rotation = 0.523599
 
@@ -1365,7 +1906,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell15" parent="Battlefield/Middleground" index="101" instance=ExtResource( 7 )]
+[node name="Cell15" parent="Battlefield/Middleground" index="143" instance=ExtResource( 7 )]
 position = Vector2( -150, -774 )
 rotation = 0.523599
 
@@ -1378,7 +1919,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell31" parent="Battlefield/Middleground" index="102" instance=ExtResource( 7 )]
+[node name="Cell31" parent="Battlefield/Middleground" index="144" instance=ExtResource( 7 )]
 position = Vector2( -200, -688 )
 rotation = 0.523599
 
@@ -1391,7 +1932,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell37" parent="Battlefield/Middleground" index="103" instance=ExtResource( 7 )]
+[node name="Cell37" parent="Battlefield/Middleground" index="145" instance=ExtResource( 7 )]
 position = Vector2( -250, -602 )
 rotation = 0.523599
 
@@ -1404,7 +1945,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell54" parent="Battlefield/Middleground" index="104" instance=ExtResource( 7 )]
+[node name="Cell54" parent="Battlefield/Middleground" index="146" instance=ExtResource( 7 )]
 position = Vector2( -300, -516 )
 rotation = 0.523599
 
@@ -1417,7 +1958,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell58" parent="Battlefield/Middleground" index="105" instance=ExtResource( 7 )]
+[node name="Cell58" parent="Battlefield/Middleground" index="147" instance=ExtResource( 7 )]
 position = Vector2( -350, -430 )
 rotation = 0.523599
 
@@ -1430,7 +1971,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell76" parent="Battlefield/Middleground" index="106" instance=ExtResource( 7 )]
+[node name="Cell76" parent="Battlefield/Middleground" index="148" instance=ExtResource( 7 )]
 position = Vector2( -400, -344 )
 rotation = 0.523599
 
@@ -1443,7 +1984,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell88" parent="Battlefield/Middleground" index="107" instance=ExtResource( 7 )]
+[node name="Cell88" parent="Battlefield/Middleground" index="149" instance=ExtResource( 7 )]
 position = Vector2( -450, -258 )
 rotation = 0.523599
 
@@ -1456,7 +1997,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell96" parent="Battlefield/Middleground" index="108" instance=ExtResource( 7 )]
+[node name="Cell96" parent="Battlefield/Middleground" index="150" instance=ExtResource( 7 )]
 position = Vector2( -500, -172 )
 rotation = 0.523599
 
@@ -1469,7 +2010,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell108" parent="Battlefield/Middleground" index="109" instance=ExtResource( 7 )]
+[node name="Cell108" parent="Battlefield/Middleground" index="151" instance=ExtResource( 7 )]
 position = Vector2( -550, -86 )
 rotation = 0.523599
 
@@ -1482,7 +2023,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell111" parent="Battlefield/Middleground" index="110" instance=ExtResource( 7 )]
+[node name="Cell111" parent="Battlefield/Middleground" index="152" instance=ExtResource( 7 )]
 position = Vector2( -600, 0 )
 rotation = 0.523599
 
@@ -1495,7 +2036,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell124" parent="Battlefield/Middleground" index="111" instance=ExtResource( 7 )]
+[node name="Cell124" parent="Battlefield/Middleground" index="153" instance=ExtResource( 7 )]
 position = Vector2( -550, 86 )
 rotation = 0.523599
 
@@ -1508,7 +2049,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell140" parent="Battlefield/Middleground" index="112" instance=ExtResource( 7 )]
+[node name="Cell140" parent="Battlefield/Middleground" index="154" instance=ExtResource( 7 )]
 position = Vector2( -500, 172 )
 rotation = 0.523599
 
@@ -1521,7 +2062,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell147" parent="Battlefield/Middleground" index="113" instance=ExtResource( 7 )]
+[node name="Cell147" parent="Battlefield/Middleground" index="155" instance=ExtResource( 7 )]
 position = Vector2( -450, 258 )
 rotation = 0.523599
 
@@ -1534,7 +2075,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell158" parent="Battlefield/Middleground" index="114" instance=ExtResource( 7 )]
+[node name="Cell158" parent="Battlefield/Middleground" index="156" instance=ExtResource( 7 )]
 position = Vector2( -400, 344 )
 rotation = 0.523599
 
@@ -1547,7 +2088,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell168" parent="Battlefield/Middleground" index="115" instance=ExtResource( 7 )]
+[node name="Cell168" parent="Battlefield/Middleground" index="157" instance=ExtResource( 7 )]
 position = Vector2( -350, 430 )
 rotation = 0.523599
 
@@ -1560,7 +2101,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell177" parent="Battlefield/Middleground" index="116" instance=ExtResource( 7 )]
+[node name="Cell177" parent="Battlefield/Middleground" index="158" instance=ExtResource( 7 )]
 position = Vector2( -300, 516 )
 rotation = 0.523599
 
@@ -1573,7 +2114,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell193" parent="Battlefield/Middleground" index="117" instance=ExtResource( 7 )]
+[node name="Cell193" parent="Battlefield/Middleground" index="159" instance=ExtResource( 7 )]
 position = Vector2( -250, 602 )
 rotation = 0.523599
 
@@ -1586,7 +2127,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell208" parent="Battlefield/Middleground" index="118" instance=ExtResource( 7 )]
+[node name="Cell208" parent="Battlefield/Middleground" index="160" instance=ExtResource( 7 )]
 position = Vector2( -200, 688 )
 rotation = 0.523599
 
@@ -1599,7 +2140,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell219" parent="Battlefield/Middleground" index="119" instance=ExtResource( 7 )]
+[node name="Cell219" parent="Battlefield/Middleground" index="161" instance=ExtResource( 7 )]
 position = Vector2( -150, 774 )
 rotation = 0.523599
 
@@ -1612,7 +2153,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell230" parent="Battlefield/Middleground" index="120" instance=ExtResource( 7 )]
+[node name="Cell230" parent="Battlefield/Middleground" index="162" instance=ExtResource( 7 )]
 position = Vector2( -100, 860 )
 rotation = 0.523599
 
@@ -1625,7 +2166,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell238" parent="Battlefield/Middleground" index="121" instance=ExtResource( 7 )]
+[node name="Cell368" parent="Battlefield/Middleground" index="163" instance=ExtResource( 7 )]
+position = Vector2( -150, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell368" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell238" parent="Battlefield/Middleground" index="164" instance=ExtResource( 7 )]
 position = Vector2( 500, 0 )
 rotation = 0.523599
 
@@ -1638,7 +2192,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell4" parent="Battlefield/Middleground" index="122" instance=ExtResource( 7 )]
+[node name="Cell4" parent="Battlefield/Middleground" index="165" instance=ExtResource( 7 )]
 position = Vector2( 3.05176e-05, -860 )
 rotation = 0.523599
 
@@ -1651,7 +2205,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell249" parent="Battlefield/Middleground" index="123" instance=ExtResource( 7 )]
+[node name="Cell336" parent="Battlefield/Middleground" index="166" instance=ExtResource( 7 )]
+position = Vector2( 50, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell336" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell249" parent="Battlefield/Middleground" index="167" instance=ExtResource( 7 )]
 position = Vector2( 450, -86 )
 rotation = 0.523599
 
@@ -1664,7 +2231,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell265" parent="Battlefield/Middleground" index="124" instance=ExtResource( 7 )]
+[node name="Cell265" parent="Battlefield/Middleground" index="168" instance=ExtResource( 7 )]
 position = Vector2( 400, -172 )
 rotation = 0.523599
 
@@ -1677,7 +2244,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell280" parent="Battlefield/Middleground" index="125" instance=ExtResource( 7 )]
+[node name="Cell280" parent="Battlefield/Middleground" index="169" instance=ExtResource( 7 )]
 position = Vector2( 350, -258 )
 rotation = 0.523599
 
@@ -1690,7 +2257,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell293" parent="Battlefield/Middleground" index="126" instance=ExtResource( 7 )]
+[node name="Cell293" parent="Battlefield/Middleground" index="170" instance=ExtResource( 7 )]
 position = Vector2( 300, -344 )
 rotation = 0.523599
 
@@ -1703,7 +2270,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell297" parent="Battlefield/Middleground" index="127" instance=ExtResource( 7 )]
+[node name="Cell297" parent="Battlefield/Middleground" index="171" instance=ExtResource( 7 )]
 position = Vector2( 300, 344 )
 rotation = 0.523599
 
@@ -1716,7 +2283,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell287" parent="Battlefield/Middleground" index="128" instance=ExtResource( 7 )]
+[node name="Cell287" parent="Battlefield/Middleground" index="172" instance=ExtResource( 7 )]
 position = Vector2( 350, 258 )
 rotation = 0.523599
 
@@ -1729,7 +2296,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell272" parent="Battlefield/Middleground" index="129" instance=ExtResource( 7 )]
+[node name="Cell272" parent="Battlefield/Middleground" index="173" instance=ExtResource( 7 )]
 position = Vector2( 400, 172 )
 rotation = 0.523599
 
@@ -1742,7 +2309,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell257" parent="Battlefield/Middleground" index="130" instance=ExtResource( 7 )]
+[node name="Cell257" parent="Battlefield/Middleground" index="174" instance=ExtResource( 7 )]
 position = Vector2( 450, 86 )
 rotation = 0.523599
 
@@ -1755,7 +2322,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell20" parent="Battlefield/Middleground" index="131" instance=ExtResource( 7 )]
+[node name="Cell20" parent="Battlefield/Middleground" index="175" instance=ExtResource( 7 )]
 position = Vector2( -50, -774 )
 rotation = 0.523599
 
@@ -1768,7 +2335,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell30" parent="Battlefield/Middleground" index="132" instance=ExtResource( 7 )]
+[node name="Cell30" parent="Battlefield/Middleground" index="176" instance=ExtResource( 7 )]
 position = Vector2( -100, -688 )
 rotation = 0.523599
 
@@ -1781,7 +2348,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell38" parent="Battlefield/Middleground" index="133" instance=ExtResource( 7 )]
+[node name="Cell38" parent="Battlefield/Middleground" index="177" instance=ExtResource( 7 )]
 position = Vector2( -150, -602 )
 rotation = 0.523599
 
@@ -1794,7 +2361,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell49" parent="Battlefield/Middleground" index="134" instance=ExtResource( 7 )]
+[node name="Cell49" parent="Battlefield/Middleground" index="178" instance=ExtResource( 7 )]
 position = Vector2( -200, -516 )
 rotation = 0.523599
 
@@ -1807,7 +2374,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell63" parent="Battlefield/Middleground" index="135" instance=ExtResource( 7 )]
+[node name="Cell63" parent="Battlefield/Middleground" index="179" instance=ExtResource( 7 )]
 position = Vector2( -250, -430 )
 rotation = 0.523599
 
@@ -1820,7 +2387,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell77" parent="Battlefield/Middleground" index="136" instance=ExtResource( 7 )]
+[node name="Cell77" parent="Battlefield/Middleground" index="180" instance=ExtResource( 7 )]
 position = Vector2( -300, -344 )
 rotation = 0.523599
 
@@ -1833,7 +2400,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell79" parent="Battlefield/Middleground" index="137" instance=ExtResource( 7 )]
+[node name="Cell79" parent="Battlefield/Middleground" index="181" instance=ExtResource( 7 )]
 position = Vector2( -350, -258 )
 rotation = 0.523599
 
@@ -1846,7 +2413,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell89" parent="Battlefield/Middleground" index="138" instance=ExtResource( 7 )]
+[node name="Cell89" parent="Battlefield/Middleground" index="182" instance=ExtResource( 7 )]
 position = Vector2( -400, -172 )
 rotation = 0.523599
 
@@ -1859,7 +2426,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell104" parent="Battlefield/Middleground" index="139" instance=ExtResource( 7 )]
+[node name="Cell104" parent="Battlefield/Middleground" index="183" instance=ExtResource( 7 )]
 position = Vector2( -450, -86 )
 rotation = 0.523599
 
@@ -1872,7 +2439,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell119" parent="Battlefield/Middleground" index="140" instance=ExtResource( 7 )]
+[node name="Cell119" parent="Battlefield/Middleground" index="184" instance=ExtResource( 7 )]
 position = Vector2( -500, 0 )
 rotation = 0.523599
 
@@ -1885,7 +2452,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell129" parent="Battlefield/Middleground" index="141" instance=ExtResource( 7 )]
+[node name="Cell129" parent="Battlefield/Middleground" index="185" instance=ExtResource( 7 )]
 position = Vector2( -450, 86 )
 rotation = 0.523599
 
@@ -1898,7 +2465,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell135" parent="Battlefield/Middleground" index="142" instance=ExtResource( 7 )]
+[node name="Cell135" parent="Battlefield/Middleground" index="186" instance=ExtResource( 7 )]
 position = Vector2( -400, 172 )
 rotation = 0.523599
 
@@ -1911,7 +2478,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell154" parent="Battlefield/Middleground" index="143" instance=ExtResource( 7 )]
+[node name="Cell154" parent="Battlefield/Middleground" index="187" instance=ExtResource( 7 )]
 position = Vector2( -350, 258 )
 rotation = 0.523599
 
@@ -1924,7 +2491,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell165" parent="Battlefield/Middleground" index="144" instance=ExtResource( 7 )]
+[node name="Cell165" parent="Battlefield/Middleground" index="188" instance=ExtResource( 7 )]
 position = Vector2( -300, 344 )
 rotation = 0.523599
 
@@ -1937,7 +2504,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell173" parent="Battlefield/Middleground" index="145" instance=ExtResource( 7 )]
+[node name="Cell173" parent="Battlefield/Middleground" index="189" instance=ExtResource( 7 )]
 position = Vector2( -250, 430 )
 rotation = 0.523599
 
@@ -1950,7 +2517,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell182" parent="Battlefield/Middleground" index="146" instance=ExtResource( 7 )]
+[node name="Cell182" parent="Battlefield/Middleground" index="190" instance=ExtResource( 7 )]
 position = Vector2( -200, 516 )
 rotation = 0.523599
 
@@ -1963,7 +2530,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell194" parent="Battlefield/Middleground" index="147" instance=ExtResource( 7 )]
+[node name="Cell194" parent="Battlefield/Middleground" index="191" instance=ExtResource( 7 )]
 position = Vector2( -150, 602 )
 rotation = 0.523599
 
@@ -1976,7 +2543,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell209" parent="Battlefield/Middleground" index="148" instance=ExtResource( 7 )]
+[node name="Cell209" parent="Battlefield/Middleground" index="192" instance=ExtResource( 7 )]
 position = Vector2( -100, 688 )
 rotation = 0.523599
 
@@ -1989,7 +2556,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell220" parent="Battlefield/Middleground" index="149" instance=ExtResource( 7 )]
+[node name="Cell220" parent="Battlefield/Middleground" index="193" instance=ExtResource( 7 )]
 position = Vector2( -50, 774 )
 rotation = 0.523599
 
@@ -2002,7 +2569,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell226" parent="Battlefield/Middleground" index="150" instance=ExtResource( 7 )]
+[node name="Cell226" parent="Battlefield/Middleground" index="194" instance=ExtResource( 7 )]
 position = Vector2( 0, 860 )
 rotation = 0.523599
 
@@ -2015,7 +2582,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell234" parent="Battlefield/Middleground" index="151" instance=ExtResource( 7 )]
+[node name="Cell370" parent="Battlefield/Middleground" index="195" instance=ExtResource( 7 )]
+position = Vector2( -50, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell370" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell234" parent="Battlefield/Middleground" index="196" instance=ExtResource( 7 )]
 position = Vector2( 600, 0 )
 rotation = 0.523599
 
@@ -2028,7 +2608,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell5" parent="Battlefield/Middleground" index="152" instance=ExtResource( 7 )]
+[node name="Cell5" parent="Battlefield/Middleground" index="197" instance=ExtResource( 7 )]
 position = Vector2( 100, -860 )
 rotation = 0.523599
 
@@ -2041,7 +2621,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell236" parent="Battlefield/Middleground" index="153" instance=ExtResource( 7 )]
+[node name="Cell338" parent="Battlefield/Middleground" index="198" instance=ExtResource( 7 )]
+position = Vector2( 150, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell338" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell236" parent="Battlefield/Middleground" index="199" instance=ExtResource( 7 )]
 position = Vector2( 550, -86 )
 rotation = 0.523599
 
@@ -2054,7 +2647,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell264" parent="Battlefield/Middleground" index="154" instance=ExtResource( 7 )]
+[node name="Cell264" parent="Battlefield/Middleground" index="200" instance=ExtResource( 7 )]
 position = Vector2( 500, -172 )
 rotation = 0.523599
 
@@ -2067,7 +2660,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell279" parent="Battlefield/Middleground" index="155" instance=ExtResource( 7 )]
+[node name="Cell279" parent="Battlefield/Middleground" index="201" instance=ExtResource( 7 )]
 position = Vector2( 450, -258 )
 rotation = 0.523599
 
@@ -2080,7 +2673,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell292" parent="Battlefield/Middleground" index="156" instance=ExtResource( 7 )]
+[node name="Cell292" parent="Battlefield/Middleground" index="202" instance=ExtResource( 7 )]
 position = Vector2( 400, -344 )
 rotation = 0.523599
 
@@ -2093,7 +2686,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell302" parent="Battlefield/Middleground" index="157" instance=ExtResource( 7 )]
+[node name="Cell302" parent="Battlefield/Middleground" index="203" instance=ExtResource( 7 )]
 position = Vector2( 350, -430 )
 rotation = 0.523599
 
@@ -2106,7 +2699,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell308" parent="Battlefield/Middleground" index="158" instance=ExtResource( 7 )]
+[node name="Cell308" parent="Battlefield/Middleground" index="204" instance=ExtResource( 7 )]
 position = Vector2( 350, 430 )
 rotation = 0.523599
 
@@ -2119,7 +2712,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell296" parent="Battlefield/Middleground" index="159" instance=ExtResource( 7 )]
+[node name="Cell296" parent="Battlefield/Middleground" index="205" instance=ExtResource( 7 )]
 position = Vector2( 400, 344 )
 rotation = 0.523599
 
@@ -2132,7 +2725,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell286" parent="Battlefield/Middleground" index="160" instance=ExtResource( 7 )]
+[node name="Cell286" parent="Battlefield/Middleground" index="206" instance=ExtResource( 7 )]
 position = Vector2( 450, 258 )
 rotation = 0.523599
 
@@ -2145,7 +2738,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell271" parent="Battlefield/Middleground" index="161" instance=ExtResource( 7 )]
+[node name="Cell271" parent="Battlefield/Middleground" index="207" instance=ExtResource( 7 )]
 position = Vector2( 500, 172 )
 rotation = 0.523599
 
@@ -2158,7 +2751,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell256" parent="Battlefield/Middleground" index="162" instance=ExtResource( 7 )]
+[node name="Cell256" parent="Battlefield/Middleground" index="208" instance=ExtResource( 7 )]
 position = Vector2( 550, 86 )
 rotation = 0.523599
 
@@ -2171,7 +2764,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell12" parent="Battlefield/Middleground" index="163" instance=ExtResource( 7 )]
+[node name="Cell12" parent="Battlefield/Middleground" index="209" instance=ExtResource( 7 )]
 position = Vector2( 50, -774 )
 rotation = 0.523599
 
@@ -2184,7 +2777,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell33" parent="Battlefield/Middleground" index="164" instance=ExtResource( 7 )]
+[node name="Cell33" parent="Battlefield/Middleground" index="210" instance=ExtResource( 7 )]
 position = Vector2( 0, -688 )
 rotation = 0.523599
 
@@ -2197,7 +2790,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell39" parent="Battlefield/Middleground" index="165" instance=ExtResource( 7 )]
+[node name="Cell39" parent="Battlefield/Middleground" index="211" instance=ExtResource( 7 )]
 position = Vector2( -50, -602 )
 rotation = 0.523599
 
@@ -2210,7 +2803,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell46" parent="Battlefield/Middleground" index="166" instance=ExtResource( 7 )]
+[node name="Cell46" parent="Battlefield/Middleground" index="212" instance=ExtResource( 7 )]
 position = Vector2( -100, -516 )
 rotation = 0.523599
 
@@ -2223,7 +2816,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell65" parent="Battlefield/Middleground" index="167" instance=ExtResource( 7 )]
+[node name="Cell65" parent="Battlefield/Middleground" index="213" instance=ExtResource( 7 )]
 position = Vector2( -150, -430 )
 rotation = 0.523599
 
@@ -2236,7 +2829,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell70" parent="Battlefield/Middleground" index="168" instance=ExtResource( 7 )]
+[node name="Cell70" parent="Battlefield/Middleground" index="214" instance=ExtResource( 7 )]
 position = Vector2( -200, -344 )
 rotation = 0.523599
 
@@ -2249,7 +2842,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell86" parent="Battlefield/Middleground" index="169" instance=ExtResource( 7 )]
+[node name="Cell86" parent="Battlefield/Middleground" index="215" instance=ExtResource( 7 )]
 position = Vector2( -250, -258 )
 rotation = 0.523599
 
@@ -2262,7 +2855,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell91" parent="Battlefield/Middleground" index="170" instance=ExtResource( 7 )]
+[node name="Cell91" parent="Battlefield/Middleground" index="216" instance=ExtResource( 7 )]
 position = Vector2( -300, -172 )
 rotation = 0.523599
 
@@ -2275,7 +2868,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell106" parent="Battlefield/Middleground" index="171" instance=ExtResource( 7 )]
+[node name="Cell106" parent="Battlefield/Middleground" index="217" instance=ExtResource( 7 )]
 position = Vector2( -350, -86 )
 rotation = 0.523599
 
@@ -2288,7 +2881,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell115" parent="Battlefield/Middleground" index="172" instance=ExtResource( 7 )]
+[node name="Cell115" parent="Battlefield/Middleground" index="218" instance=ExtResource( 7 )]
 position = Vector2( -400, 0 )
 rotation = 0.523599
 
@@ -2301,7 +2894,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell125" parent="Battlefield/Middleground" index="173" instance=ExtResource( 7 )]
+[node name="Cell125" parent="Battlefield/Middleground" index="219" instance=ExtResource( 7 )]
 position = Vector2( -350, 86 )
 rotation = 0.523599
 
@@ -2314,7 +2907,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell141" parent="Battlefield/Middleground" index="174" instance=ExtResource( 7 )]
+[node name="Cell141" parent="Battlefield/Middleground" index="220" instance=ExtResource( 7 )]
 position = Vector2( -300, 172 )
 rotation = 0.523599
 
@@ -2327,7 +2920,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell148" parent="Battlefield/Middleground" index="175" instance=ExtResource( 7 )]
+[node name="Cell148" parent="Battlefield/Middleground" index="221" instance=ExtResource( 7 )]
 position = Vector2( -250, 258 )
 rotation = 0.523599
 
@@ -2340,7 +2933,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell155" parent="Battlefield/Middleground" index="176" instance=ExtResource( 7 )]
+[node name="Cell155" parent="Battlefield/Middleground" index="222" instance=ExtResource( 7 )]
 position = Vector2( -200, 344 )
 rotation = 0.523599
 
@@ -2353,7 +2946,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell167" parent="Battlefield/Middleground" index="177" instance=ExtResource( 7 )]
+[node name="Cell167" parent="Battlefield/Middleground" index="223" instance=ExtResource( 7 )]
 position = Vector2( -150, 430 )
 rotation = 0.523599
 
@@ -2366,7 +2959,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell185" parent="Battlefield/Middleground" index="178" instance=ExtResource( 7 )]
+[node name="Cell185" parent="Battlefield/Middleground" index="224" instance=ExtResource( 7 )]
 position = Vector2( -100, 516 )
 rotation = 0.523599
 
@@ -2379,7 +2972,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell197" parent="Battlefield/Middleground" index="179" instance=ExtResource( 7 )]
+[node name="Cell197" parent="Battlefield/Middleground" index="225" instance=ExtResource( 7 )]
 position = Vector2( -50, 602 )
 rotation = 0.523599
 
@@ -2392,7 +2985,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell201" parent="Battlefield/Middleground" index="180" instance=ExtResource( 7 )]
+[node name="Cell201" parent="Battlefield/Middleground" index="226" instance=ExtResource( 7 )]
 position = Vector2( 0, 688 )
 rotation = 0.523599
 
@@ -2405,7 +2998,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell211" parent="Battlefield/Middleground" index="181" instance=ExtResource( 7 )]
+[node name="Cell211" parent="Battlefield/Middleground" index="227" instance=ExtResource( 7 )]
 position = Vector2( 50, 774 )
 rotation = 0.523599
 
@@ -2418,7 +3011,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell222" parent="Battlefield/Middleground" index="182" instance=ExtResource( 7 )]
+[node name="Cell222" parent="Battlefield/Middleground" index="228" instance=ExtResource( 7 )]
 position = Vector2( 100, 860 )
 rotation = 0.523599
 
@@ -2431,7 +3024,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell241" parent="Battlefield/Middleground" index="183" instance=ExtResource( 7 )]
+[node name="Cell371" parent="Battlefield/Middleground" index="229" instance=ExtResource( 7 )]
+position = Vector2( 50, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell371" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell241" parent="Battlefield/Middleground" index="230" instance=ExtResource( 7 )]
 position = Vector2( 700, 0 )
 rotation = 0.523599
 
@@ -2444,7 +3050,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell6" parent="Battlefield/Middleground" index="184" instance=ExtResource( 7 )]
+[node name="Cell6" parent="Battlefield/Middleground" index="231" instance=ExtResource( 7 )]
 position = Vector2( 200, -860 )
 rotation = 0.523599
 
@@ -2457,7 +3063,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell246" parent="Battlefield/Middleground" index="185" instance=ExtResource( 7 )]
+[node name="Cell339" parent="Battlefield/Middleground" index="232" instance=ExtResource( 7 )]
+position = Vector2( 250, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell339" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell246" parent="Battlefield/Middleground" index="233" instance=ExtResource( 7 )]
 position = Vector2( 650, -86 )
 rotation = 0.523599
 
@@ -2470,7 +3089,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell263" parent="Battlefield/Middleground" index="186" instance=ExtResource( 7 )]
+[node name="Cell263" parent="Battlefield/Middleground" index="234" instance=ExtResource( 7 )]
 position = Vector2( 600, -172 )
 rotation = 0.523599
 
@@ -2483,7 +3102,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell282" parent="Battlefield/Middleground" index="187" instance=ExtResource( 7 )]
+[node name="Cell282" parent="Battlefield/Middleground" index="235" instance=ExtResource( 7 )]
 position = Vector2( 550, -258 )
 rotation = 0.523599
 
@@ -2496,7 +3115,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell295" parent="Battlefield/Middleground" index="188" instance=ExtResource( 7 )]
+[node name="Cell295" parent="Battlefield/Middleground" index="236" instance=ExtResource( 7 )]
 position = Vector2( 500, -344 )
 rotation = 0.523599
 
@@ -2509,7 +3128,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell304" parent="Battlefield/Middleground" index="189" instance=ExtResource( 7 )]
+[node name="Cell304" parent="Battlefield/Middleground" index="237" instance=ExtResource( 7 )]
 position = Vector2( 450, -430 )
 rotation = 0.523599
 
@@ -2522,7 +3141,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell312" parent="Battlefield/Middleground" index="190" instance=ExtResource( 7 )]
+[node name="Cell312" parent="Battlefield/Middleground" index="238" instance=ExtResource( 7 )]
 position = Vector2( 400, -516 )
 rotation = 0.523599
 
@@ -2535,7 +3154,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell319" parent="Battlefield/Middleground" index="191" instance=ExtResource( 7 )]
+[node name="Cell319" parent="Battlefield/Middleground" index="239" instance=ExtResource( 7 )]
 position = Vector2( 400, 516 )
 rotation = 0.523599
 
@@ -2548,7 +3167,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell307" parent="Battlefield/Middleground" index="192" instance=ExtResource( 7 )]
+[node name="Cell307" parent="Battlefield/Middleground" index="240" instance=ExtResource( 7 )]
 position = Vector2( 450, 430 )
 rotation = 0.523599
 
@@ -2561,7 +3180,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell299" parent="Battlefield/Middleground" index="193" instance=ExtResource( 7 )]
+[node name="Cell299" parent="Battlefield/Middleground" index="241" instance=ExtResource( 7 )]
 position = Vector2( 500, 344 )
 rotation = 0.523599
 
@@ -2574,7 +3193,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell289" parent="Battlefield/Middleground" index="194" instance=ExtResource( 7 )]
+[node name="Cell289" parent="Battlefield/Middleground" index="242" instance=ExtResource( 7 )]
 position = Vector2( 550, 258 )
 rotation = 0.523599
 
@@ -2587,7 +3206,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell275" parent="Battlefield/Middleground" index="195" instance=ExtResource( 7 )]
+[node name="Cell275" parent="Battlefield/Middleground" index="243" instance=ExtResource( 7 )]
 position = Vector2( 600, 172 )
 rotation = 0.523599
 
@@ -2600,7 +3219,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell255" parent="Battlefield/Middleground" index="196" instance=ExtResource( 7 )]
+[node name="Cell255" parent="Battlefield/Middleground" index="244" instance=ExtResource( 7 )]
 position = Vector2( 650, 86 )
 rotation = 0.523599
 
@@ -2613,7 +3232,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell17" parent="Battlefield/Middleground" index="197" instance=ExtResource( 7 )]
+[node name="Cell17" parent="Battlefield/Middleground" index="245" instance=ExtResource( 7 )]
 position = Vector2( 150, -774 )
 rotation = 0.523599
 
@@ -2626,7 +3245,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell27" parent="Battlefield/Middleground" index="198" instance=ExtResource( 7 )]
+[node name="Cell27" parent="Battlefield/Middleground" index="246" instance=ExtResource( 7 )]
 position = Vector2( 100, -688 )
 rotation = 0.523599
 
@@ -2639,7 +3258,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell42" parent="Battlefield/Middleground" index="199" instance=ExtResource( 7 )]
+[node name="Cell42" parent="Battlefield/Middleground" index="247" instance=ExtResource( 7 )]
 position = Vector2( 50, -602 )
 rotation = 0.523599
 
@@ -2652,7 +3271,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell51" parent="Battlefield/Middleground" index="200" instance=ExtResource( 7 )]
+[node name="Cell51" parent="Battlefield/Middleground" index="248" instance=ExtResource( 7 )]
 position = Vector2( 0, -516 )
 rotation = 0.523599
 
@@ -2665,7 +3284,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell62" parent="Battlefield/Middleground" index="201" instance=ExtResource( 7 )]
+[node name="Cell62" parent="Battlefield/Middleground" index="249" instance=ExtResource( 7 )]
 position = Vector2( -50, -430 )
 rotation = 0.523599
 
@@ -2678,7 +3297,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell69" parent="Battlefield/Middleground" index="202" instance=ExtResource( 7 )]
+[node name="Cell69" parent="Battlefield/Middleground" index="250" instance=ExtResource( 7 )]
 position = Vector2( -100, -344 )
 rotation = 0.523599
 
@@ -2691,7 +3310,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell80" parent="Battlefield/Middleground" index="203" instance=ExtResource( 7 )]
+[node name="Cell80" parent="Battlefield/Middleground" index="251" instance=ExtResource( 7 )]
 position = Vector2( -150, -258 )
 rotation = 0.523599
 
@@ -2704,7 +3323,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell97" parent="Battlefield/Middleground" index="204" instance=ExtResource( 7 )]
+[node name="Cell97" parent="Battlefield/Middleground" index="252" instance=ExtResource( 7 )]
 position = Vector2( -200, -172 )
 rotation = 0.523599
 
@@ -2717,7 +3336,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell109" parent="Battlefield/Middleground" index="205" instance=ExtResource( 7 )]
+[node name="Cell109" parent="Battlefield/Middleground" index="253" instance=ExtResource( 7 )]
 position = Vector2( -250, -86 )
 rotation = 0.523599
 
@@ -2730,7 +3349,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell112" parent="Battlefield/Middleground" index="206" instance=ExtResource( 7 )]
+[node name="Cell112" parent="Battlefield/Middleground" index="254" instance=ExtResource( 7 )]
 position = Vector2( -300, 0 )
 rotation = 0.523599
 
@@ -2743,7 +3362,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell123" parent="Battlefield/Middleground" index="207" instance=ExtResource( 7 )]
+[node name="Cell123" parent="Battlefield/Middleground" index="255" instance=ExtResource( 7 )]
 position = Vector2( -250, 86 )
 rotation = 0.523599
 
@@ -2756,7 +3375,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell143" parent="Battlefield/Middleground" index="208" instance=ExtResource( 7 )]
+[node name="Cell143" parent="Battlefield/Middleground" index="256" instance=ExtResource( 7 )]
 position = Vector2( -200, 172 )
 rotation = 0.523599
 
@@ -2769,7 +3388,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell145" parent="Battlefield/Middleground" index="209" instance=ExtResource( 7 )]
+[node name="Cell145" parent="Battlefield/Middleground" index="257" instance=ExtResource( 7 )]
 position = Vector2( -150, 258 )
 rotation = 0.523599
 
@@ -2782,7 +3401,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell156" parent="Battlefield/Middleground" index="210" instance=ExtResource( 7 )]
+[node name="Cell156" parent="Battlefield/Middleground" index="258" instance=ExtResource( 7 )]
 position = Vector2( -100, 344 )
 rotation = 0.523599
 
@@ -2795,7 +3414,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell166" parent="Battlefield/Middleground" index="211" instance=ExtResource( 7 )]
+[node name="Cell166" parent="Battlefield/Middleground" index="259" instance=ExtResource( 7 )]
 position = Vector2( -50, 430 )
 rotation = 0.523599
 
@@ -2808,7 +3427,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell179" parent="Battlefield/Middleground" index="212" instance=ExtResource( 7 )]
+[node name="Cell179" parent="Battlefield/Middleground" index="260" instance=ExtResource( 7 )]
 position = Vector2( 0, 516 )
 rotation = 0.523599
 
@@ -2821,7 +3440,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell188" parent="Battlefield/Middleground" index="213" instance=ExtResource( 7 )]
+[node name="Cell188" parent="Battlefield/Middleground" index="261" instance=ExtResource( 7 )]
 position = Vector2( 50, 602 )
 rotation = 0.523599
 
@@ -2834,7 +3453,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell204" parent="Battlefield/Middleground" index="214" instance=ExtResource( 7 )]
+[node name="Cell204" parent="Battlefield/Middleground" index="262" instance=ExtResource( 7 )]
 position = Vector2( 100, 688 )
 rotation = 0.523599
 
@@ -2847,7 +3466,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell328" parent="Battlefield/Middleground" index="215" instance=ExtResource( 7 )]
+[node name="Cell328" parent="Battlefield/Middleground" index="263" instance=ExtResource( 7 )]
 position = Vector2( 450, 602 )
 rotation = 0.523599
 
@@ -2860,7 +3479,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell218" parent="Battlefield/Middleground" index="216" instance=ExtResource( 7 )]
+[node name="Cell218" parent="Battlefield/Middleground" index="264" instance=ExtResource( 7 )]
 position = Vector2( 150, 774 )
 rotation = 0.523599
 
@@ -2873,7 +3492,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell331" parent="Battlefield/Middleground" index="217" instance=ExtResource( 7 )]
+[node name="Cell331" parent="Battlefield/Middleground" index="265" instance=ExtResource( 7 )]
 position = Vector2( 500, 688 )
 rotation = 0.523599
 
@@ -2886,7 +3505,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell229" parent="Battlefield/Middleground" index="218" instance=ExtResource( 7 )]
+[node name="Cell229" parent="Battlefield/Middleground" index="266" instance=ExtResource( 7 )]
 position = Vector2( 200, 860 )
 rotation = 0.523599
 
@@ -2899,7 +3518,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell329" parent="Battlefield/Middleground" index="219" instance=ExtResource( 7 )]
+[node name="Cell372" parent="Battlefield/Middleground" index="267" instance=ExtResource( 7 )]
+position = Vector2( 150, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell372" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell329" parent="Battlefield/Middleground" index="268" instance=ExtResource( 7 )]
 position = Vector2( 550, 774 )
 rotation = 0.523599
 
@@ -2912,7 +3544,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell237" parent="Battlefield/Middleground" index="220" instance=ExtResource( 7 )]
+[node name="Cell237" parent="Battlefield/Middleground" index="269" instance=ExtResource( 7 )]
 position = Vector2( 800, 0 )
 rotation = 0.523599
 
@@ -2925,7 +3557,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell7" parent="Battlefield/Middleground" index="221" instance=ExtResource( 7 )]
+[node name="Cell7" parent="Battlefield/Middleground" index="270" instance=ExtResource( 7 )]
 position = Vector2( 300, -860 )
 rotation = 0.523599
 
@@ -2938,7 +3570,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell243" parent="Battlefield/Middleground" index="222" instance=ExtResource( 7 )]
+[node name="Cell340" parent="Battlefield/Middleground" index="271" instance=ExtResource( 7 )]
+position = Vector2( 350, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell340" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell243" parent="Battlefield/Middleground" index="272" instance=ExtResource( 7 )]
 position = Vector2( 750, -86 )
 rotation = 0.523599
 
@@ -2951,7 +3596,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell260" parent="Battlefield/Middleground" index="223" instance=ExtResource( 7 )]
+[node name="Cell260" parent="Battlefield/Middleground" index="273" instance=ExtResource( 7 )]
 position = Vector2( 700, -172 )
 rotation = 0.523599
 
@@ -2964,7 +3609,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell276" parent="Battlefield/Middleground" index="224" instance=ExtResource( 7 )]
+[node name="Cell276" parent="Battlefield/Middleground" index="274" instance=ExtResource( 7 )]
 position = Vector2( 650, -258 )
 rotation = 0.523599
 
@@ -2977,7 +3622,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell291" parent="Battlefield/Middleground" index="225" instance=ExtResource( 7 )]
+[node name="Cell291" parent="Battlefield/Middleground" index="275" instance=ExtResource( 7 )]
 position = Vector2( 600, -344 )
 rotation = 0.523599
 
@@ -2990,7 +3635,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell324" parent="Battlefield/Middleground" index="226" instance=ExtResource( 7 )]
+[node name="Cell324" parent="Battlefield/Middleground" index="276" instance=ExtResource( 7 )]
 position = Vector2( 450, -602 )
 rotation = 0.523599
 
@@ -3003,7 +3648,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell305" parent="Battlefield/Middleground" index="227" instance=ExtResource( 7 )]
+[node name="Cell305" parent="Battlefield/Middleground" index="277" instance=ExtResource( 7 )]
 position = Vector2( 550, -430 )
 rotation = 0.523599
 
@@ -3016,7 +3661,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell313" parent="Battlefield/Middleground" index="228" instance=ExtResource( 7 )]
+[node name="Cell313" parent="Battlefield/Middleground" index="278" instance=ExtResource( 7 )]
 position = Vector2( 500, -516 )
 rotation = 0.523599
 
@@ -3029,7 +3674,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell316" parent="Battlefield/Middleground" index="229" instance=ExtResource( 7 )]
+[node name="Cell316" parent="Battlefield/Middleground" index="279" instance=ExtResource( 7 )]
 position = Vector2( 500, 516 )
 rotation = 0.523599
 
@@ -3042,7 +3687,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell309" parent="Battlefield/Middleground" index="230" instance=ExtResource( 7 )]
+[node name="Cell309" parent="Battlefield/Middleground" index="280" instance=ExtResource( 7 )]
 position = Vector2( 550, 430 )
 rotation = 0.523599
 
@@ -3055,7 +3700,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell300" parent="Battlefield/Middleground" index="231" instance=ExtResource( 7 )]
+[node name="Cell300" parent="Battlefield/Middleground" index="281" instance=ExtResource( 7 )]
 position = Vector2( 600, 344 )
 rotation = 0.523599
 
@@ -3068,7 +3713,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell285" parent="Battlefield/Middleground" index="232" instance=ExtResource( 7 )]
+[node name="Cell285" parent="Battlefield/Middleground" index="282" instance=ExtResource( 7 )]
 position = Vector2( 650, 258 )
 rotation = 0.523599
 
@@ -3081,7 +3726,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell268" parent="Battlefield/Middleground" index="233" instance=ExtResource( 7 )]
+[node name="Cell268" parent="Battlefield/Middleground" index="283" instance=ExtResource( 7 )]
 position = Vector2( 700, 172 )
 rotation = 0.523599
 
@@ -3094,7 +3739,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell251" parent="Battlefield/Middleground" index="234" instance=ExtResource( 7 )]
+[node name="Cell251" parent="Battlefield/Middleground" index="284" instance=ExtResource( 7 )]
 position = Vector2( 750, 86 )
 rotation = 0.523599
 
@@ -3107,7 +3752,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell13" parent="Battlefield/Middleground" index="235" instance=ExtResource( 7 )]
+[node name="Cell13" parent="Battlefield/Middleground" index="285" instance=ExtResource( 7 )]
 position = Vector2( 250, -774 )
 rotation = 0.523599
 
@@ -3120,7 +3765,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell24" parent="Battlefield/Middleground" index="236" instance=ExtResource( 7 )]
+[node name="Cell24" parent="Battlefield/Middleground" index="286" instance=ExtResource( 7 )]
 position = Vector2( 200, -688 )
 rotation = 0.523599
 
@@ -3133,7 +3778,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell36" parent="Battlefield/Middleground" index="237" instance=ExtResource( 7 )]
+[node name="Cell36" parent="Battlefield/Middleground" index="287" instance=ExtResource( 7 )]
 position = Vector2( 150, -602 )
 rotation = 0.523599
 
@@ -3146,7 +3791,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell45" parent="Battlefield/Middleground" index="238" instance=ExtResource( 7 )]
+[node name="Cell45" parent="Battlefield/Middleground" index="288" instance=ExtResource( 7 )]
 position = Vector2( 100, -516 )
 rotation = 0.523599
 
@@ -3159,7 +3804,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell57" parent="Battlefield/Middleground" index="239" instance=ExtResource( 7 )]
+[node name="Cell57" parent="Battlefield/Middleground" index="289" instance=ExtResource( 7 )]
 position = Vector2( 50, -430 )
 rotation = 0.523599
 
@@ -3172,7 +3817,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell71" parent="Battlefield/Middleground" index="240" instance=ExtResource( 7 )]
+[node name="Cell71" parent="Battlefield/Middleground" index="290" instance=ExtResource( 7 )]
 position = Vector2( 0, -344 )
 rotation = 0.523599
 
@@ -3185,7 +3830,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell87" parent="Battlefield/Middleground" index="241" instance=ExtResource( 7 )]
+[node name="Cell87" parent="Battlefield/Middleground" index="291" instance=ExtResource( 7 )]
 position = Vector2( -50, -258 )
 rotation = 0.523599
 
@@ -3198,7 +3843,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell93" parent="Battlefield/Middleground" index="242" instance=ExtResource( 7 )]
+[node name="Cell93" parent="Battlefield/Middleground" index="292" instance=ExtResource( 7 )]
 position = Vector2( -100, -172 )
 rotation = 0.523599
 
@@ -3211,7 +3856,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell102" parent="Battlefield/Middleground" index="243" instance=ExtResource( 7 )]
+[node name="Cell102" parent="Battlefield/Middleground" index="293" instance=ExtResource( 7 )]
 position = Vector2( -150, -86 )
 rotation = 0.523599
 
@@ -3224,7 +3869,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell113" parent="Battlefield/Middleground" index="244" instance=ExtResource( 7 )]
+[node name="Cell113" parent="Battlefield/Middleground" index="294" instance=ExtResource( 7 )]
 position = Vector2( -200, 0 )
 rotation = 0.523599
 
@@ -3237,7 +3882,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell122" parent="Battlefield/Middleground" index="245" instance=ExtResource( 7 )]
+[node name="Cell122" parent="Battlefield/Middleground" index="295" instance=ExtResource( 7 )]
 position = Vector2( -150, 86 )
 rotation = 0.523599
 
@@ -3250,7 +3895,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell137" parent="Battlefield/Middleground" index="246" instance=ExtResource( 7 )]
+[node name="Cell137" parent="Battlefield/Middleground" index="296" instance=ExtResource( 7 )]
 position = Vector2( -100, 172 )
 rotation = 0.523599
 
@@ -3263,7 +3908,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell151" parent="Battlefield/Middleground" index="247" instance=ExtResource( 7 )]
+[node name="Cell151" parent="Battlefield/Middleground" index="297" instance=ExtResource( 7 )]
 position = Vector2( -50, 258 )
 rotation = 0.523599
 
@@ -3276,7 +3921,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell162" parent="Battlefield/Middleground" index="248" instance=ExtResource( 7 )]
+[node name="Cell162" parent="Battlefield/Middleground" index="298" instance=ExtResource( 7 )]
 position = Vector2( 0, 344 )
 rotation = 0.523599
 
@@ -3289,7 +3934,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell175" parent="Battlefield/Middleground" index="249" instance=ExtResource( 7 )]
+[node name="Cell175" parent="Battlefield/Middleground" index="299" instance=ExtResource( 7 )]
 position = Vector2( 50, 430 )
 rotation = 0.523599
 
@@ -3302,7 +3947,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell186" parent="Battlefield/Middleground" index="250" instance=ExtResource( 7 )]
+[node name="Cell186" parent="Battlefield/Middleground" index="300" instance=ExtResource( 7 )]
 position = Vector2( 100, 516 )
 rotation = 0.523599
 
@@ -3315,7 +3960,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell198" parent="Battlefield/Middleground" index="251" instance=ExtResource( 7 )]
+[node name="Cell198" parent="Battlefield/Middleground" index="301" instance=ExtResource( 7 )]
 position = Vector2( 150, 602 )
 rotation = 0.523599
 
@@ -3328,7 +3973,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell202" parent="Battlefield/Middleground" index="252" instance=ExtResource( 7 )]
+[node name="Cell202" parent="Battlefield/Middleground" index="302" instance=ExtResource( 7 )]
 position = Vector2( 200, 688 )
 rotation = 0.523599
 
@@ -3341,7 +3986,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell327" parent="Battlefield/Middleground" index="253" instance=ExtResource( 7 )]
+[node name="Cell327" parent="Battlefield/Middleground" index="303" instance=ExtResource( 7 )]
 position = Vector2( 550, 602 )
 rotation = 0.523599
 
@@ -3354,7 +3999,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell216" parent="Battlefield/Middleground" index="254" instance=ExtResource( 7 )]
+[node name="Cell216" parent="Battlefield/Middleground" index="304" instance=ExtResource( 7 )]
 position = Vector2( 250, 774 )
 rotation = 0.523599
 
@@ -3367,7 +4012,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell330" parent="Battlefield/Middleground" index="255" instance=ExtResource( 7 )]
+[node name="Cell330" parent="Battlefield/Middleground" index="305" instance=ExtResource( 7 )]
 position = Vector2( 600, 688 )
 rotation = 0.523599
 
@@ -3380,7 +4025,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell227" parent="Battlefield/Middleground" index="256" instance=ExtResource( 7 )]
+[node name="Cell227" parent="Battlefield/Middleground" index="306" instance=ExtResource( 7 )]
 position = Vector2( 300, 860 )
 rotation = 0.523599
 
@@ -3393,7 +4038,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell235" parent="Battlefield/Middleground" index="257" instance=ExtResource( 7 )]
+[node name="Cell373" parent="Battlefield/Middleground" index="307" instance=ExtResource( 7 )]
+position = Vector2( 250, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell373" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell235" parent="Battlefield/Middleground" index="308" instance=ExtResource( 7 )]
 position = Vector2( 900, 0 )
 rotation = 0.523599
 
@@ -3406,7 +4064,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell8" parent="Battlefield/Middleground" index="258" instance=ExtResource( 7 )]
+[node name="Cell8" parent="Battlefield/Middleground" index="309" instance=ExtResource( 7 )]
 position = Vector2( 400, -860 )
 rotation = 0.523599
 
@@ -3419,7 +4077,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell250" parent="Battlefield/Middleground" index="259" instance=ExtResource( 7 )]
+[node name="Cell341" parent="Battlefield/Middleground" index="310" instance=ExtResource( 7 )]
+position = Vector2( 450, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell341" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell250" parent="Battlefield/Middleground" index="311" instance=ExtResource( 7 )]
 position = Vector2( 850, -86 )
 rotation = 0.523599
 
@@ -3432,7 +4103,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell266" parent="Battlefield/Middleground" index="260" instance=ExtResource( 7 )]
+[node name="Cell266" parent="Battlefield/Middleground" index="312" instance=ExtResource( 7 )]
 position = Vector2( 800, -172 )
 rotation = 0.523599
 
@@ -3445,7 +4116,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell281" parent="Battlefield/Middleground" index="261" instance=ExtResource( 7 )]
+[node name="Cell281" parent="Battlefield/Middleground" index="313" instance=ExtResource( 7 )]
 position = Vector2( 750, -258 )
 rotation = 0.523599
 
@@ -3458,7 +4129,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell294" parent="Battlefield/Middleground" index="262" instance=ExtResource( 7 )]
+[node name="Cell294" parent="Battlefield/Middleground" index="314" instance=ExtResource( 7 )]
 position = Vector2( 700, -344 )
 rotation = 0.523599
 
@@ -3471,7 +4142,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell322" parent="Battlefield/Middleground" index="263" instance=ExtResource( 7 )]
+[node name="Cell322" parent="Battlefield/Middleground" index="315" instance=ExtResource( 7 )]
 position = Vector2( 550, -602 )
 rotation = 0.523599
 
@@ -3484,7 +4155,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell303" parent="Battlefield/Middleground" index="264" instance=ExtResource( 7 )]
+[node name="Cell303" parent="Battlefield/Middleground" index="316" instance=ExtResource( 7 )]
 position = Vector2( 650, -430 )
 rotation = 0.523599
 
@@ -3497,7 +4168,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell323" parent="Battlefield/Middleground" index="265" instance=ExtResource( 7 )]
+[node name="Cell323" parent="Battlefield/Middleground" index="317" instance=ExtResource( 7 )]
 position = Vector2( 500, -688 )
 rotation = 0.523599
 
@@ -3510,7 +4181,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell315" parent="Battlefield/Middleground" index="266" instance=ExtResource( 7 )]
+[node name="Cell315" parent="Battlefield/Middleground" index="318" instance=ExtResource( 7 )]
 position = Vector2( 600, -516 )
 rotation = 0.523599
 
@@ -3523,7 +4194,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell318" parent="Battlefield/Middleground" index="267" instance=ExtResource( 7 )]
+[node name="Cell318" parent="Battlefield/Middleground" index="319" instance=ExtResource( 7 )]
 position = Vector2( 600, 516 )
 rotation = 0.523599
 
@@ -3536,7 +4207,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell311" parent="Battlefield/Middleground" index="268" instance=ExtResource( 7 )]
+[node name="Cell311" parent="Battlefield/Middleground" index="320" instance=ExtResource( 7 )]
 position = Vector2( 650, 430 )
 rotation = 0.523599
 
@@ -3549,7 +4220,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell298" parent="Battlefield/Middleground" index="269" instance=ExtResource( 7 )]
+[node name="Cell298" parent="Battlefield/Middleground" index="321" instance=ExtResource( 7 )]
 position = Vector2( 700, 344 )
 rotation = 0.523599
 
@@ -3562,7 +4233,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell288" parent="Battlefield/Middleground" index="270" instance=ExtResource( 7 )]
+[node name="Cell288" parent="Battlefield/Middleground" index="322" instance=ExtResource( 7 )]
 position = Vector2( 750, 258 )
 rotation = 0.523599
 
@@ -3575,7 +4246,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell273" parent="Battlefield/Middleground" index="271" instance=ExtResource( 7 )]
+[node name="Cell273" parent="Battlefield/Middleground" index="323" instance=ExtResource( 7 )]
 position = Vector2( 800, 172 )
 rotation = 0.523599
 
@@ -3588,7 +4259,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell258" parent="Battlefield/Middleground" index="272" instance=ExtResource( 7 )]
+[node name="Cell258" parent="Battlefield/Middleground" index="324" instance=ExtResource( 7 )]
 position = Vector2( 850, 86 )
 rotation = 0.523599
 
@@ -3601,7 +4272,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell22" parent="Battlefield/Middleground" index="273" instance=ExtResource( 7 )]
+[node name="Cell22" parent="Battlefield/Middleground" index="325" instance=ExtResource( 7 )]
 position = Vector2( 350, -774 )
 rotation = 0.523599
 
@@ -3614,7 +4285,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell25" parent="Battlefield/Middleground" index="274" instance=ExtResource( 7 )]
+[node name="Cell25" parent="Battlefield/Middleground" index="326" instance=ExtResource( 7 )]
 position = Vector2( 300, -688 )
 rotation = 0.523599
 
@@ -3627,7 +4298,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell40" parent="Battlefield/Middleground" index="275" instance=ExtResource( 7 )]
+[node name="Cell40" parent="Battlefield/Middleground" index="327" instance=ExtResource( 7 )]
 position = Vector2( 250, -602 )
 rotation = 0.523599
 
@@ -3640,7 +4311,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell47" parent="Battlefield/Middleground" index="276" instance=ExtResource( 7 )]
+[node name="Cell47" parent="Battlefield/Middleground" index="328" instance=ExtResource( 7 )]
 position = Vector2( 200, -516 )
 rotation = 0.523599
 
@@ -3653,7 +4324,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell59" parent="Battlefield/Middleground" index="277" instance=ExtResource( 7 )]
+[node name="Cell59" parent="Battlefield/Middleground" index="329" instance=ExtResource( 7 )]
 position = Vector2( 150, -430 )
 rotation = 0.523599
 
@@ -3666,7 +4337,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell67" parent="Battlefield/Middleground" index="278" instance=ExtResource( 7 )]
+[node name="Cell67" parent="Battlefield/Middleground" index="330" instance=ExtResource( 7 )]
 position = Vector2( 100, -344 )
 rotation = 0.523599
 
@@ -3679,7 +4350,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell81" parent="Battlefield/Middleground" index="279" instance=ExtResource( 7 )]
+[node name="Cell81" parent="Battlefield/Middleground" index="331" instance=ExtResource( 7 )]
 position = Vector2( 50, -258 )
 rotation = 0.523599
 
@@ -3692,7 +4363,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell98" parent="Battlefield/Middleground" index="280" instance=ExtResource( 7 )]
+[node name="Cell98" parent="Battlefield/Middleground" index="332" instance=ExtResource( 7 )]
 position = Vector2( 0, -172 )
 rotation = 0.523599
 
@@ -3705,7 +4376,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell110" parent="Battlefield/Middleground" index="281" instance=ExtResource( 7 )]
+[node name="Cell110" parent="Battlefield/Middleground" index="333" instance=ExtResource( 7 )]
 position = Vector2( -50, -86 )
 rotation = 0.523599
 
@@ -3718,7 +4389,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell117" parent="Battlefield/Middleground" index="282" instance=ExtResource( 7 )]
+[node name="Cell117" parent="Battlefield/Middleground" index="334" instance=ExtResource( 7 )]
 position = Vector2( -100, 0 )
 rotation = 0.523599
 
@@ -3731,7 +4402,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell127" parent="Battlefield/Middleground" index="283" instance=ExtResource( 7 )]
+[node name="Cell127" parent="Battlefield/Middleground" index="335" instance=ExtResource( 7 )]
 position = Vector2( -50, 86 )
 rotation = 0.523599
 
@@ -3744,7 +4415,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell133" parent="Battlefield/Middleground" index="284" instance=ExtResource( 7 )]
+[node name="Cell133" parent="Battlefield/Middleground" index="336" instance=ExtResource( 7 )]
 position = Vector2( 0, 172 )
 rotation = 0.523599
 
@@ -3757,7 +4428,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell144" parent="Battlefield/Middleground" index="285" instance=ExtResource( 7 )]
+[node name="Cell144" parent="Battlefield/Middleground" index="337" instance=ExtResource( 7 )]
 position = Vector2( 50, 258 )
 rotation = 0.523599
 
@@ -3770,7 +4441,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell157" parent="Battlefield/Middleground" index="286" instance=ExtResource( 7 )]
+[node name="Cell157" parent="Battlefield/Middleground" index="338" instance=ExtResource( 7 )]
 position = Vector2( 100, 344 )
 rotation = 0.523599
 
@@ -3783,7 +4454,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell169" parent="Battlefield/Middleground" index="287" instance=ExtResource( 7 )]
+[node name="Cell169" parent="Battlefield/Middleground" index="339" instance=ExtResource( 7 )]
 position = Vector2( 150, 430 )
 rotation = 0.523599
 
@@ -3796,7 +4467,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell178" parent="Battlefield/Middleground" index="288" instance=ExtResource( 7 )]
+[node name="Cell178" parent="Battlefield/Middleground" index="340" instance=ExtResource( 7 )]
 position = Vector2( 200, 516 )
 rotation = 0.523599
 
@@ -3809,7 +4480,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell195" parent="Battlefield/Middleground" index="289" instance=ExtResource( 7 )]
+[node name="Cell195" parent="Battlefield/Middleground" index="341" instance=ExtResource( 7 )]
 position = Vector2( 250, 602 )
 rotation = 0.523599
 
@@ -3822,7 +4493,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell199" parent="Battlefield/Middleground" index="290" instance=ExtResource( 7 )]
+[node name="Cell199" parent="Battlefield/Middleground" index="342" instance=ExtResource( 7 )]
 position = Vector2( 300, 688 )
 rotation = 0.523599
 
@@ -3835,7 +4506,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell326" parent="Battlefield/Middleground" index="291" instance=ExtResource( 7 )]
+[node name="Cell326" parent="Battlefield/Middleground" index="343" instance=ExtResource( 7 )]
 position = Vector2( 650, 602 )
 rotation = 0.523599
 
@@ -3848,7 +4519,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell212" parent="Battlefield/Middleground" index="292" instance=ExtResource( 7 )]
+[node name="Cell212" parent="Battlefield/Middleground" index="344" instance=ExtResource( 7 )]
 position = Vector2( 350, 774 )
 rotation = 0.523599
 
@@ -3861,7 +4532,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell221" parent="Battlefield/Middleground" index="293" instance=ExtResource( 7 )]
+[node name="Cell221" parent="Battlefield/Middleground" index="345" instance=ExtResource( 7 )]
 position = Vector2( 400, 860 )
 rotation = 0.523599
 
@@ -3874,7 +4545,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell232" parent="Battlefield/Middleground" index="294" instance=ExtResource( 7 )]
+[node name="Cell374" parent="Battlefield/Middleground" index="346" instance=ExtResource( 7 )]
+position = Vector2( 350, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell374" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell232" parent="Battlefield/Middleground" index="347" instance=ExtResource( 7 )]
 position = Vector2( 1000, 0 )
 rotation = 0.523599
 
@@ -3887,7 +4571,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell9" parent="Battlefield/Middleground" index="295" instance=ExtResource( 7 )]
+[node name="Cell343" parent="Battlefield/Middleground" index="348" instance=ExtResource( 7 )]
+position = Vector2( 1100, 0 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell343" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell9" parent="Battlefield/Middleground" index="349" instance=ExtResource( 7 )]
 position = Vector2( 500, -860 )
 rotation = 0.523599
 
@@ -3900,7 +4597,33 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell245" parent="Battlefield/Middleground" index="296" instance=ExtResource( 7 )]
+[node name="Cell344" parent="Battlefield/Middleground" index="350" instance=ExtResource( 7 )]
+position = Vector2( 600, -860 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell344" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell342" parent="Battlefield/Middleground" index="351" instance=ExtResource( 7 )]
+position = Vector2( 550, -946 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell342" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell245" parent="Battlefield/Middleground" index="352" instance=ExtResource( 7 )]
 position = Vector2( 950, -86 )
 rotation = 0.523599
 
@@ -3913,7 +4636,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell262" parent="Battlefield/Middleground" index="297" instance=ExtResource( 7 )]
+[node name="Cell345" parent="Battlefield/Middleground" index="353" instance=ExtResource( 7 )]
+position = Vector2( 1050, -86 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell345" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell262" parent="Battlefield/Middleground" index="354" instance=ExtResource( 7 )]
 position = Vector2( 900, -172 )
 rotation = 0.523599
 
@@ -3926,7 +4662,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell278" parent="Battlefield/Middleground" index="298" instance=ExtResource( 7 )]
+[node name="Cell346" parent="Battlefield/Middleground" index="355" instance=ExtResource( 7 )]
+position = Vector2( 1000, -172 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell346" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell278" parent="Battlefield/Middleground" index="356" instance=ExtResource( 7 )]
 position = Vector2( 850, -258 )
 rotation = 0.523599
 
@@ -3939,7 +4688,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell290" parent="Battlefield/Middleground" index="299" instance=ExtResource( 7 )]
+[node name="Cell347" parent="Battlefield/Middleground" index="357" instance=ExtResource( 7 )]
+position = Vector2( 950, -258 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell347" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell290" parent="Battlefield/Middleground" index="358" instance=ExtResource( 7 )]
 position = Vector2( 800, -344 )
 rotation = 0.523599
 
@@ -3952,7 +4714,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell325" parent="Battlefield/Middleground" index="300" instance=ExtResource( 7 )]
+[node name="Cell348" parent="Battlefield/Middleground" index="359" instance=ExtResource( 7 )]
+position = Vector2( 900, -344 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell348" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell325" parent="Battlefield/Middleground" index="360" instance=ExtResource( 7 )]
 position = Vector2( 650, -602 )
 rotation = 0.523599
 
@@ -3965,7 +4740,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell306" parent="Battlefield/Middleground" index="301" instance=ExtResource( 7 )]
+[node name="Cell349" parent="Battlefield/Middleground" index="361" instance=ExtResource( 7 )]
+position = Vector2( 750, -602 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell349" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell306" parent="Battlefield/Middleground" index="362" instance=ExtResource( 7 )]
 position = Vector2( 750, -430 )
 rotation = 0.523599
 
@@ -3978,7 +4766,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell320" parent="Battlefield/Middleground" index="302" instance=ExtResource( 7 )]
+[node name="Cell350" parent="Battlefield/Middleground" index="363" instance=ExtResource( 7 )]
+position = Vector2( 850, -430 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell350" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell320" parent="Battlefield/Middleground" index="364" instance=ExtResource( 7 )]
 position = Vector2( 600, -688 )
 rotation = 0.523599
 
@@ -3991,7 +4792,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell314" parent="Battlefield/Middleground" index="303" instance=ExtResource( 7 )]
+[node name="Cell351" parent="Battlefield/Middleground" index="365" instance=ExtResource( 7 )]
+position = Vector2( 700, -688 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell351" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell314" parent="Battlefield/Middleground" index="366" instance=ExtResource( 7 )]
 position = Vector2( 700, -516 )
 rotation = 0.523599
 
@@ -4004,7 +4818,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell321" parent="Battlefield/Middleground" index="304" instance=ExtResource( 7 )]
+[node name="Cell352" parent="Battlefield/Middleground" index="367" instance=ExtResource( 7 )]
+position = Vector2( 800, -516 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell352" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell321" parent="Battlefield/Middleground" index="368" instance=ExtResource( 7 )]
 position = Vector2( 550, -774 )
 rotation = 0.523599
 
@@ -4017,7 +4844,20 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell317" parent="Battlefield/Middleground" index="305" instance=ExtResource( 7 )]
+[node name="Cell353" parent="Battlefield/Middleground" index="369" instance=ExtResource( 7 )]
+position = Vector2( 650, -774 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell353" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
+[node name="Cell317" parent="Battlefield/Middleground" index="370" instance=ExtResource( 7 )]
 position = Vector2( 700, 516 )
 rotation = 0.523599
 
@@ -4030,7 +4870,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell310" parent="Battlefield/Middleground" index="306" instance=ExtResource( 7 )]
+[node name="Cell310" parent="Battlefield/Middleground" index="371" instance=ExtResource( 7 )]
 position = Vector2( 750, 430 )
 rotation = 0.523599
 
@@ -4043,7 +4883,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell301" parent="Battlefield/Middleground" index="307" instance=ExtResource( 7 )]
+[node name="Cell301" parent="Battlefield/Middleground" index="372" instance=ExtResource( 7 )]
 position = Vector2( 800, 344 )
 rotation = 0.523599
 
@@ -4056,7 +4896,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell284" parent="Battlefield/Middleground" index="308" instance=ExtResource( 7 )]
+[node name="Cell284" parent="Battlefield/Middleground" index="373" instance=ExtResource( 7 )]
 position = Vector2( 850, 258 )
 rotation = 0.523599
 
@@ -4069,7 +4909,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell270" parent="Battlefield/Middleground" index="309" instance=ExtResource( 7 )]
+[node name="Cell270" parent="Battlefield/Middleground" index="374" instance=ExtResource( 7 )]
 position = Vector2( 900, 172 )
 rotation = 0.523599
 
@@ -4082,7 +4922,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell254" parent="Battlefield/Middleground" index="310" instance=ExtResource( 7 )]
+[node name="Cell254" parent="Battlefield/Middleground" index="375" instance=ExtResource( 7 )]
 position = Vector2( 950, 86 )
 rotation = 0.523599
 
@@ -4095,7 +4935,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell16" parent="Battlefield/Middleground" index="311" instance=ExtResource( 7 )]
+[node name="Cell16" parent="Battlefield/Middleground" index="376" instance=ExtResource( 7 )]
 position = Vector2( 450, -774 )
 rotation = 0.523599
 
@@ -4108,7 +4948,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell29" parent="Battlefield/Middleground" index="312" instance=ExtResource( 7 )]
+[node name="Cell29" parent="Battlefield/Middleground" index="377" instance=ExtResource( 7 )]
 position = Vector2( 400, -688 )
 rotation = 0.523599
 
@@ -4121,7 +4961,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell43" parent="Battlefield/Middleground" index="313" instance=ExtResource( 7 )]
+[node name="Cell43" parent="Battlefield/Middleground" index="378" instance=ExtResource( 7 )]
 position = Vector2( 350, -602 )
 rotation = 0.523599
 
@@ -4134,7 +4974,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell55" parent="Battlefield/Middleground" index="314" instance=ExtResource( 7 )]
+[node name="Cell55" parent="Battlefield/Middleground" index="379" instance=ExtResource( 7 )]
 position = Vector2( 300, -516 )
 rotation = 0.523599
 
@@ -4147,7 +4987,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell56" parent="Battlefield/Middleground" index="315" instance=ExtResource( 7 )]
+[node name="Cell56" parent="Battlefield/Middleground" index="380" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
@@ -4160,7 +5000,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell73" parent="Battlefield/Middleground" index="316" instance=ExtResource( 7 )]
+[node name="Cell73" parent="Battlefield/Middleground" index="381" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
 
@@ -4173,7 +5013,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell84" parent="Battlefield/Middleground" index="317" instance=ExtResource( 7 )]
+[node name="Cell84" parent="Battlefield/Middleground" index="382" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
 
@@ -4186,7 +5026,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell99" parent="Battlefield/Middleground" index="318" instance=ExtResource( 7 )]
+[node name="Cell99" parent="Battlefield/Middleground" index="383" instance=ExtResource( 7 )]
 position = Vector2( 100, -172 )
 rotation = 0.523599
 
@@ -4199,7 +5039,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell100" parent="Battlefield/Middleground" index="319" instance=ExtResource( 7 )]
+[node name="Cell100" parent="Battlefield/Middleground" index="384" instance=ExtResource( 7 )]
 position = Vector2( 50, -86 )
 rotation = 0.523599
 
@@ -4212,7 +5052,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell121" parent="Battlefield/Middleground" index="320" instance=ExtResource( 7 )]
+[node name="Cell121" parent="Battlefield/Middleground" index="385" instance=ExtResource( 7 )]
 rotation = 0.523599
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell121" index="3"]
@@ -4224,7 +5064,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell131" parent="Battlefield/Middleground" index="321" instance=ExtResource( 7 )]
+[node name="Cell131" parent="Battlefield/Middleground" index="386" instance=ExtResource( 7 )]
 position = Vector2( 50, 86 )
 rotation = 0.523599
 
@@ -4237,7 +5077,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell139" parent="Battlefield/Middleground" index="322" instance=ExtResource( 7 )]
+[node name="Cell139" parent="Battlefield/Middleground" index="387" instance=ExtResource( 7 )]
 position = Vector2( 100, 172 )
 rotation = 0.523599
 
@@ -4250,7 +5090,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell153" parent="Battlefield/Middleground" index="323" instance=ExtResource( 7 )]
+[node name="Cell153" parent="Battlefield/Middleground" index="388" instance=ExtResource( 7 )]
 position = Vector2( 150, 258 )
 rotation = 0.523599
 
@@ -4263,7 +5103,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell164" parent="Battlefield/Middleground" index="324" instance=ExtResource( 7 )]
+[node name="Cell164" parent="Battlefield/Middleground" index="389" instance=ExtResource( 7 )]
 position = Vector2( 200, 344 )
 rotation = 0.523599
 
@@ -4276,7 +5116,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell172" parent="Battlefield/Middleground" index="325" instance=ExtResource( 7 )]
+[node name="Cell172" parent="Battlefield/Middleground" index="390" instance=ExtResource( 7 )]
 position = Vector2( 250, 430 )
 rotation = 0.523599
 
@@ -4289,7 +5129,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell181" parent="Battlefield/Middleground" index="326" instance=ExtResource( 7 )]
+[node name="Cell181" parent="Battlefield/Middleground" index="391" instance=ExtResource( 7 )]
 position = Vector2( 300, 516 )
 rotation = 0.523599
 
@@ -4302,7 +5142,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell192" parent="Battlefield/Middleground" index="327" instance=ExtResource( 7 )]
+[node name="Cell192" parent="Battlefield/Middleground" index="392" instance=ExtResource( 7 )]
 position = Vector2( 350, 602 )
 rotation = 0.523599
 
@@ -4315,7 +5155,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell203" parent="Battlefield/Middleground" index="328" instance=ExtResource( 7 )]
+[node name="Cell203" parent="Battlefield/Middleground" index="393" instance=ExtResource( 7 )]
 position = Vector2( 400, 688 )
 rotation = 0.523599
 
@@ -4328,7 +5168,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell217" parent="Battlefield/Middleground" index="329" instance=ExtResource( 7 )]
+[node name="Cell217" parent="Battlefield/Middleground" index="394" instance=ExtResource( 7 )]
 position = Vector2( 450, 774 )
 rotation = 0.523599
 
@@ -4341,7 +5181,7 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
-[node name="Cell228" parent="Battlefield/Middleground" index="330" instance=ExtResource( 7 )]
+[node name="Cell228" parent="Battlefield/Middleground" index="395" instance=ExtResource( 7 )]
 position = Vector2( 500, 860 )
 rotation = 0.523599
 
@@ -4354,31 +5194,43 @@ center_offset = Vector2( 0, 0 )
 radius = 57
 sides = 6.0
 
+[node name="Cell375" parent="Battlefield/Middleground" index="396" instance=ExtResource( 7 )]
+position = Vector2( 450, 947 )
+rotation = 0.523599
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Cell375" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+radius = 57
+sides = 6.0
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( 0, 860 )
-rotation = -1.5708
-controls = "joy1"
+position = Vector2( -950, -550 )
+rotation = 0.523599
 species_template = ExtResource( 9 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 0, -860 )
-rotation = 1.5708
+position = Vector2( 950, 550 )
+rotation = -2.61799
 controls = "joy2"
 species_template = ExtResource( 10 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
-position = Vector2( 750, 430 )
-rotation = -2.61799
-controls = "joy3"
+position = Vector2( -950, 550 )
+rotation = -0.523599
+controls = "joy2"
 species_template = ExtResource( 11 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 8 )]
-position = Vector2( -750, -430 )
-rotation = 0.523599
-controls = "joy4"
+position = Vector2( 950, -550 )
+rotation = 2.61799
+controls = "joy2"
 species_template = ExtResource( 12 )
 cpu = true
 

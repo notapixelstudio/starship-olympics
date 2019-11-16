@@ -110,16 +110,18 @@ enabled = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.196078 )
+modulate = Color( 1, 1, 1, 0.0784314 )
 scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 7 )
 
 [node name="SpriteFilled" type="Sprite" parent="."]
 visible = false
+self_modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 1 )
 anims/Flash = SubResource( 2 )
+
 [connection signal="changed" from="Entity/Conquerable" to="." method="_on_Conquerable_changed"]

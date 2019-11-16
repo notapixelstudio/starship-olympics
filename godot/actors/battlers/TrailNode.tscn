@@ -21,6 +21,7 @@ trail_length = 50
 trail_texture = ExtResource( 2 )
 
 [node name="Trail" parent="." instance=ExtResource( 3 )]
+self_modulate = Color( 1, 1, 1, 0.470588 )
 gradient = SubResource( 1 )
 
 [node name="NearArea" type="Area2D" parent="Trail"]
