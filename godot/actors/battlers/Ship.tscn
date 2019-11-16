@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=20]
 [ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=21]
-[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=22]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -41,8 +40,8 @@ size = 24
 font_data = ExtResource( 18 )
 
 [node name="Ship" type="RigidBody2D" groups=[
-"Foreground",
 "players",
+"Foreground",
 "in_camera",
 ]]
 collision_mask = 1171
@@ -197,14 +196,6 @@ offset = Vector2( 0, -150 )
 [node name="RoyalGlow" parent="PlayerInfo/Scaled" instance=ExtResource( 21 )]
 visible = false
 scale = Vector2( 0.55, 0.55 )
-
-[node name="GravitonField" parent="." instance=ExtResource( 22 )]
-
-[node name="Entity" type="Node" parent="GravitonField"]
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

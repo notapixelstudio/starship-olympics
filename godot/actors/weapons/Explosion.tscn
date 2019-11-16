@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/sprites/weapons/explosion_spikes.png" type="Texture" id=10]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Wow"
 length = 0.8
 tracks/0/type = "value"
@@ -85,14 +85,14 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.6 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 0.862745, 0.564706, 0.6 ), Color( 1, 0.352941, 0, 0 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 0.01
+[sub_resource type="CircleShape2D" id=2]
+radius = 40.0
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 500.0
+[sub_resource type="CircleShape2D" id=3]
+radius = 400.0
 
 [node name="Explosion" type="Area2D" groups=[
 "slomo",
@@ -128,15 +128,15 @@ __meta__ = {
 }
 
 [node name="explosion_halo" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 4.24, 4.24 )
+modulate = Color( 1, 0.862745, 0.564706, 0.6 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 7 )
 
 [node name="Image" type="Node2D" parent="."]
-scale = Vector2( 1e-05, 1e-05 )
+scale = Vector2( 0.6, 0.6 )
 
 [node name="Sprite" type="Sprite" parent="Image"]
-modulate = Color( 1, 1, 1, 0.847059 )
+modulate = Color( 1, 1, 1, 0.576471 )
 texture = ExtResource( 8 )
 
 [node name="circle_glow" type="Sprite" parent="Image"]
@@ -146,8 +146,7 @@ texture = ExtResource( 9 )
 
 [node name="Spikes" type="Node2D" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 1.2, 1.2 )
+scale = Vector2( 0.9, 0.9 )
 
 [node name="Sprite" type="Sprite" parent="Spikes"]
 position = Vector2( 1, 20 )
@@ -155,11 +154,11 @@ texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Wow"
-anims/Wow = SubResource( 2 )
+anims/Wow = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 volume_db = -2.0
@@ -174,9 +173,8 @@ timeout = 0.1
 enabled = true
 
 [node name="RepealField" type="Area2D" parent="."]
-visible = false
 collision_layer = 65536
-collision_mask = 4
+collision_mask = 2564
 
 [node name="Entity" type="Node" parent="RepealField"]
 script = ExtResource( 2 )
@@ -185,6 +183,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
 [connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]
