@@ -11,7 +11,7 @@
 [ext_resource path="res://addons/geometry/icons/GConvexPolygon.svg" type="Texture" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/drones.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pulse"
@@ -36,9 +36,6 @@ bounce = 30.0
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
-[node name="CrownModeManager" parent="." index="5"]
-enabled = false
-
 [node name="DeathmatchModeManager" parent="." index="6"]
 enabled = true
 
@@ -46,51 +43,75 @@ enabled = true
 texture = ExtResource( 3 )
 centered = false
 
-[node name="GridPack" parent="Battlefield/Background" index="0"]
+[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="OutsideWallGhost2" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+[node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
-hide_grid = true
-grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+center_offset = Vector2( 0, 0 )
+width = 1200
+height = 1400
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
+modulate = Color( 0.2, 0.7, 1, 0.2 )
+hollow = true
+offset = 200
+elongation = 100
+type = 2
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 2800
 height = 1400
 bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 2800
 height = 1400
 bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6"]
 autoplay = "Pulse"
-playback_speed = 0.1
+playback_speed = 0.09
 anims/Pulse = SubResource( 1 )
 
 [node name="LeftAsteroids" type="Node2D" parent="Battlefield/Middleground" index="0"]
@@ -104,73 +125,73 @@ __meta__ = {
 [node name="Asteroid" parent="Battlefield/Middleground/LeftAsteroids" index="0" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/LeftAsteroids/Asteroid" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 0, 0, 20, -150, -100, -120 )
 
 [node name="Asteroid2" parent="Battlefield/Middleground/LeftAsteroids" index="1" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon2" type="Node" parent="Battlefield/Middleground/LeftAsteroids/Asteroid2" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 0, 0, -70, 80, -100, -120 )
 
 [node name="Asteroid3" parent="Battlefield/Middleground/LeftAsteroids" index="2" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon3" type="Node" parent="Battlefield/Middleground/LeftAsteroids/Asteroid3" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 0, 0, -70, 80, 210, 100, 180, -30 )
 
 [node name="Asteroid4" parent="Battlefield/Middleground/LeftAsteroids" index="3" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon4" type="Node" parent="Battlefield/Middleground/LeftAsteroids/Asteroid4" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 300, 0, 180, -30, 210, 100 )
 
 [node name="Asteroid5" parent="Battlefield/Middleground/LeftAsteroids" index="4" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon5" type="Node" parent="Battlefield/Middleground/LeftAsteroids/Asteroid5" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 300, 0, 180, -30, 230, -100 )
 
 [node name="Asteroid6" parent="Battlefield/Middleground/LeftAsteroids" index="5" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon6" type="Node" parent="Battlefield/Middleground/LeftAsteroids/Asteroid6" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 20, -150, 230, -100, 180, -30, 0, 0 )
 
 [node name="RightAsteroids" type="Node2D" parent="Battlefield/Middleground" index="1"]
@@ -185,110 +206,96 @@ __meta__ = {
 [node name="Asteroid11" parent="Battlefield/Middleground/RightAsteroids" index="0" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/RightAsteroids/Asteroid11" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 0, 0, 20, -150, -100, -120 )
 
 [node name="Asteroid9" parent="Battlefield/Middleground/RightAsteroids" index="1" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/RightAsteroids/Asteroid9" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 0, 0, -70, 80, -100, -120 )
 
 [node name="Asteroid10" parent="Battlefield/Middleground/RightAsteroids" index="2" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/RightAsteroids/Asteroid10" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 0, 0, -70, 80, 210, 100, 180, -30 )
 
 [node name="Asteroid7" parent="Battlefield/Middleground/RightAsteroids" index="3" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/RightAsteroids/Asteroid7" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 300, 0, 180, -30, 210, 100 )
 
 [node name="Asteroid8" parent="Battlefield/Middleground/RightAsteroids" index="4" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/RightAsteroids/Asteroid8" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 300, 0, 180, -30, 230, -100 )
 
 [node name="Asteroid12" parent="Battlefield/Middleground/RightAsteroids" index="5" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )
 physics_material_override = SubResource( 2 )
-type = 0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/RightAsteroids/Asteroid12" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 20, -150, 230, -100, 180, -30, 0, 0 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
 position = Vector2( -100, -700 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 position = Vector2( -100, 700 )
 scale = Vector2( 1, -1 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="5"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
@@ -296,6 +303,7 @@ position = Vector2( -1000, -400 )
 rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 11 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
 position = Vector2( 1000, 400 )
@@ -304,8 +312,9 @@ controls = "joy2"
 species_template = ExtResource( 12 )
 cpu = true
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]
