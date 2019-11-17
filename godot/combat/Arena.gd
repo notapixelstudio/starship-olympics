@@ -160,7 +160,6 @@ func _ready():
 			s.species_template = array_players[i].species_template
 			s.cpu = array_players[i].cpu
 			s.info_player = array_players[i]
-			print_debug("Is this a teammatto?" + str(s.info_player.team))
 		else:
 			s.info_player = InfoPlayer.new()
 			s.info_player.cpu = s.cpu
@@ -171,8 +170,7 @@ func _ready():
 			s.info_player.id = s.name
 		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
-
-
+		
 	for info in array_players:
 		print_debug(info.to_dict())
 	
