@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -27,14 +27,22 @@
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/fonts/elbaris/Elbaris_Outline.ttf" type="DynamicFontData" id=26]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=27]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=28]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=29]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=28]
+[ext_resource path="res://animations/Blink.tres" type="Animation" id=29]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=30]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=31]
 
 [sub_resource type="DynamicFont" id=1]
 size = 600
 font_data = ExtResource( 26 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 28 )
+
+[sub_resource type="Animation" id=3]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -270,22 +278,40 @@ valign = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
 stream = ExtResource( 27 )
 
+[node name="DemoLabel" type="Label" parent="CanvasLayer"]
+pause_mode = 2
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -90.0
+margin_bottom = -50.0
+custom_fonts/font = SubResource( 2 )
+text = "Pick a controller"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DemoLabel"]
+autoplay = "Blink"
+anims/Blink = ExtResource( 29 )
+
 [node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 28 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 30 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 29 )
+script = ExtResource( 31 )
 debug_mode = false
 enabled = true
 
 [node name="GameOver" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 2 )
+"anims/Game Over" = SubResource( 3 )
+
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]

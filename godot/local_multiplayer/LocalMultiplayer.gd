@@ -16,8 +16,10 @@ var all_planets = [
 	]
 	
 var all_species = [
-	[preload('res://selection/characters/mantiacs_1.tres'), preload('res://selection/characters/mantiacs_2.tres')],
-	[preload('res://selection/characters/robolords_1.tres'), preload('res://selection/characters/robolords_2.tres')]
+	preload('res://selection/characters/mantiacs_1.tres'),
+	preload('res://selection/characters/robolords_1.tres'),
+	preload('res://selection/characters/toriels_1.tres'),
+	preload('res://selection/characters/trixens_1.tres')
 ]
 onready var parallax = $ParallaxBackground
 
@@ -45,6 +47,7 @@ func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	
 func _ready():
 	players = {}
+	$Timer.start()
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
@@ -63,10 +66,10 @@ func combat(selected_players: Array, fight_mode : String):
 	@param: selected_players : Array[Species] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
-	# TEST: analytics for selection
+	
+	$Timer.stop()
 	
 	# we need to reset players dictionary
-
 	players = {}
 	var num_players : int = len(selected_players)
 	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
@@ -87,16 +90,16 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	if fight_mode == 'solo' or fight_mode == 'co-op':
 		var other_species
-		if selected_players[0].species_template.species_name != all_species[0][0].species_name:
+		if selected_players[0].species_template.species_name != all_species[0].species_name:
 			other_species = all_species[0]
 		else:
 			other_species = all_species[1]
 
 		var info_player = InfoPlayer.new()
 		info_player.id = 'cpu'
-		info_player.species = other_species[0].species_name
+		info_player.species = other_species.species_name
 		info_player.cpu = true
-		info_player.species_template = other_species[0]
+		info_player.species_template = other_species
 		
 		players['cpu'] = info_player
 		
@@ -167,7 +170,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# TEST: send the queue
 	GameAnalytics.submit_events()
 
-func next_level():
+func next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
 	var last_planet = played_levels.back()
 	var num_players = len(players)
@@ -190,18 +193,21 @@ func next_level():
 	print_debug("last planet was, ", last_planet, " now is ", new_planet)
 	print_debug("next level will be ", num_players, current_level.planet_name)
 	# skip if we just played it
-	start_level(current_level)
+	start_level(current_level, demo)
 	played_levels.append(new_planet)
 	
-func start_level(_level):
+func start_level(_level, demo = false):
 	combat = _level
-	print_debug(players)
 	combat.initialize(players)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
 	
+	for child in get_children():
+		if child is Arena:
+			call_deferred("remove_child", child)
+	combat.demo = demo
 	add_child(combat)
 	
 func from_info_to_spawner(player_info):
@@ -239,3 +245,22 @@ func _on_Pause_back_to_menu(_combat):
 	_combat.queue_free()
 	get_tree().paused = false
 	add_child(selection_screen)
+
+
+func _on_Timer_timeout():
+	var demo_players = []
+	for i in range((randi() % len(all_species))+1):
+		var other_species = all_species[i]
+		var info_player = InfoPlayer.new()
+		info_player.id = 'cpu'
+		info_player.species = other_species.species_name
+		info_player.cpu = true
+		info_player.species_template = other_species
+		players["cpu{id}".format({"id": i})] = info_player
+	remove_child(selection_screen)
+	next_level(true)
+
+
+func _on_SelectionScreen_action_pressed():
+	print("someone pressed something")
+	$Timer.start()

@@ -3,11 +3,14 @@ Arena Node that will handle all the combat logic
 """
 extends Node
 
+class_name Arena
+
 var width
 var height
 var someone_died = 0
 
 export (PackedScene) var gameover_scene
+export (bool) var demo = false
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
@@ -92,6 +95,8 @@ func setup_level(mode : Resource):
 	$ConquestModeManager.enabled = mode.hive
 	
 func _ready():
+	# Pick controller label
+	$CanvasLayer/DemoLabel.visible = demo
 
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
@@ -187,6 +192,12 @@ func _ready():
 	get_tree().paused = true
 	mode_description.gamemode = game_mode
 	mode_description.appears()
+	if demo:
+		# demo will wait 1 second and create a CPU match
+		mode_description.demomode(demo)
+		mode_description.set_process_input(false)
+		yield(get_tree().create_timer(3), "timeout")
+		mode_description.disappears()
 	yield(mode_description, "ready_to_fight")
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
@@ -274,8 +285,13 @@ func _process(delta):
 	else:
 		$CanvasLayer/Countdown.text = ""
 
-
+func _input(event):
+	if demo:
+		if event is InputEventKey or event is InputEventJoypadButton:
+			emit_signal("back_to_menu")
+			
 func _unhandled_input(event):
+		
 	if event.is_action_pressed("force_pause"):
 		pause.start()
 		
