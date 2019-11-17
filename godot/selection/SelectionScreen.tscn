@@ -6,8 +6,6 @@
 [ext_resource path="res://selection/Fight.gd" type="Script" id=4]
 [ext_resource path="res://interface/joypad/PS4_Cross.png" type="Texture" id=5]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 tracks/0/type = "value"
@@ -98,6 +96,7 @@ margin_bottom = 535.0
 [node name="Tween" type="Tween" parent="."]
 
 [node name="TopHUD" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 margin_top = 18.0
 margin_bottom = 44.0
@@ -142,6 +141,7 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
 [node name="BottomHUD" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

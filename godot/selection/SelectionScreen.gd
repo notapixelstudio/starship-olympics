@@ -12,7 +12,7 @@ var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
 signal back
-signal start_demo
+signal action_pressed
 
 var selected_index = []
 var players_controls : Array
@@ -47,7 +47,7 @@ func initialize(_available_species:Dictionary):
 		actual_players = 0
 	var controls = assign_controls(actual_players)
 	for control in controls:
-		print_debug(add_controls(control))
+		print(add_controls(control))
 
 func add_controls(new_controls : String) -> bool:
 	"""
@@ -132,6 +132,7 @@ func get_players() -> Array:
 	return players
 
 func get_adjacent(operator:int, player_selection : Node):
+	emit_signal("action_pressed")
 	var current_index = ordered_species.find(player_selection.species_template)
 	current_index = global.mod(current_index + operator,len(ordered_species))
 	while current_index in selected_index:
@@ -155,6 +156,7 @@ func ready_to_fight():
 		print_debug("not enough players")
 
 func selected(species:SpeciesTemplate):
+	emit_signal("action_pressed")
 	var current_index = ordered_species.find(species)
 	selected_index.append(current_index)
 	for child in container.get_children():
@@ -173,6 +175,7 @@ func selected(species:SpeciesTemplate):
 var deselected = false
 
 func deselected(species:SpeciesTemplate):
+	emit_signal("action_pressed")
 	var current_index = ordered_species.find(species)
 	selected_index.remove(selected_index.find(current_index))
 	var players = get_players()
@@ -227,7 +230,8 @@ func _process(delta):
 		fight_mode = "solo"
 	elif len(get_players()) == 2:
 		if at_least_one_character_in_team_selected and not at_least_one_solo_selected:
-			fight_mode = "co-op"
+			# fight_mode = "co-op"
+			pass
 	fight_node.set_label('play %s' % fight_mode)
 
 func deselect():
