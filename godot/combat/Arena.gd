@@ -356,6 +356,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 	# respawn
 	$Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
 	ship.position = ship.dead_ship_instance.position
+	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
 	
 	
