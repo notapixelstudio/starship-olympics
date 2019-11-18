@@ -240,6 +240,7 @@ func _back_to_menu(node):
 	add_child(selection_screen)
 	if global.demo:
 		selection_screen.deselect()
+	$Timer.start()
 	
 func _on_Pause_back_to_menu(_combat):
 	_combat.queue_free()

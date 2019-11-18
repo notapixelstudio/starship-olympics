@@ -360,6 +360,9 @@ func ship_just_died(ship: Ship, killer : Ship):
 	
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
+	if demo:
+		emit_signal("back_to_menu")
+		return
 	$GameOver.play('Game Over')
 	yield($GameOver, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
