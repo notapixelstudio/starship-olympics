@@ -204,28 +204,28 @@ func _ready():
 	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
 	
 	# set up hive cells
-	for cell in get_tree().get_nodes_in_group('cell'):
-		var skip = false
-		for player_spawner in $SpawnPositions/Players.get_children():
-			if (cell.position - player_spawner.position).length() < 600:
-				skip = true
-				break
-		
-		if skip:
-			continue
-		
-		if pow(randf(),2) > 0.95:
-			var wall = wall_scene.instance()
-			var gshape = cell.get_gshape()
-			cell.remove_child(gshape)
-			wall.add_child(gshape)
-			wall.position = cell.position
-			wall.rotation = cell.rotation
-			#wall.fill_color = Color(0.8,0.8,0.8,1)
-			#wall.modulate = Color(0.5,0.5,0.5,1)
-			wall.scale = Vector2(0.8,0.8)
-			$Battlefield.add_child(wall)
-			cell.queue_free()
+	#for cell in get_tree().get_nodes_in_group('cell'):
+	#	var skip = false
+	#	for player_spawner in $SpawnPositions/Players.get_children():
+	#		if (cell.position - player_spawner.position).length() < 600:
+	#			skip = true
+	#			break
+	#	
+	#	if skip:
+	#		continue
+	#	
+	#	if pow(randf(),2) > 0.95:
+	#		var wall = wall_scene.instance()
+	#		var gshape = cell.get_gshape()
+	#		cell.remove_child(gshape)
+	#		wall.add_child(gshape)
+	#		wall.position = cell.position
+	#		wall.rotation = cell.rotation
+	#		#wall.fill_color = Color(0.8,0.8,0.8,1)
+	#		#wall.modulate = Color(0.5,0.5,0.5,1)
+	#		wall.scale = Vector2(0.8,0.8)
+	#		$Battlefield.add_child(wall)
+	#		cell.queue_free()
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -344,7 +344,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 			else:
 				respawn_timeout = 1
 	elif $ConquestModeManager.enabled:
-		respawn_timeout = 1.5
+		respawn_timeout = 1
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	

@@ -1,7 +1,7 @@
 extends Component
 
 export var default_damp : float = 2
-export var viscous_damp : float = 8
+export var viscous_damp : float = 6
 
 var hindrances : int = 0
 

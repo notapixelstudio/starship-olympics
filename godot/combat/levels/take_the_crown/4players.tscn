@@ -164,14 +164,12 @@ position = Vector2( -750, 0 )
 rotation = 0.0
 controls = "joy1"
 species_template = ExtResource( 10 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 750, 0 )
 rotation = 3.14159
 controls = "joy2"
 species_template = ExtResource( 11 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( 0, -750 )
@@ -189,7 +187,6 @@ cpu = true
 
 [node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
-
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

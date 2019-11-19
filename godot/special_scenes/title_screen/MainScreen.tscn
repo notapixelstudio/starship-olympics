@@ -130,6 +130,8 @@ multiplayer_scene = ExtResource( 2 )
 [node name="Overlays" type="CanvasLayer" parent="."]
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
+transition = 0.0
+smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
@@ -154,7 +156,6 @@ visible = false
 mouse_filter = 1
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-editor/display_folded = true
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -267,7 +268,6 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
 anims/appear = SubResource( 8 )
-
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
