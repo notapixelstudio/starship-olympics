@@ -23,7 +23,6 @@ Follow and support us
 [![Follow us on Instagram](assets/icons/instagram.png)](https://instagram.com/notapixelstudio) &emsp;
 [![Follow us on Itch.io](assets/icons/itch.png)](https://notapixel.itch.io/superstarfighter) &emsp;
 [![Support us on Paypal](assets/icons/paypal.png)](https://paypal.me/notapixelstudio) &emsp;
-[![Buy us a coffee](assets/icons/ko-fi.png)](https://ko-fi.com/notapixelstudio)
 
 
 Currently under active development! <a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a>'
@@ -47,10 +46,10 @@ feature_row:
     btn_label: "Get the code"
 ---
 
-{% include feature_row id="support" type="center" %}
-
 ### Watch the Gameplay Video
 
 {% include video id="2LCui4mYV5I" provider="youtube" type="center" %}
+
+{% include feature_row id="support" type="center" %}
 
 {% include feature_row %}
