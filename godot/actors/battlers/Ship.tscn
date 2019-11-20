@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -14,13 +14,7 @@
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=13]
 [ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
-[ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=15]
-[ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=17]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=18]
-[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=20]
-[ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=21]
+[ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=15]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -34,10 +28,6 @@ radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
-
-[sub_resource type="DynamicFont" id=5]
-size = 24
-font_data = ExtResource( 18 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "players",
@@ -156,50 +146,9 @@ enabled = false
 
 [node name="Debug" parent="." instance=ExtResource( 14 )]
 
-[node name="PlayerInfo" type="Position2D" parent="."]
-script = ExtResource( 15 )
-primary_texture = ExtResource( 16 )
-secondary_texture = ExtResource( 17 )
-
-[node name="Scaled" type="Node2D" parent="PlayerInfo"]
-scale = Vector2( 0.8, 0.8 )
-
-[node name="Colored" type="Node2D" parent="PlayerInfo/Scaled"]
-
-[node name="PlayerID" type="Label" parent="PlayerInfo/Scaled/Colored"]
-margin_left = -46.0833
-margin_top = 48.75
-margin_right = 46.9167
-margin_bottom = 84.75
-custom_fonts/font = SubResource( 5 )
-text = "P1"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="PointsScored" parent="PlayerInfo/Scaled/Colored" instance=ExtResource( 19 )]
-visible = false
-position = Vector2( 0, -47.5 )
-still = true
-
-[node name="Circle" type="Sprite" parent="PlayerInfo/Scaled/Colored"]
-position = Vector2( 0, -3.75 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 16 )
-
-[node name="Crown" type="Sprite" parent="PlayerInfo/Scaled"]
-position = Vector2( 0, 10.75 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 20 )
-offset = Vector2( 0, -150 )
-
-[node name="RoyalGlow" parent="PlayerInfo/Scaled" instance=ExtResource( 21 )]
-visible = false
-scale = Vector2( 0.55, 0.55 )
+[node name="PlayerInfo" parent="." instance=ExtResource( 15 )]
 
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
 [connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]
-[connection signal="disabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_disabled"]
-[connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]

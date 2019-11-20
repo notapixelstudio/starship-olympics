@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/circle_indicator.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/square_indicator.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/crown_plain.png" type="Texture" id=7]
+[ext_resource path="res://animations/RoyalGlow.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 4 )
+
+[node name="PlayerInfo" type="Position2D"]
+editor/display_folded = true
+script = ExtResource( 1 )
+primary_texture = ExtResource( 2 )
+secondary_texture = ExtResource( 3 )
+
+[node name="Scaled" type="Node2D" parent="."]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Colored" type="Node2D" parent="Scaled"]
+
+[node name="PlayerID" type="Label" parent="Scaled/Colored"]
+margin_left = -46.0833
+margin_top = 48.75
+margin_right = 46.9167
+margin_bottom = 84.75
+custom_fonts/font = SubResource( 1 )
+text = "P1"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="PointsScored" type="Node2D" parent="Scaled/Colored" groups=[
+"Overlay",
+] instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 0, -47.5 )
+script = ExtResource( 6 )
+still = true
+
+[node name="Circle" type="Sprite" parent="Scaled/Colored"]
+position = Vector2( 0, -3.75 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Crown" type="Sprite" parent="Scaled"]
+position = Vector2( 0, 10.75 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+offset = Vector2( 0, -150 )
+
+[node name="RoyalGlow" type="Node2D" parent="Scaled" instance=ExtResource( 8 )]
+visible = false
+scale = Vector2( 0.55, 0.55 )
+

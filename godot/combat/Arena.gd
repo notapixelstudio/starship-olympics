@@ -356,10 +356,14 @@ func ship_just_died(ship: Ship, killer : Ship):
 	# respawn
 	$Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
 	ship.position = ship.dead_ship_instance.position
+	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
 	
 	
 func on_gamemode_gameover(winner:String, scores: Dictionary):
+	if demo:
+		emit_signal("back_to_menu")
+		return
 	$GameOver.play('Game Over')
 	yield($GameOver, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
