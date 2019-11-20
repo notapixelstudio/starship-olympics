@@ -66,7 +66,6 @@ func combat(selected_players: Array, fight_mode : String):
 	It will transform the selected_players array in a dictionary of info players
 	"""
 	
-	$Timer.stop()
 	
 	# we need to reset players dictionary
 	players = {}
