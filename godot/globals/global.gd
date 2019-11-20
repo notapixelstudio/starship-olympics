@@ -160,6 +160,10 @@ func _input(event):
 	if event.is_action_pressed("fullscreen"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		OS.window_fullscreen = not OS.window_fullscreen
+	
+	if event.is_action_pressed("force_reset"):
+		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
+		get_tree().paused = false
 		
 func _ready():
 	print("Starting game...")
