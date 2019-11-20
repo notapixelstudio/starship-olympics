@@ -32,7 +32,8 @@ func _physics_process(delta):
 func _on_RepealField_body_entered(body):
 	if body is Bomb:
 		ECM.E(body).get('Pursuer').set_target(null)
-		ECM.E(body).get('Pursuer').disable()
+		var pursuer = ECM.E(body).get('Pursuer')
+		pursuer.disable()
 		yield(get_tree().create_timer(1), "timeout")
-		ECM.E(body).get('Pursuer').enable()
+		pursuer.enable()
 		
