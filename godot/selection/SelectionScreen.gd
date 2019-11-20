@@ -12,7 +12,7 @@ var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
 signal back
-signal action_pressed
+signal start_demo
 
 var selected_index = []
 var players_controls : Array
@@ -132,7 +132,7 @@ func get_players() -> Array:
 	return players
 
 func get_adjacent(operator:int, player_selection : Node):
-	emit_signal("action_pressed")
+	restart_timer()
 	var current_index = ordered_species.find(player_selection.species_template)
 	current_index = global.mod(current_index + operator,len(ordered_species))
 	while current_index in selected_index:
@@ -156,7 +156,7 @@ func ready_to_fight():
 		print_debug("not enough players")
 
 func selected(species:SpeciesTemplate):
-	emit_signal("action_pressed")
+	restart_timer()
 	var current_index = ordered_species.find(species)
 	selected_index.append(current_index)
 	for child in container.get_children():
@@ -175,7 +175,7 @@ func selected(species:SpeciesTemplate):
 var deselected = false
 
 func deselected(species:SpeciesTemplate):
-	emit_signal("action_pressed")
+	restart_timer()
 	var current_index = ordered_species.find(species)
 	selected_index.remove(selected_index.find(current_index))
 	var players = get_players()
@@ -239,3 +239,9 @@ func deselect():
 		if child.disabled:
 			continue
 		child.deselect()
+
+func restart_timer():
+	$Timer.start()
+
+func _on_Timer_timeout():
+	emit_signal("start_demo")

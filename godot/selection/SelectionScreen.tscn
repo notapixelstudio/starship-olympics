@@ -210,3 +210,6 @@ width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

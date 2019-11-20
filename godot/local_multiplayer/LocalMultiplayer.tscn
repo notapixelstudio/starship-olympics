@@ -13,12 +13,6 @@ map_scene = ExtResource( 2 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 layer = -2
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="action_pressed" from="SelectionScreen" to="." method="_on_SelectionScreen_action_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="start_demo" from="SelectionScreen" to="." method="start_demo"]
 
 [editable path="ParallaxBackground"]

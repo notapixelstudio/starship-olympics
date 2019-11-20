@@ -34,6 +34,5 @@ func _on_RepealField_body_entered(body):
 		ECM.E(body).get('Pursuer').set_target(null)
 		var pursuer = ECM.E(body).get('Pursuer')
 		pursuer.disable()
-		yield(get_tree().create_timer(1), "timeout")
-		pursuer.enable()
+		pursuer.enable_with_timeout(1)
 		

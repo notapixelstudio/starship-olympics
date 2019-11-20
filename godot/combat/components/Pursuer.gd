@@ -32,3 +32,6 @@ func has_keep_target_timed_out():
 func has_detection_insensitive_timed_out():
 	return detection_insensitive_t <= 0
 	
+func enable_with_timeout(wait_time):
+	yield(get_tree().create_timer(wait_time), "timeout")
+	enable()

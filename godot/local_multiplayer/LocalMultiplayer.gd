@@ -47,7 +47,6 @@ func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
 	
 func _ready():
 	players = {}
-	$Timer.start()
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
@@ -245,7 +244,6 @@ func _back_to_menu(node):
 	add_child(selection_screen)
 	if global.demo:
 		selection_screen.deselect()
-	$Timer.start()
 	
 func _on_Pause_back_to_menu(_combat):
 	_combat.queue_free()
@@ -253,7 +251,7 @@ func _on_Pause_back_to_menu(_combat):
 	add_child(selection_screen)
 
 
-func _on_Timer_timeout():
+func start_demo():
 	var demo_players = []
 	for i in range((randi() % len(all_species))+1):
 		var other_species = all_species[i]
@@ -265,8 +263,3 @@ func _on_Timer_timeout():
 		players["cpu{id}".format({"id": i})] = info_player
 	remove_child(selection_screen)
 	next_level(true)
-
-
-func _on_SelectionScreen_action_pressed():
-	print("someone pressed something")
-	$Timer.start()
