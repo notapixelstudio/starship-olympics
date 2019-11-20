@@ -2,6 +2,7 @@ extends ModeManager
 
 const COINGROUP = "coin"
 const MULTIPLIER = 2
+const WAVE_DELAY = 4
 var to_next_wave = 2
 var current_wave = 0
 
@@ -59,13 +60,13 @@ func _handle_waves():
 		elements_spawned = 0
 	if current_wave >= max_waves:
 		reset_wave_timer()
-		initialize(spawners, 1.5, current_wave - 1)
+		initialize(spawners, WAVE_DELAY, current_wave - 1)
 		return
 	spawners_per_wave[current_wave].shuffle()
 	var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
 	elements_spawned += 1
 	reset_wave_timer()
-	emit_signal('spawn_next', next_spawner, 1)
+	emit_signal('spawn_next', next_spawner, WAVE_DELAY)
 		
 func reset_wave_timer():
 	wave_timer.start()

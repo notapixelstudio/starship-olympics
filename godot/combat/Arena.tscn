@@ -247,6 +247,7 @@ editor/display_folded = true
 layer = 2
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 22 )]
+pause_mode = 2
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 23 )]
 visible = false
@@ -311,7 +312,6 @@ enabled = true
 
 [node name="GameOver" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 3 )
-
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]

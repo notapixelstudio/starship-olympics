@@ -123,12 +123,12 @@ func combat(selected_players: Array, fight_mode : String):
 	#	level_selection.queue_free()
 	#	return
 	#current_level = level_selection.current_level
-	
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
 	var map = map_scene.instance()
 	map.initialize(players)
+	
 	"""
 	add_child(map)
 	yield(map, "done")
@@ -165,6 +165,11 @@ func combat(selected_players: Array, fight_mode : String):
 	map.queue_free()
 	add_child(parallax)
 	
+	# TUTORIAL
+	var tut = preload("res://special_scenes/Tutorial.tscn").instance()
+	add_child(tut)
+	yield(tut, "over")
+	# END TUTORIAL
 	next_level()
 	
 	# TEST: send the queue

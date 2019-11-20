@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/sprites/crown_halo.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 60.0
+radius = 70.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Blink"
@@ -41,8 +41,8 @@ tracks/1/keys = {
 }
 
 [node name="Coin" type="RigidBody2D" groups=[
-"Foreground",
 "in_camera",
+"Foreground",
 "coin",
 ]]
 collision_layer = 2048
@@ -70,22 +70,18 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 3 )
-scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="Glow" type="Node2D" parent="."]
-scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.377534 )
-scale = Vector2( 0.890761, 0.890761 )
+modulate = Color( 0.305882, 1, 0.968627, 0.0605954 )
+scale = Vector2( 0.814567, 0.814567 )
 texture = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
 playback_speed = 2.0
 anims/Blink = SubResource( 2 )
-
