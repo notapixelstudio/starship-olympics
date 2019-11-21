@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -25,22 +25,23 @@
 [ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=23]
 [ext_resource path="res://combat/CameraDebug.gd" type="Script" id=24]
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=25]
-[ext_resource path="res://assets/fonts/elbaris/Elbaris_Outline.ttf" type="DynamicFontData" id=26]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=26]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=27]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=28]
-[ext_resource path="res://animations/Blink.tres" type="Animation" id=29]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=30]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=31]
+[ext_resource path="res://animations/Blink.tres" type="Animation" id=28]
+[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=29]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=30]
 
 [sub_resource type="DynamicFont" id=1]
 size = 600
+outline_size = 12
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 26 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 28 )
+font_data = ExtResource( 26 )
 
 [sub_resource type="Animation" id=3]
 length = 0.2
@@ -263,7 +264,7 @@ visible = false
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
 editor/display_folded = true
-modulate = Color( 1, 1, 1, 0.0745098 )
+modulate = Color( 1, 1, 1, 0.141176 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -275,6 +276,7 @@ margin_bottom = 360.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
+uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
 stream = ExtResource( 27 )
@@ -294,19 +296,19 @@ uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DemoLabel"]
 autoplay = "Blink"
-anims/Blink = ExtResource( 29 )
+anims/Blink = ExtResource( 28 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 0
 
-[node name="DebugNode" parent="Debug" instance=ExtResource( 30 )]
+[node name="DebugNode" parent="Debug" instance=ExtResource( 29 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 31 )
+script = ExtResource( 30 )
 debug_mode = false
 enabled = true
 

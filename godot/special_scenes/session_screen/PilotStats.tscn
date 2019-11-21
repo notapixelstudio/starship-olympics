@@ -1,69 +1,80 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://special_scenes/session_screen/PilotStats.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/session_screen/Headshot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://special_scenes/session_screen/Stat.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/neuropolitical/neuropolitical_rg.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://special_scenes/session_screen/StarsContainer.gd" type="Script" id=5]
-[ext_resource path="res://special_scenes/session_screen/Star.tscn" type="PackedScene" id=6]
+[ext_resource path="res://special_scenes/session_screen/StarsContainer.gd" type="Script" id=4]
+[ext_resource path="res://special_scenes/session_screen/Star.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/fonts/neuropolitical/neuropolitical_rg.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Panel
+
+func _ready():
+	rect_min_size = $StatsContainer.rect_size + Vector2(10, 5)"
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
-font_data = ExtResource( 4 )
+font_data = ExtResource( 6 )
 
 [node name="PilotStats" type="Node2D"]
 scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
 
 [node name="Container" type="HBoxContainer" parent="."]
-margin_top = -1.0
-margin_right = 566.0
-margin_bottom = 149.0
-rect_min_size = Vector2( 400, 100 )
+anchor_right = 1.0
+margin_right = 1604.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 100 )
+custom_constants/separation = 15
 
 [node name="Headshot" parent="Container" instance=ExtResource( 2 )]
 
 [node name="Stats" type="Panel" parent="Container"]
-margin_left = 154.0
-margin_right = 566.0
+margin_left = 165.0
+margin_right = 165.0
 margin_bottom = 150.0
-size_flags_horizontal = 3
+script = SubResource( 2 )
 
 [node name="StatsContainer" type="GridContainer" parent="Container/Stats"]
 margin_right = 324.0
 margin_bottom = 64.0
+custom_constants/vseparation = 20
 custom_constants/hseparation = 40
 columns = 2
 
 [node name="Stat2" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
 margin_top = 0.0
-margin_right = 142.0
-margin_bottom = 30.0
+margin_right = 165.0
+margin_bottom = 31.0
 key = "kills"
-stats_value = "0"
 
 [node name="Stat3" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
-margin_left = 182.0
+margin_left = 205.0
 margin_top = 0.0
-margin_right = 324.0
-margin_bottom = 30.0
+margin_right = 341.0
+margin_bottom = 31.0
 key = "deaths"
-stats_value = "0"
 
 [node name="Stat4" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
-margin_top = 34.0
-margin_right = 142.0
-margin_bottom = 64.0
+margin_top = 51.0
+margin_right = 165.0
+margin_bottom = 82.0
 key = "selfkills"
-stats_value = "0"
 
 [node name="Stat5" parent="Container/Stats/StatsContainer" instance=ExtResource( 3 )]
-margin_left = 182.0
-margin_top = 34.0
-margin_right = 324.0
-margin_bottom = 64.0
+margin_left = 205.0
+margin_top = 51.0
+margin_right = 341.0
+margin_bottom = 82.0
 key = "bombs"
-stats_value = "0"
+
+[node name="StarsContainer" type="HBoxContainer" parent="Container"]
+margin_left = 180.0
+margin_right = 180.0
+margin_bottom = 150.0
+script = ExtResource( 4 )
+star_scene = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -77,16 +88,4 @@ custom_fonts/font = SubResource( 1 )
 text = "4"
 align = 1
 valign = 1
-
-[node name="StarsContainer" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 546.0
-margin_top = 37.5
-margin_right = 704.0
-margin_bottom = 87.5
-script = ExtResource( 5 )
-star_scene = ExtResource( 6 )
-
+uppercase = true
