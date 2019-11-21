@@ -362,6 +362,9 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	if demo:
 		emit_signal("back_to_menu")
 		return
+	for child in get_children():
+		if child is ModeManager:
+			child.enabled = false
 	$GameOver.play('Game Over')
 	yield($GameOver, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
