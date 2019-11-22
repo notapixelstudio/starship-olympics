@@ -12,7 +12,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.6, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 5, 5 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ) ]
+"values": [ Vector2( 5, 5 ), Vector2( 1, 1 ), Vector2( 0.3, 0.3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SpriteEffect:visible")
@@ -48,7 +48,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.3, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 5, 5 ), Vector2( 0.3, 0.3 ) ]
+"values": [ Vector2( 5, 5 ), Vector2( 1, 1 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("SpriteEffect2:visible")
@@ -81,10 +81,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.5, 0.9 ),
+"times": PoolRealArray( 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1.5, 1.5 ), Vector2( 0.3, 0.3 ) ]
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("SpriteEffect3:visible")
@@ -110,3 +110,28 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Glow:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
