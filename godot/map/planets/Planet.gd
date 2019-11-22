@@ -38,7 +38,6 @@ func fetch_level(num_players : int) -> PackedScene:
 	""" Get one level from their pool """
 	var levels = get("levels_" + str(num_players) + "players")
 	var played_levels = get("played_levels_" + str(num_players) + "players")
-	
 	var current_level = levels[len(played_levels)].instance()
 	played_levels.append(current_level)
 	current_level.planet_name = name

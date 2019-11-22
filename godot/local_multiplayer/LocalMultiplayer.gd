@@ -178,7 +178,7 @@ func next_level(demo=false):
 	var last_planet = played_levels.back()
 	var num_players = len(players)
 	
-	if len(played_levels) >= len(all_planets):
+	if len(played_levels) >= len(all_planets) or demo:
 		played_levels = []
 		levels = []
 		all_planets.shuffle()
@@ -252,7 +252,11 @@ func _on_Pause_back_to_menu(_combat):
 
 func start_demo():
 	var demo_players = []
-	for i in range((randi() % len(all_species))+1):
+	var player_rand = max(2, (randi() % len(all_species))+1)
+	players = 
+	for i in range(player_rand):
+		
+		
 		var other_species = all_species[i]
 		var info_player = InfoPlayer.new()
 		info_player.id = 'cpu'
