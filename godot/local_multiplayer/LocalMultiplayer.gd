@@ -253,7 +253,7 @@ func _on_Pause_back_to_menu(_combat):
 func start_demo():
 	var demo_players = []
 	var player_rand = max(2, (randi() % len(all_species))+1)
-	players = 
+	players = {}
 	for i in range(player_rand):
 		
 		
