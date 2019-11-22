@@ -8,7 +8,7 @@ export var player_info : Resource setget set_info # InfoPlayer
 var new_position setget change_position
 var max_points = 0
 
-onready var stars = $StarsContainer
+onready var stars = $Container/StarsContainer
 onready var container = $Container
 onready var stats_container = $Container/Stats/StatsContainer
 
