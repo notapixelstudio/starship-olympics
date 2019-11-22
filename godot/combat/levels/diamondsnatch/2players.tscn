@@ -515,6 +515,7 @@ species_template = ExtResource( 15 )
 
 [node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
+
 [connection signal="timeout" from="CollectModeManager/Timer" to="CollectModeManager" method="_handle_waves"]
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
