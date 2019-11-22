@@ -40,6 +40,9 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	emit_signal("spawn_next", next_spawner, wait_time)
 	
 func _on_sth_collected(collector, collectee):
+	if not enabled:
+		return
+		
 	if collectee is Diamond:
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.species, score)
