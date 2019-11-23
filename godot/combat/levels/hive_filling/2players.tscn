@@ -5023,11 +5023,6 @@ controls = "joy2"
 species_template = ExtResource( 10 )
 cpu = true
 
-[node name="Countdown" parent="CanvasLayer" index="4"]
-margin_left = -240.0
-margin_right = 285.0
-margin_bottom = 317.0
-
 [node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
