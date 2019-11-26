@@ -47,7 +47,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.13, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0.0784314 ), Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -152,4 +152,5 @@ texture = ExtResource( 8 )
 anims/Appear = SubResource( 1 )
 anims/Disappear = SubResource( 2 )
 anims/Flash = SubResource( 3 )
+
 [connection signal="changed" from="Entity/Conquerable" to="." method="_on_Conquerable_changed"]
