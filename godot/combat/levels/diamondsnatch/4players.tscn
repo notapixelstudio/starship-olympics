@@ -18,7 +18,7 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=16]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=17]
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 match_duration_override = 120.0
@@ -516,7 +516,7 @@ species_template = ExtResource( 14 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
-controls = "joy2"
+controls = "joy1"
 species_template = ExtResource( 15 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 13 )]
@@ -524,17 +524,16 @@ position = Vector2( 600, 600 )
 rotation = -2.35619
 controls = "joy1"
 species_template = ExtResource( 16 )
-cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 13 )]
 position = Vector2( -600, -600 )
 rotation = 0.785398
 controls = "joy1"
 species_template = ExtResource( 17 )
-cpu = true
 
 [node name="Camera" parent="." index="17"]
 smoothing_speed = 0.3
+
 [connection signal="timeout" from="CollectModeManager/Timer" to="CollectModeManager" method="_handle_waves"]
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

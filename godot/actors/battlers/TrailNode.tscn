@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/battlers/TrailNode.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/trail.png" type="Texture" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=6]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=7]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=8]
+[ext_resource path="res://assets/shaders/offset_trail.png" type="Texture" id=9]
+
+[sub_resource type="Gradient" id=2]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
@@ -21,8 +27,9 @@ trail_length = 50
 trail_texture = ExtResource( 2 )
 
 [node name="Trail" parent="." instance=ExtResource( 3 )]
-self_modulate = Color( 1, 1, 1, 0.470588 )
-gradient = SubResource( 1 )
+editor/display_folded = true
+width = 80.0
+gradient = SubResource( 2 )
 
 [node name="NearArea" type="Area2D" parent="Trail"]
 collision_layer = 524288
@@ -77,4 +84,10 @@ script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
+
+[node name="InnerTrail" parent="." instance=ExtResource( 3 )]
+width = 18.0
+gradient = SubResource( 1 )
+texture = ExtResource( 9 )
+trail_length = 5
 

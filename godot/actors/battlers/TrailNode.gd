@@ -57,8 +57,14 @@ func _ready():
 	(ECM.E(near_area).get('Owned') as Owned).set_owned_by(ship)
 	(ECM.E(far_area).get('Owned') as Owned).set_owned_by(ship)
 	
-	var c = Color(ship.species_template.color_2)
-	trail.modulate = c
+	var c1 = Color(ship.species_template.color)
+	var c2 = Color(ship.species_template.color_2)
+	var cm = Color(c2)
+	c1.a = 0.7
+	c2.a = 0
+	cm.a = 0.5
+	trail.gradient.colors = PoolColorArray([c2,cm,c1])
+	#trail.modulate = c
 	
 func _process(delta):
 	update()
