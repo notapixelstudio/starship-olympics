@@ -95,6 +95,7 @@ func setup_level(mode : Resource):
 	$ConquestModeManager.enabled = mode.hive
 	
 func _ready():
+	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 
@@ -184,10 +185,7 @@ func _ready():
 	hud.initialize(scores)
 	
 	camera.initialize(compute_arena_size())
-	
-	
 	$Battlefield.visible = false
-	get_tree().paused = true
 	mode_description.gamemode = game_mode
 	mode_description.appears()
 	if demo:
@@ -244,8 +242,8 @@ func _ready():
 			# wait for the last ship
 			if j >= len(player_spawners):
 				yield(spawner, "entered_battlefield")
-		get_tree().paused = false
 		camera.activate_camera()
+		
 
 	else:
 		spawn_ships()
@@ -265,6 +263,7 @@ func _ready():
 		turret.initialize(self)
 		
 	update_time_scale()
+	set_process(true)
 
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
