@@ -34,7 +34,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("force_pause"):
 		get_tree().reload_current_scene()
 
-func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
+func from_species_to_info_player(selection_species: PlayerSelection) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = selection_species.name
 	info_player.species = selection_species.species_template.species_name
@@ -74,7 +74,7 @@ func combat(selected_players: Array, fight_mode : String):
 
 	var i = 1
 	for player in selected_players:
-		assert(player is Species)
+		assert(player is PlayerSelection)
 		var player_info : InfoPlayer = from_species_to_info_player(player)
 		player_info.id = player.id
 		players[player.id] = player_info

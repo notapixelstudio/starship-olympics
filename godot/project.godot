@@ -219,6 +219,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/planets/Planet.gd"
 }, {
+"base": "Control",
+"class": "PlayerSelection",
+"language": "GDScript",
+"path": "res://selection/PlayerSelection.gd"
+}, {
 "base": "Node2D",
 "class": "PlayerSpawner",
 "language": "GDScript",
@@ -243,11 +248,6 @@ _global_script_classes=[ {
 "class": "Ship",
 "language": "GDScript",
 "path": "res://actors/battlers/Ship.gd"
-}, {
-"base": "Control",
-"class": "Species",
-"language": "GDScript",
-"path": "res://selection/Species.gd"
 }, {
 "base": "Control",
 "class": "SpeciesContainer",
@@ -317,12 +317,12 @@ _global_script_class_icons={
 "Owned": "",
 "PilotStats": "",
 "Planet": "",
+"PlayerSelection": "",
 "PlayerSpawner": "",
 "Portal": "",
 "RectExtents": "",
 "Scores": "",
 "Ship": "",
-"Species": "",
 "SpeciesContainer": "",
 "SpeciesTemplate": "",
 "Trail": "",

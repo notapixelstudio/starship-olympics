@@ -1,6 +1,6 @@
 extends Control
 
-class_name Species
+class_name PlayerSelection
 
 """
 Class for Species logic. Will be set controls and Species template
@@ -22,7 +22,7 @@ signal prev
 signal next
 
 var disabled = true
-var selected = false
+var selected = false 
 var joined = true
 
 onready var speciesSelection = $SpeciesSelection
@@ -69,16 +69,17 @@ func change_species(new_species: SpeciesTemplate):
 func _input(event):
 	if disabled:
 		return
+	if event.is_action_pressed(controls+"_right") and not global.demo:
+		_on_Next_pressed()
+	if event.is_action_pressed(controls+"_left") and not global.demo:
+		_on_Previous_pressed()
 	if selected :
 		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")
 		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 			deselect()
 	elif joined:
-		if event.is_action_pressed(controls+"_right") and not selected and not global.demo:
-			_on_Next_pressed()
-		if event.is_action_pressed(controls+"_left") and not selected and not global.demo:
-			_on_Previous_pressed()
+		
 		if event.is_action_pressed(controls+"_accept") and not selected:
 			select_character()
 
@@ -120,11 +121,19 @@ func deselect(silent : bool = false):
 	
 func _on_Previous_pressed():
 	sfx.get_node("switch-selection").play()
+	if selected:
+		enable_choice()
+		selected = false
+		emit_signal("deselected", species_template)
 	emit_signal("prev")
 	speciesSelection.previous()
 
 func _on_Next_pressed():
 	sfx.get_node("switch-selection").play()
+	if selected:
+		enable_choice()
+		selected = false
+		emit_signal("deselected", species_template)
 	emit_signal("next")
 	speciesSelection.next()
 

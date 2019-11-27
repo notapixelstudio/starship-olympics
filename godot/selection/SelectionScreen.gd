@@ -7,6 +7,7 @@ const NUM_KEYBOARDS = 2
 enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 onready var container = $Container
 onready var fight_node = $BottomHUD/Fight
+onready var ready_to_fight = $CanvasLayer/ReadyToFight
 var available_species : Dictionary
 var ordered_species : Array # as available_species Dic [str:Resource]
 
@@ -29,7 +30,7 @@ func initialize(_available_species:Dictionary):
 
 	var i = 0
 	for child in container.get_children():
-		assert(child is Species)
+		assert(child is PlayerSelection)
 		#set all to no
 		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
 		child.change_species(ordered_species[i])
@@ -94,7 +95,7 @@ func change_controls(key:String, new_key:String) -> bool:
 		var child = container.get_child(count-i-1)
 		var to_change = last
 		last = child.controls
-		assert(child is Species)
+		assert(child is PlayerSelection)
 		child.set_controls(to_change)
 
 	return false
@@ -151,7 +152,7 @@ func ready_to_fight():
 	var players = get_players()
 	print_debug("players who are going to fight are... " , players)
 	if len(players) >= MIN_PLAYERS:
-		emit_signal("fight", players, fight_mode)
+		ready_to_fight.start(len(players))
 	else:
 		print_debug("not enough players")
 
@@ -245,3 +246,7 @@ func restart_timer():
 
 func _on_Timer_timeout():
 	emit_signal("start_demo")
+
+func _on_ReadyToFight_letsfight():
+	var players = get_players()
+	emit_signal("fight", players, fight_mode)
