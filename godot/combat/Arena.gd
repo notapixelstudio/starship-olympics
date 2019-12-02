@@ -36,7 +36,7 @@ onready var collect_manager = $Managers/CollectManager
 onready var environments_manager = $Managers/EnvironmentsManager
 onready var conquest_manager = $Managers/ConquestManager
 onready var pursue_manager = $PursueManager
-onready var snake_trail_manager = $TrailManager
+onready var snake_trail_manager = $Managers/TrailManager
 
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
@@ -60,7 +60,7 @@ var array_players = [] # Dictionary of InfoPlayers
 var diamonds_spawners = []
 var scores : Scores
 
-func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
+func from_spawner_to_infoplayer(current_player: PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = current_player.name
 	info_player.controls = current_player.controls
@@ -383,8 +383,8 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	for child in get_children():
 		if child is ModeManager:
 			child.enabled = false
-	$GameOver.play('Game Over')
-	yield($GameOver, "animation_finished") # wait for animation and UI redraw (esp. bars)
+	$GameOverAnim.play('Game Over')
+	yield($GameOverAnim, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
