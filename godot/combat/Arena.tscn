@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
@@ -22,25 +22,23 @@
 [ext_resource path="res://actors/environments/gravity-well/Mask.gd" type="Script" id=20]
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=21]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=22]
-[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=23]
-[ext_resource path="res://combat/CameraDebug.gd" type="Script" id=24]
-[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=25]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=26]
-[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=27]
-[ext_resource path="res://animations/Blink.tres" type="Animation" id=28]
-[ext_resource path="res://debug/FramesPerSecond/FPS.tscn" type="PackedScene" id=29]
-[ext_resource path="res://combat/Camera.gd" type="Script" id=30]
+[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=25]
+[ext_resource path="res://animations/Blink.tres" type="Animation" id=26]
+[ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=27]
+[ext_resource path="res://combat/Camera.gd" type="Script" id=28]
 
 [sub_resource type="DynamicFont" id=1]
 size = 500
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 26 )
+font_data = ExtResource( 24 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 26 )
+font_data = ExtResource( 24 )
 
 [sub_resource type="Animation" id=3]
 length = 0.2
@@ -97,81 +95,84 @@ tracks/3/keys = {
 script = ExtResource( 1 )
 gameover_scene = ExtResource( 2 )
 
-[node name="CombatManager" type="Node" parent="."]
+[node name="Managers" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="CombatManager" type="Node" parent="Managers"]
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="StunManager" type="Node" parent="."]
+[node name="StunManager" type="Node" parent="Managers"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="PursueManager" type="Node" parent="."]
+[node name="PursueManager" type="Node" parent="Managers"]
 editor/display_folded = true
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="TargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
+[node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource( 7 )
 bus = "SFX"
 
-[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="PursueManager"]
+[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource( 7 )
 pitch_scale = 0.5
 bus = "SFX"
 
-[node name="CollectManager" type="Node" parent="."]
+[node name="CollectManager" type="Node" parent="Managers"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="EnvironmentsManager" type="Node" parent="."]
+[node name="EnvironmentsManager" type="Node" parent="Managers"]
 script = ExtResource( 9 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="CrownModeManager" type="Node" parent="."]
+[node name="CrownModeManager" type="Node" parent="Managers"]
 script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 enabled = false
 
-[node name="DeathmatchModeManager" type="Node" parent="."]
+[node name="DeathmatchModeManager" type="Node" parent="Managers"]
 script = ExtResource( 11 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 enabled = false
 
-[node name="RaceModeManager" type="Node" parent="."]
+[node name="RaceModeManager" type="Node" parent="Managers"]
 script = ExtResource( 12 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 enabled = false
 
-[node name="ConquestModeManager" type="Node" parent="."]
+[node name="ConquestModeManager" type="Node" parent="Managers"]
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 enabled = false
 
-[node name="ConquestManager" type="Node" parent="."]
+[node name="ConquestManager" type="Node" parent="Managers"]
 script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="CollectModeManager" type="Node" parent="."]
+[node name="CollectModeManager" type="Node" parent="Managers"]
 editor/display_folded = true
 script = ExtResource( 15 )
 __meta__ = {
@@ -179,11 +180,11 @@ __meta__ = {
 }
 enabled = false
 
-[node name="Timer" type="Timer" parent="CollectModeManager"]
+[node name="Timer" type="Timer" parent="Managers/CollectModeManager"]
 wait_time = 6.0
 autostart = true
 
-[node name="TrailManager" type="Node" parent="."]
+[node name="TrailManager" type="Node" parent="Managers"]
 script = ExtResource( 16 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -193,6 +194,7 @@ __meta__ = {
 layer = -1
 
 [node name="Battlefield" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 17 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
@@ -236,6 +238,7 @@ editor/display_folded = true
 [node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 21 )]
 
 [node name="SpawnPositions" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Players" type="Node2D" parent="SpawnPositions"]
 
@@ -249,16 +252,7 @@ layer = 2
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 22 )]
 pause_mode = 2
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 23 )]
-visible = false
-
-[node name="CameraDebug" type="Node2D" parent="CanvasLayer"]
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 25 )]
+[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 23 )]
 visible = false
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
@@ -274,10 +268,11 @@ valign = 1
 uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
-stream = ExtResource( 27 )
+stream = ExtResource( 25 )
 
 [node name="DemoLabel" type="Label" parent="CanvasLayer"]
 pause_mode = 2
+editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -291,23 +286,19 @@ uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DemoLabel"]
 autoplay = "Blink"
-anims/Blink = ExtResource( 28 )
+anims/Blink = ExtResource( 26 )
 
-[node name="Debug" type="CanvasLayer" parent="."]
-editor/display_folded = true
-layer = 0
-
-[node name="DebugNode" parent="Debug" instance=ExtResource( 29 )]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 27 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 30 )
+script = ExtResource( 28 )
 debug_mode = false
 enabled = true
 
-[node name="GameOver" type="AnimationPlayer" parent="."]
+[node name="GameOverAnim" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 3 )
 
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
