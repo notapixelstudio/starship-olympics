@@ -15,6 +15,7 @@ var game_over:bool = false
 var cumulative_points = 0
 
 signal game_over
+
 func start():
 	set_process(true)
 

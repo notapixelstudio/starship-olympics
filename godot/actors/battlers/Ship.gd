@@ -34,6 +34,7 @@ const BOMB_BOOST = 200
 const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
+var responsive = false setget change_engine
 var info_player
 var count = 0
 var alive = true
@@ -90,6 +91,7 @@ func _enter_tree():
 	yield(skin, "stop_invincible")
 	invincible = false
 	
+	
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
@@ -99,12 +101,21 @@ func _ready():
 	species = species_template.species_name
 	
 	entity.get('Conqueror').set_species(self)
+	self.responsive = true
+	
+func change_engine(value: bool):
+	responsive = value
+	set_physics_process(responsive)
+	
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
 var last_velocity = Vector2()
+
 func _integrate_forces(state):
+	if not responsive:
+		return
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
