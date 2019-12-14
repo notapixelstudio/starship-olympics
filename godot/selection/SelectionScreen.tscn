@@ -38,10 +38,11 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Control
 
 signal letsfight
+const description : String = \"{n_players} READY TO FIGHT\"
 
 func _ready():
 	set_process_input(false)
@@ -54,8 +55,9 @@ func _input(event):
 		deactivate()
 
 func start(num_players: int):
+	
 	visible = true
-	$Label.text = $Label.text.format({\"n_players\":num_players})
+	$Label.text = description.format({\"n_players\":num_players})
 	yield(get_tree().create_timer(1), \"timeout\")
 	set_process_input(true)
 	
@@ -65,7 +67,7 @@ func deactivate():
 	visible = false
 "
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 40
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -253,7 +255,7 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_bottom = 361.0
-script = SubResource( 4 )
+script = SubResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/ReadyToFight"]
 anchor_right = 1.0
@@ -266,7 +268,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -175.0
 margin_bottom = -125.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "{n_players} READY TO FIGHT"
 align = 1
 valign = 1
@@ -277,10 +279,9 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = 105.0
 margin_bottom = 155.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "PRESS FIRE TO CONTINUE"
 align = 1
 valign = 1
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]
