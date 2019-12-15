@@ -35,7 +35,7 @@ onready var stun_manager = $Managers/StunManager
 onready var collect_manager = $Managers/CollectManager
 onready var environments_manager = $Managers/EnvironmentsManager
 onready var conquest_manager = $Managers/ConquestManager
-onready var pursue_manager = $PursueManager
+onready var pursue_manager = $Managers/PursueManager
 onready var snake_trail_manager = $Managers/TrailManager
 
 onready var SpawnPlayers = $SpawnPositions/Players

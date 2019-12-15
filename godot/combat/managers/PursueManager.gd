@@ -1,6 +1,8 @@
 extends Manager
 
 func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
+	if not enabled:
+		return
 	var entity = ECM.E(sth)
 	
 	if not entity:
