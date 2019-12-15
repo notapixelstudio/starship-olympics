@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://selection/SelectionScreen.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=3]
 [ext_resource path="res://selection/Fight.gd" type="Script" id=4]
 [ext_resource path="res://interface/joypad/PS4_Cross.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/interface/transparent-black-5-original.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -39,7 +40,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="GDScript" id=3]
-script/source = "extends Control
+script/source = "extends Node2D
 
 signal letsfight
 const description : String = \"{n_players} READY TO FIGHT\"
@@ -57,6 +58,7 @@ func _input(event):
 func start(num_players: int):
 	
 	visible = true
+	
 	$Label.text = description.format({\"n_players\":num_players})
 	yield(get_tree().create_timer(1), \"timeout\")
 	set_process_input(true)
@@ -71,7 +73,7 @@ func deactivate():
 size = 40
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 7 )
 
 [node name="SelectionScreen" type="Control"]
 anchor_right = 1.0
@@ -250,24 +252,23 @@ wait_time = 30.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ReadyToFight" type="Control" parent="CanvasLayer"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_bottom = 361.0
+[node name="ReadyToFight" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 650, 550 )
 script = SubResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ReadyToFight"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.545098 )
+[node name="ColorRect" type="Sprite" parent="CanvasLayer/ReadyToFight"]
+position = Vector2( 7.62939e-06, 16.75 )
+scale = Vector2( 1.59902, 1.1006 )
+texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="CanvasLayer/ReadyToFight"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -175.0
-margin_bottom = -125.0
+margin_left = -300.0
+margin_top = -100.0
+margin_right = 311.0
+margin_bottom = -50.0
 custom_fonts/font = SubResource( 4 )
 text = "{n_players} READY TO FIGHT"
 align = 1
@@ -277,8 +278,10 @@ valign = 1
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = 105.0
-margin_bottom = 155.0
+margin_left = -300.0
+margin_top = 50.0
+margin_right = 255.0
+margin_bottom = 100.0
 custom_fonts/font = SubResource( 4 )
 text = "PRESS FIRE TO CONTINUE"
 align = 1
