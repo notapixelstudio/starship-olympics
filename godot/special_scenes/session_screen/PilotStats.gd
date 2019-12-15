@@ -17,7 +17,6 @@ var just_won: bool = false
 func set_info(value: InfoPlayer):
 	player_info = value
 	if container:
-		$Label.text = str(player_info.session_score)
 		container.get_node("Headshot").set_species(player_info.species_template)
 		for stats in stats_container.get_children():
 			stats.stats_value = str(player_info.get(stats.key))

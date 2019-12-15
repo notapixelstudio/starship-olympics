@@ -26,7 +26,6 @@ func set_score(score:int):
 	print_debug(name, " siamo nella score ", character.global_position)
 	yield(get_tree().create_timer(1), "timeout")
 	$AnimationPlayer.play("buzzle")
-	$SessionScore/Score.text = str(score)
 	
 func refresh():
 	if character:
@@ -34,5 +33,4 @@ func refresh():
 		if is_beaten:
 			status_texture = (species.species_template as SpeciesTemplate).character_beaten
 		character.texture = status_texture
-		$SessionScore/Score.text = str(species.session_score)
 		
