@@ -84,11 +84,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/components/Conquerable.gd"
 }, {
-"base": "Resource",
-"class": "Controls",
-"language": "GDScript",
-"path": "res://selection/interface/Command.gd"
-}, {
 "base": "RigidBody2D",
 "class": "Crown",
 "language": "GDScript",
@@ -280,7 +275,6 @@ _global_script_class_icons={
 "CollectableSpawner": "",
 "Component": "",
 "Conquerable": "",
-"Controls": "",
 "Crown": "",
 "DeadShip": "",
 "Diamond": "",
@@ -340,10 +334,6 @@ global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
-
-[debug]
-
-gdscript/warnings/unused_class_variable=false
 
 [display]
 

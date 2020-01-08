@@ -18,7 +18,6 @@ func initialize(scores, winner: String, max_points = 3):
 		if (player as InfoPlayer).species == winner:
 			player_stats.just_won = true
 		player_stats.player_info = player
-		print_debug(player.species," ", player.session_score, ", ", pad* i, ", ", player_stats.position)
 		player_stats.name = player.species
 		i+=1
 		

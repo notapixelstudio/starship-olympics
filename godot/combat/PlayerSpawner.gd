@@ -11,7 +11,7 @@ signal entered_battlefield
 
 var id : String
 var uid : int
-onready var info_player : InfoPlayer
+onready var info_player 
 onready var sprite = $Sprite
 onready var animation = $AnimationPlayer
 

@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/sprites/no_crown.png" type="Texture" id=5]
 [ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=6]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "Feedback"
 length = 2.1
@@ -71,6 +70,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 400
 sides = 4.0
 
@@ -90,5 +90,3 @@ texture = ExtResource( 5 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-
-[connection signal="entered" from="Field" to="." method="_on_Field_entered"]

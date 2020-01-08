@@ -1,11 +1,10 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://assets/sprites/species/mantiacs/female_beaten.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/species/mantiacs/female.png" type="Texture" id=2]
 [ext_resource path="res://selection/Character.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/species/mantiacs/ship.png" type="Texture" id=4]
-[ext_resource path="res://actors/battlers/skin/Mantiacs.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/sprites/species/mantiacs/ship_plain.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/species/mantiacs/ship_plain.png" type="Texture" id=5]
 
 [resource]
 script = ExtResource( 3 )
@@ -14,10 +13,9 @@ species_name = "mantiacs"
 tagline1 = "playful<br>slaughterers"
 tagline2 = ""
 ship = ExtResource( 4 )
-ship_off = ExtResource( 6 )
+ship_off = ExtResource( 5 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 1 )
 species_id = null
 color = Color( 0.32549, 1, 0.32549, 1 )
 color_2 = Color( 0, 0.811765, 1, 1 )
-ship_anim = ExtResource( 5 )

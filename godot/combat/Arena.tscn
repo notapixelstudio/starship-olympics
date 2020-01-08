@@ -93,6 +93,9 @@ tracks/3/keys = {
 
 [node name="Arena" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
 gameover_scene = ExtResource( 2 )
 
 [node name="Managers" type="Node" parent="."]
@@ -110,7 +113,6 @@ __meta__ = {
 }
 
 [node name="PursueManager" type="Node" parent="Managers"]
-editor/display_folded = true
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -172,7 +174,6 @@ __meta__ = {
 }
 
 [node name="CollectModeManager" type="Node" parent="Managers"]
-editor/display_folded = true
 script = ExtResource( 15 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -193,7 +194,6 @@ __meta__ = {
 layer = -1
 
 [node name="Battlefield" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 17 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
@@ -232,12 +232,10 @@ script = ExtResource( 20 )
 [node name="Foreground" type="Node2D" parent="Battlefield"]
 
 [node name="Overlay" type="Node2D" parent="Battlefield"]
-editor/display_folded = true
 
 [node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 21 )]
 
 [node name="SpawnPositions" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Players" type="Node2D" parent="SpawnPositions"]
 
@@ -255,7 +253,6 @@ pause_mode = 2
 visible = false
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.352941 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -271,7 +268,6 @@ stream = ExtResource( 25 )
 
 [node name="DemoLabel" type="Label" parent="CanvasLayer"]
 pause_mode = 2
-editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
