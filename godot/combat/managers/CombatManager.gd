@@ -1,5 +1,7 @@
 extends Manager
 
+enum mode {ALL, ONLY_SELF, ONLY_OTHERS, ONLY_CPU, ONLY_PLAYERS}
+
 func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	
