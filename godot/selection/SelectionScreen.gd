@@ -152,7 +152,7 @@ func ready_to_fight():
 	var players = get_players()
 	print_debug("players who are going to fight are... " , players)
 	if len(players) >= MIN_PLAYERS:
-		ready_to_fight.start(len(players))
+		ready_to_fight.start(len(players), global.win)
 	else:
 		print_debug("not enough players")
 

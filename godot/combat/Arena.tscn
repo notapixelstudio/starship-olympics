@@ -29,8 +29,6 @@
 [ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=27]
 [ext_resource path="res://combat/Camera.gd" type="Script" id=28]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 500
 outline_color = Color( 0, 0, 0, 1 )
@@ -117,7 +115,6 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
-enabled = false
 
 [node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource( 7 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://selection/SelectionScreen.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://interface/joypad/PS4_Cross.png" type="Texture" id=5]
 [ext_resource path="res://assets/interface/transparent-black-5-original.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -44,6 +45,7 @@ script/source = "extends Node2D
 
 signal letsfight
 const description : String = \"{n_players} READY TO FIGHT\"
+const win_condition : String = \"WIN {n_matches}\"
 
 func _ready():
 	set_process_input(false)
@@ -55,12 +57,13 @@ func _input(event):
 	else:
 		deactivate()
 
-func start(num_players: int):
+func start(num_players: int, n_matches: int):
 	
 	visible = true
 	
 	$Label.text = description.format({\"n_players\":num_players})
-	yield(get_tree().create_timer(1), \"timeout\")
+	$Label3.text = win_condition.format({\"n_matches\":n_matches})
+	yield(get_tree().create_timer(0.2), \"timeout\")
 	set_process_input(true)
 	
 	
@@ -286,5 +289,24 @@ custom_fonts/font = SubResource( 4 )
 text = "PRESS FIRE TO CONTINUE"
 align = 1
 valign = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/ReadyToFight"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 204.949
+margin_top = -43.6777
+margin_right = 604.949
+margin_bottom = 6.32227
+custom_fonts/font = SubResource( 4 )
+text = "win {n_matches}"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="win1" parent="CanvasLayer/ReadyToFight" instance=ExtResource( 8 )]
+margin_left = 369.581
+margin_top = 20.1589
+margin_right = 439.581
+margin_bottom = 90.1589
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]
