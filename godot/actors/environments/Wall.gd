@@ -19,7 +19,6 @@ export var grid_rotation : float = 0 setget set_grid_rotation
 
 export var fill_color : Color = Color('#454545') setget set_fill_color
 
-onready var extents = $RectExtents
 var cshapes = []
 
 func set_hollow(value):
@@ -63,9 +62,18 @@ func _ready():
 	for node in get_children():
 		if node is GShape:
 			gshape = node
-	extents.size = gshape.get_extents()
+	# extents.size = gshape.get_extents()
 	refresh()
-	
+
+func get_rect_extents():
+	var gshape
+	for node in get_children():
+		if node is GShape:
+			gshape = node
+			break
+	var size = gshape.get_extents()
+	return Rect2(-1.0 * size / 2 , size)
+
 func remove_old_shapes():
 	for child in get_children():
 		if child is CollisionShape2D:

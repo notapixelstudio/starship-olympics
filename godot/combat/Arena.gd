@@ -86,7 +86,7 @@ func compute_arena_size():
 	"""
 	compute the battlefield size
 	"""
-	return $Battlefield/Background/OutsideWall.extents.get_rect()
+	return $Battlefield/Background/OutsideWall.get_rect_extents()
 
 func set_time_scale(value):
 	time_scale = value

@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
-[ext_resource path="res://special_scenes/gameover_screen/GameOver.tscn" type="PackedScene" id=2]
+[ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
@@ -28,6 +28,8 @@
 [ext_resource path="res://animations/Blink.tres" type="Animation" id=26]
 [ext_resource path="res://combat/pause/PauseMode.tscn" type="PackedScene" id=27]
 [ext_resource path="res://combat/Camera.gd" type="Script" id=28]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 500
