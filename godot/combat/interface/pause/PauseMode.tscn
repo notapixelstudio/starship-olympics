@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
+[ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
+
+
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.640902 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 834, 635 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="BlackOverlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.352941 )
+
+[node name="Window" type="Sprite" parent="."]
+position = Vector2( 651.635, 357.94 )
+scale = Vector2( 0.745386, 0.745386 )
+texture = ExtResource( 3 )
+
+[node name="GuiElements" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -329.0
+margin_top = -274.0
+margin_right = 349.0
+margin_bottom = 288.0
+theme = ExtResource( 4 )
+
+[node name="Title" type="Label" parent="GuiElements"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -124.0
+margin_right = 124.0
+margin_bottom = 78.0002
+theme = ExtResource( 1 )
+text = "Pause"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Buttons" type="VBoxContainer" parent="GuiElements"]
+margin_left = 238.0
+margin_top = 380.0
+margin_right = 420.0
+margin_bottom = 521.0
+alignment = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Continue" type="Button" parent="GuiElements/Buttons"]
+margin_top = 13.0
+margin_right = 182.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 1 )
+text = "CONTINUE"
+
+[node name="Restart" type="Button" parent="GuiElements/Buttons"]
+margin_top = 46.0
+margin_right = 182.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 1 )
+text = "RESTART"
+
+[node name="SkipLevel" type="Button" parent="GuiElements/Buttons"]
+margin_top = 79.0
+margin_right = 182.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 1 )
+text = "SKIP LEVEL"
+
+[node name="Options" type="Button" parent="GuiElements/Buttons"]
+visible = false
+margin_top = 99.0
+margin_right = 182.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 1 )
+text = "OPTIONS"
+
+[node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
+margin_top = 112.0
+margin_right = 182.0
+margin_bottom = 141.0
+custom_fonts/font = SubResource( 1 )
+text = "QUIT MATCH"
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/SkipLevel" to="." method="_on_SkipLevel_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]
