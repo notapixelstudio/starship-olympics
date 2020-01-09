@@ -30,7 +30,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.5.0"
+var version = "0.6.1"
 
 # OPTIONS need a min and a MAX
 const min_win = 1
