@@ -16,6 +16,8 @@ func set_key(value: String):
 	refresh()
 	
 func refresh():
-	if $Key:
-		$Key.text = key
-		$Value.text = stats_value
+	if not is_inside_tree():
+		yield(self, "ready")
+		
+	$Key.text = key
+	$Value.text = stats_value

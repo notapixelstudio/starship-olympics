@@ -41,7 +41,6 @@ match_duration_override = 130.0
 
 [node name="DeathmatchModeManager" parent="Managers" index="6"]
 enabled = true
-enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
@@ -119,7 +118,6 @@ playback_speed = 0.07
 anims/Pulse = SubResource( 1 )
 
 [node name="LeftAsteroids" type="Node2D" parent="Battlefield/Middleground" index="0"]
-editor/display_folded = true
 position = Vector2( -150, -550 )
 rotation = -0.523599
 __meta__ = {
@@ -199,7 +197,6 @@ __meta__ = {
 points = PoolVector2Array( 20, -150, 230, -100, 180, -30, 0, 0 )
 
 [node name="RightAsteroids" type="Node2D" parent="Battlefield/Middleground" index="1"]
-editor/display_folded = true
 position = Vector2( 150, 550 )
 rotation = -0.523599
 scale = Vector2( -1, -1 )
