@@ -30,9 +30,9 @@ radius = 16.0
 radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
+"Foreground",
 "in_camera",
 "players",
-"Foreground",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -74,7 +74,6 @@ shape = SubResource( 4 )
 bus = "SFX_effect"
 
 [node name="Entity2D" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -147,7 +146,6 @@ enabled = false
 [node name="Debug" parent="." instance=ExtResource( 14 )]
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 15 )]
-
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]

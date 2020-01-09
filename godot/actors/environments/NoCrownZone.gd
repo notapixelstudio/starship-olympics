@@ -1,7 +1,12 @@
 extends Node2D
 
+
+onready var field = $Field
 func _ready():
-	var gshape = $Field.get_gshape()
+	var gshape = field.get_gshape()
+	
+	# connect feedback signal 
+	field.connect("entered", self, "_on_Field_entered")
 	
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	
