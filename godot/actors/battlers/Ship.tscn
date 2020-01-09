@@ -30,11 +30,11 @@ radius = 16.0
 radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
-"Foreground",
 "in_camera",
+"Foreground",
 "players",
 ]]
-collision_mask = 1171
+collision_mask = 1175
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
 continuous_cd = 2
