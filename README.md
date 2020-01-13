@@ -4,7 +4,7 @@
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/notapixelstudio)
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
-<a href="https://notapixel.itch.io/superstarfighter"><img src="mocklogo.png"/></a>
+<a href="https://notapixel.itch.io/superstarfighter"><img src="img/mocklogo.png"/></a>
 
 - 1 to 4 players fast-paced arcade combat party game
 - Intuitive and expressive single-button controls: everyone can pick up a controller and play!
