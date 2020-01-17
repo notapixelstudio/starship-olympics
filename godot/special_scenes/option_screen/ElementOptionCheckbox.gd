@@ -24,8 +24,13 @@ func _on_ElementCheckbox_toggled(button_pressed):
 
 
 func _on_MarginContainer_focus_entered():
+	print("dfsjadsj")
 	set_process_input(true)
 
 
 func _on_MarginContainer_focus_exited():
 	set_process_input(false)
+
+
+func focus():
+	get_child(0).grab_focus()
