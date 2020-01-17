@@ -31,6 +31,7 @@ func _get_language():
 	return language
 
 var version = "0.6.1"
+var first_time = true
 
 # OPTIONS need a min and a MAX
 const min_win = 1
@@ -49,7 +50,7 @@ func _audio_on(new_value):
 	audio_on = new_value
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
 
-var master_volume : int setget _set_master_volume
+var master_volume : int = 50 setget _set_master_volume
 var min_master_volume : int = 0
 var max_master_volume: int = 100
 
@@ -60,7 +61,7 @@ func _set_master_volume(new_value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 
-var music_volume : int setget _set_music_volume
+var music_volume : int = 50 setget _set_music_volume
 var min_music_volume : int = 0
 var max_music_volume: int = 100
 
@@ -71,7 +72,7 @@ func _set_music_volume(new_value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 	
-var sfx_volume : int setget _set_sfx_volume
+var sfx_volume : int = 50 setget _set_sfx_volume
 var min_sfx_volume : int = 0
 var max_sfx_volume: int = 100
 
@@ -181,8 +182,10 @@ func _ready():
 	
 	if not saved_data or not "version" in saved_data[global_key] or check_version(saved_data[global_key]["version"], version):
 		print("We need to update the saved game")
+		first_time = true
 		persistance.save_game()
-		
+	else:
+		first_time = false
 	if persistance.load_game():
 		print("Successfully load the game")
 	else:
@@ -308,12 +311,13 @@ func get_base_entity(node : Node):
 		return null
 	return get_base_entity(node.get_parent())
 	
-func check_version(saved_version: String, version: String):
+func check_version(saved_version: String, version: String) -> bool:
 	# Will check if the version of the saved data is smaller the current
 	var this_minor = saved_version.split(".")[1]
 	var minor = version.split(".")[1]
-	print(this_minor, " vs ", minor)
-	return this_minor < minor
+	print(this_minor, " vs ", minor, ": ", this_minor < minor)
+	
+	return int(this_minor) < int(minor)
 
 func send_stats(category: String, stats: Dictionary):
 	emit_signal("send_statistics", category, stats)

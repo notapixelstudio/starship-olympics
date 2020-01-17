@@ -9,12 +9,12 @@ func _ready():
 	if not label_description:
 		label_description = variable_name
 
-	description_node.text = label_description.to_upper()
-	value = node_owner.get(variable_name)
-	print("value checkbox "+str(value))
 	_initialize()
 	
 func _initialize():
+	description_node.text = label_description.to_upper()
+	value = node_owner.get(variable_name)
+	print("value checkbox "+str(value))
 	value_node.pressed = value
 
 

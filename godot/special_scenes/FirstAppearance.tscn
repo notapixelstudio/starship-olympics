@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/UI/futureui-panel.png" type="Texture" id=2]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/fonts/kenvector_future_14.tres" type="DynamicFont" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+onready var anim = $Disclaimer/AnimationPlayer
+signal okay
+func _ready():
+	visible = false
+	
+func start():
+	visible = true
+	$Disclaimer/Button.grab_focus()
+	anim.play(\"Appear\")
+	
+func _on_Button_pressed():
+	anim.play_backwards(\"Appear\")
+	yield(anim, \"animation_finished\")
+	persistance.save_game()
+	print(\"Statistics are now : \", global.enable_analytics)
+	emit_signal(\"okay\")
+	queue_free()
+"
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.843752, -0.26, -0.861676, 0.14, 0.34318, 1, -0.3, 0.286751, 0.249942, -0.238904 ),
+"times": PoolRealArray( 0, 0.4, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 1 )
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.55493
+margin_top = -0.815063
+margin_right = 6.55493
+margin_bottom = -0.815063
+color = Color( 0, 0, 0, 0.396078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Disclaimer" type="Node2D" parent="."]
+position = Vector2( 640, 360 )
+
+[node name="futureui-panel" type="Sprite" parent="Disclaimer"]
+scale = Vector2( 1.31379, 1 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Disclaimer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -421.045
+margin_top = -78.9094
+margin_right = 354.955
+margin_bottom = -18.9094
+custom_fonts/font = ExtResource( 4 )
+text = "Superstarfighter is a game opensoursadasdce. Developed by notapixelstudio
+This game gather statistics thanks to GameAnalytics. For more info, follow the link.
+You can opt out with the button below, keep in mind that we use this only as a feedback"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" parent="Disclaimer" instance=ExtResource( 1 )]
+margin_left = -401.907
+margin_top = -8.50598
+margin_right = -226.907
+margin_bottom = 41.494
+is_global = true
+element_path = "enable_analytics"
+label_description = "analytics"
+
+[node name="Button" type="Button" parent="Disclaimer"]
+margin_left = 144.601
+margin_top = 55.2889
+margin_right = 230.601
+margin_bottom = 81.2889
+theme = ExtResource( 3 )
+text = "CONTINUE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Disclaimer"]
+anims/Appear = SubResource( 2 )
+[connection signal="pressed" from="Disclaimer/Button" to="." method="_on_Button_pressed"]

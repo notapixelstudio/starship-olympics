@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=8]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://special_scenes/FirstAppearance.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -124,7 +125,11 @@ tracks/1/keys = {
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 multiplayer_scene = ExtResource( 2 )
 
 [node name="Overlays" type="CanvasLayer" parent="."]
@@ -138,7 +143,11 @@ smoothness = 0.0
 [node name="TitleScreen" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Animator" type="AnimationPlayer" parent="TitleScreen"]
 anims/fade_in = SubResource( 1 )
@@ -146,12 +155,12 @@ anims/fade_out = SubResource( 2 )
 anims/option_selected = SubResource( 3 )
 
 [node name="logo_ssf_olympic" type="Sprite" parent="TitleScreen"]
-position = Vector2( 640, 210 )
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 640, 295 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 
 [node name="Options" parent="." instance=ExtResource( 7 )]
-visible = false
 mouse_filter = 1
 
 [node name="Buttons" type="VBoxContainer" parent="."]
@@ -164,7 +173,6 @@ margin_left = -145.0
 margin_top = 34.0
 margin_right = 145.0
 margin_bottom = 326.0
-mouse_default_cursor_shape = 3
 theme = ExtResource( 8 )
 alignment = 1
 __meta__ = {
@@ -267,6 +275,8 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
 anims/appear = SubResource( 8 )
+
+[node name="Disclaimer" parent="." instance=ExtResource( 12 )]
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]

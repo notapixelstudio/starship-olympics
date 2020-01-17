@@ -12,6 +12,7 @@ onready var description_node = $Container/Description
 const focus_color = Color(1,1,1)
 var index_value
 
+
 func _initialize():
 	left.visible = true
 	right.visible = true

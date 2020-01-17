@@ -4,6 +4,7 @@ extends BasicScreen
 onready var title = $TitleScreen
 onready var options = $Options
 onready var buttons = $Buttons
+onready var info = $Disclaimer
 
 export var multiplayer_scene : PackedScene
 
@@ -14,11 +15,18 @@ func _on_QuitButton_pressed():
 	#get_tree().quit()
 
 func _ready():
+	Soundtrack.play("Lobby5", true)
 	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Label.text = tr("DEMO BUILD - v"+ str(global.version))
 	remove_child(options)
+	remove_child(title)
 	disable_buttons()
+	if global.first_time:
+		info.start()
+		yield(info, "okay")
+	add_child(title)
+	title.initialize()
 	yield(title, "entered")
 	enable_buttons()
 	

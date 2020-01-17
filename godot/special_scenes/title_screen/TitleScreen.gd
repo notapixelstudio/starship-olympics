@@ -16,9 +16,7 @@ func initialize():
 	can_press = true
 	
 	
-func _ready():
-	Soundtrack.play("Lobby5", true)
-	initialize()
+
 
 func _on_Options_pressed():
 	animation.play("fade_out")

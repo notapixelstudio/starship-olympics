@@ -9,16 +9,15 @@ onready var animation = $AnimationPlayer
 
 var focus_index = 0
 
-func _ready():
-	enable_all()
-	visible=true
-	
+
 func disable_all():
 	animation.play("hide")
 	yield(animation, "animation_finished")
 	emit_signal("back")
 
 func enable_all():
+	for elem in container.get_children():
+		elem._initialize()
 	focus_index = 0
 	container.get_child(focus_index).grab_focus()
 	
@@ -38,7 +37,6 @@ func _input(event):
 
 func _exit_tree():
 	# Let's save the changes
-	print("saving")
 	persistance.save_game()
 
 func _on_Button_pressed():
