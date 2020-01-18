@@ -30,8 +30,11 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.6.1"
+var version = "0.6.1" setget set_version
 var first_time = true
+
+func set_version(value):
+	print("Version is and will be {v}".format({"v": version}))
 
 # OPTIONS need a min and a MAX
 const min_win = 1
