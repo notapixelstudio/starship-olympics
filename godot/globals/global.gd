@@ -30,7 +30,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.7.1"
+var version = "0.6.1"
 var first_time = true
 
 # OPTIONS need a min and a MAX
@@ -44,7 +44,7 @@ var array_level
 
 var audio_on : bool setget _audio_on
 
-var demo : bool = true
+var demo : bool = false
 
 func _audio_on(new_value):
 	audio_on = new_value

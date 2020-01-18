@@ -10,7 +10,7 @@
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=8]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://special_scenes/FirstAppearance.tscn" type="PackedScene" id=12]
+[ext_resource path="res://special_scenes/FirstAppearance.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -276,7 +276,7 @@ valign = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
 anims/appear = SubResource( 8 )
 
-[node name="Disclaimer" parent="." instance=ExtResource( 12 )]
+[node name="Disclaimer" parent="." instance=ExtResource( 11 )]
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
