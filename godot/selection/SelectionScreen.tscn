@@ -54,7 +54,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed(\"ui_accept\"):
 		emit_signal(\"letsfight\")
-	else:
+	elif event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		deactivate()
 
 func start(num_players: int, n_matches: int):
@@ -94,7 +94,6 @@ patch_margin_right = 3
 patch_margin_bottom = 3
 
 [node name="Container" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5

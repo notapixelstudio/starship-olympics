@@ -37,8 +37,6 @@ func from_species_to_info_player(selection_species: PlayerSelection) -> InfoPlay
 	info_player.controls = selection_species.controls
 	info_player.species_template = selection_species.species_template
 	info_player.team = selection_species.is_team
-	print_debug("Is that a teammate")
-	print_debug(info_player.team)
 	return info_player
 	
 func _ready():
