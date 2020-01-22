@@ -25,8 +25,8 @@ func _ready():
 	sprite.play(get_the_right_one())
 
 func _on_Sprite_animation_finished():
-	sprite.stop()
 	sprite.frame = 0
+	sprite.stop()
 	yield(get_tree().create_timer(3), "timeout")
 	sprite.play(get_the_right_one())
 	

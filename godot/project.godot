@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/weapons/Bomb.gd"
 }, {
+"base": "Area2D",
+"class": "BombCore",
+"language": "GDScript",
+"path": "res://actors/weapons/BombCore.gd"
+}, {
 "base": "BombSpawner",
 "class": "BombDropper",
 "language": "GDScript",
@@ -267,6 +272,7 @@ _global_script_class_icons={
 "BasicScreen": "",
 "BigDiamond": "",
 "Bomb": "",
+"BombCore": "",
 "BombDropper": "",
 "BombSpawner": "",
 "BombTurret": "",

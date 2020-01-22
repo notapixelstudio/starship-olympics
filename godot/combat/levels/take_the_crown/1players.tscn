@@ -64,7 +64,6 @@ game_mode = ExtResource( 2 )
 
 [node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
-enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
@@ -136,7 +135,7 @@ bevel_ne = 800
 bevel_sw = 800
 bevel_se = 800
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5"]
 autoplay = "Pulse"
 playback_speed = 0.5
 anims/Pulse = SubResource( 1 )
