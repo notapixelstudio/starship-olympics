@@ -54,7 +54,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed(\"ui_accept\"):
 		emit_signal(\"letsfight\")
-	elif event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion:
+	elif event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
 		deactivate()
 
 func start(num_players: int, n_matches: int):
