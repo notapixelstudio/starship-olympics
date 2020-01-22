@@ -242,7 +242,8 @@ func deselect():
 		child.deselect()
 
 func restart_timer():
-	$Timer.start()
+	if global.demo:
+		$Timer.start()
 
 func _on_Timer_timeout():
 	emit_signal("start_demo")
