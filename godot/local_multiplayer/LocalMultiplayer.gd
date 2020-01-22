@@ -241,6 +241,7 @@ func _back_to_menu(node):
 	combat.queue_free()
 	get_tree().paused = false
 	add_child(selection_screen)
+	selection_screen.reset()
 	if global.demo:
 		selection_screen.deselect()
 	
