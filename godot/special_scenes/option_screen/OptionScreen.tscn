@@ -65,7 +65,7 @@ custom_constants/separation = 6
 
 [node name="Items" type="VBoxContainer" parent="Panel/PanelItems"]
 margin_right = 445.0
-margin_bottom = 320.0
+margin_bottom = 374.0
 
 [node name="Element" parent="Panel/PanelItems/Items" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -90,8 +90,8 @@ margin_top = 108.0
 margin_right = 445.0
 margin_bottom = 158.0
 is_global = true
-element_path = "enable_analytics"
-label_description = "analytics"
+element_path = "full_screen"
+label_description = "FULLSCREEN"
 
 [node name="Music" parent="Panel/PanelItems/Items" instance=ExtResource( 6 )]
 margin_top = 162.0
@@ -122,16 +122,24 @@ element_path = "sfx_volume"
 label_description = "Volume SFX"
 bus_name = "SFX"
 
-[node name="Control" type="Control" parent="Panel/PanelItems"]
-margin_top = 326.0
+[node name="ONOFF2" parent="Panel/PanelItems/Items" instance=ExtResource( 5 )]
+margin_top = 324.0
 margin_right = 445.0
-margin_bottom = 341.0
+margin_bottom = 374.0
+is_global = true
+element_path = "enable_analytics"
+label_description = "analytics"
+
+[node name="Control" type="Control" parent="Panel/PanelItems"]
+margin_top = 380.0
+margin_right = 445.0
+margin_bottom = 380.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="Panel/PanelItems"]
-margin_top = 347.0
+margin_top = 386.0
 margin_right = 445.0
-margin_bottom = 397.0
+margin_bottom = 436.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 7 )

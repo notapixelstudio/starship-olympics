@@ -22,6 +22,12 @@ var available_languages = {
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
+var full_screen = true setget _set_full_screen
+
+func _set_full_screen(value: bool):
+	full_screen = value
+	OS.window_fullscreen = full_screen
+	OS.move_window_to_foreground()
 
 func _set_language(value:String):
 	language = value
@@ -246,7 +252,8 @@ func get_state():
 		music_volume=music_volume,
 		master_volume=master_volume,
 		sfx_volume=sfx_volume,
-		demo=demo
+		demo=demo,
+		full_screen=full_screen
 		
 	}
 	return save_dict
