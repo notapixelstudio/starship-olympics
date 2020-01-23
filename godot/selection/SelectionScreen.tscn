@@ -9,9 +9,6 @@
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
 
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 tracks/0/type = "value"
@@ -57,7 +54,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed(\"ui_accept\"):
 		emit_signal(\"letsfight\")
-	else:
+	elif event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
 		deactivate()
 
 func start(num_players: int, n_matches: int):
@@ -97,7 +94,6 @@ patch_margin_right = 3
 patch_margin_bottom = 3
 
 [node name="Container" type="HBoxContainer" parent="."]
-editor/display_folded = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -307,9 +303,7 @@ valign = 1
 uppercase = true
 
 [node name="win1" parent="CanvasLayer/ReadyToFight" instance=ExtResource( 8 )]
-margin_left = 369.581
-margin_top = 20.1589
-margin_right = 439.581
-margin_bottom = 90.1589
+position = Vector2( 450, 50 )
+won = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]

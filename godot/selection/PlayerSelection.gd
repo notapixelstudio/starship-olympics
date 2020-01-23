@@ -66,13 +66,15 @@ func change_species(new_species: SpeciesTemplate):
 		species_template = new_species
 		speciesSelection.change_species(species_template)
 
+func _process(delta):
+	if Input.is_action_just_pressed(controls+"_right") and not global.demo:
+		_on_Next_pressed()
+	if Input.is_action_just_pressed(controls+"_left") and not global.demo:
+		_on_Previous_pressed()
+		
 func _input(event):
 	if disabled:
 		return
-	if event.is_action_pressed(controls+"_right") and not global.demo:
-		_on_Next_pressed()
-	if event.is_action_pressed(controls+"_left") and not global.demo:
-		_on_Previous_pressed()
 	if selected :
 		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")

@@ -22,6 +22,12 @@ var available_languages = {
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
+var full_screen = true setget _set_full_screen
+
+func _set_full_screen(value: bool):
+	full_screen = value
+	OS.window_fullscreen = full_screen
+	OS.move_window_to_foreground()
 
 func _set_language(value:String):
 	language = value
@@ -140,11 +146,11 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES0: true,
 	ALL_SPECIES.SPECIES1: true,
 	ALL_SPECIES.SPECIES2: true,
-	ALL_SPECIES.SPECIES3 : true,
+	ALL_SPECIES.SPECIES3 : false,
 	ALL_SPECIES.SPECIES4 : true,
-	ALL_SPECIES.SPECIES5: true,
+	ALL_SPECIES.SPECIES5: false,
 	ALL_SPECIES.SPECIES6: false,
-	ALL_SPECIES.SPECIES7: true,
+	ALL_SPECIES.SPECIES7: false,
 	ALL_SPECIES.SPECIES8 : false,
 	ALL_SPECIES.SPECIES9 : false
 }
@@ -165,7 +171,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		OS.window_fullscreen = not OS.window_fullscreen
 	
-	if event.is_action_pressed("force_reset"):
+	if demo and event.is_action_pressed("force_reset"):
 		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
 		get_tree().paused = false
 		
@@ -246,7 +252,8 @@ func get_state():
 		music_volume=music_volume,
 		master_volume=master_volume,
 		sfx_volume=sfx_volume,
-		demo=demo
+		demo=demo,
+		full_screen=full_screen
 		
 	}
 	return save_dict

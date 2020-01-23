@@ -30,10 +30,6 @@ var players : Dictionary
 
 signal updated
 
-func _unhandled_input(event):
-	if event.is_action_pressed("force_pause"):
-		get_tree().reload_current_scene()
-
 func from_species_to_info_player(selection_species: PlayerSelection) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = selection_species.name
@@ -41,8 +37,6 @@ func from_species_to_info_player(selection_species: PlayerSelection) -> InfoPlay
 	info_player.controls = selection_species.controls
 	info_player.species_template = selection_species.species_template
 	info_player.team = selection_species.is_team
-	print_debug("Is that a teammate")
-	print_debug(info_player.team)
 	return info_player
 	
 func _ready():
@@ -241,6 +235,7 @@ func _back_to_menu(node):
 	combat.queue_free()
 	get_tree().paused = false
 	add_child(selection_screen)
+	selection_screen.reset()
 	if global.demo:
 		selection_screen.deselect()
 	

@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 06.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=7]
 
-
 [node name="PlayerSelection" type="Control"]
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -39,4 +38,3 @@ bus = "SFX"
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 7 )
 bus = "SFX"
-
