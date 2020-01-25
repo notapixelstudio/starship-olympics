@@ -28,6 +28,10 @@ func _set_full_screen(value: bool):
 	full_screen = value
 	OS.window_fullscreen = full_screen
 	OS.move_window_to_foreground()
+	if full_screen:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _set_language(value:String):
 	language = value

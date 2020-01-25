@@ -30,9 +30,9 @@ radius = 16.0
 radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
-"Foreground",
 "in_camera",
 "players",
+"Foreground",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -150,3 +150,5 @@ enabled = false
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
 [connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]
+[connection signal="disabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_disabled"]
+[connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]

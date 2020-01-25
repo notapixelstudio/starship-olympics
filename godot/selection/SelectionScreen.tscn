@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://selection/SelectionScreen.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=3]
 [ext_resource path="res://selection/Fight.gd" type="Script" id=4]
 [ext_resource path="res://assets/UI/keys_and_buttons/joypad/PS4_Cross.png" type="Texture" id=5]
-[ext_resource path="res://assets/UI/transparent-black-5-original.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/futureui-panel-2.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
 
@@ -45,7 +45,7 @@ script/source = "extends Node2D
 
 signal letsfight
 const description : String = \"{n_players} READY TO FIGHT\"
-const win_condition : String = \"WIN {n_matches}\"
+const win_condition : String = \"{n_matches} STARS TO WIN\"
 
 func _ready():
 	set_process_input(false)
@@ -61,7 +61,7 @@ func start(num_players: int, n_matches: int):
 	
 	visible = true
 	
-	$Label.text = description.format({\"n_players\":num_players})
+	$Label.text = description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')})
 	$Label3.text = win_condition.format({\"n_matches\":n_matches})
 	yield(get_tree().create_timer(0.2), \"timeout\")
 	set_process_input(true)
@@ -72,8 +72,20 @@ func deactivate():
 	visible = false
 "
 
+[sub_resource type="DynamicFont" id=6]
+size = 52
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
 [sub_resource type="DynamicFont" id=4]
 size = 40
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
@@ -259,20 +271,19 @@ position = Vector2( 650, 550 )
 script = SubResource( 3 )
 
 [node name="ColorRect" type="Sprite" parent="CanvasLayer/ReadyToFight"]
-position = Vector2( 7.62939e-06, 16.75 )
-scale = Vector2( 1.59902, 1.1006 )
+position = Vector2( -10, 90 )
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="CanvasLayer/ReadyToFight"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -100.0
-margin_right = 311.0
-margin_bottom = -50.0
-custom_fonts/font = SubResource( 4 )
-text = "{n_players} READY TO FIGHT"
+margin_left = -650.0
+margin_top = -49.0
+margin_right = 630.0
+margin_bottom = 1.0
+custom_fonts/font = SubResource( 6 )
+text = "N PLAYERS READY TO FIGHT!"
 align = 1
 valign = 1
 
@@ -280,10 +291,10 @@ valign = 1
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = 50.0
-margin_right = 255.0
-margin_bottom = 100.0
+margin_left = -650.0
+margin_top = 74.0
+margin_right = 630.0
+margin_bottom = 124.0
 custom_fonts/font = SubResource( 4 )
 text = "PRESS FIRE TO CONTINUE"
 align = 1
@@ -292,18 +303,18 @@ valign = 1
 [node name="Label3" type="Label" parent="CanvasLayer/ReadyToFight"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 204.949
-margin_top = -43.6777
-margin_right = 604.949
-margin_bottom = 6.32227
-custom_fonts/font = SubResource( 4 )
-text = "win {n_matches}"
+margin_left = 350.0
+margin_top = 50.0
+margin_right = 627.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 5 )
+text = "N stars to win"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="win1" parent="CanvasLayer/ReadyToFight" instance=ExtResource( 8 )]
-position = Vector2( 450, 50 )
+position = Vector2( 493.7, -23.4 )
 won = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]

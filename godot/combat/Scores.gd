@@ -73,7 +73,6 @@ func update(delta:float):
 		var winner = leader["species"]
 		if draw:
 			winner = "noone"
-		print_debug('Game Over - ', winner, ' won.')
 		game_over = true
 		emit_signal("game_over", winner, scores_index)
 		
