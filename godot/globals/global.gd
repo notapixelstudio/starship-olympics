@@ -17,7 +17,7 @@ var available_languages = {
 	"español": "es",
 	"italiano": "it",
 	"euskara": "eu",
-	"français": "fr",
+	"is": "fr",
 	"deutsch": "de"
 	}
 onready var language: String setget _set_language, _get_language

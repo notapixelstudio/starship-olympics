@@ -361,8 +361,8 @@ func ship_just_died(ship: Ship, killer : Ship):
 				respawn_timeout = 3
 			else:
 				respawn_timeout = 1
-	elif conquest_mode.enabled:
-		respawn_timeout = 1
+	#elif conquest_mode.enabled:
+	#	respawn_timeout = 1
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
