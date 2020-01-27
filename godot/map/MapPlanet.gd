@@ -5,7 +5,6 @@ extends MapPoint
 class_name MapPlanet
 
 export var planet : Resource setget set_planet
-onready var info_planet = $InfoPlanet
 onready var sprite = $Sprite
 
 var not_available = false setget set_availability
@@ -24,6 +23,5 @@ func _ready():
 	
 func refresh():
 	if sprite:
-		info_planet.set_planet(planet)
-		sprite.texture = planet.planet_sprite
+		sprite.texture = planet.game_mode.logo
 		

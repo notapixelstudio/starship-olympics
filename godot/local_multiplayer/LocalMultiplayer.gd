@@ -121,7 +121,7 @@ func combat(selected_players: Array, fight_mode : String):
 	var map = map_scene.instance()
 	map.initialize(players)
 	
-	"""
+	#"""
 	add_child(map)
 	yield(map, "done")
 	yield(get_tree(), "idle_frame")
@@ -130,7 +130,8 @@ func combat(selected_players: Array, fight_mode : String):
 		add_child(parallax)
 		add_child(selection_screen)
 		return
-	"""
+	#"""
+	return
 
 	all_planets.shuffle() # shuffle the planets at start
 	for planet in all_planets:

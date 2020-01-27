@@ -2,7 +2,7 @@ extends Control
 
 const WIDTH = 200
 const HEIGHT = 100
-const CELLSIZE = 200
+const CELLSIZE = 400
 var matrix = []
 var back = false
 
@@ -16,6 +16,8 @@ onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
 
+onready var cursor_tween = $CursorMoveTween
+
 func _ready():
 	back = false
 	current_planets = []
@@ -27,20 +29,7 @@ func _ready():
 			
 	for p in get_tree().get_nodes_in_group('map_point'):
 		matrix[int(p.position.x/CELLSIZE)][int(p.position.y/CELLSIZE)] = p
-
 		
-	for c in get_tree().get_nodes_in_group('map_connection'):
-		if int(c.rotation_degrees) == 90 or int(c.rotation_degrees) == -90 or int(c.rotation_degrees) == 270 or int(c.rotation_degrees) == -270:
-			var south = matrix[int(c.position.x/CELLSIZE)][int((c.position.y+CELLSIZE/2)/CELLSIZE)] as MapPoint
-			var north = matrix[int(c.position.x/CELLSIZE)][int((c.position.y-CELLSIZE/2)/CELLSIZE)] as MapPoint
-			south.set_neighbour(north, 'N')
-			north.set_neighbour(south, 'S')
-		elif int(c.rotation_degrees) == 0 or int(c.rotation_degrees) == 180 or int(c.rotation_degrees) == -180 or int(c.rotation_degrees) == 360:
-			var east = matrix[int((c.position.x+CELLSIZE/2)/CELLSIZE)][int(c.position.y/CELLSIZE)] as MapPoint
-			var west = matrix[int((c.position.x-CELLSIZE/2)/CELLSIZE)][int(c.position.y/CELLSIZE)] as MapPoint
-			east.set_neighbour(west, 'W')
-			west.set_neighbour(east, 'E')
-			
 	for cursor in get_tree().get_nodes_in_group('map_cursor'):
 		cursor.connect('try_move', self, '_on_cursor_try_move')
 		cursor.connect('select', self, '_on_cursor_select')
@@ -60,9 +49,10 @@ func initialize(players):
 		var player = players[player_id]
 		var cursor = cursor_scene.instance()
 		cursor.species = (player as InfoPlayer).species_template
-		cursor.player_controls = (player as InfoPlayer).controls
+		cursor.player = (player as InfoPlayer)
 		cursor.player_i = i
-		cursor.position = Vector2(2*CELLSIZE, CELLSIZE)
+		cursor.cell_size = CELLSIZE
+		cursor.grid_position = Vector2(0, 0)
 		$Content.add_child(cursor)
 		i += 1
 	
@@ -70,24 +60,26 @@ func initialize(players):
 	
 	
 func _on_cursor_try_move(cursor, direction):
-	var cell = get_cell(cursor)
+	var desired_position = cursor.grid_position
+	
+	if direction == 'N':
+		desired_position.y -= 1
+	elif direction == 'S':
+		desired_position.y += 1
+	elif direction == 'W':
+		desired_position.x -= 1
+	elif direction == 'E':
+		desired_position.x += 1
+		
+	var cell = get_cell(CELLSIZE * desired_position)
 	
 	if not cell:
 		return
 		
-	if not (direction in cell.neighbours):
-		return
-	if direction == 'N':
-		cursor.position.y -= CELLSIZE
-	elif direction == 'S':
-		cursor.position.y += CELLSIZE
-	elif direction == 'W':
-		cursor.position.x -= CELLSIZE
-	elif direction == 'E':
-		cursor.position.x += CELLSIZE
-		
+	cursor.set_grid_position(desired_position)
+	
 func _on_cursor_select(cursor):
-	var cell = get_cell(cursor)
+	var cell = get_cell(CELLSIZE * cursor.grid_position)
 	
 	if not cell or not (cell is MapPlanet):
 		return
@@ -118,8 +110,8 @@ func _on_cursor_cancel(cursor):
 	cursor.enable()
 	
 		
-func get_cell(object):
-	return matrix[int(object.position.x/CELLSIZE)][int(object.position.y/CELLSIZE)]
+func get_cell(position):
+	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
 
 func timeout_chosen():
 	for item in playlist.get_children():
@@ -133,10 +125,6 @@ func on_cursor_proceed(cursor):
 	emit_signal('done')
 
 func _process(delta):
-	var i = 0
-	for planet in get_tree().get_nodes_in_group("planets"):
-		planet.info_planet.scale = camera.zoom
-		i+=1
 	$CanvasLayerTop/HUD/GameStart/Tot.text = str(int($CanvasLayerTop/Timer.time_left))
 
 func _on_Timer_timeout():
