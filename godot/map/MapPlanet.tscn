@@ -2,7 +2,7 @@
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
-[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=4]
 
 [node name="MapPlanet" type="Node2D" groups=[
@@ -13,7 +13,6 @@ script = ExtResource( 1 )
 planet = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 
 [node name="NA" type="Sprite" parent="."]

@@ -2,7 +2,7 @@ extends Control
 
 const WIDTH = 200
 const HEIGHT = 100
-const CELLSIZE = 400
+const CELLSIZE = 200
 var matrix = []
 var back = false
 
@@ -44,15 +44,27 @@ func _ready():
 	intro.text = intro.text.replace("X", str(num_players))
 
 func initialize(players):
+	var human_players : float = 0
+	for player_id in players:
+		if not players[player_id].cpu:
+			human_players += 1
+	
 	var i = 0
 	for player_id in players:
 		var player = players[player_id]
+		
+		if player.cpu:
+			continue
+			
 		var cursor = cursor_scene.instance()
 		cursor.species = (player as InfoPlayer).species_template
 		cursor.player = (player as InfoPlayer)
 		cursor.player_i = i
 		cursor.cell_size = CELLSIZE
 		cursor.grid_position = Vector2(0, 0)
+		cursor.z_index = 100 - i
+		cursor.rotation_degrees = 60*(i-human_players/2 + 0.5)
+		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
 		i += 1
 	
@@ -88,28 +100,29 @@ func _on_cursor_select(cursor):
 		return
 		
 	# if we want to give just ONE choice we would disable
-	cursor.disable()
+	#cursor.disable()
 	
-	var item = playlist_item.instance()
-	item.species = cursor.species 
-	item.planet = cell.planet
-	item.name = cursor.name
-	playlist.add_child(item)
+	#var item = playlist_item.instance()
+	#item.species = cursor.species 
+	#item.planet = cell.planet
+	#item.name = cursor.name
+	#playlist.add_child(item)
 	
+	cell.toggle_active()
 	
 func _on_cursor_cancel(cursor):
+	pass
 	# TODO: get the item in a better way
-	var item = playlist.get_node(cursor.name)
+	#var item = playlist.get_node(cursor.name)
 	
-	if not item:
-		back = true
-		emit_signal('done')
-		return
+	#if not item:
+	#	back = true
+	#	emit_signal('done')
+	#	return
 	
-	item.queue_free()
-	cursor.enable()
+	#item.queue_free()
+	#cursor.enable()
 	
-		
 func get_cell(position):
 	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
 

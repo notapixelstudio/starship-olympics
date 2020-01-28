@@ -1,24 +1,37 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
 [ext_resource path="res://map/PlaylistItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=5]
-[ext_resource path="res://map/planets/SoloDeath.tres" type="Resource" id=6]
-[ext_resource path="res://map/planets/Megacrown.tres" type="Resource" id=7]
+[ext_resource path="res://map/planets/Megacrown.tres" type="Resource" id=6]
+[ext_resource path="res://map/planets/SoloDeath.tres" type="Resource" id=7]
 [ext_resource path="res://map/planets/SoloSnatch.tres" type="Resource" id=8]
 [ext_resource path="res://map/planets/SoloFlag.tres" type="Resource" id=9]
-[ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=10]
-[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=11]
-[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=12]
-[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=13]
-[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=15]
-[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=16]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=17]
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=18]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=19]
+[ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=10]
+[ext_resource path="res://map/ButtonCell.tscn" type="PackedScene" id=11]
+[ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=13]
+[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=14]
+[ext_resource path="res://assets/fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=16]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=17]
+[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=18]
+[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=20]
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=21]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=22]
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=23]
+[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=24]
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 15 )
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -28,6 +41,8 @@ script = ExtResource( 2 )
 playlist_item = ExtResource( 3 )
 cursor_scene = ExtResource( 4 )
 
+[node name="Background" type="Node2D" parent="."]
+
 [node name="Content" type="Node2D" parent="."]
 pause_mode = 2
 
@@ -36,37 +51,150 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 5 )]
+[node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 5 )]
 position = Vector2( -400, 0 )
 planet = ExtResource( 6 )
 
-[node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 5 )]
-position = Vector2( 0, -400 )
+[node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 5 )]
+position = Vector2( 400, 0 )
 planet = ExtResource( 7 )
 
 [node name="Diamondsnatch" parent="Content/Planets" instance=ExtResource( 5 )]
-position = Vector2( 400, 0 )
+position = Vector2( 200, 600 )
 planet = ExtResource( 8 )
 
 [node name="HiveFilling" parent="Content/Planets" instance=ExtResource( 5 )]
-position = Vector2( 0, 400 )
+position = Vector2( 0, -400 )
 planet = ExtResource( 9 )
+
+[node name="Controls" type="Node2D" parent="Content"]
+
+[node name="Victories" parent="Content/Controls" instance=ExtResource( 10 )]
+position = Vector2( -200, 200 )
+
+[node name="Start" parent="Content/Controls" instance=ExtResource( 11 )]
+position = Vector2( 0, 200 )
 
 [node name="Waypoints" type="Node2D" parent="Content"]
 
-[node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 10 )]
+[node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -600, 200 )
 
-[node name="Waypoint2" parent="Content/Waypoints" instance=ExtResource( 10 )]
+[node name="Waypoint2" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -200, 0 )
+
+[node name="Waypoint18" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -400, 200 )
+
+[node name="Waypoint19" parent="Content/Waypoints" instance=ExtResource( 12 )]
 position = Vector2( -400, 400 )
 
-[node name="Waypoint3" parent="Content/Waypoints" instance=ExtResource( 10 )]
+[node name="Waypoint37" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -400, 600 )
+
+[node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 200, -200 )
+
+[node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -200, -200 )
+
+[node name="Waypoint17" parent="Content/Waypoints" instance=ExtResource( 12 )]
+
+[node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 0, -200 )
+
+[node name="Waypoint7" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 0, -600 )
+
+[node name="Waypoint8" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 200, 0 )
+
+[node name="Waypoint9" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 0, 400 )
+
+[node name="Waypoint38" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 0, 600 )
+
+[node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 200, 400 )
+
+[node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -200, 400 )
+
+[node name="Waypoint39" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -200, 600 )
+
+[node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 12 )]
 position = Vector2( 400, 400 )
 
-[node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 10 )]
+[node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 400, 600 )
+
+[node name="Waypoint3" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 200, 200 )
+
+[node name="Waypoint13" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 400, 200 )
+
+[node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 200, -400 )
+
+[node name="Waypoint15" parent="Content/Waypoints" instance=ExtResource( 12 )]
 position = Vector2( 400, -400 )
 
-[node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 10 )]
+[node name="Waypoint16" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 400, -200 )
+
+[node name="Waypoint33" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 600, 0 )
+
+[node name="Waypoint34" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 800, 0 )
+
+[node name="Waypoint35" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 1001, -1 )
+
+[node name="Waypoint36" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 1201, -1 )
+
+[node name="Waypoint20" parent="Content/Waypoints" instance=ExtResource( 12 )]
 position = Vector2( -400, -400 )
+
+[node name="Waypoint22" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -200, -400 )
+
+[node name="Waypoint23" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -200, -600 )
+
+[node name="Waypoint25" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 200, -600 )
+
+[node name="Waypoint26" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( 400, -600 )
+
+[node name="Waypoint24" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -400, -600 )
+
+[node name="Waypoint21" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -400, -200 )
+
+[node name="Waypoint27" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -600, 0 )
+
+[node name="Waypoint28" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -800, 0 )
+
+[node name="Waypoint29" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -1000, 0 )
+
+[node name="Waypoint30" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -1200, 0 )
+
+[node name="Waypoint31" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -1400, 0 )
+
+[node name="Waypoint32" parent="Content/Waypoints" instance=ExtResource( 12 )]
+position = Vector2( -1600, 0 )
 
 [node name="CursorMoveTween" type="Tween" parent="."]
 
@@ -74,14 +202,101 @@ position = Vector2( -400, -400 )
 layer = -1
 
 [node name="Background" type="Sprite" parent="CanvasLayer"]
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera" parent="." instance=ExtResource( 12 )]
-marginX = -320
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Near" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.95, 0.95 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Queensworld" type="Sprite" parent="ParallaxBackground/Near"]
+modulate = Color( 0.647059, 0.309804, 0.309804, 1 )
+position = Vector2( -426.909, 49.3055 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 14 )
+flip_h = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Queensworld"]
+margin_left = -178.793
+margin_top = -257.963
+margin_right = 176.207
+margin_bottom = -184.963
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Name" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.403922 )
+margin_right = 355.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Queensworld"
+align = 1
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.403922 )
+margin_top = 52.0
+margin_right = 355.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Capital of the Robolord Kingdom"
+align = 1
+
+[node name="Medium" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.9, 0.9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mantarion" type="Sprite" parent="ParallaxBackground/Medium"]
+modulate = Color( 0.52549, 0.654902, 0.556863, 1 )
+position = Vector2( 402.478, -50.1124 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 16 )
+flip_h = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Medium/Mantarion"]
+margin_left = 17.3333
+margin_top = 178.667
+margin_right = 354.333
+margin_bottom = 251.667
+
+[node name="Name" type="Label" parent="ParallaxBackground/Medium/Mantarion/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.403922 )
+margin_right = 337.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Mantarion"
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Medium/Mantarion/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.403922 )
+margin_top = 52.0
+margin_right = 337.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Mantiacs' nest and playground"
+
+[node name="Far" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.85, 0.85 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Camera" parent="." instance=ExtResource( 17 )]
+zoomMin = 2.0
 marginY = 0.0
 zoom_offset = 1.574
 
@@ -89,6 +304,7 @@ zoom_offset = 1.574
 layer = 2
 
 [node name="HUD" type="Panel" parent="CanvasLayerTop"]
+visible = false
 modulate = Color( 1, 1, 1, 0.705882 )
 margin_left = 961.0
 margin_right = 1280.0
@@ -104,7 +320,7 @@ margin_left = -159.5
 margin_top = 6.0
 margin_right = 159.5
 margin_bottom = 35.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "Choose up to X planets"
 align = 1
 valign = 1
@@ -135,35 +351,35 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayerTop/HUD/Legend"]
 margin_right = 319.0
 margin_bottom = 29.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "Legend"
 align = 1
 valign = 1
 
-[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 14 )]
+[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 19 )]
 margin_top = 33.0
 margin_bottom = 62.0
-mode = ExtResource( 15 )
+mode = ExtResource( 20 )
 
-[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 14 )]
+[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 19 )]
 margin_top = 66.0
 margin_bottom = 95.0
-mode = ExtResource( 16 )
+mode = ExtResource( 21 )
 
-[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 14 )]
+[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 19 )]
 margin_top = 99.0
 margin_bottom = 128.0
-mode = ExtResource( 17 )
+mode = ExtResource( 22 )
 
-[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 14 )]
+[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 19 )]
 margin_top = 132.0
 margin_bottom = 161.0
-mode = ExtResource( 18 )
+mode = ExtResource( 23 )
 
-[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 14 )]
+[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 19 )]
 margin_top = 165.0
 margin_bottom = 194.0
-mode = ExtResource( 19 )
+mode = ExtResource( 24 )
 
 [node name="GameStart" type="HBoxContainer" parent="CanvasLayerTop/HUD"]
 visible = false
