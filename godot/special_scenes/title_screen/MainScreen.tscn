@@ -277,6 +277,7 @@ valign = 1
 anims/appear = SubResource( 8 )
 
 [node name="Disclaimer" parent="." instance=ExtResource( 11 )]
+
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
