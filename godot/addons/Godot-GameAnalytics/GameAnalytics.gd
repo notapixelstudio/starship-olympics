@@ -202,25 +202,22 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 				rb = rb + chunk # Append to read buffer
 
 		# Done!
-		# print_debug("bytes got: ", rb.size())
 		response_string = rb.get_string_from_ascii()
-		# print_debug("Response: ", response_string)
+		
 		
 	status_code = requests.get_response_code()
 
 	match status_code:
 		401:
-			post_to_log("Submit events failed due to UNAUTHORIZED.")
-			post_to_log("Please verify your Authorization code is working correctly and that your are using valid game keys.")
+			print("Submit events failed due to UNAUTHORIZED.")
+			print("Please verify your Authorization code is working correctly and that your are using valid game keys.")
 		
 		200:
-			post_to_log("Response received correctly")
-			print(state_config)
-			
+			print("Response received correctly")
 			reset_event_queue()
 		_:
-			post_to_log("Request did not return 200!")
-			post_to_log(response_string)
+			print("Request did not return 200!")
+			print(response_string)
 	
 	emit_signal("message_sent")
 	
@@ -229,11 +226,9 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 			response_dict = parse_json(response_string)
 	
 		if 'enabled' in response_dict and response_dict['enabled']:
-			print("We are enabled")
 			state_config['enabled'] = true
 		else:
 			state_config['enabled'] = false
-			print("We are not enabled")
 	
 	# TODO: adjust ts ? 
 	# TODO: We should return if enabled or not
@@ -243,7 +238,6 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 # requesting init URL and returning result
 func request_init():
 	if not enabled:
-		print_debug("Analytics not enabled")
 		return
 	
 	var init_payload = {
@@ -262,7 +256,6 @@ func submit_events():
 
 	# Refreshing url_events since game key might have been changed externally
 	if not enabled :
-		print_debug("Analytics not enabled")
 		return
 	
 	var event_list_json = to_json(state_config['event_queue'])
@@ -312,7 +305,6 @@ func update_client_ts_offset(server_ts):
 		state_config['client_ts_offset'] = 0
 	else:
 		state_config['client_ts_offset'] = offset
-	print_verbose('Client TS offset calculated to: ' + str(offset))
 
 static func merge_dir(target, patch):
 	for key in patch:
@@ -423,13 +415,6 @@ func annotate_event_with_default_values():
 		#'engine_version': engine_version           # (required: No - send if set by an engine)
 	}
 	return default_annotations
-
-func print_verbose(message):
-	if verbose_log:
-		post_to_log(message)
-
-func post_to_log(message):
-	print_debug(message)
 
 func hmac_sha256(message, key):
 	var x = 0
