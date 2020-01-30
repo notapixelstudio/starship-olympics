@@ -6,19 +6,21 @@ const CELLSIZE = 200
 var matrix = []
 var back = false
 
-var current_planets = []
+var selected_sports : Array
 export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
 onready var camera = $Camera
 
 var num_players : int
+var human_players : int = 0
 onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
 
+onready var cursor_tween = $CursorMoveTween
+
 func _ready():
 	back = false
-	current_planets = []
 	
 	for x in range(WIDTH):
 		matrix.append([])
@@ -27,42 +29,48 @@ func _ready():
 			
 	for p in get_tree().get_nodes_in_group('map_point'):
 		matrix[int(p.position.x/CELLSIZE)][int(p.position.y/CELLSIZE)] = p
-
 		
-	for c in get_tree().get_nodes_in_group('map_connection'):
-		if int(c.rotation_degrees) == 90 or int(c.rotation_degrees) == -90 or int(c.rotation_degrees) == 270 or int(c.rotation_degrees) == -270:
-			var south = matrix[int(c.position.x/CELLSIZE)][int((c.position.y+CELLSIZE/2)/CELLSIZE)] as MapPoint
-			var north = matrix[int(c.position.x/CELLSIZE)][int((c.position.y-CELLSIZE/2)/CELLSIZE)] as MapPoint
-			south.set_neighbour(north, 'N')
-			north.set_neighbour(south, 'S')
-		elif int(c.rotation_degrees) == 0 or int(c.rotation_degrees) == 180 or int(c.rotation_degrees) == -180 or int(c.rotation_degrees) == 360:
-			var east = matrix[int((c.position.x+CELLSIZE/2)/CELLSIZE)][int(c.position.y/CELLSIZE)] as MapPoint
-			var west = matrix[int((c.position.x-CELLSIZE/2)/CELLSIZE)][int(c.position.y/CELLSIZE)] as MapPoint
-			east.set_neighbour(west, 'W')
-			west.set_neighbour(east, 'E')
-			
 	for cursor in get_tree().get_nodes_in_group('map_cursor'):
 		cursor.connect('try_move', self, '_on_cursor_try_move')
 		cursor.connect('select', self, '_on_cursor_select')
 		cursor.connect('cancel', self, '_on_cursor_cancel')
-		cursor.connect('proceed', self, 'on_cursor_proceed')
 	
-	for planet in get_tree().get_nodes_in_group("planets"):
-		var levels = (planet as MapPlanet).planet.get("levels_"+str(num_players)+"players")
+	for sport in get_tree().get_nodes_in_group("sports"):
+		var levels = (sport as MapPlanet).planet.get("levels_"+str(num_players)+"players")
 		if not levels:
-			planet.not_available = true
+			sport.not_available = true
+			
+		if sport.planet in selected_sports:
+			sport.active = true
 	
 	intro.text = intro.text.replace("X", str(num_players))
+	
+	for cell in get_tree().get_nodes_in_group('mapcell'):
+		cell.connect('pressed', self, '_on_cell_pressed', [cell])
 
-func initialize(players):
+func initialize(players, sports):
+	selected_sports = sports
+	
+	for player_id in players:
+		if not players[player_id].cpu:
+			human_players += 1
+	
 	var i = 0
 	for player_id in players:
 		var player = players[player_id]
+		
+		if player.cpu:
+			continue
+			
 		var cursor = cursor_scene.instance()
 		cursor.species = (player as InfoPlayer).species_template
-		cursor.player_controls = (player as InfoPlayer).controls
+		cursor.player = (player as InfoPlayer)
 		cursor.player_i = i
-		cursor.position = Vector2(2*CELLSIZE, CELLSIZE)
+		cursor.cell_size = CELLSIZE
+		cursor.grid_position = Vector2(0, 0)
+		cursor.z_index = 100 - i
+		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
+		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
 		i += 1
 	
@@ -70,76 +78,58 @@ func initialize(players):
 	
 	
 func _on_cursor_try_move(cursor, direction):
-	var cell = get_cell(cursor)
+	var desired_position = cursor.grid_position
+	
+	if direction == 'N':
+		desired_position.y -= 1
+	elif direction == 'S':
+		desired_position.y += 1
+	elif direction == 'W':
+		desired_position.x -= 1
+	elif direction == 'E':
+		desired_position.x += 1
+		
+	var cell = get_cell(CELLSIZE * desired_position)
 	
 	if not cell:
 		return
 		
-	if not (direction in cell.neighbours):
-		return
-	if direction == 'N':
-		cursor.position.y -= CELLSIZE
-	elif direction == 'S':
-		cursor.position.y += CELLSIZE
-	elif direction == 'W':
-		cursor.position.x -= CELLSIZE
-	elif direction == 'E':
-		cursor.position.x += CELLSIZE
-		
+	cursor.set_grid_position(desired_position)
+	
 func _on_cursor_select(cursor):
-	var cell = get_cell(cursor)
+	var cell = get_cell(CELLSIZE * cursor.grid_position)
 	
-	if not cell or not (cell is MapPlanet):
+	if not cell:
 		return
 	
-	if cell is MapPlanet and (cell as MapPlanet).not_available:
-		return
-		
-	# if we want to give just ONE choice we would disable
-	cursor.disable()
-	
-	var item = playlist_item.instance()
-	item.species = cursor.species 
-	item.planet = cell.planet
-	item.name = cursor.name
-	playlist.add_child(item)
-	
+	cell.act(cursor)
 	
 func _on_cursor_cancel(cursor):
-	# TODO: get the item in a better way
-	var item = playlist.get_node(cursor.name)
-	
-	if not item:
-		back = true
-		emit_signal('done')
-		return
-	
-	item.queue_free()
 	cursor.enable()
+	players_ready -= 1
 	
-		
-func get_cell(object):
-	return matrix[int(object.position.x/CELLSIZE)][int(object.position.y/CELLSIZE)]
+func get_cell(position):
+	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
 
-func timeout_chosen():
-	for item in playlist.get_children():
-		current_planets.append(item.planet)
-	emit_signal('done')
+func _on_cell_pressed(cursor, cell):
+	# update data
+	selected_sports = []
+	for sport in get_tree().get_nodes_in_group('sports'):
+		if sport.active:
+			selected_sports.append(sport.planet)
 
 signal done
-func on_cursor_proceed(cursor):
-	for item in playlist.get_children():
-		current_planets.append(item.planet)
-	emit_signal('done')
-
-func _process(delta):
-	var i = 0
-	for planet in get_tree().get_nodes_in_group("planets"):
-		planet.info_planet.scale = camera.zoom
-		i+=1
-	$CanvasLayerTop/HUD/GameStart/Tot.text = str(int($CanvasLayerTop/Timer.time_left))
-
-func _on_Timer_timeout():
-	for item in playlist.get_children():
-		current_planets.append(item.planet)
-	emit_signal('done')
+var players_ready = 0
+func _on_Start_pressed(cursor):
+	if len(selected_sports) <= 0:
+		return
+		
+	cursor.disable()
+	players_ready += 1
+	if players_ready == human_players:
+		for cursor in get_tree().get_nodes_in_group('map_cursor'):
+			cursor.set_unresponsive()
+			
+		yield(get_tree().create_timer(0.5), "timeout")
+		emit_signal('done')
+		

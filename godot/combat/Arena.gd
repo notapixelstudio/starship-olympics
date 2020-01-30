@@ -185,11 +185,12 @@ func _ready():
 		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
 		
-	for info in array_players:
-		print_debug(info.to_dict())
 	
-	if game_mode.cumulative:
-		score_to_win_override = len(get_tree().get_nodes_in_group('cell'))
+	
+	print_debug(conquest_mode.enabled, game_mode.max_score )
+	if conquest_mode.enabled:
+		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
+	print_debug(conquest_mode.enabled, score_to_win_override )
 	
 	scores.initialize(array_players, game_mode, score_to_win_override, match_duration_override)
 	

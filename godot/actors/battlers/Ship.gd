@@ -111,8 +111,6 @@ func change_engine(value: bool):
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
-var last_velocity = Vector2()
-
 func _integrate_forces(state):
 	if not responsive:
 		return

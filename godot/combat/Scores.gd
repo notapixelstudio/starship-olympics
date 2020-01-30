@@ -28,7 +28,7 @@ func initialize(_players: Array, game_mode: GameMode, max_score: float = 0, max_
 	target_score = game_mode.max_score
 	if max_score:
 		target_score = max_score
-	
+	print_debug(target_score)
 	cumulative_points = -1
 	
 	for player in _players:

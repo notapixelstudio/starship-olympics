@@ -1,45 +1,78 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://map/Cursor.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=2]
-
-
+[ext_resource path="res://assets/map/placemark.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Rotation"
-length = 6.0
+resource_name = "Float"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Ship:rotation_degrees")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2, 4, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 0.0, 120.0, 240.0, 360.0 ]
+"values": [ Vector2( 0, -18 ), Vector2( 0, -43 ), Vector2( 0, -18 ) ]
 }
 
+[sub_resource type="DynamicFont" id=2]
+size = 45
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
 [node name="Cursor" type="Node2D" groups=[
-"map_cursor",
 "in_camera",
+"map_cursor",
 ]]
 script = ExtResource( 1 )
-player_controls = ""
 player_i = 0
+cell_size = 0
+grid_position = Vector2( 0, 0 )
 
-[node name="Ship" type="Node2D" parent="."]
-rotation = 6.0091
+[node name="MoveTween" type="Tween" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Ship"]
-position = Vector2( -80, 0 )
-rotation = -1.5708
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2( 0, -18 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+anims/Float = SubResource( 1 )
+
+[node name="Placemark" type="Sprite" parent="Graphics"]
+position = Vector2( 0, -60 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Rotation"
-anims/Rotation = SubResource( 1 )
+[node name="Ship" type="Sprite" parent="Graphics"]
+position = Vector2( 0, -85 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
 
+[node name="LabelContainer" type="Node2D" parent="Graphics"]
+editor/display_folded = true
+position = Vector2( 0, -166 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Graphics/LabelContainer"]
+margin_left = -88.0
+margin_top = -29.0
+margin_right = 89.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 2 )
+text = "P4"
+align = 1
+uppercase = true

@@ -44,6 +44,10 @@ func _ready():
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
+	global.local_multiplayer = self
+
+func _exit_tree():
+	global.local_multiplayer = null
 
 func back():
 	# This goes back to the previous scene
@@ -119,9 +123,9 @@ func combat(selected_players: Array, fight_mode : String):
 	remove_child(selection_screen)
 	remove_child(parallax)
 	var map = map_scene.instance()
-	map.initialize(players)
+	map.initialize(players, all_planets)
 	
-	"""
+	#"""
 	add_child(map)
 	yield(map, "done")
 	yield(get_tree(), "idle_frame")
@@ -130,30 +134,13 @@ func combat(selected_players: Array, fight_mode : String):
 		add_child(parallax)
 		add_child(selection_screen)
 		return
-	"""
+	#"""
+	all_planets = map.selected_sports
 
 	all_planets.shuffle() # shuffle the planets at start
 	for planet in all_planets:
 		planet.shuffle_levels(num_players)
-
-	# logic to get the correct levels
-	# TODO: depends if the cursor can select multiple planets
-	levels = []
-	played_levels = []
-	var count = 0
-	for planet in map.current_planets:
-		print("never here")
-		planet.shuffle_levels(num_players)
-		var arena = planet.fetch_level(num_players)
-		# avoid duplicate
-		var last_planet = levels.back()
-		if not last_planet or planet != last_planet:
-			levels.append(arena)
-			count += 1
 	
-	levels.shuffle()
-	
-	#level_selection.queue_free()
 	map.queue_free()
 	add_child(parallax)
 	
@@ -177,7 +164,7 @@ func next_level(demo=false):
 		levels = []
 		all_planets.shuffle()
 
-	
+	# FIXME it seems that selecting three planets does not work as expected
 	var new_planet = all_planets.pop_back()
 	all_planets.push_front(new_planet)
 	if last_planet == new_planet:
@@ -203,7 +190,8 @@ func start_level(_level, demo = false):
 	
 	for child in get_children():
 		if child is Arena:
-			call_deferred("remove_child", child)
+			child.queue_free()
+			yield(child, 'tree_exited')
 	combat.demo = demo
 	add_child(combat)
 	

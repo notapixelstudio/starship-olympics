@@ -51,7 +51,7 @@ func update_score(score):
 	point_score.set_points(partial_score)
 	
 func update_score_ring():
-	$Scaled/Colored/ScoreRing.fraction = target.info_player.score / target.arena.game_mode.max_score
+	$Scaled/Colored/ScoreRing.fraction = target.info_player.score / target.arena.scores.target_score
 
 func _on_Royal_enabled():
 	$Scaled/RoyalGlow.visible = true
