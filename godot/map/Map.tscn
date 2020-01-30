@@ -57,18 +57,22 @@ __meta__ = {
 [node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 5 )]
 position = Vector2( -400, 0 )
 planet = ExtResource( 6 )
+active = false
 
 [node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 5 )]
 position = Vector2( 400, 0 )
 planet = ExtResource( 7 )
+active = false
 
 [node name="Diamondsnatch" parent="Content/Planets" instance=ExtResource( 5 )]
 position = Vector2( 200, 600 )
 planet = ExtResource( 8 )
+active = false
 
 [node name="HiveFilling" parent="Content/Planets" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 planet = ExtResource( 9 )
+active = false
 
 [node name="Controls" type="Node2D" parent="Content"]
 
@@ -751,7 +755,7 @@ texture = ExtResource( 19 )
 
 [node name="Camera" parent="." instance=ExtResource( 20 )]
 limit_left = -2300
-limit_top = -900
+limit_top = -990
 limit_right = 1500
 limit_bottom = 900
 drag_margin_left = 0.0
@@ -761,6 +765,7 @@ drag_margin_bottom = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 zoomMin = 2.0
+zoomMax = 2.8
 marginY = 0.0
 zoom_offset = 1.574
 

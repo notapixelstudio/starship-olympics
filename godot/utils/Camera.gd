@@ -1,6 +1,7 @@
 extends Camera2D
 
 export var zoomMin = 1.7
+export var zoomMax: float = 0
 export var marginX = 0
 export var marginY = 120.0
 export (float) var zoom_speed_enlarge = 0.13
@@ -9,6 +10,7 @@ export(float, 0.1, 4.0) var zoom_offset : float = 0.75
 export(float, 0.01, 0.5) var zoom_speed : float = 0.02
 export(float, 0.01, 0.5) var offset_speed : float = 0.22
 export var debug_mode : bool = true
+
 
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
@@ -87,6 +89,11 @@ func _process(_delta: float) -> void:
 	
 	offset.x = lerp(offset.x, offset_to_be.x - marginX/2*zoom.x, offset_speed)
 	offset.y = lerp(offset.y, offset_to_be.y - marginY/2*zoom.y, offset_speed)
+	if zoomMax != 0 :
+		#offset.x = max(offset.x, max_offset.x)
+		zoom.x = min(zoom.x, zoomMax)
+		zoom.y = min(zoom.y, zoomMax)
+		
 
 #	if debug_mode:
 #		update()
@@ -109,13 +116,13 @@ func calculate_zoom(rect: Rect2, viewport_size: Vector2) -> Vector2:
 	return Vector2(max_zoom, max_zoom)
 
 
-#func _draw() -> void:
-#	if not debug_mode:
-#		return
-#
-#	draw_rect(camera_rect, Color("#ffffff"), false)
-#	draw_circle(calculate_center(camera_rect), 5, Color("#ffffff"))
-#	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
+func _draw() -> void:
+	if not debug_mode:
+		return
+
+	draw_rect(camera_rect, Color("#ffffff"), false)
+	draw_circle(calculate_center(camera_rect), 5, Color("#ffffff"))
+	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
 	set_process(enabled)
