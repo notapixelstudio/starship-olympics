@@ -92,8 +92,9 @@ func seek_ahead(potential_target):
 		var result = space_state.intersect_ray(position, danger1, [self], ray_collision_mask, true, true)
 		hit_pos.append(danger1)
 		if result and result.position != potential_target:
-			avoidance = position - result.position
-			avoidance = avoidance.normalized() * MAX_AVOIDANCE_FORCE
+			#avoidance = position - result.position
+			#avoidance = avoidance.normalized() * MAX_AVOIDANCE_FORCE
+			avoidance = result.normal * MAX_AVOIDANCE_FORCE
 			behaviour_mode = "avoid"
 			avoid_lock = MAX_AVOID
 			return (avoidance)
