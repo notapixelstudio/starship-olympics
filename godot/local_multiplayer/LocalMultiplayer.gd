@@ -129,13 +129,14 @@ func combat(selected_players: Array, fight_mode : String):
 	add_child(map)
 	yield(map, "done")
 	yield(get_tree(), "idle_frame")
+	all_planets = map.selected_sports
 	if map.back:
 		map.queue_free()
 		add_child(parallax)
 		add_child(selection_screen)
 		return
 	#"""
-	all_planets = map.selected_sports
+	
 
 	all_planets.shuffle() # shuffle the planets at start
 	for planet in all_planets:
