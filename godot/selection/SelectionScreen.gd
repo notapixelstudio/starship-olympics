@@ -155,8 +155,10 @@ func ready_to_fight():
 	else:
 		print_debug("not enough players")
 
-func selected(species:SpeciesTemplate):
+func selected(player: PlayerSelection):
 	restart_timer()
+	var species = player.species_template
+	
 	var current_index = ordered_species.find(species)
 	selected_index.append(current_index)
 	for child in container.get_children():

@@ -36,7 +36,7 @@ func _ready():
 		cursor.connect('cancel', self, '_on_cursor_cancel')
 	
 	for sport in get_tree().get_nodes_in_group("sports"):
-		var levels = (sport as MapPlanet).planet.get("levels_"+str(num_players)+"players")
+		var levels = sport.planet.get("levels_"+str(num_players)+"players")
 		if not levels:
 			sport.not_available = true
 			

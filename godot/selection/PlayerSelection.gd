@@ -51,8 +51,11 @@ func set_controls(new_controls:String):
 	speciesSelection.controls = controls
 	speciesSelection.initialize("P"+str(uid))
 	
-	
+var info : InfoPlayer
 func _ready():
+	info = InfoPlayer.new()
+	info.id = name.to_lower()
+	
 	disabled = true
 	controls = global.CONTROLSMAP[key_controls]
 	set_controls(controls)
@@ -110,7 +113,15 @@ func select_character():
 	selected = true
 	speciesSelection.select()
 	sfx.get_node("selected").play()
-	emit_signal("selected", species_template)
+	setup_info()
+	emit_signal("selected", self)
+
+func setup_info():
+	info.species = species_template.species_name
+	info.controls = controls
+	info.species_template = species_template
+	info.team = is_team
+	
 
 func deselect(silent : bool = false):
 	speciesSelection.deselect()

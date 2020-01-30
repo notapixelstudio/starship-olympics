@@ -2,6 +2,8 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
+var session_scores : SessionScores
+
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
@@ -30,17 +32,9 @@ var players : Dictionary
 
 signal updated
 
-func from_species_to_info_player(selection_species: PlayerSelection) -> InfoPlayer:
-	var info_player = InfoPlayer.new()
-	info_player.id = selection_species.name
-	info_player.species = selection_species.species_template.species_name
-	info_player.controls = selection_species.controls
-	info_player.species_template = selection_species.species_template
-	info_player.team = selection_species.is_team
-	return info_player
-
 var campaign_mode : bool = false
 func _ready():
+	session_scores = SessionScores.new()
 	campaign_mode = global.campaign_mode
 	players = {}
 	selection_screen.initialize(global.get_unlocked())
@@ -66,7 +60,6 @@ func combat(selected_players: Array, fight_mode : String):
 	It will transform the selected_players array in a dictionary of info players
 	"""
 	
-	
 	# we need to reset players dictionary
 	players = {}
 	var num_players : int = len(selected_players)
@@ -74,10 +67,7 @@ func combat(selected_players: Array, fight_mode : String):
 
 	var i = 1
 	for player in selected_players:
-		assert(player is PlayerSelection)
-		var player_info : InfoPlayer = from_species_to_info_player(player)
-		player_info.id = player.id
-		players[player.id] = player_info
+		players[player.id] = player.info
 		i += 1
 	
 	# Statistics
