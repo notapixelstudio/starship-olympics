@@ -63,3 +63,11 @@ func enable_buttons():
 		button.disabled = false
 	buttons.get_child(0).grab_focus()
 	
+
+
+func _on_CampaignMode_pressed():
+	global.campaign_mode = true
+	switch()
+	yield(self, "finished")
+	get_tree().change_scene_to(multiplayer_scene)
+	

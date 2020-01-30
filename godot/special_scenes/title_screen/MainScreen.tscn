@@ -179,19 +179,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StartHuman" type="Button" parent="Buttons"]
-margin_top = 37.0
-margin_right = 290.0
-margin_bottom = 107.0
-rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 9 )
-disabled = true
-action_mode = 0
-text = "FIGHT"
-flat = true
-
-[node name="StartCPU" type="Button" parent="Buttons"]
-visible = false
+[node name="CampaignMode" type="Button" parent="Buttons"]
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )
@@ -199,7 +187,18 @@ custom_fonts/font = ExtResource( 9 )
 disabled = true
 action_mode = 0
 shortcut = SubResource( 5 )
-text = "Human vs CPU"
+text = "CAMPAIGN"
+flat = true
+
+[node name="Custom Fight" type="Button" parent="Buttons"]
+margin_top = 37.0
+margin_right = 290.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+action_mode = 0
+text = "CUSTOM FIGHT"
 flat = true
 
 [node name="Options" type="Button" parent="Buttons"]
@@ -280,6 +279,7 @@ anims/appear = SubResource( 8 )
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="Options" to="." method="_on_Options_back"]
-[connection signal="pressed" from="Buttons/StartHuman" to="TitleScreen" method="_on_StartHuman_pressed"]
+[connection signal="pressed" from="Buttons/CampaignMode" to="." method="_on_CampaignMode_pressed"]
+[connection signal="pressed" from="Buttons/Custom Fight" to="TitleScreen" method="_on_StartHuman_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="TitleScreen" method="_on_Options_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

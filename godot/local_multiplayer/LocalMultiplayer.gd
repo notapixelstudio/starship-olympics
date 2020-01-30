@@ -38,8 +38,10 @@ func from_species_to_info_player(selection_species: PlayerSelection) -> InfoPlay
 	info_player.species_template = selection_species.species_template
 	info_player.team = selection_species.is_team
 	return info_player
-	
+
+var campaign_mode : bool = false
 func _ready():
+	campaign_mode = global.campaign_mode
 	players = {}
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
@@ -122,27 +124,29 @@ func combat(selected_players: Array, fight_mode : String):
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
-	var map = map_scene.instance()
-	map.initialize(players, all_planets)
 	
-	#"""
-	add_child(map)
-	yield(map, "done")
-	yield(get_tree(), "idle_frame")
-	all_planets = map.selected_sports
-	if map.back:
+	if not campaign_mode:
+		var map = map_scene.instance()
+		map.initialize(players, all_planets)
+		
+		#"""
+		add_child(map)
+		yield(map, "done")
+		yield(get_tree(), "idle_frame")
+		all_planets = map.selected_sports
+		if map.back:
+			map.queue_free()
+			add_child(parallax)
+			add_child(selection_screen)
+			return
+		#"""
 		map.queue_free()
-		add_child(parallax)
-		add_child(selection_screen)
-		return
-	#"""
-	
 
 	all_planets.shuffle() # shuffle the planets at start
 	for planet in all_planets:
 		planet.shuffle_levels(num_players)
 	
-	map.queue_free()
+	
 	add_child(parallax)
 	
 	# TUTORIAL
@@ -239,8 +243,6 @@ func start_demo():
 	var player_rand = max(2, (randi() % len(all_species))+1)
 	players = {}
 	for i in range(player_rand):
-		
-		
 		var other_species = all_species[i]
 		var info_player = InfoPlayer.new()
 		info_player.id = 'cpu'

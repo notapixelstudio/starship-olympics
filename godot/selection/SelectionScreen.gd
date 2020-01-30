@@ -150,7 +150,6 @@ func _on_joy_connection_changed(device_id, connected):
 
 func ready_to_fight():
 	var players = get_players()
-	print_debug("players who are going to fight are... " , players)
 	if len(players) >= MIN_PLAYERS:
 		ready_to_fight.start(len(players), global.win)
 	else:

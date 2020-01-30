@@ -75,7 +75,6 @@ func _set_master_volume(new_value):
 	var db_volume = linear2db(float(new_value)/100)
 	var bus_name = "Master"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
-	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 
 var music_volume : int = 50 setget _set_music_volume
 var min_music_volume : int = 0
@@ -86,7 +85,6 @@ func _set_music_volume(new_value):
 	var db_volume = linear2db(float(new_value)/100)
 	var bus_name = "Music"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
-	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 	
 var sfx_volume : int = 50 setget _set_sfx_volume
 var min_sfx_volume : int = 0
@@ -97,7 +95,6 @@ func _set_sfx_volume(new_value):
 	var db_volume = linear2db(float(sfx_volume)/100)
 	var bus_name = "SFX"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
-	print(bus_name, " set at ", str(db_volume), " that is ", str(new_value))
 
 # templates
 var templates : Dictionary # {int : Resources}
@@ -170,6 +167,14 @@ var colors = {
 	PINK = Color(.914, .118, .388)
 }
 
+var scores
+var campaign_mode : bool = false setget , get_campaign_mode
+func get_campaign_mode():
+	var ret = campaign_mode
+	# WARNING: I want to reset to false when I read it
+	campaign_mode = false
+	return ret
+	
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
 
@@ -332,7 +337,6 @@ func check_version(saved_version: String, version: String) -> bool:
 	# Will check if the version of the saved data is smaller the current
 	var this_minor = saved_version.split(".")[1]
 	var minor = version.split(".")[1]
-	print(this_minor, " vs ", minor, ": ", this_minor < minor)
 	
 	return int(this_minor) < int(minor)
 
