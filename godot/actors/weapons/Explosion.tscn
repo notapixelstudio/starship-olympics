@@ -12,8 +12,6 @@
 [ext_resource path="res://assets/sprites/weapons/explosion_spikes.png" type="Texture" id=10]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "Wow"
 length = 0.8
@@ -178,7 +176,7 @@ enabled = true
 
 [node name="RepealField" type="Area2D" parent="."]
 collision_layer = 65536
-collision_mask = 2564
+collision_mask = 10756
 
 [node name="Entity" type="Node" parent="RepealField"]
 script = ExtResource( 2 )
@@ -188,6 +186,5 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
 shape = SubResource( 3 )
-
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
 [connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]

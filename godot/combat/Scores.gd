@@ -11,6 +11,7 @@ var scores = []
 var draw: bool = true
 var game_over:bool = false
 var cumulative_points = 0
+var players_alive : int
 
 signal game_over
 
@@ -54,8 +55,7 @@ func update(delta:float):
 	
 	var leader = scores[0]
 	
-	# TODO: allow multiple leaders
-	if leader["score"] >= target_score or time_left <= 0 or (cumulative_points>=target_score):
+	if leader["score"] >= target_score or time_left <= 0 or (cumulative_points>=target_score) or players_alive <= 1:
 		var draw = true
 		var last_value = leader["score"]
 		for player in scores:

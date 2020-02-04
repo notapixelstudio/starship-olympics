@@ -10,7 +10,8 @@ var kills : int = 0
 var selfkills : int = 0
 var cpu: bool = false
 var playable : bool = true
-var lives : int = 10
+var lives : int
+var starting_lives : int = -1
 var deaths : int = 0
 var bombs: int = 0
 var collectables : int  =0
@@ -42,6 +43,7 @@ func start():
 	deaths = 0
 	kills = 0
 	selfkills = 0
+	lives = starting_lives
 	
 func to_dict():
 	return {
