@@ -23,7 +23,7 @@ func set_ship(new_value):
 	$Sprite.texture = ship.species_template.ship
 	
 func _enter_tree():
-	linear_velocity = ship.linear_velocity
+	#linear_velocity = ship.linear_velocity
 	position = ship.position
 	rotation = ship.rotation
 	

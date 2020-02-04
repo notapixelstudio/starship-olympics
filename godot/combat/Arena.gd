@@ -131,6 +131,7 @@ func _ready():
 	
 
 	scores = Scores.new()
+	scores.players_alive = len(array_players)
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
 	
@@ -185,12 +186,8 @@ func _ready():
 		array_players.append(from_spawner_to_infoplayer(s))
 		i += 1
 		
-	
-	
-	print_debug(conquest_mode.enabled, game_mode.max_score )
 	if conquest_mode.enabled:
 		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
-	print_debug(conquest_mode.enabled, score_to_win_override )
 	
 	scores.initialize(array_players, game_mode, score_to_win_override, match_duration_override)
 	
@@ -355,22 +352,28 @@ func ship_just_died(ship: Ship, killer : Ship):
 	
 	$Battlefield.call_deferred("remove_child", ship)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
-	var respawn_timeout = 2
+	var respawn_timeout = 1.5
 	if crown_mode.enabled:
 		if len(ECM.entities_with('Royal')) > 0:
 			if ECM.E(ship).has('Royal'):
-				respawn_timeout = 3
+				respawn_timeout = 2.25
 			else:
-				respawn_timeout = 1
+				respawn_timeout = 0.75
 	elif conquest_mode.enabled:
-		respawn_timeout = 1
+		respawn_timeout = 0.75
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
-	if scores.game_over:
+	if ship.info_player.lives == 0:
+		scores.players_alive -= 1
+		
+	if scores.players_alive <= 1 or scores.game_over:
 		return
 	
 	# respawn
+	
+	ship.linear_velocity = ship.dead_ship_instance.linear_velocity
+	ship.angular_velocity = ship.dead_ship_instance.angular_velocity
 	$Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
 	ship.position = ship.dead_ship_instance.position
 	ship.rotation = ship.dead_ship_instance.rotation

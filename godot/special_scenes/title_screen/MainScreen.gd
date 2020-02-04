@@ -61,10 +61,9 @@ func enable_buttons():
 	buttons.visible = true
 	for button in $Buttons.get_children():
 		button.disabled = false
+		
 	buttons.get_child(0).grab_focus()
 	
-
-
 func _on_CampaignMode_pressed():
 	global.campaign_mode = true
 	switch()
