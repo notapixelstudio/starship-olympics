@@ -1,15 +1,13 @@
 extends Node
 # This script handles scores and in-game stats
 
-class_name Scores
+class_name MatchScores
 
 var time_left:float
 
 var target_score: float = 100
 
-var scores_index:Dictionary = {}
-var scores:Array
-
+var scores = []
 var draw: bool = true
 var game_over:bool = false
 var cumulative_points = 0
@@ -23,20 +21,16 @@ func stop():
 	set_process(false)
 
 func initialize(_players: Array, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
-	scores = []
-	scores_index = {}
 	target_score = game_mode.max_score
 	if max_score:
 		target_score = max_score
-	print_debug(target_score)
 	cumulative_points = -1
 	
 	for player in _players:
-		player.start()
-		var team = player.species_template.species_name
-		if not team in scores_index:
-			scores_index[team] = player
-			scores.append(scores_index[team])
+		var players_score = PlayerStats.new()
+		players_score.info = player
+		players_score.team = player.team
+		scores.append(players_score)
 		
 	time_left = game_mode.max_timeout
 	if max_timeout:
@@ -46,11 +40,9 @@ func initialize(_players: Array, game_mode: GameMode, max_score: float = 0, max_
 		cumulative_points=0
 	stop()
 	
-func sort_scores():
-	scores.sort_custom(self, 'score_cmp')
 	
-func score_cmp(a, b):
-	return a["score"] > b["score"]
+func sort_by_score(a, b):
+	return a.score > b.score
 	
 func update(delta:float):
 	if game_over:
@@ -58,10 +50,11 @@ func update(delta:float):
 		
 	time_left -= delta
 	time_left = max(0, time_left)
-	sort_scores()
+	scores.sort_custom(self, "sort_by_score")
 	
 	var leader = scores[0]
 	
+	# TODO: allow multiple leaders
 	if leader["score"] >= target_score or time_left <= 0 or (cumulative_points>=target_score):
 		var draw = true
 		var last_value = leader["score"]
@@ -83,13 +76,27 @@ func add_score(team : String, amount : float):
 		cumulative_points += amount
 
 func broadcast_score(team : String, amount : float):
-	for team_player in scores_index:
-		if team_player != team:
+	for team_player in scores:
+		if team_player.team != team:
 			add_score(team_player, amount)
 
 
 func update_stats(team: String, amount: int, stat: String):
 	# TODO: make it work for team
-	var info_player : InfoPlayer = scores_index[team]
-	var stat_value = info_player.get(stat)
-	info_player.set(stat, stat_value + amount)
+	var stats_player = get_team_stats(team)
+	var stat_value = stats_player.get(stat)
+	stats_player.set(stat, stat_value + amount)
+
+func to_JSON():
+	var ret = {
+		
+	}
+	return ret
+
+
+func get_team_stats(team: String):
+	for player in scores:
+		if team == player.team:
+			return player
+
+	return 
