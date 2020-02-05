@@ -83,10 +83,8 @@ func _enter_tree():
 	emit_signal('spawned', self)
 	# Invincible for the firs MAX seconds
 	invincible = true
-	sleeping=true
 	if skin:
 		skin.invincible()
-	sleeping=false
 	yield(get_tree().create_timer(0.1), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
@@ -218,6 +216,9 @@ func die(killer : Ship):
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
+		if info_player.lives >= 0:
+			info_player.lives -= 1
+		print(info_player.lives)
 		emit_signal("dead", self, killer)
 		
 func stun():

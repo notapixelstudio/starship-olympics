@@ -35,6 +35,8 @@ signal updated
 var campaign_mode : bool = false
 func _ready():
 	session_scores = SessionScores.new()
+	session_scores.players = players
+
 	campaign_mode = global.campaign_mode
 	players = {}
 
@@ -82,6 +84,7 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	"""
 	if fight_mode == 'solo' or fight_mode == 'co-op':
+	if fight_mode == 'solo':
 		var other_species
 		if selected_players[0].species_template.species_name != all_species[0].species_name:
 			other_species = all_species[0]
@@ -108,6 +111,7 @@ func combat(selected_players: Array, fight_mode : String):
 			players['cpu2'] = info_player2
 	"""
 
+			
 	# LEVEL SELECTION
 	#var level_selection = level_selection_scene.instance()
 	#level_selection.initialize(str(num_players), players)
@@ -137,7 +141,9 @@ func combat(selected_players: Array, fight_mode : String):
 			return
 		#"""
 		map.queue_free()
-
+	
+	session_scores.selected_sports = all_planets
+	
 	all_planets.shuffle() # shuffle the planets at start
 	for planet in all_planets:
 		planet.shuffle_levels(num_players)
@@ -175,8 +181,7 @@ func next_level(demo=false):
 	
 	# let's make sure that it is not the same of the previous one.
 	current_level = levels.back()
-	print_debug("last planet was, ", last_planet, " now is ", new_planet)
-	print_debug("next level will be ", num_players, current_level.planet_name)
+
 	# skip if we just played it
 	start_level(current_level, demo)
 	played_levels.append(new_planet)
@@ -194,15 +199,11 @@ func start_level(_level, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	combat.demo = demo
+
 	add_child(combat)
+	yield(combat, "ready")
+	session_scores.new_match(combat.scores)
 	
-func from_info_to_spawner(player_info):
-	var spawner = PlayerSpawner.new()
-	spawner.controls = player_info.controls 
-	spawner.species_template = player_info.species_template
-	spawner.name = player_info.id
-	spawner.info_player = player_info
-	return spawner
 	
 func _on_GameOver_rematch(node):
 	node.queue_free()

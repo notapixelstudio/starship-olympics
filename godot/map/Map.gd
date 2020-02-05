@@ -133,3 +133,7 @@ func _on_Start_pressed(cursor):
 		yield(get_tree().create_timer(0.5), "timeout")
 		emit_signal('done')
 		
+func _on_Back_pressed(cursor):
+	back = true
+	emit_signal("done")
+	
