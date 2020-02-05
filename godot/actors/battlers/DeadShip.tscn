@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/sprites/environments/coin.png" type="Texture" id=6]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=7]
 
-
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
 
@@ -47,4 +46,3 @@ texture = ExtResource( 6 )
 shape = SubResource( 2 )
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 7 )]
-

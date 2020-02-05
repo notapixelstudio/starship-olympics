@@ -105,6 +105,7 @@ func setup_level(mode : Resource):
 	conquest_mode.enabled = mode.hive
 	
 func _ready():
+	array_players = []
 	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
@@ -260,9 +261,6 @@ func _ready():
 	
 	yield(get_tree().create_timer(0.1), "timeout") # FIXME workaround to wait for all ships
 
-	# setup Bomb spawners
-	for c in $Battlefield/Foreground.get_children():
-		print_debug(c.name)
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):

@@ -9,8 +9,10 @@ class_name Ship
 
 export var debug_enabled = false
 export (String) var controls = "kb1"
-export (Resource) var species
 export var absolute_controls : bool= true
+export (Resource) var species
+
+var species_name: String
 
 var arena
 var cpu = false
@@ -35,13 +37,19 @@ const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
 var responsive = false setget change_engine
-var info_player
+var info_player setget set_info_player
+
+func set_info_player(value: InfoPlayer):
+	info_player = value
+	species = info_player.species
+	species_name = info_player.species_name
+
 var count = 0
 var alive = true
 var stunned = false
 var stun_countdown = 0
 
-var species_name: String
+
 var screen_size = Vector2()
 var width = 0
 var height = 0

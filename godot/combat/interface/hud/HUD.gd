@@ -23,7 +23,7 @@ func initialize(_matchscore: MatchScores):
 
 	for player in matchscore.scores:
 		var bar = Bar.instance()
-		bar.position += Vector2(0, 25)*i
+		bar.position += Vector2(0, 25) * i
 		Bars.add_child(bar)
 		bar.initialize(player, matchscore.target_score, player.get_session_score())
 		bar.player = player

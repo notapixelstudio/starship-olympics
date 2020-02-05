@@ -42,7 +42,7 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=4]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=5]
 radius = 8.0
 
 [node name="Bomb" type="RigidBody2D"]
@@ -111,7 +111,6 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-editor/display_folded = true
 rotation = 2.44386
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
@@ -122,7 +121,6 @@ playback_speed = 0.5
 anims/rotate = SubResource( 3 )
 
 [node name="NearArea" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 4
 collision_mask = 5
 
@@ -134,7 +132,7 @@ collision_layer = 256
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Entity" type="Node" parent="Core"]
 script = ExtResource( 3 )

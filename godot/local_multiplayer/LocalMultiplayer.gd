@@ -82,11 +82,10 @@ func combat(selected_players: Array, fight_mode : String):
 		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
 	
 	
-	"""
-	if fight_mode == 'solo' or fight_mode == 'co-op':
+	
 	if fight_mode == 'solo':
 		var other_species
-		if selected_players[0].species_template.species_name != all_species[0].species_name:
+		if selected_players[0].species.species_name != all_species[0].species_name:
 			other_species = all_species[0]
 		else:
 			other_species = all_species[1]
@@ -95,10 +94,10 @@ func combat(selected_players: Array, fight_mode : String):
 		info_player.id = 'cpu'
 		info_player.species = other_species.species_name
 		info_player.cpu = true
-		info_player.species_template = other_species
+		info_player.species = other_species
 		
 		players['cpu'] = info_player
-		
+	"""
 		if fight_mode == 'co-op':
 			info_player.team = true
 			
