@@ -9,7 +9,7 @@ class_name Ship
 
 export var debug_enabled = false
 export (String) var controls = "kb1"
-export (Resource) var species_template
+export (Resource) var species
 export var absolute_controls : bool= true
 
 var arena
@@ -41,7 +41,7 @@ var alive = true
 var stunned = false
 var stun_countdown = 0
 
-var species: String
+var species_name: String
 var screen_size = Vector2()
 var width = 0
 var height = 0
@@ -93,10 +93,10 @@ func _enter_tree():
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
-	skin.ship_texture = (species_template as SpeciesTemplate).ship
+	skin.ship_texture = species.ship
 	skin.invincible(1.0)
 	entity = ECM.E(self)
-	species = species_template.species_name
+	species_name = species.species_name
 	
 	entity.get('Conqueror').set_species(self)
 	self.responsive = true

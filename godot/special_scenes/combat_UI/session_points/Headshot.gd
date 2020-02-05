@@ -6,7 +6,7 @@ export var species : Resource setget set_species
 func _ready():
 	species = null
 	
-func set_species(value: SpeciesTemplate):
+func set_species(value: Species):
 	species = value
 	if not $Sprite:
 		return

@@ -63,7 +63,7 @@ func initialize(players, sports):
 			continue
 			
 		var cursor = cursor_scene.instance()
-		cursor.species = (player as InfoPlayer).species_template
+		cursor.species = (player as InfoPlayer).species
 		cursor.player = (player as InfoPlayer)
 		cursor.player_i = i
 		cursor.cell_size = CELLSIZE

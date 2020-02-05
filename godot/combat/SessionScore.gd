@@ -2,8 +2,11 @@ extends Node
 
 class_name SessionScores
 
+# who is gonna play
 var players : Dictionary setget set_players # of InfoPlayers setget
-var matches : Array # of Scores
+
+# The matches played, with scores and stats
+var matches : Array # of MatchScores
 
 var settings : Dictionary
 var selected_sports : Array # of Planet

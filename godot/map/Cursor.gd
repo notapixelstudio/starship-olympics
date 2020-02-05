@@ -35,9 +35,9 @@ func set_species(value):
 	
 func _ready():
 	enable()
-	ship.texture = (species as SpeciesTemplate).ship
+	ship.texture = (species as Species).ship
 	label.text = "P" + str(player_i+1)
-	placemark.modulate = (species as SpeciesTemplate).color
+	placemark.modulate = (species as Species).color
 	ship.rotation = -rotation - PI/2
 	$Graphics/LabelContainer.rotation = -rotation
 	

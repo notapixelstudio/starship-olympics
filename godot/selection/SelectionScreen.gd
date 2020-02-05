@@ -134,7 +134,7 @@ func get_players() -> Array:
 
 func get_adjacent(operator:int, player_selection : Node):
 	restart_timer()
-	var current_index = ordered_species.find(player_selection.species_template)
+	var current_index = ordered_species.find(player_selection.species)
 	current_index = global.mod(current_index + operator,len(ordered_species))
 	while current_index in selected_index:
 		current_index = global.mod(current_index + operator,len(ordered_species))
@@ -157,12 +157,12 @@ func ready_to_fight():
 
 func selected(player: PlayerSelection):
 	restart_timer()
-	var species = player.species_template
+	var species = player.species
 	
 	var current_index = ordered_species.find(species)
 	selected_index.append(current_index)
 	for child in container.get_children():
-		if not child.selected and child.species_template == species:
+		if not child.selected and child.species == species:
 			get_adjacent(+1, child)
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
@@ -176,7 +176,7 @@ func selected(player: PlayerSelection):
 # TODO: it should be with signals
 var deselected = false
 
-func deselected(species:SpeciesTemplate):
+func deselected(species: Species):
 	restart_timer()
 	var current_index = ordered_species.find(species)
 	selected_index.remove(selected_index.find(current_index))
@@ -202,11 +202,11 @@ func _process(delta):
 	for child in container.get_children():
 		if child.disabled:
 			continue
-		var species_name = child.species_template.species_name
+		var species_name = child.species.species_name
 		if not species_name in dict_species:
-			dict_species[species_name] = {child.species_template.id: child}
+			dict_species[species_name] = { child.species.id: child}
 		else:
-			dict_species[species_name][child.species_template.id] = child
+			dict_species[species_name][child.species.id] = child
 		child.unset_team()
 
 	for s in dict_species:

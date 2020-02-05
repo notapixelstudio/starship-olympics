@@ -46,8 +46,6 @@ onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridPack
 
-var wall_scene = preload('res://actors/environments/Wall.tscn')
-
 signal screensize_changed(screensize)
 signal gameover
 signal restart
@@ -56,23 +54,22 @@ signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
 
-# TODO: the spawners should be considered by COllectModeManager ?
-var diamonds_spawners = []
-var scores : Scores
+var scores : MatchScores
 
 func from_spawner_to_infoplayer(current_player: PlayerSpawner) -> InfoPlayer:
 	var info_player = InfoPlayer.new()
 	info_player.id = current_player.name
 	info_player.controls = current_player.controls
-	info_player.species = current_player.species_template.species_name
-	info_player.species_template = current_player.species_template
+	info_player.species = current_player.species
+	info_player.species_name = current_player.species.species_name
+	
 	info_player.cpu = current_player.cpu
 	return info_player
 
 func from_info_to_spawner(player_info):
 	var spawner = PlayerSpawner.new()
 	spawner.controls = player_info.controls 
-	spawner.species_template = player_info.species_template
+	spawner.species = player_info.species
 	spawner.name = player_info.id
 	spawner.info_player = player_info
 	return spawner
@@ -130,8 +127,7 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 
-	scores = Scores.new()
-	scores.players_alive = len(array_players)
+	scores = MatchScores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
 	
@@ -172,7 +168,7 @@ func _ready():
 		if len(array_players) >= i+1:
 			# todo: fix casdf
 			s.controls = array_players[i].controls
-			s.species_template = array_players[i].species_template
+			s.species = array_players[i].species
 			s.cpu = array_players[i].cpu
 			s.info_player = array_players[i]
 		else:
@@ -190,7 +186,6 @@ func _ready():
 		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
 	
 	scores.initialize(array_players, game_mode, score_to_win_override, match_duration_override)
-	
 	
 	# initialize HUD
 	hud.initialize(scores)
@@ -259,8 +254,6 @@ func _ready():
 				
 		get_tree().paused = false
 		camera.activate_camera()
-
-		
 
 	else:
 		spawn_ships()
@@ -424,7 +417,7 @@ func spawn_ship(player:PlayerSpawner):
 		
 	ship.arena = self
 	ship.controls = player.controls
-	ship.species_template = player.species_template
+	ship.species = player.species
 	ship.position = player.position
 	ship.rotation = player.rotation
 	ship.height = height
@@ -478,12 +471,12 @@ func spawn_bomb(pos, impulse, ship):
 	return bomb
 
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
-func spawn_points_scored(species_template, score, pos):
+func spawn_points_scored(species, score, pos):
 	var points_scored = points_scored_scene.instance()
 	points_scored.set_points(score)
 	points_scored.scale = camera.zoom
 	points_scored.position = pos
-	points_scored.modulate = species_template.color
+	points_scored.modulate = species.color
 	$Battlefield.add_child(points_scored)
 
 func _on_sth_collected(collector, collectee):

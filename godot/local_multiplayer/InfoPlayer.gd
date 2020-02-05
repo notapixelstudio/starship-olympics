@@ -16,7 +16,7 @@ var bombs: int = 0
 var collectables : int  =0
 var score : float = 0.0
 var session_score : int = 0
-var species : SpeciesTemplate
+var species : Species
 var team: bool = false
 var stats = PlayerStats
 
@@ -47,7 +47,6 @@ func start():
 func to_dict():
 	return {
 		"id": id,
-		"name" : id,
 		"controls": controls,
 		"species_name" : species_name,
 		"lives" : lives,
