@@ -37,6 +37,7 @@ func _ready():
 	session_scores = SessionScores.new()
 	campaign_mode = global.campaign_mode
 	players = {}
+
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
@@ -70,12 +71,16 @@ func combat(selected_players: Array, fight_mode : String):
 		players[player.id] = player.info
 		i += 1
 	
+	session_scores.players = players
+
 	# Statistics
 	for player_id in players:
 		var info = players[player_id]
 		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.species, "id": info.id})})
 		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
 	
+	
+	"""
 	if fight_mode == 'solo' or fight_mode == 'co-op':
 		var other_species
 		if selected_players[0].species_template.species_name != all_species[0].species_name:
@@ -101,7 +106,8 @@ func combat(selected_players: Array, fight_mode : String):
 			info_player2.cpu = true
 			info_player2.species_template = other_species[1]
 			players['cpu2'] = info_player2
-			
+	"""
+
 	# LEVEL SELECTION
 	#var level_selection = level_selection_scene.instance()
 	#level_selection.initialize(str(num_players), players)
