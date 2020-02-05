@@ -511,27 +511,27 @@ editor/display_folded = false
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 13 )]
 position = Vector2( -600, 600 )
 rotation = -0.785398
-species_template = ExtResource( 14 )
+species = ExtResource( 14 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
 controls = "joy1"
-species_template = ExtResource( 15 )
+species = ExtResource( 15 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 13 )]
 position = Vector2( 600, 600 )
 rotation = -2.35619
 controls = "joy1"
-species_template = ExtResource( 16 )
+species = ExtResource( 16 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 13 )]
 position = Vector2( -600, -600 )
 rotation = 0.785398
 controls = "joy1"
-species_template = ExtResource( 17 )
+species = ExtResource( 17 )
 cpu = true
 
 [node name="Camera" parent="." index="5"]

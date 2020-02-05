@@ -13,11 +13,11 @@ var lives : int
 var starting_lives : int = -1
 var deaths : int = 0
 var bombs: int = 0
-var collectables : int  =0
+var collectables : int = 0
 var score : float = 0.0
 var session_score : int = 0
 var species : Species
-var team: bool = false
+var team: String 
 var stats = PlayerStats
 
 func update_death():

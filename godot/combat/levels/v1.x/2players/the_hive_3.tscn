@@ -54,13 +54,13 @@ b = Vector2( 0, 800 )
 position = Vector2( -700, 0 )
 rotation = 0.0
 controls = "joy1"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 700, 0 )
 rotation = 3.14159
 controls = "joy2"
-species_template = ExtResource( 11 )
+species = ExtResource( 11 )
 
 [node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3

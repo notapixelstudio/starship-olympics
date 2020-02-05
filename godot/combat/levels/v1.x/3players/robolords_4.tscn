@@ -126,39 +126,39 @@ sides = 6.0
 position = Vector2( 0, 1250 )
 rotation = -1.5708
 controls = "joy1"
-species_template = ExtResource( 9 )
+species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( -1100, -650 )
 rotation = 0.523599
 controls = "joy2"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
 position = Vector2( 1100, -650 )
 rotation = 2.61799
 controls = "joy3"
-species_template = ExtResource( 11 )
+species = ExtResource( 11 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 8 )]
 position = Vector2( 0, 1600 )
 rotation = -1.5708
 controls = "joy2"
-species_template = ExtResource( 12 )
+species = ExtResource( 12 )
 cpu = true
 
 [node name="p5" parent="SpawnPositions/Players" index="4" instance=ExtResource( 8 )]
 position = Vector2( 1400, -800 )
 rotation = 2.61799
 controls = "joy2"
-species_template = ExtResource( 12 )
+species = ExtResource( 12 )
 cpu = true
 
 [node name="p6" parent="SpawnPositions/Players" index="5" instance=ExtResource( 8 )]
 position = Vector2( -1400, -800 )
 rotation = 0.523599
 controls = "joy2"
-species_template = ExtResource( 12 )
+species = ExtResource( 12 )
 cpu = true
 
 [node name="Camera" parent="." index="15"]

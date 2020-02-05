@@ -167,7 +167,6 @@ func _ready():
 	for s in $SpawnPositions/Players.get_children():
 		var spawner = s as PlayerSpawner
 		if len(array_players) >= i+1:
-			# todo: fix casdf
 			s.controls = array_players[i].controls
 			s.species = array_players[i].species
 			s.cpu = array_players[i].cpu
@@ -175,6 +174,7 @@ func _ready():
 		else:
 			s.info_player = InfoPlayer.new()
 			s.info_player.cpu = s.cpu
+			s.info_player.species = s.species
 		
 		if s.cpu:
 			s.info_player.id = "cpu"
@@ -296,12 +296,9 @@ func _input(event):
 			emit_signal("back_to_menu")
 			
 func _unhandled_input(event):
-		
-	if event.is_action_pressed("force_pause"):
-		pause.start()
-		
 	if event.is_action_pressed("pause") and not global.demo:
 		pause.start()
+		
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug

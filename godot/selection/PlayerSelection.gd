@@ -6,10 +6,8 @@ class_name PlayerSelection
 Class for Species logic. Will be set controls and Species template
 """
 
-
 var id:String
 var uid:int
-
 
 # enum duplicates in global
 enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
@@ -120,9 +118,7 @@ func setup_info():
 	info.species_name = species.species_name
 	info.controls = controls
 	info.species = species
-	info.team = is_team
 	
-
 func deselect(silent : bool = false):
 	speciesSelection.deselect()
 	unset_team()
@@ -155,7 +151,6 @@ func disable_choice():
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
 	
-	
 func enable_choice():
 	joined = true
 	disabled = false
@@ -165,4 +160,3 @@ func enable_choice():
 	if global.demo:
 		speciesSelection.disable_arrows()
 	
-

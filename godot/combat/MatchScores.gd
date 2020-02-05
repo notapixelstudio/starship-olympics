@@ -46,7 +46,7 @@ func initialize(_players: Array, game_mode: GameMode, max_score: float = 0, max_
 func sort_by_score(a, b):
 	return a.score > b.score
 	
-func update(delta:float):
+func update(delta: float):
 	if game_over:
 		return
 	

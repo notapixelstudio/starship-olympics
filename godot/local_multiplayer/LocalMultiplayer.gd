@@ -92,7 +92,6 @@ func combat(selected_players: Array, fight_mode : String):
 
 		var info_player = InfoPlayer.new()
 		info_player.id = 'cpu'
-		info_player.species = other_species.species_name
 		info_player.cpu = true
 		info_player.species = other_species
 		
