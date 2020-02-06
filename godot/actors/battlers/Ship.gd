@@ -226,7 +226,6 @@ func die(killer : Ship):
 		yield(get_tree(), "idle_frame")
 		if info_player.lives >= 0:
 			info_player.lives -= 1
-		print(info_player.lives)
 		emit_signal("dead", self, killer)
 		
 func stun():
@@ -272,3 +271,6 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 			return 0
 	
 	return int(sign(cross))
+
+func get_id():
+	return info_player.id

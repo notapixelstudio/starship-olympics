@@ -12,7 +12,6 @@ func initialize():
 	animation.play("fade_in")
 	yield(animation, "animation_finished")
 	emit_signal("entered")
-	print("over")
 	can_press = true
 	
 	
@@ -26,6 +25,5 @@ func _on_Options_pressed():
 	
 func _on_StartHuman_pressed():
 	if can_press:
-		print("we're ready to og")
 		emit_signal("start_multiplayer")
 

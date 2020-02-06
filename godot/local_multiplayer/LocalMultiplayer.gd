@@ -96,29 +96,8 @@ func combat(selected_players: Array, fight_mode : String):
 		info_player.species = other_species
 		
 		players['cpu'] = info_player
-	"""
-		if fight_mode == 'co-op':
-			info_player.team = true
-			
-			var info_player2 = InfoPlayer.new()
-			info_player2.id = 'cpu'
-			info_player2.team = true
-			info_player2.species = other_species[1].species_name
-			info_player2.cpu = true
-			info_player2.species_template = other_species[1]
-			players['cpu2'] = info_player2
-	"""
 
-			
-	# LEVEL SELECTION
-	#var level_selection = level_selection_scene.instance()
-	#level_selection.initialize(str(num_players), players)
-	#add_child(level_selection)
-	#yield(level_selection, "arena_selected")
-	#if level_selection.back:
-	#	level_selection.queue_free()
-	#	return
-	#current_level = level_selection.current_level
+
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
@@ -127,7 +106,6 @@ func combat(selected_players: Array, fight_mode : String):
 		var map = map_scene.instance()
 		map.initialize(players, all_planets)
 		
-		#"""
 		add_child(map)
 		yield(map, "done")
 		yield(get_tree(), "idle_frame")
@@ -137,7 +115,7 @@ func combat(selected_players: Array, fight_mode : String):
 			add_child(parallax)
 			add_child(selection_screen)
 			return
-		#"""
+		
 		map.queue_free()
 	
 	session_scores.selected_sports = all_planets
@@ -186,7 +164,7 @@ func next_level(demo=false):
 	
 func start_level(_level, demo = false):
 	combat = _level
-	combat.initialize(players)
+	combat.initialize(session_scores)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
@@ -200,7 +178,6 @@ func start_level(_level, demo = false):
 
 	add_child(combat)
 	yield(combat, "ready")
-	session_scores.new_match(combat.scores)
 	
 	
 func _on_GameOver_rematch(node):

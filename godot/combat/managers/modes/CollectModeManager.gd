@@ -45,11 +45,11 @@ func _on_sth_collected(collector, collectee):
 		
 	if collectee is Diamond:
 		var score = score_multiplier*collectee.points
-		emit_signal('score', collector.species, score)
-		emit_signal('show_score', collector.species_template, score, collectee.global_position)
+		emit_signal('score', collector.get_id(), score)
+		emit_signal('show_score', collector.species, score, collectee.global_position)
 		
 func _on_coins_dropped(dropper, amount):
-	emit_signal('score', dropper.species, -score_multiplier*amount)
+	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
 
 var wave_ready = true
 func _process(delta):

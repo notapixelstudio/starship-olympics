@@ -7,13 +7,13 @@ signal rematch
 signal back_to_menu
 
 
-func initialize(winner:String, scores:Dictionary, win_points: int = 3):
+func initialize(winners: Array, scores:Dictionary, win_points: int = 3):
 	var array_scores = scores.values()
-	if winner != "noone":
-		scores[winner]["session_score"] += 1
+	for winner in winners:
+		scores[winner].session_score += 1
 	
 	array_scores.sort_custom(self, "sort_by_score")
-	session.initialize(array_scores, winner, win_points)
+	session.initialize(array_scores, winners, win_points)
 	
 	var info_winner = array_scores[0]
 	if info_winner.session_score >= win_points:

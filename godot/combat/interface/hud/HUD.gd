@@ -8,6 +8,7 @@ onready var Bars = $Bars
 onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
+var session 
 
 func set_planet(planet: String, mode: GameMode):
 	$Content/ModePanel/PlanetName.text = planet
@@ -15,8 +16,8 @@ func set_planet(planet: String, mode: GameMode):
 	$Content/ModePanel/ModeIcon.visible = true
 
 	
-func initialize(_matchscore: MatchScores):
-	matchscore = _matchscore
+func initialize(_session: SessionScores):
+	matchscore = _session.matches[0]
 	
 	TimeLeft.text = str(int(floor(matchscore.time_left)))
 	var i = 0
@@ -58,8 +59,8 @@ func _process(_delta):
 	# leading player
 	if not draw:
 		var leading = bars[0]
-		Leading.set_species(leading.player.species)
-		LeadingLabel.text = leading.player.species_name
+		Leading.set_species(leading.player.info.species)
+		LeadingLabel.text = leading.player.info.species_name
 	else:
 		Leading.set_species(null)
 		LeadingLabel.text = ""

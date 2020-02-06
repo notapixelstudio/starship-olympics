@@ -23,6 +23,7 @@ func start():
 	gui.visible = true
 	buttons.enable()
 	unpause_ready = true
+	raise()
 
 func _unhandled_input(event):
 	if unpause_ready and event.is_action_pressed("pause"):

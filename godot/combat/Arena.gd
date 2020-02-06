@@ -74,10 +74,9 @@ func from_info_to_spawner(player_info):
 	spawner.info_player = player_info
 	return spawner
 
-func initialize(players:Dictionary) -> void:
-	array_players = []
-	for p in players:
-		array_players.append(players[p])
+var session: SessionScores
+func initialize(_session: SessionScores) -> void:
+	session = _session
 	
 func compute_arena_size():
 	"""
@@ -105,7 +104,6 @@ func setup_level(mode : Resource):
 	conquest_mode.enabled = mode.hive
 	
 func _ready():
-	array_players = []
 	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
@@ -131,9 +129,6 @@ func _ready():
 	scores = MatchScores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
-	
-	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeA = $Battlefield/Background/Grid/GridPoint225/RigidBody2D
-	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
 	
 	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
 	collect_manager.connect('collected', self, "_on_sth_collected")
@@ -161,35 +156,49 @@ func _ready():
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
 		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
-
+	
+	var standalone : bool = true
+	var players = {}
+	var array_players = []
+	
+	if session:
+		array_players = session.players.values()
+		standalone = false
+	else:
+		session = SessionScores.new()
+		
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
-		var spawner = s as PlayerSpawner
-		if len(array_players) >= i+1:
-			s.controls = array_players[i].controls
-			s.species = array_players[i].species
-			s.cpu = array_players[i].cpu
-			s.info_player = array_players[i]
+		if standalone:
+			var info_player = InfoPlayer.new()
+			info_player.cpu = s.cpu
+			info_player.species = s.species
+			info_player.controls = s.controls
+			if s.cpu:
+				s.info_player.id = "cpu"
+			else:
+				s.info_player.id = s.name
+
+			players[s.name] = info_player
 		else:
-			s.info_player = InfoPlayer.new()
-			s.info_player.cpu = s.cpu
-			s.info_player.species = s.species
-		
-		if s.cpu:
-			s.info_player.id = "cpu"
-		else:
-			s.info_player.id = s.name
-		array_players.append(from_spawner_to_infoplayer(s))
+			var info_player = array_players[i] 
+			s.info_player = info_player
+			s.controls = info_player.controls
+			s.species = info_player.species
+			s.cpu = info_player.cpu
+	
 		i += 1
+	
+	session.players = players
 		
 	if conquest_mode.enabled:
 		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
 	
-	scores.initialize(array_players, game_mode, score_to_win_override, match_duration_override)
-	
+	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
+	session.add_match(scores)
 	# initialize HUD
-	hud.initialize(scores)
+	hud.initialize(session)
 	
 	camera.initialize(compute_arena_size())
 	$Battlefield.visible = false
@@ -368,7 +377,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 	$Battlefield.call_deferred("add_child", ship)
 	
 	
-func on_gamemode_gameover(winner:String, scores: Dictionary):
+func on_gamemode_gameover(winners: Array, scores: Dictionary):
 	if demo:
 		emit_signal("back_to_menu")
 		return
@@ -383,7 +392,7 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.initialize(winner, scores, global.win)
+	game_over.initialize(winners, scores, global.win)
 	for team in scores:
 		var player = scores[team]
 		var stats =player.to_stats() 
@@ -462,11 +471,12 @@ func spawn_bomb(pos, impulse, ship):
 	$Battlefield.add_child(bomb)
 	
 	if ship:
-		emit_signal("update_stats", ship.species, 1, "bombs")
+		emit_signal("update_stats", ship.info_player.id, 1, "bombs")
 	return bomb
 
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
-func spawn_points_scored(species, score, pos):
+
+func spawn_points_scored(species: Species, score, pos):
 	var points_scored = points_scored_scene.instance()
 	points_scored.set_points(score)
 	points_scored.scale = camera.zoom

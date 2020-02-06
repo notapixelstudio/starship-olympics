@@ -5,9 +5,10 @@ class_name InfoPlayer
 var id : String = "P1"
 var controls : String = "kb1"
 var species_name : String
+var cpu: bool = false
+
 var kills : int = 0
 var selfkills : int = 0
-var cpu: bool = false
 var playable : bool = true
 var lives : int
 var starting_lives : int = -1
