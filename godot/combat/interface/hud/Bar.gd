@@ -18,10 +18,11 @@ var sprite_on
 var player
 var new_position setget change_position
 
-func initialize(player: PlayerStats, max_value, stars):
-	var species = player.info.species
+func initialize(player: PlayerStats, matchscore: MatchScores):
+	var species = player.species
 	progressbar.modulate = species.color
-	progressbar.max_value = max_value
+	progressbar.max_value = matchscore.target_score
+	
 	progressbar.rect_size.x = max_bar_width - ministar_margin
 	sprite_on = species.ship
 	sprite_off = species.ship_off
@@ -33,7 +34,7 @@ func initialize(player: PlayerStats, max_value, stars):
 		star.position.x = margin_left + max_bar_width - ministar_margin + i*ministar_width + 18
 		star.position.y = 18
 		
-		if i < stars:
+		if i < player.session_score:
 			star.won = true
 		
 		add_child(star)

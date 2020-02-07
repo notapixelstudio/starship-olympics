@@ -56,24 +56,6 @@ var array_players = [] # Dictionary of InfoPlayers
 
 var scores : MatchScores
 
-func from_spawner_to_infoplayer(current_player: PlayerSpawner) -> InfoPlayer:
-	var info_player = InfoPlayer.new()
-	info_player.id = current_player.name
-	info_player.controls = current_player.controls
-	info_player.species = current_player.species
-	info_player.species_name = current_player.species.species_name
-	
-	info_player.cpu = current_player.cpu
-	return info_player
-
-func from_info_to_spawner(player_info):
-	var spawner = PlayerSpawner.new()
-	spawner.controls = player_info.controls 
-	spawner.species = player_info.species
-	spawner.name = player_info.id
-	spawner.info_player = player_info
-	return spawner
-
 var session: SessionScores
 func initialize(_session: SessionScores) -> void:
 	session = _session
@@ -170,8 +152,10 @@ func _ready():
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
+		var key = s.name
+		var info_player = InfoPlayer.new()
 		if standalone:
-			var info_player = InfoPlayer.new()
+			
 			info_player.cpu = s.cpu
 			info_player.species = s.species
 			info_player.controls = s.controls
@@ -182,11 +166,13 @@ func _ready():
 
 			players[s.name] = info_player
 		else:
-			var info_player = array_players[i] 
+			info_player = array_players[i] 
 			s.info_player = info_player
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
+			key = info_player.id
+		players[key] = info_player
 	
 		i += 1
 	
@@ -196,6 +182,7 @@ func _ready():
 		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
 	
 	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
+
 	session.add_match(scores)
 	# initialize HUD
 	hud.initialize(session)
@@ -341,11 +328,11 @@ func ship_just_died(ship: Ship, killer : Ship):
 	"""
 	# stats
 	# TODO: maybe somewhere else
-	emit_signal("update_stats", ship.species, 1, "deaths")
+	emit_signal("update_stats", ship.info_player, 1, "deaths")
 	if killer and killer is Ship and killer != ship:
-		emit_signal("update_stats", killer.species, 1, "kills")
+		emit_signal("update_stats", killer.info_player, 1, "kills")
 	else:
-		emit_signal("update_stats", ship.species, 1, "selfkills")
+		emit_signal("update_stats", ship.info_player, 1, "selfkills")
 	
 	$Battlefield.call_deferred("remove_child", ship)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
@@ -361,10 +348,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
-	if ship.info_player.lives == 0:
-		scores.players_alive -= 1
-		
-	if scores.players_alive <= 1 or scores.game_over:
+	if scores.game_over:
 		return
 	
 	# respawn
@@ -377,7 +361,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 	$Battlefield.call_deferred("add_child", ship)
 	
 	
-func on_gamemode_gameover(winners: Array, scores: Dictionary):
+func on_gamemode_gameover(winners: Array):
 	if demo:
 		emit_signal("back_to_menu")
 		return
@@ -392,13 +376,16 @@ func on_gamemode_gameover(winners: Array, scores: Dictionary):
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.initialize(winners, scores, global.win)
-	for team in scores:
-		var player = scores[team]
+	
+	game_over.initialize(winners, scores)
+	
+	"""
+	# sending stats
+	for player in scores:
 		var stats =player.to_stats() 
 		for key in stats:
 			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": stats[key]}) 
-
+	"""
 
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
@@ -471,7 +458,7 @@ func spawn_bomb(pos, impulse, ship):
 	$Battlefield.add_child(bomb)
 	
 	if ship:
-		emit_signal("update_stats", ship.info_player.id, 1, "bombs")
+		emit_signal("update_stats", ship.info_player, 1, "bombs")
 	return bomb
 
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')

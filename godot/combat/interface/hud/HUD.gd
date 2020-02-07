@@ -15,7 +15,10 @@ func set_planet(planet: String, mode: GameMode):
 	$Content/ModePanel/ModeIcon.texture = (mode as GameMode).logo
 	$Content/ModePanel/ModeIcon.visible = true
 
-	
+
+func _ready():
+	set_process(false)
+
 func initialize(_session: SessionScores):
 	matchscore = _session.matches[0]
 	
@@ -26,7 +29,7 @@ func initialize(_session: SessionScores):
 		var bar = Bar.instance()
 		bar.position += Vector2(0, 25) * i
 		Bars.add_child(bar)
-		bar.initialize(player, matchscore.target_score, player.get_session_score())
+		bar.initialize(player, matchscore)
 		bar.player = player
 		i+=1
 		
@@ -34,6 +37,7 @@ func initialize(_session: SessionScores):
 	var h = 15 + 25 * len(matchscore.scores)
 	$BarsBackground.rect_size.y = h
 	$BarsBottom.rect_position.y = h
+	set_process(true)
 
 func _process(_delta):
 	# update time left
@@ -59,8 +63,8 @@ func _process(_delta):
 	# leading player
 	if not draw:
 		var leading = bars[0]
-		Leading.set_species(leading.player.info.species)
-		LeadingLabel.text = leading.player.info.species_name
+		Leading.set_species(leading.player.species)
+		LeadingLabel.text = leading.player.species_name
 	else:
 		Leading.set_species(null)
 		LeadingLabel.text = ""

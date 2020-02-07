@@ -7,21 +7,17 @@ signal rematch
 signal back_to_menu
 
 
-func initialize(winners: Array, scores:Dictionary, win_points: int = 3):
-	var array_scores = scores.values()
-	for winner in winners:
-		scores[winner].session_score += 1
+func initialize(winners: Array, scores: MatchScores):
+	"""
+	Parameters
+	----------
+	winners : Array of PlayerStats
+		
+	"""
 	
-	array_scores.sort_custom(self, "sort_by_score")
-	session.initialize(array_scores, winners, win_points)
+	session.initialize(winners, scores)
 	
-	var info_winner = array_scores[0]
-	if info_winner.session_score >= win_points:
-		print_debug(info_winner.species + " won everything")
-		$VBoxContainer.get_child(0).visible = false
-		$VBoxContainer.get_child(1).grab_focus()
-	else:
-		$VBoxContainer.get_child(0).grab_focus()
+	yield(get_tree().create_timer(1), "timeout")
 	
 	
 

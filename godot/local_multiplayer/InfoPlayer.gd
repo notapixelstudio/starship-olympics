@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 
 class_name InfoPlayer
 
@@ -19,7 +19,6 @@ var score : float = 0.0
 var session_score : int = 0
 var species : Species
 var team: String 
-var stats = PlayerStats
 
 func update_death():
 	deaths += 1

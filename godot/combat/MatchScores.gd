@@ -8,10 +8,11 @@ var time_left:float
 var target_score: float = 100
 
 var scores = []
-var players = {}
+var players = {} # Dictionary of InfoPlayers
 var draw: bool = true
 var game_over:bool = false
 var cumulative_points = 0
+var winners = [] # Array of winning Player stats
 
 signal game_over
 
@@ -22,17 +23,20 @@ func stop():
 	set_process(false)
 
 func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
+	scores = []
 	target_score = game_mode.max_score
 	players = _players
 	if max_score:
 		target_score = max_score
 	cumulative_points = -1
 	
-	for player in _players:
+	for player_id in players:
+		var player = players[player_id]
 		var player_score = PlayerStats.new()
-		player_score.info = player
+		player_score.species = player.species
 		player_score.team = player.team
 		player_score.id = player.id
+		player_score.session_score = player.session_score
 		scores.append(player_score)
 		
 	time_left = game_mode.max_timeout
@@ -41,7 +45,6 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 		
 	if game_mode.cumulative:
 		cumulative_points=0
-	stop()
 	
 	
 func sort_by_score(a, b):
@@ -58,7 +61,7 @@ func update(delta: float):
 	var leader = scores[0]
 	
 	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score) :
-		var winners = []
+		winners = []
 		var draw = true
 		var last_value = leader.score
 		for player in scores:
@@ -69,8 +72,12 @@ func update(delta: float):
 				draw = false
 		if draw:
 			winners = []
-		game_over = true
-		emit_signal("game_over", winners, scores)
+		
+		do_game_over()
+
+func do_game_over():
+	game_over = true
+	emit_signal("game_over", winners)
 		
 func add_score(id_player: String, amount : float):
 	var player = get_player(id_player)
@@ -85,8 +92,9 @@ func broadcast_score(team : String, amount : float):
 			add_score(team_player.id, amount)
 
 
-func update_stats(id_player: String, amount: int, stat: String):
-	var stats_player = get_player(id_player)
+func update_stats(info_player: InfoPlayer, amount: int, stat: String):
+	var id_player = info_player.id
+	var stats_player = players[id_player]
 	var stat_value = stats_player.get(stat)
 	stats_player.set(stat, stat_value + amount)
 
