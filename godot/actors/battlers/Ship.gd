@@ -9,8 +9,10 @@ class_name Ship
 
 export var debug_enabled = false
 export (String) var controls = "kb1"
-export (Resource) var species_template
 export var absolute_controls : bool= true
+export (Resource) var species
+
+var species_name: String
 
 var arena
 var cpu = false
@@ -35,13 +37,19 @@ const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
 var responsive = false setget change_engine
-var info_player
+var info_player setget set_info_player
+
+func set_info_player(value: InfoPlayer):
+	info_player = value
+	species = info_player.species
+	species_name = info_player.species_name
+
 var count = 0
 var alive = true
 var stunned = false
 var stun_countdown = 0
 
-var species: String
+
 var screen_size = Vector2()
 var width = 0
 var height = 0
@@ -93,10 +101,10 @@ func _enter_tree():
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
-	skin.ship_texture = (species_template as SpeciesTemplate).ship
+	skin.ship_texture = species.ship
 	skin.invincible(1.0)
 	entity = ECM.E(self)
-	species = species_template.species_name
+	species_name = species.species_name
 	
 	entity.get('Conqueror').set_species(self)
 	self.responsive = true
@@ -218,7 +226,6 @@ func die(killer : Ship):
 		yield(get_tree(), "idle_frame")
 		if info_player.lives >= 0:
 			info_player.lives -= 1
-		print(info_player.lives)
 		emit_signal("dead", self, killer)
 		
 func stun():
@@ -264,3 +271,6 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 			return 0
 	
 	return int(sign(cross))
+
+func get_id():
+	return info_player.id

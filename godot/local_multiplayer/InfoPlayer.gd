@@ -1,24 +1,24 @@
-extends Resource
+extends Node
 
 class_name InfoPlayer
 
-var uid : int = 0
 var id : String = "P1"
 var controls : String = "kb1"
-var species : String
+var species_name : String
+var cpu: bool = false
+
 var kills : int = 0
 var selfkills : int = 0
-var cpu: bool = false
 var playable : bool = true
 var lives : int
 var starting_lives : int = -1
 var deaths : int = 0
 var bombs: int = 0
-var collectables : int  =0
+var collectables : int = 0
 var score : float = 0.0
 var session_score : int = 0
-var species_template : SpeciesTemplate
-var team: bool = false
+var species : Species
+var team: String 
 
 func update_death():
 	deaths += 1
@@ -36,17 +36,19 @@ func get_score():
 
 func start():
 	# This reset the scores
-	# TODO: change name. 
 	score = 0.0
+	lives = 10
+	bombs = 0
+	deaths = 0
+	kills = 0
+	selfkills = 0
 	lives = starting_lives
 	
 func to_dict():
 	return {
-		"uid": uid,
 		"id": id,
-		"name" : id,
 		"controls": controls,
-		"species_name" : species,
+		"species_name" : species_name,
 		"lives" : lives,
 		"deaths" : deaths,
 		"kills" : kills,

@@ -25,6 +25,6 @@ func _process(delta):
 		return
 		
 	for royal in ECM.entities_with('Royal'):
-		
-		emit_signal('score', royal.get_host().species, delta)
-		emit_signal('show_score', royal.get_host().species_template, delta, royal.get_host().position)
+		var royal_host = royal.get_host()
+		emit_signal('score', royal_host.get_id(), delta)
+		emit_signal('show_score', royal_host.species, delta, royal_host.position)

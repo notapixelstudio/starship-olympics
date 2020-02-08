@@ -42,5 +42,4 @@ func disappears():
 	queue_free()
 
 func demomode(demo = false):
-	print("demo is ", str(demo))
 	$Description2.visible = not demo

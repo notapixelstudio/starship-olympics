@@ -12,6 +12,6 @@ func _on_ship_killed(ship : Ship, killer : Ship):
 		emit_signal("broadcast_score", killer.species, score_multiplier)
 		
 	elif killer and killer.species != ship.species:
-		emit_signal('score', killer.species, score_multiplier)
-		emit_signal('show_score', killer.species_template, score_multiplier, ship.position)
+		emit_signal('score', killer.get_id(), score_multiplier)
+		emit_signal('show_score', killer.species, score_multiplier, ship.position)
 		

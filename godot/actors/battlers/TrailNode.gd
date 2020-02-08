@@ -58,8 +58,8 @@ func _ready():
 	ECM.E(near_area).get('Owned').set_owned_by(ship)
 	ECM.E(far_area).get('Owned').set_owned_by(ship)
 	
-	var c1 = Color(ship.species_template.color)
-	var c2 = Color(ship.species_template.color_2)
+	var c1 = Color(ship.species.color)
+	var c2 = Color(ship.species.color_2)
 	var cm = Color(c2)
 	c1.a = 0.7
 	c2.a = 0

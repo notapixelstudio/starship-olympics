@@ -156,12 +156,12 @@ precision = 10.0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -900, 0 )
 rotation = 0.0
-species_template = ExtResource( 11 )
+species = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
 position = Vector2( 1000, 0 )
 rotation = 3.14159
-species_template = ExtResource( 12 )
+species = ExtResource( 12 )
 cpu = true
 
 [node name="HUD" parent="CanvasLayer" index="1"]

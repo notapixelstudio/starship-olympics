@@ -1,6 +1,6 @@
 extends Resource
 
-class_name SpeciesTemplate
+class_name Species
 
 export (int) var id
 export (String) var species_name

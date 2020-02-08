@@ -5,11 +5,11 @@ extends Node2D
 var enabled
 
 export var species : Resource setget set_species
-export var player : Resource
 export var player_i : int
 export var cell_size : int
 export var grid_position : Vector2 setget set_grid_position
 
+var player 
 onready var move_tween = $MoveTween
 onready var animation_player = $Graphics/AnimationPlayer
 onready var ship = $Graphics/Ship
@@ -35,9 +35,9 @@ func set_species(value):
 	
 func _ready():
 	enable()
-	ship.texture = (species as SpeciesTemplate).ship
+	ship.texture = (species as Species).ship
 	label.text = "P" + str(player_i+1)
-	placemark.modulate = (species as SpeciesTemplate).color
+	placemark.modulate = (species as Species).color
 	ship.rotation = -rotation - PI/2
 	$Graphics/LabelContainer.rotation = -rotation
 	

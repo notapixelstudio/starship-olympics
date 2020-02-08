@@ -14,7 +14,6 @@ func _ready():
 func _initialize():
 	description_node.text = label_description.to_upper()
 	value = node_owner.get(variable_name)
-	print("value checkbox "+str(value))
 	value_node.pressed = value
 
 
@@ -24,7 +23,6 @@ func _on_ElementCheckbox_toggled(button_pressed):
 
 
 func _on_MarginContainer_focus_entered():
-	print("dfsjadsj")
 	set_process_input(true)
 
 

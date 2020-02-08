@@ -13,7 +13,9 @@ onready var point_score = $Scaled/Colored/PointsScored
 func _ready():
 	if target.info_player:
 		player_id.text = tr(target.info_player.id)
-	$Scaled/Colored.modulate = target.species_template.color
+		if target.info_player.cpu:
+			player_id.text = tr("CPU")
+	$Scaled/Colored.modulate = target.species.color
 	
 	update_scale()
 	update_rotation()

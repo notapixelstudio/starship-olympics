@@ -23,6 +23,7 @@ func start():
 	gui.visible = true
 	buttons.enable()
 	unpause_ready = true
+	raise()
 
 func _unhandled_input(event):
 	if unpause_ready and event.is_action_pressed("pause"):
@@ -43,11 +44,9 @@ func unpause():
 	get_tree().paused = false
 
 func _on_Restart_pressed():
-	print_debug("restarto")
 	emit_signal("restart")
 	
 func _on_SkipLevel_pressed():
-	print_debug("skipo")
 	emit_signal("skip")
 	
 func _on_QuitMatch_pressed():

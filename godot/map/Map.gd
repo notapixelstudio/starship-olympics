@@ -36,7 +36,7 @@ func _ready():
 		cursor.connect('cancel', self, '_on_cursor_cancel')
 	
 	for sport in get_tree().get_nodes_in_group("sports"):
-		var levels = (sport as MapPlanet).planet.get("levels_"+str(num_players)+"players")
+		var levels = sport.planet.get("levels_"+str(num_players)+"players")
 		if not levels:
 			sport.not_available = true
 			
@@ -63,8 +63,8 @@ func initialize(players, sports):
 			continue
 			
 		var cursor = cursor_scene.instance()
-		cursor.species = (player as InfoPlayer).species_template
-		cursor.player = (player as InfoPlayer)
+		cursor.species = player.species
+		cursor.player = player
 		cursor.player_i = i
 		cursor.cell_size = CELLSIZE
 		cursor.grid_position = Vector2(0, 0)

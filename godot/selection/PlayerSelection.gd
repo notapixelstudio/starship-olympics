@@ -6,10 +6,8 @@ class_name PlayerSelection
 Class for Species logic. Will be set controls and Species template
 """
 
-
 var id:String
 var uid:int
-
 
 # enum duplicates in global
 enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
@@ -32,7 +30,7 @@ const species_path : String = "res://selection/species/"
 
 export (CONTROLS) var key_controls = CONTROLS.KB1
 export (String, "", "kb1", "kb2") var force_to
-export (Resource) var species_template # : SpeciesTemplate
+export (Resource) var species # : SpeciesTemplate
 
 # this will be the String of controls
 var controls : String
@@ -51,20 +49,23 @@ func set_controls(new_controls:String):
 	speciesSelection.controls = controls
 	speciesSelection.initialize("P"+str(uid))
 	
-	
+var info : InfoPlayer
 func _ready():
+	info = InfoPlayer.new()
+	info.id = name.to_lower()
+	
 	disabled = true
 	controls = global.CONTROLSMAP[key_controls]
 	set_controls(controls)
-	change_species(species_template)
+	change_species(species)
 	id = name.to_lower()
 	speciesSelection.initialize("P"+str(uid))
 
-func change_species(new_species: SpeciesTemplate):
+func change_species(new_species: Species):
 	# get the resource from the global
 	if new_species:
-		species_template = new_species
-		speciesSelection.change_species(species_template)
+		species = new_species
+		speciesSelection.change_species(species)
 
 func _process(delta):
 	if Input.is_action_just_pressed(controls+"_right") and not global.demo:
@@ -110,8 +111,14 @@ func select_character():
 	selected = true
 	speciesSelection.select()
 	sfx.get_node("selected").play()
-	emit_signal("selected", species_template)
+	setup_info()
+	emit_signal("selected", self)
 
+func setup_info():
+	info.species_name = species.species_name
+	info.controls = controls
+	info.species = species
+	
 func deselect(silent : bool = false):
 	speciesSelection.deselect()
 	unset_team()
@@ -119,14 +126,14 @@ func deselect(silent : bool = false):
 		sfx.get_node("deselected").play()
 	enable_choice()
 	selected = false
-	emit_signal("deselected", species_template)
+	emit_signal("deselected", species)
 	
 func _on_Previous_pressed():
 	sfx.get_node("switch-selection").play()
 	if selected:
 		enable_choice()
 		selected = false
-		emit_signal("deselected", species_template)
+		emit_signal("deselected", species)
 	emit_signal("prev")
 	speciesSelection.previous()
 
@@ -135,7 +142,7 @@ func _on_Next_pressed():
 	if selected:
 		enable_choice()
 		selected = false
-		emit_signal("deselected", species_template)
+		emit_signal("deselected", species)
 	emit_signal("next")
 	speciesSelection.next()
 
@@ -143,7 +150,6 @@ func disable_choice():
 	disabled = true
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
-	
 	
 func enable_choice():
 	joined = true
@@ -154,4 +160,3 @@ func enable_choice():
 	if global.demo:
 		speciesSelection.disable_arrows()
 	
-

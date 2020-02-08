@@ -46,8 +46,6 @@ onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridPack
 
-var wall_scene = preload('res://actors/environments/Wall.tscn')
-
 signal screensize_changed(screensize)
 signal gameover
 signal restart
@@ -56,31 +54,11 @@ signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
 
-# TODO: the spawners should be considered by COllectModeManager ?
-var diamonds_spawners = []
-var scores : Scores
+var scores : MatchScores
 
-func from_spawner_to_infoplayer(current_player: PlayerSpawner) -> InfoPlayer:
-	var info_player = InfoPlayer.new()
-	info_player.id = current_player.name
-	info_player.controls = current_player.controls
-	info_player.species = current_player.species_template.species_name
-	info_player.species_template = current_player.species_template
-	info_player.cpu = current_player.cpu
-	return info_player
-
-func from_info_to_spawner(player_info):
-	var spawner = PlayerSpawner.new()
-	spawner.controls = player_info.controls 
-	spawner.species_template = player_info.species_template
-	spawner.name = player_info.id
-	spawner.info_player = player_info
-	return spawner
-
-func initialize(players:Dictionary) -> void:
-	array_players = []
-	for p in players:
-		array_players.append(players[p])
+var session: SessionScores
+func initialize(_session: SessionScores) -> void:
+	session = _session
 	
 func compute_arena_size():
 	"""
@@ -130,13 +108,9 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 
-	scores = Scores.new()
-	scores.players_alive = len(array_players)
+	scores = MatchScores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
-	
-	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeA = $Battlefield/Background/Grid/GridPoint225/RigidBody2D
-	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
 	
 	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
 	collect_manager.connect('collected', self, "_on_sth_collected")
@@ -164,36 +138,54 @@ func _ready():
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
 		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
-
+	
+	var standalone : bool = true
+	var players = {}
+	var array_players = []
+	
+	if session:
+		array_players = session.players.values()
+		standalone = false
+	else:
+		session = SessionScores.new()
+		
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
-		var spawner = s as PlayerSpawner
-		if len(array_players) >= i+1:
-			# todo: fix casdf
-			s.controls = array_players[i].controls
-			s.species_template = array_players[i].species_template
-			s.cpu = array_players[i].cpu
-			s.info_player = array_players[i]
+		var key = s.name
+		var info_player = InfoPlayer.new()
+		if standalone:
+			
+			info_player.cpu = s.cpu
+			info_player.species = s.species
+			info_player.controls = s.controls
+			if s.cpu:
+				info_player.id = "cpu"+str(i+1)
+			else:
+				info_player.id = s.name
+			
 		else:
-			s.info_player = InfoPlayer.new()
-			s.info_player.cpu = s.cpu
+			info_player = array_players[i] 
+			s.info_player = info_player
+			s.controls = info_player.controls
+			s.species = info_player.species
+			s.cpu = info_player.cpu
 		
-		if s.cpu:
-			s.info_player.id = "cpu"
-		else:
-			s.info_player.id = s.name
-		array_players.append(from_spawner_to_infoplayer(s))
+		s.info_player = info_player
+		players[info_player.id] = info_player
+	
 		i += 1
+	
+	session.players = players
 		
 	if conquest_mode.enabled:
 		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
 	
-	scores.initialize(array_players, game_mode, score_to_win_override, match_duration_override)
-	
-	
+	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
+
+	session.add_match(scores)
 	# initialize HUD
-	hud.initialize(scores)
+	hud.initialize(session)
 	
 	camera.initialize(compute_arena_size())
 	$Battlefield.visible = false
@@ -260,16 +252,11 @@ func _ready():
 		get_tree().paused = false
 		camera.activate_camera()
 
-		
-
 	else:
 		spawn_ships()
 	
 	yield(get_tree().create_timer(0.1), "timeout") # FIXME workaround to wait for all ships
 
-	# setup Bomb spawners
-	for c in $Battlefield/Foreground.get_children():
-		print_debug(c.name)
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
@@ -305,12 +292,9 @@ func _input(event):
 			emit_signal("back_to_menu")
 			
 func _unhandled_input(event):
-		
-	if event.is_action_pressed("force_pause"):
-		pause.start()
-		
 	if event.is_action_pressed("pause") and not global.demo:
 		pause.start()
+		
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug
@@ -344,11 +328,11 @@ func ship_just_died(ship: Ship, killer : Ship):
 	"""
 	# stats
 	# TODO: maybe somewhere else
-	emit_signal("update_stats", ship.species, 1, "deaths")
+	emit_signal("update_stats", ship.info_player, 1, "deaths")
 	if killer and killer is Ship and killer != ship:
-		emit_signal("update_stats", killer.species, 1, "kills")
+		emit_signal("update_stats", killer.info_player, 1, "kills")
 	else:
-		emit_signal("update_stats", ship.species, 1, "selfkills")
+		emit_signal("update_stats", ship.info_player, 1, "selfkills")
 	
 	$Battlefield.call_deferred("remove_child", ship)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
@@ -364,10 +348,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
-	if ship.info_player.lives == 0:
-		scores.players_alive -= 1
-		
-	if scores.players_alive <= 1 or scores.game_over:
+	if scores.game_over:
 		return
 	
 	# respawn
@@ -380,7 +361,7 @@ func ship_just_died(ship: Ship, killer : Ship):
 	$Battlefield.call_deferred("add_child", ship)
 	
 	
-func on_gamemode_gameover(winner:String, scores: Dictionary):
+func on_gamemode_gameover(winners: Array):
 	if demo:
 		emit_signal("back_to_menu")
 		return
@@ -395,13 +376,16 @@ func on_gamemode_gameover(winner:String, scores: Dictionary):
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.initialize(winner, scores, global.win)
-	for team in scores:
-		var player = scores[team]
+	
+	game_over.initialize(winners, scores)
+	
+	"""
+	# sending stats
+	for player in scores:
 		var stats =player.to_stats() 
 		for key in stats:
 			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": stats[key]}) 
-
+	"""
 
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
@@ -424,7 +408,7 @@ func spawn_ship(player:PlayerSpawner):
 		
 	ship.arena = self
 	ship.controls = player.controls
-	ship.species_template = player.species_template
+	ship.species = player.species
 	ship.position = player.position
 	ship.rotation = player.rotation
 	ship.height = height
@@ -474,16 +458,17 @@ func spawn_bomb(pos, impulse, ship):
 	$Battlefield.add_child(bomb)
 	
 	if ship:
-		emit_signal("update_stats", ship.species, 1, "bombs")
+		emit_signal("update_stats", ship.info_player, 1, "bombs")
 	return bomb
 
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
-func spawn_points_scored(species_template, score, pos):
+
+func spawn_points_scored(species: Species, score, pos):
 	var points_scored = points_scored_scene.instance()
 	points_scored.set_points(score)
 	points_scored.scale = camera.zoom
 	points_scored.position = pos
-	points_scored.modulate = species_template.color
+	points_scored.modulate = species.color
 	$Battlefield.add_child(points_scored)
 
 func _on_sth_collected(collector, collectee):

@@ -2,26 +2,30 @@ extends Node
 
 onready var animator = $Animator
 onready var session = $Session
+onready var buttons = $Buttons
+onready var continue_button = $Buttons/Continue
 
 signal rematch
 signal back_to_menu
 
-
-func initialize(winner:String, scores:Dictionary, win_points: int = 3):
-	var array_scores = scores.values()
-	if winner != "noone":
-		scores[winner]["session_score"] += 1
+func _ready():
+	buttons.visible = false
 	
-	array_scores.sort_custom(self, "sort_by_score")
-	session.initialize(array_scores, winner, win_points)
+func initialize(winners: Array, scores: MatchScores):
+	"""
+	Parameters
+	----------
+	winners : Array of PlayerStats
+		
+	"""
 	
-	var info_winner = array_scores[0]
-	if info_winner.session_score >= win_points:
-		print_debug(info_winner.species + " won everything")
-		$VBoxContainer.get_child(0).visible = false
-		$VBoxContainer.get_child(1).grab_focus()
-	else:
-		$VBoxContainer.get_child(0).grab_focus()
+	session.initialize(winners, scores)
+	
+	yield(get_tree().create_timer(1), "timeout")
+	buttons.visible = true
+	var session_over = winners[0].session_score >= global.win
+	continue_button.visible = not session_over
+	buttons.get_child(int(session_over)).grab_focus()
 	
 	
 

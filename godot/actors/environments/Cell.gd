@@ -38,7 +38,7 @@ func _on_Conquerable_changed():
 	if ship != null:
 		#$Polygon2D.color = Color(1,1,1,0.4)
 		#$Line2D.default_color = Color(1,1,1,0.1)
-		$SpriteFilled.modulate = $Entity/Conquerable.get_species().species_template.color
+		$SpriteFilled.modulate = $Entity/Conquerable.get_species().species.color
 		$SpriteFilled.visible = true
 		$AnimationPlayer.queue('Appear')
 	else:

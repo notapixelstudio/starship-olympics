@@ -29,8 +29,7 @@ anchor_bottom = 1.0
 mouse_filter = 1
 color = Color( 0, 0, 0, 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-editor/display_folded = true
+[node name="Buttons" type="VBoxContainer" parent="."]
 margin_left = 1030.0
 margin_top = 520.0
 margin_right = 1252.0
@@ -41,13 +40,13 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Continue" type="Button" parent="VBoxContainer"]
+[node name="Continue" type="Button" parent="Buttons"]
 margin_right = 222.0
 margin_bottom = 87.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
-[node name="Menu" type="Button" parent="VBoxContainer"]
+[node name="Menu" type="Button" parent="Buttons"]
 margin_top = 91.0
 margin_right = 222.0
 margin_bottom = 179.0
@@ -55,7 +54,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "BACK TO MENU"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="Buttons"]
 visible = false
 margin_top = 122.0
 margin_right = 222.0
@@ -73,6 +72,6 @@ margin_left = -493.668
 margin_top = -184.124
 margin_right = 238.332
 margin_bottom = 250.876
-[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_Rematch_pressed"]
-[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Rematch_pressed"]
+[connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]

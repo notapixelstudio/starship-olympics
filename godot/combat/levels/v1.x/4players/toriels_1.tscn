@@ -49,25 +49,25 @@ bevel = 600
 position = Vector2( 700, -700 )
 rotation = 2.35619
 controls = "joy2"
-species_template = ExtResource( 8 )
+species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( -700, -700 )
 rotation = 0.785398
 controls = "joy1"
-species_template = ExtResource( 9 )
+species = ExtResource( 9 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
 position = Vector2( 700, 700 )
 rotation = -2.35619
 controls = "joy3"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 7 )]
 position = Vector2( -700, 700 )
 rotation = -0.785398
 controls = "joy4"
-species_template = ExtResource( 11 )
+species = ExtResource( 11 )
 
 [node name="Camera" parent="." index="15"]
 zoom_offset = 0.797
