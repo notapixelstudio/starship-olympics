@@ -2,11 +2,15 @@ extends Node
 
 onready var animator = $Animator
 onready var session = $Session
+onready var buttons = $Buttons
+onready var continue_button = $Buttons/Continue
 
 signal rematch
 signal back_to_menu
 
-
+func _ready():
+	buttons.visible = false
+	
 func initialize(winners: Array, scores: MatchScores):
 	"""
 	Parameters
@@ -18,6 +22,10 @@ func initialize(winners: Array, scores: MatchScores):
 	session.initialize(winners, scores)
 	
 	yield(get_tree().create_timer(1), "timeout")
+	buttons.visible = true
+	var session_over = winners[0].session_score >= global.win
+	continue_button.visible = not session_over
+	buttons.get_child(int(session_over)).grab_focus()
 	
 	
 

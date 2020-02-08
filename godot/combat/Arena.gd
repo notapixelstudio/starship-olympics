@@ -160,19 +160,19 @@ func _ready():
 			info_player.species = s.species
 			info_player.controls = s.controls
 			if s.cpu:
-				s.info_player.id = "cpu"
+				info_player.id = "cpu"+str(i+1)
 			else:
-				s.info_player.id = s.name
-
-			players[s.name] = info_player
+				info_player.id = s.name
+			
 		else:
 			info_player = array_players[i] 
 			s.info_player = info_player
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
-			key = info_player.id
-		players[key] = info_player
+		
+		s.info_player = info_player
+		players[info_player.id] = info_player
 	
 		i += 1
 	

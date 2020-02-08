@@ -92,9 +92,9 @@ func broadcast_score(team : String, amount : float):
 			add_score(team_player.id, amount)
 
 
-func update_stats(info_player: InfoPlayer, amount: int, stat: String):
+func update_stats(info_player, amount: int, stat: String):
 	var id_player = info_player.id
-	var stats_player = players[id_player]
+	var stats_player = get_player(id_player)  # players[id_player]
 	var stat_value = stats_player.get(stat)
 	stats_player.set(stat, stat_value + amount)
 

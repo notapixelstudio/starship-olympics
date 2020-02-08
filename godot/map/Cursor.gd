@@ -5,11 +5,11 @@ extends Node2D
 var enabled
 
 export var species : Resource setget set_species
-export var player : Resource
 export var player_i : int
 export var cell_size : int
 export var grid_position : Vector2 setget set_grid_position
 
+var player 
 onready var move_tween = $MoveTween
 onready var animation_player = $Graphics/AnimationPlayer
 onready var ship = $Graphics/Ship
