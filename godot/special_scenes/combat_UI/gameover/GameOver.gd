@@ -11,11 +11,12 @@ signal back_to_menu
 func _ready():
 	buttons.visible = false
 	
-func initialize(winners: Array, scores: MatchScores):
+func initialize(winners: Array, scores):
 	"""
 	Parameters
 	----------
 	winners : Array of PlayerStats
+	scores: MatchScores
 		
 	"""
 	
@@ -23,8 +24,10 @@ func initialize(winners: Array, scores: MatchScores):
 	
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
-	var session_over = winners[0].session_score >= global.win
-	continue_button.visible = not session_over
+	var session_over = false
+	if winners:
+		session_over = winners[0].session_score >= global.win
+		continue_button.visible = not session_over
 	buttons.get_child(int(session_over)).grab_focus()
 	
 	
@@ -41,5 +44,13 @@ func _on_Menu_pressed():
 	# TODO: It will be whoever receive the signal to unpause
 	emit_signal("back_to_menu")
 
-func sort_by_score(a: InfoPlayer, b: InfoPlayer):
+func sort_by_score(a, b):
+	"""
+	Parameters
+	----------
+	a : InfoPlayer
+	b : InfoPlayer
+		elements that will be sorted by their current match score
+		
+	"""
 	return a.session_score > b.session_score

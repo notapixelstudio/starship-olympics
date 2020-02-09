@@ -114,6 +114,7 @@ func combat(selected_players: Array, fight_mode : String):
 			map.queue_free()
 			add_child(parallax)
 			add_child(selection_screen)
+			selection_screen.reset()
 			return
 		
 		map.queue_free()
