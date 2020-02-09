@@ -168,12 +168,7 @@ var colors = {
 }
 
 var scores
-var campaign_mode : bool = false setget , get_campaign_mode
-func get_campaign_mode():
-	var ret = campaign_mode
-	# WARNING: I want to reset to false when I read it
-	campaign_mode = false
-	return ret
+var campaign_mode : bool = false
 	
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")

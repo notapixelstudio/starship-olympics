@@ -33,6 +33,15 @@ var players : Dictionary # of InfoPlayer
 signal updated
 
 var campaign_mode : bool = false
+
+func reset():
+	session_scores = SessionScores.new()
+	session_scores.players = players
+	for key in players:
+		var player = players[key]
+		player.reset()
+	campaign_mode = global.campaign_mode
+	
 func _ready():
 	session_scores = SessionScores.new()
 	session_scores.players = players
@@ -184,6 +193,7 @@ func _on_Pause_restart(_combat):
 	start_level(same_level.fetch_level(len(players)))
 
 func _back_to_menu(node):
+	reset()
 	node.queue_free()
 	combat.queue_free()
 	get_tree().paused = false

@@ -16,7 +16,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=14]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=15]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "Pulse"
 length = 8.0
 tracks/0/type = "value"
@@ -182,7 +182,7 @@ bevel_se = 100
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5"]
 autoplay = "Pulse"
 playback_speed = 0.07
-anims/Pulse = SubResource( 4 )
+anims/Pulse = SubResource( 1 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( -100, -1000 )

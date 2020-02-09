@@ -66,3 +66,6 @@ func to_stats():
 		"selfkills": selfkills,
 		"score" : score
 	}
+
+func reset():
+	session_score  = 0.0
