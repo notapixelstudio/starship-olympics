@@ -21,14 +21,14 @@ var all_species = [
 	preload('res://selection/characters/mantiacs_1.tres'),
 	preload('res://selection/characters/robolords_1.tres'),
 	preload('res://selection/characters/toriels_1.tres'),
-	preload('res://selection/characters/trixens_1.tres')
+	preload('res://selection/characters/trixens_1.tres'),
 ]
 onready var parallax = $ParallaxBackground
 
 var combat
 
 # dictionary of InfoPlayer of players that will actually play
-var players : Dictionary
+var players : Dictionary # of InfoPlayer
 
 signal updated
 
@@ -80,22 +80,6 @@ func combat(selected_players: Array, fight_mode : String):
 		var info = players[player_id]
 		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.species, "id": info.id})})
 		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
-	
-	
-	
-	if fight_mode == 'solo':
-		var other_species
-		if selected_players[0].species.species_name != all_species[0].species_name:
-			other_species = all_species[0]
-		else:
-			other_species = all_species[1]
-
-		var info_player = InfoPlayer.new()
-		info_player.id = 'cpu'
-		info_player.cpu = true
-		info_player.species = other_species
-		
-		players['cpu'] = info_player
 
 
 	# PLANET SELECTION
@@ -119,11 +103,14 @@ func combat(selected_players: Array, fight_mode : String):
 		
 		map.queue_free()
 	
+	if fight_mode == 'solo':
+		add_cpu(2)
+		
 	session_scores.selected_sports = all_planets
 	
 	all_planets.shuffle() # shuffle the planets at start
 	for planet in all_planets:
-		planet.shuffle_levels(num_players)
+		planet.shuffle_levels(len(players))
 	
 	
 	add_child(parallax)
@@ -225,3 +212,26 @@ func start_demo():
 		players["cpu{id}".format({"id": i})] = info_player
 	remove_child(selection_screen)
 	next_level(true)
+	
+func add_cpu(how_many: int):
+	var missing_species = all_species
+	for key in players:
+		var player = players[key]
+		var this_species_name = player.species.species_name
+		var i = 0
+		for species in missing_species:
+			if this_species_name == species.species_name:
+				break
+			i += 1
+		missing_species.remove(i)
+	
+	var max_cpu = min(how_many, len(missing_species))
+	for i in range(max_cpu):
+		var cpu_species = missing_species[i]
+		var info_player = InfoPlayer.new()
+		var id_player = 'cpu'+str(i)
+		info_player.id = id_player
+		info_player.cpu = true
+		info_player.species = cpu_species
+		players[id_player] = info_player
+		
