@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -10,32 +10,33 @@
 [ext_resource path="res://map/planets/SoloSnatch.tres" type="Resource" id=8]
 [ext_resource path="res://map/planets/SoloFlag.tres" type="Resource" id=9]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=10]
-[ext_resource path="res://map/ButtonCell.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/map/cards/back.png" type="Texture" id=12]
-[ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=14]
-[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=15]
-[ext_resource path="res://assets/fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=17]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=18]
-[ext_resource path="res://assets/map/trixx.png" type="Texture" id=19]
-[ext_resource path="res://assets/map/stars.png" type="Texture" id=20]
-[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=21]
-[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=22]
-[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=23]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=24]
-[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=25]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=26]
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=27]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=28]
+[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=11]
+[ext_resource path="res://map/ButtonCell.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/map/cards/back.png" type="Texture" id=13]
+[ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=15]
+[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=16]
+[ext_resource path="res://assets/fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=18]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=19]
+[ext_resource path="res://assets/map/trixx.png" type="Texture" id=20]
+[ext_resource path="res://assets/map/stars.png" type="Texture" id=21]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=22]
+[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=23]
+[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=24]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=25]
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=26]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=27]
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=28]
+[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=29]
 
 [sub_resource type="DynamicFont" id=1]
 size = 42
-font_data = ExtResource( 16 )
+font_data = ExtResource( 17 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 18
-font_data = ExtResource( 16 )
+font_data = ExtResource( 17 )
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -81,507 +82,507 @@ position = Vector2( 400, 200 )
 value_name = "cpu"
 global_option = false
 node_owner_path = NodePath("../../..")
-single_texture = true
+single_texture = ExtResource( 11 )
 description = "{_} CPUs"
 
-[node name="Start" parent="Content/Controls" instance=ExtResource( 11 )]
+[node name="Start" parent="Content/Controls" instance=ExtResource( 12 )]
 position = Vector2( 0, 200 )
 
-[node name="Back" parent="Content/Controls" instance=ExtResource( 11 )]
+[node name="Back" parent="Content/Controls" instance=ExtResource( 12 )]
 editor/display_folded = true
 position = Vector2( -200, 200 )
 
 [node name="Sprite" parent="Content/Controls/Back" index="0"]
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="Waypoints" type="Node2D" parent="Content"]
 
-[node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, 200 )
 
-[node name="Waypoint2" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint2" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, 0 )
 
-[node name="Waypoint18" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint18" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, 200 )
 
-[node name="Waypoint19" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint19" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, 400 )
 
-[node name="Waypoint75" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint75" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, 400 )
 
-[node name="Waypoint114" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint114" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, 400 )
 
-[node name="Waypoint122" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint122" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, 400 )
 
-[node name="Waypoint166" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint166" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, 400 )
 
-[node name="Waypoint178" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint178" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, 400 )
 
-[node name="Waypoint188" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint188" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, 400 )
 
-[node name="Waypoint198" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint198" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, 400 )
 
-[node name="Waypoint208" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint208" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, 400 )
 
-[node name="Waypoint80" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint80" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, 200 )
 
-[node name="Waypoint115" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint115" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, 200 )
 
-[node name="Waypoint123" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint123" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, 200 )
 
-[node name="Waypoint167" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint167" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, 200 )
 
-[node name="Waypoint179" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint179" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, 200 )
 
-[node name="Waypoint189" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint189" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, 200 )
 
-[node name="Waypoint199" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint199" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, 200 )
 
-[node name="Waypoint209" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint209" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, 200 )
 
-[node name="Waypoint81" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint81" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, -200 )
 
-[node name="Waypoint112" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint112" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, -200 )
 
-[node name="Waypoint120" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint120" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, -200 )
 
-[node name="Waypoint164" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint164" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, -200 )
 
-[node name="Waypoint176" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint176" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, -200 )
 
-[node name="Waypoint186" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint186" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, -200 )
 
-[node name="Waypoint196" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint196" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, -200 )
 
-[node name="Waypoint206" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint206" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, -200 )
 
-[node name="Waypoint82" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint82" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, -400 )
 
-[node name="Waypoint116" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint116" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, -400 )
 
-[node name="Waypoint124" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint124" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, -400 )
 
-[node name="Waypoint168" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint168" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, -400 )
 
-[node name="Waypoint180" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint180" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, -400 )
 
-[node name="Waypoint190" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint190" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, -400 )
 
-[node name="Waypoint200" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint200" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, -400 )
 
-[node name="Waypoint210" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint210" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, -400 )
 
-[node name="Waypoint83" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint83" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, -600 )
 
-[node name="Waypoint129" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint129" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, -800 )
 
-[node name="Waypoint111" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint111" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, -600 )
 
-[node name="Waypoint131" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint131" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, -800 )
 
-[node name="Waypoint119" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint119" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, -600 )
 
-[node name="Waypoint163" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint163" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, -600 )
 
-[node name="Waypoint175" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint175" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, -600 )
 
-[node name="Waypoint185" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint185" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, -600 )
 
-[node name="Waypoint195" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint195" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, -600 )
 
-[node name="Waypoint205" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint205" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, -600 )
 
-[node name="Waypoint130" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint130" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, -800 )
 
-[node name="Waypoint161" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint161" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, -800 )
 
-[node name="Waypoint171" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint171" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, -800 )
 
-[node name="Waypoint181" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint181" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, -800 )
 
-[node name="Waypoint191" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint191" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, -800 )
 
-[node name="Waypoint201" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint201" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, -800 )
 
-[node name="Waypoint84" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint84" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, -600 )
 
-[node name="Waypoint134" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint134" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, -800 )
 
-[node name="Waypoint85" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint85" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, -400 )
 
-[node name="Waypoint86" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint86" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, -200 )
 
-[node name="Waypoint37" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint37" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, 600 )
 
-[node name="Waypoint76" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint76" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, 600 )
 
-[node name="Waypoint113" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint113" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, 600 )
 
-[node name="Waypoint121" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint121" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, 600 )
 
-[node name="Waypoint165" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint165" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, 600 )
 
-[node name="Waypoint177" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint177" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, 600 )
 
-[node name="Waypoint187" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint187" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, 600 )
 
-[node name="Waypoint197" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint197" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, 600 )
 
-[node name="Waypoint207" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint207" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, 600 )
 
-[node name="Waypoint42" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint42" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, 800 )
 
-[node name="Waypoint78" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint78" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, 800 )
 
-[node name="Waypoint117" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint117" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, 800 )
 
-[node name="Waypoint118" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint118" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, 800 )
 
-[node name="Waypoint162" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint162" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, 800 )
 
-[node name="Waypoint174" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint174" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, 800 )
 
-[node name="Waypoint184" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint184" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, 800 )
 
-[node name="Waypoint194" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint194" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, 800 )
 
-[node name="Waypoint204" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint204" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, 800 )
 
-[node name="Waypoint46" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint46" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, 800 )
 
-[node name="Waypoint48" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint48" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 802, 800 )
 
-[node name="Waypoint104" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint104" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1402, 800 )
 
-[node name="Waypoint57" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint57" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 802, 400 )
 
-[node name="Waypoint92" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint92" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1402, 400 )
 
-[node name="Waypoint58" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint58" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 800, 200 )
 
-[node name="Waypoint101" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint101" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1401, 200 )
 
-[node name="Waypoint64" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint64" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 802, -200 )
 
-[node name="Waypoint95" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint95" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1402, -200 )
 
-[node name="Waypoint66" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint66" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 802, -400 )
 
-[node name="Waypoint99" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint99" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1402, -400 )
 
-[node name="Waypoint70" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint70" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 802, -600 )
 
-[node name="Waypoint125" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint125" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 802, -800 )
 
-[node name="Waypoint87" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint87" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1402, -600 )
 
-[node name="Waypoint136" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint136" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1402, -800 )
 
-[node name="Waypoint52" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint52" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 601, 600 )
 
-[node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, -200 )
 
-[node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, -200 )
 
-[node name="Waypoint17" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint17" parent="Content/Waypoints" instance=ExtResource( 14 )]
 
-[node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 0, -200 )
 
-[node name="Waypoint7" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint7" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 0, -600 )
 
-[node name="Waypoint126" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint126" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 0, -800 )
 
-[node name="Waypoint8" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint8" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, 0 )
 
-[node name="Waypoint9" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint9" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 0, 400 )
 
-[node name="Waypoint38" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint38" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 0, 600 )
 
-[node name="Waypoint41" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint41" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 0, 800 )
 
-[node name="Waypoint45" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint45" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, 800 )
 
-[node name="Waypoint56" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint56" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, 400 )
 
-[node name="Waypoint61" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint61" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, 200 )
 
-[node name="Waypoint62" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint62" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, -200 )
 
-[node name="Waypoint68" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint68" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, -400 )
 
-[node name="Waypoint72" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint72" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, -600 )
 
-[node name="Waypoint132" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint132" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, -800 )
 
-[node name="Waypoint47" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint47" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1202, 800 )
 
-[node name="Waypoint54" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint54" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1202, 400 )
 
-[node name="Waypoint60" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint60" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1201, 200 )
 
-[node name="Waypoint63" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint63" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1202, -200 )
 
-[node name="Waypoint69" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint69" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1202, -400 )
 
-[node name="Waypoint73" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint73" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1202, -600 )
 
-[node name="Waypoint133" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint133" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1202, -800 )
 
-[node name="Waypoint53" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint53" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1201, 600 )
 
-[node name="Waypoint50" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint50" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1001, 600 )
 
-[node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, 400 )
 
-[node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, 400 )
 
-[node name="Waypoint74" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint74" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, 400 )
 
-[node name="Waypoint39" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint39" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, 600 )
 
-[node name="Waypoint79" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint79" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, 600 )
 
-[node name="Waypoint43" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint43" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, 800 )
 
-[node name="Waypoint77" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint77" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, 800 )
 
-[node name="Waypoint44" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint44" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, 800 )
 
-[node name="Waypoint49" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint49" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1002, 800 )
 
-[node name="Waypoint55" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint55" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1002, 400 )
 
-[node name="Waypoint59" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint59" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1000, 200 )
 
-[node name="Waypoint65" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint65" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1002, -200 )
 
-[node name="Waypoint67" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint67" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1002, -400 )
 
-[node name="Waypoint71" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint71" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1002, -600 )
 
-[node name="Waypoint138" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint138" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1002, -800 )
 
-[node name="Waypoint51" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint51" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 801, 600 )
 
-[node name="Waypoint106" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint106" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1401, 600 )
 
-[node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, 400 )
 
-[node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, 600 )
 
-[node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, -400 )
 
-[node name="Waypoint15" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint15" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, -400 )
 
-[node name="Waypoint16" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint16" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, -200 )
 
-[node name="Waypoint33" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint33" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 600, 0 )
 
-[node name="Waypoint34" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint34" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 800, 0 )
 
-[node name="Waypoint89" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint89" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1400, 0 )
 
-[node name="Waypoint35" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint35" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1001, -1 )
 
-[node name="Waypoint36" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint36" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 1201, -1 )
 
-[node name="Waypoint20" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint20" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, -400 )
 
-[node name="Waypoint22" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint22" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, -400 )
 
-[node name="Waypoint23" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint23" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, -600 )
 
-[node name="Waypoint127" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint127" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -200, -800 )
 
-[node name="Waypoint25" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint25" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, -600 )
 
-[node name="Waypoint31" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint31" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 200, -800 )
 
-[node name="Waypoint26" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint26" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, -600 )
 
-[node name="Waypoint32" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint32" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( 400, -800 )
 
-[node name="Waypoint24" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint24" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, -600 )
 
-[node name="Waypoint128" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint128" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, -800 )
 
-[node name="Waypoint21" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint21" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -400, -200 )
 
-[node name="Waypoint27" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint27" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -600, 0 )
 
-[node name="Waypoint28" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint28" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -800, 0 )
 
-[node name="Waypoint29" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint29" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1000, 0 )
 
-[node name="Waypoint30" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint30" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1200, 0 )
 
-[node name="Waypoint94" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint94" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1400, 0 )
 
-[node name="Waypoint96" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint96" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1600, 0 )
 
-[node name="Waypoint97" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint97" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -1800, 0 )
 
-[node name="Waypoint98" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint98" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2000, 0 )
 
-[node name="Waypoint100" parent="Content/Waypoints" instance=ExtResource( 13 )]
+[node name="Waypoint100" parent="Content/Waypoints" instance=ExtResource( 14 )]
 position = Vector2( -2201, 0 )
 
 [node name="CursorMoveTween" type="Tween" parent="."]
@@ -590,7 +591,7 @@ position = Vector2( -2201, 0 )
 layer = -1
 
 [node name="Background" type="Sprite" parent="CanvasLayer"]
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
@@ -608,7 +609,7 @@ __meta__ = {
 modulate = Color( 0.647059, 0.309804, 0.309804, 1 )
 position = Vector2( -402.909, 49.3055 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Queensworld"]
 margin_left = -282.126
@@ -642,7 +643,7 @@ align = 1
 modulate = Color( 0.478431, 0.521569, 0.556863, 1 )
 position = Vector2( 403, 694 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Umidor II"]
 margin_left = -511.293
@@ -682,7 +683,7 @@ __meta__ = {
 modulate = Color( 0.52549, 0.654902, 0.556863, 1 )
 position = Vector2( 508.478, -124.112 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Medium/Mantarion"]
 margin_left = 105.333
@@ -719,7 +720,7 @@ position = Vector2( 150.478, -494.113 )
 scale = Vector2( 0.8, 0.8 )
 z_index = -5
 z_as_relative = false
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Far/Trixxx"]
 margin_left = 41.5833
@@ -756,9 +757,9 @@ __meta__ = {
 scale = Vector2( 2, 2 )
 z_index = -10
 z_as_relative = false
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 
-[node name="Camera" parent="." instance=ExtResource( 21 )]
+[node name="Camera" parent="." instance=ExtResource( 22 )]
 limit_left = -2300
 limit_top = -990
 limit_right = 1500
@@ -794,7 +795,7 @@ margin_left = -159.5
 margin_top = 6.0
 margin_right = 159.5
 margin_bottom = 35.0
-custom_fonts/font = ExtResource( 22 )
+custom_fonts/font = ExtResource( 23 )
 text = "Choose up to X planets"
 align = 1
 valign = 1
@@ -825,35 +826,35 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayerTop/HUD/Legend"]
 margin_right = 319.0
 margin_bottom = 29.0
-custom_fonts/font = ExtResource( 22 )
+custom_fonts/font = ExtResource( 23 )
 text = "Legend"
 align = 1
 valign = 1
 
-[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 23 )]
+[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 24 )]
 margin_top = 33.0
 margin_bottom = 62.0
-mode = ExtResource( 24 )
-
-[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 23 )]
-margin_top = 66.0
-margin_bottom = 95.0
 mode = ExtResource( 25 )
 
-[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 23 )]
-margin_top = 99.0
-margin_bottom = 128.0
+[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 24 )]
+margin_top = 66.0
+margin_bottom = 95.0
 mode = ExtResource( 26 )
 
-[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 23 )]
-margin_top = 132.0
-margin_bottom = 161.0
+[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 24 )]
+margin_top = 99.0
+margin_bottom = 128.0
 mode = ExtResource( 27 )
 
-[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 23 )]
+[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 24 )]
+margin_top = 132.0
+margin_bottom = 161.0
+mode = ExtResource( 28 )
+
+[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 24 )]
 margin_top = 165.0
 margin_bottom = 194.0
-mode = ExtResource( 28 )
+mode = ExtResource( 29 )
 
 [node name="GameStart" type="HBoxContainer" parent="CanvasLayerTop/HUD"]
 visible = false
