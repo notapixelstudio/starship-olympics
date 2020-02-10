@@ -3,6 +3,7 @@ extends Control
 const WIDTH = 200
 const HEIGHT = 100
 const CELLSIZE = 200
+
 var matrix = []
 var back = false
 
@@ -14,9 +15,11 @@ onready var camera = $Camera
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
+var max_cpu
 onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
+onready var cpus = $Content/Controls/CPUs
 
 onready var cursor_tween = $CursorMoveTween
 
@@ -48,6 +51,9 @@ func _ready():
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
 		cell.connect('pressed', self, '_on_cell_pressed', [cell])
+	
+	max_cpu = global.MAX_PLAYERS - human_players
+	cpus.initialize(int(human_players==1), max_cpu+1)
 
 func initialize(players, sports):
 	selected_sports = sports
@@ -55,7 +61,7 @@ func initialize(players, sports):
 	for player_id in players:
 		if not players[player_id].cpu:
 			human_players += 1
-	
+
 	var i = 0
 	for player_id in players:
 		var player = players[player_id]

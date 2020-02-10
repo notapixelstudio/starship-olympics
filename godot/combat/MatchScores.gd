@@ -38,6 +38,7 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 		player_score.id = player.id
 		player_score.session_score = player.session_score
 		scores.append(player_score)
+		players[player.id].stats = player_score
 		
 	time_left = game_mode.max_timeout
 	if max_timeout:

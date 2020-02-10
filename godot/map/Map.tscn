@@ -76,6 +76,14 @@ planet = ExtResource( 9 )
 [node name="Victories" parent="Content/Controls" instance=ExtResource( 10 )]
 position = Vector2( 200, 200 )
 
+[node name="CPUs" parent="Content/Controls" instance=ExtResource( 10 )]
+position = Vector2( 400, 200 )
+value_name = "cpu"
+global_option = false
+node_owner_path = NodePath("../../..")
+single_texture = true
+description = "{_} CPUs"
+
 [node name="Start" parent="Content/Controls" instance=ExtResource( 11 )]
 position = Vector2( 0, 200 )
 
@@ -491,9 +499,6 @@ position = Vector2( 400, 400 )
 
 [node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 13 )]
 position = Vector2( 400, 600 )
-
-[node name="Waypoint13" parent="Content/Waypoints" instance=ExtResource( 13 )]
-position = Vector2( 400, 200 )
 
 [node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 13 )]
 position = Vector2( 200, -400 )

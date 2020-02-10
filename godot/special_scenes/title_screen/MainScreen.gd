@@ -47,6 +47,7 @@ func _on_Options_back():
 
 
 func _on_TitleScreen_start_multiplayer():
+	global.campaign_mode = false
 	switch()
 	yield(self, "finished")
 	get_tree().change_scene_to(multiplayer_scene)

@@ -94,7 +94,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
-	
+	var num_CPUs = 1
 	if not campaign_mode:
 		var map = map_scene.instance()
 		map.initialize(players, all_planets)
@@ -103,6 +103,7 @@ func combat(selected_players: Array, fight_mode : String):
 		yield(map, "done")
 		yield(get_tree(), "idle_frame")
 		all_planets = map.selected_sports
+		num_CPUs = map.cpu
 		if map.back:
 			map.queue_free()
 			add_child(parallax)
@@ -112,15 +113,14 @@ func combat(selected_players: Array, fight_mode : String):
 		
 		map.queue_free()
 	
-	if fight_mode == 'solo':
-		add_cpu(3)
+	# if fight_mode == 'solo':
+	add_cpu(num_CPUs)
 		
 	session_scores.selected_sports = all_planets
 	
 	all_planets.shuffle() # shuffle the planets at start
-	for planet in all_planets:
-		planet.shuffle_levels(len(players))
-	
+	# for planet in all_planets:
+	#	planet.shuffle_levels(len(players))
 	
 	add_child(parallax)
 	
@@ -236,6 +236,7 @@ func add_cpu(how_many: int):
 		missing_species.remove(i)
 	
 	var max_cpu = min(how_many, len(missing_species))
+	max_cpu = min(max_cpu, global.MAX_PLAYERS)
 	for i in range(max_cpu):
 		var cpu_species = missing_species[i]
 		var info_player = InfoPlayer.new()
