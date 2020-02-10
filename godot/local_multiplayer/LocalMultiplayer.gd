@@ -113,7 +113,7 @@ func combat(selected_players: Array, fight_mode : String):
 		map.queue_free()
 	
 	if fight_mode == 'solo':
-		add_cpu(2)
+		add_cpu(3)
 		
 	session_scores.selected_sports = all_planets
 	

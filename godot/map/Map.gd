@@ -13,6 +13,7 @@ onready var camera = $Camera
 
 var num_players : int
 var human_players : int = 0
+var cpu : int = 0
 onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button

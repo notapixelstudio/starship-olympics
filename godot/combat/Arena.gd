@@ -57,7 +57,7 @@ var array_players = [] # Dictionary of InfoPlayers
 var scores : MatchScores
 
 var session: SessionScores
-func initialize(_session: SessionScores) -> void:
+func initialize(_session) -> void:
 	session = _session
 	
 func compute_arena_size():
@@ -322,9 +322,13 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship: Ship, killer : Ship):
+func ship_just_died(ship, killer):
 	"""
-	remove from it, and reput it after a bit
+	Parameters
+	----------
+		ship : Ship
+		killer: Ship
+		
 	"""
 	# stats
 	# TODO: maybe somewhere else
