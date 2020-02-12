@@ -10,6 +10,8 @@ var lines = []
 var v_cells
 var h_cells
 
+const max_velocity = 4000
+
 # Iterates through x and y axis, adding cells for each iteration
 func init_grid(arena_size: Vector2):
 	set_process(enabled)
@@ -100,13 +102,11 @@ class Point:
 		for well in gravity_wells:
 			var well_diff = well.global_position - position
 			if well_diff.length() < well.get_influence_radius():
-				velocity += well_diff * quantum_entanglement(well_diff.length(), well.get_influence_radius()) * well.get_gravity() * MULTIPLIER * delta
+				velocity += well_diff * global.sigmoid(well_diff.length(), well.get_influence_radius()) * well.get_gravity() * MULTIPLIER * delta
 		
+		velocity = velocity.normalized() * min(velocity.length(), max_velocity)
 		
 		position += velocity * delta
-	
-	func quantum_entanglement(x, influence_rad):
-		return pow(x-influence_rad, 2)/pow(influence_rad, 2)
 		
 	func rest():
 		position = anchor

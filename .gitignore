@@ -1,5 +1,6 @@
 .idea
 *.DS_Store
+
 # Godot-specific ignores
 .import/
 export.cfg
@@ -11,5 +12,12 @@ export_presets.cfg
 
 # utils
 *.log
-*.wav
 *.mp3
+
+# This repository specific
+
+# gh-pages
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata

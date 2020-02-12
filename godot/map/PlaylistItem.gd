@@ -8,18 +8,16 @@ export var planet : Resource setget set_planet
 onready var ship = $Ship
 func set_species(value):
 	species = value
-	refresh()
+	if not is_inside_tree():
+		yield(self, "ready")
+	ship.texture = species.ship
 	
 func set_planet(value):
 	planet = value
-	refresh()
+	if not is_inside_tree():
+		yield(self, "ready")
 	
-func _ready():
-	refresh()
+	$PlanetName.text = (planet as Planet).name
+	$IconMode.texture = (planet as Planet).game_mode.icon
 	
-func refresh():
-	if ship:
-		ship.texture = (species as SpeciesTemplate).ship
-		$PlanetName.text = (planet as Planet).name
-		$IconMode.texture = (planet as Planet).game_mode.icon
-		
+

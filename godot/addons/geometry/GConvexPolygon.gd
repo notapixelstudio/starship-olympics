@@ -33,5 +33,5 @@ func get_extents() -> Vector2:
 		minY = min(minY, p.y)
 		maxY = max(maxY, p.y)
 		
-		return Vector2(maxX-minX, maxY-minY)
+	return Vector2(maxX-minX, maxY-minY)
 		

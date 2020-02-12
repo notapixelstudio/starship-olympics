@@ -7,6 +7,7 @@ var ship_e : Entity
 
 
 onready var trail = $Trail
+onready var inner_trail = $InnerTrail
 onready var collision_shape = $Trail/NearArea/CollisionShape2D
 onready var near_area = $Trail/NearArea
 onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
@@ -54,11 +55,17 @@ func _ready():
 	collision_shape.shape = ConcavePolygonShape2D.new()
 	farcollision_shape.shape = ConcavePolygonShape2D.new()
 	
-	(ECM.E(near_area).get('Owned') as Owned).set_owned_by(ship)
-	(ECM.E(far_area).get('Owned') as Owned).set_owned_by(ship)
+	ECM.E(near_area).get('Owned').set_owned_by(ship)
+	ECM.E(far_area).get('Owned').set_owned_by(ship)
 	
-	var c = Color(ship.species_template.color_2)
-	trail.modulate = c
+	var c1 = Color(ship.species.color)
+	var c2 = Color(ship.species.color_2)
+	var cm = Color(c2)
+	c1.a = 0.7
+	c2.a = 0
+	cm.a = 0.5
+	trail.gradient.colors = PoolColorArray([c2,cm,c1])
+	#trail.modulate = c
 	
 func _process(delta):
 	update()
@@ -70,6 +77,8 @@ func update():
 func _on_sth_spawned(sth : Node2D):
 	if trail:
 		trail.erase_trail()
+	if inner_trail:
+		inner_trail.erase_trail()
 	update()
 	
 func _on_sth_dead(sth : Node2D, killer : Ship):

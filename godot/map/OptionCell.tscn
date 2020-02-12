@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://map/OptionCell.gd" type="Script" id=1]
+[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=2]
+[ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=3]
+[ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[node name="OptionCell" type="Node2D" groups=[
+"map_point",
+]]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="1" type="Sprite" parent="Sprite"]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="3" type="Sprite" parent="Sprite"]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="5" type="Sprite" parent="Sprite"]
+visible = false
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -90.0
+margin_top = 80.0
+margin_right = 86.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 1 )
+text = "{_} VICTORIES"
+align = 1
+valign = 1

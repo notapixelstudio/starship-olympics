@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://combat/collectables/Ring.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=6]
-[ext_resource path="res://assets/sprites/weapons/spr_shield.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/weapons/spr_shield.png" type="Texture" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -49,15 +48,9 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Teleportable" type="Node" parent="Entity"]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="spr_shield" type="Sprite" parent="."]
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )

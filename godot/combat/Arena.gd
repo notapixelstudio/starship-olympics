@@ -3,22 +3,42 @@ Arena Node that will handle all the combat logic
 """
 extends Node
 
+class_name Arena
+
 var width
 var height
 var someone_died = 0
 
 export (PackedScene) var gameover_scene
+export (bool) var demo = false
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
+
+export var score_to_win_override : float = 0
+export var match_duration_override : float = 0
 
 var mockup: bool = false
 var debug = false
 # analytics
 var run_time = 0
 
-onready var DebugNode = $Debug/DebugNode
+onready var crown_mode = $Managers/CrownModeManager
+onready var deathmatch_mode = $Managers/DeathmatchModeManager
+onready var conquest_mode = $Managers/ConquestModeManager
+onready var collect_mode = $Managers/CollectModeManager
+onready var race_mode = $Managers/RaceModeManager
+onready var goal_mode = $Managers/GoalModeManager
+
+onready var combat_manager = $Managers/CombatManager
+onready var stun_manager = $Managers/StunManager
+onready var collect_manager = $Managers/CollectManager
+onready var environments_manager = $Managers/EnvironmentsManager
+onready var conquest_manager = $Managers/ConquestManager
+onready var pursue_manager = $Managers/PursueManager
+onready var snake_trail_manager = $Managers/TrailManager
+
 onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var canvas = $CanvasLayer
@@ -35,37 +55,17 @@ signal back_to_menu
 
 var array_players = [] # Dictionary of InfoPlayers
 
-# TODO: the spawners should be considered by COllectModeManager ?
-var diamonds_spawners = []
-var scores : Scores
+var scores : MatchScores
 
-func from_spawner_to_infoplayer(current_player : PlayerSpawner) -> InfoPlayer:
-	var info_player = InfoPlayer.new()
-	info_player.id = current_player.name
-	info_player.controls = current_player.controls
-	info_player.species = current_player.species_template.species_name
-	info_player.species_template = current_player.species_template
-	info_player.cpu = current_player.cpu
-	return info_player
-
-func from_info_to_spawner(player_info):
-	var spawner = PlayerSpawner.new()
-	spawner.controls = player_info.controls 
-	spawner.species_template = player_info.species_template
-	spawner.name = player_info.id
-	spawner.info_player = player_info
-	return spawner
-
-func initialize(players:Dictionary) -> void:
-	array_players = []
-	for p in players:
-		array_players.append(players[p])
+var session: SessionScores
+func initialize(_session) -> void:
+	session = _session
 	
 func compute_arena_size():
 	"""
 	compute the battlefield size
 	"""
-	return $Battlefield/Background/OutsideWall.extents.get_rect()
+	return $Battlefield/Background/OutsideWall.get_rect_extents()
 
 func set_time_scale(value):
 	time_scale = value
@@ -81,12 +81,16 @@ signal update_stats
 
 func setup_level(mode : Resource):
 	assert(mode is GameMode)
-	$CrownModeManager.enabled = mode.crown
-	$DeathmatchModeManager.enabled = mode.death
-	$CollectModeManager.enabled = mode.collect
-	$ConquestModeManager.enabled = mode.hive
+	crown_mode.enabled = mode.crown
+	deathmatch_mode.enabled = mode.death
+	collect_mode.enabled = mode.collect
+	conquest_mode.enabled = mode.hive
+	goal_mode.enabled = mode.goal
 	
 func _ready():
+	set_process(false)
+	# Pick controller label
+	$CanvasLayer/DemoLabel.visible = demo
 
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
@@ -106,123 +110,163 @@ func _ready():
 	analytics.start_elapsed_time()
 	
 
-	scores = Scores.new()
+	scores = MatchScores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
 	
-	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeA = $Battlefield/Background/Grid/GridPoint225/RigidBody2D
-	#$Battlefield/Background/Grid/THEGRIDLINE2.nodeB = $Battlefield/Background/Grid/GridPoint248/RigidBody2D
+	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
+	collect_manager.connect('collected', self, "_on_sth_collected")
+	collect_manager.connect('dropped', crown_mode, "_on_sth_dropped")
+	collect_manager.connect('dropped', self, "_on_sth_dropped")
+	collect_manager.connect("stolen", crown_mode, "_on_sth_stolen")
+	environments_manager.connect('repel_cargo', collect_manager, "_on_cargo_repelled")
+	collect_manager.connect('collected', collect_mode, "_on_sth_collected")
+	collect_manager.connect('coins_dropped', collect_mode, "_on_coins_dropped")
+	collect_manager.connect('coins_dropped', self, "_on_coins_dropped")
+	conquest_manager.connect('conquered', conquest_mode, "_on_sth_conquered")
+	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
+	collect_manager.connect('collected', goal_mode, "_on_sth_collected")
+	collect_manager.connect('stolen', goal_mode, "_on_sth_stolen")
+	collect_manager.connect('dropped', goal_mode, "_on_sth_dropped")
 	
-	$CollectManager.connect('collected', $CrownModeManager, "_on_sth_collected")
-	$CollectManager.connect('collected', $GoalModeManager, "_on_sth_collected")
-	$CollectManager.connect('collected', self, "_on_sth_collected")
-	$CollectManager.connect('dropped', $CrownModeManager, "_on_sth_dropped")
-	$CollectManager.connect('dropped', self, "_on_sth_dropped")
-	$CollectManager.connect("stolen", $CrownModeManager, "_on_sth_stolen")
-	$EnvironmentsManager.connect('repel_cargo', $CollectManager, "_on_cargo_repelled")
-	$CollectManager.connect('collected', $CollectModeManager, "_on_sth_collected")
-	$CollectManager.connect('coins_dropped', $CollectModeManager, "_on_coins_dropped")
-	$CollectManager.connect('coins_dropped', self, "_on_coins_dropped")
-	$ConquestManager.connect('conquered', $ConquestModeManager, "_on_sth_conquered")
-	$GoalModeManager.connect('dropped', self, "_on_sth_dropped")
-	$CollectManager.connect("stolen", $GoalModeManager, "_on_sth_stolen")
-	
-	$CrownModeManager.connect('score', scores, "add_score")
-	$DeathmatchModeManager.connect('score', scores, "add_score")
-	$DeathmatchModeManager.connect('broadcast_score', scores, "broadcast_score")
-	$DeathmatchModeManager.connect('show_score', self, "spawn_points_scored")
-	$RaceModeManager.connect('score', scores, "add_score")
-	$ConquestModeManager.connect('score', scores, "add_score")
-	$CollectModeManager.connect('score', scores, "add_score")
-	$CollectModeManager.connect('show_score', self, "spawn_points_scored")
-	$CollectModeManager.connect('spawn_next', self, "_on_coins_finished")
-	$GoalModeManager.connect('score', scores, "add_score")
+	crown_mode.connect('score', scores, "add_score")
+	deathmatch_mode.connect('score', scores, "add_score")
+	deathmatch_mode.connect('broadcast_score', scores, "broadcast_score")
+	deathmatch_mode.connect('show_score', self, "spawn_points_scored")
+	race_mode.connect('score', scores, "add_score")
+	conquest_mode.connect('score', scores, "add_score")
+	collect_mode.connect('score', scores, "add_score")
+	collect_mode.connect('show_score', self, "spawn_points_scored")
+	collect_mode.connect('spawn_next', self, "_on_coins_finished")
+	goal_mode.connect('score', scores, "add_score")
 	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
-		$CollectModeManager.initialize(get_tree().get_nodes_in_group("spawner_group"))
-
+		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
+	
+	# set up portal signals to use them as goals
+	for portal in get_tree().get_nodes_in_group("portals"):
+		portal.connect('entered', goal_mode, "_on_goal_entered")
+	
+	var standalone : bool = true
+	var players = {}
+	var array_players = []
+	
+	if session:
+		array_players = session.players.values()
+		standalone = false
+	else:
+		session = SessionScores.new()
+		
 	# set up the spawners
 	var i = 0
 	for s in $SpawnPositions/Players.get_children():
-		var spawner = s as PlayerSpawner
-		if len(array_players) >= i+1:
-			# todo: fix casdf
-			s.controls = array_players[i].controls
-			s.species_template = array_players[i].species_template
-			s.cpu = array_players[i].cpu
-			s.info_player = array_players[i]
-			print("Is this a teammatto?" + str(s.info_player.team))
+		var key = s.name
+		var info_player = InfoPlayer.new()
+		if standalone:
+			
+			info_player.cpu = s.cpu
+			info_player.species = s.species
+			info_player.controls = s.controls
+			if s.cpu:
+				info_player.id = "cpu"+str(i+1)
+			else:
+				info_player.id = s.name
+			
 		else:
-			s.info_player = InfoPlayer.new()
-			s.info_player.cpu = s.cpu
+			info_player = array_players[i] 
+			s.info_player = info_player
+			s.controls = info_player.controls
+			s.species = info_player.species
+			s.cpu = info_player.cpu
 		
-		if s.cpu:
-			s.info_player.id = "cpu"
-		else:
-			s.info_player.id = s.name
-		array_players.append(from_spawner_to_infoplayer(s))
+		s.info_player = info_player
+		players[info_player.id] = info_player
+	
 		i += 1
-
-	# set up portal signals to use them as goals
-	for portal in get_tree().get_nodes_in_group("portals"):
-		portal.connect('teleported', $GoalModeManager, "_on_goal_entered")
+	
+	session.players = players
 		
-	for info in array_players:
-		print(info.to_dict())
+	if conquest_mode.enabled:
+		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
 	
-	var max_score = 0
-	if game_mode.cumulative:
-		max_score = len(get_tree().get_nodes_in_group('cell'))
-	
-	scores.initialize(array_players, game_mode, max_score)
-	
-	
+	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
+
+	session.add_match(scores)
 	# initialize HUD
-	hud.initialize(scores)
+	hud.initialize(session)
 	
 	camera.initialize(compute_arena_size())
-	
-	
 	$Battlefield.visible = false
-	get_tree().paused = true
 	mode_description.gamemode = game_mode
 	mode_description.appears()
+	if demo:
+		# demo will wait 1 second and create a CPU match
+		mode_description.demomode(demo)
+		mode_description.set_process_input(false)
+		yield(get_tree().create_timer(3), "timeout")
+		mode_description.disappears()
 	yield(mode_description, "ready_to_fight")
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
-
-	grid.init_grid(compute_arena_size().size)
+	
+	# FIXME
+	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
+	
+	# set up hive cells
+	#for cell in get_tree().get_nodes_in_group('cell'):
+	#	var skip = false
+	#	for player_spawner in $SpawnPositions/Players.get_children():
+	#		if (cell.position - player_spawner.position).length() < 600:
+	#			skip = true
+	#			break
+	#	
+	#	if skip:
+	#		continue
+	#	
+	#	if pow(randf(),2) > 0.95:
+	#		var wall = wall_scene.instance()
+	#		var gshape = cell.get_gshape()
+	#		cell.remove_child(gshape)
+	#		wall.add_child(gshape)
+	#		wall.position = cell.position
+	#		wall.rotation = cell.rotation
+	#		#wall.fill_color = Color(0.8,0.8,0.8,1)
+	#		#wall.modulate = Color(0.5,0.5,0.5,1)
+	#		wall.scale = Vector2(0.8,0.8)
+	#		$Battlefield.add_child(wall)
+	#		cell.queue_free()
+	var ships = []
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
 		hud.visible = false
 	if not mockup:
+		
 		var j = 0
 		var player_spawners = $SpawnPositions/Players.get_children()
+		get_tree().paused = true
 		for s in player_spawners:
 			var spawner = s as PlayerSpawner
 			spawner.appears()
 			# waiting for the ship to be entered
-			yield(get_tree().create_timer(1), "timeout")
-			spawn_ship(spawner)
+			yield(get_tree().create_timer(0.5), "timeout")
+			ships.append(spawn_ship(spawner))
 			j += 1
 			# wait for the last ship
 			if j >= len(player_spawners):
 				yield(spawner, "entered_battlefield")
+				
 		get_tree().paused = false
 		camera.activate_camera()
 
 	else:
 		spawn_ships()
-
+	
 	yield(get_tree().create_timer(0.1), "timeout") # FIXME workaround to wait for all ships
 
-	# setup Bomb spawners
-	for c in $Battlefield/Foreground.get_children():
-		print(c.name)
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
@@ -231,8 +275,9 @@ func _ready():
 		bomb_spawner.spawn()
 	for turret in get_tree().get_nodes_in_group("turret"):
 		turret.initialize(self)
-
+		
 	update_time_scale()
+	set_process(true)
 
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
@@ -242,15 +287,24 @@ const COUNTDOWN_LIMIT = 5.0
 func _process(delta):
 	scores.update(delta)
 	
+	slomo()
+	
 	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		$CanvasLayer/Countdown/AudioStreamPlayer.play()
 	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:
 		$CanvasLayer/Countdown.text = str(int(ceil(scores.time_left)))
 	else:
 		$CanvasLayer/Countdown.text = ""
+
+func _input(event):
+	if demo:
+		if event is InputEventKey or event is InputEventJoypadButton:
+			emit_signal("back_to_menu")
+			
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and not global.demo:
 		pause.start()
+		
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug
@@ -273,34 +327,38 @@ func get_num_players()->int:
 	return SpawnPlayers.get_child_count()
 
 func _on_background_item_rect_changed():
-	print("Windows changed")
+	print_debug("Windows changed")
 
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship: Ship, killer : Ship):
+func ship_just_died(ship, killer):
 	"""
-	remove from it, and reput it after a bit
+	Parameters
+	----------
+		ship : Ship
+		killer: Ship
+		
 	"""
 	# stats
 	# TODO: maybe somewhere else
-	emit_signal("update_stats", ship.species, 1, "deaths")
+	emit_signal("update_stats", ship.info_player, 1, "deaths")
 	if killer and killer is Ship and killer != ship:
-		emit_signal("update_stats", killer.species, 1, "kills")
+		emit_signal("update_stats", killer.info_player, 1, "kills")
 	else:
-		emit_signal("update_stats", ship.species, 1, "selfkills")
+		emit_signal("update_stats", ship.info_player, 1, "selfkills")
 	
 	$Battlefield.call_deferred("remove_child", ship)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
-	var respawn_timeout = 2
-	if $CrownModeManager.enabled:
+	var respawn_timeout = 1.5
+	if crown_mode.enabled:
 		if len(ECM.entities_with('Royal')) > 0:
 			if ECM.E(ship).has('Royal'):
-				respawn_timeout = 3
+				respawn_timeout = 2.25
 			else:
-				respawn_timeout = 1
-	elif $ConquestModeManager.enabled:
-		respawn_timeout = 1.5
+				respawn_timeout = 0.75
+	elif conquest_mode.enabled:
+		respawn_timeout = 0.75
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -308,32 +366,41 @@ func ship_just_died(ship: Ship, killer : Ship):
 		return
 	
 	# respawn
+	
+	ship.linear_velocity = ship.dead_ship_instance.linear_velocity
+	ship.angular_velocity = ship.dead_ship_instance.angular_velocity
 	$Battlefield.call_deferred("remove_child", ship.dead_ship_instance)
 	ship.position = ship.dead_ship_instance.position
+	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
 	
 	
-func on_gamemode_gameover(winner:String, scores: Dictionary):
-	$GameOver.play('Game Over')
-	yield($GameOver, "animation_finished") # wait for animation and UI redraw (esp. bars)
+func on_gamemode_gameover(winners: Array):
+	if demo:
+		emit_signal("back_to_menu")
+		return
+	for child in get_children():
+		if child is ModeManager:
+			child.enabled = false
+	$GameOverAnim.play('Game Over')
+	yield($GameOverAnim, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	canvas.add_child(game_over)
-	game_over.initialize(winner, scores)
+	
+	game_over.initialize(winners, scores)
+	
+	"""
+	# sending stats
+	for player in scores:
+		var stats =player.to_stats() 
+		for key in stats:
+			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": stats[key]}) 
+	"""
 
-onready var combat_manager = $CombatManager
-onready var stun_manager = $StunManager
-onready var collect_manager = $CollectManager
-onready var environments_manager = $EnvironmentsManager
-onready var crown_mode_manager = $CrownModeManager
-onready var deathmatch_mode_manager = $DeathmatchModeManager
-onready var conquest_manager = $ConquestManager
-onready var pursue_manager = $PursueManager
-onready var collect_mode_manager = $CollectModeManager
-onready var snake_trail_manager = $TrailManager
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
@@ -355,7 +422,7 @@ func spawn_ship(player:PlayerSpawner):
 		
 	ship.arena = self
 	ship.controls = player.controls
-	ship.species_template = player.species_template
+	ship.species = player.species
 	ship.position = player.position
 	ship.rotation = player.rotation
 	ship.height = height
@@ -373,12 +440,9 @@ func spawn_ship(player:PlayerSpawner):
 	$Battlefield.add_child(trail)
 	yield(trail, "ready")
 	# Check on gears
-	ship.set_bombs_enabled((game_mode as GameMode).shoot_bombs)
-	print(game_mode.name)
-	trail.configure((game_mode as GameMode).deadly_trails)
-	print("bombs? ", ship.bombs_enabled)
-	print("trail deadly= ", trail.is_deadly())
-
+	ship.set_bombs_enabled(game_mode.shoot_bombs)
+	trail.configure(game_mode.deadly_trails)
+	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
@@ -388,14 +452,12 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
-	ship.connect("dead", deathmatch_mode_manager, "_on_ship_killed")
+	ship.connect("dead", deathmatch_mode, "_on_ship_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
-	ship.connect("ring_body_entered", collect_manager, "_on_ship_ring_body_entered")
 	
-	$CrownModeManager.connect('show_score', ship, "update_score")
-	
+	crown_mode.connect('show_score', ship, "update_score")
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -410,16 +472,17 @@ func spawn_bomb(pos, impulse, ship):
 	$Battlefield.add_child(bomb)
 	
 	if ship:
-		emit_signal("update_stats", ship.species, 1, "bombs")
+		emit_signal("update_stats", ship.info_player, 1, "bombs")
 	return bomb
 
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
-func spawn_points_scored(species_template, score, pos):
+
+func spawn_points_scored(species: Species, score, pos):
 	var points_scored = points_scored_scene.instance()
 	points_scored.set_points(score)
 	points_scored.scale = camera.zoom
 	points_scored.position = pos
-	points_scored.modulate = species_template.color
+	points_scored.modulate = species.color
 	$Battlefield.add_child(points_scored)
 
 func _on_sth_collected(collector, collectee):
@@ -449,7 +512,7 @@ func _on_coins_finished(diamonds, wait_time=1):
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 
 	diamonds.spawn()
-	collect_mode_manager.on_wave_ready()
+	collect_mode.on_wave_ready()
 	
 	#for collectable in collectables:
 	#	$Battlefield.add_child(collectable)
@@ -466,3 +529,10 @@ func _on_Pause_restart():
 func _on_Pause_skip():
 	emit_signal("rematch") # WARNING this should be different if we are keeping scores
 	
+const max_slomo_elements = 6
+func slomo():
+	if len(get_tree().get_nodes_in_group('slomo')) > max_slomo_elements:
+		self.time_scale = lerp(time_scale, 0.5, 0.2)
+	else:
+		self.time_scale = lerp(time_scale, 1, 0.1)
+		

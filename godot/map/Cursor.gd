@@ -5,45 +5,73 @@ extends Node2D
 var enabled
 
 export var species : Resource setget set_species
-export var player_controls : String
 export var player_i : int
+export var cell_size : int
+export var grid_position : Vector2 setget set_grid_position
+
+var player 
+onready var move_tween = $MoveTween
+onready var animation_player = $Graphics/AnimationPlayer
+onready var ship = $Graphics/Ship
+onready var placemark = $Graphics/Placemark
+onready var label = $Graphics/LabelContainer/Label
+
+var wait = 0
+
+func set_grid_position(value):
+	grid_position = value
+	
+	if is_inside_tree():
+		# tween to target position
+		move_tween.interpolate_property(self, 'position',
+			self.position, cell_size * grid_position, 0.25,
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
+		move_tween.start()
+	else:
+		position = cell_size * grid_position
 
 func set_species(value):
 	species = value
-	refresh()
 	
 func _ready():
-	rotation_degrees = -60*player_i
-	
 	enable()
-	refresh()
+	ship.texture = (species as Species).ship
+	label.text = "P" + str(player_i+1)
+	placemark.modulate = (species as Species).color
+	ship.rotation = -rotation - PI/2
+	$Graphics/LabelContainer.rotation = -rotation
 	
-func refresh():
-	$Ship/Sprite.texture = (species as SpeciesTemplate).ship
+	yield(get_tree().create_timer(wait), "timeout")
+	animation_player.play('Float')
 	
 signal try_move
 signal select
 signal cancel
-signal proceed
 
-func _input(event):
-	if event.is_action_pressed(player_controls+"_cancel"):
-		emit_signal('cancel', self)
-	elif not enabled and event.is_action_pressed(player_controls+"_accept"):
-		emit_signal('proceed', self)
+func set_unresponsive():
+	set_process(false)
+	set_process_input(false)
+
+func _process(delta):
+	var down = Input.is_action_just_pressed(player.controls+"_down")
+	var up = Input.is_action_just_pressed(player.controls+"_up")
+	var left = Input.is_action_just_pressed(player.controls+"_left")
+	var right = Input.is_action_just_pressed(player.controls+"_right")
+	var accept = Input.is_action_just_pressed(player.controls+"_accept")
+	
+	if not enabled and (down or up or left or right or accept):
+		emit_signal("cancel", self)
 		return
 		
-	if not enabled:
-		return
-	if event.is_action_pressed(player_controls+"_down"):
+	if down:
 		emit_signal('try_move', self, 'S')
-	elif event.is_action_pressed(player_controls+"_up"):
+	elif up:
 		emit_signal('try_move', self, 'N')
-	elif event.is_action_pressed(player_controls+"_left"):
+	elif left:
 		emit_signal('try_move', self, 'W')
-	elif event.is_action_pressed(player_controls+"_right"):
+	elif right:
 		emit_signal('try_move', self, 'E')
-	elif event.is_action_pressed(player_controls+"_accept"):
+	elif accept:
 		emit_signal('select', self)
 		
 func enable():

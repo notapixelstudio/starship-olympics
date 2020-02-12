@@ -59,25 +59,25 @@ position = Vector2( 0, -500 )
 position = Vector2( -500, 400 )
 rotation = -1.5708
 controls = "joy1"
-species_template = ExtResource( 9 )
+species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 500, 400 )
 rotation = -1.5708
 controls = "joy2"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
 position = Vector2( 148.992, 395 )
 rotation = -1.5708
 controls = "joy2"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 8 )]
 position = Vector2( -200, 395 )
 rotation = -1.5708
 controls = "joy2"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="16"]
 smoothing_speed = 0.3

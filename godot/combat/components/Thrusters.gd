@@ -1,19 +1,19 @@
 extends Component
 
 export var default_damp : float = 2
-export var viscous_damp : float = 8
+export var viscous_damp : float = 6
 
-var hindrance_count : int = 0
+var hindrances : int = 0
 
 func add_hindrance():
-	hindrance_count += 1
+	hindrances += 1
 
-func remove_hindrance():
-	hindrance_count -= 1
+func reset_hindrances():
+	hindrances = 0
 	
-func apply_damp(sth : RigidBody2D):
-	if hindrance_count <= 0:
-		sth.linear_damp = default_damp
+func apply_damp():
+	if hindrances <= 0:
+		get_host().linear_damp = default_damp
 	else:
-		sth.linear_damp = viscous_damp
+		get_host().linear_damp = viscous_damp
 		

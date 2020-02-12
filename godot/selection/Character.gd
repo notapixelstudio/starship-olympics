@@ -1,6 +1,6 @@
 extends Resource
 
-class_name SpeciesTemplate
+class_name Species
 
 export (int) var id
 export (String) var species_name
@@ -17,6 +17,4 @@ export var species_id : int
 export var color : Color
 export var color_2 : Color
 
-# graphic and animations of battlers
-export var ship_anim : PackedScene
 

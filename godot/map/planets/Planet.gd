@@ -19,6 +19,7 @@ var played_levels_3players : Array = []
 var played_levels_4players : Array = []
 
 export var planet_sprite : StreamTexture
+export var planet_active_sprite : StreamTexture
 
 export var game_mode : Resource # GameMode
 export var secondary_game_mode : Resource # GameMode
@@ -32,13 +33,12 @@ func shuffle_levels(num_players : int) -> void:
 	get("levels_" + str(num_players) + "players").shuffle()
 	
 func get_levels(num_players : int) -> Array:
-    return get("levels_" + str(num_players) + "players")
+	return get("levels_" + str(num_players) + "players")
 
 func fetch_level(num_players : int) -> PackedScene:
 	""" Get one level from their pool """
 	var levels = get("levels_" + str(num_players) + "players")
 	var played_levels = get("played_levels_" + str(num_players) + "players")
-	
 	var current_level = levels[len(played_levels)].instance()
 	played_levels.append(current_level)
 	current_level.planet_name = name

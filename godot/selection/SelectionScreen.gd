@@ -7,11 +7,13 @@ const NUM_KEYBOARDS = 2
 enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 onready var container = $Container
 onready var fight_node = $BottomHUD/Fight
+onready var ready_to_fight = $CanvasLayer/ReadyToFight
 var available_species : Dictionary
 var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
 signal back
+signal start_demo
 
 var selected_index = []
 var players_controls : Array
@@ -22,17 +24,16 @@ func _ready():
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
-
 func initialize(_available_species:Dictionary):
 	available_species = _available_species
 	ordered_species = available_species.values()
 
 	var i = 0
 	for child in container.get_children():
-		assert(child is Species)
+		assert(child is PlayerSelection)
 		#set all to no
 		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
-		child.change_species(ordered_species[i*2])
+		child.change_species(ordered_species[i])
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
 		child.connect("selected", self, "selected")
@@ -42,8 +43,9 @@ func initialize(_available_species:Dictionary):
 		# it gives the name of the player
 		child.uid = i
 	var joypads = Input.get_connected_joypads()
-	print(len(joypads))
 	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
+	if global.demo:
+		actual_players = 0
 	var controls = assign_controls(actual_players)
 	for control in controls:
 		print(add_controls(control))
@@ -83,7 +85,7 @@ func change_controls(key:String, new_key:String) -> bool:
 	var index_to_change : int =0
 	for child in container.get_children():
 		if child.controls == key:
-			# print("Found it ", index_to_change, " and control is ", child.controls)
+			# print_debug("Found it ", index_to_change, " and control is ", child.controls)
 			break
 		index_to_change += 1
 	last = new_key
@@ -93,7 +95,7 @@ func change_controls(key:String, new_key:String) -> bool:
 		var child = container.get_child(count-i-1)
 		var to_change = last
 		last = child.controls
-		assert(child is Species)
+		assert(child is PlayerSelection)
 		child.set_controls(to_change)
 
 	return false
@@ -131,7 +133,8 @@ func get_players() -> Array:
 	return players
 
 func get_adjacent(operator:int, player_selection : Node):
-	var current_index = ordered_species.find(player_selection.species_template)
+	restart_timer()
+	var current_index = ordered_species.find(player_selection.species)
 	current_index = global.mod(current_index + operator,len(ordered_species))
 	while current_index in selected_index:
 		current_index = global.mod(current_index + operator,len(ordered_species))
@@ -140,24 +143,25 @@ func get_adjacent(operator:int, player_selection : Node):
 func _on_joy_connection_changed(device_id, connected):
 	var joy = "joy"+str(device_id+1)
 	if connected:
-		print("Recognise controller: ", Input.get_joy_name(device_id))
 		add_controls(joy)
 	else:
 		change_controls(joy, "no")
 
 func ready_to_fight():
 	var players = get_players()
-	print("players who are going to fight are... " , players)
 	if len(players) >= MIN_PLAYERS:
-		emit_signal("fight", players, fight_mode)
+		ready_to_fight.start(len(players), global.win)
 	else:
-		print("not enough players")
+		print_debug("not enough players")
 
-func selected(species:SpeciesTemplate):
+func selected(player: PlayerSelection):
+	restart_timer()
+	var species = player.species
+	
 	var current_index = ordered_species.find(species)
 	selected_index.append(current_index)
 	for child in container.get_children():
-		if not child.selected and child.species_template == species:
+		if not child.selected and child.species == species:
 			get_adjacent(+1, child)
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
@@ -171,7 +175,8 @@ func selected(species:SpeciesTemplate):
 # TODO: it should be with signals
 var deselected = false
 
-func deselected(species:SpeciesTemplate):
+func deselected(species: Species):
+	restart_timer()
 	var current_index = ordered_species.find(species)
 	selected_index.remove(selected_index.find(current_index))
 	var players = get_players()
@@ -183,13 +188,9 @@ func deselected(species:SpeciesTemplate):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if len(get_players())<=0:
-			if not deselected:
-				emit_signal("back")
-			else:
-				deselected = false
-
+	if (event.is_action_pressed("ui_up") or event.is_action_pressed("pause") ) and not global.demo:
+		emit_signal("back")
+		
 var fight_mode = "vs Mode"
 
 func _process(delta):
@@ -200,11 +201,11 @@ func _process(delta):
 	for child in container.get_children():
 		if child.disabled:
 			continue
-		var species_name = child.species_template.species_name
+		var species_name = child.species.species_name
 		if not species_name in dict_species:
-			dict_species[species_name] = {child.species_template.id: child}
+			dict_species[species_name] = { child.species.id: child}
 		else:
-			dict_species[species_name][child.species_template.id] = child
+			dict_species[species_name][child.species.id] = child
 		child.unset_team()
 
 	for s in dict_species:
@@ -226,5 +227,26 @@ func _process(delta):
 		fight_mode = "solo"
 	elif len(get_players()) == 2:
 		if at_least_one_character_in_team_selected and not at_least_one_solo_selected:
-			fight_mode = "co-op"
+			# fight_mode = "co-op"
+			pass
 	fight_node.set_label('play %s' % fight_mode)
+
+func deselect():
+	for child in container.get_children():
+		if child.disabled:
+			continue
+		child.deselect()
+
+func restart_timer():
+	if global.demo:
+		$Timer.start()
+
+func _on_Timer_timeout():
+	emit_signal("start_demo")
+
+func _on_ReadyToFight_letsfight():
+	var players = get_players()
+	emit_signal("fight", players, fight_mode)
+
+func reset():
+	ready_to_fight.deactivate()

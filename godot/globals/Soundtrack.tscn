@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://globals/AudioLibrary.tscn" type="PackedScene" id=1]
 [ext_resource path="res://globals/Soundtrack.gd" type="Script" id=2]
@@ -14,8 +14,7 @@
 [ext_resource path="res://assets/audio/soundtracks/Punch_Deck-Feel_the_Pulse.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/audio/soundtracks/Punch_Deck-Signal-in-the-Noise.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/audio/soundtracks/level5.ogg" type="AudioStream" id=14]
-[ext_resource path="res://assets/audio/soundtracks/brutt_carpenter.ogg" type="AudioStream" id=15]
-[ext_resource path="res://assets/audio/soundtracks/paradoxal_activity-mattek.ogg" type="AudioStream" id=16]
+[ext_resource path="res://assets/audio/soundtracks/paradoxal_activity-mattek.ogg" type="AudioStream" id=15]
 
 [node name="Soundtrack" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -51,7 +50,6 @@ stream = ExtResource( 9 )
 bus = "Music"
 
 [node name="Fight" parent="." index="1" instance=ExtResource( 1 )]
-editor/display_folded = true
 
 [node name="Level1" type="AudioStreamPlayer" parent="Fight" index="0"]
 stream = ExtResource( 10 )
@@ -73,10 +71,7 @@ bus = "Music"
 stream = ExtResource( 14 )
 bus = "Music"
 
-[node name="Level6" type="AudioStreamPlayer" parent="Fight" index="5"]
+[node name="Level7" type="AudioStreamPlayer" parent="Fight" index="5"]
 stream = ExtResource( 15 )
 bus = "Music"
 
-[node name="Level7" type="AudioStreamPlayer" parent="Fight" index="6"]
-stream = ExtResource( 16 )
-bus = "Music"

@@ -2,6 +2,8 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
+var session_scores : SessionScores
+
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
@@ -16,34 +18,44 @@ var all_planets = [
 	]
 	
 var all_species = [
-	[preload('res://selection/characters/mantiacs_1.tres'), preload('res://selection/characters/mantiacs_2.tres')],
-	[preload('res://selection/characters/robolords_1.tres'), preload('res://selection/characters/robolords_2.tres')]
+	preload('res://selection/characters/mantiacs_1.tres'),
+	preload('res://selection/characters/robolords_1.tres'),
+	preload('res://selection/characters/toriels_1.tres'),
+	preload('res://selection/characters/trixens_1.tres'),
 ]
 onready var parallax = $ParallaxBackground
 
 var combat
 
 # dictionary of InfoPlayer of players that will actually play
-var players : Dictionary
+var players : Dictionary # of InfoPlayer
 
 signal updated
 
-func from_species_to_info_player(selection_species: Species) -> InfoPlayer:
-	var info_player = InfoPlayer.new()
-	info_player.id = selection_species.name
-	info_player.species = selection_species.species_template.species_name
-	info_player.controls = selection_species.controls
-	info_player.species_template = selection_species.species_template
-	info_player.team = selection_species.is_team
-	print("Is that a teammate")
-	print(info_player.team)
-	return info_player
+var campaign_mode : bool = false
+
+func reset():
+	session_scores = SessionScores.new()
+	session_scores.players = players
+	for key in players:
+		var player = players[key]
+		player.reset()
+	campaign_mode = global.campaign_mode
 	
 func _ready():
+	session_scores = SessionScores.new()
+	session_scores.players = players
+
+	campaign_mode = global.campaign_mode
 	players = {}
+
 	selection_screen.initialize(global.get_unlocked())
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
+	global.local_multiplayer = self
+
+func _exit_tree():
+	global.local_multiplayer = null
 
 func back():
 	# This goes back to the previous scene
@@ -59,118 +71,80 @@ func combat(selected_players: Array, fight_mode : String):
 	@param: selected_players : Array[Species] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
-	# TEST: analytics for selection
 	
 	# we need to reset players dictionary
-
 	players = {}
 	var num_players : int = len(selected_players)
-
-	GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:num_players", num_players))
+	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
 
 	var i = 1
 	for player in selected_players:
-		assert(player is Species)
-		var player_info : InfoPlayer = from_species_to_info_player(player)
-		player_info.id = player.id
-		players[player.id] = player_info
-		# Prepare GameAnalytics event to send
-		GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("selection:species:" + player.species_template.species_name, i))
+		players[player.id] = player.info
 		i += 1
-
-	if fight_mode == 'solo' or fight_mode == 'co-op':
-		var other_species
-		if selected_players[0].species_template.species_name != all_species[0][0].species_name:
-			other_species = all_species[0]
-		else:
-			other_species = all_species[1]
-
-		var info_player = InfoPlayer.new()
-		info_player.id = 'cpu'
-		info_player.species = other_species[0].species_name
-		info_player.cpu = true
-		info_player.species_template = other_species[0]
-		
-		players['cpu'] = info_player
-		
-		if fight_mode == 'co-op':
-			info_player.team = true
-			
-			var info_player2 = InfoPlayer.new()
-			info_player2.id = 'cpu'
-			info_player2.team = true
-			info_player2.species = other_species[1].species_name
-			info_player2.cpu = true
-			info_player2.species_template = other_species[1]
-			players['cpu2'] = info_player2
-			
-	# LEVEL SELECTION
-	#var level_selection = level_selection_scene.instance()
-	#level_selection.initialize(str(num_players), players)
-	#add_child(level_selection)
-	#yield(level_selection, "arena_selected")
-	#if level_selection.back:
-	#	level_selection.queue_free()
-	#	return
-	#current_level = level_selection.current_level
 	
+	session_scores.players = players
+
+	# Statistics
+	for player_id in players:
+		var info = players[player_id]
+		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.species, "id": info.id})})
+		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
+
+
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
-	var map = map_scene.instance()
-	map.initialize(players)
-	"""
-	add_child(map)
-	yield(map, "done")
-	yield(get_tree(), "idle_frame")
-	if map.back:
+	var num_CPUs = 1
+	if not campaign_mode:
+		var map = map_scene.instance()
+		map.initialize(players, all_planets)
+		
+		add_child(map)
+		yield(map, "done")
+		yield(get_tree(), "idle_frame")
+		all_planets = map.selected_sports
+		num_CPUs = map.cpu
+		if map.back:
+			map.queue_free()
+			add_child(parallax)
+			add_child(selection_screen)
+			selection_screen.reset()
+			return
+		
 		map.queue_free()
-		add_child(parallax)
-		add_child(selection_screen)
-		return
-	"""
-
+	
+	# if fight_mode == 'solo':
+	add_cpu(num_CPUs)
+		
+	session_scores.selected_sports = all_planets
+	
 	all_planets.shuffle() # shuffle the planets at start
-	for planet in all_planets:
-		planet.shuffle_levels(num_players)
-
-	# logic to get the correct levels
-	# TODO: depends if the cursor can select multiple planets
-	levels = []
-	played_levels = []
-	var count = 0
-	for planet in map.current_planets:
-		print("never here")
-		planet.shuffle_levels(num_players)
-		var arena = planet.fetch_level(num_players)
-		# avoid duplicate
-		var last_planet = levels.back()
-		if not last_planet or planet != last_planet:
-			levels.append(arena)
-			count += 1
+	# for planet in all_planets:
+	#	planet.shuffle_levels(len(players))
 	
-	levels.shuffle()
-	
-	#level_selection.queue_free()
-	map.queue_free()
 	add_child(parallax)
 	
+	# TUTORIAL
+	var tut = preload("res://special_scenes/Tutorial.tscn").instance()
+	add_child(tut)
+	yield(tut, "over")
+	# END TUTORIAL
 	next_level()
 	
 	# TEST: send the queue
 	GameAnalytics.submit_events()
 
-func next_level():
+func next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
 	var last_planet = played_levels.back()
 	var num_players = len(players)
 	
-	if len(played_levels) >= len(all_planets):
+	if len(played_levels) >= len(all_planets) or demo:
 		played_levels = []
 		levels = []
 		all_planets.shuffle()
 
-	
+	# FIXME it seems that selecting three planets does not work as expected
 	var new_planet = all_planets.pop_back()
 	all_planets.push_front(new_planet)
 	if last_planet == new_planet:
@@ -180,30 +154,28 @@ func next_level():
 	
 	# let's make sure that it is not the same of the previous one.
 	current_level = levels.back()
-	print("last planet was, ", last_planet, " now is ", new_planet)
-	print("next level will be ", num_players, current_level.planet_name)
+
 	# skip if we just played it
-	start_level(current_level)
+	start_level(current_level, demo)
 	played_levels.append(new_planet)
 	
-func start_level(_level):
+func start_level(_level, demo = false):
 	combat = _level
-	print(players)
-	combat.initialize(players)
+	combat.initialize(session_scores)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
 	
+	for child in get_children():
+		if child is Arena:
+			child.queue_free()
+			yield(child, 'tree_exited')
+	combat.demo = demo
+
 	add_child(combat)
+	yield(combat, "ready")
 	
-func from_info_to_spawner(player_info):
-	var spawner = PlayerSpawner.new()
-	spawner.controls = player_info.controls 
-	spawner.species_template = player_info.species_template
-	spawner.name = player_info.id
-	spawner.info_player = player_info
-	return spawner
 	
 func _on_GameOver_rematch(node):
 	node.queue_free()
@@ -221,13 +193,56 @@ func _on_Pause_restart(_combat):
 	start_level(same_level.fetch_level(len(players)))
 
 func _back_to_menu(node):
-	print("RESTARTO")
+	reset()
 	node.queue_free()
 	combat.queue_free()
 	get_tree().paused = false
 	add_child(selection_screen)
+	selection_screen.reset()
+	if global.demo:
+		selection_screen.deselect()
 	
 func _on_Pause_back_to_menu(_combat):
 	_combat.queue_free()
 	get_tree().paused = false
 	add_child(selection_screen)
+
+
+func start_demo():
+	var demo_players = []
+	var player_rand = max(2, (randi() % len(all_species))+1)
+	players = {}
+	for i in range(player_rand):
+		var other_species = all_species[i]
+		var info_player = InfoPlayer.new()
+		info_player.id = 'cpu'
+		info_player.species = other_species.species_name
+		info_player.cpu = true
+		info_player.species_template = other_species
+		players["cpu{id}".format({"id": i})] = info_player
+	remove_child(selection_screen)
+	next_level(true)
+	
+func add_cpu(how_many: int):
+	var missing_species = all_species
+	for key in players:
+		var player = players[key]
+		var this_species_name = player.species.species_name
+		var i = 0
+		for species in missing_species:
+			if this_species_name == species.species_name:
+				break
+			i += 1
+		missing_species.remove(i)
+	
+	var max_cpu = min(how_many, len(missing_species))
+	max_cpu = min(max_cpu, global.MAX_PLAYERS)
+	for i in range(max_cpu):
+		var cpu_species = missing_species[i]
+		var info_player = InfoPlayer.new()
+		var id_player = 'cpu'+str(i)
+		info_player.id = id_player
+		info_player.cpu = true
+		info_player.species = cpu_species
+		players[id_player] = info_player
+		

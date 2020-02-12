@@ -19,6 +19,7 @@ export var crown : bool = false
 export var hive : bool = false
 export var collect : bool = false
 export var flowsnake : bool = false
+export var goal : bool = false
 
 # gear 
 export var shoot_bombs : bool = true

@@ -14,8 +14,9 @@ onready var anim = $AnimationPlayer
 
 func change_texture(new_value):
 	ship_texture = new_value
-	if $Sprite:
-		$Sprite.texture = ship_texture
+	if not is_inside_tree():
+		yield(self, "ready")
+	$Sprite.texture = ship_texture
 		
 func play_disappear():
 	anim.play("disappear")
@@ -25,7 +26,8 @@ func play_idle():
 	anim.play("idle")
 	yield(anim, "animation_finished")
 
-func invincible():
+func invincible(offset = 0):
 	anim.play("invincible")
+	anim.seek(offset)
 	yield(anim, "animation_finished")
 	emit_signal("stop_invincible")

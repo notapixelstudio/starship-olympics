@@ -20,6 +20,9 @@ func set_detection_insensitive_timeout():
 	detection_insensitive_t = detection_insensitive_timeout
 	
 func update_timeouts(delta):
+	if not enabled:
+		return
+		
 	keep_target_t -= delta
 	detection_insensitive_t -= delta
 	
@@ -29,3 +32,6 @@ func has_keep_target_timed_out():
 func has_detection_insensitive_timed_out():
 	return detection_insensitive_t <= 0
 	
+func enable_with_timeout(wait_time):
+	yield(get_tree().create_timer(wait_time), "timeout")
+	enable()

@@ -21,8 +21,8 @@ func _on_GShape_changed():
 func _ready():
 	# set color if goal is owned by a player
 	if goal_owner:
-		species = get_node(goal_owner).species_template.species_name
-		modulate = get_node(goal_owner).species_template.color
+		species = get_node(goal_owner).species
+		modulate = get_node(goal_owner).species.color
 	
 	refresh()
 	
@@ -56,12 +56,15 @@ func refresh():
 	# workaround for losing texture mode
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
+signal entered
 signal teleported
 func _on_Area2D_body_entered(body):
 	var entity = ECM.E(body)
 	
 	if not entity:
 		return
+	
+	emit_signal("entered", entity.get_host(), self)
 	
 	if entity.has('Teleportable'):
 		var teleportable = entity.get('Teleportable')

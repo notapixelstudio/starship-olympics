@@ -80,9 +80,6 @@ func refresh():
 		$Line2D.default_color = species.color
 	elif type == TYPE.ghost:
 		$Line2D.default_color = Color(0.2,0.7,1,0.2)
-		
-	# keep the symbols up
-	$CrownCollider/Sprite.rotation = -rotation
 	
 	# hill symbol on top
 	$Entity/Hill.position.y = -gshape.get_extents().y/2 - 60

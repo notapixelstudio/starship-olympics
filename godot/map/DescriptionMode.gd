@@ -8,7 +8,7 @@ signal ready_to_fight
 
 func _ready():
 	refresh()
-	$Description2.visible = false
+	$Description2.modulate *= Color(1,1,1,0)
 
 func refresh():
 	if $Sprite and gamemode:
@@ -20,25 +20,26 @@ func set_gamemode(value: GameMode):
 	refresh()
 
 signal letsfight
-var youcan: bool = false
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and youcan:
-		emit_signal("letsfight")
+	if event.is_action_pressed("ui_accept"):
+		set_process_input(false)
+		yield(get_tree().create_timer($Timer.time_left), 'timeout')
+		disappears()
 
 func appears():
 	visible = true
 	animator.play("getin")
 	yield(animator, "animation_finished")
-	youcan = true
 	$AudioStreamPlayer.play()
-	yield(get_tree().create_timer(0.8), "timeout")
 	animator.play("describeme")
-	yield(self, "letsfight")
+	
+func disappears():
 	animator.play("getout")
 	$Description2.queue_free()
 	yield(animator, "animation_finished")
 	emit_signal("ready_to_fight")
 	queue_free()
-	
-	
+
+func demomode(demo = false):
+	$Description2.visible = not demo

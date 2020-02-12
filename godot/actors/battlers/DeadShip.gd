@@ -3,6 +3,9 @@ extends RigidBody2D
 class_name DeadShip
 
 var ship setget set_ship
+var info_player
+var species
+var arena
 
 var entity : Entity
 
@@ -11,13 +14,16 @@ func _ready():
 	
 func set_ship(new_value):
 	ship = new_value
-	$Sprite.modulate = ship.species_template.color
+	info_player = ship.info_player
+	arena = ship.arena
+	species = info_player.species
+	$Sprite.modulate = species.color
 	$Sprite.modulate = $Sprite.modulate.darkened(0.2)
 	$Sprite.modulate.a = 0.85
-	$Sprite.texture = ship.species_template.ship
+	$Sprite.texture = species.ship
 	
 func _enter_tree():
-	linear_velocity = ship.linear_velocity
+	#linear_velocity = ship.linear_velocity
 	position = ship.position
 	rotation = ship.rotation
 	

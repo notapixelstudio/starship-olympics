@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://map/ButtonCell.gd" type="Script" id=1]
+[ext_resource path="res://assets/map/cards/start.png" type="Texture" id=2]
+
+[node name="ButtonCell" type="Node2D" groups=[
+"map_point",
+]]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

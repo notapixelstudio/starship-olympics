@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=2]
+[ext_resource path="res://combat/modes/GoalPortal.tres" type="Resource" id=2]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=5]
@@ -13,22 +13,14 @@
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=11]
 [ext_resource path="res://combat/collectables/Ring.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=13]
-[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=14]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=15]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=14]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=15]
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
-[node name="CollectModeManager" parent="." index="10"]
-editor/display_folded = false
-min_elements_per_wave = 4
-
-[node name="Timer" parent="CollectModeManager" index="0"]
-wait_time = 5.0
-autostart = false
-
-[node name="BackgroundLayer" parent="." index="13"]
+[node name="BackgroundLayer" parent="." index="1"]
 editor/display_folded = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -51,19 +43,20 @@ hide_grid = true
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
 grid_rotation = 0.0
 
-[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 3200
 height = 1600
 radius = 800
 precision = 50.0
 
 [node name="LeftPortal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
-modulate = Color( 0.32549, 1, 0.32549, 1 )
-position = Vector2( -950, 3.05176e-05 )
+modulate = Color( 1, 0.407843, 0.407843, 1 )
+position = Vector2( -1050, 3.05176e-05 )
 linked_to_path = NodePath("../RightPortal")
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
@@ -72,11 +65,12 @@ script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 a = Vector2( 0, -300 )
 b = Vector2( 0, 300 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
-position = Vector2( -950, 350 )
+position = Vector2( -1050, 350 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -87,16 +81,17 @@ hide_grid = false
 grid_color = Color( 1, 1, 1, 0.33 )
 grid_rotation = 0.0
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall2" index="5"]
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 11 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 100
 precision = 10.0
 
 [node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
-position = Vector2( -950, -350 )
+position = Vector2( -1050, -350 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -107,17 +102,18 @@ hide_grid = false
 grid_color = Color( 1, 1, 1, 0.33 )
 grid_rotation = 0.0
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall3" index="5"]
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 11 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 100
 precision = 10.0
 
 [node name="RightPortal" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
-modulate = Color( 0.494118, 0.694118, 1, 1 )
-position = Vector2( 950, 0 )
+modulate = Color( 0.32549, 1, 0.32549, 1 )
+position = Vector2( 1050, 0 )
 linked_to_path = NodePath("../LeftPortal")
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
@@ -126,11 +122,12 @@ script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 9 )
 }
+center_offset = Vector2( 0, 0 )
 a = Vector2( 0, -300 )
 b = Vector2( 0, 300 )
 
 [node name="Wall4" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
-position = Vector2( 950, 350 )
+position = Vector2( 1050, -350 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -141,16 +138,17 @@ hide_grid = false
 grid_color = Color( 1, 1, 1, 0.33 )
 grid_rotation = 0.0
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall4" index="5"]
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 11 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 100
 precision = 10.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
-position = Vector2( 950, -350 )
+position = Vector2( 1050, 350 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -161,41 +159,31 @@ hide_grid = false
 grid_color = Color( 1, 1, 1, 0.33 )
 grid_rotation = 0.0
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall5" index="5"]
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
 script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 11 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 100
 precision = 10.0
 
 [node name="Ring" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
-[node name="Overlay" parent="Battlefield" index="4"]
-editor/display_folded = false
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 13 )]
-position = Vector2( -800, 0 )
+position = Vector2( -650, 0 )
 rotation = 0.0
 controls = "joy1"
-species_template = ExtResource( 14 )
+species = ExtResource( 14 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]
-position = Vector2( 810, 0 )
+position = Vector2( 660, 0 )
 rotation = 3.14159
 controls = "joy2"
-species_template = ExtResource( 15 )
+species = ExtResource( 15 )
 
-[node name="Pause" parent="CanvasLayer" index="1"]
-editor/display_folded = false
-
-[node name="Control" parent="CanvasLayer/Pause/GuiElements" index="1"]
-editor/display_folded = true
-
-[node name="Camera" parent="." index="18"]
+[node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
-
-[connection signal="timeout" from="CollectModeManager/Timer" to="CollectModeManager" method="_handle_waves"]
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

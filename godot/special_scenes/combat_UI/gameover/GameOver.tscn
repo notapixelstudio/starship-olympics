@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
+[ext_resource path="res://special_scenes/combat_UI/session_points/Session.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+
+[sub_resource type="Animation" id=2]
+
+[node name="GameOverScreen" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+script = ExtResource( 1 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 1 )
+anims/transition = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.572549 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0, 0, 0, 1 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_left = 1030.0
+margin_top = 520.0
+margin_right = 1252.0
+margin_bottom = 699.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Continue" type="Button" parent="Buttons"]
+margin_right = 222.0
+margin_bottom = 87.0
+size_flags_vertical = 3
+text = "CONTINUE"
+
+[node name="Menu" type="Button" parent="Buttons"]
+margin_top = 91.0
+margin_right = 222.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "BACK TO MENU"
+
+[node name="Quit" type="Button" parent="Buttons"]
+visible = false
+margin_top = 122.0
+margin_right = 222.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "QUIT"
+
+[node name="Session" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -493.668
+margin_top = -184.124
+margin_right = 238.332
+margin_bottom = 250.876
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Rematch_pressed"]
+[connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]

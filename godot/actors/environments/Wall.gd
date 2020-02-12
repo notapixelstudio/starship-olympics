@@ -17,7 +17,8 @@ export var hide_grid : bool = false setget set_hide_grid
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
 
-onready var extents = $RectExtents
+export var fill_color : Color = Color('#454545') setget set_fill_color
+
 var cshapes = []
 
 func set_hollow(value):
@@ -52,14 +53,27 @@ func set_grid_rotation(value):
 	grid_rotation = value
 	refresh()
 	
+func set_fill_color(value):
+	fill_color = value
+	refresh()
+	
 func _ready():
 	var gshape
 	for node in get_children():
 		if node is GShape:
 			gshape = node
-	extents.size = gshape.get_extents()
+	# extents.size = gshape.get_extents()
 	refresh()
-	
+
+func get_rect_extents():
+	var gshape
+	for node in get_children():
+		if node is GShape:
+			gshape = node
+			break
+	var size = gshape.get_extents()
+	return Rect2(-1.0 * size / 2 , size)
+
 func remove_old_shapes():
 	for child in get_children():
 		if child is CollisionShape2D:
@@ -110,6 +124,8 @@ func refresh():
 			
 	$Polygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
+	
+	$Polygon2D.color = fill_color
 	
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid

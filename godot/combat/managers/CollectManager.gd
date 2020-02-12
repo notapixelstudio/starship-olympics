@@ -48,7 +48,7 @@ func _on_ship_killed(ship : Ship, killer : Ship):
 		
 	if ECM.E(ship).has('CoinBag'):
 		var coins_dropped = ECM.E(ship).get('CoinBag').drop_some_coins()
-		emit_signal('coins_dropped', ship, coins_dropped)
+		#emit_signal('coins_dropped', ship, coins_dropped)
 		
 func _on_cargo_repelled(repeller):
 	drop_cargo(repeller)

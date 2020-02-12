@@ -2,6 +2,7 @@ extends ModeManager
 
 const COINGROUP = "coin"
 const MULTIPLIER = 2
+const WAVE_DELAY = 4
 var to_next_wave = 2
 var current_wave = 0
 
@@ -39,14 +40,16 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	emit_signal("spawn_next", next_spawner, wait_time)
 	
 func _on_sth_collected(collector, collectee):
+	if not enabled:
+		return
+		
 	if collectee is Diamond:
-		assert collector is Ship
 		var score = score_multiplier*collectee.points
-		emit_signal('score', collector.species, score)
-		emit_signal('show_score', collector.species_template, score, collectee.global_position)
+		emit_signal('score', collector.get_id(), score)
+		emit_signal('show_score', collector.species, score, collectee.global_position)
 		
 func _on_coins_dropped(dropper, amount):
-	emit_signal('score', dropper.species, -score_multiplier*amount)
+	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
 
 var wave_ready = true
 func _process(delta):
@@ -60,13 +63,13 @@ func _handle_waves():
 		elements_spawned = 0
 	if current_wave >= max_waves:
 		reset_wave_timer()
-		initialize(spawners, 1.5, current_wave - 1)
+		initialize(spawners, WAVE_DELAY, current_wave - 1)
 		return
 	spawners_per_wave[current_wave].shuffle()
 	var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
 	elements_spawned += 1
 	reset_wave_timer()
-	emit_signal('spawn_next', next_spawner, 1)
+	emit_signal('spawn_next', next_spawner, WAVE_DELAY)
 		
 func reset_wave_timer():
 	wave_timer.start()

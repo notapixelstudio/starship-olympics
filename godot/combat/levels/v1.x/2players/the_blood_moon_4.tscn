@@ -46,13 +46,13 @@ bevel = 400
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -800, 0 )
 rotation = 0.0
-species_template = ExtResource( 8 )
+species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 800, 0 )
 rotation = 3.14159
 controls = "joy2"
-species_template = ExtResource( 9 )
+species = ExtResource( 9 )
 
 [node name="Camera" parent="." index="15"]
 smoothing_speed = 0.3

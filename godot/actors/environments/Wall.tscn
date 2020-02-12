@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/grid.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/wall_tile.png" type="Texture" id=7]
-[ext_resource path="res://addons/rect_extents_gizmo/utils/RectExtents.gd" type="Script" id=8]
+[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=7]
+
+
 
 [node name="Wall" type="StaticBody2D" groups=[
 "wall",
@@ -18,6 +19,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+fill_color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -46,7 +48,7 @@ __meta__ = {
 enabled = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.270588, 0.270588, 0.270588, 1 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
@@ -61,13 +63,7 @@ points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 
 width = 90.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 7 )
-texture_mode = 325458256
+texture_mode = 0
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10
-
-[node name="RectExtents" type="Node2D" parent="."]
-script = ExtResource( 8 )
-size = Vector2( 40, 40 )
-color = Color( 1, 0.054902, 0.654902, 1 )
-offset = Vector2( 0, 0 )

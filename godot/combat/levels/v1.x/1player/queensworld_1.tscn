@@ -44,13 +44,13 @@ bevel = 600
 position = Vector2( -800, 0 )
 rotation = 0.0
 controls = "joy1"
-species_template = ExtResource( 9 )
+species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 0, -700 )
 rotation = 1.5708
 controls = "joy2"
-species_template = ExtResource( 10 )
+species = ExtResource( 10 )
 cpu = true
 
 [node name="DescriptionMode" parent="CanvasLayer" index="4"]

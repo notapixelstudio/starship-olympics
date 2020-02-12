@@ -75,25 +75,25 @@ b = Vector2( 500, 1200 )
 position = Vector2( 700, -700 )
 rotation = 2.35619
 controls = "joy2"
-species_template = ExtResource( 11 )
+species = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
 position = Vector2( -700, -700 )
 rotation = 0.785398
 controls = "joy1"
-species_template = ExtResource( 12 )
+species = ExtResource( 12 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 10 )]
 position = Vector2( 700, 700 )
 rotation = -2.35619
 controls = "joy3"
-species_template = ExtResource( 13 )
+species = ExtResource( 13 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 10 )]
 position = Vector2( -700, 700 )
 rotation = -0.785398
 controls = "joy4"
-species_template = ExtResource( 14 )
+species = ExtResource( 14 )
 
 
 [editable path="CanvasLayer/Pause"]

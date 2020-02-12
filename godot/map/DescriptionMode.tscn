@@ -4,8 +4,9 @@
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=3]
 [ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=4]
-[ext_resource path="res://assets/sounds/UI_effects/thud.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "describeme"
@@ -162,21 +163,6 @@ outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="Animation" id=7]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-
 [node name="DescriptionMode" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
@@ -188,6 +174,8 @@ gamemode = ExtResource( 3 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1205, 60 )
 scale = Vector2( 0.15, 0.15 )
+z_index = 1000
+z_as_relative = false
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -234,4 +222,9 @@ valign = 1
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Description2"]
-anims/blink = SubResource( 7 )
+anims/blink = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true

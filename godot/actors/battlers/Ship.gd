@@ -9,8 +9,10 @@ class_name Ship
 
 export var debug_enabled = false
 export (String) var controls = "kb1"
-export (Resource) var species_template
 export var absolute_controls : bool= true
+export (Resource) var species
+
+var species_name: String
 
 var arena
 var cpu = false
@@ -29,29 +31,38 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
 const CHARGE_MULTIPLIER = 4500
-const BOMB_OFFSET = 60
+const BOMB_OFFSET = 40
 const BOMB_BOOST = 200
+const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
-var info_player
+var responsive = false setget change_engine
+var info_player setget set_info_player
+
+func set_info_player(value: InfoPlayer):
+	info_player = value
+	species = info_player.species
+	species_name = info_player.species_name
+
 var count = 0
 var alive = true
 var stunned = false
 var stun_countdown = 0
 
-var species: String
+
 var screen_size = Vector2()
 var width = 0
 var height = 0
 
 var charging = false
-var fire_cooldown = 0
+var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 
 var teleport_to = null
 
 onready var player = name
 onready var skin = $Graphics
+onready var charging_sfx = $charging
 
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
 
@@ -80,31 +91,35 @@ func _enter_tree():
 	emit_signal('spawned', self)
 	# Invincible for the firs MAX seconds
 	invincible = true
-	sleeping=true
 	if skin:
 		skin.invincible()
-	sleeping=false
 	yield(get_tree().create_timer(0.1), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
 	
+	
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
-	skin.ship_texture = (species_template as SpeciesTemplate).ship
-	skin.invincible()
+	skin.ship_texture = species.ship
+	skin.invincible(1.0)
 	entity = ECM.E(self)
-	species = species_template.species_name
+	species_name = species.species_name
 	
 	entity.get('Conqueror').set_species(self)
+	self.responsive = true
+	
+func change_engine(value: bool):
+	responsive = value
+	set_physics_process(responsive)
+	
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
-var last_velocity = Vector2()
 func _integrate_forces(state):
-	entity.get('Thrusters').apply_damp(self)
-	
+	if not responsive:
+		return
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_dir
 	
@@ -171,6 +186,7 @@ func charge():
 	charging = true
 	$Graphics/ChargeBar.visible = true
 	#$GravitonField.enabled = true
+	charging_sfx.play()
 	
 func fire():
 	"""
@@ -183,18 +199,19 @@ func fire():
 	
 	if bombs_enabled:
 		arena.spawn_bomb(
-		  position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-		  Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-		  self
+			position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
+			self
 		)
 	
 	# repeal
-	$GravitonField.repeal(charge_impulse)
+	#$GravitonField.repeal(charge_impulse)
 	#$GravitonField.enabled = false
 	
 	charging = false
 	$Graphics/ChargeBar.visible = false
-	fire_cooldown = 0 # disabled
+	fire_cooldown = FIRE_COOLDOWN
+	charging_sfx.stop()
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
@@ -203,11 +220,12 @@ func fire():
 
 func die(killer : Ship):
 	if alive and not invincible:
-		entity.get('Ringed').disable()
 		alive = false
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
+		if info_player.lives >= 0:
+			info_player.lives -= 1
 		emit_signal("dead", self, killer)
 		
 func stun():
@@ -254,14 +272,5 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	
 	return int(sign(cross))
 
-func _on_Ringed_disabled():
-	$Ring.visible = false
-	$Ring/CollisionShape2D.disabled = true
-	
-func _on_Ringed_enabled():
-	$Ring.visible = true
-	$Ring/CollisionShape2D.disabled = false
-	
-func _on_Ring_body_entered(body):
-	emit_signal('ring_body_entered', body, self)
-	
+func get_id():
+	return info_player.id

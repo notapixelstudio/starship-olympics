@@ -4,6 +4,8 @@
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/notapixelstudio)
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
+<a href="https://notapixel.itch.io/superstarfighter"><img src="img/mocklogo.png"/></a>
+
 - 1 to 4 players fast-paced arcade combat party game
 - Intuitive and expressive single-button controls: everyone can pick up a controller and play!
 - 20+ games in one (eventually! currently 7 :D)
@@ -11,48 +13,38 @@
 - Made with love, and Free and Open Source Software
 - Also free and open source itself :)
 
+## Follow the development
+
+Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or on [Instagram](https://instagram.com/notapixelstudio) 
+
+[<img src="https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png" alt="Join our Discord Server" title="Join our Discord Server">](https://discord.gg/3k4NzEj) [<img src="https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png" alt="Follow us on Twitter" title="Follow us on Twitter">](https://twitter.com/notapixelstudio) [<img src="https://img.itch.zone/aW1nLzI2ODI2MjkucG5n/original/6qfdLm.png" alt="Follow us Instagram" title="Follow us on Instagram">](https://instagram.com/notapixelstudio)
+
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
-
-<a href="https://notapixel.itch.io/superstarfighter"><img src="godot/logo_grid_icon.ico"/></a>
-
-## Development
-
-**This project is being developed with Godot 3.1.1.** If you're running the project
-from this repository, you should use Godot 3.1.1; development builds of Godot
-won't work.
 
 ## Resources used and acknowledgements
 
-Fonts: [Londrina](https://www.dafont.com/it/londrina.font?l[]=10&l[]=1)
-Frame Texture: [Freepik](https://www.freepik.com/free-photos-vectors/frame)
-Scenes structure and theme: inspired by [PigDev](https://pigdev.itch.io/)
-Character structure: inspired by [GDquest](https://www.youtube.com/channelavalaible/UCxboW7x0jZqFdvMdCFKTMsQ)
-- https://www.1001fonts.com/science-fiction-fonts.html?page=13&items=10
+All the resources hereby cited are free and royalty-free. Made by the community or contributors.
 
-### Sounds
+## Assets
 
-- https://freesound.org/people/aidave/downloaded_sounds/
-- https://v-play.net/game-resources/16-sites-featuring-free-game-sounds
-- https://freesound.org/people/uso_sketch/sounds/443865/
-- https://freesound.org/people/GameAudio/packs/13940/
-- https://freesound.org/people/jalastram/packs/17801/
+(Since this game is in Development the following list might change often)
 
 ### Soundtrack
 
-- Mattek - Paradoxal Activity
+- [Mattek - Paradoxal Activity](https://soundcloud.com/themattek/mattek-paradoxal-activity)
+- Sounds and music from [freesound](https://freesound.org/people/salvob41/downloaded_sounds)
+
+### Sounds
+
+- [Aidave from freesound](https://freesound.org/people/aidave/downloaded_sounds)
+- [List of free sounds](https://v-play.net/game-resources/16-sites-featuring-free-game-sounds)
+- [Uso_sketch](https://freesound.org/people/uso_sketch/sounds/443865)
+- [GameAudio](https://freesound.org/people/GameAudio/packs/13940/)
+- [Jalastram](https://freesound.org/people/jalastram/packs/17801)
 
 ### Images
 
-- dashedcircle: found [here](https://www.flaticon.com/free-icon/dashed-circle_105113)
-- keyboard icons: made by "Nicolae Berbece" (also known as Xelu) - founder of "Those Awesome Guys" - nick@thoseawesomeguys.com
-- planets: [here](https://opengameart.org/content/big-space-gun-free-pixel-art-graphics-for-your-game-0)
-- tiny planets : [here](https://opengameart.org/content/pixel-planets)
-- icon lock : [here](https://icons8.com/icon/set/lock/all)
 - icons got from [icons8](https://icons8.com) website
-- shield from [opengameart](https://opengameart.org/content/shield-effect)
-- icons from the excellent https://game-icons.net project! (Lorc http://lorcblog.blogspot.com/ and Darkzaitzev https://www.deviantart.com/darkzaitzev)
-
-## Github pages development
-In order to develop and test in local go on `docs` folder and type (needs `gem` and `bundler` installed) :
-
-`gem install jekyll bundler`
+- icons from the excellent https://game-icons.net project!
+- [Lorc](http://lorcblog.blogspot.com)
+- [Darkzaitzev](https://www.deviantart.com/darkzaitzev)

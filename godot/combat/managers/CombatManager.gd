@@ -1,5 +1,7 @@
 extends Manager
 
+enum mode {ALL, ONLY_SELF, ONLY_OTHERS, ONLY_CPU, ONLY_PLAYERS}
+
 func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	
@@ -7,9 +9,9 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 		return
 		
 	if entity.has('Deadly'):
-		if entity.has('Owned'):
+		if entity.has('Owned') and entity.get('Owned').get_owned_by() != ship:
 			ship.die(entity.get('Owned').get_owned_by())
-		else:
+		elif not(other is BombCore): # bomb cores do not self kill
 			ship.die(null)
 			
 func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
@@ -18,6 +20,6 @@ func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
 	if not entity:
 		return
 		
-	if entity.has('Trigger'):
+	if entity.has('Trigger') and bomb.entity.get('Owned').get_owned_by() != entity.get_host():
 		bomb.detonate()
 		

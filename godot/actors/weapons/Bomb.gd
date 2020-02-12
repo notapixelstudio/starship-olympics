@@ -3,7 +3,7 @@ extends RigidBody2D
 
 class_name Bomb
 
-const Explosion = preload('res://actors/weapons/Explosion.tscn')
+var Explosion = load('res://actors/weapons/Explosion.tscn')
 
 var entity : Entity
 onready var life_time = $LifeTime
@@ -19,14 +19,12 @@ func initialize(pos : Vector2, impulse, ship):
 	if ship:
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
-		$Sprite.modulate = ship.species_template.color
+		$Sprite.modulate = ship.species.color
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
 		
 func _physics_process(delta):
-	entity.get('Thrusters').apply_damp(self)
-	
 	process_life_time()
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -71,15 +69,17 @@ func _on_NearArea_area_exited(area):
 	
 
 func _on_LifeTime_timeout():
-	if entity.has('Pursuer') and not entity.get('Pursuer').get_target():
-		if not entity.has('StandAlone'):
-			get_parent().call_deferred("remove_child", self)
-			yield(get_tree().create_timer(1), "timeout")
-			call_deferred("queue_free")
+	if not entity.has('StandAlone'):
+		get_parent().call_deferred("remove_child", self)
+		yield(get_tree().create_timer(1), "timeout")
+		call_deferred("queue_free")
 
 
 func process_life_time():
-	if not entity.has('Pursuer') and entity.get('Pursuer').get_target():
+	# pause lifetime if we are pursuing a target
+	if entity.has('Pursuer') and entity.get('Pursuer').get_target() != null:
 		life_time.paused = true
-	else:
-		life_time.paused = false
+		return
+	
+	life_time.paused = false
+	

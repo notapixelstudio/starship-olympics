@@ -13,12 +13,10 @@ onready var point_score = $Scaled/Colored/PointsScored
 func _ready():
 	if target.info_player:
 		player_id.text = tr(target.info_player.id)
-	$Scaled/Colored.modulate = target.species_template.color
-	if target.species_template.id >= 100 and target.info_player.team:
-		$Scaled/Colored/Circle.set_texture(secondary_texture)
-	else:
-		$Scaled/Colored/Circle.set_texture(primary_texture)
-		
+		if target.info_player.cpu:
+			player_id.text = tr("CPU")
+	$Scaled/Colored.modulate = target.species.color
+	
 	update_scale()
 	update_rotation()
 	update_crown()
@@ -33,6 +31,7 @@ func _enter_tree():
 func _process(delta):
 	if target:
 		update_rotation()
+		update_score_ring()
 		
 	if target_entity:
 		update_crown()
@@ -53,14 +52,24 @@ func update_score(score):
 	partial_score += score
 	point_score.set_points(partial_score)
 	
+func update_score_ring():
+	$Scaled/Colored/ScoreRing.fraction = target.info_player.stats.score / target.arena.scores.target_score
 
 func _on_Royal_enabled():
+	$Scaled/RoyalGlow.visible = true
 	return
 	point_score.show()
 
 func _on_Royal_disabled():
+	$Scaled/RoyalGlow.visible = false
 	return
 	point_score.appear()
 	yield(point_score, "end")
 	point_score.hide()
+	
+func _on_Ringed_enabled():
+	$Scaled/Ring.visible = true
+	
+func _on_Ringed_disabled():
+	$Scaled/Ring.visible = false
 	

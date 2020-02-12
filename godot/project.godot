@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Arena",
+"language": "GDScript",
+"path": "res://combat/Arena.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Asteroid",
 "language": "GDScript",
@@ -38,6 +43,11 @@ _global_script_classes=[ {
 "class": "Bomb",
 "language": "GDScript",
 "path": "res://actors/weapons/Bomb.gd"
+}, {
+"base": "Area2D",
+"class": "BombCore",
+"language": "GDScript",
+"path": "res://actors/weapons/BombCore.gd"
 }, {
 "base": "BombSpawner",
 "class": "BombDropper",
@@ -78,11 +88,6 @@ _global_script_classes=[ {
 "class": "Conquerable",
 "language": "GDScript",
 "path": "res://actors/environments/components/Conquerable.gd"
-}, {
-"base": "Resource",
-"class": "Controls",
-"language": "GDScript",
-"path": "res://selection/interface/Command.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Crown",
@@ -169,12 +174,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://special_scenes/option_screen/GenericOption.gd"
 }, {
-"base": "Line2D",
-"class": "GridLine",
-"language": "GDScript",
-"path": "res://actors/environments/GridLine.gd"
-}, {
-"base": "Resource",
+"base": "Node",
 "class": "InfoPlayer",
 "language": "GDScript",
 "path": "res://local_multiplayer/InfoPlayer.gd"
@@ -184,15 +184,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/ECM/Manager.gd"
 }, {
-"base": "MapPoint",
+"base": "Node2D",
+"class": "MapCell",
+"language": "GDScript",
+"path": "res://map/MapCell.gd"
+}, {
+"base": "MapCell",
 "class": "MapPlanet",
 "language": "GDScript",
 "path": "res://map/MapPlanet.gd"
 }, {
-"base": "Node2D",
-"class": "MapPoint",
+"base": "Node",
+"class": "MatchScores",
 "language": "GDScript",
-"path": "res://map/MapPoint.gd"
+"path": "res://combat/MatchScores.gd"
 }, {
 "base": "Manager",
 "class": "ModeManager",
@@ -207,27 +212,32 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PilotStats",
 "language": "GDScript",
-"path": "res://special_scenes/session_screen/PilotStats.gd"
+"path": "res://special_scenes/combat_UI/session_points/PilotStats.gd"
 }, {
 "base": "Resource",
 "class": "Planet",
 "language": "GDScript",
 "path": "res://map/planets/Planet.gd"
 }, {
+"base": "Control",
+"class": "PlayerSelection",
+"language": "GDScript",
+"path": "res://selection/PlayerSelection.gd"
+}, {
 "base": "Node2D",
 "class": "PlayerSpawner",
 "language": "GDScript",
 "path": "res://combat/PlayerSpawner.gd"
 }, {
+"base": "Node",
+"class": "PlayerStats",
+"language": "GDScript",
+"path": "res://combat/PlayerStats.gd"
+}, {
 "base": "Node2D",
 "class": "Portal",
 "language": "GDScript",
 "path": "res://actors/environments/Portal.gd"
-}, {
-"base": "Node2D",
-"class": "RectExtents",
-"language": "GDScript",
-"path": "res://addons/rect_extents_gizmo/utils/RectExtents.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Ring",
@@ -235,29 +245,24 @@ _global_script_classes=[ {
 "path": "res://combat/collectables/Ring.gd"
 }, {
 "base": "Node",
-"class": "Scores",
+"class": "SessionScores",
 "language": "GDScript",
-"path": "res://combat/Scores.gd"
+"path": "res://combat/SessionScore.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Ship",
 "language": "GDScript",
 "path": "res://actors/battlers/Ship.gd"
 }, {
-"base": "Control",
+"base": "Resource",
 "class": "Species",
 "language": "GDScript",
-"path": "res://selection/Species.gd"
+"path": "res://selection/Character.gd"
 }, {
 "base": "Control",
 "class": "SpeciesContainer",
 "language": "GDScript",
 "path": "res://local_multiplayer/Character.gd"
-}, {
-"base": "Resource",
-"class": "SpeciesTemplate",
-"language": "GDScript",
-"path": "res://selection/Character.gd"
 }, {
 "base": "Node2D",
 "class": "Trail",
@@ -275,12 +280,14 @@ _global_script_classes=[ {
 "path": "res://actors/environments/Wall.gd"
 } ]
 _global_script_class_icons={
+"Arena": "",
 "Asteroid": "",
 "AudioLibrary": "",
 "Bar": "",
 "BasicScreen": "",
 "BigDiamond": "",
 "Bomb": "",
+"BombCore": "",
 "BombDropper": "",
 "BombSpawner": "",
 "BombTurret": "",
@@ -289,7 +296,6 @@ _global_script_class_icons={
 "CollectableSpawner": "",
 "Component": "",
 "Conquerable": "",
-"Controls": "",
 "Crown": "",
 "DeadShip": "",
 "Diamond": "",
@@ -307,24 +313,24 @@ _global_script_class_icons={
 "GShape": "",
 "GameMode": "",
 "GenericOption": "",
-"GridLine": "",
 "InfoPlayer": "",
 "Manager": "",
+"MapCell": "",
 "MapPlanet": "",
-"MapPoint": "",
+"MatchScores": "",
 "ModeManager": "",
 "Owned": "",
 "PilotStats": "",
 "Planet": "",
+"PlayerSelection": "",
 "PlayerSpawner": "",
+"PlayerStats": "",
 "Portal": "",
-"RectExtents": "",
 "Ring": "",
-"Scores": "",
+"SessionScores": "",
 "Ship": "",
 "Species": "",
 "SpeciesContainer": "",
-"SpeciesTemplate": "",
 "Trail": "",
 "Trail2D": "",
 "Wall": ""
@@ -332,11 +338,11 @@ _global_script_class_icons={
 
 [Analytics]
 
-game_key="5c6bcb5402204249437fb5a7a80a4959"
-secret_key="16813a12f718bc5c620f56944e1abc3ea13ccbac"
-base_url="http://sandbox-api.gameanalytics.com"
-game_key.debug="5c6bcb5402204249437fb5a7a80a4959"
-game_key.release="5c6bcb5402204249437fb5a7a80a4959"
+game_key="c0e0a7c1863dbfae6c2c3e427f1de72d"
+secret_key="166ed30f12e9cbb2b03eccff8d9cb7294bb44172"
+game_key.debug="c0e0a7c1863dbfae6c2c3e427f1de72d"
+game_key.release="c0e0a7c1863dbfae6c2c3e427f1de72d"
+base_url="http://api.gameanalytics.com"
 
 [application]
 
@@ -353,10 +359,6 @@ analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
 
-[debug]
-
-gdscript/warnings/unused_class_variable=false
-
 [display]
 
 window/size/width=1280
@@ -370,7 +372,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "rect_extents_gizmo" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry" )
 
 [importer_defaults]
 
@@ -751,6 +753,11 @@ fullscreen={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777220,"unicode":0,"echo":false,"script":null)
  ]
 }
+force_reset={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -769,12 +776,12 @@ fullscreen={
 2d_physics/layer_14="deadship"
 2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
-2d_physics/layer_17="graviton_field"
+2d_physics/layer_17="repeal_field"
 2d_physics/layer_20="trails"
 
 [locale]
 
-translations=PoolStringArray( "res://locale/eu.po", "res://locale/it.po", "res://locale/fr.po" )
+translations=PoolStringArray( "res://locale/eu.po", "res://locale/it.po", "res://locale/fr.po", "res://locale/es.po", "res://locale/de.po" )
 
 [logging]
 

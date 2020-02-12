@@ -39,7 +39,7 @@ func initialize(player_id:String):
 	player_infotext.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
 	
-func change_species(new_species:SpeciesTemplate):
+func change_species(new_species:Species):
 	species = new_species
 	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
@@ -82,4 +82,7 @@ func disable():
 	anim.stop()
 	set_process_input(false)
 	set_process(false)
-	
+
+func disable_arrows():
+	$LeftArrow.disable()
+	$RightArrow.disable()
