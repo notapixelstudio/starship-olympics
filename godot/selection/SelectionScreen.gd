@@ -188,7 +188,7 @@ func deselected(species: Species):
 
 
 func _unhandled_input(event):
-	if (event.is_action_pressed("ui_up") or event.is_action_pressed("pause") ) and not global.demo:
+	if event.is_action_pressed("pause") and not global.demo:
 		emit_signal("back")
 		
 var fight_mode = "vs Mode"

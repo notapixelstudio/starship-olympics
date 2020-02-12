@@ -20,6 +20,7 @@ onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
 onready var cpus = $Content/Controls/CPUs
+onready var victories = $Content/Controls/Victories
 
 onready var cursor_tween = $CursorMoveTween
 
@@ -53,6 +54,7 @@ func _ready():
 		cell.connect('pressed', self, '_on_cell_pressed', [cell])
 	
 	max_cpu = global.MAX_PLAYERS - human_players
+	
 	cpus.initialize(int(human_players==1), max_cpu+1)
 
 func initialize(players, sports):

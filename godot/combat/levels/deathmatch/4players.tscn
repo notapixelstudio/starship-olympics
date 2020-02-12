@@ -90,10 +90,10 @@ tracks/1/keys = {
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
-match_duration_override = 130.0
+match_duration_override = 80.0
 
 [node name="DeathmatchModeManager" parent="Managers" index="6"]
 enabled = true

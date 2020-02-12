@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -8,8 +8,8 @@
 [ext_resource path="res://logo.png" type="Texture" id=6]
 [ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=8]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=9]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://special_scenes/FirstAppearance.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
@@ -81,22 +81,27 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "option_selected"
 
-[sub_resource type="InputEventAction" id=4]
-
-[sub_resource type="ShortCut" id=5]
-shortcut = SubResource( 4 )
-
-[sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 10 )
-
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=4]
 size = 32
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
-[sub_resource type="Animation" id=8]
-resource_name = "appear"
+[sub_resource type="InputEventAction" id=5]
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -183,11 +188,11 @@ __meta__ = {
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
 disabled = true
 action_mode = 0
-shortcut = SubResource( 5 )
-text = "CAMPAIGN"
+shortcut = SubResource( 6 )
+text = "START"
 flat = true
 
 [node name="Custom Fight" type="Button" parent="Buttons"]
@@ -195,10 +200,10 @@ margin_top = 37.0
 margin_right = 290.0
 margin_bottom = 107.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 action_mode = 0
-text = "CUSTOM FIGHT"
+text = "CUSTOM GAME"
 flat = true
 
 [node name="Options" type="Button" parent="Buttons"]
@@ -206,7 +211,7 @@ margin_top = 111.0
 margin_right = 290.0
 margin_bottom = 181.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 action_mode = 0
 text = "OPTIONS"
@@ -218,7 +223,7 @@ margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 action_mode = 0
 text = "Help"
@@ -230,7 +235,7 @@ margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 action_mode = 0
 text = "Credits"
@@ -241,7 +246,7 @@ margin_top = 185.0
 margin_right = 290.0
 margin_bottom = 255.0
 rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 action_mode = 0
 text = "QUIT"
@@ -255,7 +260,7 @@ anchor_bottom = 1.0
 margin_top = -25.0
 margin_right = -35.0
 margin_bottom = -4.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "Demo build - 0.6.1"
 align = 2
 uppercase = true
@@ -267,13 +272,13 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = 440.0
 margin_bottom = 480.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "THANK YOU FOR PLAYING"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
-anims/appear = SubResource( 8 )
+anims/appear = SubResource( 9 )
 
 [node name="Disclaimer" parent="." instance=ExtResource( 11 )]
 [connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]

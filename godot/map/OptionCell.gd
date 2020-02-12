@@ -1,7 +1,7 @@
 extends MapCell
 
 export var value_name : String = "win"
-export var selection : Array = [1, 3, 5]
+export var selection : Array = []
 export var global_option : bool = true
 export var node_owner_path : NodePath
 export var single_texture: Texture
@@ -15,7 +15,8 @@ onready var label = $Label
 func _ready():
 	while not node_owner:
 		node_owner = global if global_option else get_node(node_owner_path)
-	initialize()
+	if selection:
+		initialize()
 
 
 func initialize( starting_from: int = 0, options: int = 0):
@@ -28,7 +29,8 @@ func initialize( starting_from: int = 0, options: int = 0):
 		selection = new_selection
 	
 	var value = int(node_owner.get(value_name))
-	index = selection.find(value)
+	index = selection.find(value) if selection.find(value)>=0 else 0
+	node_owner.set(value_name, selection[index])
 	if single_texture:
 		sprite.texture = single_texture
 	else:
