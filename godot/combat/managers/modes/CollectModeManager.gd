@@ -51,9 +51,9 @@ func _on_sth_collected(collector, collectee):
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
 
-var wave_ready = true
+var wave_ready = true 
 func _process(delta):
-	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0):
+	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0.1):
 		_handle_waves()
 		
 func _handle_waves():
