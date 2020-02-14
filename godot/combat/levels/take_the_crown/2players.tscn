@@ -81,6 +81,10 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 5 )
@@ -102,6 +106,10 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 5 )
@@ -121,8 +129,11 @@ bevel_se = 800
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )

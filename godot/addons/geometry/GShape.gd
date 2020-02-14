@@ -32,6 +32,10 @@ func to_PoolVector2Array_offset(vec, scale=1):
 		new_points.append((p + vec)*scale)
 	return PoolVector2Array(new_points)
 	
+func to_closed_PoolVector2Array_offset(vec, scale=1):
+	var array = to_PoolVector2Array_offset(vec, scale)
+	return array + PoolVector2Array([array[0]])
+		
 func _apply_offset(points):
 	var new_points = []
 	for p in points:
