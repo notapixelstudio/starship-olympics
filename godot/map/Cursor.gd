@@ -59,8 +59,8 @@ const controls_map = {
 	"right": "E"
 	}
 
-const FIRST_DELAY = 0.4
-const FOLLOW_DELAY = 0.2
+const FIRST_DELAY = 0.25
+const FOLLOW_DELAY = 0.25
 
 var action_time = 0.0
 var down
