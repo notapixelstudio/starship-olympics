@@ -1,4 +1,3 @@
-tool
 extends Node2D
 
 export var rings : int = 5 setget set_rings
@@ -44,6 +43,7 @@ func _ready():
 		$Rings.add_child(ring)
 		
 	# set color if goal is owned by a player
+	yield(get_tree(), "idle_frame")
 	if goal_owner:
 		species = get_node(goal_owner).species
 		field.modulate = get_node(goal_owner).species.color
