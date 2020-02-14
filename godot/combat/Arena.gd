@@ -29,6 +29,7 @@ onready var deathmatch_mode = $Managers/DeathmatchModeManager
 onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
 onready var race_mode = $Managers/RaceModeManager
+onready var goal_mode = $Managers/GoalModeManager
 
 onready var combat_manager = $Managers/CombatManager
 onready var stun_manager = $Managers/StunManager
@@ -84,6 +85,7 @@ func setup_level(mode : Resource):
 	deathmatch_mode.enabled = mode.death
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
+	goal_mode.enabled = mode.goal
 	
 func _ready():
 	set_process(false)
@@ -133,12 +135,17 @@ func _ready():
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_score', self, "spawn_points_scored")
 	collect_mode.connect('spawn_next', self, "_on_coins_finished")
+	goal_mode.connect('score', scores, "add_score")
+	goal_mode.connect('show_score', self, "spawn_points_scored")
 	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
 		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
-	
+		
+	for goal in get_tree().get_nodes_in_group("goal"):
+		goal.connect('goal_done', goal_mode, "_on_goal_done")
+		
 	var standalone : bool = true
 	var players = {}
 	var array_players = []

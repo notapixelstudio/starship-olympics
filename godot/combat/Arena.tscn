@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -13,32 +13,33 @@
 [ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=11]
 [ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=12]
 [ext_resource path="res://combat/managers/modes/ConquestModeManager.gd" type="Script" id=13]
-[ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=14]
-[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=15]
-[ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=16]
-[ext_resource path="res://combat/Battlefield.gd" type="Script" id=17]
-[ext_resource path="res://actors/environments/GridPack.gd" type="Script" id=18]
-[ext_resource path="res://actors/environments/gravity-well/Grid.gd" type="Script" id=19]
-[ext_resource path="res://actors/environments/gravity-well/Mask.gd" type="Script" id=20]
-[ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=21]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=22]
-[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=23]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=24]
-[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=25]
-[ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=26]
-[ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=27]
-[ext_resource path="res://utils/Camera.gd" type="Script" id=28]
+[ext_resource path="res://combat/managers/modes/GoalModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=15]
+[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=16]
+[ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=17]
+[ext_resource path="res://combat/Battlefield.gd" type="Script" id=18]
+[ext_resource path="res://actors/environments/GridPack.gd" type="Script" id=19]
+[ext_resource path="res://actors/environments/gravity-well/Grid.gd" type="Script" id=20]
+[ext_resource path="res://actors/environments/gravity-well/Mask.gd" type="Script" id=21]
+[ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=22]
+[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=23]
+[ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=24]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=25]
+[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=26]
+[ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=27]
+[ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=28]
+[ext_resource path="res://utils/Camera.gd" type="Script" id=29]
 
 [sub_resource type="DynamicFont" id=1]
 size = 500
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 24 )
+font_data = ExtResource( 25 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 24 )
+font_data = ExtResource( 25 )
 
 [sub_resource type="Animation" id=3]
 length = 0.2
@@ -167,14 +168,20 @@ __meta__ = {
 }
 enabled = false
 
-[node name="ConquestManager" type="Node" parent="Managers"]
+[node name="GoalModeManager" type="Node" parent="Managers"]
 script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="CollectModeManager" type="Node" parent="Managers"]
+[node name="ConquestManager" type="Node" parent="Managers"]
 script = ExtResource( 15 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="CollectModeManager" type="Node" parent="Managers"]
+script = ExtResource( 16 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
@@ -185,7 +192,7 @@ wait_time = 6.0
 autostart = true
 
 [node name="TrailManager" type="Node" parent="Managers"]
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
@@ -194,14 +201,14 @@ __meta__ = {
 layer = -1
 
 [node name="Battlefield" type="Node2D" parent="."]
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="GridPack" type="Node2D" parent="Battlefield/Background"]
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0.705882 )
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 scale_mask_texture = Vector2( 24, 24 )
 
@@ -212,7 +219,7 @@ range_item_cull_mask = 2
 
 [node name="Grid" type="Node2D" parent="Battlefield/Background/GridPack"]
 light_mask = 2
-script = ExtResource( 19 )
+script = ExtResource( 20 )
 
 [node name="MaskViewPort" type="Viewport" parent="Battlefield/Background/GridPack"]
 size = Vector2( 1000, 1000 )
@@ -223,7 +230,7 @@ render_target_v_flip = true
 render_target_update_mode = 3
 
 [node name="Mask" type="Node2D" parent="Battlefield/Background/GridPack/MaskViewPort"]
-script = ExtResource( 20 )
+script = ExtResource( 21 )
 
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
@@ -233,7 +240,7 @@ script = ExtResource( 20 )
 
 [node name="Overlay" type="Node2D" parent="Battlefield"]
 
-[node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 21 )]
+[node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 22 )]
 
 [node name="SpawnPositions" type="Node" parent="."]
 
@@ -246,10 +253,10 @@ script = ExtResource( 20 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 22 )]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 23 )]
 pause_mode = 2
 
-[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 23 )]
+[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 24 )]
 visible = false
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
@@ -264,7 +271,7 @@ valign = 1
 uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
-stream = ExtResource( 25 )
+stream = ExtResource( 26 )
 
 [node name="DemoLabel" type="Label" parent="CanvasLayer"]
 pause_mode = 2
@@ -281,15 +288,15 @@ uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DemoLabel"]
 autoplay = "Blink"
-anims/Blink = ExtResource( 26 )
+anims/Blink = ExtResource( 27 )
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 27 )]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 28 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-script = ExtResource( 28 )
+script = ExtResource( 29 )
 zoomMin = 2.5
 debug_mode = false
 enabled = true

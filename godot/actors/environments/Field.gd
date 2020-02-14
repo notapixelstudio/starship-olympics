@@ -35,6 +35,8 @@ func refresh():
 	$Area2D/CollisionShape2D.set_shape(gshape.to_Shape2D())
 	$CrownCollider/CollisionShape2D.set_shape(gshape.to_Shape2D())
 	
+	var shape2d = gshape.to_Shape2D()
+	
 	($Entity/Fluid as Component).set_enabled(type == TYPE.water)
 	($Entity/Trigger as Component).set_enabled(type == TYPE.trigger or type == TYPE.hostile)
 	($Entity/Deadly as Component).set_enabled(type == TYPE.hostile)
@@ -66,8 +68,8 @@ func refresh():
 		$Polygon2D.color = Color(1,1,0,0.3)
 		$Line2D.default_color = Color(1,1,0,1)
 	elif type == TYPE.castle:
-		$Polygon2D.color = Color(0.5,0,0.5,0.3)
-		$Line2D.default_color = Color(0.5,0,0.5,1)
+		$Polygon2D.color = Color(1,1,1,0.3)
+		$Line2D.default_color = Color(1,1,1,1)
 	elif type == TYPE.hill:
 		$Polygon2D.color = Color(1,0.5,0,0.3)
 		$Line2D.default_color = Color(1,0.5,0,1)
