@@ -35,7 +35,7 @@ func set_species(value):
 	
 func _ready():
 	enable()
-	ship.texture = (species as Species).ship
+	ship.texture = species.ship
 	label.text = "P" + str(player_i+1)
 	placemark.modulate = (species as Species).color
 	ship.rotation = -rotation - PI/2
@@ -52,12 +52,22 @@ func set_unresponsive():
 	set_process(false)
 	set_process_input(false)
 
-func _process(delta):
-	var down = Input.is_action_just_pressed(player.controls+"_down")
-	var up = Input.is_action_just_pressed(player.controls+"_up")
-	var left = Input.is_action_just_pressed(player.controls+"_left")
-	var right = Input.is_action_just_pressed(player.controls+"_right")
-	var accept = Input.is_action_just_pressed(player.controls+"_accept")
+const controls_map = {
+	"_down": "S",
+	"_up": "N",
+	"_left": "W",
+	"_right": "E"
+	}
+func still_pressed(action):
+	while (Input.is_action_pressed(player.controls + action)):
+		emit_signal("try_move", self, controls_map[action])
+		yield(get_tree().create_timer(0.2), "timeout")
+func _input(event):
+	var down = event.is_action_pressed(player.controls+"_down")
+	var up = event.is_action_pressed(player.controls+"_up")
+	var left = event.is_action_pressed(player.controls+"_left")
+	var right = event.is_action_pressed(player.controls+"_right")
+	var accept = event.is_action_pressed(player.controls+"_accept")
 	
 	if not enabled and (down or up or left or right or accept):
 		emit_signal("cancel", self)
@@ -65,15 +75,22 @@ func _process(delta):
 		
 	if down:
 		emit_signal('try_move', self, 'S')
+		yield(get_tree().create_timer(0.4), "timeout")
+		still_pressed("_down")
 	elif up:
 		emit_signal('try_move', self, 'N')
+		yield(get_tree().create_timer(0.4), "timeout")
+		still_pressed("_up")
 	elif left:
 		emit_signal('try_move', self, 'W')
+		yield(get_tree().create_timer(0.4), "timeout")
+		still_pressed("_left")
 	elif right:
 		emit_signal('try_move', self, 'E')
+		yield(get_tree().create_timer(0.4), "timeout")
+		still_pressed("_right")
 	elif accept:
 		emit_signal('select', self)
-		
 func enable():
 	enabled = true
 	visible = true

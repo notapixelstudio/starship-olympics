@@ -49,7 +49,7 @@ func set_controls(new_controls:String):
 	speciesSelection.controls = controls
 	speciesSelection.initialize("P"+str(uid))
 	
-var info : InfoPlayer
+var info # : InfoPlayer
 func _ready():
 	info = InfoPlayer.new()
 	info.id = name.to_lower()
@@ -61,21 +61,34 @@ func _ready():
 	id = name.to_lower()
 	speciesSelection.initialize("P"+str(uid))
 
-func change_species(new_species: Species):
+func change_species(new_species):
 	# get the resource from the global
 	if new_species:
 		species = new_species
 		speciesSelection.change_species(species)
 
-func _process(delta):
-	if Input.is_action_just_pressed(controls+"_right") and not global.demo:
-		_on_Next_pressed()
-	if Input.is_action_just_pressed(controls+"_left") and not global.demo:
-		_on_Previous_pressed()
+
+var can_left = false
+var can_right = false
+func still_pressed(action):
+	while (Input.is_action_pressed(action)):
+		if action == controls+"_right":
+			_on_Next_pressed()
+		elif action == controls+"_left":
+			_on_Previous_pressed()
+		yield(get_tree().create_timer(0.1), "timeout")
 		
 func _input(event):
 	if disabled:
 		return
+	if event.is_action_pressed(controls +"_right") and not global.demo:
+		_on_Next_pressed()
+		yield(get_tree().create_timer(0.4), "timeout")
+		still_pressed(controls +"_right")
+	if event.is_action_pressed(controls+"_left") and not global.demo:
+		_on_Previous_pressed()
+		yield(get_tree().create_timer(0.4), "timeout")
+		still_pressed(controls +"_left")
 	if selected :
 		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")
