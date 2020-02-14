@@ -67,35 +67,36 @@ func change_species(new_species):
 		species = new_species
 		speciesSelection.change_species(species)
 
+const FIRST_DELAY = 0.4
+const FOLLOW_DELAY = 0.2
 
-var can_left = false
-var can_right = false
-func still_pressed(action):
-	while (Input.is_action_pressed(action)):
-		if action == controls+"_right":
-			_on_Next_pressed()
-		elif action == controls+"_left":
-			_on_Previous_pressed()
-		yield(get_tree().create_timer(0.1), "timeout")
+var action_time = 0.0
+func _process(delta):
+	if action_time >= 0.0:
+		action_time -= delta
+	if Input.is_action_just_pressed(controls+"_right") and not global.demo:
+		_on_Next_pressed()
+		action_time = FIRST_DELAY
+	if Input.is_action_just_pressed(controls+"_left") and not global.demo:
+		_on_Previous_pressed()
+		action_time = FIRST_DELAY
+		
+	if Input.is_action_pressed(controls+"_right") and not global.demo and action_time <= 0.0:
+		_on_Next_pressed()
+		action_time = FOLLOW_DELAY
+	elif Input.is_action_pressed(controls+"_left") and not global.demo and action_time <= 0.0:
+		_on_Previous_pressed()
+		action_time = FOLLOW_DELAY
 		
 func _input(event):
 	if disabled:
 		return
-	if event.is_action_pressed(controls +"_right") and not global.demo:
-		_on_Next_pressed()
-		yield(get_tree().create_timer(0.4), "timeout")
-		still_pressed(controls +"_right")
-	if event.is_action_pressed(controls+"_left") and not global.demo:
-		_on_Previous_pressed()
-		yield(get_tree().create_timer(0.4), "timeout")
-		still_pressed(controls +"_left")
 	if selected :
 		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")
 		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 			deselect()
 	elif joined:
-		
 		if event.is_action_pressed(controls+"_accept") and not selected:
 			select_character()
 
