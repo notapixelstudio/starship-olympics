@@ -48,40 +48,42 @@ precision = 100.0
 [node name="PentaGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -900, 0 )
 rotation = 3.14159
-ring_width = 70.0
+rings = 4
+ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
 position = Vector2( -650, -800 )
 rotation = 3.14159
-rings = 4
-ring_width = 70.0
+rings = 3
+ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
 position = Vector2( -650, 800 )
 rotation = 3.14159
-rings = 4
-ring_width = 70.0
+rings = 3
+ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
-[node name="PentaGoal2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
-position = Vector2( 900, 5.95105 )
-ring_width = 70.0
-core_radius = 150.0
+[node name="PentaGoal6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
+position = Vector2( 650, 800 )
+rings = 3
+ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
 position = Vector2( 650, -804.894 )
-rings = 4
-ring_width = 70.0
+rings = 3
+ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
-[node name="PentaGoal6" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
-position = Vector2( 650, 800 )
+[node name="PentaGoal2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+position = Vector2( 900, 5.95105 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
+core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
