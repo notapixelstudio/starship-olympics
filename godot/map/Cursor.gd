@@ -53,44 +53,55 @@ func set_unresponsive():
 	set_process_input(false)
 
 const controls_map = {
-	"_down": "S",
-	"_up": "N",
-	"_left": "W",
-	"_right": "E"
+	"down": "S",
+	"up": "N",
+	"left": "W",
+	"right": "E"
 	}
-func still_pressed(action):
-	while (Input.is_action_pressed(player.controls + action)):
-		emit_signal("try_move", self, controls_map[action])
-		yield(get_tree().create_timer(0.2), "timeout")
-func _input(event):
-	var down = event.is_action_pressed(player.controls+"_down")
-	var up = event.is_action_pressed(player.controls+"_up")
-	var left = event.is_action_pressed(player.controls+"_left")
-	var right = event.is_action_pressed(player.controls+"_right")
-	var accept = event.is_action_pressed(player.controls+"_accept")
+
+const FIRST_DELAY = 0.4
+const FOLLOW_DELAY = 0.2
+
+var action_time = 0.0
+var down
+var up
+var left
+var right
+var accept
+
+func _process(delta):
+	if action_time >= 0.0:
+		action_time -= delta
+		
+	down = Input.is_action_just_pressed(player.controls+"_down")
+	up = Input.is_action_just_pressed(player.controls+"_up")
+	left = Input.is_action_just_pressed(player.controls+"_left")
+	right = Input.is_action_just_pressed(player.controls+"_right")
+	accept = Input.is_action_just_pressed(player.controls+"_accept")
 	
 	if not enabled and (down or up or left or right or accept):
 		emit_signal("cancel", self)
 		return
 		
-	if down:
-		emit_signal('try_move', self, 'S')
-		yield(get_tree().create_timer(0.4), "timeout")
-		still_pressed("_down")
-	elif up:
-		emit_signal('try_move', self, 'N')
-		yield(get_tree().create_timer(0.4), "timeout")
-		still_pressed("_up")
-	elif left:
-		emit_signal('try_move', self, 'W')
-		yield(get_tree().create_timer(0.4), "timeout")
-		still_pressed("_left")
-	elif right:
-		emit_signal('try_move', self, 'E')
-		yield(get_tree().create_timer(0.4), "timeout")
-		still_pressed("_right")
-	elif accept:
+	for key in controls_map:
+		if get(key):
+			emit_signal('try_move', self, controls_map[key])
+			action_time = FIRST_DELAY
+	
+	if accept:
 		emit_signal('select', self)
+	
+	down = Input.is_action_pressed(player.controls+"_down") and action_time <= 0.0
+	up = Input.is_action_pressed(player.controls+"_up") and action_time <= 0.0
+	left = Input.is_action_pressed(player.controls+"_left") and action_time <= 0.0
+	right = Input.is_action_pressed(player.controls+"_right") and action_time <= 0.0
+	accept = Input.is_action_pressed(player.controls+"_accept") and action_time <= 0.0
+	
+	for key in controls_map:
+		if get(key):
+			emit_signal('try_move', self, controls_map[key])
+			action_time = FOLLOW_DELAY
+	
 func enable():
 	enabled = true
 	visible = true
