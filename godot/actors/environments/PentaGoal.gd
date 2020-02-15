@@ -47,9 +47,11 @@ func _ready():
 		
 signal goal_done
 func _on_Field_entered(field, body):
-	if body is Ship and ECM.E(body).has('Royal') and body.species != species:
+	if body is Ship and ECM.E(body).has('Royal') and body.species == species:
 		# decrease size
 		current_ring -= 1
+		$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
+		
 		if current_ring >= 0:
 			gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
 		
@@ -65,4 +67,6 @@ func _on_Field_entered(field, body):
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
 		$AudioStreamPlayer2D.play()
+		yield($AudioStreamPlayer2D, "finished")
+		$AudioStreamPlayer2D.pitch_scale = 1
 		

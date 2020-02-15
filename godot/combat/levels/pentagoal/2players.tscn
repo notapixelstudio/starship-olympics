@@ -24,7 +24,7 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_color = Color( 0.333333, 0.952941, 1, 0.490196 )
 
 [node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
@@ -89,13 +89,13 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( 800, 10 )
+position = Vector2( 900, 10 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( -800, 0 )
+position = Vector2( -900, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 11 )
