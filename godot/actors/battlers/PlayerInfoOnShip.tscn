@@ -1,22 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/interface/circle_indicator.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/interface/square_indicator.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/battlers/ScoreRing.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sprites/environments/crown_plain.png" type="Texture" id=7]
-[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/environments/crown_plain.png" type="Texture" id=5]
+[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
-font_data = ExtResource( 4 )
+font_data = ExtResource( 2 )
 
 [node name="PlayerInfo" type="Position2D"]
 script = ExtResource( 1 )
-primary_texture = ExtResource( 2 )
-secondary_texture = ExtResource( 3 )
 
 [node name="Scaled" type="Node2D" parent="."]
 scale = Vector2( 0.8, 0.8 )
@@ -34,23 +30,19 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="PointsScored" parent="Scaled/Colored" instance=ExtResource( 5 )]
+[node name="PointsScored" parent="Scaled/Colored" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 0, -47.5 )
 still = true
 
-[node name="ScoreRing" parent="Scaled/Colored" instance=ExtResource( 6 )]
-modulate = Color( 1, 1, 1, 0.337255 )
-radius = 80
-fill_thickness = 10
-empty_thickness = 2
+[node name="Indicator" parent="Scaled/Colored" instance=ExtResource( 4 )]
 
 [node name="Crown" type="Sprite" parent="Scaled"]
 position = Vector2( 0, -22 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 7 )
+texture = ExtResource( 5 )
 offset = Vector2( 0, -150 )
 
-[node name="RoyalGlow" parent="Scaled" instance=ExtResource( 8 )]
+[node name="RoyalGlow" parent="Scaled" instance=ExtResource( 6 )]
 visible = false
 scale = Vector2( 0.55, 0.55 )
