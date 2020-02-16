@@ -7,12 +7,18 @@ export(TYPE) var type = TYPE.water setget set_type
 
 export var flag_offset : int = 0 setget set_flag_offset
 
+export var owner_ship : NodePath setget set_owner_ship
+
 func set_type(value):
 	type = value
 	refresh()
 	
 func set_flag_offset(value):
 	flag_offset = value
+	refresh()
+	
+func set_owner_ship(value):
+	owner_ship = value
 	refresh()
 	
 func _ready():
@@ -52,6 +58,7 @@ func refresh():
 	$Polygon2D.visible = type != TYPE.ghost
 	# $Line2D.visible = type != TYPE.water
 	material = null
+	modulate = Color(1,1,1,1)
 	if type == TYPE.water:
 		#$Polygon2D.color = Color(0,0.2,0.8,0.5)
 		$Polygon2D.color = Color(1,1,1,1)
@@ -77,9 +84,10 @@ func refresh():
 	elif type == TYPE.basket:
 		#assert ($Entity as Entity).has('Owned')
 		
-		var species = ($Entity as Entity).get('Owned').get_owned_by()
-		$Polygon2D.color = species.color.darkened(10)
-		$Line2D.default_color = species.color
+		var species = get_node(owner_ship).species
+		$Polygon2D.color = Color(1,1,1,0.3)
+		$Line2D.default_color = Color(1,1,1,1)
+		modulate = species.color
 	elif type == TYPE.ghost:
 		$Line2D.default_color = Color(0.2,0.7,1,0.2)
 	
