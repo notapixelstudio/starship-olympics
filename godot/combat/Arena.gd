@@ -275,6 +275,8 @@ func _ready():
 		
 	update_time_scale()
 	set_process(true)
+	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
+		anim.play("Rotate")
 
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
