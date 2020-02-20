@@ -34,13 +34,15 @@ func initialize(winners: Array, match_scores):
 			pilot_stats.just_won = true
 		pilot_stats.info = stats
 		i+=1
+
+		var json_stats = stats.to_stats()
+		for key in json_stats:
+			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": stats.id}), "value": json_stats[key]}) 
 		
-	
 	animator.play("entrance")
 	yield(animator, "animation_finished")
 	
-	i = 0
-	
+
 	"""
 	var players = container.get_children()
 	players.sort_custom(self, "sort_by_score")
