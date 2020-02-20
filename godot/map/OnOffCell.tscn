@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map/OnOffOption.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/weapons/bomb_frame_4.png" type="Texture" id=2]
 [ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=3]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=5]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=4]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
@@ -15,14 +16,18 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "true",
+"name": "blank",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "blank",
+"name": "true",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 6 )
 
 [node name="Bombs" type="Node2D" groups=[
 "map_point",
@@ -35,10 +40,22 @@ global_option = false
 node_owner_path = NodePath("../../..")
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -30 )
 texture = ExtResource( 2 )
 
 [node name="CheckBox" type="AnimatedSprite" parent="."]
 position = Vector2( 84, -84 )
-frames = SubResource( 3 )
+frames = SubResource( 1 )
 animation = "true"
 playing = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = -90.0
+margin_top = 25.0
+margin_right = 86.0
+margin_bottom = 78.0
+custom_fonts/font = SubResource( 2 )
+text = "{_} VICTORIES"
+align = 1
+valign = 1
+uppercase = true

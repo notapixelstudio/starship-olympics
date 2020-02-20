@@ -10,12 +10,9 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=9]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
-
-[node name="DeathmatchModeManager" parent="." index="6"]
-enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
@@ -39,9 +36,14 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
 width = 2400
 height = 2400
 bevel = 800
+bevel_nw = 800
+bevel_ne = 800
+bevel_sw = 800
+bevel_se = 800
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -1000, -400 )
@@ -55,7 +57,7 @@ rotation = 2.35619
 controls = "joy2"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="17"]
+[node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

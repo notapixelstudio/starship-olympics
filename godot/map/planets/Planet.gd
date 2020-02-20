@@ -19,7 +19,6 @@ var played_levels_3players : Array = []
 var played_levels_4players : Array = []
 
 export var planet_sprite : StreamTexture
-export var planet_active_sprite : StreamTexture
 
 export var game_mode : Resource # GameMode
 export var this_game_mode : Resource # GameMode

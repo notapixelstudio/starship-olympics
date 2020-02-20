@@ -88,9 +88,12 @@ func setup_level(mode : Resource):
 	goal_mode.enabled = mode.goal
 	
 	#FIX
-	if mode.name in session.settings and not global.campaign_mode:
+	if session and mode.name in session.settings and not global.campaign_mode:
 		for key in session.settings[mode.name]:
-			mode.set(key, session.settings[mode.name][key])
+			var val = session.settings[mode.name][key]
+			mode.set(key, val)
+			# send stats for settings
+			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": "key", "sport": mode.name}), "value": int(val)})
 	
 func _ready():
 	set_process(false)

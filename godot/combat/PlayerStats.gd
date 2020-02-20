@@ -20,3 +20,13 @@ var session_score = 0
 func _set_species(value):
 	species = value
 	species_name = species.species_name
+
+
+func to_stats():
+	return {
+		kills=kills,
+		deaths=deaths,
+		bombs=bombs,
+		score=score,
+		selfkills=selfkills
+	}

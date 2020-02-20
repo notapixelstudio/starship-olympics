@@ -1,14 +1,13 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/modes/Pentagoal.tres" type="Resource" id=1]
 [ext_resource path="res://combat/levels/pentagoal/2players.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/levels/pentagoal/3players.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/map/cards/active_diamondsnatch.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/cards/diamondsnatch.png" type="Texture" id=5]
-[ext_resource path="res://map/planets/Planet.gd" type="Script" id=6]
+[ext_resource path="res://assets/map/cards/diamondsnatch.png" type="Texture" id=4]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=5]
 
 [resource]
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 name = "SoloCollect"
 tagline1 = "Solo"
 tagline2 = "Collect"
@@ -16,6 +15,5 @@ levels_1players = [ ExtResource( 2 ) ]
 levels_2players = [ ExtResource( 2 ) ]
 levels_3players = [ ExtResource( 3 ) ]
 levels_4players = [ ExtResource( 3 ) ]
-planet_sprite = ExtResource( 5 )
-planet_active_sprite = ExtResource( 4 )
+planet_sprite = ExtResource( 4 )
 game_mode = ExtResource( 1 )
