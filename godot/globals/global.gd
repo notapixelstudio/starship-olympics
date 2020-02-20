@@ -49,10 +49,19 @@ var first_time = true
 func set_version(value):
 	print("Version is and will be {v}".format({"v": version}))
 
+
 # OPTIONS need a min and a MAX
 const min_win = 1
 var win = 3
 const max_win = 5
+
+var campaign_win = win
+
+var custom_win = win setget set_custom_win
+
+func set_custom_win(value):
+	custom_win = value
+	win = custom_win
 
 # levels
 var level
@@ -168,7 +177,14 @@ var colors = {
 }
 
 var scores
-var campaign_mode : bool = false
+var campaign_mode : bool = false setget set_campaign_mode
+
+func set_campaign_mode(value):
+	campaign_mode = value
+	if campaign_mode:
+		win = campaign_win
+	else:
+		win = custom_win
 	
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
 var from_scene = ProjectSettings.get_setting("application/run/main_scene")
@@ -251,7 +267,7 @@ func get_state():
 	get_state will return everything we need to be persistent in the game
 	"""
 	var save_dict = {
-		win=win,
+		custom_win=custom_win,
 		unlocked_species=unlocked_species,
 		enable_analytics=enable_analytics,
 		language=language,

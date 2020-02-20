@@ -10,6 +10,7 @@ var matches : Array # of MatchScores
 
 var settings : Dictionary
 var selected_sports : Array # of Planet
+var wins = 3
 
 
 func set_players(array_players):

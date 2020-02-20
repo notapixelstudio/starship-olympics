@@ -88,7 +88,7 @@ func setup_level(mode : Resource):
 	goal_mode.enabled = mode.goal
 	
 	#FIX
-	if mode.name in session.settings:
+	if mode.name in session.settings and not global.campaign_mode:
 		for key in session.settings[mode.name]:
 			mode.set(key, session.settings[mode.name][key])
 	
