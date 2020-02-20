@@ -11,10 +11,10 @@ export var grid_position : Vector2 setget set_grid_position
 
 var player 
 onready var move_tween = $MoveTween
-onready var animation_player = $Graphics/AnimationPlayer
-onready var ship = $Graphics/Ship
-onready var placemark = $Graphics/Placemark
-onready var label = $Graphics/LabelContainer/Label
+onready var animation_player = $Wrapper/Graphics/AnimationPlayer
+onready var ship = $Wrapper/Graphics/Ship
+onready var placemark = $Wrapper/Graphics/Placemark
+onready var label = $Wrapper/Graphics/LabelContainer/Label
 
 var wait = 0
 
@@ -39,7 +39,7 @@ func _ready():
 	label.text = "P" + str(player_i+1)
 	placemark.modulate = (species as Species).color
 	ship.rotation = -rotation - PI/2
-	$Graphics/LabelContainer.rotation = -rotation
+	$Wrapper/Graphics/LabelContainer.rotation = -rotation
 	
 	yield(get_tree().create_timer(wait), "timeout")
 	animation_player.play('Float')

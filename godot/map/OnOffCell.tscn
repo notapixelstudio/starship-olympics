@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://map/OnOffOption.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/weapons/bomb_frame_4.png" type="Texture" id=2]
+[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=3]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=4]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "empty",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "true",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "blank",
+"speed": 5.0
+} ]
+
+[node name="Bombs" type="Node2D" groups=[
+"map_point",
+]]
+position = Vector2( 200, -600 )
+script = ExtResource( 1 )
+active = true
+value_name = "hive_bombs"
+global_option = false
+node_owner_path = NodePath("../../..")
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CheckBox" type="AnimatedSprite" parent="."]
+position = Vector2( 84, -84 )
+frames = SubResource( 3 )
+animation = "true"
+playing = true

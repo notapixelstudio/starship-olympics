@@ -13,6 +13,7 @@ var all_planets = [
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
 	preload("res://map/planets/SoloDeath.tres"),
+	preload("res://map/planets/Pentagoal.tres"),
 	# preload("res://map/planets/EelectronPlanet.tres"),
 	# preload("res://map/planets/MinefieldDeathmatch.tres")
 	]
@@ -94,7 +95,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
-	var num_CPUs = 1
+	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
 		var map = map_scene.instance()
 		map.initialize(players, all_planets)
@@ -104,6 +105,7 @@ func combat(selected_players: Array, fight_mode : String):
 		yield(get_tree(), "idle_frame")
 		all_planets = map.selected_sports
 		num_CPUs = map.cpu
+		session_scores.settings = map.settings
 		if map.back:
 			map.queue_free()
 			add_child(parallax)
@@ -117,6 +119,7 @@ func combat(selected_players: Array, fight_mode : String):
 	add_cpu(num_CPUs)
 		
 	session_scores.selected_sports = all_planets
+	
 	
 	all_planets.shuffle() # shuffle the planets at start
 	# for planet in all_planets:

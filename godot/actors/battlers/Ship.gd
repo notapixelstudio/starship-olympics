@@ -274,3 +274,9 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 
 func get_id():
 	return info_player.id
+
+func recheck_colliding():
+	for body in $NearArea.get_overlapping_bodies():
+		_on_NearArea_body_entered(body)
+	for area in $NearArea.get_overlapping_areas():
+		_on_NearArea_area_entered(area)

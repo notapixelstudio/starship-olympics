@@ -16,6 +16,9 @@ var num_players : int
 var human_players : int = 0
 var cpu : int = 0
 var max_cpu
+
+var hive_bombs = true setget set_hive_bombs
+var diamondsnatch_bombs = true setget set_diamondsnatch_bombs
 onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
@@ -24,6 +27,16 @@ onready var victories = $Content/Controls/Victories
 
 onready var cursor_tween = $CursorMoveTween
 
+var settings = {}
+
+func set_hive_bombs(value: bool):
+	hive_bombs = value
+	settings["hive"] = {"shoot_bombs" : hive_bombs}
+
+func set_diamondsnatch_bombs(value: bool):
+	diamondsnatch_bombs = value
+	settings["diamondsnatch"] = {"shoot_bombs" : diamondsnatch_bombs}
+	
 func _ready():
 	back = false
 	

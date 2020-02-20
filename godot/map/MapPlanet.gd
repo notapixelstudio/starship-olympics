@@ -37,4 +37,8 @@ func _ready():
 func refresh():
 	if is_inside_tree():
 		sprite.texture = planet.planet_active_sprite if active else planet.planet_sprite
-		
+		if active:
+			$CheckBox.play('true')
+		else:
+			$CheckBox.play('empty')
+			
