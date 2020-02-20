@@ -40,34 +40,37 @@ grid_position = Vector2( 0, 0 )
 
 [node name="MoveTween" type="Tween" parent="."]
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Wrapper" type="Node2D" parent="."]
+position = Vector2( 0, -40 )
+
+[node name="Graphics" type="Node2D" parent="Wrapper"]
 position = Vector2( 0, -18 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/Graphics"]
 anims/Float = SubResource( 1 )
 
-[node name="Placemark" type="Sprite" parent="Graphics"]
+[node name="Placemark" type="Sprite" parent="Wrapper/Graphics"]
 position = Vector2( 0, -60 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Ship" type="Sprite" parent="Graphics"]
+[node name="Ship" type="Sprite" parent="Wrapper/Graphics"]
 position = Vector2( 0, -85 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
-[node name="LabelContainer" type="Node2D" parent="Graphics"]
+[node name="LabelContainer" type="Node2D" parent="Wrapper/Graphics"]
 editor/display_folded = true
 position = Vector2( 0, -166 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Label" type="Label" parent="Graphics/LabelContainer"]
+[node name="Label" type="Label" parent="Wrapper/Graphics/LabelContainer"]
 margin_left = -88.0
 margin_top = -29.0
 margin_right = 89.0

@@ -1,22 +1,43 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/interface/circle_indicator.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/interface/square_indicator.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/battlers/ScoreRing.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sprites/environments/crown_plain.png" type="Texture" id=7]
-[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/environments/crown_plain.png" type="Texture" id=6]
+[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=2]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 2.4 ), Vector2( 1.8, 1.8 ) ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [node name="PlayerInfo" type="Position2D"]
 script = ExtResource( 1 )
-primary_texture = ExtResource( 2 )
-secondary_texture = ExtResource( 3 )
+
+[node name="Ball" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ball"]
+playback_speed = 4.0
+anims/appear = SubResource( 2 )
 
 [node name="Scaled" type="Node2D" parent="."]
 scale = Vector2( 0.8, 0.8 )
@@ -34,23 +55,20 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="PointsScored" parent="Scaled/Colored" instance=ExtResource( 5 )]
+[node name="PointsScored" parent="Scaled/Colored" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 0, -47.5 )
 still = true
 
-[node name="ScoreRing" parent="Scaled/Colored" instance=ExtResource( 6 )]
-modulate = Color( 1, 1, 1, 0.337255 )
-radius = 80
-fill_thickness = 10
-empty_thickness = 2
+[node name="Indicator" parent="Scaled/Colored" instance=ExtResource( 5 )]
 
 [node name="Crown" type="Sprite" parent="Scaled"]
-position = Vector2( 0, -22 )
+visible = false
+position = Vector2( 0, -38.25 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, -150 )
 
-[node name="RoyalGlow" parent="Scaled" instance=ExtResource( 8 )]
+[node name="RoyalGlow" parent="Scaled" instance=ExtResource( 7 )]
 visible = false
 scale = Vector2( 0.55, 0.55 )

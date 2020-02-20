@@ -60,6 +60,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+center_offset = Vector2( 0, 0 )
+radius = 100.0
 sides = 5.0
 
 [node name="Rings" type="Node2D" parent="."]
@@ -69,7 +71,6 @@ visible = false
 points = PoolVector2Array( 100, 0, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, 0 )
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
-texture_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.2

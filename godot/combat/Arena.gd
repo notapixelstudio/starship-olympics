@@ -87,11 +87,17 @@ func setup_level(mode : Resource):
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
 	
+	#FIX
+	if mode.name in session.settings:
+		for key in session.settings[mode.name]:
+			mode.set(key, session.settings[mode.name][key])
+	
 func _ready():
 	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
-
+	
+	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
 
@@ -275,6 +281,8 @@ func _ready():
 		
 	update_time_scale()
 	set_process(true)
+	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
+		anim.play("Rotate")
 
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
@@ -496,6 +504,9 @@ func _on_sth_dropped(dropper, droppee):
 	# wait a bit, then make the item collectable again
 	yield(get_tree().create_timer(0.2), "timeout")
 	ECM.E(droppee).get('Collectable').enable()
+	# retrigger bodies already entered
+	yield(get_tree().create_timer(0.5), "timeout")
+	dropper.recheck_colliding()
 	
 #func _on_coins_dropped(dropper, amount):
 #	for i in range(amount):
