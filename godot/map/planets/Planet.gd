@@ -22,7 +22,7 @@ export var planet_sprite : StreamTexture
 export var planet_active_sprite : StreamTexture
 
 export var game_mode : Resource # GameMode
-export var secondary_game_mode : Resource # GameMode
+export var this_game_mode : Resource # GameMode
 export var mutator : Resource # GameMode
 
 func shuffle_levels(num_players : int) -> void:
@@ -42,6 +42,8 @@ func fetch_level(num_players : int) -> PackedScene:
 	var current_level = levels[len(played_levels)].instance()
 	played_levels.append(current_level)
 	current_level.planet_name = name
+	print("shoot bombs is ", game_mode.shoot_bombs, ". And for current level : ", current_level.game_mode.shoot_bombs)
+	current_level.game_mode = game_mode.duplicate()
 	
 	if len(played_levels) >= len(levels):
 		set("played_levels_" + str(num_players) + "players", [])

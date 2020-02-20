@@ -22,8 +22,10 @@ export var flowsnake : bool = false
 export var goal : bool = false
 
 # gear 
-export var shoot_bombs : bool = true
+export var shoot_bombs : bool = true setget set_bombs
 export var deadly_trails : bool = false
 
+func set_bombs(value):
+	shoot_bombs = value
 
 
