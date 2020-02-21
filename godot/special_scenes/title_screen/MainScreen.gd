@@ -48,7 +48,7 @@ func _on_Options_back():
 
 func _on_TitleScreen_start_multiplayer():
 	global.campaign_mode = false
-	global.send_stats("design", {"event_id":"selection:campaign_mode", "value": int(false)})
+	global.send_stats("design", {"event_id":"selection:mode:campaign_mode", "value": int(false)})
 	switch()
 	yield(self, "finished")
 	get_tree().change_scene_to(multiplayer_scene)
@@ -68,7 +68,7 @@ func enable_buttons():
 	
 func _on_CampaignMode_pressed():
 	global.campaign_mode = true
-	global.send_stats("design", {"event_id":"selection:campaign_mode", "value": int(true)})
+	global.send_stats("design", {"event_id":"selection:mode:campaign_mode", "value": int(true)})
 	switch()
 	yield(self, "finished")
 	get_tree().change_scene_to(multiplayer_scene)
