@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/environments/NoCrownZone.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=3]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/environments/no_crown.png" type="Texture" id=5]
-[ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/sprites/environments/rhombus.png" type="Texture" id=6]
+[ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Feedback"
@@ -71,12 +72,15 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+center_offset = Vector2( 0, 0 )
 radius = 400
 sides = 4.0
 
 [node name="FeedbackLine" type="Line2D" parent="."]
 visible = false
-width = 20.0
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1.4, 1.4 )
+width = 0.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1
 
@@ -88,5 +92,35 @@ anims/Feedback = SubResource( 1 )
 modulate = Color( 0.501961, 0, 0.501961, 1 )
 texture = ExtResource( 5 )
 
+[node name="rhombus" type="Sprite" parent="."]
+modulate = Color( 0.501961, 0, 0.501961, 1 )
+position = Vector2( 0, 350 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="rhombus2" type="Sprite" parent="."]
+modulate = Color( 0.501961, 0, 0.501961, 1 )
+position = Vector2( 0, -350 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="rhombus3" type="Sprite" parent="."]
+modulate = Color( 0.501961, 0, 0.501961, 1 )
+position = Vector2( 350, 0 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="rhombus4" type="Sprite" parent="."]
+modulate = Color( 0.501961, 0, 0.501961, 1 )
+position = Vector2( -350, 0 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 290, 0, 300.321, 9.67888, 340, -30, 30, -340, -10, -300, 0, -290, 10, -300, -30, -340, -340, -30, -300, 10, -290, 0, -300, -10, -340, 30, -30, 340, 10, 300, 0, 290, -10, 300, 30, 340, 340, 30, 300, -10, 290, 0 )
+width = 4.0
+default_color = Color( 0.501961, 0, 0.501961, 1 )
+texture_mode = 50
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )

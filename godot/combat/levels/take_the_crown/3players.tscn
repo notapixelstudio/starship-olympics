@@ -148,21 +148,13 @@ anims/Pulse = SubResource( 1 )
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone" index="0"]
-flag_offset = 0
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
-center_offset = Vector2( 0, 0 )
 radius = 450
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
 position = Vector2( 800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone2" index="0"]
-flag_offset = 0
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
-center_offset = Vector2( 0, 0 )
 radius = 450
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2" groups=[
