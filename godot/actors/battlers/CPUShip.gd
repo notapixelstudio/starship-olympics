@@ -99,6 +99,7 @@ func seek_ahead(potential_target):
 		var what = entity.get('Cargo').what
 		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			ray_collision_mask += pow(2, 15)
+			potential_target = null
 		var result = space_state.intersect_ray(position, danger1, [self], ray_collision_mask, true, true)
 		hit_pos.append(danger1)
 		if result and result.position != potential_target:
