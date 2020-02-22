@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=2]
-[ext_resource path="res://selection/SpeciesBox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 06.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=7]
+[ext_resource path="res://selection/SpeciesBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 06.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
 
 [node name="PlayerSelection" type="Control"]
 anchor_top = 0.5
@@ -16,25 +15,24 @@ margin_right = 200.0
 margin_bottom = 213.0
 rect_min_size = Vector2( 200, 430 )
 script = ExtResource( 1 )
-species_template = ExtResource( 2 )
 
-[node name="SpeciesSelection" parent="." instance=ExtResource( 3 )]
+[node name="SpeciesSelection" parent="." instance=ExtResource( 2 )]
 margin_bottom = 400.0
 
 [node name="SFX" type="Node" parent="."]
 
 [node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
 bus = "SFX"
 
 [node name="selected" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )
 bus = "SFX"
 
 [node name="joined" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource( 6 )
+stream = ExtResource( 5 )
 bus = "SFX"
 
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 7 )
+stream = ExtResource( 6 )
 bus = "SFX"

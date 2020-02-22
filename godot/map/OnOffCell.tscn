@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://map/OnOffOption.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/weapons/bomb_frame_4.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=4]
 [ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -59,3 +61,11 @@ text = "{_} VICTORIES"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="switch_on" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+attenuation = 0.0412346
+
+[node name="switch_off" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+attenuation = 0.0412346

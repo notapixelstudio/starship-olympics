@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
-[ext_resource path="res://assets/map/cards/deathmatch.png" type="Texture" id=3]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=4]
 [ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=6]
 [ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=7]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -47,3 +49,11 @@ position = Vector2( 84, -84 )
 frames = SubResource( 1 )
 animation = "empty"
 playing = true
+
+[node name="switch_off" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+attenuation = 0.0412346
+
+[node name="switch_on" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+attenuation = 0.0412346

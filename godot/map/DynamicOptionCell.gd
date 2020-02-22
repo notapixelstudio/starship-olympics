@@ -45,3 +45,5 @@ func act(cursor):
 	label.text = description.format({"_": selection[index]})
 	.act(cursor)
 	cursor.on_sth_pressed()
+	$act.play()
+	

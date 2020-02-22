@@ -34,4 +34,7 @@ func act(cursor):
 	toggle_active()
 	.act(cursor)
 	cursor.on_sth_pressed()
-	
+	if active:
+		$switch_on.play()
+	else:
+		$switch_off.play()
