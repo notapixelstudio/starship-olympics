@@ -1,9 +1,11 @@
 extends Ship
 
 onready var debug_ship = $Debug
+onready var target_dest = $TargetDest
 
 var this_range = {60:-1, 55:0, 100:1}
 
+var target_hit = []
 const MAX_DIR_WAIT = 900
 var steering = Vector2()
 var front = Vector2()
@@ -34,9 +36,12 @@ func nearest_in(objects, component = "Valuable"):
 	var nearest = null
 	var min_dist
 	for object in objects:
+		# avoid considering our own targetdest
+		if object == target_dest:
+			continue
 		var entity = ECM.E(object)
 		var checklist = entity.get(component).get_list()
-		if len(checklist) > 0 and info_player.id in checklist:
+		if len(checklist) > 0 and info_player.id in checklist and not object.is_inside_tree():
 			continue
 		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
@@ -91,7 +96,8 @@ func seek_ahead(potential_target):
 		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
 		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
 		# we need to see if we can avoid the castle
-		if entity.could_have("Royal") and entity.has("Royal"):
+		var what = entity.get('Cargo').what
+		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			ray_collision_mask += pow(2, 15)
 		var result = space_state.intersect_ray(position, danger1, [self], ray_collision_mask, true, true)
 		hit_pos.append(danger1)
@@ -112,17 +118,13 @@ func seek_ahead(potential_target):
 	
 var avoidance
 
-# func _draw():
-# 	if not debug_enabled:
-# 		return
-# 	for hit in hit_pos:
-# 		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
-# 		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+func _draw():
+	for hit in target_hit:
+		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
 	
-# func _physics_process(delta):
-# 	if not debug_enabled:
-# 		return
-# 	 update()
+func _physics_process(delta):
+	 update()
 
 var last_target_pos = Vector2()
 
@@ -158,6 +160,7 @@ func choose_fire():
 	return false
 
 func _ready():
+	debug_enabled = true
 	cpu = true
 	absolute_controls = true
 
@@ -174,9 +177,10 @@ func control(delta):
 	if not this_target or not this_target.is_inside_tree():
 		this_target = nearest_in(ECM.hosts_with('Royal'))
 	"""
-	
+	target_hit = []
 	if this_target:
 		this_target = this_target.global_position
+		target_hit.append(this_target)
 	
 	# check if there is a danger closer
 	target = seek_ahead(this_target)

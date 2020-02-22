@@ -31,9 +31,9 @@ radius = 16.0
 radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
+"Foreground",
 "players",
 "in_camera",
-"Foreground",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -43,6 +43,7 @@ contacts_reported = 10
 contact_monitor = true
 angular_damp = 40.0
 script = ExtResource( 1 )
+debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -149,7 +150,7 @@ enabled = false
 [node name="PlayerInfo" parent="." instance=ExtResource( 15 )]
 
 [node name="TargetDest" type="Position2D" parent="."]
-position = Vector2( 100, 0 )
+position = Vector2( 200, 0 )
 
 [node name="Entity2D" type="Node2D" parent="TargetDest"]
 script = ExtResource( 3 )

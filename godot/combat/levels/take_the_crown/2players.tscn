@@ -58,7 +58,7 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -167,6 +167,7 @@ position = Vector2( 600, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 11 )
+cpu = true
 
 [node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
