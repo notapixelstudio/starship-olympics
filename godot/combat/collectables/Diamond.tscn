@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=7]
-[ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=8]
-
-
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=8]
+[ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 70.0
@@ -43,9 +42,9 @@ tracks/1/keys = {
 "values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0.388235 ), Color( 0.305882, 1, 0.968627, 0 ) ]
 }
 
-[node name="Coin" type="RigidBody2D" groups=[
-"Foreground",
+[node name="Diamond" type="RigidBody2D" groups=[
 "in_camera",
+"Foreground",
 "coin",
 ]]
 collision_layer = 2048
@@ -66,30 +65,30 @@ __meta__ = {
 }
 
 [node name="Valuable" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 3 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="SpriteEffect2" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="SpriteEffect3" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -97,9 +96,9 @@ shape = SubResource( 1 )
 [node name="Glow" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.0913688 )
-scale = Vector2( 0.948254, 0.948254 )
-texture = ExtResource( 7 )
+modulate = Color( 0.305882, 1, 0.968627, 0.227271 )
+scale = Vector2( 0.854637, 0.854637 )
+texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
 playback_speed = 2.0
@@ -107,5 +106,4 @@ anims/Blink = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "AppearFuhfuhfuh"
-anims/AppearFuhfuhfuh = ExtResource( 8 )
-
+anims/AppearFuhfuhfuh = ExtResource( 9 )

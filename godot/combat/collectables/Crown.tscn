@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/collectables/Crown.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=6]
-[ext_resource path="res://assets/sprites/environments/crown_color.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=8]
-[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=6]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=7]
+[ext_resource path="res://assets/sprites/environments/crown_color.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=9]
+[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=10]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -46,13 +47,13 @@ __meta__ = {
 }
 
 [node name="Valuable" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
 [node name="Teleportable" type="Node" parent="Entity"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
@@ -61,11 +62,11 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="CrownSprite" type="Sprite" parent="."]
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="BallSprite" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 1.8, 1.8 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
-[node name="RoyalGlow" parent="." instance=ExtResource( 9 )]
+[node name="RoyalGlow" parent="." instance=ExtResource( 10 )]

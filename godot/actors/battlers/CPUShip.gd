@@ -30,10 +30,14 @@ enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER}
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
 
-func nearest_in(objects):
+func nearest_in(objects, component = "Valuable"):
 	var nearest = null
 	var min_dist
 	for object in objects:
+		var entity = ECM.E(object)
+		var checklist = entity.get(component).get_list()
+		if len(checklist) > 0 and info_player.id in checklist:
+			continue
 		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
 			min_dist = dist(nearest.global_position, position)
@@ -164,16 +168,12 @@ var target
 var charging_time : int = 0
 
 func control(delta):
-	var this_target = null
+	var this_target = nearest_in(ECM.hosts_with('Valuable'))
 	
-	if not ECM.E(self).has('Royal'):
-		this_target = nearest_in(ECM.hosts_with('Valuable'))
-		
+	"""
 	if not this_target or not this_target.is_inside_tree():
 		this_target = nearest_in(ECM.hosts_with('Royal'))
-
-	if self == this_target:
-		this_target = null
+	"""
 	
 	if this_target:
 		this_target = this_target.global_position

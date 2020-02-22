@@ -3,13 +3,12 @@
 [ext_resource path="res://actors/NPC/Bull.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=6]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/NPC/bull.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/NPC/bullseye.png" type="Texture" id=9]
-
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -58,4 +57,3 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
