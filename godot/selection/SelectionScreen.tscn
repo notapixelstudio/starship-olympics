@@ -156,7 +156,6 @@ margin_bottom = 44.0
 custom_constants/separation = 13
 
 [node name="Control" type="Control" parent="TopHUD"]
-editor/display_folded = true
 margin_right = 500.0
 margin_bottom = 26.0
 rect_clip_content = true
@@ -164,7 +163,7 @@ size_flags_horizontal = 3
 
 [node name="TopLeftLine" type="Line2D" parent="TopHUD/Control"]
 position = Vector2( 0, -664 )
-points = PoolVector2Array( 0, 676, 480, 676 )
+points = PoolVector2Array( 0, 676, 540, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
@@ -188,6 +187,7 @@ size_flags_horizontal = 3
 
 [node name="BottomRightLine2" type="Line2D" parent="TopHUD/Control2"]
 position = Vector2( -770, -660 )
+rotation = -0.000909152
 points = PoolVector2Array( 740, 676, 1280, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
