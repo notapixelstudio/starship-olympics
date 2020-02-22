@@ -16,12 +16,6 @@ var wins = 3
 func set_players(array_players):
 	players = array_players
 	
-	# Statistics
-	for k in players:
-		var info = players[k]
-		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.species.species_name, "id": info.id})})
-		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
-	
 func add_match(score):
 	matches.insert(0, score)
 

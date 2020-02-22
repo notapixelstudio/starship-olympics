@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map/OptionCell.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=2]
@@ -8,6 +8,34 @@
 [sub_resource type="DynamicFont" id=1]
 size = 36
 font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "wigglewiggle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ArrowLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( -2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -100, 0 ), Vector2( -110, 0 ), Vector2( -100, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ArrowRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( -2, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 100, 0 ), Vector2( 110, 0 ), Vector2( 100, 0 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "wigglewiggle"

@@ -76,7 +76,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# we need to reset players dictionary
 	players = {}
 	var num_players : int = len(selected_players)
-	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
+	global.send_stats("design", {"event_id":"selection:players:num_players", "value": num_players})
 
 	var i = 1
 	for player in selected_players:
@@ -88,8 +88,8 @@ func combat(selected_players: Array, fight_mode : String):
 	# Statistics
 	for player_id in players:
 		var info = players[player_id]
-		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.species_name, "id": info.id})})
-		global.send_stats("design", {"event_id": "selection:{key}:{id}".format({"key": info.controls, "id": info.id})})
+		global.send_stats("design", {"event_id": "selection:species:{key}:{id}".format({"key": info.species_name, "id": info.id})})
+		global.send_stats("design", {"event_id": "selection:players:{key}:{id}".format({"key": info.controls, "id": info.id})})
 
 
 	# PLANET SELECTION
