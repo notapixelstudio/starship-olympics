@@ -30,6 +30,7 @@ func toggle_active():
 func act(cursor):
 	toggle_active()
 	.act(cursor)
+	cursor.on_sth_pressed()
 	
 func _ready():
 	sprite.texture = planet.planet_sprite

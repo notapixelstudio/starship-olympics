@@ -3,8 +3,8 @@
 [ext_resource path="res://map/OnOffOption.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/weapons/bomb_frame_4.png" type="Texture" id=2]
 [ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=3]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=5]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=4]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -16,12 +16,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "true",
+"name": "blank",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "blank",
+"name": "true",
 "speed": 5.0
 } ]
 
@@ -59,4 +59,3 @@ text = "{_} VICTORIES"
 align = 1
 valign = 1
 uppercase = true
-

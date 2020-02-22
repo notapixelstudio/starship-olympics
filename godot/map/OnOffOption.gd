@@ -33,3 +33,5 @@ func toggle_active():
 func act(cursor):
 	toggle_active()
 	.act(cursor)
+	cursor.on_sth_pressed()
+	

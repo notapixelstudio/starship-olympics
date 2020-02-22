@@ -49,4 +49,5 @@ func act(cursor):
 		sprite.texture = sprite.get_child(index).texture
 	label.text = description.format({"_": selection[index]})
 	.act(cursor)
-
+	cursor.on_sth_pressed()
+	
