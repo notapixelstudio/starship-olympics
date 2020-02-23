@@ -7,6 +7,7 @@ export var node_owner_path : NodePath
 export var text : String = ''
 
 var node_owner
+var enabled = true
 
 func set_active(value):
 	active = value
@@ -20,6 +21,11 @@ func refresh():
 		$CheckBox.play('true')
 	else:
 		$CheckBox.play('empty')
+		
+	if enabled:
+		modulate = Color(1,1,1,1)
+	else:
+		modulate = Color(1,1,1,0.3)
 	
 func _ready():
 	while not node_owner:
@@ -31,6 +37,9 @@ func toggle_active():
 	set_active(not active)
 	
 func act(cursor):
+	if not enabled:
+		return
+		
 	toggle_active()
 	.act(cursor)
 	cursor.on_sth_pressed()
@@ -38,3 +47,11 @@ func act(cursor):
 		$switch_on.play()
 	else:
 		$switch_off.play()
+
+func _on_master_toggled(active):
+	set_enabled(active)
+	
+func set_enabled(v):
+	enabled = v
+	refresh()
+	

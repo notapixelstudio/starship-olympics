@@ -570,6 +570,7 @@ position = Vector2( 0, -600 )
 planet = ExtResource( 10 )
 
 [node name="BombsHive" parent="Content/Planets" instance=ExtResource( 11 )]
+editor/display_folded = true
 text = "+ bombs"
 
 [node name="Sprite" parent="Content/Planets/BombsHive" index="0"]
@@ -959,6 +960,8 @@ margin_top = 23.0
 margin_right = 207.0
 margin_bottom = 41.0
 text = "Seconds"
+[connection signal="toggled" from="Content/Planets/Diamondsnatch" to="Content/Planets/BombsDiamond" method="_on_master_toggled"]
+[connection signal="toggled" from="Content/Planets/HiveFilling" to="Content/Planets/BombsHive" method="_on_master_toggled"]
 [connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
 [connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
 
