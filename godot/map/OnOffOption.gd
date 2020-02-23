@@ -38,6 +38,7 @@ func toggle_active():
 	
 func act(cursor):
 	if not enabled:
+		cursor.on_sth_pressed(false)
 		return
 		
 	toggle_active()
