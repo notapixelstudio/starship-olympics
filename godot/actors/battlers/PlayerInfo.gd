@@ -24,7 +24,7 @@ func _enter_tree():
 func _process(delta):
 	if target:
 		update_rotation()
-		update_score_ring()
+		#update_score_ring()
 		
 	update_scale()
 	

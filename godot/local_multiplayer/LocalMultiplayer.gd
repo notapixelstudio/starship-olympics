@@ -24,6 +24,7 @@ var all_species = [
 	preload('res://selection/characters/toriels_1.tres'),
 	preload('res://selection/characters/trixens_1.tres'),
 ]
+var drones = preload('res://selection/characters/drones.tres')
 onready var parallax = $ParallaxBackground
 
 var combat
@@ -120,7 +121,7 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	# if fight_mode == 'solo':
 	add_cpu(num_CPUs)
-		
+	
 	session_scores.selected_sports = all_planets
 	
 	
@@ -230,6 +231,7 @@ func start_demo():
 	next_level(true)
 	
 func add_cpu(how_many: int):
+	"""
 	var missing_species = all_species
 	for key in players:
 		var player = players[key]
@@ -240,14 +242,15 @@ func add_cpu(how_many: int):
 				break
 			i += 1
 		missing_species.remove(i)
-	
 	var max_cpu = min(how_many, len(missing_species))
+	"""
+	var max_cpu = how_many
 	max_cpu = min(max_cpu, global.MAX_PLAYERS)
 	for i in range(max_cpu):
-		var cpu_species = missing_species[i]
+		var cpu_species = drones #missing_species[i]
 		var info_player = InfoPlayer.new()
 		var id_player = 'cpu'+str(i)
-		info_player.id = id_player
+		info_player.id = 'drones'#id_player
 		info_player.cpu = true
 		info_player.species = cpu_species
 		players[id_player] = info_player
