@@ -3,7 +3,7 @@
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=2]
 [ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/species/trixens/tail.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=4]
 [ext_resource path="res://assets/icon/kb1.png" type="Texture" id=5]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture" id=7]
@@ -59,15 +59,27 @@ controls = ""
 
 [node name="SelectRect" type="Sprite" parent="."]
 visible = false
-position = Vector2( 75.9339, 240.894 )
+position = Vector2( -10.0661, 0.893982 )
 scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 3 )
+centered = false
 
 [node name="Character" type="Control" parent="."]
-editor/display_folded = true
+margin_top = -15.0
 margin_right = 210.0
-margin_bottom = 450.0
+margin_bottom = 535.0
 rect_clip_content = true
+
+[node name="Background" type="Polygon2D" parent="Character"]
+position = Vector2( 0, -3.05176e-05 )
+polygon = PoolVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
+
+[node name="Border" type="Line2D" parent="Character"]
+points = PoolVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 91
+begin_cap_mode = 1
 
 [node name="Character" type="Sprite" parent="Character"]
 modulate = Color( 0.8, 0.8, 0.8, 1 )
@@ -75,34 +87,41 @@ position = Vector2( 90, 290 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
 
+[node name="OverBorder" type="Line2D" parent="Character"]
+points = PoolVector2Array( 144, 35, 23, 35, 23, 548, 144, 548 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 91
+begin_cap_mode = 1
+
 [node name="Controls" type="Sprite" parent="."]
-position = Vector2( 82, 580 )
+position = Vector2( 82, 641 )
 texture = ExtResource( 5 )
 
 [node name="LeftArrow" parent="." instance=ExtResource( 6 )]
-margin_left = 36.0
-margin_top = 450.0
-margin_right = 36.0
-margin_bottom = 450.0
-rect_scale = Vector2( -1, 1 )
+margin_left = 9.0
+margin_top = 475.0
+margin_right = 9.0
+margin_bottom = 475.0
+rect_scale = Vector2( -1.2, 1.2 )
 
 [node name="Shadow" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.701961 )
-position = Vector2( 87.174, 450 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( 87.174, 472 )
+scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 7 )
 
 [node name="Ship" type="Sprite" parent="."]
-position = Vector2( 87.174, 450 )
+position = Vector2( 87.174, 473 )
 rotation = 0.785402
-scale = Vector2( 0.5, 0.500019 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 8 )
 
 [node name="RightArrow" parent="." instance=ExtResource( 6 )]
-margin_left = 131.0
-margin_top = 450.0
-margin_right = 131.0
-margin_bottom = 450.0
+margin_left = 159.0
+margin_top = 475.0
+margin_right = 159.0
+margin_bottom = 475.0
+rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "standby"
@@ -110,9 +129,9 @@ anims/standby = SubResource( 1 )
 
 [node name="SpeciesName" type="VBoxContainer" parent="."]
 margin_left = 13.0
-margin_top = 485.0
+margin_top = 552.0
 margin_right = 153.0
-margin_bottom = 554.0
+margin_bottom = 621.0
 
 [node name="Label" type="Label" parent="SpeciesName"]
 margin_right = 140.0
@@ -187,13 +206,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -108.0
-margin_top = 142.0
+margin_top = 158.0
 margin_right = 75.0
-margin_bottom = 215.0
+margin_bottom = 231.0
 
 [node name="Label" type="Label" parent="TeamMode"]
 anchor_right = 1.0
-margin_bottom = 65.0
+margin_top = -28.0
+margin_bottom = 37.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "TEAM
