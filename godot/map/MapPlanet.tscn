@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/map/the_hive.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=4]
 [ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=5]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=6]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=7]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=6]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=7]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,12 +19,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "blank",
+"name": "true",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "true",
+"name": "blank",
 "speed": 5.0
 } ]
 
