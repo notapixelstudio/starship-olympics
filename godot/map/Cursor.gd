@@ -114,8 +114,11 @@ func disable():
 func on_sth_pressed(sth_good = true):
 	if sth_good:
 		animation_player.play('Act')
+	else:
+		animation_player.play('shake')
 	
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == 'Act':
 		animation_player.play('Float')
-		
+	else:
+		animation_player.play('Float')

@@ -17,8 +17,8 @@ var human_players : int = 0
 var cpu : int = 0
 var max_cpu
 
-var hive_bombs = true setget set_hive_bombs
-var diamondsnatch_bombs = true setget set_diamondsnatch_bombs
+var hive_shoot_bombs = true setget set_hive_bombs
+var diamondsnatch_shoot_bombs = true setget set_diamondsnatch_bombs
 onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
@@ -27,15 +27,23 @@ onready var victories = $Content/Controls/Victories
 
 onready var cursor_tween = $CursorMoveTween
 
-var settings = {}
+var settings = {} setget set_settings
 
+func set_settings(value):
+	settings = value
+	for key in settings:
+		for this_setting in settings[key]:
+			var this_setting_value = settings[key][this_setting]
+			var setting = get("{key}_{setting}".format({"key": key, "setting": this_setting}))
+			$Content/Planets.get_node("{key}_{setting}".format({"key": key, "setting": this_setting})).active = this_setting_value
+			
 func set_hive_bombs(value: bool):
-	hive_bombs = value
-	settings["hive"] = {"shoot_bombs" : hive_bombs}
+	hive_shoot_bombs = value
+	settings["hive"] = {"shoot_bombs" : hive_shoot_bombs}
 
 func set_diamondsnatch_bombs(value: bool):
-	diamondsnatch_bombs = value
-	settings["diamondsnatch"] = {"shoot_bombs" : diamondsnatch_bombs}
+	diamondsnatch_shoot_bombs = value
+	settings["diamondsnatch"] = {"shoot_bombs" : diamondsnatch_shoot_bombs}
 	
 func _ready():
 	back = false
@@ -70,7 +78,8 @@ func _ready():
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
 
-func initialize(players, sports):
+func initialize(players, sports, settings_):
+	self.settings = settings_
 	selected_sports = sports
 	
 	for player_id in players:

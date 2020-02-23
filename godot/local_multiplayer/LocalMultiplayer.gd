@@ -98,8 +98,8 @@ func combat(selected_players: Array, fight_mode : String):
 	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
 		var map = map_scene.instance()
-		map.initialize(players, all_planets)
 		
+		map.initialize(players, all_planets, session_scores.settings)
 		add_child(map)
 		yield(map, "done")
 		yield(get_tree(), "idle_frame")

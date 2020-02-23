@@ -18,6 +18,7 @@ onready var player_infotext = $PlayerInfo/PlayerID
 onready var anim = $AnimationPlayer
 onready var label_anim = $SpeciesName/AnimationPlayer
 onready var select_rect = $SelectRect
+onready var background = $Character/Background
 
 const img_path : String = "res://assets/icon/"
 
@@ -48,6 +49,7 @@ func change_species(new_species:Species):
 	tagline2.text = species.tagline2
 	character.texture = species.character_ok
 	select_rect.modulate = species.color
+	background.color = species.color
 
 func previous():
 	label_anim.play("shake")
@@ -57,17 +59,20 @@ func next():
 
 func select():
 	select_rect.visible = true
+	background.modulate = Color(1,1,1,1)
 	character.modulate = Color(1,1,1,1)
 	$LeftArrow.disable()
 	$RightArrow.disable()
 
 func deselect():
 	select_rect.visible = false
-	character.modulate = Color(0.8,0.8,0.8,1)
+	character.modulate = Color(0.7,0.7,0.7,1)
+	background.modulate = Color(0.5,0.5,0.5,1)
 
 func enable():
 	select_rect.visible = false
-	character.modulate = Color(0.8,0.8,0.8,1)
+	character.modulate = Color(0.7,0.7,0.7,1)
+	background.modulate = Color(0.5,0.5,0.5,1)
 	$PlayerInfo.visible = true
 	$LeftArrow.enable()
 	$RightArrow.enable()

@@ -9,6 +9,9 @@ export var text : String = ''
 var node_owner
 var enabled = true
 
+func initialize(value):
+	self.active = value
+	
 func set_active(value):
 	active = value
 	if not is_inside_tree():
@@ -38,6 +41,7 @@ func toggle_active():
 	
 func act(cursor):
 	if not enabled:
+		cursor.on_sth_pressed(false)
 		return
 		
 	toggle_active()
@@ -48,10 +52,9 @@ func act(cursor):
 	else:
 		$switch_off.play()
 
-func _on_master_toggled(active):
-	set_enabled(active)
-	
 func set_enabled(v):
 	enabled = v
 	refresh()
 	
+func _on_master_updated(active):
+	set_enabled(active)

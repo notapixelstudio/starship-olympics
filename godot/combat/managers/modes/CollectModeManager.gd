@@ -20,6 +20,8 @@ var elements_spawned := 0
 onready var wave_timer = $Timer
 
 func initialize(_spawners, wait_time = 0, wave = 0):
+	wave_timer.start()
+	wave_ready = true
 	current_wave = wave
 	spawners = _spawners
 	how_many_spawners = len(spawners)
@@ -51,9 +53,9 @@ func _on_sth_collected(collector, collectee):
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
 
-var wave_ready = true 
+var wave_ready = false 
 func _process(delta):
-	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0.1):
+	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0.01):
 		_handle_waves()
 		
 func _handle_waves():

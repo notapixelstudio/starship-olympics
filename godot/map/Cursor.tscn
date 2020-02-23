@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map/Cursor.gd" type="Script" id=1]
-[ext_resource path="res://assets/map/placemark.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/animations/shake.anim" type="Animation" id=2]
+[ext_resource path="res://assets/map/placemark.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=5]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "Act"
 length = 0.3
 tracks/0/type = "value"
@@ -33,7 +34,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1.1, 0.9 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position:y")
@@ -54,7 +55,7 @@ outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 
 [node name="Cursor" type="Node2D" groups=[
 "in_camera",
@@ -71,25 +72,27 @@ grid_position = Vector2( 0, 0 )
 position = Vector2( 0, -40 )
 
 [node name="Graphics" type="Node2D" parent="Wrapper"]
+position = Vector2( 0.01, -41.6111 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/Graphics"]
 autoplay = "Float"
-anims/Act = SubResource( 5 )
-anims/Float = SubResource( 7 )
+anims/Act = SubResource( 1 )
+anims/Float = SubResource( 2 )
+anims/shake = ExtResource( 2 )
 
 [node name="Placemark" type="Sprite" parent="Wrapper/Graphics"]
 position = Vector2( 0, -60 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Ship" type="Sprite" parent="Wrapper/Graphics"]
 position = Vector2( 0, -85 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="LabelContainer" type="Node2D" parent="Wrapper/Graphics"]
 editor/display_folded = true

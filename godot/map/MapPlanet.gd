@@ -27,7 +27,7 @@ func set_active(value):
 func toggle_active():
 	set_active(not active)
 	
-signal toggled
+signal updated
 func act(cursor):
 	toggle_active()
 	.act(cursor)
@@ -36,13 +36,14 @@ func act(cursor):
 		$switch_on.play()
 	else:
 		$switch_off.play()
-	emit_signal('toggled', active)
+	emit_signal('updated', active)
 	
 func _ready():
 	sprite.texture = planet.planet_sprite
 	refresh()
 	
 func refresh():
+	emit_signal('updated', active)
 	if is_inside_tree():
 		if active:
 			$CheckBox.play('true')
