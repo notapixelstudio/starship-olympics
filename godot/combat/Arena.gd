@@ -147,11 +147,6 @@ func _ready():
 	goal_mode.connect('score', scores, "add_score")
 	goal_mode.connect('show_score', self, "spawn_points_scored")
 	
-	# environment spawner: coins, etc.
-	if get_tree().get_nodes_in_group("spawner_group"):
-		focus_in_camera.activate()
-		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
-		
 	for goal in get_tree().get_nodes_in_group("goal"):
 		goal.connect('goal_done', goal_mode, "_on_goal_done")
 		
@@ -245,6 +240,12 @@ func _ready():
 	#		cell.queue_free()
 	var ships = []
 	
+	# environment spawner: coins, etc.
+	if get_tree().get_nodes_in_group("spawner_group"):
+		focus_in_camera.activate()
+		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
+		
+	
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
@@ -287,6 +288,7 @@ func _ready():
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
 
+	
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
 	
