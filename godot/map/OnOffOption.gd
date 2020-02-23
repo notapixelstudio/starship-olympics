@@ -9,6 +9,9 @@ export var text : String = ''
 var node_owner
 var enabled = true
 
+func initialize(value):
+	self.active = value
+	
 func set_active(value):
 	active = value
 	if not is_inside_tree():
