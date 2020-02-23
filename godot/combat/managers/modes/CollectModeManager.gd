@@ -55,7 +55,7 @@ func _on_coins_dropped(dropper, amount):
 
 var wave_ready = false 
 func _process(delta):
-	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0.1):
+	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0.01):
 		_handle_waves()
 		
 func _handle_waves():
