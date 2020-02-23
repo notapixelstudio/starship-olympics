@@ -960,8 +960,8 @@ margin_top = 23.0
 margin_right = 207.0
 margin_bottom = 41.0
 text = "Seconds"
-[connection signal="toggled" from="Content/Planets/Diamondsnatch" to="Content/Planets/BombsDiamond" method="_on_master_toggled"]
-[connection signal="toggled" from="Content/Planets/HiveFilling" to="Content/Planets/BombsHive" method="_on_master_toggled"]
+[connection signal="updated" from="Content/Planets/Diamondsnatch" to="Content/Planets/BombsDiamond" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/HiveFilling" to="Content/Planets/BombsHive" method="_on_master_updated"]
 [connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
 [connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
 

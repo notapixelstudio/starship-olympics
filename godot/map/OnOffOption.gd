@@ -48,10 +48,9 @@ func act(cursor):
 	else:
 		$switch_off.play()
 
-func _on_master_toggled(active):
-	set_enabled(active)
-	
 func set_enabled(v):
 	enabled = v
 	refresh()
 	
+func _on_master_updated(active):
+	set_enabled(active)
