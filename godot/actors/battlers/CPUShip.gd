@@ -39,8 +39,25 @@ func nearest_in(objects, component = "Valuable"):
 		# avoid considering our own targetdest
 		if object == target_dest:
 			continue
-		var entity = ECM.E(object)
-		var checklist = entity.get(component).get_list()
+		var entity_object = ECM.E(object)
+		var checklist = entity_object.get(component).get_list()
+		var what = entity.get('Cargo').what
+		# FORCE diamond chasing
+		if entity_object.get_host() is Diamond:
+			nearest = object
+			break
+		
+		# FORCE to follow whoever has the crown if they have the crown
+		if entity_object.get_host() is TargetDest:
+			var master_ship = entity_object.get_host().get_master_ship()
+			var entity_mastership = ECM.E(master_ship)
+			if entity_mastership.could_have("Royal") and entity_mastership.has("Royal"):
+				nearest = object
+				break
+		# run away if you have the crown
+		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
+			break
+
 		if len(checklist) > 0 and info_player.id in checklist and not object.is_inside_tree():
 			continue
 		if not nearest or dist(object.global_position, position) < min_dist:
@@ -119,7 +136,7 @@ func seek_ahead(potential_target):
 	
 var avoidance
 
-"""
+
 # this draws are for debugging the targets of the CPU
 func _draw():
 	for hit in target_hit:
@@ -128,7 +145,7 @@ func _draw():
 	
 func _physics_process(delta):
 	 update()
-"""
+
 
 var last_target_pos = Vector2()
 
