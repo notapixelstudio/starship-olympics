@@ -143,7 +143,7 @@ func _ready():
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_score', self, "spawn_points_scored")
-	collect_mode.connect('spawn_next', self, "_on_coins_finished")
+	collect_mode.connect('spawn_next', self, "on_next_wave")
 	goal_mode.connect('score', scores, "add_score")
 	goal_mode.connect('show_score', self, "spawn_points_scored")
 	
@@ -520,7 +520,7 @@ func _on_sth_dropped(dropper, droppee):
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
-func _on_coins_finished(diamonds, wait_time=1):
+func on_next_wave(diamonds, wait_time=1):
 	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 

@@ -21,7 +21,6 @@ onready var wave_timer = $Timer
 
 func initialize(_spawners, wait_time = 0, wave = 0):
 	wave_timer.start()
-	wave_ready = true
 	current_wave = wave
 	spawners = _spawners
 	how_many_spawners = len(spawners)
@@ -56,21 +55,20 @@ func _on_coins_dropped(dropper, amount):
 var wave_ready = false 
 func _process(delta):
 	if wave_ready and (not get_tree().get_nodes_in_group(COINGROUP) or wave_timer.time_left <= 0.01):
+		wave_ready = false
 		_handle_waves()
 		
 func _handle_waves():
-	wave_ready = false
+	
 	if not len(spawners_per_wave[current_wave]) or elements_spawned>=min_elements_per_wave:
 		current_wave += 1
 		elements_spawned = 0
 	if current_wave >= max_waves:
-		reset_wave_timer()
 		initialize(spawners, WAVE_DELAY, current_wave - 1)
 		return
 	spawners_per_wave[current_wave].shuffle()
 	var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
 	elements_spawned += 1
-	reset_wave_timer()
 	emit_signal('spawn_next', next_spawner, WAVE_DELAY)
 		
 func reset_wave_timer():
@@ -78,4 +76,5 @@ func reset_wave_timer():
 	
 func on_wave_ready():
 	wave_ready = true
+	reset_wave_timer()
 	
