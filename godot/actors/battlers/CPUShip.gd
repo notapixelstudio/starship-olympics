@@ -35,13 +35,14 @@ func dist(a: Vector2, b: Vector2):
 func nearest_in(objects, component = "Valuable"):
 	var nearest = null
 	var min_dist
+	var what = entity.get('Cargo').what
 	for object in objects:
 		# avoid considering our own targetdest
 		if object == target_dest:
 			continue
 		var entity_object = ECM.E(object)
 		var checklist = entity_object.get(component).get_list()
-		var what = entity.get('Cargo').what
+		
 		# FORCE diamond chasing
 		if entity_object.get_host() is Diamond:
 			nearest = object
@@ -57,12 +58,28 @@ func nearest_in(objects, component = "Valuable"):
 		# run away if you have the crown
 		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			break
-
+		
 		if len(checklist) > 0 and info_player.id in checklist and not object.is_inside_tree():
 			continue
 		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
 			min_dist = dist(nearest.global_position, position)
+	# FORCE to follow the crown if it's on the battlefield
+	
+	for object in get_tree().get_nodes_in_group("Crown"):
+		nearest=null
+		if not nearest or dist(object.global_position, position) < min_dist:
+			nearest = object
+			min_dist = dist(nearest.global_position, position)
+	# FORCE to target the Pentagonion if you HAVE the ball
+	if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.BALL:
+		nearest = null
+		for object in get_tree().get_nodes_in_group("goal"):
+			if object.species.species_name != info_player.species.species_name:# or object.current_ring == 0:
+				continue
+			if not nearest or dist(object.global_position, position) < min_dist:
+				nearest = object
+				min_dist = dist(nearest.global_position, position)
 	return nearest
 
 const CIRCLE_DIST = 50
