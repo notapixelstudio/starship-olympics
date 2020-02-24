@@ -55,6 +55,9 @@ func nearest_in(objects, component = "Valuable"):
 			if entity_mastership.could_have("Royal") and entity_mastership.has("Royal"):
 				nearest = object
 				break
+			# FORCE to wander if bombs NOT enabled
+			if not bombs_enabled:
+				continue
 		# run away if you have the crown
 		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			break
