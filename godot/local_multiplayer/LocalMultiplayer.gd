@@ -88,7 +88,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# Statistics
 	for player_id in players:
 		var info = players[player_id]
-		global.send_stats("design", {"event_id": "selection:species:{id}:{key}".format({"key": info.species_name, "id": info.id})})
+		global.send_stats("design", {"event_id": "selection:species:{key}".format({"key": info.species_name})})
 		global.send_stats("design", {"event_id": "selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})})
 
 

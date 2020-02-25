@@ -15,6 +15,7 @@ func initialize(winners: Array, match_scores):
 	match_scores: MatchScores object for this match
 		
 	"""
+	var sport = match_scores.sport
 	var players = match_scores.players
 	for winner in winners:
 		players[winner.id].session_score += 1
@@ -39,10 +40,10 @@ func initialize(winners: Array, match_scores):
 		
 		# SEND STATISTICS
 		for key in json_stats:
-			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": stats.id}), "value": json_stats[key]}) 
+			global.send_stats("design", {"event_id": "gameplay:{sport}:{key}:{id}".format({"sport":sport.name, "key": key, "id": stats.id}), "value": json_stats[key]}) 
 		for winner in winners:
 			global.send_stats("design", {"event_id": "gameplay:sport:{sport}:won:{id}".format({"sport": sport.name, "id": winner.id})}) 
-		global.send_stats("design", {"event_id": "gameplay:sport:{sport}:lasting_time".format({"sport": sport.name}), "value": sport.lasting_time}) 
+		global.send_stats("design", {"event_id": "gameplay:sport:{sport}:lasting_time".format({"sport": sport.name}), "value": match_scores.lasting_time}) 
 	
 	animator.play("entrance")
 	
