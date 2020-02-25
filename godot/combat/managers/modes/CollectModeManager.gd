@@ -15,6 +15,8 @@ var max_waves: int
 var how_many_spawners: int
 var current_spawners = 0
 
+onready var sound_action = $CollectAction
+
 export var min_elements_per_wave = 3
 var elements_spawned := 0
 onready var wave_timer = $Timer
@@ -48,6 +50,7 @@ func _on_sth_collected(collector, collectee):
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.get_id(), score)
 		emit_signal('show_score', collector.species, score, collectee.global_position)
+		sound_action.play()
 		
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
