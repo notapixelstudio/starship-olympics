@@ -36,14 +36,18 @@ func initialize(winners: Array, match_scores):
 		i+=1
 
 		var json_stats = stats.to_stats()
+		
+		# SEND STATISTICS
 		for key in json_stats:
 			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": stats.id}), "value": json_stats[key]}) 
-		
-	animator.play("entrance")
-	yield(animator, "animation_finished")
+		for winner in winners:
+			global.send_stats("design", {"event_id": "gameplay:sport:{sport}:won:{id}".format({"sport": sport.name, "id": winner.id})}) 
+		global.send_stats("design", {"event_id": "gameplay:sport:{sport}:lasting_time".format({"sport": sport.name}), "value": sport.lasting_time}) 
 	
-
+	animator.play("entrance")
+	
 	"""
+	yield(animator, "animation_finished")
 	var players = container.get_children()
 	players.sort_custom(self, "sort_by_score")
 	for player in players:

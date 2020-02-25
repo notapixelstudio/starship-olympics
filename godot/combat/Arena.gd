@@ -93,7 +93,7 @@ func setup_level(mode : Resource):
 			var val = session.settings[mode.name][key]
 			mode.set(key, val)
 			# send stats for settings
-			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": "key", "sport": mode.name}), "value": int(val)})
+			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
 	
 func _ready():
 	set_process(false)
@@ -402,14 +402,6 @@ func on_gamemode_gameover(winners: Array):
 	canvas.add_child(game_over)
 	
 	game_over.initialize(winners, scores)
-	
-	"""
-	# sending stats
-	for player in scores:
-		var stats =player.to_stats() 
-		for key in stats:
-			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": stats[key]}) 
-	"""
 
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
