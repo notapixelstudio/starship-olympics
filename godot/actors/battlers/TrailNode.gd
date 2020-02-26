@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Trail
 
-var ship : Ship
+var ship
 var ship_e : Entity
 
 
@@ -27,9 +27,21 @@ func set_trail_length(value:int):
 func is_deadly():
 	return not collision_shape.disabled
 
-func initialize(_ship : Ship):
+func initialize(_ship):
 	ship = _ship
 	ship_e = ECM.E(ship)
+	if ECM.E(ship):
+		ECM.E(near_area).get('Owned').set_owned_by(ship)
+		ECM.E(far_area).get('Owned').set_owned_by(ship)
+	
+	var c1 = Color(ship.species.color)
+	var c2 = Color(ship.species.color_2)
+	var cm = Color(c2)
+	c1.a = 0.7
+	c2.a = 0
+	cm.a = 0.5
+	trail.gradient.colors = PoolColorArray([c2,cm,c1])
+	#trail.modulate = c
 	ship.connect('spawned', self, '_on_sth_spawned')
 	ship.connect('dead', self, '_on_sth_dead')
 	
@@ -50,22 +62,11 @@ func configure(deadly: bool):
 	
 	
 func _ready():
+	
 	trail_f = trail_length
 	
 	collision_shape.shape = ConcavePolygonShape2D.new()
 	farcollision_shape.shape = ConcavePolygonShape2D.new()
-	
-	ECM.E(near_area).get('Owned').set_owned_by(ship)
-	ECM.E(far_area).get('Owned').set_owned_by(ship)
-	
-	var c1 = Color(ship.species.color)
-	var c2 = Color(ship.species.color_2)
-	var cm = Color(c2)
-	c1.a = 0.7
-	c2.a = 0
-	cm.a = 0.5
-	trail.gradient.colors = PoolColorArray([c2,cm,c1])
-	#trail.modulate = c
 	
 func _process(delta):
 	update()
@@ -81,6 +82,5 @@ func _on_sth_spawned(sth : Node2D):
 		inner_trail.erase_trail()
 	update()
 	
-func _on_sth_dead(sth : Node2D, killer : Ship):
+func _on_sth_dead(sth : Node2D, killer):
 	pass
-

@@ -14,8 +14,10 @@ func disable_all():
 	animation.play("hide")
 	yield(animation, "animation_finished")
 	emit_signal("back")
+	visible = false
 
 func enable_all():
+	visible = true
 	for elem in container.get_children():
 		elem._initialize()
 	focus_index = 0

@@ -5,11 +5,10 @@
 [ext_resource path="res://assets/sprites/background/parallax-space-stars.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/background/parallax-space-far-planets.png" type="Texture" id=4]
 [ext_resource path="res://local_multiplayer/UI/ParallaxSprite.gd" type="Script" id=5]
-[ext_resource path="res://assets/sprites/background/parallax-space-ring-planet.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/background/parallax-space-big-planet.png" type="Texture" id=7]
+[ext_resource path="res://assets/map/trixxx.png" type="Texture" id=6]
+[ext_resource path="res://assets/map/silicastle.png" type="Texture" id=7]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
-editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -45,7 +44,7 @@ motion_mirroring = Vector2( 1400, 720 )
 
 [node name="parallax-space-ring-planet" type="Sprite" parent="Saturn"]
 position = Vector2( 130, 580 )
-rotation = 0.872665
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 script = ExtResource( 5 )
 
@@ -56,6 +55,6 @@ motion_mirroring = Vector2( 2600, 720 )
 [node name="parallax-space-big-planet" type="Sprite" parent="Jupiter"]
 position = Vector2( 818.4, 535.454 )
 rotation = 0.523599
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 7 )
 script = ExtResource( 5 )
-

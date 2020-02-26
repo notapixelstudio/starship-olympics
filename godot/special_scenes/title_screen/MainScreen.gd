@@ -1,9 +1,10 @@
 extends BasicScreen
 
 # TODO: We need a way to get the scene
-onready var title = $TitleScreen
-onready var options = $Options
-onready var buttons = $Buttons
+onready var title = $CanvasLayer/TitleScreen
+onready var options = $CanvasLayer/Options
+onready var buttons = $CanvasLayer/Buttons
+onready var canvas_layer = $CanvasLayer
 onready var info = $Disclaimer
 
 export var multiplayer_scene : PackedScene
@@ -19,28 +20,28 @@ func _ready():
 	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Label.text = tr("DEMO BUILD - v"+ str(global.version))
-	remove_child(options)
-	remove_child(title)
+	canvas_layer.remove_child(options)
+	canvas_layer.remove_child(title)
 	disable_buttons()
 	if global.first_time:
 		info.start()
 		yield(info, "okay")
-	add_child(title)
+	canvas_layer.add_child(title)
 	title.initialize()
 	yield(title, "entered")
 	enable_buttons()
 	
 	
 func _on_TitleScreen_option_selected():
-	remove_child(title)
+	canvas_layer.remove_child(title)
 	disable_buttons()
-	add_child(options)
+	canvas_layer.add_child(options)
 	options.enable_all()
 
 
 func _on_Options_back():
-	add_child(title)
-	remove_child(options)
+	canvas_layer.add_child(title)
+	canvas_layer.remove_child(options)
 	title.initialize()
 	yield(title, "entered")
 	enable_buttons()
@@ -61,7 +62,7 @@ func disable_buttons():
 
 func enable_buttons():
 	buttons.visible = true
-	for button in $Buttons.get_children():
+	for button in buttons.get_children():
 		button.disabled = false
 		
 	buttons.get_child(0).grab_focus()

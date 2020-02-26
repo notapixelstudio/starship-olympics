@@ -1,16 +1,17 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/shaders/TransitionColor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
-[ext_resource path="res://special_scenes/title_screen/TitleScreen.gd" type="Script" id=5]
-[ext_resource path="res://logo.png" type="Texture" id=6]
-[ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=7]
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=8]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=10]
-[ext_resource path="res://special_scenes/FirstAppearance.tscn" type="PackedScene" id=11]
+[ext_resource path="res://special_scenes/title_screen/Path2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/title_screen/TitleScreen.gd" type="Script" id=6]
+[ext_resource path="res://logo.png" type="Texture" id=7]
+[ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=9]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=11]
+[ext_resource path="res://special_scenes/FirstAppearance.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -85,7 +86,7 @@ resource_name = "option_selected"
 size = 32
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="InputEventAction" id=5]
 
@@ -93,13 +94,13 @@ font_data = ExtResource( 9 )
 shortcut = SubResource( 5 )
 
 [sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 32
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="Animation" id=9]
 tracks/0/type = "value"
@@ -145,30 +146,44 @@ smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
-[node name="TitleScreen" type="Control" parent="."]
+[node name="Path2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( -170, 0 )
+
+[node name="Path2D2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1486.35, 870.002 )
+rotation = 3.14159
+
+[node name="Path2D3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1058.52, 1065.99 )
+rotation = 3.14159
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleScreen" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Animator" type="AnimationPlayer" parent="TitleScreen"]
+[node name="Animator" type="AnimationPlayer" parent="CanvasLayer/TitleScreen"]
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 anims/option_selected = SubResource( 3 )
 
-[node name="logo_ssf_olympic" type="Sprite" parent="TitleScreen"]
+[node name="logo_ssf_olympic" type="Sprite" parent="CanvasLayer/TitleScreen"]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 640, 295 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
-[node name="Options" parent="." instance=ExtResource( 7 )]
+[node name="Options" parent="CanvasLayer" instance=ExtResource( 8 )]
 mouse_filter = 1
 
-[node name="Buttons" type="VBoxContainer" parent="."]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer"]
+editor/display_folded = true
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -178,13 +193,13 @@ margin_left = -145.0
 margin_top = 34.0
 margin_right = 145.0
 margin_bottom = 326.0
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CampaignMode" type="Button" parent="Buttons"]
+[node name="CampaignMode" type="Button" parent="CanvasLayer/Buttons"]
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )
@@ -195,58 +210,58 @@ shortcut = SubResource( 6 )
 text = "START"
 flat = true
 
-[node name="Custom Fight" type="Button" parent="Buttons"]
+[node name="Custom Fight" type="Button" parent="CanvasLayer/Buttons"]
 margin_top = 37.0
 margin_right = 290.0
 margin_bottom = 107.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 11 )
 disabled = true
 action_mode = 0
 text = "CUSTOM GAME"
 flat = true
 
-[node name="Options" type="Button" parent="Buttons"]
+[node name="Options" type="Button" parent="CanvasLayer/Buttons"]
 margin_top = 111.0
 margin_right = 290.0
 margin_bottom = 181.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 11 )
 disabled = true
 action_mode = 0
 text = "OPTIONS"
 flat = true
 
-[node name="Help" type="Button" parent="Buttons"]
+[node name="Help" type="Button" parent="CanvasLayer/Buttons"]
 visible = false
 margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 11 )
 disabled = true
 action_mode = 0
 text = "Help"
 flat = true
 
-[node name="Credits" type="Button" parent="Buttons"]
+[node name="Credits" type="Button" parent="CanvasLayer/Buttons"]
 visible = false
 margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 11 )
 disabled = true
 action_mode = 0
 text = "Credits"
 flat = true
 
-[node name="QuitButton" type="Button" parent="Buttons"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/Buttons"]
 margin_top = 185.0
 margin_right = 290.0
 margin_bottom = 255.0
 rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 11 )
 disabled = true
 action_mode = 0
 text = "QUIT"
@@ -280,11 +295,12 @@ valign = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
 anims/appear = SubResource( 9 )
 
-[node name="Disclaimer" parent="." instance=ExtResource( 11 )]
-[connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
-[connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
-[connection signal="back" from="Options" to="." method="_on_Options_back"]
-[connection signal="pressed" from="Buttons/CampaignMode" to="." method="_on_CampaignMode_pressed"]
-[connection signal="pressed" from="Buttons/Custom Fight" to="TitleScreen" method="_on_StartHuman_pressed"]
-[connection signal="pressed" from="Buttons/Options" to="TitleScreen" method="_on_Options_pressed"]
-[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[node name="Disclaimer" parent="." instance=ExtResource( 12 )]
+visible = false
+[connection signal="option_selected" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_option_selected"]
+[connection signal="start_multiplayer" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
+[connection signal="back" from="CanvasLayer/Options" to="." method="_on_Options_back"]
+[connection signal="pressed" from="CanvasLayer/Buttons/CampaignMode" to="." method="_on_CampaignMode_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/Custom Fight" to="CanvasLayer/TitleScreen" method="_on_StartHuman_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/Options" to="CanvasLayer/TitleScreen" method="_on_Options_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

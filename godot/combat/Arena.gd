@@ -437,10 +437,11 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# create and link trail
 	var trail = trail_scene.instance()
-	trail.initialize(ship)
+	
 	
 	$Battlefield.add_child(trail)
 	yield(trail, "ready")
+	trail.initialize(ship)
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
 	trail.configure(game_mode.deadly_trails)
