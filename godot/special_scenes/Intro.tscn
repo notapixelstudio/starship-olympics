@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 54
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Appear"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Line2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Line3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4.5, 5.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Line1" type="RichTextLabel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 190.0
+margin_right = 1277.0
+margin_bottom = 288.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
+text = "MILLENNIA OF INTERGALACTIC WARS"
+
+[node name="Line2" type="RichTextLabel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 290.0
+margin_right = 1277.0
+margin_bottom = 388.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
+text = "FINALLY CAME TO AN END"
+
+[node name="Line3" type="RichTextLabel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 380.0
+margin_right = 1277.0
+margin_bottom = 478.0
+custom_fonts/italics_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]WHEN THE [i]GAMES[/i] WERE CREATED[/center]"
+text = "WHEN THE GAMES WERE CREATED"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Appear"
+anims/Appear = SubResource( 3 )
