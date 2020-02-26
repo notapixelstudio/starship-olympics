@@ -569,23 +569,21 @@ planet = ExtResource( 9 )
 position = Vector2( 0, -600 )
 planet = ExtResource( 10 )
 
-[node name="hive_ceasefire" parent="Content/Planets" instance=ExtResource( 11 )]
-editor/display_folded = true
+[node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 11 )]
 value_name = "hive_shoot_bombs"
 inverted = true
 text = "ceasefire"
 
-[node name="Sprite" parent="Content/Planets/hive_ceasefire" index="0"]
+[node name="Sprite" parent="Content/Planets/hive_shoot_bombs" index="0"]
 texture = ExtResource( 12 )
 
-[node name="diamondsnatch_ceasefire" parent="Content/Planets" instance=ExtResource( 11 )]
-editor/display_folded = true
+[node name="diamondsnatch_shoot_bombs" parent="Content/Planets" instance=ExtResource( 11 )]
 position = Vector2( 0, 600 )
 value_name = "diamondsnatch_shoot_bombs"
 inverted = true
 text = "ceasefire"
 
-[node name="Sprite" parent="Content/Planets/diamondsnatch_ceasefire" index="0"]
+[node name="Sprite" parent="Content/Planets/diamondsnatch_shoot_bombs" index="0"]
 texture = ExtResource( 12 )
 
 [node name="Controls" type="Node2D" parent="Content"]
@@ -964,14 +962,14 @@ margin_top = 23.0
 margin_right = 207.0
 margin_bottom = 41.0
 text = "Seconds"
-[connection signal="updated" from="Content/Planets/Diamondsnatch" to="Content/Planets/diamondsnatch_ceasefire" method="_on_master_updated"]
-[connection signal="updated" from="Content/Planets/HiveFilling" to="Content/Planets/hive_ceasefire" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/Diamondsnatch" to="Content/Planets/diamondsnatch_shoot_bombs" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/HiveFilling" to="Content/Planets/hive_shoot_bombs" method="_on_master_updated"]
 [connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
 [connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
 
-[editable path="Content/Planets/hive_ceasefire"]
+[editable path="Content/Planets/hive_shoot_bombs"]
 
-[editable path="Content/Planets/diamondsnatch_ceasefire"]
+[editable path="Content/Planets/diamondsnatch_shoot_bombs"]
 
 [editable path="Content/Controls/Victories"]
 
