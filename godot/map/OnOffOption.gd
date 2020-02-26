@@ -2,6 +2,7 @@ extends MapCell
 
 export var active : bool = false setget set_active
 export var value_name : String = "win"
+export var inverted : bool = false
 export var global_option : bool = true
 export var node_owner_path : NodePath
 export var text : String = ''
@@ -19,8 +20,12 @@ func set_active(value):
 	node_owner.set(value_name, active)
 	refresh()
 	
+func set_inverted(value):
+	inverted = value
+	refresh()
+	
 func refresh():
-	if active:
+	if active and not inverted or not active and inverted:
 		$CheckBox.play('true')
 	else:
 		$CheckBox.play('empty')
@@ -47,7 +52,7 @@ func act(cursor):
 	toggle_active()
 	.act(cursor)
 	cursor.on_sth_pressed()
-	if active:
+	if active and not inverted or not active and inverted:
 		$switch_on.play()
 	else:
 		$switch_off.play()

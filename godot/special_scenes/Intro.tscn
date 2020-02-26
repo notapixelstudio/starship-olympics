@@ -3,11 +3,11 @@
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 54
+size = 38
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 72
+size = 54
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=3]
@@ -61,9 +61,9 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Line1" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 190.0
+margin_top = 196.0
 margin_right = 1277.0
-margin_bottom = 288.0
+margin_bottom = 294.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
@@ -71,9 +71,9 @@ text = "MILLENNIA OF INTERGALACTIC WARS"
 
 [node name="Line2" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 290.0
+margin_top = 293.0
 margin_right = 1277.0
-margin_bottom = 388.0
+margin_bottom = 391.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
@@ -87,7 +87,7 @@ margin_bottom = 478.0
 custom_fonts/italics_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[center]WHEN THE [i]GAMES[/i] WERE CREATED[/center]"
+bbcode_text = "[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]"
 text = "WHEN THE GAMES WERE CREATED"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

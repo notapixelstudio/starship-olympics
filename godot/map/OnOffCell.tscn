@@ -3,8 +3,8 @@
 [ext_resource path="res://map/OnOffOption.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/cards/bomb.png" type="Texture" id=2]
 [ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=3]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=5]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=4]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
@@ -18,20 +18,20 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "blank",
+"name": "true",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "true",
+"name": "blank",
 "speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=2]
-size = 36
+size = 32
 font_data = ExtResource( 6 )
 
-[node name="Bombs" type="Node2D" groups=[
+[node name="OnOffCell" type="Node2D" groups=[
 "map_point",
 ]]
 position = Vector2( 200, -600 )

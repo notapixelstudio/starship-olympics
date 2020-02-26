@@ -158,14 +158,14 @@ var avoidance
 
 
 # this draws are for debugging the targets of the CPU
+"""
 func _draw():
 	for hit in target_hit:
 		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
 		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
-	
 func _physics_process(delta):
 	 update()
-
+"""
 
 var last_target_pos = Vector2()
 

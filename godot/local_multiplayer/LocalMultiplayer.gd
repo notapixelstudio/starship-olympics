@@ -13,17 +13,12 @@ var all_planets = [
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
 	preload("res://map/planets/SoloDeath.tres"),
-	preload("res://map/planets/Pentagoal.tres"),
+	# preload("res://map/planets/Pentagoal.tres"),
 	# preload("res://map/planets/EelectronPlanet.tres"),
 	# preload("res://map/planets/MinefieldDeathmatch.tres")
 	]
 	
-var all_species = [
-	preload('res://selection/characters/mantiacs_1.tres'),
-	preload('res://selection/characters/robolords_1.tres'),
-	preload('res://selection/characters/toriels_1.tres'),
-	preload('res://selection/characters/trixens_1.tres'),
-]
+var all_species = []
 onready var parallax = $ParallaxBackground
 
 var combat
@@ -44,6 +39,9 @@ func reset():
 	campaign_mode = global.campaign_mode
 	
 func _ready():
+	for species_name in global.get_unlocked():
+		all_species.append(load(global.SPECIES_PATH+'/'+species_name+'.tres'))
+		
 	session_scores = SessionScores.new()
 	session_scores.players = players
 

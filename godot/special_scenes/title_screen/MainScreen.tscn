@@ -139,6 +139,7 @@ __meta__ = {
 multiplayer_scene = ExtResource( 2 )
 
 [node name="Overlays" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
 transition = 0.0
