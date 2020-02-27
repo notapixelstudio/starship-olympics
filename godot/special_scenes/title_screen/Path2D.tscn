@@ -37,6 +37,8 @@ show_behind_parent = true
 width = 60.0
 gradient = SubResource( 2 )
 trail_length = 70
+min_dist = 2.0
+length_in_pixel = 360.0
 
 [node name="NearArea" parent="PathFollow2D/Sprite/Trail/Trail" index="0"]
 editor/display_folded = true
@@ -48,5 +50,7 @@ editor/display_folded = true
 show_behind_parent = true
 width = 16.0
 trail_length = 30
+min_dist = 2.0
+length_in_pixel = 120.0
 
 [editable path="PathFollow2D/Sprite/Trail"]

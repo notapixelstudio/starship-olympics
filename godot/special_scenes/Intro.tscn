@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://special_scenes/Intro.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://special_scenes/Disclaimer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 54
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Appear"
@@ -49,10 +51,28 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_process_input"
+}, {
+"args": [  ],
+"method": "continue"
+} ]
+}
 
 [node name="Intro" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -60,7 +80,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Line1" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 196.0
 margin_right = 1277.0
 margin_bottom = 294.0
@@ -70,7 +89,6 @@ bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
 text = "MILLENNIA OF INTERGALACTIC WARS"
 
 [node name="Line2" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 293.0
 margin_right = 1277.0
 margin_bottom = 391.0
@@ -80,7 +98,6 @@ bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
 text = "FINALLY CAME TO AN END"
 
 [node name="Line3" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 380.0
 margin_right = 1277.0
 margin_bottom = 478.0
@@ -91,5 +108,6 @@ bbcode_text = "[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]"
 text = "WHEN THE GAMES WERE CREATED"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Appear"
 anims/Appear = SubResource( 3 )
+
+[node name="Disclaimer" parent="." instance=ExtResource( 3 )]
