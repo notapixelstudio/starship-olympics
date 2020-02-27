@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=2]
@@ -10,9 +10,8 @@
 [ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=8]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://assets/animations/shake.anim" type="Animation" id=11]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=12]
-[ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=13]
+[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=11]
+[ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "standby"
@@ -168,9 +167,6 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesName"]
-anims/shake = ExtResource( 11 )
-
 [node name="Tween" type="Tween" parent="."]
 
 [node name="PlayerInfo" type="Position2D" parent="."]
@@ -180,11 +176,11 @@ position = Vector2( 86, 33.5228 )
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, 9 )
 scale = Vector2( 1.7, 1.8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 11 )
 
 [node name="Sprite2" type="Sprite" parent="PlayerInfo"]
 position = Vector2( 0, 8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 11 )
 
 [node name="PlayerID" type="Label" parent="PlayerInfo"]
 margin_left = -20.0
@@ -198,7 +194,7 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerInfo"]
 autoplay = "wiggle"
-anims/wiggle = ExtResource( 13 )
+anims/wiggle = ExtResource( 12 )
 
 [node name="TeamMode" type="Control" parent="."]
 anchor_left = 0.5

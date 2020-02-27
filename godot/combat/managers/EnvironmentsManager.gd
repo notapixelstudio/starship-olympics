@@ -45,9 +45,11 @@ func _physics_process(delta):
 				continue
 				
 			var do_it = false
-			if body_e.has('Conqueror') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species().species == body_e.get('Conqueror').get_species().species):
+			# ships
+			if body_e.has('Conqueror') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species() == body_e.get('Conqueror').get_species()):
 				do_it = true
-			if body_e.has('Owned') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species().species == body_e.get('Owned').get_owned_by().species):
+			# bombs
+			if body_e.has('Owned') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species() == body_e.get('Owned').get_owned_by()):
 				do_it = true
 			if do_it:
 				body_e.get('Thrusters').add_hindrance()

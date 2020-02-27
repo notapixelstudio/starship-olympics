@@ -51,12 +51,6 @@ func change_species(new_species:Species):
 	select_rect.modulate = species.color
 	background.color = species.color
 
-func previous():
-	label_anim.play("shake")
-	
-func next():
-	label_anim.play("shake")
-
 func select():
 	select_rect.visible = true
 	background.modulate = Color(1,1,1,1)

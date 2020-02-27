@@ -62,6 +62,7 @@ cursor_scene = ExtResource( 4 )
 pause_mode = 2
 
 [node name="Waypoints" type="Node2D" parent="Content"]
+editor/display_folded = true
 
 [node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -200, 200 )
@@ -93,12 +94,6 @@ position = Vector2( -1600, 400 )
 [node name="Waypoint188" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 400 )
 
-[node name="Waypoint198" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 400 )
-
-[node name="Waypoint208" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 400 )
-
 [node name="Waypoint80" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, 200 )
 
@@ -116,12 +111,6 @@ position = Vector2( -1600, 200 )
 
 [node name="Waypoint189" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 200 )
-
-[node name="Waypoint199" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 200 )
-
-[node name="Waypoint209" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 200 )
 
 [node name="Waypoint81" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -200 )
@@ -141,12 +130,6 @@ position = Vector2( -1600, -200 )
 [node name="Waypoint186" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -200 )
 
-[node name="Waypoint196" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -200 )
-
-[node name="Waypoint206" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -200 )
-
 [node name="Waypoint82" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -400 )
 
@@ -164,12 +147,6 @@ position = Vector2( -1600, -400 )
 
 [node name="Waypoint190" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -400 )
-
-[node name="Waypoint200" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -400 )
-
-[node name="Waypoint210" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -400 )
 
 [node name="Waypoint83" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -600 )
@@ -195,12 +172,6 @@ position = Vector2( -1600, -600 )
 [node name="Waypoint185" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -600 )
 
-[node name="Waypoint195" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -600 )
-
-[node name="Waypoint205" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -600 )
-
 [node name="Waypoint130" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1200, -800 )
 
@@ -212,15 +183,6 @@ position = Vector2( -1600, -800 )
 
 [node name="Waypoint181" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -800 )
-
-[node name="Waypoint191" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -800 )
-
-[node name="Waypoint201" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -800 )
-
-[node name="Waypoint84" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -600, -600 )
 
 [node name="Waypoint134" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -600, -800 )
@@ -252,12 +214,6 @@ position = Vector2( -1600, 600 )
 [node name="Waypoint187" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 600 )
 
-[node name="Waypoint197" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 600 )
-
-[node name="Waypoint207" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 600 )
-
 [node name="Waypoint42" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, 800 )
 
@@ -278,12 +234,6 @@ position = Vector2( -1600, 800 )
 
 [node name="Waypoint184" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 800 )
-
-[node name="Waypoint194" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 800 )
-
-[node name="Waypoint204" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 800 )
 
 [node name="Waypoint46" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, 800 )
@@ -539,12 +489,6 @@ position = Vector2( -1600, 0 )
 [node name="Waypoint97" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 0 )
 
-[node name="Waypoint98" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 0 )
-
-[node name="Waypoint100" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 0 )
-
 [node name="Planets" type="Node2D" parent="Content"]
 __meta__ = {
 "_edit_lock_": true
@@ -567,10 +511,11 @@ position = Vector2( 0, -600 )
 planet = ExtResource( 10 )
 
 [node name="SlamAGon" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( -400, -600 )
+position = Vector2( -600, -600 )
 planet = ExtResource( 11 )
 
 [node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+editor/display_folded = true
 value_name = "hive_shoot_bombs"
 inverted = true
 text = "ceasefire"
@@ -578,7 +523,18 @@ text = "ceasefire"
 [node name="Sprite" parent="Content/Planets/hive_shoot_bombs" index="0"]
 texture = ExtResource( 13 )
 
+[node name="slam_a_gon_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+editor/display_folded = true
+position = Vector2( -400, -600 )
+value_name = "slam_a_gon_shoot_bombs"
+inverted = true
+text = "ceasefire"
+
+[node name="Sprite" parent="Content/Planets/slam_a_gon_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
+
 [node name="diamondsnatch_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+editor/display_folded = true
 position = Vector2( 0, 600 )
 value_name = "diamondsnatch_shoot_bombs"
 inverted = true
@@ -590,6 +546,7 @@ texture = ExtResource( 13 )
 [node name="Controls" type="Node2D" parent="Content"]
 
 [node name="Victories" parent="Content/Controls" instance=ExtResource( 14 )]
+editor/display_folded = true
 position = Vector2( 600, 0 )
 value_name = "custom_win"
 selection = [ 1, 3, 5 ]
@@ -607,6 +564,7 @@ visible = false
 texture = ExtResource( 17 )
 
 [node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
+editor/display_folded = true
 position = Vector2( 600, -200 )
 script = ExtResource( 18 )
 var_name = "cpu"
@@ -701,12 +659,9 @@ uppercase = true
 
 [node name="Umidor II" type="Sprite" parent="ParallaxBackground/Near"]
 self_modulate = Color( 0.478431, 0.521569, 0.556863, 1 )
-position = Vector2( 228, 554 )
+position = Vector2( 249, 575 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 28 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Umidor II"]
 margin_left = -70.0
@@ -839,8 +794,8 @@ z_as_relative = false
 texture = ExtResource( 31 )
 
 [node name="Camera" parent="." instance=ExtResource( 32 )]
-limit_left = -2300
-limit_top = -990
+limit_left = -1900
+limit_top = -900
 limit_right = 1500
 limit_bottom = 900
 drag_margin_left = 0.0
@@ -849,8 +804,8 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
-zoomMin = 2.0
-zoomMax = 2.8
+zoomMin = 2.1
+zoomMax = 2.65
 marginY = 0.0
 zoom_offset = 1.574
 
@@ -965,11 +920,13 @@ margin_bottom = 41.0
 text = "Seconds"
 [connection signal="updated" from="Content/Planets/Diamondsnatch" to="Content/Planets/diamondsnatch_shoot_bombs" method="_on_master_updated"]
 [connection signal="updated" from="Content/Planets/HiveFilling" to="Content/Planets/hive_shoot_bombs" method="_on_master_updated"]
-[connection signal="updated" from="Content/Planets/SlamAGon" to="Content/Planets/hive_shoot_bombs" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/SlamAGon" to="Content/Planets/slam_a_gon_shoot_bombs" method="_on_master_updated"]
 [connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
 [connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
 
 [editable path="Content/Planets/hive_shoot_bombs"]
+
+[editable path="Content/Planets/slam_a_gon_shoot_bombs"]
 
 [editable path="Content/Planets/diamondsnatch_shoot_bombs"]
 

@@ -19,6 +19,7 @@ var max_cpu
 
 var hive_shoot_bombs = true setget set_hive_bombs
 var diamondsnatch_shoot_bombs = true setget set_diamondsnatch_bombs
+var slam_a_gon_shoot_bombs = true setget set_slam_a_gon_bombs
 onready var playlist = $CanvasLayerTop/HUD/Items
 onready var intro = $CanvasLayerTop/HUD/Intro
 onready var button = $CanvasLayerTop/HUD/Button
@@ -44,6 +45,10 @@ func set_hive_bombs(value: bool):
 func set_diamondsnatch_bombs(value: bool):
 	diamondsnatch_shoot_bombs = value
 	settings["diamondsnatch"] = {"shoot_bombs" : diamondsnatch_shoot_bombs}
+	
+func set_slam_a_gon_bombs(value: bool):
+	slam_a_gon_shoot_bombs = value
+	settings["slam_a_gon"] = {"shoot_bombs" : slam_a_gon_shoot_bombs}
 	
 func _ready():
 	back = false

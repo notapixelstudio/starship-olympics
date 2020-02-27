@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=2]
+[ext_resource path="res://combat/modes/Pentagoal.tres" type="Resource" id=2]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=5]
@@ -48,11 +48,11 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 center_offset = Vector2( 0, 0 )
-radius = 2700
+radius = 2900
 precision = 100.0
 
 [node name="PentaGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
-position = Vector2( -1300, 0 )
+position = Vector2( -1500, 0 )
 rotation = 3.14159
 rings = 4
 ring_width = 80.0
@@ -60,40 +60,40 @@ core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
-position = Vector2( -1600, -1000 )
+position = Vector2( -1800, -1000 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
-position = Vector2( -1600, 1000 )
+position = Vector2( -1800, 1000 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
-position = Vector2( 1600, 1000 )
+position = Vector2( 1800, 1000 )
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
-position = Vector2( 1600, -1004.89 )
+position = Vector2( 1800, -1004.89 )
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
-position = Vector2( 1300, 5.95105 )
+position = Vector2( 1500, 5.95105 )
 rings = 4
 ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal7" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
-position = Vector2( 6.10352e-05, -1300 )
+position = Vector2( 6.10352e-05, -1500 )
 rotation = -1.5708
 rings = 4
 ring_width = 80.0
@@ -101,21 +101,21 @@ core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal8" parent="Battlefield/Middleground" index="7" instance=ExtResource( 7 )]
-position = Vector2( 1000, -1600 )
+position = Vector2( 1000, -1800 )
 rotation = -1.5708
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal9" parent="Battlefield/Middleground" index="8" instance=ExtResource( 7 )]
-position = Vector2( -1000, -1600 )
+position = Vector2( -1000, -1800 )
 rotation = -1.5708
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal10" parent="Battlefield/Middleground" index="9" instance=ExtResource( 7 )]
-position = Vector2( 0, 1300 )
+position = Vector2( 0, 1500 )
 rotation = 1.57079
 rings = 4
 ring_width = 80.0
@@ -123,14 +123,14 @@ core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 
 [node name="PentaGoal11" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
-position = Vector2( -1000, 1600 )
+position = Vector2( -1000, 1800 )
 rotation = 1.57079
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 
 [node name="PentaGoal12" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
-position = Vector2( 1000, 1600 )
+position = Vector2( 1000, 1800 )
 rotation = 1.57079
 rings = 3
 ring_width = 80.0
@@ -140,27 +140,27 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 type = 1
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( 1300, 10 )
+position = Vector2( 1100, 10 )
 rotation = 3.14159
 species = ExtResource( 10 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( -1300, 0 )
+position = Vector2( -1500, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 11 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( 0, -1300 )
+position = Vector2( 0, -1500 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 12 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( 0, 1300 )
+position = Vector2( 0, 1500 )
 rotation = -1.5708
 controls = "joy1"
 species = ExtResource( 13 )

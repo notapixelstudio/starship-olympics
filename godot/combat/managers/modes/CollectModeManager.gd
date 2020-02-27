@@ -50,7 +50,7 @@ func _on_sth_collected(collector, collectee):
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.get_id(), score)
 		emit_signal('show_score', collector.species, score, collectee.global_position)
-		sound_action.play()
+		play_sound()
 		
 func _on_coins_dropped(dropper, amount):
 	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
@@ -80,4 +80,11 @@ func reset_wave_timer():
 func on_wave_ready():
 	wave_ready = true
 	reset_wave_timer()
+	
+func play_sound():
+	var sound = sound_action.duplicate()
+	add_child(sound)
+	sound.play()
+	yield(sound, 'finished')
+	sound.queue_free()
 	

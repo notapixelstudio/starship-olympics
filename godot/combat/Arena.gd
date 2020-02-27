@@ -389,7 +389,7 @@ func on_gamemode_gameover(winners: Array):
 	if demo:
 		emit_signal("back_to_menu")
 		return
-	for child in get_children():
+	for child in $Managers.get_children():
 		if child is ModeManager:
 			child.enabled = false
 	$GameOverAnim.play('Game Over')
