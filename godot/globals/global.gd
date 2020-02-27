@@ -187,7 +187,7 @@ func set_campaign_mode(value):
 		win = custom_win
 	
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
-var from_scene = ProjectSettings.get_setting("application/run/main_scene")
+var from_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 
 func _input(event):
 	if event.is_action_pressed("fullscreen"):
