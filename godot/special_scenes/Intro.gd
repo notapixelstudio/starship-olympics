@@ -16,5 +16,5 @@ func continue():
 	
 	
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if not event is InputEventMouse and not event.pressed:
 		get_tree().change_scene(global.from_scene)
