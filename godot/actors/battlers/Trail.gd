@@ -63,7 +63,10 @@ export var degen_rate: int = 1
 export var auto_z_index: bool = true
 # If true, will automatically setup a gradient for a gradually transparent trail
 export var auto_alpha_gradient: bool = true
+export var min_dist : float = 1
+export var length_in_pixel : float = 7
 
+var actual_length = 0.0
 ##### NOTIFICATIONS #####
 
 func _init():
@@ -89,14 +92,30 @@ func _notification(p_what: int):
 
 
 func add_custom_point(point):
+	var last_point = Vector2.ZERO if len(points) <= 0 else points[len(points)-1]
+	var distanza: float = (last_point-point).length()
+	
+	if len(points) > 1: 
+		if distanza < min_dist or actual_length > length_in_pixel:
+			return
+		# return
 	if area and not area_shape.disabled:
 		add_point_to_segment(point)
+	actual_length += distanza
 	add_point(point)
 
 
 func remove_custom_point(point):
+
+	if len(points) <= 1:
+		actual_length = 0.0
+		return
 	if area and not area_shape.disabled:
 		remove_point_to_segment(point)
+	var this_point = points[point]
+	var next_point = points[point+1]
+	var distanza: float = (next_point-this_point).length()
+	actual_length = max(0, actual_length- distanza)
 	remove_point(point)
 
 		
@@ -106,7 +125,7 @@ func _process(delta: float):
 		match persistance:
 			Persistance.OFF:
 				add_custom_point(target.global_position)
-				while get_point_count() > trail_length:
+				while get_point_count() > trail_length or actual_length > length_in_pixel:
 					remove_custom_point(0)
 			Persistance.ALWAYS:
 				add_custom_point(target.global_position)
