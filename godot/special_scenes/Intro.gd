@@ -11,10 +11,11 @@ func _ready():
 		yield(disclaimer, "okay")
 	anim.play("Appear")
 
-func continue():
+func go_ahead():
 	get_tree().change_scene(global.from_scene)
 	
 	
 func _input(event):
 	if not event is InputEventMouse and not event.pressed:
-		get_tree().change_scene(global.from_scene)
+		go_ahead()
+		set_process_input(false)

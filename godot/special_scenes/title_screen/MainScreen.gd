@@ -5,7 +5,6 @@ onready var title = $CanvasLayer/TitleScreen
 onready var options = $CanvasLayer/Options
 onready var buttons = $CanvasLayer/Buttons
 onready var canvas_layer = $CanvasLayer
-onready var info = $Disclaimer
 
 export var multiplayer_scene : PackedScene
 
@@ -23,9 +22,6 @@ func _ready():
 	canvas_layer.remove_child(options)
 	canvas_layer.remove_child(title)
 	disable_buttons()
-	if global.first_time:
-		info.start()
-		yield(info, "okay")
 	canvas_layer.add_child(title)
 	title.initialize()
 	yield(title, "entered")
