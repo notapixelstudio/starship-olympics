@@ -29,7 +29,7 @@ script = ExtResource( 3 )
 
 [node name="Trail" parent="PathFollow2D/Sprite" instance=ExtResource( 2 )]
 show_behind_parent = true
-trail_length = 70
+trail_length = 90
 
 [node name="Trail" parent="PathFollow2D/Sprite/Trail" index="0"]
 editor/display_folded = false
@@ -37,8 +37,8 @@ show_behind_parent = true
 width = 60.0
 gradient = SubResource( 2 )
 trail_length = 70
-min_dist = 2.0
-length_in_pixel = 360.0
+persistance = 0
+time_alive_per_point = 1.4
 
 [node name="NearArea" parent="PathFollow2D/Sprite/Trail/Trail" index="0"]
 editor/display_folded = true
@@ -50,7 +50,7 @@ editor/display_folded = true
 show_behind_parent = true
 width = 16.0
 trail_length = 30
-min_dist = 2.0
-length_in_pixel = 120.0
+persistance = 0
+time_alive_per_point = 0.4
 
 [editable path="PathFollow2D/Sprite/Trail"]

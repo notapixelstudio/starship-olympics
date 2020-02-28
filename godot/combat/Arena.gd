@@ -52,6 +52,8 @@ signal gameover
 signal restart
 signal rematch
 signal back_to_menu
+signal slomo
+signal unslomo
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -122,6 +124,8 @@ func _ready():
 	scores = MatchScores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
+	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
+	
 	
 	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
 	collect_manager.connect('collected', self, "_on_sth_collected")
@@ -535,10 +539,14 @@ func _on_Pause_restart():
 func _on_Pause_skip():
 	emit_signal("rematch") # WARNING this should be different if we are keeping scores
 	
-const max_slomo_elements = 6
+const max_slomo_elements = 3
+
 func slomo():
+	
 	if len(get_tree().get_nodes_in_group('slomo')) > max_slomo_elements:
+		emit_signal("slomo")
 		self.time_scale = lerp(time_scale, 0.5, 0.2)
 	else:
+		emit_signal("unslomo")
 		self.time_scale = lerp(time_scale, 1, 0.1)
 		

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://special_scenes/Intro.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://special_scenes/Disclaimer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/audio/soundtracks/PM_ATG_120_3_3.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/UI_effects/426759__magmi-soundtracks__scary-tension-buildup-02.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/soundtracks/lewislancaster-0013shed.ogg" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -70,16 +71,16 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 6.9 ),
-"transitions": PoolRealArray( 2, 1 ),
-"update": 0,
-"values": [ -9.948, -4.0 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [node name="Intro" type="Control"]
@@ -131,4 +132,7 @@ anims/Appear = SubResource( 3 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = -10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 autoplay = true

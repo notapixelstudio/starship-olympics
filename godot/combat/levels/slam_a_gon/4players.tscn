@@ -19,6 +19,11 @@ size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 match_duration_override = 120.0
 
+[node name="SlomoEffect" parent="Managers/EnvironmentsManager" index="0"]
+volume_db = 10.0
+pitch_scale = 1.2
+bus = "SFX_effect"
+
 [node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
 

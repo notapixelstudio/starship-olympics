@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -13,8 +13,12 @@
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=11]
 [ext_resource path="res://special_scenes/Disclaimer.tscn" type="PackedScene" id=12]
 
-[sub_resource type="Animation" id=1]
-resource_name = "fade_in"
+[sub_resource type="Gradient" id=1]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("logo_ssf_olympic:modulate")
 tracks/0/interp = 1
@@ -64,8 +68,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -79,30 +82,29 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "option_selected"
+[sub_resource type="Animation" id=4]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 32
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="InputEventAction" id=5]
+[sub_resource type="InputEventAction" id=6]
 
-[sub_resource type="ShortCut" id=6]
-shortcut = SubResource( 5 )
-
-[sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 10 )
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
 
 [sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=9]
 size = 32
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -150,6 +152,9 @@ smoothness = 0.0
 [node name="Path2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( -170, 0 )
 
+[node name="Trail" parent="Path2D/PathFollow2D/Sprite/Trail" index="0"]
+gradient = SubResource( 1 )
+
 [node name="Path2D2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1486.35, 870.002 )
 rotation = 3.14159
@@ -170,9 +175,9 @@ __meta__ = {
 }
 
 [node name="Animator" type="AnimationPlayer" parent="CanvasLayer/TitleScreen"]
-anims/fade_in = SubResource( 1 )
-anims/fade_out = SubResource( 2 )
-anims/option_selected = SubResource( 3 )
+anims/fade_in = SubResource( 2 )
+anims/fade_out = SubResource( 3 )
+anims/option_selected = SubResource( 4 )
 
 [node name="logo_ssf_olympic" type="Sprite" parent="CanvasLayer/TitleScreen"]
 modulate = Color( 1, 1, 1, 0 )
@@ -204,10 +209,10 @@ __meta__ = {
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 disabled = true
 action_mode = 0
-shortcut = SubResource( 6 )
+shortcut = SubResource( 7 )
 text = "START"
 flat = true
 
@@ -276,7 +281,7 @@ anchor_bottom = 1.0
 margin_top = -25.0
 margin_right = -35.0
 margin_bottom = -4.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Demo build - 0.6.1"
 align = 2
 uppercase = true
@@ -288,13 +293,13 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = 440.0
 margin_bottom = 480.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "THANK YOU FOR PLAYING"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
-anims/appear = SubResource( 9 )
+anims/appear = SubResource( 10 )
 
 [node name="Disclaimer" parent="." instance=ExtResource( 12 )]
 visible = false
@@ -305,3 +310,7 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/Buttons/Custom Fight" to="CanvasLayer/TitleScreen" method="_on_StartHuman_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/Options" to="CanvasLayer/TitleScreen" method="_on_Options_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[editable path="Path2D"]
+
+[editable path="Path2D/PathFollow2D/Sprite/Trail"]

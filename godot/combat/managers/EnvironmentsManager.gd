@@ -61,4 +61,15 @@ func _physics_process(delta):
 	for e_w_thrusters in ECM.entities_with('Thrusters'):
 		e_w_thrusters.get('Thrusters').apply_damp()
 		e_w_thrusters.get('Thrusters').reset_hindrances()
-		
+
+
+func activate_slomo(arena):
+	arena.connect("unslomo", self, "deactivate_slomo", [arena], CONNECT_ONESHOT)
+	$SlomoEffect.play()
+	yield($SlomoEffect, "finished")
+	arena.connect("slomo", self, "activate_slomo", [arena], CONNECT_ONESHOT)
+	
+func deactivate_slomo(arena):
+	$UnSlomoEffect.play()
+	yield($SlomoEffect, "finished")
+	
