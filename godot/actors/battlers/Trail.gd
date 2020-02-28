@@ -65,7 +65,7 @@ export var degen_rate: int = 1
 export var auto_z_index: bool = true
 # If true, will automatically setup a gradient for a gradually transparent trail
 export var auto_alpha_gradient: bool = true
-
+export var min_dist : float = 4 
 export var time_alive_per_point : float = 1.0
 
 var monitor = []
@@ -96,7 +96,12 @@ func _notification(p_what: int):
 
 
 func add_custom_point(point):
-
+	var last_point = Vector2.ZERO if len(points) <= 0 else points[len(points)-1]
+	var distanza: float = (last_point-point).length()
+	
+	if len(points) > 1: 
+		if distanza < min_dist:
+			return
 	if area and not area_shape.disabled:
 		add_point_to_segment(point)
 	# actual_length += distanza
