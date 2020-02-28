@@ -4,6 +4,8 @@ onready var disclaimer = $Disclaimer
 onready var anim = $AnimationPlayer
 onready var skip = $Skip
 
+export var main_screen : PackedScene
+
 func _ready():
 	set_process_input(false)
 	if global.first_time:
@@ -12,7 +14,7 @@ func _ready():
 	anim.play("Appear")
 
 func go_ahead():
-	get_tree().change_scene(global.from_scene)
+	get_tree().change_scene_to(main_screen)
 	
 	
 func _input(event):
