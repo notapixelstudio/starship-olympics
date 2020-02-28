@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://special_scenes/Intro.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://special_scenes/Disclaimer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/soundtracks/PM_ATG_120_3_3.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -68,6 +69,18 @@ tracks/3/keys = {
 "method": "continue"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 6.9 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ -9.948, -4.0 ]
+}
 
 [node name="Intro" type="Control"]
 anchor_right = 1.0
@@ -80,6 +93,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Line1" type="RichTextLabel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 196.0
 margin_right = 1277.0
 margin_bottom = 294.0
@@ -89,6 +103,7 @@ bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
 text = "MILLENNIA OF INTERGALACTIC WARS"
 
 [node name="Line2" type="RichTextLabel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 293.0
 margin_right = 1277.0
 margin_bottom = 391.0
@@ -98,6 +113,7 @@ bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
 text = "FINALLY CAME TO AN END"
 
 [node name="Line3" type="RichTextLabel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 380.0
 margin_right = 1277.0
 margin_bottom = 478.0
@@ -111,3 +127,8 @@ text = "WHEN THE GAMES WERE CREATED"
 anims/Appear = SubResource( 3 )
 
 [node name="Disclaimer" parent="." instance=ExtResource( 3 )]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+autoplay = true
