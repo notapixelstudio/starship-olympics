@@ -110,10 +110,6 @@ func add_custom_point(point):
 
 
 func remove_custom_point(index):
-
-	if len(points) <= 1:
-		actual_length = 0.0
-		return
 	if area and not area_shape.disabled:
 		remove_point_to_segment(index)
 	remove_point(index)
@@ -173,6 +169,7 @@ func _should_shrink() -> bool:
 
 func erase_trail():
 	set_process(false)
+	monitor = []
 	for i in range(get_point_count()):
 		remove_custom_point(0)
 	yield(get_tree().create_timer(0.01), "timeout")

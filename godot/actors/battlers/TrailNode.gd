@@ -83,4 +83,7 @@ func _on_sth_spawned(sth : Node2D):
 	update()
 	
 func _on_sth_dead(sth : Node2D, killer):
-	pass
+	if trail:
+		trail.erase_trail()
+	if inner_trail:
+		inner_trail.erase_trail()
