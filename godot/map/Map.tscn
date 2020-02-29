@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -30,15 +30,16 @@
 [ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=28]
 [ext_resource path="res://assets/map/the_hive.png" type="Texture" id=29]
 [ext_resource path="res://assets/map/trixxx.png" type="Texture" id=30]
-[ext_resource path="res://assets/map/stars.png" type="Texture" id=31]
-[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=32]
-[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=33]
-[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=34]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=35]
-[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=36]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=37]
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=38]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=39]
+[ext_resource path="res://assets/map/hallium_iv.png" type="Texture" id=31]
+[ext_resource path="res://assets/map/stars.png" type="Texture" id=32]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
+[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=34]
+[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=35]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=36]
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=37]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=38]
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=39]
+[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=40]
 
 [sub_resource type="DynamicFont" id=1]
 size = 42
@@ -149,7 +150,7 @@ position = Vector2( -1600, -400 )
 position = Vector2( -1800, -400 )
 
 [node name="Waypoint83" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -800, -600 )
+position = Vector2( -400, -600 )
 
 [node name="Waypoint129" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -800 )
@@ -409,7 +410,7 @@ position = Vector2( 801, 600 )
 position = Vector2( 1401, 600 )
 
 [node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -400, -200 )
+position = Vector2( -600, -200 )
 
 [node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, 600 )
@@ -495,7 +496,7 @@ __meta__ = {
 }
 
 [node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( -600, -200 )
+position = Vector2( -400, -200 )
 planet = ExtResource( 7 )
 
 [node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 6 )]
@@ -511,7 +512,7 @@ position = Vector2( 0, -600 )
 planet = ExtResource( 10 )
 
 [node name="SlamAGon" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( -600, -600 )
+position = Vector2( -800, -600 )
 planet = ExtResource( 11 )
 
 [node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
@@ -525,7 +526,7 @@ texture = ExtResource( 13 )
 
 [node name="slam_a_gon_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
 editor/display_folded = true
-position = Vector2( -400, -600 )
+position = Vector2( -600, -600 )
 value_name = "slam_a_gon_shoot_bombs"
 inverted = true
 text = "ceasefire"
@@ -624,16 +625,19 @@ __meta__ = {
 
 [node name="Queensworld" type="Sprite" parent="ParallaxBackground/Near"]
 modulate = Color( 0.647059, 0.309804, 0.309804, 1 )
-position = Vector2( -663.909, -220.695 )
+position = Vector2( -512.909, -181.695 )
 scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 26 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Queensworld"]
 modulate = Color( 1, 1, 1, 0.815686 )
-margin_left = -364.495
-margin_top = -93.5029
-margin_right = -9.49536
-margin_bottom = 2.49707
+margin_left = -365.051
+margin_top = -90.1696
+margin_right = -10.0509
+margin_bottom = 5.83044
 __meta__ = {
 "_edit_group_": true
 }
@@ -674,7 +678,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="ParallaxBackground/Near/Umidor II/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.403922 )
-margin_right = 355.0
+margin_right = 360.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -685,11 +689,11 @@ uppercase = true
 [node name="Tagline" type="Label" parent="ParallaxBackground/Near/Umidor II/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.403922 )
 margin_top = 66.0
-margin_right = 355.0
+margin_right = 360.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
-text = "The Glimmering depths"
+text = "The Glimmering depths, home to umidorians"
 align = 1
 uppercase = true
 
@@ -781,6 +785,45 @@ text = "Center of the Trixen Empire"
 align = 1
 uppercase = true
 
+[node name="HalliumIV" type="Sprite" parent="ParallaxBackground/Far"]
+modulate = Color( 0.513726, 0.360784, 0.498039, 1 )
+position = Vector2( -702.522, -534.113 )
+scale = Vector2( 1, 1.1 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 31 )
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground/Far/HalliumIV"]
+position = Vector2( -695, -2.72723 )
+scale = Vector2( 1.9, 1.8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Far/HalliumIV/Node2D"]
+margin_left = -4.3334
+margin_top = -24.4163
+margin_right = 332.666
+margin_bottom = 71.5837
+
+[node name="Name" type="Label" parent="ParallaxBackground/Far/HalliumIV/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_right = 336.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Hallium IV"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Far/HalliumIV/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_top = 66.0
+margin_right = 336.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Pentagonions' tasty core"
+align = 1
+uppercase = true
+
 [node name="WayMoreFar" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.3, 0.3 )
 __meta__ = {
@@ -791,9 +834,9 @@ __meta__ = {
 scale = Vector2( 2, 2 )
 z_index = -10
 z_as_relative = false
-texture = ExtResource( 31 )
+texture = ExtResource( 32 )
 
-[node name="Camera" parent="." instance=ExtResource( 32 )]
+[node name="Camera" parent="." instance=ExtResource( 33 )]
 limit_left = -1900
 limit_top = -900
 limit_right = 1500
@@ -829,7 +872,7 @@ margin_left = -159.5
 margin_top = 6.0
 margin_right = 159.5
 margin_bottom = 35.0
-custom_fonts/font = ExtResource( 33 )
+custom_fonts/font = ExtResource( 34 )
 text = "Choose up to X planets"
 align = 1
 valign = 1
@@ -860,35 +903,35 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayerTop/HUD/Legend"]
 margin_right = 319.0
 margin_bottom = 29.0
-custom_fonts/font = ExtResource( 33 )
+custom_fonts/font = ExtResource( 34 )
 text = "Legend"
 align = 1
 valign = 1
 
-[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 34 )]
+[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
 margin_top = 33.0
 margin_bottom = 62.0
-mode = ExtResource( 35 )
-
-[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 34 )]
-margin_top = 66.0
-margin_bottom = 95.0
 mode = ExtResource( 36 )
 
-[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 34 )]
-margin_top = 99.0
-margin_bottom = 128.0
+[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
+margin_top = 66.0
+margin_bottom = 95.0
 mode = ExtResource( 37 )
 
-[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 34 )]
-margin_top = 132.0
-margin_bottom = 161.0
+[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
+margin_top = 99.0
+margin_bottom = 128.0
 mode = ExtResource( 38 )
 
-[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 34 )]
+[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
+margin_top = 132.0
+margin_bottom = 161.0
+mode = ExtResource( 39 )
+
+[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
 margin_top = 165.0
 margin_bottom = 194.0
-mode = ExtResource( 39 )
+mode = ExtResource( 40 )
 
 [node name="GameStart" type="HBoxContainer" parent="CanvasLayerTop/HUD"]
 visible = false

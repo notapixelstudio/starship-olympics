@@ -31,6 +31,7 @@ editor/display_folded = true
 width = 80.0
 gradient = SubResource( 1 )
 trail_length = 40
+min_dist = 1.0
 time_alive_per_point = 1.5
 
 [node name="NearArea" type="Area2D" parent="Trail"]
@@ -92,4 +93,5 @@ width = 18.0
 gradient = SubResource( 2 )
 texture = ExtResource( 9 )
 trail_length = 5
+min_dist = 1.0
 time_alive_per_point = 0.4

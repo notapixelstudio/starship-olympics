@@ -27,6 +27,7 @@ func _ready():
 func initialize(_available_species:Dictionary):
 	available_species = _available_species
 	ordered_species = available_species.values()
+	ordered_species.sort_custom(self, 'compare_by_id')
 
 	var i = 0
 	for child in container.get_children():
@@ -50,6 +51,9 @@ func initialize(_available_species:Dictionary):
 	for control in controls:
 		print(add_controls(control))
 
+func compare_by_id(a,b):
+	return a.id < b.id
+	
 func add_controls(new_controls : String) -> bool:
 	"""
 	Add a controller (keyboard or joypad) and move other to the right

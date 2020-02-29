@@ -152,7 +152,8 @@ var ALL_SPECIES = {
 	SPECIES6 = "robolords_2",
 	SPECIES7 = "trixens_2",
 	SPECIES8 = "toriels_2",
-	SPECIES9 = "takonauts_2"
+	SPECIES9 = "takonauts_2",
+	SPECIES10 = 'pentagonions_1'
 }
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
@@ -165,7 +166,8 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES6: false,
 	ALL_SPECIES.SPECIES7: false,
 	ALL_SPECIES.SPECIES8 : false,
-	ALL_SPECIES.SPECIES9 : false
+	ALL_SPECIES.SPECIES9 : false,
+	ALL_SPECIES.SPECIES10 : true
 }
 
 var colors = {

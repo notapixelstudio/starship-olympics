@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://assets/sprites/species/trixens/tail_beaten.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/species/pentagonions.png" type="Texture" id=2]
+[ext_resource path="res://selection/Character.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/species/pentagonions_ship.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/species/pentagonions/ship_plain.png" type="Texture" id=5]
+
+[resource]
+script = ExtResource( 3 )
+id = 5
+species_name = "pentagonions"
+tagline1 = "dauntless<br>softies"
+tagline2 = ""
+ship = ExtResource( 4 )
+ship_off = ExtResource( 5 )
+character_ok = ExtResource( 2 )
+character_beaten = ExtResource( 1 )
+species_id = 0
+color = Color( 1, 0.447059, 0.705882, 1 )
+color_2 = Color( 1, 0, 0.411765, 1 )

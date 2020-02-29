@@ -2,7 +2,7 @@
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=3]
+[ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=6]
@@ -26,10 +26,7 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0.333333, 0.952941, 1, 0.490196 )
-
-[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_color = Color( 1, 0.333333, 0.627451, 0.490196 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
