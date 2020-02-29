@@ -86,26 +86,25 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -473.0
 margin_top = -87.0
-margin_right = 519.0
+margin_right = 430.0
 margin_bottom = 6.0
 custom_fonts/font = SubResource( 2 )
-text = "Superstarfighter is a game in development by notapixelstudio.
-We need your feedback! head over our webpage or enable the statistics (we use GameAnalytics).
-You can change your preference whenever you like in the option menu."
+text = "Superstarfighter is a game in development by notapixelstudio. We need your feedback! head over our webpage or enable the statistics (we use GameAnalytics). You can change your preference whenever you like in the option menu."
 align = 1
+autowrap = true
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Analytics" parent="Disclaimer" instance=ExtResource( 3 )]
-margin_left = -401.907
-margin_top = -8.50598
-margin_right = -226.907
-margin_bottom = 41.494
+margin_left = -421.907
+margin_top = 11.494
+margin_right = -246.907
+margin_bottom = 61.494
 is_global = true
 element_path = "enable_analytics"
-label_description = "enable analytics"
+label_description = "ENABLE ANALYTICS"
 
 [node name="Button" type="Button" parent="Disclaimer"]
 margin_left = 145.0

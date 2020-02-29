@@ -498,22 +498,27 @@ __meta__ = {
 [node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -200 )
 planet = ExtResource( 7 )
+active = false
 
 [node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -600, 200 )
 planet = ExtResource( 8 )
+active = false
 
 [node name="Diamondsnatch" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -200, 600 )
 planet = ExtResource( 9 )
+active = false
 
 [node name="HiveFilling" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -600 )
 planet = ExtResource( 10 )
+active = false
 
 [node name="SlamAGon" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -800, -600 )
 planet = ExtResource( 11 )
+active = false
 
 [node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
 editor/display_folded = true
@@ -643,7 +648,7 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
-margin_right = 354.0
+margin_right = 355.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -653,7 +658,7 @@ uppercase = true
 
 [node name="Tagline" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
 margin_top = 66.0
-margin_right = 354.0
+margin_right = 355.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
