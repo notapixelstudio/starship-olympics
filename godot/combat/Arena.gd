@@ -539,7 +539,7 @@ func _on_Pause_restart():
 func _on_Pause_skip():
 	emit_signal("rematch") # WARNING this should be different if we are keeping scores
 	
-const max_slomo_elements = 3
+const max_slomo_elements = 7
 
 func slomo():
 	

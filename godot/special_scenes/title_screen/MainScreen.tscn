@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/audio/UI_effects/StarWarsSwoosh.ogg" type="AudioStream" id=12]
 
 [sub_resource type="Gradient" id=1]
 resource_local_to_scene = true
@@ -129,6 +130,36 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 800 ), Vector2( 0, 450 ) ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "fade"
+length = 1.7
+tracks/0/type = "method"
+tracks/0/path = NodePath("Overlays/TransitionColor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fade_to_color"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EffectSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -143,8 +174,6 @@ multiplayer_scene = ExtResource( 2 )
 layer = 100
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
-transition = 0.0
-smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
@@ -299,6 +328,15 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
 anims/appear = SubResource( 10 )
+
+[node name="EffectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = 4.0
+pitch_scale = 1.3
+bus = "SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade = SubResource( 11 )
 [connection signal="option_selected" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="CanvasLayer/Options" to="." method="_on_Options_back"]

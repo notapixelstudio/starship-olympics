@@ -43,7 +43,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.6.1" setget set_version
+var version = "0.6.2" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -348,10 +348,12 @@ func get_base_entity(node : Node):
 	
 func check_version(saved_version: String, version: String) -> bool:
 	# Will check if the version of the saved data is smaller the current
-	var this_minor = saved_version.split(".")[1]
+	var saved_minor = saved_version.split(".")[1]
+	var saved_patch = saved_version.split(".")[2]
 	var minor = version.split(".")[1]
+	var patch = version.split(".")[2]
 	
-	return int(this_minor) < int(minor)
+	return int(saved_patch) < int(patch)
 
 func send_stats(category: String, stats: Dictionary):
 	emit_signal("send_statistics", category, stats)
