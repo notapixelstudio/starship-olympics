@@ -16,7 +16,7 @@ func _ready():
 	line2.bbcode_text = tr("[center]FINALLY CAME TO AN END[/center]")
 	line3.bbcode_text = tr("[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]")
 	set_process_input(false)
-	if global.first_time:
+	if true:
 		disclaimer.start()
 		yield(disclaimer, "okay")
 	anim.play("Appear")
