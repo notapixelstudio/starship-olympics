@@ -15,7 +15,7 @@ func _on_QuitButton_pressed():
 	#get_tree().quit()
 
 func _ready():
-	Soundtrack.play(["Lobby1","Lobby2"][randi()%2], true)
+	Soundtrack.play("Lobby2", true)
 	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Label.text = tr("DEMO BUILD - v"+ str(global.version))

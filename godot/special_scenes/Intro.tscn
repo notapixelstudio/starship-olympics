@@ -78,7 +78,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 1.2 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -96,7 +96,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Line1" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 196.0
 margin_right = 1277.0
 margin_bottom = 294.0
@@ -106,7 +105,6 @@ bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
 text = "MILLENNIA OF INTERGALACTIC WARS"
 
 [node name="Line2" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 293.0
 margin_right = 1277.0
 margin_bottom = 391.0
@@ -116,7 +114,6 @@ bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
 text = "FINALLY CAME TO AN END"
 
 [node name="Line3" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 380.0
 margin_right = 1277.0
 margin_bottom = 478.0
@@ -133,7 +130,6 @@ anims/Appear = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-volume_db = -10.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
