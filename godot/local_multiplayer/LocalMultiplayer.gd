@@ -106,6 +106,7 @@ func combat(selected_players: Array, fight_mode : String):
 			global.send_stats("design", {"event_id": "selection:sports:{sport_name}".format({"sport_name": sport.name})})
 		
 		num_CPUs = map.cpu
+		global.send_stats("design", {"event_id": "selection:cpu:{num_cpu}:players:{num_players}".format({"num_cpu": str(num_CPUs), "num_players": str(num_players)})})
 		session_scores.settings = map.settings
 		if map.back:
 			map.queue_free()
