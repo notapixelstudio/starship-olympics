@@ -165,7 +165,7 @@ func next_level(demo=false):
 		new_sport = sports_array.pop_back()
 		sports_array.push_front(new_sport)
 		if len(sports_array)<= 1:
-			continue
+			break
 	
 	# let's make sure that it is not the same of the previous one.
 	current_level = sports[new_sport].fetch_level(num_players)
