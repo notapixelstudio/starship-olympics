@@ -2,7 +2,7 @@ extends ModeManager
 
 const COINGROUP = "coin"
 const MULTIPLIER = 2
-const WAVE_DELAY = 4
+const WAVE_DELAY = 3
 var to_next_wave = 2
 var current_wave = 0
 

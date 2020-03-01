@@ -43,7 +43,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.6.2" setget set_version
+var version = "0.6.3" setget set_version
 var first_time = true
 
 func set_version(value):
