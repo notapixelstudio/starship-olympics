@@ -8,7 +8,10 @@ const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
 # temporary for all levels
-var all_planets = [
+
+var sports = {} # {sport.name : Resource}
+var sports_array = []
+var all_sports = [
 	preload("res://map/planets/SoloCrown.tres"),
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
@@ -62,7 +65,6 @@ func back():
 	get_tree().change_scene(global.from_scene)
 	
 var current_level
-var levels : Array
 var played_levels : Array
 
 func combat(selected_players: Array, fight_mode : String):
@@ -97,12 +99,12 @@ func combat(selected_players: Array, fight_mode : String):
 	if not campaign_mode:
 		var map = map_scene.instance()
 		
-		map.initialize(players, all_planets, session_scores.settings)
+		map.initialize(players, all_sports, session_scores.settings)
 		add_child(map)
 		yield(map, "done")
 		yield(get_tree(), "idle_frame")
-		all_planets = map.selected_sports
-		for sport in all_planets:
+		all_sports = map.selected_sports
+		for sport in all_sports:
 			global.send_stats("design", {"event_id": "selection:sports:{sport_name}".format({"sport_name": sport.name})})
 		
 		num_CPUs = map.cpu
@@ -120,10 +122,13 @@ func combat(selected_players: Array, fight_mode : String):
 	# if fight_mode == 'solo':
 	add_cpu(num_CPUs)
 		
-	session_scores.selected_sports = all_planets
+	session_scores.selected_sports = all_sports
 	
+	for sport in all_sports:
+		sports[sport.name] = sport
+		sports_array.append(sport.name)
 	
-	all_planets.shuffle() # shuffle the planets at start
+	sports_array.shuffle() # shuffle the planets at start
 	# for planet in all_planets:
 	#	planet.shuffle_levels(len(players))
 	
@@ -131,9 +136,11 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	# TUTORIAL
 	var tut = preload("res://special_scenes/Tutorial.tscn").instance()
+
 	add_child(tut)
 	yield(tut, "over")
 	# END TUTORIAL
+	played_levels = []
 	next_level()
 	
 	# TEST: send the queue
@@ -141,28 +148,31 @@ func combat(selected_players: Array, fight_mode : String):
 
 func next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
-	var last_planet = played_levels.back()
+	
+	var last_sport = played_levels.back()
 	var num_players = len(players)
 	
-	if len(played_levels) >= len(all_planets) or demo:
+	if len(played_levels) >= len(sports_array) or demo:
 		played_levels = []
-		levels = []
-		all_planets.shuffle()
+		sports_array.shuffle()
+	
+	# we are going to play the following games:
 
-	# FIXME it seems that selecting three planets does not work as expected
-	var new_planet = all_planets.pop_back()
-	all_planets.push_front(new_planet)
-	if last_planet == new_planet:
-		new_planet = all_planets.pop_back()
-		all_planets.push_front(new_planet)
-	levels.append(new_planet.fetch_level(num_players))
+	var new_sport = sports_array.pop_back()
+	sports_array.push_front(new_sport)
+
+	while last_sport == new_sport:
+		new_sport = sports_array.pop_back()
+		sports_array.push_front(new_sport)
+		if len(sports_array)<= 1:
+			continue
 	
 	# let's make sure that it is not the same of the previous one.
-	current_level = levels.back()
+	current_level = sports[new_sport].fetch_level(num_players)
 
 	# skip if we just played it
 	start_level(current_level, demo)
-	played_levels.append(new_planet)
+	played_levels.append(new_sport)
 	
 func start_level(_level, demo = false):
 	combat = _level
