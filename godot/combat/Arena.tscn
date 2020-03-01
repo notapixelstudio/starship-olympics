@@ -112,7 +112,6 @@ __meta__ = {
 }
 
 [node name="PursueManager" type="Node" parent="Managers"]
-editor/display_folded = true
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -120,6 +119,7 @@ __meta__ = {
 
 [node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource( 7 )
+volume_db = -10.0
 bus = "SFX"
 
 [node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
