@@ -12,10 +12,11 @@ func _ready():
 	if type == types.CROWN:
 		$CrownSprite.visible = true
 		$BallSprite.visible = false
+		$CollisionShape2D.shape.radius = 80
 	elif type == types.BALL:
 		$CrownSprite.visible = false
 		$BallSprite.visible = true
-		$CollisionShape2D.shape.radius *= 1.2
+		$CollisionShape2D.shape.radius = 96
 		
 func _integrate_forces(state):
 	# force the physics engine
