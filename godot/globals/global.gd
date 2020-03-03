@@ -170,6 +170,14 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES10 : true
 }
 
+func get_ordered_species():
+	var ordered_species = get_unlocked().values()
+	ordered_species.sort_custom(self, 'compare_by_id')
+	return ordered_species
+
+func compare_by_id(a,b):
+	return a.id < b.id
+
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
 	YELLOW = Color(1.0, .757, .027),

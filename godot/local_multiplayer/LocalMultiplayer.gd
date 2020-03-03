@@ -239,7 +239,7 @@ func start_demo():
 	next_level(true)
 	
 func add_cpu(how_many: int):
-	var missing_species = all_species
+	var missing_species = global.get_ordered_species()
 	for key in players:
 		var player = players[key]
 		var this_species_name = player.species.species_name
