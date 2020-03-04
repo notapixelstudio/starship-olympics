@@ -25,7 +25,7 @@ Follow and support us
 [![Support us on Paypal](assets/icons/paypal.png)](https://paypal.me/notapixelstudio) &emsp;
 
 
-Currently under active development! <a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.5</a>'
+Currently under active development! <a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.6</a>'
 intro:
   - excerpt: ''
 feature_row:
