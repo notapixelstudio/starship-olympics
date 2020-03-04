@@ -32,7 +32,7 @@ feature_row:
   - image_path: /assets/ssf/sports.png
     alt: "game modes"
     title: "Lots of Game Modes"
-    excerpt: "Play many different intergalactic *sports*, each adding its own twist to the competition. Fly solo or with a teammate, and beat your friends or the game's AI."
+    excerpt: "Play many different intergalactic games, each adding its own twist to the competition. Challenge your friends or fly solo and beat the game's AI."
   - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
     title: "Super Simple Controls"
