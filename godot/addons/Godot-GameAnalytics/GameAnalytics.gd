@@ -209,9 +209,12 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 
 	match status_code:
 		401:
-			print("Submit events failed due to UNAUTHORIZED.")
-			print("Please verify your Authorization code is working correctly and that your are using valid game keys.")
-		
+			print("ERROR: Submit events failed due to UNAUTHORIZED.")
+			print("ERROR: Please verify your Authorization code is working correctly and that your are using valid game keys.")
+			state_config['enabled'] = false
+			enabled = false
+			return status_code
+			
 		200:
 			print("Response received correctly")
 			reset_event_queue()

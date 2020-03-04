@@ -344,16 +344,18 @@ _global_script_class_icons={
 
 [Analytics]
 
-game_key="c0e0a7c1863dbfae6c2c3e427f1de72d"
-secret_key="166ed30f12e9cbb2b03eccff8d9cb7294bb44172"
 game_key.debug="c0e0a7c1863dbfae6c2c3e427f1de72d"
-game_key.release="c0e0a7c1863dbfae6c2c3e427f1de72d"
+game_key.release="5b72f66efaa74f8e1d395cee32ae8fb0"
 base_url="http://api.gameanalytics.com"
+secret_key.debug="166ed30f12e9cbb2b03eccff8d9cb7294bb44172"
+secret_key.release="75ec3f402122495fff616460f45ffef6e0c04ce9"
 
 [application]
 
 config/name="superstarfighter"
 run/main_scene="res://special_scenes/Intro.tscn"
+boot_splash/image="res://assets/art/translucid.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://logo.png"
 
 [autoload]
