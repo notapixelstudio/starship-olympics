@@ -123,6 +123,7 @@ func combat(selected_players: Array, fight_mode : String):
 	add_cpu(num_CPUs)
 		
 	session_scores.selected_sports = all_sports
+	sports_array = []
 	
 	for sport in all_sports:
 		sports[sport.name] = sport
