@@ -10,17 +10,17 @@
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=8]
 [ext_resource path="res://assets/shaders/offset_trail.png" type="Texture" id=9]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 resource_local_to_scene = true
 offsets = PoolRealArray( 0, 0.5, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
 
 [node name="Trail" type="Position2D" groups=[
-"Trails",
 "TrailLayer",
+"Trails",
 ]]
 script = ExtResource( 1 )
 trail_length = 50
@@ -29,7 +29,10 @@ trail_texture = ExtResource( 2 )
 [node name="Trail" parent="." instance=ExtResource( 3 )]
 editor/display_folded = true
 width = 80.0
-gradient = SubResource( 2 )
+gradient = SubResource( 1 )
+trail_length = 40
+min_dist = 1.0
+time_alive_per_point = 1.5
 
 [node name="NearArea" type="Area2D" parent="Trail"]
 collision_layer = 524288
@@ -87,7 +90,8 @@ __meta__ = {
 
 [node name="InnerTrail" parent="." instance=ExtResource( 3 )]
 width = 18.0
-gradient = SubResource( 1 )
+gradient = SubResource( 2 )
 texture = ExtResource( 9 )
 trail_length = 5
-
+min_dist = 1.0
+time_alive_per_point = 0.4

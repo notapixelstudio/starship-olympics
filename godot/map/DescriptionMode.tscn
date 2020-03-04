@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
@@ -32,6 +32,28 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "clips": PoolStringArray( "blink" ),
 "times": PoolRealArray( 0.8 )
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("Description3/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "blink" ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Description3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -157,7 +179,22 @@ outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0, 0, 0 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 0, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=7]
 size = 24
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
@@ -167,6 +204,7 @@ font_data = ExtResource( 6 )
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_rotation = -0.00219995
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 gamemode = ExtResource( 3 )
@@ -196,9 +234,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -625.0
+margin_left = -623.568
 margin_top = 190.0
-margin_right = 633.0
+margin_right = 634.432
 margin_bottom = 240.0
 custom_fonts/font = SubResource( 5 )
 text = "Bombazza"
@@ -206,16 +244,35 @@ align = 1
 valign = 1
 uppercase = true
 
+[node name="Description3" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -623.57
+margin_top = 243.432
+margin_right = 634.43
+margin_bottom = 293.432
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Description3"]
+anims/blink = SubResource( 6 )
+
 [node name="Description2" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -618.436
-margin_top = 281.954
-margin_right = 639.564
-margin_bottom = 331.954
-custom_fonts/font = SubResource( 6 )
+margin_left = -622.005
+margin_top = 293.522
+margin_right = 635.995
+margin_bottom = 343.522
+custom_fonts/font = SubResource( 7 )
 text = "press FIRE to continue"
 align = 1
 valign = 1

@@ -8,22 +8,20 @@ const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
 # temporary for all levels
-var all_planets = [
+
+var sports = {} # {sport.name : Resource}
+var sports_array = []
+var all_sports = [
 	preload("res://map/planets/SoloCrown.tres"),
 	preload("res://map/planets/SoloSnatch.tres"),
 	preload("res://map/planets/SoloFlag.tres"),
 	preload("res://map/planets/SoloDeath.tres"),
-	preload("res://map/planets/Pentagoal.tres"),
+	preload("res://map/planets/SlamAGon.tres"),
 	# preload("res://map/planets/EelectronPlanet.tres"),
 	# preload("res://map/planets/MinefieldDeathmatch.tres")
 	]
 	
-var all_species = [
-	preload('res://selection/characters/mantiacs_1.tres'),
-	preload('res://selection/characters/robolords_1.tres'),
-	preload('res://selection/characters/toriels_1.tres'),
-	preload('res://selection/characters/trixens_1.tres'),
-]
+var all_species = []
 onready var parallax = $ParallaxBackground
 
 var combat
@@ -44,6 +42,9 @@ func reset():
 	campaign_mode = global.campaign_mode
 	
 func _ready():
+	for species_name in global.get_unlocked():
+		all_species.append(load(global.SPECIES_PATH+'/'+species_name+'.tres'))
+		
 	session_scores = SessionScores.new()
 	session_scores.players = players
 
@@ -64,7 +65,6 @@ func back():
 	get_tree().change_scene(global.from_scene)
 	
 var current_level
-var levels : Array
 var played_levels : Array
 
 func combat(selected_players: Array, fight_mode : String):
@@ -76,7 +76,7 @@ func combat(selected_players: Array, fight_mode : String):
 	# we need to reset players dictionary
 	players = {}
 	var num_players : int = len(selected_players)
-	global.send_stats("design", {"event_id":"selection:players:num_players", "value": num_players})
+	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
 
 	var i = 1
 	for player in selected_players:
@@ -88,8 +88,8 @@ func combat(selected_players: Array, fight_mode : String):
 	# Statistics
 	for player_id in players:
 		var info = players[player_id]
-		global.send_stats("design", {"event_id": "selection:species:{key}:{id}".format({"key": info.species_name, "id": info.id})})
-		global.send_stats("design", {"event_id": "selection:players:{key}:{id}".format({"key": info.controls, "id": info.id})})
+		global.send_stats("design", {"event_id": "selection:species:{key}".format({"key": info.species_name})})
+		global.send_stats("design", {"event_id": "selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})})
 
 
 	# PLANET SELECTION
@@ -98,16 +98,17 @@ func combat(selected_players: Array, fight_mode : String):
 	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
 		var map = map_scene.instance()
-		map.initialize(players, all_planets)
 		
+		map.initialize(players, all_sports, session_scores.settings)
 		add_child(map)
 		yield(map, "done")
 		yield(get_tree(), "idle_frame")
-		all_planets = map.selected_sports
-		for sport in all_planets:
-			global.send_stats("design", {"event_id": "combat:sport:{sport_name}".format({"sport_name": sport.name})})
+		all_sports = map.selected_sports
+		for sport in all_sports:
+			global.send_stats("design", {"event_id": "selection:sports:{sport_name}".format({"sport_name": sport.name})})
 		
 		num_CPUs = map.cpu
+		global.send_stats("design", {"event_id": "selection:cpu:{num_cpu}:players:{num_players}".format({"num_cpu": str(num_CPUs), "num_players": str(num_players)})})
 		session_scores.settings = map.settings
 		if map.back:
 			map.queue_free()
@@ -121,10 +122,13 @@ func combat(selected_players: Array, fight_mode : String):
 	# if fight_mode == 'solo':
 	add_cpu(num_CPUs)
 		
-	session_scores.selected_sports = all_planets
+	session_scores.selected_sports = all_sports
 	
+	for sport in all_sports:
+		sports[sport.name] = sport
+		sports_array.append(sport.name)
 	
-	all_planets.shuffle() # shuffle the planets at start
+	sports_array.shuffle() # shuffle the planets at start
 	# for planet in all_planets:
 	#	planet.shuffle_levels(len(players))
 	
@@ -132,9 +136,11 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	# TUTORIAL
 	var tut = preload("res://special_scenes/Tutorial.tscn").instance()
+
 	add_child(tut)
 	yield(tut, "over")
 	# END TUTORIAL
+	played_levels = []
 	next_level()
 	
 	# TEST: send the queue
@@ -142,28 +148,31 @@ func combat(selected_players: Array, fight_mode : String):
 
 func next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
-	var last_planet = played_levels.back()
+	
+	var last_sport = played_levels.back()
 	var num_players = len(players)
 	
-	if len(played_levels) >= len(all_planets) or demo:
+	if len(played_levels) >= len(sports_array) or demo:
 		played_levels = []
-		levels = []
-		all_planets.shuffle()
+		sports_array.shuffle()
+	
+	# we are going to play the following games:
 
-	# FIXME it seems that selecting three planets does not work as expected
-	var new_planet = all_planets.pop_back()
-	all_planets.push_front(new_planet)
-	if last_planet == new_planet:
-		new_planet = all_planets.pop_back()
-		all_planets.push_front(new_planet)
-	levels.append(new_planet.fetch_level(num_players))
+	var new_sport = sports_array.pop_back()
+	sports_array.push_front(new_sport)
+
+	while last_sport == new_sport:
+		new_sport = sports_array.pop_back()
+		sports_array.push_front(new_sport)
+		if len(sports_array)<= 1:
+			break
 	
 	# let's make sure that it is not the same of the previous one.
-	current_level = levels.back()
+	current_level = sports[new_sport].fetch_level(num_players)
 
 	# skip if we just played it
 	start_level(current_level, demo)
-	played_levels.append(new_planet)
+	played_levels.append(new_sport)
 	
 func start_level(_level, demo = false):
 	combat = _level
@@ -230,7 +239,7 @@ func start_demo():
 	next_level(true)
 	
 func add_cpu(how_many: int):
-	var missing_species = all_species
+	var missing_species = global.get_ordered_species()
 	for key in players:
 		var player = players[key]
 		var this_species_name = player.species.species_name

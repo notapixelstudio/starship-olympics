@@ -1,42 +1,43 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://map/OptionCell.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=2]
-[ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=3]
-[ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/map/cards/arrowina.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/interface/circle_glow.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
-font_data = ExtResource( 5 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "wigglewiggle"
+length = 10.0
 loop = true
+step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("ArrowLeft:position")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
-"transitions": PoolRealArray( -2, 0.5, 1 ),
+"times": PoolRealArray( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
+"transitions": PoolRealArray( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
 "update": 0,
-"values": [ Vector2( -100, 0 ), Vector2( -110, 0 ), Vector2( -100, 0 ) ]
+"values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ArrowRight:position")
+tracks/1/path = NodePath("Sprite/Light2D:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
-"transitions": PoolRealArray( -2, 0.5, 1 ),
+"times": PoolRealArray( 0, 7.3, 7.6, 7.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 100, 0 ), Vector2( 110, 0 ), Vector2( 100, 0 ) ]
+"values": [ 0.01, 0.01, 2.0, 0.01 ]
 }
 
 [node name="OptionCell" type="Node2D" groups=[
@@ -48,17 +49,9 @@ script = ExtResource( 1 )
 position = Vector2( 0, -28 )
 texture = ExtResource( 2 )
 
-[node name="1" type="Sprite" parent="Sprite"]
-visible = false
-texture = ExtResource( 2 )
-
-[node name="3" type="Sprite" parent="Sprite"]
-visible = false
+[node name="Light2D" type="Light2D" parent="Sprite"]
 texture = ExtResource( 3 )
-
-[node name="5" type="Sprite" parent="Sprite"]
-visible = false
-texture = ExtResource( 4 )
+energy = 1.23895
 
 [node name="Label" type="Label" parent="."]
 margin_left = -90.0
@@ -71,16 +64,10 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="ArrowLeft" type="Sprite" parent="."]
-position = Vector2( -100.082, 0 )
-texture = ExtResource( 6 )
-
-[node name="ArrowRight" type="Sprite" parent="."]
-position = Vector2( 100.082, 0 )
-rotation = -3.14159
-scale = Vector2( 1, -1 )
-texture = ExtResource( 6 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "wigglewiggle"
 anims/wigglewiggle = SubResource( 2 )
+
+[node name="act" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+attenuation = 0.0412346

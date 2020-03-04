@@ -1,9 +1,11 @@
 extends Ship
 
 onready var debug_ship = $Debug
+onready var target_dest = $TargetDest
 
 var this_range = {60:-1, 55:0, 100:1}
 
+var target_hit = []
 const MAX_DIR_WAIT = 900
 var steering = Vector2()
 var front = Vector2()
@@ -30,13 +32,57 @@ enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER}
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
 
-func nearest_in(objects):
+func nearest_in(objects, component = "Valuable"):
 	var nearest = null
 	var min_dist
+	var what = entity.get('Cargo').what
 	for object in objects:
+		# avoid considering our own targetdest
+		if object == target_dest:
+			continue
+		var entity_object = ECM.E(object)
+		var checklist = entity_object.get(component).get_list()
+		
+		# FORCE diamond chasing
+		if entity_object.get_host() is Diamond:
+			nearest = object
+			break
+		
+		# FORCE to follow whoever has the crown if they have the crown
+		if entity_object.get_host() is TargetDest:
+			var master_ship = entity_object.get_host().get_master_ship()
+			var entity_mastership = ECM.E(master_ship)
+			if entity_mastership.could_have("Royal") and entity_mastership.has("Royal"):
+				nearest = object
+				break
+			# FORCE to wander if bombs NOT enabled
+			if not bombs_enabled:
+				continue
+		# run away if you have the crown
+		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
+			break
+		
+		if len(checklist) > 0 and info_player.id in checklist and not object.is_inside_tree():
+			continue
 		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
 			min_dist = dist(nearest.global_position, position)
+	# FORCE to follow the crown if it's on the battlefield
+	
+	for object in get_tree().get_nodes_in_group("Crown"):
+		nearest=null
+		if not nearest or dist(object.global_position, position) < min_dist:
+			nearest = object
+			min_dist = dist(nearest.global_position, position)
+	# FORCE to target the Pentagonion if you HAVE the ball
+	if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.BALL:
+		nearest = null
+		for object in get_tree().get_nodes_in_group("goal"):
+			if object.species.species_name != info_player.species.species_name:# or object.current_ring == 0:
+				continue
+			if not nearest or dist(object.global_position, position) < min_dist:
+				nearest = object
+				min_dist = dist(nearest.global_position, position)
 	return nearest
 
 const CIRCLE_DIST = 50
@@ -87,8 +133,10 @@ func seek_ahead(potential_target):
 		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
 		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
 		# we need to see if we can avoid the castle
-		if entity.could_have("Royal") and entity.has("Royal"):
+		var what = entity.get('Cargo').what
+		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			ray_collision_mask += pow(2, 15)
+			potential_target = null
 		var result = space_state.intersect_ray(position, danger1, [self], ray_collision_mask, true, true)
 		hit_pos.append(danger1)
 		if result and result.position != potential_target:
@@ -108,17 +156,16 @@ func seek_ahead(potential_target):
 	
 var avoidance
 
-# func _draw():
-# 	if not debug_enabled:
-# 		return
-# 	for hit in hit_pos:
-# 		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
-# 		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
-	
-# func _physics_process(delta):
-# 	if not debug_enabled:
-# 		return
-# 	 update()
+
+# this draws are for debugging the targets of the CPU
+"""
+func _draw():
+	for hit in target_hit:
+		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
+func _physics_process(delta):
+	 update()
+"""
 
 var last_target_pos = Vector2()
 
@@ -154,6 +201,7 @@ func choose_fire():
 	return false
 
 func _ready():
+	debug_enabled = true
 	cpu = true
 	absolute_controls = true
 
@@ -164,19 +212,16 @@ var target
 var charging_time : int = 0
 
 func control(delta):
-	var this_target = null
+	var this_target = nearest_in(ECM.hosts_with('Valuable'))
 	
-	if not ECM.E(self).has('Royal'):
-		this_target = nearest_in(ECM.hosts_with('Valuable'))
-		
+	"""
 	if not this_target or not this_target.is_inside_tree():
 		this_target = nearest_in(ECM.hosts_with('Royal'))
-
-	if self == this_target:
-		this_target = null
-	
+	"""
+	target_hit = []
 	if this_target:
 		this_target = this_target.global_position
+		target_hit.append(this_target)
 	
 	# check if there is a danger closer
 	target = seek_ahead(this_target)

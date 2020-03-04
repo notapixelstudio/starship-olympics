@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=13]
 [ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=16]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -42,6 +44,7 @@ contacts_reported = 10
 contact_monitor = true
 angular_damp = 40.0
 script = ExtResource( 1 )
+debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -146,6 +149,22 @@ enabled = false
 [node name="Debug" parent="." instance=ExtResource( 14 )]
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 15 )]
+
+[node name="TargetDest" type="Position2D" parent="."]
+position = Vector2( 600, 0 )
+script = ExtResource( 16 )
+
+[node name="Entity2D" type="Node2D" parent="TargetDest"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="Valuable" type="Node" parent="TargetDest/Entity2D"]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]

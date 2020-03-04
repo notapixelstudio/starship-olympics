@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/textures/base_texture.png" type="Texture" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=6]
 [ext_resource path="res://actors/environments/components/Flow.gd" type="Script" id=7]
-[ext_resource path="res://actors/environments/components/Hill.gd" type="Script" id=8]
-[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/environments/crown_symbol.png" type="Texture" id=10]
-[ext_resource path="res://combat/components/Owned.gd" type="Script" id=11]
-[ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=12]
-[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=13]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=8]
+[ext_resource path="res://actors/environments/components/Hill.gd" type="Script" id=9]
+[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/environments/crown_symbol.png" type="Texture" id=11]
+[ext_resource path="res://combat/components/Owned.gd" type="Script" id=12]
+[ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=13]
+[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -110,21 +111,20 @@ __meta__ = {
 enabled = false
 
 [node name="Valuable" type="Node" parent="Entity"]
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-enabled = false
 
 [node name="Hill" type="Node2D" parent="Entity"]
 editor/display_folded = true
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 
 [node name="Crown" type="Sprite" parent="Entity/Hill"]
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Basket" type="Node" parent="Entity"]
 script = ExtResource( 5 )
@@ -134,14 +134,14 @@ __meta__ = {
 enabled = false
 
 [node name="Owned" type="Node" parent="Entity"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 enabled = false
 
 [node name="Conquerable" type="Node" parent="Entity"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
@@ -154,6 +154,6 @@ fract_delta = false
 process_material = SubResource( 4 )
 
 [node name="Flag" type="Sprite" parent="."]
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

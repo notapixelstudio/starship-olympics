@@ -45,9 +45,11 @@ func _physics_process(delta):
 				continue
 				
 			var do_it = false
-			if body_e.has('Conqueror') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species().species == body_e.get('Conqueror').get_species().species):
+			# ships
+			if body_e.has('Conqueror') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species() == body_e.get('Conqueror').get_species()):
 				do_it = true
-			if body_e.has('Owned') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species().species == body_e.get('Owned').get_owned_by().species):
+			# bombs
+			if body_e.has('Owned') and not(fluid.has('Conquerable') and fluid.get('Conquerable').get_species() == body_e.get('Owned').get_owned_by()):
 				do_it = true
 			if do_it:
 				body_e.get('Thrusters').add_hindrance()
@@ -59,4 +61,15 @@ func _physics_process(delta):
 	for e_w_thrusters in ECM.entities_with('Thrusters'):
 		e_w_thrusters.get('Thrusters').apply_damp()
 		e_w_thrusters.get('Thrusters').reset_hindrances()
-		
+
+
+func activate_slomo(arena):
+	arena.connect("unslomo", self, "deactivate_slomo", [arena], CONNECT_ONESHOT)
+	$SlomoEffect.play()
+	yield($SlomoEffect, "finished")
+	arena.connect("slomo", self, "activate_slomo", [arena], CONNECT_ONESHOT)
+	
+func deactivate_slomo(arena):
+	$UnSlomoEffect.play()
+	yield($SlomoEffect, "finished")
+	

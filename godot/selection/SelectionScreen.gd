@@ -26,7 +26,7 @@ func _ready():
 
 func initialize(_available_species:Dictionary):
 	available_species = _available_species
-	ordered_species = available_species.values()
+	ordered_species = global.get_ordered_species()
 
 	var i = 0
 	for child in container.get_children():
@@ -49,7 +49,7 @@ func initialize(_available_species:Dictionary):
 	var controls = assign_controls(actual_players)
 	for control in controls:
 		print(add_controls(control))
-
+	
 func add_controls(new_controls : String) -> bool:
 	"""
 	Add a controller (keyboard or joypad) and move other to the right

@@ -13,6 +13,8 @@
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 
+
+
 [sub_resource type="Animation" id=1]
 resource_name = "Pulse"
 length = 8.0
@@ -148,22 +150,20 @@ anims/Pulse = SubResource( 1 )
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone" index="0"]
-flag_offset = 0
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
-center_offset = Vector2( 0, 0 )
 radius = 450
+
+[node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
+scale = Vector2( 1.13, 1.13 )
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
 position = Vector2( 800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone2" index="0"]
-flag_offset = 0
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
-center_offset = Vector2( 0, 0 )
 radius = 450
+
+[node name="Decoration" parent="Battlefield/Middleground/NoCrownZone2" index="5"]
+scale = Vector2( 1.13, 1.13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2" groups=[
 "animation_in_battle",

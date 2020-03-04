@@ -10,7 +10,7 @@
 script/source = "extends Panel
 
 func _ready():
-	rect_min_size = $StatsContainer.rect_size + Vector2(80, 20)"
+	rect_min_size = $StatsContainer.rect_size + Vector2(180, 20)"
 
 [node name="PilotStats" type="Node2D"]
 scale = Vector2( 0.8, 0.8 )
@@ -27,7 +27,6 @@ custom_constants/separation = 15
 species = null
 
 [node name="Stats" type="Panel" parent="Container"]
-editor/display_folded = true
 margin_left = 165.0
 margin_right = 165.0
 margin_bottom = 150.0

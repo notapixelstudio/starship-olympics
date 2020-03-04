@@ -123,10 +123,10 @@ func refresh():
 		
 func _process(delta):
 	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled:
-		if ($Entity/Conquerable as Conquerable).get_species() != null:
+		if $Entity/Conquerable.get_species() != null:
 			$Polygon2D.color = Color(1,1,1,0.3)
 			$Line2D.default_color = Color(1,1,1,0.6)
-			modulate = ($Entity/Conquerable as Conquerable).get_species().species_template.color
+			modulate = $Entity/Conquerable.get_species().species_template.color
 		else:
 			$Polygon2D.color = Color(0.3,0.3,0.3,0.1)
 			$Line2D.default_color = Color(0.6,0.6,0.6,0.3)

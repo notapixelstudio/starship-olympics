@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://special_scenes/title_screen/Path2D.gd" type="Script" id=1]
+[ext_resource path="res://actors/battlers/TrailNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://special_scenes/title_screen/Sprite.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( -36.5058, -50.86, 36.5058, 50.86, -53.0463, -211.731, -138.672, -87.6835, 138.672, 87.6835, 578.762, 254.758, 144.343, -319.85, -144.343, 319.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
+}
+
+[sub_resource type="Gradient" id=2]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+trail_scene = ExtResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( -53.0463, -211.731 )
+rotation = 0.898427
+
+[node name="Sprite" type="Sprite" parent="PathFollow2D"]
+scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 3 )
+
+[node name="Trail" parent="PathFollow2D/Sprite" instance=ExtResource( 2 )]
+show_behind_parent = true
+trail_length = 90
+
+[node name="Trail" parent="PathFollow2D/Sprite/Trail" index="0"]
+editor/display_folded = false
+show_behind_parent = true
+width = 60.0
+gradient = SubResource( 2 )
+trail_length = 70
+persistance = 0
+time_alive_per_point = 1.4
+
+[node name="NearArea" parent="PathFollow2D/Sprite/Trail/Trail" index="0"]
+editor/display_folded = true
+
+[node name="FarArea" parent="PathFollow2D/Sprite/Trail/Trail" index="1"]
+editor/display_folded = true
+
+[node name="InnerTrail" parent="PathFollow2D/Sprite/Trail" index="1"]
+show_behind_parent = true
+width = 16.0
+trail_length = 30
+persistance = 0
+time_alive_per_point = 0.4
+
+[editable path="PathFollow2D/Sprite/Trail"]

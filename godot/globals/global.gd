@@ -43,7 +43,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.6.1" setget set_version
+var version = "0.6.3" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -152,7 +152,8 @@ var ALL_SPECIES = {
 	SPECIES6 = "robolords_2",
 	SPECIES7 = "trixens_2",
 	SPECIES8 = "toriels_2",
-	SPECIES9 = "takonauts_2"
+	SPECIES9 = "takonauts_2",
+	SPECIES10 = 'pentagonions_1'
 }
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
@@ -165,8 +166,17 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES6: false,
 	ALL_SPECIES.SPECIES7: false,
 	ALL_SPECIES.SPECIES8 : false,
-	ALL_SPECIES.SPECIES9 : false
+	ALL_SPECIES.SPECIES9 : false,
+	ALL_SPECIES.SPECIES10 : true
 }
+
+func get_ordered_species():
+	var ordered_species = get_unlocked().values()
+	ordered_species.sort_custom(self, 'compare_by_id')
+	return ordered_species
+
+func compare_by_id(a,b):
+	return a.id < b.id
 
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
@@ -187,7 +197,7 @@ func set_campaign_mode(value):
 		win = custom_win
 	
 # 'from_scene' will have the reference to the previous scene (main scene at the beginning)
-var from_scene = ProjectSettings.get_setting("application/run/main_scene")
+var from_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 
 func _input(event):
 	if event.is_action_pressed("fullscreen"):
@@ -346,10 +356,12 @@ func get_base_entity(node : Node):
 	
 func check_version(saved_version: String, version: String) -> bool:
 	# Will check if the version of the saved data is smaller the current
-	var this_minor = saved_version.split(".")[1]
+	var saved_minor = saved_version.split(".")[1]
+	var saved_patch = saved_version.split(".")[2]
 	var minor = version.split(".")[1]
+	var patch = version.split(".")[2]
 	
-	return int(this_minor) < int(minor)
+	return int(saved_patch) < int(patch)
 
 func send_stats(category: String, stats: Dictionary):
 	emit_signal("send_statistics", category, stats)

@@ -1,11 +1,14 @@
 extends Node2D
 
+class_name Pentagonion
+
 export var rings : int = 5 setget set_rings
 export var ring_width : float = 50 setget set_ring_width
 export var core_radius : float = 100 setget set_core_radius
 
 export var goal_owner : NodePath
 var species
+var info_player
 
 onready var current_ring : int = rings-1
 
@@ -61,6 +64,7 @@ func _on_Field_entered(field, body):
 		if current_ring < 0:
 			yield(get_tree().create_timer(0.1), "timeout")
 			field.queue_free()
+			remove_from_group("goal")
 			
 	elif body is Crown:
 		$FeedbackLine.visible = true

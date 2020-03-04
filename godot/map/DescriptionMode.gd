@@ -14,6 +14,8 @@ func refresh():
 	if $Sprite and gamemode:
 		$Sprite.texture = gamemode.logo
 		$Description.text = tr(gamemode.description).format({"score": str(gamemode.max_score)})
+		if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
+			$Description3.text = 'No bombs!'
 	
 func set_gamemode(value: GameMode):
 	gamemode = value

@@ -4,11 +4,14 @@ extends Node
 class_name MatchScores
 
 var time_left:float
+var match_time: float
+var lasting_time: float = 0.0
 
 var target_score: float = 100
 
 var scores = []
 var players = {} # Dictionary of InfoPlayers
+var sport
 var draw: bool = true
 var game_over:bool = false
 var cumulative_points = 0
@@ -25,6 +28,7 @@ func stop():
 func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
 	scores = []
 	target_score = game_mode.max_score
+	sport = game_mode
 	players = _players
 	if max_score:
 		target_score = max_score
@@ -43,6 +47,8 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	time_left = game_mode.max_timeout
 	if max_timeout:
 		time_left = max_timeout
+	
+	match_time = time_left
 		
 	if game_mode.cumulative:
 		cumulative_points=0
@@ -75,6 +81,8 @@ func update(delta: float):
 			winners = []
 		
 		do_game_over()
+	
+	lasting_time += delta
 
 func do_game_over():
 	game_over = true

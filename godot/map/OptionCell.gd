@@ -17,6 +17,9 @@ func _ready():
 		node_owner = global if global_option else get_node(node_owner_path)
 	if selection:
 		initialize()
+		
+	# start the looping animation with a random value
+	$AnimationPlayer.advance(randf()*4)
 
 
 func initialize( starting_from: int = 0, options: int = 0):
@@ -46,4 +49,6 @@ func act(cursor):
 		sprite.texture = sprite.get_child(index).texture
 	label.text = description.format({"_": selection[index]})
 	.act(cursor)
-
+	cursor.on_sth_pressed()
+	$act.play()
+	

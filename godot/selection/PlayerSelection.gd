@@ -94,8 +94,8 @@ func _input(event):
 	if selected :
 		if event.is_action_pressed(controls+"_accept"):
 			emit_signal("ready_to_fight")
-		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
-			deselect()
+#		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
+#			deselect()
 	elif joined:
 		if event.is_action_pressed(controls+"_accept") and not selected:
 			select_character()
@@ -149,7 +149,6 @@ func _on_Previous_pressed():
 		selected = false
 		emit_signal("deselected", species)
 	emit_signal("prev")
-	speciesSelection.previous()
 
 func _on_Next_pressed():
 	sfx.get_node("switch-selection").play()
@@ -158,7 +157,6 @@ func _on_Next_pressed():
 		selected = false
 		emit_signal("deselected", species)
 	emit_signal("next")
-	speciesSelection.next()
 
 func disable_choice():
 	disabled = true
