@@ -48,7 +48,7 @@ feature_row:
 
 ### Watch the Gameplay Video
 
-{% include video id="2LCui4mYV5I" provider="youtube" type="center" %}
+{% include video id="BVXTVbpoNh8" provider="youtube" type="center" %}
 
 {% include feature_row id="support" type="center" %}
 
