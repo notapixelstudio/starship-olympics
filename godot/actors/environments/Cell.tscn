@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/environments/Cell.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=6]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
-[ext_resource path="res://assets/sprites/environments/hex.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/environments/hex_filled.png" type="Texture" id=9]
+[ext_resource path="res://actors/environments/hex_cell_shape.tres" type="Shape2D" id=8]
+[ext_resource path="res://assets/sprites/environments/hex.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/environments/hex_filled.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Appear"
@@ -111,6 +112,7 @@ tracks/0/keys = {
 [node name="Cell" type="Area2D" groups=[
 "cell",
 ]]
+input_pickable = false
 gravity_vec = Vector2( 0, 0 )
 linear_damp = 8.0
 angular_damp = 50.0
@@ -143,17 +145,18 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.0784314 )
 scale = Vector2( 0.45, 0.45 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="SpriteFilled" type="Sprite" parent="."]
 visible = false
 self_modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
 scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 1 )
