@@ -1,21 +1,20 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=1]
-[ext_resource path="res://combat/levels/hive_filling/1players.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/hive_filling/2players.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/hive_filling/3players.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/hive_filling/4players.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/map/cards/hive_filling.png" type="Texture" id=6]
-[ext_resource path="res://map/planets/Planet.gd" type="Script" id=7]
+[ext_resource path="res://combat/levels/hive_filling/2players.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/hive_filling/3players.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/hive_filling/4players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/map/cards/hive_filling.png" type="Texture" id=5]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=6]
 
 [resource]
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 name = "hive"
 tagline1 = "Solo"
 tagline2 = "Flag"
 levels_1players = [ ExtResource( 2 ) ]
-levels_2players = [ ExtResource( 3 ) ]
-levels_3players = [ ExtResource( 4 ) ]
-levels_4players = [ ExtResource( 5 ) ]
-planet_sprite = ExtResource( 6 )
+levels_2players = [ ExtResource( 2 ) ]
+levels_3players = [ ExtResource( 3 ) ]
+levels_4players = [ ExtResource( 4 ) ]
+planet_sprite = ExtResource( 5 )
 game_mode = ExtResource( 1 )

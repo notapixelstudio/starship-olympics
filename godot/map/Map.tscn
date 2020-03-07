@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -10,41 +10,44 @@
 [ext_resource path="res://map/planets/SoloDeath.tres" type="Resource" id=8]
 [ext_resource path="res://map/planets/SoloSnatch.tres" type="Resource" id=9]
 [ext_resource path="res://map/planets/SoloFlag.tres" type="Resource" id=10]
-[ext_resource path="res://map/OnOffCell.tscn" type="PackedScene" id=11]
-[ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=13]
-[ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=14]
-[ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=15]
-[ext_resource path="res://map/DynamicOptionCell.gd" type="Script" id=16]
-[ext_resource path="res://assets/map/cards/option_0_cpus.png" type="Texture" id=17]
-[ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=18]
-[ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=19]
-[ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=20]
-[ext_resource path="res://map/ButtonCell.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/map/cards/back.png" type="Texture" id=22]
-[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=23]
-[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=24]
-[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=25]
-[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=26]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=27]
-[ext_resource path="res://assets/map/trixxx.png" type="Texture" id=28]
-[ext_resource path="res://assets/map/stars.png" type="Texture" id=29]
-[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=30]
-[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=31]
-[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=32]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=33]
-[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=34]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=35]
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=36]
-[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=37]
+[ext_resource path="res://map/planets/SlamAGon.tres" type="Resource" id=11]
+[ext_resource path="res://map/OnOffCell.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/map/cards/ceasefire.png" type="Texture" id=13]
+[ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
+[ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
+[ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=17]
+[ext_resource path="res://map/DynamicOptionCell.gd" type="Script" id=18]
+[ext_resource path="res://assets/map/cards/option_0_cpus.png" type="Texture" id=19]
+[ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=20]
+[ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=21]
+[ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=22]
+[ext_resource path="res://map/ButtonCell.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/map/cards/back.png" type="Texture" id=24]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
+[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=26]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=27]
+[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=28]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=29]
+[ext_resource path="res://assets/map/trixxx.png" type="Texture" id=30]
+[ext_resource path="res://assets/map/hallium_iv.png" type="Texture" id=31]
+[ext_resource path="res://assets/map/stars.png" type="Texture" id=32]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
+[ext_resource path="res://map/MapPlanetFont.tres" type="DynamicFont" id=34]
+[ext_resource path="res://map/ModeMini.tscn" type="PackedScene" id=35]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=36]
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=37]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=38]
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=39]
+[ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=40]
 
 [sub_resource type="DynamicFont" id=1]
 size = 42
-font_data = ExtResource( 25 )
+font_data = ExtResource( 27 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
-font_data = ExtResource( 25 )
+font_data = ExtResource( 27 )
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -92,12 +95,6 @@ position = Vector2( -1600, 400 )
 [node name="Waypoint188" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 400 )
 
-[node name="Waypoint198" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 400 )
-
-[node name="Waypoint208" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 400 )
-
 [node name="Waypoint80" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, 200 )
 
@@ -115,12 +112,6 @@ position = Vector2( -1600, 200 )
 
 [node name="Waypoint189" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 200 )
-
-[node name="Waypoint199" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 200 )
-
-[node name="Waypoint209" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 200 )
 
 [node name="Waypoint81" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -200 )
@@ -140,12 +131,6 @@ position = Vector2( -1600, -200 )
 [node name="Waypoint186" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -200 )
 
-[node name="Waypoint196" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -200 )
-
-[node name="Waypoint206" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -200 )
-
 [node name="Waypoint82" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -400 )
 
@@ -164,14 +149,8 @@ position = Vector2( -1600, -400 )
 [node name="Waypoint190" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -400 )
 
-[node name="Waypoint200" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -400 )
-
-[node name="Waypoint210" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -400 )
-
 [node name="Waypoint83" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -800, -600 )
+position = Vector2( -400, -600 )
 
 [node name="Waypoint129" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -800, -800 )
@@ -194,12 +173,6 @@ position = Vector2( -1600, -600 )
 [node name="Waypoint185" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -600 )
 
-[node name="Waypoint195" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -600 )
-
-[node name="Waypoint205" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -600 )
-
 [node name="Waypoint130" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1200, -800 )
 
@@ -211,15 +184,6 @@ position = Vector2( -1600, -800 )
 
 [node name="Waypoint181" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, -800 )
-
-[node name="Waypoint191" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, -800 )
-
-[node name="Waypoint201" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, -800 )
-
-[node name="Waypoint84" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -600, -600 )
 
 [node name="Waypoint134" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -600, -800 )
@@ -251,12 +215,6 @@ position = Vector2( -1600, 600 )
 [node name="Waypoint187" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 600 )
 
-[node name="Waypoint197" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 600 )
-
-[node name="Waypoint207" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 600 )
-
 [node name="Waypoint42" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, 800 )
 
@@ -277,12 +235,6 @@ position = Vector2( -1600, 800 )
 
 [node name="Waypoint184" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 800 )
-
-[node name="Waypoint194" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 800 )
-
-[node name="Waypoint204" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 800 )
 
 [node name="Waypoint46" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, 800 )
@@ -458,7 +410,7 @@ position = Vector2( 801, 600 )
 position = Vector2( 1401, 600 )
 
 [node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -400, -200 )
+position = Vector2( -600, -200 )
 
 [node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, 600 )
@@ -511,9 +463,6 @@ position = Vector2( 400, -600 )
 [node name="Waypoint32" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, -800 )
 
-[node name="Waypoint24" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -400, -600 )
-
 [node name="Waypoint128" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, -800 )
 
@@ -541,65 +490,89 @@ position = Vector2( -1600, 0 )
 [node name="Waypoint97" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -1800, 0 )
 
-[node name="Waypoint98" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2000, 0 )
-
-[node name="Waypoint100" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -2201, 0 )
-
 [node name="Planets" type="Node2D" parent="Content"]
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( -600, -200 )
+position = Vector2( -400, -200 )
 planet = ExtResource( 7 )
+active = false
 
 [node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -600, 200 )
 planet = ExtResource( 8 )
+active = false
 
 [node name="Diamondsnatch" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -200, 600 )
 planet = ExtResource( 9 )
+active = false
 
 [node name="HiveFilling" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -600 )
 planet = ExtResource( 10 )
+active = false
 
-[node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 11 )]
+[node name="SlamAGon" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -800, -600 )
+planet = ExtResource( 11 )
+active = false
+
+[node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
 editor/display_folded = true
 value_name = "hive_shoot_bombs"
-text = "+ bombs"
+inverted = true
+text = "ceasefire"
 
-[node name="diamondsnatch_shoot_bombs" parent="Content/Planets" instance=ExtResource( 11 )]
+[node name="Sprite" parent="Content/Planets/hive_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
+
+[node name="slam_a_gon_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+editor/display_folded = true
+position = Vector2( -600, -600 )
+value_name = "slam_a_gon_shoot_bombs"
+inverted = true
+text = "ceasefire"
+
+[node name="Sprite" parent="Content/Planets/slam_a_gon_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
+
+[node name="diamondsnatch_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+editor/display_folded = true
 position = Vector2( 0, 600 )
 value_name = "diamondsnatch_shoot_bombs"
-text = "+ bombs"
+inverted = true
+text = "ceasefire"
+
+[node name="Sprite" parent="Content/Planets/diamondsnatch_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
 
 [node name="Controls" type="Node2D" parent="Content"]
 
-[node name="Victories" parent="Content/Controls" instance=ExtResource( 12 )]
+[node name="Victories" parent="Content/Controls" instance=ExtResource( 14 )]
+editor/display_folded = true
 position = Vector2( 600, 0 )
 value_name = "custom_win"
 selection = [ 1, 3, 5 ]
 
 [node name="1" type="Sprite" parent="Content/Controls/Victories/Sprite" index="0"]
 visible = false
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 
 [node name="3" type="Sprite" parent="Content/Controls/Victories/Sprite" index="1"]
 visible = false
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="5" type="Sprite" parent="Content/Controls/Victories/Sprite" index="2"]
 visible = false
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
-[node name="CPUs" parent="Content/Controls" instance=ExtResource( 12 )]
+[node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
+editor/display_folded = true
 position = Vector2( 600, -200 )
-script = ExtResource( 16 )
+script = ExtResource( 18 )
 var_name = "cpu"
 global_option = false
 node_owner_path = NodePath("../../..")
@@ -608,32 +581,32 @@ description = "{_} CPUS"
 [node name="0" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="0"]
 visible = false
 position = Vector2( 0, 200 )
-texture = ExtResource( 17 )
+texture = ExtResource( 19 )
 
 [node name="1" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="1"]
 visible = false
 position = Vector2( 0, 200 )
-texture = ExtResource( 18 )
+texture = ExtResource( 20 )
 
 [node name="2" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="2"]
 visible = false
 position = Vector2( 0, 200 )
-texture = ExtResource( 19 )
+texture = ExtResource( 21 )
 
 [node name="3" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="3"]
 visible = false
 position = Vector2( 0, 200 )
-texture = ExtResource( 20 )
+texture = ExtResource( 22 )
 
-[node name="Start" parent="Content/Controls" instance=ExtResource( 21 )]
+[node name="Start" parent="Content/Controls" instance=ExtResource( 23 )]
 position = Vector2( 200, 0 )
 
-[node name="Back" parent="Content/Controls" instance=ExtResource( 21 )]
+[node name="Back" parent="Content/Controls" instance=ExtResource( 23 )]
 editor/display_folded = true
 position = Vector2( -200, 0 )
 
 [node name="Sprite" parent="Content/Controls/Back" index="0"]
-texture = ExtResource( 22 )
+texture = ExtResource( 24 )
 
 [node name="CursorMoveTween" type="Tween" parent="."]
 
@@ -641,7 +614,7 @@ texture = ExtResource( 22 )
 layer = -1
 
 [node name="Background" type="Sprite" parent="CanvasLayer"]
-texture = ExtResource( 23 )
+texture = ExtResource( 25 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
@@ -657,22 +630,25 @@ __meta__ = {
 
 [node name="Queensworld" type="Sprite" parent="ParallaxBackground/Near"]
 modulate = Color( 0.647059, 0.309804, 0.309804, 1 )
-position = Vector2( -663.909, -220.695 )
+position = Vector2( -512.909, -181.695 )
 scale = Vector2( 1.8, 1.8 )
-texture = ExtResource( 24 )
+texture = ExtResource( 26 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Queensworld"]
 modulate = Color( 1, 1, 1, 0.815686 )
-margin_left = -364.495
-margin_top = -93.5029
-margin_right = -9.49536
-margin_bottom = 2.49707
+margin_left = -365.051
+margin_top = -90.1696
+margin_right = -10.0509
+margin_bottom = 5.83044
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Name" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
-margin_right = 354.0
+margin_right = 355.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -682,7 +658,7 @@ uppercase = true
 
 [node name="Tagline" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
 margin_top = 66.0
-margin_right = 354.0
+margin_right = 355.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
@@ -692,12 +668,9 @@ uppercase = true
 
 [node name="Umidor II" type="Sprite" parent="ParallaxBackground/Near"]
 self_modulate = Color( 0.478431, 0.521569, 0.556863, 1 )
-position = Vector2( 228, 554 )
+position = Vector2( 249, 575 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 26 )
-__meta__ = {
-"_edit_lock_": true
-}
+texture = ExtResource( 28 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Umidor II"]
 margin_left = -70.0
@@ -710,7 +683,7 @@ __meta__ = {
 
 [node name="Name" type="Label" parent="ParallaxBackground/Near/Umidor II/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.403922 )
-margin_right = 355.0
+margin_right = 360.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -721,11 +694,11 @@ uppercase = true
 [node name="Tagline" type="Label" parent="ParallaxBackground/Near/Umidor II/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.403922 )
 margin_top = 66.0
-margin_right = 355.0
+margin_right = 360.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
-text = "The Glimmering depths"
+text = "The Glimmering depths, home to umidorians"
 align = 1
 uppercase = true
 
@@ -739,7 +712,7 @@ __meta__ = {
 modulate = Color( 0.52549, 0.654902, 0.556863, 1 )
 position = Vector2( -782.522, 287.888 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 27 )
+texture = ExtResource( 29 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -782,13 +755,13 @@ position = Vector2( 116.478, -521.113 )
 scale = Vector2( 1, 1.1 )
 z_index = -5
 z_as_relative = false
-texture = ExtResource( 28 )
+texture = ExtResource( 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/Far/Trixxx"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 1.9, 1.8 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Far/Trixxx/Node2D"]
 margin_left = -4.3334
@@ -817,6 +790,45 @@ text = "Center of the Trixen Empire"
 align = 1
 uppercase = true
 
+[node name="HalliumIV" type="Sprite" parent="ParallaxBackground/Far"]
+modulate = Color( 0.513726, 0.360784, 0.498039, 1 )
+position = Vector2( -702.522, -534.113 )
+scale = Vector2( 1, 1.1 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 31 )
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground/Far/HalliumIV"]
+position = Vector2( -695, -2.72723 )
+scale = Vector2( 1.9, 1.8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Far/HalliumIV/Node2D"]
+margin_left = -4.3334
+margin_top = -24.4163
+margin_right = 332.666
+margin_bottom = 71.5837
+
+[node name="Name" type="Label" parent="ParallaxBackground/Far/HalliumIV/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_right = 336.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Hallium IV"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Far/HalliumIV/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_top = 66.0
+margin_right = 336.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Pentagonions' tasty core"
+align = 1
+uppercase = true
+
 [node name="WayMoreFar" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.3, 0.3 )
 __meta__ = {
@@ -827,11 +839,11 @@ __meta__ = {
 scale = Vector2( 2, 2 )
 z_index = -10
 z_as_relative = false
-texture = ExtResource( 29 )
+texture = ExtResource( 32 )
 
-[node name="Camera" parent="." instance=ExtResource( 30 )]
-limit_left = -2300
-limit_top = -990
+[node name="Camera" parent="." instance=ExtResource( 33 )]
+limit_left = -1900
+limit_top = -900
 limit_right = 1500
 limit_bottom = 900
 drag_margin_left = 0.0
@@ -840,8 +852,8 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
-zoomMin = 2.0
-zoomMax = 2.8
+zoomMin = 2.1
+zoomMax = 2.65
 marginY = 0.0
 zoom_offset = 1.574
 
@@ -865,7 +877,7 @@ margin_left = -159.5
 margin_top = 6.0
 margin_right = 159.5
 margin_bottom = 35.0
-custom_fonts/font = ExtResource( 31 )
+custom_fonts/font = ExtResource( 34 )
 text = "Choose up to X planets"
 align = 1
 valign = 1
@@ -896,35 +908,35 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayerTop/HUD/Legend"]
 margin_right = 319.0
 margin_bottom = 29.0
-custom_fonts/font = ExtResource( 31 )
+custom_fonts/font = ExtResource( 34 )
 text = "Legend"
 align = 1
 valign = 1
 
-[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 32 )]
+[node name="Mode" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
 margin_top = 33.0
 margin_bottom = 62.0
-mode = ExtResource( 33 )
-
-[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 32 )]
-margin_top = 66.0
-margin_bottom = 95.0
-mode = ExtResource( 34 )
-
-[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 32 )]
-margin_top = 99.0
-margin_bottom = 128.0
-mode = ExtResource( 35 )
-
-[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 32 )]
-margin_top = 132.0
-margin_bottom = 161.0
 mode = ExtResource( 36 )
 
-[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 32 )]
+[node name="Mode2" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
+margin_top = 66.0
+margin_bottom = 95.0
+mode = ExtResource( 37 )
+
+[node name="Mode3" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
+margin_top = 99.0
+margin_bottom = 128.0
+mode = ExtResource( 38 )
+
+[node name="Mode4" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
+margin_top = 132.0
+margin_bottom = 161.0
+mode = ExtResource( 39 )
+
+[node name="Mode5" parent="CanvasLayerTop/HUD/Legend" instance=ExtResource( 35 )]
 margin_top = 165.0
 margin_bottom = 194.0
-mode = ExtResource( 37 )
+mode = ExtResource( 40 )
 
 [node name="GameStart" type="HBoxContainer" parent="CanvasLayerTop/HUD"]
 visible = false
@@ -956,8 +968,15 @@ margin_bottom = 41.0
 text = "Seconds"
 [connection signal="updated" from="Content/Planets/Diamondsnatch" to="Content/Planets/diamondsnatch_shoot_bombs" method="_on_master_updated"]
 [connection signal="updated" from="Content/Planets/HiveFilling" to="Content/Planets/hive_shoot_bombs" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/SlamAGon" to="Content/Planets/slam_a_gon_shoot_bombs" method="_on_master_updated"]
 [connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
 [connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
+
+[editable path="Content/Planets/hive_shoot_bombs"]
+
+[editable path="Content/Planets/slam_a_gon_shoot_bombs"]
+
+[editable path="Content/Planets/diamondsnatch_shoot_bombs"]
 
 [editable path="Content/Controls/Victories"]
 

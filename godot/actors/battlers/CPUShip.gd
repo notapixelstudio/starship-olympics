@@ -35,17 +35,54 @@ func dist(a: Vector2, b: Vector2):
 func nearest_in(objects, component = "Valuable"):
 	var nearest = null
 	var min_dist
+	var what = entity.get('Cargo').what
 	for object in objects:
 		# avoid considering our own targetdest
 		if object == target_dest:
 			continue
-		var entity = ECM.E(object)
-		var checklist = entity.get(component).get_list()
+		var entity_object = ECM.E(object)
+		var checklist = entity_object.get(component).get_list()
+		
+		# FORCE diamond chasing
+		if entity_object.get_host() is Diamond:
+			nearest = object
+			break
+		
+		# FORCE to follow whoever has the crown if they have the crown
+		if entity_object.get_host() is TargetDest:
+			var master_ship = entity_object.get_host().get_master_ship()
+			var entity_mastership = ECM.E(master_ship)
+			if entity_mastership.could_have("Royal") and entity_mastership.has("Royal"):
+				nearest = object
+				break
+			# FORCE to wander if bombs NOT enabled
+			if not bombs_enabled:
+				continue
+		# run away if you have the crown
+		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
+			break
+		
 		if len(checklist) > 0 and info_player.id in checklist and not object.is_inside_tree():
 			continue
 		if not nearest or dist(object.global_position, position) < min_dist:
 			nearest = object
 			min_dist = dist(nearest.global_position, position)
+	# FORCE to follow the crown if it's on the battlefield
+	
+	for object in get_tree().get_nodes_in_group("Crown"):
+		nearest=null
+		if not nearest or dist(object.global_position, position) < min_dist:
+			nearest = object
+			min_dist = dist(nearest.global_position, position)
+	# FORCE to target the Pentagonion if you HAVE the ball
+	if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.BALL:
+		nearest = null
+		for object in get_tree().get_nodes_in_group("goal"):
+			if object.species.species_name != info_player.species.species_name:# or object.current_ring == 0:
+				continue
+			if not nearest or dist(object.global_position, position) < min_dist:
+				nearest = object
+				min_dist = dist(nearest.global_position, position)
 	return nearest
 
 const CIRCLE_DIST = 50
@@ -119,13 +156,13 @@ func seek_ahead(potential_target):
 	
 var avoidance
 
-"""
+
 # this draws are for debugging the targets of the CPU
+"""
 func _draw():
 	for hit in target_hit:
 		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
 		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
-	
 func _physics_process(delta):
 	 update()
 """

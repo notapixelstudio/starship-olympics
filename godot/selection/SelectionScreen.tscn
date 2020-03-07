@@ -63,8 +63,8 @@ func start(num_players: int, n_matches: int):
 	
 	visible = true
 	
-	$Label.text = description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')})
-	win_label.text = win_condition.format({\"n_matches\":n_matches})
+	$Label.text = tr(description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')}))
+	win_label.text = tr(win_condition.format({\"n_matches\":n_matches}))
 	set_process_input(true)
 	
 	
@@ -156,7 +156,7 @@ margin_bottom = 44.0
 custom_constants/separation = 13
 
 [node name="Control" type="Control" parent="TopHUD"]
-margin_right = 500.0
+margin_right = 515.0
 margin_bottom = 26.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -169,9 +169,10 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
 [node name="Label" type="Label" parent="TopHUD"]
-margin_left = 513.0
-margin_right = 766.0
-margin_bottom = 26.0
+margin_left = 528.0
+margin_top = 1.0
+margin_right = 752.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 3 )
 text = "SELECT 1 TO 4 PLAYERS"
 align = 1
@@ -179,7 +180,7 @@ valign = 1
 uppercase = true
 
 [node name="Control2" type="Control" parent="TopHUD"]
-margin_left = 779.0
+margin_left = 765.0
 margin_right = 1280.0
 margin_bottom = 26.0
 rect_clip_content = true
@@ -288,6 +289,7 @@ custom_fonts/font = SubResource( 4 )
 text = "N PLAYERS READY TO FIGHT!"
 align = 1
 valign = 1
+autowrap = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/ReadyToFight"]
 anchor_top = 0.5

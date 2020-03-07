@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=2]
@@ -10,9 +10,8 @@
 [ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=8]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://assets/animations/shake.anim" type="Animation" id=11]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=12]
-[ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=13]
+[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=11]
+[ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "standby"
@@ -88,14 +87,14 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
 
 [node name="OverBorder" type="Line2D" parent="Character"]
-points = PoolVector2Array( 144, 35, 23, 35, 23, 548, 144, 548 )
+points = PoolVector2Array( 23, 35, 23, 548, 144, 548 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 91
 begin_cap_mode = 1
 
 [node name="Controls" type="Sprite" parent="."]
-position = Vector2( 82, 641 )
+position = Vector2( 82, 645 )
 texture = ExtResource( 5 )
 
 [node name="LeftArrow" parent="." instance=ExtResource( 6 )]
@@ -128,30 +127,30 @@ autoplay = "standby"
 anims/standby = SubResource( 1 )
 
 [node name="SpeciesName" type="VBoxContainer" parent="."]
-margin_left = 13.0
-margin_top = 552.0
-margin_right = 153.0
-margin_bottom = 621.0
+margin_left = -2.0
+margin_top = 558.0
+margin_right = 168.0
+margin_bottom = 627.0
 
 [node name="Label" type="Label" parent="SpeciesName"]
-margin_right = 140.0
-margin_bottom = 26.0
+margin_right = 170.0
+margin_bottom = 23.0
 custom_fonts/font = ExtResource( 9 )
-text = "TRIXENS"
+text = "pentagonions"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="SpeciesName"]
-margin_top = 30.0
-margin_right = 140.0
-margin_bottom = 32.0
+margin_top = 27.0
+margin_right = 170.0
+margin_bottom = 29.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="Tagline1" type="Label" parent="SpeciesName"]
-margin_top = 36.0
-margin_right = 140.0
-margin_bottom = 49.0
+margin_top = 33.0
+margin_right = 170.0
+margin_bottom = 46.0
 custom_fonts/font = SubResource( 2 )
 text = "tagline"
 align = 1
@@ -159,17 +158,14 @@ valign = 1
 uppercase = true
 
 [node name="Tagline2" type="Label" parent="SpeciesName"]
-margin_top = 53.0
-margin_right = 140.0
-margin_bottom = 66.0
+margin_top = 50.0
+margin_right = 170.0
+margin_bottom = 63.0
 custom_fonts/font = SubResource( 2 )
 text = "tagline"
 align = 1
 valign = 1
 uppercase = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesName"]
-anims/shake = ExtResource( 11 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -180,11 +176,11 @@ position = Vector2( 86, 33.5228 )
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, 9 )
 scale = Vector2( 1.7, 1.8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 11 )
 
 [node name="Sprite2" type="Sprite" parent="PlayerInfo"]
 position = Vector2( 0, 8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 11 )
 
 [node name="PlayerID" type="Label" parent="PlayerInfo"]
 margin_left = -20.0
@@ -198,7 +194,7 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerInfo"]
 autoplay = "wiggle"
-anims/wiggle = ExtResource( 13 )
+anims/wiggle = ExtResource( 12 )
 
 [node name="TeamMode" type="Control" parent="."]
 anchor_left = 0.5

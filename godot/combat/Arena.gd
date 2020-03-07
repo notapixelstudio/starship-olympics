@@ -52,6 +52,8 @@ signal gameover
 signal restart
 signal rematch
 signal back_to_menu
+signal slomo
+signal unslomo
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -93,7 +95,7 @@ func setup_level(mode : Resource):
 			var val = session.settings[mode.name][key]
 			mode.set(key, val)
 			# send stats for settings
-			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": "key", "sport": mode.name}), "value": int(val)})
+			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
 	
 func _ready():
 	set_process(false)
@@ -122,6 +124,8 @@ func _ready():
 	scores = MatchScores.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
 	connect("update_stats", scores, "update_stats")
+	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
+	
 	
 	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
 	collect_manager.connect('collected', self, "_on_sth_collected")
@@ -143,7 +147,7 @@ func _ready():
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_score', self, "spawn_points_scored")
-	collect_mode.connect('spawn_next', self, "_on_coins_finished")
+	collect_mode.connect('spawn_next', self, "on_next_wave")
 	goal_mode.connect('score', scores, "add_score")
 	goal_mode.connect('show_score', self, "spawn_points_scored")
 	
@@ -389,7 +393,7 @@ func on_gamemode_gameover(winners: Array):
 	if demo:
 		emit_signal("back_to_menu")
 		return
-	for child in get_children():
+	for child in $Managers.get_children():
 		if child is ModeManager:
 			child.enabled = false
 	$GameOverAnim.play('Game Over')
@@ -402,14 +406,6 @@ func on_gamemode_gameover(winners: Array):
 	canvas.add_child(game_over)
 	
 	game_over.initialize(winners, scores)
-	
-	"""
-	# sending stats
-	for player in scores:
-		var stats =player.to_stats() 
-		for key in stats:
-			global.send_stats("design", {"event_id": "gameplay:{key}:{id}".format({"key": key, "id": player.id}), "value": stats[key]}) 
-	"""
 
 
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
@@ -445,10 +441,11 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# create and link trail
 	var trail = trail_scene.instance()
-	trail.initialize(ship)
+	
 	
 	$Battlefield.add_child(trail)
 	yield(trail, "ready")
+	trail.initialize(ship)
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
 	trail.configure(game_mode.deadly_trails)
@@ -520,7 +517,7 @@ func _on_sth_dropped(dropper, droppee):
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
-func _on_coins_finished(diamonds, wait_time=1):
+func on_next_wave(diamonds, wait_time=1):
 	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
 		yield(focus_in_camera, "completed") 
@@ -542,10 +539,14 @@ func _on_Pause_restart():
 func _on_Pause_skip():
 	emit_signal("rematch") # WARNING this should be different if we are keeping scores
 	
-const max_slomo_elements = 6
+const max_slomo_elements = 7
+
 func slomo():
+	
 	if len(get_tree().get_nodes_in_group('slomo')) > max_slomo_elements:
+		emit_signal("slomo")
 		self.time_scale = lerp(time_scale, 0.5, 0.2)
 	else:
+		emit_signal("unslomo")
 		self.time_scale = lerp(time_scale, 1, 0.1)
 		

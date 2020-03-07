@@ -3,7 +3,7 @@
 [ext_resource path="res://map/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://assets/animations/shake.anim" type="Animation" id=2]
 [ext_resource path="res://assets/map/placemark.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/species/pentagonions_ship.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -91,7 +91,7 @@ texture = ExtResource( 3 )
 [node name="Ship" type="Sprite" parent="Wrapper/Graphics"]
 position = Vector2( 0, -85 )
 rotation = -1.5708
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 4 )
 
 [node name="LabelContainer" type="Node2D" parent="Wrapper/Graphics"]

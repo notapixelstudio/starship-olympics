@@ -13,9 +13,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
 
-
-
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -36,11 +34,8 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
@@ -48,7 +43,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 center_offset = Vector2( 0, 0 )
-radius = 1300
+radius = 1400
 sides = 6.0
 
 [node name="CentralMiniHive" type="Node2D" parent="Battlefield/Middleground" index="0"]
@@ -1245,554 +1240,205 @@ sides = 6.0
 editor/display_folded = true
 position = Vector2( -1120, -3.8147e-06 )
 scale = Vector2( 0.8, 0.8 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Cell66" parent="Battlefield/Middleground/Hive" index="0" instance=ExtResource( 7 )]
 position = Vector2( 350, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell66" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell72" parent="Battlefield/Middleground/Hive" index="1" instance=ExtResource( 7 )]
 position = Vector2( 300, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell72" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell83" parent="Battlefield/Middleground/Hive" index="2" instance=ExtResource( 7 )]
 position = Vector2( 250, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell83" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell94" parent="Battlefield/Middleground/Hive" index="3" instance=ExtResource( 7 )]
 position = Vector2( 200, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell94" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell107" parent="Battlefield/Middleground/Hive" index="4" instance=ExtResource( 7 )]
 position = Vector2( 150, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell107" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell116" parent="Battlefield/Middleground/Hive" index="5" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -6.10352e-05 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell116" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell126" parent="Battlefield/Middleground/Hive" index="6" instance=ExtResource( 7 )]
 position = Vector2( 349.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell126" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell142" parent="Battlefield/Middleground/Hive" index="7" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell142" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell149" parent="Battlefield/Middleground/Hive" index="8" instance=ExtResource( 7 )]
 position = Vector2( 648.68, -776.211 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell149" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell160" parent="Battlefield/Middleground/Hive" index="9" instance=ExtResource( 7 )]
 position = Vector2( 847.05, -601.275 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell160" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell64" parent="Battlefield/Middleground/Hive" index="10" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell64" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell75" parent="Battlefield/Middleground/Hive" index="11" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell75" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell85" parent="Battlefield/Middleground/Hive" index="12" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell85" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell92" parent="Battlefield/Middleground/Hive" index="13" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell92" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell103" parent="Battlefield/Middleground/Hive" index="14" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, -85.9999 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell103" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell114" parent="Battlefield/Middleground/Hive" index="15" instance=ExtResource( 7 )]
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell114" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell132" parent="Battlefield/Middleground/Hive" index="16" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, 86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell132" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell136" parent="Battlefield/Middleground/Hive" index="17" instance=ExtResource( 7 )]
 position = Vector2( 299.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell136" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell146" parent="Battlefield/Middleground/Hive" index="18" instance=ExtResource( 7 )]
 position = Vector2( 796.346, -512.732 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell146" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell60" parent="Battlefield/Middleground/Hive" index="19" instance=ExtResource( 7 )]
 position = Vector2( 699.139, -860.169 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell60" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell78" parent="Battlefield/Middleground/Hive" index="20" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell78" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell95" parent="Battlefield/Middleground/Hive" index="21" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -860.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell95" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell101" parent="Battlefield/Middleground/Hive" index="22" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell101" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell118" parent="Battlefield/Middleground/Hive" index="23" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -688.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell118" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell128" parent="Battlefield/Middleground/Hive" index="24" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell128" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell134" parent="Battlefield/Middleground/Hive" index="25" instance=ExtResource( 7 )]
 position = Vector2( 746.733, -600.25 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell134" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell150" parent="Battlefield/Middleground/Hive" index="26" instance=ExtResource( 7 )]
 position = Vector2( 646.353, -600.907 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell150" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell151" parent="Battlefield/Middleground/Hive" index="27" instance=ExtResource( 7 )]
+position = Vector2( 547.603, -429.657 )
+rotation = 0.523599
 
-[node name="Cell161" parent="Battlefield/Middleground/Hive" index="27" instance=ExtResource( 7 )]
+[node name="Cell161" parent="Battlefield/Middleground/Hive" index="28" instance=ExtResource( 7 )]
 position = Vector2( 597.936, -1034.55 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell161" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell59" parent="Battlefield/Middleground/Hive" index="28" instance=ExtResource( 7 )]
+[node name="Cell59" parent="Battlefield/Middleground/Hive" index="29" instance=ExtResource( 7 )]
 position = Vector2( 596.971, -515.168 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell59" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell61" parent="Battlefield/Middleground/Hive" index="30" instance=ExtResource( 7 )]
+position = Vector2( 498.221, -343.918 )
+rotation = 0.523599
 
-[node name="Cell76" parent="Battlefield/Middleground/Hive" index="29" instance=ExtResource( 7 )]
+[node name="Cell76" parent="Battlefield/Middleground/Hive" index="31" instance=ExtResource( 7 )]
 position = Vector2( 747.149, -774.169 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell76" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell88" parent="Battlefield/Middleground/Hive" index="30" instance=ExtResource( 7 )]
+[node name="Cell88" parent="Battlefield/Middleground/Hive" index="32" instance=ExtResource( 7 )]
 position = Vector2( 649.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell88" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell96" parent="Battlefield/Middleground/Hive" index="31" instance=ExtResource( 7 )]
+[node name="Cell96" parent="Battlefield/Middleground/Hive" index="33" instance=ExtResource( 7 )]
 position = Vector2( 599.317, -860.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell96" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell108" parent="Battlefield/Middleground/Hive" index="32" instance=ExtResource( 7 )]
+[node name="Cell108" parent="Battlefield/Middleground/Hive" index="34" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell108" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell111" parent="Battlefield/Middleground/Hive" index="33" instance=ExtResource( 7 )]
+[node name="Cell111" parent="Battlefield/Middleground/Hive" index="35" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -688.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell111" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell65" parent="Battlefield/Middleground/Hive" index="34" instance=ExtResource( 7 )]
+[node name="Cell65" parent="Battlefield/Middleground/Hive" index="36" instance=ExtResource( 7 )]
 position = Vector2( 548.428, -601.832 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell65" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell67" parent="Battlefield/Middleground/Hive" index="37" instance=ExtResource( 7 )]
+position = Vector2( 449.678, -430.582 )
+rotation = 0.523599
 
-[node name="Cell80" parent="Battlefield/Middleground/Hive" index="35" instance=ExtResource( 7 )]
+[node name="Cell80" parent="Battlefield/Middleground/Hive" index="38" instance=ExtResource( 7 )]
 position = Vector2( 646.869, -429.412 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell80" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell81" parent="Battlefield/Middleground/Hive" index="39" instance=ExtResource( 7 )]
+position = Vector2( 548.119, -258.162 )
+rotation = 0.523599
 
-[node name="Cell120" parent="Battlefield/Middleground/Hive" index="36" instance=ExtResource( 7 )]
+[node name="Cell120" parent="Battlefield/Middleground/Hive" index="40" instance=ExtResource( 7 )]
 position = Vector2( 695.73, -342.827 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell120" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell121" parent="Battlefield/Middleground/Hive" index="41" instance=ExtResource( 7 )]
+position = Vector2( 596.98, -171.577 )
+rotation = 0.523599
 
-[node name="Cell154" parent="Battlefield/Middleground/Hive" index="37" instance=ExtResource( 7 )]
+[node name="Cell154" parent="Battlefield/Middleground/Hive" index="42" instance=ExtResource( 7 )]
 position = Vector2( 598.2, -689.235 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell154" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell155" parent="Battlefield/Middleground/Hive" index="43" instance=ExtResource( 7 )]
+position = Vector2( 499.45, -517.985 )
+rotation = 0.523599
 
-[node name="Cell70" parent="Battlefield/Middleground/Hive" index="38" instance=ExtResource( 7 )]
+[node name="Cell70" parent="Battlefield/Middleground/Hive" index="44" instance=ExtResource( 7 )]
 position = Vector2( 696.175, -512.267 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell70" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell71" parent="Battlefield/Middleground/Hive" index="45" instance=ExtResource( 7 )]
+position = Vector2( 597.425, -341.017 )
+rotation = 0.523599
 
-[node name="Cell86" parent="Battlefield/Middleground/Hive" index="39" instance=ExtResource( 7 )]
+[node name="Cell86" parent="Battlefield/Middleground/Hive" index="46" instance=ExtResource( 7 )]
 position = Vector2( 747.196, -426.202 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell86" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell87" parent="Battlefield/Middleground/Hive" index="47" instance=ExtResource( 7 )]
+position = Vector2( 648.446, -254.952 )
+rotation = 0.523599
 
-[node name="Cell141" parent="Battlefield/Middleground/Hive" index="40" instance=ExtResource( 7 )]
+[node name="Cell141" parent="Battlefield/Middleground/Hive" index="48" instance=ExtResource( 7 )]
 position = Vector2( 796.974, -687.573 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell141" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell148" parent="Battlefield/Middleground/Hive" index="41" instance=ExtResource( 7 )]
+[node name="Cell148" parent="Battlefield/Middleground/Hive" index="49" instance=ExtResource( 7 )]
 position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive/Cell148" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="MiniHive" type="Node2D" parent="Battlefield/Middleground" index="2"]
 editor/display_folded = true
@@ -1807,273 +1453,84 @@ __meta__ = {
 position = Vector2( -150, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell206" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell220" parent="Battlefield/Middleground/MiniHive" index="1" instance=ExtResource( 7 )]
 position = Vector2( -100, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell220" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell218" parent="Battlefield/Middleground/MiniHive" index="2" instance=ExtResource( 7 )]
 position = Vector2( 0, -344 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell218" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell217" parent="Battlefield/Middleground/MiniHive" index="3" instance=ExtResource( 7 )]
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell217" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell219" parent="Battlefield/Middleground/MiniHive" index="4" instance=ExtResource( 7 )]
 position = Vector2( 100, -344 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell219" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell216" parent="Battlefield/Middleground/MiniHive" index="5" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell216" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell222" parent="Battlefield/Middleground/MiniHive" index="6" instance=ExtResource( 7 )]
 position = Vector2( -250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell222" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell221" parent="Battlefield/Middleground/MiniHive" index="7" instance=ExtResource( 7 )]
 position = Vector2( -200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell221" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell225" parent="Battlefield/Middleground/MiniHive" index="8" instance=ExtResource( 7 )]
 position = Vector2( -150, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell225" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell226" parent="Battlefield/Middleground/MiniHive" index="9" instance=ExtResource( 7 )]
 position = Vector2( -50, -258 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell226" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell224" parent="Battlefield/Middleground/MiniHive" index="10" instance=ExtResource( 7 )]
 position = Vector2( 50, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell224" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell223" parent="Battlefield/Middleground/MiniHive" index="11" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell223" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell198" parent="Battlefield/Middleground/MiniHive" index="12" instance=ExtResource( 7 )]
 position = Vector2( -100, -172 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell198" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell199" parent="Battlefield/Middleground/MiniHive" index="13" instance=ExtResource( 7 )]
 position = Vector2( -50, -430 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell199" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell200" parent="Battlefield/Middleground/MiniHive" index="14" instance=ExtResource( 7 )]
 position = Vector2( -50, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell200" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell201" parent="Battlefield/Middleground/MiniHive" index="15" instance=ExtResource( 7 )]
 position = Vector2( 50, -430 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell201" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell202" parent="Battlefield/Middleground/MiniHive" index="16" instance=ExtResource( 7 )]
 position = Vector2( 50, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell202" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell203" parent="Battlefield/Middleground/MiniHive" index="17" instance=ExtResource( 7 )]
 position = Vector2( 150, -430 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell203" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell204" parent="Battlefield/Middleground/MiniHive" index="18" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell204" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell188" parent="Battlefield/Middleground/MiniHive" index="19" instance=ExtResource( 7 )]
 position = Vector2( 0, -172 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell188" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell197" parent="Battlefield/Middleground/MiniHive" index="20" instance=ExtResource( 7 )]
 position = Vector2( 100, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive/Cell197" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="MiniHive2" type="Node2D" parent="Battlefield/Middleground" index="3"]
 editor/display_folded = true
@@ -2088,1935 +1545,699 @@ __meta__ = {
 position = Vector2( -150, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell206" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell220" parent="Battlefield/Middleground/MiniHive2" index="1" instance=ExtResource( 7 )]
 position = Vector2( -100, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell220" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell218" parent="Battlefield/Middleground/MiniHive2" index="2" instance=ExtResource( 7 )]
 position = Vector2( 0, -344 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell218" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell217" parent="Battlefield/Middleground/MiniHive2" index="3" instance=ExtResource( 7 )]
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell217" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell219" parent="Battlefield/Middleground/MiniHive2" index="4" instance=ExtResource( 7 )]
 position = Vector2( 100, -344 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell219" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell216" parent="Battlefield/Middleground/MiniHive2" index="5" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell216" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell222" parent="Battlefield/Middleground/MiniHive2" index="6" instance=ExtResource( 7 )]
 position = Vector2( -250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell222" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell221" parent="Battlefield/Middleground/MiniHive2" index="7" instance=ExtResource( 7 )]
 position = Vector2( -200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell221" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell225" parent="Battlefield/Middleground/MiniHive2" index="8" instance=ExtResource( 7 )]
 position = Vector2( -150, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell225" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell226" parent="Battlefield/Middleground/MiniHive2" index="9" instance=ExtResource( 7 )]
 position = Vector2( -50, -258 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell226" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell224" parent="Battlefield/Middleground/MiniHive2" index="10" instance=ExtResource( 7 )]
 position = Vector2( 50, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell224" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell223" parent="Battlefield/Middleground/MiniHive2" index="11" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell223" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell198" parent="Battlefield/Middleground/MiniHive2" index="12" instance=ExtResource( 7 )]
 position = Vector2( -100, -172 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell198" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell199" parent="Battlefield/Middleground/MiniHive2" index="13" instance=ExtResource( 7 )]
 position = Vector2( -50, -430 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell199" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell200" parent="Battlefield/Middleground/MiniHive2" index="14" instance=ExtResource( 7 )]
 position = Vector2( -50, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell200" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell201" parent="Battlefield/Middleground/MiniHive2" index="15" instance=ExtResource( 7 )]
 position = Vector2( 50, -430 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell201" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell202" parent="Battlefield/Middleground/MiniHive2" index="16" instance=ExtResource( 7 )]
 position = Vector2( 50, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell202" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell203" parent="Battlefield/Middleground/MiniHive2" index="17" instance=ExtResource( 7 )]
 position = Vector2( 150, -430 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell203" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell204" parent="Battlefield/Middleground/MiniHive2" index="18" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell204" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell188" parent="Battlefield/Middleground/MiniHive2" index="19" instance=ExtResource( 7 )]
 position = Vector2( 0, -172 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell188" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell197" parent="Battlefield/Middleground/MiniHive2" index="20" instance=ExtResource( 7 )]
 position = Vector2( 100, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/MiniHive2/Cell197" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Hive2" type="Node2D" parent="Battlefield/Middleground" index="4"]
 editor/display_folded = true
 position = Vector2( 560, -960 )
 rotation = -4.18879
 scale = Vector2( 0.8, -0.8 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Cell66" parent="Battlefield/Middleground/Hive2" index="0" instance=ExtResource( 7 )]
 position = Vector2( 350, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell66" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell72" parent="Battlefield/Middleground/Hive2" index="1" instance=ExtResource( 7 )]
 position = Vector2( 300, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell72" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell83" parent="Battlefield/Middleground/Hive2" index="2" instance=ExtResource( 7 )]
 position = Vector2( 250, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell83" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell94" parent="Battlefield/Middleground/Hive2" index="3" instance=ExtResource( 7 )]
 position = Vector2( 200, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell94" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell107" parent="Battlefield/Middleground/Hive2" index="4" instance=ExtResource( 7 )]
 position = Vector2( 150, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell107" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell116" parent="Battlefield/Middleground/Hive2" index="5" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -6.10352e-05 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell116" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell126" parent="Battlefield/Middleground/Hive2" index="6" instance=ExtResource( 7 )]
 position = Vector2( 349.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell126" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell142" parent="Battlefield/Middleground/Hive2" index="7" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell142" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell149" parent="Battlefield/Middleground/Hive2" index="8" instance=ExtResource( 7 )]
 position = Vector2( 648.68, -776.211 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell149" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell160" parent="Battlefield/Middleground/Hive2" index="9" instance=ExtResource( 7 )]
 position = Vector2( 847.05, -601.275 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell160" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell64" parent="Battlefield/Middleground/Hive2" index="10" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell64" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell75" parent="Battlefield/Middleground/Hive2" index="11" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell75" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell85" parent="Battlefield/Middleground/Hive2" index="12" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell85" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell92" parent="Battlefield/Middleground/Hive2" index="13" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell92" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell103" parent="Battlefield/Middleground/Hive2" index="14" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, -85.9999 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell103" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell114" parent="Battlefield/Middleground/Hive2" index="15" instance=ExtResource( 7 )]
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell114" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell132" parent="Battlefield/Middleground/Hive2" index="16" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, 86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell132" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell136" parent="Battlefield/Middleground/Hive2" index="17" instance=ExtResource( 7 )]
 position = Vector2( 299.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell136" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell146" parent="Battlefield/Middleground/Hive2" index="18" instance=ExtResource( 7 )]
 position = Vector2( 796.346, -512.732 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell146" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell60" parent="Battlefield/Middleground/Hive2" index="19" instance=ExtResource( 7 )]
 position = Vector2( 699.139, -860.169 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell60" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell78" parent="Battlefield/Middleground/Hive2" index="20" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell78" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell95" parent="Battlefield/Middleground/Hive2" index="21" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -860.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell95" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell101" parent="Battlefield/Middleground/Hive2" index="22" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell101" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell118" parent="Battlefield/Middleground/Hive2" index="23" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -688.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell118" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell128" parent="Battlefield/Middleground/Hive2" index="24" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell128" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell134" parent="Battlefield/Middleground/Hive2" index="25" instance=ExtResource( 7 )]
 position = Vector2( 746.733, -600.25 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell134" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell150" parent="Battlefield/Middleground/Hive2" index="26" instance=ExtResource( 7 )]
 position = Vector2( 646.353, -600.907 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell150" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell151" parent="Battlefield/Middleground/Hive2" index="27" instance=ExtResource( 7 )]
+position = Vector2( 546.964, -428.055 )
+rotation = 0.523599
 
-[node name="Cell161" parent="Battlefield/Middleground/Hive2" index="27" instance=ExtResource( 7 )]
+[node name="Cell161" parent="Battlefield/Middleground/Hive2" index="28" instance=ExtResource( 7 )]
 position = Vector2( 597.936, -1034.55 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell161" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell59" parent="Battlefield/Middleground/Hive2" index="28" instance=ExtResource( 7 )]
+[node name="Cell59" parent="Battlefield/Middleground/Hive2" index="29" instance=ExtResource( 7 )]
 position = Vector2( 596.971, -515.168 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell59" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell61" parent="Battlefield/Middleground/Hive2" index="30" instance=ExtResource( 7 )]
+position = Vector2( 497.582, -342.315 )
+rotation = 0.523599
 
-[node name="Cell76" parent="Battlefield/Middleground/Hive2" index="29" instance=ExtResource( 7 )]
+[node name="Cell76" parent="Battlefield/Middleground/Hive2" index="31" instance=ExtResource( 7 )]
 position = Vector2( 747.149, -774.169 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell76" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell88" parent="Battlefield/Middleground/Hive2" index="30" instance=ExtResource( 7 )]
+[node name="Cell88" parent="Battlefield/Middleground/Hive2" index="32" instance=ExtResource( 7 )]
 position = Vector2( 649.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell88" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell96" parent="Battlefield/Middleground/Hive2" index="31" instance=ExtResource( 7 )]
+[node name="Cell96" parent="Battlefield/Middleground/Hive2" index="33" instance=ExtResource( 7 )]
 position = Vector2( 599.317, -860.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell96" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell108" parent="Battlefield/Middleground/Hive2" index="32" instance=ExtResource( 7 )]
+[node name="Cell108" parent="Battlefield/Middleground/Hive2" index="34" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell108" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell111" parent="Battlefield/Middleground/Hive2" index="33" instance=ExtResource( 7 )]
+[node name="Cell111" parent="Battlefield/Middleground/Hive2" index="35" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -688.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell111" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell65" parent="Battlefield/Middleground/Hive2" index="34" instance=ExtResource( 7 )]
+[node name="Cell65" parent="Battlefield/Middleground/Hive2" index="36" instance=ExtResource( 7 )]
 position = Vector2( 548.428, -601.832 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell65" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell67" parent="Battlefield/Middleground/Hive2" index="37" instance=ExtResource( 7 )]
+position = Vector2( 449.039, -428.979 )
+rotation = 0.523599
 
-[node name="Cell80" parent="Battlefield/Middleground/Hive2" index="35" instance=ExtResource( 7 )]
+[node name="Cell80" parent="Battlefield/Middleground/Hive2" index="38" instance=ExtResource( 7 )]
 position = Vector2( 646.869, -429.412 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell80" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell81" parent="Battlefield/Middleground/Hive2" index="39" instance=ExtResource( 7 )]
+position = Vector2( 547.48, -256.559 )
+rotation = 0.523599
 
-[node name="Cell120" parent="Battlefield/Middleground/Hive2" index="36" instance=ExtResource( 7 )]
+[node name="Cell120" parent="Battlefield/Middleground/Hive2" index="40" instance=ExtResource( 7 )]
 position = Vector2( 695.73, -342.827 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell120" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell121" parent="Battlefield/Middleground/Hive2" index="41" instance=ExtResource( 7 )]
+position = Vector2( 596.341, -169.974 )
+rotation = 0.523599
 
-[node name="Cell154" parent="Battlefield/Middleground/Hive2" index="37" instance=ExtResource( 7 )]
+[node name="Cell154" parent="Battlefield/Middleground/Hive2" index="42" instance=ExtResource( 7 )]
 position = Vector2( 598.2, -689.235 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell154" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell155" parent="Battlefield/Middleground/Hive2" index="43" instance=ExtResource( 7 )]
+position = Vector2( 498.811, -516.382 )
+rotation = 0.523599
 
-[node name="Cell70" parent="Battlefield/Middleground/Hive2" index="38" instance=ExtResource( 7 )]
+[node name="Cell70" parent="Battlefield/Middleground/Hive2" index="44" instance=ExtResource( 7 )]
 position = Vector2( 696.175, -512.267 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell70" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell71" parent="Battlefield/Middleground/Hive2" index="45" instance=ExtResource( 7 )]
+position = Vector2( 596.786, -339.415 )
+rotation = 0.523599
 
-[node name="Cell86" parent="Battlefield/Middleground/Hive2" index="39" instance=ExtResource( 7 )]
+[node name="Cell86" parent="Battlefield/Middleground/Hive2" index="46" instance=ExtResource( 7 )]
 position = Vector2( 747.196, -426.202 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell86" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell87" parent="Battlefield/Middleground/Hive2" index="47" instance=ExtResource( 7 )]
+position = Vector2( 647.807, -253.349 )
+rotation = 0.523599
 
-[node name="Cell141" parent="Battlefield/Middleground/Hive2" index="40" instance=ExtResource( 7 )]
+[node name="Cell141" parent="Battlefield/Middleground/Hive2" index="48" instance=ExtResource( 7 )]
 position = Vector2( 796.974, -687.573 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell141" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell148" parent="Battlefield/Middleground/Hive2" index="41" instance=ExtResource( 7 )]
+[node name="Cell148" parent="Battlefield/Middleground/Hive2" index="49" instance=ExtResource( 7 )]
 position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive2/Cell148" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Hive3" type="Node2D" parent="Battlefield/Middleground" index="5"]
 editor/display_folded = true
 position = Vector2( -560, 960 )
 rotation = -1.0472
 scale = Vector2( 0.8, -0.8 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Cell66" parent="Battlefield/Middleground/Hive3" index="0" instance=ExtResource( 7 )]
 position = Vector2( 350, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell66" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell72" parent="Battlefield/Middleground/Hive3" index="1" instance=ExtResource( 7 )]
 position = Vector2( 300, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell72" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell83" parent="Battlefield/Middleground/Hive3" index="2" instance=ExtResource( 7 )]
 position = Vector2( 250, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell83" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell94" parent="Battlefield/Middleground/Hive3" index="3" instance=ExtResource( 7 )]
 position = Vector2( 200, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell94" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell107" parent="Battlefield/Middleground/Hive3" index="4" instance=ExtResource( 7 )]
 position = Vector2( 150, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell107" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell116" parent="Battlefield/Middleground/Hive3" index="5" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -6.10352e-05 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell116" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell126" parent="Battlefield/Middleground/Hive3" index="6" instance=ExtResource( 7 )]
 position = Vector2( 349.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell126" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell142" parent="Battlefield/Middleground/Hive3" index="7" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell142" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell149" parent="Battlefield/Middleground/Hive3" index="8" instance=ExtResource( 7 )]
 position = Vector2( 648.68, -776.211 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell149" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell160" parent="Battlefield/Middleground/Hive3" index="9" instance=ExtResource( 7 )]
 position = Vector2( 847.05, -601.275 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell160" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell64" parent="Battlefield/Middleground/Hive3" index="10" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell64" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell75" parent="Battlefield/Middleground/Hive3" index="11" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell75" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell85" parent="Battlefield/Middleground/Hive3" index="12" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell85" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell92" parent="Battlefield/Middleground/Hive3" index="13" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell92" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell103" parent="Battlefield/Middleground/Hive3" index="14" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, -85.9999 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell103" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell114" parent="Battlefield/Middleground/Hive3" index="15" instance=ExtResource( 7 )]
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell114" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell132" parent="Battlefield/Middleground/Hive3" index="16" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, 86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell132" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell136" parent="Battlefield/Middleground/Hive3" index="17" instance=ExtResource( 7 )]
 position = Vector2( 299.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell136" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell146" parent="Battlefield/Middleground/Hive3" index="18" instance=ExtResource( 7 )]
 position = Vector2( 796.346, -512.732 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell146" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell60" parent="Battlefield/Middleground/Hive3" index="19" instance=ExtResource( 7 )]
 position = Vector2( 699.139, -860.169 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell60" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell78" parent="Battlefield/Middleground/Hive3" index="20" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell78" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell95" parent="Battlefield/Middleground/Hive3" index="21" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -860.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell95" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell101" parent="Battlefield/Middleground/Hive3" index="22" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell101" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell118" parent="Battlefield/Middleground/Hive3" index="23" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -688.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell118" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell128" parent="Battlefield/Middleground/Hive3" index="24" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell128" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell134" parent="Battlefield/Middleground/Hive3" index="25" instance=ExtResource( 7 )]
 position = Vector2( 746.733, -600.25 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell134" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell150" parent="Battlefield/Middleground/Hive3" index="26" instance=ExtResource( 7 )]
 position = Vector2( 646.353, -600.907 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell150" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell151" parent="Battlefield/Middleground/Hive3" index="27" instance=ExtResource( 7 )]
+position = Vector2( 547.422, -429.761 )
+rotation = 0.523599
 
-[node name="Cell161" parent="Battlefield/Middleground/Hive3" index="27" instance=ExtResource( 7 )]
+[node name="Cell161" parent="Battlefield/Middleground/Hive3" index="28" instance=ExtResource( 7 )]
 position = Vector2( 597.936, -1034.55 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell161" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell59" parent="Battlefield/Middleground/Hive3" index="28" instance=ExtResource( 7 )]
+[node name="Cell59" parent="Battlefield/Middleground/Hive3" index="29" instance=ExtResource( 7 )]
 position = Vector2( 596.971, -515.168 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell59" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell61" parent="Battlefield/Middleground/Hive3" index="30" instance=ExtResource( 7 )]
+position = Vector2( 498.04, -344.023 )
+rotation = 0.523599
 
-[node name="Cell76" parent="Battlefield/Middleground/Hive3" index="29" instance=ExtResource( 7 )]
+[node name="Cell76" parent="Battlefield/Middleground/Hive3" index="31" instance=ExtResource( 7 )]
 position = Vector2( 747.149, -774.169 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell76" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell88" parent="Battlefield/Middleground/Hive3" index="30" instance=ExtResource( 7 )]
+[node name="Cell88" parent="Battlefield/Middleground/Hive3" index="32" instance=ExtResource( 7 )]
 position = Vector2( 649.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell88" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell96" parent="Battlefield/Middleground/Hive3" index="31" instance=ExtResource( 7 )]
+[node name="Cell96" parent="Battlefield/Middleground/Hive3" index="33" instance=ExtResource( 7 )]
 position = Vector2( 599.317, -860.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell96" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell108" parent="Battlefield/Middleground/Hive3" index="32" instance=ExtResource( 7 )]
+[node name="Cell108" parent="Battlefield/Middleground/Hive3" index="34" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell108" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell111" parent="Battlefield/Middleground/Hive3" index="33" instance=ExtResource( 7 )]
+[node name="Cell111" parent="Battlefield/Middleground/Hive3" index="35" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -688.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell111" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell65" parent="Battlefield/Middleground/Hive3" index="34" instance=ExtResource( 7 )]
+[node name="Cell65" parent="Battlefield/Middleground/Hive3" index="36" instance=ExtResource( 7 )]
 position = Vector2( 548.428, -601.832 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell65" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell67" parent="Battlefield/Middleground/Hive3" index="37" instance=ExtResource( 7 )]
+position = Vector2( 449.497, -430.687 )
+rotation = 0.523599
 
-[node name="Cell80" parent="Battlefield/Middleground/Hive3" index="35" instance=ExtResource( 7 )]
+[node name="Cell80" parent="Battlefield/Middleground/Hive3" index="38" instance=ExtResource( 7 )]
 position = Vector2( 646.869, -429.412 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell80" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell81" parent="Battlefield/Middleground/Hive3" index="39" instance=ExtResource( 7 )]
+position = Vector2( 547.938, -258.267 )
+rotation = 0.523599
 
-[node name="Cell120" parent="Battlefield/Middleground/Hive3" index="36" instance=ExtResource( 7 )]
+[node name="Cell82" parent="Battlefield/Middleground/Hive3" index="40" instance=ExtResource( 7 )]
+position = Vector2( 596.717, -341.278 )
+rotation = 0.523599
+
+[node name="Cell120" parent="Battlefield/Middleground/Hive3" index="41" instance=ExtResource( 7 )]
 position = Vector2( 695.73, -342.827 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell120" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell121" parent="Battlefield/Middleground/Hive3" index="42" instance=ExtResource( 7 )]
+position = Vector2( 596.799, -171.681 )
+rotation = 0.523599
 
-[node name="Cell154" parent="Battlefield/Middleground/Hive3" index="37" instance=ExtResource( 7 )]
+[node name="Cell154" parent="Battlefield/Middleground/Hive3" index="43" instance=ExtResource( 7 )]
 position = Vector2( 598.2, -689.235 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell154" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell155" parent="Battlefield/Middleground/Hive3" index="44" instance=ExtResource( 7 )]
+position = Vector2( 499.269, -518.089 )
+rotation = 0.523599
 
-[node name="Cell70" parent="Battlefield/Middleground/Hive3" index="38" instance=ExtResource( 7 )]
+[node name="Cell70" parent="Battlefield/Middleground/Hive3" index="45" instance=ExtResource( 7 )]
 position = Vector2( 696.175, -512.267 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell70" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell86" parent="Battlefield/Middleground/Hive3" index="39" instance=ExtResource( 7 )]
+[node name="Cell86" parent="Battlefield/Middleground/Hive3" index="46" instance=ExtResource( 7 )]
 position = Vector2( 747.196, -426.202 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell86" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell87" parent="Battlefield/Middleground/Hive3" index="47" instance=ExtResource( 7 )]
+position = Vector2( 648.265, -255.057 )
+rotation = 0.523599
 
-[node name="Cell141" parent="Battlefield/Middleground/Hive3" index="40" instance=ExtResource( 7 )]
+[node name="Cell141" parent="Battlefield/Middleground/Hive3" index="48" instance=ExtResource( 7 )]
 position = Vector2( 796.974, -687.573 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell141" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell148" parent="Battlefield/Middleground/Hive3" index="41" instance=ExtResource( 7 )]
+[node name="Cell148" parent="Battlefield/Middleground/Hive3" index="49" instance=ExtResource( 7 )]
 position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive3/Cell148" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Hive4" type="Node2D" parent="Battlefield/Middleground" index="6"]
 editor/display_folded = true
 position = Vector2( 1120, 0.000101728 )
 rotation = -3.14159
 scale = Vector2( 0.8, 0.8 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Cell66" parent="Battlefield/Middleground/Hive4" index="0" instance=ExtResource( 7 )]
 position = Vector2( 350, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell66" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell72" parent="Battlefield/Middleground/Hive4" index="1" instance=ExtResource( 7 )]
 position = Vector2( 300, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell72" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell83" parent="Battlefield/Middleground/Hive4" index="2" instance=ExtResource( 7 )]
 position = Vector2( 250, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell83" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell94" parent="Battlefield/Middleground/Hive4" index="3" instance=ExtResource( 7 )]
 position = Vector2( 200, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell94" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell107" parent="Battlefield/Middleground/Hive4" index="4" instance=ExtResource( 7 )]
 position = Vector2( 150, -86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell107" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell116" parent="Battlefield/Middleground/Hive4" index="5" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -6.10352e-05 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell116" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell126" parent="Battlefield/Middleground/Hive4" index="6" instance=ExtResource( 7 )]
 position = Vector2( 349.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell126" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell142" parent="Battlefield/Middleground/Hive4" index="7" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell142" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell149" parent="Battlefield/Middleground/Hive4" index="8" instance=ExtResource( 7 )]
 position = Vector2( 648.68, -776.211 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell149" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell160" parent="Battlefield/Middleground/Hive4" index="9" instance=ExtResource( 7 )]
 position = Vector2( 847.05, -601.275 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell160" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell64" parent="Battlefield/Middleground/Hive4" index="10" instance=ExtResource( 7 )]
 position = Vector2( 250, -430 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell64" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell75" parent="Battlefield/Middleground/Hive4" index="11" instance=ExtResource( 7 )]
 position = Vector2( 200, -344 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell75" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell85" parent="Battlefield/Middleground/Hive4" index="12" instance=ExtResource( 7 )]
 position = Vector2( 150, -258 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell85" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell92" parent="Battlefield/Middleground/Hive4" index="13" instance=ExtResource( 7 )]
 position = Vector2( 99.9999, -172 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell92" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell103" parent="Battlefield/Middleground/Hive4" index="14" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, -85.9999 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell103" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell114" parent="Battlefield/Middleground/Hive4" index="15" instance=ExtResource( 7 )]
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell114" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell132" parent="Battlefield/Middleground/Hive4" index="16" instance=ExtResource( 7 )]
 position = Vector2( 49.9999, 86 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell132" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell136" parent="Battlefield/Middleground/Hive4" index="17" instance=ExtResource( 7 )]
 position = Vector2( 299.317, -516.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell136" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell146" parent="Battlefield/Middleground/Hive4" index="18" instance=ExtResource( 7 )]
 position = Vector2( 796.346, -512.732 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell146" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell60" parent="Battlefield/Middleground/Hive4" index="19" instance=ExtResource( 7 )]
 position = Vector2( 699.139, -860.169 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell60" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell78" parent="Battlefield/Middleground/Hive4" index="20" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell78" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell95" parent="Battlefield/Middleground/Hive4" index="21" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -860.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell95" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell101" parent="Battlefield/Middleground/Hive4" index="22" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell101" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell118" parent="Battlefield/Middleground/Hive4" index="23" instance=ExtResource( 7 )]
 position = Vector2( 399.317, -688.549 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell118" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell128" parent="Battlefield/Middleground/Hive4" index="24" instance=ExtResource( 7 )]
 position = Vector2( 449.317, -602.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell128" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
 [node name="Cell134" parent="Battlefield/Middleground/Hive4" index="25" instance=ExtResource( 7 )]
 position = Vector2( 746.733, -600.25 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell134" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="Cell150" parent="Battlefield/Middleground/Hive4" index="26" instance=ExtResource( 7 )]
 position = Vector2( 646.353, -600.907 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell150" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell151" parent="Battlefield/Middleground/Hive4" index="27" instance=ExtResource( 7 )]
+position = Vector2( 546.353, -427.157 )
+rotation = 0.523599
 
-[node name="Cell161" parent="Battlefield/Middleground/Hive4" index="27" instance=ExtResource( 7 )]
+[node name="Cell161" parent="Battlefield/Middleground/Hive4" index="28" instance=ExtResource( 7 )]
 position = Vector2( 597.936, -1034.55 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell161" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell59" parent="Battlefield/Middleground/Hive4" index="28" instance=ExtResource( 7 )]
+[node name="Cell59" parent="Battlefield/Middleground/Hive4" index="29" instance=ExtResource( 7 )]
 position = Vector2( 596.971, -515.168 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell59" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell61" parent="Battlefield/Middleground/Hive4" index="30" instance=ExtResource( 7 )]
+position = Vector2( 496.971, -341.418 )
+rotation = 0.523599
 
-[node name="Cell76" parent="Battlefield/Middleground/Hive4" index="29" instance=ExtResource( 7 )]
+[node name="Cell76" parent="Battlefield/Middleground/Hive4" index="31" instance=ExtResource( 7 )]
 position = Vector2( 747.149, -774.169 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell76" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell88" parent="Battlefield/Middleground/Hive4" index="30" instance=ExtResource( 7 )]
+[node name="Cell88" parent="Battlefield/Middleground/Hive4" index="32" instance=ExtResource( 7 )]
 position = Vector2( 649.317, -946.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell88" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell96" parent="Battlefield/Middleground/Hive4" index="31" instance=ExtResource( 7 )]
+[node name="Cell96" parent="Battlefield/Middleground/Hive4" index="33" instance=ExtResource( 7 )]
 position = Vector2( 599.317, -860.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell96" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell108" parent="Battlefield/Middleground/Hive4" index="32" instance=ExtResource( 7 )]
+[node name="Cell108" parent="Battlefield/Middleground/Hive4" index="34" instance=ExtResource( 7 )]
 position = Vector2( 549.317, -774.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell108" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell111" parent="Battlefield/Middleground/Hive4" index="33" instance=ExtResource( 7 )]
+[node name="Cell111" parent="Battlefield/Middleground/Hive4" index="35" instance=ExtResource( 7 )]
 position = Vector2( 499.317, -688.549 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell111" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell65" parent="Battlefield/Middleground/Hive4" index="34" instance=ExtResource( 7 )]
+[node name="Cell65" parent="Battlefield/Middleground/Hive4" index="36" instance=ExtResource( 7 )]
 position = Vector2( 548.428, -601.832 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell65" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell67" parent="Battlefield/Middleground/Hive4" index="37" instance=ExtResource( 7 )]
+position = Vector2( 448.428, -428.082 )
+rotation = 0.523599
 
-[node name="Cell80" parent="Battlefield/Middleground/Hive4" index="35" instance=ExtResource( 7 )]
+[node name="Cell80" parent="Battlefield/Middleground/Hive4" index="38" instance=ExtResource( 7 )]
 position = Vector2( 646.869, -429.412 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell80" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell81" parent="Battlefield/Middleground/Hive4" index="39" instance=ExtResource( 7 )]
+position = Vector2( 546.869, -255.662 )
+rotation = 0.523599
 
-[node name="Cell120" parent="Battlefield/Middleground/Hive4" index="36" instance=ExtResource( 7 )]
+[node name="Cell120" parent="Battlefield/Middleground/Hive4" index="40" instance=ExtResource( 7 )]
 position = Vector2( 695.73, -342.827 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell120" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell121" parent="Battlefield/Middleground/Hive4" index="41" instance=ExtResource( 7 )]
+position = Vector2( 595.73, -169.077 )
+rotation = 0.523599
 
-[node name="Cell154" parent="Battlefield/Middleground/Hive4" index="37" instance=ExtResource( 7 )]
+[node name="Cell154" parent="Battlefield/Middleground/Hive4" index="42" instance=ExtResource( 7 )]
 position = Vector2( 598.2, -689.235 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell154" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell155" parent="Battlefield/Middleground/Hive4" index="43" instance=ExtResource( 7 )]
+position = Vector2( 498.2, -515.485 )
+rotation = 0.523599
 
-[node name="Cell70" parent="Battlefield/Middleground/Hive4" index="38" instance=ExtResource( 7 )]
+[node name="Cell70" parent="Battlefield/Middleground/Hive4" index="44" instance=ExtResource( 7 )]
 position = Vector2( 696.175, -512.267 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell70" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell71" parent="Battlefield/Middleground/Hive4" index="45" instance=ExtResource( 7 )]
+position = Vector2( 596.175, -338.517 )
+rotation = 0.523599
 
-[node name="Cell86" parent="Battlefield/Middleground/Hive4" index="39" instance=ExtResource( 7 )]
+[node name="Cell86" parent="Battlefield/Middleground/Hive4" index="46" instance=ExtResource( 7 )]
 position = Vector2( 747.196, -426.202 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell86" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
+[node name="Cell87" parent="Battlefield/Middleground/Hive4" index="47" instance=ExtResource( 7 )]
+position = Vector2( 647.196, -252.452 )
+rotation = 0.523599
 
-[node name="Cell141" parent="Battlefield/Middleground/Hive4" index="40" instance=ExtResource( 7 )]
+[node name="Cell141" parent="Battlefield/Middleground/Hive4" index="48" instance=ExtResource( 7 )]
 position = Vector2( 796.974, -687.573 )
 rotation = 0.523599
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell141" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
-
-[node name="Cell148" parent="Battlefield/Middleground/Hive4" index="41" instance=ExtResource( 7 )]
+[node name="Cell148" parent="Battlefield/Middleground/Hive4" index="49" instance=ExtResource( 7 )]
 position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Hive4/Cell148" index="3"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-center_offset = Vector2( 0, 0 )
-radius = 57
-sides = 6.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1119, 44 )

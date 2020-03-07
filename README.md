@@ -41,6 +41,7 @@ All the resources hereby cited are free and royalty-free. Made by the community 
 - [Uso_sketch](https://freesound.org/people/uso_sketch/sounds/443865)
 - [GameAudio](https://freesound.org/people/GameAudio/packs/13940/)
 - [Jalastram](https://freesound.org/people/jalastram/packs/17801)
+- [LewislancasterMusic](https://soundcloud.com/lewislancastermusic) : 0555, 0013shed
 
 ### Images
 
