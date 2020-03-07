@@ -66,12 +66,13 @@ color = Color( 0.847059, 0.635294, 0, 1 )
 width = 60.0
 default_color = Color( 1, 0, 0, 1 )
 texture = ExtResource( 6 )
-texture_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
@@ -79,5 +80,5 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
 anims/Forming = SubResource( 3 )
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

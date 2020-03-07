@@ -19,20 +19,29 @@ func _ready():
 	$CollisionShape2D.shape = gshape.to_Shape2D()
 	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
 	
-func _on_Area2D_area_entered(area):
-	if breakable and area is Explosion:
-		queue_free()
-		for i in range(4):
-			var child
-			if order > 1:
-				child = RockScene.instance()
-				child.mass = mass/4
-				child.order = order - 1
-			else:
-				child = DiamondScene.instance()
-			child.position = position + Vector2(gshape.radius*0.4,0).rotated(2*PI/4*i)
-			child.linear_velocity = 0.25*linear_velocity + Vector2(50*order,0).rotated(2*PI/4*i)
-			get_parent().call_deferred("add_child", child)
+	# workaround
+	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
+	
+func _on_Area2D_body_entered(body):
+	if body is Bomb or  body is Ship and not body.invincible:
+		try_break()
+		
+func try_break():
+	if not breakable:
+		return
+	
+	queue_free()
+	for i in range(4):
+		var child
+		if order > 1:
+			child = RockScene.instance()
+			child.mass = mass/4
+			child.order = order - 1
+		else:
+			child = DiamondScene.instance()
+		child.position = position + Vector2(gshape.radius*0.4,0).rotated(2*PI/4*i)
+		child.linear_velocity = 0.25*linear_velocity + Vector2(50*order,0).rotated(2*PI/4*i)
+		get_parent().call_deferred("add_child", child)
 		
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == 'Forming':
