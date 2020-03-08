@@ -68,28 +68,10 @@ func _input(event):
 			self.value = not value
 			value_node.text = str(value)
 
-	if elem_type == OPTION_TYPE.NUMBER:
+	if elem_type == OPTION_TYPE.NUMBER or elem_type == OPTION_TYPE.ARRAY:
 		if event.is_action_pressed("ui_right") and right.visible:
-			left.visible = true
-			# shake_node(value_node)
-			value = int(value_node.text)
-			value +=1
-			self.value = value
-			value_node.text = str(value)
-			right.visible = value<max_value
-
-		elif event.is_action_pressed("ui_left") and left.visible:
-			right.visible = true
-			# shake_node_backwards(value_node)
-			value = int(value_node.text)
-			value -=1
-			self.value = value
-			value_node.text = str(value)
-			left.visible = value>min_value
-
-	if elem_type == OPTION_TYPE.ARRAY:
-		if event.is_action_pressed("ui_right")  and right.visible:
 			self._choose_right()
+
 		elif event.is_action_pressed("ui_left") and left.visible:
 			self._choose_left()
 
@@ -131,24 +113,42 @@ func mod(a,b):
 
 func _choose_left():
 	right.visible = true
-	# shake_node_backwards(value_node)
-	value = str(value_node.text)
-	index_value = array_value.find(value)
+	# shake_node_backwards(value_node)
 
-	index_value = mod((index_value - 1), len(array_value))
+	if elem_type == OPTION_TYPE.NUMBER:
+		value = int(value_node.text)
+		value -=1
+		self.value = value
 
-	self.value = array_value[index_value]
-	value_node.text = str(value)
-	left.visible = index_value>min_value
+		value_node.text = str(value)
+		left.visible = value>min_value
+	elif elem_type == OPTION_TYPE.ARRAY:
+		value = str(value_node.text)
+		index_value = array_value.find(value)
+		index_value = mod((index_value - 1), len(array_value))
+		self.value = array_value[index_value]
+
+		value_node.text = str(value)
+		left.visible = index_value>min_value
 
 func _choose_right():
 	left.visible = true
 	# shake_node(value_node)
-	#value = str(value_node.text)
-	value = node_owner.get(variable_name)
-	index_value = array_value.find(value)
-	index_value = mod((index_value + 1), len(array_value))
 
-	self.value = array_value[index_value]
-	value_node.text = str(value)
-	right.visible = index_value<max_value
+	if elem_type == OPTION_TYPE.NUMBER:
+		value = int(value_node.text)
+		value +=1
+		self.value = value
+
+		value_node.text = str(value)
+		right.visible = value<max_value
+	elif elem_type == OPTION_TYPE.ARRAY:
+		#value = str(value_node.text)
+		# TODO should unify the way to get value with _choose_left
+		value = node_owner.get(variable_name)
+		index_value = array_value.find(value)
+		index_value = mod((index_value + 1), len(array_value))
+		self.value = array_value[index_value]
+
+		value_node.text = str(value)
+		right.visible = index_value<max_value
