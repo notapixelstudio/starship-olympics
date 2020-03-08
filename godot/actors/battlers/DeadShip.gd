@@ -5,7 +5,8 @@ class_name DeadShip
 var ship setget set_ship
 var info_player
 var species
-var arena
+var camera
+var scores
 
 var entity : Entity
 
@@ -14,9 +15,10 @@ func _ready():
 	
 func set_ship(new_value):
 	ship = new_value
+	camera = ship.camera
+	scores = ship.scores
 	info_player = ship.info_player
-	arena = ship.arena
-	species = info_player.species
+	species = ship.species
 	$Sprite.modulate = species.color
 	$Sprite.modulate = $Sprite.modulate.darkened(0.2)
 	$Sprite.modulate.a = 0.85
