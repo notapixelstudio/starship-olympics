@@ -31,7 +31,7 @@ func _process(delta):
 	$Wrapper/Ball.rotation += delta
 	
 func update_scale():
-	$Wrapper/Scaled.scale = target.arena.camera.zoom
+	$Wrapper/Scaled.scale = Vector2(1,1) if not target.camera else target.camera.zoom
 	
 func update_rotation():
 	rotation = -target.rotation
@@ -42,7 +42,8 @@ func update_score(score):
 	point_score.set_points(partial_score)
 	
 func update_score_ring():
-	$Wrapper/Scaled/Colored/Indicator.fraction = target.info_player.stats.score / target.arena.scores.target_score
+	if target.info_player and target.scores:
+		$Wrapper/Scaled/Colored/Indicator.fraction = target.info_player.stats.score / target.scores.target_score
 
 func _on_Royal_enabled():
 	$Wrapper/Scaled/RoyalGlow.visible = true

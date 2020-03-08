@@ -425,7 +425,9 @@ func spawn_ship(player:PlayerSpawner):
 		ship = cpu_ship_scene.instance()
 	else:
 		ship = ship_scene.instance()
-		
+	
+	ship.scores = scores
+	ship.camera = camera
 	ship.controls = player.controls
 	ship.species = player.species
 	ship.position = player.position

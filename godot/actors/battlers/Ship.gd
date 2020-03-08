@@ -13,6 +13,7 @@ export var absolute_controls : bool= true
 export (Resource) var species
 
 var species_name: String
+var scores
 
 
 var cpu = false
@@ -39,7 +40,7 @@ const THRESHOLD_DIR = 0.3
 var responsive = false setget change_engine
 var info_player setget set_info_player
 
-func set_info_player(value: InfoPlayer):
+func set_info_player(value):
 	info_player = value
 	species = info_player.species
 	species_name = info_player.species_name
@@ -74,6 +75,7 @@ signal spawn_bomb
 var invincible : bool
 
 var entity : Entity
+var camera
 
 func initialize():
 	pass
