@@ -81,4 +81,3 @@ shape = SubResource( 2 )
 autoplay = "Forming"
 anims/Forming = SubResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -364,6 +364,10 @@ func ship_just_died(ship, killer):
 	
 	$Battlefield.call_deferred("remove_child", ship)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
+	
+	ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity)
+	ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
+	
 	var respawn_timeout = 1.5
 	if crown_mode.enabled:
 		if len(ECM.entities_with('Royal')) > 0:
@@ -496,8 +500,9 @@ func _on_sth_collected(collector, collectee):
 	if collectee.get_parent().is_in_group("spawner_group"):
 		collectee.get_parent().call_deferred('remove', collectee)
 	else:
-		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
-
+		#$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+		collectee.call_deferred('queue_free')
+		
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
 	droppee.position = dropper.position
