@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=16]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=17]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=18]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -32,8 +33,8 @@ radius = 16.0
 radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
-"in_camera",
 "Foreground",
+"in_camera",
 "players",
 ]]
 collision_mask = 1171
@@ -45,6 +46,7 @@ contact_monitor = true
 angular_damp = 40.0
 script = ExtResource( 1 )
 debug_enabled = true
+species = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

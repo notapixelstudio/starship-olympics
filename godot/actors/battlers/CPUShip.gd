@@ -244,7 +244,7 @@ func control(delta):
 		charge()
 		
 	charging_time -= 1
-	wait_for_chargedshot -= 1*arena.time_scale
+	wait_for_chargedshot -= 1 * Engine.time_scale
 	
 	# overcharge
 	if charge > MAX_OVERCHARGE or (charging and charging_time < 0):

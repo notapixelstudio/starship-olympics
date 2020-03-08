@@ -6,13 +6,14 @@ const DEADZONE = 0.5
 const FIRE_TICK = 0.1
 
 var device_controller_id : int
+
 func _ready():
 	cpu = false
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	if "kb" in controls:
 		absolute_controls = false
 		
-func die(killer : Ship):
+func die(killer):
 	vibration_feedback()
 	.die(killer)
 
@@ -99,5 +100,5 @@ func control(delta):
 		fire()
 		
 	# cooldown
-	fire_cooldown -= delta*arena.time_scale
+	fire_cooldown -= delta * Engine.time_scale
 	

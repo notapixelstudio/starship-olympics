@@ -13,8 +13,9 @@ export var absolute_controls : bool= true
 export (Resource) var species
 
 var species_name: String
+var scores
 
-var arena
+
 var cpu = false
 var velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
@@ -39,7 +40,7 @@ const THRESHOLD_DIR = 0.3
 var responsive = false setget change_engine
 var info_player setget set_info_player
 
-func set_info_player(value: InfoPlayer):
+func set_info_player(value):
 	info_player = value
 	species = info_player.species
 	species_name = info_player.species_name
@@ -70,9 +71,11 @@ var dead_ship_instance
 
 signal dead
 signal stop_invincible
+signal spawn_bomb
 var invincible : bool
 
 var entity : Entity
+var camera
 
 func initialize():
 	pass
@@ -198,11 +201,8 @@ func fire():
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
 	if bombs_enabled:
-		arena.spawn_bomb(
-			position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-			self
-		)
+		emit_signal("spawn_bomb", position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation))
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
