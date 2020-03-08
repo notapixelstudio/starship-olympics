@@ -14,7 +14,7 @@ export (Resource) var species
 
 var species_name: String
 
-var arena
+
 var cpu = false
 var velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
@@ -70,6 +70,7 @@ var dead_ship_instance
 
 signal dead
 signal stop_invincible
+signal spawn_bomb
 var invincible : bool
 
 var entity : Entity
@@ -198,11 +199,8 @@ func fire():
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
 	if bombs_enabled:
-		arena.spawn_bomb(
-			position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation),
-			self
-		)
+		emit_signal("spawn_bomb", position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation))
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)

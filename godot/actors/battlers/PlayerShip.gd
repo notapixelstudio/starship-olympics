@@ -99,5 +99,5 @@ func control(delta):
 		fire()
 		
 	# cooldown
-	fire_cooldown -= delta*arena.time_scale
+	fire_cooldown -= delta * Engine.time_scale
 	

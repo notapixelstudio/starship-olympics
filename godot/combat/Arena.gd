@@ -426,7 +426,6 @@ func spawn_ship(player:PlayerSpawner):
 	else:
 		ship = ship_scene.instance()
 		
-	ship.arena = self
 	ship.controls = player.controls
 	ship.species = player.species
 	ship.position = player.position
@@ -452,6 +451,7 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
+	ship.connect("spawn_bomb", self, "spawn_bomb", [ship])
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
