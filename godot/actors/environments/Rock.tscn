@@ -16,6 +16,7 @@ radius = 100.0
 [sub_resource type="Animation" id=3]
 resource_name = "Forming"
 length = 0.5
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Polygon2D:modulate")
 tracks/0/interp = 1
@@ -27,6 +28,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.352941 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "become_breakable"
+} ]
 }
 
 [node name="Rock" type="RigidBody2D" groups=[
@@ -59,7 +74,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.352941 )
+modulate = Color( 1, 1, 1, 0.987059 )
 color = Color( 0.847059, 0.635294, 0, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
