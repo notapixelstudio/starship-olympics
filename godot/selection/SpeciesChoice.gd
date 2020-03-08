@@ -3,8 +3,6 @@ extends Control
 """
 this Node is a renderer of the Species Selected. No logic in here. 
 """
-signal select_left
-signal select_right
 
 export var species : Resource 
 export var controls : String
