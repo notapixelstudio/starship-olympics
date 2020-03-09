@@ -62,7 +62,7 @@ func try_break():
 		elif order > 2:
 			child = new_child_rock()
 		else:
-			if randf() < 0.4:
+			if randf() < 0.35:
 				child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
