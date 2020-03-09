@@ -46,9 +46,9 @@ feature_row:
     btn_label: "Get the code"
 ---
 
-### Watch the Gameplay Video
+### Watch the Trailer
 
-{% include video id="BVXTVbpoNh8" provider="youtube" type="center" %}
+{% include video id="QbgoB2Yv9EM" provider="youtube" type="center" %}
 
 {% include feature_row id="support" type="center" %}
 
