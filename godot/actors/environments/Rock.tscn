@@ -52,6 +52,7 @@ collision_mask = 1053
 mass = 12.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
+angular_velocity = 0.3
 angular_damp = 0.0
 script = ExtResource( 1 )
 
@@ -74,53 +75,53 @@ __meta__ = {
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.987059 )
-color = Color( 0.847059, 0.635294, 0, 1 )
+modulate = Color( 1, 1, 1, 0.352941 )
+color = Color( 0.780392, 0, 0.847059, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 40.0
-default_color = Color( 1, 0, 0, 1 )
+default_color = Color( 0.827451, 0, 1, 1 )
 texture = ExtResource( 6 )
 texture_mode = 0
 
 [node name="LightLine2D" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2D2" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2D3" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2D4" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2DE" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2DE2" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2DE3" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="LightLine2DE4" type="Line2D" parent="."]
 width = 6.0
-default_color = Color( 0, 0, 0, 0.192157 )
+default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
