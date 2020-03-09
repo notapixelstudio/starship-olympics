@@ -36,7 +36,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.01 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -49,7 +49,7 @@ tracks/1/keys = {
 ]]
 collision_layer = 1024
 collision_mask = 1053
-mass = 16.0
+mass = 12.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
 angular_damp = 0.0
@@ -78,9 +78,50 @@ modulate = Color( 1, 1, 1, 0.987059 )
 color = Color( 0.847059, 0.635294, 0, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
-width = 60.0
+width = 40.0
 default_color = Color( 1, 0, 0, 1 )
 texture = ExtResource( 6 )
+texture_mode = 0
+
+[node name="LightLine2D" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2D2" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2D3" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2D4" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2DE" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2DE2" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2DE3" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
+
+[node name="LightLine2DE4" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

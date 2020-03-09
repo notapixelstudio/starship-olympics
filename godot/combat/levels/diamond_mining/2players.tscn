@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/DiamondMining.tres" type="Resource" id=2]
@@ -10,6 +10,35 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 60.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 24, 60 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 2800, 2200, 2800 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 24, 60 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 2800, 2200, 2800 ]
+}
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -23,45 +52,90 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0.945098, 0, 1, 0.588235 )
+grid_color = Color( 0.945098, 0, 1, 0.2 )
 
 [node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+[node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+modulate = Color( 0.2, 0.701961, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
+type = 2
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+width = 2200
+height = 2200
+bevel = 450
+bevel_nw = 450
+bevel_ne = 450
+bevel_sw = 450
+bevel_se = 450
+
+[node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
+modulate = Color( 0.2, 0.701961, 1, 0.2 )
+hollow = true
+offset = 200
+elongation = 100
+type = 2
+hide_grid = true
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+width = 2800
+height = 2800
+bevel = 450
+bevel_nw = 450
+bevel_ne = 450
+bevel_sw = 450
+bevel_se = 450
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
+hollow = true
+offset = 200
+elongation = 100
+hide_grid = true
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 width = 2800
 height = 2800
-bevel = 500
-bevel_nw = 500
-bevel_ne = 500
-bevel_sw = 500
-bevel_se = 500
+bevel = 450
+bevel_nw = 450
+bevel_ne = 450
+bevel_sw = 450
+bevel_se = 450
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GBeveledRect" index="0" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 1 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( 1100, 10 )
+position = Vector2( 950, 10 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( -1100, 0 )
+position = Vector2( -950, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 10 )
