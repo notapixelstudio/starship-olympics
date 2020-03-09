@@ -13,7 +13,8 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
-length = 60.0
+length = 20.0
+loop = true
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:width")
@@ -22,8 +23,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 24, 60 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 10, 20 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
 "values": [ 2800, 2200, 2800 ]
 }
@@ -34,8 +35,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 24, 60 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 10, 20 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
 "values": [ 2800, 2200, 2800 ]
 }
