@@ -8,7 +8,7 @@ signal end_explosion
 var explosions = [preload("res://assets/audio/gameplay/explosions//SFX_Explosion_05.wav"), preload("res://assets/audio/gameplay/explosions//SFX_Explosion_08.wav")]
 
 func _ready():
-	$Halo.scale.x = 1 - randf()*0.6
+	$Halo.scale.x = 0.4
 	$Halo.rotation = randf()*2*PI
 	
 	$Spikes.rotation = randf()*2*PI

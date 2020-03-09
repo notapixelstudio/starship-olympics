@@ -46,6 +46,7 @@ onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridPack
+onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 signal screensize_changed(screensize)
 signal gameover
@@ -363,6 +364,11 @@ func ship_just_died(ship, killer):
 		emit_signal("update_stats", ship.info_player, 1, "selfkills")
 	
 	$Battlefield.call_deferred("remove_child", ship)
+	
+	var deathflash = deathflash_scene.instance()
+	deathflash.species = ship.species
+	deathflash.position = ship.position
+	$Battlefield.call_deferred("add_child", deathflash)
 	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 	var respawn_timeout = 1.5
 	if crown_mode.enabled:
