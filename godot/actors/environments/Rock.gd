@@ -12,9 +12,13 @@ var breakable = false
 
 func _ready():
 	gshape = GBeveledRect.new()
-	gshape.width = 2*51/sqrt(2)*pow(2,order)
+	gshape.width = 2*50/sqrt(2)*pow(2,order)
 	gshape.height = gshape.width
-	gshape.bevel = gshape.width*0.2
+	gshape.bevel_ne = gshape.width*0.2 * (1 + randf()*0.5)
+	gshape.bevel_se = gshape.width*0.2 * (1 + randf()*0.5)
+	gshape.bevel_nw = gshape.width*0.2 * (1 + randf()*0.5)
+	gshape.bevel_sw = gshape.width*0.2 * (1 + randf()*0.5)
+	gshape.jitter = 10.0*pow(2,order)
 	$Polygon2D.polygon = gshape.to_PoolVector2Array()
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
 	var epoints = gshape.to_PoolVector2Array()
@@ -50,13 +54,15 @@ func try_break():
 	
 	for i in range(4):
 		var child
-		if order > 1:
+		if order == 2:
+			if randf() < 0.025:
+				child = BigDiamondScene.instance()
+			else:
+				child = new_child_rock()
+		elif order > 2:
 			child = new_child_rock()
 		else:
-			var chance = randf()
-			if chance < 0.025:
-				child = BigDiamondScene.instance()
-			elif chance < 0.33:
+			if randf() < 0.4:
 				child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
