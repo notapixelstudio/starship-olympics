@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://actors/battlers/DeathFlash.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/explosion_halo.png" type="Texture" id=2]
@@ -79,96 +79,12 @@ tracks/5/keys = {
 "values": [ Vector2( 0.2, 0.2 ), Vector2( 0.2, 0.2 ), Vector2( 4, 4 ) ]
 }
 
-[sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.981364, 0.2569 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
-
-[sub_resource type="ParticlesMaterial" id=6]
-trail_divisor = 40
-trail_size_modifier = SubResource( 5 )
-emission_shape = 1
-emission_sphere_radius = 20.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 200.0
-initial_velocity_random = 1.0
-angular_velocity = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = -100.0
-tangential_accel = -100.0
-angle = 45.0
-angle_random = 1.0
-scale = 12.0
-scale_random = 1.0
-color_ramp = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=7]
-emission_shape = 1
-emission_sphere_radius = 20.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 200.0
-initial_velocity_random = 1.0
-angular_velocity = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = -100.0
-tangential_accel = -100.0
-angle = 45.0
-angle_random = 1.0
-scale = 12.0
-scale_random = 1.0
-color_ramp = SubResource( 3 )
-
 [node name="DeathFlash" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "blow"
 anims/blow = SubResource( 1 )
-
-[node name="Particles2D" type="Particles2D" parent="."]
-visible = false
-scale = Vector2( 2, 2 )
-emitting = false
-amount = 800
-lifetime = 2.0
-one_shot = true
-speed_scale = 3.0
-randomness = 1.0
-process_material = SubResource( 6 )
-
-[node name="Particles2D3" type="Particles2D" parent="."]
-scale = Vector2( 2, 2 )
-emitting = false
-amount = 800
-lifetime = 2.0
-one_shot = true
-speed_scale = 3.0
-randomness = 1.0
-process_material = SubResource( 6 )
-
-[node name="Particles2D2" type="Particles2D" parent="."]
-visible = false
-scale = Vector2( 2, 2 )
-emitting = false
-amount = 100
-lifetime = 2.0
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-process_material = SubResource( 7 )
 
 [node name="explosion_halo" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
