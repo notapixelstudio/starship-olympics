@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://special_scenes/virtual_joystick/Wheel.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/virtual_joystick/VirtualJoystick.gd" type="Script" id=3]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/PS4_Circle.png-415761a89a037919731fdcae9f5754ef.stex"
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/PS4_Cross.png-7a4926d3336cc558fd00da984fafd3eb.stex"
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/PS4_Circle.png-415761a89a037919731fdcae9f5754ef.stex"
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 40.0
+
+[sub_resource type="StreamTexture" id=5]
+flags = 4
+load_path = "res://.import/PS4_Triangle.png-20911f9153d757df5747db0b4a0326dc.stex"
+
+[sub_resource type="StreamTexture" id=6]
+flags = 4
+load_path = "res://.import/PS4_Square.png-f1f32c849f87325b58d43a0012e9b41f.stex"
+
+[node name="VirtualJoystick" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Wheel" type="Sprite" parent="."]
+position = Vector2( 184, 552 )
+scale = Vector2( 2.5, 2.5 )
+texture = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Wheel"]
+position = Vector2( -24.8, -24.8 )
+scale = Vector2( 0.5, 0.5 )
+normal = SubResource( 2 )
+pressed = SubResource( 3 )
+shape = SubResource( 4 )
+script = ExtResource( 1 )
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2( 1080, 496 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FireButton" type="TouchScreenButton" parent="Buttons"]
+normal = SubResource( 5 )
+pressed = SubResource( 6 )
