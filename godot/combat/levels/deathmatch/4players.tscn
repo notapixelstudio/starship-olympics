@@ -90,9 +90,10 @@ tracks/1/keys = {
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
+score_to_win_override = 12
 match_duration_override = 80.0
 
 [node name="DeathmatchModeManager" parent="Managers" index="6"]
@@ -179,6 +180,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
@@ -191,6 +193,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 
 [node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="2"]
@@ -207,6 +210,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 10 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 300
 height = 300
 
@@ -228,6 +232,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 10 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 300
 height = 300
 
@@ -240,7 +245,6 @@ position = Vector2( -1000, -600 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 12 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
 position = Vector2( 1000, 600 )

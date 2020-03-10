@@ -16,7 +16,7 @@ export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
 
-export var score_to_win_override : float = 0
+export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
 var mockup: bool = false
@@ -205,6 +205,8 @@ func _ready():
 	
 	camera.initialize(compute_arena_size())
 	$Battlefield.visible = false
+	if score_to_win_override > 0:
+		game_mode.max_score = score_to_win_override
 	mode_description.gamemode = game_mode
 	mode_description.appears()
 	if demo:

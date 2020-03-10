@@ -6,6 +6,7 @@ var DiamondScene = load('res://combat/collectables/Diamond.tscn')
 var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
 
 export var order : int = 4
+export var spawn_diamonds : bool = true
 
 var gshape
 var breakable = false
@@ -57,17 +58,18 @@ func try_break():
 	for i in range(4):
 		var child
 		if order == 2:
-			if randf() < 0.025:
+			if spawn_diamonds and randf() < 0.025:
 				child = BigDiamondScene.instance()
 			else:
 				child = new_child_rock()
 		elif order > 2:
 			child = new_child_rock()
 		else:
-			if randf() < 0.35:
+			if not spawn_diamonds or randf() < 0.35:
 				child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
+		child.spawn_diamonds = spawn_diamonds
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/4*i)
 		child.linear_velocity = 0.25*linear_velocity + Vector2(50*order,0).rotated(2*PI/4*i)
 		#get_parent().call_deferred("add_child", child)

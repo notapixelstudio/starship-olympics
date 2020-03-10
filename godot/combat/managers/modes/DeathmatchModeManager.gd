@@ -8,8 +8,8 @@ func _on_ship_killed(ship : Ship, killer : Ship):
 	if not enabled:
 		return
 	
-	if killer == ship:
-		emit_signal("broadcast_score", killer.species, score_multiplier)
+	if not killer or killer == ship:
+		emit_signal("broadcast_score", ship.get_id(), score_multiplier)
 		
 	elif killer and killer.species != ship.species:
 		emit_signal('score', killer.get_id(), score_multiplier)
