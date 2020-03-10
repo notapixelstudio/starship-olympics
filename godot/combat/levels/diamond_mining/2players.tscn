@@ -72,7 +72,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-jitter = null
 width = 2200
 height = 2200
 bevel = 450
@@ -95,7 +94,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-jitter = null
 width = 2800
 height = 2800
 bevel = 450
@@ -116,7 +114,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-jitter = null
 width = 2800
 height = 2800
 bevel = 450
@@ -143,6 +140,7 @@ position = Vector2( -950, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 10 )
+cpu = true
 
 [node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
