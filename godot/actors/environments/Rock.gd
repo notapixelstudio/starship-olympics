@@ -10,6 +10,8 @@ export var order : int = 4
 var gshape
 var breakable = false
 
+signal request_spawn
+
 func _ready():
 	gshape = GBeveledRect.new()
 	gshape.width = 2*50/sqrt(2)*pow(2,order)
@@ -41,7 +43,7 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body is Bomb or body is Ship and not body.invincible:
 		try_break()
-		
+
 func try_break():
 	if not breakable:
 		return
@@ -68,7 +70,8 @@ func try_break():
 				child = DiamondScene.instance()
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/4*i)
 		child.linear_velocity = 0.25*linear_velocity + Vector2(50*order,0).rotated(2*PI/4*i)
-		get_parent().call_deferred("add_child", child)
+		#get_parent().call_deferred("add_child", child)
+		emit_signal('request_spawn', child)
 		
 func new_child_rock():
 	var child = RockScene.instance()

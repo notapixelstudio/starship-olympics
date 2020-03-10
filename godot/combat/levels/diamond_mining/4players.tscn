@@ -75,6 +75,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 2600
 height = 2600
 bevel = 450
@@ -97,6 +99,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 3200
 height = 3200
 bevel = 450
@@ -117,6 +121,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 3200
 height = 3200
 bevel = 450
@@ -162,5 +168,6 @@ cpu = true
 [node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]
 
 [editable path="CanvasLayer/Pause"]
