@@ -43,8 +43,8 @@ tracks/1/keys = {
 }
 
 [node name="Diamond" type="RigidBody2D" groups=[
-"in_camera",
 "Foreground",
+"in_camera",
 "coin",
 ]]
 collision_layer = 2048
@@ -96,8 +96,8 @@ shape = SubResource( 1 )
 [node name="Glow" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.227271 )
-scale = Vector2( 0.854637, 0.854637 )
+modulate = Color( 0.305882, 1, 0.968627, 0 )
+scale = Vector2( 0.874544, 0.874544 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]

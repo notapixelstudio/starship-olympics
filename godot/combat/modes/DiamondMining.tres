@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://assets/modes/snatch.png" type="Texture" id=1]
+[ext_resource path="res://assets/icon/diamond_logo.png" type="Texture" id=2]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 3 )
+is_mutator = false
+name = "diamondsnatch"
+icon = ExtResource( 1 )
+logo = ExtResource( 2 )
+description = "collect {score} diamonds"
+tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
+tagline_cons = "Getting killed will make you lose most of the coins"
+max_timeout = 60
+max_score = 40
+cumulative = false
+death = false
+crown = false
+hive = false
+collect = true
+flowsnake = false
+goal = false
+shoot_bombs = true
+deadly_trails = false

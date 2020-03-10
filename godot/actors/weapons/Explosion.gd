@@ -8,7 +8,7 @@ signal end_explosion
 var explosions = [preload("res://assets/audio/gameplay/explosions//SFX_Explosion_05.wav"), preload("res://assets/audio/gameplay/explosions//SFX_Explosion_08.wav")]
 
 func _ready():
-	$Halo.scale.x = 1 - randf()*0.6
+	$Halo.scale.x = 0.4
 	$Halo.rotation = randf()*2*PI
 	
 	$Spikes.rotation = randf()*2*PI
@@ -25,7 +25,7 @@ func _on_animation_ended(name):
 	
 func _physics_process(delta):
 	for body in $RepealField.get_overlapping_bodies():
-		if body is Bomb or body is Crown or body is Diamond or body is BigDiamond or body is DeadShip:
+		if body is Bomb or body is Crown or body is Diamond or body is BigDiamond or body is DeadShip or body is Rock:
 			var vec = body.global_position-global_position
 			body.apply_central_impulse(vec.normalized()*global.sigmoid(vec.length(), repeal_field_width)*30)
 			if body is DeadShip:
