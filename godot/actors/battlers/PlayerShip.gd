@@ -18,7 +18,7 @@ func die(killer):
 	.die(killer)
 
 func vibration_feedback():
-	if "joy" in controls:
+	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.3)
 

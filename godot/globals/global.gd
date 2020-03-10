@@ -79,6 +79,8 @@ var master_volume : int = 50 setget _set_master_volume
 var min_master_volume : int = 0
 var max_master_volume: int = 100
 
+var rumbling: bool = true
+
 func _set_master_volume(new_value): 
 	master_volume = new_value
 	var db_volume = linear2db(float(new_value)/100)
@@ -286,7 +288,8 @@ func get_state():
 		master_volume=master_volume,
 		sfx_volume=sfx_volume,
 		demo=demo,
-		full_screen=full_screen
+		full_screen=full_screen,
+		rumbling=rumbling
 		
 	}
 	return save_dict

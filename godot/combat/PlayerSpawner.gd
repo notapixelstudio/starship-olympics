@@ -20,7 +20,7 @@ func _ready():
 	
 func appears():
 	var device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
-	if "joy" in controls:
+	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)
 	
