@@ -1,6 +1,6 @@
 # SuperStarfighter
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://GitHub.com/Naereen/StrapDown.js/tags/)
+[![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://gitHub.com/notapixelstudio/superstarfighter/tags/)
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/notapixelstudio)
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
