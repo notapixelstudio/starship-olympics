@@ -7,7 +7,11 @@ class_name GShape
 signal changed
 
 export (Vector2) var center_offset = Vector2.ZERO setget set_center_offset
-export var jitter : float = 0.0
+export var jitter : float = 0.0 setget set_jitter
+
+func set_jitter(value):
+	jitter = value
+	emit_signal("changed")
 
 func set_center_offset(value):
 	center_offset = value
