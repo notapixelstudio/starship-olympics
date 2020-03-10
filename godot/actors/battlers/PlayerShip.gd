@@ -12,11 +12,11 @@ func _ready():
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	if "kb" in controls:
 		absolute_controls = false
-		
-func die(killer):
+	connect('dead', self, '_on_dead')
+	
+func _on_dead(me, killer):
 	vibration_feedback()
-	.die(killer)
-
+	
 func vibration_feedback():
 	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
