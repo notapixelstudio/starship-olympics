@@ -1,20 +1,68 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=6]
+[ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=6]
+[ext_resource path="res://assets/icon/star_empty00.png" type="Texture" id=7]
+[ext_resource path="res://assets/icon/star_empty01.png" type="Texture" id=8]
+[ext_resource path="res://assets/icon/star_empty02.png" type="Texture" id=9]
+[ext_resource path="res://assets/icon/star_empty03.png" type="Texture" id=10]
+[ext_resource path="res://assets/icon/star_empty04.png" type="Texture" id=11]
+[ext_resource path="res://assets/icon/star_empty05.png" type="Texture" id=12]
+[ext_resource path="res://assets/icon/star_empty06.png" type="Texture" id=13]
+[ext_resource path="res://assets/icon/star_empty07.png" type="Texture" id=14]
+[ext_resource path="res://assets/icon/star_empty08.png" type="Texture" id=15]
+[ext_resource path="res://assets/icon/star_empty09.png" type="Texture" id=16]
+[ext_resource path="res://assets/icon/star_empty10.png" type="Texture" id=17]
+[ext_resource path="res://assets/icon/star_empty11.png" type="Texture" id=18]
+[ext_resource path="res://assets/icon/star_full00.png" type="Texture" id=19]
+[ext_resource path="res://assets/icon/star_full01.png" type="Texture" id=20]
+[ext_resource path="res://assets/icon/star_full02.png" type="Texture" id=21]
+[ext_resource path="res://assets/icon/star_full03.png" type="Texture" id=22]
+[ext_resource path="res://assets/icon/star_full04.png" type="Texture" id=23]
+[ext_resource path="res://assets/icon/star_full05.png" type="Texture" id=24]
+[ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=25]
+[ext_resource path="res://assets/icon/star_full07.png" type="Texture" id=26]
+[ext_resource path="res://assets/icon/star_full08.png" type="Texture" id=27]
+[ext_resource path="res://assets/icon/star_full09.png" type="Texture" id=28]
+[ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=29]
+[ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=30]
+[ext_resource path="res://assets/icon/star_full.png" type="Texture" id=31]
+[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=32]
 
-[sub_resource type="PhysicsMaterial" id=1]
+[sub_resource type="PhysicsMaterial" id=2]
 bounce = 30.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "empty",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": false,
+"name": "outline",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "shine",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "full",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
 radius = 100.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "Forming"
+[sub_resource type="Animation" id=4]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -50,7 +98,7 @@ tracks/1/keys = {
 collision_layer = 1024
 collision_mask = 1053
 mass = 12.0
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource( 2 )
 gravity_scale = 2.0
 angular_velocity = 0.3
 angular_damp = 0.0
@@ -74,6 +122,13 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Star" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 1 )
+animation = "shine"
+frame = 34
+playing = true
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0.352941 )
 color = Color( 0.780392, 0, 0.847059, 1 )
@@ -81,7 +136,7 @@ color = Color( 0.780392, 0, 0.847059, 1 )
 [node name="Line2D" type="Line2D" parent="."]
 width = 40.0
 default_color = Color( 0.827451, 0, 1, 1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 32 )
 texture_mode = 0
 
 [node name="LightLine2D" type="Line2D" parent="."]
@@ -125,16 +180,16 @@ default_color = Color( 0.87451, 0, 1, 0.392157 )
 texture_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 1024
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
-anims/Forming = SubResource( 3 )
+anims/Forming = SubResource( 4 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

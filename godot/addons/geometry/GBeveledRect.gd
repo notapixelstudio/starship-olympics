@@ -62,6 +62,11 @@ func to_Shape2D():
 	shape.set_point_cloud(to_PoolVector2Array())
 	return shape
 	
+func to_Shape2D_offset(vec, scale=1):
+	var shape = ConvexPolygonShape2D.new()
+	shape.set_point_cloud(to_PoolVector2Array_offset(vec, scale))
+	return shape
+	
 func get_extents() -> Vector2:
 	return Vector2(width, height)
 	
