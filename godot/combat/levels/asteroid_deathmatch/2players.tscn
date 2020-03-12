@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 3200, 2200, 3200 ]
+"values": [ 3200, 2400, 3200 ]
 }
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
@@ -59,7 +59,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 2200
+width = 2400
 height = 2200
 bevel = 450
 bevel_nw = 450
@@ -112,20 +112,24 @@ bevel_se = 450
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GBeveledRect" index="0" groups=[
 "animation_in_battle",
 ]]
+playback_speed = 2.0
 anims/Rotate = SubResource( 1 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( 700, 600 )
 order = 2
+base_size = 42.0
 spawn_diamonds = false
 
 [node name="Rock3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
 order = 3
+base_size = 42.0
 spawn_diamonds = false
 
 [node name="Rock2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
 position = Vector2( -700, -600 )
 order = 2
+base_size = 42.0
 spawn_diamonds = false
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]

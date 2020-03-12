@@ -1,23 +1,23 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
-[ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
-[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=5]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=6]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=7]
-[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=8]
-[ext_resource path="res://combat/components/Cargo.gd" type="Script" id=9]
-[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=10]
-[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=11]
-[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=12]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=13]
-[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=14]
-[ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=15]
-[ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=16]
-[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=17]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=18]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
+[ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
+[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
+[ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
+[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=11]
+[ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=12]
+[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=13]
+[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=14]
+[ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=18]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -33,9 +33,9 @@ radius = 16.0
 radius = 400.0
 
 [node name="Ship" type="RigidBody2D" groups=[
+"players",
 "Foreground",
 "in_camera",
-"players",
 ]]
 collision_mask = 1171
 physics_material_override = SubResource( 1 )
@@ -46,12 +46,12 @@ contact_monitor = true
 angular_damp = 40.0
 script = ExtResource( 1 )
 debug_enabled = true
-species = ExtResource( 18 )
+species = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Graphics" parent="." instance=ExtResource( 2 )]
+[node name="Graphics" parent="." instance=ExtResource( 3 )]
 scale = Vector2( 1.5, 1.5 )
 
 [node name="NearArea" type="Area2D" parent="."]
@@ -67,9 +67,9 @@ collision_layer = 32
 collision_mask = 4101
 
 [node name="Entity" type="Node" parent="DetectionArea"]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 4 )
+"_editor_icon": ExtResource( 5 )
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -79,93 +79,93 @@ shape = SubResource( 4 )
 bus = "SFX_effect"
 
 [node name="Entity2D" type="Node2D" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource( 6 )
 }
 
 [node name="Stunning" type="Node" parent="Entity2D"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Trigger" type="Node" parent="Entity2D"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Flowing" type="Node" parent="Entity2D"]
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 enabled = false
 
 [node name="Cargo" type="Node" parent="Entity2D"]
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 enabled = false
 
 [node name="CoinBag" type="Node" parent="Entity2D"]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Conqueror" type="Node" parent="Entity2D"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Royal" type="Node" parent="Entity2D"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 enabled = false
 
 [node name="Thrusters" type="Node" parent="Entity2D"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Teleportable" type="Node" parent="Entity2D"]
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Dashing" type="Node" parent="Entity2D"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 enabled = false
 
-[node name="Debug" parent="." instance=ExtResource( 14 )]
+[node name="Debug" parent="." instance=ExtResource( 15 )]
 
-[node name="PlayerInfo" parent="." instance=ExtResource( 15 )]
+[node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
 [node name="TargetDest" type="Position2D" parent="."]
 position = Vector2( 600, 0 )
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="Entity2D" type="Node2D" parent="TargetDest"]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource( 6 )
 }
 
 [node name="Valuable" type="Node" parent="TargetDest/Entity2D"]
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

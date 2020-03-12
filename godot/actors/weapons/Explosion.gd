@@ -27,7 +27,7 @@ func _physics_process(delta):
 	for body in $RepealField.get_overlapping_bodies():
 		if body is Bomb or body is Crown or body is Diamond or body is BigDiamond or body is DeadShip or body is Rock:
 			var vec = body.global_position-global_position
-			body.apply_central_impulse(vec.normalized()*global.sigmoid(vec.length(), repeal_field_width)*30)
+			body.apply_central_impulse(vec.normalized()*global.sigmoid(vec.length(), repeal_field_width)*30*(80 if body is Rock else 1))
 			if body is DeadShip:
 				body.apply_torque_impulse((body.linear_velocity+vec).length()*0.4)
 				

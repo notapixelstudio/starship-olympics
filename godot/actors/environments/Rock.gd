@@ -41,8 +41,8 @@ func _ready():
 	$LightLine2DE2.points = PoolVector2Array([epoints[2], ipoints[2],epoints[3]])
 	$LightLine2DE3.points = PoolVector2Array([epoints[4], ipoints[4],epoints[5]])
 	$LightLine2DE4.points = PoolVector2Array([epoints[6], ipoints[6],epoints[7]])
-	$CollisionShape2D.shape = gshape.to_Shape2D_offset(Vector2(0,0), 0.95)
-	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D_offset(Vector2(0,0), 0.95)
+	$CollisionShape2D.shape = gshape.to_Shape2D()
+	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
 	rotation_degrees = 45
 	
 	$Star.visible = contains_star
@@ -51,7 +51,7 @@ func _ready():
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
 func _on_Area2D_body_entered(body):
-	if body is Bomb or body is Ship and not body.invincible:
+	if body is Bomb:
 		try_break()
 
 func try_break():
@@ -76,26 +76,27 @@ func try_break():
 		elif order > last_order+1:
 			child = new_child_rock()
 		else:
-			if not spawn_diamonds or randf() < 0.35:
+			if not spawn_diamonds or randf() < 0.25:
 				child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
-		child.spawn_diamonds = spawn_diamonds
-		child.base_size = base_size
-		child.last_order = last_order
-		child.divisions = divisions
-		
+				
 		if contains_star and i == star_index:
 			child.contains_star = true
-			
+		
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
-		child.linear_velocity = 0.25*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
+		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
 		emit_signal('request_spawn', child)
 		
 func new_child_rock():
 	var child = RockScene.instance()
 	child.mass = mass/divisions
 	child.order = order - 1
+	child.spawn_diamonds = spawn_diamonds
+	child.base_size = base_size
+	child.last_order = last_order
+	child.divisions = divisions
+	
 	return child
 	
 func become_breakable():

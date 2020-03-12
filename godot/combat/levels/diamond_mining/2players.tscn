@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 2800, 2200, 2800 ]
+"values": [ 2800, 2400, 2800 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:height")
@@ -38,7 +38,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 2800, 2200, 2800 ]
+"values": [ 2800, 2400, 2800 ]
 }
 
 [node name="Arena" index="0" instance=ExtResource( 1 )]
@@ -72,8 +72,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-width = 2200
-height = 2200
+width = 2400
+height = 2400
 bevel = 450
 bevel_nw = 450
 bevel_ne = 450
@@ -125,9 +125,11 @@ bevel_se = 450
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GBeveledRect" index="0" groups=[
 "animation_in_battle",
 ]]
+playback_speed = 2.0
 anims/Rotate = SubResource( 1 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+base_size = 42.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 950, 10 )
@@ -140,6 +142,7 @@ position = Vector2( -950, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 10 )
+cpu = true
 
 [node name="Camera" parent="." index="5"]
 smoothing_speed = 0.3
