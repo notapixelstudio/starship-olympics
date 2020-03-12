@@ -376,6 +376,9 @@ func ship_just_died(ship, killer):
 	ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity)
 	ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
 	
+	if ship.info_player.lives == 0:
+		return
+	
 	var respawn_timeout = 1.5
 	if crown_mode.enabled:
 		if len(ECM.entities_with('Royal')) > 0:
@@ -461,6 +464,7 @@ func spawn_ship(player:PlayerSpawner):
 	trail.initialize(ship)
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
+	ship.set_lives(game_mode.starting_lives)
 	trail.configure(game_mode.deadly_trails)
 	
 	# connect signals

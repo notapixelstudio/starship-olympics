@@ -85,7 +85,9 @@ var bombs_enabled : bool = true setget set_bombs_enabled
 
 func set_bombs_enabled(value: bool):
 	bombs_enabled = value
-
+	
+func set_lives(value: int):
+	info_player.lives = value
 
 func _enter_tree():
 	charging = false

@@ -7,20 +7,20 @@
 [resource]
 script = ExtResource( 3 )
 is_mutator = false
-name = "diamondsnatch"
+name = "starmining"
 icon = ExtResource( 1 )
 logo = ExtResource( 2 )
-description = "collect {score} diamonds"
+description = "collect the star"
 tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
 tagline_cons = "Getting killed will make you lose most of the coins"
-max_timeout = 80
-max_score = 20
+max_timeout = 70
+max_score = 40
 cumulative = false
-starting_lives = -1
+starting_lives = 1
 death = false
 crown = false
 hive = false
-collect = true
+collect = false
 flowsnake = false
 goal = false
 shoot_bombs = true

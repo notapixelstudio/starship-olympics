@@ -8,15 +8,11 @@ var species_name : String
 var cpu: bool = false
 
 var playable : bool = true
-var lives : int
-var starting_lives : int = -1
+var lives : int = -1
 var session_score : int = 0
 var species  : Species
 var stats # : PlayerStats
 var team: String 
-
-func start():
-	lives = starting_lives
 	
 func to_dict():
 	return {

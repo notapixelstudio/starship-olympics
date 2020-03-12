@@ -12,6 +12,7 @@ export var tagline_cons : String
 export var max_timeout : int = 120
 export var max_score: int = 100
 export var cumulative: bool = false
+export var starting_lives : int = -1
 
 # goal manager
 export var death : bool = false
