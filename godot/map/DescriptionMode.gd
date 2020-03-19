@@ -24,7 +24,8 @@ func set_gamemode(value: GameMode):
 signal letsfight
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") or \
+		(event is InputEventScreenTouch and VirtualJoyStickInput.is_action_pressed("fire")):
 		set_process_input(false)
 		yield(get_tree().create_timer($Timer.time_left), 'timeout')
 		disappears()

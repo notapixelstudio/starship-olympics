@@ -188,7 +188,8 @@ func start_level(_level, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	combat.demo = demo
-
+	
+	VirtualJoyStickInput.add_joy_stick()
 	add_child(combat)
 	yield(combat, "ready")
 	
