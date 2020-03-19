@@ -5,7 +5,7 @@ resource_name = "wiggle"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -14,6 +14,5 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 0.353553, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -8, 0 ) ]
+"values": [ Vector2( -20, 0 ), Vector2( -28, 0 ) ]
 }
-

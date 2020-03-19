@@ -29,10 +29,18 @@ focus_next = NodePath(".")
 focus_previous = NodePath(".")
 focus_mode = 1
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 86, 40 )
-texture = ExtResource( 2 )
+[node name="Sprite" type="TextureButton" parent="."]
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/SETUP = SubResource( 1 )

@@ -85,3 +85,9 @@ func disable():
 func disable_arrows():
 	$LeftArrow.disable()
 	$RightArrow.disable()
+
+func is_selected_left():
+	return $LeftArrow.pressed
+
+func is_selected_right():
+	return $RightArrow.pressed
