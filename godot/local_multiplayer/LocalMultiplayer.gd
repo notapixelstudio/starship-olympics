@@ -55,7 +55,7 @@ func _ready():
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
-
+	VirtualJoyStickInput.add_joy_stick(false, true)
 func _exit_tree():
 	global.local_multiplayer = null
 

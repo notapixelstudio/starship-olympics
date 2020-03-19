@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=11]
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=12]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 100, 425 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "standby"
@@ -68,6 +71,9 @@ margin_top = -15.0
 margin_right = 210.0
 margin_bottom = 535.0
 rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="Polygon2D" parent="Character"]
 position = Vector2( 0, -3.05176e-05 )
@@ -85,6 +91,11 @@ modulate = Color( 0.8, 0.8, 0.8, 1 )
 position = Vector2( 90, 290 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Character/Character"]
+position = Vector2( -110, -425 )
+shape = SubResource( 5 )
+visibility_mode = 1
 
 [node name="OverBorder" type="Line2D" parent="Character"]
 points = PoolVector2Array( 23, 35, 23, 548, 144, 548 )
@@ -217,3 +228,4 @@ TRIXENS"
 align = 1
 valign = 1
 uppercase = true
+[connection signal="pressed" from="Character/Character/TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]

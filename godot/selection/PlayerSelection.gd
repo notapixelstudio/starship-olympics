@@ -92,7 +92,7 @@ func _input(event):
 	if disabled:
 		return
 	if selected :
-		if event.is_action_pressed(controls+"_accept"):
+		if event.is_action_pressed(controls+"_accept") or VirtualJoyStickInput.is_action_pressed("fire"):
 			emit_signal("ready_to_fight")
 #		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 #			deselect()
@@ -171,4 +171,6 @@ func enable_choice():
 	speciesSelection.enable()
 	if global.demo:
 		speciesSelection.disable_arrows()
-	
+
+func _on_SpeciesSelection_selected() -> void:
+	select_character()

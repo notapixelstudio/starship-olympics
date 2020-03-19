@@ -36,3 +36,4 @@ bus = "SFX"
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 6 )
 bus = "SFX"
+[connection signal="selected" from="SpeciesSelection" to="." method="_on_SpeciesSelection_selected"]

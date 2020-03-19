@@ -99,7 +99,8 @@ func control(delta):
 	# overcharge
 	if charge > MAX_OVERCHARGE:
 		fire()
-
+	
+	# TODO fix this fire condition
 	if VirtualJoyStickInput.is_action_pressed("fire"):
 		fire()
 	# cooldown

@@ -53,21 +53,21 @@ func _ready():
 	visible = false
 
 func _input(event):
-	if event.is_action_pressed(\"ui_accept\"):
+	if event.is_action_pressed(\"ui_accept\") or VirtualJoyStickInput.is_action_pressed(\"fire\"):
 		deactivate(true)
 		emit_signal(\"letsfight\")
 	elif event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
 		deactivate()
 
 func start(num_players: int, n_matches: int):
-	
+
 	visible = true
-	
+
 	$Label.text = tr(description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')}))
 	win_label.text = tr(win_condition.format({\"n_matches\":n_matches}))
 	set_process_input(true)
-	
-	
+
+
 func deactivate(show = false):
 	set_process_input(false)
 	visible = show
