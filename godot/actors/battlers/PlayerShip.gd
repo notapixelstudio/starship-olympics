@@ -9,7 +9,9 @@ var device_controller_id : int
 
 func _ready():
 	cpu = false
-	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+	if controls != "remote":
+		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+
 	if "kb" in controls:
 		absolute_controls = false
 	connect('dead', self, '_on_dead')
@@ -30,9 +32,21 @@ func keyboard_handling():
 		target.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 		
 	return target
+
+func remote_joypad():
+	var analogic = RemoteController.analogics[0]
+	if analogic != Vector2.ZERO:
+		print(analogic)
+	var target = Vector2(analogic[0], analogic[1])
+	# xAxis is a value from +/0 0-1 depending on how hard the stick is being pressed
+	if abs(target.x) < DEADZONE:
+		target.x = 0
+	if abs(target.y) < DEADZONE:
+		target.y = 0
+	return target
+	
 	
 func joypad_handling():
-	
 	var target = Vector2()
 	var analogic: InputEventJoypadMotion
 	for action in InputMap.get_action_list(controls+"_right"):
@@ -54,7 +68,9 @@ func joypad_handling():
 func control(delta):
 	var target_vel = Vector2()
 	var front = Vector2(cos(rotation), sin(rotation))
-	if "joy" in controls:
+	if "remote" in controls:
+		target_vel = remote_joypad()
+	elif "joy" in controls:
 		target_vel = joypad_handling()
 	else:
 		target_vel = keyboard_handling()

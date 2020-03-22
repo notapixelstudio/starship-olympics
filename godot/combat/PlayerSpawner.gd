@@ -19,7 +19,9 @@ func _ready():
 	visible = false
 	
 func appears():
-	var device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+	var device_controller_id = 0
+	if controls != "remote":
+		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)
