@@ -9,9 +9,10 @@ var device_controller_id : int
 
 func _ready():
 	cpu = false
-	if controls != "remote":
+	if "remote" in controls:
+		device_controller_id = int(RemoteController.players[int(controls.replace("remote", ""))-1])
+	else:
 		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
-
 	if "kb" in controls:
 		absolute_controls = false
 	connect('dead', self, '_on_dead')
@@ -34,7 +35,7 @@ func keyboard_handling():
 	return target
 
 func remote_joypad():
-	var analogic = RemoteController.analogics[0]
+	var analogic = RemoteController.analogics[str(device_controller_id)]
 	if analogic != Vector2.ZERO:
 		print(analogic)
 	var target = Vector2(analogic[0], analogic[1])

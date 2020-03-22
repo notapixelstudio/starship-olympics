@@ -41,11 +41,8 @@ grid_color = Color( 0.945098, 0, 1, 0.588235 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
-grid_rotation = 0.0
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
@@ -62,14 +59,6 @@ precision = 50.0
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 7 )
@@ -87,14 +76,6 @@ anims/wall_flash = ExtResource( 9 )
 [node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 position = Vector2( -900, 0 )
 rotation = 0.785398
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 7 )
@@ -517,7 +498,7 @@ position = Vector2( -300, 0 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 13 )]
 position = Vector2( -600, 600 )
 rotation = -0.785398
-controls = "remote"
+controls = "remote1"
 species = ExtResource( 14 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]

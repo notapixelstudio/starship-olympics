@@ -4,6 +4,7 @@ var players = []
 var analogic = {}
 
 signal pressed_big_button
+signal released_big_button
 
 func get_local_ip():
 	for ip in IP.get_local_addresses():
@@ -55,4 +56,7 @@ remote func receive_button_input(id, data): #questa funzione ascolta per A e B
 	pass
 
 remote func receive_big_button_input(id, data): #questa funzione ascolta per il bottone grosso
-	emit_signal("pressed_big_button", id, data)
+	if data == "pressed":
+		emit_signal("pressed_big_button", get_index_from_id(id), data)
+	elif data == "released":
+		emit_signal("released_big_button", get_index_from_id(id), data)

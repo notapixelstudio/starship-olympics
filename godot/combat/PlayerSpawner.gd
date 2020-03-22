@@ -20,7 +20,7 @@ func _ready():
 	
 func appears():
 	var device_controller_id = 0
-	if controls != "remote":
+	if not "remote" in controls:
 		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad

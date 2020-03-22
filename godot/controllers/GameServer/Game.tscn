@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://controllers/GameServer/InputManager.gd" type="Script" id=1]
+[ext_resource path="res://controllers/GameServer/Game.gd" type="Script" id=1]
+[ext_resource path="res://controllers/GameServer/InputManager.gd" type="Script" id=2]
 
 [node name="RemoteController" type="Node"]
+script = ExtResource( 1 )
 
 [node name="PeerInput" type="Node" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
