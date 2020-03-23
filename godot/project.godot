@@ -264,11 +264,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://selection/Character.gd"
 }, {
-"base": "Control",
-"class": "SpeciesContainer",
-"language": "GDScript",
-"path": "res://local_multiplayer/Character.gd"
-}, {
 "base": "Position2D",
 "class": "TargetDest",
 "language": "GDScript",
@@ -341,7 +336,6 @@ _global_script_class_icons={
 "SessionScores": "",
 "Ship": "",
 "Species": "",
-"SpeciesContainer": "",
 "TargetDest": "",
 "Trail": "",
 "Trail2D": "",
@@ -372,6 +366,7 @@ global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
+RemoteController="*res://controllers/GameServer/Game.tscn"
 
 [display]
 
@@ -733,6 +728,22 @@ force_reset={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
+}
+remote1_fire={
+"deadzone": 0.5,
+"events": [  ]
+}
+remote2_fire={
+"deadzone": 0.5,
+"events": [  ]
+}
+remote3_fire={
+"deadzone": 0.5,
+"events": [  ]
+}
+remote4_fire={
+"deadzone": 0.5,
+"events": [  ]
 }
 
 [layer_names]
