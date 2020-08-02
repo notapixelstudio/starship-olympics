@@ -1,0 +1,438 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://map/Map.gd" type="Script" id=2]
+[ext_resource path="res://map/PlaylistItem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://map/planets/SoloCrown.tres" type="Resource" id=7]
+[ext_resource path="res://map/planets/SoloDeath.tres" type="Resource" id=8]
+[ext_resource path="res://map/planets/SoloSnatch.tres" type="Resource" id=9]
+[ext_resource path="res://map/planets/SoloFlag.tres" type="Resource" id=10]
+[ext_resource path="res://map/planets/SlamAGon.tres" type="Resource" id=11]
+[ext_resource path="res://map/OnOffCell.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/map/cards/ceasefire.png" type="Texture" id=13]
+[ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
+[ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
+[ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=17]
+[ext_resource path="res://map/DynamicOptionCell.gd" type="Script" id=18]
+[ext_resource path="res://assets/map/cards/option_0_cpus.png" type="Texture" id=19]
+[ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=20]
+[ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=21]
+[ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=22]
+[ext_resource path="res://map/ButtonCell.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/map/cards/back.png" type="Texture" id=24]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
+[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=26]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=27]
+[ext_resource path="res://assets/map/umidor_ii.png" type="Texture" id=28]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=29]
+[ext_resource path="res://assets/map/trixxx.png" type="Texture" id=30]
+[ext_resource path="res://assets/map/hallium_iv.png" type="Texture" id=31]
+[ext_resource path="res://assets/map/stars.png" type="Texture" id=32]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+font_data = ExtResource( 27 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 27 )
+
+[node name="Map" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+playlist_item = ExtResource( 3 )
+cursor_scene = ExtResource( 4 )
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Content" type="Node2D" parent="."]
+pause_mode = 2
+
+[node name="Waypoints" type="Node2D" parent="Content"]
+
+[node name="Planets" type="Node2D" parent="Content"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TakeTheCrown" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, -200 )
+planet = ExtResource( 7 )
+active = false
+
+[node name="Deathmatch" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -600, 200 )
+planet = ExtResource( 8 )
+active = false
+
+[node name="Diamondsnatch" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -200, 600 )
+planet = ExtResource( 9 )
+active = false
+
+[node name="HiveFilling" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 0, -600 )
+planet = ExtResource( 10 )
+active = false
+
+[node name="SlamAGon" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -800, -600 )
+planet = ExtResource( 11 )
+active = false
+
+[node name="hive_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+value_name = "hive_shoot_bombs"
+inverted = true
+text = "ceasefire"
+
+[node name="Sprite" parent="Content/Planets/hive_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
+
+[node name="slam_a_gon_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+position = Vector2( -600, -600 )
+value_name = "slam_a_gon_shoot_bombs"
+inverted = true
+text = "ceasefire"
+
+[node name="Sprite" parent="Content/Planets/slam_a_gon_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
+
+[node name="diamondsnatch_shoot_bombs" parent="Content/Planets" instance=ExtResource( 12 )]
+position = Vector2( 0, 600 )
+value_name = "diamondsnatch_shoot_bombs"
+inverted = true
+text = "ceasefire"
+
+[node name="Sprite" parent="Content/Planets/diamondsnatch_shoot_bombs" index="0"]
+texture = ExtResource( 13 )
+
+[node name="Controls" type="Node2D" parent="Content"]
+
+[node name="Victories" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 600, 0 )
+value_name = "custom_win"
+selection = [ 1, 3, 5 ]
+
+[node name="1" type="Sprite" parent="Content/Controls/Victories/Sprite" index="0"]
+visible = false
+texture = ExtResource( 15 )
+
+[node name="3" type="Sprite" parent="Content/Controls/Victories/Sprite" index="1"]
+visible = false
+texture = ExtResource( 16 )
+
+[node name="5" type="Sprite" parent="Content/Controls/Victories/Sprite" index="2"]
+visible = false
+texture = ExtResource( 17 )
+
+[node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 600, -200 )
+script = ExtResource( 18 )
+var_name = "cpu"
+global_option = false
+node_owner_path = NodePath("../../..")
+description = "{_} CPUS"
+
+[node name="0" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="0"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 19 )
+
+[node name="1" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="1"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 20 )
+
+[node name="2" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="2"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 21 )
+
+[node name="3" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="3"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 22 )
+
+[node name="Start" parent="Content/Controls" instance=ExtResource( 23 )]
+position = Vector2( 200, 0 )
+
+[node name="Back" parent="Content/Controls" instance=ExtResource( 23 )]
+position = Vector2( -200, 0 )
+
+[node name="Sprite" parent="Content/Controls/Back" index="0"]
+texture = ExtResource( 24 )
+
+[node name="CursorMoveTween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 25 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Near" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.95, 0.95 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Queensworld" type="Sprite" parent="ParallaxBackground/Near"]
+modulate = Color( 0.647059, 0.309804, 0.309804, 1 )
+position = Vector2( -512.909, -181.695 )
+scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 26 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Queensworld"]
+modulate = Color( 1, 1, 1, 0.815686 )
+margin_left = -365.051
+margin_top = -90.1696
+margin_right = -10.0509
+margin_bottom = 5.83044
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Name" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
+margin_right = 355.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Queensworld"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Near/Queensworld/VBoxContainer"]
+margin_top = 66.0
+margin_right = 355.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Capital of the Robolord Kingdom"
+align = 1
+uppercase = true
+
+[node name="Umidor II" type="Sprite" parent="ParallaxBackground/Near"]
+self_modulate = Color( 0.478431, 0.521569, 0.556863, 1 )
+position = Vector2( 249, 575 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 28 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Near/Umidor II"]
+margin_left = -70.0
+margin_top = -25.0
+margin_right = 285.0
+margin_bottom = 71.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Name" type="Label" parent="ParallaxBackground/Near/Umidor II/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.403922 )
+margin_right = 360.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Umidor II"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Near/Umidor II/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.403922 )
+margin_top = 66.0
+margin_right = 360.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "The Glimmering depths, home to umidorians"
+align = 1
+uppercase = true
+
+[node name="Medium" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.9, 0.9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mantarion" type="Sprite" parent="ParallaxBackground/Medium"]
+modulate = Color( 0.52549, 0.654902, 0.556863, 1 )
+position = Vector2( -782.522, 287.888 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 29 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Medium/Mantarion"]
+modulate = Color( 1, 1, 1, 0.592157 )
+margin_left = -278.167
+margin_top = 11.0003
+margin_right = 58.833
+margin_bottom = 107.0
+
+[node name="Name" type="Label" parent="ParallaxBackground/Medium/Mantarion/VBoxContainer"]
+margin_right = 337.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Mantarion"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Medium/Mantarion/VBoxContainer"]
+margin_top = 66.0
+margin_right = 337.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Mantiacs' nest and playground"
+align = 1
+uppercase = true
+
+[node name="Far" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.85, 0.85 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Trixxx" type="Sprite" parent="ParallaxBackground/Far"]
+modulate = Color( 0.396078, 0.368627, 0.25098, 1 )
+position = Vector2( 116.478, -521.113 )
+scale = Vector2( 1, 1.1 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 30 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground/Far/Trixxx"]
+scale = Vector2( 1.9, 1.8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Far/Trixxx/Node2D"]
+margin_left = -4.3334
+margin_top = -24.4163
+margin_right = 332.666
+margin_bottom = 71.5837
+
+[node name="Name" type="Label" parent="ParallaxBackground/Far/Trixxx/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_right = 336.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Trixxx"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Far/Trixxx/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_top = 66.0
+margin_right = 336.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Center of the Trixen Empire"
+align = 1
+uppercase = true
+
+[node name="HalliumIV" type="Sprite" parent="ParallaxBackground/Far"]
+modulate = Color( 0.513726, 0.360784, 0.498039, 1 )
+position = Vector2( -702.522, -534.113 )
+scale = Vector2( 1, 1.1 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 31 )
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground/Far/HalliumIV"]
+position = Vector2( -695, -2.72723 )
+scale = Vector2( 1.9, 1.8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParallaxBackground/Far/HalliumIV/Node2D"]
+margin_left = -4.3334
+margin_top = -24.4163
+margin_right = 332.666
+margin_bottom = 71.5837
+
+[node name="Name" type="Label" parent="ParallaxBackground/Far/HalliumIV/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_right = 336.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Hallium IV"
+align = 1
+uppercase = true
+
+[node name="Tagline" type="Label" parent="ParallaxBackground/Far/HalliumIV/Node2D/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.905882 )
+margin_top = 66.0
+margin_right = 336.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Pentagonions' tasty core"
+align = 1
+uppercase = true
+
+[node name="WayMoreFar" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.3, 0.3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/WayMoreFar"]
+scale = Vector2( 2, 2 )
+z_index = -10
+z_as_relative = false
+texture = ExtResource( 32 )
+
+[node name="Camera" parent="." instance=ExtResource( 33 )]
+limit_left = -1200
+limit_top = -900
+limit_right = 1500
+limit_bottom = 900
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+zoomMin = 2.1
+zoomMax = 2.65
+marginY = 0.0
+zoom_offset = 1.574
+
+[node name="CanvasLayerTop" type="CanvasLayer" parent="."]
+layer = 2
+[connection signal="updated" from="Content/Planets/Diamondsnatch" to="Content/Planets/diamondsnatch_shoot_bombs" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/HiveFilling" to="Content/Planets/hive_shoot_bombs" method="_on_master_updated"]
+[connection signal="updated" from="Content/Planets/SlamAGon" to="Content/Planets/slam_a_gon_shoot_bombs" method="_on_master_updated"]
+[connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
+[connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
+
+[editable path="Content/Planets/hive_shoot_bombs"]
+
+[editable path="Content/Planets/slam_a_gon_shoot_bombs"]
+
+[editable path="Content/Planets/diamondsnatch_shoot_bombs"]
+
+[editable path="Content/Controls/Victories"]
+
+[editable path="Content/Controls/CPUs"]
+
+[editable path="Content/Controls/Back"]

@@ -74,7 +74,6 @@ func _ready():
 		if sport.planet in selected_sports:
 			sport.active = true
 	
-	intro.text = intro.text.replace("X", str(num_players))
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
 		cell.connect('pressed', self, '_on_cell_pressed', [cell])
