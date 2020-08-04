@@ -95,6 +95,9 @@ font_data = ExtResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Info" type="NinePatchRect" parent="."]
 margin_left = 440.0
@@ -195,7 +198,6 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
 [node name="BottomHUD" type="HBoxContainer" parent="."]
-editor/display_folded = true
 visible = false
 anchor_top = 1.0
 anchor_right = 1.0

@@ -72,6 +72,10 @@ func combat(selected_players: Array, fight_mode : String):
 	@param: selected_players : Array[Species] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
+	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(1200, 0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property($ship2, "position", Vector2(500, 650), Vector2(1200, 0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+	yield($Tween,"tween_completed")
 	
 	# we need to reset players dictionary
 	players = {}

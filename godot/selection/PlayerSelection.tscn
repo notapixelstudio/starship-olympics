@@ -1,11 +1,53 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
-[ext_resource path="res://selection/SpeciesBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 06.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/icon/kb1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=11]
+[ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=12]
+[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=13]
+[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=14]
+[ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
+[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
+[ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
+
+[sub_resource type="Animation" id=3]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ship:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.000255905, 360.0 ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+outline_size = 4
+font_data = ExtResource( 9 )
 
 [node name="PlayerSelection" type="Control"]
 anchor_top = 0.5
@@ -15,9 +57,187 @@ margin_right = 200.0
 margin_bottom = 213.0
 rect_min_size = Vector2( 200, 430 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SpeciesSelection" parent="." instance=ExtResource( 2 )]
+[node name="SpeciesSelection" type="Control" parent="."]
+margin_top = -14.0
+margin_right = 200.0
 margin_bottom = 400.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 200, 400 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+species = ExtResource( 12 )
+
+[node name="SelectRect" type="Sprite" parent="SpeciesSelection"]
+visible = false
+position = Vector2( -10.0661, 0.893982 )
+scale = Vector2( 0.586605, 0.485262 )
+texture = ExtResource( 13 )
+centered = false
+
+[node name="Character" type="Control" parent="SpeciesSelection"]
+margin_top = -15.0
+margin_right = 210.0
+margin_bottom = 535.0
+rect_clip_content = true
+
+[node name="Background" type="Polygon2D" parent="SpeciesSelection/Character"]
+position = Vector2( 0, -3.05176e-05 )
+polygon = PoolVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
+
+[node name="Border" type="Line2D" parent="SpeciesSelection/Character"]
+points = PoolVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 91
+begin_cap_mode = 1
+
+[node name="Character" type="Sprite" parent="SpeciesSelection/Character"]
+modulate = Color( 0.8, 0.8, 0.8, 1 )
+position = Vector2( 90, 290 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 11 )
+
+[node name="OverBorder" type="Line2D" parent="SpeciesSelection/Character"]
+points = PoolVector2Array( 23, 35, 23, 548, 144, 548 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 91
+begin_cap_mode = 1
+
+[node name="Controls" type="Sprite" parent="SpeciesSelection"]
+position = Vector2( 82, 645 )
+texture = ExtResource( 7 )
+
+[node name="LeftArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
+margin_left = 9.0
+margin_top = 475.0
+margin_right = 9.0
+margin_bottom = 475.0
+rect_scale = Vector2( -1.2, 1.2 )
+
+[node name="Shadow" type="Sprite" parent="SpeciesSelection"]
+position = Vector2( 87.174, 472 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 8 )
+
+[node name="Ship" type="Sprite" parent="SpeciesSelection"]
+position = Vector2( 87.174, 473 )
+rotation = 0.785402
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 10 )
+
+[node name="RightArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
+margin_left = 159.0
+margin_top = 475.0
+margin_right = 159.0
+margin_bottom = 475.0
+rect_scale = Vector2( 1.2, 1.2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection"]
+autoplay = "standby"
+anims/standby = SubResource( 3 )
+
+[node name="SpeciesName" type="VBoxContainer" parent="SpeciesSelection"]
+margin_left = -2.0
+margin_top = 558.0
+margin_right = 168.0
+margin_bottom = 627.0
+
+[node name="Label" type="Label" parent="SpeciesSelection/SpeciesName"]
+margin_right = 170.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 16 )
+text = "pentagonions"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ColorRect" type="ColorRect" parent="SpeciesSelection/SpeciesName"]
+margin_top = 27.0
+margin_right = 170.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="Tagline1" type="Label" parent="SpeciesSelection/SpeciesName"]
+margin_top = 33.0
+margin_right = 170.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 4 )
+text = "tagline"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Tagline2" type="Label" parent="SpeciesSelection/SpeciesName"]
+margin_top = 50.0
+margin_right = 170.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 4 )
+text = "tagline"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Tween" type="Tween" parent="SpeciesSelection"]
+
+[node name="PlayerInfo" type="Position2D" parent="SpeciesSelection"]
+position = Vector2( 86, 33.5228 )
+
+[node name="Sprite" type="Sprite" parent="SpeciesSelection/PlayerInfo"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, 9 )
+scale = Vector2( 1.7, 1.8 )
+texture = ExtResource( 14 )
+
+[node name="Sprite2" type="Sprite" parent="SpeciesSelection/PlayerInfo"]
+position = Vector2( 0, 8 )
+texture = ExtResource( 14 )
+
+[node name="PlayerID" type="Label" parent="SpeciesSelection/PlayerInfo"]
+margin_left = -20.0
+margin_top = -30.0
+margin_right = 20.0
+margin_bottom = 3.0
+custom_fonts/font = SubResource( 5 )
+text = "P1"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/PlayerInfo"]
+autoplay = "wiggle"
+anims/wiggle = ExtResource( 15 )
+
+[node name="TeamMode" type="Control" parent="SpeciesSelection"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -108.0
+margin_top = 158.0
+margin_right = 75.0
+margin_bottom = 231.0
+
+[node name="Label" type="Label" parent="SpeciesSelection/TeamMode"]
+anchor_right = 1.0
+margin_top = -28.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "TEAM
+TRIXENS"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SFX" type="Node" parent="."]
 

@@ -215,6 +215,7 @@ func _ready():
 		mode_description.set_process_input(false)
 		yield(get_tree().create_timer(3), "timeout")
 		mode_description.disappears()
+	camera.isShake = true
 	yield(mode_description, "ready_to_fight")
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
