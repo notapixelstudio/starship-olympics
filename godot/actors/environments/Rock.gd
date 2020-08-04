@@ -47,6 +47,7 @@ func _ready():
 	rotation_degrees = 45
 	
 	$Star.visible = contains_star
+	$Diamond.visible = spawn_diamonds and order >= last_order
 	
 	# workaround
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
@@ -74,6 +75,7 @@ func try_break():
 		elif order == last_order+1:
 			if spawn_diamonds and randf() < 0.025:
 				child = BigDiamondScene.instance()
+				child.appear = false
 			else:
 				child = new_child_rock()
 		else: # order <= last_order
@@ -84,6 +86,7 @@ func try_break():
 					child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
+				child.appear = false
 				
 		if 'contains_star' in child and contains_star and i == star_index:
 			child.contains_star = true

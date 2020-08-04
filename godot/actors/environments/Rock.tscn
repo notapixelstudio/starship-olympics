@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=30]
 [ext_resource path="res://assets/icon/star_full.png" type="Texture" id=31]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprites/environments/diamond_trapped.png" type="Texture" id=33]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -127,8 +128,13 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 41
+frame = 13
 playing = true
+
+[node name="Diamond" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.454902 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 33 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0.352941 )

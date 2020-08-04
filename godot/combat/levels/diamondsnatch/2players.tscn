@@ -53,6 +53,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 2900
 height = 1700
 radius = 800
@@ -76,6 +77,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 200
 height = 200
 
@@ -100,6 +102,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 200
 height = 200
 
@@ -109,6 +112,7 @@ anims/wall_flash = ExtResource( 9 )
 [node name="DiamondSpawner" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
 
 [node name="Coin" parent="Battlefield/Middleground/DiamondSpawner" index="0" instance=ExtResource( 11 )]
+appear = false
 
 [node name="DiamondSpawner2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
 position = Vector2( -600, 700 )
