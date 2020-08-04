@@ -90,6 +90,10 @@ func try_break():
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
 		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
+		
+		if child is Star:
+			child.linear_velocity *= 10
+			
 		emit_signal('request_spawn', child)
 		
 func new_child_rock():
