@@ -569,6 +569,7 @@ func slomo():
 		self.time_scale = lerp(time_scale, 1, 0.1)
 		
 func _on_Rock_request_spawn(child):
-	child.connect('request_spawn', self, '_on_Rock_request_spawn')
+	if child is Rock:
+		child.connect('request_spawn', self, '_on_Rock_request_spawn')
 	$Battlefield.add_child(child)
 	

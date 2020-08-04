@@ -4,6 +4,7 @@ class_name Rock
 var RockScene = load('res://actors/environments/Rock.tscn')
 var DiamondScene = load('res://combat/collectables/Diamond.tscn')
 var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
+var StarScene = load('res://combat/collectables/Star.tscn')
 
 export var order : int = 4
 export var last_order : int = 1
@@ -68,22 +69,25 @@ func try_break():
 	
 	for i in range(divisions):
 		var child
-		if order == last_order+1:
+		if order > last_order+1:
+			child = new_child_rock()
+		elif order == last_order+1:
 			if spawn_diamonds and randf() < 0.025:
 				child = BigDiamondScene.instance()
 			else:
 				child = new_child_rock()
-		elif order > last_order+1:
-			child = new_child_rock()
-		else:
+		else: # order <= last_order
 			if not spawn_diamonds or randf() < 0.25:
-				child = new_child_rock()
+				if contains_star and i == star_index:
+					child = StarScene.instance()
+				else:
+					child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
 				
-		if contains_star and i == star_index:
+		if 'contains_star' in child and contains_star and i == star_index:
 			child.contains_star = true
-		
+			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
 		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
 		emit_signal('request_spawn', child)
