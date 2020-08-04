@@ -124,9 +124,10 @@ __meta__ = {
 
 [node name="Star" type="AnimatedSprite" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 75
+frame = 41
 playing = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

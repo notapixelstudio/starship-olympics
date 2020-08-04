@@ -110,6 +110,3 @@ func new_child_rock():
 func become_breakable():
 	breakable = true
 	
-func _process(delta):
-	$Star.rotation = -rotation
-	

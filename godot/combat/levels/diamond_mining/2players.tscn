@@ -41,7 +41,7 @@ tracks/1/keys = {
 "values": [ 2800, 2400, 2800 ]
 }
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -64,14 +64,18 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 2400
 height = 2400
 bevel = 450
@@ -86,14 +90,18 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 2800
 height = 2800
 bevel = 450
@@ -106,14 +114,19 @@ bevel_se = 450
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 width = 2800
 height = 2800
 bevel = 450
