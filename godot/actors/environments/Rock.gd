@@ -12,6 +12,7 @@ export var divisions : int = 4
 export var base_size : float = 50.0
 export var spawn_diamonds : bool = true
 export var contains_star : bool = false
+export var self_destruct : bool = false
 
 var gshape
 var breakable = false
@@ -107,9 +108,45 @@ func new_child_rock():
 	child.base_size = base_size
 	child.last_order = last_order
 	child.divisions = divisions
+	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
+	child.start()
 	
 	return child
 	
 func become_breakable():
 	breakable = true
 	
+onready var countdown = $Countdown/Label
+
+func _process(delta):
+	$Countdown.rotation = -rotation
+	
+func start():
+	if self_destruct:
+		if not $SelfDestructTimer.is_inside_tree():
+			yield($SelfDestructTimer, 'tree_entered')
+			
+		$SelfDestructTimer.start(randf())
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '5'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '4'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '3'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '2'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '1'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		try_break()
+		

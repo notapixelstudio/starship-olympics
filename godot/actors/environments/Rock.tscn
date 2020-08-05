@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://assets/icon/star_full.png" type="Texture" id=31]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=32]
 [ext_resource path="res://assets/sprites/environments/diamond_trapped.png" type="Texture" id=33]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=34]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -93,8 +94,15 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="DynamicFont" id=5]
+size = 72
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 34 )
+
 [node name="Rock" type="RigidBody2D" groups=[
 "in_camera",
+"wait_to_start",
 ]]
 collision_layer = 1024
 collision_mask = 1053
@@ -128,7 +136,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 13
+frame = 9
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -137,7 +145,6 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 33 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.352941 )
 color = Color( 0.780392, 0, 0.847059, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -190,4 +197,21 @@ shape = SubResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
 anims/Forming = SubResource( 4 )
+
+[node name="SelfDestructTimer" type="Timer" parent="."]
+
+[node name="Countdown" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Countdown"]
+margin_left = -30.0
+margin_top = -44.0
+margin_right = 30.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.827451, 0, 1, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

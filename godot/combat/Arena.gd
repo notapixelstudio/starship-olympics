@@ -297,7 +297,9 @@ func _ready():
 	set_process(true)
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
-
+		
+	for node in get_tree().get_nodes_in_group('wait_to_start'):
+		node.start()
 	
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
@@ -380,15 +382,19 @@ func ship_just_died(ship, killer):
 	ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
 	
 	if ship.info_player.lives == 0:
-		var alive_players = 0
+		var alive_players = []
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
-				alive_players += 1
+				alive_players.append(s)
 				
-		if alive_players <= 1:
+		if len(alive_players) == 1:
 			# stop the match after a while if there is only one player left
-			yield(get_tree().create_timer(0.5), 'timeout')
-			scores.one_player_left = true
+			yield(get_tree().create_timer(1), 'timeout')
+			scores.one_player_left(alive_players[0].info_player)
+		elif len(alive_players) == 0:
+			# stop the match after a while if there is no player left
+			yield(get_tree().create_timer(1), 'timeout')
+			scores.do_game_over()
 			
 		# skip respawn if there are no lives left
 		return

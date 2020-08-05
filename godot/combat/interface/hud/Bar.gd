@@ -18,7 +18,8 @@ var sprite_on
 var player
 var new_position setget change_position
 
-func initialize(player: PlayerStats, matchscore: MatchScores):
+func initialize(p: PlayerStats, matchscore: MatchScores):
+	player = p
 	var species = player.species
 	progressbar.modulate = species.color
 	progressbar.max_value = matchscore.target_score
@@ -33,11 +34,19 @@ func initialize(player: PlayerStats, matchscore: MatchScores):
 		star.scale = Vector2(0.18,0.18)
 		star.position.x = margin_left + max_bar_width - ministar_margin + i*ministar_width + 18
 		star.position.y = 18
-		
-		if i < player.session_score:
-			star.won = true
-		
 		add_child(star)
+		
+	update_stars()
+	
+func update_stars():
+	var stars = []
+	for node in get_children():
+		if node is StarIcon:
+			stars.append(node)
+			
+	for i in range(global.win):
+		if i < player.session_score:
+			stars[i].won = true
 	
 func set_value(value):
 	# round to 2 decimal digit
