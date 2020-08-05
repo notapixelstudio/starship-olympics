@@ -21,6 +21,7 @@ export var hive : bool = false
 export var collect : bool = false
 export var flowsnake : bool = false
 export var goal : bool = false
+export var survival : bool = false
 
 # gear 
 export var shoot_bombs : bool = true setget set_bombs

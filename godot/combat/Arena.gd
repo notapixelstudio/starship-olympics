@@ -30,6 +30,7 @@ onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
 onready var race_mode = $Managers/RaceModeManager
 onready var goal_mode = $Managers/GoalModeManager
+onready var survival_mode = $Managers/SurvivalModeManager
 
 onready var combat_manager = $Managers/CombatManager
 onready var stun_manager = $Managers/StunManager
@@ -89,6 +90,7 @@ func setup_level(mode : Resource):
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
+	survival_mode.enabled = mode.survival
 	
 	#FIX
 	if session and mode.name in session.settings and not global.campaign_mode:
@@ -151,6 +153,7 @@ func _ready():
 	collect_mode.connect('spawn_next', self, "on_next_wave")
 	goal_mode.connect('score', scores, "add_score")
 	goal_mode.connect('show_score', self, "spawn_points_scored")
+	survival_mode.connect('score', scores, "add_score")
 	
 	for goal in get_tree().get_nodes_in_group("goal"):
 		goal.connect('goal_done', goal_mode, "_on_goal_done")
