@@ -57,12 +57,14 @@ func control(delta):
 	else:
 		target_vel = keyboard_handling()
 
-	if target_vel == Vector2():
+	if target_vel == Vector2.ZERO:
+		target_velocity = front
 		# this in order to keep the velocity constant
 		pass
 	else:
 		target_velocity = target_vel.normalized()
 	rotation_dir = find_side(Vector2(0,0), front, target_velocity)
+	
 	# if we want tank mode control (relative control)
 	# rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 
