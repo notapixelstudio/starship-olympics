@@ -9,6 +9,8 @@ var lasting_time: float = 0.0
 
 var target_score: float = 100
 
+var one_player_left = false
+
 var scores = []
 var players = {} # Dictionary of InfoPlayers
 var sport
@@ -67,7 +69,7 @@ func update(delta: float):
 	
 	var leader = scores[0]
 	
-	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score) :
+	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score) or one_player_left:
 		winners = []
 		var draw = true
 		var last_value = leader.score

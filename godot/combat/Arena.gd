@@ -380,6 +380,17 @@ func ship_just_died(ship, killer):
 	ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
 	
 	if ship.info_player.lives == 0:
+		var alive_players = 0
+		for s in get_tree().get_nodes_in_group('players'):
+			if s.alive:
+				alive_players += 1
+				
+		if alive_players <= 1:
+			# stop the match after a while if there is only one player left
+			yield(get_tree().create_timer(0.5), 'timeout')
+			scores.one_player_left = true
+			
+		# skip respawn if there are no lives left
 		return
 	
 	var respawn_timeout = 1.5
