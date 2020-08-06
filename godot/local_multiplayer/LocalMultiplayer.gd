@@ -125,7 +125,7 @@ func combat(selected_players: Array, fight_mode : String):
 		sports[sport.name] = sport
 		sports_array.append(sport.name)
 		for level in sport.get_levels(num_players):
-			levels.append(level.instance())
+			levels.append(level)
 	
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
@@ -170,9 +170,10 @@ func next_level(demo=false):
 	
 	# let's make sure that it is not the same of the previous one.
 	current_level = levels.pop_back()
+	levels.push_front(current_level)
 	
 	# skip if we just played it
-	start_level(current_level, demo)
+	start_level(current_level.instance(), demo)
 	played_levels.append(new_sport)
 	
 func start_level(_level, demo = false):
