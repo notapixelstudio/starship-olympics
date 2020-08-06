@@ -264,6 +264,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://selection/Character.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Star",
+"language": "GDScript",
+"path": "res://combat/collectables/Star.gd"
+}, {
+"base": "Node2D",
+"class": "StarIcon",
+"language": "GDScript",
+"path": "res://special_scenes/combat_UI/session_points/Star.gd"
+}, {
 "base": "Position2D",
 "class": "TargetDest",
 "language": "GDScript",
@@ -336,6 +346,8 @@ _global_script_class_icons={
 "SessionScores": "",
 "Ship": "",
 "Species": "",
+"Star": "",
+"StarIcon": "",
 "TargetDest": "",
 "Trail": "",
 "Trail2D": "",

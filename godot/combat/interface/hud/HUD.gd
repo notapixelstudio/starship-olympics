@@ -68,6 +68,10 @@ func _process(_delta):
 	else:
 		Leading.set_species(null)
 		LeadingLabel.text = ""
+		
+	# stars
+	for bar in bars:
+		bar.update_stars()
 	
 func compare_by_score(a:Bar, b:Bar):
 	return a.get_value() > b.get_value()

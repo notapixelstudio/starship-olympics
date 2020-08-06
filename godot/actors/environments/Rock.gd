@@ -4,6 +4,7 @@ class_name Rock
 var RockScene = load('res://actors/environments/Rock.tscn')
 var DiamondScene = load('res://combat/collectables/Diamond.tscn')
 var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
+var StarScene = load('res://combat/collectables/Star.tscn')
 
 export var order : int = 4
 export var last_order : int = 1
@@ -11,6 +12,7 @@ export var divisions : int = 4
 export var base_size : float = 50.0
 export var spawn_diamonds : bool = true
 export var contains_star : bool = false
+export var self_destruct : bool = false
 
 var gshape
 var breakable = false
@@ -46,6 +48,7 @@ func _ready():
 	rotation_degrees = 45
 	
 	$Star.visible = contains_star
+	$Diamond.visible = spawn_diamonds and order >= last_order
 	
 	# workaround
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
@@ -68,24 +71,33 @@ func try_break():
 	
 	for i in range(divisions):
 		var child
-		if order == last_order+1:
+		if order > last_order+1:
+			child = new_child_rock()
+		elif order == last_order+1:
 			if spawn_diamonds and randf() < 0.025:
 				child = BigDiamondScene.instance()
+				child.appear = false
 			else:
 				child = new_child_rock()
-		elif order > last_order+1:
-			child = new_child_rock()
-		else:
+		else: # order <= last_order
 			if not spawn_diamonds or randf() < 0.25:
-				child = new_child_rock()
+				if contains_star and i == star_index:
+					child = StarScene.instance()
+				else:
+					child = new_child_rock()
 			else:
 				child = DiamondScene.instance()
+				child.appear = false
 				
-		if contains_star and i == star_index:
+		if 'contains_star' in child and contains_star and i == star_index:
 			child.contains_star = true
-		
+			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
 		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
+		
+		if child is Star:
+			child.linear_velocity *= 10
+			
 		emit_signal('request_spawn', child)
 		
 func new_child_rock():
@@ -96,12 +108,45 @@ func new_child_rock():
 	child.base_size = base_size
 	child.last_order = last_order
 	child.divisions = divisions
+	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
+	child.start()
 	
 	return child
 	
 func become_breakable():
 	breakable = true
 	
+onready var countdown = $Countdown/Label
+
 func _process(delta):
-	$Star.rotation = -rotation
+	$Countdown.rotation = -rotation
 	
+func start():
+	if self_destruct:
+		if not $SelfDestructTimer.is_inside_tree():
+			yield($SelfDestructTimer, 'tree_entered')
+			
+		$SelfDestructTimer.start(randf())
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '5'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '4'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '3'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '2'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		countdown.text = '1'
+		
+		$SelfDestructTimer.start(1)
+		yield($SelfDestructTimer, 'timeout')
+		try_break()
+		

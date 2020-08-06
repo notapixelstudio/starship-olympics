@@ -2,11 +2,9 @@ tool
 
 extends RigidBody2D
 
-class_name Diamond
+class_name Star
 
-export var appear = true
-
-var points = 1
+var points = 100
 
 func set_points(value):
 	points = value
@@ -15,6 +13,3 @@ func _ready():
 	$Glow/AnimationPlayer.play('Blink')
 	$Glow/AnimationPlayer.seek(1.2, true)
 	
-	if appear:
-		$AnimationPlayer.play('AppearFuhfuhfuh')
-		

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://combat/levels/asteroid_set/asteroid_survival/2players.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/levels/asteroid_set/star_mining/2players.tscn" type="PackedScene" id=2]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=3]
+[ext_resource path="res://combat/levels/asteroid_set/asteroid_deathmatch/2players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/asteroid_set/diamond_mining/2players.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/map/cards/asteroids_set.png" type="Texture" id=6]
+
+[resource]
+script = ExtResource( 3 )
+name = "asteroids"
+tagline1 = ""
+tagline2 = ""
+levels_1players = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 4 ) ]
+levels_2players = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 4 ) ]
+levels_3players = [  ]
+levels_4players = [  ]
+planet_sprite = ExtResource( 6 )
