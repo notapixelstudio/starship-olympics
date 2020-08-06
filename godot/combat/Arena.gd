@@ -178,7 +178,9 @@ func _ready():
 			info_player.cpu = s.cpu
 			info_player.species = s.species
 			info_player.controls = s.controls
-			if s.cpu:
+			if s.species.species_name == 'drones':
+				info_player.id = 'drones'
+			elif s.cpu:
 				info_player.id = "cpu"+str(i+1)
 			else:
 				info_player.id = s.name
