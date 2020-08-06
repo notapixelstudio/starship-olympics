@@ -173,7 +173,7 @@ func _ready():
 	for s in $SpawnPositions/Players.get_children():
 		var key = s.name
 		var info_player = InfoPlayer.new()
-		if standalone :
+		if standalone or s.species.species_name == 'drones':
 			
 			info_player.cpu = s.cpu
 			info_player.species = s.species
