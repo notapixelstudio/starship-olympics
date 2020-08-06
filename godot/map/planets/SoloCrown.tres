@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=1]
 [ext_resource path="res://combat/levels/take_the_crown/1players.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/levels/take_the_crown/2players.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/take_the_crown/3players.tscn" type="PackedScene" id=4]
@@ -10,12 +9,11 @@
 
 [resource]
 script = ExtResource( 7 )
-name = "crown"
-tagline1 = "Solo"
-tagline2 = "Crown"
+name = "asteroids"
+tagline1 = ""
+tagline2 = ""
 levels_1players = [ ExtResource( 2 ) ]
 levels_2players = [ ExtResource( 3 ) ]
 levels_3players = [ ExtResource( 4 ) ]
 levels_4players = [ ExtResource( 5 ) ]
 planet_sprite = ExtResource( 6 )
-game_mode = ExtResource( 1 )

@@ -67,7 +67,7 @@ func update(delta: float):
 	
 	var leader = scores[0]
 	
-	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score) :
+	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score):
 		winners = []
 		var draw = true
 		var last_value = leader.score
@@ -84,6 +84,9 @@ func update(delta: float):
 	
 	lasting_time += delta
 
+func one_player_left(player):
+	player.stats.session_score += 1
+	
 func do_game_over():
 	game_over = true
 	emit_signal("game_over", winners)

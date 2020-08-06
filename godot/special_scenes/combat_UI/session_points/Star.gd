@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name StarIcon
+
 export var won : bool = false setget set_won
 
 onready var won_anim = $Sprite/WonAnimationPlayer

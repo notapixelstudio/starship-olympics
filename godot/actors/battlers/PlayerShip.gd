@@ -10,8 +10,6 @@ var device_controller_id : int
 func _ready():
 	cpu = false
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
-	if "kb" in controls:
-		absolute_controls = false
 	connect('dead', self, '_on_dead')
 	
 func _on_dead(me, killer):
@@ -58,23 +56,19 @@ func control(delta):
 		target_vel = joypad_handling()
 	else:
 		target_vel = keyboard_handling()
-	if not target_vel == Vector2():
-		absolute_controls = true
-		# this works for absolute controls in keyboard
-		# target_vel.y = int(Input.is_action_pressed(controls+'_down')) - int(Input.is_action_pressed(controls+'_up'))
-		# target_vel.x = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
-		
-		if target_vel == Vector2():
-			# this in order to keep the velocity constant
-			pass
-		else:
-			target_velocity = target_vel.normalized()
-		rotation_dir = find_side(Vector2(0,0), front, target_velocity)
-		
+
+	if target_vel == Vector2.ZERO:
+		target_velocity = front
+		# this in order to keep the velocity constant
+		pass
 	else:
-		absolute_controls = false
-		rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
-		
+		target_velocity = target_vel.normalized()
+	rotation_dir = find_side(Vector2(0,0), front, target_velocity)
+	
+	# if we want tank mode control (relative control)
+	# rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
+
+	
 	# charge
 	if charging:
 		charge = charge+delta

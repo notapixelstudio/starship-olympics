@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
+[ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
 
 [sub_resource type="DynamicFont" id=1]
 size = 500
@@ -146,7 +147,6 @@ stream = ExtResource( 10 )
 stream = ExtResource( 11 )
 
 [node name="CrownModeManager" type="Node" parent="Managers"]
-editor/display_folded = true
 script = ExtResource( 12 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -191,7 +191,6 @@ __meta__ = {
 }
 
 [node name="CollectModeManager" type="Node" parent="Managers"]
-editor/display_folded = true
 script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
@@ -209,6 +208,13 @@ script = ExtResource( 21 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+
+[node name="SurvivalModeManager" type="Node" parent="Managers"]
+script = ExtResource( 34 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+enabled = false
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1

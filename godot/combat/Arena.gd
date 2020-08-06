@@ -30,6 +30,7 @@ onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
 onready var race_mode = $Managers/RaceModeManager
 onready var goal_mode = $Managers/GoalModeManager
+onready var survival_mode = $Managers/SurvivalModeManager
 
 onready var combat_manager = $Managers/CombatManager
 onready var stun_manager = $Managers/StunManager
@@ -89,6 +90,7 @@ func setup_level(mode : Resource):
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
+	survival_mode.enabled = mode.survival
 	
 	#FIX
 	if session and mode.name in session.settings and not global.campaign_mode:
@@ -151,6 +153,7 @@ func _ready():
 	collect_mode.connect('spawn_next', self, "on_next_wave")
 	goal_mode.connect('score', scores, "add_score")
 	goal_mode.connect('show_score', self, "spawn_points_scored")
+	survival_mode.connect('score', scores, "add_score")
 	
 	for goal in get_tree().get_nodes_in_group("goal"):
 		goal.connect('goal_done', goal_mode, "_on_goal_done")
@@ -295,7 +298,9 @@ func _ready():
 	set_process(true)
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
-
+		
+	for node in get_tree().get_nodes_in_group('wait_to_start'):
+		node.start()
 	
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
@@ -378,6 +383,21 @@ func ship_just_died(ship, killer):
 	ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
 	
 	if ship.info_player.lives == 0:
+		var alive_players = []
+		for s in get_tree().get_nodes_in_group('players'):
+			if s.alive:
+				alive_players.append(s)
+				
+		if len(alive_players) == 1:
+			# stop the match after a while if there is only one player left
+			yield(get_tree().create_timer(1), 'timeout')
+			scores.one_player_left(alive_players[0].info_player)
+		elif len(alive_players) == 0:
+			# stop the match after a while if there is no player left
+			yield(get_tree().create_timer(1), 'timeout')
+			scores.do_game_over()
+			
+		# skip respawn if there are no lives left
 		return
 	
 	var respawn_timeout = 1.5
@@ -570,6 +590,7 @@ func slomo():
 		self.time_scale = lerp(time_scale, 1, 0.1)
 		
 func _on_Rock_request_spawn(child):
-	child.connect('request_spawn', self, '_on_Rock_request_spawn')
+	if child is Rock:
+		child.connect('request_spawn', self, '_on_Rock_request_spawn')
 	$Battlefield.add_child(child)
 	

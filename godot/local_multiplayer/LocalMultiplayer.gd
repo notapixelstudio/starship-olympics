@@ -12,15 +12,10 @@ export var map_scene: PackedScene
 var sports = {} # {sport.name : Resource}
 var sports_array = []
 var all_sports = [
-	preload("res://map/planets/SoloCrown.tres"),
-	preload("res://map/planets/SoloSnatch.tres"),
-	preload("res://map/planets/SoloFlag.tres"),
-	preload("res://map/planets/SoloDeath.tres"),
-	preload("res://map/planets/SlamAGon.tres"),
-	# preload("res://map/planets/EelectronPlanet.tres"),
-	# preload("res://map/planets/MinefieldDeathmatch.tres")
+	preload("res://map/planets/sets/core.tres")
 	]
 	
+
 var all_species = []
 onready var parallax = $ParallaxBackground
 
@@ -66,6 +61,7 @@ func back():
 	
 var current_level
 var played_levels : Array
+var levels : Array
 
 func combat(selected_players: Array, fight_mode : String):
 	"""
@@ -132,8 +128,12 @@ func combat(selected_players: Array, fight_mode : String):
 	for sport in all_sports:
 		sports[sport.name] = sport
 		sports_array.append(sport.name)
+		for level in sport.get_levels(num_players):
+			levels.append(level)
 	
 	sports_array.shuffle() # shuffle the planets at start
+	levels.shuffle()
+	print(levels)
 	# for planet in all_planets:
 	#	planet.shuffle_levels(len(players))
 	
@@ -173,10 +173,11 @@ func next_level(demo=false):
 			break
 	
 	# let's make sure that it is not the same of the previous one.
-	current_level = sports[new_sport].fetch_level(num_players)
-
+	current_level = levels.pop_back()
+	levels.push_front(current_level)
+	
 	# skip if we just played it
-	start_level(current_level, demo)
+	start_level(current_level.instance(), demo)
 	played_levels.append(new_sport)
 	
 func start_level(_level, demo = false):

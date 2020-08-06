@@ -46,7 +46,7 @@ func _on_sth_collected(collector, collectee):
 	if not enabled:
 		return
 		
-	if collectee is Diamond:
+	if collectee is Diamond or collectee is Star:
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.get_id(), score)
 		emit_signal('show_score', collector.species, score, collectee.global_position)
