@@ -68,17 +68,29 @@ func combat(selected_players: Array, fight_mode : String):
 	@param: selected_players : Array[Species] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
-	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(1200, 0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	$Tween.interpolate_property($ship2, "position", Vector2(500, 650), Vector2(1200, 0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	var i = 0
+	for player in selected_players:
+		var ship = player.get_ship()
+		var back_to = ship.global_position
+		var trail = ship.get_node("Trail")
+		# trail.change_visibility(true)
+		trail.initialize(ship)
+		$Tween.interpolate_property(ship, "rotation", ship.rotation, -0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		$Tween.interpolate_property(ship, "global_position", ship.global_position, Vector2(1300, 200+i*200), 2, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.5)
+		$Tween.interpolate_property(ship, "global_position", Vector2(1200, 200+i*200),Vector2(3000, 200+i*200), 2.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)
+		$Tween.interpolate_property(ship, "scale", ship.scale,Vector2(0.4, 0.4), 2.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)
+		$Tween.interpolate_method(trail, "change_visibility", false,true, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1.0)
+		
+		i+=1
+	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(1300, 0), 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
-	yield($Tween,"tween_completed")
-	
+	yield($Tween, "tween_all_completed")
 	# we need to reset players dictionary
 	players = {}
 	var num_players : int = len(selected_players)
 	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
 
-	var i = 1
+	i = 1
 	for player in selected_players:
 		players[player.id] = player.info
 		i += 1
@@ -133,7 +145,6 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
-	print(levels)
 	# for planet in all_planets:
 	#	planet.shuffle_levels(len(players))
 	

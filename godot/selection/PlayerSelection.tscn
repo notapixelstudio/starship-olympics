@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -17,6 +17,28 @@
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=18]
+[ext_resource path="res://actors/battlers/TrailNode.tscn" type="PackedScene" id=19]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 18 )
+shader_param/width = 6.4
+shader_param/outline_color = null
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 18 )
+shader_param/width = null
+shader_param/outline_color = null
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Sprite
+
+var species
+
+func _ready():
+	$Trail.ship = self
+	$Trail.change_visibility(false)
+"
 
 [sub_resource type="Animation" id=3]
 length = 4.0
@@ -76,6 +98,7 @@ species = ExtResource( 12 )
 
 [node name="SelectRect" type="Sprite" parent="SpeciesSelection"]
 visible = false
+material = SubResource( 1 )
 position = Vector2( -10.0661, 0.893982 )
 scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 13 )
@@ -123,15 +146,21 @@ margin_bottom = 475.0
 rect_scale = Vector2( -1.2, 1.2 )
 
 [node name="Shadow" type="Sprite" parent="SpeciesSelection"]
+visible = false
 position = Vector2( 87.174, 472 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 8 )
 
 [node name="Ship" type="Sprite" parent="SpeciesSelection"]
+material = SubResource( 2 )
 position = Vector2( 87.174, 473 )
-rotation = 0.785402
+rotation = 4.46638e-06
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 10 )
+script = SubResource( 7 )
+
+[node name="Trail" parent="SpeciesSelection/Ship" instance=ExtResource( 19 )]
+trail_length = 5
 
 [node name="RightArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 159.0

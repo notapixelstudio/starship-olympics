@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
-[ext_resource path="res://map/MapWithPaths.tscn" type="PackedScene" id=2]
+[ext_resource path="res://map/Map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://selection/SelectionScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=5]
 
 [node name="LocalMultiplayer" type="Node"]
 script = ExtResource( 1 )
@@ -20,9 +19,5 @@ anchor_mode = 0
 current = true
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="ship2" type="Sprite" parent="."]
-position = Vector2( 330.045, 450.977 )
-texture = ExtResource( 5 )
 
 [editable path="ParallaxBackground"]

@@ -26,7 +26,7 @@ const FRAME_DELAY = 10
 var wait_in_frame = FRAME_DELAY
 
 const IN_CAMERA = "in_camera"
-
+		
 func _ready():
 	randomize()
 	curPos = position
@@ -141,19 +141,19 @@ func screen_to_world(p : Vector2) -> Vector2:
 	var pt = p - viewport_rect.size/2
 	return Vector2(pt.x+marginX/2, pt.y+marginY/2)*zoom+offset
 	
-export var shake_power = 4
-export var shake_time = 0.4
+export var shake_power = 10
+export var shake_time = 0.5
 
 var timeformat = "{min}:{sec}"
 onready var timelabel = $TimePassed
 
 var stop = false
 var time = 0.0
-var isShake = true
+var isShake = false
 var curPos
 var elapsedtime = 0
 
-
+	
 func stop_timer():
 	stop = true
 	

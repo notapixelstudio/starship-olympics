@@ -36,6 +36,11 @@ export (Resource) var species # : SpeciesTemplate
 var controls : String
 var is_team : bool = false
 
+func get_ship():
+	
+	$SpeciesSelection/AnimationPlayer.stop()
+	return $SpeciesSelection/Ship
+
 func set_controls(new_controls:String):
 	"""
 	Set controls and disable if NO or CPU
@@ -65,6 +70,7 @@ func change_species(new_species):
 	# get the resource from the global
 	if new_species:
 		species = new_species
+		$SpeciesSelection/Ship.species = species
 		speciesSelection.change_species(species)
 
 const FIRST_DELAY = 0.4

@@ -18,6 +18,11 @@ export var trail_texture : Texture
 
 var trail_f : float = 0.0
 
+func change_visibility(v):
+	visible = v
+	$Trail.visible = v
+	$InnerTrail.visible = v
+	
 func set_trail_length(value:int):
 	trail_length = value
 	if trail:
@@ -72,7 +77,7 @@ func _process(delta):
 	update()
 	
 func update():
-	position = ship.position + Vector2(-32,0).rotated(ship.rotation)
+	global_position = ship.global_position + Vector2(-32,0).rotated(ship.rotation)
 	rotation = ship.rotation
 	
 func _on_sth_spawned(sth : Node2D):
