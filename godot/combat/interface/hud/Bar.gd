@@ -32,14 +32,15 @@ func initialize(p: PlayerStats, matchscore: MatchScores):
 	sprite.texture = sprite_off
 	
 	# ticks
-	for i in range(1, int(matchscore.target_score)):
-		var tick = Line2D.new()
-		var opacity = 1 if matchscore.target_score <= 10 or i%10 == 0 else 0.2
-		tick.default_color = Color(0,0,0,opacity)
-		tick.width = 3
-		var x = round((max_bar_width - ministar_margin) / matchscore.target_score * i)
-		tick.points = PoolVector2Array([Vector2(margin_left+x, margin_top), Vector2(margin_left+x, margin_top+bar_height)])
-		$Ticks.add_child(tick)
+	if matchscore.target_score != 100: # FIXME workaround for star sports
+		for i in range(1, int(matchscore.target_score)):
+			var tick = Line2D.new()
+			var opacity = 1 if matchscore.target_score <= 10 or i%10 == 0 else 0.2
+			tick.default_color = Color(0,0,0,opacity)
+			tick.width = 3
+			var x = round((max_bar_width - ministar_margin) / matchscore.target_score * i)
+			tick.points = PoolVector2Array([Vector2(margin_left+x, margin_top), Vector2(margin_left+x, margin_top+bar_height)])
+			$Ticks.add_child(tick)
 	
 	# mini stars
 	for i in range(global.win):
