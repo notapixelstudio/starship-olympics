@@ -3,34 +3,42 @@ extends StaticBody2D
 
 class_name Brick
 
-export var respawn = false setget set_respawn
+enum TYPE { solid, diamond, gold, respawner, harmful }
+export(TYPE) var type = TYPE.diamond setget set_type
 
-func set_respawn(v):
-	respawn = v
-	$ColorRect.modulate = Color('#c18a2a') if respawn else Color('#0095c3')
-	$Line2D.modulate = Color('#c18a2a') if respawn else Color('#0095c3')
+func set_type(v):
+	type = v
+	if type == TYPE.solid:
+		$Graphics.modulate = Color(1,1,1,1)
+	elif type == TYPE.diamond:
+		$Graphics.modulate = Color('#0095c3')
+	elif type == TYPE.gold:
+		$Graphics.modulate = Color('#ffdd00')
+	elif type == TYPE.respawner:
+		$Graphics.modulate = Color('#0dd614')
+	# orange Color('#c18a2a')
 	
 func break(breaker):
-	$CollisionShape2D.call_deferred('set_disabled', true)
+	if type != TYPE.solid:
+		$CollisionShape2D.call_deferred('set_disabled', true)
+		$Graphics.visible = false
 	z_index = 100
-	$ColorRect.visible = false
-	$Line2D.visible = false
 	$BreakGlow.visible = true
 	$AnimationPlayer.play("Break")
 	yield($AnimationPlayer, "animation_finished")
 	
-	if not respawn:
+	if type != TYPE.respawner and type != TYPE.solid:
 		queue_free()
 		return
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
-	$AnimationPlayer.play_backwards("Break")
-	yield($AnimationPlayer, "animation_finished")
-	$CollisionShape2D.call_deferred('set_disabled', false)
+	if type != TYPE.solid:
+		$AnimationPlayer.play_backwards("Break")
+		yield($AnimationPlayer, "animation_finished")
+		$CollisionShape2D.call_deferred('set_disabled', false)
+		$Graphics.visible = true
 	z_index = 0
-	$ColorRect.visible = true
-	$Line2D.visible = true
 	$BreakGlow.visible = false
 	$AnimationPlayer.play("Idle")
 	
