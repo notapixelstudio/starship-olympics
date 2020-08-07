@@ -83,3 +83,11 @@ func process_life_time():
 	
 	life_time.paused = false
 	
+
+# FIXME ? is this heavy? each bomb needs contact monitoring
+func _on_Bomb_body_entered(body):
+	if body is Brick:
+		body.break(entity.get('Owned').get_owner())
+		life_time.start() # enable ricochet combos
+		apply_central_impulse(linear_velocity.normalized()*1000)
+		
