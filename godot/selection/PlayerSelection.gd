@@ -35,10 +35,10 @@ export (Resource) var species # : SpeciesTemplate
 # this will be the String of controls
 var controls : String
 var is_team : bool = false
+signal ready_takeoff
 
 func get_ship():
-	
-	$SpeciesSelection/AnimationPlayer.stop()
+	emit_signal("ready_takeoff")
 	return $SpeciesSelection/Ship
 
 func set_controls(new_controls:String):

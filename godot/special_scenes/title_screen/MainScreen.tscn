@@ -174,11 +174,12 @@ multiplayer_scene = ExtResource( 2 )
 layer = 100
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
+transition = 0.0
+smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="Path2D" parent="." instance=ExtResource( 5 )]
-editor/display_folded = true
 position = Vector2( -170, 0 )
 
 [node name="Trail" parent="Path2D/PathFollow2D/Sprite/Trail" index="0"]
@@ -234,6 +235,7 @@ __meta__ = {
 }
 
 [node name="CampaignMode" type="Button" parent="CanvasLayer/Buttons"]
+visible = false
 margin_right = 290.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 210, 70 )

@@ -77,7 +77,7 @@ func _process(delta):
 	update()
 	
 func update():
-	global_position = ship.global_position + Vector2(-32,0).rotated(ship.rotation)
+	position = ship.position + Vector2(-32,0).rotated(ship.rotation)
 	rotation = ship.rotation
 	
 func _on_sth_spawned(sth : Node2D):

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/Uroob.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=3]
+[ext_resource path="res://map/mapPanel.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1030.0
+margin_bottom = -570.0
+rect_min_size = Vector2( 250, 180 )
+color = Color( 0, 0, 0, 0.490196 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="character_selection_rect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.52588e-05
+margin_bottom = 2.99998
+texture = ExtResource( 1 )
+region_rect = Rect2( 20, 0, 280, 1140 )
+patch_margin_left = 19
+patch_margin_top = 93
+patch_margin_right = 19
+patch_margin_bottom = 90
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 20.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 1 )
+text = "Choose a Planet"
+align = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 130, 160 )
+rotation = 4.71239
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )

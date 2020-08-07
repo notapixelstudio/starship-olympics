@@ -75,14 +75,8 @@ func combat(selected_players: Array, fight_mode : String):
 		var trail = ship.get_node("Trail")
 		# trail.change_visibility(true)
 		trail.initialize(ship)
-		$Tween.interpolate_property(ship, "rotation", ship.rotation, -0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		$Tween.interpolate_property(ship, "global_position", ship.global_position, Vector2(1300, 200+i*200), 2, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.5)
-		$Tween.interpolate_property(ship, "global_position", Vector2(1200, 200+i*200),Vector2(3000, 200+i*200), 2.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)
-		$Tween.interpolate_property(ship, "scale", ship.scale,Vector2(0.4, 0.4), 2.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)
-		$Tween.interpolate_method(trail, "change_visibility", false,true, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1.0)
-		
 		i+=1
-	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(1300, 0), 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(0, -1200), 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	# we need to reset players dictionary
