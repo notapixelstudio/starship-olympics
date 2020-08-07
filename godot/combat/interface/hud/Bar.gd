@@ -41,6 +41,9 @@ func initialize(p: PlayerStats, matchscore: MatchScores):
 	$Background.rect_size = Vector2(max_bar_width - ministar_margin, bar_height)
 	$Background.color = species.color
 	
+	# megabar
+	$MegaBar.color = species.color
+	
 	# ticks
 	if max_score != 100: # FIXME workaround for star sports
 		for i in range(1, int(max_score)):
@@ -118,7 +121,14 @@ func update_current_streak_bar():
 	current_streak_bar.polygon = PoolVector2Array([
 		Vector2(left, margin_top+bar_height),
 		Vector2(left, margin_top),
-		Vector2(right-streak_arrow_width, margin_top),
+		Vector2(max(left,right-streak_arrow_width), margin_top),
 		Vector2(right, margin_top+bar_height/2),
-		Vector2(right-streak_arrow_width, margin_top+bar_height)
+		Vector2(max(left,right-streak_arrow_width), margin_top+bar_height)
+	])
+	$MegaBar.polygon = PoolVector2Array([
+		Vector2(margin_left, margin_top+bar_height),
+		Vector2(margin_left, margin_top),
+		Vector2(max(margin_left,right-streak_arrow_width), margin_top),
+		Vector2(right, margin_top+bar_height/2),
+		Vector2(max(margin_left,right-streak_arrow_width), margin_top+bar_height)
 	])
