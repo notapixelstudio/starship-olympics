@@ -19,6 +19,7 @@ var sprite_off
 var sprite_on
 var player
 var new_position setget change_position
+var current_value = 0
 
 func initialize(p: PlayerStats, matchscore: MatchScores):
 	player = p
@@ -64,15 +65,16 @@ func update_stars():
 	
 func set_value(value):
 	# round to 2 decimal digit
-	if stepify(value, 0.01) > progressbar.value:
+	if stepify(value, 0.01) > current_value:
 		sprite.texture = sprite_on
 	else:
 		sprite.texture = sprite_off
+	current_value = value
 	progressbar.value = value
-	$Ship.position.x = margin_left + progressbar.value*progressbar.rect_size.x/progressbar.max_value
+	$Ship.position.x = margin_left + current_value*progressbar.rect_size.x/progressbar.max_value
 	
 func get_value():
-	return progressbar.value
+	return current_value
 
 func change_position(new_value):
 	new_position = new_value
