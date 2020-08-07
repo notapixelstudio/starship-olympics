@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://map/planets/sets/asteroids.tres" type="Resource" id=7]
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=8]
+[ext_resource path="res://map/planets/sets/drones.tres" type="Resource" id=9]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -58,6 +59,9 @@ position = Vector2( 400, -200 )
 [node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 0, -200 )
 
+[node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 200, -200 )
+
 [node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 0, 200 )
 
@@ -69,6 +73,11 @@ __meta__ = {
 [node name="Asteroids" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -400 )
 planet = ExtResource( 7 )
+active = false
+
+[node name="Drones" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 400, -400 )
+planet = ExtResource( 9 )
 active = false
 
 [node name="Core" parent="Content/Planets" instance=ExtResource( 6 )]
