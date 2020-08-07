@@ -51,3 +51,7 @@ texture = ExtResource( 2 )
 position = Vector2( 0, 10 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 3 )
+
+[node name="StreakTimer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="timeout" from="StreakTimer" to="." method="_on_StreakTimer_timeout"]

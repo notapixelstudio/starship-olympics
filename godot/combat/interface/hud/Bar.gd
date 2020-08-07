@@ -20,6 +20,7 @@ var sprite_on
 var player
 var new_position setget change_position
 var current_value = 0
+var previous_value = 0
 
 func initialize(p: PlayerStats, matchscore: MatchScores):
 	player = p
@@ -64,12 +65,12 @@ func update_stars():
 			stars[i].won = true
 	
 func set_value(value):
-	# round to 2 decimal digit
-	if stepify(value, 0.01) > current_value:
-		sprite.texture = sprite_on
-	else:
-		sprite.texture = sprite_off
+	previous_value = current_value
 	current_value = value
+	
+	if current_value > previous_value:
+		streak_on()
+		
 	progressbar.value = value
 	$Ship.position.x = margin_left + current_value*progressbar.rect_size.x/progressbar.max_value
 	
@@ -83,3 +84,12 @@ func change_position(new_value):
 			Tween.TRANS_CUBIC, Tween.EASE_IN, 0)
 		$Tween.start()
 	
+func streak_on():
+	sprite.texture = sprite_on
+	$StreakTimer.start(0.5)
+	
+func streak_off():
+	sprite.texture = sprite_off
+
+func _on_StreakTimer_timeout():
+	streak_off()
