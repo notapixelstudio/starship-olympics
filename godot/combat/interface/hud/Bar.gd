@@ -3,8 +3,10 @@ extends Node2D
 class_name Bar
 
 const max_bar_width = 940
+const bar_height = 20
 const ministar_width = 20
 const margin_left = 20
+const margin_top = 10
 
 const Star = preload('res://special_scenes/combat_UI/session_points/Star.tscn')
 
@@ -29,6 +31,17 @@ func initialize(p: PlayerStats, matchscore: MatchScores):
 	sprite_off = species.ship_off
 	sprite.texture = sprite_off
 	
+	# ticks
+	for i in range(1, int(matchscore.target_score)):
+		var tick = Line2D.new()
+		var opacity = 1 if matchscore.target_score <= 10 or i%10 == 0 else 0.2
+		tick.default_color = Color(0,0,0,opacity)
+		tick.width = 3
+		var x = round((max_bar_width - ministar_margin) / matchscore.target_score * i)
+		tick.points = PoolVector2Array([Vector2(margin_left+x, margin_top), Vector2(margin_left+x, margin_top+bar_height)])
+		$Ticks.add_child(tick)
+	
+	# mini stars
 	for i in range(global.win):
 		var star = Star.instance()
 		star.scale = Vector2(0.18,0.18)
