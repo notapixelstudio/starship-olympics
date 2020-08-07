@@ -13,7 +13,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
@@ -34,20 +34,20 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
 grid_color = Color( 1, 1, 1, 0.329412 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 1400
-sides = 6.0
 
 [node name="CentralMiniHive" type="Node2D" parent="Battlefield/Middleground" index="0"]
-editor/display_folded = true
 position = Vector2( 0, -1.81899e-12 )
 scale = Vector2( 0.8, 0.8 )
 __meta__ = {
@@ -62,9 +62,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell256" parent="Battlefield/Middleground/CentralMiniHive" index="1" instance=ExtResource( 7 )]
 position = Vector2( 400, 0 )
@@ -75,9 +73,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell229" parent="Battlefield/Middleground/CentralMiniHive" index="2" instance=ExtResource( 7 )]
 position = Vector2( 298.75, 0 )
@@ -88,9 +84,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell219" parent="Battlefield/Middleground/CentralMiniHive" index="3" instance=ExtResource( 7 )]
 position = Vector2( 100, 0 )
@@ -101,9 +95,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell220" parent="Battlefield/Middleground/CentralMiniHive" index="4" instance=ExtResource( 7 )]
 position = Vector2( 149.299, -85.7377 )
@@ -114,9 +106,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell221" parent="Battlefield/Middleground/CentralMiniHive" index="5" instance=ExtResource( 7 )]
 position = Vector2( 99.1066, 172.191 )
@@ -127,9 +117,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell222" parent="Battlefield/Middleground/CentralMiniHive" index="6" instance=ExtResource( 7 )]
 position = Vector2( -100, 0 )
@@ -140,9 +128,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell272" parent="Battlefield/Middleground/CentralMiniHive" index="7" instance=ExtResource( 7 )]
 position = Vector2( 500, 0 )
@@ -153,9 +139,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell223" parent="Battlefield/Middleground/CentralMiniHive" index="8" instance=ExtResource( 7 )]
 position = Vector2( -198.777, -0.534821 )
@@ -166,9 +150,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell228" parent="Battlefield/Middleground/CentralMiniHive" index="9" instance=ExtResource( 7 )]
 position = Vector2( -248.777, 85.7152 )
@@ -179,9 +161,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell246" parent="Battlefield/Middleground/CentralMiniHive" index="10" instance=ExtResource( 7 )]
 position = Vector2( -298.777, 173.215 )
@@ -192,9 +172,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell265" parent="Battlefield/Middleground/CentralMiniHive" index="11" instance=ExtResource( 7 )]
 position = Vector2( -398.777, 173.215 )
@@ -205,9 +183,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell225" parent="Battlefield/Middleground/CentralMiniHive" index="12" instance=ExtResource( 7 )]
 position = Vector2( -247.898, -86.4508 )
@@ -218,9 +194,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell237" parent="Battlefield/Middleground/CentralMiniHive" index="13" instance=ExtResource( 7 )]
 position = Vector2( -297.898, -172.701 )
@@ -231,9 +205,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell266" parent="Battlefield/Middleground/CentralMiniHive" index="14" instance=ExtResource( 7 )]
 position = Vector2( -397.898, -172.701 )
@@ -244,9 +216,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell227" parent="Battlefield/Middleground/CentralMiniHive" index="15" instance=ExtResource( 7 )]
 position = Vector2( -297.898, -0.200806 )
@@ -257,9 +227,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell248" parent="Battlefield/Middleground/CentralMiniHive" index="16" instance=ExtResource( 7 )]
 position = Vector2( -347.898, 87.2992 )
@@ -270,9 +238,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell263" parent="Battlefield/Middleground/CentralMiniHive" index="17" instance=ExtResource( 7 )]
 position = Vector2( -447.898, 87.2992 )
@@ -283,9 +249,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell241" parent="Battlefield/Middleground/CentralMiniHive" index="18" instance=ExtResource( 7 )]
 position = Vector2( -347.898, -86.4508 )
@@ -296,9 +260,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell269" parent="Battlefield/Middleground/CentralMiniHive" index="19" instance=ExtResource( 7 )]
 position = Vector2( -447.898, -86.4508 )
@@ -309,9 +271,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell244" parent="Battlefield/Middleground/CentralMiniHive" index="20" instance=ExtResource( 7 )]
 position = Vector2( -397.898, 1.04922 )
@@ -322,9 +282,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell267" parent="Battlefield/Middleground/CentralMiniHive" index="21" instance=ExtResource( 7 )]
 position = Vector2( -497.898, 1.04922 )
@@ -335,9 +293,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell226" parent="Battlefield/Middleground/CentralMiniHive" index="22" instance=ExtResource( 7 )]
 position = Vector2( -50, 86 )
@@ -348,9 +304,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell252" parent="Battlefield/Middleground/CentralMiniHive" index="23" instance=ExtResource( 7 )]
 position = Vector2( 350, 86 )
@@ -361,9 +315,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell230" parent="Battlefield/Middleground/CentralMiniHive" index="24" instance=ExtResource( 7 )]
 position = Vector2( 248.75, 86 )
@@ -374,9 +326,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell224" parent="Battlefield/Middleground/CentralMiniHive" index="25" instance=ExtResource( 7 )]
 position = Vector2( 50, 86 )
@@ -387,9 +337,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell200" parent="Battlefield/Middleground/CentralMiniHive" index="26" instance=ExtResource( 7 )]
 position = Vector2( -50, -86 )
@@ -400,9 +348,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell250" parent="Battlefield/Middleground/CentralMiniHive" index="27" instance=ExtResource( 7 )]
 position = Vector2( 350, -86 )
@@ -413,9 +359,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell231" parent="Battlefield/Middleground/CentralMiniHive" index="28" instance=ExtResource( 7 )]
 position = Vector2( 248.75, -86 )
@@ -426,9 +370,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell206" parent="Battlefield/Middleground/CentralMiniHive" index="29" instance=ExtResource( 7 )]
 position = Vector2( -100.193, 171.928 )
@@ -439,9 +381,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell255" parent="Battlefield/Middleground/CentralMiniHive" index="30" instance=ExtResource( 7 )]
 position = Vector2( 299.807, 171.928 )
@@ -452,9 +392,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell233" parent="Battlefield/Middleground/CentralMiniHive" index="31" instance=ExtResource( 7 )]
 position = Vector2( 198.557, 171.928 )
@@ -465,9 +403,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell217" parent="Battlefield/Middleground/CentralMiniHive" index="32" instance=ExtResource( 7 )]
 position = Vector2( -150.193, 258.178 )
@@ -478,9 +414,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell257" parent="Battlefield/Middleground/CentralMiniHive" index="33" instance=ExtResource( 7 )]
 position = Vector2( 249.807, 258.178 )
@@ -491,9 +425,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell249" parent="Battlefield/Middleground/CentralMiniHive" index="34" instance=ExtResource( 7 )]
 position = Vector2( -200.193, 343.978 )
@@ -504,9 +436,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell261" parent="Battlefield/Middleground/CentralMiniHive" index="35" instance=ExtResource( 7 )]
 position = Vector2( -300.193, 343.978 )
@@ -517,9 +447,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell276" parent="Battlefield/Middleground/CentralMiniHive" index="36" instance=ExtResource( 7 )]
 position = Vector2( 299.807, 343.978 )
@@ -530,9 +458,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell260" parent="Battlefield/Middleground/CentralMiniHive" index="37" instance=ExtResource( 7 )]
 position = Vector2( -0.193016, 343.978 )
@@ -543,9 +469,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell258" parent="Battlefield/Middleground/CentralMiniHive" index="38" instance=ExtResource( 7 )]
 position = Vector2( 199.807, 345.678 )
@@ -556,9 +480,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell234" parent="Battlefield/Middleground/CentralMiniHive" index="39" instance=ExtResource( 7 )]
 position = Vector2( 148.557, 258.178 )
@@ -569,9 +491,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell204" parent="Battlefield/Middleground/CentralMiniHive" index="40" instance=ExtResource( 7 )]
 position = Vector2( -148.777, -86.5348 )
@@ -582,9 +502,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell275" parent="Battlefield/Middleground/CentralMiniHive" index="41" instance=ExtResource( 7 )]
 position = Vector2( 451.223, -86.5348 )
@@ -595,9 +513,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell213" parent="Battlefield/Middleground/CentralMiniHive" index="42" instance=ExtResource( 7 )]
 position = Vector2( -197.898, -172.451 )
@@ -608,9 +524,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell270" parent="Battlefield/Middleground/CentralMiniHive" index="43" instance=ExtResource( 7 )]
 position = Vector2( 402.102, -172.451 )
@@ -621,9 +535,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell242" parent="Battlefield/Middleground/CentralMiniHive" index="44" instance=ExtResource( 7 )]
 position = Vector2( -247.898, -258.701 )
@@ -634,9 +546,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell273" parent="Battlefield/Middleground/CentralMiniHive" index="45" instance=ExtResource( 7 )]
 position = Vector2( 352.102, -258.701 )
@@ -647,9 +557,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell264" parent="Battlefield/Middleground/CentralMiniHive" index="46" instance=ExtResource( 7 )]
 position = Vector2( -347.898, -258.701 )
@@ -660,9 +568,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell209" parent="Battlefield/Middleground/CentralMiniHive" index="47" instance=ExtResource( 7 )]
 position = Vector2( 151.305, 84.7623 )
@@ -673,9 +579,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell201" parent="Battlefield/Middleground/CentralMiniHive" index="48" instance=ExtResource( 7 )]
 position = Vector2( -0.700836, -171.738 )
@@ -686,9 +590,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell212" parent="Battlefield/Middleground/CentralMiniHive" index="49" instance=ExtResource( 7 )]
 position = Vector2( -49.8217, -257.654 )
@@ -699,9 +601,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell243" parent="Battlefield/Middleground/CentralMiniHive" index="50" instance=ExtResource( 7 )]
 position = Vector2( -99.8219, -343.904 )
@@ -712,9 +612,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell281" parent="Battlefield/Middleground/CentralMiniHive" index="51" instance=ExtResource( 7 )]
 position = Vector2( -149.822, -430.154 )
@@ -725,9 +623,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell290" parent="Battlefield/Middleground/CentralMiniHive" index="52" instance=ExtResource( 7 )]
 position = Vector2( -149.822, 429.846 )
@@ -738,9 +634,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell205" parent="Battlefield/Middleground/CentralMiniHive" index="53" instance=ExtResource( 7 )]
 position = Vector2( -99.4775, -172.273 )
@@ -751,9 +645,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell253" parent="Battlefield/Middleground/CentralMiniHive" index="54" instance=ExtResource( 7 )]
 position = Vector2( 300.522, -172.273 )
@@ -764,9 +656,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell235" parent="Battlefield/Middleground/CentralMiniHive" index="55" instance=ExtResource( 7 )]
 position = Vector2( 199.272, -172.273 )
@@ -777,9 +667,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell214" parent="Battlefield/Middleground/CentralMiniHive" index="56" instance=ExtResource( 7 )]
 position = Vector2( -148.598, -258.189 )
@@ -790,9 +678,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell251" parent="Battlefield/Middleground/CentralMiniHive" index="57" instance=ExtResource( 7 )]
 position = Vector2( 251.402, -258.189 )
@@ -803,9 +689,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell239" parent="Battlefield/Middleground/CentralMiniHive" index="58" instance=ExtResource( 7 )]
 position = Vector2( -198.598, -344.439 )
@@ -816,9 +700,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell279" parent="Battlefield/Middleground/CentralMiniHive" index="59" instance=ExtResource( 7 )]
 position = Vector2( -248.598, -430.689 )
@@ -829,9 +711,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell288" parent="Battlefield/Middleground/CentralMiniHive" index="60" instance=ExtResource( 7 )]
 position = Vector2( -248.598, 429.311 )
@@ -842,9 +722,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell262" parent="Battlefield/Middleground/CentralMiniHive" index="61" instance=ExtResource( 7 )]
 position = Vector2( -298.598, -344.439 )
@@ -855,9 +733,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell278" parent="Battlefield/Middleground/CentralMiniHive" index="62" instance=ExtResource( 7 )]
 position = Vector2( 301.402, -344.439 )
@@ -868,9 +744,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell282" parent="Battlefield/Middleground/CentralMiniHive" index="63" instance=ExtResource( 7 )]
 position = Vector2( 251.402, -430.689 )
@@ -881,9 +755,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell287" parent="Battlefield/Middleground/CentralMiniHive" index="64" instance=ExtResource( 7 )]
 position = Vector2( 251.402, 429.311 )
@@ -894,9 +766,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell254" parent="Battlefield/Middleground/CentralMiniHive" index="65" instance=ExtResource( 7 )]
 position = Vector2( 201.402, -344.439 )
@@ -907,9 +777,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell283" parent="Battlefield/Middleground/CentralMiniHive" index="66" instance=ExtResource( 7 )]
 position = Vector2( 151.402, -430.689 )
@@ -920,9 +788,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell289" parent="Battlefield/Middleground/CentralMiniHive" index="67" instance=ExtResource( 7 )]
 position = Vector2( 151.402, 429.311 )
@@ -933,9 +799,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell232" parent="Battlefield/Middleground/CentralMiniHive" index="68" instance=ExtResource( 7 )]
 position = Vector2( 150.152, -258.189 )
@@ -946,9 +810,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell238" parent="Battlefield/Middleground/CentralMiniHive" index="69" instance=ExtResource( 7 )]
 position = Vector2( 100.152, -344.439 )
@@ -959,9 +821,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell280" parent="Battlefield/Middleground/CentralMiniHive" index="70" instance=ExtResource( 7 )]
 position = Vector2( 50.152, -430.689 )
@@ -972,9 +832,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell286" parent="Battlefield/Middleground/CentralMiniHive" index="71" instance=ExtResource( 7 )]
 position = Vector2( 50.152, 429.311 )
@@ -985,9 +843,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell210" parent="Battlefield/Middleground/CentralMiniHive" index="72" instance=ExtResource( 7 )]
 position = Vector2( 200.604, -0.975464 )
@@ -998,9 +854,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell208" parent="Battlefield/Middleground/CentralMiniHive" index="73" instance=ExtResource( 7 )]
 position = Vector2( -149.67, 85.6558 )
@@ -1011,9 +865,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell274" parent="Battlefield/Middleground/CentralMiniHive" index="74" instance=ExtResource( 7 )]
 position = Vector2( 450.33, 85.6558 )
@@ -1024,9 +876,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell215" parent="Battlefield/Middleground/CentralMiniHive" index="75" instance=ExtResource( 7 )]
 position = Vector2( -199.67, 171.906 )
@@ -1037,9 +887,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell271" parent="Battlefield/Middleground/CentralMiniHive" index="76" instance=ExtResource( 7 )]
 position = Vector2( 400.33, 171.906 )
@@ -1050,9 +898,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell245" parent="Battlefield/Middleground/CentralMiniHive" index="77" instance=ExtResource( 7 )]
 position = Vector2( -249.67, 259.406 )
@@ -1063,9 +909,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell277" parent="Battlefield/Middleground/CentralMiniHive" index="78" instance=ExtResource( 7 )]
 position = Vector2( 350.33, 259.406 )
@@ -1076,9 +920,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell268" parent="Battlefield/Middleground/CentralMiniHive" index="79" instance=ExtResource( 7 )]
 position = Vector2( -349.67, 259.406 )
@@ -1089,9 +931,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell202" parent="Battlefield/Middleground/CentralMiniHive" index="80" instance=ExtResource( 7 )]
 position = Vector2( 50, -86 )
@@ -1102,9 +942,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell207" parent="Battlefield/Middleground/CentralMiniHive" index="81" instance=ExtResource( 7 )]
 position = Vector2( -0.192566, 171.928 )
@@ -1115,9 +953,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell216" parent="Battlefield/Middleground/CentralMiniHive" index="82" instance=ExtResource( 7 )]
 position = Vector2( -50.1926, 258.178 )
@@ -1128,9 +964,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell247" parent="Battlefield/Middleground/CentralMiniHive" index="83" instance=ExtResource( 7 )]
 position = Vector2( -100.193, 343.978 )
@@ -1141,9 +975,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell259" parent="Battlefield/Middleground/CentralMiniHive" index="84" instance=ExtResource( 7 )]
 position = Vector2( 99.8074, 343.978 )
@@ -1154,9 +986,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell236" parent="Battlefield/Middleground/CentralMiniHive" index="85" instance=ExtResource( 7 )]
 position = Vector2( 49.8074, 258.178 )
@@ -1167,9 +997,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell203" parent="Battlefield/Middleground/CentralMiniHive" index="86" instance=ExtResource( 7 )]
 position = Vector2( 99.2992, -171.738 )
@@ -1180,9 +1008,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell211" parent="Battlefield/Middleground/CentralMiniHive" index="87" instance=ExtResource( 7 )]
 position = Vector2( 50.1783, -257.654 )
@@ -1193,9 +1019,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell240" parent="Battlefield/Middleground/CentralMiniHive" index="88" instance=ExtResource( 7 )]
 position = Vector2( 0.178284, -343.904 )
@@ -1206,9 +1030,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell284" parent="Battlefield/Middleground/CentralMiniHive" index="89" instance=ExtResource( 7 )]
 position = Vector2( -49.8217, -430.154 )
@@ -1219,9 +1041,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Cell285" parent="Battlefield/Middleground/CentralMiniHive" index="90" instance=ExtResource( 7 )]
 position = Vector2( -49.8217, 429.846 )
@@ -1232,12 +1052,9 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
 radius = 57
-sides = 6.0
 
 [node name="Hive" type="Node2D" parent="Battlefield/Middleground" index="1"]
-editor/display_folded = true
 position = Vector2( -1120, -3.8147e-06 )
 scale = Vector2( 0.8, 0.8 )
 
@@ -1441,7 +1258,6 @@ position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
 
 [node name="MiniHive" type="Node2D" parent="Battlefield/Middleground" index="2"]
-editor/display_folded = true
 position = Vector2( -551.781, 321.261 )
 rotation = 1.0472
 scale = Vector2( 0.8, -0.8 )
@@ -1533,7 +1349,6 @@ position = Vector2( 100, -172 )
 rotation = 0.523599
 
 [node name="MiniHive2" type="Node2D" parent="Battlefield/Middleground" index="3"]
-editor/display_folded = true
 position = Vector2( 951.781, -321.261 )
 rotation = 2.09439
 scale = Vector2( 0.8, -0.8 )
@@ -1625,7 +1440,6 @@ position = Vector2( 100, -172 )
 rotation = 0.523599
 
 [node name="Hive2" type="Node2D" parent="Battlefield/Middleground" index="4"]
-editor/display_folded = true
 position = Vector2( 560, -960 )
 rotation = -4.18879
 scale = Vector2( 0.8, -0.8 )
@@ -1830,7 +1644,6 @@ position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
 
 [node name="Hive3" type="Node2D" parent="Battlefield/Middleground" index="5"]
-editor/display_folded = true
 position = Vector2( -560, 960 )
 rotation = -1.0472
 scale = Vector2( 0.8, -0.8 )
@@ -2035,7 +1848,6 @@ position = Vector2( 698.2, -689.236 )
 rotation = 0.523599
 
 [node name="Hive4" type="Node2D" parent="Battlefield/Middleground" index="6"]
-editor/display_folded = true
 position = Vector2( 1120, 0.000101728 )
 rotation = -3.14159
 scale = Vector2( 0.8, 0.8 )
