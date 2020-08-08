@@ -13,7 +13,7 @@ func set_type(v):
 	elif type == TYPE.diamond:
 		$Graphics.modulate = Color('#0095c3')
 	elif type == TYPE.gold:
-		$Graphics.modulate = Color('#ffdd00')
+		$Graphics.modulate = Color('#ffa700')
 	elif type == TYPE.respawner:
 		$Graphics.modulate = Color('#0dd614')
 	# orange Color('#c18a2a')
