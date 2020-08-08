@@ -25,7 +25,7 @@ var debug = false
 var run_time = 0
 
 onready var crown_mode = $Managers/CrownModeManager
-onready var deathmatch_mode = $Managers/DeathmatchModeManager
+onready var kill_mode = $Managers/KillModeManager
 onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
 onready var race_mode = $Managers/RaceModeManager
@@ -86,7 +86,7 @@ signal update_stats
 func setup_level(mode : Resource):
 	assert(mode is GameMode)
 	crown_mode.enabled = mode.crown
-	deathmatch_mode.enabled = mode.death
+	kill_mode.enabled = mode.death
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
@@ -143,9 +143,9 @@ func _ready():
 	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
 	
 	crown_mode.connect('score', scores, "add_score")
-	deathmatch_mode.connect('score', scores, "add_score")
-	deathmatch_mode.connect('broadcast_score', scores, "broadcast_score")
-	deathmatch_mode.connect('show_score', self, "spawn_points_scored")
+	kill_mode.connect('score', scores, "add_score")
+	kill_mode.connect('broadcast_score', scores, "broadcast_score")
+	kill_mode.connect('show_score', self, "spawn_points_scored")
 	race_mode.connect('score', scores, "add_score")
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
@@ -257,6 +257,9 @@ func _ready():
 		focus_in_camera.activate()
 		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
 		
+	# connect already placed killable stuff (bricks, aliens, etc.)
+	for sth in get_tree().get_nodes_in_group("killables"):
+		sth.connect('killed', kill_mode, '_on_sth_killed')
 	
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -499,7 +502,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
-	ship.connect("dead", deathmatch_mode, "_on_ship_killed")
+	ship.connect("dead", kill_mode, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
