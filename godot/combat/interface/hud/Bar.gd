@@ -45,15 +45,14 @@ func initialize(p: PlayerStats, matchscore: MatchScores):
 	$MegaBar.color = species.color
 	
 	# ticks
-	if max_score != 100: # FIXME workaround for star sports
-		for i in range(1, int(max_score)):
-			var tick = Line2D.new()
-			var opacity = 0.8 if max_score <= 10 or i%10 == 0 else 0.2
-			tick.default_color = Color(0,0,0,opacity)
-			tick.width = 3
-			var x = round((max_bar_width - ministar_margin) / max_score * i)
-			tick.points = PoolVector2Array([Vector2(margin_left+x, margin_top), Vector2(margin_left+x, margin_top+bar_height)])
-			$Ticks.add_child(tick)
+	for i in range(1, int(max_score)):
+		var tick = Line2D.new()
+		var opacity = 0.8 if max_score <= 10 or i%10 == 0 else 0.2
+		tick.default_color = Color(0,0,0,opacity)
+		tick.width = 3
+		var x = round((max_bar_width - ministar_margin) / max_score * i)
+		tick.points = PoolVector2Array([Vector2(margin_left+x, margin_top), Vector2(margin_left+x, margin_top+bar_height)])
+		$Ticks.add_child(tick)
 	
 	# mini stars
 	for i in range(global.win):
@@ -77,7 +76,7 @@ func update_stars():
 	
 func set_value(value):
 	previous_value = current_value
-	current_value = value
+	current_value = min(value, max_score)
 	
 	if current_value > previous_value:
 		streak_on()
