@@ -5,7 +5,7 @@ export var dots_color : Color = Color.gray
 export var cell_size := Vector2.ONE * 100
 export var enabled : bool = true
 
-enum TYPE { square, triangular }
+enum TYPE { square, triangular, hexagonal }
 export(TYPE) var type = TYPE.square
 
 export var show_dots = false
@@ -36,11 +36,17 @@ func init_grid(arena_size: Vector2):
 		lines_amount = h_cells + h_cells + v_cells
 	
 	# Temporarily store the cells so we can set their neighbors that they'll draw to
+	var i = 0
 	grid.resize(v_cells)
 	for y in v_cells:
+		i += 1
+		var j = 0
 		grid[y] = []
 		grid[y].resize(h_cells)
 		for x in h_cells:
+			j += 1
+			if TYPE.hexagonal and (j+i%2) % 3 == 0:
+				continue
 			var coords = cell_size * Vector2(x+(0 if type == TYPE.square else 0.5*(y%2)), y) + position
 			grid[y][x] = Point.new(coords, Vector2(x, y), show_dots, position, dots_color)
 			if show_dots:
@@ -99,6 +105,11 @@ func _process(delta):
 		for y in range(index.y - radius, index.y + radius):
 			for x in range(index.x - radius, index.x + radius):
 				if x <= 0 || x >= h_cells - 1 || y <= 0 || y >= v_cells - 1: continue
+				
+				# skip missing points
+				if not grid[y] or not grid[y][x]:
+					continue
+				
 				var point = grid[y][x]
 				if active_points.has(point): continue
 				var dist = (well.global_position - point.position).length()
