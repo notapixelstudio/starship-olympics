@@ -23,10 +23,12 @@ centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
 grid_color = Color( 0, 1, 0.439216, 0.329412 )
+dots_color = Color( 1, 1, 1, 1 )
 cell_size = Vector2( 92, 80 )
 
 [node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
 type = 1
+show_dots = true
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
