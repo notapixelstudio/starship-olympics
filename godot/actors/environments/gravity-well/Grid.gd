@@ -34,18 +34,16 @@ func init_grid(arena_size: Vector2):
 		lines_amount = h_cells + v_cells
 	elif type == TYPE.triangular:
 		lines_amount = h_cells + h_cells + v_cells
+	elif type == TYPE.hexagonal:
+		lines_amount = h_cells + v_cells
 	
 	# Temporarily store the cells so we can set their neighbors that they'll draw to
-	var i = 0
 	grid.resize(v_cells)
 	for y in v_cells:
-		i += 1
-		var j = 0
 		grid[y] = []
 		grid[y].resize(h_cells)
 		for x in h_cells:
-			j += 1
-			if TYPE.hexagonal and (j+i%2) % 3 == 2:
+			if TYPE.hexagonal and (x+(y+1)%2) % 3 == 1:
 				continue
 			var coords = cell_size * Vector2(x+(0 if type == TYPE.square else 0.5*(y%2)), y) + position
 			grid[y][x] = Point.new(coords, Vector2(x, y), show_dots, position, dots_color)
