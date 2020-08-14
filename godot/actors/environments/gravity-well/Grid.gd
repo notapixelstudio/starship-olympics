@@ -45,7 +45,7 @@ func init_grid(arena_size: Vector2):
 		grid[y].resize(h_cells)
 		for x in h_cells:
 			j += 1
-			if TYPE.hexagonal and (j+i%2) % 3 == 0:
+			if TYPE.hexagonal and (j+i%2) % 3 == 2:
 				continue
 			var coords = cell_size * Vector2(x+(0 if type == TYPE.square else 0.5*(y%2)), y) + position
 			grid[y][x] = Point.new(coords, Vector2(x, y), show_dots, position, dots_color)
