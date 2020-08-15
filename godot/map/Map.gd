@@ -106,7 +106,7 @@ func initialize(players, sports, settings_):
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
 		
-		$CanvasLayerTop.get_node(player_id).initialize(player.species)
+		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
 	num_players = len(players)

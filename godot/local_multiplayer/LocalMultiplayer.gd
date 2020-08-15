@@ -69,14 +69,7 @@ func combat(selected_players: Array, fight_mode : String):
 	It will transform the selected_players array in a dictionary of info players
 	"""
 	var i = 0
-	for player in selected_players:
-		var ship = ship_ui_scene.instance()
-		var back_to = ship.global_position
-		var trail = ship.get_node("Trail")
-		# trail.change_visibility(true)
-		trail.initialize(ship)
-		add_child(ship)
-		i+=1
+	
 	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(0, -1200), 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
