@@ -4,6 +4,10 @@ export var grid_color : Color = Color.gray
 export var cell_size := Vector2.ONE * 100
 export var enabled : bool = true
 
+enum TYPE { square, triangular }
+export(TYPE) var type = TYPE.square
+
+
 var active_points = []
 var grid = []
 var lines = []
@@ -18,17 +22,24 @@ func init_grid(arena_size: Vector2):
 	if not enabled:
 		return
 	
-	v_cells = ceil(arena_size.y/cell_size.y)+1
+	v_cells = ceil(arena_size.y/cell_size.y) + 1
 	h_cells = ceil(arena_size.x/cell_size.x) + 1 
 	position = -cell_size * Vector2(h_cells-1, v_cells-1)/2.0
+	
+	var lines_amount # populate the array of lines according to tiling type
+	if type == TYPE.square:
+		lines_amount = h_cells + v_cells
+	elif type == TYPE.triangular:
+		lines_amount = h_cells + h_cells + v_cells
+	
 	# Temporarily store the cells so we can set their neighbors that they'll draw to
 	grid.resize(v_cells)
 	for y in v_cells:
 		grid[y] = []
 		grid[y].resize(h_cells)
 		for x in h_cells:
-			grid[y][x] = Point.new(cell_size * Vector2(x, y) + position, Vector2(x, y))
-	lines.resize(h_cells + v_cells)
+			grid[y][x] = Point.new(cell_size * Vector2(x+(0 if type == TYPE.square else 0.5*(y%2)), y) + position, Vector2(x, y))
+	lines.resize(lines_amount)
 	# Init grid lines
 	# Vertical Rows
 	for x in h_cells:
@@ -41,6 +52,19 @@ func init_grid(arena_size: Vector2):
 		for y in v_cells:
 			line.add_point(grid[y][x].position)
 		lines[x] = line
+		
+	if type == TYPE.triangular:
+		for x in range(1,h_cells):
+			var line = Line2D.new()
+			line.position = -position
+			add_child(line)
+			line.width = 5
+			line.default_color = grid_color
+			line.light_mask |= 1 << 1
+			for y in v_cells:
+				line.add_point(grid[y][x-y%2].position)
+			lines[h_cells + x] = line
+		
 	for y in v_cells:
 		var line = Line2D.new()
 		line.position = -position
@@ -50,7 +74,7 @@ func init_grid(arena_size: Vector2):
 		line.light_mask |= 1 << 1
 		for x in h_cells:
 			line.add_point(grid[y][x].position)
-		lines[h_cells + y] = line
+		lines[h_cells + (0 if type == TYPE.square else h_cells) + y] = line
 		
 const MULTIPLIER = 0.25
 var count_frame = 0
@@ -79,7 +103,13 @@ func _process(delta):
 			active_points.erase(point)
 		# Update lines
 		lines[point.index.x].set_point_position(point.index.y, point.position)
-		lines[h_cells + point.index.y].set_point_position(point.index.x, point.position)
+		if type == TYPE.square:
+			lines[h_cells + point.index.y].set_point_position(point.index.x, point.position)
+		elif type == TYPE.triangular:
+			var squiggly_y = point.index.x+(int(point.index.y)%2)
+			if squiggly_y < h_cells:
+				lines[h_cells + squiggly_y].set_point_position(point.index.y, point.position)
+			lines[h_cells + h_cells + point.index.y].set_point_position(point.index.x, point.position)
 
 class Point:
 	var velocity := Vector2.ZERO
