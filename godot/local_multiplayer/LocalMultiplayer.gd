@@ -7,7 +7,6 @@ var session_scores : SessionScores
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
-export var ship_ui_scene: PackedScene
 
 var sports = {} # {sport.name : Resource}
 var sports_array = []
@@ -65,7 +64,7 @@ var levels : Array
 
 func combat(selected_players: Array, fight_mode : String):
 	"""
-	@param: selected_players : Array[Species] - Selected species from selection screen
+	@param: selected_players : Array[PlayerSelection] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
 	var i = 0
