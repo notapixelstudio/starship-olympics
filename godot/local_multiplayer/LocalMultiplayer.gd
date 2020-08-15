@@ -69,9 +69,6 @@ func combat(selected_players: Array, fight_mode : String):
 	"""
 	var i = 0
 	
-	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(0, -1200), 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	$Tween.start()
-	yield($Tween, "tween_all_completed")
 	# we need to reset players dictionary
 	players = {}
 	var num_players : int = len(selected_players)
