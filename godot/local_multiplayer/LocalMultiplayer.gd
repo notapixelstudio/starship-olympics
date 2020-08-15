@@ -7,7 +7,7 @@ var session_scores : SessionScores
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
-# temporary for all levels
+export var ship_ui_scene: PackedScene
 
 var sports = {} # {sport.name : Resource}
 var sports_array = []
@@ -70,11 +70,12 @@ func combat(selected_players: Array, fight_mode : String):
 	"""
 	var i = 0
 	for player in selected_players:
-		var ship = player.get_ship()
+		var ship = ship_ui_scene.instance()
 		var back_to = ship.global_position
 		var trail = ship.get_node("Trail")
 		# trail.change_visibility(true)
 		trail.initialize(ship)
+		add_child(ship)
 		i+=1
 	$Tween.interpolate_property($Camera2D, "position", Vector2(), Vector2(0, -1200), 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()

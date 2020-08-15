@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=18]
-[ext_resource path="res://actors/battlers/TrailNode.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 18 )
@@ -30,22 +29,7 @@ shader = ExtResource( 18 )
 shader_param/width = null
 shader_param/outline_color = null
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends Sprite
-
-var species
-
-func _ready():
-	$Trail.ship = self
-	$Trail.change_visibility(false)
-
-
-func _on_PlayerSelection_ready_takeoff():
-	$AnimationPlayer.play(\"takeoff\")
-
-"
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -72,98 +56,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 87.174, 473 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("Trail")
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ false ],
-"method": "change_visibility"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0.8, 0.8 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "takeoff"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 1.4, 2.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 2 ),
-"update": 0,
-"values": [ Vector2( 87.174, 473 ), Vector2( 87.174, 0 ), Vector2( 87.174, -600 ), Vector2( 87.174, -2400 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("Trail")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "change_visibility"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( -0.5 ),
-"update": 0,
-"values": [ -90.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 2.4 ),
-"transitions": PoolRealArray( 1, 2 ),
-"update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 0.3, 0.3 ) ]
-}
-
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 10
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=5]
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 size = 24
 outline_size = 4
 font_data = ExtResource( 9 )
@@ -254,15 +170,10 @@ position = Vector2( 87.174, 473 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 10 )
-script = SubResource( 3 )
-
-[node name="Trail" parent="SpeciesSelection/Ship" instance=ExtResource( 19 )]
-trail_length = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/Ship"]
 autoplay = "standby"
-anims/standby = SubResource( 4 )
-anims/takeoff = SubResource( 8 )
+anims/standby = SubResource( 3 )
 
 [node name="RightArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 159.0
@@ -296,7 +207,7 @@ rect_min_size = Vector2( 0, 2 )
 margin_top = 33.0
 margin_right = 170.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "tagline"
 align = 1
 valign = 1
@@ -306,7 +217,7 @@ uppercase = true
 margin_top = 50.0
 margin_right = 170.0
 margin_bottom = 63.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "tagline"
 align = 1
 valign = 1
@@ -332,7 +243,7 @@ margin_left = -20.0
 margin_top = -30.0
 margin_right = 20.0
 margin_bottom = 3.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "P1"
 align = 1
 valign = 1
@@ -355,7 +266,7 @@ margin_bottom = 231.0
 anchor_right = 1.0
 margin_top = -28.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "TEAM
 TRIXENS"
@@ -383,4 +294,3 @@ bus = "SFX"
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 6 )
 bus = "SFX"
-[connection signal="ready_takeoff" from="." to="SpeciesSelection/Ship" method="_on_PlayerSelection_ready_takeoff"]

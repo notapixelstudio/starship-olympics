@@ -70,7 +70,6 @@ func change_species(new_species):
 	# get the resource from the global
 	if new_species:
 		species = new_species
-		$SpeciesSelection/Ship.species = species
 		speciesSelection.change_species(species)
 
 const FIRST_DELAY = 0.4
