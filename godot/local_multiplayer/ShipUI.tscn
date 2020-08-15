@@ -4,7 +4,7 @@
 [ext_resource path="res://actors/battlers/TrailNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=5]
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/width = null
 shader_param/outline_color = null
@@ -116,7 +116,7 @@ tracks/2/keys = {
 }
 
 [node name="Ship" type="Sprite"]
-material = SubResource( 9 )
+material = SubResource( 1 )
 position = Vector2( 87.174, 473 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
@@ -127,6 +127,5 @@ script = SubResource( 2 )
 trail_length = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "standby"
 anims/standby = SubResource( 3 )
 anims/takeoff = SubResource( 4 )
