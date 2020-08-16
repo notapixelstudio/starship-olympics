@@ -32,8 +32,10 @@ func init_grid(arena_size: Vector2):
 	var lines_amount # populate the array of lines according to tiling type
 	if type == TYPE.square:
 		lines_amount = h_cells + v_cells
-	elif type == TYPE.triangular or type == TYPE.hexagonal:
+	elif type == TYPE.triangular:
 		lines_amount = h_cells + h_cells + v_cells
+	elif type == TYPE.hexagonal:
+		lines_amount = h_cells + h_cells + h_cells*v_cells
 	
 	# Temporarily store the cells so we can set their neighbors that they'll draw to
 	grid.resize(v_cells)
@@ -51,50 +53,56 @@ func init_grid(arena_size: Vector2):
 	if show_lines:
 		lines.resize(lines_amount)
 		# Init grid lines
-		# Vertical Rows
+		# Vertical lines (squiggly if triangular or hexagonal)
 		for x in h_cells:
 			if type == TYPE.hexagonal and x % 3 != 2:
 				continue
-			var line = Line2D.new()
-			line.position = -position
-			add_child(line)
-			line.width = 5
-			line.default_color = grid_color
-			line.light_mask |= 1 << 1
+			var line = new_line()
 			for y in v_cells:
 				line.add_point(grid[y][x].position)
 			lines[x] = line
 			
+		# Additional squiggly vertical lines
 		if type == TYPE.triangular or type == TYPE.hexagonal:
 			for x in range(1,h_cells):
 				if type == TYPE.hexagonal and x % 3 != 1:
 					continue
-				var line = Line2D.new()
-				line.position = -position
-				add_child(line)
-				line.width = 5
-				line.default_color = grid_color
-				line.light_mask |= 1 << 1
+				var line = new_line()
 				for y in v_cells:
 					line.add_point(grid[y][x-y%2].position)
 				lines[h_cells + x] = line
 			
+		# Horizontal lines (full length)
 		if type == TYPE.triangular or type == TYPE.square:
 			for y in v_cells:
-				var line = Line2D.new()
-				line.position = -position
-				add_child(line)
-				line.width = 5
-				line.default_color = grid_color
-				line.light_mask |= 1 << 1
+				var line = new_line()
 				for x in h_cells:
-					if type == TYPE.hexagonal and check_no_hex(x, y):
-						continue
 					line.add_point(grid[y][x].position)
 				lines[h_cells + (0 if type == TYPE.square else h_cells) + y] = line
+				
+		# Horizontal segments
+		if type == TYPE.hexagonal:
+			for x in range(1,h_cells):
+				for y in v_cells:
+					if check_no_hex(x, y) or check_no_hex(x+1, y):
+						continue
+					var line = new_line()
+					line.add_point(grid[y][x].position)
+					line.add_point(grid[y][x+1].position)
+					lines[h_cells + h_cells + (x-1)*v_cells+y] = line
+					
 		
 func check_no_hex(x, y):
 	return (x+(y+1)%2) % 3 == 1
+	
+func new_line():
+	var line = Line2D.new()
+	line.position = -position
+	line.width = 5
+	line.default_color = grid_color
+	line.light_mask |= 1 << 1
+	add_child(line)
+	return line
 	
 const MULTIPLIER = 0.25
 var count_frame = 0
@@ -133,15 +141,26 @@ func _process(delta):
 				selected_line.set_point_position(point.index.y, point.position)
 			if type == TYPE.square:
 				lines[h_cells + point.index.y].set_point_position(point.index.x, point.position)
-			elif type == TYPE.triangular or type == TYPE.hexagonal:
+			
+			if type == TYPE.triangular or type == TYPE.hexagonal:
 				var squiggly_y = point.index.x+(int(point.index.y)%2)
 				if squiggly_y < h_cells:
 					selected_line = lines[h_cells + squiggly_y]
 					if selected_line:
 						selected_line.set_point_position(point.index.y, point.position)
+						
+			if type == TYPE.triangular:
 				selected_line = lines[h_cells + h_cells + point.index.y]
 				if selected_line:
 					selected_line.set_point_position(point.index.x, point.position)
+					
+			if type == TYPE.hexagonal:
+				selected_line = lines[h_cells + h_cells + (point.index.x-1)*v_cells + point.index.y]
+				if selected_line:
+					if (int(point.index.x)+(int(point.index.y)%2)) % 3 == 1:
+						selected_line.set_point_position(0, point.position)
+					if (int(point.index.x)+(int(point.index.y)%2)) % 3 == 2:
+						selected_line.set_point_position(1, point.position)
 
 class Point:
 	var velocity := Vector2.ZERO
@@ -167,7 +186,14 @@ class Point:
 			self.dot.default_color = dots_color
 			self.dot.position = position
 			self.dot.points = PoolVector2Array([-global_position, -global_position+Vector2(0.1,0.1)])
-	
+			
+			# debug
+			#var label = Label.new()
+			#label.margin_left = -global_position.x
+			#label.margin_top = -global_position.y
+			#label.text = '(' + str(index.x) + ', ' + str(index.y) + ')'
+			#self.dot.add_child(label)
+			
 	func process(delta, gravity_wells):
 		# elastic velocity
 		var diff = anchor - position
