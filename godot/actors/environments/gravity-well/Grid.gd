@@ -32,10 +32,8 @@ func init_grid(arena_size: Vector2):
 	var lines_amount # populate the array of lines according to tiling type
 	if type == TYPE.square:
 		lines_amount = h_cells + v_cells
-	elif type == TYPE.triangular:
+	elif type == TYPE.triangular or type == TYPE.hexagonal:
 		lines_amount = h_cells + h_cells + v_cells
-	elif type == TYPE.hexagonal:
-		lines_amount = h_cells + v_cells
 	
 	# Temporarily store the cells so we can set their neighbors that they'll draw to
 	grid.resize(v_cells)
@@ -43,7 +41,7 @@ func init_grid(arena_size: Vector2):
 		grid[y] = []
 		grid[y].resize(h_cells)
 		for x in h_cells:
-			if TYPE.hexagonal and (x+(y+1)%2) % 3 == 1:
+			if type == TYPE.hexagonal and check_no_hex(x, y):
 				continue
 			var coords = cell_size * Vector2(x+(0 if type == TYPE.square else 0.5*(y%2)), y) + position
 			grid[y][x] = Point.new(coords, Vector2(x, y), show_dots, position, dots_color)
@@ -55,6 +53,8 @@ func init_grid(arena_size: Vector2):
 		# Init grid lines
 		# Vertical Rows
 		for x in h_cells:
+			if type == TYPE.hexagonal and x % 3 != 2:
+				continue
 			var line = Line2D.new()
 			line.position = -position
 			add_child(line)
@@ -65,8 +65,10 @@ func init_grid(arena_size: Vector2):
 				line.add_point(grid[y][x].position)
 			lines[x] = line
 			
-		if type == TYPE.triangular:
+		if type == TYPE.triangular or type == TYPE.hexagonal:
 			for x in range(1,h_cells):
+				if type == TYPE.hexagonal and x % 3 != 1:
+					continue
 				var line = Line2D.new()
 				line.position = -position
 				add_child(line)
@@ -77,17 +79,23 @@ func init_grid(arena_size: Vector2):
 					line.add_point(grid[y][x-y%2].position)
 				lines[h_cells + x] = line
 			
-		for y in v_cells:
-			var line = Line2D.new()
-			line.position = -position
-			add_child(line)
-			line.width = 5
-			line.default_color = grid_color
-			line.light_mask |= 1 << 1
-			for x in h_cells:
-				line.add_point(grid[y][x].position)
-			lines[h_cells + (0 if type == TYPE.square else h_cells) + y] = line
+		if type == TYPE.triangular or type == TYPE.square:
+			for y in v_cells:
+				var line = Line2D.new()
+				line.position = -position
+				add_child(line)
+				line.width = 5
+				line.default_color = grid_color
+				line.light_mask |= 1 << 1
+				for x in h_cells:
+					if type == TYPE.hexagonal and check_no_hex(x, y):
+						continue
+					line.add_point(grid[y][x].position)
+				lines[h_cells + (0 if type == TYPE.square else h_cells) + y] = line
 		
+func check_no_hex(x, y):
+	return (x+(y+1)%2) % 3 == 1
+	
 const MULTIPLIER = 0.25
 var count_frame = 0
 
@@ -120,14 +128,20 @@ func _process(delta):
 			active_points.erase(point)
 		# Update lines
 		if show_lines:
-			lines[point.index.x].set_point_position(point.index.y, point.position)
+			var selected_line = lines[point.index.x]
+			if selected_line:
+				selected_line.set_point_position(point.index.y, point.position)
 			if type == TYPE.square:
 				lines[h_cells + point.index.y].set_point_position(point.index.x, point.position)
-			elif type == TYPE.triangular:
+			elif type == TYPE.triangular or type == TYPE.hexagonal:
 				var squiggly_y = point.index.x+(int(point.index.y)%2)
 				if squiggly_y < h_cells:
-					lines[h_cells + squiggly_y].set_point_position(point.index.y, point.position)
-				lines[h_cells + h_cells + point.index.y].set_point_position(point.index.x, point.position)
+					selected_line = lines[h_cells + squiggly_y]
+					if selected_line:
+						selected_line.set_point_position(point.index.y, point.position)
+				selected_line = lines[h_cells + h_cells + point.index.y]
+				if selected_line:
+					selected_line.set_point_position(point.index.x, point.position)
 
 class Point:
 	var velocity := Vector2.ZERO
