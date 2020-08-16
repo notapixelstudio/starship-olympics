@@ -14,4 +14,10 @@ map_scene = ExtResource( 2 )
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 layer = -2
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="Tween" type="Tween" parent="."]
+
 [editable path="ParallaxBackground"]

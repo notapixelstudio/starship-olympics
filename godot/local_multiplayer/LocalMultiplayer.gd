@@ -7,7 +7,6 @@ var session_scores : SessionScores
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
-# temporary for all levels
 
 var sports = {} # {sport.name : Resource}
 var sports_array = []
@@ -65,16 +64,17 @@ var levels : Array
 
 func combat(selected_players: Array, fight_mode : String):
 	"""
-	@param: selected_players : Array[Species] - Selected species from selection screen
+	@param: selected_players : Array[PlayerSelection] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
+	var i = 0
 	
 	# we need to reset players dictionary
 	players = {}
 	var num_players : int = len(selected_players)
 	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
 
-	var i = 1
+	i = 1
 	for player in selected_players:
 		players[player.id] = player.info
 		i += 1
@@ -129,7 +129,6 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
-	print(levels)
 	# for planet in all_planets:
 	#	planet.shuffle_levels(len(players))
 	
