@@ -1,6 +1,7 @@
 extends Node2D
 
 export var grid_color : Color = Color.gray
+export var dots_color : Color = Color.gray
 export var cell_size := Vector2.ONE * 100
 export var frames_wait := 3
 export var scale_mask_texture := Vector2.ONE
@@ -23,6 +24,7 @@ func _ready():
 	light.scale = scale_mask_texture
 	mask.scale_texture = scale_mask_texture
 	grid.grid_color = grid_color
+	grid.dots_color = dots_color
 	grid.cell_size = cell_size
 	
 
