@@ -16,19 +16,21 @@ func set_type(v):
 	$Graphics/BrickLines.visible = true
 	$Graphics/SolidFill.visible = false
 	$Graphics/RespawnerLine.visible = false
+	$Graphics/Border.joint_mode = Line2D.LINE_JOINT_SHARP
 	if type == TYPE.solid:
-		$Graphics.modulate = Color(1,1,1,1)
+		$Graphics.modulate = Color(0.7,0.7,0.7,1)
 		$Graphics/BrickLines.visible = false
 		$Graphics/SolidFill.visible = true
 	elif type == TYPE.diamond:
-		$Graphics.modulate = Color('#0095c3')
+		$Graphics.modulate = Color('#2b839e')#0095c3')
 	elif type == TYPE.gold:
 		$Graphics.modulate = Color('#ffa700')
 		points = 3
 	elif type == TYPE.respawner:
-		$Graphics.modulate = Color('#0dd614')
+		$Graphics.modulate = Color('#27b01b')#0dd614')
 		$Graphics/BrickLines.visible = false
 		$Graphics/RespawnerLine.visible = true
+		$Graphics/Border.joint_mode = Line2D.LINE_JOINT_BEVEL
 	# orange Color('#c18a2a')
 	
 func break(breaker):

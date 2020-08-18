@@ -71,7 +71,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Graphics" type="Node2D" parent="."]
-modulate = Color( 0, 0.584314, 0.764706, 1 )
+modulate = Color( 0.168627, 0.513726, 0.619608, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Graphics"]
 margin_left = -90.0
@@ -122,7 +122,7 @@ points = PoolVector2Array( 0, 0, 0, 45 )
 width = 6.0
 default_color = Color( 1, 1, 1, 1 )
 
-[node name="Line2D" type="Line2D" parent="Graphics"]
+[node name="Border" type="Line2D" parent="Graphics"]
 points = PoolVector2Array( 0, -40, 90, -40, 90, 40, -90, 40, -90, -40, 0, -40 )
 width = 40.0
 default_color = Color( 1, 1, 1, 1 )
