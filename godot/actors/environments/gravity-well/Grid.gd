@@ -157,10 +157,11 @@ func _process(delta):
 			if type == TYPE.hexagonal:
 				selected_line = lines[h_cells + h_cells + (point.index.x-1)*v_cells + point.index.y]
 				if selected_line:
-					if (int(point.index.x)+(int(point.index.y)%2)) % 3 == 1:
+					selected_line.default_color = Color(1,1,1,1)
+					if (int(point.index.x-1)) % 3 == 0:
 						selected_line.set_point_position(0, point.position)
-					if (int(point.index.x)+(int(point.index.y)%2)) % 3 == 2:
-						selected_line.set_point_position(1, point.position)
+					#elif (int(point.index.x-1)+(int(point.index.y)%2)) % 3 == 1:
+					#	selected_line.set_point_position(1, point.position)
 
 class Point:
 	var velocity := Vector2.ZERO
