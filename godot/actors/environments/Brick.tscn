@@ -44,7 +44,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 40.0, 60.0 ]
+"values": [ 50.0, 60.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("BreakGlow:default_color")
@@ -74,32 +74,66 @@ shape = SubResource( 1 )
 modulate = Color( 0, 0.584314, 0.764706, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Graphics"]
-margin_left = -100.0
-margin_top = -50.0
-margin_right = 100.0
-margin_bottom = 50.0
+margin_left = -90.0
+margin_top = -40.0
+margin_right = 90.0
+margin_bottom = 40.0
 color = Color( 0.407843, 0.407843, 0.407843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Polygon2D" type="Polygon2D" parent="Graphics"]
+[node name="SolidFill" type="Polygon2D" parent="Graphics"]
+visible = false
 color = Color( 1, 1, 1, 0.14902 )
 polygon = PoolVector2Array( -50, -15, -50, -15, 50, -15, 50, -15, 50, 15, 50, 15, -50, 15, -50, 15 )
 
+[node name="RespawnerLine" type="Line2D" parent="Graphics"]
+visible = false
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+points = PoolVector2Array( 0, -15, 50, -15, 50, 15, -50, 15, -50, -15, 0, -15 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+
+[node name="BrickLines" type="Node2D" parent="Graphics"]
+
+[node name="Line2D2" type="Line2D" parent="Graphics/BrickLines"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+points = PoolVector2Array( -95, 0, 95, 0 )
+width = 6.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D3" type="Line2D" parent="Graphics/BrickLines"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+points = PoolVector2Array( -50, -45, -50, 0 )
+width = 6.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D4" type="Line2D" parent="Graphics/BrickLines"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+points = PoolVector2Array( 50, -45, 50, 0 )
+width = 6.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D5" type="Line2D" parent="Graphics/BrickLines"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+points = PoolVector2Array( 0, 0, 0, 45 )
+width = 6.0
+default_color = Color( 1, 1, 1, 1 )
+
 [node name="Line2D" type="Line2D" parent="Graphics"]
-points = PoolVector2Array( 0, -50, 100, -50, 100, 50, -100, 50, -100, -50, 0, -50, 0, -50 )
-width = 60.0
+points = PoolVector2Array( 0, -40, 90, -40, 90, 40, -90, 40, -90, -40, 0, -40 )
+width = 40.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
 texture_mode = 2
-joint_mode = 2
 
 [node name="BreakGlow" type="Line2D" parent="."]
 visible = false
 modulate = Color( 0.996078, 0.984314, 0.941176, 1 )
 points = PoolVector2Array( 0, -50, 100, -50, 100, 50, -100, 50, -100, -50, 0, -50, 0, -50 )
-width = 40.0
+width = 50.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
 texture_mode = 2

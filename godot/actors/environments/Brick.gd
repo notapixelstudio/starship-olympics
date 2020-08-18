@@ -13,8 +13,13 @@ signal killed
 func set_type(v):
 	type = v
 	points = 1
+	$Graphics/BrickLines.visible = true
+	$Graphics/SolidFill.visible = false
+	$Graphics/RespawnerLine.visible = false
 	if type == TYPE.solid:
 		$Graphics.modulate = Color(1,1,1,1)
+		$Graphics/BrickLines.visible = false
+		$Graphics/SolidFill.visible = true
 	elif type == TYPE.diamond:
 		$Graphics.modulate = Color('#0095c3')
 	elif type == TYPE.gold:
@@ -22,6 +27,8 @@ func set_type(v):
 		points = 3
 	elif type == TYPE.respawner:
 		$Graphics.modulate = Color('#0dd614')
+		$Graphics/BrickLines.visible = false
+		$Graphics/RespawnerLine.visible = true
 	# orange Color('#c18a2a')
 	
 func break(breaker):
