@@ -25,12 +25,13 @@ func set_type(v):
 		$Graphics.modulate = Color('#2b839e')#0095c3')
 	elif type == TYPE.gold:
 		$Graphics.modulate = Color('#ffa700')
+		$Graphics/Border.joint_mode = Line2D.LINE_JOINT_BEVEL
 		points = 3
 	elif type == TYPE.respawner:
 		$Graphics.modulate = Color('#27b01b')#0dd614')
 		$Graphics/BrickLines.visible = false
 		$Graphics/RespawnerLine.visible = true
-		$Graphics/Border.joint_mode = Line2D.LINE_JOINT_BEVEL
+		$Graphics/Border.joint_mode = Line2D.LINE_JOINT_ROUND
 	# orange Color('#c18a2a')
 	
 func break(breaker):
@@ -41,17 +42,24 @@ func break(breaker):
 	z_index = 100
 	$BreakGlow.visible = true
 	$AnimationPlayer.play("Break")
+	$GravitonField.enabled = true
 	yield($AnimationPlayer, "animation_finished")
 	
 	if type != TYPE.respawner and type != TYPE.solid:
 		queue_free()
 		return
 	
+	$GravitonField.enabled = false
+	
 	yield(get_tree().create_timer(1), "timeout")
 	
-	if type != TYPE.solid:
+	if type == TYPE.respawner:
 		$AnimationPlayer.play_backwards("Break")
+		$GravitonField.enabled = true
+		$GravitonField.multiplier = -$GravitonField.multiplier
 		yield($AnimationPlayer, "animation_finished")
+		$GravitonField.enabled = false
+		$GravitonField.multiplier = $GravitonField.multiplier
 		$CollisionShape2D.call_deferred('set_disabled', false)
 		$Graphics.visible = true
 	z_index = 0

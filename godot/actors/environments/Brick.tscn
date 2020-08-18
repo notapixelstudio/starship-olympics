@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/environments/Brick.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
+[ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/battlers/GravitonField.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 130, 80 )
@@ -91,10 +93,18 @@ polygon = PoolVector2Array( -50, -15, -50, -15, 50, -15, 50, -15, 50, 15, 50, 15
 [node name="RespawnerLine" type="Line2D" parent="Graphics"]
 visible = false
 modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
-points = PoolVector2Array( 0, -15, 50, -15, 50, 15, -50, 15, -50, -15, 0, -15 )
-width = 4.0
+points = PoolVector2Array( 0, -20, 70, -20, 70, 20, -70, 20, -70, -20, 0, -20 )
+width = 8.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
+
+[node name="RespawnerLine2" type="Line2D" parent="Graphics/RespawnerLine"]
+points = PoolVector2Array( -50, 0, 50, 0 )
+width = 8.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="BrickLines" type="Node2D" parent="Graphics"]
 
@@ -141,3 +151,17 @@ joint_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Break = SubResource( 2 )
+
+[node name="GravitonField" type="Area2D" parent="." groups=[
+"gravity_wells",
+] instance=ExtResource( 3 )]
+visible = false
+gravity_point = true
+gravity_distance_scale = 0.001
+gravity_vec = Vector2( 0, 0 )
+gravity = -1024.0
+collision_layer = 0
+collision_mask = 10752
+script = ExtResource( 4 )
+multiplier = 0.1
+timeout = 0.1
