@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/audio/FX/unslow_motion_effect.ogg" type="AudioStream" id=11]
 [ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=12]
 [ext_resource path="res://assets/audio/FX/Fast Swish.wav" type="AudioStream" id=13]
-[ext_resource path="res://combat/managers/modes/DeathmatchModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/managers/modes/KillModeManager.gd" type="Script" id=14]
 [ext_resource path="res://combat/managers/modes/RaceModeManager.gd" type="Script" id=15]
 [ext_resource path="res://combat/managers/modes/ConquestModeManager.gd" type="Script" id=16]
 [ext_resource path="res://combat/managers/modes/GoalModeManager.gd" type="Script" id=17]
@@ -157,7 +157,7 @@ enabled = false
 stream = ExtResource( 13 )
 pitch_scale = 4.0
 
-[node name="DeathmatchModeManager" type="Node" parent="Managers"]
+[node name="KillModeManager" type="Node" parent="Managers"]
 script = ExtResource( 14 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )

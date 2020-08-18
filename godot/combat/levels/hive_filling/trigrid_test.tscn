@@ -23,10 +23,11 @@ centered = false
 
 [node name="GridPack" parent="Battlefield/Background" index="0"]
 grid_color = Color( 0, 1, 0.439216, 0.329412 )
+dots_color = Color( 1, 1, 1, 1 )
 cell_size = Vector2( 92, 80 )
 
 [node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
-type = 1
+type = 2
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -44,11 +45,9 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 radius = 1100
 sides = 6.0
-rotation_degrees = 0.0
+rotation_degrees = 30.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 880, -40 )
