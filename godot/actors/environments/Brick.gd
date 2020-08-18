@@ -42,7 +42,7 @@ func break(breaker):
 	z_index = 100
 	$BreakGlow.visible = true
 	$AnimationPlayer.play("Break")
-	$GravitonField.enabled = true
+	$GravitonField.call_deferred('set_enabled', true)
 	yield($AnimationPlayer, "animation_finished")
 	
 	if type != TYPE.respawner and type != TYPE.solid:
@@ -64,5 +64,4 @@ func break(breaker):
 		$Graphics.visible = true
 	z_index = 0
 	$BreakGlow.visible = false
-	$AnimationPlayer.play("Idle")
 	
