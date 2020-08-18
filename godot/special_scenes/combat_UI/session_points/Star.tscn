@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=25]
 [ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=26]
 [ext_resource path="res://assets/icon/star_full.png" type="Texture" id=27]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=28]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -119,16 +120,37 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 5 ), Vector2( 0, -5 ), Vector2( 0, 5 ) ]
 }
 
+[sub_resource type="DynamicFont" id=4]
+size = 24
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 28 )
+
 [node name="Star" type="Node2D"]
+z_as_relative = false
 script = ExtResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 10 )
+position = Vector2( 0, 5 )
 frames = SubResource( 1 )
-animation = "full"
+animation = "shine"
+frame = 4
+playing = true
 
 [node name="WonAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/won = SubResource( 2 )
 
 [node name="FloatAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/float = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Sprite"]
+margin_left = -125.0
+margin_top = -32.0
+margin_right = 125.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 125, 20 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
