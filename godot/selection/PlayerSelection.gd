@@ -3,7 +3,7 @@ extends Control
 class_name PlayerSelection
 
 """
-Class for Species logic. Will be set controls and Species template
+Class for PlayerSelection logic. Will be set controls and Species template
 """
 
 var id:String
@@ -35,6 +35,10 @@ export (Resource) var species # : SpeciesTemplate
 # this will be the String of controls
 var controls : String
 var is_team : bool = false
+signal ready_takeoff
+
+func get_ship_position():
+	return rect_position
 
 func set_controls(new_controls:String):
 	"""

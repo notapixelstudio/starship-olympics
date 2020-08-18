@@ -26,8 +26,10 @@ const FRAME_DELAY = 10
 var wait_in_frame = FRAME_DELAY
 
 const IN_CAMERA = "in_camera"
-
+		
 func _ready():
+	randomize()
+	curPos = position
 	if enabled:
 		current = true
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
@@ -54,6 +56,11 @@ func initialize(rect_extention:Rect2):
 const MAX_DIST_OFFSET = 10
 
 func _process(_delta: float) -> void:
+	if isShake:
+		shake_process(_delta)    
+	if stop:
+		return
+	time+=_delta
 	
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
@@ -134,3 +141,37 @@ func screen_to_world(p : Vector2) -> Vector2:
 	var pt = p - viewport_rect.size/2
 	return Vector2(pt.x+marginX/2, pt.y+marginY/2)*zoom+offset
 	
+export var shake_power = 10
+export var shake_time = 0.5
+
+var timeformat = "{min}:{sec}"
+onready var timelabel = $TimePassed
+
+var stop = false
+var time = 0.0
+var isShake = false
+var curPos
+var elapsedtime = 0
+
+	
+func stop_timer():
+	stop = true
+	
+func sec_to_min(seconds: float) -> String:
+	var m = int(floor(seconds/60))
+	var s = int(floor(seconds))%60
+	var ss: String = "0"+str(s) if s < 10 else str(s)
+	return timeformat.format({"min": m, "sec": ss})
+	
+func shake_process(delta):
+	if elapsedtime<shake_time:
+		position =  Vector2(randf(), randf()) * shake_power
+		elapsedtime += delta
+	else:
+		isShake = false
+		elapsedtime = 0
+		position = curPos     
+		
+func shake():
+	elapsedtime = 0
+	isShake = true

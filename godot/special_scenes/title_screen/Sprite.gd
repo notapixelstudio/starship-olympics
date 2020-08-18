@@ -10,4 +10,4 @@ func set_species(value):
 	if is_inside_tree():
 		yield(self, "ready")
 
-	texture = species.ship
+	texture = species.ship_off

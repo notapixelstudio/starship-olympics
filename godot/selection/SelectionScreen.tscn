@@ -95,6 +95,9 @@ font_data = ExtResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Info" type="NinePatchRect" parent="."]
 margin_left = 440.0
@@ -195,7 +198,6 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
 [node name="BottomHUD" type="HBoxContainer" parent="."]
-editor/display_folded = true
 visible = false
 anchor_top = 1.0
 anchor_right = 1.0
@@ -274,10 +276,12 @@ position = Vector2( 650, 550 )
 script = SubResource( 3 )
 
 [node name="ColorRect" type="Sprite" parent="CanvasLayer/ReadyToFight"]
-position = Vector2( -10, 90 )
+position = Vector2( -10, 390 )
+rotation = 3.14159
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="CanvasLayer/ReadyToFight"]
+visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -290,6 +294,9 @@ text = "N PLAYERS READY TO FIGHT!"
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label2" type="Label" parent="CanvasLayer/ReadyToFight"]
 anchor_top = 0.5

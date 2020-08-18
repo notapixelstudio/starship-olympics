@@ -20,11 +20,9 @@ var max_cpu
 var hive_shoot_bombs = true setget set_hive_bombs
 var diamondsnatch_shoot_bombs = true setget set_diamondsnatch_bombs
 var slam_a_gon_shoot_bombs = true setget set_slam_a_gon_bombs
-onready var playlist = $CanvasLayerTop/HUD/Items
-onready var intro = $CanvasLayerTop/HUD/Intro
-onready var button = $CanvasLayerTop/HUD/Button
+
+onready var ui = $CanvasLayerTop
 onready var cpus = $Content/Controls/CPUs
-onready var victories = $Content/Controls/Victories
 
 onready var cursor_tween = $CursorMoveTween
 
@@ -74,7 +72,6 @@ func _ready():
 		if sport.planet in selected_sports:
 			sport.active = true
 	
-	intro.text = intro.text.replace("X", str(num_players))
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
 		cell.connect('pressed', self, '_on_cell_pressed', [cell])
@@ -108,6 +105,8 @@ func initialize(players, sports, settings_):
 		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
+		
+		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
 	num_players = len(players)

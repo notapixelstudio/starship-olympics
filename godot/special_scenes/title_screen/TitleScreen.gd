@@ -15,8 +15,6 @@ func initialize():
 	can_press = true
 	
 	
-
-
 func _on_Options_pressed():
 	animation.play("fade_out")
 	yield(animation, "animation_finished")

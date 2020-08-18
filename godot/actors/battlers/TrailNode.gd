@@ -18,6 +18,11 @@ export var trail_texture : Texture
 
 var trail_f : float = 0.0
 
+func change_visibility(v):
+	visible = v
+	$Trail.visible = v
+	$InnerTrail.visible = v
+	
 func set_trail_length(value:int):
 	trail_length = value
 	if trail:
