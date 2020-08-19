@@ -51,10 +51,8 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 5 )
@@ -77,10 +75,8 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 5 )
@@ -101,11 +97,8 @@ bevel_se = 450
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
@@ -147,14 +140,6 @@ spawn_diamonds = false
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 position = Vector2( -100, -1100 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 8 )
@@ -167,14 +152,6 @@ points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
 position = Vector2( -100, 1100 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 8 )
@@ -197,7 +174,7 @@ rotation = 0.0
 controls = "joy2"
 species = ExtResource( 12 )
 
-[node name="Camera" parent="." index="5"]
+[node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]

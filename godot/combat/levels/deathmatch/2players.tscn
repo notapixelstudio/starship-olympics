@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
-[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=7]
-[ext_resource path="res://addons/geometry/icons/GConvexPolygon.svg" type="Texture" id=8]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
@@ -112,18 +110,28 @@ playback_speed = 0.09
 anims/Pulse = SubResource( 1 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
-position = Vector2( -100, -800 )
+position = Vector2( 0, -800 )
 
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_icon": ExtResource( 8 )
-}
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+script = ExtResource( 9 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
-points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
+radius = 100
+sides = 4.0
+rotation_degrees = 0.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
+position = Vector2( 0, 800 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
+script = ExtResource( 9 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+radius = 100
+sides = 4.0
+rotation_degrees = 0.0
+
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
 position = Vector2( -600, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
@@ -134,7 +142,7 @@ radius = 200
 sides = 4.0
 rotation_degrees = 0.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 position = Vector2( 600, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
@@ -144,19 +152,6 @@ jitter = 0.0
 radius = 200
 sides = 4.0
 rotation_degrees = 0.0
-
-[node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
-position = Vector2( -100, 800 )
-scale = Vector2( 1, -1 )
-
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_icon": ExtResource( 8 )
-}
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
 position = Vector2( -1000, -400 )

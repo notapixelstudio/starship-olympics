@@ -16,7 +16,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-fill_color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -45,7 +44,13 @@ __meta__ = {
 enabled = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
+color = Color( 0.309804, 0.247059, 0.235294, 1 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+
+[node name="InnerPolygon2D" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0.109804 )
+scale = Vector2( 0.5, 0.5 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
@@ -57,7 +62,7 @@ polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
-width = 20.0
+width = 28.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
 sharp_limit = 0.0
