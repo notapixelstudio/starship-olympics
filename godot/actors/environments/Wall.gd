@@ -156,8 +156,7 @@ func refresh():
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		color = GlowColor.new(Color(0.2,0.7,1,0.8), glow_strength).color
-		$line.modulate = color
+		$line.modulate = Color(0.2,0.7,1,0.8)
 	elif type == TYPE.decoration:
 		color = GlowColor.new(Color(1,1,1,1), glow_strength).color
 		$line.modulate = color
