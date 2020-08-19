@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/environments/grid.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=7]
 
 [node name="Wall" type="StaticBody2D" groups=[
 "wall",
@@ -58,9 +57,8 @@ polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
-width = 90.0
+width = 20.0
 default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 7 )
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10

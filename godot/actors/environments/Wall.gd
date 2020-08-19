@@ -19,6 +19,8 @@ export var grid_rotation : float = 0 setget set_grid_rotation
 
 export var fill_color : Color = Color('#454545') setget set_fill_color
 
+const glow_strength = 1.08
+
 var cshapes = []
 
 func set_hollow(value):
@@ -140,20 +142,25 @@ func refresh():
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
 	
 	# wall types
+	var color
 	if type == TYPE.hostile:
-		$Polygon2D.modulate = Color(1,0,0,1)
-		$line.modulate = Color(1,0,0,1)
+		color = GlowColor.new(Color(1,0,0,1), glow_strength).color
+		$Polygon2D.modulate = color
+		$line.modulate = color
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		$Polygon2D.modulate = Color(1,1,1,1)
-		$line.modulate = Color(1,1,1,1)
+		color = GlowColor.new(Color(1,1,1,1), glow_strength).color
+		$Polygon2D.modulate = color
+		$line.modulate = color
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		$line.modulate = Color(0.2,0.7,1,0.8)
+		color = GlowColor.new(Color(0.2,0.7,1,0.8), glow_strength).color
+		$line.modulate = color
 	elif type == TYPE.decoration:
-		$line.modulate = Color(1,1,1,1)
+		color = GlowColor.new(Color(1,1,1,1), glow_strength).color
+		$line.modulate = color
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
