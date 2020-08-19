@@ -152,7 +152,7 @@ func refresh():
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		color = Color(0.8,0.8,1.11,1)
+		color = Color(0.8,0.8,1.09,1)
 		$Polygon2D.modulate = color
 		$line.modulate = color
 		$Entity/Deadly.enabled = false
@@ -160,7 +160,7 @@ func refresh():
 	elif type == TYPE.ghost:
 		$line.modulate = Color(0.2,0.7,1,0.8)
 	elif type == TYPE.decoration:
-		$line.modulate = Color(0.8,0.8,1.11,1)
+		$line.modulate = Color(0.8,0.8,1.09,1)
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
