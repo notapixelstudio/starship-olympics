@@ -14,10 +14,12 @@ export(TYPE) var type = TYPE.solid setget set_type
 export var hide_line : bool = false setget set_hide_line
 export var hide_grid : bool = false setget set_hide_grid
 
+export var line_width = 28 setget set_line_width
+
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
 
-export var fill_color : Color = Color('#454545') setget set_fill_color
+const glow_strength = 1.08
 
 var cshapes = []
 
@@ -45,16 +47,16 @@ func set_hide_grid(value):
 	hide_grid = value
 	refresh()
 	
+func set_line_width(value):
+	line_width = value
+	refresh()
+	
 func set_grid_color(value):
 	grid_color = value
 	refresh()
 	
 func set_grid_rotation(value):
 	grid_rotation = value
-	refresh()
-	
-func set_fill_color(value):
-	fill_color = value
 	refresh()
 	
 func _ready():
@@ -115,6 +117,7 @@ func refresh():
 				shape.set_points(PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo]))
 				cshape.set_shape(shape)
 				add_child(cshape)
+				
 		else:
 			var cshape = CollisionShape2D.new()
 			var shape = ConvexPolygonShape2D.new()
@@ -122,10 +125,11 @@ func refresh():
 			cshape.set_shape(shape)
 			add_child(cshape)
 			
-	$Polygon2D.set_polygon(points)
-	$Grid.set_polygon(points)
+	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost)
 	
-	$Polygon2D.color = fill_color
+	$Polygon2D.set_polygon(points)
+	$InnerPolygon2D.set_polygon(points)
+	$Grid.set_polygon(points)
 	
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
@@ -140,26 +144,31 @@ func refresh():
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
 	
 	# wall types
+	var color
 	if type == TYPE.hostile:
-		$Polygon2D.modulate = Color(1,0,0,1)
-		$line.modulate = Color(1,0,0,1)
+		color = GlowColor.new(Color(1,0,0,1), glow_strength).color
+		$Polygon2D.modulate = color
+		$line.modulate = color
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		$Polygon2D.modulate = Color(1,1,1,1)
-		$line.modulate = Color(1,1,1,1)
+		color = Color(0.8,0.8,1.09,1)
+		$Polygon2D.modulate = color
+		$line.modulate = color
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
 		$line.modulate = Color(0.2,0.7,1,0.8)
 	elif type == TYPE.decoration:
-		$line.modulate = Color(1,1,1,1)
+		$line.modulate = Color(0.8,0.8,1.09,1)
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
 	# grid color
 	$Grid.modulate = grid_color
+	
+	$line.width = line_width
 	
 func animate(animation_name: String):
 	if $AnimationPlayer:

@@ -110,7 +110,11 @@ func _on_StreakTimer_timeout():
 
 func add_streak_bar():
 	current_streak_bar = Polygon2D.new()
-	current_streak_bar.color = player.species.color
+	
+	# glow
+	current_streak_bar.material = CanvasItemMaterial.new()
+	current_streak_bar.color = GlowColor.new(player.species.color, 1.1).color
+	
 	streak_start = previous_value
 	$Streaks.add_child(current_streak_bar)
 	

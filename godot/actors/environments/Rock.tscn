@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -61,6 +61,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CanvasItemMaterial" id=6]
+
 [sub_resource type="CircleShape2D" id=3]
 radius = 100.0
 
@@ -77,7 +79,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.352941 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.215686 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -136,7 +138,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 9
+frame = 26
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -148,8 +150,9 @@ texture = ExtResource( 33 )
 color = Color( 0.780392, 0, 0.847059, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
-width = 40.0
-default_color = Color( 0.827451, 0, 1, 1 )
+material = SubResource( 6 )
+width = 34.0
+default_color = Color( 1.2, 0, 0.7, 1 )
 texture = ExtResource( 32 )
 
 [node name="LightLine2D" type="Line2D" parent="."]
