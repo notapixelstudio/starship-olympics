@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/weapons/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -12,8 +12,9 @@
 [ext_resource path="res://assets/sprites/weapons/explosion_spikes.png" type="Texture" id=10]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Wow"
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="Animation" id=2]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D:shape:radius")
@@ -73,7 +74,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 4.24, 4.24 ) ]
+"values": [ Vector2( 0.8, 0.8 ), Vector2( 5, 5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Halo/explosion_halo:modulate")
@@ -85,13 +86,13 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
-"values": [ Color( 1, 0.862745, 0.564706, 0.6 ), Color( 1, 0.352941, 0, 0 ) ]
+"values": [ Color( 1.5, 0.35, 0.61, 1 ), Color( 1, 0.352941, 0, 0 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 40.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 400.0
 
 [node name="Explosion" type="Area2D" groups=[
@@ -129,7 +130,7 @@ __meta__ = {
 [node name="Halo" type="Node2D" parent="."]
 
 [node name="explosion_halo" type="Sprite" parent="Halo"]
-modulate = Color( 1, 0.862745, 0.564706, 0.831373 )
+modulate = Color( 1.5, 0.35, 0.61, 1 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 7 )
 
@@ -137,7 +138,8 @@ texture = ExtResource( 7 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="Sprite" type="Sprite" parent="Image"]
-modulate = Color( 1, 1, 1, 0.784314 )
+modulate = Color( 1.6, 1, 1.1, 1 )
+material = SubResource( 1 )
 texture = ExtResource( 8 )
 
 [node name="circle_glow" type="Sprite" parent="Image"]
@@ -155,11 +157,11 @@ texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Wow"
-anims/Wow = SubResource( 1 )
+anims/Wow = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 volume_db = -6.0
@@ -184,6 +186,6 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
 [connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]
