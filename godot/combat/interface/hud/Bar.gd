@@ -104,6 +104,10 @@ func streak_on():
 func streak_off():
 	streaking = false
 	sprite.texture = sprite_off
+	
+	# stop glowing for older bars
+	if current_streak_bar:
+		current_streak_bar.color = player.species.color
 
 func _on_StreakTimer_timeout():
 	streak_off()
@@ -113,7 +117,7 @@ func add_streak_bar():
 	
 	# glow
 	current_streak_bar.material = CanvasItemMaterial.new()
-	current_streak_bar.color = GlowColor.new(player.species.color, 1.1).color
+	current_streak_bar.color = GlowColor.new(player.species.color, 1.15).color
 	
 	streak_start = previous_value
 	$Streaks.add_child(current_streak_bar)
