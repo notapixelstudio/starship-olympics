@@ -179,6 +179,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://special_scenes/option_screen/GenericOption.gd"
 }, {
+"base": "Reference",
+"class": "GlowColor",
+"language": "GDScript",
+"path": "res://utils/GlowColor.gd"
+}, {
 "base": "Node",
 "class": "InfoPlayer",
 "language": "GDScript",
@@ -334,6 +339,7 @@ _global_script_class_icons={
 "GShape": "",
 "GameMode": "",
 "GenericOption": "",
+"GlowColor": "",
 "InfoPlayer": "",
 "Manager": "",
 "MapCell": "",
@@ -800,7 +806,7 @@ file_logging/enable_file_logging=true
 
 [rendering]
 
-quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=2
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0.145098, 0.172549, 0.231373, 1 )
 environment/default_environment="res://default_env.tres"

@@ -7,6 +7,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 130, 80 )
 
+[sub_resource type="CanvasItemMaterial" id=3]
+
 [sub_resource type="Animation" id=2]
 resource_name = "Break"
 length = 0.4
@@ -72,7 +74,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Graphics" type="Node2D" parent="."]
-modulate = Color( 0.168627, 0.513726, 0.619608, 1 )
+modulate = Color( 0, 0.576471, 0.890196, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Graphics"]
 margin_left = -90.0
@@ -132,15 +134,16 @@ width = 6.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Border" type="Line2D" parent="Graphics"]
+modulate = Color( 1.22, 1.22, 1.22, 1 )
+material = SubResource( 3 )
 points = PoolVector2Array( 0, -40, 90, -40, 90, 40, -90, 40, -90, -40, 0, -40 )
-width = 40.0
+width = 8.0
 default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 2 )
 texture_mode = 2
 
 [node name="BreakGlow" type="Line2D" parent="."]
 visible = false
-modulate = Color( 0.996078, 0.984314, 0.941176, 1 )
+modulate = Color( 1.2, 1.2, 1.2, 1 )
 points = PoolVector2Array( 0, -50, 100, -50, 100, 50, -100, 50, -100, -50, 0, -50, 0, -50 )
 width = 50.0
 default_color = Color( 1, 1, 1, 1 )

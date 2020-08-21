@@ -18,17 +18,17 @@ func set_type(v):
 	$Graphics/RespawnerLine.visible = false
 	$Graphics/Border.joint_mode = Line2D.LINE_JOINT_SHARP
 	if type == TYPE.solid:
-		$Graphics.modulate = Color(0.7,0.7,0.7,1)
+		$Graphics.modulate = Color(0.8,0.8,0.8,1)
 		$Graphics/BrickLines.visible = false
 		$Graphics/SolidFill.visible = true
 	elif type == TYPE.diamond:
-		$Graphics.modulate = Color('#2b839e')#0095c3')
+		$Graphics.modulate = Color('#0093e3')
 	elif type == TYPE.gold:
 		$Graphics.modulate = Color('#ffa700')
 		$Graphics/Border.joint_mode = Line2D.LINE_JOINT_BEVEL
 		points = 3
 	elif type == TYPE.respawner:
-		$Graphics.modulate = Color('#27b01b')#0dd614')
+		$Graphics.modulate = Color(0.1,0.9,0.2,1)
 		$Graphics/BrickLines.visible = false
 		$Graphics/RespawnerLine.visible = true
 		$Graphics/Border.joint_mode = Line2D.LINE_JOINT_ROUND
