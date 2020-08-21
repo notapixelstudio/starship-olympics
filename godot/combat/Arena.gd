@@ -227,8 +227,8 @@ func _ready():
 	
 	# FIXME
 	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
-	
 	# set up hive cells
+	
 	#for cell in get_tree().get_nodes_in_group('cell'):
 	#	var skip = false
 	#	for player_spawner in $SpawnPositions/Players.get_children():

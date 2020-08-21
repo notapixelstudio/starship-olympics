@@ -1,12 +1,12 @@
 extends Node2D
 
 export var species : Resource
+export var timeout : float = 2.0
 
 func _ready():
-	$explosion_halo.self_modulate = species.color
-	$explosion_halo2.self_modulate = species.color
-	$explosion_halo3.self_modulate = species.color
-
-func _on_AnimationPlayer_animation_finished(anim_name):
+	$Particles2D.modulate = species.color
+	$Particles2D.lifetime = timeout
+	$Particles2D.emitting = true
+	yield(get_tree().create_timer(timeout), "timeout")
 	queue_free()
 	

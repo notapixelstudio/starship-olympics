@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=2]
@@ -16,14 +16,15 @@
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
 
-[sub_resource type="PhysicsMaterial" id=1]
+[sub_resource type="PhysicsMaterial" id=2]
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 16.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "rotate"
+[sub_resource type="CanvasItemMaterial" id=7]
+
+[sub_resource type="Animation" id=4]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -39,16 +40,16 @@ tracks/0/keys = {
 "values": [ 0.0, 120.0, 240.0, 360.0 ]
 }
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 radius = 8.0
 
 [node name="Bomb" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 26
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource( 2 )
 gravity_scale = 2.0
 contacts_reported = 1
 contact_monitor = true
@@ -110,9 +111,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 1.3, 1.3, 1.3, 1 )
+material = SubResource( 7 )
 rotation = 2.44386
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
@@ -120,21 +123,21 @@ texture = ExtResource( 12 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 autoplay = "rotate"
 playback_speed = 0.5
-anims/rotate = SubResource( 3 )
+anims/rotate = SubResource( 4 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Core" type="Area2D" parent="."]
 collision_layer = 256
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Entity" type="Node" parent="Core"]
 script = ExtResource( 3 )
