@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://special_scenes/option_screen/OptionButton.gd" type="Script" id=3]
+
+[node name="Option" type="Button"]
+margin_top = 216.0
+margin_right = 445.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_Controls_pressed"]

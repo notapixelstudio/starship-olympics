@@ -372,3 +372,9 @@ func send_stats(category: String, stats: Dictionary):
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))
 	
+func join_str(array, sep=","):
+	var ret = ""
+	for e in array:
+		ret += e+sep
+	return ret.rstrip(sep)
+	return ret

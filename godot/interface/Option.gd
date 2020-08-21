@@ -4,13 +4,16 @@ var array_songs
 
 signal back
 
-onready var container = $Panel/PanelItems/Items
+onready var container = $Panel/PanelItems/Options
 onready var animation = $AnimationPlayer
+onready var panel = $Panel/PanelItems
 
 var focus_index = 0
 
+var separator = " > "
+var navbar = ["Options"]
 
-func disable_all():
+func back_to_menu():
 	animation.play("hide")
 	yield(animation, "animation_finished")
 	emit_signal("back")
@@ -19,14 +22,15 @@ func disable_all():
 func enable_all():
 	visible = true
 	for elem in container.get_children():
-		elem._initialize()
+		if not elem is Button:
+			elem._initialize()
 	focus_index = 0
 	container.get_child(focus_index).grab_focus()
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		container.get_child(container.get_child_count()-1).grab_focus()
-		disable_all()
+		back_to_menu()
 	if event.is_action_pressed("ui_up"):
 		focus_index = clamp(focus_index-1, 0, container.get_child_count() -1)
 		#container.get_child(focus_index).grab_focus()
@@ -35,11 +39,29 @@ func _input(event):
 		focus_index = clamp(focus_index+1, 0, container.get_child_count() -1)
 		#container.get_child(focus_index).grab_focus()
 		
-	
-
 func _exit_tree():
 	# Let's save the changes
 	persistance.save_game()
 
-func _on_Button_pressed():
-	disable_all()
+func _on_Opt_nav_to(title):
+	var opt = navbar[len(navbar)-1]
+	container.visible = false
+	container = panel.get_node(title)
+	container.visible  = true
+	navbar.append(title)
+	$Panel/PanelItems/Navbar.text = global.join_str(navbar, separator)
+	focus_index = 0
+	enable_all()
+
+func back():
+	var opt = navbar.pop_back()
+	container.visible = false
+	container = panel.get_node(navbar[len(navbar)-1])
+	container.visible = true
+	$Panel/PanelItems/Navbar.text = global.join_str(navbar, separator)
+	
+func _on_Back_pressed():
+	if len(navbar) <= 1:
+		back_to_menu()
+	else:
+		back()

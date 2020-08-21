@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.gd" type="Script" id=2]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.gd" type="Script" id=3]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.gd" type="Script" id=4]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=5]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=6]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=7]
+
+[node name="Items" type="VBoxContainer"]
+margin_right = 445.0
+margin_bottom = 374.0
+
+[node name="Language" type="Panel" parent="." instance=ExtResource( 7 )]
+margin_right = 445.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+focus_mode = 2
+theme = ExtResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+elem_type = 2
+is_global = true
+element_path = "language"
+label_description = "language"
+
+[node name="FullScreen" type="MarginContainer" parent="." instance=ExtResource( 1 )]
+margin_top = 54.0
+margin_right = 445.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 50 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+is_global = true
+element_path = "full_screen"
+label_description = "FULLSCREEN"
+
+[node name="Rumbling" type="MarginContainer" parent="." instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_right = 445.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 0, 50 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+is_global = true
+element_path = "rumbling"
+label_description = "GAMEPAD RUMBLING"
+
+[node name="Music" type="Panel" parent="." instance=ExtResource( 6 )]
+margin_top = 162.0
+margin_right = 445.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 5 )
+script = ExtResource( 3 )
+elem_type = 1
+is_global = true
+element_path = "master_volume"
+label_description = "Volume Master"
+
+[node name="Music2" type="Panel" parent="." instance=ExtResource( 6 )]
+margin_top = 216.0
+margin_right = 445.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 5 )
+script = ExtResource( 3 )
+elem_type = 1
+is_global = true
+element_path = "music_volume"
+label_description = "Volume Music"
+bus_name = "Music"
+
+[node name="Music3" type="Panel" parent="." instance=ExtResource( 6 )]
+margin_top = 270.0
+margin_right = 445.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 5 )
+script = ExtResource( 3 )
+elem_type = 1
+is_global = true
+element_path = "sfx_volume"
+label_description = "Volume SFX"
+bus_name = "SFX"
+
+[node name="ONOFF2" type="MarginContainer" parent="." instance=ExtResource( 1 )]
+margin_top = 324.0
+margin_right = 445.0
+margin_bottom = 374.0
+rect_min_size = Vector2( 0, 50 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+is_global = true
+element_path = "enable_analytics"
+label_description = "analytics"
+[connection signal="focus_entered" from="Language" to="Language" method="_on_Element_focus_entered"]
+[connection signal="focus_exited" from="Language" to="Language" method="_on_Element_focus_exited"]
+[connection signal="focus_entered" from="FullScreen" to="FullScreen" method="_on_MarginContainer_focus_entered"]
+[connection signal="focus_exited" from="FullScreen" to="FullScreen" method="_on_MarginContainer_focus_exited"]
+[connection signal="focus_entered" from="Rumbling" to="Rumbling" method="_on_MarginContainer_focus_entered"]
+[connection signal="focus_exited" from="Rumbling" to="Rumbling" method="_on_MarginContainer_focus_exited"]
+[connection signal="focus_entered" from="ONOFF2" to="ONOFF2" method="_on_MarginContainer_focus_entered"]
+[connection signal="focus_exited" from="ONOFF2" to="ONOFF2" method="_on_MarginContainer_focus_exited"]
