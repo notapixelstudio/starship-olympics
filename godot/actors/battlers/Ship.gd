@@ -27,7 +27,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_DASHING_CHARGE = 0.1
+const MIN_DASHING_CHARGE = 0.12
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -193,6 +193,7 @@ func charge():
 	$Graphics/ChargeBar.visible = true
 	#$GravitonField.enabled = true
 	charging_sfx.play()
+	dash_fat_appearance()
 	
 func fire():
 	"""
@@ -215,6 +216,8 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
+	$Tween.stop_all()
+	$Graphics/Sprite.scale = DASH_RESTORED
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
@@ -284,19 +287,36 @@ func recheck_colliding():
 	for area in $NearArea.get_overlapping_areas():
 		_on_NearArea_area_entered(area)
 
+const DASH_RESTORED = Vector2(1,1)
+const DASH_THIN = Vector2(1.5,0.5)
+const DASH_FAT = Vector2(0.8,1.2)
+
 func dash_init_appearance():
-	dash_restore_appearance()
+	$Tween.stop_all()
+	$Graphics/Sprite.scale = DASH_RESTORED
+	$DashParticles.emitting = false
+	$DashParticles.visible = false
 	
 func dash_restore_appearance():
-	#$Graphics/Sprite.scale = Vector2(1,1)
+	$Tween.stop_all()
+	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_RESTORED, 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
+	$Tween.start()
+	$DashFxTimer.start(0.1)
+	yield($DashFxTimer, 'timeout')
 	$DashParticles.emitting = false
 	
 func dash_fat_appearance():
-	$Graphics/Sprite.scale = Vector2(0.75,1.25)
+	$Tween.stop_all()
+	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
+	$Tween.start()
 	
 func dash_thin_appearance():
-	#$Graphics/Sprite.scale = Vector2(1.25,0.75)
+	$Graphics/Sprite.scale = DASH_THIN
 	$DashParticles.emitting = true
+	$DashParticles.visible = true
+	$DashFxTimer.stop()
 	
 func _on_Dashing_enabled():
 	dash_thin_appearance()

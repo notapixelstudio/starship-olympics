@@ -24,35 +24,41 @@
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CanvasItemMaterial" id=6]
+[sub_resource type="CircleShape2D" id=6]
+radius = 16.0
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="CircleShape2D" id=7]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 400.0
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
-emission_sphere_radius = 50.0
+emission_sphere_radius = 30.0
 flag_disable_z = true
+spread = 60.0
 gravity = Vector3( 0, 0, 0 )
+initial_velocity = -200.0
 angular_velocity = 100.0
 angular_velocity_random = 0.25
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+tangential_accel = 300.0
+tangential_accel_random = 1.0
+damping = 100.0
+damping_random = 1.0
 scale = 0.2
 scale_random = 0.25
-color_ramp = SubResource( 8 )
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 16.0
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 16.0
-
-[sub_resource type="CircleShape2D" id=4]
-radius = 400.0
+color_ramp = SubResource( 4 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -70,18 +76,8 @@ script = ExtResource( 1 )
 debug_enabled = true
 species = ExtResource( 2 )
 
-[node name="DashParticles" type="Particles2D" parent="."]
-modulate = Color( 2, 2, 2, 1 )
-material = SubResource( 6 )
-position = Vector2( -48, 0 )
-emitting = false
-amount = 100
-local_coords = false
-process_material = SubResource( 9 )
-texture = ExtResource( 19 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="Graphics" parent="." instance=ExtResource( 3 )]
 
@@ -90,7 +86,7 @@ collision_layer = 2
 collision_mask = 2948
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
-shape = SubResource( 3 )
+shape = SubResource( 7 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 input_pickable = false
@@ -104,7 +100,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 
 [node name="charging" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX_effect"
@@ -198,6 +194,23 @@ script = ExtResource( 18 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DashFxTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="DashParticles" type="Particles2D" parent="."]
+modulate = Color( 3, 3, 3, 1 )
+material = SubResource( 2 )
+position = Vector2( -56, 0 )
+emitting = false
+amount = 80
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 19 )
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]

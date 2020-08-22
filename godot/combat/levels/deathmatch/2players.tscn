@@ -6,7 +6,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=7]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=8]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
@@ -156,16 +156,13 @@ rotation_degrees = 0.0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
 position = Vector2( -1000, -400 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
 position = Vector2( 1000, 400 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 8 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3
