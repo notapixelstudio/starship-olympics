@@ -22,7 +22,7 @@ func back_to_menu():
 func enable_all():
 	visible = true
 	for elem in container.get_children():
-		if not elem is Button:
+		if elem is GenericOption:
 			elem._initialize()
 	focus_index = 0
 	container.get_child(focus_index).grab_focus()
@@ -43,7 +43,7 @@ func _exit_tree():
 	# Let's save the changes
 	persistance.save_game()
 
-func _on_Opt_nav_to(title):
+func nav_to(title):
 	var opt = navbar[len(navbar)-1]
 	container.visible = false
 	container = panel.get_node(title)

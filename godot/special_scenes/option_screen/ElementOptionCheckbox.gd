@@ -10,7 +10,6 @@ func _process(delta):
 func _ready():
 	if not label_description:
 		label_description = variable_name
-
 	_initialize()
 	
 func _initialize():
