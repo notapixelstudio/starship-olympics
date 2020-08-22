@@ -101,7 +101,7 @@ func _enter_tree():
 	yield(get_tree().create_timer(0.1), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
-	
+	dash_init_appearance()
 	
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
@@ -181,8 +181,9 @@ func _physics_process(delta):
 		unstun()
 		
 	dash_cooldown -= delta
-	if dash_cooldown <= 0:
+	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		entity.get('Dashing').disable()
+		dash_restore_appearance()
 		
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
@@ -217,7 +218,7 @@ func fire():
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
-		dash_cooldown = 0.2
+		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.3
 		
 
 func die(killer : Ship):
@@ -282,3 +283,23 @@ func recheck_colliding():
 		_on_NearArea_body_entered(body)
 	for area in $NearArea.get_overlapping_areas():
 		_on_NearArea_area_entered(area)
+
+func dash_init_appearance():
+	dash_restore_appearance()
+	
+func dash_restore_appearance():
+	#$Graphics/Sprite.scale = Vector2(1,1)
+	$DashParticles.emitting = false
+	
+func dash_fat_appearance():
+	$Graphics/Sprite.scale = Vector2(0.75,1.25)
+	
+func dash_thin_appearance():
+	#$Graphics/Sprite.scale = Vector2(1.25,0.75)
+	$DashParticles.emitting = true
+	
+func _on_Dashing_enabled():
+	dash_thin_appearance()
+	
+func _on_Dashing_disabled():
+	dash_restore_appearance()

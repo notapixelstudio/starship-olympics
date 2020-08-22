@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -18,10 +18,32 @@
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=18]
+[ext_resource path="res://assets/sprites/environments/coin.png" type="Texture" id=19]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=6]
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 1
+emission_sphere_radius = 50.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 100.0
+angular_velocity_random = 0.25
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.2
+scale_random = 0.25
+color_ramp = SubResource( 8 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.0
@@ -48,11 +70,20 @@ script = ExtResource( 1 )
 debug_enabled = true
 species = ExtResource( 2 )
 
+[node name="DashParticles" type="Particles2D" parent="."]
+modulate = Color( 2, 2, 2, 1 )
+material = SubResource( 6 )
+position = Vector2( -48, 0 )
+emitting = false
+amount = 100
+local_coords = false
+process_material = SubResource( 9 )
+texture = ExtResource( 19 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="Graphics" parent="." instance=ExtResource( 3 )]
-scale = Vector2( 1.5, 1.5 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -173,3 +204,5 @@ __meta__ = {
 [connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]
 [connection signal="disabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_disabled"]
 [connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]
+[connection signal="disabled" from="Entity2D/Dashing" to="." method="_on_Dashing_disabled"]
+[connection signal="enabled" from="Entity2D/Dashing" to="." method="_on_Dashing_enabled"]
