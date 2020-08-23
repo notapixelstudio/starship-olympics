@@ -18,7 +18,7 @@
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=18]
-[ext_resource path="res://assets/sprites/environments/coin.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -35,13 +35,13 @@ radius = 400.0
 
 [sub_resource type="CanvasItemMaterial" id=5]
 
-[sub_resource type="Gradient" id=6]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 1
 emission_sphere_radius = 30.0
 flag_disable_z = true
@@ -52,13 +52,10 @@ angular_velocity = 100.0
 angular_velocity_random = 0.25
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-tangential_accel = 300.0
-tangential_accel_random = 1.0
 damping = 100.0
 damping_random = 1.0
-scale = 0.2
 scale_random = 0.25
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 10 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -209,7 +206,7 @@ position = Vector2( -56, 0 )
 emitting = false
 amount = 80
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 11 )
 texture = ExtResource( 19 )
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

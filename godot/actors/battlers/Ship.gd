@@ -115,6 +115,13 @@ func _ready():
 	entity.get('Conqueror').set_species(self)
 	self.responsive = true
 	
+	var dash_process_material = $DashParticles.process_material.duplicate(true)
+	var transparent_color = Color(species.color_2)
+	transparent_color.a = 0
+	dash_process_material.color_ramp.gradient.set_color(0, species.color)
+	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
+	$DashParticles.process_material = dash_process_material
+	
 func change_engine(value: bool):
 	responsive = value
 	set_physics_process(responsive)
