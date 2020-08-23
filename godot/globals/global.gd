@@ -218,9 +218,12 @@ func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
-	#setup language
+	# setup language and add if not exists
 	var generic_locale = TranslationServer.get_locale().split("_")[0]
-	language = TranslationServer.get_locale_name(generic_locale).to_lower()
+	# language = TranslationServer.get_locale_name(generic_locale).to_lower()
+	for lang in available_languages:
+		if generic_locale == available_languages[lang]:
+			language = lang
 	
 	templates = get_species_templates()
 	var saved_data = persistance.get_saved_data()
