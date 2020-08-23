@@ -175,6 +175,8 @@ multiplayer_scene = ExtResource( 2 )
 layer = 100
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
+transition = 0.0
+smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
@@ -250,7 +252,7 @@ rect_min_size = Vector2( 210, 70 )
 custom_fonts/font = ExtResource( 11 )
 disabled = true
 action_mode = 0
-text = "CUSTOM GAME"
+text = "FIGHT"
 flat = true
 
 [node name="Options" type="Button" parent="CanvasLayer/Buttons"]
