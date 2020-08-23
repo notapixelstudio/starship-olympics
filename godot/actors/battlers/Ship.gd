@@ -94,6 +94,8 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	emit_signal('spawned', self)
+	dash_init_appearance()
+	
 	# Invincible for the firs MAX seconds
 	invincible = true
 	if skin:
@@ -101,7 +103,6 @@ func _enter_tree():
 	yield(get_tree().create_timer(0.1), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
-	dash_init_appearance()
 	
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
@@ -294,6 +295,7 @@ const DASH_FAT = Vector2(0.8,1.2)
 func dash_init_appearance():
 	$Tween.stop_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
+	$DashParticles.restart()
 	$DashParticles.emitting = false
 	$DashParticles.visible = false
 	

@@ -24,24 +24,24 @@
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=3]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=4]
 radius = 400.0
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=5]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 1
 emission_sphere_radius = 30.0
 flag_disable_z = true
@@ -58,7 +58,7 @@ damping = 100.0
 damping_random = 1.0
 scale = 0.2
 scale_random = 0.25
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 7 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -77,7 +77,7 @@ debug_enabled = true
 species = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Graphics" parent="." instance=ExtResource( 3 )]
 
@@ -86,7 +86,7 @@ collision_layer = 2
 collision_mask = 2948
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 input_pickable = false
@@ -100,7 +100,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="charging" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX_effect"
@@ -204,12 +204,12 @@ one_shot = true
 
 [node name="DashParticles" type="Particles2D" parent="."]
 modulate = Color( 3, 3, 3, 1 )
-material = SubResource( 2 )
+material = SubResource( 5 )
 position = Vector2( -56, 0 )
 emitting = false
 amount = 80
 local_coords = false
-process_material = SubResource( 5 )
+process_material = SubResource( 8 )
 texture = ExtResource( 19 )
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
