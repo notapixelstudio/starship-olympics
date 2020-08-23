@@ -279,6 +279,14 @@ func _unlock_species(species : String):
 
 const INPUT_ACTIONS = ["kb1", "kb2"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
+var default_input :=  {"kb1_accept":"M", "kb1_down":"Down", "kb1_fire":"M", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", "kb2_accept":"1", "kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"}
+
+func set_default_mapping(device:String):
+	for action in default_input:
+		if device in action:
+			var event = InputEventKey.new()
+			event.scancode = OS.find_scancode_from_string(default_input[action])
+			remap_action_to(action, event)
 
 func remap_action_to(action, event):
 	InputMap.action_erase_events(action)

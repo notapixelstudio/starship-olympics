@@ -3,19 +3,21 @@ extends Control
 const EXPOSE_DURATION := 2.0
 const FADE_DURATION := 0.5
 
-onready var container := $HBoxContainer/CenterContainer
 onready var tween := $Tween
+onready var key := $HBoxContainer/key1
+onready var controller := $HBoxContainer/Controller
 
+onready var elements  = [key, controller]
 
 func _ready() -> void:
 	var total_time := 0.0
-	for element in container.get_children():
+	for element in elements:
 		total_time += _fade_in(element, total_time)
 		total_time += _fade_out(element, total_time)
 	tween.start()
 
 
-func _fade_in(target: Control, total_time: float) -> float:
+func _fade_in(target, total_time: float) -> float:
 	tween.interpolate_property(
 		target,
 		"modulate",
@@ -29,7 +31,7 @@ func _fade_in(target: Control, total_time: float) -> float:
 	return FADE_DURATION
 
 
-func _fade_out(target: Control, total_time: float) -> float:
+func _fade_out(target, total_time: float) -> float:
 	tween.interpolate_property(
 		target,
 		"modulate",

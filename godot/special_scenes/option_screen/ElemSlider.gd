@@ -4,6 +4,7 @@ export (String) var bus_name = "Master"
 onready var sfx_effect  = $AudioStreamPlayer
 onready var value_node = $VBoxContainer/HSlider
 onready var description_node = $VBoxContainer/Volume
+onready var hslider =$VBoxContainer/HSlider
 
 func _process(delta):
 	description_node.text = tr("Volume" + " " + bus_name)
@@ -28,3 +29,12 @@ func _on_HSlider_focus_entered():
 	
 func _on_HSlider_focus_exited():
 	add_stylebox_override("panel", load("res://interface/themes/grey/normal.tres"))
+
+
+
+func _on_Music_focus_entered():
+	hslider.grab_focus()
+
+
+func _on_Music_focus_exited():
+	hslider.grab_focus()

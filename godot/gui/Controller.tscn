@@ -6,23 +6,23 @@
 [node name="PlaystationX" type="Sprite"]
 texture = ExtResource( 2 )
 
-[node name="Dpad" type="Node" parent="."]
+[node name="Dpad" type="Node2D" parent="."]
 
-[node name="LeftStick" type="Node" parent="."]
+[node name="LeftStick" type="Node2D" parent="."]
 
 [node name="Left" type="Sprite" parent="LeftStick"]
 position = Vector2( -50.5314, 30.5572 )
 scale = Vector2( 1.48529, 1.48529 )
 texture = ExtResource( 1 )
 
-[node name="RightStick" type="Node" parent="."]
+[node name="RightStick" type="Node2D" parent="."]
 
 [node name="Right" type="Sprite" parent="RightStick"]
 position = Vector2( 51.0765, 30.8787 )
 scale = Vector2( 1.48529, 1.48529 )
 texture = ExtResource( 1 )
 
-[node name="Buttons" type="Node" parent="."]
+[node name="Buttons" type="Node2D" parent="."]
 
 [node name="Top" type="Sprite" parent="Buttons"]
 position = Vector2( 95.0837, -66.9595 )
