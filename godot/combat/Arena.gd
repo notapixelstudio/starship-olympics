@@ -227,6 +227,10 @@ func _ready():
 	
 	# FIXME
 	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
+	
+	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
+		well.enabled = true
+	
 	# set up hive cells
 	
 	#for cell in get_tree().get_nodes_in_group('cell'):
