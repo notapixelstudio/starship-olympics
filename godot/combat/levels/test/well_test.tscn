@@ -12,10 +12,10 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=11]
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( -952.628, -550, -2.02067e-13, -1100, 952.628, -550, 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( -952.628, -550, -2.02067e-13, -1100, 952.628, -550, 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550 )
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -29,7 +29,7 @@ orbit_velocity_random = 0.0
 radial_accel = -200.0
 scale = 6.0
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Rotate"
 length = 4.0
 loop = true
@@ -96,10 +96,10 @@ polygon = PoolVector2Array( 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952
 points = PoolVector2Array( 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550, -2.02067e-13, -1100, 952.628, -550, 952.628, 550 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/Field/Area2D" index="0"]
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/Field/CrownCollider" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Flow" parent="Battlefield/Middleground/Field/Entity" index="3"]
 charge = -20
@@ -115,14 +115,16 @@ __meta__ = {
 radius = 1100
 rotation_degrees = 30.0
 
-[node name="GravitonField" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
+[node name="GravitonField" parent="Battlefield/Middleground" index="1" groups=[
+"gravity_wells_on",
+] instance=ExtResource( 7 )]
 gravity = -1024.0
 influence_radius = 1000.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GravitonField" index="2" groups=[
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GravitonField" index="0" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 6 )
+anims/Rotate = SubResource( 4 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 880, -40 )
