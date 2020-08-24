@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Option.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/DefaultLabelFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=4]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=6]
+[ext_resource path="res://special_scenes/option_screen/OptionButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=8]
+[ext_resource path="res://special_scenes/option_screen/Controls.gd" type="Script" id=9]
+[ext_resource path="res://special_scenes/option_screen/CommandOption.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hide"
@@ -37,107 +40,196 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -232.0
-margin_top = -254.0
-margin_right = 229.0
-margin_bottom = 262.0
+margin_left = -315.5
+margin_top = -278.0
+margin_right = 315.5
+margin_bottom = 278.0
 mouse_filter = 1
-
-[node name="Title" type="Label" parent="Panel"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 453.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 3 )
-text = "Options"
-align = 1
-uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PanelItems" type="VBoxContainer" parent="Panel"]
-margin_left = 8.0
-margin_top = 64.0
-margin_right = 453.0
-margin_bottom = 461.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -274.0
+margin_bottom = 277.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Items" type="VBoxContainer" parent="Panel/PanelItems"]
-margin_right = 445.0
-margin_bottom = 374.0
+[node name="Navbar" type="Label" parent="Panel/PanelItems"]
+margin_right = 631.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 3 )
+text = "Options"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Element" parent="Panel/PanelItems/Items" instance=ExtResource( 4 )]
+[node name="Separator" type="Control" parent="Panel/PanelItems"]
+margin_top = 37.0
+margin_right = 631.0
+margin_bottom = 127.0
+size_flags_vertical = 3
+
+[node name="Options" type="VBoxContainer" parent="Panel/PanelItems"]
+margin_top = 133.0
+margin_right = 631.0
+margin_bottom = 399.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Language" parent="Panel/PanelItems/Options" instance=ExtResource( 8 )]
 anchor_right = 0.0
-margin_right = 445.0
+margin_right = 631.0
 margin_bottom = 50.0
 elem_type = 2
+is_global = true
 element_path = "language"
 label_description = "language"
 
-[node name="ONOFF" parent="Panel/PanelItems/Items" instance=ExtResource( 5 )]
+[node name="FullScreen" parent="Panel/PanelItems/Options" instance=ExtResource( 5 )]
 margin_top = 54.0
-margin_right = 445.0
+margin_right = 631.0
 margin_bottom = 104.0
 is_global = true
 element_path = "full_screen"
 label_description = "FULLSCREEN"
 
-[node name="Rumbling" parent="Panel/PanelItems/Items" instance=ExtResource( 5 )]
+[node name="Analytics" parent="Panel/PanelItems/Options" instance=ExtResource( 5 )]
 margin_top = 108.0
-margin_right = 445.0
+margin_right = 631.0
 margin_bottom = 158.0
 is_global = true
-element_path = "rumbling"
-label_description = "GAMEPAD RUMBLING"
+element_path = "enable_analytics"
+label_description = "analytics"
 
-[node name="Music" parent="Panel/PanelItems/Items" instance=ExtResource( 6 )]
+[node name="Audio" parent="Panel/PanelItems/Options" instance=ExtResource( 6 )]
 margin_top = 162.0
-margin_right = 445.0
+margin_right = 631.0
 margin_bottom = 212.0
+text = "AUDIO"
+title = "Audio"
+
+[node name="Controls" parent="Panel/PanelItems/Options" instance=ExtResource( 6 )]
+margin_right = 631.0
+text = "CONTROLS"
+title = "Controls"
+
+[node name="Audio" type="VBoxContainer" parent="Panel/PanelItems"]
+visible = false
+margin_top = 315.0
+margin_right = 631.0
+margin_bottom = 473.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
+margin_top = 0.0
+margin_right = 631.0
+margin_bottom = 50.0
 elem_type = 1
 is_global = true
 element_path = "master_volume"
 label_description = "Volume Master"
 
-[node name="Music2" parent="Panel/PanelItems/Items" instance=ExtResource( 6 )]
-margin_top = 216.0
-margin_right = 445.0
-margin_bottom = 266.0
+[node name="Music2" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
+margin_top = 54.0
+margin_right = 631.0
+margin_bottom = 104.0
 elem_type = 1
 is_global = true
 element_path = "music_volume"
 label_description = "Volume Music"
 bus_name = "Music"
 
-[node name="Music3" parent="Panel/PanelItems/Items" instance=ExtResource( 6 )]
-margin_top = 270.0
-margin_right = 445.0
-margin_bottom = 320.0
+[node name="Music3" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
+margin_top = 108.0
+margin_right = 631.0
+margin_bottom = 158.0
 elem_type = 1
 is_global = true
 element_path = "sfx_volume"
 label_description = "Volume SFX"
 bus_name = "SFX"
 
-[node name="ONOFF2" parent="Panel/PanelItems/Items" instance=ExtResource( 5 )]
-margin_top = 324.0
-margin_right = 445.0
-margin_bottom = 374.0
-is_global = true
-element_path = "enable_analytics"
-label_description = "analytics"
+[node name="Controls" type="VBoxContainer" parent="Panel/PanelItems"]
+visible = false
+margin_top = 316.0
+margin_right = 631.0
+margin_bottom = 690.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Control" type="Control" parent="Panel/PanelItems"]
-margin_top = 380.0
-margin_right = 445.0
-margin_bottom = 380.0
+[node name="Element" parent="Panel/PanelItems/Controls" instance=ExtResource( 8 )]
+anchor_right = 0.0
+margin_right = 631.0
+margin_bottom = 50.0
+elem_type = 2
+is_global = true
+element_path = "device"
+label_description = "device"
+
+[node name="MarginContainer" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+margin_top = 54.0
+margin_right = 631.0
+margin_bottom = 104.0
+action = "up"
+
+[node name="MarginContainer2" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+margin_top = 108.0
+margin_right = 631.0
+margin_bottom = 158.0
+action = "down"
+
+[node name="MarginContainer3" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+margin_top = 162.0
+margin_right = 631.0
+margin_bottom = 212.0
+action = "left"
+
+[node name="MarginContainer4" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+margin_top = 216.0
+margin_right = 631.0
+margin_bottom = 266.0
+action = "right"
+
+[node name="MarginContainer5" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+margin_top = 270.0
+margin_right = 631.0
+margin_bottom = 320.0
+
+[node name="Default" type="Button" parent="Panel/PanelItems/Controls"]
+margin_top = 324.0
+margin_right = 631.0
+margin_bottom = 374.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "DEFAULT"
+
+[node name="Separator2" type="Control" parent="Panel/PanelItems"]
+margin_top = 405.0
+margin_right = 631.0
+margin_bottom = 495.0
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="Panel/PanelItems"]
-margin_top = 386.0
-margin_right = 445.0
-margin_bottom = 436.0
+[node name="Back" type="Button" parent="Panel/PanelItems"]
+margin_top = 501.0
+margin_right = 631.0
+margin_bottom = 551.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 7 )
@@ -147,4 +239,8 @@ text = "BACK"
 anims/hide = SubResource( 1 )
 anims/show = SubResource( 2 )
 anims/standby = SubResource( 3 )
-[connection signal="pressed" from="Panel/PanelItems/Button" to="." method="_on_Button_pressed"]
+[connection signal="nav_to" from="Panel/PanelItems/Options/Audio" to="." method="nav_to"]
+[connection signal="nav_to" from="Panel/PanelItems/Options/Controls" to="." method="nav_to"]
+[connection signal="value_changed" from="Panel/PanelItems/Controls/Element" to="Panel/PanelItems/Controls" method="_on_Element_value_changed"]
+[connection signal="pressed" from="Panel/PanelItems/Controls/Default" to="Panel/PanelItems/Controls" method="_on_Default_pressed"]
+[connection signal="pressed" from="Panel/PanelItems/Back" to="." method="_on_Back_pressed"]

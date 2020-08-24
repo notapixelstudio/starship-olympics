@@ -96,12 +96,12 @@ func _input(event):
 	if disabled:
 		return
 	if selected :
-		if event.is_action_pressed(controls+"_accept"):
+		if event.is_action_pressed(controls+"_fire"):
 			emit_signal("ready_to_fight")
 #		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 #			deselect()
 	elif joined:
-		if event.is_action_pressed(controls+"_accept") and not selected:
+		if event.is_action_pressed(controls+"_fire") and not selected:
 			select_character()
 
 func set_team(team_name: String):
