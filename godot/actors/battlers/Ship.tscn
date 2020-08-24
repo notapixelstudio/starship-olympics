@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=18]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -31,6 +32,30 @@ radius = 16.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
+
+[sub_resource type="CanvasItemMaterial" id=5]
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 30.0
+flag_disable_z = true
+spread = 60.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -200.0
+angular_velocity = 100.0
+angular_velocity_random = 0.25
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_random = 1.0
+scale_random = 0.25
+color_ramp = SubResource( 10 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -52,7 +77,6 @@ species = ExtResource( 2 )
 shape = SubResource( 2 )
 
 [node name="Graphics" parent="." instance=ExtResource( 3 )]
-scale = Vector2( 1.5, 1.5 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -167,9 +191,28 @@ script = ExtResource( 18 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DashFxTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="DashParticles" type="Particles2D" parent="."]
+modulate = Color( 3, 3, 3, 1 )
+material = SubResource( 5 )
+position = Vector2( -56, 0 )
+emitting = false
+amount = 80
+local_coords = false
+process_material = SubResource( 11 )
+texture = ExtResource( 19 )
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
 [connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]
 [connection signal="disabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_disabled"]
 [connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]
+[connection signal="disabled" from="Entity2D/Dashing" to="." method="_on_Dashing_disabled"]
+[connection signal="enabled" from="Entity2D/Dashing" to="." method="_on_Dashing_enabled"]

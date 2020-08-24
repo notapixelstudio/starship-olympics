@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=3]
 [ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=4]
 
-
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )
 ship_texture = ExtResource( 2 )
@@ -13,6 +12,7 @@ ship_texture = ExtResource( 2 )
 [node name="ChargeBar" type="Node2D" parent="."]
 visible = false
 position = Vector2( -32, 0 )
+scale = Vector2( 2, 2 )
 
 [node name="ChargeAxis" type="Line2D" parent="ChargeBar"]
 visible = false
@@ -33,6 +33,4 @@ anims/invincible = ExtResource( 4 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-
