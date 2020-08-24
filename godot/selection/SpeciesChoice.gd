@@ -39,6 +39,7 @@ func initialize(player_id:String):
 	"""
 	player_infotext.text = player_id
 	controls_sprite.texture = load(img_path + controls + ".png")
+	controls_sprite.controls = controls
 	
 func change_species(new_species:Species):
 	species = new_species

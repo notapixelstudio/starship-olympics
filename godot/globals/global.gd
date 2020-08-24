@@ -15,6 +15,9 @@ func _set_analytics(new_value):
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "add_event")
 
+var array_device = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
+onready var device 
+
 var available_languages = {
 	"english": "en",
 	"español": "es",
@@ -215,9 +218,12 @@ func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
-	#setup language
+	# setup language and add if not exists
 	var generic_locale = TranslationServer.get_locale().split("_")[0]
-	language = TranslationServer.get_locale_name(generic_locale).to_lower()
+	# language = TranslationServer.get_locale_name(generic_locale).to_lower()
+	for lang in available_languages:
+		if generic_locale == available_languages[lang]:
+			language = lang
 	
 	templates = get_species_templates()
 	var saved_data = persistance.get_saved_data()
@@ -239,7 +245,7 @@ func _ready():
 func end_game():
 	print("Thanks for playing")
 	GameAnalytics.end_session()
-	if global.enable_analytics:
+	if enable_analytics:
 		yield(GameAnalytics, "message_sent")
 	get_tree().quit()
 
@@ -254,6 +260,7 @@ func get_unlocked() -> Dictionary:
 			available[species] = templates[species]
 			
 	return available
+
 
 func get_species_templates() -> Dictionary:
 	var species_templates = {}
@@ -273,6 +280,40 @@ func get_species_templates() -> Dictionary:
 func _unlock_species(species : String):
 	unlocked_species[species] = true
 
+const INPUT_ACTIONS = ["kb1", "kb2"]
+var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
+var default_input :=  {"kb1_accept":"M", "kb1_down":"Down", "kb1_fire":"M", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", "kb2_accept":"1", "kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"}
+
+func set_default_mapping(device:String):
+	for action in default_input:
+		if device in action:
+			var event = InputEventKey.new()
+			event.scancode = OS.find_scancode_from_string(default_input[action])
+			remap_action_to(action, event)
+
+func remap_action_to(action, event):
+	InputMap.action_erase_events(action)
+	InputMap.action_add_event(action, event)
+	
+func _set_input_mapping(value_):
+	input_mapping=value_
+	for action in input_mapping:
+		var event = InputEventKey.new()
+		event.scancode = OS.find_scancode_from_string(input_mapping[action])
+		remap_action_to(action, event)
+	
+func _get_input_mapping():
+	var ret = {}
+	for action_name in INPUT_ACTIONS:
+		for action in InputMap.get_actions():
+			if action_name in action:
+				var event = InputMap.get_action_list(action)
+				var keyboard = OS.get_scancode_string(event[0].scancode)
+				ret[action] = keyboard
+				
+	return ret
+		
+
 # utils
 func get_state():
 	"""
@@ -289,8 +330,8 @@ func get_state():
 		sfx_volume=sfx_volume,
 		demo=demo,
 		full_screen=full_screen,
-		rumbling=rumbling
-		
+		rumbling=rumbling,
+		input_mapping=self.input_mapping
 	}
 	return save_dict
 
@@ -372,3 +413,9 @@ func send_stats(category: String, stats: Dictionary):
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))
 	
+func join_str(array, sep=","):
+	var ret = ""
+	for e in array:
+		ret += e+sep
+	return ret.rstrip(sep)
+	return ret

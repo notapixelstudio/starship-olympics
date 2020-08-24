@@ -1,14 +1,15 @@
+tool
 extends GenericOption
 
 onready var value_node = $ElementCheckbox
 onready var description_node = $ElementCheckbox
 
 func _process(delta):
-	description_node.text = label_description.to_upper()
+	$ElementCheckbox.text = label_description.to_upper()
+	
 func _ready():
 	if not label_description:
 		label_description = variable_name
-
 	_initialize()
 	
 func _initialize():
