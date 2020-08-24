@@ -27,7 +27,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_DASHING_CHARGE = 0.1
+const MIN_DASHING_CHARGE = 0.12
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -94,6 +94,8 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	emit_signal('spawned', self)
+	dash_init_appearance()
+	
 	# Invincible for the firs MAX seconds
 	invincible = true
 	if skin:
@@ -101,7 +103,6 @@ func _enter_tree():
 	yield(get_tree().create_timer(0.1), "timeout")
 	yield(skin, "stop_invincible")
 	invincible = false
-	
 	
 func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
@@ -113,6 +114,13 @@ func _ready():
 	
 	entity.get('Conqueror').set_species(self)
 	self.responsive = true
+	
+	var dash_process_material = $DashParticles.process_material.duplicate(true)
+	var transparent_color = Color(species.color_2)
+	transparent_color.a = 0
+	dash_process_material.color_ramp.gradient.set_color(0, species.color)
+	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
+	$DashParticles.process_material = dash_process_material
 	
 func change_engine(value: bool):
 	responsive = value
@@ -181,8 +189,9 @@ func _physics_process(delta):
 		unstun()
 		
 	dash_cooldown -= delta
-	if dash_cooldown <= 0:
+	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		entity.get('Dashing').disable()
+		dash_restore_appearance()
 		
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
@@ -192,6 +201,7 @@ func charge():
 	$Graphics/ChargeBar.visible = true
 	#$GravitonField.enabled = true
 	charging_sfx.play()
+	dash_fat_appearance()
 	
 func fire():
 	"""
@@ -214,10 +224,12 @@ func fire():
 	$Graphics/ChargeBar.visible = false
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
+	$Tween.stop_all()
+	$Graphics/Sprite.scale = DASH_RESTORED
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
-		dash_cooldown = 0.2
+		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.3
 		
 
 func die(killer : Ship):
@@ -282,3 +294,41 @@ func recheck_colliding():
 		_on_NearArea_body_entered(body)
 	for area in $NearArea.get_overlapping_areas():
 		_on_NearArea_area_entered(area)
+
+const DASH_RESTORED = Vector2(1,1)
+const DASH_THIN = Vector2(1.5,0.5)
+const DASH_FAT = Vector2(0.8,1.2)
+
+func dash_init_appearance():
+	$Tween.stop_all()
+	$Graphics/Sprite.scale = DASH_RESTORED
+	$DashParticles.restart()
+	$DashParticles.emitting = false
+	$DashParticles.visible = false
+	
+func dash_restore_appearance():
+	$Tween.stop_all()
+	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_RESTORED, 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
+	$Tween.start()
+	$DashFxTimer.start(0.1)
+	yield($DashFxTimer, 'timeout')
+	$DashParticles.emitting = false
+	
+func dash_fat_appearance():
+	$Tween.stop_all()
+	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
+	$Tween.start()
+	
+func dash_thin_appearance():
+	$Graphics/Sprite.scale = DASH_THIN
+	$DashParticles.emitting = true
+	$DashParticles.visible = true
+	$DashFxTimer.stop()
+	
+func _on_Dashing_enabled():
+	dash_thin_appearance()
+	
+func _on_Dashing_disabled():
+	dash_restore_appearance()
