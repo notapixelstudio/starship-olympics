@@ -3,6 +3,7 @@ extends Area2D
 export var multiplier : float = 1.0
 export var timeout : float = 0.0
 export var enabled : bool = false setget set_enabled
+export var influence_radius : float = 500.0
 
 var ship : Ship
 
@@ -13,7 +14,7 @@ func _enter_tree():
 		
 		
 func get_influence_radius():
-	return $CollisionShape2D.shape.radius
+	return influence_radius #$CollisionShape2D.shape.radius
 	
 func get_gravity():
 	if not enabled:
