@@ -5,12 +5,16 @@ class_name Bomb
 
 var Explosion = load('res://actors/weapons/Explosion.tscn')
 
+var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
+var type
+
 var entity : Entity
 onready var life_time = $LifeTime
 onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
 
-func initialize(pos : Vector2, impulse, ship):
+func initialize(pos : Vector2, bomb_type, impulse, ship):
+	type = bomb_type
 	entity = ECM.E(self)
 	
 	position = pos
@@ -23,6 +27,14 @@ func initialize(pos : Vector2, impulse, ship):
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
+		
+	if type == GameMode.BOMB_TYPE.ball:
+		entity.get('Pursuer').disable()
+		entity.get('Deadly').enable()
+		$Sprite.scale = Vector2(1,1)
+		$CollisionShape2D.shape.radius = 32
+		$Sprite.texture = ball_texture
+		$Sprite/AnimationPlayer.stop()
 		
 func _physics_process(delta):
 	process_life_time()
@@ -45,6 +57,9 @@ func _integrate_forces(state):
 
 signal detonate
 func detonate():
+	if type == GameMode.BOMB_TYPE.ball:
+		return
+		
 	if entity.has('Owned'):
 		ECM.E(explosion).get('Owned').set_owned_by(entity.get('Owned').get_owned_by())
 	else:
@@ -71,6 +86,8 @@ func _on_NearArea_area_exited(area):
 func _on_LifeTime_timeout():
 	if not entity.has('StandAlone'):
 		get_parent().call_deferred("remove_child", self)
+		if entity.has('Owned'):
+			entity.get('Owned').get_owned_by()._on_bomb_freed()
 		yield(get_tree().create_timer(1), "timeout")
 		call_deferred("queue_free")
 
