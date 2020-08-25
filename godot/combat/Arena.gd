@@ -494,6 +494,7 @@ func spawn_ship(player:PlayerSpawner):
 	trail.initialize(ship)
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
+	ship.set_bomb_type(game_mode.bomb_type)
 	ship.set_lives(game_mode.starting_lives)
 	trail.configure(game_mode.deadly_trails)
 	
@@ -516,9 +517,9 @@ func spawn_ship(player:PlayerSpawner):
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
-func spawn_bomb(pos, impulse, ship):
+func spawn_bomb(pos, type, impulse, ship):
 	var bomb = bomb_scene.instance()
-	bomb.initialize(pos, impulse, ship)
+	bomb.initialize(type, pos, impulse, ship)
 	
 	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")

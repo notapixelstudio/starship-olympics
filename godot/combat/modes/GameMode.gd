@@ -26,6 +26,8 @@ export var survival : bool = false
 # gear 
 export var shoot_bombs : bool = true setget set_bombs
 export var deadly_trails : bool = false
+enum BOMB_TYPE { classic, ball }
+export(BOMB_TYPE) var bomb_type = BOMB_TYPE.classic
 
 func set_bombs(value):
 	shoot_bombs = value

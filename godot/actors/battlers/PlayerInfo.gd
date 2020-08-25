@@ -6,6 +6,7 @@ onready var target = get_node(target_path) as Node2D if has_node(target_path) el
 onready var player_id = $Wrapper/Scaled/Colored/PlayerID
 onready var target_entity = ECM.E(target)
 onready var point_score = $Wrapper/Scaled/Colored/PointsScored
+onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
 
 func _ready():
 	if target.info_player:

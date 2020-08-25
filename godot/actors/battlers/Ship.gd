@@ -32,7 +32,7 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
 const CHARGE_MULTIPLIER = 4500
-const BOMB_OFFSET = 40
+const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
 const FIRE_COOLDOWN = 0.03
 
@@ -59,11 +59,14 @@ var charging = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 
+var bomb_count = 0
+
 var teleport_to = null
 
 onready var player = name
 onready var skin = $Graphics
 onready var charging_sfx = $charging
+onready var ammo = $PlayerInfo.ammo
 
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
 
@@ -82,9 +85,18 @@ func initialize():
 
 signal spawned
 var bombs_enabled : bool = true setget set_bombs_enabled
+var bomb_type
 
 func set_bombs_enabled(value: bool):
 	bombs_enabled = value
+	
+func set_bomb_type(value):
+	bomb_type = value
+	
+	if bomb_type == GameMode.BOMB_TYPE.ball:
+		ammo.set_max_ammo(1)
+		ammo.replenish()
+		
 	
 func set_lives(value: int):
 	info_player.lives = value
@@ -207,14 +219,20 @@ func fire():
 	"""
 	Fire a bomb
 	"""
+	var should_reload = false
+	
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
 	if bombs_enabled:
-		emit_signal("spawn_bomb", position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-			Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation))
+		bomb_count += 1
+		if ammo.max_ammo == -1 or ammo.current_ammo > 0:
+			ammo.shot()
+			should_reload = true
+			emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+				Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation))
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
@@ -231,7 +249,10 @@ func fire():
 		entity.get('Dashing').enable()
 		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.3
 		
-
+	if should_reload:
+		yield(get_tree().create_timer(2.0), "timeout")
+		ammo.reload()
+		
 func die(killer : Ship):
 	if alive and not invincible:
 		alive = false
@@ -332,3 +353,6 @@ func _on_Dashing_enabled():
 	
 func _on_Dashing_disabled():
 	dash_restore_appearance()
+	
+func _on_bomb_freed():
+	bomb_count -= 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/environments/crown_plain.png" type="Texture" id=6]
 [ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/battlers/AmmoIndicator.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -81,6 +82,9 @@ still = true
 
 [node name="Indicator" parent="Wrapper/Scaled/Colored" instance=ExtResource( 5 )]
 visible = false
+
+[node name="AmmoIndicator" parent="Wrapper/Scaled/Colored" instance=ExtResource( 8 )]
+position = Vector2( 0, 45 )
 
 [node name="Crown" type="Sprite" parent="Wrapper/Scaled"]
 visible = false
