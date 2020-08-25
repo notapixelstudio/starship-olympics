@@ -5,7 +5,7 @@ export var dots_color : Color = Color.gray
 export var cell_size := Vector2.ONE * 100
 export var enabled : bool = true
 
-enum TYPE { square, triangular, hexagonal, horizontal, vertical, squiggly }
+enum TYPE { square, triangular, hexagonal, horizontal, vertical, squiggly, rhomboidal }
 export(TYPE) var type = TYPE.square
 
 export var show_dots = false
@@ -36,7 +36,7 @@ func init_grid(arena_size: Vector2):
 		for x in h_cells:
 			if type == TYPE.hexagonal and not check_hex(x, y):
 				continue
-			var squiggly = type == TYPE.triangular or type == TYPE.hexagonal or type == TYPE.squiggly
+			var squiggly = type == TYPE.triangular or type == TYPE.hexagonal or type == TYPE.squiggly or type == TYPE.rhomboidal
 			var coords = cell_size * Vector2(x+(0 if not squiggly else 0.5*(y%2)), y) + position
 			grid[y][x] = Point.new(coords, Vector2(x, y))
 		
@@ -70,7 +70,12 @@ func _draw():
 			for x in h_cells-1:
 				for y in v_cells-1:
 					draw_line(-position+grid[y][x].position, -position+grid[y+1][x].position, grid_color, 5.0)
-		
+		elif type == TYPE.rhomboidal:
+			for x in h_cells-1:
+				for y in v_cells-1:
+					draw_line(-position+grid[y][x].position, -position+grid[y+1][x+y%2].position, grid_color, 5.0)
+					draw_line(-position+grid[y][x+1].position, -position+grid[y+1][x+y%2].position, grid_color, 5.0)
+					
 	if show_dots:
 		for x in h_cells-1:
 			for y in v_cells-1:
