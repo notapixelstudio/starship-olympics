@@ -58,6 +58,7 @@ var height = 0
 var charging = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
+var reload_time
 
 var bomb_count = 0
 
@@ -93,10 +94,12 @@ func set_bombs_enabled(value: bool):
 func set_bomb_type(value):
 	bomb_type = value
 	
-	if bomb_type == GameMode.BOMB_TYPE.ball:
-		ammo.set_max_ammo(3)
-		ammo.replenish()
-		
+func set_ammo(value):
+	ammo.set_max_ammo(value)
+	ammo.replenish()
+	
+func set_reload_time(value):
+	reload_time = value
 	
 func set_lives(value: int):
 	info_player.lives = value
@@ -252,7 +255,7 @@ func fire():
 		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.3
 		
 	if should_reload:
-		yield(get_tree().create_timer(6.0), "timeout")
+		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
 func die(killer : Ship):

@@ -495,6 +495,8 @@ func spawn_ship(player:PlayerSpawner):
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
 	ship.set_bomb_type(game_mode.bomb_type)
+	ship.set_ammo(game_mode.starting_ammo)
+	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
 	trail.configure(game_mode.deadly_trails)
 	
