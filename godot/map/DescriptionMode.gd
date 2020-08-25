@@ -16,6 +16,8 @@ func refresh():
 		$Description.text = tr(gamemode.description).format({"score": str(gamemode.max_score)})
 		if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
 			$Description3.text = 'No bombs!'
+		elif "starting_ammo" in gamemode and gamemode["starting_ammo"] != -1:
+			$Description3.text = 'Limited ammo!'
 	
 func set_gamemode(value: GameMode):
 	gamemode = value
