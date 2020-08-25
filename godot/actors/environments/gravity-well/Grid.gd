@@ -84,9 +84,6 @@ const MULTIPLIER = 0.25
 var count_frame = 0
 
 func _process(delta):
-	count_frame += 1
-	if count_frame % 2:
-		return
 	var gravity_wells = get_tree().get_nodes_in_group("gravity_wells")
 	for well in gravity_wells:
 		if abs(well.get_gravity() * MULTIPLIER) <= 1: continue

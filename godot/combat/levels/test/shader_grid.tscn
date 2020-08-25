@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial;
+render_mode unshaded;
+
+void vertex() {
+  VERTEX.y += cos(VERTEX.z)*cos(VERTEX.x);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="PlaneMesh" id=1]
+material = SubResource( 3 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.41138, 0 )

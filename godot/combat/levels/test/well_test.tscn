@@ -12,10 +12,10 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=11]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( -952.628, -550, -2.02067e-13, -1100, 952.628, -550, 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( -952.628, -550, -2.02067e-13, -1100, 952.628, -550, 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550 )
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -70,24 +70,24 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 radius = 1100
+sides = 6.0
 rotation_degrees = 30.0
 
 [node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 visible = false
 type = 3
+flag_offset = 0
 
 [node name="Polygon2D" parent="Battlefield/Middleground/Field" index="0"]
 polygon = PoolVector2Array( 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550, -2.02067e-13, -1100, 952.628, -550 )
@@ -96,10 +96,10 @@ polygon = PoolVector2Array( 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952
 points = PoolVector2Array( 952.628, 550, 6.73556e-14, 1100, -952.628, 550, -952.628, -550, -2.02067e-13, -1100, 952.628, -550, 952.628, 550 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/Field/Area2D" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/Field/CrownCollider" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Flow" parent="Battlefield/Middleground/Field/Entity" index="3"]
 charge = -20
@@ -112,7 +112,10 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
 radius = 1100
+sides = 6.0
 rotation_degrees = 30.0
 
 [node name="GravitonField" parent="Battlefield/Middleground" index="1" groups=[
