@@ -16,7 +16,7 @@ func set_max_ammo(v):
 	for i in max_ammo:
 		var ammo = Sprite.new()
 		ammo.scale = Vector2(0.3, 0.3)
-		ammo.position.x = (i-max_ammo/2)*SEPARATION
+		ammo.position.x = (i-(max_ammo-1)/2.0)*SEPARATION
 		add_child(ammo)
 		
 	refresh()
