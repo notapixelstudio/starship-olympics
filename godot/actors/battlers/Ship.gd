@@ -94,7 +94,7 @@ func set_bomb_type(value):
 	bomb_type = value
 	
 	if bomb_type == GameMode.BOMB_TYPE.ball:
-		ammo.set_max_ammo(1)
+		ammo.set_max_ammo(3)
 		ammo.replenish()
 		
 	
@@ -208,12 +208,14 @@ func _physics_process(delta):
 	for body in $DetectionArea.get_overlapping_bodies():
 		emit_signal("detection", body, self)
 		
+var will_fire
 func charge():
 	charging = true
 	$Graphics/ChargeBar.visible = true
 	#$GravitonField.enabled = true
 	charging_sfx.play()
 	dash_fat_appearance()
+	will_fire = ammo.max_ammo == -1 or ammo.current_ammo > 0
 	
 func fire():
 	"""
@@ -228,7 +230,7 @@ func fire():
 	
 	if bombs_enabled:
 		bomb_count += 1
-		if ammo.max_ammo == -1 or ammo.current_ammo > 0:
+		if will_fire:
 			ammo.shot()
 			should_reload = true
 			emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
@@ -250,7 +252,7 @@ func fire():
 		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.3
 		
 	if should_reload:
-		yield(get_tree().create_timer(2.0), "timeout")
+		yield(get_tree().create_timer(6.0), "timeout")
 		ammo.reload()
 		
 func die(killer : Ship):
