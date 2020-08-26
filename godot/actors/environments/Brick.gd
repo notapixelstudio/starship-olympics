@@ -42,24 +42,17 @@ func break(breaker):
 	z_index = 100
 	$BreakGlow.visible = true
 	$AnimationPlayer.play("Break")
-	$GravitonField.call_deferred('set_enabled', true)
 	yield($AnimationPlayer, "animation_finished")
 	
 	if type != TYPE.respawner and type != TYPE.solid:
 		queue_free()
 		return
 	
-	$GravitonField.enabled = false
-	
 	yield(get_tree().create_timer(1), "timeout")
 	
 	if type == TYPE.respawner:
 		$AnimationPlayer.play_backwards("Break")
-		$GravitonField.enabled = true
-		$GravitonField.multiplier = -$GravitonField.multiplier
 		yield($AnimationPlayer, "animation_finished")
-		$GravitonField.enabled = false
-		$GravitonField.multiplier = $GravitonField.multiplier
 		$CollisionShape2D.call_deferred('set_disabled', false)
 		$Graphics.visible = true
 	z_index = 0

@@ -49,8 +49,8 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
-width = 4400
-height = 3000
+width = 4200
+height = 2800
 bevel = 800
 bevel_nw = 800
 bevel_ne = 800
@@ -628,13 +628,13 @@ position = Vector2( 1000, -650 )
 type = 2
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
-position = Vector2( 300, -1200 )
+position = Vector2( 300, -1150 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
-position = Vector2( -300, 1200 )
+position = Vector2( -300, 1150 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 13 )

@@ -169,11 +169,10 @@ bus = "SFX_effect"
 
 [node name="GravitonField" parent="." instance=ExtResource( 11 )]
 visible = false
-gravity = -1024.0
-collision_mask = 10752
 multiplier = 0.6
 timeout = 0.1
 enabled = true
+gravity = -1024.0
 
 [node name="RepealField" type="Area2D" parent="."]
 collision_layer = 65536
