@@ -63,7 +63,7 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 width = 3800
-height = 1200
+height = 1000
 bevel = 500
 bevel_nw = 500
 bevel_ne = 500
@@ -90,7 +90,7 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 width = 6000
-height = 1200
+height = 1000
 bevel = 500
 bevel_nw = 500
 bevel_ne = 500
@@ -116,7 +116,7 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 width = 6000
-height = 1200
+height = 1000
 bevel = 500
 bevel_nw = 500
 bevel_ne = 500
@@ -210,7 +210,7 @@ sides = 4.0
 rotation_degrees = 0.0
 
 [node name="Wall10" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
-position = Vector2( 1900, -600 )
+position = Vector2( 1800, -500 )
 hollow = false
 offset = 0
 elongation = 0
@@ -230,7 +230,7 @@ sides = 4.0
 rotation_degrees = 0.0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
-position = Vector2( -1900, 600 )
+position = Vector2( -1800, 500 )
 hollow = false
 offset = 0
 elongation = 0
@@ -300,7 +300,6 @@ position = Vector2( 800, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 8 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3

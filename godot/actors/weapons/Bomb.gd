@@ -107,7 +107,7 @@ func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
 	
-	if type == GameMode.BOMB_TYPE.ball and (body is Brick or body is Wall):
+	if type == GameMode.BOMB_TYPE.ball:
 		life_time.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*1000)
 		
