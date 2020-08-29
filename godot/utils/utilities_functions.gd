@@ -59,7 +59,7 @@ func _gui_input(event):
 		
 func _on_player_leaves(player):
 	# need to add the control back
-	fire_buttons.append(global.controls[player.to_lower()]+"_accept")
+	fire_buttons.append(global.controls[player.to_lower()]+"_fire")
 	
 func _on_player_select(player):
 	n_players += 1

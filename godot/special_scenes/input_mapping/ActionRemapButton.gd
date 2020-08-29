@@ -35,7 +35,6 @@ func _input(event):
 
 
 func remap_action_to(event):
-	print(InputMap.get_action_list(action)[0].as_text())
 	InputMap.action_erase_events(action)
 	InputMap.action_add_event(action, event)
 	print(InputMap.get_action_list(action)[0].as_text())
