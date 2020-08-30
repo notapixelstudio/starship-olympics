@@ -28,6 +28,7 @@ signal updated
 var campaign_mode : bool = false
 
 func reset():
+	
 	session_scores = SessionScores.new()
 	session_scores.players = players
 	for key in players:
@@ -71,7 +72,11 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	# we need to reset players dictionary
 	players = {}
+	sports_array = []
+	played_levels = []
+	levels = []
 	var num_players : int = len(selected_players)
+	
 	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
 
 	i = 1
@@ -119,7 +124,7 @@ func combat(selected_players: Array, fight_mode : String):
 	add_cpu(num_CPUs)
 		
 	session_scores.selected_sports = all_sports
-	sports_array = []
+	
 	
 	for sport in all_sports:
 		sports[sport.name] = sport
@@ -157,7 +162,6 @@ func next_level(demo=false):
 		sports_array.shuffle()
 	
 	# we are going to play the following games:
-
 	var new_sport = sports_array.pop_back()
 	sports_array.push_front(new_sport)
 
