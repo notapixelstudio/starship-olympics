@@ -78,7 +78,7 @@ func _process(delta):
 	up = Input.is_action_just_pressed(player.controls+"_up")
 	left = Input.is_action_just_pressed(player.controls+"_left")
 	right = Input.is_action_just_pressed(player.controls+"_right")
-	accept = Input.is_action_just_pressed(player.controls+"_accept")
+	accept = Input.is_action_just_pressed(player.controls+"_fire")
 	
 	if not enabled and (down or up or left or right or accept):
 		emit_signal("cancel", self)
@@ -96,7 +96,7 @@ func _process(delta):
 	up = Input.is_action_pressed(player.controls+"_up") and action_time <= 0.0
 	left = Input.is_action_pressed(player.controls+"_left") and action_time <= 0.0
 	right = Input.is_action_pressed(player.controls+"_right") and action_time <= 0.0
-	accept = Input.is_action_pressed(player.controls+"_accept") and action_time <= 0.0
+	accept = Input.is_action_pressed(player.controls+"_fire") and action_time <= 0.0
 	
 	for key in controls_map:
 		if get(key):

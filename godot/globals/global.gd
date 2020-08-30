@@ -291,9 +291,29 @@ func set_default_mapping(device:String):
 			event.scancode = OS.find_scancode_from_string(default_input[action])
 			remap_action_to(action, event)
 
-func remap_action_to(action, event):
-	InputMap.action_erase_events(action)
+func check_input_event(action_: String, event:InputEvent):
+	if "kb" in action_:
+		return event is InputEventKey
+	elif "joy" in action_:
+		return event is InputEventJoypadButton 
+		
+func remap_action_to(action, event, ui_flag=true):
+	var current_key = ""
+	for event in InputMap.get_action_list(action):
+		if check_input_event(action, event):
+			current_key = event.as_text()
+	var e = InputEventKey.new()
+	e.scancode = OS.find_scancode_from_string(current_key)
+	InputMap.action_erase_event(action, e)
 	InputMap.action_add_event(action, event)
+	if ui_flag:
+		var acts = action.split("_")
+		var id = acts[len(acts)-1]
+		if id == "fire":
+			id = "accept"
+		InputMap.action_erase_event("ui_"+id, e)
+		InputMap.action_add_event("ui_"+id, event)
+	return current_key
 	
 func _set_input_mapping(value_):
 	input_mapping=value_

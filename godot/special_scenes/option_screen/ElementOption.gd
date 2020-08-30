@@ -58,7 +58,7 @@ func _ready():
 
 func _input(event):
 	if elem_type == OPTION_TYPE.ON_OFF:
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("ui_fire"):
 			value = (value_node.text == 'TRUE')
 			self.value = not value
 			value_node.text = str(value)
