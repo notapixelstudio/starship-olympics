@@ -10,6 +10,7 @@ const float scale = 1000.0;
 uniform vec2 p1;
 uniform vec2 p2;
 uniform float stroke;
+uniform vec2 well;
 
 float distance_from_segment(vec2 v, vec2 w, vec2 p){
 	float l = distance(v, w);
@@ -25,8 +26,12 @@ float distance_from_segment(vec2 v, vec2 w, vec2 p){
 	return distance(p, projection);
 }
 
-vec2 create_point(vec2 position, int row, int col, int W, int H, float cell_size, float t, float amplitude){
-	return position + vec2((float(col)-float(W-1)/2.0)*cell_size + amplitude*sin(float(col+row)+t), (float(row)-float(H-1)/2.0)*cell_size + amplitude*cos(float(col+row)+t));
+vec3 create_point(vec2 position, int row, int col, int W, int H, float cell_size, float t, float amplitude){
+	vec3 p = vec3(position + vec2((float(col)-float(W-1)/2.0)*cell_size, (float(row)-float(H-1)/2.0)*cell_size), 0.0);
+	float d = distance(p.xy, well)/50.0;
+	//p.x += amplitude*sin(d);
+	p.z += amplitude*cos(d-t*8.0)/exp(d/4.0);
+	return p;
 }
 
 void fragment(){
@@ -45,22 +50,25 @@ void fragment(){
 	
 	for (int col = max(i_uv.x-1, 0); col <= min(i_uv.x+1, W-1); col++) {
 		for (int row = max(i_uv.y-1, 0); row <= min(i_uv.y+1, H-1); row++) {
-			vec2 p1n = create_point(position, row, col, W, H, cell_size, TIME, amplitude)/scale;
+			vec3 p1n = create_point(position, row, col, W, H, cell_size, TIME, amplitude)/scale;
+			p1n.y += p1n.z;
 			if(col < W-1) {
 				// horizontal
-				vec2 p2n = create_point(position, row, col+1, W, H, cell_size, TIME, amplitude)/scale;
-				f = min(f, distance_from_segment(p1n, p2n, UV));
+				vec3 p2n = create_point(position, row, col+1, W, H, cell_size, TIME, amplitude)/scale;
+				p2n.y += p2n.z;
+				f = min(f, distance_from_segment(p1n.xy, p2n.xy, UV));
 			}
 			if(row < H-1) {
 				// vertical
-				vec2 p2n = create_point(position, row+1, col, W, H, cell_size, TIME, amplitude)/scale;
-				f = min(f, distance_from_segment(p1n, p2n, UV));
+				vec3 p2n = create_point(position, row+1, col, W, H, cell_size, TIME, amplitude)/scale;
+				p2n.y += p2n.z;
+				f = min(f, distance_from_segment(p1n.xy, p2n.xy, UV));
 			}
 		}
 	}
 	
-	//COLOR = vec4(vec3( 1.0-step(stroke/2.0/scale, f) ), 1.0);
-	COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/scale, f)), 0.0);
+	COLOR = vec4(vec3( 1.0-step(stroke/2.0/scale, f) ), 1.0);
+	//COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/scale, f)), 0.0);
 }"
 custom_defines = ""
 
@@ -68,7 +76,8 @@ custom_defines = ""
 shader = SubResource( 1 )
 shader_param/p1 = Vector2( 250, 250 )
 shader_param/p2 = Vector2( 750, 750 )
-shader_param/stroke = 1.0
+shader_param/stroke = 2.0
+shader_param/well = Vector2( 250, 250 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
