@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/environments/hex.png" type="Texture" id=1]
+[ext_resource path="res://combat/levels/test/shader_grid.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+const float scale = 1000.0;
+uniform vec2 p1;
+uniform vec2 p2;
+uniform float stroke;
+
+float distance_from_segment(vec2 v, vec2 w, vec2 p){
+	float l = distance(v, w);
+	if (l <= 0.01)
+		return distance(p, v);   // v == w case
+		
+	// Consider the line extending the segment, parameterized as v + t (w - v).
+	// We find projection of point p onto the line.
+	// It falls where t = [(p-v) . (w-v)] / |w-v|^2
+	// We clamp t from [0,1] to handle points outside the segment vw.
+	float t = clamp(dot(p - v, w - v) / (l*l), 0, 1);
+	vec2 projection = v + t * (w - v);  // Projection falls on the segment
+	return distance(p, projection);
+}
+
+void fragment(){
+	const vec2 position = vec2(500.0, 500.0);
+	const float cell_size = 100.0; 
+	const int W = 10;
+	const int H = 10;
+	vec2 matrix[100];
+	for (int col = 0; col < W; col++) {
+		for (int row = 0; row < H; row++) {
+			matrix[row*W+col] = position + vec2((float(col)-float(W-1)/2.0)*cell_size + 50.0*sin(float(col+row)+TIME), (float(row)-float(H-1)/2.0)*cell_size + 50.0*cos(float(col+row)+TIME));
+		}
+	}
+	
+	float f = 1.0;
+	
+	// horizontal
+	for (int col = 0; col < W-1; col++) {
+		for (int row = 0; row < H; row++) {
+			vec2 p1n = matrix[row*W+col]/scale;
+			vec2 p2n = matrix[row*W+col+1]/scale;
+			f = min(f, distance_from_segment(p1n, p2n, UV));
+		}
+	}
+	
+	// vertical
+	for (int col = 0; col < W; col++) {
+		for (int row = 0; row < H-1; row++) {
+			vec2 p1n = matrix[row*W+col]/scale;
+			vec2 p2n = matrix[(row+1)*W+col]/scale;
+			f = min(f, distance_from_segment(p1n, p2n, UV));
+		}
+	}
+	
+	COLOR = vec4(vec3( 1.0-step(stroke/2.0/scale, f) ), 1.0);
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/p1 = Vector2( 250, 250 )
+shader_param/p2 = Vector2( 750, 750 )
+shader_param/stroke = 10.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="hex" type="Sprite" parent="."]
+material = SubResource( 2 )
+scale = Vector2( 4.11876, 4.73169 )
+texture = ExtResource( 1 )
+centered = false
