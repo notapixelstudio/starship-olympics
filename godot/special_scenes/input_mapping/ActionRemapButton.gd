@@ -30,12 +30,18 @@ func _input(event):
 	# Note that you can use the _input callback instead, especially if
 	# you want to work with gamepads.
 	if event is InputEventKey:
+		
 		remap_action_to(self.action, event)
+		pressed=false
+		
 
 
 func remap_action_to(action, event, ui_flag=true):
 	var current_key = global.remap_action_to(action, event)
 	text = "%s " % current_key.to_upper()
+	disabled = true
+	yield(get_tree().create_timer(0.4), "timeout")
+	disabled = false
 
 
 func display_current_key():
