@@ -4,6 +4,7 @@ extends RigidBody2D
 class_name Bomb
 
 var Explosion = load('res://actors/weapons/Explosion.tscn')
+var Ripple = load('res://actors/weapons/Ripple.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var type
@@ -105,6 +106,13 @@ func process_life_time():
 func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
+	
+	if type == GameMode.BOMB_TYPE.ball:
 		life_time.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*1000)
 		
+		# ripple effect
+		
+		var ripple = Ripple.instance()
+		ripple.position = position
+		get_parent().call_deferred("add_child", ripple)

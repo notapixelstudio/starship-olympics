@@ -119,11 +119,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/ECM/Entity.gd"
 }, {
-"base": "Area2D",
-"class": "Explosion",
-"language": "GDScript",
-"path": "res://actors/weapons/Explosion.gd"
-}, {
 "base": "GShape",
 "class": "GBeveledRect",
 "language": "GDScript",
@@ -254,6 +249,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/Portal.gd"
 }, {
+"base": "Node2D",
+"class": "Ripple",
+"language": "GDScript",
+"path": "res://actors/weapons/Explosion.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Rock",
 "language": "GDScript",
@@ -327,7 +327,6 @@ _global_script_class_icons={
 "DeadShip": "",
 "Diamond": "",
 "Entity": "",
-"Explosion": "",
 "GBeveledRect": "",
 "GCircle": "",
 "GConvexPolygon": "",
@@ -354,6 +353,7 @@ _global_script_class_icons={
 "PlayerSpawner": "",
 "PlayerStats": "",
 "Portal": "",
+"Ripple": "",
 "Rock": "",
 "SessionScores": "",
 "Ship": "",

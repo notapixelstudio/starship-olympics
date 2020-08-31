@@ -34,6 +34,8 @@ const ANTI_RECOIL_OFFSET = 260
 const CHARGE_MULTIPLIER = 4500
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
+const BALL_BOOST = 500
+const BALL_CHARGE_MULTIPLIER = 1.4
 const FIRE_COOLDOWN = 0.03
 
 const THRESHOLD_DIR = 0.3
@@ -236,8 +238,14 @@ func fire():
 		if will_fire:
 			ammo.shot()
 			should_reload = true
+			var impulse
+			if bomb_type == GameMode.BOMB_TYPE.ball:
+				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
+			else:
+				impulse = charge_impulse+BOMB_BOOST
+			
 			emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-				Vector2(-(charge_impulse+BOMB_BOOST),0).rotated(rotation))
+				Vector2(-impulse,0).rotated(rotation))
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
