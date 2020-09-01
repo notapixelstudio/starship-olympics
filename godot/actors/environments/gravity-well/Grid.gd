@@ -41,6 +41,8 @@ func init_grid(arena_size: Vector2):
 			grid[y][x] = Point.new(coords, Vector2(x, y))
 		
 func _draw():
+	return
+	
 	if show_lines:
 		if type == TYPE.square:
 			for x in h_cells-1:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Arkanoid.tres" type="Resource" id=2]
@@ -8,8 +8,17 @@
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
 [ext_resource path="res://actors/environments/Brick.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=8]
+[ext_resource path="res://combat/Grid.shader" type="Shader" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=13]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 9 )
+shader_param/size = Vector2( 1000, 1000 )
+shader_param/cell_size = 100.0
+shader_param/stroke = 5.0
+shader_param/well = null
+shader_param/triangular = true
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -22,14 +31,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 1, 0.701961, 0, 0.12549 )
-dots_color = Color( 1, 0.701961, 0, 0.32549 )
-cell_size = Vector2( 200, 100 )
-
-[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
-type = 1
+[node name="Grid" parent="Battlefield/Background" index="0"]
+visible = false
+modulate = Color( 1, 0.560784, 0, 0.282353 )
+material = SubResource( 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true

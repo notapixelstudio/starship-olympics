@@ -21,7 +21,7 @@ float distance_from_segment(vec2 v, vec2 w, vec2 p){
 
 float get_z(float amplitude, vec2 p, float t){
 	t = fract(t*0.25)*4.0;
-	float d = distance(p, well+size/2.0);
+	float d = distance(p, well);
 	return amplitude*cos(d/80.0-t*5.0)/exp(d*0.003+t*2.0); // d*0.003 (std), 0.001 (big), 0.005 (small)
 }
 

@@ -69,11 +69,8 @@ enabled = true
 texture = ExtResource( 3 )
 centered = false
 
-[node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-
-[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+[node name="Grid" parent="Battlefield/Background" index="0"]
+modulate = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
@@ -83,6 +80,7 @@ elongation = 100
 type = 2
 hide_line = false
 hide_grid = false
+line_width = 28
 grid_color = Color( 1, 1, 1, 0.33 )
 grid_rotation = 0.0
 
@@ -109,6 +107,7 @@ elongation = 100
 type = 2
 hide_line = false
 hide_grid = false
+line_width = 28
 grid_color = Color( 1, 1, 1, 0.33 )
 grid_rotation = 0.0
 
@@ -134,6 +133,7 @@ elongation = 100
 type = 0
 hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 grid_rotation = 0.0
 
@@ -174,6 +174,7 @@ anims/Rotate = SubResource( 2 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
@@ -183,7 +184,7 @@ controls = "joy2"
 species = ExtResource( 11 )
 cpu = true
 
-[node name="Camera" parent="." index="5"]
+[node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

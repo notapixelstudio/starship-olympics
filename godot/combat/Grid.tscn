@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=1]
+[ext_resource path="res://combat/Grid.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/size = Vector2( 1000, 1000 )
+shader_param/cell_size = 100.0
+shader_param/stroke = 5.0
+shader_param/well = null
+shader_param/triangular = false
+
+[node name="Grid" type="Polygon2D"]
+material = SubResource( 1 )
+texture = ExtResource( 1 )
+texture_scale = Vector2( 0.01, 0.01 )
+polygon = PoolVector2Array( -500, 500, -500, -500, 500, -500, 500, 500 )

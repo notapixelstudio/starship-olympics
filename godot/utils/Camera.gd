@@ -145,7 +145,7 @@ export var shake_power = 10
 export var shake_time = 0.5
 
 var timeformat = "{min}:{sec}"
-onready var timelabel = $TimePassed
+#onready var timelabel = $TimePassed
 
 var stop = false
 var time = 0.0

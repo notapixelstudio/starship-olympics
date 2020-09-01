@@ -46,7 +46,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/GridPack
+onready var grid = $Battlefield/Background/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 signal screensize_changed(screensize)
@@ -225,9 +225,9 @@ func _ready():
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
 	
-	# FIXME
-	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
+	update_grid()
 	
+	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
 		well.enabled = true
 	
@@ -316,8 +316,12 @@ func focus_in_camera(node: Node2D, wait_time: float):
 	
 const COUNTDOWN_LIMIT = 5.0
 
+func update_grid():
+	grid.polygon = $Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array()
+	
 func _process(delta):
 	scores.update(delta)
+	update_grid()
 	
 	slomo()
 	
