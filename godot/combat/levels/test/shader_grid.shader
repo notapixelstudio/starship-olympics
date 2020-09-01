@@ -4,6 +4,7 @@ uniform vec2 size = vec2(1000.0, 1000.0);
 uniform float cell_size = 100.0;
 uniform float stroke;
 uniform vec2 well;
+uniform bool triangular = false;
 
 float distance_from_segment(vec2 v, vec2 w, vec2 p){
 	float l = distance(v, w);
@@ -26,6 +27,7 @@ float get_z(float amplitude, vec2 p, float t){
 
 vec3 create_point(int row, int col, float amplitude, float t){
 	vec3 p = vec3(float(col)*cell_size, float(row)*cell_size, 0.0);
+	p.x += triangular && row%2==1 ? cell_size*0.5 : 0.0; // squiggly
 	//float d = distance(p.xy, well)/50.0;
 	//p.x += amplitude*sin(d);
 	//p.z += amplitude*cos(d-t*8.0)/exp(d/4.0);
@@ -61,15 +63,30 @@ void fragment(){
 			p2n.y += p2n.z;
 			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 			
-			// down
-			p2n = create_point(row+1, col, amplitude, TIME);
-			p2n.y += p2n.z;
-			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
-			
-			// up
-			p2n = create_point(row-1, col, amplitude, TIME);
-			p2n.y += p2n.z;
-			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+			if(triangular){
+				// /
+				p2n = create_point(row+1, col+row%2, amplitude, TIME);
+				p2n.y += p2n.z;
+				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+				
+				// \
+				p1n = create_point(row, col+1, amplitude, TIME);
+				p1n.y += p1n.z;
+				p2n = create_point(row+1, col+row%2, amplitude, TIME);
+				p2n.y += p2n.z;
+				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+			}
+			else {
+				// down
+				p2n = create_point(row+1, col, amplitude, TIME);
+				p2n.y += p2n.z;
+				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+				
+				// up
+				p2n = create_point(row-1, col, amplitude, TIME);
+				p2n.y += p2n.z;
+				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+			}
 		}
 	}
 	float c = 1.0-step(stroke/2.0/size.x, f);
