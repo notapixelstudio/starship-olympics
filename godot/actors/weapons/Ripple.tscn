@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://actors/weapons/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://actors/weapons/Ripple.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/ripple.png" type="Texture" id=2]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
 
@@ -49,5 +49,4 @@ multiplier = 0.6
 timeout = 0.1
 enabled = true
 gravity = -1024.0
-influence_radius = 500.0
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
