@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=2]
@@ -13,9 +13,17 @@
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
+[ext_resource path="res://combat/Grid.shader" type="Shader" id=14]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Pulse"
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 14 )
+shader_param/size = Vector2( 1000, 1000 )
+shader_param/cell_size = 100.0
+shader_param/stroke = 5.0
+shader_param/well = null
+shader_param/triangular = false
+
+[sub_resource type="Animation" id=5]
 length = 8.0
 loop = true
 tracks/0/type = "value"
@@ -31,8 +39,7 @@ tracks/0/keys = {
 "values": [ 1185, 50 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Rotate"
+[sub_resource type="Animation" id=3]
 length = 10.0
 loop = true
 tracks/0/type = "value"
@@ -74,6 +81,7 @@ centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
 modulate = Color( 0.996078, 0.584314, 0, 0.407843 )
+material = SubResource( 4 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
@@ -158,7 +166,7 @@ bevel_se = 1185
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5"]
 autoplay = "Pulse"
 playback_speed = 0.5
-anims/Pulse = SubResource( 1 )
+anims/Pulse = SubResource( 5 )
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -850, 0 )
@@ -188,7 +196,7 @@ scale = Vector2( 1.25, 1.25 )
 "animation_in_battle",
 ]]
 playback_speed = 0.2
-anims/Rotate = SubResource( 2 )
+anims/Rotate = SubResource( 3 )
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 
