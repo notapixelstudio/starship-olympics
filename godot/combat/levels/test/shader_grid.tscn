@@ -1,19 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/sprites/environments/hex.png" type="Texture" id=1]
 [ext_resource path="res://combat/levels/test/shader_grid.gd" type="Script" id=2]
 [ext_resource path="res://combat/levels/test/shader_grid.shader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
-shader_param/stroke = 3.0
-shader_param/well = Vector2( 500, 500 )
+shader_param/size = Vector2( 2800, 1600 )
+shader_param/stroke = 7.0
+shader_param/well = null
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="hex" type="Sprite" parent="."]
+[node name="Grid" type="ColorRect" parent="."]
 material = SubResource( 1 )
-scale = Vector2( 4.11876, 4.73169 )
-texture = ExtResource( 1 )
-centered = false
+margin_right = 2800.0
+margin_bottom = 1600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
