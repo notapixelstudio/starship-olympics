@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform vec2 size = vec2(1000.0, 1000.0);
+uniform float cell_size = 100.0;
 uniform float stroke;
 uniform vec2 well;
 
@@ -18,12 +19,12 @@ float distance_from_segment(vec2 v, vec2 w, vec2 p){
 }
 
 float get_z(float amplitude, vec2 p, float t){
-	t = fract(t*0.25);
-	float d = distance(p, well+size/2.0)/50.0;
-	return amplitude*cos(d*0.2-t)/exp(d*0.3+t*8.0);
+	t = fract(t*0.25)*4.0;
+	float d = distance(p, well+size/2.0);
+	return amplitude*cos(d/80.0-t*5.0)/exp(d*0.003+t*2.0); // d*0.003 (std), 0.001 (big), 0.005 (small)
 }
 
-vec3 create_point(int row, int col, float cell_size, float amplitude, float t){
+vec3 create_point(int row, int col, float amplitude, float t){
 	vec3 p = vec3(float(col)*cell_size, float(row)*cell_size, 0.0);
 	//float d = distance(p.xy, well)/50.0;
 	//p.x += amplitude*sin(d);
@@ -34,8 +35,7 @@ vec3 create_point(int row, int col, float cell_size, float amplitude, float t){
 }
 
 void fragment(){
-	const float cell_size = 100.0;
-	float amplitude = cell_size*40.0;
+	float amplitude = cell_size*6.0;
 	
 	// Tile the space
 	vec2 uv = UV*size/cell_size + vec2(0.5,0.5);
@@ -48,22 +48,32 @@ void fragment(){
 	
 	for (int col = i_uv.x-1; col <= i_uv.x+1; col++) {
 		for (int row = i_uv.y-1; row <= i_uv.y+1; row++) {
-			p1n = create_point(row, col, cell_size, amplitude, TIME);
+			p1n = create_point(row, col, amplitude, TIME);
 			p1n.y += p1n.z;
 			
 			// right
-			p2n = create_point(row, col+1, cell_size, amplitude, TIME);
+			p2n = create_point(row, col+1, amplitude, TIME);
+			p2n.y += p2n.z;
+			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+			
+			// left
+			p2n = create_point(row, col-1, amplitude, TIME);
 			p2n.y += p2n.z;
 			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 			
 			// down
-			p2n = create_point(row+1, col, cell_size, amplitude, TIME);
+			p2n = create_point(row+1, col, amplitude, TIME);
+			p2n.y += p2n.z;
+			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
+			
+			// up
+			p2n = create_point(row-1, col, amplitude, TIME);
 			p2n.y += p2n.z;
 			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 		}
 	}
 	float c = 1.0-step(stroke/2.0/size.x, f);
-	float a = clamp(1.0-log(abs(get_z(amplitude, UV*size, TIME))), 0.0, c);
-	COLOR = vec4( vec3(c), c );
+	float a = 1.0 - clamp(get_z(amplitude/cell_size, UV*size, TIME)*0.5, 0.0, 1.0);
+	COLOR = vec4( vec3(c), min(a, c) );
 	//COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/scale, f)), 0.0);
 }

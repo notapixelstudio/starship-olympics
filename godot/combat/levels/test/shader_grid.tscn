@@ -5,8 +5,9 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
-shader_param/size = Vector2( 2800, 1600 )
-shader_param/stroke = 7.0
+shader_param/size = Vector2( 1278, 725 )
+shader_param/cell_size = 50.0
+shader_param/stroke = 5.0
 shader_param/well = null
 
 [node name="Node2D" type="Node2D"]
@@ -14,8 +15,8 @@ script = ExtResource( 2 )
 
 [node name="Grid" type="ColorRect" parent="."]
 material = SubResource( 1 )
-margin_right = 2800.0
-margin_bottom = 1600.0
+margin_right = 1278.0
+margin_bottom = 725.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
