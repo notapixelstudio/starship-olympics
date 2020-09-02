@@ -5,7 +5,12 @@ uniform float cell_size = 100.0;
 uniform float stroke;
 uniform vec3 well1;
 uniform vec3 well2;
+uniform sampler2D wells_texture;
 uniform bool triangular = false;
+
+vec3 get_well(int index){
+	return texelFetch(wells_texture, ivec2(index, 0), 0).xyz;
+}
 
 float distance_from_segment(vec2 v, vec2 w, vec2 p){
 	float l = distance(v, w);
@@ -21,7 +26,7 @@ float distance_from_segment(vec2 v, vec2 w, vec2 p){
 }
 
 float get_well_strength(vec3 well, float amplitude, vec2 p, float t){
-	t = fract(t*0.25)*4.0 - well.z;
+	t -= well.z;
 	if(t <= 0.0){
 		return 0.0;
 	}
@@ -30,7 +35,12 @@ float get_well_strength(vec3 well, float amplitude, vec2 p, float t){
 }
 
 float get_z(float amplitude, vec2 p, float t){
-	return get_well_strength(well1, amplitude, p, t) + get_well_strength(well2, amplitude, p, t);
+	float strength = 0.0;
+	for(int index=0; index<textureSize(wells_texture, 0).x; index++){
+		strength += get_well_strength(get_well(index), amplitude, p, t)
+	}
+	
+	return strength;
 }
 
 vec3 create_point(int row, int col, float amplitude, float t){
