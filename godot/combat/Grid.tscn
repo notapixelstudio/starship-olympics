@@ -5,14 +5,14 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/size = Vector2( 1000, 1000 )
 shader_param/cell_size = 100.0
 shader_param/stroke = 5.0
-shader_param/well = null
+shader_param/well1 = Vector3( -500, -500, 0.25 )
+shader_param/well2 = Vector2( 500, 0 )
 shader_param/triangular = false
 
 [node name="Grid" type="Polygon2D"]
 material = SubResource( 1 )
 texture = ExtResource( 1 )
 texture_scale = Vector2( 0.01, 0.01 )
-polygon = PoolVector2Array( -500, 500, -500, -500, 500, -500, 500, 500 )
+polygon = PoolVector2Array( -1000, 1000, -1000, -1000, 1000, -1000, 1000, 1000 )

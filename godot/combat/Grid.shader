@@ -1,9 +1,10 @@
 shader_type canvas_item;
 
-uniform vec2 size = vec2(1000.0, 1000.0);
+const float size = 1000.0;
 uniform float cell_size = 100.0;
 uniform float stroke;
-uniform vec2 well;
+uniform vec3 well1;
+uniform vec3 well2;
 uniform bool triangular = false;
 
 float distance_from_segment(vec2 v, vec2 w, vec2 p){
@@ -19,10 +20,17 @@ float distance_from_segment(vec2 v, vec2 w, vec2 p){
 	return distance(p, v + t * (w - v)); // Projection falls on the segment
 }
 
-float get_z(float amplitude, vec2 p, float t){
-	t = fract(t*0.25)*4.0;
-	float d = distance(p, well);
+float get_well_strength(vec3 well, float amplitude, vec2 p, float t){
+	t = fract(t*0.25)*4.0 - well.z;
+	if(t <= 0.0){
+		return 0.0;
+	}
+	float d = distance(p, well.xy);
 	return amplitude*cos(d/80.0-t*5.0)/exp(d*0.003+t*2.0); // d*0.003 (std), 0.001 (big), 0.005 (small)
+}
+
+float get_z(float amplitude, vec2 p, float t){
+	return get_well_strength(well1, amplitude, p, t) + get_well_strength(well2, amplitude, p, t);
 }
 
 vec3 create_point(int row, int col, float amplitude, float t){
@@ -89,7 +97,7 @@ void fragment(){
 			}
 		}
 	}
-	float c = 1.0-step(stroke/2.0/size.x, f);
+	float c = 1.0-step(stroke/2.0/size, f);
 	float a = 1.0 - clamp(get_z(amplitude/cell_size, UV*size, TIME)*0.5, 0.0, 1.0);
 	COLOR = vec4( vec3(c), min(a, c) );
 	//COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/scale, f)), 0.0);
