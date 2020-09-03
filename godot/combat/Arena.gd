@@ -530,6 +530,7 @@ func spawn_bomb(pos, type, impulse, ship):
 	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
+	bomb.connect("detonate", self, "bomb_detonated", [bomb])
 	
 	$Battlefield.add_child(bomb)
 	
@@ -537,6 +538,9 @@ func spawn_bomb(pos, type, impulse, ship):
 		emit_signal("update_stats", ship.info_player, 1, "bombs")
 	return bomb
 
+func bomb_detonated(bomb):
+	grid.update_wells([Vector3(bomb.position.x, bomb.position.y, OS.get_ticks_msec()/1000.0)])
+	
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
 
 func spawn_points_scored(species: Species, score, pos):
