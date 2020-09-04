@@ -539,7 +539,7 @@ func spawn_bomb(pos, type, impulse, ship):
 	return bomb
 
 func bomb_detonated(bomb):
-	grid.update_wells([Vector3(bomb.position.x, bomb.position.y, OS.get_ticks_msec()/1000.0)])
+	grid.add_well(bomb)
 	
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
 

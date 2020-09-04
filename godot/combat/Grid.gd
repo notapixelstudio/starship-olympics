@@ -1,17 +1,17 @@
 extends Polygon2D
 
+onready var wells = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	update_wells([
-		Vector3(-500,-500,5.0),
-		Vector3(500,0,10.0),
-		Vector3(300,100,10.25),
-		Vector3(0,0,11.0),
-		Vector3(50,50,12.0)
-	])
-	
-func update_wells(array):
+func add_well(well):
+	self.wells.append(Vector3(well.position.x, well.position.y, 
+	- 1.0 + OS.get_ticks_msec()/1000.0))
+	update_wells()
+	yield(get_tree().create_timer(3), "timeout")
+	self.wells.pop_front()
+
+
+func update_wells():
+	var array = self.wells
 	var wells_img = Image.new()
 	wells_img.create(len(array), 1, false, Image.FORMAT_RGBF)
 	wells_img.lock()
