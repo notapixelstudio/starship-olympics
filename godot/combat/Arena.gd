@@ -46,7 +46,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/GridPack
+onready var grid = $Battlefield/Background/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 signal screensize_changed(screensize)
@@ -225,9 +225,9 @@ func _ready():
 	$Battlefield.visible = true
 	hud.set_planet("", game_mode)
 	
-	# FIXME
-	grid.init_grid(compute_arena_size().size, $Battlefield/Background/OutsideWall.get_gshape().center_offset)
+	update_grid()
 	
+	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
 		well.enabled = true
 	
@@ -316,8 +316,12 @@ func focus_in_camera(node: Node2D, wait_time: float):
 	
 const COUNTDOWN_LIMIT = 5.0
 
+func update_grid():
+	grid.polygon = $Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array()
+	
 func _process(delta):
 	scores.update(delta)
+	update_grid()
 	
 	slomo()
 	
@@ -526,6 +530,7 @@ func spawn_bomb(pos, type, impulse, ship):
 	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
+	bomb.connect("detonate", self, "bomb_detonated", [bomb])
 	
 	$Battlefield.add_child(bomb)
 	
@@ -533,6 +538,9 @@ func spawn_bomb(pos, type, impulse, ship):
 		emit_signal("update_stats", ship.info_player, 1, "bombs")
 	return bomb
 
+func bomb_detonated(bomb):
+	grid.add_well(bomb)
+	
 const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
 
 func spawn_points_scored(species: Species, score, pos):

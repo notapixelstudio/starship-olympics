@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -22,9 +22,7 @@
 [ext_resource path="res://assets/audio/FX/pickup--generic-pickup-sfx-for-collection-of-item--2-sound-effect-16598511.ogg" type="AudioStream" id=20]
 [ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=21]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=22]
-[ext_resource path="res://actors/environments/GridPack.gd" type="Script" id=23]
-[ext_resource path="res://actors/environments/gravity-well/Grid.gd" type="Script" id=24]
-[ext_resource path="res://actors/environments/gravity-well/Mask.gd" type="Script" id=25]
+[ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=23]
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=28]
@@ -233,32 +231,7 @@ script = ExtResource( 22 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 
-[node name="GridPack" type="Node2D" parent="Battlefield/Background"]
-pause_mode = 2
-modulate = Color( 1, 1, 1, 0.705882 )
-script = ExtResource( 23 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
-scale_mask_texture = Vector2( 24, 24 )
-
-[node name="Light2D" type="Light2D" parent="Battlefield/Background/GridPack"]
-scale = Vector2( 24, 24 )
-mode = 3
-range_item_cull_mask = 2
-
-[node name="Grid" type="Node2D" parent="Battlefield/Background/GridPack"]
-light_mask = 2
-script = ExtResource( 24 )
-
-[node name="MaskViewPort" type="Viewport" parent="Battlefield/Background/GridPack"]
-size = Vector2( 1000, 1000 )
-transparent_bg = true
-hdr = false
-usage = 1
-render_target_v_flip = true
-render_target_update_mode = 3
-
-[node name="Mask" type="Node2D" parent="Battlefield/Background/GridPack/MaskViewPort"]
-script = ExtResource( 25 )
+[node name="Grid" parent="Battlefield/Background" instance=ExtResource( 23 )]
 
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
