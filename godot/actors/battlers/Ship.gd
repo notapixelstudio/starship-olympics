@@ -95,6 +95,7 @@ func set_bombs_enabled(value: bool):
 	
 func set_bomb_type(value):
 	bomb_type = value
+	ammo.type = bomb_type
 	
 func set_ammo(value):
 	ammo.set_max_ammo(value)
