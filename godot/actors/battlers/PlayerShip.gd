@@ -75,13 +75,6 @@ func control(delta):
 	else:
 		charge = 0
 		
-	# charge feedback
-	$Graphics/ChargeBar/Charge.set_point_position(1, $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE)
-	
-	# overcharge feedback
-	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
-		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
-		
 	if not charging and Input.is_action_just_pressed(controls+'_fire') and fire_cooldown <= 0:
 		charge()
 		
@@ -95,4 +88,6 @@ func control(delta):
 		
 	# cooldown
 	fire_cooldown -= delta * Engine.time_scale
+
+	.control(delta)
 	

@@ -36,12 +36,8 @@ game_mode = ExtResource( 2 )
 texture = ExtResource( 3 )
 centered = false
 
-[node name="GridPack" parent="Battlefield/Background" index="0"]
-cell_size = Vector2( 200, 100 )
-
-[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
-type = 6
+[node name="Grid" parent="Battlefield/Background" index="0"]
+modulate = Color( 1, 0, 0.654902, 0.207843 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )

@@ -232,9 +232,6 @@ func control(delta):
 		charge = charge+delta
 	else:
 		charge = 0
-		
-	# charge feedback
-	$Graphics/ChargeBar/Charge.set_point_position(1, $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE)
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
@@ -258,6 +255,8 @@ func control(delta):
 	#	speed_multiplier = 3
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
+
+	.control(delta)
 	
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
