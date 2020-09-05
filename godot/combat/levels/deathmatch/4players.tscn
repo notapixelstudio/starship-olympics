@@ -14,16 +14,14 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=14]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=15]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
-shader_param/size = Vector2( 1000, 1000 )
 shader_param/cell_size = 100.0
 shader_param/stroke = 5.0
-shader_param/well = null
+shader_param/time = null
 shader_param/triangular = false
 
-[sub_resource type="Animation" id=1]
-resource_name = "Pulse"
+[sub_resource type="Animation" id=2]
 length = 8.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("GBeveledRect:width")
@@ -50,7 +48,7 @@ centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
 modulate = Color( 0, 1, 0.74902, 0.333333 )
-material = SubResource( 2 )
+material = SubResource( 1 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
@@ -135,7 +133,7 @@ bevel_se = 100
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5"]
 autoplay = "Pulse"
 playback_speed = 0.07
-anims/Pulse = SubResource( 1 )
+anims/Pulse = SubResource( 2 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( 0, -1000 )

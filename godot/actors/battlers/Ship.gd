@@ -83,6 +83,11 @@ var invincible : bool
 var entity : Entity
 var camera
 
+var weapon_textures = {
+	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
+	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png')
+}
+
 func initialize():
 	pass
 
@@ -193,7 +198,24 @@ func _integrate_forces(state):
 	state.set_transform(xform)
 
 func control(_delta):
-	pass
+	update_charge_bar()
+	
+func update_charge_bar():
+	if not charging:
+		$Graphics/ChargeBar.visible = false
+		return
+		
+	$Graphics/ChargeBar.visible = true
+	
+	# charge feedback
+	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
+	$Graphics/ChargeBar/Charge.set_point_position(1, v)
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, v)
+	$Graphics/ChargeBar/ArrowTip.position.x = v.x
+	
+	# overcharge feedback
+	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
+		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 
 signal detection
 func _physics_process(delta):
@@ -217,11 +239,14 @@ func _physics_process(delta):
 var will_fire
 func charge():
 	charging = true
-	$Graphics/ChargeBar.visible = true
 	#$GravitonField.enabled = true
 	charging_sfx.play()
 	dash_fat_appearance()
 	will_fire = ammo.max_ammo == -1 or ammo.current_ammo > 0
+	if will_fire:
+		$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
+	else:
+		$Graphics/ChargeBar/BombPreview.texture = null
 	
 func fire():
 	"""
