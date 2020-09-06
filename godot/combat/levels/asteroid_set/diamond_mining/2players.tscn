@@ -52,11 +52,8 @@ enabled = true
 texture = ExtResource( 3 )
 centered = false
 
-[node name="GridPack" parent="Battlefield/Background" index="0"]
-grid_color = Color( 0.945098, 0, 1, 0.2 )
-
-[node name="Grid" parent="Battlefield/Background/GridPack" index="1"]
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+[node name="Grid" parent="Battlefield/Background" index="0"]
+modulate = Color( 0.45098, 0, 1, 0.666667 )
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
@@ -64,8 +61,11 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 5 )
@@ -88,8 +88,11 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 5 )
@@ -110,8 +113,12 @@ bevel_se = 450
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 5 )
