@@ -212,6 +212,8 @@ func _ready():
 	$Battlefield.visible = false
 	if score_to_win_override > 0:
 		game_mode.max_score = score_to_win_override
+	if match_duration_override > 0:
+		game_mode.max_timeout = match_duration_override
 	mode_description.gamemode = game_mode
 	mode_description.appears()
 	if demo:
