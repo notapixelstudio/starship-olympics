@@ -37,7 +37,7 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 1, 0, 0.654902, 0.207843 )
+modulate = Color( 1, 0, 0.654902, 0.45098 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
@@ -126,7 +126,7 @@ playback_speed = 0.25
 anims/Rotate = SubResource( 1 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
-position = Vector2( -2400, 0 )
+position = Vector2( -2400, -500 )
 hollow = false
 offset = 0
 elongation = 0
@@ -146,7 +146,7 @@ sides = 4.0
 rotation_degrees = 0.0
 
 [node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
-position = Vector2( 2500, 0 )
+position = Vector2( 2400, 500 )
 hollow = false
 offset = 0
 elongation = 0
