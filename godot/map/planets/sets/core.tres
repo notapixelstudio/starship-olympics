@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=16 format=2]
+[gd_resource type="Resource" load_steps=15 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/take_the_crown/2players.tscn" type="PackedScene" id=2]
@@ -14,15 +14,14 @@
 [ext_resource path="res://combat/levels/deathmatch/3players.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/levels/diamondsnatch/4players.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/diamondsnatch/3players.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/levels/arkanoid/2players.tscn" type="PackedScene" id=15]
 
 [resource]
 script = ExtResource( 1 )
 name = "core"
 tagline1 = ""
 tagline2 = ""
-levels_1players = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 15 ) ]
-levels_2players = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 15 ) ]
+levels_1players = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ) ]
+levels_2players = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ]
 levels_3players = [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 14 ) ]
 levels_4players = [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ]
 planet_sprite = ExtResource( 6 )
