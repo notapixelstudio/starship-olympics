@@ -504,7 +504,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
-	trail.configure(game_mode.deadly_trails)
+	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")

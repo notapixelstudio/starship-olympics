@@ -44,14 +44,14 @@ func initialize(_ship):
 	ship.connect('dead', self, '_on_sth_dead')
 	
 	
-func configure(deadly: bool):
+func configure(deadly : bool, duration : float):
 	var c1 = GlowColor.new(ship.species.color, 1.2).color
 	var c2 = GlowColor.new(ship.species.color_2, 3).color
 	var cm = GlowColor.new(ship.species.color_2, 1.8).color
 	
 	if deadly:
 		add_to_group("Trails")
-		trail.time_alive_per_point = 2.0
+		trail.time_alive_per_point = duration
 		trail.auto_alpha_gradient = false
 		collision_shape.call_deferred('set_disabled', false)
 		trail.texture = laser_texture
