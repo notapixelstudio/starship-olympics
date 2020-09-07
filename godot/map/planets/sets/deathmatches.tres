@@ -1,25 +1,25 @@
 [gd_resource type="Resource" load_steps=13 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
-[ext_resource path="res://combat/levels/asteroid_set/asteroid_deathmatch/3players.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/asteroid_set/asteroid_deathmatch/4players.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/deathmatch/2players.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/mantarion/limited_deathmatch/4players.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/sets/core_set/deathmatch/2players.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/sets/core_set/deathmatch/4players.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/sets/core_set/deathmatch/3players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/sets/asteroid_set/asteroid_deathmatch/2players.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/map/cards/deathmathces_set.png" type="Texture" id=6]
-[ext_resource path="res://combat/levels/mantarion/limited_deathmatch/2players.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/levels/mantarion/ball_deathmatch/2players.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/levels/mantarion/limited_deathmatch/3players.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/levels/deathmatch/4players.tscn" type="PackedScene" id=10]
-[ext_resource path="res://combat/levels/asteroid_set/asteroid_deathmatch/2players.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/levels/deathmatch/3players.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/levels/sets/asteroid_set/asteroid_deathmatch/4players.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/levels/sets/asteroid_set/asteroid_deathmatch/3players.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/levels/sets/deathmatch_set/ball_deathmatch/2players.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/levels/sets/deathmatch_set/limited_deathmatch/4players.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/levels/sets/deathmatch_set/limited_deathmatch/2players.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/levels/sets/deathmatch_set/limited_deathmatch/3players.tscn" type="PackedScene" id=12]
 
 [resource]
 script = ExtResource( 1 )
 name = "deathmatches"
 tagline1 = ""
 tagline2 = ""
-levels_1players = [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 11 ) ]
-levels_2players = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 11 ) ]
-levels_3players = [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 2 ) ]
-levels_4players = [ ExtResource( 10 ), ExtResource( 5 ), ExtResource( 3 ) ]
+levels_1players = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 5 ) ]
+levels_2players = [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 5 ) ]
+levels_3players = [ ExtResource( 4 ), ExtResource( 12 ), ExtResource( 8 ) ]
+levels_4players = [ ExtResource( 3 ), ExtResource( 10 ), ExtResource( 7 ) ]
 planet_sprite = ExtResource( 6 )
