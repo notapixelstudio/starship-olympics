@@ -193,6 +193,8 @@ func set_target_path(p_value: NodePath):
 var entity
 
 const GRACE_POINTS = 15
+const GRACE_POINTS_END = 150
+
 func add_point_to_segment(point):
 	if len(points) == 0:
 		return
@@ -202,7 +204,7 @@ func add_point_to_segment(point):
 
 	
 	# FarArea
-	if len(points) < GRACE_POINTS: 
+	if len(points) < GRACE_POINTS:
 		return
 	farsegments.append(points[len(points)-GRACE_POINTS])
 	farsegments.append(points[len(points)-GRACE_POINTS+1])

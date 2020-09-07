@@ -227,14 +227,15 @@ func _physics_process(delta):
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
+
+	for body in $DetectionArea.get_overlapping_bodies():
+		emit_signal("detection", body, self)
 		
 	dash_cooldown -= delta
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
-		entity.get('Dashing').disable()
 		dash_restore_appearance()
-		
-	for body in $DetectionArea.get_overlapping_bodies():
-		emit_signal("detection", body, self)
+		yield(get_tree().create_timer(0.08), 'timeout') # wait a bit to be lenient with dash-through checks
+		entity.get('Dashing').disable()
 		
 var will_fire
 func charge():
