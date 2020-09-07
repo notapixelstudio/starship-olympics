@@ -243,7 +243,7 @@ func charge():
 	#$GravitonField.enabled = true
 	charging_sfx.play()
 	dash_fat_appearance()
-	will_fire = ammo.max_ammo == -1 or ammo.current_ammo > 0
+	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
 	else:
