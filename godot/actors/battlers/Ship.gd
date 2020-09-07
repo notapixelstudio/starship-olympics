@@ -160,12 +160,12 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*THRUST)	
-		add_central_force(target_velocity*THRUST*int(not charging and not stunned))
+		add_central_force(target_velocity*THRUST*int(entity.has('Thrusters') and not charging and not stunned))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -396,3 +396,13 @@ func _on_Dashing_disabled():
 	
 func _on_bomb_freed():
 	bomb_count -= 1
+
+
+signal thrusters_on
+signal thrusters_off
+
+func _on_Thrusters_disabled():
+	emit_signal('thrusters_off')
+
+func _on_Thrusters_enabled():
+	emit_signal('thrusters_on')

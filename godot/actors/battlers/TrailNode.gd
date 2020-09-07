@@ -42,6 +42,8 @@ func initialize(_ship):
 		ECM.E(far_area).get('Owned').set_owned_by(ship)
 	ship.connect('spawned', self, '_on_sth_spawned')
 	ship.connect('dead', self, '_on_sth_dead')
+	ship.connect('thrusters_off', self, '_on_thrusters_off')
+	ship.connect('thrusters_on', self, '_on_thrusters_on')
 	
 	
 func configure(deadly : bool, duration : float):
@@ -86,15 +88,24 @@ func update():
 	position = ship.position + Vector2(-32,0).rotated(ship.rotation)
 	rotation = ship.rotation
 	
-func _on_sth_spawned(sth : Node2D):
+func maybe_erase():
 	if trail:
 		trail.erase_trail()
 	if inner_trail:
 		inner_trail.erase_trail()
+	
+func _on_sth_spawned(sth : Node2D):
+	maybe_erase()
 	update()
 	
 func _on_sth_dead(sth : Node2D, killer):
-	if trail:
-		trail.erase_trail()
-	if inner_trail:
-		inner_trail.erase_trail()
+	maybe_erase()
+	
+func _on_thrusters_on():
+	maybe_erase()
+	update()
+	change_visibility(true)
+	
+func _on_thrusters_off():
+	maybe_erase()
+	change_visibility(false)

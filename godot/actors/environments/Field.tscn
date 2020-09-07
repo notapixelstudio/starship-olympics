@@ -52,12 +52,88 @@ default_color = Color( 0.6, 0.6, 0.6, 0.6 )
 texture_mode = 50
 
 [node name="Area2D" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 128
 collision_mask = 517
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="Entity" type="Node2D" parent="Area2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Water" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Trigger" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Deadly" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Flow" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+charge = -10
+
+[node name="CrownDropper" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Valuable" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+
+[node name="Hill" type="Node2D" parent="Area2D/Entity"]
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+
+[node name="Crown" type="Sprite" parent="Area2D/Entity/Hill"]
+texture = ExtResource( 11 )
+
+[node name="Basket" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Owned" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+enabled = false
+
+[node name="Conquerable" type="Node" parent="Area2D/Entity"]
+script = ExtResource( 13 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
 
 [node name="CrownCollider" type="StaticBody2D" parent="."]
 visible = false
@@ -67,84 +143,6 @@ collision_mask = 512
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrownCollider"]
 shape = SubResource( 3 )
 disabled = true
-
-[node name="Entity" type="Node2D" parent="."]
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
-
-[node name="Fluid" type="Node" parent="Entity"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-
-[node name="Trigger" type="Node" parent="Entity"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-
-[node name="Deadly" type="Node" parent="Entity"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-
-[node name="Flow" type="Node" parent="Entity"]
-script = ExtResource( 7 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-charge = -10
-
-[node name="CrownDropper" type="Node" parent="Entity"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-
-[node name="Valuable" type="Node" parent="Entity"]
-script = ExtResource( 8 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-
-[node name="Hill" type="Node2D" parent="Entity"]
-editor/display_folded = true
-script = ExtResource( 9 )
-__meta__ = {
-"_editor_icon": ExtResource( 10 )
-}
-
-[node name="Crown" type="Sprite" parent="Entity/Hill"]
-texture = ExtResource( 11 )
-
-[node name="Basket" type="Node" parent="Entity"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-
-[node name="Owned" type="Node" parent="Entity"]
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-enabled = false
-
-[node name="Conquerable" type="Node" parent="Entity"]
-script = ExtResource( 13 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
 
 [node name="Particles2D" type="Particles2D" parent="."]
 emitting = false
