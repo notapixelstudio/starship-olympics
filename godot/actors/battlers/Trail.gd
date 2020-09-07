@@ -65,7 +65,7 @@ export var degen_rate: int = 1
 export var auto_z_index: bool = true
 # If true, will automatically setup a gradient for a gradually transparent trail
 export var auto_alpha_gradient: bool = true
-export var min_dist : float = 25.0
+export var min_dist : float = 4.0
 export var time_alive_per_point : float = 1.0
 
 var monitor = []

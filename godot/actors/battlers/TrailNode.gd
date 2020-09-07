@@ -52,6 +52,7 @@ func configure(deadly : bool, duration : float):
 	if deadly:
 		add_to_group("Trails")
 		trail.time_alive_per_point = duration
+		trail.min_dist = 20
 		trail.auto_alpha_gradient = false
 		collision_shape.call_deferred('set_disabled', false)
 		trail.texture = laser_texture
@@ -64,6 +65,7 @@ func configure(deadly : bool, duration : float):
 		remove_from_group("Trails")
 		collision_shape.call_deferred('set_disabled', true)
 		trail.time_alive_per_point = 1.0
+		trail.min_dist = 4
 		trail.texture = trail_texture
 		c1.a = 0.7
 		cm.a = 0.5
