@@ -1,4 +1,4 @@
-# Trail2D
+# Trail2D from https://github.com/godot-extended-libraries/godot-next/blob/master/addons/godot-next/2d/trail_2d.gd
 # author: willnationsdev
 # brief description: Creates a variable-length trail that tracks the "target" node.
 # API details:
@@ -25,25 +25,19 @@ class_name Trail2D
 
 ##### CONSTANTS #####
 
-enum Persistance {
+enum Persistence {
 	FRAME_RATE_INDIPENDENT,
-	OFF,        # Do not persist. Remove all points after the trail_length.
-	ALWAYS,     # Always persist. Do not remove any points.
-	CONDITIONAL # Sometimes persist. Choose an algorithm for when to add and remove points.
-
+	OFF,         # Do not persist. Remove all points after the trail_length.
+	ALWAYS,      # Always persist. Do not remove any points.
+	CONDITIONAL, # Sometimes persist. Choose an algorithm for when to add and remove points.
 }
 
 enum PersistWhen {
 	ON_MOVEMENT, # Add points during movement and remove points when not moving.
-	CUSTOM       # Override _should_grow() and _should_shrink() to define when to add/remove points.
+	CUSTOM,      # Override _should_grow() and _should_shrink() to define when to add/remove points.
 }
 
 ##### PROPERTIES #####
-onready var area_shape = get_node_or_null("NearArea/CollisionShape2D")
-onready var area = get_node_or_null("NearArea")
-onready var fararea = get_node_or_null("FarArea")
-onready var fararea_shape = get_node_or_null("FarArea/CollisionShape2D")
-
 var segments = []
 var farsegments = []
 
@@ -56,9 +50,9 @@ export var target_path: NodePath = @".." setget set_target_path
 # If not persisting, the number of points that should be allowed in the trail
 export var trail_length: int = 10
 # To what degree the trail should remain in existence before automatically removing points.
-export(int, "FrameRateIndependent", "Off", "Always", "Conditional") var persistance: int = Persistance.OFF
+export(int, "FrameRateIndependent", "Off", "Always", "Conditional") var persistence: int = Persistence.FRAME_RATE_INDIPENDENT
 # During conditional persistance, which persistance algorithm to use
-export(int, "On Movement", "Custom") var persistance_condition: int = PersistWhen.ON_MOVEMENT
+export(int, "On Movement", "Custom") var persistence_condition: int = PersistWhen.ON_MOVEMENT
 # During conditional persistance, how many points to remove per frame
 export var degen_rate: int = 1
 # If true, automatically set z_index to be one less than the 'target'
@@ -71,6 +65,8 @@ export var time_alive_per_point : float = 1.0
 var monitor = []
 
 var actual_length = 0.0
+const GRACE_POINTS = 15
+
 ##### NOTIFICATIONS #####
 
 func _init():
@@ -94,32 +90,27 @@ func _notification(p_what: int):
 			self.target_path = @""
 			self.trail_length = 0
 
-
 func add_custom_point(point):
 	var last_point = Vector2.ZERO if len(points) <= 0 else points[len(points)-1]
 	var distanza: float = (last_point-point).length()
-	
-	if len(points) > 1: 
+	if len(points) > 1:
 		if distanza < min_dist:
 			return
-	if area and not area_shape.disabled:
-		add_point_to_segment(point)
+	emit_signal("add_point", point)
 	# actual_length += distanza
 	add_point(point)
 	monitor.append(0.0)
 
 
 func remove_custom_point(index):
-	if area and not area_shape.disabled:
-		remove_point_to_segment(index)
 	remove_point(index)
 
 		
 #warning-ignore:unused_argument
 func _process(delta: float):
 	if target:
-		match persistance:
-			Persistance.FRAME_RATE_INDIPENDENT:
+		match persistence:
+			Persistence.FRAME_RATE_INDIPENDENT:
 				add_custom_point(target.global_position)
 				var to_be_deleted_count = 0
 				for i in len(monitor):
@@ -130,15 +121,15 @@ func _process(delta: float):
 						remove_custom_point(0)
 				for d in to_be_deleted_count:
 					monitor.remove(0)
-			Persistance.OFF:
+			Persistence.OFF:
 				add_custom_point(target.global_position)
 				while get_point_count() > trail_length :
 					remove_custom_point(0)
-			Persistance.ALWAYS:
+			Persistence.ALWAYS:
 				add_custom_point(target.global_position)
 				pass
-			Persistance.CONDITIONAL:
-				match persistance_condition:
+			Persistence.CONDITIONAL:
+				match persistence_condition:
 					PersistWhen.ON_MOVEMENT:
 						var moved: bool = get_point_position(get_point_count()-1) != target.global_position if get_point_count() else false
 						if not get_point_count() or moved:
@@ -189,33 +180,4 @@ func set_target(p_value: Node2D):
 func set_target_path(p_value: NodePath):
 	target_path = p_value
 	target = get_node(p_value) as Node2D if has_node(p_value) else null
-	
-var entity
-
-const GRACE_POINTS = 15
-func add_point_to_segment(point):
-	if len(points) == 0:
-		return
-	segments.append(points[len(points)-1])
-	segments.append(point)
-	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-
-	
-	# FarArea
-	if len(points) < GRACE_POINTS: 
-		return
-	farsegments.append(points[len(points)-GRACE_POINTS])
-	farsegments.append(points[len(points)-GRACE_POINTS+1])
-	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
-
-func remove_point_to_segment(point):
-	if len(points) == 0: 
-		return
-	# Twice, because!
-	segments.pop_front()
-	segments.pop_front()
-	farsegments.pop_front()
-	farsegments.pop_front()
-	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 	
