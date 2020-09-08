@@ -27,7 +27,7 @@ func to_PoolVector2Array():
 	for i in range(sides):
 		points.append(Vector2(rx*cos(i*angle),ry*sin(i*angle)))
 		
-	return PoolVector2Array(points) # clockwise!
+	return .clip(points) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

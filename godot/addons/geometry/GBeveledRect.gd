@@ -46,7 +46,7 @@ func set_bevel_se(value):
 	emit_signal('changed')
 	
 func to_PoolVector2Array():
-	return ._apply_offset(PoolVector2Array([
+	var points = ._apply_offset(PoolVector2Array([
 		Vector2(-width/2,-height/2+bevel_nw),
 		Vector2(-width/2+bevel_nw,-height/2),
 		Vector2(width/2-bevel_ne,-height/2),
@@ -56,6 +56,8 @@ func to_PoolVector2Array():
 		Vector2(-width/2+bevel_sw,height/2),
 		Vector2(-width/2,height/2-bevel_sw)
 	])) # clockwise!
+	
+	return .clip(points)
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

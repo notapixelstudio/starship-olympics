@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
@@ -25,6 +25,22 @@ shader_param/stroke = 5.0
 shader_param/time = null
 shader_param/triangular = false
 
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 80.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 80 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 10800 ), Vector2( 0, 9100 ) ]
+}
+
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 11 )
@@ -44,9 +60,23 @@ centered = false
 modulate = Color( 0.45098, 0, 1, 0.666667 )
 material = SubResource( 1 )
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 8 )]
-z_index = 75
+[node name="Water" parent="Battlefield/Background" index="1" instance=ExtResource( 18 )]
+position = Vector2( 0, 10800 )
+z_index = 50
 z_as_relative = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/Water" index="6" groups=[
+"animation_in_battle",
+]]
+playback_process_mode = 0
+anims/Rotate = SubResource( 2 )
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Water" index="7"]
+script = ExtResource( 1 )
+width = 20000
+height = 20000
+
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 8 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -62,8 +92,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 width = 2900
 height = 1700
 radius = 800
@@ -87,8 +115,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 width = 200
 height = 200
 
@@ -113,8 +139,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 width = 200
 height = 200
 
@@ -526,22 +550,6 @@ position = Vector2( 300, 600 )
 
 [node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner31" index="4" instance=ExtResource( 15 )]
 position = Vector2( -300, 0 )
-
-[node name="Water" parent="Battlefield/Overlay" index="1" instance=ExtResource( 18 )]
-z_index = 50
-z_as_relative = false
-
-[node name="GRoundedRect" type="Node" parent="Battlefield/Overlay/Water" index="6"]
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-width = 2900
-height = 1700
-radius = 800
-precision = 50.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -600, 600 )

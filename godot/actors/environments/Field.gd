@@ -48,6 +48,7 @@ func refresh():
 	($Area2D/Entity/Valuable as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
 	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Area2D/Entity/Basket as Component).set_enabled(type == TYPE.basket)
+	$Area2D.space_override = Area2D.SPACE_OVERRIDE_COMBINE if type == TYPE.water else Area2D.SPACE_OVERRIDE_DISABLED
 	
 	$Polygon2D.visible = type != TYPE.ghost
 	# $Line2D.visible = type != TYPE.water
@@ -119,7 +120,8 @@ func refresh():
 		# add_to_group('in_camera')
 		pass
 	else:
-		remove_from_group('in_camera')
+		if is_in_group('in_camera'):
+			remove_from_group('in_camera')
 		
 func _process(delta):
 	if not Engine.is_editor_hint() and ($Area2D/Entity/Conquerable as Component).enabled:
@@ -131,8 +133,7 @@ func _process(delta):
 			$Polygon2D.color = Color(0.3,0.3,0.3,0.1)
 			$Line2D.default_color = Color(0.6,0.6,0.6,0.3)
 			modulate = Color(1,1,1,1)
-
-			
+	
 func get_gshape():
 	for child in get_children():
 		if child is GShape:
