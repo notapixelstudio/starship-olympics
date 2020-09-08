@@ -56,6 +56,7 @@ signal rematch
 signal back_to_menu
 signal slomo
 signal unslomo
+signal battle_start
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -270,12 +271,12 @@ func _ready():
 		
 	# manage level flooding
 	if not game_mode.floodable or not game_mode.flood:
-		$Battlefield/Background/Water.queue_free()
+		$Battlefield/Background/FloodWater.queue_free()
 	else:
 		var level_height = compute_arena_size().size.y
-		var water_rect_height = $Battlefield/Background/Water/GRect.height
-		$Battlefield/Background/Water.position.y = water_rect_height/2 + level_height/2
-		var flood_animation =  $Battlefield/Background/Water/AnimationPlayer.get_animation('Rotate')
+		var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
+		$Battlefield/Background/FloodWater.position.y = water_rect_height/2 + level_height/2
+		var flood_animation =  $Battlefield/Background/FloodWater/AnimationPlayer.get_animation('Rotate')
 		flood_animation.track_set_key_value(0, 0, Vector2(0, water_rect_height/2 + level_height/2))
 		flood_animation.track_set_key_value(0, 1, Vector2(0, water_rect_height/2 - level_height/2))
 		flood_animation.track_set_key_time(0, 1, game_mode.max_timeout) # filled as the countdown is done
@@ -323,6 +324,8 @@ func _ready():
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
 		
+	emit_signal('battle_start')
+	
 	for node in get_tree().get_nodes_in_group('wait_to_start'):
 		node.start()
 	

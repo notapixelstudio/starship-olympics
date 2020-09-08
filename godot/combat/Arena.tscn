@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -34,9 +34,8 @@
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
-[ext_resource path="res://actors/environments/Field.gd" type="Script" id=35]
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=1]
 background_mode = 4
 background_canvas_max_layer = 100
 glow_enabled = true
@@ -58,12 +57,12 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 10800 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 500
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 29 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -122,7 +121,7 @@ __meta__ = {
 gameover_scene = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 3 )
+environment = SubResource( 1 )
 
 [node name="Managers" type="Node" parent="."]
 
@@ -252,26 +251,19 @@ script = ExtResource( 22 )
 
 [node name="Grid" parent="Battlefield/Background" instance=ExtResource( 23 )]
 
-[node name="Water" type="Node2D" parent="Battlefield/Background" instance=ExtResource( 25 )]
+[node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
 position = Vector2( 0, 10800 )
 z_index = 50
 z_as_relative = false
-script = ExtResource( 35 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/Water" groups=[
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
 "animation_in_battle",
 ]]
 playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 
-[node name="GRect" type="Node" parent="Battlefield/Background/Water"]
+[node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
 script = ExtResource( 24 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 20000
 height = 20000
 
@@ -308,7 +300,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 uppercase = true
@@ -330,7 +322,7 @@ debug_mode = false
 enabled = true
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 5 )
+"anims/Game Over" = SubResource( 4 )
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
