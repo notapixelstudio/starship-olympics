@@ -20,6 +20,9 @@ const laser_texture = preload('res://assets/sprites/weapons/laser.png')
 
 var trail_f : float = 0.0
 
+var segments = []
+var farsegments = []
+
 func change_visibility(v):
 	visible = v
 	$Trail.visible = v
@@ -44,9 +47,11 @@ func initialize(_ship):
 	ship.connect('dead', self, '_on_sth_dead')
 	ship.connect('thrusters_off', self, '_on_thrusters_off')
 	ship.connect('thrusters_on', self, '_on_thrusters_on')
+	
+	self.configure()
 
 
-func configure(deadly : bool, duration : float):
+func configure(deadly : bool = false, duration : float = 0.0):
 	var c1 = GlowColor.new(ship.species.color, 1.2).color
 	var c2 = GlowColor.new(ship.species.color_2, 3).color
 	var cm = GlowColor.new(ship.species.color_2, 1.8).color
@@ -100,7 +105,7 @@ func _on_sth_spawned(sth : Node2D):
 	
 func _on_sth_dead(sth : Node2D, killer):
 	maybe_erase()
-
+	
 func _on_thrusters_on():
 	maybe_erase()
 	update()
@@ -110,20 +115,23 @@ func _on_thrusters_off():
 	maybe_erase()
 	change_visibility(false)
 
+const GRACE_POINTS = 15
+const GRACE_POINTS_END = 150
+
 func add_point_to_segment(point):
+	var points = trail.points
 	if len(points) == 0:
 		return
 	segments.append(points[len(points)-1])
 	segments.append(point)
-	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	# FarArea
-	if len(points) < GRACE_POINTS:
-		return
 	farsegments.append(points[len(points)-GRACE_POINTS])
 	farsegments.append(points[len(points)-GRACE_POINTS+1])
-	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
+	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 
 func remove_point_to_segment(point):
+	var points = trail.points
 	if len(points) == 0:
 		return
 	# Twice, because!
@@ -131,6 +139,6 @@ func remove_point_to_segment(point):
 	segments.pop_front()
 	farsegments.pop_front()
 	farsegments.pop_front()
-	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
+	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 

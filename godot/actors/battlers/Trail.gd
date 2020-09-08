@@ -23,6 +23,7 @@ class_name Trail2D
 
 ##### SIGNALS #####
 
+signal add_point
 ##### CONSTANTS #####
 
 enum Persistence {
@@ -38,8 +39,6 @@ enum PersistWhen {
 }
 
 ##### PROPERTIES #####
-var segments = []
-var farsegments = []
 
 # The target node to track
 var target: Node2D setget set_target
@@ -65,7 +64,6 @@ export var time_alive_per_point : float = 1.0
 var monitor = []
 
 var actual_length = 0.0
-const GRACE_POINTS = 15
 
 ##### NOTIFICATIONS #####
 
@@ -180,35 +178,4 @@ func set_target(p_value: Node2D):
 func set_target_path(p_value: NodePath):
 	target_path = p_value
 	target = get_node(p_value) as Node2D if has_node(p_value) else null
-	
-var entity
-
-const GRACE_POINTS = 15
-const GRACE_POINTS_END = 150
-
-func add_point_to_segment(point):
-	if len(points) == 0:
-		return
-	segments.append(points[len(points)-1])
-	segments.append(point)
-	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-
-
-	# FarArea
-	if len(points) < GRACE_POINTS:
-		return
-	farsegments.append(points[len(points)-GRACE_POINTS])
-	farsegments.append(points[len(points)-GRACE_POINTS+1])
-	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
-
-func remove_point_to_segment(point):
-	if len(points) == 0: 
-		return
-	# Twice, because!
-	segments.pop_front()
-	segments.pop_front()
-	farsegments.pop_front()
-	farsegments.pop_front()
-	(area_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-	(fararea_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 	
