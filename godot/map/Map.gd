@@ -148,6 +148,9 @@ func get_cell(position):
 
 func _on_cell_pressed(cursor, cell):
 	# update data
+	if cell.is_in_group("sports"):
+		cursor.disable()
+		
 	selected_sports = []
 	for sport in get_tree().get_nodes_in_group('sports'):
 		if sport.active:
@@ -155,6 +158,7 @@ func _on_cell_pressed(cursor, cell):
 
 signal done
 var players_ready = 0
+
 func _on_Start_pressed(cursor):
 	if len(selected_sports) <= 0:
 		return
