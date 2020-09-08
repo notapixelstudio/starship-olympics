@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://assets/animations/wall_flash_solid-hostile.tres" type="Animation" id=14]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=16]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
@@ -24,22 +23,6 @@ shader_param/cell_size = 100.0
 shader_param/stroke = 5.0
 shader_param/time = null
 shader_param/triangular = false
-
-[sub_resource type="Animation" id=2]
-resource_name = "Rotate"
-length = 80.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 80 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 10800 ), Vector2( 0, 9100 ) ]
-}
 
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
@@ -59,25 +42,6 @@ centered = false
 [node name="Grid" parent="Battlefield/Background" index="0"]
 modulate = Color( 0.45098, 0, 1, 0.666667 )
 material = SubResource( 1 )
-
-[node name="Water" parent="Battlefield/Background" index="1" instance=ExtResource( 18 )]
-position = Vector2( 0, 10800 )
-z_index = 50
-z_as_relative = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/Water" index="6" groups=[
-"animation_in_battle",
-]]
-playback_process_mode = 0
-anims/Rotate = SubResource( 2 )
-
-[node name="GRect" type="Node" parent="Battlefield/Background/Water" index="7"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 20000
-height = 20000
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 8 )]
 hollow = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=21]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=22]
 [ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=23]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=24]
+[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=25]
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=28]
@@ -32,19 +34,36 @@
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
+[ext_resource path="res://actors/environments/Field.gd" type="Script" id=35]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=3]
 background_mode = 4
 background_canvas_max_layer = 100
 glow_enabled = true
 glow_blend_mode = 1
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 1000.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 80 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 10800 ), Vector2( 0, 9100 ) ]
+}
+
+[sub_resource type="DynamicFont" id=4]
 size = 500
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 29 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -103,7 +122,7 @@ __meta__ = {
 gameover_scene = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 3 )
 
 [node name="Managers" type="Node" parent="."]
 
@@ -233,6 +252,29 @@ script = ExtResource( 22 )
 
 [node name="Grid" parent="Battlefield/Background" instance=ExtResource( 23 )]
 
+[node name="Water" type="Node2D" parent="Battlefield/Background" instance=ExtResource( 25 )]
+position = Vector2( 0, 10800 )
+z_index = 50
+z_as_relative = false
+script = ExtResource( 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/Water" groups=[
+"animation_in_battle",
+]]
+playback_process_mode = 0
+anims/Rotate = SubResource( 2 )
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Water"]
+script = ExtResource( 24 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 20000
+height = 20000
+
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
 [node name="Middleground" type="Node2D" parent="Battlefield"]
@@ -266,7 +308,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 align = 1
 valign = 1
 uppercase = true
@@ -288,7 +330,7 @@ debug_mode = false
 enabled = true
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 3 )
+"anims/Game Over" = SubResource( 5 )
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
