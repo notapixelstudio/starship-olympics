@@ -32,6 +32,12 @@ trail_texture = ExtResource( 2 )
 material = SubResource( 1 )
 width = 80.0
 gradient = SubResource( 2 )
+target_path = null
+persistence = null
+persistence_condition = null
+degen_rate = null
+auto_alpha_gradient = null
+min_dist = 1.0
 time_alive_per_point = 1.5
 
 [node name="NearArea" type="Area2D" parent="Trail"]
@@ -92,5 +98,11 @@ __meta__ = {
 width = 18.0
 gradient = SubResource( 3 )
 texture = ExtResource( 9 )
+target_path = null
 trail_length = 5
+persistence = null
+persistence_condition = null
+degen_rate = null
+auto_alpha_gradient = null
+min_dist = 1.0
 time_alive_per_point = 0.4
