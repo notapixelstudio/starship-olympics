@@ -61,11 +61,8 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 1 )
@@ -74,6 +71,7 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2400
 height = 2400
 bevel = 450
@@ -88,11 +86,8 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
@@ -101,6 +96,7 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2800
 height = 2800
 bevel = 450
@@ -113,12 +109,8 @@ bevel_se = 450
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
@@ -127,6 +119,7 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2800
 height = 2800
 bevel = 450
