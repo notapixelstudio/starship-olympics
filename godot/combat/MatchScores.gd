@@ -16,6 +16,7 @@ var draw: bool = true
 var game_over:bool = false
 var cumulative_points = 0
 var winners = [] # Array of winning Player stats
+var no_players = false
 
 signal game_over
 
@@ -49,7 +50,7 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 		time_left = max_timeout
 	
 	match_time = time_left
-		
+	
 	if game_mode.cumulative:
 		cumulative_points=0
 	
@@ -67,7 +68,7 @@ func update(delta: float):
 	
 	var leader = scores[0]
 	
-	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score):
+	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score) or no_players:
 		winners = []
 		var draw = true
 		var last_value = leader.score
@@ -85,12 +86,15 @@ func update(delta: float):
 	lasting_time += delta
 
 func one_player_left(player):
-	pass # player.stats.add_victory() # FIXME when survival is updated
+	pass # this was used with old survival rules
+	
+func no_players_left():
+	no_players = true
 	
 func do_game_over():
 	game_over = true
 	emit_signal("game_over", winners)
-		
+	
 func add_score(id_player: String, amount : float):
 	var player = get_player(id_player)
 	player.score = max(0, player.score + amount)

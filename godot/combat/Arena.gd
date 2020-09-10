@@ -425,13 +425,13 @@ func ship_just_died(ship, killer):
 				alive_players.append(s)
 				
 		if len(alive_players) == 1:
-			# stop the match after a while if there is only one player left
+			# notify scores if there is only one player left
 			yield(get_tree().create_timer(1), 'timeout')
 			scores.one_player_left(alive_players[0].info_player)
 		elif len(alive_players) == 0:
-			# stop the match after a while if there is no player left
+			# notify scores if there are no players left
 			yield(get_tree().create_timer(1), 'timeout')
-			scores.do_game_over()
+			scores.no_players_left()
 			
 		# skip respawn if there are no lives left
 		return

@@ -61,18 +61,17 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
 hide_grid = true
 line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3200
 height = 3200
 bevel = 50
@@ -87,18 +86,17 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
 hide_grid = true
 line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 4000
 height = 4000
 bevel = 50
@@ -111,18 +109,18 @@ bevel_se = 50
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
 line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 4000
 height = 4000
 bevel = 50
@@ -136,6 +134,10 @@ bevel_se = 50
 ]]
 playback_speed = 2.0
 anims/Rotate = SubResource( 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 base_size = 42.0

@@ -85,15 +85,17 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3200
 height = 1600
 bevel = 50
@@ -108,15 +110,17 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3200
 height = 1600
 bevel = 800
@@ -129,17 +133,18 @@ bevel_se = 800
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3200
 height = 1600
 bevel = 800
@@ -152,6 +157,10 @@ bevel_se = 800
 autoplay = "Pulse"
 playback_speed = 0.5
 anims/Pulse = SubResource( 2 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -800, 0 )
