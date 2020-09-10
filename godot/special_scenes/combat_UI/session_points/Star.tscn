@@ -61,7 +61,7 @@ font_data = ExtResource( 28 )
 [sub_resource type="Animation" id=2]
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Wrapper/Sprite:scale")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -73,7 +73,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1.5, 1.5 ), Vector2( 1.2, 1.2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Wrapper/Sprite:animation")
+tracks/1/path = NodePath("Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -85,7 +85,7 @@ tracks/1/keys = {
 "values": [ "shine" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Wrapper/Sprite:playing")
+tracks/2/path = NodePath("Sprite:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -97,7 +97,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Wrapper/Sprite:frame")
+tracks/3/path = NodePath("Sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -139,7 +139,7 @@ modulate = Color( 1.1, 1.1, 1.1, 1 )
 position = Vector2( 0, 5 )
 frames = SubResource( 1 )
 animation = "shine"
-frame = 1
+frame = 39
 playing = true
 
 [node name="Label" type="Label" parent="Wrapper"]

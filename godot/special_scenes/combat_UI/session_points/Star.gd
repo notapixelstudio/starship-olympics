@@ -26,7 +26,10 @@ func set_won(value):
 		
 func set_perfect(value):
 	perfect = value
-	sprite.modulate = Color(1.3,0,1.3,1)
+	if perfect:
+		sprite.modulate = Color(1.3,0,1.3,1)
+	else:
+		sprite.modulate = Color(1.1,1.1,1.1,1)
 	if is_inside_tree():
 		refresh()
 	

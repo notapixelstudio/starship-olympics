@@ -18,8 +18,8 @@ func initialize(winners: Array, match_scores):
 	var sport = match_scores.sport
 	var players = match_scores.players
 	for winner in winners:
-		players[winner.id].session_score += 1
-		winner.session_score += 1
+		players[winner.id].add_victory()
+		winner.add_victory()
 		
 	var scores = match_scores.scores
 	var max_points = global.win

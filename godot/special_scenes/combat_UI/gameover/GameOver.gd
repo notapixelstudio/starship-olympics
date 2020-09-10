@@ -26,7 +26,7 @@ func initialize(winners: Array, scores):
 	buttons.visible = true
 	var session_over = false
 	if winners:
-		session_over = winners[0].session_score >= global.win
+		session_over = len(winners[0].session_score) >= global.win
 		continue_button.visible = not session_over
 	buttons.get_child(int(session_over)).grab_focus()
 	
@@ -53,4 +53,4 @@ func sort_by_score(a, b):
 		elements that will be sorted by their current match score
 		
 	"""
-	return a.session_score > b.session_score
+	return len(a.session_score) > len(b.session_score)

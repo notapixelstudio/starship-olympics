@@ -9,7 +9,7 @@ var cpu: bool = false
 
 var playable : bool = true
 var lives : int = -1
-var session_score : int = 0
+var session_score = []
 var species  : Species
 var stats # : PlayerStats
 var team: String 
@@ -26,4 +26,7 @@ func to_stats():
 	return stats.to_dict()
 
 func reset():
-	session_score  = 0.0
+	session_score = []
+
+func add_victory(perfect = false):
+	session_score.append({'perfect': perfect})

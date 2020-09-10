@@ -71,8 +71,9 @@ func update_stars():
 			stars.append(node)
 			
 	for i in range(global.win):
-		if i < player.session_score:
+		if i < len(player.session_score):
 			stars[i].won = true
+			stars[i].perfect = player.session_score[i].perfect
 	
 func set_value(value):
 	previous_value = current_value
