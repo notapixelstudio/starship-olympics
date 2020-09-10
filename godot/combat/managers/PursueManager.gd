@@ -43,7 +43,7 @@ func _physics_process(delta):
 		var targeter = targeter_e.get_host()
 		var target = targeter_e.get('Pursuer').get_target()
 		
-		if target != null and targeter_e.has('Thrusters'):
-			var thrust = 50
+		if target != null:
+			var thrust = 50 if targeter_e.has('Thrusters') else 20
 			targeter.apply_impulse(Vector2(0,0), (target.position - targeter.position).normalized()*thrust)
 			

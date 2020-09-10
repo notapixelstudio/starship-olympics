@@ -16,6 +16,8 @@ onready var far_area = $Trail/FarArea
 export var trail_length: int setget set_trail_length
 export var trail_texture : Texture
 
+const laser_texture = preload('res://assets/sprites/weapons/laser.png')
+
 var trail_f : float = 0.0
 
 func change_visibility(v):
@@ -38,33 +40,39 @@ func initialize(_ship):
 	if ECM.E(ship):
 		ECM.E(near_area).get('Owned').set_owned_by(ship)
 		ECM.E(far_area).get('Owned').set_owned_by(ship)
+	ship.connect('spawned', self, '_on_sth_spawned')
+	ship.connect('dead', self, '_on_sth_dead')
+	ship.connect('thrusters_off', self, '_on_thrusters_off')
+	ship.connect('thrusters_on', self, '_on_thrusters_on')
 	
+	
+func configure(deadly : bool, duration : float):
 	var c1 = GlowColor.new(ship.species.color, 1.2).color
 	var c2 = GlowColor.new(ship.species.color_2, 3).color
 	var cm = GlowColor.new(ship.species.color_2, 1.8).color
-	c1.a = 0.7
-	c2.a = 0
-	cm.a = 0.5
-	trail.gradient.colors = PoolColorArray([c2,cm,c1])
-	#trail.modulate = c
-	ship.connect('spawned', self, '_on_sth_spawned')
-	ship.connect('dead', self, '_on_sth_dead')
 	
-	
-func configure(deadly: bool):
 	if deadly:
 		add_to_group("Trails")
-		trail.trail_length = 200
+		trail.time_alive_per_point = duration
+		trail.min_dist = 20
 		trail.auto_alpha_gradient = false
-		collision_shape.disabled = false
-		trail.texture = null
+		collision_shape.call_deferred('set_disabled', false)
+		trail.texture = laser_texture
+		trail.width = 30
+		c1.a = 1.0
+		cm.a = 0.65
+		c2.a = 0.35
+		trail.gradient.colors = PoolColorArray([c2,cm,c1])
 	else:
 		remove_from_group("Trails")
-		collision_shape.disabled = true
-		trail.trail_length = 25
+		collision_shape.call_deferred('set_disabled', true)
+		trail.time_alive_per_point = 1.0
+		trail.min_dist = 4
 		trail.texture = trail_texture
-	
-	
+		c1.a = 0.7
+		cm.a = 0.5
+		c2.a = 0
+		trail.gradient.colors = PoolColorArray([c2,cm,c1])
 	
 func _ready():
 	
@@ -80,15 +88,24 @@ func update():
 	position = ship.position + Vector2(-32,0).rotated(ship.rotation)
 	rotation = ship.rotation
 	
-func _on_sth_spawned(sth : Node2D):
+func maybe_erase():
 	if trail:
 		trail.erase_trail()
 	if inner_trail:
 		inner_trail.erase_trail()
+	
+func _on_sth_spawned(sth : Node2D):
+	maybe_erase()
 	update()
 	
 func _on_sth_dead(sth : Node2D, killer):
-	if trail:
-		trail.erase_trail()
-	if inner_trail:
-		inner_trail.erase_trail()
+	maybe_erase()
+	
+func _on_thrusters_on():
+	maybe_erase()
+	update()
+	change_visibility(true)
+	
+func _on_thrusters_off():
+	maybe_erase()
+	change_visibility(false)

@@ -16,11 +16,11 @@ func set_height(value):
 	emit_signal('changed')
 
 func to_PoolVector2Array():
-	return PoolVector2Array([Vector2(-width/2,-height/2),Vector2(width/2,-height/2),Vector2(width/2,height/2),Vector2(-width/2,height/2)]) # clockwise!
+	return .clip([Vector2(-width/2,-height/2),Vector2(width/2,-height/2),Vector2(width/2,height/2),Vector2(-width/2,height/2)]) # clockwise!
 	
 func to_Shape2D():
-	var shape = RectangleShape2D.new()
-	shape.set_extents(Vector2(width/2, height/2))
+	var shape = ConvexPolygonShape2D.new()
+	shape.set_point_cloud(to_PoolVector2Array())
 	return shape
 	
 func get_extents() -> Vector2:

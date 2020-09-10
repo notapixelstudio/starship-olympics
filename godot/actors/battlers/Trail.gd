@@ -65,7 +65,7 @@ export var degen_rate: int = 1
 export var auto_z_index: bool = true
 # If true, will automatically setup a gradient for a gradually transparent trail
 export var auto_alpha_gradient: bool = true
-export var min_dist : float = 4 
+export var min_dist : float = 4.0
 export var time_alive_per_point : float = 1.0
 
 var monitor = []
@@ -193,6 +193,8 @@ func set_target_path(p_value: NodePath):
 var entity
 
 const GRACE_POINTS = 15
+const GRACE_POINTS_END = 150
+
 func add_point_to_segment(point):
 	if len(points) == 0:
 		return
@@ -202,7 +204,7 @@ func add_point_to_segment(point):
 
 	
 	# FarArea
-	if len(points) < GRACE_POINTS: 
+	if len(points) < GRACE_POINTS:
 		return
 	farsegments.append(points[len(points)-GRACE_POINTS])
 	farsegments.append(points[len(points)-GRACE_POINTS+1])

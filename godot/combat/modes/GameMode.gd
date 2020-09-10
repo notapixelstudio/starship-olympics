@@ -19,13 +19,13 @@ export var death : bool = false
 export var crown : bool = false
 export var hive : bool = false
 export var collect : bool = false
-export var flowsnake : bool = false
 export var goal : bool = false
 export var survival : bool = false
 
 # gear 
 export var shoot_bombs : bool = true setget set_bombs
 export var deadly_trails : bool = false
+export var deadly_trails_duration : float = 2.0
 enum BOMB_TYPE { classic, ball }
 export(BOMB_TYPE) var bomb_type = BOMB_TYPE.classic
 export var starting_ammo : int = -1
@@ -34,4 +34,6 @@ export var reload_time : float = 3.0
 func set_bombs(value):
 	shoot_bombs = value
 
-
+# modifiers
+export var floodable : bool = true
+export var flood : bool = false

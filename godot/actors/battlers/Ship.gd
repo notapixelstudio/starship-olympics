@@ -160,12 +160,12 @@ func _integrate_forces(state):
 	steer_force = max_steer_force * rotation_dir
 	
 	if not absolute_controls:
-		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*THRUST)	
-		add_central_force(target_velocity*THRUST*int(not charging and not stunned))
+		add_central_force(target_velocity*THRUST*int(entity.has('Thrusters') and not charging and not stunned))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -227,14 +227,15 @@ func _physics_process(delta):
 	stun_countdown -= delta
 	if stun_countdown <= 0:
 		unstun()
+
+	for body in $DetectionArea.get_overlapping_bodies():
+		emit_signal("detection", body, self)
 		
 	dash_cooldown -= delta
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
-		entity.get('Dashing').disable()
 		dash_restore_appearance()
-		
-	for body in $DetectionArea.get_overlapping_bodies():
-		emit_signal("detection", body, self)
+		yield(get_tree().create_timer(0.08), 'timeout') # wait a bit to be lenient with dash-through checks
+		entity.get('Dashing').disable()
 		
 var will_fire
 func charge():
@@ -242,7 +243,7 @@ func charge():
 	#$GravitonField.enabled = true
 	charging_sfx.play()
 	dash_fat_appearance()
-	will_fire = ammo.max_ammo == -1 or ammo.current_ammo > 0
+	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
 	else:
@@ -395,3 +396,13 @@ func _on_Dashing_disabled():
 	
 func _on_bomb_freed():
 	bomb_count -= 1
+
+
+signal thrusters_on
+signal thrusters_off
+
+func _on_Thrusters_disabled():
+	emit_signal('thrusters_off')
+
+func _on_Thrusters_enabled():
+	emit_signal('thrusters_on')

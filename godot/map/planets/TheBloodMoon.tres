@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
-[ext_resource path="res://combat/levels/v1.x/2players/the_blood_moon_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/v1.x/2players/the_blood_moon_2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/v1.x/2players/the_blood_moon_3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/v1.x/2players/the_blood_moon_4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/old/2players/the_blood_moon_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/old/2players/the_blood_moon_2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/old/2players/the_blood_moon_4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/old/2players/the_blood_moon_3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/map/the_blood_moon.png" type="Texture" id=6]
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=7]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=8]
@@ -16,7 +16,7 @@ tagline1 = "Mantiacs' dreadful penal colony"
 tagline2 = "(also a theme park)"
 species = ExtResource( 8 )
 levels_1players = [  ]
-levels_2players = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+levels_2players = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]
 levels_3players = [  ]
 levels_4players = [  ]
 planet_sprite = ExtResource( 6 )
