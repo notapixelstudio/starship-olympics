@@ -128,6 +128,8 @@ func add_point_to_segment(point):
 	segments.append(point)
 	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	# FarArea
+	if len(points) < GRACE_POINTS:
+		return
 	farsegments.append(points[len(points)-GRACE_POINTS])
 	farsegments.append(points[len(points)-GRACE_POINTS+1])
 	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
