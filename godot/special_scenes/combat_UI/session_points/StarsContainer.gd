@@ -11,5 +11,6 @@ func initialize(points: int, max_points: int, just_won: bool = false):
 		point.position.y = 80
 		point.floating_star(i)
 		point.won = bool(i<points)
+		#point.perfect = true
 		if just_won and i == points-1:
 			point.score()
