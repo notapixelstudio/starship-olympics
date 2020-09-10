@@ -48,14 +48,12 @@ func initialize(_ship):
 	ship.connect('thrusters_off', self, '_on_thrusters_off')
 	ship.connect('thrusters_on', self, '_on_thrusters_on')
 	
-	self.configure()
-
-
-func configure(deadly : bool = false, duration : float = 0.0):
+	
+func configure(deadly : bool, duration : float):
 	var c1 = GlowColor.new(ship.species.color, 1.2).color
 	var c2 = GlowColor.new(ship.species.color_2, 3).color
 	var cm = GlowColor.new(ship.species.color_2, 1.8).color
-
+	
 	if deadly:
 		add_to_group("Trails")
 		trail.time_alive_per_point = duration
@@ -98,7 +96,7 @@ func maybe_erase():
 		trail.erase_trail()
 	if inner_trail:
 		inner_trail.erase_trail()
-
+	
 func _on_sth_spawned(sth : Node2D):
 	maybe_erase()
 	update()
@@ -110,35 +108,7 @@ func _on_thrusters_on():
 	maybe_erase()
 	update()
 	change_visibility(true)
-
+	
 func _on_thrusters_off():
 	maybe_erase()
 	change_visibility(false)
-
-const GRACE_POINTS = 15
-const GRACE_POINTS_END = 150
-
-func add_point_to_segment(point):
-	var points = trail.points
-	if len(points) == 0:
-		return
-	segments.append(points[len(points)-1])
-	segments.append(point)
-	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-	# FarArea
-	farsegments.append(points[len(points)-GRACE_POINTS])
-	farsegments.append(points[len(points)-GRACE_POINTS+1])
-	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
-
-func remove_point_to_segment(point):
-	var points = trail.points
-	if len(points) == 0:
-		return
-	# Twice, because!
-	segments.pop_front()
-	segments.pop_front()
-	farsegments.pop_front()
-	farsegments.pop_front()
-	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
-

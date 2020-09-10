@@ -34,4 +34,6 @@ export var reload_time : float = 3.0
 func set_bombs(value):
 	shoot_bombs = value
 
-
+# modifiers
+export var floodable : bool = true
+export var flood : bool = false

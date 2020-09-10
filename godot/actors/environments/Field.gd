@@ -48,7 +48,6 @@ func refresh():
 	($Area2D/Entity/Valuable as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
 	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Area2D/Entity/Basket as Component).set_enabled(type == TYPE.basket)
-	$Area2D.space_override = Area2D.SPACE_OVERRIDE_COMBINE if type == TYPE.water else Area2D.SPACE_OVERRIDE_DISABLED
 	
 	$Polygon2D.visible = type != TYPE.ghost
 	# $Line2D.visible = type != TYPE.water
@@ -107,6 +106,24 @@ func refresh():
 		else:
 			# other shapes are unupported
 			$Particles2D.emitting = false
+			
+	# configure buoyancy
+	if type == TYPE.water:
+		$Area2D.space_override = Area2D.SPACE_OVERRIDE_REPLACE
+		
+		if gshape is GCircle:
+			$Area2D.gravity_point = true
+			$Area2D.gravity_vec = Vector2(0,0) # center
+			$Area2D.gravity = -98 # repulsive
+		elif gshape is GRect:
+			$Area2D.gravity_point = false
+			$Area2D.gravity_vec = Vector2(0,1)
+			$Area2D.gravity = -49 # repulsive
+		else:
+			# other shapes are unupported
+			$Area2D.space_override = Area2D.SPACE_OVERRIDE_DISABLED
+	else:
+		$Area2D.space_override = Area2D.SPACE_OVERRIDE_DISABLED
 	
 	# conquerable
 	($Area2D/Entity/Conquerable as Component).set_enabled(type == TYPE.conquerable)

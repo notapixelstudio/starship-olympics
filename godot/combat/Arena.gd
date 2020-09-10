@@ -56,6 +56,7 @@ signal rematch
 signal back_to_menu
 signal slomo
 signal unslomo
+signal battle_start
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -267,7 +268,25 @@ func _ready():
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
 		sth.connect('killed', kill_mode, '_on_sth_killed')
+		
+	# manage level flooding
 	
+	# FIXME this is temporary
+	if game_mode.floodable and randf() < 0.1:
+		game_mode.flood = true
+	
+	if not game_mode.floodable or not game_mode.flood:
+		$Battlefield/Background/FloodWater.queue_free()
+	else:
+		var level_height = compute_arena_size().size.y
+		var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
+		$Battlefield/Background/FloodWater.position.y = water_rect_height/2 + level_height/2
+		var flood_animation =  $Battlefield/Background/FloodWater/AnimationPlayer.get_animation('Rotate')
+		flood_animation.track_set_key_value(0, 0, Vector2(0, water_rect_height/2 + level_height/2))
+		flood_animation.track_set_key_value(0, 1, Vector2(0, water_rect_height/2 - level_height/2))
+		flood_animation.track_set_key_time(0, 1, game_mode.max_timeout) # filled as the countdown is done
+		
+		
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
@@ -310,6 +329,8 @@ func _ready():
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
 		
+	emit_signal('battle_start')
+	
 	for node in get_tree().get_nodes_in_group('wait_to_start'):
 		node.start()
 	

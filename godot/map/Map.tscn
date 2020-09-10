@@ -56,6 +56,18 @@ position = Vector2( 0, -200 )
 [node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -200 )
 
+[node name="Waypoint7" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 200, -400 )
+
+[node name="Waypoint8" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -200, -400 )
+
+[node name="Waypoint9" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -200, -200 )
+
+[node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -400, -200 )
+
 [node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 0, 200 )
 
@@ -67,6 +79,11 @@ __meta__ = {
 [node name="Asteroids" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -400 )
 planet = ExtResource( 7 )
+
+[node name="Asteroids2" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, -400 )
+planet = ExtResource( 10 )
+active = false
 
 [node name="Drones" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -400 )

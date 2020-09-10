@@ -55,10 +55,7 @@ grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 radius = 1200
-precision = 100.0
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
@@ -74,10 +71,7 @@ grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 radius = 1500
-precision = 100.0
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
 hollow = true
@@ -92,10 +86,7 @@ grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 radius = 1500
-precision = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GCircle" index="0" groups=[
 "animation_in_battle",

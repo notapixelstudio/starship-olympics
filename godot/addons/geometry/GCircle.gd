@@ -5,7 +5,7 @@ extends GShape
 class_name GCircle
 
 export (int) var radius = 100 setget set_radius
-export (float) var precision = 10 setget set_precision
+export (float) var precision = 100 setget set_precision
 
 func set_radius(value):
 	radius = value
