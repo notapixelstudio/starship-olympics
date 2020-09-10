@@ -27,6 +27,4 @@ func to_stats():
 
 func reset():
 	session_score = []
-
-func add_victory(perfect = false):
-	session_score.append({'perfect': perfect})
+	
