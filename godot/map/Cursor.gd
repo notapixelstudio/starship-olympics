@@ -37,7 +37,7 @@ func set_species(value):
 func _ready():
 	enable()
 	ship.texture = species.ship
-	label.text = "P" + str(player_i+1)
+	label.text = str(player.id)
 	placemark.modulate = (species as Species).color
 	ship.rotation = -rotation - PI/2
 	$Wrapper/Graphics/LabelContainer.rotation = -rotation
@@ -80,7 +80,7 @@ func _process(delta):
 	right = Input.is_action_just_pressed(player.controls+"_right")
 	accept = Input.is_action_just_pressed(player.controls+"_fire")
 	
-	if not enabled and (down or up or left or right or accept):
+	if not enabled and (down or up or left or right):
 		emit_signal("cancel", self)
 		return
 		

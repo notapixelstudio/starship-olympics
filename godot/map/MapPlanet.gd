@@ -11,6 +11,8 @@ export var active : bool = false setget set_active
 
 var not_available = false setget set_availability
 
+signal updated
+
 func set_availability(value):
 	not_available = value
 	if sprite:
@@ -27,7 +29,6 @@ func set_active(value):
 func toggle_active():
 	set_active(not active)
 	
-signal updated
 func act(cursor):
 	toggle_active()
 	.act(cursor)

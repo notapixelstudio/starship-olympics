@@ -20,6 +20,9 @@ const laser_texture = preload('res://assets/sprites/weapons/laser.png')
 
 var trail_f : float = 0.0
 
+var segments = []
+var farsegments = []
+
 func change_visibility(v):
 	visible = v
 	$Trail.visible = v
