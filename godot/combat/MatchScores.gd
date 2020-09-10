@@ -85,7 +85,7 @@ func update(delta: float):
 	lasting_time += delta
 
 func one_player_left(player):
-	player.stats.add_victory() # FIXME when survival is updated
+	pass # player.stats.add_victory() # FIXME when survival is updated
 	
 func do_game_over():
 	game_over = true

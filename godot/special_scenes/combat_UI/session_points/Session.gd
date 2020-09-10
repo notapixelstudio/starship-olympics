@@ -18,7 +18,7 @@ func initialize(winners: Array, match_scores):
 	var sport = match_scores.sport
 	var players = match_scores.players
 	for winner in winners:
-		players[winner.id].add_victory()
+		#players[winner.id].add_victory()
 		winner.add_victory()
 		
 	var scores = match_scores.scores

@@ -61,7 +61,7 @@ font_data = ExtResource( 28 )
 [sub_resource type="Animation" id=2]
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath(":scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -139,7 +139,7 @@ modulate = Color( 1.1, 1.1, 1.1, 1 )
 position = Vector2( 0, 5 )
 frames = SubResource( 1 )
 animation = "shine"
-frame = 39
+frame = 58
 playing = true
 
 [node name="Label" type="Label" parent="Wrapper"]
