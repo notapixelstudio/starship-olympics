@@ -8,10 +8,10 @@ var ship_e : Entity
 
 onready var trail = $Trail
 onready var inner_trail = $InnerTrail
-onready var collision_shape = $Trail/NearArea/CollisionShape2D
-onready var near_area = $Trail/NearArea
-onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
-onready var far_area = $Trail/FarArea
+onready var collision_shape = $NearArea/CollisionShape2D
+onready var near_area = $NearArea
+onready var farcollision_shape = $FarArea/CollisionShape2D
+onready var far_area = $FarArea
 
 export var trail_length: int setget set_trail_length
 export var trail_texture : Texture
@@ -119,6 +119,8 @@ const GRACE_POINTS = 15
 const GRACE_POINTS_END = 150
 
 func add_point_to_segment(point):
+	if collision_shape.disabled:
+		return
 	var points = trail.points
 	if len(points) == 0:
 		return
@@ -131,6 +133,8 @@ func add_point_to_segment(point):
 	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 
 func remove_point_to_segment(point):
+	if collision_shape.disabled:
+		return
 	var points = trail.points
 	if len(points) == 0:
 		return
@@ -141,4 +145,7 @@ func remove_point_to_segment(point):
 	farsegments.pop_front()
 	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
+
+
+
 
