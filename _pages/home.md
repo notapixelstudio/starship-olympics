@@ -30,8 +30,8 @@ intro:
   - excerpt: ''
 feature_row:
   - image_path: /assets/ssf/sports.png
-    alt: "game modes"
-    title: "Lots of Game Modes"
+    alt: "minigames"
+    title: "Lots of Minigames"
     excerpt: "Play many different intergalactic games, each adding its own twist to the competition. Challenge your friends or fly solo and beat the game's AI."
   - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
