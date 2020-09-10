@@ -157,13 +157,13 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 zoomMin = 2.1
 zoomMax = 2.65
-marginY = 0.0
+marginY = -200.0
 zoom_offset = 1.574
 
 [node name="CanvasLayerTop" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerTop"]
+[node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -174,40 +174,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control2" type="Control" parent="CanvasLayerTop/HBoxContainer"]
+[node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer"]
 margin_right = 90.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
 
-[node name="Panel" parent="CanvasLayerTop/HBoxContainer" instance=ExtResource( 10 )]
+[node name="p1" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 110.0
 margin_right = 360.0
 margin_bottom = 180.0
 
-[node name="Panel2" parent="CanvasLayerTop/HBoxContainer" instance=ExtResource( 10 )]
+[node name="p2" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 380.0
 margin_right = 630.0
 margin_bottom = 180.0
 
-[node name="Panel3" parent="CanvasLayerTop/HBoxContainer" instance=ExtResource( 10 )]
+[node name="p3" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 650.0
 margin_right = 900.0
 margin_bottom = 180.0
 
-[node name="Panel4" parent="CanvasLayerTop/HBoxContainer" instance=ExtResource( 10 )]
+[node name="p4" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 920.0
 margin_right = 1170.0
 margin_bottom = 180.0
 
-[node name="Control" type="Control" parent="CanvasLayerTop/HBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer"]
 margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0

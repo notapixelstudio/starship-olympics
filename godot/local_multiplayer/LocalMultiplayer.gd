@@ -11,7 +11,7 @@ export var map_scene: PackedScene
 var sports = {} # {sport.name : Resource}
 var sports_array = []
 var all_sports = [
-	preload("res://map/planets/sets/core.tres")
+	# preload("res://map/planets/sets/core.tres")
 	]
 	
 

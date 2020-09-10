@@ -11,7 +11,7 @@ var selected_sports : Array
 export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
 onready var camera = $Camera
-
+onready var panels = $CanvasLayerTop/PanelContainer
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
@@ -63,6 +63,8 @@ func _ready():
 		cursor.connect('try_move', self, '_on_cursor_try_move')
 		cursor.connect('select', self, '_on_cursor_select')
 		cursor.connect('cancel', self, '_on_cursor_cancel')
+		var panel = panels.get_node(cursor.player.id)
+		panel.species = cursor.species
 	
 	for sport in get_tree().get_nodes_in_group("sports"):
 		var levels = sport.planet.get("levels_"+str(num_players)+"players")
@@ -106,6 +108,8 @@ func initialize(players, sports, settings_):
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
 		
+		
+		
 		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
@@ -114,6 +118,8 @@ func initialize(players, sports, settings_):
 	
 func _on_cursor_try_move(cursor, direction):
 	var desired_position = cursor.grid_position
+	
+	var prev_cell = get_cell(CELLSIZE * desired_position)
 	
 	if direction == 'N':
 		desired_position.y -= 1
@@ -128,6 +134,10 @@ func _on_cursor_try_move(cursor, direction):
 	
 	if not cell:
 		return
+	var panel = panels.get_node(cursor.player.id)
+	panel.planet = null
+	if cell.is_in_group("sports"):
+		panel.planet = cell.planet
 		
 	cursor.set_grid_position(desired_position)
 	
@@ -140,7 +150,14 @@ func _on_cursor_select(cursor):
 	cell.act(cursor)
 	
 func _on_cursor_cancel(cursor):
+	var cell = get_cell(CELLSIZE * cursor.grid_position)
+	if not cell:
+		return
+	cell.act(cursor)
 	cursor.enable()
+	var panel = panels.get_node(cursor.player.id)
+	panel.planet = null
+	panel.chosen = false
 	players_ready -= 1
 	
 func get_cell(position):
@@ -150,12 +167,16 @@ func _on_cell_pressed(cursor, cell):
 	# update data
 	if cell.is_in_group("sports"):
 		cursor.disable()
+		var panel = panels.get_node(cursor.player.id)
+		panel.planet = cell.planet
+		panel.chosen = true
 		
 	selected_sports = []
 	for sport in get_tree().get_nodes_in_group('sports'):
 		if sport.active:
 			selected_sports.append(sport.planet)
-
+	_on_Start_pressed(cursor)
+	
 signal done
 var players_ready = 0
 
