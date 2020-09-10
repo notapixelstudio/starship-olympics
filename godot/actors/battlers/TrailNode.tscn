@@ -34,63 +34,65 @@ width = 80.0
 gradient = SubResource( 2 )
 time_alive_per_point = 1.5
 
-[node name="NearArea" type="Area2D" parent="Trail"]
-collision_layer = 524288
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/NearArea"]
-
-[node name="Entity" type="Node" parent="Trail/NearArea"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
-[node name="DashThroughDeadly" type="Node" parent="Trail/NearArea/Entity"]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_icon": ExtResource( 7 )
-}
-
-[node name="NoSelfDeadly" type="Node" parent="Trail/NearArea/Entity"]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_icon": ExtResource( 7 )
-}
-
-[node name="Owned" type="Node" parent="Trail/NearArea/Entity"]
-script = ExtResource( 8 )
-__meta__ = {
-"_editor_icon": ExtResource( 7 )
-}
-
-[node name="FarArea" type="Area2D" parent="Trail"]
-collision_layer = 524288
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/FarArea"]
-
-[node name="Entity" type="Node" parent="Trail/FarArea"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
-[node name="DashThroughDeadly" type="Node" parent="Trail/FarArea/Entity"]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_icon": ExtResource( 7 )
-}
-
-[node name="Owned" type="Node" parent="Trail/FarArea/Entity"]
-script = ExtResource( 8 )
-__meta__ = {
-"_editor_icon": ExtResource( 7 )
-}
-
 [node name="InnerTrail" parent="." instance=ExtResource( 3 )]
 width = 18.0
 gradient = SubResource( 3 )
 texture = ExtResource( 9 )
 trail_length = 5
 time_alive_per_point = 0.4
+
+[node name="NearArea" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
+
+[node name="Entity" type="Node" parent="NearArea"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="DashThroughDeadly" type="Node" parent="NearArea/Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="NoSelfDeadly" type="Node" parent="NearArea/Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="Owned" type="Node" parent="NearArea/Entity"]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="FarArea" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FarArea"]
+
+[node name="Entity" type="Node" parent="FarArea"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="DashThroughDeadly" type="Node" parent="FarArea/Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="Owned" type="Node" parent="FarArea/Entity"]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+[connection signal="add_point" from="Trail" to="." method="add_point_to_segment"]
+[connection signal="remove_point" from="Trail" to="." method="remove_point_to_segment"]

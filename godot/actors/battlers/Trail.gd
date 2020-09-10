@@ -24,6 +24,7 @@ class_name Trail2D
 ##### SIGNALS #####
 
 signal add_point
+signal remove_point
 ##### CONSTANTS #####
 
 enum Persistence {
@@ -101,6 +102,7 @@ func add_custom_point(point):
 
 
 func remove_custom_point(index):
+	emit_signal("remove_point", index)
 	remove_point(index)
 
 		
