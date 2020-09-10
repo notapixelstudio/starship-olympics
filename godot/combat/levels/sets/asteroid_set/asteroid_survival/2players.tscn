@@ -93,6 +93,10 @@ radius = 1500
 ]]
 anims/Rotate = SubResource( 1 )
 
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
+
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 base_size = 42.0
 spawn_diamonds = false
