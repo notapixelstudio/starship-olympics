@@ -31,8 +31,8 @@ intro:
 feature_row:
   - image_path: /assets/ssf/sports.png
     alt: "minigames"
-    title: "Lots of Minigames"
-    excerpt: "Play many different intergalactic games, each adding its own twist to the competition. Challenge your friends or fly solo and beat the game's AI."
+    title: "Explore a Galaxy of Minigames"
+    excerpt: "Discover and play many different intergalactic games, each adding its own twist to the competition. Challenge your friends or fly solo and beat the game's AI."
   - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
     title: "Super Simple Controls"
