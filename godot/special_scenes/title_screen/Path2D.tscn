@@ -46,7 +46,6 @@ material = SubResource( 2 )
 width = 60.0
 gradient = SubResource( 3 )
 trail_length = 70
-persistance = 0
 time_alive_per_point = 1.4
 
 [node name="InnerTrail" parent="PathFollow2D/Sprite/Trail" index="1"]
@@ -54,6 +53,5 @@ show_behind_parent = true
 material = SubResource( 4 )
 width = 16.0
 trail_length = 30
-persistance = 0
 
 [editable path="PathFollow2D/Sprite/Trail"]

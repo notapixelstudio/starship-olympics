@@ -8,10 +8,21 @@ signal changed
 
 export (Vector2) var center_offset = Vector2.ZERO setget set_center_offset
 export var jitter : float = 0.0 setget set_jitter
+export (Rect2) var clip = Rect2(-10000, -10000, 20000, 20000) setget set_clip
 
 func set_jitter(value):
 	jitter = value
 	emit_signal("changed")
+	
+func set_clip(value):
+	clip = value
+	emit_signal("changed")
+	
+func clip(points):
+	var new_points = []
+	for p in points:
+		new_points.append(Vector2(clamp(p.x, clip.position.x, clip.end.x), clamp(p.y, clip.position.y, clip.end.y)))
+	return PoolVector2Array(new_points)
 
 func set_center_offset(value):
 	center_offset = value

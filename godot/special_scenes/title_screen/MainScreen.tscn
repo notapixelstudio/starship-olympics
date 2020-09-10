@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/audio/UI_effects/StarWarsSwoosh.ogg" type="AudioStream" id=12]
+[ext_resource path="res://WorldEnvironment.tres" type="Environment" id=13]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -154,12 +155,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
-
-[sub_resource type="Environment" id=11]
-background_mode = 4
-glow_enabled = true
-glow_blend_mode = 0
-glow_hdr_threshold = 0.74
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
@@ -339,7 +334,7 @@ bus = "SFX"
 anims/fade = SubResource( 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+environment = ExtResource( 13 )
 [connection signal="option_selected" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_option_selected"]
 [connection signal="start_multiplayer" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
 [connection signal="back" from="CanvasLayer/Options" to="." method="_on_Options_back"]

@@ -11,11 +11,11 @@ func set_points(value):
 	emit_signal('changed')
 	
 func to_PoolVector2Array() -> PoolVector2Array:
-	return points
+	return .clip(points)
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()
-	shape.set_point_cloud(points)
+	shape.set_point_cloud(.clip(points))
 	return shape
 	
 func get_extents() -> Vector2:

@@ -50,7 +50,7 @@ func to_PoolVector2Array():
 	points = points + __generate_corner(PI/2, Vector2(-width/2+radius,height/2-radius))
 	points.append(Vector2(-width/2,height/2-radius))
 	
-	return PoolVector2Array(points) # clockwise!
+	return .clip(points) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

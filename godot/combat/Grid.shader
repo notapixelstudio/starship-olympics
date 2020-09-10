@@ -49,7 +49,7 @@ vec3 create_point(int row, int col, float amplitude){
 	//p.x += amplitude*sin(d);
 	//p.z += amplitude*cos(d-t*8.0)/exp(d/4.0);
 	//p.z += 8.0*amplitude*sin(d-t*3.0)/exp(d*0.5);
-	p.z += get_z(amplitude, p.xy);
+	// p.z += get_z(amplitude, p.xy);
 	return p;
 }
 

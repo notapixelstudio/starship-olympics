@@ -37,17 +37,18 @@ func refresh():
 	
 	var shape2d = gshape.to_Shape2D()
 	
-	($Entity/Fluid as Component).set_enabled(type == TYPE.water)
-	($Entity/Trigger as Component).set_enabled(type == TYPE.trigger or type == TYPE.hostile)
-	($Entity/Deadly as Component).set_enabled(type == TYPE.hostile)
-	($Entity/Flow as Component).set_enabled(type == TYPE.flow)
-	($Entity/CrownDropper as Component).set_enabled(type == TYPE.castle)
+	($Area2D/Entity/Water as Component).set_enabled(type == TYPE.water)
+	($Area2D/Entity/Trigger as Component).set_enabled(type == TYPE.trigger or type == TYPE.hostile)
+	($Area2D/Entity/Deadly as Component).set_enabled(type == TYPE.hostile)
+	($Area2D/Entity/Flow as Component).set_enabled(type == TYPE.flow)
+	($Area2D/Entity/CrownDropper as Component).set_enabled(type == TYPE.castle)
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
-	($Entity/Valuable as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
-	($Entity/Hill as Component).set_enabled(type == TYPE.hill)
-	($Entity/Basket as Component).set_enabled(type == TYPE.basket)
+	($Area2D/Entity/Valuable as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
+	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
+	($Area2D/Entity/Basket as Component).set_enabled(type == TYPE.basket)
+	$Area2D.space_override = Area2D.SPACE_OVERRIDE_COMBINE if type == TYPE.water else Area2D.SPACE_OVERRIDE_DISABLED
 	
 	$Polygon2D.visible = type != TYPE.ghost
 	# $Line2D.visible = type != TYPE.water
@@ -73,25 +74,25 @@ func refresh():
 	elif type == TYPE.hill:
 		$Polygon2D.color = Color(1,0.5,0,0.3)
 		$Line2D.default_color = Color(1,0.5,0,1)
-		$Entity/Hill/Crown.modulate = Color(1,0.5,0,1)
+		$Area2D/Entity/Hill/Crown.modulate = Color(1,0.5,0,1)
 	elif type == TYPE.basket:
 		#assert ($Entity as Entity).has('Owned')
 		
-		var species = ($Entity as Entity).get('Owned').get_owned_by()
+		var species = ($Area2D/Entity as Entity).get('Owned').get_owned_by()
 		$Polygon2D.color = species.color.darkened(10)
 		$Line2D.default_color = species.color
 	elif type == TYPE.ghost:
 		$Line2D.default_color = Color(0.2,0.7,1,0.2)
 	
 	# hill symbol on top
-	$Entity/Hill.position.y = -gshape.get_extents().y/2 - 60
+	$Area2D/Entity/Hill.position.y = -gshape.get_extents().y/2 - 60
 	
 	# configure particles
 	if type == TYPE.flow:
 		var material = $Particles2D.process_material
 		
-		if $Entity/Flow.type == $Entity/Flow.TYPE.center:
-			material.radial_accel = $Entity/Flow.charge * 6
+		if $Area2D/Entity/Flow.type == $Area2D/Entity/Flow.TYPE.center:
+			material.radial_accel = $Area2D/Entity/Flow.charge * 6
 		else:
 			material.radial_accel = 0
 			
@@ -108,7 +109,7 @@ func refresh():
 			$Particles2D.emitting = false
 	
 	# conquerable
-	($Entity/Conquerable as Component).set_enabled(type == TYPE.conquerable)
+	($Area2D/Entity/Conquerable as Component).set_enabled(type == TYPE.conquerable)
 	$Flag.set_visible(false)
 	# $Flag.set_visible(type == TYPE.conquerable)
 	
@@ -119,20 +120,20 @@ func refresh():
 		# add_to_group('in_camera')
 		pass
 	else:
-		remove_from_group('in_camera')
+		if is_in_group('in_camera'):
+			remove_from_group('in_camera')
 		
 func _process(delta):
-	if not Engine.is_editor_hint() and ($Entity/Conquerable as Component).enabled:
-		if $Entity/Conquerable.get_species() != null:
+	if not Engine.is_editor_hint() and ($Area2D/Entity/Conquerable as Component).enabled:
+		if $Area2D/Entity/Conquerable.get_species() != null:
 			$Polygon2D.color = Color(1,1,1,0.3)
 			$Line2D.default_color = Color(1,1,1,0.6)
-			modulate = $Entity/Conquerable.get_species().species_template.color
+			modulate = $Area2D/Entity/Conquerable.get_species().species_template.color
 		else:
 			$Polygon2D.color = Color(0.3,0.3,0.3,0.1)
 			$Line2D.default_color = Color(0.6,0.6,0.6,0.3)
 			modulate = Color(1,1,1,1)
-
-			
+	
 func get_gshape():
 	for child in get_children():
 		if child is GShape:

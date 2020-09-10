@@ -13,7 +13,10 @@ func _ready():
 func refresh():
 	if $Sprite and gamemode:
 		$Sprite.texture = gamemode.logo
-		$Description.text = tr(gamemode.description).format({"score": str(gamemode.max_score)})
+		$Description.text = tr(gamemode.description).format({
+			"score": str(gamemode.max_score),
+			"time": str(gamemode.max_timeout)
+		})
 		if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
 			$Description3.text = 'No bombs!'
 		elif "starting_ammo" in gamemode and gamemode["starting_ammo"] != -1:

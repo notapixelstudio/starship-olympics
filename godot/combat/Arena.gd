@@ -212,6 +212,8 @@ func _ready():
 	$Battlefield.visible = false
 	if score_to_win_override > 0:
 		game_mode.max_score = score_to_win_override
+	if match_duration_override > 0:
+		game_mode.max_timeout = match_duration_override
 	mode_description.gamemode = game_mode
 	mode_description.appears()
 	if demo:
@@ -502,7 +504,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
-	trail.configure(game_mode.deadly_trails)
+	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")

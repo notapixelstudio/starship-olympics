@@ -214,5 +214,7 @@ texture = ExtResource( 19 )
 [connection signal="body_exited" from="NearArea" to="." method="_on_NearArea_body_exited"]
 [connection signal="disabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_disabled"]
 [connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]
+[connection signal="disabled" from="Entity2D/Thrusters" to="." method="_on_Thrusters_disabled"]
+[connection signal="enabled" from="Entity2D/Thrusters" to="." method="_on_Thrusters_enabled"]
 [connection signal="disabled" from="Entity2D/Dashing" to="." method="_on_Dashing_disabled"]
 [connection signal="enabled" from="Entity2D/Dashing" to="." method="_on_Dashing_enabled"]
