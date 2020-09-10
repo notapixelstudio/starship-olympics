@@ -18,8 +18,7 @@ func initialize(winners: Array, match_scores):
 	var sport = match_scores.sport
 	var players = match_scores.players
 	for winner in winners:
-		players[winner.id].session_score += 1
-		winner.session_score += 1
+		winner.add_victory(winner.score >= match_scores.target_score) # sets the perfect flag
 		
 	var scores = match_scores.scores
 	var max_points = global.win

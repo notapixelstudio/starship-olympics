@@ -14,8 +14,10 @@ var deaths : int = 0
 var bombs: int = 0
 var collectables : int  =0
 var score = 0.0
-var session_score = 0
+var session_score = []
 
+func add_victory(perfect = false):
+	session_score.append({'perfect': perfect})
 
 func _set_species(value):
 	species = value
