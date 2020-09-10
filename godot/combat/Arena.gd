@@ -270,6 +270,11 @@ func _ready():
 		sth.connect('killed', kill_mode, '_on_sth_killed')
 		
 	# manage level flooding
+	
+	# FIXME this is temporary
+	if game_mode.floodable and randf() < 0.1:
+		game_mode.flood = true
+	
 	if not game_mode.floodable or not game_mode.flood:
 		$Battlefield/Background/FloodWater.queue_free()
 	else:
