@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://map/planets/sets/drones.tres" type="Resource" id=9]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://map/planets/sets/deathmatches.tres" type="Resource" id=11]
+[ext_resource path="res://map/planets/sets/snakes.tres" type="Resource" id=12]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -57,6 +58,9 @@ position = Vector2( 0, -200 )
 [node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -200 )
 
+[node name="Waypoint11" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 200, 0 )
+
 [node name="Waypoint7" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -400 )
 
@@ -68,6 +72,18 @@ position = Vector2( -200, -200 )
 
 [node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, -200 )
+
+[node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -400, 0 )
+
+[node name="Waypoint13" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -400, 200 )
+
+[node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -200, 200 )
+
+[node name="Waypoint15" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -200, 400 )
 
 [node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 0, 200 )
@@ -84,6 +100,10 @@ planet = ExtResource( 7 )
 [node name="Asteroids2" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -400 )
 planet = ExtResource( 11 )
+
+[node name="Asteroids3" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, 400 )
+planet = ExtResource( 12 )
 
 [node name="Drones" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -400 )
@@ -139,9 +159,6 @@ texture = ExtResource( 21 )
 visible = false
 position = Vector2( 0, 200 )
 texture = ExtResource( 22 )
-
-[node name="Start" parent="Content/Controls" instance=ExtResource( 23 )]
-position = Vector2( 200, 0 )
 
 [node name="Back" parent="Content/Controls" instance=ExtResource( 23 )]
 position = Vector2( -200, 0 )
@@ -229,7 +246,6 @@ margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
-[connection signal="pressed" from="Content/Controls/Start" to="." method="_on_Start_pressed" flags=3]
 [connection signal="pressed" from="Content/Controls/Back" to="." method="_on_Back_pressed"]
 
 [editable path="Content/Controls/Victories"]
