@@ -54,7 +54,7 @@ func _ready():
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
 func _on_Area2D_body_entered(body):
-	if body is Bomb:
+	if body is Bomb or body is Ship and ECM.E(body).has('Dashing'):
 		try_break()
 
 func try_break():
@@ -80,7 +80,7 @@ func try_break():
 			else:
 				child = new_child_rock()
 		else: # order <= last_order
-			if not spawn_diamonds or randf() < 0.25:
+			if not spawn_diamonds or randf() < 0.15:
 				if contains_star and i == star_index:
 					child = StarScene.instance()
 				else:

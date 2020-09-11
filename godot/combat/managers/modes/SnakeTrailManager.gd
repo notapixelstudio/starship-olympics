@@ -11,11 +11,6 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 	
 	if not entity:
 		return
-		
-	if entity.has('DashThroughDeadly') and not (ECM.E(ship).has('Dashing')):
-		var killer = entity.get('Owned').get_owned_by()
-		if killer != ship or not entity.has("NoSelfDeadly"):
-			ship.die(killer)
 
 func _process(delta):
 	for trail in get_tree().get_nodes_in_group("Trails"):

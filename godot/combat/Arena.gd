@@ -272,10 +272,11 @@ func _ready():
 	# manage level flooding
 	
 	# FIXME this is temporary
-	if game_mode.floodable and randf() < 0.1:
-		game_mode.flood = true
+	var flood = game_mode.flood
+	if game_mode.floodable and randf() < 0.25:
+		flood = true
 	
-	if not game_mode.floodable or not game_mode.flood:
+	if not game_mode.floodable or not flood:
 		$Battlefield/Background/FloodWater.queue_free()
 	else:
 		var level_height = compute_arena_size().size.y
@@ -533,6 +534,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
+	ship.connect("body_entered", environments_manager, "_on_sth_entered", [ship])
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
