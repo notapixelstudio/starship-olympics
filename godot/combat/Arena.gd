@@ -272,10 +272,11 @@ func _ready():
 	# manage level flooding
 	
 	# FIXME this is temporary
+	var flood = game_mode.flood
 	if game_mode.floodable and randf() < 0.1:
-		game_mode.flood = true
+		flood = true
 	
-	if not game_mode.floodable or not game_mode.flood:
+	if not game_mode.floodable or not flood:
 		$Battlefield/Background/FloodWater.queue_free()
 	else:
 		var level_height = compute_arena_size().size.y
