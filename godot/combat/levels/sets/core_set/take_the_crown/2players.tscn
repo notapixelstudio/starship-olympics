@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -190,16 +189,8 @@ position = Vector2( 800, 0 )
 playback_speed = 0.2
 anims/Rotate = SubResource( 3 )
 
-[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground" index="3" groups=[
-"wall",
-] instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 0, -800 )
-collision_layer = 16
-collision_mask = 5
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_group_": true
-}
 hollow = false
 offset = 0
 elongation = 0
@@ -215,7 +206,7 @@ script = ExtResource( 13 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
+radius = 150
 sides = 4.0
 rotation_degrees = 0.0
 
@@ -236,7 +227,7 @@ script = ExtResource( 13 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
+radius = 150
 sides = 4.0
 rotation_degrees = 0.0
 
