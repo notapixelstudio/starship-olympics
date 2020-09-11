@@ -50,23 +50,23 @@ animations = [ {
 "name": "outline",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "shine",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 31 ) ],
 "loop": true,
 "name": "full",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "shine",
+"speed": 60.0
 } ]
 
-[sub_resource type="CanvasItemMaterial" id=6]
+[sub_resource type="CanvasItemMaterial" id=3]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 100.0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -96,7 +96,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 72
 use_mipmaps = true
 use_filter = true
@@ -127,7 +127,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Deadly" type="Node" parent="Entity"]
+[node name="DashThroughDeadly" type="Node" parent="Entity"]
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
@@ -138,7 +138,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 26
+frame = 67
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -150,7 +150,7 @@ texture = ExtResource( 33 )
 color = Color( 0.780392, 0, 0.847059, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
-material = SubResource( 6 )
+material = SubResource( 3 )
 width = 34.0
 default_color = Color( 1.2, 0, 0.7, 1 )
 texture = ExtResource( 32 )
@@ -188,18 +188,18 @@ width = 6.0
 default_color = Color( 0.87451, 0, 1, 0.392157 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 1024
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
-anims/Forming = SubResource( 4 )
+anims/Forming = SubResource( 5 )
 
 [node name="SelfDestructTimer" type="Timer" parent="."]
 
@@ -210,7 +210,7 @@ margin_left = -30.0
 margin_top = -44.0
 margin_right = 30.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.827451, 0, 1, 1 )
 align = 1
 valign = 1

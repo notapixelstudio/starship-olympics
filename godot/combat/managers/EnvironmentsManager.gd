@@ -24,6 +24,14 @@ func _on_sth_entered(sth, other):
 	if sth_entity.has('Hill') and other_entity.could_have('Royal'):
 		other_entity.get_node('Royal').enable()
 		
+	if other is Ship and sth_entity.has('DashThroughDeadly') and not other_entity.has('Dashing'):
+		if sth_entity.could_have('Owned'):
+			var killer = sth_entity.get('Owned').get_owned_by()
+			if killer != other or not sth_entity.has("NoSelfDeadly"):
+				other.die(killer)
+		else:
+			other.die(other)
+	
 func _on_sth_exited(sth, other):
 	var sth_entity = ECM.E(sth)
 	var other_entity = ECM.E(other)

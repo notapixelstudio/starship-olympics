@@ -534,6 +534,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
 	ship.connect("near_area_entered", collect_manager, "ship_near_area_entered")
+	ship.connect("body_entered", environments_manager, "_on_sth_entered", [ship])
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
