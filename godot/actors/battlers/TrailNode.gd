@@ -8,10 +8,10 @@ var ship_e : Entity
 
 onready var trail = $Trail
 onready var inner_trail = $InnerTrail
-onready var collision_shape = $Trail/NearArea/CollisionShape2D
-onready var near_area = $Trail/NearArea
-onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
-onready var far_area = $Trail/FarArea
+onready var collision_shape = $NearArea/CollisionShape2D
+onready var near_area = $NearArea
+onready var farcollision_shape = $FarArea/CollisionShape2D
+onready var far_area = $FarArea
 
 export var trail_length: int setget set_trail_length
 export var trail_texture : Texture
