@@ -273,7 +273,7 @@ func _ready():
 	
 	# FIXME this is temporary
 	var flood = game_mode.flood
-	if game_mode.floodable and randf() < 0.1:
+	if game_mode.floodable and randf() < 0.25:
 		flood = true
 	
 	if not game_mode.floodable or not flood:
