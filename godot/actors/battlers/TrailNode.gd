@@ -104,6 +104,7 @@ func _on_sth_spawned(sth : Node2D):
 	update()
 	
 func _on_sth_dead(sth : Node2D, killer):
+	return
 	maybe_erase()
 	
 func _on_thrusters_on():
@@ -112,7 +113,7 @@ func _on_thrusters_on():
 	change_visibility(true)
 
 func _on_thrusters_off():
-	maybe_erase()
+	#maybe_erase()
 	change_visibility(false)
 
 const GRACE_POINTS = 15
