@@ -61,6 +61,7 @@ func back():
 	
 var current_level
 var played_levels : Array
+var played_levels_scene: PackedScene
 var levels : Array
 
 func combat(selected_players: Array, fight_mode : String):
@@ -146,6 +147,7 @@ func combat(selected_players: Array, fight_mode : String):
 	yield(tut, "over")
 	# END TUTORIAL
 	played_levels = []
+	played_levels_scene = null
 	next_level()
 	
 	# TEST: send the queue
@@ -174,6 +176,7 @@ func next_level(demo=false):
 	# let's make sure that it is not the same of the previous one.
 	current_level = levels.pop_back()
 	levels.push_front(current_level)
+	played_levels_scene=current_level
 	
 	# skip if we just played it
 	start_level(current_level.instance(), demo)
@@ -210,7 +213,7 @@ func _on_Pause_restart(_combat):
 	_combat.queue_free()
 	get_tree().paused = false
 	
-	start_level(same_level.fetch_level(len(players)))
+	start_level(played_levels_scene.instance())
 
 func _back_to_menu(node):
 	reset()
