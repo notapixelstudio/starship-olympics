@@ -32,6 +32,7 @@ func initialize(pos : Vector2, bomb_type, impulse, ship):
 	if type == GameMode.BOMB_TYPE.ball:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
+		set_collision_mask_bit(2, true) # bombs colliding with bombs
 		$Sprite.scale = Vector2(1,1)
 		$CollisionShape2D.shape.radius = 32
 		$Sprite.texture = ball_texture
