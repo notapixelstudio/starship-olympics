@@ -79,7 +79,7 @@ func update(delta: float):
 			else:
 				draw = false
 		if draw:
-			winners = []
+			winners = scores
 		
 		do_game_over()
 	
