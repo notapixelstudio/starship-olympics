@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=13]
-[ext_resource path="res://assets/animations/wall_flash_solid-hostile.tres" type="Animation" id=14]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=16]
 
@@ -100,9 +99,6 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 200
 height = 200
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall2" index="5"]
-anims/wall_flash = ExtResource( 14 )
-
 [node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( -900, 0 )
 rotation = 0.785398
@@ -126,9 +122,6 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 200
 height = 200
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall3" index="5"]
-anims/wall_flash = ExtResource( 14 )
 
 [node name="DiamondSpawner" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -13,6 +13,82 @@
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=11]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=14]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=15]
+[ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=16]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=17]
+[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=18]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 20.0
+
+[sub_resource type="Animation" id=7]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 6, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 6, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 6, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 6, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -52,8 +128,18 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2700
 precision = 100.0
+
+[node name="FloodWater" parent="Battlefield/Background" index="2"]
+type = 1
+flag_offset = 0
+
+[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="PentaGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -1300, 0 )
@@ -139,6 +225,148 @@ rotation = 1.57079
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
+
+[node name="LaserStop" type="StaticBody2D" parent="Battlefield/Middleground" index="12"]
+position = Vector2( -2.66793e-12, -6.10352e-05 )
+rotation = -1.5708
+collision_layer = 131072
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Middleground/LaserStop" index="0"]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/LaserStop" index="1"]
+modulate = Color( 1, 0, 0.45098, 1 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 15 )
+
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="13"]
+rotation = -0.785398
+
+[node name="Laser" type="RayCast2D" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 18 )]
+position = Vector2( 2650, 1 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 132112
+script = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D/Laser" index="5" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 7 )
+
+[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground/Node2D" index="1" groups=[
+"wall",
+] instance=ExtResource( 5 )]
+position = Vector2( 2700, 0 )
+collision_layer = 16
+collision_mask = 5
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
+script = ExtResource( 14 )
+radius = 50
+sides = 4.0
+
+[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="14"]
+rotation = -2.35619
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 18 )]
+position = Vector2( 2650, 1 )
+rotation = 3.14159
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2/Laser" index="5" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 8 )
+
+[node name="Wall" parent="Battlefield/Middleground/Node2D2" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2700, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
+script = ExtResource( 14 )
+radius = 50
+sides = 4.0
+
+[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="15"]
+rotation = 2.35619
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 18 )]
+position = Vector2( 2650, 1 )
+rotation = 3.14159
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3/Laser" index="5" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 9 )
+
+[node name="Wall" parent="Battlefield/Middleground/Node2D3" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2700, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
+script = ExtResource( 14 )
+radius = 50
+sides = 4.0
+
+[node name="Node2D4" type="Node2D" parent="Battlefield/Middleground" index="16"]
+rotation = 0.785398
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D4" index="0" instance=ExtResource( 18 )]
+position = Vector2( 2650, 1 )
+rotation = 3.14159
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D4/Laser" index="5" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 10 )
+
+[node name="Wall" parent="Battlefield/Middleground/Node2D4" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2700, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D4/Wall" index="4"]
+script = ExtResource( 14 )
+radius = 50
+sides = 4.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = 1

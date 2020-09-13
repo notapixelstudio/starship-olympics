@@ -2,6 +2,37 @@ extends RayCast2D
 
 class_name Laser
 
+export var on = true setget set_on
+
+const FLASH_DURATION = 0.08
+const WIDTH = 24
+const HINT_WIDTH = 6
+
+func set_on(v):
+	on = v
+	enabled = on
+	$CastingParticles2D.emitting = on
+	
+	if is_inside_tree():
+		$Line2D.width = WIDTH if on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		$Line2D.width = WIDTH if not on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		
+		$Line2D.width = WIDTH if on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		$Line2D.width = WIDTH if not on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		
+		$Line2D.width = WIDTH if on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		$Line2D.width = WIDTH if not on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+	
+	$Line2D.width = WIDTH if on else HINT_WIDTH
+	$Area2D/CollisionShape2D.disabled = not on
+	$CollisionParticles2D.emitting = on
+
 func _ready():
 	set_physics_process(true)
 
