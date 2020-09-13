@@ -25,6 +25,7 @@ class_name Trail2D
 
 signal add_point
 signal remove_point
+signal no_points
 ##### CONSTANTS #####
 
 enum Persistence {
@@ -64,6 +65,7 @@ export var time_alive_per_point : float = 1.0
 
 var monitor = []
 
+var stop_adding_points : bool = false
 var actual_length = 0.0
 
 ##### NOTIFICATIONS #####
@@ -90,6 +92,8 @@ func _notification(p_what: int):
 			self.trail_length = 0
 
 func add_custom_point(point):
+	if stop_adding_points:
+		return
 	var last_point = Vector2.ZERO if len(points) <= 0 else points[len(points)-1]
 	var distanza: float = (last_point-point).length()
 	if len(points) > 1:
@@ -104,6 +108,8 @@ func add_custom_point(point):
 func remove_custom_point(index):
 	emit_signal("remove_point", index)
 	remove_point(index)
+	if len(points) <= 0:
+		emit_signal("no_points")
 
 		
 #warning-ignore:unused_argument

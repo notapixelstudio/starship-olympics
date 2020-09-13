@@ -460,6 +460,7 @@ func ship_just_died(ship, killer):
 	ship.position = ship.dead_ship_instance.position
 	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
+	create_trail(ship)
 	
 	
 func on_gamemode_gameover(winners: Array):
@@ -491,6 +492,14 @@ func spawn_ships():
 	for player in SpawnPlayers.get_children():
 		spawn_ship(player)
 
+func create_trail(ship):
+	# create and link trail
+	var trail = trail_scene.instance()
+	$Battlefield.add_child(trail)
+	yield(trail, "ready")
+	trail.initialize(ship)
+	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
+	return trail
 
 func spawn_ship(player:PlayerSpawner):
 	var ship
@@ -515,18 +524,18 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# create and link trail
 	var trail = trail_scene.instance()
-	
-	
 	$Battlefield.add_child(trail)
 	yield(trail, "ready")
 	trail.initialize(ship)
+	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
+	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
 	ship.set_bomb_type(game_mode.bomb_type)
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
-	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
+	
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")

@@ -100,12 +100,17 @@ func maybe_erase():
 		inner_trail.erase_trail()
 
 func _on_sth_spawned(sth : Node2D):
+	return
 	maybe_erase()
 	update()
 	
 func _on_sth_dead(sth : Node2D, killer):
-	return
-	maybe_erase()
+	if trail:
+		trail.stop_adding_points = true
+	if inner_trail:
+		inner_trail.stop_adding_points = true
+	yield(trail, "no_points")
+	queue_free()
 	
 func _on_thrusters_on():
 	maybe_erase()
