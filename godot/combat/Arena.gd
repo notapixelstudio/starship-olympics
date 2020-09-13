@@ -168,10 +168,14 @@ func _ready():
 		standalone = false
 	else:
 		session = SessionScores.new()
-		
+	
+	var spawners = $SpawnPositions/Players.get_children()
+	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
+	# works with a session, not if you run from scene
+	spawners.shuffle()
 	# set up the spawners
 	var i = 0
-	for s in $SpawnPositions/Players.get_children():
+	for s in spawners:
 		var key = s.name
 		var info_player = InfoPlayer.new()
 		if standalone or s.species.species_name == 'drones':
