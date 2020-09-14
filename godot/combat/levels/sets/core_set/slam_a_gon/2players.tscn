@@ -15,11 +15,11 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=14]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
-[sub_resource type="Animation" id=7]
-resource_name = "Rotate"
+[sub_resource type="Animation" id=2]
+resource_name = "Default"
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -35,8 +35,8 @@ tracks/0/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Rotate"
+[sub_resource type="Animation" id=3]
+resource_name = "Default"
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -70,27 +70,15 @@ modulate = Color( 0.870588, 0.470588, 1, 0.611765 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1600
-precision = 100.0
-
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
 
 [node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
 center_offset = Vector2( 0, 0 )
@@ -138,69 +126,67 @@ ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
-[node name="LaserStop" type="StaticBody2D" parent="Battlefield/Middleground" index="6"]
+[node name="LaserStop" type="StaticBody2D" parent="Battlefield/Middleground" index="6" groups=[
+"additional_lasers",
+]]
 collision_layer = 131072
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Middleground/LaserStop" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Battlefield/Middleground/LaserStop" index="1"]
 modulate = Color( 1, 0, 0.45098, 1 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 14 )
 
-[node name="Laser" parent="Battlefield/Middleground" index="7" instance=ExtResource( 13 )]
+[node name="Laser" parent="Battlefield/Middleground" index="7" groups=[
+"additional_lasers",
+] instance=ExtResource( 13 )]
 position = Vector2( 0, -1549 )
 rotation = 1.5708
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Laser" index="5" groups=[
-"animation_in_battle",
+"animation_if_additional_lasers",
 ]]
-anims/Rotate = SubResource( 7 )
+anims/Default = SubResource( 2 )
 
-[node name="Laser2" parent="Battlefield/Middleground" index="8" instance=ExtResource( 13 )]
+[node name="Laser2" parent="Battlefield/Middleground" index="8" groups=[
+"additional_lasers",
+] instance=ExtResource( 13 )]
 position = Vector2( 0, 1549 )
 rotation = -1.5708
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Laser2" index="5" groups=[
-"animation_in_battle",
+"animation_if_additional_lasers",
 ]]
-anims/Rotate = SubResource( 6 )
+anims/Default = SubResource( 3 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( 0, -1600 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 12 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 0, 1600 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 12 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 7 )]
 type = 1
