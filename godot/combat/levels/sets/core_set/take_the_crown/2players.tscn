@@ -88,11 +88,6 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 1 )
@@ -116,11 +111,6 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 1 )
@@ -142,12 +132,8 @@ bevel_se = 800
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 1 )
@@ -171,10 +157,6 @@ bevel_se = 785
 playback_speed = 0.5
 anims/Rotate = SubResource( 2 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="4"]
-type = 1
-flag_offset = 0
-
 [node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
@@ -194,22 +176,20 @@ anims/Rotate = SubResource( 3 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 0, -800 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 13 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 150
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="7" instance=ExtResource( 14 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
+"additional_lasers",
+] instance=ExtResource( 14 )]
 show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
@@ -217,20 +197,16 @@ rotation = 1.5708
 [node name="Wall3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
 position = Vector2( 0, 800 )
 rotation = 3.14159
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 13 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 150
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
