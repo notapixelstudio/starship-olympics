@@ -189,6 +189,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://local_multiplayer/InfoPlayer.gd"
 }, {
+"base": "RayCast2D",
+"class": "Laser",
+"language": "GDScript",
+"path": "res://actors/weapons/Laser.gd"
+}, {
 "base": "Node",
 "class": "Manager",
 "language": "GDScript",
@@ -346,6 +351,7 @@ _global_script_class_icons={
 "GenericOption": "",
 "GlowColor": "",
 "InfoPlayer": "",
+"Laser": "",
 "Manager": "",
 "MapCell": "",
 "MapPlanet": "",
@@ -794,6 +800,7 @@ remote4_fire={
 2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
 2d_physics/layer_17="repeal_field"
+2d_physics/layer_18="laser_stop"
 2d_physics/layer_20="trails"
 
 [locale]

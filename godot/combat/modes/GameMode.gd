@@ -37,3 +37,5 @@ func set_bombs(value):
 # modifiers
 export var floodable : bool = true
 export var flood : bool = false
+export var laserable : bool = false
+export var additional_lasers : bool = false
