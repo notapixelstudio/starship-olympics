@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
@@ -13,8 +13,12 @@
 [ext_resource path="res://combat/modes/Collect.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=13]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=14]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=16]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=17]
+[ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=18]
+[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
@@ -22,6 +26,42 @@ shader_param/cell_size = 100.0
 shader_param/stroke = 5.0
 shader_param/time = null
 shader_param/triangular = false
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 40.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20, 40 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ -900.0, 900.0, -900.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Rotate"
+length = 40.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20, 40 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ 900.0, -900.0, 900.0 ]
+}
 
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
@@ -46,12 +86,8 @@ material = SubResource( 1 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
-grid_rotation = 0.0
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 3 )
@@ -61,14 +97,10 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 2900
+width = 3200
 height = 1700
 radius = 800
 precision = 50.0
-
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
 
 [node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
 center_offset = Vector2( 0, 0 )
@@ -78,15 +110,6 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 1 )
@@ -102,15 +125,6 @@ height = 200
 [node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( -900, 0 )
 rotation = 0.785398
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 1 )
@@ -528,6 +542,64 @@ position = Vector2( 300, 600 )
 
 [node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner31" index="4" instance=ExtResource( 15 )]
 position = Vector2( -300, 0 )
+
+[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground" index="42" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -900, -850 )
+collision_layer = 16
+collision_mask = 5
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 50
+sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
+
+[node name="Laser" type="RayCast2D" parent="Battlefield/Middleground/Wall" index="7" instance=ExtResource( 19 )]
+show_behind_parent = true
+position = Vector2( 0, 51 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 132112
+script = ExtResource( 18 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall" index="8" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 2 )
+
+[node name="Wall4" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
+position = Vector2( 900, 850 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
+script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 50
+sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
+
+[node name="Laser" parent="Battlefield/Middleground/Wall4" index="6" instance=ExtResource( 19 )]
+show_behind_parent = true
+position = Vector2( 0, -49 )
+rotation = -1.5708
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall4" index="7" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 3 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -600, 600 )
