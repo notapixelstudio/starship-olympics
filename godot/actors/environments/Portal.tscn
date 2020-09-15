@@ -3,15 +3,14 @@
 [ext_resource path="res://actors/environments/Portal.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
 
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( -50, -400, 50, -400, 50, 400, -50, 400 )
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( -300, 0 )
+b = Vector2( 300, 0 )
 
 [node name="Portal" type="Node2D" groups=[
 "in_camera",
 ]]
 script = ExtResource( 1 )
-linked_to_path = NodePath("")
 offset = 50.0
 
 [node name="Line2D" type="Line2D" parent="."]

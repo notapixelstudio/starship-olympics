@@ -40,12 +40,14 @@ func refresh():
 	
 	var a = points[0]
 	var b = points[1]
-	$Area2D/CollisionShape2D.shape.set_points(PoolVector2Array([
-		Vector2(a.x-offset,a.y-offset),
-		Vector2(a.x+offset,a.y-offset),
-		Vector2(b.x+offset,b.y+offset),
-		Vector2(b.x-offset,b.y+offset)
-	]))
+	#$Area2D/CollisionShape2D.shape.set_points(PoolVector2Array([
+	#	Vector2(a.x-offset,a.y-offset),
+	#	Vector2(a.x+offset,a.y-offset),
+	#	Vector2(b.x+offset,b.y+offset),
+	#	Vector2(b.x-offset,b.y+offset)
+	#]))
+	$Area2D/CollisionShape2D.shape.a = a
+	$Area2D/CollisionShape2D.shape.b = b
 	
 	# workaround for losing texture mode
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
@@ -58,13 +60,20 @@ func _on_Area2D_body_entered(body):
 	
 	if entity.has('Teleportable'):
 		var teleportable = entity.get('Teleportable')
-		var offset = body.position - position
-		offset = offset.rotated(-rotation)
-		offset.x = -offset.x
-		offset = offset.rotated(rotation)
+		var vector = body.position - position
+		#offset = offset.rotated(-rotation)
+		#offset.x = -offset.x
+		#offset = offset.rotated(rotation)
 		teleportable.disable()
-		teleportable.set_destination(linked_to.position + offset)
+		teleportable.set_destination(linked_to.position + vector - offset*Vector2(0,1).rotated(rotation))
+		if entity.has('Thrusters'):
+			entity.get('Thrusters').disable()
+			
 		yield(get_tree().create_timer(0.1), 'timeout')
+		
 		if teleportable:
 			teleportable.enable()
+		if entity.could_have('Thrusters'):
+			entity.get('Thrusters').enable()
+			
 		
