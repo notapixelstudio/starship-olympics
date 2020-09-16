@@ -7,47 +7,36 @@ class_name Portal
 export var linked_to_path : NodePath
 var linked_to : Portal
 
+export var thickness : float = 10 setget set_thickness
+export var width : float = 100 setget set_width
 export var offset : float = 30 setget set_offset
 
-func set_offset(value):
-	offset = value
+func set_thickness(value):
+	thickness = value
 	refresh()
 	
-func _on_GShape_changed():
+func set_width(value):
+	width = value
+	refresh()
+	
+func set_offset(value):
+	offset = value
 	refresh()
 	
 func _ready():
 	refresh()
 	
-func get_gshape():
-	for child in get_children():
-		if child is GShape:
-			return child
-	return null
-	
 func refresh():
-	var gshape = get_gshape()
-	
-	if not gshape:
-		return
-		
-	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
-		gshape.connect('changed', self, '_on_GShape_changed')
-		
 	linked_to = get_node(linked_to_path)
-	var points = gshape.to_PoolVector2Array()
-	$Line2D.points = points
 	
-	var a = points[0]
-	var b = points[1]
-	#$Area2D/CollisionShape2D.shape.set_points(PoolVector2Array([
-	#	Vector2(a.x-offset,a.y-offset),
-	#	Vector2(a.x+offset,a.y-offset),
-	#	Vector2(b.x+offset,b.y+offset),
-	#	Vector2(b.x-offset,b.y+offset)
-	#]))
-	$Area2D/CollisionShape2D.shape.a = a
-	$Area2D/CollisionShape2D.shape.b = b
+	$Area2D/CollisionShape2D.shape.extents = Vector2(width, thickness)
+	$StaticBody2D/CollisionShape2D.shape.extents = Vector2(width, thickness)
+	
+	$Line2D.points = PoolVector2Array([
+		Vector2(-width, 0),
+		Vector2(width, 0)
+	])
+	$Line2D.width = thickness*10
 	
 	# workaround for losing texture mode
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
