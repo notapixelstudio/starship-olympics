@@ -28,14 +28,13 @@ collision_mask = 8197
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 16384
-collision_mask = 15877
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 2 )
-disabled = true
 one_way_collision = true
-one_way_collision_margin = 20.0
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
