@@ -18,6 +18,7 @@ var cumulative_points = 0
 var winners = [] # Array of winning Player stats
 var no_players = false
 
+const DEADZONE = 0.1
 signal game_over
 
 func start():
@@ -73,13 +74,13 @@ func update(delta: float):
 		var draw = true
 		var last_value = leader.score
 		for player in scores:
-			if last_value == player.score:
+			if player.score - DEADZONE <= last_value and last_value <= player.score + DEADZONE :
 				draw = true
 				winners.append(player)
 			else:
 				draw = false
-		if draw:
-			winners = scores
+		if draw and leader.score != 0:
+			winners = []
 		
 		do_game_over()
 	
