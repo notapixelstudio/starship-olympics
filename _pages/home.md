@@ -10,6 +10,7 @@ header:
       url: "https://notapixel.itch.io/superstarfighter"
 excerpt: >
   <img style='max-width: 100%;' src='assets/ssf/logo500.png'/><br />
+  Explore a galaxy of minigames!<br />
   1 to 4 players couch multiplayer.<br />
   Fight your best friends in this fast-paced intergalactic competition!
 support:
@@ -31,7 +32,7 @@ intro:
 feature_row:
   - image_path: /assets/ssf/sports.png
     alt: "minigames"
-    title: "Explore a Galaxy of Minigames"
+    title: "Lots of Minigames"
     excerpt: "Discover and play many different intergalactic games, each adding its own twist to the competition. Challenge your friends or fly solo and beat the game's AI."
   - image_path: /assets/ssf/ssf-controls.png
     alt: "simple controls"
