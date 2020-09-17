@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://actors/environments/Portal.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/Portalz.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 300, 20 )
+extents = Vector2( 100, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 300, 20 )
+extents = Vector2( 100, 10 )
 
 [node name="Portal" type="Node2D" groups=[
 "in_camera",
