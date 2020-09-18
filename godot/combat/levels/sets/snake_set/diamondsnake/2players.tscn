@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/SnakeCollect.tres" type="Resource" id=2]
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
+[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=7]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=8]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=10]
@@ -13,6 +14,42 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=14]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=15]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Default"
+length = 40.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10, 20, 30 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( -1200, -1200 ), Vector2( -1600, -800 ), Vector2( -1200, -1200 ), Vector2( -800, -1600 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Default"
+length = 40.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10, 20, 30 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 1200, -1200 ), Vector2( 800, -1600 ), Vector2( 1200, -1200 ), Vector2( 1600, -800 ) ]
+}
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -73,6 +110,18 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 100
 height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/Wall3" index="7" groups=[
+"additional_lasers",
+] instance=ExtResource( 6 )]
+show_behind_parent = true
+position = Vector2( 50, 50 )
+rotation = 0.785398
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall3" index="8" groups=[
+"animation_if_additional_lasers",
+]]
+anims/Default = SubResource( 1 )
 
 [node name="Wall5" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, -1850 )
@@ -192,6 +241,19 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 100
 height = 100
+
+[node name="Laser2" parent="Battlefield/Middleground/Wall4" index="7" groups=[
+"additional_lasers",
+] instance=ExtResource( 6 )]
+show_behind_parent = true
+position = Vector2( -50, 50 )
+rotation = 2.35619
+scale = Vector2( 1, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall4" index="8" groups=[
+"animation_if_additional_lasers",
+]]
+anims/Default = SubResource( 2 )
 
 [node name="DiamondSpawner" parent="Battlefield/Middleground" index="6" instance=ExtResource( 10 )]
 position = Vector2( 0, 1050 )
