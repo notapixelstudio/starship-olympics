@@ -72,7 +72,7 @@ tracks/1/keys = {
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 8 )
-match_duration_override = 150.0
+match_duration_override = 120.0
 
 [node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
@@ -91,6 +91,11 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 1 )
@@ -114,6 +119,11 @@ hollow = true
 offset = 200
 elongation = 100
 type = 2
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 1 )
@@ -135,8 +145,12 @@ bevel_se = 1185
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 1 )
@@ -159,6 +173,10 @@ bevel_se = 1185
 ]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 2 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
 
 [node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
 center_offset = Vector2( 0, 0 )
@@ -201,6 +219,15 @@ anims/Rotate = SubResource( 3 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( 0, -1200 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 15 )
@@ -221,6 +248,15 @@ rotation = 1.5708
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
 position = Vector2( 0, 1200 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 15 )
