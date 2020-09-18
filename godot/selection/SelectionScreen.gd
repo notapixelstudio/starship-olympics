@@ -150,11 +150,12 @@ func _on_joy_connection_changed(device_id, connected):
 func ready_to_fight():
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
-		ready_to_fight.start(len(players), global.win)
+		ready_to_fight.start(players, global.win)
 	else:
 		print_debug("not enough players")
 
 func selected(player: PlayerSelection):
+	ready_to_fight.deactivate()
 	restart_timer()
 	var species = player.species
 	
