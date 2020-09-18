@@ -29,8 +29,8 @@ animations = [ {
 } ]
 
 [node name="MapPlanet" type="Node2D" groups=[
-"sports",
 "map_point",
+"sports",
 ]]
 script = ExtResource( 1 )
 planet = ExtResource( 2 )
@@ -45,6 +45,7 @@ scale = Vector2( 0.886355, 0.868757 )
 texture = ExtResource( 4 )
 
 [node name="CheckBox" type="AnimatedSprite" parent="."]
+visible = false
 position = Vector2( 84, -84 )
 frames = SubResource( 1 )
 animation = "empty"

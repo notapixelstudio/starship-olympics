@@ -76,6 +76,7 @@ func combat(selected_players: Array, fight_mode : String):
 	sports_array = []
 	played_levels = []
 	levels = []
+	all_sports = []
 	var num_players : int = len(selected_players)
 	
 	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
@@ -92,8 +93,7 @@ func combat(selected_players: Array, fight_mode : String):
 		var info = players[player_id]
 		global.send_stats("design", {"event_id": "selection:species:{key}".format({"key": info.species_name})})
 		global.send_stats("design", {"event_id": "selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})})
-
-
+		
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
