@@ -46,7 +46,7 @@ texture = ExtResource( 10 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 0.74902, 0.333333 )
+modulate = Color( 0, 1, 0.74902, 0.27451 )
 material = SubResource( 1 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
@@ -68,6 +68,7 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1800
 bevel = 100
@@ -95,6 +96,7 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2800
 height = 1800
 bevel = 100
@@ -121,6 +123,7 @@ __meta__ = {
 }
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2800
 height = 1800
 bevel = 100
@@ -133,6 +136,15 @@ bevel_se = 100
 autoplay = "Pulse"
 playback_speed = 0.08
 anims/Pulse = SubResource( 2 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
+
+[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( 0, -900 )
@@ -150,8 +162,10 @@ grid_rotation = 0.0
 script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 100
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
@@ -170,8 +184,10 @@ grid_rotation = 0.0
 script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 100
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
@@ -190,8 +206,10 @@ grid_rotation = 0.0
 script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
@@ -210,8 +228,10 @@ grid_rotation = 0.0
 script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]

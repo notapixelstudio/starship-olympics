@@ -47,7 +47,7 @@ texture = ExtResource( 11 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 0.74902, 0.333333 )
+modulate = Color( 0, 1, 0.74902, 0.27451 )
 material = SubResource( 1 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 7 )]
@@ -166,6 +166,7 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 100
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
@@ -187,6 +188,7 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 100
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
@@ -208,6 +210,7 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
@@ -229,6 +232,7 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
