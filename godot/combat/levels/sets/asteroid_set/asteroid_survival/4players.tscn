@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=5]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=7]
+[ext_resource path="res://combat/modes/Survival.tres" type="Resource" id=8]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 20.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10, 20 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ 1700, 1400, 1700 ]
+}
+
+[node name="Arena" instance=ExtResource( 3 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 8 )
+
+[node name="CrownModeManager" parent="Managers" index="5"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Grid" parent="Battlefield/Background" index="0"]
+modulate = Color( 0, 0.529412, 1, 0.27451 )
+
+[node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 9 )]
+modulate = Color( 0.2, 0.701961, 1, 0.2 )
+hollow = true
+offset = 200
+elongation = 100
+type = 2
+hide_line = false
+hide_grid = true
+line_width = 28
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
+script = ExtResource( 2 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 1400
+precision = 100.0
+
+[node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 9 )]
+modulate = Color( 0.2, 0.701961, 1, 0.2 )
+hollow = true
+offset = 200
+elongation = 100
+type = 2
+hide_line = false
+hide_grid = true
+line_width = 28
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
+script = ExtResource( 2 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 1700
+precision = 100.0
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 9 )]
+hollow = true
+offset = 200
+elongation = 100
+type = 0
+hide_line = false
+hide_grid = true
+line_width = 28
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
+script = ExtResource( 2 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 1700
+precision = 100.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GCircle" index="0" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
+
+[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+
+[node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
+base_size = 42.0
+spawn_diamonds = false
+self_destruct = true
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
+position = Vector2( -800, -800 )
+rotation = 0.785398
+controls = "joy1"
+species = ExtResource( 1 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
+position = Vector2( 800, -800 )
+rotation = 2.35619
+controls = "joy2"
+species = ExtResource( 10 )
+cpu = true
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
+position = Vector2( -800, 800 )
+rotation = -0.785398
+scale = Vector2( 1, 1 )
+controls = "joy2"
+species = ExtResource( 7 )
+cpu = true
+
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
+position = Vector2( 800, 800 )
+rotation = -2.35619
+scale = Vector2( 1, 1 )
+controls = "joy2"
+species = ExtResource( 11 )
+cpu = true
+
+[node name="Camera" parent="." index="6"]
+smoothing_speed = 0.3
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]
+
+[editable path="CanvasLayer/Pause"]
