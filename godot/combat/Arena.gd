@@ -369,7 +369,7 @@ func _input(event):
 			emit_signal("back_to_menu")
 			
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not global.demo:
+	if event.is_action_pressed("pause") and not global.demo and not scores.game_over:
 		pause.start()
 		
 	var debug_pressed = event.is_action_pressed("debug")

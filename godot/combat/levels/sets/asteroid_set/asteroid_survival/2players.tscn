@@ -39,7 +39,7 @@ texture = ExtResource( 6 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 0.529412, 1, 0.466667 )
+modulate = Color( 0, 0.529412, 1, 0.27451 )
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
@@ -55,7 +55,11 @@ grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1200
+precision = 100.0
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
@@ -71,7 +75,11 @@ grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1500
+precision = 100.0
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
 hollow = true
@@ -86,7 +94,11 @@ grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1500
+precision = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GCircle" index="0" groups=[
 "animation_in_battle",
@@ -96,6 +108,11 @@ anims/Rotate = SubResource( 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="4"]
 type = 1
 flag_offset = 0
+
+[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 base_size = 42.0
