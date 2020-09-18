@@ -131,8 +131,10 @@ func combat(selected_players: Array, fight_mode : String):
 		sports[sport.name] = sport
 		sports_array.append(sport.name)
 		for level in sport.get_levels(num_players):
-			levels.append(level)
-	
+			# Deduplication issue #405
+			if not level in levels:
+				levels.append(level)
+	print(levels)
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
 	# for planet in all_planets:
