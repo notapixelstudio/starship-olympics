@@ -54,7 +54,7 @@ func _ready():
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
 func _on_Area2D_body_entered(body):
-	if body is Bomb or body is Ship and ECM.E(body).has('Dashing'):
+	if body is Bomb:
 		try_break()
 
 func try_break():
