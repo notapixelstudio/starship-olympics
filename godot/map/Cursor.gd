@@ -89,7 +89,7 @@ func _process(delta):
 			emit_signal('try_move', self, controls_map[key])
 			action_time = FIRST_DELAY
 	
-	if accept:
+	if accept and enabled:
 		emit_signal('select', self)
 	
 	down = Input.is_action_pressed(player.controls+"_down") and action_time <= 0.0

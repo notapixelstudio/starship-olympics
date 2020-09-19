@@ -76,6 +76,7 @@ func combat(selected_players: Array, fight_mode : String):
 	sports_array = []
 	played_levels = []
 	levels = []
+	all_sports = []
 	var num_players : int = len(selected_players)
 	
 	global.send_stats("design", {"event_id":"selection:num_players", "value": num_players})
@@ -92,8 +93,7 @@ func combat(selected_players: Array, fight_mode : String):
 		var info = players[player_id]
 		global.send_stats("design", {"event_id": "selection:species:{key}".format({"key": info.species_name})})
 		global.send_stats("design", {"event_id": "selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})})
-
-
+		
 	# PLANET SELECTION
 	remove_child(selection_screen)
 	remove_child(parallax)
@@ -131,8 +131,10 @@ func combat(selected_players: Array, fight_mode : String):
 		sports[sport.name] = sport
 		sports_array.append(sport.name)
 		for level in sport.get_levels(num_players):
-			levels.append(level)
-	
+			# Deduplication issue #405
+			if not level in levels:
+				levels.append(level)
+	print(levels)
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
 	# for planet in all_planets:

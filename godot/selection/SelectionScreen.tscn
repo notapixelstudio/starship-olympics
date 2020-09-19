@@ -47,20 +47,23 @@ signal letsfight
 const description : String = \"{n_players} READY TO FIGHT\"
 const win_condition : String = \"{n_matches} STARS TO WIN\"
 onready var win_label = $win1/WinLabel
+var human_players = []
 
 func _ready():
 	set_process_input(false)
 	visible = false
 
 func _input(event):
-	if event.is_action_pressed(\"ui_accept\"):
-		deactivate(true)
-		emit_signal(\"letsfight\")
-	elif event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
+	for player in human_players:
+		if event.is_action_pressed(player.controls+\"_fire\"):
+			deactivate(true)
+			emit_signal(\"letsfight\")
+	if event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
 		deactivate()
 
-func start(num_players: int, n_matches: int):
-	
+func start(players: Array, n_matches: int):
+	human_players = players
+	var num_players = len(players)
 	visible = true
 	
 	$Label.text = tr(description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')}))

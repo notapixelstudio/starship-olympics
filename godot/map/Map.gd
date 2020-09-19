@@ -153,12 +153,16 @@ func _on_cursor_cancel(cursor):
 	var cell = get_cell(CELLSIZE * cursor.grid_position)
 	if not cell:
 		return
-	cell.act(cursor)
+	cell.deactivate(cursor)
 	cursor.enable()
 	var panel = panels.get_node(cursor.player.id)
 	panel.planet = null
 	panel.chosen = false
-	players_ready -= 1
+	var i = selected_sports.find(cell.planet)
+	if i >= 0:
+		selected_sports.remove(i)
+		players_ready -= 1
+		print("players ready "+ str(players_ready))
 	
 func get_cell(position):
 	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
@@ -166,16 +170,14 @@ func get_cell(position):
 func _on_cell_pressed(cursor, cell):
 	# update data
 	if cell.is_in_group("sports"):
-		cursor.disable()
 		var panel = panels.get_node(cursor.player.id)
 		panel.planet = cell.planet
 		panel.chosen = true
+		if not cell.planet in selected_sports:
+			selected_sports.append(cell.planet)
+		players_ready += 1
 		
-	selected_sports = []
-	for sport in get_tree().get_nodes_in_group('sports'):
-		if sport.active:
-			selected_sports.append(sport.planet)
-	_on_Start_pressed(cursor)
+		_on_Start_pressed(cursor)
 	
 signal done
 var players_ready = 0
@@ -183,15 +185,18 @@ var players_ready = 0
 func _on_Start_pressed(cursor):
 	if len(selected_sports) <= 0:
 		return
-		
 	cursor.disable()
-	players_ready += 1
-	if players_ready == human_players:
-		for cursor in get_tree().get_nodes_in_group('map_cursor'):
-			cursor.set_unresponsive()
-			
-		yield(get_tree().create_timer(0.5), "timeout")
-		emit_signal('done')
+	for cursor in get_tree().get_nodes_in_group('map_cursor'):
+		if cursor.enabled:
+			return
+	for cursor in get_tree().get_nodes_in_group('map_cursor'):
+		cursor.set_unresponsive()
+	var playing = ""
+	for sport in selected_sports:
+		playing += " "+ str(sport.name)
+	print("playing: "+ playing)
+	yield(get_tree().create_timer(0.5), "timeout")
+	emit_signal('done')
 		
 func _on_Back_pressed(cursor):
 	back = true
