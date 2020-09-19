@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/Portal.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/environments/portal_spike.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 300, 30 )
@@ -9,10 +12,52 @@ extents = Vector2( 300, 30 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 300, 30 )
 
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.338889, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=18]
+max_value = 1.5
+_data = [ Vector2( 0, 0.703988 ), 0.0, -0.0509122, 0, 0, Vector2( 0.373239, 1.5 ), 0.0, 0.0, 0, 0, Vector2( 0.669014, 0.0322087 ), -7.66229, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 2
+emission_box_extents = Vector3( 50, 300, 1 )
+flag_disable_z = true
+gravity = Vector3( 40, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 15 )
+color_ramp = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 300, 1 )
+flag_disable_z = true
+gravity = Vector3( 100, 0, 0 )
+angular_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 45.0
+angle_random = 1.0
+scale = 15.0
+scale_random = 1.0
+scale_curve = SubResource( 15 )
+color_ramp = SubResource( 12 )
+
 [node name="Portal" type="Node2D" groups=[
 "in_camera",
 ]]
+material = SubResource( 10 )
 script = ExtResource( 2 )
+offset = 250.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -19, 0 )
@@ -33,7 +78,8 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Line2D" type="Line2D" parent="."]
-modulate = Color( 1, 0.196078, 1, 0.862745 )
+modulate = Color( 1, 0, 1, 1 )
+self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -20, 0 )
 rotation = 1.5708
 points = PoolVector2Array( -300, 0, 300, 0 )
@@ -42,10 +88,43 @@ default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 1 )
 texture_mode = 1
 
-[node name="Line2D2" type="Line2D" parent="."]
+[node name="Hole" type="Line2D" parent="."]
+position = Vector2( -20, 0 )
+rotation = 1.5708
+points = PoolVector2Array( -200, 0, 200, 0 )
+width = 20.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="SpikeParticles2D" type="Particles2D" parent="."]
+modulate = Color( 1, 0, 1, 1 )
+self_modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( -50, 0 )
+amount = 16
+process_material = SubResource( 17 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 1, 0, 1, 1 )
+self_modulate = Color( 2, 2, 2, 1 )
+position = Vector2( -150, 0 )
+amount = 16
+lifetime = 2.0
+process_material = SubResource( 16 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+self_modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( -150, 0 )
+amount = 16
+lifetime = 2.0
+process_material = SubResource( 16 )
+
+[node name="WallLine" type="Line2D" parent="."]
 position = Vector2( 26, 0 )
 rotation = 1.5708
 points = PoolVector2Array( -300, 0, 300, 0 )
 width = 40.0
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color( 0.8, 0.8, 1.09, 1 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
