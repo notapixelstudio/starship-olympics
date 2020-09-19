@@ -14,7 +14,7 @@ onready var life_time = $LifeTime
 onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
 
-func initialize(pos : Vector2, bomb_type, impulse, ship):
+func initialize(pos : Vector2, bomb_type, impulse, ship, size = 1):
 	type = bomb_type
 	entity = ECM.E(self)
 	
@@ -34,10 +34,18 @@ func initialize(pos : Vector2, bomb_type, impulse, ship):
 		entity.get('Deadly').enable()
 		set_collision_mask_bit(2, true) # bombs colliding with bombs
 		$Sprite.scale = Vector2(1,1)
-		$CollisionShape2D.shape.radius = 32
+		$CollisionShape2D.shape.radius = size*32 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$NearArea/CollisionShape2D.shape.radius = size*32
 		$Sprite.texture = ball_texture
+		$Sprite.scale = Vector2(size, size)
 		$Sprite/AnimationPlayer.stop()
+	else:
+		$CollisionShape2D.shape.radius = size*16
+		$NearArea/CollisionShape2D.shape.radius = size*16
+		$Sprite.scale = Vector2(size*0.5, size*0.5)
 		
+	$Core/CollisionShape2D.shape.radius = size*8
+	
 func _physics_process(delta):
 	process_life_time()
 	if entity.has('Flowing'):

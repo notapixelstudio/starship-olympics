@@ -31,9 +31,6 @@ func _process(delta):
 	
 	$Wrapper/Ball.rotation += delta
 	
-	if target.debug_text:
-		player_id.text = str(target.debug_text)
-	
 func update_scale():
 	$Wrapper/Scaled.scale = Vector2(1,1) if not target.camera else target.camera.zoom
 	
