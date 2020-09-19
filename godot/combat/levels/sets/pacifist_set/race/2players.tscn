@@ -27,8 +27,12 @@ modulate = Color( 0, 1, 0.74902, 0.333333 )
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
 hide_grid = true
+line_width = 28
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 2 )
@@ -46,39 +50,26 @@ bevel_ne = 400
 bevel_sw = 400
 bevel_se = 400
 
+[node name="FloodWater" parent="Battlefield/Background" index="2"]
+type = 1
+flag_offset = 0
+
 [node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 
-[node name="Wall7" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1600, 0 )
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 200
-sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
-
-[node name="Wall8" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( -1600, 0 )
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 200
-sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
-
-[node name="Wall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -800 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 1 )
@@ -90,8 +81,17 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, 800 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 1 )
@@ -103,8 +103,17 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( -800, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 1 )
@@ -116,8 +125,17 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 800, 0 )
+hollow = false
+offset = 0
+elongation = 0
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 1 )
@@ -129,13 +147,13 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Portal" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
-position = Vector2( -210, 210 )
+[node name="Portal" parent="Battlefield/Middleground" index="4" instance=ExtResource( 11 )]
+position = Vector2( -225, 225 )
 rotation = -0.785398
 linked_to_path = NodePath("../Portal2")
 
-[node name="Portal2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 11 )]
-position = Vector2( 210, -210 )
+[node name="Portal2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 11 )]
+position = Vector2( 225, -225 )
 rotation = 2.35619
 linked_to_path = NodePath("../Portal")
 
