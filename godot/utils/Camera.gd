@@ -3,7 +3,7 @@ extends Camera2D
 export var zoomMin = 1.7
 export var zoomMax: float = 0
 export var marginX = 0
-export var marginY = 120.0
+export var marginY = 100.0
 export (float) var zoom_speed_enlarge = 0.13
 export (float) var zoom_speed_shrink = 0.02
 export(float, 0.1, 4.0) var zoom_offset : float = 0.75

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -62,7 +62,15 @@ size = 500
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 29 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="GDScript" id=4]
+script/source = "extends Position2D
+
+func _process(delta):
+	var rect = get_parent().get_node(\"Camera\").camera_rect
+	position = global.calculate_center(rect)
+"
+
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -255,6 +263,8 @@ script = ExtResource( 22 )
 position = Vector2( 0, 10800 )
 z_index = 50
 z_as_relative = false
+type = 1
+flag_offset = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
 "animation_in_battle",
@@ -264,6 +274,9 @@ anims/Rotate = SubResource( 2 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
 script = ExtResource( 24 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 20000
 height = 20000
 
@@ -321,8 +334,11 @@ zoomMin = 2.5
 debug_mode = false
 enabled = true
 
+[node name="CenterCamera" type="Position2D" parent="."]
+script = SubResource( 4 )
+
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 4 )
+"anims/Game Over" = SubResource( 5 )
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]

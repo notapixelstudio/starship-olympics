@@ -428,6 +428,12 @@ func ship_just_died(ship, killer):
 	
 	if ship.info_player.lives == 0:
 		var alive_players = []
+		var focus = load("res://actors/environments/ElementInCamera.tscn").instance()
+		ship.dead_ship_instance.remove_from_group("in_camera")
+		$Battlefield.add_child(focus)
+		yield(get_tree(), "idle_frame")
+		focus.manual_activate($CenterCamera, ship.dead_ship_instance.position)
+		
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
 				alive_players.append(s)
@@ -436,11 +442,14 @@ func ship_just_died(ship, killer):
 			# notify scores if there is only one player left
 			yield(get_tree().create_timer(1), 'timeout')
 			scores.one_player_left(alive_players[0].info_player)
+			
 		elif len(alive_players) == 0:
 			# notify scores if there are no players left
 			yield(get_tree().create_timer(1), 'timeout')
 			scores.no_players_left()
-			
+		
+		yield(get_tree().create_timer(1), 'timeout')
+		focus.manual_deactivate()
 		# skip respawn if there are no lives left
 		return
 	
