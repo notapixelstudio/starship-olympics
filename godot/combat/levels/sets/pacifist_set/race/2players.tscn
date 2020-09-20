@@ -10,7 +10,7 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=10]
-[ext_resource path="res://actors/environments/Portaln.tscn" type="PackedScene" id=11]
+[ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/enemies/Bomb_spawner.tscn" type="PackedScene" id=12]
 
 [node name="Arena" instance=ExtResource( 4 )]
@@ -22,7 +22,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 0.74902, 0.333333 )
+modulate = Color( 1, 0.129412, 0, 0.27451 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
