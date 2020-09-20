@@ -32,11 +32,16 @@ func toggle_active():
 func act(cursor):
 	toggle_active()
 	.act(cursor)
-	cursor.on_sth_pressed()
 	if active:
+		cursor.on_sth_pressed()
 		$switch_on.play()
 	else:
 		$switch_off.play()
+	emit_signal('updated', active)
+
+func deactivate(cursor):
+	set_active(false)
+	$switch_off.play()
 	emit_signal('updated', active)
 	
 func _ready():
