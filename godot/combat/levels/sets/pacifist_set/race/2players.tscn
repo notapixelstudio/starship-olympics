@@ -57,7 +57,7 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Portal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
-position = Vector2( -322, 322 )
+position = Vector2( -323, 323 )
 rotation = -0.785398
 linked_to_path = NodePath("../Portal2")
 width = 450.0
@@ -66,7 +66,7 @@ color = Color( 1, 0.470588, 0, 1 )
 inverted = true
 
 [node name="Portal2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
-position = Vector2( 322, -322 )
+position = Vector2( 323, -323 )
 rotation = 2.35619
 linked_to_path = NodePath("../Portal")
 width = 450.0
@@ -184,7 +184,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 150
+radius = 100
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
@@ -214,11 +214,11 @@ position = Vector2( -1900, -650 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="Spawner7" parent="Battlefield/Middleground" index="17" instance=ExtResource( 12 )]
-position = Vector2( -2100, -150 )
+position = Vector2( -2150, -100 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="Spawner11" parent="Battlefield/Middleground" index="18" instance=ExtResource( 12 )]
-position = Vector2( -2400, -150 )
+position = Vector2( -2350, -100 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
