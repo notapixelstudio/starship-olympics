@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/SnakeCollect.tres" type="Resource" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=7]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=8]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=12]
@@ -30,7 +31,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 20, 30 ),
 "transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( -1200, -1200 ), Vector2( -1600, -800 ), Vector2( -1200, -1200 ), Vector2( -800, -1600 ) ]
+"values": [ Vector2( -1350, -1250 ), Vector2( -1800, -800 ), Vector2( -1350, -1250 ), Vector2( -900, -1700 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -48,12 +49,13 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 20, 30 ),
 "transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1200, -1200 ), Vector2( 800, -1600 ), Vector2( 1200, -1200 ), Vector2( 1600, -800 ) ]
+"values": [ Vector2( 1350, -1250 ), Vector2( 900, -1700 ), Vector2( 1350, -1250 ), Vector2( 1800, -800 ) ]
 }
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
+match_duration_override = 90.0
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
@@ -77,7 +79,7 @@ grid_rotation = 0.0
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
-points = PoolVector2Array( -1600, 0, -800, -800, 800, -800, 1600, 0, 0, 2400 )
+points = PoolVector2Array( -1800, 0, -900, -900, 900, -900, 1800, 0, 0, 2500 )
 
 [node name="FloodWater" parent="Battlefield/Background" index="2"]
 type = 1
@@ -89,7 +91,7 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Wall3" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
-position = Vector2( -1200, -1200 )
+position = Vector2( -1350, -1250 )
 hollow = false
 offset = 0
 elongation = 0
@@ -124,7 +126,7 @@ rotation = 0.785398
 anims/Default = SubResource( 1 )
 
 [node name="Wall5" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
-position = Vector2( 3.05176e-05, -1850 )
+position = Vector2( 3.05176e-05, -1950 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -148,7 +150,7 @@ width = 150
 height = 150
 
 [node name="Wall6" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
-position = Vector2( 1750, -800 )
+position = Vector2( 1950, -800 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -172,7 +174,7 @@ width = 100
 height = 100
 
 [node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
-position = Vector2( 0.00012207, 1750 )
+position = Vector2( 0.00012207, 1850 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -196,7 +198,7 @@ width = 100
 height = 100
 
 [node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
-position = Vector2( -1750, -800 )
+position = Vector2( -1950, -800 )
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -220,7 +222,7 @@ width = 100
 height = 100
 
 [node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
-position = Vector2( 1200, -1200 )
+position = Vector2( 1350, -1250 )
 hollow = false
 offset = 0
 elongation = 0
@@ -636,17 +638,24 @@ position = Vector2( 0, 850 )
 position = Vector2( 0, 3300 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 13 )]
-position = Vector2( -450, -1350 )
+position = Vector2( -500, -1450 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 14 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 13 )]
-position = Vector2( 450, -1350 )
+position = Vector2( 500, -1450 )
 rotation = 1.5708
 controls = "joy2"
 species = ExtResource( 15 )
+cpu = true
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 13 )]
+position = Vector2( 0, -1450 )
+rotation = 1.5708
+controls = "joy2"
+species = ExtResource( 9 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]

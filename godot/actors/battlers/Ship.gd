@@ -15,7 +15,6 @@ export (Resource) var species
 var species_name: String
 var scores
 
-
 var cpu = false
 var velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
