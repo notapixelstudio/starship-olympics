@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=10]
 [ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/enemies/Bomb_spawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=13]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -164,19 +165,7 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall10" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 150
-sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
-
-[node name="Wall11" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
+[node name="Wall11" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( -2250, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
@@ -189,35 +178,35 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Spawner" parent="Battlefield/Middleground" index="11" instance=ExtResource( 12 )]
+[node name="Spawner" parent="Battlefield/Middleground" index="10" instance=ExtResource( 12 )]
 position = Vector2( 700, 700 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner2" parent="Battlefield/Middleground" index="12" instance=ExtResource( 12 )]
+[node name="Spawner2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 12 )]
 position = Vector2( 2200, -100 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner8" parent="Battlefield/Middleground" index="13" instance=ExtResource( 12 )]
+[node name="Spawner8" parent="Battlefield/Middleground" index="12" instance=ExtResource( 12 )]
 position = Vector2( 1900, 700 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner3" parent="Battlefield/Middleground" index="14" instance=ExtResource( 12 )]
+[node name="Spawner3" parent="Battlefield/Middleground" index="13" instance=ExtResource( 12 )]
 position = Vector2( 500, -800 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner5" parent="Battlefield/Middleground" index="15" instance=ExtResource( 12 )]
+[node name="Spawner5" parent="Battlefield/Middleground" index="14" instance=ExtResource( 12 )]
 position = Vector2( -800, 800 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner6" parent="Battlefield/Middleground" index="16" instance=ExtResource( 12 )]
+[node name="Spawner6" parent="Battlefield/Middleground" index="15" instance=ExtResource( 12 )]
 position = Vector2( -1900, -650 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner7" parent="Battlefield/Middleground" index="17" instance=ExtResource( 12 )]
+[node name="Spawner7" parent="Battlefield/Middleground" index="16" instance=ExtResource( 12 )]
 position = Vector2( -2150, -100 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner11" parent="Battlefield/Middleground" index="18" instance=ExtResource( 12 )]
+[node name="Spawner11" parent="Battlefield/Middleground" index="17" instance=ExtResource( 12 )]
 position = Vector2( -2350, -100 )
 scale = Vector2( 1.5, 1.5 )
 
@@ -228,10 +217,16 @@ controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( -1000, -700 )
+position = Vector2( -850, -850 )
 rotation = 0.785398
 controls = "joy2"
 species = ExtResource( 6 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
+position = Vector2( -1000, -700 )
+rotation = 0.785398
+controls = "joy2"
+species = ExtResource( 13 )
 
 [node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3
