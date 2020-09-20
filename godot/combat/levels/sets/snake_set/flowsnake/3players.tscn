@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=2]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/modes/Flowsnake.tres" type="Resource" id=7]
+[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=8]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
+
+[node name="Arena" instance=ExtResource( 6 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 7 )
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Grid" parent="Battlefield/Background" index="0"]
+modulate = Color( 0, 1, 1, 0.196078 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 3 )]
+hollow = true
+offset = 200
+elongation = 100
+hide_grid = true
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
+script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 2100
+sides = 12.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
+
+[node name="FloodWater" parent="Battlefield/Background" index="2"]
+type = 1
+flag_offset = 0
+
+[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
+position = Vector2( 9.15527e-05, -99.9999 )
+rotation = -1.5708
+species = ExtResource( 2 )
+cpu = true
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
+position = Vector2( 86.6025, 50 )
+rotation = 0.523599
+controls = "joy2"
+species = ExtResource( 4 )
+cpu = true
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
+position = Vector2( -86.6025, 50 )
+rotation = 2.61799
+controls = "joy2"
+species = ExtResource( 9 )
+cpu = true
+
+[node name="Camera" parent="." index="6"]
+smoothing_speed = 0.3
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="CanvasLayer/Pause"]
