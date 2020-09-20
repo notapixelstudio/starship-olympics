@@ -435,7 +435,14 @@ func ship_just_died(ship, killer):
 		if len(alive_players) == 1:
 			# notify scores if there is only one player left
 			yield(get_tree().create_timer(1), 'timeout')
+			var focus = load("res://actors/environments/ElementInCamera.tscn").instance()
+			ship.dead_ship_instance.remove_from_group("in_camera")
+			$Battlefield.add_child(focus)
+			yield(get_tree(), "idle_frame")
+			focus.manual_activate($CenterCamera, ship.dead_ship_instance.position)
 			scores.one_player_left(alive_players[0].info_player)
+			yield(get_tree().create_timer(1), 'timeout')
+			focus.manual_deactivate()
 		elif len(alive_players) == 0:
 			# notify scores if there are no players left
 			yield(get_tree().create_timer(1), 'timeout')
