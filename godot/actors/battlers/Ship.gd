@@ -69,6 +69,8 @@ onready var player = name
 onready var skin = $Graphics
 onready var charging_sfx = $charging
 onready var ammo = $PlayerInfo.ammo
+onready var target_dest = $TargetDest
+
 
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
 

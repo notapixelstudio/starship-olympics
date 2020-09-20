@@ -1,7 +1,6 @@
 extends Ship
 
 onready var debug_ship = $Debug
-onready var target_dest = $TargetDest
 
 var this_range = {60:-1, 55:0, 100:1}
 
