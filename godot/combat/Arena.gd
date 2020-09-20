@@ -564,9 +564,9 @@ func spawn_ship(player:PlayerSpawner):
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
-func spawn_bomb(pos, type, impulse, ship, size=1):
+func spawn_bomb(type, pos, impulse, ship, size=1):
 	var bomb = bomb_scene.instance()
-	bomb.initialize(pos, type, impulse, ship, size)
+	bomb.initialize(type, pos, impulse, ship, size)
 	
 	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
 	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")

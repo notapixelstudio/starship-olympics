@@ -14,7 +14,7 @@ onready var life_time = $LifeTime
 onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
 
-func initialize(pos : Vector2, bomb_type, impulse, ship, size = 1):
+func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	type = bomb_type
 	entity = ECM.E(self)
 	
