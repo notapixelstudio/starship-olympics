@@ -7,53 +7,44 @@
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=7]
+[ext_resource path="res://map/RuleDescription.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "describeme"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Description:visible")
+length = 3.5
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Description2/AnimationPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"clips": PoolStringArray( "blink" ),
+"times": PoolRealArray( 2.4 )
 }
-tracks/1/type = "animation"
-tracks/1/path = NodePath("Description2/AnimationPlayer")
+tracks/1/type = "value"
+tracks/1/path = NodePath("Rule1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": PoolStringArray( "blink" ),
-"times": PoolRealArray( 0.8 )
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
-tracks/2/type = "animation"
-tracks/2/path = NodePath("Description3/AnimationPlayer")
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rule2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"clips": PoolStringArray( "blink" ),
-"times": PoolRealArray( 0.8 )
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Description3:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -68,18 +59,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 2, -0.5 ),
 "update": 0,
 "values": [ Vector2( 2.5, 2.5 ), Vector2( 0.5, 0.5 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Description:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -107,18 +86,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Description:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -149,7 +116,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Description:visible")
+tracks/2/path = NodePath("Description2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -158,44 +125,17 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Description2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
 "values": [ true ]
 }
 
 [sub_resource type="DynamicFont" id=5]
-size = 40
+size = 24
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="Animation" id=6]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 0, 0, 1 ) ]
-}
-
-[sub_resource type="DynamicFont" id=7]
-size = 24
+[sub_resource type="DynamicFont" id=6]
+size = 40
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -207,11 +147,14 @@ anchor_bottom = 1.0
 rect_rotation = -0.00219995
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 gamemode = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1205, 60 )
-scale = Vector2( 0.15, 0.15 )
+position = Vector2( 640, 313 )
+scale = Vector2( 0.5, 0.5 )
 z_index = 1000
 z_as_relative = false
 texture = ExtResource( 4 )
@@ -229,40 +172,6 @@ volume_db = 15.0
 mix_target = 1
 bus = "SFX"
 
-[node name="Description" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -623.568
-margin_top = 190.0
-margin_right = 634.432
-margin_bottom = 240.0
-custom_fonts/font = SubResource( 5 )
-text = "Bombazza"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="Description3" type="Label" parent="."]
-visible = false
-modulate = Color( 1, 0, 0, 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -623.57
-margin_top = 243.432
-margin_right = 634.43
-margin_bottom = 293.432
-custom_fonts/font = SubResource( 5 )
-align = 1
-valign = 1
-uppercase = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Description3"]
-anims/blink = SubResource( 6 )
-
 [node name="Description2" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -272,11 +181,14 @@ margin_left = -622.005
 margin_top = 293.522
 margin_right = 635.995
 margin_bottom = 343.522
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "press FIRE to continue"
 align = 1
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Description2"]
 anims/blink = ExtResource( 7 )
@@ -285,3 +197,107 @@ anims/blink = ExtResource( 7 )
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="Rule1" type="HBoxContainer" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -0.00687296
+margin_top = 150.0
+margin_right = -0.00683594
+margin_bottom = 208.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="Rule1"]
+margin_right = 421.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Sprite" type="TextureRect" parent="Rule1"]
+margin_left = 425.0
+margin_right = 425.0
+margin_bottom = 58.0
+stretch_mode = 6
+
+[node name="Control3" type="Control" parent="Rule1"]
+margin_left = 429.0
+margin_right = 429.0
+margin_bottom = 58.0
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="Rule1"]
+margin_left = 433.0
+margin_top = 4.0
+margin_right = 854.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 6 )
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Rule1"]
+margin_left = 858.0
+margin_right = 1280.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Rule2" type="HBoxContainer" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -0.00933034
+margin_top = 214.0
+margin_right = -0.00927734
+margin_bottom = 272.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="Rule2"]
+margin_right = 421.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Sprite" type="TextureRect" parent="Rule2"]
+margin_left = 425.0
+margin_right = 425.0
+margin_bottom = 58.0
+stretch_mode = 6
+
+[node name="Control4" type="Control" parent="Rule2"]
+margin_left = 429.0
+margin_right = 429.0
+margin_bottom = 58.0
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="Rule2"]
+margin_left = 433.0
+margin_top = 4.0
+margin_right = 854.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 6 )
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Rule2"]
+margin_left = 858.0
+margin_right = 1280.0
+margin_bottom = 58.0
+size_flags_horizontal = 3

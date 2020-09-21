@@ -65,6 +65,7 @@ func _ready():
 		cursor.connect('cancel', self, '_on_cursor_cancel')
 		var panel = panels.get_node(cursor.player.id)
 		panel.species = cursor.species
+		panel.enable()
 	
 	for sport in get_tree().get_nodes_in_group("sports"):
 		var levels = sport.planet.get("levels_"+str(num_players)+"players")
