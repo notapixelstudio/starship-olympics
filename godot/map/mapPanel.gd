@@ -9,6 +9,7 @@ var rest_text = "choose an arena"
 var chosen = false setget set_chosen
 onready var background = $Background
 const deselected_modulate = Color(1,1,1,0.6)
+const Minicard = preload('res://map/planets/rules/Minicard.tscn')
 
 func _ready():
 	disable()
@@ -61,8 +62,8 @@ func disable():
 	
 func create_minicards():
 	for minigame in planet.minigames:
-		var minicard = TextureRect.new()
-		minicard.texture = minigame.icon
+		var minicard = Minicard.instance()
+		minicard.minigame = minigame
 		$Minicards.add_child(minicard)
 	
 func destroy_minicards():
