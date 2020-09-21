@@ -1,18 +1,27 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=15 format=2]
 
 [ext_resource path="res://combat/levels/sets/snake_set/flowsnake/2players.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/sets/snake_set/snake_deathmatch/2players.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/sets/snake_set/snake_a_gon/3players.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/sets/snake_set/diamondsnake/2players.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/map/cards/snakes_set.png" type="Texture" id=5]
+[ext_resource path="res://combat/levels/sets/snake_set/snake_deathmatch/3players.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/levels/sets/snake_set/flowsnake/3players.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/levels/sets/snake_set/snake_a_gon/2players.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/levels/sets/snake_set/diamondsnake/4players.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/levels/sets/snake_set/snake_deathmatch/4players.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/levels/sets/snake_set/flowsnake/4players.tscn" type="PackedScene" id=11]
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=12]
+[ext_resource path="res://combat/levels/sets/snake_set/snake_a_gon/4players.tscn" type="PackedScene" id=13]
+[ext_resource path="res://combat/levels/sets/snake_set/diamondsnake/3players.tscn" type="PackedScene" id=14]
 
 [resource]
 script = ExtResource( 12 )
 name = "snakes"
 tagline1 = ""
 tagline2 = ""
-levels_1players = [ ExtResource( 4 ), ExtResource( 1 ), null, ExtResource( 2 ) ]
-levels_2players = [ ExtResource( 4 ), ExtResource( 1 ), null, ExtResource( 2 ) ]
-levels_3players = [  ]
-levels_4players = [  ]
+levels_1players = [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ) ]
+levels_2players = [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ) ]
+levels_3players = [ ExtResource( 14 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 6 ) ]
+levels_4players = [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 10 ) ]
 planet_sprite = ExtResource( 5 )
