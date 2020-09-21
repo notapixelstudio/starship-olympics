@@ -13,4 +13,5 @@ func get_master_ship():
 	return node_owner
 
 func _process(delta):
-	global_position = lerp(global_position, node_owner.global_position, delta*SPEED)
+	if is_inside_tree():
+		global_position = lerp(global_position, node_owner.global_position, delta*SPEED)

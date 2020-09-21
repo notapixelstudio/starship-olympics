@@ -11,6 +11,8 @@ export var inverted : bool = false setget set_inverted
 
 onready var wall = $StaticBody2D
 
+signal went_through
+
 func set_width(v):
 	width = v
 	refresh()
@@ -83,6 +85,7 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 			
 		if body is Ship:
 			body.recheck_colliding()
+			emit_signal("went_through", body, self)
 		
 		body.remove_collision_exception_with(wall)
 		body.remove_collision_exception_with(linked_to.wall)

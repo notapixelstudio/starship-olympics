@@ -92,6 +92,7 @@ func setup_level(mode : Resource):
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
 	survival_mode.enabled = mode.survival
+	race_mode.enabled = mode.race
 	
 	#FIX
 	if session and mode.name in session.settings and not global.campaign_mode:
@@ -156,8 +157,9 @@ func _ready():
 	goal_mode.connect('show_score', self, "spawn_points_scored")
 	survival_mode.connect('score', scores, "add_score")
 	
-	for goal in get_tree().get_nodes_in_group("goal"):
-		goal.connect('goal_done', goal_mode, "_on_goal_done")
+	for portal in get_tree().get_nodes_in_group("goal"):
+		portal.connect('went_through', race_mode, "_on_lap_done")
+		portal.connect('goal_done', goal_mode, "_on_goal_done")
 		
 	var standalone : bool = true
 	var players = {}
