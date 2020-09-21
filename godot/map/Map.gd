@@ -196,7 +196,7 @@ func _on_Start_pressed(cursor):
 	for sport in selected_sports:
 		playing += " "+ str(sport.name)
 	print("playing: "+ playing)
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	emit_signal('done')
 		
 func _on_Back_pressed(cursor):
