@@ -8,10 +8,10 @@ export var tagline2 : String
 
 export var species : Resource # SpeciesTemplate
 
-export var levels_1players : Array
-export var levels_2players : Array
-export var levels_3players : Array
-export var levels_4players : Array
+export var levels_1players : Array = [Object(), Object(), Object(), Object()]
+export var levels_2players : Array = [Object(), Object(), Object(), Object()]
+export var levels_3players : Array = [Object(), Object(), Object(), Object()]
+export var levels_4players : Array = [Object(), Object(), Object(), Object()]
 
 var played_levels_1players : Array = []
 var played_levels_2players : Array = []
@@ -22,7 +22,7 @@ export var planet_sprite : StreamTexture
 
 export var game_mode : Resource # GameMode
 export var this_game_mode : Resource # GameMode
-export var mutator : Resource # GameMode
+export var mutators : Array = []
 
 func shuffle_levels(num_players : int) -> void:
 	levels_1players.shuffle()
