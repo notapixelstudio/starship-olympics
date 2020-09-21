@@ -1,14 +1,19 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
+[ext_resource path="res://combat/levels/sets/pacifist_set/race/4players.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/sets/pacifist_set/race/2players.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/sets/pacifist_set/race/3players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/map/cards/labs_set.png" type="Texture" id=5]
 
 [resource]
 script = ExtResource( 1 )
-name = ""
+name = "Royal Robolabs"
 tagline1 = ""
 tagline2 = ""
-levels_1players = [  ]
-levels_2players = [  ]
-levels_3players = [  ]
-levels_4players = [  ]
+levels_1players = [ ExtResource( 3 ) ]
+levels_2players = [ ExtResource( 3 ) ]
+levels_3players = [ ExtResource( 4 ) ]
+levels_4players = [ ExtResource( 2 ) ]
+planet_sprite = ExtResource( 5 )
 mutators = [ "laser" ]

@@ -8,10 +8,10 @@ export var tagline2 : String
 
 export var species : Resource # SpeciesTemplate
 
-export var levels_1players : Array
-export var levels_2players : Array
-export var levels_3players : Array
-export var levels_4players : Array
+export var levels_1players : Array = [Object(), Object(), Object(), Object()]
+export var levels_2players : Array = [Object(), Object(), Object(), Object()]
+export var levels_3players : Array = [Object(), Object(), Object(), Object()]
+export var levels_4players : Array = [Object(), Object(), Object(), Object()]
 
 var played_levels_1players : Array = []
 var played_levels_2players : Array = []

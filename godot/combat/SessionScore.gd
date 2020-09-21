@@ -2,6 +2,7 @@ extends Node
 
 class_name SessionScores
 
+
 # who is gonna play
 var players : Dictionary setget set_players # of InfoPlayers setget
 
@@ -12,6 +13,23 @@ var settings : Dictionary
 var selected_sports : Array # of Planet
 var wins = 3
 
+# mutators
+var mutators = {"flood": false,
+				"laser": false
+				}
+
+func get_mutator(mutator: String):
+	if not mutator in self.mutators:
+		return false
+	return self.mutators[mutator]
+	
+func set_mutators(array: Array):
+	for mutator in array:
+		self.add_mutator(mutator)
+		
+func add_mutator(mutator: String):
+	if mutator in self.mutators:
+		self.mutators[mutator] = true
 
 func set_players(array_players):
 	players = array_players
