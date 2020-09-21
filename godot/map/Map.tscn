@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=20]
 [ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=21]
 [ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=22]
+[ext_resource path="res://WorldEnvironment.tres" type="Environment" id=23]
 [ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
 
@@ -188,32 +189,32 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Asteroids" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -600 )
 planet = ExtResource( 7 )
 active = false
 
-[node name="Asteroids2" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set2" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -200 )
 planet = ExtResource( 11 )
 active = false
 
-[node name="Asteroids4" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set3" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 1000, 0 )
 planet = ExtResource( 13 )
 active = false
 
-[node name="Asteroids3" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set4" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 1000, -800 )
 planet = ExtResource( 12 )
 active = false
 
-[node name="Asteroids5" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set5" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 600, -600 )
 planet = ExtResource( 9 )
 active = false
 
-[node name="Core" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, 200 )
 planet = ExtResource( 8 )
 active = false
@@ -346,6 +347,9 @@ margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 23 )
 
 [editable path="Content/Controls/Victories"]
 

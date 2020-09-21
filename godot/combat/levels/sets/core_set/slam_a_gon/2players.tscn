@@ -88,15 +88,6 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1600
 precision = 100.0
 
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-
 [node name="PentaGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( -900, 0 )
 rotation = 3.14159
@@ -188,13 +179,8 @@ grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 12 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 0, 1600 )
@@ -210,13 +196,8 @@ grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 12 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 7 )]
 type = 1

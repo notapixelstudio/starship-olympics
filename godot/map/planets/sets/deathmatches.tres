@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=15 format=2]
+[gd_resource type="Resource" load_steps=19 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/sets/core_set/deathmatch/2players.tscn" type="PackedScene" id=2]
@@ -14,12 +14,17 @@
 [ext_resource path="res://combat/levels/sets/deathmatch_set/limited_deathmatch/3players.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/levels/sets/deathmatch_set/ball_deathmatch/4players.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/sets/deathmatch_set/ball_deathmatch/3players.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=15]
+[ext_resource path="res://combat/modes/AsteroidDeathmatch.tres" type="Resource" id=16]
+[ext_resource path="res://combat/modes/LimitedDeathmatch.tres" type="Resource" id=17]
+[ext_resource path="res://combat/modes/BallDeathmatch.tres" type="Resource" id=18]
 
 [resource]
 script = ExtResource( 1 )
 name = "Slaught-a-Palooza"
 tagline1 = ""
 tagline2 = ""
+minigames = [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 16 ) ]
 levels_1players = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 5 ) ]
 levels_2players = [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 5 ) ]
 levels_3players = [ ExtResource( 4 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 14 ) ]
