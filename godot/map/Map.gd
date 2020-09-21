@@ -202,3 +202,7 @@ func _on_Back_pressed(cursor):
 	back = true
 	emit_signal("done")
 	
+func _unhandled_input(event):
+	if event.is_action_pressed("pause") and not global.demo:
+		back = true
+		emit_signal("done")
