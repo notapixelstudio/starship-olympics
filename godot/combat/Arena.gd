@@ -569,6 +569,14 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
 	
+	
+	# attach followcamera
+	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
+	follow.node_owner = ship.get_node("TargetDest")
+	follow.add_to_group("in_camera")
+	$Battlefield.add_child(follow)
+	
+	
 	crown_mode.connect('show_score', ship, "update_score")
 	return ship
 	
