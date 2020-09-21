@@ -128,18 +128,23 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	
 	for sport in all_sports:
+		
+		# issue #428 . Handle mutator
+		session_scores.set_mutators(sport.mutator)
+		
 		sports[sport.name] = sport
 		sports_array.append(sport.name)
 		for level in sport.get_levels(num_players):
 			# Deduplication issue #405
 			if not level in levels:
 				levels.append(level)
-	print(levels)
+	
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
 	# for planet in all_planets:
 	#	planet.shuffle_levels(len(players))
 	
+	print(session_scores.mutators)
 	add_child(parallax)
 	
 	# TUTORIAL
