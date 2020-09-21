@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=20]
 [ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=21]
 [ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=22]
+[ext_resource path="res://WorldEnvironment.tres" type="Environment" id=23]
 [ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
 
@@ -346,6 +347,9 @@ margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 23 )
 
 [editable path="Content/Controls/Victories"]
 
