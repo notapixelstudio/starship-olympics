@@ -3,24 +3,30 @@
 [ext_resource path="res://assets/sprites/weapons/ball_bomb.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/ArkaBall.gd" type="Script" id=2]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+[sub_resource type="CircleShape2D" id=2]
+radius = 75.0
 
-[node name="ArkaBall" type="RigidBody2D"]
+[node name="ArkaBall" type="RigidBody2D" groups=[
+"wait_to_start",
+]]
 collision_layer = 4
 collision_mask = 0
-mode = 2
-physics_material_override = SubResource( 2 )
+mass = 4.0
+physics_material_override = SubResource( 1 )
+contacts_reported = 1
+contact_monitor = true
 can_sleep = false
-linear_damp = 0.1
+linear_damp = 0.5
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_ArkaBall_body_entered"]

@@ -4,11 +4,11 @@
 [ext_resource path="res://actors/weapons/mechs/Paddle.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 160.0
+radius = 80.0
 
 [node name="Paddle" type="RigidBody2D"]
 collision_layer = 16
-collision_mask = 11797
+collision_mask = 11796
 mass = 40.0
 script = ExtResource( 2 )
 follow_rotation = false
