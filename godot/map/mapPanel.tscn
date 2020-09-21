@@ -5,10 +5,11 @@
 [ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=3]
 [ext_resource path="res://map/mapPanel.gd" type="Script" id=4]
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=1]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 24
+outline_size = 3
 font_data = ExtResource( 2 )
 
 [node name="Panel" type="Control"]
@@ -23,7 +24,7 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 texture = ExtResource( 1 )
 centered = false
 
@@ -31,7 +32,8 @@ centered = false
 anchor_right = 1.0
 margin_top = -20.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "insert coin"
 align = 1
 valign = 1

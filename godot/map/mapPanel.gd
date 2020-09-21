@@ -8,7 +8,7 @@ var planet setget set_planet
 var rest_text = "choose an arena"
 var chosen = false setget set_chosen
 onready var background = $Background
-const deselected_modulate = Color(1,1,1,0.6)
+const deselected_modulate = Color(0.6,0.6,0.6,1)
 const Minicard = preload('res://map/planets/rules/Minicard.tscn')
 
 func _ready():
