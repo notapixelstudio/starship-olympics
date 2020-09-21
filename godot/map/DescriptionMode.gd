@@ -3,6 +3,9 @@ extends Control
 export var gamemode : Resource setget set_gamemode
 
 onready var animator = $AnimationPlayer
+onready var sport_name = $SportName
+onready var rule1 = $Rule1
+onready var rule2 = $Rule2
 
 signal ready_to_fight
 
@@ -13,15 +16,21 @@ func _ready():
 func refresh():
 	if $Sprite and gamemode:
 		$Sprite.texture = gamemode.logo
-		$Description.text = tr(gamemode.description).format({
+		sport_name.text = tr(gamemode.description).format({
 			"score": str(gamemode.max_score),
 			"time": str(gamemode.max_timeout)
 		})
+		var i = 1
+		for rule in gamemode.rules:
+			get_node("Rule"+str(i)).apply_rule(rule)
+			i+=1
+		
+		"""
 		if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
 			$Description3.text = 'No bombs!'
 		elif "starting_ammo" in gamemode and gamemode["starting_ammo"] != -1:
 			$Description3.text = 'Limited ammo!'
-	
+		"""
 func set_gamemode(value: GameMode):
 	gamemode = value
 	refresh()
