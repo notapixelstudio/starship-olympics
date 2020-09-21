@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=18]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=20]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -33,15 +34,15 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=6]
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 30.0
 flag_disable_z = true
@@ -55,7 +56,7 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 1.0
 scale_random = 0.25
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 8 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -177,7 +178,6 @@ enabled = false
 [node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
 [node name="TargetDest" type="Position2D" parent="."]
-position = Vector2( 600, 0 )
 script = ExtResource( 17 )
 
 [node name="Entity2D" type="Node2D" parent="TargetDest"]
@@ -192,6 +192,11 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 
+[node name="DebugSprite" type="Sprite" parent="TargetDest"]
+visible = false
+modulate = Color( 1, 1, 1, 0.309804 )
+texture = ExtResource( 20 )
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="DashFxTimer" type="Timer" parent="."]
@@ -201,12 +206,12 @@ one_shot = true
 
 [node name="DashParticles" type="Particles2D" parent="."]
 modulate = Color( 3, 3, 3, 1 )
-material = SubResource( 5 )
+material = SubResource( 6 )
 position = Vector2( -56, 0 )
 emitting = false
 amount = 80
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 9 )
 texture = ExtResource( 19 )
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

@@ -439,3 +439,8 @@ func join_str(array, sep=","):
 		ret += e+sep
 	return ret.rstrip(sep)
 	return ret
+
+func calculate_center(rect: Rect2) -> Vector2:
+	return Vector2(
+		rect.position.x + rect.size.x / 2,
+		rect.position.y + rect.size.y / 2)

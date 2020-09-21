@@ -1,9 +1,8 @@
 extends Position2D
 
-class_name TargetDest
-
 export var node_owner_path : NodePath = @".."
 
+const SPEED = 4
 var node_owner
 
 func _ready():
@@ -14,4 +13,4 @@ func get_master_ship():
 	return node_owner
 
 func _process(delta):
-	position.x = (node_owner.velocity).length()/2
+	global_position = lerp(global_position, node_owner.global_position, delta*SPEED)
