@@ -130,7 +130,7 @@ func combat(selected_players: Array, fight_mode : String):
 	for sport in all_sports:
 		
 		# issue #428 . Handle mutator
-		session_scores.set_mutators(sport.mutator)
+		session_scores.set_mutators(sport.mutators)
 		
 		sports[sport.name] = sport
 		sports_array.append(sport.name)
