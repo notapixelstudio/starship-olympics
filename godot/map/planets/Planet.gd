@@ -22,7 +22,7 @@ export var planet_sprite : StreamTexture
 
 export var game_mode : Resource # GameMode
 export var this_game_mode : Resource # GameMode
-export var mutator : Resource # GameMode
+export var mutators : Array = []
 
 func shuffle_levels(num_players : int) -> void:
 	levels_1players.shuffle()
