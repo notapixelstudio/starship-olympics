@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://map/planets/sets/deathmatches.tres" type="Resource" id=11]
 [ext_resource path="res://map/planets/sets/snakes.tres" type="Resource" id=12]
+[ext_resource path="res://map/planets/sets/beach.tres" type="Resource" id=13]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -73,6 +74,15 @@ position = Vector2( -200, -200 )
 [node name="Waypoint10" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, -200 )
 
+[node name="Waypoint16" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -600, -200 )
+
+[node name="Waypoint17" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -600, 0 )
+
+[node name="Waypoint18" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -600, 200 )
+
 [node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, 0 )
 
@@ -96,22 +106,32 @@ __meta__ = {
 [node name="Asteroids" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -400 )
 planet = ExtResource( 7 )
+active = false
 
 [node name="Asteroids2" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -400 )
 planet = ExtResource( 11 )
+active = false
+
+[node name="Asteroids4" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -800, -200 )
+planet = ExtResource( 13 )
+active = false
 
 [node name="Asteroids3" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, 400 )
 planet = ExtResource( 12 )
+active = false
 
 [node name="Drones" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -400 )
 planet = ExtResource( 9 )
+active = false
 
 [node name="Core" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, 400 )
 planet = ExtResource( 8 )
+active = false
 
 [node name="Controls" type="Node2D" parent="Content"]
 
