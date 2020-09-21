@@ -274,9 +274,7 @@ func _ready():
 		sth.connect('killed', kill_mode, '_on_sth_killed')
 		
 	# manage level flooding
-	
-	# FIXME this is temporary
-	if game_mode.floodable and (randf() < 0.25 or game_mode.flood):
+	if session.get_mutator('flood') and game_mode.floodable and (randf() < 0.33 or game_mode.flood):
 		var level_height = compute_arena_size().size.y
 		var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
 		$Battlefield/Background/FloodWater.position.y = water_rect_height/2 + level_height/2
@@ -287,8 +285,8 @@ func _ready():
 	else:
 		$Battlefield/Background/FloodWater.queue_free()
 		
-	# FIXME this is temporary
-	if game_mode.laserable and (randf() < 0.25 or game_mode.additional_lasers):
+	# manage level lasering
+	if session.get_mutator('laser') and game_mode.laserable and (randf() < 0.33 or game_mode.additional_lasers):
 		for laser_anim in get_tree().get_nodes_in_group('animation_if_additional_lasers'):
 			laser_anim.play('Default')
 	else:
