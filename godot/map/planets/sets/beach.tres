@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/sets/core_set/diamondsnatch/2players.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://combat/levels/sets/core_set/diamondsnatch/4players.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/map/cards/beach_set.png" type="Texture" id=5]
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=6]
+[ext_resource path="res://map/planets/mutators/flood.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
@@ -18,4 +19,4 @@ levels_2players = [ ExtResource( 2 ) ]
 levels_3players = [ ExtResource( 3 ) ]
 levels_4players = [ ExtResource( 4 ) ]
 planet_sprite = ExtResource( 5 )
-mutators = [ "flood" ]
+mutators = [ ExtResource( 7 ) ]

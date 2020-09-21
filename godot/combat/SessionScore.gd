@@ -25,7 +25,7 @@ func get_mutator(mutator: String):
 	
 func set_mutators(array: Array):
 	for mutator in array:
-		self.add_mutator(mutator)
+		self.add_mutator(mutator.name)
 		
 func add_mutator(mutator: String):
 	if mutator in self.mutators:

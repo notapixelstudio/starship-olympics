@@ -61,9 +61,15 @@ func disable():
 	sprite.visible = false
 	
 func create_minicards():
+	destroy_minicards() # FIXME ugly, but useful
 	for minigame in planet.minigames:
 		var minicard = Minicard.instance()
-		minicard.minigame = minigame
+		minicard.content = minigame
+		$Minicards.add_child(minicard)
+		
+	for mutator in planet.mutators:
+		var minicard = Minicard.instance()
+		minicard.content = mutator
 		$Minicards.add_child(minicard)
 	
 func destroy_minicards():

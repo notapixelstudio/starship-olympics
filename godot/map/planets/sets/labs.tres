@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/sets/pacifist_set/race/4players.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/map/cards/labs_set.png" type="Texture" id=5]
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=6]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=7]
+[ext_resource path="res://map/planets/mutators/laser.tres" type="Resource" id=8]
 
 [resource]
 script = ExtResource( 1 )
@@ -19,4 +20,4 @@ levels_2players = [ ExtResource( 3 ) ]
 levels_3players = [ ExtResource( 4 ) ]
 levels_4players = [ ExtResource( 2 ) ]
 planet_sprite = ExtResource( 5 )
-mutators = [ "laser" ]
+mutators = [ ExtResource( 8 ) ]
