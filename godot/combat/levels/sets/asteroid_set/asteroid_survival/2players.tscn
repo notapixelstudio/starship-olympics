@@ -7,7 +7,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=6]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=7]
-[ext_resource path="res://combat/modes/Survival.tres" type="Resource" id=8]
+[ext_resource path="res://combat/modes/AsteroidSurvival.tres" type="Resource" id=8]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
@@ -104,15 +104,6 @@ precision = 100.0
 "animation_in_battle",
 ]]
 anims/Rotate = SubResource( 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="4"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 base_size = 42.0

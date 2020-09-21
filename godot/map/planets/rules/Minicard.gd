@@ -11,7 +11,7 @@ func set_minigame(v):
 	for rule in minigame.rules:
 		var symbol = Sprite.new()
 		symbol.position.y = 27
-		symbol.position.x = 52 + (i-len(minigame.rules)/2.0+0.5)*50
+		symbol.position.x = 51.5 + (i-len(minigame.rules)/2.0+0.5)*48
 		symbol.texture = rule.logo
 		add_child(symbol)
 		i += 1
