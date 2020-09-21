@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
@@ -7,12 +7,14 @@
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=7]
+[ext_resource path="res://assets/icon/minicards/deathmatch.png" type="Texture" id=8]
+[ext_resource path="res://map/RuleDescription.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "describeme"
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Description:visible")
+tracks/0/path = NodePath("SportName:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -33,28 +35,6 @@ tracks/1/keys = {
 "clips": PoolStringArray( "blink" ),
 "times": PoolRealArray( 0.8 )
 }
-tracks/2/type = "animation"
-tracks/2/path = NodePath("Description3/AnimationPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"clips": PoolStringArray( "blink" ),
-"times": PoolRealArray( 0.8 )
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Description3:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=2]
 tracks/0/type = "value"
@@ -70,7 +50,7 @@ tracks/0/keys = {
 "values": [ Vector2( 2.5, 2.5 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Description:visible")
+tracks/1/path = NodePath("SportName:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -109,7 +89,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Description:visible")
+tracks/2/path = NodePath("SportName:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -149,7 +129,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Description:visible")
+tracks/2/path = NodePath("SportName:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -179,7 +159,13 @@ outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="DynamicFont" id=7]
+size = 24
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=9]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -194,11 +180,20 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 0, 0, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=7]
-size = 24
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+[sub_resource type="Animation" id=8]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0, 0, 0 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 0, 0, 1 ) ]
+}
 
 [node name="DescriptionMode" type="Control"]
 pause_mode = 2
@@ -207,11 +202,14 @@ anchor_bottom = 1.0
 rect_rotation = -0.00219995
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 gamemode = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1205, 60 )
-scale = Vector2( 0.15, 0.15 )
+position = Vector2( 640, 313 )
+scale = Vector2( 0.5, 0.5 )
 z_index = 1000
 z_as_relative = false
 texture = ExtResource( 4 )
@@ -229,39 +227,23 @@ volume_db = 15.0
 mix_target = 1
 bus = "SFX"
 
-[node name="Description" type="Label" parent="."]
+[node name="SportName" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -623.568
-margin_top = 190.0
-margin_right = 634.432
-margin_bottom = 240.0
+margin_left = -623.566
+margin_top = 146.0
+margin_right = 634.434
+margin_bottom = 196.0
 custom_fonts/font = SubResource( 5 )
 text = "Bombazza"
 align = 1
 valign = 1
 uppercase = true
-
-[node name="Description3" type="Label" parent="."]
-visible = false
-modulate = Color( 1, 0, 0, 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -623.57
-margin_top = 243.432
-margin_right = 634.43
-margin_bottom = 293.432
-custom_fonts/font = SubResource( 5 )
-align = 1
-valign = 1
-uppercase = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Description3"]
-anims/blink = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Description2" type="Label" parent="."]
 anchor_left = 0.5
@@ -285,3 +267,103 @@ anims/blink = ExtResource( 7 )
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="Rule1" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -0.00886957
+margin_top = 202.0
+margin_right = -0.00891113
+margin_bottom = 260.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="Rule1"]
+margin_right = 387.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Sprite" type="TextureRect" parent="Rule1"]
+margin_left = 391.0
+margin_right = 497.0
+margin_bottom = 58.0
+texture = ExtResource( 8 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Rule1"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 501.0
+margin_top = 4.0
+margin_right = 888.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "FUore"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rule1/Label"]
+anims/blink = SubResource( 9 )
+
+[node name="Control" type="Control" parent="Rule1"]
+margin_left = 892.0
+margin_right = 1280.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Rule2" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -0.0107894
+margin_top = 252.0
+margin_right = -0.0107422
+margin_bottom = 310.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="Rule2"]
+margin_right = 387.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="Sprite" type="TextureRect" parent="Rule2"]
+margin_left = 391.0
+margin_right = 497.0
+margin_bottom = 58.0
+texture = ExtResource( 8 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Rule2"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 501.0
+margin_top = 4.0
+margin_right = 888.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "FUore"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rule2/Label"]
+anims/blink = SubResource( 8 )
+
+[node name="Control" type="Control" parent="Rule2"]
+margin_left = 892.0
+margin_right = 1280.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
