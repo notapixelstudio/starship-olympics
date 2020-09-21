@@ -5,12 +5,13 @@ onready var sprite = $Sprite
 onready var desc = $Label
 
 var planet setget set_planet
-var rest_text = "choose a planet"
+var rest_text = "choose an arena"
 var chosen = false setget set_chosen
 onready var background = $Background
 const deselected_modulate = Color(1,1,1,0.6)
 
 func _ready():
+	disable()
 	background.self_modulate = deselected_modulate
 
 func set_chosen(chosen_):
@@ -31,7 +32,6 @@ func set_chosen(chosen_):
 		$Tween.start()
 	
 func set_species(species_):
-	
 	if not is_inside_tree():
 		yield(self, "ready")
 	if species_:
@@ -48,3 +48,10 @@ func set_planet(planet_):
 		desc.text = planet.name
 	else:
 		desc.text = rest_text
+
+func enable():
+	modulate = Color(1,1,1,1)
+	
+func disable():
+	modulate = Color(1,1,1,0.1)
+	
