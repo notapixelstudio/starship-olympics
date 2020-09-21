@@ -1,17 +1,15 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://assets/modes/snatch.png" type="Texture" id=1]
-[ext_resource path="res://assets/icon/asteroid_survival_logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/icon/asteroid_survival_logo.png" type="Texture" id=1]
+[ext_resource path="res://assets/modes/snatch.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://map/planets/rules/Snake.tres" type="Resource" id=4]
-[ext_resource path="res://map/planets/rules/Survival.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 3 )
 is_mutator = false
-name = "flowsnake"
-icon = ExtResource( 1 )
-logo = ExtResource( 2 )
+name = "survival"
+icon = ExtResource( 2 )
+logo = ExtResource( 1 )
 description = "survive as long as you can"
 tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
 tagline_cons = "Getting killed will make you lose most of the coins"
@@ -26,14 +24,14 @@ collect = false
 goal = false
 survival = true
 race = false
-shoot_bombs = false
-deadly_trails = true
-deadly_trails_duration = 30.0
+shoot_bombs = true
+deadly_trails = false
+deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 5 ), ExtResource( 4 ) ]
-floodable = false
+rules = [  ]
+floodable = true
 flood = false
 laserable = false
 additional_lasers = false

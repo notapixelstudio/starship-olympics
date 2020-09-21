@@ -10,6 +10,6 @@ func _on_lap_done(ship, portal):
 	var score = score_multiplier
 	if portal.inverted:
 		score = -score
-	emit_signal('score', ship.get_id(), score_multiplier)
+	emit_signal('score', ship.get_id(), score)
 	emit_signal('show_score', ship.species, score_multiplier, ship.position)
 	
