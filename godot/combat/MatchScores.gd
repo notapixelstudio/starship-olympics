@@ -74,12 +74,12 @@ func update(delta: float):
 		var draw = true
 		var last_value = leader.score
 		for player in scores:
-			if player.score - DEADZONE <= last_value and last_value <= player.score + DEADZONE :
+			if player.score != 0 and player.score - DEADZONE <= last_value and last_value <= player.score + DEADZONE :
 				draw = true
 				winners.append(player)
 			else:
 				draw = false
-		if draw and leader.score != 0:
+		if draw:
 			winners = []
 		
 		do_game_over()
