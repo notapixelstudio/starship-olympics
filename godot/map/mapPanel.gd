@@ -46,12 +46,26 @@ func set_planet(planet_):
 	if planet_:
 		planet = planet_
 		desc.text = planet.name
+		create_minicards()
 	else:
 		desc.text = rest_text
+		destroy_minicards()
 
 func enable():
 	modulate = Color(1,1,1,1)
+	sprite.visible = true
 	
 func disable():
 	modulate = Color(1,1,1,0.1)
+	sprite.visible = false
+	
+func create_minicards():
+	for minigame in planet.minigames:
+		var minicard = TextureRect.new()
+		minicard.texture = minigame.icon
+		$Minicards.add_child(minicard)
+	
+func destroy_minicards():
+	for minicard in $Minicards.get_children():
+		minicard.queue_free()
 	

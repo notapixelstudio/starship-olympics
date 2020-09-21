@@ -8,6 +8,8 @@ export var tagline2 : String
 
 export var species : Resource # SpeciesTemplate
 
+export var minigames : Array = [Object(), Object(), Object(), Object()]
+
 export var levels_1players : Array = [Object(), Object(), Object(), Object()]
 export var levels_2players : Array = [Object(), Object(), Object(), Object()]
 export var levels_3players : Array = [Object(), Object(), Object(), Object()]
