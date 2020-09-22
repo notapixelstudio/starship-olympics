@@ -15,13 +15,14 @@ func _ready():
 
 func refresh():
 	if $Sprite and gamemode:
-		$Sprite.texture = gamemode.logo
+		#$Sprite.texture = gamemode.logo
 		"""
 		sport_name.text = tr(gamemode.description).format({
 			"score": str(gamemode.max_score),
 			"time": str(gamemode.max_timeout)
 		})
 		"""
+		$Sprite/Label.text = tr(gamemode.name)
 		
 		var i = 1
 		for rule in gamemode.rules:

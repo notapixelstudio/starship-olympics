@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource( 3 )
 is_mutator = false
-name = "hive"
+name = "Hive Filling"
 icon = ExtResource( 1 )
 logo = ExtResource( 2 )
 description = "fill more cells than opponents"
@@ -23,11 +23,16 @@ hive = true
 collect = false
 goal = false
 survival = false
+race = false
+pursuing_bombs = true
 shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
+rules = [  ]
 floodable = true
 flood = false
+laserable = false
+additional_lasers = false

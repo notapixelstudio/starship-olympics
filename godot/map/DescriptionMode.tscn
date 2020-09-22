@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
@@ -7,10 +7,16 @@
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=7]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://map/RuleDescription.gd" type="Script" id=9]
 
-[sub_resource type="Animation" id=1]
-resource_name = "describeme"
+[sub_resource type="DynamicFont" id=1]
+size = 150
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=2]
 length = 3.5
 tracks/0/type = "animation"
 tracks/0/path = NodePath("Description2/AnimationPlayer")
@@ -47,7 +53,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 2
@@ -61,7 +67,7 @@ tracks/0/keys = {
 "values": [ Vector2( 2.5, 2.5 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -88,8 +94,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "ready"
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -128,13 +133,13 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 24
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 40
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
@@ -153,18 +158,36 @@ __meta__ = {
 gamemode = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 640, 313 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 1000
 z_as_relative = false
 texture = ExtResource( 4 )
 
+[node name="Label" type="Label" parent="Sprite"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -600.0
+margin_top = -541.0
+margin_right = -600.0
+margin_bottom = -541.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "MINIGAME"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "ready"
-anims/describeme = SubResource( 1 )
-anims/getin = SubResource( 2 )
-anims/getout = SubResource( 3 )
-anims/ready = SubResource( 4 )
+anims/describeme = SubResource( 2 )
+anims/getin = SubResource( 3 )
+anims/getout = SubResource( 4 )
+anims/ready = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -181,7 +204,7 @@ margin_left = -622.005
 margin_top = 293.522
 margin_right = 635.995
 margin_bottom = 343.522
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "press FIRE to continue"
 align = 1
 valign = 1
@@ -236,7 +259,7 @@ margin_top = 4.0
 margin_right = 854.0
 margin_bottom = 54.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 uppercase = true
@@ -288,7 +311,7 @@ margin_top = 4.0
 margin_right = 854.0
 margin_bottom = 54.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 uppercase = true
