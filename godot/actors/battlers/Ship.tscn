@@ -34,15 +34,15 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
 
-[sub_resource type="CanvasItemMaterial" id=6]
+[sub_resource type="CanvasItemMaterial" id=5]
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 1
 emission_sphere_radius = 30.0
 flag_disable_z = true
@@ -56,7 +56,7 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 1.0
 scale_random = 0.25
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 7 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -206,12 +206,12 @@ one_shot = true
 
 [node name="DashParticles" type="Particles2D" parent="."]
 modulate = Color( 3, 3, 3, 1 )
-material = SubResource( 6 )
+material = SubResource( 5 )
 position = Vector2( -56, 0 )
 emitting = false
 amount = 80
 local_coords = false
-process_material = SubResource( 9 )
+process_material = SubResource( 8 )
 texture = ExtResource( 19 )
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

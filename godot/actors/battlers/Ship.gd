@@ -247,8 +247,10 @@ func charge():
 	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
+		$Graphics/ChargeBar.modulate = Color(1, 0.376471, 0)
 	else:
 		$Graphics/ChargeBar/BombPreview.texture = null
+		$Graphics/ChargeBar.modulate = Color(1,1,0)
 	
 func fire():
 	"""

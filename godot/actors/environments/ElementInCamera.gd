@@ -8,11 +8,13 @@ func _ready():
 	set_process(false)
 	deactivate()
 
-func manual_activate(follow, start: Vector2):
+func manual_activate(follow, start: Vector2, wait):
 	position = start
 	self.target = follow
 	set_process(true)
 	activate()
+	yield(get_tree().create_timer(wait), "timeout")
+	manual_deactivate()
 
 func manual_deactivate():
 	set_process(false)
