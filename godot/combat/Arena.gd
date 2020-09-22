@@ -16,6 +16,8 @@ export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
 export var planet_name : String
 
+export var underwater : bool = false
+
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
@@ -281,14 +283,18 @@ func _ready():
 		sth.connect('killed', kill_mode, '_on_sth_killed')
 		
 	# manage level flooding
-	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood:
-		var level_height = compute_arena_size().size.y
-		var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
-		$Battlefield/Background/FloodWater.position.y = water_rect_height/2 + level_height/2
-		var flood_animation =  $Battlefield/Background/FloodWater/AnimationPlayer.get_animation('Rotate')
-		flood_animation.track_set_key_value(0, 0, Vector2(0, water_rect_height/2 + level_height/2))
-		flood_animation.track_set_key_value(0, 1, Vector2(0, water_rect_height/2 - level_height/2))
-		flood_animation.track_set_key_time(0, 1, game_mode.max_timeout) # filled as the countdown is done
+	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
+		if not underwater:
+			var level_height = compute_arena_size().size.y
+			var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
+			$Battlefield/Background/FloodWater.position.y = water_rect_height/2 + level_height/2
+			var flood_animation =  $Battlefield/Background/FloodWater/AnimationPlayer.get_animation('Rotate')
+			flood_animation.track_set_key_value(0, 0, Vector2(0, water_rect_height/2 + level_height/2))
+			flood_animation.track_set_key_value(0, 1, Vector2(0, water_rect_height/2 - level_height/2))
+			flood_animation.track_set_key_time(0, 1, game_mode.max_timeout) # filled as the countdown is done
+		else:
+			$Battlefield/Background/FloodWater/AnimationPlayer.queue_free()
+			$Battlefield/Background/FloodWater.position.y = 0
 	else:
 		$Battlefield/Background/FloodWater.queue_free()
 		
