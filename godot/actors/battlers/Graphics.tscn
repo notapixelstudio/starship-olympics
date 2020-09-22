@@ -19,7 +19,6 @@ z_index = 100
 z_as_relative = false
 
 [node name="BombPreview" type="Sprite" parent="ChargeBar"]
-modulate = Color( 1, 0.376471, 0, 1 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
@@ -33,7 +32,6 @@ begin_cap_mode = 1
 end_cap_mode = 1
 
 [node name="ArrowTip" type="Sprite" parent="ChargeBar"]
-modulate = Color( 1, 0.376471, 0, 1 )
 rotation = -1.5708
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 6 )
@@ -51,7 +49,7 @@ texture_mode = 221806672
 position = Vector2( -22, 0 )
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 6.0
-default_color = Color( 1, 0.376471, 0, 1 )
+default_color = Color( 1, 1, 1, 1 )
 texture_mode = 221806672
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
