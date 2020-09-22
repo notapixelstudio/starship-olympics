@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
@@ -8,11 +8,11 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=8]
+[ext_resource path="res://combat/modes/Race.tres" type="Resource" id=9]
 
-
-
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
+game_mode = ExtResource( 9 )
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
@@ -22,6 +22,12 @@ centered = false
 hollow = true
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 4 )
@@ -29,6 +35,8 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2700
 height = 1800
 bevel = 300
@@ -44,8 +52,15 @@ default_color = Color( 1, 1, 1, 0.14902 )
 texture_mode = 1
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
+hollow = false
 offset = 200
 elongation = 100
+type = 0
+hide_line = false
+hide_grid = false
+line_width = 28
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 4 )
@@ -53,6 +68,8 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1000
 bevel = 100
@@ -73,7 +90,7 @@ rotation = -1.5708
 controls = "joy2"
 species = ExtResource( 8 )
 
-[node name="Camera" parent="." index="5"]
+[node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

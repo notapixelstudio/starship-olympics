@@ -21,6 +21,7 @@ export var hive : bool = false
 export var collect : bool = false
 export var goal : bool = false
 export var survival : bool = false
+export var race: bool = false
 
 # gear 
 export var shoot_bombs : bool = true setget set_bombs
@@ -30,6 +31,8 @@ enum BOMB_TYPE { classic, ball }
 export(BOMB_TYPE) var bomb_type = BOMB_TYPE.classic
 export var starting_ammo : int = -1
 export var reload_time : float = 3.0
+
+export var rules: Array = []
 
 func set_bombs(value):
 	shoot_bombs = value

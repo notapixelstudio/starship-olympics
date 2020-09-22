@@ -74,7 +74,7 @@ func update(delta: float):
 		var draw = true
 		var last_value = leader.score
 		for player in scores:
-			if player.score != 0 and player.score - DEADZONE <= last_value and last_value <= player.score + DEADZONE :
+			if player.score > 0 and player.score - DEADZONE <= last_value and last_value <= player.score + DEADZONE :
 				draw = true
 				winners.append(player)
 			else:
@@ -98,7 +98,7 @@ func do_game_over():
 	
 func add_score(id_player: String, amount : float):
 	var player = get_player(id_player)
-	player.score = max(0, player.score + amount)
+	player.score = player.score + amount
 	
 	if cumulative_points >= 0:
 		cumulative_points += amount

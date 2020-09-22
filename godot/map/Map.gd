@@ -65,6 +65,7 @@ func _ready():
 		cursor.connect('cancel', self, '_on_cursor_cancel')
 		var panel = panels.get_node(cursor.player.id)
 		panel.species = cursor.species
+		panel.enable()
 	
 	for sport in get_tree().get_nodes_in_group("sports"):
 		var levels = sport.planet.get("levels_"+str(num_players)+"players")
@@ -195,10 +196,14 @@ func _on_Start_pressed(cursor):
 	for sport in selected_sports:
 		playing += " "+ str(sport.name)
 	print("playing: "+ playing)
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	emit_signal('done')
 		
 func _on_Back_pressed(cursor):
 	back = true
 	emit_signal("done")
 	
+func _unhandled_input(event):
+	if event.is_action_pressed("pause") and not global.demo:
+		back = true
+		emit_signal("done")

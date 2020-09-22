@@ -1,8 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://assets/modes/snatch.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/star_mining_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
+[ext_resource path="res://map/planets/rules/Star.tres" type="Resource" id=4]
+[ext_resource path="res://map/planets/rules/Asteroids.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 3 )
@@ -23,12 +25,14 @@ hive = false
 collect = true
 goal = false
 survival = false
+race = false
 shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
+rules = [ ExtResource( 4 ), ExtResource( 5 ) ]
 floodable = true
 flood = false
 laserable = false
