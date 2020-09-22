@@ -77,7 +77,7 @@ func update_stars():
 	
 func set_value(value):
 	previous_value = current_value
-	current_value = min(value, max_score)
+	current_value = clamp(value, 0, max_score)
 	
 	if current_value > previous_value:
 		streak_on()
