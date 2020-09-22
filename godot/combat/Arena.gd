@@ -86,6 +86,7 @@ signal update_stats
 
 func setup_level(mode : Resource):
 	assert(mode is GameMode)
+	# mode managers
 	crown_mode.enabled = mode.crown
 	kill_mode.enabled = mode.death
 	collect_mode.enabled = mode.collect
@@ -93,6 +94,9 @@ func setup_level(mode : Resource):
 	goal_mode.enabled = mode.goal
 	survival_mode.enabled = mode.survival
 	race_mode.enabled = mode.race
+	
+	# managers
+	pursue_manager.enabled = mode.pursuing_bombs
 	
 	#FIX
 	if session and mode.name in session.settings and not global.campaign_mode:
