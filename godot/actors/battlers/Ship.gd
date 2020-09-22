@@ -26,7 +26,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_DASHING_CHARGE = 0.12
+const MIN_DASHING_CHARGE = 0.1
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -288,7 +288,7 @@ func fire():
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
-		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.3
+		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.5
 		
 	if should_reload:
 		yield(get_tree().create_timer(reload_time), "timeout")
@@ -385,9 +385,11 @@ func dash_fat_appearance():
 	
 func dash_thin_appearance():
 	$Graphics/Sprite.scale = DASH_THIN
-	$DashParticles.emitting = true
-	$DashParticles.visible = true
 	$DashFxTimer.stop()
+	# don't show particles if dash is small (useful to have a more lenient dash)
+	if charge > 0.13:
+		$DashParticles.emitting = true
+		$DashParticles.visible = true
 	
 func _on_Dashing_enabled():
 	dash_thin_appearance()
