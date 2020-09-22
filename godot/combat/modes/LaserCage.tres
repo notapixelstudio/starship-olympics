@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/rules/Deathmatch.tres" type="Resource" id=2]
 [ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/minicards/deathmatch.png" type="Texture" id=4]
+[ext_resource path="res://map/planets/rules/Laser.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -31,8 +32,8 @@ deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 2 ) ]
+rules = [ ExtResource( 2 ), ExtResource( 5 ) ]
 floodable = true
 flood = false
 laserable = true
-additional_lasers = true
+additional_lasers = false

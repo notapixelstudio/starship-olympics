@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=11]
-[ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -115,15 +114,11 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Laser" type="RayCast2D" parent="Battlefield/Middleground/Wall11" index="7" groups=[
+[node name="Laser" parent="Battlefield/Middleground/Wall11" index="6" groups=[
 "additional_lasers",
 ] instance=ExtResource( 11 )]
 position = Vector2( 0, 201 )
 rotation = 1.5708
-enabled = true
-cast_to = Vector2( 20000, 0 )
-collision_mask = 132112
-script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall11/Laser" index="5" groups=[
 "animation_if_additional_lasers",
