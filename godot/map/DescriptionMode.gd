@@ -15,7 +15,7 @@ func _ready():
 
 func refresh():
 	if $Sprite and gamemode:
-		$Sprite.texture = gamemode.logo
+		#$Sprite.texture = gamemode.logo
 		"""
 		sport_name.text = tr(gamemode.description).format({
 			"score": str(gamemode.max_score),
