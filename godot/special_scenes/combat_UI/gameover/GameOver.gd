@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 onready var animator = $Animator
 onready var session = $Session
@@ -54,3 +54,12 @@ func sort_by_score(a, b):
 		
 	"""
 	return len(a.session_score) > len(b.session_score)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_accept"):
+		self.visible = true
+		yield(get_tree().create_timer(0.5), "timeout")
+		buttons.get_child(0).grab_focus()
+
+func _show_arena():
+	self.visible = false

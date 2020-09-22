@@ -43,14 +43,21 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Continue" type="Button" parent="Buttons"]
+[node name="ShowArena" type="Button" parent="Buttons"]
 margin_right = 222.0
-margin_bottom = 87.0
+margin_bottom = 57.0
+size_flags_vertical = 3
+text = "SHOW ARENA"
+
+[node name="Continue" type="Button" parent="Buttons"]
+margin_top = 61.0
+margin_right = 222.0
+margin_bottom = 118.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
 [node name="Menu" type="Button" parent="Buttons"]
-margin_top = 91.0
+margin_top = 122.0
 margin_right = 222.0
 margin_bottom = 179.0
 size_flags_horizontal = 3
@@ -75,6 +82,7 @@ margin_left = -493.668
 margin_top = -184.124
 margin_right = 238.332
 margin_bottom = 250.876
+[connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_Rematch_pressed"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]

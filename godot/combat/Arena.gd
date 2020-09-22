@@ -437,7 +437,7 @@ func ship_just_died(ship, killer):
 		ship.dead_ship_instance.remove_from_group("in_camera")
 		$Battlefield.add_child(focus)
 		yield(get_tree(), "idle_frame")
-		focus.manual_activate($CenterCamera, ship.dead_ship_instance.position)
+		focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
 		
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
@@ -450,11 +450,9 @@ func ship_just_died(ship, killer):
 			
 		elif len(alive_players) == 0:
 			# notify scores if there are no players left
-			yield(get_tree().create_timer(1), 'timeout')
+			yield(get_tree().create_timer(0.3), 'timeout')
 			scores.no_players_left()
 		
-		yield(get_tree().create_timer(1), 'timeout')
-		focus.manual_deactivate()
 		# skip respawn if there are no lives left
 		return
 	
@@ -491,6 +489,7 @@ func on_gamemode_gameover(winners: Array):
 	for child in $Managers.get_children():
 		if child is ModeManager:
 			child.enabled = false
+	camera.stop_and_zoomout(compute_arena_size())
 	$GameOverAnim.play('Game Over')
 	yield($GameOverAnim, "animation_finished") # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
