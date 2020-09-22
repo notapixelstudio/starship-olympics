@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 2 )
 is_mutator = false
-name = "King of The hill"
+name = "King of the Hill"
 icon = ExtResource( 1 )
 description = "Try to stay on the Zone for as long as you can"
 tagline_pro = "...or at least more than your opponents"
@@ -21,11 +21,16 @@ hive = false
 collect = false
 goal = false
 survival = false
+race = false
+pursuing_bombs = true
 shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
+rules = [  ]
 floodable = true
 flood = false
+laserable = false
+additional_lasers = false

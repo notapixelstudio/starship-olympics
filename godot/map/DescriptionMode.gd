@@ -22,6 +22,7 @@ func refresh():
 			"time": str(gamemode.max_timeout)
 		})
 		"""
+		$Sprite/Label.text = tr(gamemode.name)
 		
 		var i = 1
 		for rule in gamemode.rules:
