@@ -48,15 +48,6 @@ bevel_ne = 600
 bevel_sw = 600
 bevel_se = 600
 
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-
 [node name="Portal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 13 )]
 position = Vector2( -323, 323 )
 rotation = -0.785398
@@ -134,7 +125,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
+radius = 50
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
@@ -147,7 +138,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
+radius = 50
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
@@ -160,7 +151,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
+radius = 50
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
@@ -173,7 +164,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
+radius = 50
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
