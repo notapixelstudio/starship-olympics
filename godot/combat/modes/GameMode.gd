@@ -24,6 +24,7 @@ export var survival : bool = false
 export var race: bool = false
 
 # gear 
+export var pursuing_bombs : bool = true 
 export var shoot_bombs : bool = true setget set_bombs
 export var deadly_trails : bool = false
 export var deadly_trails_duration : float = 2.0

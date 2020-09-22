@@ -14,7 +14,7 @@ export var debug_mode : bool = true
 
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
-
+const SPEED = 0.8
 export var enabled:bool = false
 var margin_min = Vector2(0,0)
 var margin_max = Vector2()
@@ -26,7 +26,8 @@ const FRAME_DELAY = 10
 var wait_in_frame = FRAME_DELAY
 
 const IN_CAMERA = "in_camera"
-		
+var show_all: bool = false
+
 func _ready():
 	randomize()
 	curPos = position
@@ -64,11 +65,18 @@ func _process(_delta: float) -> void:
 	
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
-	if len(elements_in_camera):
-		camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
-	for ship in elements_in_camera:
-		camera_rect = camera_rect.expand(ship.global_position)
-	
+	if not show_all:
+		if len(elements_in_camera):
+			camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
+		for ship in elements_in_camera:
+			camera_rect = camera_rect.expand(ship.global_position)
+	else:
+		camera_rect.position = lerp(camera_rect.position, full_arena.position, _delta*SPEED/Engine.time_scale)
+		camera_rect.size = lerp(camera_rect.size, full_arena.size, _delta*SPEED/Engine.time_scale)
+		#if camera_rect.get_area() < now.get_area():
+		#	camera_rect = camera_rect.grow(13)
+			
+			
 	var offset_to_be = calculate_center(camera_rect)
 	var zoom_to_be = calculate_zoom(camera_rect, viewport_rect.size)
 	
@@ -175,3 +183,10 @@ func shake_process(delta):
 func shake():
 	elapsedtime = 0
 	isShake = true
+
+var full_arena
+func stop_and_zoomout(rect_ext):
+	show_all = true
+	full_arena = rect_ext
+	
+	
