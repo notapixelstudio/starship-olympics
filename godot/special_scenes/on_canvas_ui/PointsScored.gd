@@ -9,7 +9,10 @@ func _ready():
 
 func set_points(value):
 	points = value
-	$Label.text = $Label.text.replace("{}", points)
+	var sgn = ""
+	if points >=0:
+		sgn = "+"
+	$Label.text = tr(sgn+str(points))
 
 signal end
 func _on_AnimationPlayer_animation_finished(anim_name):

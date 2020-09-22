@@ -149,6 +149,7 @@ func _ready():
 	kill_mode.connect('broadcast_score', scores, "broadcast_score")
 	kill_mode.connect('show_score', self, "spawn_points_scored")
 	race_mode.connect('score', scores, "add_score")
+	race_mode.connect('show_score', self, "spawn_points_scored")
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_score', self, "spawn_points_scored")
