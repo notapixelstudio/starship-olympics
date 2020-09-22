@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 2 )
 is_mutator = true
-name = "Minefield deathmatch"
+name = "Minefield Deathmatch"
 icon = ExtResource( 1 )
 description = "When killing is not enough, elements on the battlefield will help you getting rid of your opponents"
 tagline_pro = "Often if you touch them, they could become \"yours\""
@@ -21,11 +21,16 @@ hive = false
 collect = false
 goal = false
 survival = false
+race = false
+pursuing_bombs = true
 shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
+rules = [  ]
 floodable = true
 flood = false
+laserable = false
+additional_lasers = false
