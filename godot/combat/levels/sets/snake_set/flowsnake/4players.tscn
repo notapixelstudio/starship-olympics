@@ -39,20 +39,11 @@ sides = 12.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( -99.9999, -99.9999 )
 rotation = -2.35619
+controls = "joy1"
 species = ExtResource( 2 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 100, 100 )

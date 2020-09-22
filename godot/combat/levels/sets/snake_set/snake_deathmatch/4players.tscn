@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/SnakeDeathmatch.tres" type="Resource" id=2]
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
-[ext_resource path="res://combat/PlayerSpawner.gd" type="Script" id=6]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=7]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
@@ -45,15 +44,6 @@ bevel_nw = 300
 bevel_ne = 300
 bevel_sw = 300
 bevel_se = 300
-
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( -800, 500 )
@@ -133,37 +123,28 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="p1" type="Position2D" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-pause_mode = 2
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -99.9999, -99.9999 )
 rotation = -2.35619
-script = ExtResource( 6 )
 species = ExtResource( 8 )
 cpu = true
 
-[node name="p2" type="Position2D" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-pause_mode = 2
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 100, 100 )
 rotation = 0.785398
-script = ExtResource( 6 )
 controls = "joy2"
 species = ExtResource( 12 )
 cpu = true
 
-[node name="p3" type="Position2D" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-pause_mode = 2
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( -100, 100 )
 rotation = 2.35619
-script = ExtResource( 6 )
-controls = "joy2"
+controls = "joy1"
 species = ExtResource( 10 )
-cpu = true
 
-[node name="p4" type="Position2D" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-pause_mode = 2
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
 position = Vector2( 100, -100 )
 rotation = -0.785398
-script = ExtResource( 6 )
 controls = "joy2"
 species = ExtResource( 11 )
 cpu = true

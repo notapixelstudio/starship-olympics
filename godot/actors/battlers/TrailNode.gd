@@ -68,16 +68,19 @@ func configure(deadly : bool = false, duration : float = 0.0):
 		cm.a = 0.65
 		c2.a = 0.35
 		trail.gradient.colors = PoolColorArray([c2,cm,c1])
+		inner_trail.modulate = Color(1,1,1,1)
 	else:
 		remove_from_group("Trails")
 		collision_shape.call_deferred('set_disabled', true)
-		trail.time_alive_per_point = 1.0
+		trail.time_alive_per_point = 0.9
 		trail.min_dist = 4
 		trail.texture = trail_texture
-		c1.a = 0.7
-		cm.a = 0.5
+		trail.width = 100
+		c1.a = 0.5
+		cm.a = 0.2
 		c2.a = 0
 		trail.gradient.colors = PoolColorArray([c2,cm,c1])
+		inner_trail.modulate = Color(1,1,1,0.5)
 	
 func _ready():
 	
