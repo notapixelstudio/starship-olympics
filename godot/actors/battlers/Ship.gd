@@ -38,6 +38,8 @@ const BALL_BOOST = 500
 const BALL_CHARGE_MULTIPLIER = 1.4
 const FIRE_COOLDOWN = 0.03
 
+var supercharge = 0
+
 const THRESHOLD_DIR = 0.3
 var responsive = false setget change_engine
 var info_player setget set_info_player
@@ -260,7 +262,7 @@ func fire():
 	"""
 	var should_reload = false
 	
-	var charge_impulse = 2300 + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
+	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil

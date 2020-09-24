@@ -23,8 +23,13 @@ func link(to_what):
 	
 	if linked_to is Ship:
 		modulate = linked_to.species.color
+		linked_to.supercharge = 2200
 	
 func unlink():
+	if linked_to is Ship:
+		modulate = Color(1,1,1,1)
+		linked_to.supercharge = 0
+		
 	if linked_to.is_connected('dead', self, '_on_ship_dead'):
 		linked_to.disconnect('dead', self, '_on_ship_dead')
 	linked_to = null
