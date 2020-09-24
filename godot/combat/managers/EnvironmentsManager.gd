@@ -24,7 +24,7 @@ func _on_sth_entered(sth, other):
 	if sth_entity.has('Hill') and other_entity.could_have('Royal'):
 		other_entity.get_node('Royal').enable()
 		
-	if other is Ship and sth_entity.has('DashThroughDeadly') and not other_entity.has('Dashing') and other.charge < 0.08: # forgiveness
+	if other is Ship and sth_entity.has('DashThroughDeadly') and not other_entity.has('Dashing'):
 		if sth_entity.could_have('Owned'):
 			var killer = sth_entity.get('Owned').get_owned_by()
 			if killer != other or not sth_entity.has("NoSelfDeadly"):

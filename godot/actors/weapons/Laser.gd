@@ -5,7 +5,7 @@ class_name Laser
 export var on = true setget set_on
 
 const FLASH_DURATION = 0.08
-const WIDTH = 24
+const WIDTH = 40
 const HINT_WIDTH = 6
 
 func set_on(v):

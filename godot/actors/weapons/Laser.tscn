@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=4]
 
-[sub_resource type="CanvasItemMaterial" id=9]
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 0.462036, 0.390625, 1, 1, 0, 0.45098, 1 )
@@ -13,7 +13,7 @@ colors = PoolColorArray( 1, 0.462036, 0.390625, 1, 1, 0, 0.45098, 1 )
 [sub_resource type="SegmentShape2D" id=3]
 b = Vector2( 0, 200 )
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=4]
 
 [sub_resource type="Curve" id=5]
 max_value = 3.0
@@ -55,9 +55,9 @@ script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color( 1.4, 1.4, 1.4, 1 )
-material = SubResource( 9 )
+material = SubResource( 1 )
 points = PoolVector2Array( 0, 0, 200, 0 )
-width = 24.0
+width = 40.0
 gradient = SubResource( 2 )
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -74,14 +74,14 @@ shape = SubResource( 3 )
 
 [node name="CastingParticles2D" type="Particles2D" parent="."]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
-material = SubResource( 10 )
+material = SubResource( 4 )
 lifetime = 0.3
 process_material = SubResource( 7 )
 texture = ExtResource( 4 )
 
 [node name="CollisionParticles2D" type="Particles2D" parent="."]
 modulate = Color( 2, 0.88, 0.55, 1 )
-material = SubResource( 10 )
+material = SubResource( 4 )
 position = Vector2( 200, 0 )
 amount = 16
 lifetime = 0.5
