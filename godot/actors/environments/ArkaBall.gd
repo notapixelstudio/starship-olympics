@@ -1,13 +1,12 @@
 extends RigidBody2D
 
-export var impulse : float = 400
+export var impulse : float = 500
 var active : bool = false
 
 func start():
 	active = true
 
 func _physics_process(delta):
-	impulse += 2*delta
 	if active:
 		apply_central_impulse(impulse*Vector2(1,0).rotated(linear_velocity.angle()))
 	
