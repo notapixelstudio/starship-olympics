@@ -37,7 +37,85 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2000
 height = 2200
 
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+[node name="Wall2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+position = Vector2( -1850, 1000 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall2" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 1700
+height = 200
+
+[node name="Wall6" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
+position = Vector2( -2600, 0 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall6" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 200
+height = 1800
+
+[node name="Wall7" parent="Battlefield/Background" index="4" instance=ExtResource( 5 )]
+position = Vector2( 2600, 0 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall7" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 200
+height = 1800
+
+[node name="Wall3" parent="Battlefield/Background" index="5" instance=ExtResource( 5 )]
+position = Vector2( -1850, -1000 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall3" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 1700
+height = 200
+
+[node name="Wall4" parent="Battlefield/Background" index="6" instance=ExtResource( 5 )]
+position = Vector2( 1850, -1000 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall4" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 1700
+height = 200
+
+[node name="Wall5" parent="Battlefield/Background" index="7" instance=ExtResource( 5 )]
+position = Vector2( 1850, 1000 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall5" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 1700
+height = 200
+
+[node name="OutsideWall" parent="Battlefield/Background" index="8" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
 elongation = 100
