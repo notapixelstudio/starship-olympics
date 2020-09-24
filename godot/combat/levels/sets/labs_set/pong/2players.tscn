@@ -34,38 +34,12 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1600
+width = 1400
 height = 2200
 
-[node name="Wall6" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-position = Vector2( -2850, 0 )
-collision_layer = 0
-type = 4
-
-[node name="GRect" type="Node" parent="Battlefield/Background/Wall6" index="5"]
-script = ExtResource( 10 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 300
-height = 2200
-
-[node name="Wall7" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
-position = Vector2( 2850, 0 )
-collision_layer = 0
-type = 4
-
-[node name="GRect" type="Node" parent="Battlefield/Background/Wall7" index="5"]
-script = ExtResource( 10 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 300
-height = 2200
-
-[node name="OutsideWall" parent="Battlefield/Background" index="4" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
-offset = 1200
+offset = 1500
 elongation = 100
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
@@ -78,7 +52,7 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 6000
+width = 5600
 height = 2200
 bevel = 100
 bevel_nw = 100
@@ -86,16 +60,7 @@ bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
 
-[node name="Paddle" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
-position = Vector2( -2150, 0 )
-
-[node name="Paddle2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
-position = Vector2( 2150, 0 )
-rotation = 3.14159
-
-[node name="ArkaBall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
-
-[node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -1100 )
 scale = Vector2( 10, 0.6 )
 
@@ -104,7 +69,7 @@ script = ExtResource( 13 )
 radius = 250
 sides = 4.0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, 1100 )
 scale = Vector2( 10, 0.6 )
 
@@ -112,6 +77,15 @@ scale = Vector2( 10, 0.6 )
 script = ExtResource( 13 )
 radius = 250
 sides = 4.0
+
+[node name="Paddle" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+position = Vector2( -2150, 0 )
+
+[node name="Paddle2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 11 )]
+position = Vector2( 2150, 0 )
+rotation = 3.14159
+
+[node name="ArkaBall" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -2150, 0 )

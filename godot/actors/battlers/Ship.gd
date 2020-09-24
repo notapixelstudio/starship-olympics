@@ -260,7 +260,7 @@ func fire():
 	"""
 	var should_reload = false
 	
-	var charge_impulse = 2000 + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
+	var charge_impulse = 2300 + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
