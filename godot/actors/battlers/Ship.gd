@@ -27,9 +27,10 @@ var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
 const MIN_DASHING_CHARGE = 0.13
+const DASH_INTERCOOLDOWN = 0.5
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
-const ANTI_RECOIL_OFFSET = 260
+const ANTI_RECOIL_OFFSET = 280
 const CHARGE_MULTIPLIER = 4500
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
@@ -59,6 +60,7 @@ var height = 0
 var charging = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
+var dash_intercooldown = 0
 var reload_time
 
 var bomb_count = 0
@@ -233,6 +235,7 @@ func _physics_process(delta):
 		emit_signal("detection", body, self)
 		
 	dash_cooldown -= delta
+	dash_intercooldown -= delta
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		dash_restore_appearance()
 		yield(get_tree().create_timer(0.08), 'timeout') # wait a bit to be lenient with dash-through checks
@@ -288,9 +291,10 @@ func fire():
 	$Tween.stop_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
 	
-	if charge > MIN_DASHING_CHARGE:
+	if charge > MIN_DASHING_CHARGE and dash_intercooldown <= 0:
 		entity.get('Dashing').enable()
 		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.6
+		dash_intercooldown = DASH_INTERCOOLDOWN
 		
 	if should_reload:
 		yield(get_tree().create_timer(reload_time), "timeout")
