@@ -11,7 +11,7 @@
 "wall",
 ]]
 collision_layer = 16
-collision_mask = 5
+collision_mask = 8193
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -43,6 +43,10 @@ __meta__ = {
 }
 enabled = false
 
+[node name="CrownDropper" type="Node" parent="Entity"]
+script = ExtResource( 4 )
+enabled = false
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.309804, 0.247059, 0.235294, 1 )
 texture_scale = Vector2( 0.5, 0.5 )
@@ -61,6 +65,7 @@ texture = ExtResource( 6 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
+z_as_relative = false
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
 width = 28.0
 default_color = Color( 1, 1, 1, 1 )

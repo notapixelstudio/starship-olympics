@@ -8,7 +8,7 @@ export (bool) var hollow setget set_hollow
 export (int) var offset setget set_offset
 export (int) var elongation setget set_elongation
 
-enum TYPE { solid, hostile, ghost, decoration }
+enum TYPE { solid, hostile, ghost, decoration, glass }
 export(TYPE) var type = TYPE.solid setget set_type
 
 export var hide_line : bool = false setget set_hide_line
@@ -18,6 +18,8 @@ export var line_width = 28 setget set_line_width
 
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
+
+const texture_glass = preload('res://assets/sprites/stripes.png')
 
 const glow_strength = 1.08
 
@@ -125,7 +127,7 @@ func refresh():
 			cshape.set_shape(shape)
 			add_child(cshape)
 			
-	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost)
+	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass)
 	
 	$Polygon2D.set_polygon(points)
 	$InnerPolygon2D.set_polygon(points)
@@ -136,6 +138,13 @@ func refresh():
 	$line.visible = not hide_line
 	
 	$Grid.set_texture_rotation(rotation + deg2rad(grid_rotation))
+	
+	# glass pass-through
+	set_collision_layer_bit(4, type != TYPE.glass)
+	$Polygon2D.self_modulate = Color(1,1,1,0.9) if type == TYPE.glass else Color(1,1,1,1)
+	$Polygon2D.texture = texture_glass if type == TYPE.glass else null
+	$Polygon2D.set_texture_rotation(rotation)
+	$Entity/CrownDropper.enabled = type == TYPE.glass
 	
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)
@@ -161,6 +170,12 @@ func refresh():
 		$line.modulate = Color(0.2,0.7,1,0.8)
 	elif type == TYPE.decoration:
 		$line.modulate = Color(0.8,0.8,1.09,1)
+	elif type == TYPE.glass:
+		color = Color(0.4,0.7,1.2,1)
+		$Polygon2D.modulate = color
+		$line.modulate = color
+		$Entity/Deadly.enabled = false
+		$Entity/Trigger.enabled = false
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE

@@ -17,6 +17,7 @@ var scores
 
 var cpu = false
 var velocity = Vector2(0,0)
+var previous_velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_dir = 0
@@ -37,6 +38,8 @@ const BOMB_BOOST = 200
 const BALL_BOOST = 500
 const BALL_CHARGE_MULTIPLIER = 1.4
 const FIRE_COOLDOWN = 0.03
+
+var supercharge = 0
 
 const THRESHOLD_DIR = 0.3
 var responsive = false setget change_engine
@@ -197,6 +200,7 @@ func _integrate_forces(state):
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
 	# store velocity as a readable var
+	previous_velocity = velocity
 	velocity = state.linear_velocity
 	state.set_transform(xform)
 
@@ -261,7 +265,7 @@ func fire():
 	"""
 	var should_reload = false
 	
-	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
+	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil

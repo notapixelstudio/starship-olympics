@@ -630,8 +630,11 @@ func _on_sth_collected(collector, collectee):
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
 	droppee.position = dropper.position
-	droppee.linear_velocity = dropper.linear_velocity
-	
+	if dropper is Ship:
+		droppee.linear_velocity = dropper.previous_velocity # this is used with glass walls
+	else:
+		droppee.linear_velocity = dropper.linear_velocity
+		
 	# wait a bit, then make the item collectable again
 	yield(get_tree().create_timer(0.2), "timeout")
 	ECM.E(droppee).get('Collectable').enable()
