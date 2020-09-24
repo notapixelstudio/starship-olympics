@@ -63,7 +63,7 @@ func configure(deadly : bool = false, duration : float = 0.0):
 		trail.auto_alpha_gradient = false
 		collision_shape.call_deferred('set_disabled', false)
 		trail.texture = laser_texture
-		trail.width = 30
+		trail.width = 40
 		c1.a = 1.0
 		cm.a = 0.65
 		c2.a = 0.35
