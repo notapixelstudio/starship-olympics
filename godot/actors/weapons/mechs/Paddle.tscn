@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 follow_rotation = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 16, -64, 16, -224, 80, -192, 112, -128, 112, 129, 80, 192, 16, 224, 16, 64, 88, 0 )
+polygon = PoolVector2Array( 16, -224, 80, -192, 112, -128, 112, 129, 80, 192, 16, 224 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 63, 0 )

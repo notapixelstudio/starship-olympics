@@ -7,6 +7,7 @@ func start():
 	active = true
 
 func _physics_process(delta):
+	impulse += 2*delta
 	if active:
 		apply_central_impulse(impulse*Vector2(1,0).rotated(linear_velocity.angle()))
 	
