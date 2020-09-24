@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export var impulse : float = 75.0
+export var impulse : float = 400
 var active : bool = false
 
 func start():

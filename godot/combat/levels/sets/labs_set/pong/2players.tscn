@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/modes/Pong.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://actors/weapons/mechs/Paddle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/ArkaBall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=14]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -70,16 +69,9 @@ rotation = 3.14159
 
 [node name="ArkaBall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 
-[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground" index="3" groups=[
-"wall",
-] instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 0, -1100 )
-collision_layer = 16
-collision_mask = 8193
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_group_": true
-}
+scale = Vector2( 4, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 13 )
@@ -88,6 +80,7 @@ sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
 position = Vector2( 0, 1100 )
+scale = Vector2( 4, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 13 )
