@@ -21,6 +21,9 @@ func link(to_what):
 	linked_to = to_what
 	mode = MODE_KINEMATIC
 	
+	if linked_to is Ship:
+		modulate = linked_to.species.color
+	
 func unlink():
 	if linked_to.is_connected('dead', self, '_on_ship_dead'):
 		linked_to.disconnect('dead', self, '_on_ship_dead')

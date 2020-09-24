@@ -12,6 +12,7 @@ func _physics_process(delta):
 	
 
 func _on_ArkaBall_body_entered(body):
-	if body is Paddle:
+	if body is Paddle and body.linked_to:
 		apply_central_impulse(linear_velocity.normalized()*500)
-	
+		if body.linked_to is Ship:
+			modulate = body.linked_to.species.color
