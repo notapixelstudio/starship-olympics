@@ -12,6 +12,11 @@ func _ready():
 func get_master_ship():
 	return node_owner
 
+func ship_just_died(ship, killer):
+	if ship.info_player.lives== 0:
+		remove_from_group("in_camera")
+		queue_free()
+	
 func _process(delta):
 	if is_inside_tree() and node_owner.is_inside_tree():
 		global_position = lerp(global_position, node_owner.global_position, delta*SPEED)

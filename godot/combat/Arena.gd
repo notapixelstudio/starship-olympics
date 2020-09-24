@@ -443,12 +443,12 @@ func ship_just_died(ship, killer):
 		ship.dead_ship_instance.remove_from_group("in_camera")
 		$Battlefield.add_child(focus)
 		yield(get_tree(), "idle_frame")
-		focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
 		
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
 				alive_players.append(s)
-				
+		
+		focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
 		if len(alive_players) == 1:
 			# notify scores if there is only one player left
 			yield(get_tree().create_timer(1), 'timeout')
@@ -585,6 +585,7 @@ func spawn_ship(player:PlayerSpawner):
 	follow.node_owner = ship.get_node("TargetDest")
 	follow.add_to_group("in_camera")
 	$Battlefield.add_child(follow)
+	ship.connect("dead", follow, "ship_just_died")
 	
 	
 	crown_mode.connect('show_score', ship, "update_score")
