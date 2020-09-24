@@ -37,21 +37,8 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2000
 height = 2200
 
-[node name="Wall2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-position = Vector2( -1850, 1000 )
-collision_layer = 0
-type = 4
-
-[node name="GRect" type="Node" parent="Battlefield/Background/Wall2" index="5"]
-script = ExtResource( 10 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1700
-height = 200
-
-[node name="Wall6" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
-position = Vector2( -2600, 0 )
+[node name="Wall6" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+position = Vector2( -2800, 0 )
 collision_layer = 0
 type = 4
 
@@ -63,8 +50,8 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 200
 height = 1800
 
-[node name="Wall7" parent="Battlefield/Background" index="4" instance=ExtResource( 5 )]
-position = Vector2( 2600, 0 )
+[node name="Wall7" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
+position = Vector2( 2800, 0 )
 collision_layer = 0
 type = 4
 
@@ -76,8 +63,8 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 200
 height = 1800
 
-[node name="Wall3" parent="Battlefield/Background" index="5" instance=ExtResource( 5 )]
-position = Vector2( -1850, -1000 )
+[node name="Wall3" parent="Battlefield/Background" index="4" instance=ExtResource( 5 )]
+position = Vector2( -1950, -1000 )
 collision_layer = 0
 type = 4
 
@@ -86,11 +73,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1700
+width = 1900
 height = 200
 
-[node name="Wall4" parent="Battlefield/Background" index="6" instance=ExtResource( 5 )]
-position = Vector2( 1850, -1000 )
+[node name="Wall4" parent="Battlefield/Background" index="5" instance=ExtResource( 5 )]
+position = Vector2( -1950, 1000 )
 collision_layer = 0
 type = 4
 
@@ -99,11 +86,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1700
+width = 1900
 height = 200
 
-[node name="Wall5" parent="Battlefield/Background" index="7" instance=ExtResource( 5 )]
-position = Vector2( 1850, 1000 )
+[node name="Wall5" parent="Battlefield/Background" index="6" instance=ExtResource( 5 )]
+position = Vector2( 1950, 1000 )
 collision_layer = 0
 type = 4
 
@@ -112,7 +99,20 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1700
+width = 1900
+height = 200
+
+[node name="Wall8" parent="Battlefield/Background" index="7" instance=ExtResource( 5 )]
+position = Vector2( 1950, -1000 )
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall8" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 1900
 height = 200
 
 [node name="OutsideWall" parent="Battlefield/Background" index="8" instance=ExtResource( 5 )]
@@ -130,13 +130,13 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5400
+width = 5800
 height = 2200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
 [node name="Paddle" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 position = Vector2( -2140, 10 )
@@ -149,7 +149,7 @@ rotation = 3.14159
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 0, -1100 )
-scale = Vector2( 4, 0.6 )
+scale = Vector2( 6, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 13 )
@@ -158,7 +158,7 @@ sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
 position = Vector2( 0, 1100 )
-scale = Vector2( 4, 0.6 )
+scale = Vector2( 6, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 13 )
