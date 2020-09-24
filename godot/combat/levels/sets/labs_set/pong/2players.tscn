@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/Pong.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=10]
 [ext_resource path="res://actors/weapons/mechs/Paddle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/ArkaBall.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=14]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -53,11 +55,11 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 5400
 height = 2200
-bevel = 100
-bevel_nw = 100
-bevel_ne = 100
-bevel_sw = 100
-bevel_se = 100
+bevel = 200
+bevel_nw = 200
+bevel_ne = 200
+bevel_sw = 200
+bevel_se = 200
 
 [node name="Paddle" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 position = Vector2( -2140, 10 )
@@ -67,6 +69,30 @@ position = Vector2( 2150, 10 )
 rotation = 3.14159
 
 [node name="ArkaBall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
+
+[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground" index="3" groups=[
+"wall",
+] instance=ExtResource( 5 )]
+position = Vector2( 0, -1100 )
+collision_layer = 16
+collision_mask = 8193
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+script = ExtResource( 13 )
+radius = 250
+sides = 4.0
+
+[node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+position = Vector2( 0, 1100 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
+script = ExtResource( 13 )
+radius = 250
+sides = 4.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -2290, 10 )
