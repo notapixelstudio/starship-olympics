@@ -139,10 +139,10 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="Paddle" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
-position = Vector2( -2140, 10 )
+position = Vector2( -2150, 0 )
 
 [node name="Paddle2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
-position = Vector2( 2150, 10 )
+position = Vector2( 2150, 0 )
 rotation = 3.14159
 
 [node name="ArkaBall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
@@ -166,13 +166,13 @@ radius = 250
 sides = 4.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -2290, 10 )
+position = Vector2( -2150, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 2300, 10 )
+position = Vector2( 2150, 0 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 6 )
