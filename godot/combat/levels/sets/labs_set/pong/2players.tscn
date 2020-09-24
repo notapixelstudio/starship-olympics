@@ -35,10 +35,10 @@ center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 2000
-height = 2200
+height = 2400
 
 [node name="Wall6" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-position = Vector2( -2800, 0 )
+position = Vector2( -2850, 0 )
 collision_layer = 0
 type = 4
 
@@ -47,11 +47,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
+width = 300
 height = 1800
 
 [node name="Wall7" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
-position = Vector2( 2800, 0 )
+position = Vector2( 2850, 0 )
 collision_layer = 0
 type = 4
 
@@ -60,11 +60,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
+width = 300
 height = 1800
 
 [node name="Wall3" parent="Battlefield/Background" index="4" instance=ExtResource( 5 )]
-position = Vector2( -1950, -1000 )
+position = Vector2( -2000, -1050 )
 collision_layer = 0
 type = 4
 
@@ -73,11 +73,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1900
-height = 200
+width = 2000
+height = 300
 
 [node name="Wall4" parent="Battlefield/Background" index="5" instance=ExtResource( 5 )]
-position = Vector2( -1950, 1000 )
+position = Vector2( -2000, 1050 )
 collision_layer = 0
 type = 4
 
@@ -86,11 +86,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1900
-height = 200
+width = 2000
+height = 300
 
 [node name="Wall5" parent="Battlefield/Background" index="6" instance=ExtResource( 5 )]
-position = Vector2( 1950, 1000 )
+position = Vector2( 2000, 1050 )
 collision_layer = 0
 type = 4
 
@@ -99,11 +99,11 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1900
-height = 200
+width = 2000
+height = 300
 
 [node name="Wall8" parent="Battlefield/Background" index="7" instance=ExtResource( 5 )]
-position = Vector2( 1950, -1000 )
+position = Vector2( 2000, -1050 )
 collision_layer = 0
 type = 4
 
@@ -112,8 +112,8 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1900
-height = 200
+width = 2000
+height = 300
 
 [node name="OutsideWall" parent="Battlefield/Background" index="8" instance=ExtResource( 5 )]
 hollow = true
@@ -130,8 +130,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5800
-height = 2200
+width = 6000
+height = 2400
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -148,7 +148,7 @@ rotation = 3.14159
 [node name="ArkaBall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
-position = Vector2( 0, -1100 )
+position = Vector2( 0, -1200 )
 scale = Vector2( 6, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
@@ -157,7 +157,7 @@ radius = 250
 sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
-position = Vector2( 0, 1100 )
+position = Vector2( 0, 1200 )
 scale = Vector2( 6, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
