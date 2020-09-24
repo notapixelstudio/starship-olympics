@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/modes/Pong.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=10]
 [ext_resource path="res://actors/weapons/mechs/Paddle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/ArkaBall.tscn" type="PackedScene" id=12]
 
@@ -23,7 +24,19 @@ centered = false
 [node name="Grid" parent="Battlefield/Background" index="0"]
 modulate = Color( 0, 1, 0.74902, 0.333333 )
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
+collision_layer = 0
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Background/Wall" index="5"]
+script = ExtResource( 10 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 800
+height = 1200
+
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
 elongation = 100
@@ -46,15 +59,6 @@ bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
 
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-
 [node name="Paddle" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 position = Vector2( -1350, 0 )
 
@@ -67,6 +71,7 @@ rotation = 3.14159
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -1500, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]

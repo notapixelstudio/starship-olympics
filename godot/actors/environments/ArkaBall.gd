@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export var impulse : float = 30.0
+export var impulse : float = 50.0
 var active : bool = false
 
 func start():
@@ -13,5 +13,5 @@ func _physics_process(delta):
 
 func _on_ArkaBall_body_entered(body):
 	if body is Paddle:
-		apply_central_impulse(linear_velocity.normalized()*2000)
+		apply_central_impulse(linear_velocity.normalized()*1000)
 	
