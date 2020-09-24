@@ -26,7 +26,7 @@ var THRUST = 2000
 var charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_DASHING_CHARGE = 0.1
+const MIN_DASHING_CHARGE = 0.13
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 200
 const ANTI_RECOIL_OFFSET = 260
@@ -290,7 +290,7 @@ func fire():
 	
 	if charge > MIN_DASHING_CHARGE:
 		entity.get('Dashing').enable()
-		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.5
+		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.6
 		
 	if should_reload:
 		yield(get_tree().create_timer(reload_time), "timeout")
