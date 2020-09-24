@@ -33,8 +33,8 @@ script = ExtResource( 10 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 1600
-height = 2400
+width = 2000
+height = 2200
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
@@ -51,8 +51,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5000
-height = 2400
+width = 5400
+height = 2200
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -60,22 +60,22 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="Paddle" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
-position = Vector2( -1940, 10 )
+position = Vector2( -2140, 10 )
 
 [node name="Paddle2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
-position = Vector2( 1950, 10 )
+position = Vector2( 2150, 10 )
 rotation = 3.14159
 
 [node name="ArkaBall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -2090, 10 )
+position = Vector2( -2290, 10 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 2100, 10 )
+position = Vector2( 2300, 10 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 6 )

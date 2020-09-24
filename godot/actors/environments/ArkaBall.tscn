@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/sprites/weapons/ball_bomb.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/ArkaBall.gd" type="Script" id=2]
+[ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -24,6 +25,14 @@ can_sleep = false
 linear_velocity = Vector2( 1, 1 )
 linear_damp = 0.5
 script = ExtResource( 2 )
+
+[node name="Trail2D" type="Line2D" parent="."]
+modulate = Color( 1, 1, 1, 0.313726 )
+width = 30.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 2699552
+script = ExtResource( 3 )
+trail_length = 160
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
