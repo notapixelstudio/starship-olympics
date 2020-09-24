@@ -13,5 +13,5 @@ func _physics_process(delta):
 
 func _on_ArkaBall_body_entered(body):
 	if body is Paddle:
-		apply_central_impulse(linear_velocity.normalized()*1000)
+		apply_central_impulse(linear_velocity.normalized()*500)
 	
