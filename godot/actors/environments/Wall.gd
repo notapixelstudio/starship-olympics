@@ -141,8 +141,10 @@ func refresh():
 	
 	# glass pass-through
 	set_collision_layer_bit(4, type != TYPE.glass)
-	$Polygon2D.self_modulate = Color(1,1,1,0.6) if type == TYPE.glass else Color(1,1,1,1)
+	$Polygon2D.self_modulate = Color(1,1,1,0.9) if type == TYPE.glass else Color(1,1,1,1)
 	$Polygon2D.texture = texture_glass if type == TYPE.glass else null
+	$Polygon2D.set_texture_rotation(rotation)
+	$Entity/CrownDropper.enabled = type == TYPE.glass
 	
 	# close the line with a seamless join
 	var ps = PoolVector2Array(points)

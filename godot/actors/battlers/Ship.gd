@@ -17,6 +17,7 @@ var scores
 
 var cpu = false
 var velocity = Vector2(0,0)
+var previous_velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_dir = 0
@@ -195,6 +196,7 @@ func _integrate_forces(state):
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
 	# store velocity as a readable var
+	previous_velocity = velocity
 	velocity = state.linear_velocity
 	state.set_transform(xform)
 
