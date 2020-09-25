@@ -472,6 +472,8 @@ func ship_just_died(ship, killer):
 				respawn_timeout = 0.75
 	elif conquest_mode.enabled:
 		respawn_timeout = 0.75
+	elif game_mode.name == "GoalPortal":
+		respawn_timeout = 0.75
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	

@@ -7,6 +7,7 @@ var Explosion = load('res://actors/weapons/Explosion.tscn')
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
+var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
 var type
 
 var entity : Entity
@@ -14,6 +15,9 @@ onready var life_time = $LifeTime
 onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
 
+func _ready():
+	if type != GameMode.BOMB_TYPE.classic:
+		$Sprite/AnimationPlayer.stop()
 func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	type = bomb_type
 	entity = ECM.E(self)
@@ -38,13 +42,26 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*32
 		$Sprite.texture = ball_texture
 		$Sprite.scale = Vector2(size, size)
-		$Sprite/AnimationPlayer.stop()
+		
+	elif type == GameMode.BOMB_TYPE.bullet:
+		entity.get('Pursuer').disable()
+		entity.get('Deadly').enable()
+		$CollisionShape2D.shape.radius = size*80 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$NearArea/CollisionShape2D.shape.radius = size*80
+		$Sprite.texture = bullet_texture
+		$Sprite.scale = Vector2(size*1.1, size*1.1)
+		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
+		
+		mode = MODE_CHARACTER
 	else:
 		$CollisionShape2D.shape.radius = size*16
 		$NearArea/CollisionShape2D.shape.radius = size*16
 		$Sprite.scale = Vector2(size*0.5, size*0.5)
 		
 	$Core/CollisionShape2D.shape.radius = size*8
+	
+func _process(delta):
+	$Sprite.rotation = linear_velocity.angle()
 	
 func _physics_process(delta):
 	process_life_time()
@@ -67,7 +84,7 @@ func _integrate_forces(state):
 
 signal detonate
 func detonate():
-	if type == GameMode.BOMB_TYPE.ball:
+	if type != GameMode.BOMB_TYPE.classic:
 		return
 		
 	if entity.has('Owned'):

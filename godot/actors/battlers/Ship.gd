@@ -37,6 +37,8 @@ const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
 const BALL_BOOST = 500
 const BALL_CHARGE_MULTIPLIER = 1.4
+const BULLET_BOOST = 500
+const BULLET_CHARGE_MULTIPLIER = 0.8
 const FIRE_COOLDOWN = 0.03
 
 var supercharge = 0
@@ -91,7 +93,8 @@ var camera
 
 var weapon_textures = {
 	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
-	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png')
+	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
 func initialize():
@@ -278,6 +281,8 @@ func fire():
 			var impulse
 			if bomb_type == GameMode.BOMB_TYPE.ball:
 				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
+			elif bomb_type == GameMode.BOMB_TYPE.bullet:
+				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
 			else:
 				impulse = charge_impulse+BOMB_BOOST
 			
