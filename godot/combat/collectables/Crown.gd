@@ -12,7 +12,7 @@ var owner_ship = null setget set_owner_ship
 
 func set_owner_ship(v):
 	owner_ship = v
-	$RoyalGlow.modulate = owner_ship.species.color
+	$RoyalGlow.modulate = owner_ship.species.color if owner_ship else Color(1,1,1,1)
 
 func _ready():
 	entity = ECM.E(self)

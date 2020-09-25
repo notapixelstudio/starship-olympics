@@ -98,7 +98,9 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 			emit_signal("went_through", body, self)
 			
 		if body is Crown and body.type == Crown.types.SOCCERBALL:
-			emit_signal("goal_done", body, self)
+			if body.owner_ship and body.owner_ship.species != species:
+				emit_signal("goal_done", body.owner_ship)
+			body.owner_ship = null
 		
 		body.remove_collision_exception_with(wall)
 		body.remove_collision_exception_with(linked_to.wall)
