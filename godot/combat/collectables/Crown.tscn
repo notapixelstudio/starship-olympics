@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/collectables/Crown.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/sprites/environments/crown_color.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=9]
 [ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sprites/environments/soccer_ball.png" type="Texture" id=11]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -70,5 +71,9 @@ texture = ExtResource( 8 )
 visible = false
 scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 9 )
+
+[node name="SoccerBallSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 11 )
 
 [node name="RoyalGlow" parent="." instance=ExtResource( 10 )]

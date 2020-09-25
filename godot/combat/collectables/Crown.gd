@@ -3,21 +3,33 @@ extends RigidBody2D
 class_name Crown
 var entity
 
-enum types {CROWN, BALL}
+enum types {CROWN, BALL, SOCCERBALL}
 export (types) var type = types.CROWN
+export var impulse : float = 0
+var active : bool = false
 
 func _ready():
 	entity = ECM.E(self)
 	
+	$CrownSprite.visible = type == types.CROWN
+	$BallSprite.visible = type == types.BALL
+	$SoccerBallSprite.visible = type == types.SOCCERBALL
+	
 	if type == types.CROWN:
-		$CrownSprite.visible = true
-		$BallSprite.visible = false
 		$CollisionShape2D.shape.radius = 80
 	elif type == types.BALL:
-		$CrownSprite.visible = false
-		$BallSprite.visible = true
+		$CollisionShape2D.shape.radius = 96
+	elif type == types.SOCCERBALL:
 		$CollisionShape2D.shape.radius = 96
 		
+	set_physics_process(false)
+	
+func start():
+	set_physics_process(impulse > 0)
+	
+func _physics_process(delta):
+	apply_central_impulse(impulse*Vector2(1,0).rotated(linear_velocity.angle()))
+	
 func _integrate_forces(state):
 	# force the physics engine
 	var xform = state.get_transform()
@@ -28,3 +40,4 @@ func _integrate_forces(state):
 		entity.get('Teleportable').teleport_done()
 		
 	state.set_transform(xform)
+	

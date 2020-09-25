@@ -635,6 +635,12 @@ func _on_sth_dropped(dropper, droppee):
 	else:
 		droppee.linear_velocity = dropper.linear_velocity
 		
+	if droppee.has_method('start'):
+		droppee.start()
+		
+	if droppee is Crown and droppee.type == Crown.types.SOCCERBALL:
+		droppee.linear_velocity *= 2
+		
 	# wait a bit, then make the item collectable again
 	yield(get_tree().create_timer(0.2), "timeout")
 	ECM.E(droppee).get('Collectable').enable()

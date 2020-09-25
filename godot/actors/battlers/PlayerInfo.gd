@@ -30,6 +30,7 @@ func _process(delta):
 	update_scale()
 	
 	$Wrapper/Ball.rotation += delta
+	$Wrapper/SoccerBall.rotation += delta
 	
 func update_scale():
 	$Wrapper/Scaled.scale = Vector2(1,1) if not target.camera else target.camera.zoom
@@ -56,6 +57,10 @@ func _on_Royal_enabled():
 		if what.type == Crown.types.BALL:
 			$Wrapper/Ball.rotation = target.rotation
 			$Wrapper/Ball/AnimationPlayer.play('appear')
+		$Wrapper/SoccerBall.visible = what.type == Crown.types.SOCCERBALL
+		if what.type == Crown.types.SOCCERBALL:
+			$Wrapper/SoccerBall.rotation = target.rotation
+			$Wrapper/SoccerBall/AnimationPlayer.play('appear')
 	return
 	point_score.show()
 
@@ -63,6 +68,7 @@ func _on_Royal_disabled():
 	$Wrapper/Scaled/RoyalGlow.visible = false
 	$Wrapper/Scaled/Crown.visible = false
 	$Wrapper/Ball.visible = false
+	$Wrapper/SoccerBall.visible = false
 	return
 	point_score.appear()
 	yield(point_score, "end")
