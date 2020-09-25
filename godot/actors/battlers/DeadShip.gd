@@ -20,14 +20,16 @@ func set_ship(new_value):
 	info_player = ship.info_player
 	species = ship.species
 	$Sprite.modulate = species.color
-	$Sprite.modulate = $Sprite.modulate.darkened(0.2)
-	$Sprite.modulate.a = 0.85
+	# $Sprite.modulate = $Sprite.modulate.darkened(0.2)
 	$Sprite.texture = species.ship
 	
 func _enter_tree():
 	#linear_velocity = ship.linear_velocity
 	position = ship.position
 	rotation = ship.rotation
+	if not $Trail2D.is_inside_tree():
+		yield($Trail2D, "tree_entered")
+	$Trail2D.erase_trail()
 	
 func _integrate_forces(state):
 	# force the physics engine
