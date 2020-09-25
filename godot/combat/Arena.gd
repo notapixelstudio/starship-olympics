@@ -143,6 +143,7 @@ func _ready():
 	collect_manager.connect('dropped', crown_mode, "_on_sth_dropped")
 	collect_manager.connect('dropped', self, "_on_sth_dropped")
 	collect_manager.connect("stolen", crown_mode, "_on_sth_stolen")
+	collect_manager.connect("stolen", self, "_on_sth_stolen")
 	environments_manager.connect('repel_cargo', collect_manager, "_on_cargo_repelled")
 	collect_manager.connect('collected', collect_mode, "_on_sth_collected")
 	collect_manager.connect('coins_dropped', collect_mode, "_on_coins_dropped")
@@ -622,6 +623,9 @@ func spawn_points_scored(species: Species, score, pos):
 	$Battlefield.add_child(points_scored)
 
 func _on_sth_collected(collector, collectee):
+	if collectee is Crown and collectee.type == Crown.types.SOCCERBALL:
+		collectee.owner_ship = collector
+	
 	if collectee.get_parent().is_in_group("spawner_group"):
 		collectee.get_parent().call_deferred('remove', collectee)
 	else:
@@ -639,7 +643,7 @@ func _on_sth_dropped(dropper, droppee):
 		droppee.start()
 		
 	if droppee is Crown and droppee.type == Crown.types.SOCCERBALL:
-		droppee.linear_velocity *= 2
+		droppee.linear_velocity *= 1.5
 		
 	# wait a bit, then make the item collectable again
 	yield(get_tree().create_timer(0.2), "timeout")
@@ -648,6 +652,11 @@ func _on_sth_dropped(dropper, droppee):
 	yield(get_tree().create_timer(0.5), "timeout")
 	dropper.recheck_colliding()
 	
+func _on_sth_stolen(thief, mugged):
+	var what = ECM.E(mugged).get('Cargo').what
+	if what is Crown and what.type == Crown.types.SOCCERBALL:
+		what.owner_ship = thief
+		
 #func _on_coins_dropped(dropper, amount):
 #	for i in range(amount):
 #		var coin = coin_scene.instance()

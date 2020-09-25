@@ -8,6 +8,12 @@ export (types) var type = types.CROWN
 export var impulse : float = 0
 var active : bool = false
 
+var owner_ship = null setget set_owner_ship
+
+func set_owner_ship(v):
+	owner_ship = v
+	$RoyalGlow.modulate = owner_ship.species.color
+
 func _ready():
 	entity = ECM.E(self)
 	

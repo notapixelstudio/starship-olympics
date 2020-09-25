@@ -58,6 +58,7 @@ func _on_Royal_enabled():
 			$Wrapper/Ball.rotation = target.rotation
 			$Wrapper/Ball/AnimationPlayer.play('appear')
 		$Wrapper/SoccerBall.visible = what.type == Crown.types.SOCCERBALL
+		$Wrapper/Scaled/RoyalGlow.modulate = target.species.color
 		if what.type == Crown.types.SOCCERBALL:
 			$Wrapper/SoccerBall.rotation = target.rotation
 			$Wrapper/SoccerBall/AnimationPlayer.play('appear')
