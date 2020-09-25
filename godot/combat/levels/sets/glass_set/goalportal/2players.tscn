@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
@@ -73,13 +74,13 @@ script = ExtResource( 2 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5000
-height = 3000
+width = 4000
+height = 2800
 radius = 600
 precision = 100.0
 
 [node name="Zone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1800, 0 )
+position = Vector2( -1500, 0 )
 collision_layer = 0
 type = 4
 
@@ -92,7 +93,7 @@ radius = 600
 precision = 100.0
 
 [node name="Launcher" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( 6.10352e-05, 900 )
+position = Vector2( 0, 800 )
 collision_layer = 0
 type = 4
 
@@ -105,7 +106,7 @@ radius = 200
 precision = 40.0
 
 [node name="Launcher2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( -6.10352e-05, -900 )
+position = Vector2( 0, -800 )
 collision_layer = 0
 type = 4
 
@@ -118,7 +119,7 @@ radius = 200
 precision = 40.0
 
 [node name="Zone2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( 1800, 0 )
+position = Vector2( 1510, 0 )
 rotation = 3.14159
 collision_layer = 0
 type = 4
@@ -132,11 +133,17 @@ radius = 600
 precision = 100.0
 
 [node name="Wall10" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 900, 1500 )
+position = Vector2( 500, 1400 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=[
 "additional_lasers",
@@ -151,11 +158,17 @@ rotation = -1.5708
 anims/Default = SubResource( 1 )
 
 [node name="Wall15" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
-position = Vector2( -900, -1500 )
+position = Vector2( -500, -1400 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=[
 "additional_lasers",
@@ -170,64 +183,68 @@ rotation = 1.5708
 anims/Default = SubResource( 2 )
 
 [node name="Portal" parent="Battlefield/Middleground" index="6" instance=ExtResource( 14 )]
-position = Vector2( 1800, 0 )
+position = Vector2( 1510, 0 )
 linked_to_path = NodePath("../Portal2")
-width = 500.0
+width = 550.0
 offset = 200.0
 color = Color( 1, 0.470588, 0, 1 )
 inverted = true
 
 [node name="Portal2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 14 )]
-position = Vector2( -1800, 0 )
+position = Vector2( -1500, 0 )
 rotation = 3.14159
 linked_to_path = NodePath("../Portal")
-width = 500.0
+width = 550.0
 offset = 200.0
 color = Color( 0, 0.486275, 1, 1 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
-position = Vector2( -1800, -600 )
+position = Vector2( -1500, -600 )
+rotation = 0.785398
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall11" index="5"]
-script = ExtResource( 5 )
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall11" index="5"]
+script = ExtResource( 3 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
-precision = 20.0
+width = 200
+height = 200
 
 [node name="Wall12" parent="Battlefield/Middleground" index="9" instance=ExtResource( 6 )]
-position = Vector2( -1800, 600 )
+position = Vector2( -1500, 600 )
+rotation = 0.785398
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall12" index="5"]
-script = ExtResource( 5 )
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall12" index="5"]
+script = ExtResource( 3 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
-precision = 20.0
+width = 200
+height = 200
 
 [node name="Wall13" parent="Battlefield/Middleground" index="10" instance=ExtResource( 6 )]
-position = Vector2( 1800, -600 )
+position = Vector2( 1500, 600 )
+rotation = 0.785398
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall13" index="5"]
-script = ExtResource( 5 )
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall13" index="5"]
+script = ExtResource( 3 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
-precision = 20.0
+width = 200
+height = 200
 
 [node name="Wall14" parent="Battlefield/Middleground" index="11" instance=ExtResource( 6 )]
-position = Vector2( 1800, 600 )
+position = Vector2( 1500, -600 )
+rotation = 0.785398
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall14" index="5"]
-script = ExtResource( 5 )
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Wall14" index="5"]
+script = ExtResource( 3 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
-precision = 20.0
+width = 200
+height = 200
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 rotation = 2.35619
@@ -235,13 +252,13 @@ type = 2
 impulse = 5.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1000, 0 )
+position = Vector2( -700, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 1000, 0 )
+position = Vector2( 710, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 7 )
