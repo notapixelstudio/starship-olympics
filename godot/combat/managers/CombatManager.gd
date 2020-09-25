@@ -11,7 +11,6 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 	if entity.has('Deadly'):
 		if entity.has('Owned') and entity.get('Owned').get_owned_by() != ship:
 			ship.die(entity.get('Owned').get_owned_by())
-			print("Sono stato io ad ucciderti")
 		else:
 			var possibly_bomb = entity.get_host()
 			if possibly_bomb is Bomb and possibly_bomb.type == GameMode.BOMB_TYPE.bullet:
