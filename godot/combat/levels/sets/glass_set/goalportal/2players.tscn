@@ -60,7 +60,7 @@ texture = ExtResource( 9 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 1, 0, 0.654902, 0.313726 )
+modulate = Color( 0, 0.905882, 1, 0.219608 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
@@ -137,13 +137,7 @@ position = Vector2( 500, 1400 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=[
 "additional_lasers",
@@ -162,13 +156,7 @@ position = Vector2( -500, -1400 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=[
 "additional_lasers",
@@ -187,7 +175,6 @@ position = Vector2( 1510, 0 )
 linked_to_path = NodePath("../Portal2")
 width = 550.0
 offset = 200.0
-color = Color( 1, 0.870588, 0.372549, 1 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Portal2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 14 )]
@@ -196,7 +183,6 @@ rotation = 3.14159
 linked_to_path = NodePath("../Portal")
 width = 550.0
 offset = 200.0
-color = Color( 0.32549, 1, 0.32549, 1 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="Wall11" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]

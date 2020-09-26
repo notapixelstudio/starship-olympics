@@ -29,10 +29,9 @@ func set_inverted(v):
 	refresh()
 
 func _ready():
-	# set color if goal is owned by a player
+	yield(get_tree(), "idle_frame")
 	if goal_owner:
 		species = get_node(goal_owner).species
-		color = get_node(goal_owner).species.color
 	refresh()
 	
 func refresh():
@@ -54,7 +53,10 @@ func refresh():
 		$Particles2D2.scale.x = -1 if inverted else 1
 		
 		if goal_owner:
-			$Line2D.self_modulate = Color(1.1,1.1,1.1,1) # ship colors are already vibrant
+			$Line2D.modulate = species.color
+			$Particles2D.modulate = species.color
+			$SpikeParticles2D.modulate = species.color
+			$Line2D.self_modulate = Color(1.2,1.2,1.2,1) # ship colors are already vibrant
 		
 func enable():
 	$Area2D/CollisionShape2D.disabled = false

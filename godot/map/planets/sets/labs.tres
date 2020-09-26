@@ -6,9 +6,9 @@
 [ext_resource path="res://combat/levels/sets/labs_set/race/4players.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/map/cards/labs_set.png" type="Texture" id=5]
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=6]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=7]
+[ext_resource path="res://combat/levels/sets/glass_set/goalportal/2players.tscn" type="PackedScene" id=7]
 [ext_resource path="res://map/planets/mutators/laser.tres" type="Resource" id=8]
-[ext_resource path="res://combat/levels/sets/core_set/take_the_crown/2players.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/modes/GoalPortal.tres" type="Resource" id=9]
 [ext_resource path="res://combat/levels/sets/core_set/take_the_crown/4players.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/levels/sets/core_set/take_the_crown/3players.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/levels/sets/labs_set/lasercage/4players.tscn" type="PackedScene" id=12]
@@ -21,9 +21,9 @@ script = ExtResource( 1 )
 name = "Royal Robolabs"
 tagline1 = ""
 tagline2 = ""
-minigames = [ ExtResource( 7 ), ExtResource( 13 ), ExtResource( 6 ) ]
-levels_1players = [ ExtResource( 15 ), ExtResource( 3 ), ExtResource( 9 ) ]
-levels_2players = [ ExtResource( 15 ), ExtResource( 3 ), ExtResource( 9 ) ]
+minigames = [ ExtResource( 9 ), ExtResource( 13 ), ExtResource( 6 ) ]
+levels_1players = [ ExtResource( 15 ), ExtResource( 3 ), ExtResource( 7 ) ]
+levels_2players = [ ExtResource( 15 ), ExtResource( 3 ), ExtResource( 7 ) ]
 levels_3players = [ ExtResource( 14 ), ExtResource( 2 ), ExtResource( 11 ) ]
 levels_4players = [ ExtResource( 12 ), ExtResource( 4 ), ExtResource( 10 ) ]
 planet_sprite = ExtResource( 5 )
