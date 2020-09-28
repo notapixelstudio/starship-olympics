@@ -83,7 +83,7 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 		body.add_collision_exception_with(wall)
 		body.add_collision_exception_with(linked_to.wall)
 		
-		teleportable.set_destination(linked_to.position + vector.project(Vector2(0,-1).rotated(rotation+PI)) + offset*Vector2(-1,0).rotated(rotation+PI))
+		teleportable.set_destination(linked_to.global_position + vector.project(Vector2(0,-1).rotated(rotation+PI)) + offset*Vector2(-1,0).rotated(rotation+PI))
 		
 		var had_thrusters = false
 		if entity.has('Thrusters'):
