@@ -41,8 +41,10 @@ func joypad_handling():
 		assert(analogic is InputEventJoypadMotion)
 
 	# xAxis is a value from +/0 0-1 depending on how hard the stick is being pressed
-	target.x = Input.get_joy_axis(analogic.device, JOY_AXIS_0)  
-	target.y = Input.get_joy_axis(analogic.device, JOY_AXIS_1)
+	#target.x = Input.get_joy_axis(analogic.device, JOY_AXIS_0)  
+	#target.y = Input.get_joy_axis(analogic.device, JOY_AXIS_1)
+	target.x = Input.get_action_strength(controls+"_right") - Input.get_action_strength(controls+"_left")
+	target.y = Input.get_action_strength(controls+"_down") - Input.get_action_strength(controls+"_up")
 	if abs(target.x) < DEADZONE:
 		target.x = 0
 	if abs(target.y) < DEADZONE:
