@@ -34,6 +34,9 @@ func drop_cargo(dropper):
 	
 func _on_ship_killed(ship : Ship, killer : Ship):
 	if ECM.E(ship).has('Cargo'):
+		var cargo = ECM.E(ship).get('Cargo').what
+		if cargo is Crown and cargo.type == Crown.types.SOCCERBALL:
+			cargo.owner_ship = null
 		drop_cargo(ship)
 		
 	if ECM.E(ship).has('CoinBag'):

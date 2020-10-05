@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -44,3 +45,11 @@ scale = Vector2( 0.8, 0.8 )
 shape = SubResource( 2 )
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 6 )]
+
+[node name="Trail2D" type="Line2D" parent="."]
+modulate = Color( 1, 1, 1, 0.313726 )
+width = 30.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 2699552
+script = ExtResource( 7 )
+trail_length = 80
