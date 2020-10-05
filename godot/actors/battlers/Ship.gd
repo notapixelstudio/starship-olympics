@@ -43,7 +43,7 @@ const FIRE_COOLDOWN = 0.03
 
 var supercharge = 0
 
-const THRESHOLD_DIR = 0.3
+const THRESHOLD_DIR = 0
 var responsive = false setget change_engine
 var info_player setget set_info_player
 
@@ -179,7 +179,8 @@ func _integrate_forces(state):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_dir * 20000)
+	set_applied_torque(rotation_dir * 25000)
+	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
 	var xform = state.get_transform()
@@ -354,14 +355,14 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	"""
 	var possible_dirs : Array = [-1,1]
 	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
-	if check == -b:
+	if (check + b).length() < 0.1: # FIXME const
 		cross = possible_dirs[randi()%len(possible_dirs)]
 
 	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR :
 		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
 			return 0
 	
-	return int(sign(cross))
+	return cross
 
 func get_id():
 	return info_player.id

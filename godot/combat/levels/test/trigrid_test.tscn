@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=6]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -39,9 +41,19 @@ __meta__ = {
 radius = 2000
 rotation_degrees = 30.0
 
+[node name="Field" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
+
+[node name="GCircle" type="Node" parent="Battlefield/Foreground/Field" index="6"]
+script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 1000
+precision = 100.0
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -880, 40 )
-rotation = -1.0472
+position = Vector2( 0, 0 )
+rotation = -1.5708
 controls = "joy1"
 species = ExtResource( 10 )
 
