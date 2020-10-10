@@ -109,16 +109,16 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
+tracks/3/path = NodePath("CanvasLayer/Countdown:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.352941 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="Arena" type="Node"]
@@ -317,6 +317,9 @@ custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
 stream = ExtResource( 30 )
