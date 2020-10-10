@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Option.gd" type="Script" id=2]
@@ -10,17 +10,6 @@
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=8]
 [ext_resource path="res://special_scenes/option_screen/Controls.gd" type="Script" id=9]
 [ext_resource path="res://special_scenes/option_screen/CommandOption.tscn" type="PackedScene" id=10]
-
-[sub_resource type="Animation" id=1]
-resource_name = "hide"
-length = 0.1
-
-[sub_resource type="Animation" id=2]
-resource_name = "show"
-length = 0.1
-
-[sub_resource type="Animation" id=3]
-resource_name = "standby"
 
 [node name="Options" type="ColorRect"]
 anchor_right = 1.0
@@ -34,7 +23,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="OptionScreen" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.713726 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -49,7 +38,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelItems" type="VBoxContainer" parent="Panel"]
+[node name="PanelItems" type="VBoxContainer" parent="OptionScreen"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -63,7 +52,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Navbar" type="Label" parent="Panel/PanelItems"]
+[node name="Navbar" type="Label" parent="OptionScreen/PanelItems"]
 margin_right = 631.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 3 )
@@ -74,13 +63,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator" type="Control" parent="Panel/PanelItems"]
+[node name="Separator" type="Control" parent="OptionScreen/PanelItems"]
 margin_top = 37.0
 margin_right = 631.0
 margin_bottom = 127.0
 size_flags_vertical = 3
 
-[node name="Options" type="VBoxContainer" parent="Panel/PanelItems"]
+[node name="Options" type="VBoxContainer" parent="OptionScreen/PanelItems"]
 margin_top = 133.0
 margin_right = 631.0
 margin_bottom = 399.0
@@ -88,7 +77,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Language" parent="Panel/PanelItems/Options" instance=ExtResource( 8 )]
+[node name="Language" parent="OptionScreen/PanelItems/Options" instance=ExtResource( 8 )]
 anchor_right = 0.0
 margin_right = 631.0
 margin_bottom = 50.0
@@ -97,35 +86,39 @@ is_global = true
 element_path = "language"
 label_description = "language"
 
-[node name="FullScreen" parent="Panel/PanelItems/Options" instance=ExtResource( 5 )]
+[node name="FullScreen" parent="OptionScreen/PanelItems/Options" instance=ExtResource( 5 )]
 margin_top = 54.0
 margin_right = 631.0
 margin_bottom = 104.0
+elem_type = 0
 is_global = true
 element_path = "full_screen"
 label_description = "FULLSCREEN"
+node_owner_path = NodePath("")
 
-[node name="Analytics" parent="Panel/PanelItems/Options" instance=ExtResource( 5 )]
+[node name="Analytics" parent="OptionScreen/PanelItems/Options" instance=ExtResource( 5 )]
 margin_top = 108.0
 margin_right = 631.0
 margin_bottom = 158.0
+elem_type = 0
 is_global = true
 element_path = "enable_analytics"
 label_description = "analytics"
+node_owner_path = NodePath("")
 
-[node name="Audio" parent="Panel/PanelItems/Options" instance=ExtResource( 6 )]
+[node name="Audio" parent="OptionScreen/PanelItems/Options" instance=ExtResource( 6 )]
 margin_top = 162.0
 margin_right = 631.0
 margin_bottom = 212.0
 text = "AUDIO"
 title = "Audio"
 
-[node name="Controls" parent="Panel/PanelItems/Options" instance=ExtResource( 6 )]
+[node name="Controls" parent="OptionScreen/PanelItems/Options" instance=ExtResource( 6 )]
 margin_right = 631.0
 text = "CONTROLS"
 title = "Controls"
 
-[node name="Audio" type="VBoxContainer" parent="Panel/PanelItems"]
+[node name="Audio" type="VBoxContainer" parent="OptionScreen/PanelItems"]
 visible = false
 margin_top = 315.0
 margin_right = 631.0
@@ -134,7 +127,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Music" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
+[node name="Music" parent="OptionScreen/PanelItems/Audio" instance=ExtResource( 4 )]
 margin_top = 0.0
 margin_right = 631.0
 margin_bottom = 50.0
@@ -143,7 +136,7 @@ is_global = true
 element_path = "master_volume"
 label_description = "Volume Master"
 
-[node name="Music2" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
+[node name="Music2" parent="OptionScreen/PanelItems/Audio" instance=ExtResource( 4 )]
 margin_top = 54.0
 margin_right = 631.0
 margin_bottom = 104.0
@@ -153,7 +146,7 @@ element_path = "music_volume"
 label_description = "Volume Music"
 bus_name = "Music"
 
-[node name="Music3" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
+[node name="Music3" parent="OptionScreen/PanelItems/Audio" instance=ExtResource( 4 )]
 margin_top = 108.0
 margin_right = 631.0
 margin_bottom = 158.0
@@ -163,7 +156,7 @@ element_path = "sfx_volume"
 label_description = "Volume SFX"
 bus_name = "SFX"
 
-[node name="Controls" type="VBoxContainer" parent="Panel/PanelItems"]
+[node name="Controls" type="VBoxContainer" parent="OptionScreen/PanelItems"]
 visible = false
 margin_top = 316.0
 margin_right = 631.0
@@ -173,7 +166,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Element" parent="Panel/PanelItems/Controls" instance=ExtResource( 8 )]
+[node name="Element" parent="OptionScreen/PanelItems/Controls" instance=ExtResource( 8 )]
 anchor_right = 0.0
 margin_right = 631.0
 margin_bottom = 50.0
@@ -182,36 +175,36 @@ is_global = true
 element_path = "device"
 label_description = "device"
 
-[node name="MarginContainer" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+[node name="MarginContainer" parent="OptionScreen/PanelItems/Controls" instance=ExtResource( 10 )]
 margin_top = 54.0
 margin_right = 631.0
 margin_bottom = 104.0
 action = "up"
 
-[node name="MarginContainer2" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+[node name="MarginContainer2" parent="OptionScreen/PanelItems/Controls" instance=ExtResource( 10 )]
 margin_top = 108.0
 margin_right = 631.0
 margin_bottom = 158.0
 action = "down"
 
-[node name="MarginContainer3" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+[node name="MarginContainer3" parent="OptionScreen/PanelItems/Controls" instance=ExtResource( 10 )]
 margin_top = 162.0
 margin_right = 631.0
 margin_bottom = 212.0
 action = "left"
 
-[node name="MarginContainer4" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+[node name="MarginContainer4" parent="OptionScreen/PanelItems/Controls" instance=ExtResource( 10 )]
 margin_top = 216.0
 margin_right = 631.0
 margin_bottom = 266.0
 action = "right"
 
-[node name="MarginContainer5" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
+[node name="MarginContainer5" parent="OptionScreen/PanelItems/Controls" instance=ExtResource( 10 )]
 margin_top = 270.0
 margin_right = 631.0
 margin_bottom = 320.0
 
-[node name="Default" type="Button" parent="Panel/PanelItems/Controls"]
+[node name="Default" type="Button" parent="OptionScreen/PanelItems/Controls"]
 margin_top = 324.0
 margin_right = 631.0
 margin_bottom = 374.0
@@ -220,13 +213,13 @@ theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "DEFAULT"
 
-[node name="Separator2" type="Control" parent="Panel/PanelItems"]
+[node name="Separator2" type="Control" parent="OptionScreen/PanelItems"]
 margin_top = 405.0
 margin_right = 631.0
 margin_bottom = 495.0
 size_flags_vertical = 3
 
-[node name="Back" type="Button" parent="Panel/PanelItems"]
+[node name="Back" type="Button" parent="OptionScreen/PanelItems"]
 margin_top = 501.0
 margin_right = 631.0
 margin_bottom = 551.0
@@ -234,13 +227,8 @@ rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "BACK"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hide = SubResource( 1 )
-anims/show = SubResource( 2 )
-anims/standby = SubResource( 3 )
-[connection signal="nav_to" from="Panel/PanelItems/Options/Audio" to="." method="nav_to"]
-[connection signal="nav_to" from="Panel/PanelItems/Options/Controls" to="." method="nav_to"]
-[connection signal="value_changed" from="Panel/PanelItems/Controls/Element" to="Panel/PanelItems/Controls" method="_on_Element_value_changed"]
-[connection signal="pressed" from="Panel/PanelItems/Controls/Default" to="Panel/PanelItems/Controls" method="_on_Default_pressed"]
-[connection signal="pressed" from="Panel/PanelItems/Back" to="." method="_on_Back_pressed"]
+[connection signal="nav_to" from="OptionScreen/PanelItems/Options/Audio" to="." method="nav_to"]
+[connection signal="nav_to" from="OptionScreen/PanelItems/Options/Controls" to="." method="nav_to"]
+[connection signal="value_changed" from="OptionScreen/PanelItems/Controls/Element" to="OptionScreen/PanelItems/Controls" method="_on_Element_value_changed"]
+[connection signal="pressed" from="OptionScreen/PanelItems/Controls/Default" to="OptionScreen/PanelItems/Controls" method="_on_Default_pressed"]
+[connection signal="pressed" from="OptionScreen/PanelItems/Back" to="." method="_on_Back_pressed"]

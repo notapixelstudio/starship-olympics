@@ -1,12 +1,9 @@
 extends ColorRect
 
-var array_songs
-
 signal back
 
-onready var container = $Panel/PanelItems/Options
-onready var animation = $AnimationPlayer
-onready var panel = $Panel/PanelItems
+onready var container = $OptionScreen/PanelItems/Options
+onready var panel = $OptionScreen/PanelItems
 
 var focus_index = 0
 
@@ -14,16 +11,11 @@ var separator = " > "
 var navbar = ["Options"]
 
 func back_to_menu():
-	animation.play("hide")
-	yield(animation, "animation_finished")
 	emit_signal("back")
 	visible = false
 
 func enable_all():
 	visible = true
-	for elem in container.get_children():
-		if elem is GenericOption:
-			elem._initialize()
 	focus_index = 0
 	container.get_child(focus_index).grab_focus()
 	
