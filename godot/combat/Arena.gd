@@ -508,11 +508,20 @@ func on_gamemode_gameover(winners: Array):
 	var game_over = gameover_scene.instance()
 	game_over.connect("rematch", self, "_on_GameOver_rematch")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
+	game_over.connect("show_arena", self, "_on_Show_Arena")
+	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
 	
 	game_over.initialize(winners, scores)
 
+func _on_Show_Arena():
+	$Battlefield/Background.modulate = Color(1,1,1,1)
+	$Battlefield/Middleground.modulate=Color(1,1,1,1)
 
+func _on_hide_arena():
+	$Battlefield/Background.modulate=Color(0.33,0.33,0.33,1)
+	$Battlefield/Middleground.modulate=Color(0.33,0.33,0.33,1)
+	
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 const trail_scene = preload("res://actors/battlers/TrailNode.tscn")

@@ -7,6 +7,8 @@ onready var continue_button = $Buttons/Continue
 
 signal rematch
 signal back_to_menu
+signal show_arena
+signal hide_arena
 
 func _ready():
 	buttons.visible = false
@@ -58,8 +60,14 @@ func sort_by_score(a, b):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		self.visible = true
+		emit_signal("hide_arena")
 		yield(get_tree().create_timer(0.5), "timeout")
-		buttons.get_child(0).grab_focus()
+		# grab focus on first button visible
+		for button in buttons.get_children():
+			if button.visible:
+				button.grab_focus()
+				break
 
 func _show_arena():
 	self.visible = false
+	emit_signal("show_arena")
