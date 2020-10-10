@@ -369,7 +369,9 @@ func _process(delta):
 	slomo()
 	
 	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
-		$CanvasLayer/Countdown/AudioStreamPlayer.play()
+		# no countdown speaker right now. ISSUE #485
+		# $CanvasLayer/Countdown/AudioStreamPlayer.play()
+		pass
 	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:
 		$CanvasLayer/Countdown.text = str(int(ceil(scores.time_left)))
 	else:

@@ -29,34 +29,18 @@ func keyboard_handling():
 		
 	return target
 	
-func joypad_handling():
+func local_handling():
 	
 	var target = Vector2()
-	var analogic: InputEventJoypadMotion
-	for action in InputMap.get_action_list(controls+"_right"):
-		if action is InputEventJoypadMotion:
-			analogic = action
-	
-	if not analogic:
-		assert(analogic is InputEventJoypadMotion)
-
-	# xAxis is a value from +/0 0-1 depending on how hard the stick is being pressed
-	target.x = Input.get_joy_axis(analogic.device, JOY_AXIS_0)  
-	target.y = Input.get_joy_axis(analogic.device, JOY_AXIS_1)
-	if abs(target.x) < DEADZONE:
-		target.x = 0
-	if abs(target.y) < DEADZONE:
-		target.y = 0
+	target.x = Input.get_action_strength(controls+"_right") - Input.get_action_strength(controls+"_left")
+	target.y = Input.get_action_strength(controls+"_down") - Input.get_action_strength(controls+"_up")
 	return target
-			
+	
 func control(delta):
 	var target_vel = Vector2()
 	var front = Vector2(cos(rotation), sin(rotation))
-	if "joy" in controls:
-		target_vel = joypad_handling()
-	else:
-		target_vel = keyboard_handling()
-
+	target_vel = local_handling()
+	
 	if target_vel == Vector2.ZERO:
 		target_velocity = front
 		# this in order to keep the velocity constant
