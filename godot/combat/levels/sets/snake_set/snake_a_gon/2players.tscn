@@ -68,12 +68,8 @@ modulate = Color( 0, 1, 1, 0.196078 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 12 )
@@ -159,15 +155,6 @@ anims/Default = SubResource( 3 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( 0, -1600 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 12 )
@@ -176,15 +163,6 @@ sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 0, 1600 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 12 )
