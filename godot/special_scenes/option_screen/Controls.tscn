@@ -65,6 +65,13 @@ margin_bottom = 437.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
+[node name="Label" type="Label" parent="Joypad"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Default" type="Button" parent="."]
 margin_top = 441.0
 margin_right = 631.0
@@ -73,5 +80,20 @@ rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 6 )
 text = "DEFAULT"
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 100, 215, 200, 215 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 430, 230, 550, 230 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
 [connection signal="value_changed" from="Element" to="." method="_on_Element_value_changed"]
 [connection signal="pressed" from="Default" to="." method="_on_Default_pressed"]
