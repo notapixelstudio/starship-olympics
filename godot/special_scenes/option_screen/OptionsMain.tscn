@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://special_scenes/option_screen/OptionsMain.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/option_screen/Audio.tscn" type="PackedScene" id=2]
+[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/option_screen/OptionButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/option_screen/Controls.tscn" type="PackedScene" id=6]
+
+[node name="Options" type="VBoxContainer"]
+margin_top = 233.0
+margin_right = 631.0
+margin_bottom = 499.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Language" parent="." instance=ExtResource( 5 )]
+anchor_right = 0.0
+margin_right = 631.0
+margin_bottom = 50.0
+elem_type = 2
+is_global = true
+element_path = "language"
+label_description = "language"
+
+[node name="FullScreen" parent="." instance=ExtResource( 3 )]
+margin_top = 54.0
+margin_right = 631.0
+margin_bottom = 104.0
+elem_type = 0
+is_global = true
+element_path = "full_screen"
+label_description = "FULLSCREEN"
+node_owner_path = NodePath("")
+
+[node name="Analytics" parent="." instance=ExtResource( 3 )]
+margin_top = 108.0
+margin_right = 631.0
+margin_bottom = 158.0
+elem_type = 0
+is_global = true
+element_path = "enable_analytics"
+label_description = "analytics"
+node_owner_path = NodePath("")
+
+[node name="Audio" parent="." instance=ExtResource( 4 )]
+margin_top = 162.0
+margin_right = 631.0
+margin_bottom = 212.0
+text = "AUDIO"
+option_menu = ExtResource( 2 )
+title = "Audio"
+
+[node name="Controls" parent="." instance=ExtResource( 4 )]
+margin_right = 631.0
+text = "CONTROLS"
+option_menu = ExtResource( 6 )
+title = "Controls"

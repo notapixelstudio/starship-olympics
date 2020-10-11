@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://special_scenes/option_screen/OptionsMain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/DefaultLabelFont.tres" type="DynamicFont" id=4]
+
+[node name="PanelItems" type="VBoxContainer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -274.0
+margin_bottom = 277.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Navbar" type="Label" parent="."]
+margin_right = 631.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
+text = "Options"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="Control" parent="."]
+margin_top = 37.0
+margin_right = 631.0
+margin_bottom = 127.0
+size_flags_vertical = 3
+
+[node name="Options" type="VBoxContainer" parent="." instance=ExtResource( 1 )]
+margin_top = 133.0
+margin_right = 631.0
+margin_bottom = 399.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator2" type="Control" parent="."]
+margin_top = 405.0
+margin_right = 631.0
+margin_bottom = 495.0
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="."]
+margin_top = 501.0
+margin_right = 631.0
+margin_bottom = 551.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "BACK"
