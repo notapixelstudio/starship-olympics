@@ -6,12 +6,13 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/cell_size = 100.0
-shader_param/stroke = 5.0
+shader_param/cell_size = 200.0
+shader_param/stroke = 10.0
 shader_param/time = null
 shader_param/triangular = false
 
 [node name="Grid" type="Polygon2D"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
 material = SubResource( 1 )
 texture = ExtResource( 1 )
 texture_scale = Vector2( 0.01, 0.01 )

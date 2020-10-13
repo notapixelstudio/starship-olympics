@@ -5,7 +5,7 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/Grid.shader" type="Shader" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=6]
+[ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=6]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=7]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
@@ -17,8 +17,8 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/cell_size = 100.0
-shader_param/stroke = 5.0
+shader_param/cell_size = 200.0
+shader_param/stroke = 10.0
 shader_param/time = null
 shader_param/triangular = false
 
@@ -79,7 +79,7 @@ texture = ExtResource( 6 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.996078, 0.584314, 0, 0.27451 )
+modulate = Color( 0.3, 0.23, 0, 1 )
 material = SubResource( 1 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]

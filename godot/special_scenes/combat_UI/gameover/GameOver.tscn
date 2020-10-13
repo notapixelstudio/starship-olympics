@@ -43,26 +43,20 @@ margin_bottom = 699.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
-[node name="ShowArena" type="Button" parent="Buttons"]
-margin_right = 222.0
-margin_bottom = 57.0
-size_flags_vertical = 3
-text = "SHOW ARENA"
-
 [node name="Continue" type="Button" parent="Buttons"]
-margin_top = 61.0
 margin_right = 222.0
-margin_bottom = 118.0
+margin_bottom = 41.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
 [node name="Menu" type="Button" parent="Buttons"]
-margin_top = 122.0
+margin_top = 45.0
 margin_right = 222.0
-margin_bottom = 179.0
+margin_bottom = 86.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "BACK TO MENU"
@@ -76,6 +70,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "QUIT"
 
+[node name="Control" type="Control" parent="Buttons"]
+margin_top = 90.0
+margin_right = 222.0
+margin_bottom = 131.0
+size_flags_vertical = 3
+
+[node name="ShowArena" type="Button" parent="Buttons"]
+margin_top = 135.0
+margin_right = 222.0
+margin_bottom = 179.0
+size_flags_vertical = 3
+text = "SHOW ARENA"
+
 [node name="Session" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -85,7 +92,7 @@ margin_left = -493.668
 margin_top = -184.124
 margin_right = 238.332
 margin_bottom = 250.876
-[connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_Rematch_pressed"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
