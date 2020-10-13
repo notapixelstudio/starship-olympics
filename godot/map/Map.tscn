@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -25,6 +25,8 @@
 [ext_resource path="res://WorldEnvironment.tres" type="Environment" id=23]
 [ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
+
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -163,6 +165,84 @@ position = Vector2( -600, 0 )
 [node name="Waypoint18" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -600, 200 )
 
+[node name="Waypoint32" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -600, 400 )
+
+[node name="Waypoint39" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -400, 400 )
+
+[node name="Waypoint50" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -200, 400 )
+
+[node name="Waypoint51" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 0, 400 )
+
+[node name="Waypoint52" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 200, 400 )
+
+[node name="Waypoint53" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 400, 400 )
+
+[node name="Waypoint54" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 600, 400 )
+
+[node name="Waypoint55" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 800, 400 )
+
+[node name="Waypoint56" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1000, 400 )
+
+[node name="Waypoint57" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, 400 )
+
+[node name="Waypoint58" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, 200 )
+
+[node name="Waypoint59" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, 0 )
+
+[node name="Waypoint60" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, -200 )
+
+[node name="Waypoint61" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, -400 )
+
+[node name="Waypoint62" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, -600 )
+
+[node name="Waypoint63" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, -800 )
+
+[node name="Waypoint64" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1200, -1000 )
+
+[node name="Waypoint65" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1000, -1000 )
+
+[node name="Waypoint66" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 800, -1000 )
+
+[node name="Waypoint67" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 600, -1000 )
+
+[node name="Waypoint68" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 200, -1000 )
+
+[node name="Waypoint70" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 400, -1000 )
+
+[node name="Waypoint71" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 0, -1000 )
+
+[node name="Waypoint72" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -200, -1000 )
+
+[node name="Waypoint73" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -400, -1000 )
+
+[node name="Waypoint74" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( -600, -1000 )
+
 [node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, 0 )
 
@@ -183,6 +263,11 @@ position = Vector2( 600, 0 )
 
 [node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, 200 )
+
+[node name="Line2D" type="Line2D" parent="Content/Waypoints"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+material = SubResource( 1 )
+points = PoolVector2Array( -600, -1100, 1200, -1100, 1300, -1000, 1300, 400, 1200, 500, -600, 500, -700, 400, -700, -1000, -600, -1100 )
 
 [node name="Planets" type="Node2D" parent="Content"]
 __meta__ = {
