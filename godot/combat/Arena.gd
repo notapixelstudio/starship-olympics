@@ -517,10 +517,12 @@ func on_gamemode_gameover(winners: Array):
 func _on_Show_Arena():
 	$Battlefield/Background.modulate = Color(1,1,1,1)
 	$Battlefield/Middleground.modulate=Color(1,1,1,1)
+	$BackgroundLayer.get_child(0).modulate=Color(1,1,1,1)
 
 func _on_hide_arena():
 	$Battlefield/Background.modulate=Color(0.33,0.33,0.33,1)
 	$Battlefield/Middleground.modulate=Color(0.33,0.33,0.33,1)
+	$BackgroundLayer.get_child(0).modulate=Color(0.33,0.33,0.33,1)
 	
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
