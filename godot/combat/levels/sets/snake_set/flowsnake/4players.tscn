@@ -20,7 +20,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 1, 0.196078 )
+modulate = Color( 0, 0.211765, 0.211765, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 3 )]
 hollow = true
@@ -31,13 +31,8 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2400
 sides = 12.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( -99.9999, -99.9999 )

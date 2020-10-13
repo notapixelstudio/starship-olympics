@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
 const float size = 1000.0;
-uniform float cell_size = 100.0;
-uniform float stroke;
+uniform float cell_size = 200.0;
+uniform float stroke = 10.0;
 uniform float time;
 uniform sampler2D wells_texture;
 uniform bool triangular = false;
@@ -30,7 +30,7 @@ float get_well_strength(vec3 well, float amplitude, vec2 p){
 		return 0.0;
 	}
 	float d = distance(p, well.xy);
-	return amplitude*cos(d/80.0-t*5.0)/exp(d*0.001+t*2.0); // d*0.003 (std), 0.001 (big), 0.005 (small)
+	return amplitude*cos(d/80.0-t*5.0)/exp(d*0.003+t*2.0); // d*0.003 (std), 0.001 (big), 0.005 (small)
 }
 
 float get_z(float amplitude, vec2 p){
@@ -49,7 +49,7 @@ vec3 create_point(int row, int col, float amplitude){
 	//p.x += amplitude*sin(d);
 	//p.z += amplitude*cos(d-t*8.0)/exp(d/4.0);
 	//p.z += 8.0*amplitude*sin(d-t*3.0)/exp(d*0.5);
-	// p.z += get_z(amplitude, p.xy);
+	//p.z += get_z(amplitude, p.xy);
 	return p;
 }
 
@@ -68,46 +68,46 @@ void fragment(){
 	for (int col = i_uv.x-1; col <= i_uv.x+1; col++) {
 		for (int row = i_uv.y-1; row <= i_uv.y+1; row++) {
 			p1n = create_point(row, col, amplitude);
-			p1n.y += p1n.z;
+			//p1n.y += p1n.z;
 			
 			// right
 			p2n = create_point(row, col+1, amplitude);
-			p2n.y += p2n.z;
+			//p2n.y += p2n.z;
 			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 			
 			// left
 			p2n = create_point(row, col-1, amplitude);
-			p2n.y += p2n.z;
+			//p2n.y += p2n.z;
 			f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 			
 			if(triangular){
 				// /
 				p2n = create_point(row+1, col+row%2, amplitude);
-				p2n.y += p2n.z;
+				//p2n.y += p2n.z;
 				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 				
 				// \
 				p1n = create_point(row, col+1, amplitude);
-				p1n.y += p1n.z;
+				//p1n.y += p1n.z;
 				p2n = create_point(row+1, col+row%2, amplitude);
-				p2n.y += p2n.z;
+				//p2n.y += p2n.z;
 				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 			}
 			else {
 				// down
 				p2n = create_point(row+1, col, amplitude);
-				p2n.y += p2n.z;
+				//p2n.y += p2n.z;
 				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 				
 				// up
 				p2n = create_point(row-1, col, amplitude);
-				p2n.y += p2n.z;
+				//p2n.y += p2n.z;
 				f = min(f, distance_from_segment(p1n.xy/size, p2n.xy/size, UV));
 			}
 		}
 	}
-	float c = 1.0-step(stroke/2.0/size, f);
+	float c = 1.0-smoothstep(0.0, stroke/2.0/size, f);
 	float a = 1.0 - clamp(get_z(amplitude/cell_size, UV*size)*0.5, 0.0, 1.0);
-	COLOR = vec4( vec3(c), min(a, c) );
-	//COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/scale, f)), 0.0);
+	COLOR = vec4( vec3(c), 1.0 );
+	//COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/size, f)), 0.0);
 }
