@@ -123,9 +123,10 @@ func add_score(id_player: String, amount : float):
 	emit_signal('updated', player) # author
 
 func broadcast_score(id_player : String, amount : float):
-	for player in player_scores:
-		if player.id != id_player:
-			add_score(player.id, amount)
+	var player = get_player(id_player)
+	for p in player_scores:
+		if p.team != player.team:
+			add_score(p.id, amount)
 
 
 func update_stats(info_player, amount: int, stat: String):
