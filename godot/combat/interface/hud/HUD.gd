@@ -44,13 +44,13 @@ func _process(_delta):
 	# update time left
 	TimeLeft.text = str(int(ceil(matchscore.time_left)))
 
-func _on_matchscore_updated(author):
+func _on_matchscore_updated(author, broadcasted):
 	# update scores
 	var bars = Bars.get_children()
 	var last_value = bars[0].get_value()
 	for bar in bars:
 		var player : PlayerStats = (matchscore as MatchScores).get_player(bar.player.id)
-		bar.set_value(player.team_stats.score, author)
+		bar.set_value(player.team_stats.score, player if broadcasted else author)
 		if last_value == bar.get_value():
 			draw = true
 		else:

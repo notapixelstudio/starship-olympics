@@ -529,6 +529,7 @@ rotation = -1.5708
 controls = "joy1"
 species = ExtResource( 8 )
 team = "b"
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 500, -1000 )
@@ -536,6 +537,7 @@ rotation = 1.5708
 controls = "joy2"
 species = ExtResource( 10 )
 team = "a"
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
 position = Vector2( -1600, -1000 )
@@ -543,12 +545,14 @@ rotation = 1.5708
 controls = "joy3"
 species = ExtResource( 13 )
 team = "a"
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
 position = Vector2( 1600, 1000 )
 rotation = -1.5708
 species = ExtResource( 12 )
 team = "b"
+cpu = true
 
 [node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3
