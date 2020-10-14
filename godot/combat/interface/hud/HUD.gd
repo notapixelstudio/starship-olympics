@@ -75,7 +75,7 @@ func _on_matchscore_updated(author):
 	
 func sort_bars(instantaneous):
 	var bars = Bars.get_children()
-	bars.sort_custom(self, "compare_by_score_and_team")
+	bars.sort_custom(self, "compare_by_score_team_and_id")
 	var i = 0
 	for bar in bars:
 		var pos = Vector2(0, 25)*i
@@ -85,11 +85,16 @@ func sort_bars(instantaneous):
 			bar.new_position = pos
 		i += 1
 		
-func compare_by_score_and_team(a:Bar, b:Bar):
+func compare_by_score_team_and_id(a:Bar, b:Bar):
 	var va = a.get_value()
 	var vb = b.get_value()
 	if va == vb:
-		return a.player.team > b.player.team
+		var ta = a.player.team
+		var tb = b.player.team
+		if ta == tb:
+			return a.player.id < b.player.id
+		else:
+			return ta < tb
 	else:
 		return a.get_value() > b.get_value()
 	
