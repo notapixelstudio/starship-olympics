@@ -75,12 +75,12 @@ func update_stars():
 			stars[i].won = true
 			stars[i].perfect = player.session_score[i].perfect
 	
-func set_value(value):
+func set_value(value, author):
 	previous_value = current_value
 	current_value = clamp(value, 0, max_score)
 	
 	if current_value > previous_value:
-		streak_on()
+		streak_on(author)
 		
 	$Ship.position.x = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
 	
@@ -94,13 +94,15 @@ func change_position(new_value):
 			Tween.TRANS_CUBIC, Tween.EASE_IN, 0)
 		$Tween.start()
 	
-func streak_on():
-	if not streaking:
-		streaking = true
-		sprite.texture = sprite_on
-		add_streak_bar()
-	$StreakTimer.start(0.5)
-	update_current_streak_bar()
+func streak_on(author):
+	if player == author:
+		if not streaking:
+			streaking = true
+			sprite.texture = sprite_on
+			add_streak_bar()
+		$StreakTimer.start(0.5)
+		update_current_streak_bar()
+	update_megabar()
 	
 func streak_off():
 	streaking = false
@@ -133,6 +135,9 @@ func update_current_streak_bar():
 		Vector2(right, margin_top+bar_height/2),
 		Vector2(max(left,right-streak_arrow_width), margin_top+bar_height)
 	])
+	
+func update_megabar():
+	var right = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
 	$MegaBar.polygon = PoolVector2Array([
 		Vector2(margin_left, margin_top+bar_height),
 		Vector2(margin_left, margin_top),

@@ -209,7 +209,13 @@ func _ready():
 		
 		s.info_player = info_player
 		players[info_player.id] = info_player
-	
+		
+		# setup teams
+		if s.team and s.team != '':
+			info_player.team = s.team
+		elif not info_player.team:
+			info_player.team = info_player.id
+			
 		i += 1
 	
 	session.players = players

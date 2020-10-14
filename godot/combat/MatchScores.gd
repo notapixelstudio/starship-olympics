@@ -10,7 +10,9 @@ var lasting_time: float = 0.0
 var target_score: float = 100
 
 var scores = []
+var player_scores = []
 var players = {} # Dictionary of InfoPlayers
+var teams = {}
 var sport
 var draw: bool = true
 var game_over:bool = false
@@ -20,6 +22,7 @@ var no_players = false
 
 const DEADZONE = 0.1
 signal game_over
+signal updated
 
 func start():
 	set_process(true)
@@ -29,6 +32,7 @@ func stop():
 
 func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
 	scores = []
+	player_scores = []
 	target_score = game_mode.max_score
 	sport = game_mode
 	players = _players
@@ -43,8 +47,19 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 		player_score.team = player.team
 		player_score.id = player.id
 		player_score.session_score = player.session_score
-		scores.append(player_score)
+		player_scores.append(player_score)
 		players[player.id].stats = player_score
+		
+		var team_score
+		if not(player.team in teams):
+			team_score = TeamStats.new()
+			scores.append(team_score)
+			teams[player.team] = team_score
+		else:
+			team_score = teams[player.team]
+			
+		player_score.team_stats = team_score
+		team_score.player_stats.append(player_score)
 		
 	time_left = game_mode.max_timeout
 	if max_timeout:
@@ -73,10 +88,11 @@ func update(delta: float):
 		winners = []
 		var draw = true
 		var last_value = leader.score
-		for player in scores:
-			if player.score > 0 and player.score - DEADZONE <= last_value and last_value <= player.score + DEADZONE :
+		for team in scores:
+			if team.score > 0 and team.score - DEADZONE <= last_value and last_value <= team.score + DEADZONE:
 				draw = true
-				winners.append(player)
+				for p in team.player_stats:
+					winners.append(p)
 			else:
 				draw = false
 		if draw:
@@ -99,12 +115,15 @@ func do_game_over():
 func add_score(id_player: String, amount : float):
 	var player = get_player(id_player)
 	player.score = player.score + amount
+	teams[player.team].score += amount
 	
 	if cumulative_points >= 0:
 		cumulative_points += amount
+		
+	emit_signal('updated', player) # author
 
 func broadcast_score(id_player : String, amount : float):
-	for player in scores:
+	for player in player_scores:
 		if player.id != id_player:
 			add_score(player.id, amount)
 
@@ -123,7 +142,7 @@ func to_JSON():
 
 
 func get_player(id_player: String):
-	for player in scores:
+	for player in player_scores:
 		if id_player == player.id:
 			return player
 	return 

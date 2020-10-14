@@ -20,7 +20,7 @@ func initialize(winners: Array, match_scores):
 	for winner in winners:
 		winner.add_victory(winner.score >= match_scores.target_score) # sets the perfect flag
 		
-	var scores = match_scores.scores
+	var scores = match_scores.player_scores
 	var max_points = global.win
 	# sorted before and sorted after
 	var i = 0

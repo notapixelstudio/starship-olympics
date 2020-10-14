@@ -21,11 +21,12 @@ func _ready():
 
 func initialize(_session: SessionScores):
 	matchscore = _session.matches[0]
+	matchscore.connect('updated', self, '_on_matchscore_updated')
 	
 	TimeLeft.text = str(int(floor(matchscore.time_left)))
 	var i = 0
 
-	for player in matchscore.scores:
+	for player in matchscore.player_scores:
 		var bar = Bar.instance()
 		bar.position += Vector2(0, 25) * i
 		Bars.add_child(bar)
@@ -34,7 +35,7 @@ func initialize(_session: SessionScores):
 		i+=1
 		
 	# adjust background
-	var h = 15 + 25 * len(matchscore.scores)
+	var h = 15 + 25 * len(matchscore.player_scores)
 	$BarsBackground.rect_size.y = h
 	$BarsBottom.rect_position.y = h
 	set_process(true)
@@ -43,12 +44,13 @@ func _process(_delta):
 	# update time left
 	TimeLeft.text = str(int(ceil(matchscore.time_left)))
 
+func _on_matchscore_updated(author):
 	# update scores
 	var bars = Bars.get_children()
 	var last_value = bars[0].get_value()
 	for bar in bars:
 		var player : PlayerStats = (matchscore as MatchScores).get_player(bar.player.id)
-		bar.set_value(player.score)
+		bar.set_value(player.team_stats.score, author)
 		if last_value == bar.get_value():
 			draw = true
 		else:
