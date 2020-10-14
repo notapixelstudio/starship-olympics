@@ -15,7 +15,6 @@ func set_planet(planet: String, mode: GameMode):
 	$Content/ModePanel/ModeIcon.texture = (mode as GameMode).logo
 	$Content/ModePanel/ModeIcon.visible = true
 
-
 func _ready():
 	set_process(false)
 
@@ -28,16 +27,15 @@ func initialize(_session: SessionScores):
 
 	for player in matchscore.player_scores:
 		var bar = Bar.instance()
-		bar.position += Vector2(0, 25) * i
 		Bars.add_child(bar)
 		bar.initialize(player, matchscore)
 		bar.player = player
 		i+=1
 		
-	sort_bars(true)
+	var y = sort_bars(true)
 	
 	# adjust background
-	var h = 15 + 25 * len(matchscore.player_scores)
+	var h = 15 + y
 	$BarsBackground.rect_size.y = h
 	$BarsBottom.rect_position.y = h
 	set_process(true)
@@ -76,15 +74,19 @@ func _on_matchscore_updated(author):
 func sort_bars(instantaneous):
 	var bars = Bars.get_children()
 	bars.sort_custom(self, "compare_by_score_team_and_id")
+	var y = 0
 	var i = 0
 	for bar in bars:
-		var pos = Vector2(0, 25)*i
+		var pos = Vector2(0, y)
+		y += 26 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 20
 		if instantaneous:
 			bar.position = pos
 		else:
 			bar.new_position = pos
 		i += 1
 		
+	return y
+	
 func compare_by_score_team_and_id(a:Bar, b:Bar):
 	var va = a.get_value()
 	var vb = b.get_value()
