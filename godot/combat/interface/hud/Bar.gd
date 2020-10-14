@@ -22,6 +22,7 @@ var player
 var new_position setget change_position
 var current_value = 0
 var previous_value = 0
+var author
 
 var streaking = false
 var current_streak_bar
@@ -75,7 +76,11 @@ func update_stars():
 			stars[i].won = true
 			stars[i].perfect = player.session_score[i].perfect
 	
-func set_value(value):
+func set_value(value, new_author):
+	if value == current_value:
+		return
+		
+	author = new_author
 	previous_value = current_value
 	current_value = clamp(value, 0, max_score)
 	
@@ -101,6 +106,7 @@ func streak_on():
 		add_streak_bar()
 	$StreakTimer.start(0.5)
 	update_current_streak_bar()
+	update_megabar()
 	
 func streak_off():
 	streaking = false
@@ -108,7 +114,7 @@ func streak_off():
 	
 	# stop glowing for older bars
 	if current_streak_bar:
-		current_streak_bar.color = player.species.color
+		current_streak_bar.color = author.species.color
 
 func _on_StreakTimer_timeout():
 	streak_off()
@@ -118,7 +124,7 @@ func add_streak_bar():
 	
 	# glow
 	current_streak_bar.material = CanvasItemMaterial.new()
-	current_streak_bar.color = GlowColor.new(player.species.color, 1.15).color
+	current_streak_bar.color = GlowColor.new(author.species.color, 1.15).color
 	
 	streak_start = previous_value
 	$Streaks.add_child(current_streak_bar)
@@ -133,6 +139,9 @@ func update_current_streak_bar():
 		Vector2(right, margin_top+bar_height/2),
 		Vector2(max(left,right-streak_arrow_width), margin_top+bar_height)
 	])
+	
+func update_megabar():
+	var right = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
 	$MegaBar.polygon = PoolVector2Array([
 		Vector2(margin_left, margin_top+bar_height),
 		Vector2(margin_left, margin_top),

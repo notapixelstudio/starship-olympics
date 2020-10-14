@@ -16,6 +16,8 @@ var collectables : int  =0
 var score = 0.0
 var session_score = []
 
+var team_stats : TeamStats = null
+
 func add_victory(perfect = false):
 	session_score.append({'perfect': perfect})
 

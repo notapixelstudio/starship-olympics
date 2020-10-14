@@ -9,7 +9,7 @@ func _on_sth_killed(sth, killer : Ship):
 		return
 	
 	if sth is Ship:
-		if not killer or killer == sth:
+		if not killer or killer is Ship and killer.info_player.team == sth.info_player.team:
 			emit_signal("broadcast_score", sth.get_id(), score_multiplier)
 			
 		elif killer and killer.species != sth.species:

@@ -4,6 +4,7 @@ class_name PlayerSpawner
 
 export (String) var controls = "kb1"
 export (Resource) var species
+export (String) var team = ''
 # temporary for cpu
 export (bool) var cpu = false
 
