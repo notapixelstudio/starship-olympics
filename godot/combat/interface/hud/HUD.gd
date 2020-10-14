@@ -35,7 +35,7 @@ func initialize(_session: SessionScores):
 	var y = sort_bars(true)
 	
 	# adjust background
-	var h = 15 + y
+	var h = 10 + y
 	$BarsBackground.rect_size.y = h
 	$BarsBottom.rect_position.y = h
 	set_process(true)
@@ -78,7 +78,7 @@ func sort_bars(instantaneous):
 	var i = 0
 	for bar in bars:
 		var pos = Vector2(0, y)
-		y += 26 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 20
+		y += 32 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 21
 		if instantaneous:
 			bar.position = pos
 		else:
