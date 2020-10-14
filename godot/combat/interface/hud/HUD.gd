@@ -34,6 +34,8 @@ func initialize(_session: SessionScores):
 		bar.player = player
 		i+=1
 		
+	sort_bars(true)
+	
 	# adjust background
 	var h = 15 + 25 * len(matchscore.player_scores)
 	$BarsBackground.rect_size.y = h
@@ -56,12 +58,8 @@ func _on_matchscore_updated(author):
 		else:
 			draw = false
 		
-	bars.sort_custom(self, "compare_by_score")
-	var i = 0
-	for bar in bars:
-		bar.new_position = Vector2(0, 25)*i
-		i += 1
-		
+	sort_bars(false)
+	
 	# leading player
 	if not draw:
 		var leading = bars[0]
@@ -75,5 +73,23 @@ func _on_matchscore_updated(author):
 	for bar in bars:
 		bar.update_stars()
 	
-func compare_by_score(a:Bar, b:Bar):
-	return a.get_value() > b.get_value()
+func sort_bars(instantaneous):
+	var bars = Bars.get_children()
+	bars.sort_custom(self, "compare_by_score_and_team")
+	var i = 0
+	for bar in bars:
+		var pos = Vector2(0, 25)*i
+		if instantaneous:
+			bar.position = pos
+		else:
+			bar.new_position = pos
+		i += 1
+		
+func compare_by_score_and_team(a:Bar, b:Bar):
+	var va = a.get_value()
+	var vb = b.get_value()
+	if va == vb:
+		return a.player.team > b.player.team
+	else:
+		return a.get_value() > b.get_value()
+	
