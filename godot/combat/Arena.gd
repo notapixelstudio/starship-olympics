@@ -151,18 +151,20 @@ func _ready():
 	conquest_manager.connect('conquered', conquest_mode, "_on_sth_conquered")
 	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
 	
+	combat_manager.connect('show_msg', self, "show_msg")
+	
 	crown_mode.connect('score', scores, "add_score")
 	kill_mode.connect('score', scores, "add_score")
 	kill_mode.connect('broadcast_score', scores, "broadcast_score")
-	kill_mode.connect('show_score', self, "spawn_points_scored")
+	kill_mode.connect('show_msg', self, "show_msg")
 	race_mode.connect('score', scores, "add_score")
-	race_mode.connect('show_score', self, "spawn_points_scored")
+	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
-	collect_mode.connect('show_score', self, "spawn_points_scored")
+	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
 	goal_mode.connect('score', scores, "add_score")
-	goal_mode.connect('show_score', self, "spawn_points_scored")
+	goal_mode.connect('show_msg', self, "show_msg")
 	survival_mode.connect('score', scores, "add_score")
 	
 	for portal in get_tree().get_nodes_in_group("goal"):
@@ -286,6 +288,7 @@ func _ready():
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
 		sth.connect('killed', kill_mode, '_on_sth_killed')
+		sth.connect('killed', combat_manager, '_on_sth_killed')
 		
 	# manage level flooding
 	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
@@ -595,9 +598,9 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
+	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
-	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
 	
 	
 	# attach followcamera
@@ -608,7 +611,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", follow, "ship_just_died")
 	
 	
-	crown_mode.connect('show_score', ship, "update_score")
+	crown_mode.connect('show_msg', ship, "update_score")
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -631,15 +634,15 @@ func spawn_bomb(type, pos, impulse, ship, size=1):
 func bomb_detonated(bomb):
 	grid.add_well(bomb)
 	
-const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
+const message_scene = preload('res://special_scenes/on_canvas_ui/FloatingMessage.tscn')
 
-func spawn_points_scored(species: Species, score, pos):
-	var points_scored = points_scored_scene.instance()
-	points_scored.set_points(score)
-	points_scored.scale = camera.zoom
-	points_scored.position = pos
-	points_scored.modulate = species.color
-	$Battlefield.add_child(points_scored)
+func show_msg(species: Species, msg, pos):
+	var msg_node = message_scene.instance()
+	msg_node.set_msg(msg)
+	msg_node.scale = camera.zoom
+	msg_node.position = pos
+	msg_node.modulate = species.color
+	$Battlefield.add_child(msg_node)
 
 func _on_sth_collected(collector, collectee):
 	if collectee is Crown and collectee.type == Crown.types.SOCCERBALL:

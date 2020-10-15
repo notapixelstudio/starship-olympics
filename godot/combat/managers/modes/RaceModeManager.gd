@@ -3,7 +3,8 @@ extends ModeManager
 const LAP_SCORE = 10
 
 signal score
-signal show_score
+signal show_msg
+
 func _on_lap_done(ship, portal):
 	if not enabled:
 		return
@@ -11,5 +12,5 @@ func _on_lap_done(ship, portal):
 	if portal.inverted:
 		score = -score
 	emit_signal('score', ship.get_id(), score)
-	emit_signal('show_score', ship.species, score, ship.position)
+	emit_signal('show_msg', ship.species, score, ship.position)
 	
