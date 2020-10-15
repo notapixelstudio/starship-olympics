@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=1]
+[ext_resource path="res://actors/weapons/RadioWave.gd" type="Script" id=2]
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=3]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Default"
+length = 15.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GCircle:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 100, 5000 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GCircle:precision")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 200.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.733333, 1, 0, 1 ), Color( 0.0431373, 0.972549, 0.0784314, 1 ) ]
+}
+
+[sub_resource type="ConcavePolygonShape2D" id=2]
+
+[node name="RadioWave" type="Line2D"]
+self_modulate = Color( 1.2, 1.2, 1.2, 1 )
+width = 40.0
+default_color = Color( 0.733333, 1, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 2 )
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="DashThroughDeadly" type="Node" parent="Entity"]
+script = ExtResource( 3 )
+
+[node name="Trigger" type="Node" parent="Entity"]
+script = ExtResource( 3 )
+
+[node name="GCircle" type="Node" parent="."]
+script = ExtResource( 1 )
+precision = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Default"
+playback_process_mode = 0
+anims/Default = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="changed" from="GCircle" to="." method="_on_GCircle_changed"]

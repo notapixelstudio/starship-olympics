@@ -29,6 +29,23 @@ func to_Shape2D():
 	shape.set_point_cloud(to_PoolVector2Array())
 	return shape
 	
+func to_concave_Shape2D():
+	var shape = ConcavePolygonShape2D.new()
+	
+	# duplicate points to make segments
+	var points = []
+	var array = to_PoolVector2Array()
+	for i in len(array)-1:
+		points.append(array[i])
+		points.append(array[i+1])
+	
+	# close the shape
+	points.append(array[-1])
+	points.append(array[0])
+	
+	shape.set_segments(PoolVector2Array(points))
+	return shape
+	
 func get_extents() -> Vector2:
 	return Vector2(2*radius, 2*radius)
 	
