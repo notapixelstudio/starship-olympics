@@ -7,7 +7,7 @@ var to_next_wave = 2
 var current_wave = 0
 
 signal score
-signal show_score
+signal show_msg
 signal spawn_next
 var spawners: Array
 var spawners_per_wave : Dictionary
@@ -49,7 +49,7 @@ func _on_sth_collected(collector, collectee):
 	if collectee is Diamond or collectee is Star:
 		var score = score_multiplier*collectee.points
 		emit_signal('score', collector.get_id(), score)
-		emit_signal('show_score', collector.species, score, collectee.global_position)
+		emit_signal('show_msg', collector.species, score, collectee.global_position)
 		play_sound()
 		
 func _on_coins_dropped(dropper, amount):
