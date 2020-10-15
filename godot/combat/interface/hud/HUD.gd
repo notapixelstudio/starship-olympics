@@ -78,7 +78,7 @@ func sort_bars(instantaneous):
 	var i = 0
 	for bar in bars:
 		var pos = Vector2(0, y)
-		y += 32 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 21
+		y += 32 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 20
 		if instantaneous:
 			bar.position = pos
 		else:
