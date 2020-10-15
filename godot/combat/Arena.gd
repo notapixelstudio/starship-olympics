@@ -724,3 +724,10 @@ func _on_Rock_request_spawn(child):
 		child.connect('request_spawn', self, '_on_Rock_request_spawn')
 	$Battlefield.add_child(child)
 	
+
+func _on_EndlessArea_body_exited(body):
+	if body is Ship:
+		body.position = Vector2(0,0)
+	else:
+		body.queue_free()
+		
