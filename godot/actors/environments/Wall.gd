@@ -169,7 +169,7 @@ func refresh():
 	elif type == TYPE.ghost:
 		$line.modulate = Color(0.2,0.7,1,0.8)
 	elif type == TYPE.decoration:
-		$line.modulate = Color(0.8,0.8,1.09,1)
+		$line.modulate = Color(0.8,0.8,1.1,1)
 	elif type == TYPE.glass:
 		color = Color(0.4,0.7,1.2,1)
 		$Polygon2D.modulate = color
