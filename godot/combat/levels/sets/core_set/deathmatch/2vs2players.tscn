@@ -231,7 +231,9 @@ script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="4" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
 position = Vector2( -800, -1000 )
 rotation = 1.5708
 
@@ -240,7 +242,9 @@ script = ExtResource( 1 )
 radius = 200
 sides = 4.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="5" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
 position = Vector2( 800, 1000 )
 rotation = 1.5708
 
