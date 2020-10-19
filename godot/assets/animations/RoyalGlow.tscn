@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=1]
-[ext_resource path="res://assets/decorations/crown.png" type="Texture" id=2]
-[ext_resource path="res://assets/animations/RoyalGlow.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Blink"
@@ -34,7 +32,6 @@ tracks/1/keys = {
 }
 
 [node name="RoyalGlow" type="Node2D"]
-script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.970044, 0.517974, 0.234205 )
@@ -45,11 +42,3 @@ texture = ExtResource( 1 )
 autoplay = "Blink"
 playback_speed = 2.0
 anims/Blink = SubResource( 1 )
-
-[node name="Wrapper" type="Node2D" parent="."]
-
-[node name="MegaCrown" type="Sprite" parent="Wrapper"]
-modulate = Color( 1, 0.701961, 0, 0.196078 )
-position = Vector2( 1, -89 )
-scale = Vector2( 6, 6 )
-texture = ExtResource( 2 )

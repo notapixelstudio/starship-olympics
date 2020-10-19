@@ -157,10 +157,6 @@ bevel_se = 785
 playback_speed = 0.5
 anims/Rotate = SubResource( 2 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="4"]
-type = 1
-flag_offset = 0
-
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -800, 0 )
 
@@ -178,13 +174,8 @@ position = Vector2( 0, -800 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 13 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 150
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
 "additional_lasers",
@@ -199,13 +190,8 @@ rotation = 3.14159
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 13 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 150
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
