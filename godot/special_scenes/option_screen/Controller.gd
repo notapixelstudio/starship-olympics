@@ -8,10 +8,23 @@ func handle_button(event, event_name: String):
 	for joy_event in InputMap.get_action_list(event_name):
 		if joy_event is InputEventJoypadButton:
 			get_node(str(joy_event.button_index)).visible = event.is_action_pressed(event_name)
-	
+
 func _input(event):
 	#if event is InputEventJoypadButton:
 	#	get_node(str(event.button_index)).visible = event.pressed
+	if event is InputEventJoypadMotion:
+		if event.axis==0:
+			$AnalogLeft/Sprite.position.x = event.axis_value*10
+		if event.axis==1:
+			$AnalogLeft/Sprite.position.y = event.axis_value*10
+		if event.axis==2:
+			$AnalogRight/Sprite.position.x = event.axis_value*10
+		if event.axis==3:
+			$AnalogRight/Sprite.position.y = event.axis_value*10
+		#$AnalogLeft.modulate.a = abs($AnalogLeft/Sprite.position.normalized())
+		#$AnalogRight.modulate.a = abs($AnalogRight/Sprite.position.normalized())
+		print(event.get_action_strength(controls+"_left"))
+		
 	if event.is_action_pressed(controls+"_fire"):
 		handle_button(event, controls+"_fire")
 	elif event.is_action_released(controls+"_fire"):
@@ -39,4 +52,4 @@ func _input(event):
 		
 	elif event.is_action_released(controls+"_down"):
 		handle_button(event, controls+"_down")
-			
+	
