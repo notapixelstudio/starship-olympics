@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -8,7 +8,9 @@
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=6]
 [ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/environments/ChemicalBond.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=11]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -37,52 +39,164 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 2000
-sides = 6.0
-alternating_angle = 0.0
+radius = 2600
 rotation_degrees = 30.0
 
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
+collision_layer = 0
+type = 4
 
-[node name="Bubble" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Wall" index="5"]
+script = ExtResource( 11 )
+radius = 800
+precision = 50.0
 
-[node name="Bubble2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
-position = Vector2( 100, -50 )
+[node name="PinJoint2D" type="PinJoint2D" parent="Battlefield/Middleground" index="1"]
+node_a = NodePath("../../Background/OutsideWall")
+node_b = NodePath("../Bubble")
 
-[node name="Bubble3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
-position = Vector2( 100, 50 )
+[node name="Bubble" parent="Battlefield/Middleground" index="2" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
+angular_velocity = 120.0
 
-[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Battlefield/Middleground" index="3"]
-node_a = NodePath("../Bubble")
-node_b = NodePath("../Bubble2")
-disable_collision = false
-length = 20.0
-rest_length = 20.0
-stiffness = 40.0
-damping = 0.5
+[node name="ChemicalBond" parent="Battlefield/Middleground/Bubble" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble2")
 
-[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="Battlefield/Middleground" index="4"]
-node_a = NodePath("../Bubble")
-node_b = NodePath("../Bubble3")
-disable_collision = false
-length = 20.0
-rest_length = 20.0
-stiffness = 40.0
-damping = 0.5
+[node name="Bubble13" parent="Battlefield/Middleground" index="3" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
+position = Vector2( 430, 0 )
+angular_velocity = 40.0
 
-[node name="DampedSpringJoint2D3" type="DampedSpringJoint2D" parent="Battlefield/Middleground" index="5"]
-node_a = NodePath("../Bubble2")
-node_b = NodePath("../Bubble3")
-disable_collision = false
-length = 20.0
-rest_length = 20.0
-stiffness = 40.0
-damping = 0.5
+[node name="ChemicalBond" parent="Battlefield/Middleground/Bubble13" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble3")
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble13" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble9")
+
+[node name="Bubble10" parent="Battlefield/Middleground" index="4" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
+position = Vector2( -435, 0 )
+angular_velocity = 40.0
+
+[node name="ChemicalBond" parent="Battlefield/Middleground/Bubble10" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble5")
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble10" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble7")
+
+[node name="Bubble2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+position = Vector2( 0, -250 )
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble2" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble3")
+
+[node name="Bubble8" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
+position = Vector2( 0, 250 )
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble8" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble")
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble8" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble7")
+
+[node name="Bubble3" parent="Battlefield/Middleground" index="7" instance=ExtResource( 7 )]
+position = Vector2( 217, -123 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble3" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble")
+
+[node name="Bubble9" parent="Battlefield/Middleground" index="8" instance=ExtResource( 7 )]
+position = Vector2( 217, 127 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble9" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble9" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble3")
+
+[node name="ChemicalBond5" parent="Battlefield/Middleground/Bubble9" index="4" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble8")
+
+[node name="Bubble12" parent="Battlefield/Middleground" index="9" instance=ExtResource( 7 )]
+position = Vector2( 217, 377 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble12" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble9")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble12" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble8")
+
+[node name="Bubble5" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
+position = Vector2( -217, -123 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble5" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble5" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble2")
+
+[node name="Bubble7" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
+position = Vector2( -217, 127 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble7" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble7" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble5")
+
+[node name="Bubble11" parent="Battlefield/Middleground" index="12" instance=ExtResource( 7 )]
+position = Vector2( -217, 377 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble11" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble7")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble11" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble8")
+
+[node name="Bubble6" parent="Battlefield/Middleground" index="13" instance=ExtResource( 7 )]
+position = Vector2( -217, -373 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble6" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble5")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble6" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble2")
+
+[node name="Bubble4" parent="Battlefield/Middleground" index="14" instance=ExtResource( 7 )]
+position = Vector2( 217, -373 )
+
+[node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble4" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble3")
+
+[node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble4" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble2")
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1323.88, -375.789 )
