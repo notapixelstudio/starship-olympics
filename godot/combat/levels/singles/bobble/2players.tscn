@@ -6,7 +6,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=6]
-[ext_resource path="res://actors/environments/Nuke.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 
@@ -49,12 +49,44 @@ rotation_degrees = 30.0
 type = 1
 flag_offset = 0
 
-[node name="Nuke" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+[node name="Bubble" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+
+[node name="Bubble2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
+position = Vector2( 100, -50 )
+
+[node name="Bubble3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
+position = Vector2( 100, 50 )
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Battlefield/Middleground" index="3"]
+node_a = NodePath("../Bubble")
+node_b = NodePath("../Bubble2")
+disable_collision = false
+length = 20.0
+rest_length = 20.0
+stiffness = 40.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="Battlefield/Middleground" index="4"]
+node_a = NodePath("../Bubble")
+node_b = NodePath("../Bubble3")
+disable_collision = false
+length = 20.0
+rest_length = 20.0
+stiffness = 40.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D3" type="DampedSpringJoint2D" parent="Battlefield/Middleground" index="5"]
+node_a = NodePath("../Bubble2")
+node_b = NodePath("../Bubble3")
+disable_collision = false
+length = 20.0
+rest_length = 20.0
+stiffness = 40.0
+damping = 0.5
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1323.88, -375.789 )
 rotation = -1.5708
-controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="6"]
