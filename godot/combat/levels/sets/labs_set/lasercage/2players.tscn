@@ -61,12 +61,8 @@ modulate = Color( 1, 0, 0.654902, 0.313726 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 2 )
@@ -85,15 +81,6 @@ bevel_sw = 200
 bevel_se = 200
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )
@@ -110,15 +97,6 @@ rotation = 3.14159
 
 [node name="Wall11" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
 position = Vector2( -900, -800 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
 script = ExtResource( 1 )
@@ -140,15 +118,6 @@ anims/Default = SubResource( 1 )
 [node name="Wall14" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( 900, 800 )
 rotation = 3.14159
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall14" index="4"]
 script = ExtResource( 1 )
@@ -169,15 +138,6 @@ anims/Default = SubResource( 2 )
 
 [node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( 1900, -800 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
 script = ExtResource( 1 )
@@ -185,15 +145,6 @@ sides = 4.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
 position = Vector2( -1900, 800 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
 script = ExtResource( 1 )
@@ -201,15 +152,6 @@ sides = 4.0
 
 [node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( -1900, -800 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
 script = ExtResource( 1 )
@@ -217,15 +159,6 @@ sides = 4.0
 
 [node name="Wall13" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
 position = Vector2( 1900, 800 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
 script = ExtResource( 1 )
