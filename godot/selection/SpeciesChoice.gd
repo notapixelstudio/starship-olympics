@@ -43,7 +43,7 @@ func initialize(player_id:String):
 	
 func change_species(new_species:Species):
 	species = new_species
-	ship.texture = species.ship_off
+	ship.texture = species.ship
 	species_name.text = species.species_name.to_upper()
 	#forcing multiple line
 	tagline1.text = tr(species.tagline1).replace("<br>", "\n")

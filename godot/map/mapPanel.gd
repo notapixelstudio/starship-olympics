@@ -37,7 +37,7 @@ func set_species(species_):
 		yield(self, "ready")
 	if species_:
 		species = species_
-		sprite.texture = species.ship_off
+		sprite.texture = species.ship
 		desc.text = rest_text
 		background.modulate = species.color
 	
