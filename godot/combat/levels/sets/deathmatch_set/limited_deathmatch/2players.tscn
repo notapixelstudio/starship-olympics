@@ -39,7 +39,6 @@ centered = false
 modulate = Color( 0, 1, 0.74902, 0.27451 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
@@ -62,7 +61,6 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-modulate = Color( 0.2, 0.7, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
@@ -117,52 +115,30 @@ position = Vector2( 0, -800 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, 800 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( -600, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 600, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -1000, -400 )
