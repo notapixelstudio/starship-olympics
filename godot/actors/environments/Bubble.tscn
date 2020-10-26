@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/environments/bubble.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/Bubble.gd" type="Script" id=2]
@@ -13,11 +13,14 @@ size = 48
 font_data = ExtResource( 3 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 100.0
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 200.0
 
 [node name="Bubble" type="RigidBody2D"]
 collision_layer = 2048
-collision_mask = 10261
+collision_mask = 10389
 physics_material_override = SubResource( 1 )
 can_sleep = false
 linear_damp = 0.0
@@ -43,3 +46,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="BindingArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BindingArea"]
+shape = SubResource( 4 )

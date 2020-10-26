@@ -1,7 +1,14 @@
 tool
 extends RigidBody2D
 
+class_name Bubble
+
+func get_class():
+	return 'Bubble'
+
 onready var radius = $CollisionShape2D.shape.radius
+
+onready var ChemicalBondScene = preload('res://actors/environments/ChemicalBond.tscn')
 
 export var species : Resource setget set_species
 
@@ -16,3 +23,13 @@ func _process(delta):
 func get_color():
 	return $Sprite.modulate
 	
+func attempt_binding():
+	yield(get_tree().create_timer(0.1), 'timeout')
+	for bubble in $BindingArea.get_overlapping_bodies():
+		if bubble == self or bubble.get_class() != 'Bubble':
+			continue
+			
+		var bond = ChemicalBondScene.instance()
+		bond.node_a = get_path()
+		bond.node_b = bubble.get_path()
+		add_child(bond)

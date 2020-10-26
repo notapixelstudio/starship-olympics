@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/sprites/environments/bond.png" type="Texture" id=2]
 
 [node name="ChemicalBond" type="PinJoint2D"]
+disable_collision = false
 softness = 16.0
 script = ExtResource( 1 )
 
