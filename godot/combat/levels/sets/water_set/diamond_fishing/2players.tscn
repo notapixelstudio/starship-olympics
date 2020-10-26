@@ -51,12 +51,8 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
@@ -70,15 +66,8 @@ anims/Rotate = SubResource( 1 )
 
 [node name="Orbit" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
-hollow = false
-offset = 0
-elongation = 0
 type = 2
-hide_line = false
 hide_grid = true
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit" index="5"]
 script = ExtResource( 7 )
@@ -87,15 +76,8 @@ precision = 50.0
 
 [node name="Orbit2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 modulate = Color( 0.2, 0.701961, 1, 0.2 )
-hollow = false
-offset = 0
-elongation = 0
 type = 2
-hide_line = false
 hide_grid = true
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit2" index="5"]
 script = ExtResource( 7 )
@@ -107,19 +89,10 @@ precision = 50.0
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Water" index="6"]
 script = ExtResource( 7 )
 radius = 1000
-precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 z_index = 51
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Planet" index="5"]
 script = ExtResource( 7 )
@@ -138,19 +111,10 @@ __meta__ = {
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Water" index="6"]
 script = ExtResource( 7 )
 radius = 500
-precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground/Moon" index="1" instance=ExtResource( 4 )]
 z_index = 51
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Planet" index="5"]
 script = ExtResource( 7 )
@@ -171,19 +135,10 @@ speed = 0.07
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Water" index="6"]
 script = ExtResource( 7 )
 radius = 350
-precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground/Moon2" index="1" instance=ExtResource( 4 )]
 z_index = 51
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Planet" index="5"]
 script = ExtResource( 7 )

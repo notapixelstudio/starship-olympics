@@ -25,6 +25,6 @@ func _process(delta):
 func init_ship():
 	var species = all_species[randi() % len(all_species)]
 	ship.species = species
-	ship.texture = species.ship_off
+	ship.texture = species.ship
 	speed = all_speed[randi() % len(all_speed)]
 	trail.initialize(ship)

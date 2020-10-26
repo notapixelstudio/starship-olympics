@@ -215,7 +215,6 @@ anims/Default = SubResource( 2 )
 
 [node name="Wall5" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
 position = Vector2( -1550, -1950 )
-rotation = 1.5708
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
 script = ExtResource( 1 )
@@ -224,25 +223,26 @@ sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
 position = Vector2( 1550, 1950 )
-rotation = 1.5708
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="4" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
 position = Vector2( -800, -1000 )
-rotation = 1.5708
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 1 )
 radius = 200
 sides = 4.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="5" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
 position = Vector2( 800, 1000 )
-rotation = 1.5708
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 1 )
