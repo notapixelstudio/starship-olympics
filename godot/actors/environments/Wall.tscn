@@ -66,11 +66,13 @@ polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
 z_as_relative = false
-points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
+points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -99.9999, -100, 0, -100 )
+width = 48.0
 default_color = Color( 1, 1, 1, 1 )
+texture_mode = 2
 joint_mode = 2
 sharp_limit = 0.0
-round_precision = 10
+round_precision = 20
 
 [node name="lineBelow" type="Line2D" parent="."]
 self_modulate = Color( 0.596078, 0.596078, 0.596078, 1 )
@@ -78,7 +80,9 @@ position = Vector2( -1.39876e-06, 32 )
 z_index = -10
 z_as_relative = false
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
+width = 48.0
 default_color = Color( 1, 1, 1, 1 )
+texture_mode = 1
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 10
