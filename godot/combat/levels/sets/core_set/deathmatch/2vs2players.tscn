@@ -69,12 +69,12 @@ modulate = Color( 0, 0.25098, 0.364706, 1 )
 
 [node name="Grid2" parent="Battlefield/Background" index="1" instance=ExtResource( 17 )]
 modulate = Color( 0, 0.25098, 0.364706, 1 )
-position = Vector2( 0, -1000 )
+position = Vector2( 0, -968 )
 polygon = PoolVector2Array( 1200, -900, 1500, -600, 1500, 600, 1200, 900, -1200, 900, -1500, 600, -1500, -600, -1200, -900 )
 
 [node name="Grid3" parent="Battlefield/Background" index="2" instance=ExtResource( 17 )]
 modulate = Color( 0, 0.25098, 0.364706, 1 )
-position = Vector2( 0, 1000 )
+position = Vector2( 0, 1032 )
 polygon = PoolVector2Array( 1200, -900, 1500, -600, 1500, 600, 1200, 900, -1200, 900, -1500, 600, -1500, -600, -1200, -900 )
 
 [node name="Glass" type="Polygon2D" parent="Battlefield/Background" index="4"]
@@ -90,6 +90,7 @@ offset = 200
 elongation = 100
 type = 2
 hide_line = true
+hide_line_below = true
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
