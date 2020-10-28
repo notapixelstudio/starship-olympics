@@ -264,14 +264,14 @@ script = ExtResource( 22 )
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="Grid" parent="Battlefield/Background" instance=ExtResource( 23 )]
-position = Vector2( 0, 32 )
-z_index = -20
 z_as_relative = false
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
 position = Vector2( 0, 10800 )
 z_index = 50
 z_as_relative = false
+type = 1
+flag_offset = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
 "animation_in_battle",

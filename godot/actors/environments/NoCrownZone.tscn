@@ -78,14 +78,20 @@ script = ExtResource( 1 )
 [node name="Field" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.501961, 0, 0.235294, 1 )
 type = 4
+flag_offset = 0
 
 [node name="GRegularPolygon" type="Node" parent="Field"]
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 400
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="FeedbackLine" type="Line2D" parent="."]
 visible = false

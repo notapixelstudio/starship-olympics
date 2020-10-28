@@ -207,7 +207,7 @@ func _process(delta):
 	update_iso()
 	
 func update_iso():
-	$lineBelow.position = Vector2(0,32).rotated(-global_rotation)
+	$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
 	
 func animate(animation_name: String):
 	if $AnimationPlayer:
