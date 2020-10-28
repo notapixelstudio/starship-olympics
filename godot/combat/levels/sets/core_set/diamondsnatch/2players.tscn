@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=13]
+[ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=13]
+[ext_resource path="res://combat/styles/purple.tres" type="Resource" id=14]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=16]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=17]
@@ -22,8 +23,10 @@
 shader = ExtResource( 7 )
 shader_param/cell_size = 200.0
 shader_param/stroke = 10.0
-shader_param/time = null
+shader_param/time = 21572.9
 shader_param/triangular = false
+shader_param/fg_color = Color( 1, 1, 1, 1 )
+shader_param/bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Default"
@@ -64,6 +67,7 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 11 )
+style = ExtResource( 14 )
 
 [node name="CollectModeManager" parent="Managers" index="11"]
 enabled = true
@@ -77,7 +81,6 @@ texture = ExtResource( 13 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.225, 0, 0.5, 1 )
 material = SubResource( 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 8 )]
@@ -542,40 +545,65 @@ position = Vector2( -900, 850 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
 script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
 position = Vector2( -1700, 0 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
 script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
 position = Vector2( 1700, 0 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
 script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall6" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
 position = Vector2( 900, -850 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall6" index="4"]
 script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall" parent="Battlefield/Middleground" index="46" instance=ExtResource( 8 )]
 position = Vector2( -900, -850 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
 "additional_lasers",
@@ -594,8 +622,13 @@ position = Vector2( 900, 850 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 17 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall4" index="6" groups=[
 "additional_lasers",

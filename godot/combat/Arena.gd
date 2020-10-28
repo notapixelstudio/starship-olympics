@@ -1,3 +1,4 @@
+tool
 """
 Arena Node that will handle all the combat logic
 """
@@ -14,6 +15,7 @@ export (bool) var demo = false
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
+export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
@@ -77,6 +79,20 @@ func compute_arena_size():
 func set_time_scale(value):
 	time_scale = value
 	update_time_scale()
+	
+func set_style(v : ArenaStyle):
+	style = v
+	
+	if not is_inside_tree():
+		yield(self, 'ready')
+	
+	for wall in get_tree().get_nodes_in_group('wall'):
+		wall.solid_line_color = style.wall_color
+	for grid in get_tree().get_nodes_in_group('grid'):
+		grid.fg_color = style.battlefield_fg_color
+		grid.bg_color = style.battlefield_bg_color
+		grid.self_modulate.a = style.battlefield_opacity
+		grid.texture = style.battlefield_texture
 	
 func get_time_scale():
 	return time_scale
@@ -370,6 +386,9 @@ func update_grid():
 	grid.polygon = $Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array()
 	
 func _process(delta):
+	if not scores:
+		return
+		
 	scores.update(delta)
 	update_grid()
 	

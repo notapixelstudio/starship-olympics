@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/DiamondSnake.tres" type="Resource" id=2]
@@ -8,12 +8,14 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=7]
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=8]
+[ext_resource path="res://combat/styles/purple.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=14]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=15]
+[ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -54,14 +56,23 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
+style = ExtResource( 9 )
+
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
+
+[node name="CollectModeManager" parent="Managers" index="11"]
+enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 1, 0.196078 )
-position = Vector2( 0, -800 )
+self_modulate = Color( 1, 1, 1, 0.78 )
+texture = ExtResource( 16 )
+fg_color = Color( 0.2, 0.0941176, 0.329412, 1 )
+bg_color = Color( 0.168627, 0.0901961, 0.301961, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 0, -800 )
@@ -69,14 +80,19 @@ hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 points = PoolVector2Array( -1600, 0, -800, -800, 800, -800, 1600, 0, 0, 2400 )
 
 [node name="Wall3" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( -1200, -1200 )
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="5"]
 script = ExtResource( 7 )
@@ -104,6 +120,7 @@ anims/Default = SubResource( 1 )
 [node name="Wall5" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, -1850 )
 rotation = 0.785398
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall5" index="5"]
 script = ExtResource( 7 )
@@ -119,6 +136,7 @@ height = 150
 [node name="Wall6" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
 position = Vector2( 1750, -800 )
 rotation = 0.785398
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall6" index="5"]
 script = ExtResource( 7 )
@@ -134,6 +152,7 @@ height = 100
 [node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 position = Vector2( 0.00012207, 1750 )
 rotation = 0.785398
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall7" index="5"]
 script = ExtResource( 7 )
@@ -149,6 +168,7 @@ height = 100
 [node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
 position = Vector2( -1750, -800 )
 rotation = 0.785398
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall8" index="5"]
 script = ExtResource( 7 )
@@ -163,6 +183,7 @@ height = 100
 
 [node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
 position = Vector2( 1200, -1200 )
+solid_line_color = Color( 1.18, 0.8, 1.18, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall4" index="5"]
 script = ExtResource( 7 )
@@ -582,7 +603,11 @@ controls = "joy2"
 species = ExtResource( 15 )
 cpu = true
 
+[node name="DemoLabel" parent="CanvasLayer" index="3"]
+visible = false
+
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 2.5, 2.5 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

@@ -17,6 +17,8 @@ export var hide_grid : bool = false setget set_hide_grid
 
 export var line_width = 48 setget set_line_width
 
+export var solid_line_color = Color8(208, 245, 295, 255) setget set_solid_line_color
+
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
 
@@ -56,6 +58,10 @@ func set_hide_grid(value):
 	
 func set_line_width(value):
 	line_width = value
+	refresh()
+	
+func set_solid_line_color(v):
+	solid_line_color = v
 	refresh()
 	
 func set_grid_color(value):
@@ -169,11 +175,9 @@ func refresh():
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		color = Color(0.8,0.8,1.2,1)
-		color = Color8(208, 245, 295, 255)
-		$Polygon2D.modulate = color
-		$line.modulate = color
-		$lineBelow.modulate = color
+		$Polygon2D.modulate = solid_line_color
+		$line.modulate = solid_line_color
+		$lineBelow.modulate = solid_line_color
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:

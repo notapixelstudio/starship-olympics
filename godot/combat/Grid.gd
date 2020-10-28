@@ -1,10 +1,22 @@
+tool
 extends Polygon2D
+
+export var fg_color = Color(1,1,1,1) setget set_fg_color
+export var bg_color = Color(0,0,0,1) setget set_bg_color
 
 onready var wells = []
 
 func _ready():
 	# grids are below the battlefield surface
-	position += global.isometric_offset
+	position = global.isometric_offset
+	
+func set_fg_color(v):
+	fg_color = v
+	material.set_shader_param('fg_color', fg_color)
+	
+func set_bg_color(v):
+	bg_color = v
+	material.set_shader_param('bg_color', bg_color)
 
 func add_well(well):
 	self.wells.append(Vector3(

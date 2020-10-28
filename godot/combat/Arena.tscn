@@ -264,6 +264,7 @@ script = ExtResource( 22 )
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="Grid" parent="Battlefield/Background" instance=ExtResource( 23 )]
+position = Vector2( 0, 32 )
 z_as_relative = false
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
