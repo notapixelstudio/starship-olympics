@@ -6,6 +6,7 @@ enum TYPE { trigger, water, hostile, flow, castle, hill, basket, ghost, conquera
 export(TYPE) var type = TYPE.water setget set_type
 
 export var flag_offset : int = 0 setget set_flag_offset
+export var isometric_effect = true
 
 func set_type(value):
 	type = value
@@ -34,6 +35,10 @@ func refresh():
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
 	$Area2D/CollisionShape2D.set_shape(gshape.to_Shape2D())
 	$CrownCollider/CollisionShape2D.set_shape(gshape.to_Shape2D())
+	
+	# isometric effect
+	$IsoPolygon.visible = isometric_effect and type != TYPE.water
+	$IsoPolygon.shape = gshape
 	
 	var shape2d = gshape.to_Shape2D()
 	

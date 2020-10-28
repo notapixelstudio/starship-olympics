@@ -166,16 +166,26 @@ position = Vector2( 0, -1600 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 12 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 0, 1600 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 12 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 7 )]
 type = 1
@@ -185,6 +195,7 @@ position = Vector2( 900, 10 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( -900, 0 )

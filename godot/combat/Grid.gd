@@ -2,6 +2,10 @@ extends Polygon2D
 
 onready var wells = []
 
+func _ready():
+	# grids are below the battlefield surface
+	position += global.isometric_offset
+
 func add_well(well):
 	self.wells.append(Vector3(
 		well.position.x,
