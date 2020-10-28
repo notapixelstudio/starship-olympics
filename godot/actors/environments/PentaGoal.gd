@@ -51,6 +51,9 @@ func _ready():
 signal goal_done
 func _on_Field_entered(field, body):
 	if body is Ship and ECM.E(body).has('Royal') and body.species == species:
+		# depleted rings should be moved onto the battlefield surface
+		$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
+		
 		# decrease size
 		current_ring -= 1
 		$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
