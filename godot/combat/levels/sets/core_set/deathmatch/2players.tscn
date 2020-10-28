@@ -57,7 +57,7 @@ texture = ExtResource( 9 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.4, 0, 0.26, 1 )
+modulate = Color( 0, 0.223529, 0.4, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
@@ -215,8 +215,8 @@ sides = 4.0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1200, 700 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 10 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 1200, -700 )

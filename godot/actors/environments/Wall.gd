@@ -169,7 +169,8 @@ func refresh():
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		color = Color(0.8,0.8,1.12,1)
+		color = Color(0.8,0.8,1.2,1)
+		color = Color8(208, 245, 295, 255)
 		$Polygon2D.modulate = color
 		$line.modulate = color
 		$lineBelow.modulate = color
@@ -192,13 +193,13 @@ func refresh():
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
-	$lineBelow.texture_mode = Line2D.LINE_TEXTURE_TILE
+	#$lineBelow.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
 	# grid color
 	$Grid.modulate = grid_color
 	
-	$line.width = line_width
-	$lineBelow.width = line_width
+	#$line.width = line_width
+	#$lineBelow.width = line_width
 	
 	update_iso()
 	
@@ -206,7 +207,7 @@ func _process(delta):
 	update_iso()
 	
 func update_iso():
-	$lineBelow.position = Vector2(0,32).rotated(-global_rotation)
+	$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
 	
 func animate(animation_name: String):
 	if $AnimationPlayer:

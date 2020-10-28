@@ -56,8 +56,13 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2500
 sides = 8.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6" groups=[
 "animation_in_battle",
@@ -71,6 +76,9 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit" index="5"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1700
 precision = 50.0
 
@@ -81,6 +89,9 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit2" index="5"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1450
 precision = 50.0
 
@@ -88,7 +99,11 @@ precision = 50.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Water" index="6"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1000
+precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 z_index = 51
@@ -96,6 +111,9 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Planet" index="5"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 300
 precision = 50.0
 
@@ -110,7 +128,11 @@ __meta__ = {
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Water" index="6"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 500
+precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground/Moon" index="1" instance=ExtResource( 4 )]
 z_index = 51
@@ -118,6 +140,10 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Planet" index="5"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 precision = 40.0
 
 [node name="Moon2" type="Node2D" parent="Battlefield/Middleground" index="5"]
@@ -134,7 +160,11 @@ speed = 0.07
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Water" index="6"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 350
+precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground/Moon2" index="1" instance=ExtResource( 4 )]
 z_index = 51
@@ -142,6 +172,9 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Planet" index="5"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 precision = 30.0
 
@@ -153,15 +186,19 @@ appear = false
 
 [node name="Diamond" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
 position = Vector2( -500, 0 )
+appear = true
 
 [node name="Diamond3" parent="Battlefield/Foreground" index="1" instance=ExtResource( 15 )]
 position = Vector2( 0, 500 )
+appear = true
 
 [node name="Diamond4" parent="Battlefield/Foreground" index="2" instance=ExtResource( 15 )]
 position = Vector2( 0, -500 )
+appear = true
 
 [node name="Diamond2" parent="Battlefield/Foreground" index="3" instance=ExtResource( 15 )]
 position = Vector2( 500, 0 )
+appear = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 2000, -3.05176e-05 )
