@@ -179,7 +179,7 @@ func refresh():
 	elif type == TYPE.ghost:
 		$line.visible = false
 		$lineBelow.self_modulate = Color(1,1,1,1)
-		$lineBelow.modulate = Color(0.2,0.4,1,0.4)
+		$lineBelow.modulate = Color(0.2,0.4,1,0.2)
 	elif type == TYPE.decoration:
 		$line.modulate = Color(0.8,0.8,1.09,1)
 		$lineBelow.modulate = Color(0.8,0.8,1.09,1)
@@ -188,6 +188,7 @@ func refresh():
 		$Polygon2D.modulate = color
 		$line.modulate = color
 		$lineBelow.modulate = color
+		$lineBelow.self_modulate = Color(1,1,1,0.4)
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 		
