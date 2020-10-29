@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/UI/gobbler-image.png" type="Texture" id=1]
+[ext_resource path="res://special_scenes/option_screen/Controller.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/option_screen/Controls.gd" type="Script" id=2]
 [ext_resource path="res://special_scenes/option_screen/CommandOption.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=5]
@@ -9,7 +9,7 @@
 
 [node name="Controls" type="VBoxContainer"]
 margin_right = 631.0
-margin_bottom = 374.0
+margin_bottom = 440.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -24,76 +24,62 @@ is_global = true
 element_path = "device"
 label_description = "device"
 
-[node name="MarginContainer" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="Joysetup" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
 margin_top = 54.0
 margin_right = 631.0
 margin_bottom = 104.0
-action = "up"
+elem_type = 2
+is_global = true
+element_path = "joylayout"
+label_description = "Button layout"
 
-[node name="MarginContainer2" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="keyboard1" parent="." instance=ExtResource( 3 )]
 margin_top = 108.0
 margin_right = 631.0
 margin_bottom = 158.0
-action = "down"
+action = "up"
 
-[node name="MarginContainer3" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="keyboard2" parent="." instance=ExtResource( 3 )]
 margin_top = 162.0
 margin_right = 631.0
 margin_bottom = 212.0
-action = "left"
+action = "down"
 
-[node name="MarginContainer4" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="keyboard3" parent="." instance=ExtResource( 3 )]
 margin_top = 216.0
 margin_right = 631.0
 margin_bottom = 266.0
-action = "right"
+action = "left"
 
-[node name="MarginContainer5" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="keyboard4" parent="." instance=ExtResource( 3 )]
 margin_top = 270.0
 margin_right = 631.0
 margin_bottom = 320.0
+action = "right"
 
-[node name="Joypad" type="TextureRect" parent="."]
-margin_top = 54.0
+[node name="keyboard5" parent="." instance=ExtResource( 3 )]
+margin_top = 324.0
 margin_right = 631.0
-margin_bottom = 437.0
-texture = ExtResource( 1 )
-stretch_mode = 4
+margin_bottom = 374.0
 
-[node name="Label" type="Label" parent="Joypad"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Control" type="Control" parent="."]
+margin_top = 378.0
+margin_right = 631.0
+margin_bottom = 386.0
+size_flags_vertical = 3
 
 [node name="Default" type="Button" parent="."]
-margin_top = 441.0
+margin_top = 390.0
 margin_right = 631.0
-margin_bottom = 491.0
+margin_bottom = 440.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 6 )
 text = "DEFAULT"
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 100, 215, 200, 215 )
-width = 5.0
-default_color = Color( 1, 1, 1, 1 )
-joint_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="Line2D2" type="Line2D" parent="."]
-points = PoolVector2Array( 430, 230, 550, 230 )
-width = 5.0
-default_color = Color( 1, 1, 1, 1 )
-begin_cap_mode = 2
-end_cap_mode = 2
+[node name="Controller" parent="." instance=ExtResource( 1 )]
+position = Vector2( 296.387, 234.773 )
+scale = Vector2( 0.576471, 0.576471 )
 [connection signal="value_changed" from="Element" to="." method="_on_Element_value_changed"]
 [connection signal="pressed" from="Default" to="." method="_on_Default_pressed"]

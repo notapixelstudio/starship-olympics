@@ -4,7 +4,7 @@ class_name GenericOption
 
 enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 
-signal value_changed
+signal value_changed(value)
 signal focused
 signal unfocused
 

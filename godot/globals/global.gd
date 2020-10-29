@@ -284,6 +284,16 @@ const INPUT_ACTIONS = ["kb1", "kb2"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
 var default_input :=  {"kb1_accept":"M", "kb1_down":"Down", "kb1_fire":"M", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", "kb2_accept":"1", "kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"}
 
+var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
+onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
+
+func _set_joylayout(value):
+	joylayout = value
+
+func _get_joylayout():
+	return joylayout
+	
+	
 func set_default_mapping(device:String):
 	for action in default_input:
 		if device in action:
