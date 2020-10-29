@@ -95,8 +95,8 @@ func set_style(v : ArenaStyle):
 		grid.texture = style.battlefield_texture
 		grid.texture_offset = style.battlefield_texture_offset
 		grid.texture_scale = style.battlefield_texture_scale
+		grid.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
 		
-	
 func get_time_scale():
 	return time_scale
 	
