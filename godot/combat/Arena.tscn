@@ -263,7 +263,9 @@ script = ExtResource( 22 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 
-[node name="Grid" parent="Battlefield/Background" instance=ExtResource( 23 )]
+[node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 23 )]
 position = Vector2( 0, 32 )
 z_as_relative = false
 
@@ -331,6 +333,7 @@ __meta__ = {
 stream = ExtResource( 30 )
 
 [node name="DemoLabel" parent="CanvasLayer" instance=ExtResource( 31 )]
+visible = false
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 32 )]
 visible = false
@@ -338,6 +341,7 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
+zoom = Vector2( 4, 4 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false

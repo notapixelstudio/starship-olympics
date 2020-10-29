@@ -50,7 +50,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/Grid
+onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 signal screensize_changed(screensize)
@@ -93,6 +93,9 @@ func set_style(v : ArenaStyle):
 		grid.bg_color = style.battlefield_bg_color
 		grid.self_modulate.a = style.battlefield_opacity
 		grid.texture = style.battlefield_texture
+		grid.texture_offset = style.battlefield_texture_offset
+		grid.texture_scale = style.battlefield_texture_scale
+		
 	
 func get_time_scale():
 	return time_scale
@@ -329,6 +332,10 @@ func _ready():
 	else:
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
+		
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
 		
 	if not mockup:
 		Soundtrack.play("Fight", true)

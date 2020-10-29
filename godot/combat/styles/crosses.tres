@@ -1,14 +1,14 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
-[ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=2]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 battlefield_texture = ExtResource( 2 )
 battlefield_texture_offset = Vector2( 0, 0 )
 battlefield_texture_scale = Vector2( 0.25, 0.25 )
-battlefield_fg_color = Color( 0.16296, 0.0672, 0.28, 1 )
-battlefield_bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
+battlefield_fg_color = Color( 0.48, 0, 0.16, 1 )
+battlefield_bg_color = Color( 0.121569, 0, 0, 1 )
 battlefield_opacity = 0.9
-wall_color = Color( 1.18, 0.9, 1.18, 1 )
+wall_color = Color( 1.1, 1, 1, 1 )

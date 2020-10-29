@@ -6,6 +6,7 @@ export var is_mutator: bool = false
 export var name : String
 export var icon : StreamTexture
 export var logo: StreamTexture
+export var arena_style : Resource = null
 export var description : String
 export var tagline_pro : String
 export var tagline_cons : String
