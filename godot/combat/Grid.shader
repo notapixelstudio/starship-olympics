@@ -6,6 +6,8 @@ uniform float stroke = 10.0;
 uniform float time;
 uniform sampler2D wells_texture;
 uniform bool triangular = false;
+uniform vec4 fg_color;
+uniform vec4 bg_color;
 
 vec3 get_well(int index){
 	return texelFetch(wells_texture, ivec2(index, 0), 0).xyz;
@@ -54,7 +56,7 @@ vec3 create_point(int row, int col, float amplitude){
 }
 
 void fragment(){
-	float amplitude = 2.0*cell_size;
+	/*float amplitude = 2.0*cell_size;
 	
 	// Tile the space
 	vec2 uv = UV*size/cell_size + vec2(0.5,0.5);
@@ -110,4 +112,13 @@ void fragment(){
 	float a = 1.0 - clamp(get_z(amplitude/cell_size, UV*size)*0.5, 0.0, 1.0);
 	COLOR = vec4( vec3(c), 1.0 );
 	//COLOR = vec4(0.0, 0.25*step(0.95, max(f_uv.x,f_uv.y)), 0.0, 1.0) + vec4(vec3( 1.0-step(stroke/2.0/size, f)), 0.0);
+	*/
+	//vec2 displacement_uv = UV + displacement.xy * uv_displace_amount;
+	//float t = mod(TIME, 8.0);
+	//vec2 v = vec2(0.5,0.5);
+	//float w = sin(time*4.0);
+	//float d = smoothstep(-50.0-50.0*w,32.0,dot(UV,UV));
+	//COLOR = texture(TEXTURE, UV*d);
+	float value = 1.0 - texture(TEXTURE, UV).a;
+	COLOR = vec4(mix(fg_color.rgb, bg_color.rgb, value), 1.0);
 }
