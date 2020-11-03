@@ -1,3 +1,4 @@
+tool
 """
 Arena Node that will handle all the combat logic
 """
@@ -14,6 +15,7 @@ export (bool) var demo = false
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
+export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
@@ -48,7 +50,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/Grid
+onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 signal screensize_changed(screensize)
@@ -78,6 +80,23 @@ func set_time_scale(value):
 	time_scale = value
 	update_time_scale()
 	
+func set_style(v : ArenaStyle):
+	style = v
+	
+	if not is_inside_tree():
+		yield(self, 'ready')
+	
+	for wall in get_tree().get_nodes_in_group('wall'):
+		wall.solid_line_color = style.wall_color
+	for grid in get_tree().get_nodes_in_group('grid'):
+		grid.fg_color = style.battlefield_fg_color
+		grid.bg_color = style.battlefield_bg_color
+		grid.self_modulate.a = style.battlefield_opacity
+		grid.texture = style.battlefield_texture
+		grid.texture_offset = style.battlefield_texture_offset
+		grid.texture_scale = style.battlefield_texture_scale
+		grid.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
+		
 func get_time_scale():
 	return time_scale
 	
@@ -314,6 +333,10 @@ func _ready():
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
 		
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
+		
 	if not mockup:
 		Soundtrack.play("Fight", true)
 	else:
@@ -370,6 +393,9 @@ func update_grid():
 	grid.polygon = $Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array()
 	
 func _process(delta):
+	if not scores:
+		return
+		
 	scores.update(delta)
 	update_grid()
 	
