@@ -36,15 +36,15 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
+
+[node name="CollectModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
-
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.301961, 1, 0, 0.109804 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -56,13 +56,8 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2500
 sides = 8.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6" groups=[
 "animation_in_battle",
@@ -70,28 +65,20 @@ rotation_degrees = 0.0
 anims/Rotate = SubResource( 1 )
 
 [node name="Orbit" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
 type = 2
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit" index="5"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1700
 precision = 50.0
 
 [node name="Orbit2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
 type = 2
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit2" index="5"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1450
 precision = 50.0
 
@@ -99,11 +86,7 @@ precision = 50.0
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Water" index="6"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1000
-precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 z_index = 51
@@ -111,9 +94,6 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Planet" index="5"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 300
 precision = 50.0
 
@@ -128,11 +108,7 @@ __meta__ = {
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Water" index="6"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 500
-precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground/Moon" index="1" instance=ExtResource( 4 )]
 z_index = 51
@@ -140,10 +116,6 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Planet" index="5"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 precision = 40.0
 
 [node name="Moon2" type="Node2D" parent="Battlefield/Middleground" index="5"]
@@ -160,11 +132,7 @@ speed = 0.07
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Water" index="6"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 350
-precision = 100.0
 
 [node name="Planet" parent="Battlefield/Middleground/Moon2" index="1" instance=ExtResource( 4 )]
 z_index = 51
@@ -172,9 +140,6 @@ hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Planet" index="5"]
 script = ExtResource( 7 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 precision = 30.0
 
@@ -186,19 +151,15 @@ appear = false
 
 [node name="Diamond" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
 position = Vector2( -500, 0 )
-appear = true
 
 [node name="Diamond3" parent="Battlefield/Foreground" index="1" instance=ExtResource( 15 )]
 position = Vector2( 0, 500 )
-appear = true
 
 [node name="Diamond4" parent="Battlefield/Foreground" index="2" instance=ExtResource( 15 )]
 position = Vector2( 0, -500 )
-appear = true
 
 [node name="Diamond2" parent="Battlefield/Foreground" index="3" instance=ExtResource( 15 )]
 position = Vector2( 500, 0 )
-appear = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 2000, -3.05176e-05 )
@@ -213,6 +174,7 @@ controls = "kb2"
 species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 10, 10 )
 smoothing_speed = 0.3
 [connection signal="battle_start" from="." to="Battlefield/Middleground/Moon" method="_on_Arena_battle_start"]
 [connection signal="battle_start" from="." to="Battlefield/Middleground/Moon2" method="_on_Arena_battle_start"]

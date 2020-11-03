@@ -37,8 +37,17 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2000
+sides = 6.0
+alternating_angle = 0.0
 rotation_degrees = 30.0
+
+[node name="FloodWater" parent="Battlefield/Background" index="2"]
+type = 1
+flag_offset = 0
 
 [node name="Nuke" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 

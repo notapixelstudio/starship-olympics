@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -50,18 +51,29 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 5 )
 
+[node name="KillModeManager" parent="Managers" index="6"]
+enabled = true
+
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
+
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 9 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 1, 0, 0.654902, 0.313726 )
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+self_modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 12 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0.48, 0, 0.16, 1 )
+bg_color = Color( 0.121569, 0, 0, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
+solid_line_color = Color( 1.1, 1, 1, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
@@ -81,6 +93,7 @@ bevel_sw = 200
 bevel_se = 200
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )
@@ -97,6 +110,7 @@ rotation = 3.14159
 
 [node name="Wall11" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
 position = Vector2( -900, -800 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
 script = ExtResource( 1 )
@@ -118,6 +132,7 @@ anims/Default = SubResource( 1 )
 [node name="Wall14" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( 900, 800 )
 rotation = 3.14159
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall14" index="4"]
 script = ExtResource( 1 )
@@ -138,6 +153,7 @@ anims/Default = SubResource( 2 )
 
 [node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( 1900, -800 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
 script = ExtResource( 1 )
@@ -145,6 +161,7 @@ sides = 4.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
 position = Vector2( -1900, 800 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
 script = ExtResource( 1 )
@@ -152,6 +169,7 @@ sides = 4.0
 
 [node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( -1900, -800 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
 script = ExtResource( 1 )
@@ -159,6 +177,7 @@ sides = 4.0
 
 [node name="Wall13" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
 position = Vector2( 1900, 800 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
 script = ExtResource( 1 )
@@ -177,6 +196,7 @@ controls = "joy2"
 species = ExtResource( 7 )
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 62.5, 62.5 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

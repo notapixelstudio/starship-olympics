@@ -60,14 +60,23 @@ bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
 
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -1100 )
 scale = Vector2( 10, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 13 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 250
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, 1100 )
@@ -75,8 +84,13 @@ scale = Vector2( 10, 0.6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 13 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 250
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Paddle" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
 position = Vector2( -2150, 0 )
@@ -90,7 +104,6 @@ rotation = 3.14159
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -2150, 0 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
