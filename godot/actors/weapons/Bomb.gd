@@ -5,6 +5,7 @@ class_name Bomb
 
 var Explosion = load('res://actors/weapons/Explosion.tscn')
 var Ripple = load('res://actors/weapons/Ripple.tscn')
+var BubbleScene = load('res://actors/environments/Bubble.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
@@ -132,6 +133,14 @@ func process_life_time():
 func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
+	elif body is Bubble:
+		var bubble = BubbleScene.instance()
+		bubble.species = entity.get('Owned').get_owned_by().species
+		bubble.position = position
+		bubble.linear_velocity = linear_velocity
+		get_parent().call_deferred("add_child", bubble)
+		bubble.call_deferred("attempt_binding")
+		queue_free()
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		life_time.start() # enable ricochet combos
