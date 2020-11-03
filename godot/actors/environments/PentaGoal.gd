@@ -48,6 +48,10 @@ func _ready():
 		field.modulate = get_node(goal_owner).species.color
 		$Rings.modulate = get_node(goal_owner).species.color
 		
+		# species letter
+		$Letter/Label.modulate = species.color
+		$Letter/Label.text = species.species_name.left(1).to_upper()# + species.species_name.substr(1,1)
+		
 signal goal_done
 func _on_Field_entered(field, body):
 	if body is Ship and ECM.E(body).has('Royal') and body.species == species:
@@ -69,6 +73,9 @@ func _on_Field_entered(field, body):
 			field.queue_free()
 			remove_from_group("goal")
 			
+			$Letter.position = global.isometric_offset.rotated(-global_rotation)
+			$Letter.modulate = Color(1,1,1,0.4)
+			
 	elif body is Crown:
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
@@ -77,3 +84,7 @@ func _on_Field_entered(field, body):
 		yield($AudioStreamPlayer2D, "finished")
 		$AudioStreamPlayer2D.pitch_scale = 1
 		
+
+func _process(delta):
+	$Letter.rotation = -global_rotation
+	
