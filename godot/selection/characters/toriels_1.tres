@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/species/toriels/toriels1_beaten.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/species/toriels.png" type="Texture" id=2]
 [ext_resource path="res://selection/Species.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/species/toriels/toriels_ship.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/species/toriels/toriels_ship_plain.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/species/toriels_ship_w.png" type="Texture" id=6]
 
 [resource]
 script = ExtResource( 3 )
@@ -14,6 +15,7 @@ tagline1 = "overprotective<br>shepherds"
 tagline2 = ""
 ship = ExtResource( 4 )
 ship_off = ExtResource( 5 )
+ship_w = ExtResource( 6 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 1 )
 species_id = 0
