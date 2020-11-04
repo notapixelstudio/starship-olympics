@@ -154,13 +154,11 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 modulate = Color( 0.32549, 1, 0.32549, 1 )
 position = Vector2( 900, 0 )
 rotation = -3.14159
-size = 8.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 17 )]
 modulate = Color( 1, 0.407843, 0.407843, 1 )
 position = Vector2( -900, 0 )
-size = 8.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="LaserStop" type="StaticBody2D" parent="Battlefield/Middleground" index="8" groups=[
@@ -235,7 +233,7 @@ species = ExtResource( 11 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 3.23118e+18, 3.23118e+18 )
+zoom = Vector2( 8.07795e+18, 8.07795e+18 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
