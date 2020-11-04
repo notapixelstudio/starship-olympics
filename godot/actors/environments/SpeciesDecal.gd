@@ -11,6 +11,8 @@ func set_size(v):
 	$Sprite.scale = Vector2(size, size)
 
 func _ready():
+	yield(get_tree(), 'idle_frame')
+	
 	species = get_node(goal_owner).species
 	modulate = species.color
 	$Sprite.texture = species.ship_w

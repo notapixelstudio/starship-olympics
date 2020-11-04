@@ -7,6 +7,7 @@ var points = []
 var closed_points = []
 export var color = Color(1,1,1,1)
 export var thickness = 15
+export var opaque_tint = Color(0,0,0,0.8)
 
 func set_shape(v):
 	shape = v
@@ -23,7 +24,7 @@ func _draw():
 		draw_line(p1, p1+h, color, thickness)
 		draw_line(p1+h, p0+h, color, thickness)
 		draw_line(p0+h, p0, color, thickness)
-	draw_colored_polygon(points, Color(0,0,0,0.8))
+	draw_colored_polygon(points, opaque_tint)
 	
 func _process(delta):
 	h = height.rotated(-global_rotation)
