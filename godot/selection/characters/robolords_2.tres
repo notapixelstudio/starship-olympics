@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/sprites/species/robolords/character_ok.png" type="Texture" id=2]
 [ext_resource path="res://selection/Species.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/species/robolords/ship2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/species/robolords/ship_w.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/species/robolords/ship_plain.png" type="Texture" id=6]
-
 
 [resource]
 script = ExtResource( 3 )
@@ -15,9 +15,9 @@ tagline1 = "silicon-based<br>aristocrats"
 tagline2 = ""
 ship = ExtResource( 4 )
 ship_off = ExtResource( 6 )
+ship_w = ExtResource( 5 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 1 )
-species_id = null
+species_id = 0
 color = Color( 1, 0.407843, 0.407843, 1 )
 color_2 = Color( 0.996078, 0, 0.470588, 1 )
-

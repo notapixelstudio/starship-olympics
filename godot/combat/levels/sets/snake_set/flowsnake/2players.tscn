@@ -13,12 +13,15 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
+
+[node name="SurvivalModeManager" parent="Managers" index="13"]
+enabled = true
+
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
-
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 1, 0.196078 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
@@ -45,6 +48,7 @@ species = ExtResource( 9 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 10, 10 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

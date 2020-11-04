@@ -7,6 +7,12 @@ export(TYPE) var type = TYPE.water setget set_type
 
 export var flag_offset : int = 0 setget set_flag_offset
 export var isometric_effect = true
+export var opaque_tint : Color = Color(0,0,0,0.8) setget set_opaque_tint
+
+func set_opaque_tint(v):
+	opaque_tint = v
+	yield(self, 'ready')
+	$IsoPolygon.opaque_tint = opaque_tint
 
 func set_type(value):
 	type = value

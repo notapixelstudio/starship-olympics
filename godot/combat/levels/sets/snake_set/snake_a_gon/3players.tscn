@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=1]
+[ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
@@ -8,6 +9,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/modes/SnakeAGon.tres" type="Resource" id=9]
+[ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=10]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=14]
@@ -71,47 +73,34 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
+style = ExtResource( 2 )
 match_duration_override = 80.0
-
-[node name="CrownModeManager" parent="Managers" index="5"]
-enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 1, 1, 0.196078 )
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 0.8, 0.8, 0.8, 1 )
+self_modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 10 )
+texture_scale = Vector2( 2, 2 )
+fg_color = Color( 0.239216, 0.176471, 0.0470588, 1 )
+bg_color = Color( 0.25, 0.186667, 0.05, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
 line_width = 28
+solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 16 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1800
 sides = 12.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
-
-[node name="FloodWater" parent="Battlefield/Background" index="2"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="GoalsP2" type="Node2D" parent="Battlefield/Middleground" index="0"]
 rotation = -1.5708
@@ -214,25 +203,13 @@ anims/Default = SubResource( 2 )
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
+solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
 script = ExtResource( 16 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="5"]
 rotation = 2.61799
@@ -250,25 +227,13 @@ anims/Default = SubResource( 3 )
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D2" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
+solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
 script = ExtResource( 16 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="6"]
 rotation = 0.523599
@@ -286,25 +251,13 @@ anims/Default = SubResource( 4 )
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D3" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
+solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
 script = ExtResource( 16 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 type = 1
@@ -331,6 +284,7 @@ species = ExtResource( 12 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 10, 10 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
