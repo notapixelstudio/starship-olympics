@@ -88,6 +88,7 @@ func set_style(v : ArenaStyle):
 	
 	for wall in get_tree().get_nodes_in_group('wall'):
 		wall.solid_line_color = style.wall_color
+		wall.line_texture = style.wall_texture
 	for grid in get_tree().get_nodes_in_group('grid'):
 		grid.fg_color = style.battlefield_fg_color
 		grid.bg_color = style.battlefield_bg_color

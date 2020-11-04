@@ -18,6 +18,7 @@ export var hide_grid : bool = false setget set_hide_grid
 export var line_width = 48 setget set_line_width
 
 export var solid_line_color = Color8(208, 245, 295, 255) setget set_solid_line_color
+export var line_texture : Texture setget set_line_texture
 
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
@@ -62,6 +63,10 @@ func set_line_width(value):
 	
 func set_solid_line_color(v):
 	solid_line_color = v
+	refresh()
+	
+func set_line_texture(v):
+	line_texture = v
 	refresh()
 	
 func set_grid_color(value):
@@ -164,6 +169,9 @@ func refresh():
 	var p = points[0]+(points[1]-points[0])*0.5
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
 	$lineBelow.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
+	
+	$line.texture = line_texture
+	$lineBelow.texture = line_texture
 	
 	# wall types
 	var color
