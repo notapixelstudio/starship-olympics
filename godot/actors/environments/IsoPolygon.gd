@@ -6,7 +6,7 @@ var shape : GShape setget set_shape
 var points = []
 var closed_points = []
 export var color = Color(1,1,1,1)
-export var thickness = 1
+export var thickness = 15
 
 func set_shape(v):
 	shape = v

@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Pentagonion
 
+onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
+
 export var rings : int = 5 setget set_rings
 export var ring_width : float = 50 setget set_ring_width
 export var core_radius : float = 100 setget set_core_radius
@@ -33,8 +35,10 @@ func _ready():
 		shape.sides = 5
 		shape.radius = core_radius + ring_width*i
 		var ring = Line2D.new()
-		ring.default_color = Color(1,1,1,0.7)
-		ring.width = 4
+		ring.default_color = Color(1,1,1,0.2)
+		ring.texture = glow_texture
+		ring.texture_mode = Line2D.LINE_TEXTURE_TILE
+		ring.width = 32
 		ring.points = shape.to_closed_PoolVector2Array()
 		$Rings.add_child(ring)
 		
