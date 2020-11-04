@@ -111,8 +111,8 @@ centered = false
 self_modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 17 )
 texture_scale = Vector2( 2, 2 )
-fg_color = Color( 0.24, 0.144, 0.048, 1 )
-bg_color = Color( 0.26, 0.156, 0.052, 1 )
+fg_color = Color( 0.239216, 0.176471, 0.0470588, 1 )
+bg_color = Color( 0.25, 0.186667, 0.05, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
@@ -438,7 +438,7 @@ species = ExtResource( 7 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 1.38778e+12, 1.38778e+12 )
+zoom = Vector2( 2.1684e+13, 2.1684e+13 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
