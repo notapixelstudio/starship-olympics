@@ -85,11 +85,11 @@ texture = ExtResource( 10 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-self_modulate = Color( 1, 1, 1, 0.9 )
+modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 17 )
 texture_scale = Vector2( 2, 2 )
-fg_color = Color( 0.239216, 0.176471, 0.0470588, 1 )
-bg_color = Color( 0.25, 0.186667, 0.05, 1 )
+fg_color = Color( 0.5, 0.390667, 0.295, 1 )
+bg_color = Color( 0.39, 0.2691, 0.1482, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
@@ -97,7 +97,7 @@ offset = 200
 elongation = 100
 hide_grid = true
 line_width = 28
-solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -117,7 +117,6 @@ texture = ExtResource( 19 )
 [node name="Node2D" type="Node2D" parent="Battlefield/Background/O" index="0"]
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D" index="0"]
-scale = Vector2( 1, 1 )
 points = PoolVector2Array( -509.117, -509.117, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
@@ -128,7 +127,6 @@ end_cap_mode = 2
 rotation = 2.0944
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D2" index="0"]
-scale = Vector2( 1, 1 )
 points = PoolVector2Array( -509.117, -509.117, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
@@ -139,7 +137,6 @@ end_cap_mode = 2
 rotation = 4.18879
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D3" index="0"]
-scale = Vector2( 1, 1 )
 points = PoolVector2Array( -509.117, -509.117, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
@@ -266,7 +263,7 @@ anims/Default = SubResource( 2 )
 [node name="Wall" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
 line_width = 28
-solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
 script = ExtResource( 16 )
@@ -290,7 +287,7 @@ anims/Default = SubResource( 3 )
 [node name="Wall" parent="Battlefield/Middleground/Node2D2" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
 line_width = 28
-solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
 script = ExtResource( 16 )
@@ -314,7 +311,7 @@ anims/Default = SubResource( 4 )
 [node name="Wall" parent="Battlefield/Middleground/Node2D3" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
 line_width = 28
-solid_line_color = Color( 1.2, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
 script = ExtResource( 16 )
@@ -346,7 +343,7 @@ species = ExtResource( 12 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 238418, 238418 )
+zoom = Vector2( 9.3132e+06, 9.3132e+06 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

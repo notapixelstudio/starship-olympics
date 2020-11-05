@@ -108,10 +108,10 @@ texture = ExtResource( 11 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-self_modulate = Color( 1, 1, 1, 0.9 )
+modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 17 )
-fg_color = Color( 0.239216, 0.176471, 0.0470588, 1 )
-bg_color = Color( 0.25, 0.186667, 0.05, 1 )
+fg_color = Color( 0.3, 0.2025, 0.15, 1 )
+bg_color = Color( 0.28, 0.186667, 0.14, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
@@ -437,7 +437,7 @@ species = ExtResource( 7 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 3.38812e+14, 3.38812e+14 )
+zoom = Vector2( 5.29395e+15, 5.29395e+15 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
