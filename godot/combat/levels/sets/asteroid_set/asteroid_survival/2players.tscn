@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/modes/AsteroidSurvival.tres" type="Resource" id=8]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -30,16 +31,26 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 3 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 8 )
+style = ExtResource( 10 )
 
-[node name="CrownModeManager" parent="Managers" index="5"]
+[node name="PursueManager" parent="Managers" index="2"]
+enabled = false
+
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
+
+[node name="SurvivalModeManager" parent="Managers" index="13"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 6 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 0.529412, 1, 0.27451 )
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0, 0.173333, 0.26, 1 )
+bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+clock = true
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
@@ -47,6 +58,7 @@ offset = 200
 elongation = 100
 type = 2
 hide_grid = true
+solid_line_color = Color( 0.69, 1.2, 0.91, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
@@ -59,6 +71,7 @@ offset = 200
 elongation = 100
 type = 2
 hide_grid = true
+solid_line_color = Color( 0.69, 1.2, 0.91, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
@@ -70,6 +83,7 @@ hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
+solid_line_color = Color( 0.69, 1.2, 0.91, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -99,6 +113,7 @@ controls = "joy2"
 species = ExtResource( 7 )
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 1.35526e+14, 1.35526e+14 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]

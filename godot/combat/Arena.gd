@@ -92,11 +92,11 @@ func set_style(v : ArenaStyle):
 	for grid in get_tree().get_nodes_in_group('grid'):
 		grid.fg_color = style.battlefield_fg_color
 		grid.bg_color = style.battlefield_bg_color
-		grid.self_modulate.a = style.battlefield_opacity
-		grid.texture = style.battlefield_texture
-		grid.texture_offset = style.battlefield_texture_offset
-		grid.texture_scale = style.battlefield_texture_scale
-		grid.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
+		grid.modulate.a = style.battlefield_opacity
+		grid.poly.texture = style.battlefield_texture
+		grid.poly.texture_offset = style.battlefield_texture_offset
+		grid.poly.texture_scale = style.battlefield_texture_scale
+		grid.poly.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
 		
 func get_time_scale():
 	return time_scale
@@ -269,6 +269,10 @@ func _ready():
 	hud.set_planet("", game_mode)
 	
 	update_grid()
+	grid.set_max_timeout(game_mode.max_timeout)
+	grid.clock = game_mode.survival
+	if grid.clock:
+		grid.add_to_group('in_camera')
 	
 	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
@@ -391,7 +395,8 @@ func focus_in_camera(node: Node2D, wait_time: float):
 const COUNTDOWN_LIMIT = 5.0
 
 func update_grid():
-	grid.polygon = $Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array()
+	grid.set_points($Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array())
+	grid.set_t(scores.time_left)
 	
 func _process(delta):
 	if not scores:
