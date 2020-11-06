@@ -4,10 +4,13 @@ export var device = 1
 
 onready var controls = "joy"+str(device)
 
+var command_list = ["up, down, left, right, fire"]
+
 func _ready():
 	# let's hide them all 
 	for button in get_children():
 		button.visible = false
+	
 
 func setup_controls(controls: Dictionary):
 	for key in controls:
