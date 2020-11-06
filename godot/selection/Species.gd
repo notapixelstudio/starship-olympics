@@ -8,6 +8,7 @@ export (String) var tagline1
 export (String) var tagline2
 export (StreamTexture) var ship
 export (StreamTexture) var ship_off
+export (StreamTexture) var ship_w
 export (Texture) var character_ok
 export (Texture) var character_beaten
 

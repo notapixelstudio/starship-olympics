@@ -1,7 +1,7 @@
 extends ModeManager
 
 signal score
-signal show_score
+signal show_msg
 
 onready var sound_action = $GrabAction
 
@@ -31,4 +31,4 @@ func _process(delta):
 	for royal in ECM.entities_with('Royal'):
 		var royal_host = royal.get_host()
 		emit_signal('score', royal_host.get_id(), delta)
-		emit_signal('show_score', royal_host.species, delta, royal_host.position)
+		emit_signal('show_msg', royal_host.species, delta, royal_host.position)

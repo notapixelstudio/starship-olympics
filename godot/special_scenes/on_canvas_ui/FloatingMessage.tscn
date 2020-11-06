@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://special_scenes/on_canvas_ui/PointsScored.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/on_canvas_ui/FloatingMessage.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ Vector2( -125, -50 ), Vector2( -125, -120 ) ]
 }
 
-[node name="PointsScored" type="Node2D" groups=[
+[node name="FloatingMessage" type="Node2D" groups=[
 "Overlay",
 ]]
 script = ExtResource( 1 )
@@ -40,6 +40,9 @@ rect_pivot_offset = Vector2( 125, 20 )
 custom_fonts/font = SubResource( 1 )
 text = "+{}"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 2 )

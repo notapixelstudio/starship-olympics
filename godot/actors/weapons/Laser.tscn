@@ -25,17 +25,21 @@ curve = SubResource( 5 )
 [sub_resource type="ParticlesMaterial" id=7]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 170.0
+initial_velocity = 400.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 2.0
 scale_curve = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 10.0
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = -250.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 2.0
 scale_curve = SubResource( 6 )
 
 [node name="Laser" type="RayCast2D"]
@@ -73,14 +77,15 @@ collision_mask = 7
 shape = SubResource( 3 )
 
 [node name="CastingParticles2D" type="Particles2D" parent="."]
-modulate = Color( 1.5, 1.5, 1.5, 1 )
+modulate = Color( 1.4, 1.4, 1.4, 1 )
 material = SubResource( 4 )
+amount = 4
 lifetime = 0.3
 process_material = SubResource( 7 )
 texture = ExtResource( 4 )
 
 [node name="CollisionParticles2D" type="Particles2D" parent="."]
-modulate = Color( 2, 0.88, 0.55, 1 )
+modulate = Color( 2.5, 0.88, 0.55, 1 )
 material = SubResource( 4 )
 position = Vector2( 200, 0 )
 amount = 16

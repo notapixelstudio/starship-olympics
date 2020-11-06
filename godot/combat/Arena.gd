@@ -1,3 +1,4 @@
+tool
 """
 Arena Node that will handle all the combat logic
 """
@@ -14,6 +15,7 @@ export (bool) var demo = false
 export (float) var size_multiplier = 2.0
 export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
+export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
@@ -48,7 +50,7 @@ onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/Grid
+onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 signal screensize_changed(screensize)
@@ -78,6 +80,24 @@ func set_time_scale(value):
 	time_scale = value
 	update_time_scale()
 	
+func set_style(v : ArenaStyle):
+	style = v
+	
+	if not is_inside_tree():
+		yield(self, 'ready')
+	
+	for wall in get_tree().get_nodes_in_group('wall'):
+		wall.solid_line_color = style.wall_color
+		wall.line_texture = style.wall_texture
+	for grid in get_tree().get_nodes_in_group('grid'):
+		grid.fg_color = style.battlefield_fg_color
+		grid.bg_color = style.battlefield_bg_color
+		grid.modulate.a = style.battlefield_opacity
+		grid.poly.texture = style.battlefield_texture
+		grid.poly.texture_offset = style.battlefield_texture_offset
+		grid.poly.texture_scale = style.battlefield_texture_scale
+		grid.poly.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
+		
 func get_time_scale():
 	return time_scale
 	
@@ -151,18 +171,20 @@ func _ready():
 	conquest_manager.connect('conquered', conquest_mode, "_on_sth_conquered")
 	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
 	
+	combat_manager.connect('show_msg', self, "show_msg")
+	
 	crown_mode.connect('score', scores, "add_score")
 	kill_mode.connect('score', scores, "add_score")
 	kill_mode.connect('broadcast_score', scores, "broadcast_score")
-	kill_mode.connect('show_score', self, "spawn_points_scored")
+	kill_mode.connect('show_msg', self, "show_msg")
 	race_mode.connect('score', scores, "add_score")
-	race_mode.connect('show_score', self, "spawn_points_scored")
+	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
-	collect_mode.connect('show_score', self, "spawn_points_scored")
+	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
 	goal_mode.connect('score', scores, "add_score")
-	goal_mode.connect('show_score', self, "spawn_points_scored")
+	goal_mode.connect('show_msg', self, "show_msg")
 	survival_mode.connect('score', scores, "add_score")
 	
 	for portal in get_tree().get_nodes_in_group("goal"):
@@ -188,14 +210,12 @@ func _ready():
 	for s in spawners:
 		var key = s.name
 		var info_player = InfoPlayer.new()
-		if standalone or s.species.species_name == 'drones':
+		if standalone:
 			
 			info_player.cpu = s.cpu
 			info_player.species = s.species
 			info_player.controls = s.controls
-			if s.species.species_name == 'drones':
-				info_player.id = 'drones'
-			elif s.cpu:
+			if s.cpu:
 				info_player.id = "cpu"+str(i+1)
 			else:
 				info_player.id = s.name
@@ -209,7 +229,13 @@ func _ready():
 		
 		s.info_player = info_player
 		players[info_player.id] = info_player
-	
+		
+		# setup teams
+		if s.team and s.team != '':
+			info_player.team = s.team
+		elif not info_player.team:
+			info_player.team = info_player.id
+			
 		i += 1
 	
 	session.players = players
@@ -243,6 +269,10 @@ func _ready():
 	hud.set_planet("", game_mode)
 	
 	update_grid()
+	grid.set_max_timeout(game_mode.max_timeout)
+	grid.clock = game_mode.survival
+	if grid.clock:
+		grid.add_to_group('in_camera')
 	
 	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
@@ -282,6 +312,7 @@ func _ready():
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
 		sth.connect('killed', kill_mode, '_on_sth_killed')
+		sth.connect('killed', combat_manager, '_on_sth_killed')
 		
 	# manage level flooding
 	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
@@ -306,6 +337,10 @@ func _ready():
 	else:
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
+		
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
 		
 	if not mockup:
 		Soundtrack.play("Fight", true)
@@ -360,9 +395,13 @@ func focus_in_camera(node: Node2D, wait_time: float):
 const COUNTDOWN_LIMIT = 5.0
 
 func update_grid():
-	grid.polygon = $Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array()
+	grid.set_points($Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array())
+	grid.set_t(scores.time_left)
 	
 func _process(delta):
+	if not scores:
+		return
+		
 	scores.update(delta)
 	update_grid()
 	
@@ -591,9 +630,9 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
+	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
-	ship.connect("near_area_entered", snake_trail_manager, "_on_ship_collided")
 	
 	
 	# attach followcamera
@@ -604,7 +643,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", follow, "ship_just_died")
 	
 	
-	crown_mode.connect('show_score', ship, "update_score")
+	crown_mode.connect('show_msg', ship, "update_score")
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -627,15 +666,15 @@ func spawn_bomb(type, pos, impulse, ship, size=1):
 func bomb_detonated(bomb):
 	grid.add_well(bomb)
 	
-const points_scored_scene = preload('res://special_scenes/on_canvas_ui/PointsScored.tscn')
+const message_scene = preload('res://special_scenes/on_canvas_ui/FloatingMessage.tscn')
 
-func spawn_points_scored(species: Species, score, pos):
-	var points_scored = points_scored_scene.instance()
-	points_scored.set_points(score)
-	points_scored.scale = camera.zoom
-	points_scored.position = pos
-	points_scored.modulate = species.color
-	$Battlefield.add_child(points_scored)
+func show_msg(species: Species, msg, pos):
+	var msg_node = message_scene.instance()
+	msg_node.set_msg(msg)
+	msg_node.scale = camera.zoom
+	msg_node.position = pos
+	msg_node.modulate = species.color
+	$Battlefield.add_child(msg_node)
 
 func _on_sth_collected(collector, collectee):
 	if collectee is Crown and collectee.type == Crown.types.SOCCERBALL:
@@ -717,3 +756,10 @@ func _on_Rock_request_spawn(child):
 		child.connect('request_spawn', self, '_on_Rock_request_spawn')
 	$Battlefield.add_child(child)
 	
+
+func _on_EndlessArea_body_exited(body):
+	if body is Ship:
+		body.position = Vector2(0,0)
+	else:
+		body.queue_free()
+		

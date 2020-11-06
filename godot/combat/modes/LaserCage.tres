@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/rules/Deathmatch.tres" type="Resource" id=2]
 [ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/minicards/deathmatch.png" type="Texture" id=4]
 [ext_resource path="res://map/planets/rules/Laser.tres" type="Resource" id=5]
+[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 1 )
@@ -12,6 +13,7 @@ is_mutator = false
 name = "Laser Cage"
 icon = ExtResource( 4 )
 logo = ExtResource( 3 )
+arena_style = ExtResource( 6 )
 description = "kill the other players"
 tagline_pro = "A kill for the honour, a kill for the species"
 tagline_cons = "A self kill, apart from being embarassing, make you lose point"
@@ -37,4 +39,4 @@ rules = [ ExtResource( 2 ), ExtResource( 5 ) ]
 floodable = true
 flood = false
 laserable = true
-additional_lasers = false
+additional_lasers = true

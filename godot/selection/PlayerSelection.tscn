@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=11]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=12]
 [ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=13]
@@ -24,12 +24,7 @@ shader = ExtResource( 18 )
 shader_param/width = 6.4
 shader_param/outline_color = null
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 18 )
-shader_param/width = null
-shader_param/outline_color = null
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -69,17 +64,17 @@ tracks/2/keys = {
 "values": [ Vector2( 0.8, 0.8 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 10
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 outline_size = 4
 font_data = ExtResource( 9 )
@@ -166,7 +161,6 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 8 )
 
 [node name="Ship" type="Sprite" parent="SpeciesSelection"]
-material = SubResource( 3 )
 position = Vector2( 87.174, 473 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
@@ -174,7 +168,7 @@ texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/Ship"]
 autoplay = "standby"
-anims/standby = SubResource( 4 )
+anims/standby = SubResource( 2 )
 
 [node name="RightArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 159.0
@@ -208,7 +202,7 @@ rect_min_size = Vector2( 0, 2 )
 margin_top = 33.0
 margin_right = 170.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "tagline"
 align = 1
 valign = 1
@@ -218,7 +212,7 @@ uppercase = true
 margin_top = 50.0
 margin_right = 170.0
 margin_bottom = 63.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "tagline"
 align = 1
 valign = 1
@@ -244,7 +238,7 @@ margin_left = -20.0
 margin_top = -30.0
 margin_right = 20.0
 margin_bottom = 3.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 text = "P1"
 align = 1
 valign = 1
@@ -267,7 +261,7 @@ margin_bottom = 231.0
 anchor_right = 1.0
 margin_top = -28.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "TEAM
 TRIXENS"

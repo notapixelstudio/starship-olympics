@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/diamond.png" type="Texture" id=2]
 [ext_resource path="res://assets/icon/diamond_logo.png" type="Texture" id=3]
 [ext_resource path="res://map/planets/rules/Diamond.tres" type="Resource" id=4]
+[ext_resource path="res://combat/styles/purple.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,6 +12,7 @@ is_mutator = false
 name = "Diamondsnatch"
 icon = ExtResource( 2 )
 logo = ExtResource( 3 )
+arena_style = ExtResource( 5 )
 description = "collect the diamonds"
 tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
 tagline_cons = "Getting killed will make you lose most of the coins"

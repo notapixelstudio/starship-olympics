@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/textures/base_texture.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=12]
 [ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=13]
 [ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=14]
+[ext_resource path="res://actors/environments/IsoPolygon.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -39,6 +40,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="IsoPolygon" type="Node2D" parent="."]
+modulate = Color( 1.36, 1.36, 1.36, 1 )
+script = ExtResource( 15 )
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 material = SubResource( 1 )
 use_parent_material = true
@@ -47,7 +52,8 @@ texture = ExtResource( 2 )
 polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 
 [node name="Line2D" type="Line2D" parent="."]
-width = 8.0
+self_modulate = Color( 1.24, 1.24, 1.24, 1 )
+width = 15.0
 default_color = Color( 0.6, 0.6, 0.6, 0.6 )
 texture_mode = 50
 

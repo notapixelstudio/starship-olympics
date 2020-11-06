@@ -12,9 +12,13 @@ enum TYPE { solid, hostile, ghost, decoration, glass }
 export(TYPE) var type = TYPE.solid setget set_type
 
 export var hide_line : bool = false setget set_hide_line
+export var hide_line_below : bool = false setget set_hide_line_below
 export var hide_grid : bool = false setget set_hide_grid
 
-export var line_width = 28 setget set_line_width
+export var line_width = 48 setget set_line_width
+
+export var solid_line_color = Color8(208, 245, 295, 255) setget set_solid_line_color
+export var line_texture : Texture setget set_line_texture
 
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
@@ -45,12 +49,24 @@ func set_hide_line(value):
 	hide_line = value
 	refresh()
 	
+func set_hide_line_below(value):
+	hide_line_below = value
+	refresh()
+	
 func set_hide_grid(value):
 	hide_grid = value
 	refresh()
 	
 func set_line_width(value):
 	line_width = value
+	refresh()
+	
+func set_solid_line_color(v):
+	solid_line_color = v
+	refresh()
+	
+func set_line_texture(v):
+	line_texture = v
 	refresh()
 	
 func set_grid_color(value):
@@ -136,6 +152,7 @@ func refresh():
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
 	$line.visible = not hide_line
+	$lineBelow.visible = not hide_line_below
 	
 	$Grid.set_texture_rotation(rotation + deg2rad(grid_rotation))
 	
@@ -151,6 +168,10 @@ func refresh():
 	ps.remove(0)
 	var p = points[0]+(points[1]-points[0])*0.5
 	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
+	$lineBelow.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
+	
+	$line.texture = line_texture
+	$lineBelow.texture = line_texture
 	
 	# wall types
 	var color
@@ -158,32 +179,48 @@ func refresh():
 		color = GlowColor.new(Color(1,0,0,1), glow_strength).color
 		$Polygon2D.modulate = color
 		$line.modulate = color
+		$lineBelow.modulate = color
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 	elif type == TYPE.solid:
-		color = Color(0.8,0.8,1.09,1)
-		$Polygon2D.modulate = color
-		$line.modulate = color
+		$Polygon2D.modulate = solid_line_color
+		$line.modulate = solid_line_color
+		$lineBelow.modulate = solid_line_color
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 	elif type == TYPE.ghost:
-		$line.modulate = Color(0.2,0.7,1,0.8)
+		$line.visible = false
+		$lineBelow.self_modulate = Color(1,1,1,1)
+		$lineBelow.modulate = Color(0.2,0.4,1,0.2)
 	elif type == TYPE.decoration:
 		$line.modulate = Color(0.8,0.8,1.09,1)
+		$lineBelow.modulate = Color(0.8,0.8,1.09,1)
 	elif type == TYPE.glass:
 		color = Color(0.4,0.7,1.2,1)
 		$Polygon2D.modulate = color
 		$line.modulate = color
+		$lineBelow.modulate = color
+		$lineBelow.self_modulate = Color(1,1,1,0.4)
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 		
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
+	#$lineBelow.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
 	# grid color
 	$Grid.modulate = grid_color
 	
-	$line.width = line_width
+	#$line.width = line_width
+	#$lineBelow.width = line_width
+	
+	update_iso()
+	
+func _process(delta):
+	update_iso()
+	
+func update_iso():
+	$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
 	
 func animate(animation_name: String):
 	if $AnimationPlayer:

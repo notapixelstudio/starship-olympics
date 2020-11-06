@@ -34,11 +34,14 @@ __meta__ = {
 
 [node name="BarsBackground" type="ColorRect" parent="."]
 anchor_right = 1.0
-margin_left = 150.0
-margin_right = -150.0
+margin_left = 50.0
+margin_right = -30.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 980, 0 )
 color = Color( 0, 0, 0, 0.862745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Bars" type="Container" parent="."]
 margin_left = 150.0

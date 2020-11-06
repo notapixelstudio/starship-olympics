@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=13]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
@@ -47,9 +48,17 @@ bevel_ne = 600
 bevel_sw = 600
 bevel_se = 600
 
-[node name="Portal" parent="Battlefield/Middleground" index="0" groups=[
-"goal",
-] instance=ExtResource( 12 )]
+[node name="FloodWater" parent="Battlefield/Background" index="2"]
+type = 1
+flag_offset = 0
+
+[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="3"]
+modulate = Color( 0.2, 0.7, 1, 0.2 )
+rotation = 0.785398
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Portal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -323, 323 )
 rotation = -0.785398
 linked_to_path = NodePath("../Portal2")
@@ -57,16 +66,17 @@ width = 450.0
 offset = 200.0
 color = Color( 1, 0.470588, 0, 1 )
 inverted = true
+goal_owner = NodePath("")
 
-[node name="Portal2" parent="Battlefield/Middleground" index="1" groups=[
-"goal",
-] instance=ExtResource( 12 )]
+[node name="Portal2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
 position = Vector2( 323, -323 )
 rotation = 2.35619
 linked_to_path = NodePath("../Portal")
 width = 450.0
 offset = 200.0
 color = Color( 0, 0.486275, 1, 1 )
+inverted = false
+goal_owner = NodePath("")
 
 [node name="Wall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, -1200 )
@@ -159,19 +169,7 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall10" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
-sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
-
-[node name="Wall11" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
+[node name="Wall11" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( -2250, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
@@ -184,35 +182,35 @@ sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Spawner" parent="Battlefield/Middleground" index="11" instance=ExtResource( 4 )]
+[node name="Spawner" parent="Battlefield/Middleground" index="10" instance=ExtResource( 4 )]
 position = Vector2( 700, 700 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner2" parent="Battlefield/Middleground" index="12" instance=ExtResource( 4 )]
+[node name="Spawner2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 4 )]
 position = Vector2( 2200, -100 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner8" parent="Battlefield/Middleground" index="13" instance=ExtResource( 4 )]
+[node name="Spawner8" parent="Battlefield/Middleground" index="12" instance=ExtResource( 4 )]
 position = Vector2( 1900, 700 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner3" parent="Battlefield/Middleground" index="14" instance=ExtResource( 4 )]
+[node name="Spawner3" parent="Battlefield/Middleground" index="13" instance=ExtResource( 4 )]
 position = Vector2( 500, -800 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner5" parent="Battlefield/Middleground" index="15" instance=ExtResource( 4 )]
+[node name="Spawner5" parent="Battlefield/Middleground" index="14" instance=ExtResource( 4 )]
 position = Vector2( -800, 800 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner6" parent="Battlefield/Middleground" index="16" instance=ExtResource( 4 )]
+[node name="Spawner6" parent="Battlefield/Middleground" index="15" instance=ExtResource( 4 )]
 position = Vector2( -1900, -650 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner7" parent="Battlefield/Middleground" index="17" instance=ExtResource( 4 )]
+[node name="Spawner7" parent="Battlefield/Middleground" index="16" instance=ExtResource( 4 )]
 position = Vector2( -2150, -100 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Spawner11" parent="Battlefield/Middleground" index="18" instance=ExtResource( 4 )]
+[node name="Spawner11" parent="Battlefield/Middleground" index="17" instance=ExtResource( 4 )]
 position = Vector2( -2350, -100 )
 scale = Vector2( 1.5, 1.5 )
 

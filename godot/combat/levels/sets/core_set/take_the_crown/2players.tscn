@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/Grid.shader" type="Shader" id=4]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=6]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=7]
@@ -14,15 +14,9 @@
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/styles/palace.tres" type="Resource" id=15]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 4 )
-shader_param/cell_size = 200.0
-shader_param/stroke = 10.0
-shader_param/time = null
-shader_param/triangular = false
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Rotate"
 length = 8.0
 loop = true
@@ -39,7 +33,7 @@ tracks/0/keys = {
 "values": [ 785, 50 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 10.0
 loop = true
 tracks/0/type = "value"
@@ -70,24 +64,30 @@ tracks/1/keys = {
 [node name="Arena" instance=ExtResource( 3 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 7 )
+style = ExtResource( 15 )
 
 [node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
+
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 6 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.3, 0.23, 0, 1 )
-material = SubResource( 1 )
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 4 )
+fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
+bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
-modulate = Color( 0.2, 0.7, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
 type = 2
+solid_line_color = Color( 1.15, 0.78, 0.47, 1 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
 script = ExtResource( 1 )
@@ -106,11 +106,11 @@ bevel_sw = 50
 bevel_se = 50
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-modulate = Color( 0.2, 0.7, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
 type = 2
+solid_line_color = Color( 1.15, 0.78, 0.47, 1 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
 script = ExtResource( 1 )
@@ -133,6 +133,7 @@ hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
+solid_line_color = Color( 1.15, 0.78, 0.47, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
@@ -155,22 +156,20 @@ bevel_se = 785
 "animation_in_battle",
 ]]
 playback_speed = 0.5
-anims/Rotate = SubResource( 2 )
+anims/Rotate = SubResource( 1 )
 
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
-position = Vector2( -800, 0 )
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
-position = Vector2( 800, 0 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2" groups=[
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
 "animation_in_battle",
 ]]
 playback_speed = 0.2
-anims/Rotate = SubResource( 3 )
+anims/Rotate = SubResource( 2 )
 
-[node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, -800 )
+solid_line_color = Color( 1.15, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 13 )
@@ -184,14 +183,21 @@ show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="Wall3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, 800 )
 rotation = 3.14159
+solid_line_color = Color( 1.15, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 13 )
 radius = 150
 sides = 4.0
+
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
+position = Vector2( -800, 0 )
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
+position = Vector2( 800, 0 )
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
@@ -209,6 +215,7 @@ species = ExtResource( 10 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 1.14795e+28, 1.14795e+28 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

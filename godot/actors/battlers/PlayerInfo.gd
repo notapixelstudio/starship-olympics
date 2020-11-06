@@ -41,7 +41,7 @@ func update_rotation():
 var partial_score = 0
 func update_score(score):
 	partial_score += score
-	point_score.set_points(partial_score)
+	point_score.set_msg(partial_score)
 	
 func update_score_ring():
 	if target.info_player and target.scores and target.info_player.stats:

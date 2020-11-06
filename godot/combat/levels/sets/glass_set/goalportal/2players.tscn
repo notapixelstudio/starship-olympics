@@ -48,11 +48,8 @@ type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone" index="5"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( 0, -10000, 20000, 20000 )
 radius = 600
-precision = 100.0
 
 [node name="Launcher" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
 position = Vector2( 0, 800 )
@@ -61,9 +58,6 @@ type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher" index="5"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 precision = 40.0
 
@@ -74,9 +68,6 @@ type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher2" index="5"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 precision = 40.0
 
@@ -88,11 +79,8 @@ type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone2" index="5"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( 0, -10000, 20000, 20000 )
 radius = 600
-precision = 100.0
 
 [node name="Portal" parent="Battlefield/Middleground" index="4" instance=ExtResource( 14 )]
 position = Vector2( 1510, 0 )

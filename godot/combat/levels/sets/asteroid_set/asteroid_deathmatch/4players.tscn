@@ -47,16 +47,12 @@ centered = false
 modulate = Color( 0, 1, 0.74902, 0.27451 )
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 2 )
@@ -75,16 +71,12 @@ bevel_sw = 450
 bevel_se = 450
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 6 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
 hollow = true
 offset = 200
 elongation = 100
 type = 2
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 2 )
@@ -106,12 +98,8 @@ bevel_se = 450
 hollow = true
 offset = 200
 elongation = 100
-type = 0
-hide_line = false
 hide_grid = true
-line_width = 28
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
@@ -134,15 +122,6 @@ bevel_se = 450
 ]]
 playback_speed = 2.0
 anims/Rotate = SubResource( 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="4"]
-type = 1
-flag_offset = 0
-
-[node name="GRect" parent="Battlefield/Background/FloodWater" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 13 )]
 position = Vector2( 900, 700 )
@@ -175,91 +154,33 @@ spawn_diamonds = false
 
 [node name="Wall10" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( 0, -1300 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall11" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
 position = Vector2( 0, 1300 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall12" parent="Battlefield/Middleground" index="7" instance=ExtResource( 6 )]
 position = Vector2( -1800, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall13" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
 position = Vector2( 1800, 0 )
-hollow = false
-offset = 0
-elongation = 0
-type = 0
-hide_line = false
-hide_grid = false
-line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 100
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 1000, -700 )

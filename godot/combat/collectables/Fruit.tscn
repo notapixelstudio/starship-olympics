@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/fruits/pear.png" type="Texture" id=5]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=6]
+[ext_resource path="res://combat/collectables/Fruit.gd" type="Script" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 160.0
+
+[node name="Fruit" type="RigidBody2D" groups=[
+"Foreground",
+"coin",
+"in_camera",
+]]
+collision_layer = 2048
+collision_mask = 3090
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "pear"
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Collectable" type="Node" parent="Entity"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -11 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
