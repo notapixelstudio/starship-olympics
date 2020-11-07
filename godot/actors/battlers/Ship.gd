@@ -12,6 +12,8 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+var spawner
+var trail
 var species_name: String
 var scores
 
@@ -40,6 +42,7 @@ const BALL_CHARGE_MULTIPLIER = 1.4
 const BULLET_BOOST = 500
 const BULLET_CHARGE_MULTIPLIER = 0.8
 const FIRE_COOLDOWN = 0.03
+const OUTSIDE_COUNTUP = 1.7
 
 var supercharge = 0
 
@@ -56,6 +59,7 @@ var count = 0
 var alive = true
 var stunned = false
 var stun_countdown = 0
+var outside_countup = 0
 
 
 var screen_size = Vector2()
@@ -125,6 +129,7 @@ func _enter_tree():
 	charging = false
 	charge = 0
 	alive = true
+	outside_countup = 0
 	emit_signal('spawned', self)
 	dash_init_appearance()
 	
@@ -232,7 +237,21 @@ signal detection
 func _physics_process(delta):
 	if not alive:
 		return
-	
+		
+	if not invincible:
+		var on_platform = false
+		for area in $NearArea.get_overlapping_areas():
+			if area.is_in_group('platform'):
+				on_platform = true
+				break
+		if on_platform:
+			outside_countup = 0
+		else:
+			outside_countup += delta
+			
+		if outside_countup > OUTSIDE_COUNTUP:
+			fall()
+		
 	control(delta)
 	
 	stun_countdown -= delta
@@ -310,7 +329,7 @@ func fire():
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
-func die(killer : Ship):
+func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		alive = false
 		# skin.play_death()
@@ -318,7 +337,7 @@ func die(killer : Ship):
 		yield(get_tree(), "idle_frame")
 		if info_player.lives >= 0:
 			info_player.lives -= 1
-		emit_signal("dead", self, killer)
+		emit_signal("dead", self, killer, for_good)
 		
 func stun():
 	stunned = true
@@ -425,3 +444,8 @@ func _on_Thrusters_disabled():
 
 func _on_Thrusters_enabled():
 	emit_signal('thrusters_on')
+
+signal fallen
+func fall():
+	emit_signal('fallen', self, spawner)
+	
