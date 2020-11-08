@@ -99,7 +99,8 @@ var camera
 var weapon_textures = {
 	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png')
+	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
 func initialize():
@@ -308,8 +309,9 @@ func fire(override_charge = -1, dash_only = false):
 			else:
 				impulse = charge_impulse+BOMB_BOOST
 			
-			emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-				Vector2(-impulse,0).rotated(rotation))
+			if bomb_type != GameMode.BOMB_TYPE.dasher or actual_charge > 0.2:
+				emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+					Vector2(-impulse,0).rotated(rotation))
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
