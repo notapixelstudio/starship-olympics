@@ -27,6 +27,7 @@ var rotation_dir = 0
 var THRUST = 2000
 
 var charge = 0
+var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
 const MIN_DASHING_CHARGE = 0.13
@@ -282,18 +283,19 @@ func charge():
 		$Graphics/ChargeBar/BombPreview.texture = null
 		$Graphics/ChargeBar.modulate = Color(1,1,0)
 	
-func fire():
+func fire(override_charge = -1, dash_only = false):
 	"""
 	Fire a bomb
 	"""
 	var should_reload = false
 	
-	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
+	actual_charge = override_charge if override_charge > 0 else charge
+	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(actual_charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
-	if bombs_enabled:
+	if bombs_enabled and not dash_only:
 		bomb_count += 1
 		if will_fire:
 			ammo.shot()
@@ -320,9 +322,9 @@ func fire():
 	$Tween.stop_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
 	
-	if charge > MIN_DASHING_CHARGE and dash_intercooldown <= 0:
+	if actual_charge > MIN_DASHING_CHARGE and dash_intercooldown <= 0:
 		entity.get('Dashing').enable()
-		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.6
+		dash_cooldown = (actual_charge - MIN_DASHING_CHARGE)*0.6
 		dash_intercooldown = DASH_INTERCOOLDOWN
 		
 	if should_reload:
@@ -422,7 +424,7 @@ func dash_thin_appearance():
 	$Graphics/Sprite.scale = DASH_THIN
 	$DashFxTimer.stop()
 	# don't show particles if dash is small (useful to have a more lenient dash)
-	if charge > 0.13:
+	if actual_charge > 0.13:
 		$DashParticles.emitting = true
 		$DashParticles.visible = true
 	
