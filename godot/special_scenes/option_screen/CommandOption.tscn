@@ -66,3 +66,4 @@ script = ExtResource( 4 )
 action = "kb1_fire"
 [connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
+[connection signal="remapped" from="Container/Button" to="." method="_on_Button_remapped"]

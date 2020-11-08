@@ -1,4 +1,3 @@
-tool
 extends GenericOption
 
 onready var value_node = $Container/ValueContainer/Value

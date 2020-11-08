@@ -304,28 +304,47 @@ func set_default_mapping(device:String):
 			remap_action_to(action, event)
 
 func check_input_event(action_: String, event:InputEvent):
-	if "kb" in action_:
-		return event is InputEventKey
-	elif "joy" in action_:
-		return event is InputEventJoypadButton 
-		
-func remap_action_to(action, event, ui_flag=true):
+	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
+
+	
+func remap_action_to(action: String, new_event: InputEvent, ui_flag=true) -> String:
 	var current_key = ""
-	for event in InputMap.get_action_list(action):
-		if check_input_event(action, event):
-			current_key = event.as_text()
-	var e = InputEventKey.new()
-	e.scancode = OS.find_scancode_from_string(current_key)
-	InputMap.action_erase_event(action, e)
-	InputMap.action_add_event(action, event)
+	var new_event_key = global.event_to_text(action, new_event)
 	if ui_flag:
 		var acts = action.split("_")
 		var id = acts[len(acts)-1]
 		if id == "fire":
 			id = "accept"
-		InputMap.action_erase_event("ui_"+id, e)
-		InputMap.action_add_event("ui_"+id, event)
-	return current_key
+		var ui_action = "ui_"+id
+		for event in InputMap.get_action_list(action):
+			print("For "+ ui_action + " removing: " + event_to_text(ui_action, event))
+			InputMap.action_erase_event(ui_action, event)
+		InputMap.action_add_event("ui_"+id, new_event)
+	InputMap.action_erase_events(action)
+	InputMap.action_add_event(action, new_event)
+	return new_event_key
+	
+func remove_event_from_action(action, event) -> String:
+	if not check_input_event(action, event):
+		print(action+" it's nothing: " + event_to_text(action, event))
+		return ""
+	var current_key = global.event_to_text(action, event)
+	var e : InputEvent
+	if "kb" in action:
+		e = InputEventKey.new()
+		e.scancode = OS.find_scancode_from_string(current_key)
+	elif "joy" in action:
+		var device = int(action.split("_")[0].replace("joy", ""))-1
+		if "analog" in current_key:
+			var inverted_joy_map = invert_map(joy_input_map)[current_key]
+			e = InputEventJoypadMotion.new()
+			e.axis = int(inverted_joy_map.split("_")[1])
+			e.axis_value = int(inverted_joy_map.split("_")[2])
+		else:
+			e = InputEventJoypadButton.new()
+			e.button_index = int(current_key)
+		e.device = device
+	return event_to_text(action, e)
 	
 func _set_input_mapping(value_):
 	input_mapping=value_
@@ -456,3 +475,40 @@ func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
 		rect.position.x + rect.size.x / 2,
 		rect.position.y + rect.size.y / 2)
+
+var joy_input_map = {
+	"analog_1_1": "analog left down",
+	"analog_1_-1": "analog left up",
+	"analog_0_1": "analog left right",
+	"analog_0_-1": "analog left left",
+	"analog_2_1": "analog right right",
+	"analog_2_-1": "analog right left",
+	"analog_3_1": "analog right up",
+	"analog_3_-1": "analog right down"
+}
+
+
+func event_to_text(action: String, event: InputEvent):
+	"""
+	event: @type InputEvent
+	"""
+	if event is InputEventKey:
+		return event.as_text()
+	elif event is InputEventJoypadButton:
+		return str(event.button_index)
+	elif event is InputEventJoypadMotion:
+		if event.axis_value > 0:
+			event.axis_value = 1
+		else:
+			event.axis_value = -1
+		return joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
+	
+
+func invert_map(map:Dictionary):
+	"""
+	works on one level map
+	"""
+	var ret = {}
+	for k in map:
+		ret[map[k]] = k
+	return ret

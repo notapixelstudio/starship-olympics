@@ -3,6 +3,8 @@ extends MarginContainer
 
 class_name CommandRemap
 
+signal remapped
+
 export var action: String
 export var device: String setget _set_device
 
@@ -14,3 +16,7 @@ func _set_device(value_):
 	if not is_inside_tree():
 		yield(self, "ready")
 	$Container/Button.action = device+"_"+action
+
+
+func _on_Button_remapped(action: String, new_control: String):
+	emit_signal("remapped", action, new_control)

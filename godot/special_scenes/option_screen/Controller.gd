@@ -6,10 +6,13 @@ onready var controls = "joy"+str(device)
 
 var command_list = ["up, down, left, right, fire"]
 
+func clear_button(button:Node2D):
+		button.visible = false
+
 func _ready():
 	# let's hide them all 
 	for button in get_children():
-		button.visible = false
+		clear_button(button)
 	
 
 func setup_controls(controls: Dictionary):
@@ -68,3 +71,8 @@ func show_input(event):
 	elif event.is_action_released(controls+"_down"):
 		handle_button(event, controls+"_down")
 	
+
+func map_control(action:String , mapped_control: String):
+	var button = get_node(mapped_control.strip_edges())
+	button.text = action.to_upper()
+	button.visible = true
