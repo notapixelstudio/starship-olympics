@@ -266,13 +266,18 @@ script = ExtResource( 22 )
 [node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 23 )]
-position = Vector2( 0, 32 )
-z_as_relative = false
+fg_color = Color( 1, 1, 1, 1 )
+bg_color = Color( 0, 0, 0, 1 )
+clock = false
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
-position = Vector2( 0, 10800 )
+position = Vector2( 0, 20000 )
 z_index = 50
 z_as_relative = false
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
 "animation_in_battle",
@@ -341,7 +346,7 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 8, 8 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false
