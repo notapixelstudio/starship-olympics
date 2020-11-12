@@ -17,9 +17,12 @@ func _ready():
 
 func setup_controls(controls: Dictionary):
 	for key in controls:
-		var button = get_node(key)
-		button.visible = true
-		button.get_node("Line2D/Label").text = controls[key]
+		for c in controls[key]:
+			var control = global.invert_map(global.joy_input_map)[c]
+			map_control("joy"+str(device)+"_"+key, control)
+			var button = get_node(control.to_upper())
+			button.visible = true
+			button.get_node("Line2D/Label").text = key
 	
 	
 func handle_button(event, event_name: String):
@@ -73,6 +76,6 @@ func show_input(event):
 	
 
 func map_control(action:String , mapped_control: String):
-	var button = get_node(mapped_control.strip_edges())
+	var button = get_node(mapped_control.strip_edges().to_upper())
 	button.text = action.to_upper()
 	button.visible = true

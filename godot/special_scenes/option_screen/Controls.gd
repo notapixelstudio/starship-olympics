@@ -7,7 +7,8 @@ func _ready():
 	for child in get_children():
 		if child is CommandRemap:
 			child.connect("remapped", self, "control_remapped" )
-
+	joypad.setup_controls(global.default_joy_input)
+	
 func _on_Element_value_changed(value):
 	device = value
 	

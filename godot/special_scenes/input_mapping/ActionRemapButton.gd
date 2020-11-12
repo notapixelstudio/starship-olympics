@@ -7,8 +7,9 @@ func check_input_event(event:InputEvent):
 	if "kb" in self.action:
 		return event is InputEventKey
 	elif "joy" in self.action:
-		return event is InputEventJoypadButton or event is InputEventJoypadMotion
-
+		var device = int(self.action.split("_")[0].replace("joy", ""))-1
+		return (event is InputEventJoypadButton or event is InputEventJoypadMotion) and event.device == int(device)
+	
 func _set_action(value_):
 	action = value_
 	display_current_key()
@@ -30,7 +31,7 @@ func _toggled(button_pressed):
 func _input(event):
 	# Note that you can use the _input callback instead, especially if
 	# you want to work with gamepads.
-	if event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion:
+	if check_input_event(event):
 		# DO NOTHING if less than DEADZONE
 		if event is InputEventJoypadMotion:
 			if abs(event.axis_value) < 0.5:

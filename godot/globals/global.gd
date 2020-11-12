@@ -286,6 +286,14 @@ const INPUT_ACTIONS = ["kb1", "kb2"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
 var default_input :=  {"kb1_accept":"M", "kb1_down":"Down", "kb1_fire":"M", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", "kb2_accept":"1", "kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"}
 
+var default_joy_input := {
+	"fire": ["button down", "button up", "button left", "button right"], 
+	"up":["dpad up", "analog left up"],
+	"left": ["dpad left", "analog left left"], 
+	"right": ["dpad right", "analog left right"],
+	"down": ["dpad down", "analog left down"]
+	}
+	
 var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
 onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
 
@@ -484,8 +492,25 @@ var joy_input_map = {
 	"analog_2_1": "analog right right",
 	"analog_2_-1": "analog right left",
 	"analog_3_1": "analog right up",
-	"analog_3_-1": "analog right down"
+	"analog_3_-1": "analog right down",
+	"0": "button down",
+	"1": "button right",
+	"2": "button left",
+	"3": "button up",
+	"4": "L1",
+	"5": "R1",
+	"6": "L2",
+	"7": "R2",
+	"8": "LS",
+	"9": "RS",
+	"10": "select",
+	"11": "start",
+	"12": "dpad up",
+	"13": "dpad down",
+	"14": "dpad left",
+	"15": "dpad right"
 }
+
 
 
 func event_to_text(action: String, event: InputEvent):
@@ -501,7 +526,7 @@ func event_to_text(action: String, event: InputEvent):
 			event.axis_value = 1
 		else:
 			event.axis_value = -1
-		return joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
+		return global.joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
 	
 
 func invert_map(map:Dictionary):
