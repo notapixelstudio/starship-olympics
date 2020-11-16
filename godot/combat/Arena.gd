@@ -91,6 +91,7 @@ func set_style(v : ArenaStyle):
 		wall.line_texture = style.wall_texture
 	for grid in get_tree().get_nodes_in_group('grid'):
 		grid.fg_color = style.battlefield_fg_color
+		grid.fg_color = style.battlefield_fg_color
 		grid.bg_color = style.battlefield_bg_color
 		grid.modulate.a = style.battlefield_opacity
 		grid.poly.texture = style.battlefield_texture
@@ -452,7 +453,7 @@ func _on_background_item_rect_changed():
 func hud_update(player_id : String, score:int, collectable_owner:String = ""):
 	hud._on_Arena_update_score(player_id, score, collectable_owner)
 
-func ship_just_died(ship, killer):
+func ship_just_died(ship, killer, for_good):
 	"""
 	Parameters
 	----------
@@ -474,23 +475,30 @@ func ship_just_died(ship, killer):
 	deathflash.species = ship.species
 	deathflash.position = ship.position
 	$Battlefield.call_deferred("add_child", deathflash)
-	$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 	
-	ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity)
-	ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
+	if not for_good:
+		$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
+		
+		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity)
+		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
+	
+	var focus
 	
 	if ship.info_player.lives == 0:
 		var alive_players = []
-		var focus = load("res://actors/environments/ElementInCamera.tscn").instance()
-		ship.dead_ship_instance.remove_from_group("in_camera")
-		$Battlefield.add_child(focus)
+		if not for_good:
+			focus = load("res://actors/environments/ElementInCamera.tscn").instance()
+			ship.dead_ship_instance.remove_from_group("in_camera")
+			$Battlefield.add_child(focus)
 		yield(get_tree(), "idle_frame")
 		
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
 				alive_players.append(s)
 		
-		focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
+		if not for_good:
+			focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
+		
 		if len(alive_players) == 1:
 			# notify scores if there is only one player left
 			yield(get_tree().create_timer(1), 'timeout')
@@ -502,6 +510,12 @@ func ship_just_died(ship, killer):
 			scores.no_players_left()
 		
 		# skip respawn if there are no lives left
+		return
+		
+	# skip respawn if the ship died for good
+	if for_good:
+		ship.trail.maybe_erase()
+		ship.queue_free()
 		return
 	
 	var respawn_timeout = 1.5
@@ -580,6 +594,7 @@ func create_trail(ship):
 	yield(trail, "ready")
 	trail.initialize(ship)
 	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
+	ship.trail = trail
 	return trail
 
 func spawn_ship(player:PlayerSpawner):
@@ -599,6 +614,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.width = width
 	ship.name = player.name
 	ship.info_player = player.info_player
+	ship.spawner = player
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
@@ -608,6 +624,7 @@ func spawn_ship(player:PlayerSpawner):
 	$Battlefield.add_child(trail)
 	yield(trail, "ready")
 	trail.initialize(ship)
+	ship.trail = trail
 	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
 	
 	# Check on gears
@@ -633,7 +650,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
-	
+	ship.connect("fallen", self, "_on_ship_fallen")
 	
 	# attach followcamera
 	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
@@ -763,3 +780,8 @@ func _on_EndlessArea_body_exited(body):
 	else:
 		body.queue_free()
 		
+func _on_ship_fallen(ship, spawner):
+	ship.die(null, true) # die for good
+	spawner.appears()
+	spawn_ship(spawner)
+	
