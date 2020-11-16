@@ -17,6 +17,9 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 			if other is Diamond and ECM.E(ship).has('CoinBag'):
 				ECM.E(ship).get('CoinBag').add_coin()
 				
+			if other is Dasher:
+				ship.fire(2.0, true)
+				
 			emit_signal('collected', ship, entity.get_host())
 			
 		if entity.has('Keepable') and is_loadable:

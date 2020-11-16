@@ -664,14 +664,21 @@ func spawn_ship(player:PlayerSpawner):
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
+const dasher_scene = preload('res://combat/collectables/Dasher.tscn')
 func spawn_bomb(type, pos, impulse, ship, size=1):
-	var bomb = bomb_scene.instance()
-	bomb.initialize(type, pos, impulse, ship, size)
-	
-	bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
-	bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
-	bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
-	bomb.connect("detonate", self, "bomb_detonated", [bomb])
+	var bomb
+	if type == GameMode.BOMB_TYPE.dasher:
+		bomb = dasher_scene.instance()
+		bomb.position = ship.position
+		bomb.apply_central_impulse(impulse)
+	else:
+		bomb = bomb_scene.instance()
+		bomb.initialize(type, pos, impulse, ship, size)
+		
+		bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
+		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
+		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
+		bomb.connect("detonate", self, "bomb_detonated", [bomb])
 	
 	$Battlefield.add_child(bomb)
 	
