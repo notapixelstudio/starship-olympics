@@ -71,9 +71,9 @@ func _physics_process(delta):
 		if did_it and fluid.get_host() is Cell:
 			fluid.get_host().flash()
 			
-	for e_w_thrusters in ECM.entities_with('Thrusters'):
-		e_w_thrusters.get('Thrusters').apply_damp()
-		e_w_thrusters.get('Thrusters').reset_hindrances()
+	#for e_w_thrusters in ECM.entities_with('Thrusters'):
+	#	e_w_thrusters.get('Thrusters').apply_damp()
+	#	e_w_thrusters.get('Thrusters').reset_hindrances()
 
 
 func activate_slomo(arena):

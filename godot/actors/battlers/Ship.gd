@@ -43,7 +43,7 @@ const BALL_CHARGE_MULTIPLIER = 1.4
 const BULLET_BOOST = 500
 const BULLET_CHARGE_MULTIPLIER = 0.8
 const FIRE_COOLDOWN = 0.03
-const OUTSIDE_COUNTUP = 1.7
+const OUTSIDE_COUNTUP = 3.0
 
 var supercharge = 0
 

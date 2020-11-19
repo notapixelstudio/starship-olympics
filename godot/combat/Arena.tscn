@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -63,12 +63,15 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 10800 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10000, 10000 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 500
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 29 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=5]
 script/source = "extends Position2D
 
 func _process(delta):
@@ -76,7 +79,7 @@ func _process(delta):
 	position = global.calculate_center(rect)
 "
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -293,6 +296,16 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 20000
 height = 20000
 
+[node name="GravitationalArea" type="Area2D" parent="Battlefield/Background"]
+visible = false
+space_override = 3
+linear_damp = 5.0
+collision_layer = 128
+collision_mask = 8193
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/GravitationalArea"]
+shape = SubResource( 3 )
+
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
 [node name="Middleground" type="Node2D" parent="Battlefield"]
@@ -326,7 +339,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 align = 1
 valign = 1
 uppercase = true
@@ -346,17 +359,17 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 8, 8 )
+zoom = Vector2( 16, 16 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false
 enabled = true
 
 [node name="CenterCamera" type="Position2D" parent="."]
-script = SubResource( 4 )
+script = SubResource( 5 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 5 )
+"anims/Game Over" = SubResource( 6 )
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
