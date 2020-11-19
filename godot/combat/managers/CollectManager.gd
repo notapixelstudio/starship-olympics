@@ -18,7 +18,7 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 				ECM.E(ship).get('CoinBag').add_coin()
 				
 			if other is Dasher:
-				ship.fire(2.0, true)
+				ship.fire(1.0, true)
 				
 			emit_signal('collected', ship, entity.get_host())
 			
