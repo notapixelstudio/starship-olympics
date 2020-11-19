@@ -218,12 +218,9 @@ func refresh():
 	
 	yield(self, 'ready')
 	
-	if type == TYPE.ghost:
-		var shape = ConvexPolygonShape2D.new()
-		shape.set_points(points)
-		$Area2D/CollisionShape2D.shape = shape
-	else:
-		$Area2D/CollisionShape2D.shape = null
+	var shape = ConvexPolygonShape2D.new()
+	shape.set_points(points)
+	$Area2D/CollisionShape2D.shape = shape
 	
 	
 func _process(delta):
