@@ -96,7 +96,11 @@ round_precision = 10
 "platform",
 ]]
 visible = false
+space_override = 3
+gravity = 0.0
+linear_damp = 2.0
+priority = 10.0
 collision_layer = 128
-collision_mask = 0
+collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
