@@ -6,10 +6,10 @@
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/shaders/chromatic_aberration.shader" type="Shader" id=5]
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 shader_param/apply = true
-shader_param/amount = 0.08
+shader_param/amount = 0.09
 
 [node name="LocalMultiplayer" type="Node"]
 script = ExtResource( 1 )
@@ -30,7 +30,7 @@ current = true
 layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="ScreenPostProcessing"]
-material = SubResource( 8 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

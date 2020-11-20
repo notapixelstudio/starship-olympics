@@ -49,7 +49,7 @@ glow_bicubic_upscale = true
 adjustment_enabled = true
 adjustment_brightness = 1.1
 adjustment_contrast = 1.05
-adjustment_saturation = 0.7
+adjustment_saturation = 0.8
 
 [sub_resource type="Animation" id=2]
 resource_name = "Rotate"
@@ -363,7 +363,7 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 128, 128 )
+zoom = Vector2( 256, 256 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false
