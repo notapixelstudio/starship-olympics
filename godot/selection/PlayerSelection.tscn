@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -17,6 +17,37 @@
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
+
+[sub_resource type="Animation" id=5]
+resource_name = "select"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("../../SFX/selected")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.15 )
+}
 
 [sub_resource type="Animation" id=1]
 length = 4.0
@@ -97,43 +128,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 species = ExtResource( 12 )
-controls = ""
 
-[node name="SelectRect" type="Sprite" parent="SpeciesSelection"]
+[node name="CharacterWrapper" type="Node2D" parent="SpeciesSelection"]
+position = Vector2( 84, 257 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/CharacterWrapper"]
+anims/select = SubResource( 5 )
+
+[node name="SelectRect" type="Sprite" parent="SpeciesSelection/CharacterWrapper"]
 visible = false
 self_modulate = Color( 1.15, 1.15, 1.15, 1 )
-position = Vector2( -10.0661, 0.893982 )
+position = Vector2( -94.0661, -256.106 )
 scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 13 )
 centered = false
 
-[node name="Character" type="Control" parent="SpeciesSelection"]
-margin_top = -15.0
-margin_right = 210.0
-margin_bottom = 535.0
+[node name="Character" type="Control" parent="SpeciesSelection/CharacterWrapper"]
+margin_left = -84.0
+margin_top = -272.0
+margin_right = 126.0
+margin_bottom = 278.0
 rect_clip_content = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Polygon2D" parent="SpeciesSelection/Character"]
+[node name="Background" type="Polygon2D" parent="SpeciesSelection/CharacterWrapper/Character"]
 position = Vector2( 0, -3.05176e-05 )
 polygon = PoolVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
 
-[node name="Border" type="Line2D" parent="SpeciesSelection/Character"]
+[node name="Border" type="Line2D" parent="SpeciesSelection/CharacterWrapper/Character"]
 points = PoolVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 91
 begin_cap_mode = 1
 
-[node name="Character" type="Sprite" parent="SpeciesSelection/Character"]
+[node name="Character" type="Sprite" parent="SpeciesSelection/CharacterWrapper/Character"]
 modulate = Color( 0.8, 0.8, 0.8, 1 )
 position = Vector2( 90, 290 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 11 )
 
-[node name="OverBorder" type="Line2D" parent="SpeciesSelection/Character"]
+[node name="OverBorder" type="Line2D" parent="SpeciesSelection/CharacterWrapper/Character"]
 points = PoolVector2Array( 23, 35, 23, 548, 144, 548 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )

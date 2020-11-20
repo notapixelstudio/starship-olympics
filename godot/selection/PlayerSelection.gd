@@ -128,7 +128,7 @@ func leave():
 func select_character():
 	selected = true
 	speciesSelection.select()
-	sfx.get_node("selected").play()
+	#sfx.get_node("selected").play()
 	setup_info()
 	emit_signal("selected", self)
 
