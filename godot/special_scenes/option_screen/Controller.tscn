@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/UI/buttons/dpad.png" type="Texture" id=1]
 [ext_resource path="res://assets/UI/controller.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://special_scenes/option_screen/Controller.gd" type="Script" id=7]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://special_scenes/option_screen/ControllerElement.gd" type="Script" id=9]
+[ext_resource path="res://special_scenes/option_screen/Analog.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -21,8 +22,10 @@ script = ExtResource( 7 )
 
 [node name="0" type="Sprite" parent="."]
 position = Vector2( 170.51, 47.1591 )
-texture = ExtResource( 6 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="0"]
+texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="0"]
 position = Vector2( 2.32707, 0 )
@@ -51,8 +54,10 @@ __meta__ = {
 
 [node name="1" type="Sprite" parent="."]
 position = Vector2( 220.51, -0.840912 )
-texture = ExtResource( 6 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="1"]
+texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="1"]
 points = PoolVector2Array( 50, 0, 100, 0 )
@@ -79,8 +84,10 @@ __meta__ = {
 
 [node name="2" type="Sprite" parent="."]
 position = Vector2( 121.51, -0.840912 )
-texture = ExtResource( 6 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="2"]
+texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="2"]
 position = Vector2( -0.590607, 22.9178 )
@@ -108,8 +115,10 @@ __meta__ = {
 
 [node name="3" type="Sprite" parent="."]
 position = Vector2( 170.51, -50.8409 )
-texture = ExtResource( 6 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="3"]
+texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="3"]
 points = PoolVector2Array( 33.5052, -25.1374, 61.669, -40, 150, -40 )
@@ -136,8 +145,10 @@ __meta__ = {
 
 [node name="4" type="Sprite" parent="."]
 position = Vector2( -178.137, -150.149 )
-texture = ExtResource( 4 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="4"]
+texture = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="4"]
 points = PoolVector2Array( -60, 0, -130, 0 )
@@ -165,8 +176,10 @@ __meta__ = {
 
 [node name="5" type="Sprite" parent="."]
 position = Vector2( 177.863, -150.149 )
-texture = ExtResource( 4 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="5"]
+texture = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="5"]
 points = PoolVector2Array( 60, 0, 130, 0 )
@@ -194,8 +207,10 @@ __meta__ = {
 
 [node name="6" type="Sprite" parent="."]
 position = Vector2( -171.403, -218.619 )
-texture = ExtResource( 3 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="6"]
+texture = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="6"]
 points = PoolVector2Array( -60, 0, -130, 0 )
@@ -223,8 +238,10 @@ __meta__ = {
 
 [node name="7" type="Sprite" parent="."]
 position = Vector2( 167.597, -218.619 )
-texture = ExtResource( 3 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="7"]
+texture = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="7"]
 points = PoolVector2Array( 60, 0, 130, 0 )
@@ -252,8 +269,10 @@ __meta__ = {
 
 [node name="8" type="Sprite" parent="."]
 position = Vector2( -92.0806, 121.437 )
-texture = ExtResource( 6 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="8"]
+texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="8"]
 points = PoolVector2Array( 0, 40, 0, 90 )
@@ -280,8 +299,10 @@ __meta__ = {
 
 [node name="9" type="Sprite" parent="."]
 position = Vector2( 90.9194, 121.437 )
-texture = ExtResource( 6 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="9"]
+texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="9"]
 points = PoolVector2Array( 0, 40, 0, 90 )
@@ -308,8 +329,10 @@ __meta__ = {
 
 [node name="10" type="Sprite" parent="."]
 position = Vector2( -32.0949, 33.1283 )
-texture = ExtResource( 5 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="10"]
+texture = ExtResource( 5 )
 
 [node name="Line2D" type="Line2D" parent="10"]
 points = PoolVector2Array( 0, -50, 0, -150 )
@@ -336,8 +359,10 @@ __meta__ = {
 
 [node name="11" type="Sprite" parent="."]
 position = Vector2( 30.9051, 33.1283 )
-texture = ExtResource( 5 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="11"]
+texture = ExtResource( 5 )
 
 [node name="Line2D" type="Line2D" parent="11"]
 points = PoolVector2Array( 0, -50, 0, -200 )
@@ -364,8 +389,10 @@ __meta__ = {
 
 [node name="12" type="Sprite" parent="."]
 position = Vector2( -160.413, -40.4231 )
-texture = ExtResource( 1 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="12"]
+texture = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="12"]
 points = PoolVector2Array( -50, 0, -100, 0 )
@@ -393,8 +420,10 @@ __meta__ = {
 
 [node name="13" type="Sprite" parent="."]
 position = Vector2( -160.413, 33.5769 )
-texture = ExtResource( 1 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="13"]
+texture = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="13"]
 points = PoolVector2Array( -50, 0, -100, 0 )
@@ -422,8 +451,10 @@ __meta__ = {
 
 [node name="14" type="Sprite" parent="."]
 position = Vector2( -195.413, -0.423065 )
-texture = ExtResource( 1 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="14"]
+texture = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="14"]
 points = PoolVector2Array( -50, 0, -100, 0 )
@@ -451,8 +482,10 @@ __meta__ = {
 
 [node name="15" type="Sprite" parent="."]
 position = Vector2( -125.413, -0.423065 )
-texture = ExtResource( 1 )
 script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="15"]
+texture = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="15"]
 points = PoolVector2Array( 4.46829, 33.3693, -4.34119, 77.935, -58.2346, 92.963, -186.231, 93.4812 )
@@ -483,6 +516,7 @@ position = Vector2( -91.956, 120 )
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="ANALOG_1_-1"]
+visible = false
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_1_-1"]
@@ -514,6 +548,7 @@ position = Vector2( -91.956, 120 )
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="ANALOG_1_1"]
+visible = false
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_1_1"]
@@ -545,6 +580,7 @@ position = Vector2( -91.956, 120 )
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="ANALOG_0_1"]
+visible = false
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_0_1"]
@@ -571,11 +607,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnalogLeft" type="Sprite" parent="."]
+position = Vector2( -91.956, 120 )
+script = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="AnalogLeft"]
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="AnalogLeft"]
+
+[node name="AnalogRight2" type="Sprite" parent="."]
+position = Vector2( -91.956, 120 )
+
+[node name="Sprite" type="Sprite" parent="AnalogRight2"]
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="AnalogRight2"]
+
 [node name="ANALOG_0_-1" type="Sprite" parent="."]
 position = Vector2( -91.956, 120 )
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="ANALOG_0_-1"]
+visible = false
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_0_-1"]
@@ -607,6 +661,7 @@ position = Vector2( 91.51, 120 )
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="AnalogRight"]
+visible = false
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="AnalogRight"]

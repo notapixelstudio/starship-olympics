@@ -4,6 +4,7 @@ extends MarginContainer
 class_name CommandRemap
 
 signal remapped
+signal try_remap
 
 export var action: String
 export var device: String setget _set_device
@@ -20,3 +21,7 @@ func _set_device(value_):
 
 func _on_Button_remapped(action: String, new_control: String):
 	emit_signal("remapped", action, new_control)
+
+
+func _on_Button_try_remap(action):
+	emit_signal("try_remap", action)

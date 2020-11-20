@@ -1,13 +1,16 @@
 extends Sprite
 
-export var device = 1
+class_name Controller
 
-onready var controls = "joy"+str(device)
+export var device_id: int
 
+onready var controls = "joy"+str(device_id)
+	
 var command_list = ["up, down, left, right, fire"]
 
 func clear_button(button:Node2D):
-		button.visible = false
+		button.get_node("Sprite").modulate.a = 0
+		button.get_node("Line2D").visible =false
 
 func _ready():
 	# let's hide them all 
@@ -19,18 +22,20 @@ func setup_controls(controls: Dictionary):
 	for key in controls:
 		for c in controls[key]:
 			var control = global.invert_map(global.joy_input_map)[c]
-			map_control("joy"+str(device)+"_"+key, control)
+			map_control(self.controls+"_"+key, control)
 			var button = get_node(control.to_upper())
 			button.visible = true
+			button.get_node("Line2D").visible =true
 			button.get_node("Line2D/Label").text = key
 	
 	
-func handle_button(event, event_name: String):
-	for joy_event in InputMap.get_action_list(event_name):
-		if joy_event is InputEventJoypadButton:
-			get_node(str(joy_event.button_index)).visible = event.is_action_pressed(event_name)
-
-func show_input(event):
+func handle_button(joy_event: InputEventJoypadButton):
+	get_node(str(joy_event.button_index)).show_button(joy_event)
+			
+func _input(event):
+	
+	if event.device != self.device_id -1 :
+		return
 	#if event is InputEventJoypadButton:
 	#	get_node(str(event.button_index)).visible = event.pressed
 	if event is InputEventJoypadMotion:
@@ -42,40 +47,17 @@ func show_input(event):
 			$AnalogRight/Sprite.position.x = event.axis_value*10
 		if event.axis==3:
 			$AnalogRight/Sprite.position.y = event.axis_value*10
-		#$AnalogLeft.modulate.a = abs($AnalogLeft/Sprite.position.normalized())
-		#$AnalogRight.modulate.a = abs($AnalogRight/Sprite.position.normalized())
-		print(event.get_action_strength(controls+"_left"))
 		
-	if event.is_action_pressed(controls+"_fire"):
-		handle_button(event, controls+"_fire")
-	elif event.is_action_released(controls+"_fire"):
-		handle_button(event, controls+"_fire")
-			
-	if event.is_action_pressed(controls+"_left"):
-		handle_button(event, controls+"_left")
-			
-	elif event.is_action_released(controls+"_left"):
-		handle_button(event, controls+"_left")
-			
-	if event.is_action_pressed(controls+"_right"):
-		handle_button(event, controls+"_right")
-			
-	elif event.is_action_released(controls+"_right"):
-		handle_button(event, controls+"_right")
-			
-	if event.is_action_pressed(controls+"_up"):
-		handle_button(event, controls+"_up")
-	elif event.is_action_released(controls+"_up"):
-		handle_button(event, controls+"_up")
-			
-	if event.is_action_pressed(controls+"_down"):
-		handle_button(event, controls+"_down")
-		
-	elif event.is_action_released(controls+"_down"):
-		handle_button(event, controls+"_down")
-	
+	if event is InputEventJoypadButton:
+		handle_button(event)
 
 func map_control(action:String , mapped_control: String):
+	for input_event in InputMap.get_action_list(action):
+		if input_event is InputEventJoypadButton:
+			var btn = (input_event as InputEventJoypadButton).button_index
+			clear_button(get_node(str(btn)))
+			print("Shutting down: ", str(btn))
 	var button = get_node(mapped_control.strip_edges().to_upper())
 	button.text = action.to_upper()
 	button.visible = true
+	button.get_node("Line2D").visible =true

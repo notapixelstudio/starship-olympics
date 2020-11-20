@@ -2,6 +2,7 @@ extends Button
 
 export var action: String = "ui_up" setget _set_action
 
+signal try_remap
 signal remapped 
 func check_input_event(event:InputEvent):
 	if "kb" in self.action:
@@ -23,6 +24,7 @@ func _ready():
 func _toggled(button_pressed):
 	set_process_input(button_pressed)
 	if button_pressed:
+		emit_signal("try_remap", self.action)
 		text = "..."
 	else:
 		display_current_key()
