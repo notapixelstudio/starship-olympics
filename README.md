@@ -51,3 +51,4 @@ All the resources hereby cited are free and royalty-free. Made by the community 
 - icons from the excellent https://game-icons.net project!
 - [Lorc](http://lorcblog.blogspot.com)
 - [Darkzaitzev](https://www.deviantart.com/darkzaitzev)
+- Screen noise image created by rawpixel.com - [www.freepik.com](https://www.freepik.com/photos/background)
