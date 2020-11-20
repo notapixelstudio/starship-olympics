@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=2]
 [ext_resource path="res://combat/levels/background/stars2.png" type="Texture" id=3]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=4]
-[ext_resource path="res://local_multiplayer/UI/ParallaxSprite.gd" type="Script" id=5]
-[ext_resource path="res://assets/map/queensworld.png" type="Texture" id=6]
-[ext_resource path="res://assets/map/trixxx.png" type="Texture" id=7]
+[ext_resource path="res://assets/shaders/chromatic_aberration.shader" type="Shader" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 8 )
+shader_param/apply = true
+shader_param/amount = 0.1
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource( 1 )
@@ -16,6 +18,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
 stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Stars" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.1, 1 )
@@ -29,40 +34,10 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 120.559, 12.7077, 1194.36, 986.642 )
 
-[node name="FarAwayPlanets" type="ParallaxLayer" parent="."]
-visible = false
-motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 1480, 720 )
-
-[node name="parallax-space-far-planets" type="Sprite" parent="FarAwayPlanets"]
-modulate = Color( 0.670588, 0.556863, 0.745098, 1 )
-position = Vector2( 740, 212 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 4 )
-script = ExtResource( 5 )
-
-[node name="Jupiter" type="ParallaxLayer" parent="."]
-visible = false
-motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 2600, 720 )
-
-[node name="parallax-space-big-planet" type="Sprite" parent="Jupiter"]
-modulate = Color( 0.670588, 0.556863, 0.745098, 1 )
-position = Vector2( 818.4, 535.454 )
-scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
-script = ExtResource( 5 )
-
-[node name="Saturn" type="ParallaxLayer" parent="."]
-visible = false
-position = Vector2( 0, 200 )
-motion_scale = Vector2( 0.6, 1 )
-motion_mirroring = Vector2( 1400, 720 )
-
-[node name="parallax-space-ring-planet" type="Sprite" parent="Saturn"]
-modulate = Color( 0.431373, 0.431373, 0.431373, 1 )
-self_modulate = Color( 0.670588, 0.556863, 0.745098, 1 )
-position = Vector2( 130, 640 )
-scale = Vector2( 0.19, 0.2 )
-texture = ExtResource( 7 )
-script = ExtResource( 5 )
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
