@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -18,9 +18,24 @@
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
 
+[sub_resource type="Animation" id=6]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=5]
 resource_name = "select"
-length = 2.0
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -136,6 +151,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/CharacterWrapper"]
+autoplay = "appear"
+anims/appear = SubResource( 6 )
 anims/select = SubResource( 5 )
 
 [node name="SelectRect" type="Sprite" parent="SpeciesSelection/CharacterWrapper"]
