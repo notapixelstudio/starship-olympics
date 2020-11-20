@@ -1,19 +1,34 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://map/Map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://selection/SelectionScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/shaders/chromatic_aberration.shader" type="Shader" id=5]
+[ext_resource path="res://assets/shaders/crt.shader" type="Shader" id=5]
+[ext_resource path="res://default_env.tres" type="Environment" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
-shader_param/apply = true
-shader_param/amount = 0.09
+shader_param/boost = 1.0
+shader_param/grille_opacity = 0.5
+shader_param/scanlines_opacity = 0.5
+shader_param/vignette_opacity = 0.2
+shader_param/scanlines_speed = 1.0
+shader_param/show_grille = false
+shader_param/show_scanlines = false
+shader_param/show_vignette = true
+shader_param/show_curvature = true
+shader_param/screen_size = Vector2( 320, 180 )
+shader_param/aberration_amount = 0.28
+shader_param/move_aberration = false
+shader_param/aberration_speed = 1.0
 
 [node name="LocalMultiplayer" type="Node"]
 script = ExtResource( 1 )
 map_scene = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
 
 [node name="SelectionScreen" parent="." instance=ExtResource( 3 )]
 
