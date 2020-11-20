@@ -13,6 +13,7 @@ onready var species_name = $SpeciesName/Label
 onready var tagline1 = $SpeciesName/Tagline1
 onready var tagline2 = $SpeciesName/Tagline2
 onready var character = $CharacterWrapper/Character/Character
+onready var shadow = $CharacterWrapper/Character/Clip/Shadow
 onready var controls_sprite = $Controls 
 onready var player_infotext = $PlayerInfo/PlayerID
 onready var anim = $Ship/AnimationPlayer
@@ -51,6 +52,7 @@ func change_species(new_species:Species):
 	tagline1.text = tr(species.tagline1).replace("<br>", "\n")
 	tagline2.text = species.tagline2
 	character.texture = species.character_ok
+	shadow.texture = species.character_ok
 	select_rect.modulate = species.color
 	background.color = species.color
 
@@ -58,6 +60,7 @@ func select():
 	select_rect.visible = true
 	background.modulate = Color(1,1,1,1)
 	background.texture = stripes_texture
+	shadow.visible = false
 	character.modulate = Color(1,1,1,1)
 	$LeftArrow.disable()
 	$RightArrow.disable()
@@ -67,12 +70,14 @@ func select():
 func deselect():
 	select_rect.visible = false
 	background.texture = null
+	shadow.visible = true
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
 
 func enable():
 	select_rect.visible = false
 	background.texture = null
+	shadow.visible = true
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
 	$PlayerInfo.visible = true
