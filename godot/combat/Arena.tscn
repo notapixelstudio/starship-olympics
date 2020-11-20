@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -28,57 +28,62 @@
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=28]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=29]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
 
-[sub_resource type="Environment" id=1]
-background_mode = 4
-background_canvas_max_layer = 100
-glow_enabled = true
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/3 = false
-glow_levels/4 = true
-glow_levels/5 = false
-glow_intensity = 0.4
-glow_blend_mode = 1
-glow_bicubic_upscale = true
-
-[sub_resource type="Animation" id=2]
-resource_name = "Rotate"
-length = 1000.0
+[sub_resource type="Animation" id=5]
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:time_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 80 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ 1.0, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Battlefield/Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Battlefield/Middleground:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 10800 ), Vector2( 0, 9100 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 10000, 10000 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 500
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 29 )
-
-[sub_resource type="GDScript" id=5]
-script/source = "extends Position2D
-
-func _process(delta):
-	var rect = get_parent().get_node(\"Camera\").camera_rect
-	position = global.calculate_center(rect)
-"
 
 [sub_resource type="Animation" id=6]
 length = 0.5
@@ -137,9 +142,6 @@ __meta__ = {
 "_editor_description_": ""
 }
 gameover_scene = ExtResource( 2 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
 
 [node name="Managers" type="Node" parent="."]
 
@@ -287,7 +289,6 @@ opaque_tint = Color( 0, 0, 0, 0.8 )
 "animation_in_battle",
 ]]
 playback_process_mode = 0
-anims/Rotate = SubResource( 2 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
 script = ExtResource( 24 )
@@ -305,7 +306,6 @@ collision_layer = 128
 collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/GravitationalArea"]
-shape = SubResource( 3 )
 
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
@@ -340,7 +340,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 4 )
 align = 1
 valign = 1
 uppercase = true
@@ -360,7 +359,7 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 32, 32 )
+zoom = Vector2( 512, 512 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false
