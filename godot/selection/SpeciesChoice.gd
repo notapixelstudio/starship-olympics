@@ -73,8 +73,10 @@ func deselect():
 	shadow.visible = true
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
+	sel_animation.stop()
+	sel_animation.play('appear')
 
-func enable():
+func enable(silent=false):
 	select_rect.visible = false
 	background.texture = null
 	shadow.visible = true
@@ -86,6 +88,11 @@ func enable():
 	anim.play("standby")
 	set_process_input(true)
 	set_process(true)
+	sel_animation.stop()
+	if silent:
+		sel_animation.play('appear')
+	else:
+		sel_animation.play('deselect')
 	
 func disable():
 	$PlayerInfo.visible = false

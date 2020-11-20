@@ -140,9 +140,9 @@ func setup_info():
 func deselect(silent : bool = false):
 	speciesSelection.deselect()
 	unset_team()
-	if not silent:
-		sfx.get_node("deselected").play()
-	enable_choice()
+	#if not silent:
+	#	sfx.get_node("deselected").play()
+	enable_choice(silent)
 	selected = false
 	emit_signal("deselected", species)
 	
@@ -167,12 +167,12 @@ func disable_choice():
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
 	
-func enable_choice():
+func enable_choice(silent=false):
 	joined = true
 	disabled = false
 	speciesSelection.modulate = Color(1,1,1,1)
 	selected = false
-	speciesSelection.enable()
+	speciesSelection.enable(silent)
 	if global.demo:
 		speciesSelection.disable_arrows()
 	
