@@ -22,6 +22,7 @@ onready var background = $CharacterWrapper/Character/Background
 onready var sel_animation = $CharacterWrapper/AnimationPlayer
 
 const img_path : String = "res://assets/icon/"
+const stripes_texture = preload("res://assets/patterns/stripes_duotone.png")
 
 func _ready():
 	select_rect.visible = false
@@ -56,6 +57,7 @@ func change_species(new_species:Species):
 func select():
 	select_rect.visible = true
 	background.modulate = Color(1,1,1,1)
+	background.texture = stripes_texture
 	character.modulate = Color(1,1,1,1)
 	$LeftArrow.disable()
 	$RightArrow.disable()
@@ -64,11 +66,13 @@ func select():
 
 func deselect():
 	select_rect.visible = false
+	background.texture = null
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
 
 func enable():
 	select_rect.visible = false
+	background.texture = null
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
 	$PlayerInfo.visible = true

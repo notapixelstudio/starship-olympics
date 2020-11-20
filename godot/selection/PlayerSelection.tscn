@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -62,6 +62,22 @@ tracks/1/keys = {
 "stream": ExtResource( 4 )
 } ],
 "times": PoolRealArray( 0.15 )
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "barber"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -50, 0 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -175,7 +191,12 @@ __meta__ = {
 
 [node name="Background" type="Polygon2D" parent="SpeciesSelection/CharacterWrapper/Character"]
 position = Vector2( 0, -3.05176e-05 )
+texture_rotation_degrees = 90.0
 polygon = PoolVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/CharacterWrapper/Character/Background"]
+autoplay = "barber"
+anims/barber = SubResource( 7 )
 
 [node name="Border" type="Line2D" parent="SpeciesSelection/CharacterWrapper/Character"]
 points = PoolVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
