@@ -537,3 +537,10 @@ func invert_map(map:Dictionary):
 	for k in map:
 		ret[map[k]] = k
 	return ret
+
+
+var glow_enable = true setget _set_glow
+
+func _set_glow(value):
+	glow_enable = value
+	

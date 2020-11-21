@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://map/Map.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/shaders/crt.shader" type="Shader" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
+[ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
@@ -29,6 +30,7 @@ map_scene = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="SelectionScreen" parent="." instance=ExtResource( 3 )]
 
