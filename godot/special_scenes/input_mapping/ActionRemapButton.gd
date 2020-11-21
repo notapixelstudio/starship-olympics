@@ -2,12 +2,15 @@ extends Button
 
 export var action: String = "ui_up" setget _set_action
 
-func check_input_event(action_: String, event:InputEvent):
-	if "kb" in action_:
-		return event is InputEventKey
-	elif "joy" in action_:
-		return event is InputEventJoypadButton 
+signal remap
 
+func check_input_event(event:InputEvent):
+	if "kb" in self.action:
+		return event is InputEventKey
+	elif "joy" in self.action:
+		var device = int(self.action.split("_")[0].replace("joy", ""))-1
+		return (event is InputEventJoypadButton or event is InputEventJoypadMotion) and event.device == int(device)
+	
 func _set_action(value_):
 	action = value_
 	display_current_key()
@@ -21,6 +24,7 @@ func _ready():
 func _toggled(button_pressed):
 	set_process_input(button_pressed)
 	if button_pressed:
+		emit_signal("try_remap", self.action)
 		text = "..."
 	else:
 		display_current_key()
@@ -29,25 +33,28 @@ func _toggled(button_pressed):
 func _input(event):
 	# Note that you can use the _input callback instead, especially if
 	# you want to work with gamepads.
-	if event is InputEventKey:
-		
-		remap_action_to(self.action, event)
+	if check_input_event(event):
+		# DO NOTHING if less than DEADZONE
+		if event is InputEventJoypadMotion:
+			if abs(event.axis_value) < 0.5:
+				return
+		emit_signal("remap", self.action, event)
 		pressed=false
 		
 
-
-func remap_action_to(action, event, ui_flag=true):
-	var current_key = global.remap_action_to(action, event)
-	text = "%s " % current_key.to_upper()
-	disabled = true
-	yield(get_tree().create_timer(0.4), "timeout")
-	disabled = false
-
+func joy_remap_action_to(event):
+	pass
 
 func display_current_key():
 	var current_key = "..."
 	for event in InputMap.get_action_list(self.action):
-		if check_input_event(self.action, event):
-			current_key = event.as_text()
+		if check_input_event(event):
+			current_key = global.event_to_text(self.action, event)
 			break
-	text = "%s " % current_key.to_upper()
+	# JUST FOR MAPPING JOY
+	var text_to_button = current_key
+	if current_key in global.joy_input_map:
+		text_to_button = global.joy_input_map[current_key]
+	text = "%s " % text_to_button.to_upper()
+
+

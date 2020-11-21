@@ -1,4 +1,3 @@
-tool
 extends GenericOption
 
 onready var value_node = $Container/ValueContainer/Value
@@ -47,8 +46,6 @@ func _ready():
 		label_description = variable_name
 		
 	description_node.text = label_description.to_upper()
-	
-	# value = node_owner.get(variable_name)
 	
 	if elem_type == OPTION_TYPE.NUMBER:
 		min_value = node_owner.get("min_"+variable_name)

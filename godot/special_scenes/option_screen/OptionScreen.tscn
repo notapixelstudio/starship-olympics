@@ -1,26 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Option.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/DefaultLabelFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=4]
-[ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://special_scenes/option_screen/OptionButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://special_scenes/option_screen/OptionsMain.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=7]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=8]
-[ext_resource path="res://special_scenes/option_screen/Controls.gd" type="Script" id=9]
-[ext_resource path="res://special_scenes/option_screen/CommandOption.tscn" type="PackedScene" id=10]
-
-[sub_resource type="Animation" id=1]
-resource_name = "hide"
-length = 0.1
-
-[sub_resource type="Animation" id=2]
-resource_name = "show"
-length = 0.1
-
-[sub_resource type="Animation" id=3]
-resource_name = "standby"
 
 [node name="Options" type="ColorRect"]
 anchor_right = 1.0
@@ -80,145 +64,9 @@ margin_right = 631.0
 margin_bottom = 127.0
 size_flags_vertical = 3
 
-[node name="Options" type="VBoxContainer" parent="Panel/PanelItems"]
+[node name="Options" parent="Panel/PanelItems" instance=ExtResource( 4 )]
 margin_top = 133.0
-margin_right = 631.0
 margin_bottom = 399.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Language" parent="Panel/PanelItems/Options" instance=ExtResource( 8 )]
-anchor_right = 0.0
-margin_right = 631.0
-margin_bottom = 50.0
-elem_type = 2
-is_global = true
-element_path = "language"
-label_description = "language"
-
-[node name="FullScreen" parent="Panel/PanelItems/Options" instance=ExtResource( 5 )]
-margin_top = 54.0
-margin_right = 631.0
-margin_bottom = 104.0
-is_global = true
-element_path = "full_screen"
-label_description = "FULLSCREEN"
-
-[node name="Analytics" parent="Panel/PanelItems/Options" instance=ExtResource( 5 )]
-margin_top = 108.0
-margin_right = 631.0
-margin_bottom = 158.0
-is_global = true
-element_path = "enable_analytics"
-label_description = "analytics"
-
-[node name="Audio" parent="Panel/PanelItems/Options" instance=ExtResource( 6 )]
-margin_top = 162.0
-margin_right = 631.0
-margin_bottom = 212.0
-text = "AUDIO"
-title = "Audio"
-
-[node name="Controls" parent="Panel/PanelItems/Options" instance=ExtResource( 6 )]
-margin_right = 631.0
-text = "CONTROLS"
-title = "Controls"
-
-[node name="Audio" type="VBoxContainer" parent="Panel/PanelItems"]
-visible = false
-margin_top = 315.0
-margin_right = 631.0
-margin_bottom = 473.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Music" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
-margin_top = 0.0
-margin_right = 631.0
-margin_bottom = 50.0
-elem_type = 1
-is_global = true
-element_path = "master_volume"
-label_description = "Volume Master"
-
-[node name="Music2" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
-margin_top = 54.0
-margin_right = 631.0
-margin_bottom = 104.0
-elem_type = 1
-is_global = true
-element_path = "music_volume"
-label_description = "Volume Music"
-bus_name = "Music"
-
-[node name="Music3" parent="Panel/PanelItems/Audio" instance=ExtResource( 4 )]
-margin_top = 108.0
-margin_right = 631.0
-margin_bottom = 158.0
-elem_type = 1
-is_global = true
-element_path = "sfx_volume"
-label_description = "Volume SFX"
-bus_name = "SFX"
-
-[node name="Controls" type="VBoxContainer" parent="Panel/PanelItems"]
-visible = false
-margin_top = 316.0
-margin_right = 631.0
-margin_bottom = 690.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Element" parent="Panel/PanelItems/Controls" instance=ExtResource( 8 )]
-anchor_right = 0.0
-margin_right = 631.0
-margin_bottom = 50.0
-elem_type = 2
-is_global = true
-element_path = "device"
-label_description = "device"
-
-[node name="MarginContainer" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
-margin_top = 54.0
-margin_right = 631.0
-margin_bottom = 104.0
-action = "up"
-
-[node name="MarginContainer2" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
-margin_top = 108.0
-margin_right = 631.0
-margin_bottom = 158.0
-action = "down"
-
-[node name="MarginContainer3" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
-margin_top = 162.0
-margin_right = 631.0
-margin_bottom = 212.0
-action = "left"
-
-[node name="MarginContainer4" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
-margin_top = 216.0
-margin_right = 631.0
-margin_bottom = 266.0
-action = "right"
-
-[node name="MarginContainer5" parent="Panel/PanelItems/Controls" instance=ExtResource( 10 )]
-margin_top = 270.0
-margin_right = 631.0
-margin_bottom = 320.0
-
-[node name="Default" type="Button" parent="Panel/PanelItems/Controls"]
-margin_top = 324.0
-margin_right = 631.0
-margin_bottom = 374.0
-rect_min_size = Vector2( 0, 50 )
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "DEFAULT"
 
 [node name="Separator2" type="Control" parent="Panel/PanelItems"]
 margin_top = 405.0
@@ -234,13 +82,4 @@ rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "BACK"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hide = SubResource( 1 )
-anims/show = SubResource( 2 )
-anims/standby = SubResource( 3 )
-[connection signal="nav_to" from="Panel/PanelItems/Options/Audio" to="." method="nav_to"]
-[connection signal="nav_to" from="Panel/PanelItems/Options/Controls" to="." method="nav_to"]
-[connection signal="value_changed" from="Panel/PanelItems/Controls/Element" to="Panel/PanelItems/Controls" method="_on_Element_value_changed"]
-[connection signal="pressed" from="Panel/PanelItems/Controls/Default" to="Panel/PanelItems/Controls" method="_on_Default_pressed"]
 [connection signal="pressed" from="Panel/PanelItems/Back" to="." method="_on_Back_pressed"]
