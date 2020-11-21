@@ -96,8 +96,9 @@ func _process(delta):
 func _input(event):
 	if disabled:
 		return
-	if selected :
+	if selected:
 		if event.is_action_pressed(controls+"_fire"):
+			sfx.get_node("ready").play()
 			emit_signal("ready_to_fight")
 #		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 #			deselect()
@@ -150,22 +151,21 @@ func deselect(silent : bool = false):
 	emit_signal("deselected", species)
 	
 func _on_Previous_pressed():
-	sfx.get_node("switch-selection").play()
-	if selected:
-		enable_choice()
-		selected = false
-		wrapper.z_index = 0
-		emit_signal("deselected", species)
+	switch_selection()
 	emit_signal("prev")
 
 func _on_Next_pressed():
-	sfx.get_node("switch-selection").play()
+	switch_selection()
+	emit_signal("next")
+	
+func switch_selection():
 	if selected:
 		enable_choice()
 		selected = false
 		wrapper.z_index = 0
 		emit_signal("deselected", species)
-	emit_signal("next")
+	else:
+		sfx.get_node("switch-selection").play()
 
 func disable_choice():
 	disabled = true

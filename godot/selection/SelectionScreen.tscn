@@ -9,12 +9,11 @@
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 24
 font_data = ExtResource( 7 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "idle"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
@@ -28,8 +27,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "wiggle"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -44,7 +42,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
 
 signal letsfight
@@ -85,19 +83,19 @@ func deactivate(show = false):
 	
 "
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 52
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 40
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -225,7 +223,7 @@ size_flags_horizontal = 3
 margin_left = 487.0
 margin_right = 792.0
 margin_bottom = 31.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 text = "SELECT 1 TO 4 PLAYERS"
 align = 1
 valign = 1
@@ -278,8 +276,8 @@ scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomHUD/Fight/Sprite"]
-anims/idle = SubResource( 1 )
-anims/wiggle = SubResource( 2 )
+anims/idle = SubResource( 2 )
+anims/wiggle = SubResource( 3 )
 
 [node name="Label" type="Label" parent="BottomHUD/Fight"]
 margin_left = 34.0
@@ -323,16 +321,16 @@ __meta__ = {
 
 [node name="ReadyToFight" type="Node2D" parent="CanvasLayer"]
 position = Vector2( 650, 550 )
-script = SubResource( 3 )
+script = SubResource( 4 )
 
 [node name="ColorRect" type="Sprite" parent="CanvasLayer/ReadyToFight"]
 modulate = Color( 0.227451, 0.133333, 0.12549, 1 )
-position = Vector2( -10, 298 )
+position = Vector2( -10, 453 )
 texture = ExtResource( 6 )
 
 [node name="ColorRect2" type="Sprite" parent="CanvasLayer/ReadyToFight"]
 modulate = Color( 0.227451, 0.133333, 0.12549, 1 )
-position = Vector2( -10, -740 )
+position = Vector2( -10, -893 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 6 )
 
@@ -345,7 +343,7 @@ margin_left = -650.0
 margin_top = -49.0
 margin_right = 630.0
 margin_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "N PLAYERS READY TO FIGHT!"
 align = 1
 valign = 1
@@ -359,10 +357,10 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -650.0
-margin_top = 101.0
+margin_top = 260.0
 margin_right = 630.0
-margin_bottom = 151.0
-custom_fonts/font = SubResource( 5 )
+margin_bottom = 310.0
+custom_fonts/font = SubResource( 6 )
 text = "PRESS FIRE TO CONTINUE"
 align = 1
 valign = 1
@@ -382,7 +380,7 @@ margin_left = -143.7
 margin_top = 73.4
 margin_right = 133.3
 margin_bottom = 123.4
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "N stars to win"
 align = 1
 valign = 1

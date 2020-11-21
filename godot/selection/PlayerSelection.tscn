@@ -4,7 +4,7 @@
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 06.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/UI_effects/PM_BlurryDreams_33.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture" id=8]
@@ -36,7 +36,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "deselect"
 length = 0.5
-step = 0.05
+step = 0.025
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "audio"
-tracks/1/path = NodePath("../../SFX/deselected")
+tracks/1/path = NodePath("../../../SFX/deselected")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 6 )
 } ],
-"times": PoolRealArray( 0.1 )
+"times": PoolRealArray( 0.05 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -81,7 +81,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "audio"
-tracks/1/path = NodePath("../../SFX/selected")
+tracks/1/path = NodePath("../../../SFX/selected")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -92,7 +92,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0.15 )
+"times": PoolRealArray( 0.1 )
 }
 
 [sub_resource type="Animation" id=4]
@@ -408,8 +408,9 @@ bus = "SFX"
 stream = ExtResource( 4 )
 bus = "SFX"
 
-[node name="joined" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="ready" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 5 )
+volume_db = 10.0
 bus = "SFX"
 
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
