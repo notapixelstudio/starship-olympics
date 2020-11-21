@@ -36,7 +36,10 @@ func _on_Button_toggled(button_pressed):
 func _on_Button_remap(action, event):
 	emit_signal("clear_mapping", action)
 	var new_control_key = global.remap_action_to(action, event)
-	button.text = "%s " % new_control_key.to_upper()
+	var text_to_button = new_control_key
+	if new_control_key in global.joy_input_map:
+		text_to_button = global.joy_input_map[new_control_key]
+	button.text = "%s " % text_to_button.to_upper()
 	emit_signal("remap", action, new_control_key)
 	button.disabled = true
 	yield(get_tree().create_timer(0.4), "timeout")
