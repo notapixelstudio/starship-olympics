@@ -526,7 +526,7 @@ func event_to_text(action: String, event: InputEvent):
 			event.axis_value = 1
 		else:
 			event.axis_value = -1
-		return global.joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
+		return joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
 	
 
 func invert_map(map:Dictionary):

@@ -3,11 +3,13 @@ extends MarginContainer
 
 class_name CommandRemap
 
-signal remapped
-signal try_remap
+onready var button = $Container/Button
 
 export var action: String
 export var device: String setget _set_device
+
+signal clear_mapping
+signal remap
 
 func _process(delta):
 	$Container/Description.text = action
@@ -25,3 +27,17 @@ func _on_Button_remapped(action: String, new_control: String):
 
 func _on_Button_try_remap(action):
 	emit_signal("try_remap", action)
+
+
+func _on_Button_toggled(button_pressed):
+	pass # Replace with function body.
+
+
+func _on_Button_remap(action, event):
+	emit_signal("clear_mapping", action)
+	var new_control_key = global.remap_action_to(action, event)
+	button.text = "%s " % new_control_key.to_upper()
+	emit_signal("remap", action, new_control_key)
+	button.disabled = true
+	yield(get_tree().create_timer(0.4), "timeout")
+	button.disabled = false

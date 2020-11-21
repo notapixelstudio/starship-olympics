@@ -8,6 +8,14 @@ onready var controls = "joy"+str(device_id)
 	
 var command_list = ["up, down, left, right, fire"]
 
+func clear_controls(action: String):
+	for input_event in InputMap.get_action_list(action):
+		if input_event is InputEventJoypadButton:
+			var btn = (input_event as InputEventJoypadButton).button_index
+			clear_button(get_node(str(btn)))
+			print("Shutting down: ", str(btn))
+			
+			
 func clear_button(button:Node2D):
 		button.get_node("Sprite").modulate.a = 0
 		button.get_node("Line2D").visible =false
@@ -52,11 +60,6 @@ func _input(event):
 		handle_button(event)
 
 func map_control(action:String , mapped_control: String):
-	for input_event in InputMap.get_action_list(action):
-		if input_event is InputEventJoypadButton:
-			var btn = (input_event as InputEventJoypadButton).button_index
-			clear_button(get_node(str(btn)))
-			print("Shutting down: ", str(btn))
 	var button = get_node(mapped_control.strip_edges().to_upper())
 	button.text = action.to_upper()
 	button.visible = true

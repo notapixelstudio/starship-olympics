@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://special_scenes/input_mapping/ActionRemapButton.gd" type="Script" id=4]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="Action" type="MarginContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 450, 50 )
@@ -66,5 +66,5 @@ script = ExtResource( 4 )
 action = "kb1_fire"
 [connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
-[connection signal="remapped" from="Container/Button" to="." method="_on_Button_remapped"]
-[connection signal="try_remap" from="Container/Button" to="." method="_on_Button_try_remap"]
+[connection signal="remap" from="Container/Button" to="." method="_on_Button_remap"]
+[connection signal="toggled" from="Container/Button" to="." method="_on_Button_toggled"]
