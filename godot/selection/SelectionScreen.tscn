@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://selection/SelectionScreen.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://assets/UI/futureui-panel-2.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 7 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -44,9 +48,11 @@ tracks/0/keys = {
 script/source = "extends Node2D
 
 signal letsfight
+signal deactivated
 const description : String = \"{n_players} READY TO FIGHT\"
 const win_condition : String = \"{n_matches} STARS TO WIN\"
 onready var win_label = $win1/WinLabel
+onready var anim = $AnimationPlayer
 var human_players = []
 
 func _ready():
@@ -65,6 +71,7 @@ func start(players: Array, n_matches: int):
 	human_players = players
 	var num_players = len(players)
 	visible = true
+	anim.play('close')
 	
 	$Label.text = tr(description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')}))
 	win_label.text = tr(win_condition.format({\"n_matches\":n_matches}))
@@ -74,6 +81,8 @@ func start(players: Array, n_matches: int):
 func deactivate(show = false):
 	set_process_input(false)
 	visible = show
+	emit_signal('deactivated')
+	
 "
 
 [sub_resource type="DynamicFont" id=4]
@@ -93,6 +102,45 @@ size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 0.5, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -10, -893 ), Vector2( -10, -705 ), Vector2( -10, -740 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 0.5, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -10, 453 ), Vector2( -10, 251 ), Vector2( -10, 298 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 0.5, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -650, 260 ), Vector2( -650, 51 ), Vector2( -650, 101 ) ]
+}
 
 [node name="SelectionScreen" type="Control"]
 anchor_right = 1.0
@@ -119,6 +167,9 @@ anchor_bottom = 0.5
 margin_top = -305.0
 margin_bottom = 230.0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="p1" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
@@ -157,48 +208,35 @@ margin_bottom = 535.0
 
 [node name="TopHUD" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_top = 18.0
-margin_bottom = 44.0
+margin_top = 11.0
+margin_bottom = 42.0
 custom_constants/separation = 13
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Control" type="Control" parent="TopHUD"]
-margin_right = 515.0
-margin_bottom = 26.0
+margin_right = 474.0
+margin_bottom = 31.0
 rect_clip_content = true
 size_flags_horizontal = 3
 
-[node name="TopLeftLine" type="Line2D" parent="TopHUD/Control"]
-position = Vector2( 0, -664 )
-points = PoolVector2Array( 0, 676, 540, 676 )
-width = 4.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 91
-
 [node name="Label" type="Label" parent="TopHUD"]
-margin_left = 528.0
-margin_top = 1.0
-margin_right = 752.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 3 )
+margin_left = 487.0
+margin_right = 792.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
 text = "SELECT 1 TO 4 PLAYERS"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="Control2" type="Control" parent="TopHUD"]
-margin_left = 765.0
+margin_left = 805.0
 margin_right = 1280.0
-margin_bottom = 26.0
+margin_bottom = 31.0
 rect_clip_content = true
 size_flags_horizontal = 3
-
-[node name="BottomRightLine2" type="Line2D" parent="TopHUD/Control2"]
-position = Vector2( -770, -660 )
-rotation = -0.000909152
-points = PoolVector2Array( 740, 676, 1280, 676 )
-width = 4.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 91
 
 [node name="BottomHUD" type="HBoxContainer" parent="."]
 visible = false
@@ -272,6 +310,15 @@ texture_mode = 91
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0
 
+[node name="SmokeScreen" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.0705882, 0.0509804, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ReadyToFight" type="Node2D" parent="CanvasLayer"]
@@ -279,8 +326,14 @@ position = Vector2( 650, 550 )
 script = SubResource( 3 )
 
 [node name="ColorRect" type="Sprite" parent="CanvasLayer/ReadyToFight"]
-position = Vector2( -10, 390 )
-rotation = 3.14159
+modulate = Color( 0.227451, 0.133333, 0.12549, 1 )
+position = Vector2( -10, 298 )
+texture = ExtResource( 6 )
+
+[node name="ColorRect2" type="Sprite" parent="CanvasLayer/ReadyToFight"]
+modulate = Color( 0.227451, 0.133333, 0.12549, 1 )
+position = Vector2( -10, -740 )
+scale = Vector2( 1, -1 )
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="CanvasLayer/ReadyToFight"]
@@ -306,13 +359,16 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -650.0
-margin_top = 74.0
+margin_top = 101.0
 margin_right = 630.0
-margin_bottom = 124.0
+margin_bottom = 151.0
 custom_fonts/font = SubResource( 5 )
 text = "PRESS FIRE TO CONTINUE"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="win1" parent="CanvasLayer/ReadyToFight" instance=ExtResource( 8 )]
 visible = false
@@ -331,5 +387,10 @@ text = "N stars to win"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ReadyToFight"]
+playback_speed = 2.0
+anims/close = SubResource( 8 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="deactivated" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_deactivated"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]

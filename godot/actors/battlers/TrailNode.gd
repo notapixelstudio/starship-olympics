@@ -54,7 +54,7 @@ func initialize(_ship):
 func configure(deadly : bool = false, duration : float = 0.0):
 	var c1 = GlowColor.new(ship.species.color, 1.2).color
 	var c2 = GlowColor.new(ship.species.color_2, 3).color
-	var cm = GlowColor.new(ship.species.color_2, 1.8).color
+	var cm = GlowColor.new(ship.species.color, 1.8).color
 
 	if deadly:
 		add_to_group("Trails")

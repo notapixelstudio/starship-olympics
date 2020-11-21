@@ -12,15 +12,18 @@ onready var tween = $Tween
 onready var species_name = $SpeciesName/Label
 onready var tagline1 = $SpeciesName/Tagline1
 onready var tagline2 = $SpeciesName/Tagline2
-onready var character = $Character/Character
+onready var character = $CharacterWrapper/Character/Character
+onready var shadow = $CharacterWrapper/Character/Clip/Shadow
 onready var controls_sprite = $Controls 
 onready var player_infotext = $PlayerInfo/PlayerID
 onready var anim = $Ship/AnimationPlayer
 onready var label_anim = $SpeciesName/AnimationPlayer
-onready var select_rect = $SelectRect
-onready var background = $Character/Background
+onready var select_rect = $CharacterWrapper/SelectRect
+onready var background = $CharacterWrapper/Character/Background
+onready var sel_animation = $CharacterWrapper/AnimationPlayer
 
 const img_path : String = "res://assets/icon/"
+const stripes_texture = preload("res://assets/patterns/stripes_duotone.png")
 
 func _ready():
 	select_rect.visible = false
@@ -49,23 +52,34 @@ func change_species(new_species:Species):
 	tagline1.text = tr(species.tagline1).replace("<br>", "\n")
 	tagline2.text = species.tagline2
 	character.texture = species.character_ok
+	shadow.texture = species.character_ok
 	select_rect.modulate = species.color
 	background.color = species.color
 
 func select():
 	select_rect.visible = true
 	background.modulate = Color(1,1,1,1)
+	background.texture = stripes_texture
+	shadow.visible = false
 	character.modulate = Color(1,1,1,1)
 	$LeftArrow.disable()
 	$RightArrow.disable()
+	sel_animation.stop()
+	sel_animation.play('select')
 
 func deselect():
 	select_rect.visible = false
+	background.texture = null
+	shadow.visible = true
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
+	sel_animation.stop()
+	sel_animation.play('appear')
 
-func enable():
+func enable(silent=false):
 	select_rect.visible = false
+	background.texture = null
+	shadow.visible = true
 	character.modulate = Color(0.7,0.7,0.7,1)
 	background.modulate = Color(0.5,0.5,0.5,1)
 	$PlayerInfo.visible = true
@@ -74,6 +88,11 @@ func enable():
 	anim.play("standby")
 	set_process_input(true)
 	set_process(true)
+	sel_animation.stop()
+	if silent:
+		sel_animation.play('appear')
+	else:
+		sel_animation.play('deselect')
 	
 func disable():
 	$PlayerInfo.visible = false

@@ -8,6 +8,8 @@ enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
 onready var container = $Container
 onready var fight_node = $BottomHUD/Fight
 onready var ready_to_fight = $CanvasLayer/ReadyToFight
+onready var top_hud = $TopHUD
+onready var smoke_screen = $SmokeScreen
 var available_species : Dictionary
 var ordered_species : Array # as available_species Dic [str:Resource]
 
@@ -151,6 +153,7 @@ func ready_to_fight():
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
 		ready_to_fight.start(players, global.win)
+		smoke_screen.visible = true
 	else:
 		print_debug("not enough players")
 
@@ -251,3 +254,7 @@ func _on_ReadyToFight_letsfight():
 
 func reset():
 	ready_to_fight.deactivate()
+
+func _on_ReadyToFight_deactivated():
+	smoke_screen.visible = false
+	
