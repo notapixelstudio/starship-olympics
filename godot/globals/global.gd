@@ -390,7 +390,8 @@ func get_state():
 		demo=demo,
 		full_screen=full_screen,
 		rumbling=rumbling,
-		input_mapping=self.input_mapping
+		input_mapping=self.input_mapping,
+		glow_enable=glow_enable
 	}
 	return save_dict
 
