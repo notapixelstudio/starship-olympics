@@ -2,10 +2,22 @@ extends Sprite
 
 class_name Controller
 
-export var device_id: int
+export var device_id: int setget _set_device
+
+func _set_device(value):
+	if not value is int:
+		if "joy" in value:
+			device_id = int(value.replace("joy", ""))
+		else: 
+			return
+	else:
+		device_id = value
+	if not is_inside_tree():
+		yield(self, "ready")
+	$Label.text = str(device_id)
 
 onready var controls = "joy"+str(device_id)
-	
+
 var command_list = ["up, down, left, right, fire"]
 
 func clear_controls(action: String):
@@ -13,7 +25,6 @@ func clear_controls(action: String):
 		if input_event is InputEventJoypadButton:
 			var btn = (input_event as InputEventJoypadButton).button_index
 			clear_button(get_node(str(btn)))
-			print("Shutting down: ", str(btn))
 			
 			
 func clear_button(button:Node2D):
@@ -23,7 +34,8 @@ func clear_button(button:Node2D):
 func _ready():
 	# let's hide them all 
 	for button in get_children():
-		clear_button(button)
+		if button is Sprite:
+			clear_button(button)
 	
 
 func setup_controls(controls: Dictionary):
