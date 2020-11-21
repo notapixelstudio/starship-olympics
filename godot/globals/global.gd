@@ -153,14 +153,14 @@ var ALL_SPECIES = {
 	SPECIES0 = "mantiacs_1",
 	SPECIES1 = "robolords_1",
 	SPECIES2 = "trixens_1",
-	SPECIES3 = "toriels_1",
-	SPECIES4 = "takonauts_1",
-	SPECIES5 = "mantiacs_2",
+	SPECIES3 = "takonauts_1",
+	SPECIES4 = "pentagonions_1",
+	SPECIES5 = "toriels_1",
 	SPECIES6 = "robolords_2",
 	SPECIES7 = "trixens_2",
 	SPECIES8 = "toriels_2",
 	SPECIES9 = "takonauts_2",
-	SPECIES10 = 'pentagonions_1'
+	SPECIES10 = 'mantiacs_2'
 }
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
@@ -169,12 +169,12 @@ var unlocked_species = {
 	ALL_SPECIES.SPECIES2: true,
 	ALL_SPECIES.SPECIES3 : true,
 	ALL_SPECIES.SPECIES4 : true,
-	ALL_SPECIES.SPECIES5: false,
+	ALL_SPECIES.SPECIES5: true,
 	ALL_SPECIES.SPECIES6: false,
 	ALL_SPECIES.SPECIES7: false,
 	ALL_SPECIES.SPECIES8 : false,
 	ALL_SPECIES.SPECIES9 : false,
-	ALL_SPECIES.SPECIES10 : true
+	ALL_SPECIES.SPECIES10 : false
 }
 
 func get_ordered_species():
