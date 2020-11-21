@@ -18,7 +18,7 @@
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "appear"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=2]
 resource_name = "deselect"
 length = 0.5
 step = 0.05
@@ -64,7 +64,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "select"
 length = 0.5
 step = 0.05
@@ -95,7 +95,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.15 )
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "barber"
 loop = true
 tracks/0/type = "value"
@@ -111,7 +111,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -50, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -151,17 +151,17 @@ tracks/2/keys = {
 "values": [ Vector2( 0.8, 0.8 ) ]
 }
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=6]
 size = 10
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=7]
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=8]
 size = 24
 outline_size = 4
 font_data = ExtResource( 9 )
@@ -178,7 +178,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpeciesSelection" type="Control" parent="."]
+[node name="Wrapper" type="Node2D" parent="."]
+z_as_relative = false
+
+[node name="SpeciesSelection" type="Control" parent="Wrapper"]
 margin_top = -14.0
 margin_right = 200.0
 margin_bottom = 400.0
@@ -191,20 +194,20 @@ __meta__ = {
 }
 species = ExtResource( 12 )
 
-[node name="CharacterWrapper" type="Node2D" parent="SpeciesSelection"]
+[node name="CharacterWrapper" type="Node2D" parent="Wrapper/SpeciesSelection"]
 position = Vector2( 84, 257 )
 scale = Vector2( 0.95, 1.05 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/CharacterWrapper"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
 autoplay = "appear"
-anims/appear = SubResource( 6 )
-anims/deselect = SubResource( 13 )
-anims/select = SubResource( 8 )
+anims/appear = SubResource( 1 )
+anims/deselect = SubResource( 2 )
+anims/select = SubResource( 3 )
 
-[node name="SelectRect" type="Sprite" parent="SpeciesSelection/CharacterWrapper"]
+[node name="SelectRect" type="Sprite" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
 visible = false
 self_modulate = Color( 1.15, 1.15, 1.15, 1 )
 position = Vector2( -94.0661, -256.106 )
@@ -212,7 +215,7 @@ scale = Vector2( 0.586605, 0.485262 )
 texture = ExtResource( 13 )
 centered = false
 
-[node name="Character" type="Control" parent="SpeciesSelection/CharacterWrapper"]
+[node name="Character" type="Control" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
 margin_left = -84.0
 margin_top = -272.0
 margin_right = 126.0
@@ -222,23 +225,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Polygon2D" parent="SpeciesSelection/CharacterWrapper/Character"]
+[node name="Background" type="Polygon2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 position = Vector2( 0, -3.05176e-05 )
 texture_rotation_degrees = 90.0
 polygon = PoolVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/CharacterWrapper/Character/Background"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Background"]
 autoplay = "barber"
-anims/barber = SubResource( 7 )
+anims/barber = SubResource( 4 )
 
-[node name="Border" type="Line2D" parent="SpeciesSelection/CharacterWrapper/Character"]
+[node name="Border" type="Line2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 points = PoolVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 91
 begin_cap_mode = 1
 
-[node name="Clip" type="Control" parent="SpeciesSelection/CharacterWrapper/Character"]
+[node name="Clip" type="Control" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 anchor_right = 0.19
 margin_left = 23.0
 margin_top = 37.0
@@ -249,64 +252,64 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shadow" type="Sprite" parent="SpeciesSelection/CharacterWrapper/Character/Clip"]
+[node name="Shadow" type="Sprite" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Clip"]
 modulate = Color( 0, 0, 0, 0.196078 )
 position = Vector2( 67, 265 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 11 )
 
-[node name="Character" type="Sprite" parent="SpeciesSelection/CharacterWrapper/Character"]
+[node name="Character" type="Sprite" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 modulate = Color( 0.8, 0.8, 0.8, 1 )
 position = Vector2( 90, 290 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 11 )
 
-[node name="OverBorder" type="Line2D" parent="SpeciesSelection/CharacterWrapper/Character"]
+[node name="OverBorder" type="Line2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 points = PoolVector2Array( 23, 35, 23, 548, 144, 548 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 91
 begin_cap_mode = 1
 
-[node name="Controls" parent="SpeciesSelection" instance=ExtResource( 7 )]
+[node name="Controls" parent="Wrapper/SpeciesSelection" instance=ExtResource( 7 )]
 
-[node name="LeftArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
+[node name="LeftArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 9.0
 margin_top = 475.0
 margin_right = 9.0
 margin_bottom = 475.0
 rect_scale = Vector2( -1.2, 1.2 )
 
-[node name="Shadow" type="Sprite" parent="SpeciesSelection"]
+[node name="Shadow" type="Sprite" parent="Wrapper/SpeciesSelection"]
 visible = false
 position = Vector2( 87.174, 472 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 8 )
 
-[node name="Ship" type="Sprite" parent="SpeciesSelection"]
+[node name="Ship" type="Sprite" parent="Wrapper/SpeciesSelection"]
 position = Vector2( 87.174, 473 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 10 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/Ship"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/Ship"]
 autoplay = "standby"
-anims/standby = SubResource( 9 )
+anims/standby = SubResource( 5 )
 
-[node name="RightArrow" parent="SpeciesSelection" instance=ExtResource( 17 )]
+[node name="RightArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 159.0
 margin_top = 475.0
 margin_right = 159.0
 margin_bottom = 475.0
 rect_scale = Vector2( 1.2, 1.2 )
 
-[node name="SpeciesName" type="VBoxContainer" parent="SpeciesSelection"]
+[node name="SpeciesName" type="VBoxContainer" parent="Wrapper/SpeciesSelection"]
 margin_left = -2.0
 margin_top = 558.0
 margin_right = 168.0
 margin_bottom = 627.0
 
-[node name="Label" type="Label" parent="SpeciesSelection/SpeciesName"]
+[node name="Label" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
 margin_right = 170.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 16 )
@@ -315,62 +318,62 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="SpeciesSelection/SpeciesName"]
+[node name="ColorRect" type="ColorRect" parent="Wrapper/SpeciesSelection/SpeciesName"]
 margin_top = 27.0
 margin_right = 170.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 0, 2 )
 
-[node name="Tagline1" type="Label" parent="SpeciesSelection/SpeciesName"]
+[node name="Tagline1" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
 margin_top = 33.0
 margin_right = 170.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 6 )
 text = "tagline"
 align = 1
 valign = 1
 uppercase = true
 
-[node name="Tagline2" type="Label" parent="SpeciesSelection/SpeciesName"]
+[node name="Tagline2" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
 margin_top = 50.0
 margin_right = 170.0
 margin_bottom = 63.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 6 )
 text = "tagline"
 align = 1
 valign = 1
 uppercase = true
 
-[node name="Tween" type="Tween" parent="SpeciesSelection"]
+[node name="Tween" type="Tween" parent="Wrapper/SpeciesSelection"]
 
-[node name="PlayerInfo" type="Position2D" parent="SpeciesSelection"]
+[node name="PlayerInfo" type="Position2D" parent="Wrapper/SpeciesSelection"]
 position = Vector2( 86, 33.5228 )
 
-[node name="Sprite" type="Sprite" parent="SpeciesSelection/PlayerInfo"]
+[node name="Sprite" type="Sprite" parent="Wrapper/SpeciesSelection/PlayerInfo"]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, 9 )
 scale = Vector2( 1.7, 1.8 )
 texture = ExtResource( 14 )
 
-[node name="Sprite2" type="Sprite" parent="SpeciesSelection/PlayerInfo"]
+[node name="Sprite2" type="Sprite" parent="Wrapper/SpeciesSelection/PlayerInfo"]
 position = Vector2( 0, 8 )
 texture = ExtResource( 14 )
 
-[node name="PlayerID" type="Label" parent="SpeciesSelection/PlayerInfo"]
+[node name="PlayerID" type="Label" parent="Wrapper/SpeciesSelection/PlayerInfo"]
 margin_left = -20.0
 margin_top = -30.0
 margin_right = 20.0
 margin_bottom = 3.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 7 )
 text = "P1"
 align = 1
 valign = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpeciesSelection/PlayerInfo"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/PlayerInfo"]
 autoplay = "wiggle"
 anims/wiggle = ExtResource( 15 )
 
-[node name="TeamMode" type="Control" parent="SpeciesSelection"]
+[node name="TeamMode" type="Control" parent="Wrapper/SpeciesSelection"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -380,11 +383,11 @@ margin_top = 158.0
 margin_right = 75.0
 margin_bottom = 231.0
 
-[node name="Label" type="Label" parent="SpeciesSelection/TeamMode"]
+[node name="Label" type="Label" parent="Wrapper/SpeciesSelection/TeamMode"]
 anchor_right = 1.0
 margin_top = -28.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "TEAM
 TRIXENS"

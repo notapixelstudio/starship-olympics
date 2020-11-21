@@ -23,7 +23,8 @@ var disabled = true
 var selected = false 
 var joined = true
 
-onready var speciesSelection = $SpeciesSelection
+onready var wrapper = $Wrapper
+onready var speciesSelection = $Wrapper/SpeciesSelection
 onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
@@ -127,6 +128,7 @@ func leave():
 
 func select_character():
 	selected = true
+	wrapper.z_index = 1000
 	speciesSelection.select()
 	#sfx.get_node("selected").play()
 	setup_info()
@@ -144,6 +146,7 @@ func deselect(silent : bool = false):
 	#	sfx.get_node("deselected").play()
 	enable_choice(silent)
 	selected = false
+	wrapper.z_index = 0
 	emit_signal("deselected", species)
 	
 func _on_Previous_pressed():
@@ -151,6 +154,7 @@ func _on_Previous_pressed():
 	if selected:
 		enable_choice()
 		selected = false
+		wrapper.z_index = 0
 		emit_signal("deselected", species)
 	emit_signal("prev")
 
@@ -159,6 +163,7 @@ func _on_Next_pressed():
 	if selected:
 		enable_choice()
 		selected = false
+		wrapper.z_index = 0
 		emit_signal("deselected", species)
 	emit_signal("next")
 
@@ -172,6 +177,7 @@ func enable_choice(silent=false):
 	disabled = false
 	speciesSelection.modulate = Color(1,1,1,1)
 	selected = false
+	wrapper.z_index = 0
 	speciesSelection.enable(silent)
 	if global.demo:
 		speciesSelection.disable_arrows()
