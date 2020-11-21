@@ -36,13 +36,18 @@ hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
-solid_line_color = Color( 0.69, 1.2, 0.91, 1 )
+solid_line_color = Color( 0.69, 1.15, 0.91, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 5 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1600
 sides = 12.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -99.9999, -99.9999 )
@@ -58,7 +63,7 @@ species = ExtResource( 9 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 2.32831e+07, 2.32831e+07 )
+zoom = Vector2( 5.82078e+07, 5.82078e+07 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

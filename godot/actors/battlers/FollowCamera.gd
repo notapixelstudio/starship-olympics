@@ -12,9 +12,12 @@ func _ready():
 func get_master_ship():
 	return node_owner
 
-func ship_just_died(ship, killer):
+func ship_just_died(ship, killer, for_good):
 	if ship.info_player.lives== 0:
 		remove_from_group("in_camera")
+		queue_free()
+		
+	if for_good:
 		queue_free()
 	
 func _process(delta):

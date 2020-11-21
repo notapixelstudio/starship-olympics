@@ -120,6 +120,11 @@ _global_script_classes=[ {
 "path": "res://combat/collectables/Crown.gd"
 }, {
 "base": "RigidBody2D",
+"class": "Dasher",
+"language": "GDScript",
+"path": "res://combat/collectables/Dasher.gd"
+}, {
+"base": "RigidBody2D",
 "class": "DeadShip",
 "language": "GDScript",
 "path": "res://actors/battlers/DeadShip.gd"
@@ -382,6 +387,7 @@ _global_script_class_icons={
 "Conquerable": "",
 "Controller": "",
 "Crown": "",
+"Dasher": "",
 "DeadShip": "",
 "Diamond": "",
 "Entity": "",
@@ -876,4 +882,3 @@ file_logging/enable_file_logging=true
 quality/intended_usage/framebuffer_allocation.mobile=2
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0.145098, 0.172549, 0.231373, 1 )
-environment/default_environment="res://default_env.tres"

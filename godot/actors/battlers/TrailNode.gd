@@ -93,6 +93,10 @@ func _process(delta):
 	update()
 	
 func update():
+	if not ship:
+		maybe_erase()
+		return
+		
 	position = ship.position + Vector2(-32,0).rotated(ship.rotation)
 	rotation = ship.rotation
 	

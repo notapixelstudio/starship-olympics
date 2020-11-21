@@ -12,6 +12,8 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+var spawner
+var trail
 var species_name: String
 var scores
 
@@ -25,6 +27,7 @@ var rotation_dir = 0
 var THRUST = 2000
 
 var charge = 0
+var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
 const MIN_DASHING_CHARGE = 0.13
@@ -40,6 +43,7 @@ const BALL_CHARGE_MULTIPLIER = 1.4
 const BULLET_BOOST = 500
 const BULLET_CHARGE_MULTIPLIER = 0.8
 const FIRE_COOLDOWN = 0.03
+const OUTSIDE_COUNTUP = 3.0
 
 var supercharge = 0
 
@@ -56,6 +60,7 @@ var count = 0
 var alive = true
 var stunned = false
 var stun_countdown = 0
+var outside_countup = 0
 
 
 var screen_size = Vector2()
@@ -94,7 +99,8 @@ var camera
 var weapon_textures = {
 	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png')
+	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
 func initialize():
@@ -125,6 +131,7 @@ func _enter_tree():
 	charging = false
 	charge = 0
 	alive = true
+	outside_countup = 0
 	emit_signal('spawned', self)
 	dash_init_appearance()
 	
@@ -232,7 +239,21 @@ signal detection
 func _physics_process(delta):
 	if not alive:
 		return
-	
+		
+	if not invincible:
+		var on_platform = false
+		for area in $NearArea.get_overlapping_areas():
+			if area.is_in_group('platform'):
+				on_platform = true
+				break
+		if on_platform:
+			outside_countup = 0
+		else:
+			outside_countup += delta
+			
+		if outside_countup > OUTSIDE_COUNTUP:
+			fall()
+		
 	control(delta)
 	
 	stun_countdown -= delta
@@ -263,18 +284,19 @@ func charge():
 		$Graphics/ChargeBar/BombPreview.texture = null
 		$Graphics/ChargeBar.modulate = Color(1,1,0)
 	
-func fire():
+func fire(override_charge = -1, dash_only = false):
 	"""
 	Fire a bomb
 	"""
 	var should_reload = false
 	
-	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(charge, MAX_CHARGE)
+	actual_charge = override_charge if override_charge > 0 else charge
+	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(actual_charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
-	if bombs_enabled:
+	if bombs_enabled and not dash_only:
 		bomb_count += 1
 		if will_fire:
 			ammo.shot()
@@ -287,8 +309,9 @@ func fire():
 			else:
 				impulse = charge_impulse+BOMB_BOOST
 			
-			emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
-				Vector2(-impulse,0).rotated(rotation))
+			if bomb_type != GameMode.BOMB_TYPE.dasher or actual_charge > 0.2:
+				emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+					Vector2(-impulse,0).rotated(rotation))
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
@@ -301,16 +324,16 @@ func fire():
 	$Tween.stop_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
 	
-	if charge > MIN_DASHING_CHARGE and dash_intercooldown <= 0:
+	if actual_charge > MIN_DASHING_CHARGE and dash_intercooldown <= 0:
 		entity.get('Dashing').enable()
-		dash_cooldown = (charge - MIN_DASHING_CHARGE)*0.6
+		dash_cooldown = (actual_charge - MIN_DASHING_CHARGE)*0.6
 		dash_intercooldown = DASH_INTERCOOLDOWN
 		
 	if should_reload:
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
-func die(killer : Ship):
+func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		alive = false
 		# skin.play_death()
@@ -318,7 +341,7 @@ func die(killer : Ship):
 		yield(get_tree(), "idle_frame")
 		if info_player.lives >= 0:
 			info_player.lives -= 1
-		emit_signal("dead", self, killer)
+		emit_signal("dead", self, killer, for_good)
 		
 func stun():
 	stunned = true
@@ -403,7 +426,7 @@ func dash_thin_appearance():
 	$Graphics/Sprite.scale = DASH_THIN
 	$DashFxTimer.stop()
 	# don't show particles if dash is small (useful to have a more lenient dash)
-	if charge > 0.13:
+	if actual_charge > 0.13:
 		$DashParticles.emitting = true
 		$DashParticles.visible = true
 	
@@ -425,3 +448,8 @@ func _on_Thrusters_disabled():
 
 func _on_Thrusters_enabled():
 	emit_signal('thrusters_on')
+
+signal fallen
+func fall():
+	emit_signal('fallen', self, spawner)
+	
