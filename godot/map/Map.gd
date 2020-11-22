@@ -136,9 +136,11 @@ func _on_cursor_try_move(cursor, direction):
 	if not cell:
 		return
 	var panel = panels.get_node(cursor.player.id)
-	panel.planet = null
+	panel.map_element = null
 	if cell.is_in_group("sports"):
-		panel.planet = cell.planet
+		panel.map_element = cell.planet
+	if cell is OptionCell:
+		panel.map_element = cell
 		
 	cursor.set_grid_position(desired_position)
 	
@@ -157,7 +159,7 @@ func _on_cursor_cancel(cursor):
 	cell.deactivate(cursor)
 	cursor.enable()
 	var panel = panels.get_node(cursor.player.id)
-	panel.planet = null
+	panel.map_element = null
 	panel.chosen = false
 	var i = selected_sports.find(cell.planet)
 	if i >= 0:
@@ -172,7 +174,7 @@ func _on_cell_pressed(cursor, cell):
 	# update data
 	if cell.is_in_group("sports"):
 		var panel = panels.get_node(cursor.player.id)
-		panel.planet = cell.planet
+		panel.map_element = cell.planet
 		panel.chosen = true
 		if not cell.planet in selected_sports:
 			selected_sports.append(cell.planet)

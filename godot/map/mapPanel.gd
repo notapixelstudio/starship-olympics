@@ -1,15 +1,18 @@
 extends Control
 
+export var Minicard : PackedScene
+
 var species setget set_species
 onready var sprite = $Sprite
 onready var desc = $Label
+onready var info = $Info
 
-var planet setget set_planet
+var map_element setget set_map_element
 var rest_text = "choose an arena"
 var chosen = false setget set_chosen
 onready var background = $Background
 const deselected_modulate = Color(0.6,0.6,0.6,1)
-const Minicard = preload('res://map/planets/rules/Minicard.tscn')
+
 
 func _ready():
 	disable()
@@ -41,15 +44,17 @@ func set_species(species_):
 		desc.text = rest_text
 		background.modulate = species.color
 	
-func set_planet(planet_):
+func set_map_element(map_element_):
 	if not is_inside_tree():
 		yield(self, "ready")
-	if planet_:
-		planet = planet_
-		desc.text = planet.name
+	if map_element_:
+		map_element = map_element_
+		desc.text = map_element.name
+		info.text = map_element.description
 		create_minicards()
 	else:
 		desc.text = rest_text
+		info.text = ""
 		destroy_minicards()
 
 func enable():
@@ -62,12 +67,14 @@ func disable():
 	
 func create_minicards():
 	destroy_minicards() # FIXME ugly, but useful
-	for minigame in planet.minigames:
+	if not map_element is Planet:
+		return
+	for minigame in map_element.minigames:
 		var minicard = Minicard.instance()
 		minicard.content = minigame
 		$Minicards.add_child(minicard)
 		
-	for mutator in planet.mutators:
+	for mutator in map_element.mutators:
 		var minicard = Minicard.instance()
 		minicard.content = mutator
 		$Minicards.add_child(minicard)
