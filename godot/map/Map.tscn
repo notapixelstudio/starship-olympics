@@ -414,47 +414,47 @@ texture = ExtResource( 16 )
 visible = false
 texture = ExtResource( 17 )
 
-[node name="Flood" parent="Content/Controls" instance=ExtResource( 14 )]
+[node name="Flood Moon" parent="Content/Controls" instance=ExtResource( 14 )]
 position = Vector2( 600, 200 )
 value_name = "flood"
 selection = [ "off", "on", "random" ]
 description = "add water to levels"
 
-[node name="1" type="Sprite" parent="Content/Controls/Flood/Sprite" index="0"]
+[node name="1" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="0"]
 visible = false
 texture = ExtResource( 23 )
 
-[node name="3" type="Sprite" parent="Content/Controls/Flood/Sprite" index="1"]
+[node name="3" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="1"]
 visible = false
 texture = ExtResource( 24 )
 
-[node name="5" type="Sprite" parent="Content/Controls/Flood/Sprite" index="2"]
+[node name="5" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="2"]
 visible = false
 texture = ExtResource( 26 )
 
-[node name="AnimationPlayer" parent="Content/Controls/Flood" index="2"]
+[node name="AnimationPlayer" parent="Content/Controls/Flood Moon" index="2"]
 anims/wigglewiggle = SubResource( 2 )
 
-[node name="Laser" parent="Content/Controls" instance=ExtResource( 14 )]
+[node name="Laser Moon" parent="Content/Controls" instance=ExtResource( 14 )]
 position = Vector2( 800, 200 )
 value_name = "laser"
 selection = [ "off", "on", "random" ]
 node_owner_path = NodePath("../Flood2")
 description = "add deadly lasers to levels"
 
-[node name="1" type="Sprite" parent="Content/Controls/Laser/Sprite" index="0"]
+[node name="1" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="0"]
 visible = false
 texture = ExtResource( 27 )
 
-[node name="3" type="Sprite" parent="Content/Controls/Laser/Sprite" index="1"]
+[node name="3" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="1"]
 visible = false
 texture = ExtResource( 28 )
 
-[node name="5" type="Sprite" parent="Content/Controls/Laser/Sprite" index="2"]
+[node name="5" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="2"]
 visible = false
 texture = ExtResource( 29 )
 
-[node name="AnimationPlayer" parent="Content/Controls/Laser" index="2"]
+[node name="AnimationPlayer" parent="Content/Controls/Laser Moon" index="2"]
 anims/wigglewiggle = SubResource( 3 )
 
 [node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
@@ -568,6 +568,9 @@ margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [editable path="Content/Controls/Victories"]
-[editable path="Content/Controls/Flood"]
-[editable path="Content/Controls/Laser"]
+
+[editable path="Content/Controls/Flood Moon"]
+
+[editable path="Content/Controls/Laser Moon"]
+
 [editable path="Content/Controls/CPUs"]
