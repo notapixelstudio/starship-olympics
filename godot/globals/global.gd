@@ -68,11 +68,9 @@ func set_custom_win(value):
 	custom_win = value
 	win = custom_win
 
-var flood = "off" setget set_flood
+var flood = "off" 
 
-func set_flood(value):
-	flood = value
-	
+var laser = "off" 
 
 # levels
 var level

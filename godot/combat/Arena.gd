@@ -332,7 +332,7 @@ func _ready():
 		$Battlefield/Background/FloodWater.queue_free()
 		
 	# manage level lasering
-	if (session.get_mutator('laser') and game_mode.laserable and randf() < 0.33) or game_mode.additional_lasers:
+	if (global.laser== "on" and game_mode.laserable) or (global.laser == "random" and game_mode.laserable and randf() < 0.33) or game_mode.additional_lasers:
 		for laser_anim in get_tree().get_nodes_in_group('animation_if_additional_lasers'):
 			laser_anim.play('Default')
 	else:
