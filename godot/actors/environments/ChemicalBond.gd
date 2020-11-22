@@ -4,6 +4,10 @@ onready var a = get_node(node_a)
 onready var b = get_node(node_b)
 
 func _process(delta):
+	if not a or not b:
+		queue_free()
+		return
+	
 	var ap = a.global_position
 	var bp = b.global_position
 	var ar = a.radius*0.74
