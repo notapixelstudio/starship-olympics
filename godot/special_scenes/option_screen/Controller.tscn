@@ -91,7 +91,7 @@ texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="2"]
 position = Vector2( -0.590607, 22.9178 )
-points = PoolVector2Array( 0, 20, 0, 45, 60, 100, 200, 100 )
+points = PoolVector2Array( 0, 20, 0, 45, 76.541, 70.4618, 197.98, 70.4618 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -100,10 +100,10 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="2/Line2D"]
-margin_left = 222.702
-margin_top = 81.4319
-margin_right = 300.702
-margin_bottom = 121.432
+margin_left = 222.703
+margin_top = 55.0822
+margin_right = 300.703
+margin_bottom = 95.0823
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -305,7 +305,7 @@ script = ExtResource( 9 )
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="9"]
-points = PoolVector2Array( 0, 40, 0, 90 )
+points = PoolVector2Array( -0.610779, 72.5387, -2.03949, 129.686 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -314,10 +314,10 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="9/Line2D"]
-margin_left = -34.5143
-margin_top = 105.757
-margin_right = 43.4857
-margin_bottom = 145.757
+margin_left = -30.9194
+margin_top = 134.063
+margin_right = 47.0806
+margin_bottom = 174.063
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -656,8 +656,136 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ANALOG_2_1" type="Sprite" parent="."]
+position = Vector2( 90, 120 )
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="ANALOG_2_1"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="ANALOG_2_1"]
+points = PoolVector2Array( 48.8841, -0.316193, 111.746, 38.2585, 257.473, 39.6871 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Label" type="Label" parent="ANALOG_2_1/Line2D"]
+margin_left = 260.0
+margin_top = 17.0
+margin_right = 376.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 1 )
+text = "MOVE"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ANALOG_2_-1" type="Sprite" parent="."]
+position = Vector2( 90, 120 )
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="ANALOG_2_-1"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="ANALOG_2_-1"]
+points = PoolVector2Array( -35.3016, 8.10327, 74.6005, 159.697, 228.899, 158.269 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Label" type="Label" parent="ANALOG_2_-1/Line2D"]
+margin_left = 252.112
+margin_top = 147.194
+margin_right = 368.112
+margin_bottom = 187.194
+custom_fonts/font = SubResource( 1 )
+text = "MOVE"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ANALOG_3_1" type="Sprite" parent="."]
+position = Vector2( 90, 120 )
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="ANALOG_3_1"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="ANALOG_3_1"]
+points = PoolVector2Array( 0.308594, 42.5445, 81.744, 112.55, 237.471, 113.979 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Label" type="Label" parent="ANALOG_3_1/Line2D"]
+margin_left = 231.435
+margin_top = 94.437
+margin_right = 371.435
+margin_bottom = 134.437
+custom_fonts/font = SubResource( 1 )
+text = "MOVE"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ANALOG_3_-1" type="Sprite" parent="."]
+position = Vector2( 90, 120 )
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="ANALOG_3_-1"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="ANALOG_3_-1"]
+points = PoolVector2Array( 4.59467, -43.1769, 124.605, 5.39856, 258.902, 8.25595 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Label" type="Label" parent="ANALOG_3_-1/Line2D"]
+margin_left = 261.902
+margin_top = -12.9231
+margin_right = 377.902
+margin_bottom = 27.0769
+custom_fonts/font = SubResource( 1 )
+text = "MOVE"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnalogRight" type="Sprite" parent="."]
-position = Vector2( 91.51, 120 )
+position = Vector2( 90, 120 )
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="AnalogRight"]
