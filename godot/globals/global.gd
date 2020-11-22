@@ -68,6 +68,10 @@ func set_custom_win(value):
 	custom_win = value
 	win = custom_win
 
+var flood = "off" 
+
+var laser = "off" 
+
 # levels
 var level
 var array_level
