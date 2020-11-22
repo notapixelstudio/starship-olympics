@@ -486,14 +486,14 @@ func calculate_center(rect: Rect2) -> Vector2:
 		rect.position.y + rect.size.y / 2)
 
 var joy_input_map = {
-	"analog_1_1": "analog left down",
-	"analog_1_-1": "analog left up",
-	"analog_0_1": "analog left right",
-	"analog_0_-1": "analog left left",
-	"analog_2_1": "analog right right",
-	"analog_2_-1": "analog right left",
-	"analog_3_1": "analog right up",
-	"analog_3_-1": "analog right down",
+	"analog_0_1": "left analog right",
+	"analog_0_-1": "left analog left",
+	"analog_1_1": "left analog down",
+	"analog_1_-1": "left analog up",
+	"analog_2_1": "right analog right",
+	"analog_2_-1": "right analog left",
+	"analog_3_1": "right analog down",
+	"analog_3_-1": "right analog up",
 	"0": "button down",
 	"1": "button right",
 	"2": "button left",
