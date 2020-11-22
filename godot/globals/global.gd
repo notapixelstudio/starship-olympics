@@ -68,6 +68,12 @@ func set_custom_win(value):
 	custom_win = value
 	win = custom_win
 
+var flood = "off" setget set_flood
+
+func set_flood(value):
+	flood = value
+	
+
 # levels
 var level
 var array_level

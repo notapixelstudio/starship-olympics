@@ -316,7 +316,7 @@ func _ready():
 		sth.connect('killed', combat_manager, '_on_sth_killed')
 		
 	# manage level flooding
-	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
+	if (global.flood == "on" and game_mode.floodable) or (global.flood == "random" and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
 		if not underwater:
 			var level_height = compute_arena_size().size.y
 			var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
