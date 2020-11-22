@@ -286,13 +286,13 @@ const INPUT_ACTIONS = ["kb1", "kb2"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
 var default_input :=  {"kb1_accept":"M", "kb1_down":"Down", "kb1_fire":"M", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", "kb2_accept":"1", "kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"}
 
-var default_joy_input := {
-	"fire": ["button down", "button up", "button left", "button right"], 
+var default_input_joy := {
+	"fire": ["0", "1", "2", "3"], 
 	"up":["dpad up", "analog left up"],
 	"left": ["dpad left", "analog left left"], 
 	"right": ["dpad right", "analog left right"],
 	"down": ["dpad down", "analog left down"]
-	}
+}
 	
 var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
 onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
@@ -303,18 +303,26 @@ func _set_joylayout(value):
 func _get_joylayout():
 	return joylayout
 	
-	
 func set_default_mapping(device:String):
-	for action in default_input:
-		if device in action:
-			var event = InputEventKey.new()
-			event.scancode = OS.find_scancode_from_string(default_input[action])
-			remap_action_to(action, event)
+	if "kb" in device:
+		for action in default_input:
+			InputMap.action_erase_events(action)
+			if device in action:
+				var event = event_from_text(device, default_input[action])
+				remap_action_to(action, event)
+	elif "joy" in device:
+		var device_id = int(device.replace("joy", ""))-1
+		for action in default_input_joy:
+			var complete_action = device + "_" + action
+			InputMap.action_erase_events(complete_action)
+			for command in default_input_joy[action]:
+				var event = event_from_text(device, command)
+				InputMap.action_add_event(action, event)
 
 func check_input_event(action_: String, event:InputEvent):
 	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
 
-	
+
 func remap_action_to(action: String, new_event: InputEvent, ui_flag=true) -> String:
 	var current_key = ""
 	var new_event_key = global.event_to_text(action, new_event)
@@ -332,27 +340,27 @@ func remap_action_to(action: String, new_event: InputEvent, ui_flag=true) -> Str
 	InputMap.action_add_event(action, new_event)
 	return new_event_key
 	
-func remove_event_from_action(action, event) -> String:
-	if not check_input_event(action, event):
-		print(action+" it's nothing: " + event_to_text(action, event))
-		return ""
-	var current_key = global.event_to_text(action, event)
+func event_from_text(device: String, command: String) -> InputEvent:
+	"""
+	device: e.g. kb1, kb2, joy1, joy2
+	command: e.g. 0, 1, 2 , analog_1_-1, M, N 
+	"""
 	var e : InputEvent
-	if "kb" in action:
+	if "kb" in device:
 		e = InputEventKey.new()
-		e.scancode = OS.find_scancode_from_string(current_key)
-	elif "joy" in action:
-		var device = int(action.split("_")[0].replace("joy", ""))-1
-		if "analog" in current_key:
-			var inverted_joy_map = invert_map(joy_input_map)[current_key]
+		e.scancode = OS.find_scancode_from_string(command)
+	elif "joy" in device:
+		var device_id = int(device.replace("joy", ""))-1
+		if "analog" in command:
+			var inverted_joy_map = invert_map(joy_input_map)[command]
 			e = InputEventJoypadMotion.new()
 			e.axis = int(inverted_joy_map.split("_")[1])
 			e.axis_value = int(inverted_joy_map.split("_")[2])
 		else:
 			e = InputEventJoypadButton.new()
-			e.button_index = int(current_key)
-		e.device = device
-	return event_to_text(action, e)
+			e.button_index = int(command)
+		e.device = device_id
+	return e
 	
 func _set_input_mapping(value_):
 	input_mapping=value_
