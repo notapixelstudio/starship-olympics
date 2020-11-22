@@ -7,6 +7,9 @@ func _process(delta):
 	if not a or not b:
 		queue_free()
 		return
+		
+	visible = not(a.about_to_pop or b.about_to_pop)
+	$Line2D.gradient.colors = PoolColorArray([a.get_color(), b.get_color()])
 	
 	var ap = a.global_position
 	var bp = b.global_position
@@ -17,7 +20,5 @@ func _process(delta):
 	$Line2D.position = -global_position
 
 func _ready():
-	var gradient = Gradient.new()
-	gradient.colors = PoolColorArray([a.get_color(), b.get_color()])
-	$Line2D.gradient = gradient
+	$Line2D.gradient = Gradient.new()
 	

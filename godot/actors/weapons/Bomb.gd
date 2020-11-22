@@ -135,11 +135,12 @@ func _on_Bomb_body_entered(body):
 		body.break(entity.get('Owned').get_owned_by())
 	elif body is Bubble:
 		var bubble = BubbleScene.instance()
-		bubble.species = entity.get('Owned').get_owned_by().species
+		bubble.set_species(entity.get('Owned').get_owned_by().species)
 		bubble.position = position
 		bubble.linear_velocity = linear_velocity
-		get_parent().call_deferred("add_child", bubble)
-		bubble.call_deferred("attempt_binding")
+		get_parent().call_deferred("add_child", bubble) # ugly
+		get_parent().get_parent().get_parent().call_deferred("connect_killable", bubble) # uglier
+		bubble.call_deferred("attempt_binding", entity.get('Owned').get_owned_by())
 		queue_free()
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:

@@ -312,8 +312,7 @@ func _ready():
 		
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
-		sth.connect('killed', kill_mode, '_on_sth_killed')
-		sth.connect('killed', combat_manager, '_on_sth_killed')
+		connect_killable(sth)
 		
 	# manage level flooding
 	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
@@ -791,4 +790,8 @@ func _on_ship_fallen(ship, spawner):
 	ship.die(null, true) # die for good
 	spawner.appears()
 	spawn_ship(spawner)
+	
+func connect_killable(killable):
+	killable.connect('killed', kill_mode, '_on_sth_killed')
+	killable.connect('killed', combat_manager, '_on_sth_killed')
 	
