@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -26,8 +26,9 @@
 [ext_resource path="res://assets/map/cards/flood_moon_on.png" type="Texture" id=24]
 [ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
 [ext_resource path="res://assets/map/cards/flood_moon_random.png" type="Texture" id=26]
-[ext_resource path="res://assets/icon/minicards/laser.png" type="Texture" id=27]
-[ext_resource path="res://assets/icon/minicards/mutators/laser.png" type="Texture" id=28]
+[ext_resource path="res://assets/map/cards/laser_moon_off.png" type="Texture" id=27]
+[ext_resource path="res://assets/map/cards/laser_moon_on.png" type="Texture" id=28]
+[ext_resource path="res://assets/map/cards/laser_moon_random.png" type="Texture" id=29]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CanvasItemMaterial" id=1]
@@ -442,15 +443,15 @@ description = "{_} laser"
 
 [node name="1" type="Sprite" parent="Content/Controls/Laser/Sprite" index="0"]
 visible = false
-texture = ExtResource( 28 )
+texture = ExtResource( 27 )
 
 [node name="3" type="Sprite" parent="Content/Controls/Laser/Sprite" index="1"]
 visible = false
-texture = ExtResource( 27 )
+texture = ExtResource( 28 )
 
 [node name="5" type="Sprite" parent="Content/Controls/Laser/Sprite" index="2"]
 visible = false
-texture = ExtResource( 28 )
+texture = ExtResource( 29 )
 
 [node name="AnimationPlayer" parent="Content/Controls/Laser" index="2"]
 anims/wigglewiggle = SubResource( 3 )
@@ -566,7 +567,6 @@ margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [editable path="Content/Controls/Victories"]
-
 [editable path="Content/Controls/Flood"]
 [editable path="Content/Controls/Laser"]
 [editable path="Content/Controls/CPUs"]
