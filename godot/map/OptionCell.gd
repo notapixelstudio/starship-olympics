@@ -34,7 +34,7 @@ func initialize( starting_from: int = 0, options: int = 0):
 	if new_selection:
 		selection = new_selection
 	
-	var value = int(node_owner.get(value_name))
+	var value = node_owner.get(value_name)
 	index = selection.find(value) if selection.find(value)>=0 else 0
 	node_owner.set(value_name, selection[index])
 	if single_texture:
