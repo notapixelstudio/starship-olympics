@@ -40,6 +40,7 @@ func set_species(v):
 func _process(delta):
 	$NoRotate.rotation = -rotation
 	#$NoRotate/Label.text = str(points)
+	#$NoRotate/Label.text = group
 	
 func get_color():
 	return $NoRotate/Sprite.modulate
@@ -63,8 +64,8 @@ func attempt_binding(bubble_shooter):
 			for b in get_group_bubbles():
 				if b:
 					b.remove_from_group(group)
-					group = bubble.group
-					b.add_to_group(group)
+					b.group = bubble.group
+					b.add_to_group(b.group)
 					
 			# self.group should also have been changed
 			
@@ -76,6 +77,9 @@ func attempt_binding(bubble_shooter):
 
 func maybe_pop(bubble_shooter):
 	yield(get_tree().create_timer(0.6), 'timeout') # wait a bit to compute all group bindings
+	
+	if about_to_pop:
+		return
 	
 	# pop all group if max_group_size is reached
 	if points >= max_group_size:

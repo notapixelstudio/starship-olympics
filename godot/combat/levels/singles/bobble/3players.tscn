@@ -76,14 +76,10 @@ precision = 50.0
 node_a = NodePath("../../Background/OutsideWall")
 node_b = NodePath("../Bubble")
 
-[node name="Bubble" parent="Battlefield/Middleground" index="2" groups=[
-"in_camera",
-] instance=ExtResource( 7 )]
+[node name="Bubble" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
 angular_velocity = 60.0
 
-[node name="Bubble2" parent="Battlefield/Middleground" index="3" groups=[
-"in_camera",
-] instance=ExtResource( 7 )]
+[node name="Bubble2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
 position = Vector2( 0, -500 )
 
 [node name="ChemicalBond" parent="Battlefield/Middleground/Bubble2" index="2" instance=ExtResource( 9 )]
@@ -94,9 +90,7 @@ node_b = NodePath("../../Bubble6")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble4")
 
-[node name="Bubble13" parent="Battlefield/Middleground" index="4" groups=[
-"in_camera",
-] instance=ExtResource( 7 )]
+[node name="Bubble13" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
 position = Vector2( 430, 0 )
 angular_velocity = 40.0
 owner_player = NodePath("../../../SpawnPositions/Players/p2")
@@ -105,9 +99,7 @@ owner_player = NodePath("../../../SpawnPositions/Players/p2")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble3")
 
-[node name="Bubble15" parent="Battlefield/Middleground" index="5" groups=[
-"in_camera",
-] instance=ExtResource( 7 )]
+[node name="Bubble15" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
 position = Vector2( 430, 250 )
 angular_velocity = 40.0
 
@@ -119,9 +111,7 @@ node_b = NodePath("../../Bubble13")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble12")
 
-[node name="Bubble10" parent="Battlefield/Middleground" index="6" groups=[
-"in_camera",
-] instance=ExtResource( 7 )]
+[node name="Bubble10" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
 position = Vector2( -435, 0 )
 angular_velocity = 40.0
 owner_player = NodePath("../../../SpawnPositions/Players/p2")
@@ -130,9 +120,7 @@ owner_player = NodePath("../../../SpawnPositions/Players/p2")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble5")
 
-[node name="Bubble14" parent="Battlefield/Middleground" index="7" groups=[
-"in_camera",
-] instance=ExtResource( 7 )]
+[node name="Bubble14" parent="Battlefield/Middleground" index="7" instance=ExtResource( 7 )]
 position = Vector2( -435, 250 )
 angular_velocity = 40.0
 
@@ -303,7 +291,7 @@ controls = "joy3"
 species = ExtResource( 13 )
 
 [node name="Camera" parent="." index="5"]
-zoom = Vector2( 4.4409e+14, 4.4409e+14 )
+zoom = Vector2( 1.11022e+15, 1.11022e+15 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

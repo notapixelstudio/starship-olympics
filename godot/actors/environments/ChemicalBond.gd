@@ -4,11 +4,10 @@ onready var a = get_node(node_a)
 onready var b = get_node(node_b)
 
 func _process(delta):
-	if not a or not b:
+	if not a or not b or a.about_to_pop or b.about_to_pop:
 		queue_free()
 		return
 		
-	visible = not(a.about_to_pop or b.about_to_pop)
 	$Line2D.gradient.colors = PoolColorArray([a.get_color(), b.get_color()])
 	
 	var ap = a.global_position
