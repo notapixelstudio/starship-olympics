@@ -62,7 +62,7 @@ const max_win = 5
 
 var campaign_win = win
 
-var custom_win = win setget set_custom_win
+var custom_win:int = win setget set_custom_win
 
 func set_custom_win(value):
 	custom_win = value
