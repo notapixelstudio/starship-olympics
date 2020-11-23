@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Bubble.tres" type="Resource" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=11]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/styles/pacman.tres" type="Resource" id=14]
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -68,7 +69,7 @@ script = ExtResource( 11 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 600
+radius = 1000
 precision = 50.0
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Battlefield/Middleground" index="1"]
@@ -80,7 +81,20 @@ node_b = NodePath("../Bubble")
 ] instance=ExtResource( 7 )]
 angular_velocity = 60.0
 
-[node name="Bubble13" parent="Battlefield/Middleground" index="3" groups=[
+[node name="Bubble2" parent="Battlefield/Middleground" index="3" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
+position = Vector2( 0, -500 )
+
+[node name="ChemicalBond" parent="Battlefield/Middleground/Bubble2" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble6")
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble2" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble4")
+
+[node name="Bubble13" parent="Battlefield/Middleground" index="4" groups=[
 "in_camera",
 ] instance=ExtResource( 7 )]
 position = Vector2( 430, 0 )
@@ -91,7 +105,21 @@ owner_player = NodePath("../../../SpawnPositions/Players/p2")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble3")
 
-[node name="Bubble10" parent="Battlefield/Middleground" index="4" groups=[
+[node name="Bubble15" parent="Battlefield/Middleground" index="5" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
+position = Vector2( 430, 250 )
+angular_velocity = 40.0
+
+[node name="ChemicalBond" parent="Battlefield/Middleground/Bubble15" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble13")
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble15" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble12")
+
+[node name="Bubble10" parent="Battlefield/Middleground" index="6" groups=[
 "in_camera",
 ] instance=ExtResource( 7 )]
 position = Vector2( -435, 0 )
@@ -102,7 +130,21 @@ owner_player = NodePath("../../../SpawnPositions/Players/p2")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble5")
 
-[node name="Bubble8" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+[node name="Bubble14" parent="Battlefield/Middleground" index="7" groups=[
+"in_camera",
+] instance=ExtResource( 7 )]
+position = Vector2( -435, 250 )
+angular_velocity = 40.0
+
+[node name="ChemicalBond" parent="Battlefield/Middleground/Bubble14" index="2" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble10")
+
+[node name="ChemicalBond2" parent="Battlefield/Middleground/Bubble14" index="3" instance=ExtResource( 9 )]
+node_a = NodePath("..")
+node_b = NodePath("../../Bubble11")
+
+[node name="Bubble8" parent="Battlefield/Middleground" index="8" instance=ExtResource( 7 )]
 position = Vector2( 0, 250 )
 owner_player = NodePath("../../../SpawnPositions/Players/p2")
 
@@ -110,7 +152,7 @@ owner_player = NodePath("../../../SpawnPositions/Players/p2")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble")
 
-[node name="Bubble9" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
+[node name="Bubble9" parent="Battlefield/Middleground" index="9" instance=ExtResource( 7 )]
 position = Vector2( 0, -250 )
 owner_player = NodePath("../../../SpawnPositions/Players/p2")
 
@@ -138,7 +180,7 @@ node_b = NodePath("../../Bubble5")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble6")
 
-[node name="Bubble3" parent="Battlefield/Middleground" index="7" instance=ExtResource( 7 )]
+[node name="Bubble3" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
 position = Vector2( 217, -123 )
 owner_player = NodePath("../../../SpawnPositions/Players/p1")
 
@@ -146,7 +188,7 @@ owner_player = NodePath("../../../SpawnPositions/Players/p1")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble")
 
-[node name="Bubble12" parent="Battlefield/Middleground" index="8" instance=ExtResource( 7 )]
+[node name="Bubble12" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
 position = Vector2( 217, 377 )
 owner_player = NodePath("../../../SpawnPositions/Players/p1")
 
@@ -154,21 +196,23 @@ owner_player = NodePath("../../../SpawnPositions/Players/p1")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble8")
 
-[node name="Bubble5" parent="Battlefield/Middleground" index="9" instance=ExtResource( 7 )]
+[node name="Bubble5" parent="Battlefield/Middleground" index="12" instance=ExtResource( 7 )]
 position = Vector2( -217, -123 )
+owner_player = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble5" index="2" instance=ExtResource( 9 )]
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble")
 
-[node name="Bubble11" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
+[node name="Bubble11" parent="Battlefield/Middleground" index="13" instance=ExtResource( 7 )]
 position = Vector2( -217, 377 )
+owner_player = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="ChemicalBond4" parent="Battlefield/Middleground/Bubble11" index="2" instance=ExtResource( 9 )]
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble8")
 
-[node name="Bubble6" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
+[node name="Bubble6" parent="Battlefield/Middleground" index="14" instance=ExtResource( 7 )]
 position = Vector2( -217, -373 )
 owner_player = NodePath("../../../SpawnPositions/Players/p1")
 
@@ -176,7 +220,7 @@ owner_player = NodePath("../../../SpawnPositions/Players/p1")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble5")
 
-[node name="Bubble7" parent="Battlefield/Middleground" index="12" instance=ExtResource( 7 )]
+[node name="Bubble7" parent="Battlefield/Middleground" index="15" instance=ExtResource( 7 )]
 position = Vector2( -217, 127 )
 owner_player = NodePath("../../../SpawnPositions/Players/p1")
 
@@ -204,15 +248,17 @@ node_b = NodePath("../../Bubble10")
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble5")
 
-[node name="Bubble4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 7 )]
+[node name="Bubble4" parent="Battlefield/Middleground" index="16" instance=ExtResource( 7 )]
 position = Vector2( 217, -373 )
+owner_player = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble4" index="2" instance=ExtResource( 9 )]
 node_a = NodePath("..")
 node_b = NodePath("../../Bubble3")
 
-[node name="Bubble16" parent="Battlefield/Middleground" index="14" instance=ExtResource( 7 )]
+[node name="Bubble16" parent="Battlefield/Middleground" index="17" instance=ExtResource( 7 )]
 position = Vector2( 217, 127 )
+owner_player = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="ChemicalBond3" parent="Battlefield/Middleground/Bubble16" index="2" instance=ExtResource( 9 )]
 node_a = NodePath("..")
@@ -250,8 +296,14 @@ rotation = 0.0
 controls = "joy1"
 species = ExtResource( 10 )
 
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
+position = Vector2( -1350, -1000 )
+rotation = 0.0
+controls = "joy3"
+species = ExtResource( 13 )
+
 [node name="Camera" parent="." index="5"]
-zoom = Vector2( 6.93887e+15, 6.93887e+15 )
+zoom = Vector2( 4.4409e+14, 4.4409e+14 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

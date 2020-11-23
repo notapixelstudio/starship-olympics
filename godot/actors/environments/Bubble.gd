@@ -18,14 +18,12 @@ onready var ChemicalBondScene = preload('res://actors/environments/ChemicalBond.
 export var owner_player : NodePath
 var species : Resource
 
-var group = {}
+var group = str(get_instance_id())
 
 var points = 1
 
 func _ready():
-	group = {
-		get_name(): self
-	}
+	add_to_group(group)
 	# set color if bubble is owned by a player
 	yield(get_tree(), "idle_frame")
 	if owner_player:
@@ -46,6 +44,9 @@ func _process(delta):
 func get_color():
 	return $NoRotate/Sprite.modulate
 	
+func get_group_bubbles():
+	return get_tree().get_nodes_in_group(group)
+	
 func attempt_binding(bubble_shooter):
 	yield(get_tree().create_timer(0.1), 'timeout')
 	for bubble in $BindingArea.get_overlapping_bodies():
@@ -58,15 +59,18 @@ func attempt_binding(bubble_shooter):
 		add_child(bond)
 		
 		if species == bubble.species:
-			# update groups
-			# merge
-			for k in bubble.group.keys():
-				group[k] = bubble.group[k]
-			# share reference
-			for b in group.values():
-				b.group = group
-				# update points
-				b.points = len(b.group)
+			# update all bubbles in current group to join encountered group
+			for b in get_group_bubbles():
+				if b:
+					b.remove_from_group(group)
+					group = bubble.group
+					b.add_to_group(group)
+					
+			# self.group should also have been changed
+			
+			# update points counter in each member of the new group
+			for b in get_group_bubbles():
+				b.points = len(get_group_bubbles())
 			
 			maybe_pop(bubble_shooter) 
 
@@ -74,13 +78,12 @@ func maybe_pop(bubble_shooter):
 	yield(get_tree().create_timer(0.6), 'timeout') # wait a bit to compute all group bindings
 	
 	# pop all group if max_group_size is reached
-	if group and len(group) >= max_group_size:
-		for b in group.values():
+	if points >= max_group_size:
+		for b in get_group_bubbles():
 			if b:
 				b.pop(bubble_shooter)
 	
 func pop(bubble_shooter):
-	group.erase(get_name())
 	about_to_pop = true
 	$AnimationPlayer.play('pop')
 	yield(get_tree().create_timer(0.5), "timeout")
