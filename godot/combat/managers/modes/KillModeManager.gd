@@ -4,7 +4,7 @@ signal score
 signal broadcast_score
 signal show_msg
 
-func _on_sth_killed(sth, killer : Ship):
+func _on_sth_killed(sth, killer : Ship, ship_for_good=false):
 	if not enabled:
 		return
 	
