@@ -17,6 +17,9 @@ onready var ChemicalBondScene = preload('res://actors/environments/ChemicalBond.
 
 export var owner_player : NodePath
 var species : Resource
+export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'none'
+
+var color = Color('#929292')
 
 var group = str(get_instance_id())
 
@@ -24,6 +27,18 @@ var points = 1
 
 func _ready():
 	add_to_group(group)
+	
+	if symbol == 'square':
+		set_color(Color(0.9,0.9,0.6,1.0))
+	elif symbol == 'cross':
+		set_color(Color(0.7,0.7,1.0,1.0))
+	elif symbol == 'triangle':
+		set_color(Color(0.6,1.0,0.6,1.0))
+	elif symbol == 'circle':
+		set_color(Color(1.0,0.6,0.6,1.0))
+		
+	$NoRotate/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
+	
 	# set color if bubble is owned by a player
 	yield(get_tree(), "idle_frame")
 	if owner_player:
@@ -31,19 +46,22 @@ func _ready():
 
 func set_species(v):
 	species = v
-	$NoRotate/Sprite.modulate = species.color
-	$NoRotate/Label.modulate = species.color
-	$Particles2D.modulate = species.color
+	set_color(species.color)
 	$Particles2D2.modulate = species.color_2
 	$NoRotate/Label.text = species.species_name.left(1).to_upper()# + species.species_name.substr(1,1)
 
+func set_color(c):
+	color = c
+	$NoRotate.modulate = color
+	$Particles2D.modulate = color
+	
 func _process(delta):
 	$NoRotate.rotation = -rotation
 	#$NoRotate/Label.text = str(points)
 	#$NoRotate/Label.text = group
 	
 func get_color():
-	return $NoRotate/Sprite.modulate
+	return color
 	
 func get_group_bubbles():
 	return get_tree().get_nodes_in_group(group)

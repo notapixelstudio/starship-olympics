@@ -101,6 +101,7 @@ linear_damp = 0.0
 script = ExtResource( 2 )
 
 [node name="NoRotate" type="Node2D" parent="."]
+modulate = Color( 0.572549, 0.572549, 0.572549, 1 )
 
 [node name="Label" type="Label" parent="NoRotate"]
 modulate = Color( 1, 1, 1, 0.705882 )
@@ -115,8 +116,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Symbol" type="Sprite" parent="NoRotate"]
+scale = Vector2( 0.8, 0.8 )
+
 [node name="Sprite" type="Sprite" parent="NoRotate"]
-modulate = Color( 0.635294, 0.635294, 0.635294, 1 )
 scale = Vector2( 2.1, 2.1 )
 texture = ExtResource( 1 )
 
