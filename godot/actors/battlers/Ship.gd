@@ -99,7 +99,7 @@ var camera
 var weapon_textures = {
 	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
@@ -117,6 +117,7 @@ func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
 	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
+	$Graphics/ChargeBar/BombPreview.modulate = species.color
 	
 func set_ammo(value):
 	ammo.set_max_ammo(value)
@@ -281,6 +282,8 @@ func charge():
 	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
+		$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
+		$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,1)
 	else:
 		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
 	
@@ -321,7 +324,9 @@ func fire(override_charge = -1, dash_only = false):
 	$Graphics/ChargeBar/ChargeAxis.visible = false
 	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
-	$Graphics/ChargeBar/Charge.modulate = Color(1,1,1)
+	$Graphics/ChargeBar/BombPreview.modulate = species.color
+	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
+	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	$Tween.stop_all()

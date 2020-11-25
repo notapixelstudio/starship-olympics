@@ -12,12 +12,13 @@ script = ExtResource( 1 )
 ship_texture = ExtResource( 2 )
 
 [node name="ChargeBar" type="Node2D" parent="."]
-position = Vector2( -72, 0 )
+position = Vector2( -84, 0 )
 scale = Vector2( 2, 2 )
 z_index = 100
 z_as_relative = false
 
 [node name="BombPreview" type="Sprite" parent="ChargeBar"]
+self_modulate = Color( 1, 1, 1, 0.501961 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
