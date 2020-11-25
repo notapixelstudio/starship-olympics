@@ -79,7 +79,7 @@ func attempt_binding(bubble_shooter):
 		add_child(bond)
 		$RandomBindSFX.play()
 		
-		if species and species == bubble.species or symbol and symbol == bubble.symbol:
+		if species and species == bubble.species or symbol and symbol != 'none' and symbol == bubble.symbol:
 			# update all bubbles in current group to join encountered group
 			for b in get_group_bubbles():
 				if b:

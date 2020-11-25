@@ -137,6 +137,8 @@ func _on_Bomb_body_entered(body):
 		var bubble = BubbleScene.instance()
 		#bubble.set_species(entity.get('Owned').get_owned_by().species)
 		bubble.symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
+		if randf() < 0.15:
+			bubble.symbol = 'none' # slight chance of no-symbol bubble
 		bubble.position = position
 		bubble.linear_velocity = linear_velocity
 		get_parent().call_deferred("add_child", bubble) # ugly
