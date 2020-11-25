@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=2]
@@ -7,20 +7,24 @@
 [ext_resource path="res://assets/sprites/interface/ammo_bomb_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=6]
 
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+func _process(delta):
+	$BombPreview.rotation = -global_rotation
+	
+"
+
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )
 ship_texture = ExtResource( 2 )
 
 [node name="ChargeBar" type="Node2D" parent="."]
-position = Vector2( -84, 0 )
+position = Vector2( -92, 0 )
 scale = Vector2( 2, 2 )
 z_index = 100
 z_as_relative = false
-
-[node name="BombPreview" type="Sprite" parent="ChargeBar"]
-self_modulate = Color( 1, 1, 1, 0.501961 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
+script = SubResource( 1 )
 
 [node name="ChargeBackground" type="Line2D" parent="ChargeBar"]
 position = Vector2( -22, 0 )
@@ -54,6 +58,11 @@ rotation = -1.5708
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, -64 )
+
+[node name="BombPreview" type="Sprite" parent="ChargeBar"]
+self_modulate = Color( 1, 1, 1, 0.501961 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/appearing = ExtResource( 3 )

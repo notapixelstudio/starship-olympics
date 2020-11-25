@@ -9,6 +9,7 @@ var BubbleScene = load('res://actors/environments/Bubble.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
+var bubble_texture = preload('res://assets/sprites/environments/bubble.png')
 var type
 
 var entity : Entity
@@ -52,7 +53,13 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$Sprite.texture = bullet_texture
 		$Sprite.scale = Vector2(size*1.1, size*1.1)
 		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
-		
+		mode = MODE_CHARACTER
+	elif type == GameMode.BOMB_TYPE.bubble:
+		entity.get('Pursuer').disable()
+		$CollisionShape2D.shape.radius = size*80 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$NearArea/CollisionShape2D.shape.radius = size*80
+		$Sprite.texture = bubble_texture
+		$Sprite.scale = Vector2(size*1.1, size*1.1)
 		mode = MODE_CHARACTER
 	else:
 		$CollisionShape2D.shape.radius = size*16

@@ -100,6 +100,7 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
+	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
 	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
@@ -305,7 +306,7 @@ func fire(override_charge = -1, dash_only = false):
 			ammo.shot()
 			should_reload = true
 			var impulse
-			if bomb_type == GameMode.BOMB_TYPE.ball:
+			if bomb_type == GameMode.BOMB_TYPE.ball or bomb_type == GameMode.BOMB_TYPE.bubble:
 				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
 			elif bomb_type == GameMode.BOMB_TYPE.bullet:
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
