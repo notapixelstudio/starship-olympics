@@ -18,6 +18,7 @@ onready var ChemicalBondScene = preload('res://actors/environments/ChemicalBond.
 export var owner_player : NodePath
 var species : Resource
 export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'none'
+const symbols = ['square', 'cross', 'triangle', 'circle']
 
 var color = Color('#929292')
 
@@ -78,7 +79,7 @@ func attempt_binding(bubble_shooter):
 		add_child(bond)
 		$RandomBindSFX.play()
 		
-		if species == bubble.species:
+		if species and species == bubble.species or symbol and symbol == bubble.symbol:
 			# update all bubbles in current group to join encountered group
 			for b in get_group_bubbles():
 				if b:

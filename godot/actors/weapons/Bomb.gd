@@ -135,7 +135,8 @@ func _on_Bomb_body_entered(body):
 		body.break(entity.get('Owned').get_owned_by())
 	elif body is Bubble:
 		var bubble = BubbleScene.instance()
-		bubble.set_species(entity.get('Owned').get_owned_by().species)
+		#bubble.set_species(entity.get('Owned').get_owned_by().species)
+		bubble.symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
 		bubble.position = position
 		bubble.linear_velocity = linear_velocity
 		get_parent().call_deferred("add_child", bubble) # ugly
