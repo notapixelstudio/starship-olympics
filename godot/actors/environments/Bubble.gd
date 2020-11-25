@@ -76,6 +76,7 @@ func attempt_binding(bubble_shooter):
 		bond.node_a = get_path()
 		bond.node_b = bubble.get_path()
 		add_child(bond)
+		$RandomBindSFX.play()
 		
 		if species == bubble.species:
 			# update all bubbles in current group to join encountered group
@@ -101,14 +102,20 @@ func maybe_pop(bubble_shooter):
 	
 	# pop all group if max_group_size is reached
 	if points >= max_group_size:
+		var i = 0
 		for b in get_group_bubbles():
 			if b:
-				b.pop(bubble_shooter)
+				b.pop(i, bubble_shooter)
+				i += 1
 	
-func pop(bubble_shooter):
+func pop(i, bubble_shooter):
 	about_to_pop = true
+	yield(get_tree().create_timer(i*0.1), "timeout") # pop in sequence
 	$AnimationPlayer.play('pop')
 	yield(get_tree().create_timer(0.5), "timeout")
 	emit_signal('killed', self, bubble_shooter)
+	$RandomPopSFX.play()
+	yield($RandomPopSFX, "finished")
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()
+	
