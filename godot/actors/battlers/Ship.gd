@@ -116,6 +116,7 @@ func set_bombs_enabled(value: bool):
 func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
+	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
 	
 func set_ammo(value):
 	ammo.set_max_ammo(value)
@@ -220,20 +221,21 @@ func control(_delta):
 	
 func update_charge_bar():
 	if not charging:
-		$Graphics/ChargeBar.visible = false
+		$Graphics/ChargeBar/Charge.visible = false
 		return
 		
-	$Graphics/ChargeBar.visible = true
+	$Graphics/ChargeBar/Charge.visible = true
 	
 	# charge feedback
 	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
 	$Graphics/ChargeBar/Charge.set_point_position(1, v)
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, v)
-	$Graphics/ChargeBar/ArrowTip.position.x = v.x
+	$Graphics/ChargeBar/Charge/ArrowTip.position.x = v.x+26
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
-		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
+		var visible = int(floor(charge * 15)) % 2
+		$Graphics/ChargeBar/Charge.visible = visible
 
 signal detection
 func _physics_process(delta):
@@ -278,11 +280,9 @@ func charge():
 	dash_fat_appearance()
 	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
-		$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
-		$Graphics/ChargeBar.modulate = Color(1, 0.376471, 0)
+		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
 	else:
-		$Graphics/ChargeBar/BombPreview.texture = null
-		$Graphics/ChargeBar.modulate = Color(1,1,0)
+		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
 	
 func fire(override_charge = -1, dash_only = false):
 	"""
@@ -318,7 +318,10 @@ func fire(override_charge = -1, dash_only = false):
 	#$GravitonField.enabled = false
 	
 	charging = false
-	$Graphics/ChargeBar.visible = false
+	$Graphics/ChargeBar/ChargeAxis.visible = false
+	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/Charge.modulate = Color(1,1,1)
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	$Tween.stop_all()
