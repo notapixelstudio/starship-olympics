@@ -97,7 +97,7 @@ var entity : Entity
 var camera
 
 var weapon_textures = {
-	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
+	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_rocket.png'),
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
@@ -173,6 +173,9 @@ func change_engine(value: bool):
 	responsive = value
 	set_physics_process(responsive)
 	
+func _process(delta):
+	if bomb_type == GameMode.BOMB_TYPE.bubble:
+		$Graphics/ChargeBar/BombPreview.rotation = -global_rotation
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)

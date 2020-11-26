@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=9]
 [ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=10]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=11]
-[ext_resource path="res://assets/sprites/weapons/bomb_retro.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/weapons/rocket.png" type="Texture" id=12]
 [ext_resource path="res://actors/weapons/BombCore.gd" type="Script" id=13]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
@@ -22,8 +22,6 @@ bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.0
-
-[sub_resource type="CanvasItemMaterial" id=3]
 
 [sub_resource type="Animation" id=4]
 length = 3.0
@@ -41,7 +39,7 @@ tracks/0/keys = {
 "values": [ 0.0, 120.0, 240.0, 360.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "wobble"
 length = 0.4
 loop = true
@@ -58,10 +56,10 @@ tracks/0/keys = {
 "values": [ Vector2( 1.3, 1.5 ), Vector2( 1.5, 1.3 ), Vector2( 1.3, 1.5 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=7]
 radius = 8.0
 
 [node name="Bomb" type="RigidBody2D"]
@@ -141,29 +139,27 @@ shape = SubResource( 2 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 1.3, 1.3, 1.3, 1 )
-material = SubResource( 3 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 playback_speed = 0.5
 anims/rotate = SubResource( 4 )
-anims/wobble = SubResource( 7 )
+anims/wobble = SubResource( 5 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Core" type="Area2D" parent="."]
 collision_layer = 256
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Entity" type="Node" parent="Core"]
 script = ExtResource( 3 )
