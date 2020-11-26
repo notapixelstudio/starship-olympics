@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
 
 [sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
@@ -38,6 +39,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 120.0, 240.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "wobble"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 1.3, 1.5 ), Vector2( 1.5, 1.3 ), Vector2( 1.3, 1.5 ) ]
 }
 
 [sub_resource type="CircleShape2D" id=5]
@@ -119,6 +137,9 @@ enabled = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
+[node name="Symbol" type="Sprite" parent="."]
+scale = Vector2( 0.6, 0.6 )
+
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1.3, 1.3, 1.3, 1 )
 material = SubResource( 3 )
@@ -126,9 +147,9 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-autoplay = "rotate"
 playback_speed = 0.5
 anims/rotate = SubResource( 4 )
+anims/wobble = SubResource( 7 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 4

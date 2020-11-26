@@ -99,9 +99,12 @@ var camera
 var weapon_textures = {
 	GameMode.BOMB_TYPE.classic: preload('res://assets/sprites/interface/charge_bomb.png'),
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
+	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
 	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
 }
+
+var symbol
 
 func initialize():
 	pass
@@ -116,6 +119,11 @@ func set_bombs_enabled(value: bool):
 func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
+	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
+	if bomb_type != GameMode.BOMB_TYPE.bubble:
+		$Graphics/ChargeBar/BombPreview.modulate = species.color
+	else:
+		next_symbol()
 	
 func set_ammo(value):
 	ammo.set_max_ammo(value)
@@ -220,20 +228,21 @@ func control(_delta):
 	
 func update_charge_bar():
 	if not charging:
-		$Graphics/ChargeBar.visible = false
+		$Graphics/ChargeBar/Charge.visible = false
 		return
 		
-	$Graphics/ChargeBar.visible = true
+	$Graphics/ChargeBar/Charge.visible = true
 	
 	# charge feedback
 	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
 	$Graphics/ChargeBar/Charge.set_point_position(1, v)
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, v)
-	$Graphics/ChargeBar/ArrowTip.position.x = v.x
+	$Graphics/ChargeBar/Charge/ArrowTip.position.x = v.x+26
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
-		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
+		var visible = int(floor(charge * 15)) % 2
+		$Graphics/ChargeBar/Charge.visible = visible
 
 signal detection
 func _physics_process(delta):
@@ -278,11 +287,12 @@ func charge():
 	dash_fat_appearance()
 	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
-		$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
-		$Graphics/ChargeBar.modulate = Color(1, 0.376471, 0)
+		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
+		if bomb_type != GameMode.BOMB_TYPE.bubble:
+			$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
+		$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,1)
 	else:
-		$Graphics/ChargeBar/BombPreview.texture = null
-		$Graphics/ChargeBar.modulate = Color(1,1,0)
+		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
 	
 func fire(override_charge = -1, dash_only = false):
 	"""
@@ -308,17 +318,26 @@ func fire(override_charge = -1, dash_only = false):
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
 			else:
 				impulse = charge_impulse+BOMB_BOOST
-			
+				
 			if bomb_type != GameMode.BOMB_TYPE.dasher or actual_charge > 0.2:
-				emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+				emit_signal("spawn_bomb", bomb_type, symbol, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
 					Vector2(-impulse,0).rotated(rotation))
+					
+			if bomb_type == GameMode.BOMB_TYPE.bubble:
+				next_symbol()
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
 	#$GravitonField.enabled = false
 	
 	charging = false
-	$Graphics/ChargeBar.visible = false
+	$Graphics/ChargeBar/ChargeAxis.visible = false
+	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
+	if bomb_type != GameMode.BOMB_TYPE.bubble:
+		$Graphics/ChargeBar/BombPreview.modulate = species.color
+	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
+	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	$Tween.stop_all()
@@ -453,3 +472,9 @@ signal fallen
 func fall():
 	emit_signal('fallen', self, spawner)
 	
+func next_symbol():
+	symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
+	if randf() < 0.08:
+		symbol = 'none' # slight chance of no-symbol bubble
+	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
+	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')

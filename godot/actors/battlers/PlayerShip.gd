@@ -12,7 +12,7 @@ func _ready():
 	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	connect('dead', self, '_on_dead')
 	
-func _on_dead(me, killer):
+func _on_dead(me, killer, for_good=false):
 	vibration_feedback()
 	
 func vibration_feedback():

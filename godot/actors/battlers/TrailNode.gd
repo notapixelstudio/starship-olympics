@@ -111,7 +111,7 @@ func _on_sth_spawned(sth : Node2D):
 	maybe_erase()
 	update()
 	
-func _on_sth_dead(sth : Node2D, killer):
+func _on_sth_dead(sth : Node2D, killer, ship_for_good=false):
 	if trail:
 		trail.stop_adding_points = true
 	if inner_trail:
