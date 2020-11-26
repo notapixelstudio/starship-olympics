@@ -54,9 +54,9 @@ func refresh():
 	if max_ammo <= -1: # infinite
 		return
 		
-	for i in max_ammo:
-		if i < current_ammo:
-			get_child(i).texture = textures[type]['full']
-		else:
-			get_child(i).texture = textures[type]['empty']
+	#for i in max_ammo:
+	#	if i < current_ammo:
+	#		get_child(i).texture = textures[type]['full']
+	#	else:
+	#<		get_child(i).texture = textures[type]['empty']
 			

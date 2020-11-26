@@ -19,7 +19,13 @@ export var owner_player : NodePath
 var species : Resource
 export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'none'
 const symbols = ['square', 'cross', 'triangle', 'circle']
-
+const symbol_colors = {
+	'none': Color('#929292'),
+	'square': Color(0.9,0.9,0.6,1.0),
+	'cross': Color(0.7,0.7,1.0,1.0),
+	'triangle': Color(0.6,1.0,0.6,1.0),
+	'circle': Color(1.0,0.6,0.6,1.0)
+}
 var color = Color('#929292')
 
 var group = str(get_instance_id())
@@ -28,16 +34,9 @@ var points = 1
 
 func _ready():
 	add_to_group(group)
+	if symbol:
+		set_color(symbol_colors[symbol])
 	
-	if symbol == 'square':
-		set_color(Color(0.9,0.9,0.6,1.0))
-	elif symbol == 'cross':
-		set_color(Color(0.7,0.7,1.0,1.0))
-	elif symbol == 'triangle':
-		set_color(Color(0.6,1.0,0.6,1.0))
-	elif symbol == 'circle':
-		set_color(Color(1.0,0.6,0.6,1.0))
-		
 	$NoRotate/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 	
 	# set color if bubble is owned by a player

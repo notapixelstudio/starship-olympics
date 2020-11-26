@@ -664,7 +664,7 @@ func spawn_ship(player:PlayerSpawner):
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const dasher_scene = preload('res://combat/collectables/Dasher.tscn')
-func spawn_bomb(type, pos, impulse, ship, size=1):
+func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb
 	if type == GameMode.BOMB_TYPE.dasher:
 		bomb = dasher_scene.instance()
@@ -673,6 +673,8 @@ func spawn_bomb(type, pos, impulse, ship, size=1):
 	else:
 		bomb = bomb_scene.instance()
 		bomb.initialize(type, pos, impulse, ship, size)
+		if symbol:
+			bomb.symbol = symbol
 		
 		bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")

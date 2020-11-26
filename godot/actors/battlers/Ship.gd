@@ -104,6 +104,8 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
+var symbol
+
 func initialize():
 	pass
 
@@ -118,7 +120,8 @@ func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
 	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
-	$Graphics/ChargeBar/BombPreview.modulate = species.color
+	if bomb_type != GameMode.BOMB_TYPE.bubble:
+		$Graphics/ChargeBar/BombPreview.modulate = species.color
 	
 func set_ammo(value):
 	ammo.set_max_ammo(value)
@@ -137,6 +140,7 @@ func _enter_tree():
 	outside_countup = 0
 	emit_signal('spawned', self)
 	dash_init_appearance()
+	next_symbol()
 	
 	# Invincible for the firs MAX seconds
 	invincible = true
@@ -283,7 +287,8 @@ func charge():
 	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
-		$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
+		if bomb_type != GameMode.BOMB_TYPE.bubble:
+			$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
 		$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,1)
 	else:
 		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
@@ -306,16 +311,21 @@ func fire(override_charge = -1, dash_only = false):
 			ammo.shot()
 			should_reload = true
 			var impulse
-			if bomb_type == GameMode.BOMB_TYPE.ball or bomb_type == GameMode.BOMB_TYPE.bubble:
+			if bomb_type == GameMode.BOMB_TYPE.ball:
+				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
+			elif bomb_type == GameMode.BOMB_TYPE.bubble:
 				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
 			elif bomb_type == GameMode.BOMB_TYPE.bullet:
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
 			else:
 				impulse = charge_impulse+BOMB_BOOST
-			
+				
 			if bomb_type != GameMode.BOMB_TYPE.dasher or actual_charge > 0.2:
-				emit_signal("spawn_bomb", bomb_type, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
+				emit_signal("spawn_bomb", bomb_type, symbol, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
 					Vector2(-impulse,0).rotated(rotation))
+					
+			if bomb_type == GameMode.BOMB_TYPE.bubble:
+				next_symbol()
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
@@ -325,7 +335,8 @@ func fire(override_charge = -1, dash_only = false):
 	$Graphics/ChargeBar/ChargeAxis.visible = false
 	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
-	$Graphics/ChargeBar/BombPreview.modulate = species.color
+	if bomb_type != GameMode.BOMB_TYPE.bubble:
+		$Graphics/ChargeBar/BombPreview.modulate = species.color
 	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
 	
 	fire_cooldown = FIRE_COOLDOWN
@@ -462,3 +473,9 @@ signal fallen
 func fall():
 	emit_signal('fallen', self, spawner)
 	
+func next_symbol():
+	symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
+	if randf() < 0.15:
+		symbol = 'none' # slight chance of no-symbol bubble
+	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
+	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')

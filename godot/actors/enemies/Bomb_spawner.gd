@@ -14,7 +14,7 @@ func initialize(_arena):
 
 func spawn():
 	$Dashed_container.visible = false
-	var bomb = arena.spawn_bomb(GameMode.BOMB_TYPE.classic, position, null, owner_ship, scale.x)
+	var bomb = arena.spawn_bomb(GameMode.BOMB_TYPE.classic, null, position, null, owner_ship, scale.x)
 	ECM.E(bomb).get("StandAlone").enable()
 	bomb.connect("detonate", self, "ready_to_respawn",[], CONNECT_ONESHOT)
 	

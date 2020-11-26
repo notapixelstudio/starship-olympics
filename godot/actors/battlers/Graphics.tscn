@@ -64,6 +64,10 @@ self_modulate = Color( 1, 1, 1, 0.501961 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
+[node name="Symbol" type="Sprite" parent="ChargeBar/BombPreview"]
+self_modulate = Color( 1, 1, 1, 0.843137 )
+scale = Vector2( 0.35, 0.35 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/appearing = ExtResource( 3 )
 anims/invincible = ExtResource( 4 )

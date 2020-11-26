@@ -11,6 +11,7 @@ var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
 var bubble_texture = preload('res://assets/sprites/environments/bubble.png')
 var type
+var symbol = null
 
 var entity : Entity
 onready var life_time = $LifeTime
@@ -20,6 +21,12 @@ onready var explosion = Explosion.instance()
 func _ready():
 	if type != GameMode.BOMB_TYPE.classic:
 		$Sprite/AnimationPlayer.stop()
+		
+	if symbol:
+		$Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
+		$Symbol.modulate = Bubble.symbol_colors[symbol]
+		$Sprite.modulate = Bubble.symbol_colors[symbol]
+	
 func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	type = bomb_type
 	entity = ECM.E(self)
@@ -56,10 +63,12 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		mode = MODE_CHARACTER
 	elif type == GameMode.BOMB_TYPE.bubble:
 		entity.get('Pursuer').disable()
-		$CollisionShape2D.shape.radius = size*80 # WAAAARNING this likely alters all collision shapes of all bombs!
-		$NearArea/CollisionShape2D.shape.radius = size*80
+		entity.get('Deadly').disable()
+		$CollisionShape2D.shape.radius = size*90 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$NearArea/CollisionShape2D.shape.radius = size*90
 		$Sprite.texture = bubble_texture
-		$Sprite.scale = Vector2(size*1.1, size*1.1)
+		$Sprite.scale = Vector2(size*1.4, size*1.4)
+		
 		mode = MODE_CHARACTER
 	else:
 		$CollisionShape2D.shape.radius = size*16
@@ -69,7 +78,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	$Core/CollisionShape2D.shape.radius = size*8
 	
 func _process(delta):
-	$Sprite.rotation = linear_velocity.angle()
+	if type != GameMode.BOMB_TYPE.bubble:
+		$Sprite.rotation = linear_velocity.angle()
 	
 func _physics_process(delta):
 	process_life_time()
@@ -143,9 +153,7 @@ func _on_Bomb_body_entered(body):
 	elif body is Bubble:
 		var bubble = BubbleScene.instance()
 		#bubble.set_species(entity.get('Owned').get_owned_by().species)
-		bubble.symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
-		if randf() < 0.15:
-			bubble.symbol = 'none' # slight chance of no-symbol bubble
+		bubble.symbol = symbol
 		bubble.position = position
 		bubble.linear_velocity = linear_velocity
 		get_parent().call_deferred("add_child", bubble) # ugly
