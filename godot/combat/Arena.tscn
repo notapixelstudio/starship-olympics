@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=28]
+[ext_resource path="res://default_env.tres" type="Environment" id=29]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
@@ -160,6 +161,9 @@ __meta__ = {
 }
 gameover_scene = ExtResource( 2 )
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 29 )
+
 [node name="Managers" type="Node" parent="."]
 
 [node name="CombatManager" type="Node" parent="Managers"]
@@ -289,9 +293,6 @@ script = ExtResource( 22 )
 [node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 23 )]
-fg_color = Color( 1, 1, 1, 1 )
-bg_color = Color( 0, 0, 0, 1 )
-clock = false
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
 position = Vector2( 0, 20000 )
@@ -377,7 +378,7 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 1024, 1024 )
+zoom = Vector2( 2048, 2048 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false

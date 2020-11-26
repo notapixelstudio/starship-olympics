@@ -21,10 +21,10 @@ export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'n
 const symbols = ['square', 'cross', 'triangle', 'circle']
 const symbol_colors = {
 	'none': Color('#929292'),
-	'square': Color(0.9,0.9,0.6,1.0),
-	'cross': Color(0.7,0.7,1.0,1.0),
-	'triangle': Color(0.6,1.0,0.6,1.0),
-	'circle': Color(1.0,0.6,0.6,1.0)
+	'square': Color('#e6e66c'),
+	'cross': Color('#8080ff'),
+	'triangle': Color('#66ff66'),
+	'circle': Color('#ff6666')
 }
 var color = Color('#929292')
 

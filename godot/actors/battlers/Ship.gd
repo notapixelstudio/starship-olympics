@@ -339,7 +339,7 @@ func fire(override_charge = -1, dash_only = false):
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview.modulate = species.color
-	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
+	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.6)
 	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
