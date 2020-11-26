@@ -67,7 +67,7 @@ func get_group_bubbles():
 	return get_tree().get_nodes_in_group(group)
 	
 func attempt_binding(bubble_shooter):
-	yield(get_tree().create_timer(0.1), 'timeout')
+	yield(get_tree().create_timer(0.08), 'timeout')
 	for bubble in $BindingArea.get_overlapping_bodies():
 		if bubble == self or bubble.get_class() != 'Bubble':
 			continue

@@ -122,6 +122,8 @@ func set_bomb_type(value):
 	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview.modulate = species.color
+	else:
+		next_symbol()
 	
 func set_ammo(value):
 	ammo.set_max_ammo(value)
@@ -140,7 +142,6 @@ func _enter_tree():
 	outside_countup = 0
 	emit_signal('spawned', self)
 	dash_init_appearance()
-	next_symbol()
 	
 	# Invincible for the firs MAX seconds
 	invincible = true
@@ -313,8 +314,6 @@ func fire(override_charge = -1, dash_only = false):
 			var impulse
 			if bomb_type == GameMode.BOMB_TYPE.ball:
 				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
-			elif bomb_type == GameMode.BOMB_TYPE.bubble:
-				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
 			elif bomb_type == GameMode.BOMB_TYPE.bullet:
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
 			else:
@@ -475,7 +474,7 @@ func fall():
 	
 func next_symbol():
 	symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
-	if randf() < 0.15:
+	if randf() < 0.05:
 		symbol = 'none' # slight chance of no-symbol bubble
 	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')

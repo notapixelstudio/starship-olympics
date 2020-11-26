@@ -15,7 +15,7 @@
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
-bounce = 1.0
+bounce = 0.1
 
 [sub_resource type="DynamicFont" id=2]
 size = 86
@@ -25,7 +25,7 @@ font_data = ExtResource( 3 )
 radius = 120.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 200.0
+radius = 250.0
 
 [sub_resource type="Animation" id=5]
 resource_name = "pop"
@@ -115,6 +115,7 @@ scale_curve = SubResource( 7 )
 ]]
 collision_layer = 2048
 collision_mask = 10389
+mass = 0.5
 physics_material_override = SubResource( 1 )
 can_sleep = false
 linear_damp = 0.0
@@ -148,7 +149,6 @@ visible = false
 shape = SubResource( 3 )
 
 [node name="BindingArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 128
 collision_mask = 2048
 
@@ -159,6 +159,7 @@ shape = SubResource( 4 )
 anims/pop = SubResource( 5 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 0.572549, 0.572549, 0.572549, 1 )
 emitting = false
 explosiveness = 1.0
 randomness = 1.0
