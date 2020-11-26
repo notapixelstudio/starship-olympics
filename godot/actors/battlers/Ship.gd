@@ -474,7 +474,7 @@ func fall():
 	
 func next_symbol():
 	symbol = Bubble.symbols[randi()%len(Bubble.symbols)]
-	if randf() < 0.05:
+	if randf() < 0.08:
 		symbol = 'none' # slight chance of no-symbol bubble
 	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')

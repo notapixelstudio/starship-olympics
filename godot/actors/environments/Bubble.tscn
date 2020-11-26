@@ -15,14 +15,14 @@
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
-bounce = 0.1
+bounce = 0.4
 
 [sub_resource type="DynamicFont" id=2]
 size = 86
 font_data = ExtResource( 3 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 120.0
+radius = 100.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 250.0
@@ -145,7 +145,6 @@ scale = Vector2( 2.1, 2.1 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 3 )
 
 [node name="BindingArea" type="Area2D" parent="."]
