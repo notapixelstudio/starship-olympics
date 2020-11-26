@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=2]
@@ -6,14 +6,6 @@
 [ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=4]
 [ext_resource path="res://assets/sprites/interface/ammo_bomb_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=6]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-func _process(delta):
-	$BombPreview.rotation = -global_rotation
-	
-"
 
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )
@@ -24,7 +16,6 @@ position = Vector2( -92, 0 )
 scale = Vector2( 2, 2 )
 z_index = 100
 z_as_relative = false
-script = SubResource( 1 )
 
 [node name="ChargeBackground" type="Line2D" parent="ChargeBar"]
 position = Vector2( -22, 0 )
