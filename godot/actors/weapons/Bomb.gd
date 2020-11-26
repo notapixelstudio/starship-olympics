@@ -9,7 +9,7 @@ var BubbleScene = load('res://actors/environments/Bubble.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
-var bubble_texture = preload('res://assets/sprites/environments/bubble.png')
+var bubble_texture = preload('res://assets/sprites/weapons/bubble.png')
 var type
 var symbol = null
 

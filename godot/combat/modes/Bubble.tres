@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://assets/modes/deathmatch.png" type="Texture" id=1]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
 [ext_resource path="res://assets/icon/brickbreak_logo.png" type="Texture" id=3]
 [ext_resource path="res://map/planets/rules/Bubble.tres" type="Resource" id=4]
+[ext_resource path="res://combat/styles/dots.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 2 )
@@ -11,6 +12,7 @@ is_mutator = false
 name = "Alchemical Bombing"
 icon = ExtResource( 1 )
 logo = ExtResource( 3 )
+arena_style = ExtResource( 5 )
 description = "connect groups of 3+ bubbles of your color"
 tagline_pro = "A kill for the honour, a kill for the species"
 tagline_cons = "A self kill, apart from being embarassing, make you lose point"
