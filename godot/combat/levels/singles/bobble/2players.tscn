@@ -232,7 +232,6 @@ controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="5"]
-zoom = Vector2( 3.34097e+38, 3.34097e+38 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
