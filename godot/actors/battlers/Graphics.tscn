@@ -12,15 +12,10 @@ script = ExtResource( 1 )
 ship_texture = ExtResource( 2 )
 
 [node name="ChargeBar" type="Node2D" parent="."]
-visible = false
-position = Vector2( -64, 0 )
+position = Vector2( -92, 0 )
 scale = Vector2( 2, 2 )
 z_index = 100
 z_as_relative = false
-
-[node name="BombPreview" type="Sprite" parent="ChargeBar"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
 
 [node name="ChargeBackground" type="Line2D" parent="ChargeBar"]
 position = Vector2( -22, 0 )
@@ -31,12 +26,6 @@ texture_mode = 221806672
 begin_cap_mode = 1
 end_cap_mode = 1
 
-[node name="ArrowTip" type="Sprite" parent="ChargeBar"]
-rotation = -1.5708
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 6 )
-offset = Vector2( 0, -64 )
-
 [node name="ChargeAxis" type="Line2D" parent="ChargeBar"]
 visible = false
 position = Vector2( -22, 0 )
@@ -46,11 +35,29 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 221806672
 
 [node name="Charge" type="Line2D" parent="ChargeBar"]
+visible = false
 position = Vector2( -22, 0 )
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 6.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 221806672
+
+[node name="ArrowTip" type="Sprite" parent="ChargeBar/Charge"]
+show_behind_parent = true
+position = Vector2( 22, 0 )
+rotation = -1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, -64 )
+
+[node name="BombPreview" type="Sprite" parent="ChargeBar"]
+self_modulate = Color( 1, 1, 1, 0.6 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Symbol" type="Sprite" parent="ChargeBar/BombPreview"]
+self_modulate = Color( 1, 1, 1, 0.843137 )
+scale = Vector2( 0.35, 0.35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/appearing = ExtResource( 3 )

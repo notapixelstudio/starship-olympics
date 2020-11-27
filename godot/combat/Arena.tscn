@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -28,13 +28,31 @@
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map/DescriptionMode.tscn" type="PackedScene" id=28]
+[ext_resource path="res://default_env.tres" type="Environment" id=29]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 1000.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 80 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -85,7 +103,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -142,6 +160,9 @@ __meta__ = {
 "_editor_description_": ""
 }
 gameover_scene = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 29 )
 
 [node name="Managers" type="Node" parent="."]
 
@@ -272,9 +293,6 @@ script = ExtResource( 22 )
 [node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 23 )]
-fg_color = Color( 1, 1, 1, 1 )
-bg_color = Color( 0, 0, 0, 1 )
-clock = false
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
 position = Vector2( 0, 20000 )
@@ -289,6 +307,7 @@ opaque_tint = Color( 0, 0, 0, 0.8 )
 "animation_in_battle",
 ]]
 playback_process_mode = 0
+anims/Rotate = SubResource( 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
 script = ExtResource( 24 )
@@ -359,17 +378,17 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 512, 512 )
+zoom = Vector2( 2048, 2048 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false
 enabled = true
 
 [node name="CenterCamera" type="Position2D" parent="."]
-script = SubResource( 5 )
+script = SubResource( 2 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 6 )
+"anims/Game Over" = SubResource( 3 )
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]

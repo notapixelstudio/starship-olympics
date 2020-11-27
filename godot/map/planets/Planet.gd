@@ -7,7 +7,7 @@ export var tagline1 : String
 export var tagline2 : String
 
 export var species : Resource # SpeciesTemplate
-
+export var description : String 
 export var minigames : Array = [Object(), Object(), Object(), Object()]
 
 export var levels_1players : Array = [Object(), Object(), Object(), Object()]

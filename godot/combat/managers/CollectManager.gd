@@ -35,7 +35,7 @@ func drop_cargo(dropper):
 	var what = ECM.E(dropper).get('Cargo').unload()
 	emit_signal('dropped', dropper, what)
 	
-func _on_ship_killed(ship : Ship, killer : Ship):
+func _on_ship_killed(ship : Ship, killer : Ship, for_good):
 	if ECM.E(ship).has('Cargo'):
 		var cargo = ECM.E(ship).get('Cargo').what
 		if cargo is Crown and cargo.type == Crown.types.SOCCERBALL:

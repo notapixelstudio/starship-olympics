@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -22,10 +22,52 @@
 [ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=20]
 [ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=21]
 [ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=22]
+[ext_resource path="res://assets/map/cards/flood_moon_off.png" type="Texture" id=23]
+[ext_resource path="res://assets/map/cards/flood_moon_on.png" type="Texture" id=24]
 [ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
+[ext_resource path="res://assets/map/cards/flood_moon_random.png" type="Texture" id=26]
+[ext_resource path="res://assets/map/cards/laser_moon_off.png" type="Texture" id=27]
+[ext_resource path="res://assets/map/cards/laser_moon_on.png" type="Texture" id=28]
+[ext_resource path="res://assets/map/cards/laser_moon_random.png" type="Texture" id=29]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "wigglewiggle"
+length = 10.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
+"transitions": PoolRealArray( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "wigglewiggle"
+length = 10.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
+"transitions": PoolRealArray( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
+}
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -46,8 +88,8 @@ pause_mode = 2
 [node name="Waypoints" type="Node2D" parent="Content"]
 
 [node name="SmokedGlass" type="Polygon2D" parent="Content/Waypoints"]
-color = Color( 0, 0, 0, 0.156863 )
-polygon = PoolVector2Array( -700, -600, -600, -700, -300, -700, -300, -1200, -200, -1300, 1200, -1300, 1300, -1200, 1300, 400, 1200, 500, -600, 500, -700, 400 )
+color = Color( 0, 0, 0, 0.392157 )
+polygon = PoolVector2Array( -700, -600, -600, -700, -300, -700, -300, -1200, -200, -1300, 1400, -1300, 1500, -1200, 1500, 400, 1400, 500, -600, 500, -700, 400 )
 
 [node name="Waypoint" parent="Content/Waypoints" instance=ExtResource( 5 )]
 
@@ -68,9 +110,6 @@ position = Vector2( 800, -200 )
 
 [node name="Waypoint26" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 800, 0 )
-
-[node name="Waypoint27" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 800, 200 )
 
 [node name="Waypoint28" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 1000, 200 )
@@ -193,7 +232,7 @@ position = Vector2( 1000, 400 )
 position = Vector2( 1200, 400 )
 
 [node name="Waypoint58" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 1200, 200 )
+position = Vector2( 800, 200 )
 
 [node name="Waypoint59" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 1200, 0 )
@@ -220,7 +259,7 @@ position = Vector2( 1000, -1000 )
 position = Vector2( 800, -1000 )
 
 [node name="Waypoint67" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 600, -1000 )
+position = Vector2( 600, 200 )
 
 [node name="Waypoint68" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -1000 )
@@ -258,6 +297,33 @@ position = Vector2( 1000, -1200 )
 [node name="Waypoint80" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 1200, -1200 )
 
+[node name="Waypoint81" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, -1200 )
+
+[node name="Waypoint82" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, -1000 )
+
+[node name="Waypoint83" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, -800 )
+
+[node name="Waypoint84" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, -600 )
+
+[node name="Waypoint85" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, -400 )
+
+[node name="Waypoint86" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, -200 )
+
+[node name="Waypoint87" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, 0 )
+
+[node name="Waypoint88" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, 200 )
+
+[node name="Waypoint89" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1400, 400 )
+
 [node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, 0 )
 
@@ -266,9 +332,6 @@ position = Vector2( -400, 200 )
 
 [node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -200, 200 )
-
-[node name="Waypoint15" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 600, 200 )
 
 [node name="Waypoint20" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, 0 )
@@ -282,7 +345,7 @@ position = Vector2( 200, 200 )
 [node name="Boundary" type="Line2D" parent="Content/Waypoints"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
-points = PoolVector2Array( -200, -1300, 1200, -1300, 1300, -1200, 1300, 400, 1200, 500, -600, 500, -700, 400, -700, -600, -600, -700, -300, -700, -300, -1200, -200, -1300 )
+points = PoolVector2Array( -200, -1300, 1400, -1300, 1500, -1200, 1500, 400, 1400, 500, -600, 500, -700, 400, -700, -600, -600, -700, -300, -700, -300, -1200, -200, -1300 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 begin_cap_mode = 2
@@ -364,6 +427,7 @@ active = false
 position = Vector2( 400, 200 )
 value_name = "custom_win"
 selection = [ 1, 3, 5 ]
+description = "set the number of victories"
 
 [node name="1" type="Sprite" parent="Content/Controls/Victories/Sprite" index="0"]
 visible = false
@@ -376,6 +440,49 @@ texture = ExtResource( 16 )
 [node name="5" type="Sprite" parent="Content/Controls/Victories/Sprite" index="2"]
 visible = false
 texture = ExtResource( 17 )
+
+[node name="Flood Moon" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 1200, 200 )
+value_name = "flood"
+selection = [ "off", "on", "random" ]
+description = "add water to levels"
+
+[node name="1" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="0"]
+visible = false
+texture = ExtResource( 23 )
+
+[node name="3" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="1"]
+visible = false
+texture = ExtResource( 24 )
+
+[node name="5" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="2"]
+visible = false
+texture = ExtResource( 26 )
+
+[node name="AnimationPlayer" parent="Content/Controls/Flood Moon" index="2"]
+anims/wigglewiggle = SubResource( 2 )
+
+[node name="Laser Moon" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 600, -1000 )
+value_name = "laser"
+selection = [ "off", "on", "random" ]
+node_owner_path = NodePath("../Flood2")
+description = "add deadly lasers to levels"
+
+[node name="1" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="0"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="3" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="1"]
+visible = false
+texture = ExtResource( 28 )
+
+[node name="5" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="2"]
+visible = false
+texture = ExtResource( 29 )
+
+[node name="AnimationPlayer" parent="Content/Controls/Laser Moon" index="2"]
+anims/wigglewiggle = SubResource( 3 )
 
 [node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
 visible = false
@@ -488,5 +595,9 @@ margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [editable path="Content/Controls/Victories"]
+
+[editable path="Content/Controls/Flood Moon"]
+
+[editable path="Content/Controls/Laser Moon"]
 
 [editable path="Content/Controls/CPUs"]

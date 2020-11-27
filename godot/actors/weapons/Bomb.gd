@@ -9,7 +9,9 @@ var BubbleScene = load('res://actors/environments/Bubble.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
+var bubble_texture = preload('res://assets/sprites/weapons/bubble.png')
 var type
+var symbol = null
 
 var entity : Entity
 onready var life_time = $LifeTime
@@ -17,8 +19,18 @@ onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
 
 func _ready():
-	if type != GameMode.BOMB_TYPE.classic:
+	if type == GameMode.BOMB_TYPE.classic:
+		$Sprite/AnimationPlayer.play('rotate')
+	elif type == GameMode.BOMB_TYPE.bubble:
+		$Sprite/AnimationPlayer.play("wobble")
+	else:
 		$Sprite/AnimationPlayer.stop()
+		
+	if symbol:
+		$Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
+		$Symbol.modulate = Bubble.symbol_colors[symbol]
+		$Sprite.modulate = Bubble.symbol_colors[symbol]
+	
 func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	type = bomb_type
 	entity = ECM.E(self)
@@ -52,8 +64,18 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$Sprite.texture = bullet_texture
 		$Sprite.scale = Vector2(size*1.1, size*1.1)
 		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
-		
 		mode = MODE_CHARACTER
+		
+	elif type == GameMode.BOMB_TYPE.bubble:
+		entity.get('Pursuer').disable()
+		entity.get('Deadly').disable()
+		$CollisionShape2D.shape.radius = size*90 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$NearArea/CollisionShape2D.shape.radius = size*90
+		$Sprite.texture = bubble_texture
+		$Sprite.scale = Vector2(size*1.4, size*1.4)
+		mode = MODE_CHARACTER
+		linear_damp = 0
+		ECM.E($Core).get('Deadly').disable()
 	else:
 		$CollisionShape2D.shape.radius = size*16
 		$NearArea/CollisionShape2D.shape.radius = size*16
@@ -62,7 +84,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	$Core/CollisionShape2D.shape.radius = size*8
 	
 func _process(delta):
-	$Sprite.rotation = linear_velocity.angle()
+	if type != GameMode.BOMB_TYPE.bubble:
+		$Sprite.rotation = linear_velocity.angle()
 	
 func _physics_process(delta):
 	process_life_time()
@@ -112,7 +135,7 @@ func _on_NearArea_area_exited(area):
 	
 
 func _on_LifeTime_timeout():
-	if not entity.has('StandAlone'):
+	if not entity.has('StandAlone') and type != GameMode.BOMB_TYPE.bubble:
 		get_parent().call_deferred("remove_child", self)
 		if entity.has('Owned'):
 			entity.get('Owned').get_owned_by()._on_bomb_freed()
@@ -128,18 +151,12 @@ func process_life_time():
 	
 	life_time.paused = false
 	
-
 # FIXME ? is this heavy? each bomb needs contact monitoring
 func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
 	elif body is Bubble:
-		var bubble = BubbleScene.instance()
-		bubble.species = entity.get('Owned').get_owned_by().species
-		bubble.position = position
-		bubble.linear_velocity = linear_velocity
-		get_parent().call_deferred("add_child", bubble)
-		bubble.call_deferred("attempt_binding")
+		create_bubble()
 		queue_free()
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
@@ -151,3 +168,13 @@ func _on_Bomb_body_entered(body):
 		var ripple = Ripple.instance()
 		ripple.position = position
 		get_parent().call_deferred("add_child", ripple)
+
+func create_bubble():
+	var bubble = BubbleScene.instance()
+	#bubble.set_species(entity.get('Owned').get_owned_by().species)
+	bubble.symbol = symbol
+	bubble.position = position
+	bubble.linear_velocity = linear_velocity
+	get_parent().call_deferred("add_child", bubble) # ugly
+	get_parent().get_parent().get_parent().call_deferred("connect_killable", bubble) # uglier
+	bubble.call_deferred("attempt_binding", entity.get('Owned').get_owned_by())

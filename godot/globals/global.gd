@@ -62,11 +62,15 @@ const max_win = 5
 
 var campaign_win = win
 
-var custom_win = win setget set_custom_win
+var custom_win:int = win setget set_custom_win
 
 func set_custom_win(value):
 	custom_win = value
 	win = custom_win
+
+var flood = "off" 
+
+var laser = "off" 
 
 # levels
 var level
@@ -399,7 +403,9 @@ func get_state():
 		full_screen=full_screen,
 		rumbling=rumbling,
 		input_mapping=self.input_mapping,
-		glow_enable=glow_enable
+		glow_enable=glow_enable,
+		flood=flood,
+		laser=laser
 	}
 	return save_dict
 

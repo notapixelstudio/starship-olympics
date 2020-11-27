@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
+[ext_resource path="res://assets/patterns/dots.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+battlefield_texture = ExtResource( 2 )
+battlefield_texture_offset = Vector2( 0, 0 )
+battlefield_texture_scale = Vector2( 0.25, 0.25 )
+battlefield_texture_rotation_degrees = 0.0
+battlefield_fg_color = Color( 0.272, 0.4692, 0.68, 1 )
+battlefield_bg_color = Color( 0.26, 0.4355, 0.65, 1 )
+battlefield_opacity = 0.9
+wall_color = Color( 0.83, 1.1, 0.92, 1 )

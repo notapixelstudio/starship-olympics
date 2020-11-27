@@ -312,11 +312,10 @@ func _ready():
 		
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
-		sth.connect('killed', kill_mode, '_on_sth_killed')
-		sth.connect('killed', combat_manager, '_on_sth_killed')
+		connect_killable(sth)
 		
 	# manage level flooding
-	if (session.get_mutator('flood') and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
+	if (global.flood == "on" and game_mode.floodable) or (global.flood == "random" and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
 		if not underwater:
 			var level_height = compute_arena_size().size.y
 			var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
@@ -332,7 +331,7 @@ func _ready():
 		$Battlefield/Background/FloodWater.queue_free()
 		
 	# manage level lasering
-	if (session.get_mutator('laser') and game_mode.laserable and randf() < 0.33) or game_mode.additional_lasers:
+	if (global.laser== "on" and game_mode.laserable) or (global.laser == "random" and game_mode.laserable and randf() < 0.33) or game_mode.additional_lasers:
 		for laser_anim in get_tree().get_nodes_in_group('animation_if_additional_lasers'):
 			laser_anim.play('Default')
 	else:
@@ -665,7 +664,7 @@ func spawn_ship(player:PlayerSpawner):
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const dasher_scene = preload('res://combat/collectables/Dasher.tscn')
-func spawn_bomb(type, pos, impulse, ship, size=1):
+func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb
 	if type == GameMode.BOMB_TYPE.dasher:
 		bomb = dasher_scene.instance()
@@ -674,6 +673,8 @@ func spawn_bomb(type, pos, impulse, ship, size=1):
 	else:
 		bomb = bomb_scene.instance()
 		bomb.initialize(type, pos, impulse, ship, size)
+		if symbol:
+			bomb.symbol = symbol
 		
 		bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
@@ -791,4 +792,8 @@ func _on_ship_fallen(ship, spawner):
 	ship.die(null, true) # die for good
 	spawner.appears()
 	spawn_ship(spawner)
+	
+func connect_killable(killable):
+	killable.connect('killed', kill_mode, '_on_sth_killed')
+	killable.connect('killed', combat_manager, '_on_sth_killed')
 	

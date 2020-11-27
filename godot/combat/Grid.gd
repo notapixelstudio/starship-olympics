@@ -19,12 +19,14 @@ func set_clock(v):
 	
 func set_fg_color(v):
 	fg_color = v
-	yield(self, 'ready')
+	if not is_inside_tree():
+		yield(self, 'ready')
 	poly.material.set_shader_param('fg_color', fg_color)
 	
 func set_bg_color(v):
 	bg_color = v
-	yield(self, 'ready')
+	if not is_inside_tree():
+		yield(self, 'ready')
 	poly.material.set_shader_param('bg_color', bg_color)
 	
 func set_points(v):

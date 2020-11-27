@@ -1,5 +1,7 @@
 extends MapCell
 
+class_name OptionCell
+
 export var value_name : String = "win"
 export var selection : Array = []
 export var global_option : bool = true
@@ -20,6 +22,7 @@ func _ready():
 		
 	# start the looping animation with a random value
 	$AnimationPlayer.advance(randf()*4)
+	label.text = self.name
 
 
 func initialize( starting_from: int = 0, options: int = 0):
@@ -31,14 +34,14 @@ func initialize( starting_from: int = 0, options: int = 0):
 	if new_selection:
 		selection = new_selection
 	
-	var value = int(node_owner.get(value_name))
+	var value = node_owner.get(value_name)
 	index = selection.find(value) if selection.find(value)>=0 else 0
 	node_owner.set(value_name, selection[index])
 	if single_texture:
 		sprite.texture = single_texture
 	else:
 		sprite.texture = sprite.get_child(index).texture
-	label.text = description.format({"_": selection[index]})
+	# label.text = description.format({"_": selection[index]})
 	
 func act(cursor):
 	index = (index + 1) % len(selection)
@@ -47,7 +50,7 @@ func act(cursor):
 	node_owner.set(value_name, selection[index])
 	if not single_texture:
 		sprite.texture = sprite.get_child(index).texture
-	label.text = description.format({"_": selection[index]})
+	# label.text = description.format({"_": selection[index]})
 	.act(cursor)
 	cursor.on_sth_pressed()
 	$act.play()

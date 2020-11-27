@@ -249,6 +249,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://special_scenes/option_screen/OptionButton.gd"
 }, {
+"base": "MapCell",
+"class": "OptionCell",
+"language": "GDScript",
+"path": "res://map/OptionCell.gd"
+}, {
 "base": "Component",
 "class": "Owned",
 "language": "GDScript",
@@ -413,6 +418,7 @@ _global_script_class_icons={
 "ModeManager": "",
 "Mutator": "",
 "NavigatorButton": "",
+"OptionCell": "",
 "Owned": "",
 "Paddle": "",
 "Pentagonion": "",
@@ -476,7 +482,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "randomAudioStreamPlayer" )
 
 [importer_defaults]
 
