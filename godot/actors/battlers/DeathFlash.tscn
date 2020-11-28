@@ -1,17 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/battlers/DeathFlash.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/debris.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_001.ogg" type="AudioStream" id=3]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_002.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_004.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_003.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_005.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/gameplay/death/zapsplat_science_fiction_robot_transform_metallic_mechanical_004_45268.ogg" type="AudioStream" id=9]
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=1]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.08397, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -24,19 +31,35 @@ tangential_accel = 200.0
 tangential_accel_random = 1.0
 damping = 300.0
 damping_random = 0.5
-scale_curve = SubResource( 4 )
+scale_curve = SubResource( 3 )
 
 [node name="DeathFlash" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
-material = SubResource( 5 )
+material = SubResource( 1 )
 emitting = false
 amount = 50
 lifetime = 2.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
-process_material = SubResource( 2 )
+process_material = SubResource( 4 )
 texture = ExtResource( 2 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.0
+autoplay = true
+bus = "SFX_effect"
+script = ExtResource( 4 )
+streams = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
+random_strategy = 1
+
+[node name="RandomAudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+script = ExtResource( 4 )
+streams = [ ExtResource( 9 ) ]
+randomize_pitch = true
+pitch_min = 0.3
+pitch_max = 0.45
