@@ -24,7 +24,7 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_dir = 0
 
-var THRUST = 2000
+var THRUST = 3000
 
 var charge = 0
 var actual_charge = 0
@@ -47,7 +47,9 @@ const OUTSIDE_COUNTUP = 3.0
 
 var supercharge = 0
 
-const THRESHOLD_DIR = 0
+const THRESHOLD_DIR = 0.3
+const ROTATION_TORQUE = 20000
+
 var responsive = false setget change_engine
 var info_player setget set_info_player
 
@@ -197,7 +199,7 @@ func _integrate_forces(state):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_dir * 25000)
+	set_applied_torque(rotation_dir * ROTATION_TORQUE)
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -391,7 +393,7 @@ func is_alive():
 func update_score(species_template, score, pos):
 	$PlayerInfo.update_score(score)
 	
-static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
+static func find_side(a: Vector2, b: Vector2, check: Vector2) -> float:
 	"""
 	Given two points a, b will return the side check is on.
  	@return integer code for which side of the line ab c is on.  
@@ -401,13 +403,15 @@ static func find_side(a: Vector2, b: Vector2, check: Vector2) -> int:
 	var possible_dirs : Array = [-1,1]
 	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
 	if (check + b).length() < 0.1: # FIXME const
+	#if check == -b:
 		cross = possible_dirs[randi()%len(possible_dirs)]
 
-	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR :
+	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR:
 		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
-			return 0
+			return cross # smooth adjustment
 	
-	return cross
+	#return cross
+	return sign(cross) # coarse adjustment
 
 func get_id():
 	return info_player.id
