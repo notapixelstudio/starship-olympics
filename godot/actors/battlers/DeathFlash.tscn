@@ -1,14 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/battlers/DeathFlash.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/debris.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_001.ogg" type="AudioStream" id=3]
-[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=4]
-[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_002.ogg" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_004.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_003.ogg" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/gameplay/death/firework_explosion_fizz_005.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/gameplay/death/zapsplat_science_fiction_robot_transform_metallic_mechanical_004_45268.ogg" type="AudioStream" id=9]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -47,19 +40,3 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource( 4 )
 texture = ExtResource( 2 )
-
-[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-volume_db = 10.0
-autoplay = true
-bus = "SFX_effect"
-script = ExtResource( 4 )
-streams = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
-random_strategy = 1
-
-[node name="RandomAudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
-volume_db = -10.0
-script = ExtResource( 4 )
-streams = [ ExtResource( 9 ) ]
-randomize_pitch = true
-pitch_min = 0.3
-pitch_max = 0.45
