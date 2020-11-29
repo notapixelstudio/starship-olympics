@@ -26,6 +26,9 @@ var rotation_dir = 0
 
 var THRUST = 3100
 
+var shields = 0
+var max_shields = 1
+
 var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
@@ -145,8 +148,9 @@ func _enter_tree():
 	outside_countup = 0
 	emit_signal('spawned', self)
 	dash_init_appearance()
+	make_invincible()
 	
-	# Invincible for the firs MAX seconds
+func make_invincible():
 	invincible = true
 	if skin:
 		skin.invincible()
@@ -362,6 +366,11 @@ func fire(override_charge = -1, dash_only = false):
 		
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
+		if shields > 0:
+			lower_shield()
+			make_invincible()
+			return
+			
 		alive = false
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -488,3 +497,16 @@ func next_symbol():
 		symbol = 'none' # slight chance of no-symbol bubble
 	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
+
+func raise_shield(amount = 1):
+	shields = min(max_shields, amount)
+	$PlayerInfo.update_shields(shields)
+	
+func lower_shield(amount = 1):
+	shields = max(0, shields - amount)
+	$PlayerInfo.update_shields(shields)
+	
+func apply_powerup(powerup):
+	if powerup.type == 'shield':
+		raise_shield()
+		

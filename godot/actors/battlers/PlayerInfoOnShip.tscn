@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/battlers/AmmoIndicator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sprites/environments/soccer_ball.png" type="Texture" id=9]
-
+[ext_resource path="res://assets/sprites/weapons/spr_shield.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -67,6 +67,11 @@ script = ExtResource( 1 )
 
 [node name="Wrapper" type="Node2D" parent="."]
 scale = Vector2( 0.8, 0.8 )
+
+[node name="Shield" type="Sprite" parent="Wrapper"]
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 10 )
 
 [node name="Ball" type="Sprite" parent="Wrapper"]
 visible = false

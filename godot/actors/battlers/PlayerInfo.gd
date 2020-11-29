@@ -75,3 +75,6 @@ func _on_Royal_disabled():
 	yield(point_score, "end")
 	point_score.hide()
 	
+func update_shields(shields):
+	$Wrapper/Shield.visible = shields > 0
+	

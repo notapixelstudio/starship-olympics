@@ -704,6 +704,9 @@ func show_msg(species: Species, msg, pos):
 func _on_sth_collected(collector, collectee):
 	if collectee is Crown and collectee.type == Crown.types.SOCCERBALL:
 		collectee.owner_ship = collector
+		
+	if collectee is PowerUp:
+		show_msg(collector.species, collectee.type.to_upper(), collectee.position)
 	
 	if collectee.get_parent().is_in_group("spawner_group"):
 		collectee.get_parent().call_deferred('remove', collectee)
