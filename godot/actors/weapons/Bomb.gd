@@ -77,8 +77,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		linear_damp = 0
 		ECM.E($Core).get('Deadly').disable()
 	else:
-		$CollisionShape2D.shape.radius = size*16
-		$NearArea/CollisionShape2D.shape.radius = size*16
+		$CollisionShape2D.shape.radius = size*22
+		$NearArea/CollisionShape2D.shape.radius = size*22
 		$Sprite.scale = Vector2(size*0.5, size*0.5)
 		
 	$Core/CollisionShape2D.shape.radius = size*8
