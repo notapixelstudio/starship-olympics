@@ -24,7 +24,7 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_dir = 0
 
-var THRUST = 3000
+var THRUST = 3100
 
 var charge = 0
 var actual_charge = 0
@@ -34,8 +34,9 @@ const MIN_DASHING_CHARGE = 0.13
 const DASH_INTERCOOLDOWN = 0.5
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
-const ANTI_RECOIL_OFFSET = 280
+const ANTI_RECOIL_OFFSET = 1000
 const CHARGE_MULTIPLIER = 4500
+const DASH_MULTIPLIER = 1.5
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
 const BALL_BOOST = 500
@@ -309,7 +310,7 @@ func fire(override_charge = -1, dash_only = false):
 	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(actual_charge, MAX_CHARGE)
 	
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
+	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse*DASH_MULTIPLIER - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
 	if bombs_enabled and not dash_only:
 		bomb_count += 1
@@ -321,6 +322,8 @@ func fire(override_charge = -1, dash_only = false):
 				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
 			elif bomb_type == GameMode.BOMB_TYPE.bullet:
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
+			elif bomb_type == GameMode.BOMB_TYPE.bubble:
+				impulse = charge_impulse
 			else:
 				impulse = charge_impulse+BOMB_BOOST
 				
@@ -341,7 +344,7 @@ func fire(override_charge = -1, dash_only = false):
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview.modulate = species.color
-	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.6)
+	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
 	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
@@ -445,14 +448,14 @@ func dash_restore_appearance():
 func dash_fat_appearance():
 	$Tween.stop_all()
 	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
+		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()
 	
 func dash_thin_appearance():
-	$Graphics/Sprite.scale = DASH_THIN
 	$DashFxTimer.stop()
 	# don't show particles if dash is small (useful to have a more lenient dash)
-	if actual_charge > 0.13:
+	if actual_charge > 0.25:
+		$Graphics/Sprite.scale = DASH_THIN
 		$DashParticles.emitting = true
 		$DashParticles.visible = true
 	
