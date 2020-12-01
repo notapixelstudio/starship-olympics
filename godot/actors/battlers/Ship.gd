@@ -370,6 +370,8 @@ func die(killer : Ship, for_good = false):
 			lower_shield()
 			make_invincible()
 			rebound()
+			if has_method('vibration_feedback'):
+				call('vibration_feedback', false)
 			return
 			
 		alive = false

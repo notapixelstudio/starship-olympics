@@ -9,7 +9,7 @@
 [ext_resource path="res://actors/environments/Nuke.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -51,6 +51,12 @@ rotation_degrees = 30.0
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 position = Vector2( -8, -696 )
 
+[node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 9 )]
+position = Vector2( -1201.96, 555.047 )
+
+[node name="PowerUp3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 9 )]
+position = Vector2( 967.15, 764.347 )
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1323.88, -375.789 )
 rotation = -1.5708
@@ -58,7 +64,7 @@ controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 500000, 500000 )
+zoom = Vector2( 1.25e+06, 1.25e+06 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
