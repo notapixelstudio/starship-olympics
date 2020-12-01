@@ -538,7 +538,7 @@ func apply_powerup(powerup):
 		recheck_colliding()
 		
 func rebound():
-	apply_central_impulse(Vector2(0,2000).rotated(-rotation))
+	apply_central_impulse(Vector2(-2000,0).rotated(rotation))
 	
 func get_deadly_trail():
 	return deadly_trail_powerup or deadly_trail

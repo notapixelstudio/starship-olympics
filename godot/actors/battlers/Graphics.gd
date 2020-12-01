@@ -12,6 +12,13 @@ signal completed
 onready var tween = $Tween
 onready var anim = $AnimationPlayer
 
+func _ready():
+	var material = ShaderMaterial.new()
+	material.shader = load('res://assets/shaders/outline.shader')
+	material.set_shader_param('width', 4)
+	material.set_shader_param('active', false)
+	$Sprite.material = material
+	
 func change_texture(new_value):
 	ship_texture = new_value
 	if not is_inside_tree():
