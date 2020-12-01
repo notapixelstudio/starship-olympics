@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=32]
 [ext_resource path="res://assets/sprites/environments/diamond_trapped.png" type="Texture" id=33]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=34]
+[ext_resource path="res://assets/audio/gameplay/asteroids/zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_003_40731.ogg" type="AudioStream" id=35]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -66,7 +67,39 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=4]
 radius = 100.0
 
+[sub_resource type="Animation" id=8]
+resource_name = "Conquered"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Polygon2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.215686 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 35 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
 [sub_resource type="Animation" id=5]
+resource_name = "Forming"
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -143,7 +176,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 78
+frame = 30
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -211,6 +244,7 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
+anims/Conquered = SubResource( 8 )
 anims/Forming = SubResource( 5 )
 
 [node name="SelfDestructTimer" type="Timer" parent="."]
@@ -244,4 +278,7 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

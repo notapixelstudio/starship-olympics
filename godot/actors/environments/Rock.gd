@@ -205,3 +205,4 @@ func conquered_by(ship):
 		owner_ship = ship
 		recolor()
 		emit_signal('conquered', ship, self, get_score())
+		$AnimationPlayer.play("Conquered")
