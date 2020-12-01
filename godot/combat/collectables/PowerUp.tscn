@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/powerups/shield.png" type="Texture" id=5]
+[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=7]
+[ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=8]
+[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=9]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 70.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.15, 1.15, 1.15, 1 ), Color( 1, 1, 1, 1 ), Color( 1.15, 1.15, 1.15, 1 ), Color( 1, 1, 1, 1 ), Color( 1.25, 1.25, 1.25, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ) ]
+}
+
+[node name="PowerUp" type="RigidBody2D" groups=[
+"Foreground",
+"coin",
+"in_camera",
+]]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 9 )
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Collectable" type="Node" parent="Entity"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Valuable" type="Node" parent="Entity"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Shadow" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0.156863 )
+position = Vector2( 0, 32 )
+z_index = -3
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/AppearFuhfuhfuh = ExtResource( 8 )
+anims/idle = SubResource( 2 )

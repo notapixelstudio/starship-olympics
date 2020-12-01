@@ -108,25 +108,27 @@ func maybe_erase():
 
 func _on_sth_spawned(sth : Node2D):
 	return
-	maybe_erase()
-	update()
 	
 func _on_sth_dead(sth : Node2D, killer, ship_for_good=false):
+	destroy()
+	
+func _on_thrusters_on():
+	return
+	#maybe_erase()
+	#update()
+	#change_visibility(true)
+
+func _on_thrusters_off():
+	destroy()
+	
+func destroy():
 	if trail:
 		trail.stop_adding_points = true
 	if inner_trail:
 		inner_trail.stop_adding_points = true
 	yield(trail, "no_points")
 	queue_free()
-	
-func _on_thrusters_on():
-	maybe_erase()
-	update()
-	change_visibility(true)
-
-func _on_thrusters_off():
-	#maybe_erase()
-	change_visibility(false)
+	#change_visibility(false)
 
 const GRACE_POINTS = 15
 const GRACE_POINTS_END = 150

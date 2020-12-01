@@ -32,8 +32,8 @@ centered = false
 modulate = Color( 0.8, 0.8, 0.8, 0.9 )
 texture = ExtResource( 8 )
 texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.3, 0, 0.1, 1 )
-bg_color = Color( 0.121569, 0, 0, 1 )
+fg_color = Color( 0.35, 0, 0.116667, 1 )
+bg_color = Color( 0.16, 0, 0, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
@@ -64,8 +64,13 @@ line_texture = ExtResource( 6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall13" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 position = Vector2( -800, -1000 )
@@ -74,7 +79,13 @@ line_texture = ExtResource( 6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall14" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
 position = Vector2( -1300, -300 )
@@ -83,8 +94,13 @@ line_texture = ExtResource( 6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall14" index="4"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall15" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
 position = Vector2( 1300, 300 )
@@ -93,8 +109,13 @@ line_texture = ExtResource( 6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall11" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
 position = Vector2( 800, -500 )
@@ -103,8 +124,13 @@ line_texture = ExtResource( 6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
 position = Vector2( 800, 1000 )
@@ -113,7 +139,13 @@ line_texture = ExtResource( 6 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
 script = ExtResource( 7 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -100, -100 )
@@ -129,7 +161,7 @@ species = ExtResource( 10 )
 cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 390.625, 390.625 )
+zoom = Vector2( 2441.41, 2441.41 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

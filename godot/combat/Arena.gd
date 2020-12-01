@@ -592,7 +592,7 @@ func create_trail(ship):
 	$Battlefield.add_child(trail)
 	yield(trail, "ready")
 	trail.initialize(ship)
-	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
+	trail.configure(ship.get_deadly_trail(), game_mode.deadly_trails_duration)
 	ship.trail = trail
 	return trail
 
@@ -614,17 +614,13 @@ func spawn_ship(player:PlayerSpawner):
 	ship.name = player.name
 	ship.info_player = player.info_player
 	ship.spawner = player
+	ship.deadly_trail = game_mode.deadly_trails
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
 	
-	# create and link trail
-	var trail = trail_scene.instance()
-	$Battlefield.add_child(trail)
-	yield(trail, "ready")
-	trail.initialize(ship)
-	ship.trail = trail
-	trail.configure(game_mode.deadly_trails, game_mode.deadly_trails_duration)
+	create_trail(ship)
+	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
 	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
@@ -650,6 +646,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
+	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])
 	
 	# attach followcamera
 	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
@@ -704,6 +701,9 @@ func show_msg(species: Species, msg, pos):
 func _on_sth_collected(collector, collectee):
 	if collectee is Crown and collectee.type == Crown.types.SOCCERBALL:
 		collectee.owner_ship = collector
+		
+	if collectee is PowerUp:
+		show_msg(collector.species, collectee.type.to_upper(), collectee.position)
 	
 	if collectee.get_parent().is_in_group("spawner_group"):
 		collectee.get_parent().call_deferred('remove', collectee)
@@ -797,3 +797,5 @@ func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')
 	killable.connect('killed', combat_manager, '_on_sth_killed')
 	
+func _on_ship_thrusters_on(ship):
+	create_trail(ship)

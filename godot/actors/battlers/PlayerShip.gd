@@ -15,10 +15,10 @@ func _ready():
 func _on_dead(me, killer, for_good=false):
 	vibration_feedback()
 	
-func vibration_feedback():
+func vibration_feedback(strong=true):
 	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
-		Input.start_joy_vibration(device_controller_id, 1, 1, 0.3)
+		Input.start_joy_vibration(device_controller_id, 1, 1, 0.4 if strong else 0.2)
 
 func keyboard_handling():
 	var target = Vector2()
