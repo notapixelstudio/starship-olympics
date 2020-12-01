@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/powerups/shield.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=6]
 [ext_resource path="res://combat/components/Valuable.gd" type="Script" id=7]
 [ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=8]
 [ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=9]
@@ -14,32 +13,32 @@
 radius = 70.0
 
 [sub_resource type="Animation" id=2]
-resource_name = "Blink"
-length = 2.0
+resource_name = "idle"
+length = 3.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.15, 1.15, 1.15, 1 ), Color( 1, 1, 1, 1 ), Color( 1.15, 1.15, 1.15, 1 ), Color( 1, 1, 1, 1 ), Color( 1.25, 1.25, 1.25, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( -0.1, 0.5, 1.3, 2 ),
-"transitions": PoolRealArray( 0.5, 2, 1, 0.5 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.388235 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ) ]
 }
 
 [node name="PowerUp" type="RigidBody2D" groups=[
@@ -49,6 +48,7 @@ tracks/1/keys = {
 ]]
 collision_layer = 2048
 collision_mask = 3090
+mode = 2
 linear_damp = 1.0
 script = ExtResource( 9 )
 
@@ -70,25 +70,21 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
+[node name="Shadow" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0.156863 )
+position = Vector2( 0, 32 )
+z_index = -3
+z_as_relative = false
+texture = ExtResource( 5 )
+
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 0, 3 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
-[node name="Glow" type="Node2D" parent="."]
-visible = false
-
-[node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 6 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
-playback_speed = 2.0
-anims/Blink = SubResource( 2 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 anims/AppearFuhfuhfuh = ExtResource( 8 )
+anims/idle = SubResource( 2 )
