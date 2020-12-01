@@ -503,6 +503,8 @@ func raise_shield(amount = 1):
 	shields = min(max_shields, amount)
 	$PlayerInfo.update_shields(shields)
 	$Graphics/Sprite.material.set_shader_param('active', true)
+	$Graphics/Sprite/AnimationPlayer.play('appear')
+	yield($Graphics/Sprite/AnimationPlayer, 'animation_finished')
 	$Graphics/Sprite/AnimationPlayer.play('blink')
 	
 func lower_shield(amount = 1):
