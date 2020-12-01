@@ -28,6 +28,8 @@ var THRUST = 3100
 
 var shields = 0
 var max_shields = 1
+var deadly_trail = false
+var deadly_trail_powerup = false
 
 var charge = 0
 var actual_charge = 0
@@ -146,6 +148,9 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	outside_countup = 0
+	
+	update_weapon_indicator()
+	
 	emit_signal('spawned', self)
 	dash_init_appearance()
 	make_invincible()
@@ -295,7 +300,7 @@ func charge():
 	#$GravitonField.enabled = true
 	charging_sfx.play()
 	dash_fat_appearance()
-	will_fire = bombs_enabled and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
+	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
 		if bomb_type != GameMode.BOMB_TYPE.bubble:
@@ -316,7 +321,7 @@ func fire(override_charge = -1, dash_only = false):
 	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
 	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse*DASH_MULTIPLIER - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
 	
-	if bombs_enabled and not dash_only:
+	if get_bombs_enabled() and not dash_only:
 		bomb_count += 1
 		if will_fire:
 			ammo.shot()
@@ -375,6 +380,10 @@ func die(killer : Ship, for_good = false):
 			return
 			
 		alive = false
+		
+		# powerups wear off
+		deadly_trail_powerup = false
+		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
@@ -521,7 +530,22 @@ func lower_shield(amount = 1):
 func apply_powerup(powerup):
 	if powerup.type == 'shield':
 		raise_shield()
+	elif powerup.type == 'snake':
+		entity.get('Thrusters').disable()
+		deadly_trail_powerup = true
+		update_weapon_indicator()
+		entity.get('Thrusters').enable()
+		recheck_colliding()
 		
 func rebound():
-	apply_central_impulse(-2000*velocity.normalized())
+	apply_central_impulse(Vector2(0,2000).rotated(-rotation))
+	
+func get_deadly_trail():
+	return deadly_trail_powerup or deadly_trail
+	
+func get_bombs_enabled():
+	return bombs_enabled and not get_deadly_trail()
+	
+func update_weapon_indicator():
+	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
 	
