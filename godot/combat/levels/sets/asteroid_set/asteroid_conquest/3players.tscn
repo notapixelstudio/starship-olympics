@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/modes/StarMining.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=10]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -44,19 +45,17 @@ tracks/1/keys = {
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
+match_duration_override = 50.0
 
-[node name="PursueManager" parent="Managers" index="2"]
-enabled = false
-
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
-[node name="CollectModeManager" parent="Managers" index="11"]
+[node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 7 )
 centered = false
+
+[node name="Grid" parent="Battlefield/Background" index="0"]
+modulate = Color( 0.992157, 1, 0, 0.156863 )
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
@@ -165,15 +164,23 @@ position = Vector2( 1550, 10 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( -1550, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 8 )
+cpu = true
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
+position = Vector2( 0, -1550 )
+rotation = 1.5708
+controls = "joy2"
+species = ExtResource( 11 )
+cpu = true
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 5120, 5120 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]

@@ -7,12 +7,19 @@ var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
 var StarScene = load('res://combat/collectables/Star.tscn')
 
 export var order : int = 4
-export var last_order : int = 1
+export var last_order : int = 2
 export var divisions : int = 4
 export var base_size : float = 50.0
 export var spawn_diamonds : bool = true
 export var contains_star : bool = false
 export var self_destruct : bool = false
+export var deadly : bool = true
+export var smallest_break : bool = true
+
+const colors = {
+	true: Color(0.8, 0, 0.85),
+	false: Color(0.7, 0.7, 0.7)
+}
 
 var gshape
 var breakable = false
@@ -53,6 +60,20 @@ func _ready():
 	# workaround
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
+	# coloring
+	$Polygon2D.color = colors[deadly]
+	$Line2D.default_color = colors[deadly]
+	$LightLine2D.default_color = colors[deadly]
+	$LightLine2D2.default_color = colors[deadly]
+	$LightLine2D3.default_color = colors[deadly]
+	$LightLine2D4.default_color = colors[deadly]
+	$LightLine2DE.default_color = colors[deadly]
+	$LightLine2DE2.default_color = colors[deadly]
+	$LightLine2DE3.default_color = colors[deadly]
+	$LightLine2DE4.default_color = colors[deadly]
+	
+	ECM.E(self).get('Deadly').set_enabled(deadly)
+	
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
@@ -62,7 +83,9 @@ func try_break():
 		return
 	
 	breakable = false
-	queue_free()
+	
+	if order >= last_order or smallest_break:
+		queue_free()
 	
 	if order < last_order:
 		return
@@ -94,6 +117,8 @@ func try_break():
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
 		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
+		child.deadly = deadly
+		child.smallest_break = smallest_break
 		
 		if child is Star:
 			child.linear_velocity *= 10
