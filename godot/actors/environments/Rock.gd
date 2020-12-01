@@ -16,6 +16,9 @@ export var self_destruct : bool = false
 export var deadly : bool = true
 export var smallest_break : bool = true
 
+var species : Resource
+var owner_ship : Ship
+
 const colors = {
 	true: Color(0.8, 0, 0.85),
 	false: Color(0.7, 0.7, 0.7)
@@ -60,23 +63,15 @@ func _ready():
 	# workaround
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
-	# coloring
-	$Polygon2D.color = colors[deadly]
-	$Line2D.default_color = colors[deadly]
-	$LightLine2D.default_color = colors[deadly]
-	$LightLine2D2.default_color = colors[deadly]
-	$LightLine2D3.default_color = colors[deadly]
-	$LightLine2D4.default_color = colors[deadly]
-	$LightLine2DE.default_color = colors[deadly]
-	$LightLine2DE2.default_color = colors[deadly]
-	$LightLine2DE3.default_color = colors[deadly]
-	$LightLine2DE4.default_color = colors[deadly]
+	recolor()
 	
 	ECM.E(self).get('Deadly').set_enabled(deadly)
 	
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
+	elif body is Ship:
+		conquered_by(body)
 
 func try_break():
 	if not breakable:
@@ -119,6 +114,8 @@ func try_break():
 		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
 		child.deadly = deadly
 		child.smallest_break = smallest_break
+		child.species = species
+		child.owner_ship = owner_ship
 		
 		if child is Star:
 			child.linear_velocity *= 10
@@ -141,10 +138,10 @@ func new_child_rock():
 func become_breakable():
 	breakable = true
 	
-onready var countdown = $Countdown/Label
+onready var countdown = $NoRotate/Countdown
 
 func _process(delta):
-	$Countdown.rotation = -rotation
+	$NoRotate.rotation = -rotation
 	
 func start():
 	if self_destruct:
@@ -175,3 +172,36 @@ func start():
 		yield($SelfDestructTimer, 'timeout')
 		try_break()
 		
+func recolor():
+	var color = colors[deadly] if not species else species.color
+	
+	$Polygon2D.color = color
+	$Line2D.default_color = color
+	$LightLine2D.default_color = color
+	$LightLine2D2.default_color = color
+	$LightLine2D3.default_color = color
+	$LightLine2D4.default_color = color
+	$LightLine2DE.default_color = color
+	$LightLine2DE2.default_color = color
+	$LightLine2DE3.default_color = color
+	$LightLine2DE4.default_color = color
+	
+	if species:
+		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
+		$NoRotate/Monogram.modulate = color
+		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
+	
+func get_score():
+	return pow(divisions, order)
+
+signal conquered
+signal lost
+
+func conquered_by(ship):
+	if ship.species != species:
+		if species:
+			emit_signal('lost', owner_ship, self, get_score())
+		species = ship.species
+		owner_ship = ship
+		recolor()
+		emit_signal('conquered', ship, self, get_score())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -102,8 +102,13 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 34 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 52
+font_data = ExtResource( 34 )
+
 [node name="Rock" type="RigidBody2D" groups=[
 "in_camera",
+"rock",
 "wait_to_start",
 ]]
 collision_layer = 1024
@@ -138,7 +143,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 19
+frame = 78
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -210,15 +215,30 @@ anims/Forming = SubResource( 5 )
 
 [node name="SelfDestructTimer" type="Timer" parent="."]
 
-[node name="Countdown" type="Node2D" parent="."]
+[node name="NoRotate" type="Node2D" parent="."]
 
-[node name="Label" type="Label" parent="Countdown"]
+[node name="Countdown" type="Label" parent="NoRotate"]
 margin_left = -30.0
 margin_top = -44.0
 margin_right = 30.0
 margin_bottom = 45.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.827451, 0, 1, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Monogram" type="Node2D" parent="NoRotate"]
+
+[node name="Label" type="Label" parent="NoRotate/Monogram"]
+self_modulate = Color( 1, 1, 1, 0.196078 )
+margin_left = -101.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 __meta__ = {

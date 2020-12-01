@@ -18,11 +18,11 @@ game_mode = ExtResource( 9 )
 [node name="PursueManager" parent="Managers" index="2"]
 enabled = false
 
+[node name="ConquestModeManager" parent="Managers" index="8"]
+enabled = true
+
 [node name="GoalModeManager" parent="Managers" index="9"]
 enabled = false
-
-[node name="CollectModeManager" parent="Managers" index="11"]
-enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 7 )
@@ -43,8 +43,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 6000
-height = 4000
+width = 5600
+height = 3600
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
@@ -55,71 +55,133 @@ bevel_se = 50
 order = 3
 last_order = 1
 divisions = 3
-base_size = 120.0
+base_size = 100.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 
 [node name="Rock2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
-position = Vector2( -1300, -1300 )
+position = Vector2( -1100, -1000 )
 order = 2
 last_order = 1
 divisions = 3
-base_size = 120.0
+base_size = 100.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 
-[node name="Rock3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
-position = Vector2( 1300, -1300 )
-order = 2
+[node name="Rock6" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
+position = Vector2( -2000, 1200 )
+order = 0
 last_order = 1
 divisions = 3
-base_size = 120.0
+base_size = 100.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 
-[node name="Rock4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
-position = Vector2( 1300, 1300 )
-order = 2
+[node name="Rock7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
+position = Vector2( 2000, -1200 )
+order = 0
 last_order = 1
 divisions = 3
-base_size = 120.0
+base_size = 100.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 
-[node name="Rock5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
-position = Vector2( -1300, 1300 )
+[node name="Rock8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
+position = Vector2( 2000, 1200 )
+order = 0
+last_order = 1
+divisions = 3
+base_size = 100.0
+spawn_diamonds = false
+deadly = false
+smallest_break = false
+
+[node name="Rock9" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
+position = Vector2( -2000, -1200 )
+order = 0
+last_order = 1
+divisions = 3
+base_size = 100.0
+spawn_diamonds = false
+deadly = false
+smallest_break = false
+
+[node name="Rock3" parent="Battlefield/Middleground" index="6" instance=ExtResource( 10 )]
+position = Vector2( 1100, -1000 )
 order = 2
 last_order = 1
 divisions = 3
-base_size = 120.0
+base_size = 100.0
+spawn_diamonds = false
+deadly = false
+smallest_break = false
+
+[node name="Rock4" parent="Battlefield/Middleground" index="7" instance=ExtResource( 10 )]
+position = Vector2( 1100, 1000 )
+order = 2
+last_order = 1
+divisions = 3
+base_size = 100.0
+spawn_diamonds = false
+deadly = false
+smallest_break = false
+
+[node name="Rock5" parent="Battlefield/Middleground" index="8" instance=ExtResource( 10 )]
+position = Vector2( -1100, 1000 )
+order = 2
+last_order = 1
+divisions = 3
+base_size = 100.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 2400, 0 )
+position = Vector2( 2200, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( -2400, 0 )
+position = Vector2( -2200, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 8 )
 
 [node name="Camera" parent="." index="6"]
-zoom = Vector2( 7.45058e+10, 7.45058e+10 )
+zoom = Vector2( 4.23516e+19, 4.23516e+19 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock" to="Managers/ConquestModeManager" method="_on_sth_lost"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock2" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock2" to="Managers/ConquestModeManager" method="_on_sth_lost"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock2" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock6" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock6" to="Managers/ConquestModeManager" method="_on_sth_lost"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock6" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock7" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock7" to="Managers/ConquestModeManager" method="_on_sth_lost"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock7" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock8" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock8" to="Managers/ConquestModeManager" method="_on_sth_lost"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock8" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock9" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock9" to="Managers/ConquestModeManager" method="_on_sth_lost"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock9" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock3" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock3" to="Managers/ConquestModeManager" method="_on_sth_lost"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock3" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock4" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock4" to="Managers/ConquestModeManager" method="_on_sth_lost"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock4" to="." method="_on_Rock_request_spawn"]
+[connection signal="conquered" from="Battlefield/Middleground/Rock5" to="Managers/ConquestModeManager" method="_on_sth_conquered"]
+[connection signal="lost" from="Battlefield/Middleground/Rock5" to="Managers/ConquestModeManager" method="_on_sth_lost"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock5" to="." method="_on_Rock_request_spawn"]
 
 [editable path="CanvasLayer/Pause"]

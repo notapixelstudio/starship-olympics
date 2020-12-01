@@ -242,7 +242,14 @@ func _ready():
 	session.players = players
 		
 	if conquest_mode.enabled:
-		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
+		var cells = get_tree().get_nodes_in_group('cell')
+		var rocks = get_tree().get_nodes_in_group('rock')
+		if len(cells) > 0:
+			score_to_win_override = floor(len(cells)/2)+1
+		elif len(rocks) > 0:
+			score_to_win_override = 0
+			for rock in rocks:
+				score_to_win_override += rock.get_score()
 	
 	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
 
@@ -779,6 +786,8 @@ func slomo():
 func _on_Rock_request_spawn(child):
 	if child is Rock:
 		child.connect('request_spawn', self, '_on_Rock_request_spawn')
+		child.connect('conquered', conquest_mode, '_on_sth_conquered')
+		child.connect('lost', conquest_mode, '_on_sth_lost')
 	$Battlefield.add_child(child)
 	
 
