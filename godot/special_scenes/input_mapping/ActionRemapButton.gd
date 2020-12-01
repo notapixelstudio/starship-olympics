@@ -53,7 +53,7 @@ func display_current_key():
 			break
 	# JUST FOR MAPPING JOY
 	var text_to_button = current_key
-	if current_key in global.joy_input_map:
+	if "joy" in action:
 		text_to_button = global.joy_input_map[current_key]
 	text = "%s " % text_to_button.to_upper()
 

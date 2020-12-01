@@ -288,14 +288,17 @@ func _unlock_species(species : String):
 
 const INPUT_ACTIONS = ["kb1", "kb2"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
-var default_input :=  {"kb1_accept":"M", "kb1_down":"Down", "kb1_fire":"M", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", "kb2_accept":"1", "kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"}
+var default_input :=  {"kb1_fire":"M", 
+"kb1_down":"Down", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", 
+"kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"
+}
 
 var default_input_joy := {
 	"fire": ["0", "1", "2", "3"], 
-	"up":["dpad up", "analog left up"],
-	"left": ["dpad left", "analog left left"], 
-	"right": ["dpad right", "analog left right"],
-	"down": ["dpad down", "analog left down"]
+	"right": ["15", "analog_0_1"],
+	"left": ["14", "analog_0_-1"], 
+	"down": ["13", "analog_1_1"],
+	"up":["12", "analog_0_-1"]
 }
 	
 var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
@@ -321,7 +324,7 @@ func set_default_mapping(device:String):
 			InputMap.action_erase_events(complete_action)
 			for command in default_input_joy[action]:
 				var event = event_from_text(device, command)
-				InputMap.action_add_event(action, event)
+				InputMap.action_add_event(complete_action, event)
 
 func check_input_event(action_: String, event:InputEvent):
 	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
@@ -356,10 +359,10 @@ func event_from_text(device: String, command: String) -> InputEvent:
 	elif "joy" in device:
 		var device_id = int(device.replace("joy", ""))-1
 		if "analog" in command:
-			var inverted_joy_map = invert_map(joy_input_map)[command]
+			command
 			e = InputEventJoypadMotion.new()
-			e.axis = int(inverted_joy_map.split("_")[1])
-			e.axis_value = int(inverted_joy_map.split("_")[2])
+			e.axis = int(command.split("_")[1])
+			e.axis_value = int(command.split("_")[2])
 		else:
 			e = InputEventJoypadButton.new()
 			e.button_index = int(command)
