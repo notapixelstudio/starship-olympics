@@ -20,6 +20,9 @@ func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
 			if other is Dasher:
 				ship.fire(1.0, true)
 				
+			if other is PowerUp:
+				ship.apply_powerup(other)
+				
 			emit_signal('collected', ship, entity.get_host())
 			
 		if entity.has('Keepable') and is_loadable:
