@@ -70,9 +70,14 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
+[node name="Shadow" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0.156863 )
+position = Vector2( 0, 32 )
+z_index = -3
+z_as_relative = false
+texture = ExtResource( 5 )
+
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1.15, 1.15, 1.15, 1 )
-position = Vector2( 0, -16 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
