@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=2]
@@ -6,6 +6,83 @@
 [ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=4]
 [ext_resource path="res://assets/sprites/interface/ammo_bomb_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=6]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/strength = 6.0
+shader_param/width = 6.0
+shader_param/outline_color = Color( 0.368627, 0.988235, 1, 0.352941 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "blink"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/outline_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0, 0.984314, 1, 0.352941 ), Color( 0.368627, 0.988235, 1, 0.352941 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/strength")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 1.0, 6.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "cancel"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/outline_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.368627, 0.988235, 1, 0.352941 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
 
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )
@@ -66,5 +143,10 @@ anims/invincible = ExtResource( 4 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/blink = SubResource( 2 )
+anims/cancel = SubResource( 3 )

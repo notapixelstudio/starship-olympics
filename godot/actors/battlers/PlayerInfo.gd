@@ -76,5 +76,10 @@ func _on_Royal_disabled():
 	point_score.hide()
 	
 func update_shields(shields):
-	$Wrapper/Shield.visible = shields > 0
-	
+	pass
+	#$Wrapper/Shield.visible = shields > 0
+	#if shields > 0:
+	#	$Wrapper/Shield/AnimationPlayer.play("wobble")
+	#else:
+	#	$Wrapper/Shield/AnimationPlayer.stop()
+	#	

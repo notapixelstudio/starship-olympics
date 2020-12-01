@@ -369,6 +369,7 @@ func die(killer : Ship, for_good = false):
 		if shields > 0:
 			lower_shield()
 			make_invincible()
+			rebound()
 			return
 			
 		alive = false
@@ -501,12 +502,22 @@ func next_symbol():
 func raise_shield(amount = 1):
 	shields = min(max_shields, amount)
 	$PlayerInfo.update_shields(shields)
+	$Graphics/Sprite.material.set_shader_param('active', true)
+	$Graphics/Sprite/AnimationPlayer.play('blink')
 	
 func lower_shield(amount = 1):
 	shields = max(0, shields - amount)
 	$PlayerInfo.update_shields(shields)
+	if shields == 0:
+		$Graphics/Sprite/AnimationPlayer.play('cancel')
+		yield($Graphics/Sprite/AnimationPlayer, 'animation_finished')
+		$Graphics/Sprite.material.set_shader_param('active', false)
+		$Graphics/Sprite/AnimationPlayer.stop()
 	
 func apply_powerup(powerup):
 	if powerup.type == 'shield':
 		raise_shield()
 		
+func rebound():
+	apply_central_impulse(-2000*velocity.normalized())
+	
