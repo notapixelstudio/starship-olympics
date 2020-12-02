@@ -17,7 +17,7 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 				ship.die(owner)
 			else:
 				var possibly_bomb = entity.get_host()
-				if possibly_bomb is Bomb and possibly_bomb.type == GameMode.BOMB_TYPE.bullet:
+				if possibly_bomb is Bomb and (possibly_bomb.type == GameMode.BOMB_TYPE.bullet or possibly_bomb.type == GameMode.BOMB_TYPE.ball):
 					pass
 				elif not(other is BombCore): # bomb cores do not self kill
 					ship.die(owner)
