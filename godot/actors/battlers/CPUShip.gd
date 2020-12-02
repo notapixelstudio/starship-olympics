@@ -209,6 +209,7 @@ var wait = MAX_WAIT
 var target 
 
 var charging_time : int = 0
+var force_wander = false
 
 func control(delta):
 	var this_target = nearest_in(ECM.hosts_with('Valuable'))
@@ -222,8 +223,13 @@ func control(delta):
 		this_target = this_target.global_position
 		target_hit.append(this_target)
 	
-	# check if there is a danger closer
-	target = seek_ahead(this_target)
+	
+	
+	if force_wander:
+		target = wander()
+	else:
+		# check if there is a danger closer
+		target = seek_ahead(this_target)
 	rotation_dir = choose_dir(target)
 	
 	# charge
@@ -255,9 +261,23 @@ func control(delta):
 	#	speed_multiplier = 3
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
-
-	.control(delta)
 	
+	wander_time -=delta
+	if wander_time < 0:
+		force_wander = not force_wander
+		if force_wander:
+			behaviour_mode = "wander"
+		else:
+			behaviour_mode = "seek"
+		wander_time = randi() % WANDER_TIME
+	
+	
+	.control(delta)
+var wander_time = WAIT_FOR_WANDER
+var wait_for_wander = WAIT_FOR_WANDER
+const WAIT_FOR_WANDER = 3 # seconds
+const WANDER_TIME = 5 #seconds
+
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
 		rect.position.x + rect.size.x / 2,
