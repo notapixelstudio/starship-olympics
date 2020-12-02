@@ -90,19 +90,19 @@ func try_break():
 	for i in range(divisions):
 		var child
 		if order > last_order+1:
-			child = new_child_rock()
+			child = new_child_rock(i)
 		elif order == last_order+1:
 			if spawn_diamonds and randf() < 0.025:
 				child = BigDiamondScene.instance()
 				child.appear = false
 			else:
-				child = new_child_rock()
+				child = new_child_rock(i)
 		else: # order <= last_order
 			if not spawn_diamonds or randf() < 0.15:
 				if contains_star and i == star_index:
 					child = StarScene.instance()
 				else:
-					child = new_child_rock()
+					child = new_child_rock(i)
 			else:
 				child = DiamondScene.instance()
 				child.appear = false
@@ -112,17 +112,13 @@ func try_break():
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
 		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
-		child.deadly = deadly
-		child.smallest_break = smallest_break
-		child.species = species
-		child.owner_ship = owner_ship
 		
 		if child is Star:
 			child.linear_velocity *= 10
 			
 		emit_signal('request_spawn', child)
 		
-func new_child_rock():
+func new_child_rock(index):
 	var child = RockScene.instance()
 	child.mass = mass/divisions
 	child.order = order - 1
@@ -131,7 +127,14 @@ func new_child_rock():
 	child.last_order = last_order
 	child.divisions = divisions
 	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
+	child.deadly = deadly
+	child.smallest_break = smallest_break
+	child.species = species
+	child.owner_ship = owner_ship
 	child.start()
+	
+	if index == 0:
+		child.play_boom()
 	
 	return child
 	
@@ -206,3 +209,7 @@ func conquered_by(ship):
 		recolor()
 		emit_signal('conquered', ship, self, get_score())
 		$AnimationPlayer.play("Conquered")
+
+func play_boom():
+	$RandomAudioStreamPlayer.play()
+	

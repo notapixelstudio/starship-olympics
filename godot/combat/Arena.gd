@@ -789,7 +789,6 @@ func _on_Rock_request_spawn(child):
 		child.connect('conquered', conquest_mode, '_on_sth_conquered')
 		child.connect('lost', conquest_mode, '_on_sth_lost')
 	$Battlefield.add_child(child)
-	
 
 func _on_EndlessArea_body_exited(body):
 	if body is Ship:
