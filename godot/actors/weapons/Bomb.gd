@@ -161,7 +161,7 @@ func _on_Bomb_body_entered(body):
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		life_time.start() # enable ricochet combos
-		apply_central_impulse(linear_velocity.normalized()*1000)
+		apply_central_impulse(linear_velocity.normalized()*800)
 		
 		# ripple effect
 		
