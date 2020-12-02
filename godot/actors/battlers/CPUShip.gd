@@ -228,6 +228,7 @@ func control(delta):
 	
 	# charge
 	if charging:
+		rotation_dir = choose_dir(-target)
 		charge = charge+delta
 	else:
 		charge = 0
