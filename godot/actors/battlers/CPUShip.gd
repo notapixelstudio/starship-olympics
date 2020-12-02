@@ -266,17 +266,20 @@ func control(delta):
 	if wander_time < 0:
 		force_wander = not force_wander
 		if force_wander:
+			wander_time = MIN_WANDER_TIME + (randi() % WANDER_TIME)
 			behaviour_mode = "wander"
 		else:
+			wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
 			behaviour_mode = "seek"
-		wander_time = randi() % WANDER_TIME
+		
 	
 	
 	.control(delta)
-var wander_time = WAIT_FOR_WANDER
-var wait_for_wander = WAIT_FOR_WANDER
-const WAIT_FOR_WANDER = 3 # seconds
-const WANDER_TIME = 5 #seconds
+var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER
+const MIN_WAIT_FOR_WANDER = 4 #  seconds
+const WAIT_FOR_WANDER = 4 # seconds
+const MIN_WANDER_TIME = 1
+const WANDER_TIME = 1 #seconds
 
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
