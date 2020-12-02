@@ -23,7 +23,7 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 			
 			# AI
 			#if ship.cpu:
-			#	entity.get('Valuable').enable()
+			#	entity.get('Strategic').enable()
 			
 		# elif
 		if entity.get('Conquerable').get_species() == null:
@@ -33,7 +33,7 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 			
 			# AI
 			#if ship.cpu:
-			entity.get('Valuable').disable()
+			entity.get('Strategic').disable()
 			
 
 		

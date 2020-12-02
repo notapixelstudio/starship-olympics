@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=6]
 [ext_resource path="res://actors/environments/components/Flow.gd" type="Script" id=7]
-[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=8]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=8]
 [ext_resource path="res://actors/environments/components/Hill.gd" type="Script" id=9]
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/environments/crown_symbol.png" type="Texture" id=11]
@@ -109,7 +109,7 @@ __meta__ = {
 }
 enabled = false
 
-[node name="Valuable" type="Node" parent="Area2D/Entity"]
+[node name="Strategic" type="Node" parent="Area2D/Entity"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )

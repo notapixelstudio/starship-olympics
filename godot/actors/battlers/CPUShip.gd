@@ -31,7 +31,7 @@ enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER}
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
 
-func nearest_in(objects, component = "Valuable"):
+func nearest_in(objects, component = "Strategic"):
 	var nearest = null
 	var min_dist
 	var what = entity.get('Cargo').what
@@ -212,7 +212,7 @@ var charging_time : int = 0
 var force_wander = false
 
 func control(delta):
-	var this_target = nearest_in(ECM.hosts_with('Valuable'))
+	var this_target = nearest_in(ECM.hosts_with('Strategic'))
 	
 	"""
 	if not this_target or not this_target.is_inside_tree():

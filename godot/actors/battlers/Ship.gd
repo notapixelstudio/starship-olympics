@@ -19,7 +19,7 @@ func _set_valuable(value):
 	if not is_inside_tree():
 		yield(self, "ready")
 	var e = ECM.E(target_dest)
-	e.get('Valuable').disable()
+	e.get('Strategic').disable()
 
 var spawner
 var trail

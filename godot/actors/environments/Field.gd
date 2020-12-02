@@ -56,7 +56,7 @@ func refresh():
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
-	($Area2D/Entity/Valuable as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
+	($Area2D/Entity/Strategic as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
 	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Area2D/Entity/Basket as Component).set_enabled(type == TYPE.basket)
 	
