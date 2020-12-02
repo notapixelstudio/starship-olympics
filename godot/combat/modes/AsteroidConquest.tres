@@ -1,0 +1,40 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://map/planets/rules/Asteroids.tres" type="Resource" id=2]
+[ext_resource path="res://assets/modes/snatch.png" type="Texture" id=3]
+[ext_resource path="res://map/planets/rules/Star.tres" type="Resource" id=4]
+[ext_resource path="res://assets/icon/star_mining_logo.png" type="Texture" id=5]
+
+[resource]
+script = ExtResource( 1 )
+is_mutator = false
+name = "Star Mining"
+icon = ExtResource( 3 )
+logo = ExtResource( 5 )
+description = "collect the star"
+tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
+tagline_cons = "Getting killed will make you lose most of the coins"
+max_timeout = 35
+max_score = 100
+cumulative = false
+starting_lives = -1
+death = false
+crown = false
+hive = true
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = false
+shoot_bombs = true
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 2
+starting_ammo = -1
+reload_time = 3.0
+rules = [ ExtResource( 4 ), ExtResource( 2 ) ]
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false
