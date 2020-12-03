@@ -84,6 +84,8 @@ region_rect = Rect2( 0, 0, 208, 108 )
 [node name="BreakGlow" type="Line2D" parent="."]
 visible = false
 modulate = Color( 0.996078, 0.984314, 0.941176, 1 )
+z_index = 50
+z_as_relative = false
 points = PoolVector2Array( 0, -50, 100, -50, 100, 50, -100, 50, -100, -50, 0, -50, 0, -50 )
 width = 50.0
 default_color = Color( 1, 1, 1, 1 )

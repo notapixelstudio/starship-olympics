@@ -43,7 +43,7 @@ func break(breaker):
 		$CollisionShape2D.call_deferred('set_disabled', true)
 		$Under.visible = false
 		$Sprite.visible = false
-	z_index = 100
+		
 	$BreakGlow.visible = true
 	$AnimationPlayer.play("Break")
 	yield($AnimationPlayer, "animation_finished")
@@ -60,6 +60,6 @@ func break(breaker):
 		$CollisionShape2D.call_deferred('set_disabled', false)
 		$Under.visible = true
 		$Sprite.visible = true
-	z_index = 0
+		
 	$BreakGlow.visible = false
 	
