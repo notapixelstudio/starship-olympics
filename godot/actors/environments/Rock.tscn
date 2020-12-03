@@ -69,7 +69,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=4]
 radius = 100.0
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "Conquered"
 length = 0.5
 step = 0.01
@@ -83,7 +83,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.215686 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.27451 ) ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("AudioStreamPlayer2D")
@@ -100,8 +100,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Forming"
+[sub_resource type="Animation" id=6]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -114,7 +113,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.215686 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.27451 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -131,13 +130,13 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 72
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 34 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 52
 font_data = ExtResource( 34 )
 
@@ -178,7 +177,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 80
+frame = 18
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -246,8 +245,8 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
-anims/Conquered = SubResource( 8 )
-anims/Forming = SubResource( 5 )
+anims/Conquered = SubResource( 5 )
+anims/Forming = SubResource( 6 )
 
 [node name="SelfDestructTimer" type="Timer" parent="."]
 
@@ -258,7 +257,7 @@ margin_left = -30.0
 margin_top = -44.0
 margin_right = 30.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.827451, 0, 1, 1 )
 align = 1
 valign = 1
@@ -274,7 +273,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 align = 1
 valign = 1
 __meta__ = {
