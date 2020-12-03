@@ -181,6 +181,7 @@ func _ready():
 	race_mode.connect('score', scores, "add_score")
 	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
+	conquest_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
