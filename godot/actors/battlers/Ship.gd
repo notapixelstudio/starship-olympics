@@ -558,3 +558,6 @@ func get_bombs_enabled():
 func update_weapon_indicator():
 	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
 	
+func get_strategy(ship, distance, game_mode):
+	return {'shoot': 0.5}
+	

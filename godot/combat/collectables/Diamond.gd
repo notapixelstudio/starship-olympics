@@ -18,3 +18,7 @@ func _ready():
 	if appear:
 		$AnimationPlayer.play('AppearFuhfuhfuh')
 		
+		
+func get_strategy(ship, distance, game_mode):
+	return {'seek': points}
+	
