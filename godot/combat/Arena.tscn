@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -35,8 +35,10 @@
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Rotate"
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10000, 10000 )
+
+[sub_resource type="Animation" id=2]
 length = 1000.0
 step = 1.0
 tracks/0/type = "value"
@@ -52,7 +54,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -103,7 +105,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -290,6 +292,18 @@ script = ExtResource( 22 )
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 
+[node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
+space_override = 3
+gravity = 0.0
+linear_damp = 8.0
+angular_damp = 25.0
+collision_layer = 128
+collision_mask = 8193
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace"]
+visible = false
+shape = SubResource( 1 )
+
 [node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 23 )]
@@ -298,16 +312,12 @@ script = ExtResource( 22 )
 position = Vector2( 0, 20000 )
 z_index = 50
 z_as_relative = false
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
 "animation_in_battle",
 ]]
 playback_process_mode = 0
-anims/Rotate = SubResource( 1 )
+anims/Rotate = SubResource( 2 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
 script = ExtResource( 24 )
@@ -378,17 +388,17 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 pause_mode = 2
 current = true
-zoom = Vector2( 4096, 4096 )
+zoom = Vector2( 8192, 8192 )
 script = ExtResource( 33 )
 zoomMin = 2.5
 debug_mode = false
 enabled = true
 
 [node name="CenterCamera" type="Position2D" parent="."]
-script = SubResource( 2 )
+script = SubResource( 3 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 3 )
+"anims/Game Over" = SubResource( 4 )
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
 [connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
