@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/environments/grid.png" type="Texture" id=6]
 [ext_resource path="res://assets/patterns/wall/clear.png" type="Texture" id=7]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=8]
 
 [node name="Wall" type="StaticBody2D" groups=[
 "wall",
@@ -47,6 +48,9 @@ enabled = false
 [node name="CrownDropper" type="Node" parent="Entity"]
 script = ExtResource( 4 )
 enabled = false
+
+[node name="Strategic" type="Node" parent="Entity"]
+script = ExtResource( 8 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.309804, 0.247059, 0.235294, 1 )

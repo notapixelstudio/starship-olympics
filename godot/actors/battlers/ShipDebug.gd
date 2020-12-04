@@ -27,7 +27,7 @@ func _ready():
 func _draw():
 	if not enabled:
 		return
-	draw_vector(parent.target_velocity*5, Vector2(), colors['GREEN'])
+	
 	#draw_vector(parent.front * 5, Vector2(), colors['PINK'])
 	draw_vector(parent.wander_force*0.5, Vector2(), colors['PINK'])
 	

@@ -42,10 +42,10 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 	Among the possible target objects choose the highest priority one
 	"""
 	var best_candidate = null
+	var target_pos = null
 	var behaviour = "wander"
 	var priority = 0
 	for entity in entities:
-		
 		var object = entity.get_host()
 		if object == target_dest:
 			# avoid considering our own targetdest
@@ -54,7 +54,6 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 		var strategy: Dictionary = entity.get(component).get_strategy(self, distance, self.game_mode)
 		
 		for key in strategy:
-			
 			if not key in self.possible_behaviours:
 				continue
 			var this_element_priority = strategy[key] / distance
@@ -63,8 +62,33 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 				priority = this_element_priority
 				best_candidate = object
 				behaviour = key
+				target_pos = object.position
+	
+	var becareful = get_ahead()
+	var space_state = get_world_2d().direct_space_state
+	for ahead in becareful:
+		var danger1 = position + ahead
+		var result = space_state.intersect_ray(position, danger1, [self], collision_mask, true, true)
+		if result :
+			var collider = result.collider
+			var e = ECM.E(collider)
+			var distance = dist(result.position, global_position)
+			if not e.has(component):
+				continue
+			var strategy = e.get(component).get_strategy(self, distance, game_mode)
+			for key in strategy:
+				if not key in self.possible_behaviours:
+					continue
+				var this_element_priority = strategy[key] / distance
+				if priority < this_element_priority:
+					priority = this_element_priority
+					best_candidate = collider
+					behaviour = key
+					target_pos = result.position - position
+					if behaviour == "avoid":
+						target_pos = result.normal * MAX_AVOIDANCE_FORCE
 			
-	return {"target": best_candidate, "behaviour": behaviour}
+	return {"target": best_candidate, "behaviour": behaviour, "target_pos": target_pos}
 	
 func nearest_in(objects, component = "Strategic"):
 	var nearest = null
@@ -150,6 +174,7 @@ func get_ahead()-> PoolVector2Array:
 
 const MAX_AVOID = 10
 var avoid_lock = 0
+
 func seek_ahead(potential_target):
 	# https://docs.godotengine.org/en/3.1/tutorials/physics/ray-casting.html
 	# https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732
@@ -160,19 +185,17 @@ func seek_ahead(potential_target):
 	# return avoidance
 	# see if we have some obstacle in front of us
 	hit_pos = []
-	for ray in rays:
-		
+	for ahead in get_ahead():
+		var danger1 = position + ahead
 		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
 		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
-		
 		
 		# we need to see if we can avoid the castle
 		var what = entity.get('Cargo').what
 		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			ray_collision_mask += pow(2, 15)
 			potential_target = null
-		ray.collision_mask = ray_collision_mask
-		var result = ray.get_collider()
+		
 		
 		
 	avoidance = Vector2()
@@ -242,7 +265,7 @@ var force_wander = false
 
 func control(delta):
 	var chosen_strategy = choose_target(ECM.entities_with('Strategic'))
-	var this_target = chosen_strategy["target"]
+	var target = chosen_strategy["target_pos"]
 	var behaviour = chosen_strategy["behaviour"]
 	behaviour_mode = chosen_strategy["behaviour"]
 	
@@ -251,16 +274,9 @@ func control(delta):
 		this_target = nearest_in(ECM.hosts_with('Royal'))
 	"""
 	
-	if this_target:
-		this_target = this_target.global_position
-		
 	
-	
-	if force_wander or behaviour == "wander":
+	if not target or force_wander or behaviour == "wander":
 		target = wander()
-	elif behaviour == "seek":
-		# check if there is a danger closer
-		target = seek_ahead(this_target)
 	
 	rotation_dir = choose_dir(target)
 	
@@ -304,8 +320,6 @@ func control(delta):
 		else:
 			wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
 			
-		
-	
 	
 	.control(delta)
 var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER
