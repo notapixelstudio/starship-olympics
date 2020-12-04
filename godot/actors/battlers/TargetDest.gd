@@ -23,8 +23,9 @@ func get_strategy(ship, distance, game_mode):
 	if game_mode.name == 'Deathmatch':
 		# pursue ships of opposing teams
 		if calling_ship_team != this_ship_team:
-			return {'seek': 1, 'shoot': 1}
+			return {'seek': 5, 'shoot': 5}
 		
+	# shoot at ships of opposing teams, sometimes
 	if calling_ship_team != this_ship_team:
 		return {'shoot': 0.5}
 		
