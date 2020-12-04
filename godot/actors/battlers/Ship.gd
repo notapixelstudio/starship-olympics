@@ -364,6 +364,8 @@ func fire(override_charge = -1, dash_only = false):
 		entity.get('Dashing').enable()
 		dash_cooldown = (actual_charge - MIN_DASHING_CHARGE)*0.6
 		dash_intercooldown = DASH_INTERCOOLDOWN
+	else:
+		tap()
 		
 	if should_reload:
 		yield(get_tree().create_timer(reload_time), "timeout")
@@ -548,4 +550,30 @@ func get_bombs_enabled():
 	
 func update_weapon_indicator():
 	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
+	
+	
+func tap():
+	switch_emersion_state()
+	
+var under = false
+
+func switch_emersion_state():
+	if under:
+		emerge()
+	else:
+		submerge()
+	
+func submerge():
+	under = true
+	z_as_relative = false
+	z_index = -50
+	set_collision_layer_bit(0, false)
+	set_collision_layer_bit(18, true)
+	
+func emerge():
+	under = false
+	z_as_relative = true
+	z_index = 0
+	set_collision_layer_bit(0, true)
+	set_collision_layer_bit(18, false)
 	
