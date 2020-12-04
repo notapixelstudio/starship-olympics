@@ -213,3 +213,22 @@ func conquered_by(ship):
 func play_boom():
 	$RandomAudioStreamPlayer.play()
 	
+func get_strategy(ship, distance, game_mode):
+	if game_mode.name == 'Asteroid Coloring':
+		# claim unclaimed asteroids, according to their score
+		if not owner_ship:
+			return {"seek": get_score()}
+			
+		# claim opponents asteroids
+		if ship != owner_ship:
+			return {"seek": get_score()*2}
+		# protect own asteroids by splitting them
+		else:
+			return {"shoot": get_score()*0.25}
+	
+	# avoid deadly asteroids
+	if deadly:
+		return {"avoid": 5}
+	
+	return {}
+	
