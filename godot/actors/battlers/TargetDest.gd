@@ -17,4 +17,16 @@ func _process(delta):
 	position.x = (node_owner.velocity).length()/2
 
 func get_strategy(ship, distance, game_mode):
-	return {'shoot': 0.5}
+	var calling_ship_team = ship.info_player.team
+	var this_ship_team = get_master_ship().info_player.team
+	
+	if game_mode.name == 'Deathmatch':
+		# pursue ships of opposing teams
+		if calling_ship_team != this_ship_team:
+			return {'seek': 5, 'shoot': 5}
+		
+	# shoot at ships of opposing teams, sometimes
+	if calling_ship_team != this_ship_team:
+		return {'shoot': 0.5}
+		
+	return {}
