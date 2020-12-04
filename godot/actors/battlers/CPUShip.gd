@@ -1,10 +1,12 @@
 extends Ship
 
 onready var debug_ship = $Debug
+onready var rays = [
+	$RayCast2DFront, $"RayCast2D20+", 
+	$"RayCast2D20-", $"RayCast2D45+", $"RayCast2D45-"
+	]	
 
-var this_range = {60:-1, 55:0, 100:1}
 
-var target_hit = []
 const MAX_DIR_WAIT = 900
 var steering = Vector2()
 var front = Vector2()
@@ -24,13 +26,46 @@ static func which_quadrant(angle:float):
 var laser_color = Color(1.0, .329, .298)
 const MAX_SEE_AHEAD = 200
 var hit_pos = []
-var behaviour_mode = "seek"
 
-enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER}
+var behaviour_mode = "seek"
+enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER, SHOOT}
+var possible_behaviours = ["seek", "avoid", "shoot"]
 
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
 
+
+	
+	
+func choose_target(entities, component="Strategic") -> Dictionary:
+	"""
+	Among the possible target objects choose the highest priority one
+	"""
+	var best_candidate = null
+	var behaviour = "wander"
+	var priority = 0
+	for entity in entities:
+		
+		var object = entity.get_host()
+		if object == target_dest:
+			# avoid considering our own targetdest
+			continue
+		var distance = dist(object.global_position, global_position)
+		var strategy: Dictionary = entity.get(component).get_strategy(self, distance, self.game_mode)
+		
+		for key in strategy:
+			
+			if not key in self.possible_behaviours:
+				continue
+			var this_element_priority = strategy[key] / distance
+			
+			if priority < this_element_priority:
+				priority = this_element_priority
+				best_candidate = object
+				behaviour = key
+			
+	return {"target": best_candidate, "behaviour": behaviour}
+	
 func nearest_in(objects, component = "Strategic"):
 	var nearest = null
 	var min_dist
@@ -124,30 +159,24 @@ func seek_ahead(potential_target):
 	#if avoid_lock > 0:
 	# return avoidance
 	# see if we have some obstacle in front of us
-	var becareful = get_ahead()
 	hit_pos = []
-	for ahead in becareful:
-		var danger1 = position + ahead
-		var danger2 = position + ahead * 0.5
+	for ray in rays:
+		
 		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
 		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
+		
+		
 		# we need to see if we can avoid the castle
 		var what = entity.get('Cargo').what
 		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
 			ray_collision_mask += pow(2, 15)
 			potential_target = null
-		var result = space_state.intersect_ray(position, danger1, [self], ray_collision_mask, true, true)
-		hit_pos.append(danger1)
-		if result and result.position != potential_target:
-			#avoidance = position - result.position
-			#avoidance = avoidance.normalized() * MAX_AVOIDANCE_FORCE
-			avoidance = result.normal * MAX_AVOIDANCE_FORCE
-			behaviour_mode = "avoid"
-			avoid_lock = MAX_AVOID
-			return (avoidance)
+		ray.collision_mask = ray_collision_mask
+		var result = ray.get_collider()
+		
+		
 	avoidance = Vector2()
 	if potential_target != null:
-		behaviour_mode = "seek"
 		return (potential_target - position)
 	else:
 		behaviour_mode = "wander"
@@ -212,29 +241,33 @@ var charging_time : int = 0
 var force_wander = false
 
 func control(delta):
-	var this_target = nearest_in(ECM.hosts_with('Strategic'))
+	var chosen_strategy = choose_target(ECM.entities_with('Strategic'))
+	var this_target = chosen_strategy["target"]
+	var behaviour = chosen_strategy["behaviour"]
+	behaviour_mode = chosen_strategy["behaviour"]
 	
 	"""
 	if not this_target or not this_target.is_inside_tree():
 		this_target = nearest_in(ECM.hosts_with('Royal'))
 	"""
-	target_hit = []
+	
 	if this_target:
 		this_target = this_target.global_position
-		target_hit.append(this_target)
+		
 	
 	
-	
-	if force_wander:
+	if force_wander or behaviour == "wander":
 		target = wander()
-	else:
+	elif behaviour == "seek":
 		# check if there is a danger closer
 		target = seek_ahead(this_target)
+	
 	rotation_dir = choose_dir(target)
 	
 	# charge
 	if charging:
-		rotation_dir = choose_dir(-target)
+		if behaviour == "shoot":
+			rotation_dir = choose_dir(-target)
 		charge = charge+delta
 	else:
 		charge = 0
@@ -243,7 +276,7 @@ func control(delta):
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 	
-	if not charging and choose_fire() and fire_cooldown <= 0:
+	if not charging and choose_fire() and fire_cooldown <= 0 and behaviour == "shoot":
 		charge()
 		
 	charging_time -= 1
@@ -270,7 +303,7 @@ func control(delta):
 			behaviour_mode = "wander"
 		else:
 			wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
-			behaviour_mode = "seek"
+			
 		
 	
 	
@@ -278,13 +311,9 @@ func control(delta):
 var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER
 const MIN_WAIT_FOR_WANDER = 4 #  seconds
 const WAIT_FOR_WANDER = 4 # seconds
-const MIN_WANDER_TIME = 1
+const MIN_WANDER_TIME = 1 # seconds
 const WANDER_TIME = 1 #seconds
 
-func calculate_center(rect: Rect2) -> Vector2:
-	return Vector2(
-		rect.position.x + rect.size.x / 2,
-		rect.position.y + rect.size.y / 2)
 
 func _on_DetectionArea_body_entered(body):
 	if body is Ship and body != self:

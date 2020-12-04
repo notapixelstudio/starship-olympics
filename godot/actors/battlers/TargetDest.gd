@@ -15,3 +15,6 @@ func get_master_ship():
 
 func _process(delta):
 	position.x = (node_owner.velocity).length()/2
+
+func get_strategy(ship, distance, game_mode):
+	return {'shoot': 0.5}

@@ -9,4 +9,24 @@ script = ExtResource( 2 )
 [node name="Debug" parent="." index="6"]
 enabled = true
 
+[node name="RayCast2DFront" type="RayCast2D" parent="." index="12"]
+enabled = true
+cast_to = Vector2( 1000, 0 )
+
+[node name="RayCast2D45+" type="RayCast2D" parent="." index="13"]
+enabled = true
+cast_to = Vector2( 850, 525 )
+
+[node name="RayCast2D45-" type="RayCast2D" parent="." index="14"]
+enabled = true
+cast_to = Vector2( 850, -525 )
+
+[node name="RayCast2D20+" type="RayCast2D" parent="." index="15"]
+enabled = true
+cast_to = Vector2( 912, 250 )
+
+[node name="RayCast2D20-" type="RayCast2D" parent="." index="16"]
+enabled = true
+cast_to = Vector2( 912, -250 )
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

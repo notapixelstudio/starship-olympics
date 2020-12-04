@@ -90,6 +90,8 @@ var dash_cooldown = 0
 var dash_intercooldown = 0
 var reload_time
 
+var game_mode : GameMode
+
 var bomb_count = 0
 
 var teleport_to = null
@@ -558,6 +560,4 @@ func get_bombs_enabled():
 func update_weapon_indicator():
 	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
 	
-func get_strategy(ship, distance, game_mode):
-	return {'shoot': 0.5}
 	

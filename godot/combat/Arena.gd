@@ -624,6 +624,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.info_player = player.info_player
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
+	ship.game_mode = self.game_mode
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
