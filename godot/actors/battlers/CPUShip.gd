@@ -292,7 +292,7 @@ func control(delta):
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 	
-	if not charging and choose_fire() and fire_cooldown <= 0 and behaviour == "shoot":
+	if not charging and choose_fire() and fire_cooldown <= 0:
 		charge()
 		
 	charging_time -= 1
