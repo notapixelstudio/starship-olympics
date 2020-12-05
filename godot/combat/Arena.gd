@@ -134,6 +134,7 @@ func _ready():
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
+	Soundtrack.fade_out()
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
@@ -351,7 +352,10 @@ func _ready():
 		set_style(game_mode.arena_style)
 		
 	if not mockup:
-		Soundtrack.play("Fight", true)
+		if style.bgm:
+			Soundtrack.play(style.bgm, true)
+		else:
+			Soundtrack.stop()
 	else:
 		hud.visible = false
 	if not mockup:

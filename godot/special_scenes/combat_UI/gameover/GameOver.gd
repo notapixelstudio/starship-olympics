@@ -30,6 +30,8 @@ func initialize(winners: Array, scores):
 	if winners:
 		session_over = len(winners[0].session_score) >= global.win
 		continue_button.visible = not session_over
+		if session_over:
+			Soundtrack.play('SessionOver', true)
 	buttons.get_child(int(session_over)).grab_focus()
 	
 	
