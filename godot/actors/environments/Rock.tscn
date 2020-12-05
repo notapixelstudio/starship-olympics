@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/audio/gameplay/asteroids/zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_003_40731.ogg" type="AudioStream" id=35]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=36]
 [ext_resource path="res://assets/audio/gameplay/asteroids/tspt_deep_laser_blast_01_026.ogg" type="AudioStream" id=37]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=38]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -53,15 +54,15 @@ animations = [ {
 "name": "outline",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 31 ) ],
-"loop": true,
-"name": "full",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "shine",
 "speed": 60.0
+}, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "full",
+"speed": 5.0
 } ]
 
 [sub_resource type="CanvasItemMaterial" id=3]
@@ -69,7 +70,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=4]
 radius = 100.0
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "Conquered"
 length = 0.5
 step = 0.01
@@ -100,8 +101,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Forming"
+[sub_resource type="Animation" id=6]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -131,13 +131,13 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 72
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 34 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 52
 font_data = ExtResource( 34 )
 
@@ -173,12 +173,15 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Strategic" type="Node" parent="Entity"]
+script = ExtResource( 38 )
+
 [node name="Star" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 80
+frame = 10
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -246,8 +249,8 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
-anims/Conquered = SubResource( 8 )
-anims/Forming = SubResource( 5 )
+anims/Conquered = SubResource( 5 )
+anims/Forming = SubResource( 6 )
 
 [node name="SelfDestructTimer" type="Timer" parent="."]
 
@@ -258,7 +261,7 @@ margin_left = -30.0
 margin_top = -44.0
 margin_right = 30.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.827451, 0, 1, 1 )
 align = 1
 valign = 1
@@ -274,7 +277,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 align = 1
 valign = 1
 __meta__ = {
