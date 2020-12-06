@@ -29,7 +29,7 @@ func _draw():
 		return
 	
 	#draw_vector(parent.front * 5, Vector2(), colors['PINK'])
-	draw_vector(parent.wander_force*0.5, Vector2(), colors['PINK'])
+	draw_vector(parent.target_pos*0.5, Vector2(), colors['PINK'])
 	
 	draw_vector(parent.last_target_pos, Vector2(), colors['WHITE'])
 	#for ahead in parent.get_ahead():

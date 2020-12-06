@@ -33,13 +33,14 @@ var possible_behaviours = ["seek", "avoid", "shoot"]
 
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
-	
+
+var target_pos = Vector2()
 func choose_target(entities, component="Strategic") -> Dictionary:
 	"""
 	Among the possible target objects choose the highest priority one
 	"""
 	var best_candidate = null
-	var target_pos = null
+	target_pos = null
 	var behaviour = "wander"
 	var priority = 0
 	var from = "Default"
@@ -60,7 +61,7 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 				priority = this_element_priority
 				best_candidate = object
 				behaviour = key
-				target_pos = best_candidate.global_position
+				target_pos = best_candidate.global_position - position
 				from = "entities"
 	
 	var becareful = []
