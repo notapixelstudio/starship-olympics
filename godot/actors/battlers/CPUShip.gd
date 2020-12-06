@@ -27,15 +27,12 @@ var laser_color = Color(1.0, .329, .298)
 const MAX_SEE_AHEAD = 200
 var hit_pos = []
 
-var behaviour_mode = "seek"
+var behaviour_mode = "wander"
 enum BEHAVIOUR {SEEK, AVOID, FLEE, WANDER, SHOOT}
 var possible_behaviours = ["seek", "avoid", "shoot"]
 
 func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
-
-
-	
 	
 func choose_target(entities, component="Strategic") -> Dictionary:
 	"""
@@ -45,6 +42,7 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 	var target_pos = null
 	var behaviour = "wander"
 	var priority = 0
+	var from = "Default"
 	for entity in entities:
 		var object = entity.get_host()
 		if object == target_dest:
@@ -62,9 +60,10 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 				priority = this_element_priority
 				best_candidate = object
 				behaviour = key
-				target_pos = object.position
+				target_pos = best_candidate.global_position
+				from = "entities"
 	
-	var becareful = get_ahead()
+	var becareful = []
 	var space_state = get_world_2d().direct_space_state
 	for ahead in becareful:
 		var danger1 = position + ahead
@@ -85,64 +84,12 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 					best_candidate = collider
 					behaviour = key
 					target_pos = result.position - position
+					from = "raycasting"
 					if behaviour == "avoid":
 						target_pos = result.normal * MAX_AVOIDANCE_FORCE
 			
-	return {"target": best_candidate, "behaviour": behaviour, "target_pos": target_pos}
+	return {"target": best_candidate, "behaviour": behaviour, "target_pos": target_pos, "from": from}
 	
-func nearest_in(objects, component = "Strategic"):
-	var nearest = null
-	var min_dist
-	var what = entity.get('Cargo').what
-	for object in objects:
-		# avoid considering our own targetdest
-		if object == target_dest:
-			continue
-		var entity_object = ECM.E(object)
-		var checklist = entity_object.get(component).get_list()
-		
-		# FORCE diamond chasing
-		if entity_object.get_host() is Diamond:
-			nearest = object
-			break
-		
-		# FORCE to follow whoever has the crown if they have the crown
-		if entity_object.get_host() is TargetDest:
-			var master_ship = entity_object.get_host().get_master_ship()
-			var entity_mastership = ECM.E(master_ship)
-			if entity_mastership.could_have("Royal") and entity_mastership.has("Royal"):
-				nearest = object
-				break
-			# FORCE to wander if bombs NOT enabled
-			if not bombs_enabled:
-				continue
-		# run away if you have the crown
-		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
-			break
-		
-		if len(checklist) > 0 and info_player.id in checklist and not object.is_inside_tree():
-			continue
-		if not nearest or dist(object.global_position, position) < min_dist:
-			nearest = object
-			min_dist = dist(nearest.global_position, position)
-	# FORCE to follow the crown if it's on the battlefield
-	
-	for object in get_tree().get_nodes_in_group("Crown"):
-		nearest=null
-		if not nearest or dist(object.global_position, position) < min_dist:
-			nearest = object
-			min_dist = dist(nearest.global_position, position)
-	# FORCE to target the Pentagonion if you HAVE the ball
-	if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.BALL:
-		nearest = null
-		for object in get_tree().get_nodes_in_group("goal"):
-			if object.species.species_name != info_player.species.species_name:# or object.current_ring == 0:
-				continue
-			if not nearest or dist(object.global_position, position) < min_dist:
-				nearest = object
-				min_dist = dist(nearest.global_position, position)
-	return nearest
-
 const CIRCLE_DIST = 50
 const CIRCLE_RADIUS = 10
 const ANGLE_CHANGE = PI/4
@@ -173,50 +120,6 @@ func get_ahead()-> PoolVector2Array:
 	return pool
 
 const MAX_AVOID = 10
-var avoid_lock = 0
-
-func seek_ahead(potential_target):
-	# https://docs.godotengine.org/en/3.1/tutorials/physics/ray-casting.html
-	# https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732
-	var space_state = get_world_2d().direct_space_state
-	# use global coordinates, not local to node
-	avoid_lock -=1
-	#if avoid_lock > 0:
-	# return avoidance
-	# see if we have some obstacle in front of us
-	hit_pos = []
-	for ahead in get_ahead():
-		var danger1 = position + ahead
-		# it's not dangerous get in a field pow(2,7) that's why we don't avoid it
-		var ray_collision_mask : int = collision_mask - pow(2,0) - pow(2,1) -pow(2,7) - pow(2,10) + pow(2,2) + pow(2,3) + pow(2,8) + pow(2,19)
-		
-		# we need to see if we can avoid the castle
-		var what = entity.get('Cargo').what
-		if entity.could_have("Royal") and entity.has("Royal") and what.type == Crown.types.CROWN:
-			ray_collision_mask += pow(2, 15)
-			potential_target = null
-		
-		
-		
-	avoidance = Vector2()
-	if potential_target != null:
-		return (potential_target - position)
-	else:
-		behaviour_mode = "wander"
-		return wander()
-	
-var avoidance
-
-
-# this draws are for debugging the targets of the CPU
-"""
-func _draw():
-	for hit in target_hit:
-		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
-		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
-func _physics_process(delta):
-	 update()
-"""
 
 var last_target_pos = Vector2()
 
@@ -266,8 +169,12 @@ var force_wander = false
 func control(delta):
 	var chosen_strategy = choose_target(ECM.entities_with('Strategic'))
 	var target = chosen_strategy["target_pos"]
+	var from = chosen_strategy["from"]
 	var behaviour = chosen_strategy["behaviour"]
-	behaviour_mode = chosen_strategy["behaviour"]
+	var which_target = chosen_strategy["target"]
+	if which_target:
+		which_target = which_target.name
+	behaviour_mode = chosen_strategy["behaviour"] + "\n" + which_target + "\n" + from
 	
 	"""
 	if not this_target or not this_target.is_inside_tree():

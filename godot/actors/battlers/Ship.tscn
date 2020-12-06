@@ -193,7 +193,6 @@ __meta__ = {
 }
 
 [node name="DebugSprite" type="Sprite" parent="TargetDest"]
-visible = false
 modulate = Color( 1, 1, 1, 0.309804 )
 texture = ExtResource( 20 )
 
@@ -213,6 +212,7 @@ amount = 80
 local_coords = false
 process_material = SubResource( 8 )
 texture = ExtResource( 19 )
+
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
