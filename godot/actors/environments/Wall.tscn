@@ -11,8 +11,8 @@
 [node name="Wall" type="StaticBody2D" groups=[
 "wall",
 ]]
-collision_layer = 16
-collision_mask = 8193
+collision_layer = 2147483664
+collision_mask = 270337
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -95,7 +95,6 @@ round_precision = 10
 [node name="Area2D" type="Area2D" parent="." groups=[
 "platform",
 ]]
-visible = false
 space_override = 3
 gravity = 0.0
 linear_damp = 3.0
@@ -104,3 +103,4 @@ collision_layer = 128
 collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
