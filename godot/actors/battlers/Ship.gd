@@ -553,7 +553,8 @@ func update_weapon_indicator():
 	
 	
 func tap():
-	switch_emersion_state()
+	pass
+	#switch_emersion_state()
 	
 var under = false
 
