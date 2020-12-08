@@ -11,3 +11,4 @@ export var battlefield_bg_color : Color = Color(0.156863, 0.07451, 0.301961)
 export(float, 0.0, 1.0) var battlefield_opacity = 0.9
 export var wall_color : Color = Color8(208, 245, 295, 255)
 export var wall_texture : Texture
+export var bgm : String

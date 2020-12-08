@@ -136,6 +136,7 @@ func _ready():
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
+	Soundtrack.fade_out()
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
@@ -183,6 +184,7 @@ func _ready():
 	race_mode.connect('score', scores, "add_score")
 	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
+	conquest_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
@@ -352,7 +354,10 @@ func _ready():
 		set_style(game_mode.arena_style)
 		
 	if not mockup:
-		Soundtrack.play("Fight", true)
+		if style and style.bgm:
+			Soundtrack.play(style.bgm, true)
+		else:
+			Soundtrack.stop()
 	else:
 		hud.visible = false
 	if not mockup:

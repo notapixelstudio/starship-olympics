@@ -51,6 +51,12 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 order = 3
 last_order = 1
