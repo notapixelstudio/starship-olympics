@@ -224,7 +224,7 @@ func control(delta):
 	
 	# check if there is a danger closer
 	target = seek_ahead(this_target)
-	rotation_dir = choose_dir(target)
+	rotation_request = choose_dir(target)
 	
 	# charge
 	if charging:

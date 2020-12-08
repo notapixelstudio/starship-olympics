@@ -47,10 +47,11 @@ func control(delta):
 		pass
 	else:
 		target_velocity = target_vel.normalized()
-	rotation_dir = find_side(Vector2(0,0), front, target_velocity)
+	#rotation_request = find_side(Vector2(0,0), front, target_velocity)
+	rotation_request = front.angle_to(target_velocity)
 	
 	# if we want tank mode control (relative control)
-	# rotation_dir = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
+	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 
 	
 	# charge

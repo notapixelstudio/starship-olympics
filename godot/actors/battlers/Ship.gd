@@ -22,7 +22,7 @@ var velocity = Vector2(0,0)
 var previous_velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
 var steer_force = 0
-var rotation_dir = 0
+var rotation_request = 0
 
 var THRUST = 3500
 
@@ -194,7 +194,7 @@ func _integrate_forces(state):
 	if not responsive:
 		return
 	set_applied_force(Vector2())
-	steer_force = max_steer_force * rotation_dir
+	steer_force = max_steer_force * rotation_request
 	
 	var thrusers_on = entity.has('Thrusters') and not charging_enough and not stunned and not entity.has('Dashing') # thrusters switch off when charging enough and during dashes
 	
@@ -209,7 +209,7 @@ func _integrate_forces(state):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_dir * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
+	set_applied_torque(rotation_request * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
