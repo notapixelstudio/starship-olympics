@@ -190,12 +190,12 @@ func control(delta):
 	if not target or force_wander or behaviour == "wander":
 		target = wander()
 	
-	rotation_dir = choose_dir(target)
+	rotation_request = choose_dir(target)
 	
 	# charge
 	if charging:
 		if behaviour == "shoot":
-			rotation_dir = choose_dir(-target)
+			rotation_request = choose_dir(-target)
 		charge = charge+delta
 	else:
 		charge = 0
