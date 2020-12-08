@@ -24,7 +24,7 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
 
-var THRUST = 3500
+var THRUST = 4600
 
 var shields = 0
 var max_shields = 1
@@ -39,8 +39,8 @@ const MIN_CHARGE = 0.25
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 4500
-const DASH_BASE = -200
-const DASH_MULTIPLIER = 2.5
+const DASH_BASE = -500
+const DASH_MULTIPLIER = 2
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
 const BALL_BOOST = 750
@@ -51,7 +51,7 @@ const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 
 const THRESHOLD_DIR = 0.3
-const ROTATION_TORQUE = 20000
+const ROTATION_TORQUE = 40000
 
 var responsive = false setget change_engine
 var info_player setget set_info_player
@@ -196,7 +196,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusers_on = entity.has('Thrusters') and not charging_enough and not stunned and not entity.has('Dashing') # thrusters switch off when charging enough and during dashes
+	var thrusers_on = entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
 	if not absolute_controls:
 		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
