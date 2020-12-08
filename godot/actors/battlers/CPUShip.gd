@@ -10,6 +10,8 @@ onready var rays = [
 const MAX_DIR_WAIT = 900
 var steering = Vector2()
 var front = Vector2()
+var keep_decision = 0
+const DECISION_TIME = 5 
 
 const DANGER_ZONE = 200
 const MAX_AVOIDANCE_FORCE = 10
@@ -43,7 +45,7 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 	target_pos = null
 	var behaviour = "wander"
 	var priority = 0
-	var from = "Default"
+	var from = "default"
 	for entity in entities:
 		var object = entity.get_host()
 		if object == target_dest:
@@ -123,7 +125,7 @@ func get_ahead()-> PoolVector2Array:
 const MAX_AVOID = 10
 
 var last_target_pos = Vector2()
-
+var last_target = null
 func choose_dir(target):
 	"""
 	# Follow the Crown or the crown holder if you are not it
@@ -136,6 +138,7 @@ func choose_dir(target):
 	else:
 		target_pos = front
 	last_target_pos = target_pos
+	last_target = target
 	var distance_to_target = target_pos
 	target_velocity = distance_to_target.normalized()
 	
@@ -168,19 +171,20 @@ var charging_time : int = 0
 var force_wander = false
 
 func control(delta):
+	keep_decision -= delta
 	var chosen_strategy = choose_target(ECM.entities_with('Strategic'))
 	var target = chosen_strategy["target_pos"]
 	var from = chosen_strategy["from"]
 	var behaviour = chosen_strategy["behaviour"]
 	var which_target = chosen_strategy["target"]
+	if keep_decision < 0: 
+		keep_decision = DECISION_TIME
+		print("CHANGE DECISION")
+	else:
+		target = last_target
 	if which_target:
 		which_target = which_target.name
 	behaviour_mode = chosen_strategy["behaviour"] + "\n" + which_target + "\n" + from
-	
-	"""
-	if not this_target or not this_target.is_inside_tree():
-		this_target = nearest_in(ECM.hosts_with('Royal'))
-	"""
 	
 	
 	if not target or force_wander or behaviour == "wander":
@@ -228,7 +232,6 @@ func control(delta):
 		else:
 			wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
 			
-	
 	.control(delta)
 var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER
 const MIN_WAIT_FOR_WANDER = 4 #  seconds
