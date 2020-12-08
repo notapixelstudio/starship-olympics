@@ -24,7 +24,7 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_dir = 0
 
-var THRUST = 3100
+var THRUST = 3500
 
 var shields = 0
 var max_shields = 1
@@ -35,12 +35,12 @@ var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_CHARGE = 0.2
+const MIN_CHARGE = 0.25
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 4500
-const DASH_BASE = 0
-const DASH_MULTIPLIER = 2
+const DASH_BASE = -200
+const DASH_MULTIPLIER = 2.5
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 200
 const BALL_BOOST = 750
@@ -209,7 +209,7 @@ func _integrate_forces(state):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_dir * ROTATION_TORQUE)
+	set_applied_torque(rotation_dir * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -290,7 +290,7 @@ func _physics_process(delta):
 	dash_cooldown -= delta
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		dash_restore_appearance()
-		yield(get_tree().create_timer(0.08), 'timeout') # wait a bit to be lenient with dash-through checks
+		yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with dash-through checks
 		entity.get('Dashing').disable()
 		
 	if charging and not charging_enough and charge > MIN_CHARGE:
@@ -323,7 +323,7 @@ func fire(override_charge = -1, dash_only = false):
 	var will_dash = charging_enough
 	
 	if will_dash:
-		apply_impulse(Vector2(0,0), Vector2(DASH_BASE+charge_impulse*DASH_MULTIPLIER, 0).rotated(rotation)) # recoil only if dashing
+		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
 	
 	if get_bombs_enabled() and not dash_only:
 		bomb_count += 1
