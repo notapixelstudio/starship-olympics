@@ -184,7 +184,7 @@ func choose_dir(target):
 	target_velocity = distance_to_target.normalized()
 	
 	front = Vector2(cos(rotation), sin(rotation))
-	direction_to_take = find_side(Vector2(0,0), front, target_velocity)
+	direction_to_take = front.angle_to(target_velocity)
 	
 	return direction_to_take
 

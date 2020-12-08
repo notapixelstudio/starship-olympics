@@ -24,7 +24,7 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
 
-var THRUST = 4600
+var THRUST = 4400
 
 var shields = 0
 var max_shields = 1
@@ -40,17 +40,17 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 5500
 const DASH_BASE = -400
-const DASH_MULTIPLIER = 2.3
+const DASH_MULTIPLIER = 2.2
 const BOMB_OFFSET = 50
-const BOMB_BOOST = 400
+const BOMB_BOOST = 600
 const BALL_BOOST = 1650
 const BALL_CHARGE_MULTIPLIER = 1.8
-const BULLET_BOOST = 1450
-const BULLET_CHARGE_MULTIPLIER = 1.2
+const BULLET_BOOST = 1500
+const BULLET_CHARGE_MULTIPLIER = 1.3
+const BUBBLE_BOOST = 700
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 
-const THRESHOLD_DIR = 0.3
 const ROTATION_TORQUE = 40000
 
 var responsive = false setget change_engine
@@ -336,7 +336,7 @@ func fire(override_charge = -1, dash_only = false):
 			elif bomb_type == GameMode.BOMB_TYPE.bullet:
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
 			elif bomb_type == GameMode.BOMB_TYPE.bubble:
-				impulse = charge_impulse
+				impulse = charge_impulse+BUBBLE_BOOST
 			else:
 				impulse = charge_impulse+BOMB_BOOST
 				
@@ -424,25 +424,6 @@ func is_alive():
 func update_score(species_template, score, pos):
 	$PlayerInfo.update_score(score)
 	
-static func find_side(a: Vector2, b: Vector2, check: Vector2) -> float:
-	"""
-	Given two points a, b will return the side check is on.
- 	@return integer code for which side of the line ab c is on.  
-	1 means left turn, -1 means right turn.  Returns
- 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
-	"""
-	var possible_dirs : Array = [-1,1]
-	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
-	if (check + b).length() < 0.1: # FIXME const
-	#if check == -b:
-		cross = possible_dirs[randi()%len(possible_dirs)]
-
-	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR:
-		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
-			return cross # smooth adjustment
-	
-	#return cross
-	return sign(cross) # coarse adjustment
 
 func get_id():
 	return info_player.id
