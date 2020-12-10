@@ -352,7 +352,7 @@ func _ready():
 		set_style(game_mode.arena_style)
 		
 	if not mockup:
-		if style.bgm:
+		if style and style.bgm:
 			Soundtrack.play(style.bgm, true)
 		else:
 			Soundtrack.stop()

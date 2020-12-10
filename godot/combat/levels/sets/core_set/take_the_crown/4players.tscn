@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 1185, 50 ]
+"values": [ 1285, 50 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -77,13 +77,6 @@ enabled = false
 texture = ExtResource( 7 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 5 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
-bg_color = Color( 0.28, 0.14, 0.14, 1 )
-
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
@@ -99,8 +92,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3600
-height = 2400
+width = 3800
+height = 2600
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
@@ -122,13 +115,13 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3600
-height = 2400
-bevel = 1185
-bevel_nw = 1185
-bevel_ne = 1185
-bevel_sw = 1185
-bevel_se = 1185
+width = 3800
+height = 2600
+bevel = 1285
+bevel_nw = 1285
+bevel_ne = 1285
+bevel_sw = 1285
+bevel_se = 1285
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
 hollow = true
@@ -146,19 +139,32 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3600
-height = 2400
-bevel = 1185
-bevel_nw = 1185
-bevel_ne = 1185
-bevel_sw = 1185
-bevel_se = 1185
+width = 3800
+height = 2600
+bevel = 1285
+bevel_nw = 1285
+bevel_ne = 1285
+bevel_sw = 1285
+bevel_se = 1285
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=[
 "animation_in_battle",
 ]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 5 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
+bg_color = Color( 0.28, 0.14, 0.14, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="5"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 position = Vector2( -850, 0 )
@@ -203,7 +209,7 @@ playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( 0, -1200 )
+position = Vector2( 0, -1300 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
@@ -224,7 +230,7 @@ position = Vector2( 0, 150 )
 rotation = 1.5708
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 0, 1200 )
+position = Vector2( 0, 1300 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]

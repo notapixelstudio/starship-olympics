@@ -29,11 +29,6 @@ enabled = false
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0.372, 0.62, 0.62, 1 )
-bg_color = Color( 0.336, 0.56, 0.56, 1 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
@@ -55,6 +50,17 @@ radius = 1600
 sides = 6.0
 alternating_angle = 0.0
 rotation_degrees = 30.0
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0.372, 0.62, 0.62, 1 )
+bg_color = Color( 0.336, 0.56, 0.56, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Battlefield/Middleground" index="0"]
 node_a = NodePath("../../Background/OutsideWall")

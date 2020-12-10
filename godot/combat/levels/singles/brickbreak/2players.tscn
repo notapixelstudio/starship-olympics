@@ -51,6 +51,12 @@ bevel_ne = 150
 bevel_sw = 150
 bevel_se = 150
 
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="YSort" type="YSort" parent="Battlefield/Middleground" index="0"]
 position = Vector2( 0, -200 )
 
