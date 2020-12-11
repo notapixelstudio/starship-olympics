@@ -188,10 +188,10 @@ func recolor():
 	$LightLine2DE2.default_color = color
 	$LightLine2DE3.default_color = color
 	$LightLine2DE4.default_color = color
+	$NoRotate.modulate = color
 	
 	if species:
 		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
-		$NoRotate/Monogram.modulate = color
 		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
 	
 func get_score():

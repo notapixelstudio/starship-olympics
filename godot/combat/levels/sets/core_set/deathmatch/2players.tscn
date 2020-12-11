@@ -66,13 +66,6 @@ enabled = false
 texture = ExtResource( 9 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 12 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.35, 0, 0.116667, 1 )
-bg_color = Color( 0.16, 0, 0, 1 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
@@ -97,6 +90,19 @@ bevel_nw = 400
 bevel_ne = 400
 bevel_sw = 400
 bevel_se = 400
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 12 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0.4, 0, 0.133333, 1 )
+bg_color = Color( 0.16, 0, 0, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1000, -500 )
@@ -313,15 +319,14 @@ rotation_degrees = 0.0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1200, 700 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 10 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 1200, -700 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
