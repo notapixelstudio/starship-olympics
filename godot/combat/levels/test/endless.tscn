@@ -125,6 +125,12 @@ collision_mask = 2048
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/EndlessAreaHeavy" index="0"]
 shape = SubResource( 1 )
 
+[node name="FloodWater" parent="Battlefield/Background" index="6"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="0"]
 position = Vector2( 0, -200 )
 curve = SubResource( 2 )
