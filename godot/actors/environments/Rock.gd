@@ -15,6 +15,7 @@ export var contains_star : bool = false
 export var self_destruct : bool = false
 export var deadly : bool = true
 export var smallest_break : bool = true
+export var conquerable : bool = false
 
 var species : Resource
 var owner_ship : Ship
@@ -70,7 +71,7 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
-	elif body is Ship:
+	elif body is Ship and conquerable:
 		conquered_by(body)
 
 func try_break():
