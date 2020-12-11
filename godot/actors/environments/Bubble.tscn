@@ -14,21 +14,21 @@
 [ext_resource path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_pop_mouth_005bis_28805.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/sprites/environments/bubble_border.png" type="Texture" id=13]
 
-[sub_resource type="PhysicsMaterial" id=8]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 0.4
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=2]
 size = 86
 font_data = ExtResource( 3 )
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=3]
 radius = 110.0
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id=4]
 radius = 250.0
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 resource_name = "pop"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NoRotate:scale")
@@ -91,13 +91,13 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.227778, 1 ), -0.0151523, -0.0151523, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=13]
-curve = SubResource( 12 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -108,7 +108,7 @@ orbit_velocity_random = 0.0
 damping = 500.0
 scale = 0.2
 scale_random = 0.4
-scale_curve = SubResource( 13 )
+scale_curve = SubResource( 7 )
 
 [node name="Bubble" type="RigidBody2D" groups=[
 "in_camera",
@@ -117,7 +117,7 @@ scale_curve = SubResource( 13 )
 collision_layer = 2048
 collision_mask = 10389
 mass = 0.5
-physics_material_override = SubResource( 8 )
+physics_material_override = SubResource( 1 )
 can_sleep = false
 linear_damp = 0.0
 script = ExtResource( 2 )
@@ -131,7 +131,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 align = 1
 valign = 1
 __meta__ = {
@@ -161,7 +161,7 @@ scale = Vector2( 0.8, 0.8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 9 )
+shape = SubResource( 3 )
 
 [node name="BindingArea" type="Area2D" parent="."]
 visible = false
@@ -169,24 +169,24 @@ collision_layer = 128
 collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BindingArea"]
-shape = SubResource( 10 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/pop = SubResource( 11 )
+anims/pop = SubResource( 5 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 modulate = Color( 0.572549, 0.572549, 0.572549, 1 )
 emitting = false
 explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource( 14 )
+process_material = SubResource( 8 )
 texture = ExtResource( 4 )
 
 [node name="Particles2D2" type="Particles2D" parent="."]
 emitting = false
 explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource( 14 )
+process_material = SubResource( 8 )
 texture = ExtResource( 4 )
 
 [node name="RandomPopSFX" type="AudioStreamPlayer2D" parent="."]

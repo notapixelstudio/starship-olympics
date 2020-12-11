@@ -74,6 +74,10 @@ func damage():
 	if on:
 		set_on(false, 3)
 		
+func _on_RayArea_body_entered(body):
+	if body is Bubble:
+		body.pop(true)
+		
 func _on_RayArea_area_entered(area):
 	if area is Explosion:
 		damage()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -72,6 +73,15 @@ position = Vector2( -1200, 800 )
 order = 2
 spawn_diamonds = false
 deadly = false
+
+[node name="Bubble" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
+position = Vector2( 500, 600 )
+
+[node name="Bubble2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
+position = Vector2( 800, 600 )
+
+[node name="Bubble3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
+position = Vector2( 1100, 600 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -400, 700 )
