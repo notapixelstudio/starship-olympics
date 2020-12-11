@@ -48,6 +48,9 @@ func set_on(v, duration=null):
 		set_on(not on)
 
 func _ready():
+	set_physics_process(false)
+	
+func start():
 	set_physics_process(true)
 
 var laser_endpoint = Vector2(0,0)

@@ -43,7 +43,9 @@ orbit_velocity_random = 0.0
 scale = 2.0
 scale_curve = SubResource( 6 )
 
-[node name="Laser" type="RayCast2D"]
+[node name="Laser" type="RayCast2D" groups=[
+"wait_to_start",
+]]
 enabled = true
 cast_to = Vector2( 20000, 0 )
 collision_mask = 132112
