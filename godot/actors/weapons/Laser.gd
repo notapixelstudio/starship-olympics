@@ -13,6 +13,12 @@ func set_on(v, duration=null):
 	enabled = on
 	$CastingParticles2D.emitting = on
 	
+	if on:
+		$Line2D.modulate = Color(1,1,1)
+		$CollisionParticles2D.emitting = true
+	else:
+		$RayArea/CollisionShape2D.disabled = true
+	
 	if is_inside_tree():
 		$Line2D.width = WIDTH if on else HINT_WIDTH
 		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
@@ -30,8 +36,12 @@ func set_on(v, duration=null):
 		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
 	
 	$Line2D.width = WIDTH if on else HINT_WIDTH
-	$Area2D/CollisionShape2D.disabled = not on
-	$CollisionParticles2D.emitting = on
+	
+	if not on:
+		$Line2D.modulate = Color(1,0,0.5)
+		$CollisionParticles2D.emitting = false
+	else:
+		$RayArea/CollisionShape2D.disabled = false
 	
 	if duration:
 		yield(get_tree().create_timer(duration), "timeout")
@@ -53,7 +63,7 @@ func _physics_process(delta):
 	else:
 		laser_endpoint = cast_point
 		
-	$Area2D/CollisionShape2D.shape.b = laser_endpoint
+	$RayArea/CollisionShape2D.shape.b = laser_endpoint
 	$Line2D.points[1] = laser_endpoint
 	$CollisionParticles2D.position = laser_endpoint
 	
@@ -61,7 +71,6 @@ func damage():
 	if on:
 		set_on(false, 3)
 		
-func _on_HitArea_body_entered(body):
-	# mask: if body is Bomb or body is Explosion or body is Trail:
-	damage()
-	
+func _on_RayArea_area_entered(area):
+	if area is Explosion:
+		damage()

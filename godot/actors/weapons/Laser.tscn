@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=2]
@@ -8,7 +8,8 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 1, 0.462036, 0.390625, 1, 1, 0, 0.45098, 1 )
+offsets = PoolRealArray( 0.00578035, 1 )
+colors = PoolColorArray( 1.1, 0.73, 0.59, 1, 1.8, 0, 0.45, 1 )
 
 [sub_resource type="SegmentShape2D" id=3]
 b = Vector2( 0, 200 )
@@ -42,13 +43,10 @@ orbit_velocity_random = 0.0
 scale = 2.0
 scale_curve = SubResource( 6 )
 
-[sub_resource type="CircleShape2D" id=9]
-radius = 100.0
-
 [node name="Laser" type="RayCast2D"]
 enabled = true
 cast_to = Vector2( 20000, 0 )
-collision_mask = 132120
+collision_mask = 132112
 collide_with_areas = true
 script = ExtResource( 1 )
 
@@ -62,7 +60,6 @@ script = ExtResource( 2 )
 script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
-modulate = Color( 1.4, 1.4, 1.4, 1 )
 material = SubResource( 1 )
 points = PoolVector2Array( 0, 0, 200, 0 )
 width = 40.0
@@ -73,11 +70,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="RayArea" type="Area2D" parent="."]
 collision_layer = 128
-collision_mask = 7
+collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RayArea"]
 shape = SubResource( 3 )
 
 [node name="CastingParticles2D" type="Particles2D" parent="."]
@@ -98,13 +95,5 @@ visibility_rect = Rect2( -1000, -1000, 2000, 2000 )
 local_coords = false
 process_material = SubResource( 8 )
 texture = ExtResource( 4 )
-
-[node name="HitArea" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 524300
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-shape = SubResource( 9 )
-
-[node name="Tween" type="Tween" parent="."]
-[connection signal="body_entered" from="HitArea" to="." method="_on_HitArea_body_entered"]
+[connection signal="area_entered" from="RayArea" to="." method="_on_RayArea_area_entered"]
+[connection signal="body_entered" from="RayArea" to="." method="_on_RayArea_body_entered"]
