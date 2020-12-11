@@ -132,6 +132,7 @@ func new_child_rock(index):
 	child.smallest_break = smallest_break
 	child.species = species
 	child.owner_ship = owner_ship
+	child.conquerable = conquerable
 	child.start()
 	
 	if index == 0:
