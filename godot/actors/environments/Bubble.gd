@@ -111,6 +111,7 @@ func maybe_pop(bubble_shooter):
 func pop(now, i=0, bubble_shooter=null):
 	about_to_pop = true
 	yield(get_tree().create_timer(i*0.1), "timeout") # pop in sequence
+	$CollisionShape2D.disabled = true
 	$AnimationPlayer.play('pop')
 	if now:
 		$AnimationPlayer.seek(0.3)
