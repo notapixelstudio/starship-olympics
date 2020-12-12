@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=14 format=2]
+
+[ext_resource path="res://combat/modes/Arkanoid.tres" type="Resource" id=1]
+[ext_resource path="res://map/planets/Planet.gd" type="Script" id=2]
+[ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=3]
+[ext_resource path="res://combat/levels/sets/core_set/diamondsnatch/2players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/sets/core_set/diamondsnatch/4players.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/sets/core_set/diamondsnatch/3players.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/modes/Bubble.tres" type="Resource" id=7]
+[ext_resource path="res://map/planets/mutators/flood.tres" type="Resource" id=8]
+[ext_resource path="res://combat/levels/sets/water_set/star_fishing/4players.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/levels/sets/water_set/star_fishing/3players.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/levels/sets/water_set/star_fishing/2players.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/map/cards/sports_set.png" type="Texture" id=12]
+[ext_resource path="res://combat/modes/AsteroidConquest.tres" type="Resource" id=13]
+
+[resource]
+script = ExtResource( 2 )
+name = "Sports"
+tagline1 = ""
+tagline2 = ""
+description = ""
+minigames = [ ExtResource( 3 ), ExtResource( 13 ), ExtResource( 1 ), ExtResource( 7 ) ]
+levels_1players = [ ExtResource( 4 ), ExtResource( 11 ) ]
+levels_2players = [ ExtResource( 4 ), ExtResource( 11 ) ]
+levels_3players = [ ExtResource( 6 ), ExtResource( 10 ) ]
+levels_4players = [ ExtResource( 5 ), ExtResource( 9 ) ]
+planet_sprite = ExtResource( 12 )
+mutators = [ ExtResource( 8 ) ]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -6,13 +6,12 @@
 [ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://map/planets/sets/asteroids.tres" type="Resource" id=7]
+[ext_resource path="res://map/planets/sets/trinkets.tres" type="Resource" id=7]
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=8]
-[ext_resource path="res://map/planets/sets/labs.tres" type="Resource" id=9]
+[ext_resource path="res://map/planets/sets/sports.tres" type="Resource" id=9]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://map/planets/sets/deathmatches.tres" type="Resource" id=11]
 [ext_resource path="res://map/planets/sets/snakes.tres" type="Resource" id=12]
-[ext_resource path="res://map/planets/sets/beach.tres" type="Resource" id=13]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -97,13 +96,13 @@ polygon = PoolVector2Array( -700, -600, -600, -700, -300, -700, -300, -1200, -20
 position = Vector2( 400, -200 )
 
 [node name="Waypoint3" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 400, -400 )
+position = Vector2( 0, -600 )
 
 [node name="Waypoint23" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 600, -400 )
+position = Vector2( 600, -600 )
 
 [node name="Waypoint24" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 600, -200 )
+position = Vector2( 600, 0 )
 
 [node name="Waypoint25" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 800, -200 )
@@ -118,10 +117,10 @@ position = Vector2( 1000, 200 )
 position = Vector2( 1000, -200 )
 
 [node name="Waypoint30" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 1000, -400 )
+position = Vector2( 600, -400 )
 
 [node name="Waypoint31" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 800, -400 )
+position = Vector2( 1000, 0 )
 
 [node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 0, -200 )
@@ -149,6 +148,9 @@ position = Vector2( 800, -600 )
 
 [node name="Waypoint42" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 800, -800 )
+
+[node name="Waypoint48" parent="Content/Waypoints" instance=ExtResource( 5 )]
+position = Vector2( 1000, -800 )
 
 [node name="Waypoint43" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 600, -800 )
@@ -241,7 +243,7 @@ position = Vector2( 1200, 0 )
 position = Vector2( 1200, -200 )
 
 [node name="Waypoint61" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 1200, -400 )
+position = Vector2( 1000, -400 )
 
 [node name="Waypoint62" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 1200, -600 )
@@ -256,13 +258,13 @@ position = Vector2( 1200, -1000 )
 position = Vector2( 1000, -1000 )
 
 [node name="Waypoint66" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 800, -1000 )
+position = Vector2( 600, -1000 )
 
 [node name="Waypoint67" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 600, 200 )
 
 [node name="Waypoint68" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 200, -1000 )
+position = Vector2( 800, -400 )
 
 [node name="Waypoint70" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, -1000 )
@@ -337,7 +339,7 @@ position = Vector2( -200, 200 )
 position = Vector2( 400, 0 )
 
 [node name="Waypoint21" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 600, 0 )
+position = Vector2( 1200, 200 )
 
 [node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, 200 )
@@ -361,28 +363,30 @@ default_color = Color( 0.4, 0.501961, 1, 1 )
 [node name="Path2" type="Line2D" parent="Content/Waypoints"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
-points = PoolVector2Array( 0, 100, 0, -500 )
+points = PoolVector2Array( 0, 100, 0, -300, 100, -400, 300, -400 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="Path3" type="Line2D" parent="Content/Waypoints"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
-points = PoolVector2Array( 100, -600, 500, -600 )
+position = Vector2( 0, -100 )
+points = PoolVector2Array( 500, -300, 1100, -300 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="Path4" type="Line2D" parent="Content/Waypoints"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
-points = PoolVector2Array( 600, -500, 600, -100, 700, 0, 900, 0 )
+position = Vector2( 800, -50 )
+points = PoolVector2Array( 400, -450, 400, -850, 300, -950, 100, -950 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="Path5" type="Line2D" parent="Content/Waypoints"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
-points = PoolVector2Array( 700, -600, 900, -600, 1000, -700 )
+points = PoolVector2Array( 400, -500, 400, -900, 500, -1000, 700, -1000 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
@@ -391,29 +395,24 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Set" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( 0, -600 )
-planet = ExtResource( 7 )
-active = false
-
 [node name="Set2" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -200 )
 planet = ExtResource( 11 )
 active = false
 
 [node name="Set3" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( 1000, 0 )
-planet = ExtResource( 13 )
-active = false
-
-[node name="Set4" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( 1000, -800 )
-planet = ExtResource( 12 )
+position = Vector2( 400, -400 )
+planet = ExtResource( 7 )
 active = false
 
 [node name="Set5" parent="Content/Planets" instance=ExtResource( 6 )]
-position = Vector2( 600, -600 )
+position = Vector2( 1200, -400 )
 planet = ExtResource( 9 )
+active = false
+
+[node name="Set4" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 800, -1000 )
+planet = ExtResource( 12 )
 active = false
 
 [node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
@@ -442,7 +441,7 @@ visible = false
 texture = ExtResource( 17 )
 
 [node name="Flood Moon" parent="Content/Controls" instance=ExtResource( 14 )]
-position = Vector2( 1200, 200 )
+position = Vector2( 600, -200 )
 value_name = "flood"
 selection = [ "off", "on", "random" ]
 description = "add water to levels"
@@ -463,7 +462,7 @@ texture = ExtResource( 26 )
 anims/wigglewiggle = SubResource( 2 )
 
 [node name="Laser Moon" parent="Content/Controls" instance=ExtResource( 14 )]
-position = Vector2( 600, -1000 )
+position = Vector2( 200, -1000 )
 value_name = "laser"
 selection = [ "off", "on", "random" ]
 node_owner_path = NodePath("../Flood2")
