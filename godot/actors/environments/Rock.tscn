@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -63,6 +63,22 @@ animations = [ {
 "name": "shine",
 "speed": 60.0
 } ]
+
+[sub_resource type="Animation" id=9]
+resource_name = "Shake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 20, 0 ), Vector2( -20, 0 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="CanvasItemMaterial" id=3]
 
@@ -177,13 +193,21 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 49
+frame = 11
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.454902 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 33 )
+
+[node name="Prisoner" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.454902 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Prisoner"]
+playback_speed = 2.0
+anims/Shake = SubResource( 9 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 

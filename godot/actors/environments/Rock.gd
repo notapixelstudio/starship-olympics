@@ -14,15 +14,19 @@ export var spawn_diamonds : bool = true
 export var contains_star : bool = false
 export var self_destruct : bool = false
 export var deadly : bool = true
+export var ice : bool = false
 export var smallest_break : bool = true
 export var conquerable : bool = false
 
 var species : Resource
 var owner_ship : Ship
 
+var prisoner setget set_prisoner
+
 const colors = {
-	true: Color(0.8, 0, 0.85),
-	false: Color(0.7, 0.7, 0.7)
+	'deadly': Color(0.8, 0, 0.85),
+	'solid': Color(0.7, 0.7, 0.7),
+	'ice': Color(0.2,0.6,0.75)
 }
 
 var gshape
@@ -77,6 +81,15 @@ func _on_Area2D_body_entered(body):
 func try_break():
 	if not breakable:
 		return
+		
+	visible = false
+	
+	if prisoner:
+		get_parent().call_deferred('add_child', prisoner)
+		yield(prisoner, 'tree_entered')
+		prisoner.get_node('CollisionShape2D').disabled = true
+		yield(get_tree().create_timer(0.2), "timeout") # wait to check collisions because of freeze rays
+		prisoner.get_node('CollisionShape2D').disabled = false
 	
 	breakable = false
 	
@@ -178,7 +191,16 @@ func start():
 		try_break()
 		
 func recolor():
-	var color = colors[deadly] if not species else species.color
+	var color
+	
+	if species:
+		color = species.color
+	elif deadly:
+		color = colors['deadly']
+	elif ice:
+		color = colors['ice']
+	else:
+		color = colors['solid']
 	
 	$Polygon2D.color = color
 	$Line2D.default_color = color
@@ -215,3 +237,21 @@ func conquered_by(ship):
 func play_boom():
 	$RandomAudioStreamPlayer.play()
 	
+func set_prisoner(v):
+	prisoner = v
+	if prisoner is Bomb:
+		$Prisoner.texture = prisoner.get_node('Sprite').texture
+		$Prisoner.rotation_degrees = rad2deg(prisoner.linear_velocity.angle()) - 45
+	elif prisoner is Ship:
+		$Prisoner.texture = prisoner.species.ship
+		$Prisoner.rotation_degrees = prisoner.rotation_degrees - 45
+	
+var shakes = 5
+func _unhandled_input(event):
+	if prisoner and prisoner is Ship:
+		if event.is_action_pressed(prisoner.controls+'_fire'):
+			shakes -= 1
+			$Prisoner/AnimationPlayer.play('Shake')
+			if shakes == 0:
+				try_break()
+			

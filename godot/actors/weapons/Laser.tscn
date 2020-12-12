@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=2]
@@ -6,10 +6,6 @@
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.00578035, 1 )
-colors = PoolColorArray( 1.1, 0.73, 0.59, 1, 1.8, 0, 0.45, 1 )
 
 [sub_resource type="SegmentShape2D" id=3]
 b = Vector2( 0, 200 )
@@ -65,7 +61,6 @@ script = ExtResource( 2 )
 material = SubResource( 1 )
 points = PoolVector2Array( 0, 0, 200, 0 )
 width = 40.0
-gradient = SubResource( 2 )
 begin_cap_mode = 2
 end_cap_mode = 2
 __meta__ = {
@@ -88,7 +83,6 @@ process_material = SubResource( 7 )
 texture = ExtResource( 4 )
 
 [node name="CollisionParticles2D" type="Particles2D" parent="."]
-modulate = Color( 2.5, 0.88, 0.55, 1 )
 material = SubResource( 4 )
 position = Vector2( 200, 0 )
 amount = 16

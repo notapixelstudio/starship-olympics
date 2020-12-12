@@ -562,3 +562,8 @@ func emerge():
 	set_collision_layer_bit(0, true)
 	set_collision_layer_bit(18, false)
 	
+signal frozen
+func freeze():
+	if alive and not invincible:
+		emit_signal("frozen", self)
+		

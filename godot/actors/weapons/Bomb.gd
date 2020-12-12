@@ -184,3 +184,6 @@ func _on_NearArea_body_entered(body):
 		else:
 			body.pop(true)
 			
+signal frozen
+func freeze():
+	emit_signal("frozen", self)
