@@ -825,5 +825,10 @@ func _on_sth_just_froze(sth):
 	rock.deadly = false
 	rock.spawn_diamonds = false
 	rock.prisoner = sth
+	rock.self_destruct = true
+	rock.self_destruct_position = 'top'
+	rock.lifetime = 4
+	rock.angular_velocity = 0
 	$Battlefield.call_deferred("add_child", rock)
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
+	rock.call_deferred('start')

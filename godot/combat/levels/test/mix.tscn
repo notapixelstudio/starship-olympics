@@ -64,13 +64,13 @@ position = Vector2( -1700, 0 )
 type = "freeze"
 
 [node name="Rock" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
-position = Vector2( -750, -350 )
+position = Vector2( -750, -600 )
 order = 2
 spawn_diamonds = false
 deadly = false
 
 [node name="Rock2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
-position = Vector2( -1200, 800 )
+position = Vector2( 1300, -900 )
 order = 2
 spawn_diamonds = false
 deadly = false
@@ -79,10 +79,10 @@ deadly = false
 position = Vector2( 500, 600 )
 
 [node name="Bubble2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
-position = Vector2( 800, 600 )
+position = Vector2( 500, 900 )
 
 [node name="Bubble3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
-position = Vector2( 1100, 600 )
+position = Vector2( 500, 1200 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -400, 700 )

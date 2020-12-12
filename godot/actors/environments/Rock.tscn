@@ -64,7 +64,7 @@ animations = [ {
 "speed": 60.0
 } ]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 resource_name = "Shake"
 length = 0.4
 tracks/0/type = "value"
@@ -80,13 +80,12 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 20, 0 ), Vector2( -20, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=4]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 100.0
 
-[sub_resource type="Animation" id=5]
-resource_name = "Conquered"
+[sub_resource type="Animation" id=6]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -116,7 +115,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
@@ -146,13 +145,13 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 72
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 34 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=9]
 size = 52
 font_data = ExtResource( 34 )
 
@@ -193,7 +192,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 11
+frame = 42
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -207,13 +206,13 @@ scale = Vector2( 0.9, 0.9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Prisoner"]
 playback_speed = 2.0
-anims/Shake = SubResource( 9 )
+anims/Shake = SubResource( 3 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color( 1.8, 1.8, 1.8, 1 )
-material = SubResource( 3 )
+material = SubResource( 4 )
 width = 42.0
 texture = ExtResource( 32 )
 
@@ -258,30 +257,32 @@ width = 6.0
 default_color = Color( 0.87451, 0, 1, 0.392157 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 1024
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Forming"
-anims/Conquered = SubResource( 5 )
-anims/Forming = SubResource( 6 )
+anims/Conquered = SubResource( 6 )
+anims/Forming = SubResource( 7 )
 
 [node name="SelfDestructTimer" type="Timer" parent="."]
 
 [node name="NoRotate" type="Node2D" parent="."]
 
-[node name="Countdown" type="Label" parent="NoRotate"]
+[node name="CountdownWrapper" type="Node2D" parent="NoRotate"]
+
+[node name="Countdown" type="Label" parent="NoRotate/CountdownWrapper"]
 margin_left = -30.0
 margin_top = -44.0
 margin_right = 30.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 align = 1
 valign = 1
 __meta__ = {
@@ -296,7 +297,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 align = 1
 valign = 1
 __meta__ = {

@@ -7,28 +7,28 @@
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
-[sub_resource type="SegmentShape2D" id=3]
+[sub_resource type="SegmentShape2D" id=2]
 b = Vector2( 0, 200 )
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="CanvasItemMaterial" id=3]
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=4]
 max_value = 3.0
 _data = [ Vector2( 0, 3 ), 0.0, -0.029752, 0, 0, Vector2( 1, 0 ), -7.06612, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 400.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 2.0
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 10.0
 flag_disable_z = true
@@ -37,7 +37,7 @@ initial_velocity = -250.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 2.0
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 5 )
 
 [node name="Laser" type="RayCast2D" groups=[
 "wait_to_start",
@@ -69,27 +69,27 @@ __meta__ = {
 
 [node name="RayArea" type="Area2D" parent="."]
 collision_layer = 128
-collision_mask = 2063
+collision_mask = 2059
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RayArea"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="CastingParticles2D" type="Particles2D" parent="."]
 modulate = Color( 1.4, 1.4, 1.4, 1 )
-material = SubResource( 4 )
+material = SubResource( 3 )
 amount = 4
 lifetime = 0.3
-process_material = SubResource( 7 )
+process_material = SubResource( 6 )
 texture = ExtResource( 4 )
 
 [node name="CollisionParticles2D" type="Particles2D" parent="."]
-material = SubResource( 4 )
+material = SubResource( 3 )
 position = Vector2( 200, 0 )
 amount = 16
 lifetime = 0.5
 visibility_rect = Rect2( -1000, -1000, 2000, 2000 )
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 7 )
 texture = ExtResource( 4 )
 [connection signal="area_entered" from="RayArea" to="." method="_on_RayArea_area_entered"]
 [connection signal="body_entered" from="RayArea" to="." method="_on_RayArea_body_entered"]

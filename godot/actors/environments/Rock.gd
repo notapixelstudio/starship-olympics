@@ -13,6 +13,8 @@ export var base_size : float = 50.0
 export var spawn_diamonds : bool = true
 export var contains_star : bool = false
 export var self_destruct : bool = false
+export var self_destruct_position = 'center'
+export var lifetime = 6
 export var deadly : bool = true
 export var ice : bool = false
 export var smallest_break : bool = true
@@ -72,6 +74,8 @@ func _ready():
 	
 	ECM.E(self).get('Deadly').set_enabled(deadly)
 	
+	$NoRotate/CountdownWrapper.position = Vector2(0,-gshape.height*0.9) if self_destruct_position == 'top' else Vector2(0,0)
+	
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
@@ -85,13 +89,21 @@ func try_break():
 	visible = false
 	
 	if prisoner:
-		prisoner.rotation_degrees += rotation_degrees-45
+		if prisoner is Ship:
+			prisoner.rotation_degrees += rotation_degrees-45
 		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg2rad(rotation_degrees-45))
 		get_parent().get_parent().call_deferred('add_child', prisoner) # ugly: Battlefield
 		yield(prisoner, 'tree_entered')
+		# temporary disable collisions to avoid touching the rock
 		prisoner.get_node('CollisionShape2D').disabled = true
-		yield(get_tree().create_timer(0.2), "timeout") # wait to check collisions because of freeze rays
+		if prisoner is Bomb:
+			# temporary disable collisions with fields because of freeze rays
+			prisoner.set_collision_mask_bit(7, false)
+		yield(get_tree().create_timer(0.1), "timeout")
 		prisoner.get_node('CollisionShape2D').disabled = false
+		if prisoner is Bomb:
+			yield(get_tree().create_timer(0.15), "timeout")
+			prisoner.set_collision_mask_bit(7, true)
 	
 	breakable = false
 	
@@ -159,7 +171,7 @@ func new_child_rock(index):
 func become_breakable():
 	breakable = true
 	
-onready var countdown = $NoRotate/Countdown
+onready var countdown = $NoRotate/CountdownWrapper/Countdown
 
 func _process(delta):
 	$NoRotate.rotation = -rotation
@@ -170,28 +182,11 @@ func start():
 			yield($SelfDestructTimer, 'tree_entered')
 			
 		$SelfDestructTimer.start(randf())
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '5'
 		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '4'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '3'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '2'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '1'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		try_break()
+		while lifetime > 0:
+			yield($SelfDestructTimer, 'timeout')
+			decrease_lifetime()
+			$SelfDestructTimer.start(1)
 		
 func recolor():
 	var color
@@ -249,12 +244,15 @@ func set_prisoner(v):
 		$Prisoner.texture = prisoner.species.ship
 		$Prisoner.rotation_degrees = prisoner.rotation_degrees - 45
 	
-var shakes = 5
 func _unhandled_input(event):
 	if prisoner and prisoner is Ship:
 		if event.is_action_pressed(prisoner.controls+'_fire'):
-			shakes -= 1
 			$Prisoner/AnimationPlayer.play('Shake')
-			if shakes == 0:
-				try_break()
+			decrease_lifetime()
 			
+func decrease_lifetime():
+	lifetime -= 1
+	countdown.text = str(lifetime)
+	if lifetime == 0:
+		try_break()
+		
