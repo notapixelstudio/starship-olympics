@@ -827,4 +827,4 @@ func _on_sth_just_froze(sth):
 	rock.prisoner = sth
 	rock.angular_velocity = 0
 	$Battlefield.call_deferred("add_child", rock)
-	
+	rock.connect('request_spawn', self, '_on_Rock_request_spawn')

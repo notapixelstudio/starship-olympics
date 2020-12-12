@@ -142,6 +142,7 @@ func new_child_rock(index):
 	child.divisions = divisions
 	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
 	child.deadly = deadly
+	child.ice = ice
 	child.smallest_break = smallest_break
 	child.species = species
 	child.owner_ship = owner_ship
