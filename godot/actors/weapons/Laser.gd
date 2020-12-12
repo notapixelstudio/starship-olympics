@@ -23,7 +23,7 @@ func refresh_type():
 		gradient = Gradient.new()
 		gradient.set_color(0, Color8(281,186,150))
 		gradient.set_color(1, Color8(459,0,115))
-		particles_color = Color8(638,224,640)
+		particles_color = Color8(938,144,100)
 	elif type == 'freeze':
 		off_color = Color(0,1,1)
 		gradient = Gradient.new()
