@@ -1,10 +1,6 @@
 extends Ship
 
 onready var debug_ship = $Debug
-onready var rays = [
-	$RayCast2DFront, $"RayCast2D20+", 
-	$"RayCast2D20-", $"RayCast2D45+", $"RayCast2D45-"
-	]	
 
 
 const MAX_DIR_WAIT = 900
@@ -26,7 +22,7 @@ static func which_quadrant(angle:float):
 	return int(tmp/(PI/2))%4+1
 	
 var laser_color = Color(1.0, .329, .298)
-const MAX_SEE_AHEAD = 200
+const MAX_SEE_AHEAD = 20
 var hit_pos = []
 
 var behaviour_mode = "wander"
@@ -37,6 +33,7 @@ func dist(a: Vector2, b: Vector2):
 	return (a-b).length()
 
 var target_pos = Vector2()
+
 func choose_target(entities, component="Strategic") -> Dictionary:
 	"""
 	Among the possible target objects choose the highest priority one
@@ -53,27 +50,31 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 			continue
 		var distance = dist(object.global_position, global_position)
 		var strategy: Dictionary = entity.get(component).get_strategy(self, distance, self.game_mode)
-		
 		for key in strategy:
-			if not key in self.possible_behaviours:
+			if not key in self.possible_behaviours or key == "avoid":
 				continue
 			var this_element_priority = strategy[key] / distance
-			
-			if priority < this_element_priority:
+			if (self.keep_decision <= 0 and priority < this_element_priority) or (object == last_target and key == last_behaviour and self.keep_decision >= 0):
 				priority = this_element_priority
 				best_candidate = object
 				behaviour = key
 				target_pos = best_candidate.global_position - position
 				from = "entities"
 	
-	var becareful = []
+	var becareful = get_ahead()
 	var space_state = get_world_2d().direct_space_state
+	
 	for ahead in becareful:
 		var danger1 = position + ahead
 		var result = space_state.intersect_ray(position, danger1, [self], collision_mask, true, true)
+		
 		if result :
+			hit_pos.append(result.position)
 			var collider = result.collider
 			var e = ECM.E(collider)
+			if not e:
+				# If we collide with a NON entity
+				continue
 			var distance = dist(result.position, global_position)
 			if not e.has(component):
 				continue
@@ -82,7 +83,8 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 				if not key in self.possible_behaviours:
 					continue
 				var this_element_priority = strategy[key] / distance
-				if priority < this_element_priority:
+				
+				if (self.keep_decision <= 0 and priority < this_element_priority) or (collider == last_target and key == last_behaviour and self.keep_decision >= 0):
 					priority = this_element_priority
 					best_candidate = collider
 					behaviour = key
@@ -90,7 +92,8 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 					from = "raycasting"
 					if behaviour == "avoid":
 						target_pos = result.normal * MAX_AVOIDANCE_FORCE
-			
+		else:
+			hit_pos.append(danger1)
 	return {"target": best_candidate, "behaviour": behaviour, "target_pos": target_pos, "from": from}
 	
 const CIRCLE_DIST = 50
@@ -116,7 +119,9 @@ func wander():
 	return (wander_force)
 	
 
+
 func get_ahead()-> PoolVector2Array:
+	hit_pos= []
 	var pool = PoolVector2Array()
 	for pixels in [-45, -20, 0, 20, 45]:
 		pool.append(front.rotated(deg2rad(pixels)) * MAX_SEE_AHEAD)
@@ -126,23 +131,20 @@ const MAX_AVOID = 10
 
 var last_target_pos = Vector2()
 var last_target = null
-func choose_dir(target):
+var last_strategy = null
+var last_behaviour = "defaulsat"
+func choose_dir(target_pos):
 	"""
 	# Follow the Crown or the crown holder if you are not it
 	# if you are just run away
 	"""
 	var direction_to_take = 0
-	var target_pos = last_target_pos
-	if target != null:
-		target_pos = target
-	else:
-		target_pos = front
-	last_target_pos = target_pos
-	last_target = target
-	var distance_to_target = target_pos
-	target_velocity = distance_to_target.normalized()
-	
 	front = Vector2(cos(rotation), sin(rotation))
+	if not target_pos:
+		target_pos = front
+	target_velocity = target_pos.normalized()
+	
+	
 	direction_to_take = front.angle_to(target_velocity)
 	
 	return direction_to_take
@@ -165,7 +167,6 @@ func _ready():
 
 const MAX_WAIT = 200
 var wait = MAX_WAIT
-var target 
 
 var charging_time : int = 0
 var force_wander = false
@@ -173,29 +174,26 @@ var force_wander = false
 func control(delta):
 	keep_decision -= delta
 	var chosen_strategy = choose_target(ECM.entities_with('Strategic'))
-	var target = chosen_strategy["target_pos"]
+	target_pos = chosen_strategy["target_pos"]
+	last_behaviour = chosen_strategy["behaviour"]
 	var from = chosen_strategy["from"]
-	var behaviour = chosen_strategy["behaviour"]
-	var which_target = chosen_strategy["target"]
-	if keep_decision < 0: 
-		keep_decision = DECISION_TIME
-		print("CHANGE DECISION")
-	else:
-		target = last_target
-	if which_target:
-		which_target = which_target.name
+	var target = chosen_strategy["target"]
+	
+	var which_target = "NOONE"
+	if target:
+		which_target = target.name
+	
 	behaviour_mode = chosen_strategy["behaviour"] + "\n" + which_target + "\n" + from
 	
+	if last_target_pos or force_wander or last_behaviour == "wander":
+		target_pos = wander()
 	
-	if not target or force_wander or behaviour == "wander":
-		target = wander()
-	
-	rotation_request = choose_dir(target)
+	rotation_request = choose_dir(target_pos)
 	
 	# charge
 	if charging:
-		if behaviour == "shoot":
-			rotation_request = choose_dir(-target)
+		if last_behaviour == "shoot":
+			rotation_request = choose_dir(-target_pos)
 		charge = charge+delta
 	else:
 		charge = 0

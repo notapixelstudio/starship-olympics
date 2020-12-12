@@ -32,8 +32,8 @@ func _draw():
 	draw_vector(parent.target_pos*0.5, Vector2(), colors['PINK'])
 	
 	draw_vector(parent.last_target_pos, Vector2(), colors['WHITE'])
-	#for ahead in parent.get_ahead():
-	#	draw_vector(ahead, Vector2(), colors['WHITE'].darkened(0.3))
+	for ahead in parent.get_ahead():
+		draw_vector(ahead, Vector2(), colors['WHITE'].darkened(0.3))
 	#draw_vector(parent.velocity.normalized()*5, Vector2(), colors['YELLOW'])
 
 
