@@ -13,15 +13,22 @@ export var base_size : float = 50.0
 export var spawn_diamonds : bool = true
 export var contains_star : bool = false
 export var self_destruct : bool = false
+export var self_destruct_position = 'center'
+export var lifetime = 6
 export var deadly : bool = true
+export var ice : bool = false
 export var smallest_break : bool = true
+export var conquerable : bool = false
 
 var species : Resource
 var owner_ship : Ship
 
+var prisoner setget set_prisoner
+
 const colors = {
-	true: Color(0.8, 0, 0.85),
-	false: Color(0.7, 0.7, 0.7)
+	'deadly': Color(0.8, 0, 0.85),
+	'solid': Color(0.7, 0.7, 0.7),
+	'ice': Color(0.2,0.6,0.75)
 }
 
 var gshape
@@ -67,15 +74,36 @@ func _ready():
 	
 	ECM.E(self).get('Deadly').set_enabled(deadly)
 	
+	$NoRotate/CountdownWrapper.position = Vector2(0,-gshape.height*0.9) if self_destruct_position == 'top' else Vector2(0,0)
+	
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
-	elif body is Ship:
+	elif body is Ship and conquerable:
 		conquered_by(body)
 
 func try_break():
 	if not breakable:
 		return
+		
+	visible = false
+	
+	if prisoner:
+		if prisoner is Ship:
+			prisoner.rotation_degrees += rotation_degrees-45
+		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg2rad(rotation_degrees-45))
+		get_parent().get_parent().call_deferred('add_child', prisoner) # ugly: Battlefield
+		yield(prisoner, 'tree_entered')
+		# temporary disable collisions to avoid touching the rock
+		prisoner.get_node('CollisionShape2D').disabled = true
+		if prisoner is Bomb:
+			# temporary disable collisions with fields because of freeze rays
+			prisoner.set_collision_mask_bit(7, false)
+		yield(get_tree().create_timer(0.1), "timeout")
+		prisoner.get_node('CollisionShape2D').disabled = false
+		if prisoner is Bomb:
+			yield(get_tree().create_timer(0.15), "timeout")
+			prisoner.set_collision_mask_bit(7, true)
 	
 	breakable = false
 	
@@ -128,9 +156,11 @@ func new_child_rock(index):
 	child.divisions = divisions
 	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
 	child.deadly = deadly
+	child.ice = ice
 	child.smallest_break = smallest_break
 	child.species = species
 	child.owner_ship = owner_ship
+	child.conquerable = conquerable
 	child.start()
 	
 	if index == 0:
@@ -141,7 +171,7 @@ func new_child_rock(index):
 func become_breakable():
 	breakable = true
 	
-onready var countdown = $NoRotate/Countdown
+onready var countdown = $NoRotate/CountdownWrapper/Countdown
 
 func _process(delta):
 	$NoRotate.rotation = -rotation
@@ -152,31 +182,23 @@ func start():
 			yield($SelfDestructTimer, 'tree_entered')
 			
 		$SelfDestructTimer.start(randf())
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '5'
 		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '4'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '3'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '2'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '1'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		try_break()
+		while lifetime > 0:
+			yield($SelfDestructTimer, 'timeout')
+			decrease_lifetime()
+			$SelfDestructTimer.start(1)
 		
 func recolor():
-	var color = colors[deadly] if not species else species.color
+	var color
+	
+	if species:
+		color = species.color
+	elif deadly:
+		color = colors['deadly']
+	elif ice:
+		color = colors['ice']
+	else:
+		color = colors['solid']
 	
 	$Polygon2D.color = color
 	$Line2D.default_color = color
@@ -188,10 +210,10 @@ func recolor():
 	$LightLine2DE2.default_color = color
 	$LightLine2DE3.default_color = color
 	$LightLine2DE4.default_color = color
+	$NoRotate.modulate = color
 	
 	if species:
 		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
-		$NoRotate/Monogram.modulate = color
 		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
 	
 func get_score():
@@ -213,3 +235,24 @@ func conquered_by(ship):
 func play_boom():
 	$RandomAudioStreamPlayer.play()
 	
+func set_prisoner(v):
+	prisoner = v
+	if prisoner is Bomb:
+		$Prisoner.texture = prisoner.get_node('Sprite').texture
+		$Prisoner.rotation_degrees = rad2deg(prisoner.linear_velocity.angle()) - 45
+	elif prisoner is Ship:
+		$Prisoner.texture = prisoner.species.ship
+		$Prisoner.rotation_degrees = prisoner.rotation_degrees - 45
+	
+func _unhandled_input(event):
+	if prisoner and prisoner is Ship:
+		if event.is_action_pressed(prisoner.controls+'_fire'):
+			$Prisoner/AnimationPlayer.play('Shake')
+			decrease_lifetime()
+			
+func decrease_lifetime():
+	lifetime -= 1
+	countdown.text = str(lifetime)
+	if lifetime == 0:
+		try_break()
+		

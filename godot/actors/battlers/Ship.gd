@@ -42,12 +42,12 @@ const CHARGE_MULTIPLIER = 5500
 const DASH_BASE = -400
 const DASH_MULTIPLIER = 2.2
 const BOMB_OFFSET = 50
-const BOMB_BOOST = 600
+const BOMB_BOOST = 1000
 const BALL_BOOST = 1650
 const BALL_CHARGE_MULTIPLIER = 1.8
 const BULLET_BOOST = 1500
 const BULLET_CHARGE_MULTIPLIER = 1.3
-const BUBBLE_BOOST = 700
+const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 
@@ -562,3 +562,8 @@ func emerge():
 	set_collision_layer_bit(0, true)
 	set_collision_layer_bit(18, false)
 	
+signal frozen
+func freeze():
+	if alive and not invincible:
+		emit_signal("frozen", self)
+		

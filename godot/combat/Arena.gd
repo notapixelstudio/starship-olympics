@@ -644,6 +644,7 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
+	ship.connect("frozen", self, "_on_sth_just_froze")
 	ship.connect("spawn_bomb", self, "spawn_bomb", [ship])
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
@@ -689,6 +690,7 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 		bomb.connect("detonate", self, "bomb_detonated", [bomb])
+		bomb.connect("frozen", self, "_on_sth_just_froze")
 	
 	$Battlefield.add_child(bomb)
 	
@@ -812,3 +814,21 @@ func connect_killable(killable):
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)
+
+const RockScene = preload('res://actors/environments/Rock.tscn')
+func _on_sth_just_froze(sth):
+	$Battlefield.call_deferred("remove_child", sth)
+	var rock = RockScene.instance()
+	rock.position = sth.position
+	rock.order = 2 if sth is Ship else 1
+	rock.ice = true
+	rock.deadly = false
+	rock.spawn_diamonds = false
+	rock.prisoner = sth
+	rock.self_destruct = true
+	rock.self_destruct_position = 'top'
+	rock.lifetime = 4
+	rock.angular_velocity = 0
+	$Battlefield.call_deferred("add_child", rock)
+	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
+	rock.call_deferred('start')

@@ -246,29 +246,30 @@ rotation_degrees = 0.0
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 12 )]
-position = Vector2( -750, 0 )
-rotation = 0.0
+position = Vector2( -530.33, -530.33 )
+rotation = 0.785398
+scale = Vector2( 1, 1 )
 controls = "joy1"
 species = ExtResource( 10 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 12 )]
-position = Vector2( 750, 0 )
-rotation = 3.14159
+position = Vector2( 530.33, 530.33 )
+rotation = -2.3562
 controls = "joy2"
 species = ExtResource( 11 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 12 )]
-position = Vector2( 0, -750 )
-rotation = 1.5708
+position = Vector2( 530.33, -530.33 )
+rotation = 2.3562
 controls = "joy3"
 species = ExtResource( 3 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 12 )]
-position = Vector2( 0, 750 )
-rotation = -1.5708
+position = Vector2( -530.33, 530.33 )
+rotation = -0.785402
 controls = "joy4"
 species = ExtResource( 14 )
 cpu = true
