@@ -85,7 +85,9 @@ func try_break():
 	visible = false
 	
 	if prisoner:
-		get_parent().call_deferred('add_child', prisoner)
+		prisoner.rotation_degrees += rotation_degrees-45
+		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg2rad(rotation_degrees-45))
+		get_parent().get_parent().call_deferred('add_child', prisoner) # ugly: Battlefield
 		yield(prisoner, 'tree_entered')
 		prisoner.get_node('CollisionShape2D').disabled = true
 		yield(get_tree().create_timer(0.2), "timeout") # wait to check collisions because of freeze rays
