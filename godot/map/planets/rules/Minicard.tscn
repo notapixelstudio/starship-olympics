@@ -3,15 +3,12 @@
 [ext_resource path="res://map/planets/rules/Minicard.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/card_minigame.png" type="Texture" id=2]
 
-[node name="Minicard" type="TextureRect"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1174.0
-margin_bottom = -662.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+[node name="Minicard" type="Sprite"]
+scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.235294 )
+show_behind_parent = true
+position = Vector2( 0, 8 )

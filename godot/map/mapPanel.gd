@@ -65,19 +65,19 @@ func disable():
 	modulate = Color(1,1,1,0.1)
 	sprite.visible = false
 	
+const dx = 110
+const dy = 70
 func create_minicards():
 	destroy_minicards() # FIXME ugly, but useful
 	if not map_element is Planet:
 		return
+	var i = 0
 	for minigame in map_element.minigames:
 		var minicard = Minicard.instance()
 		minicard.content = minigame
 		$Minicards.add_child(minicard)
-		
-	for mutator in map_element.mutators:
-		var minicard = Minicard.instance()
-		minicard.content = mutator
-		$Minicards.add_child(minicard)
+		minicard.position = Vector2(dx*(i%2) - dx/2, dy*floor(i/2) - dy/2)
+		i += 1
 	
 func destroy_minicards():
 	for minicard in $Minicards.get_children():

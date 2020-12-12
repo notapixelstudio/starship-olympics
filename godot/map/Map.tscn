@@ -267,7 +267,7 @@ position = Vector2( 600, 200 )
 position = Vector2( 800, -400 )
 
 [node name="Waypoint70" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 400, -1000 )
+position = Vector2( 200, -1000 )
 
 [node name="Waypoint71" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 0, -1000 )
@@ -383,13 +383,6 @@ points = PoolVector2Array( 400, -450, 400, -850, 300, -950, 100, -950 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
-[node name="Path5" type="Line2D" parent="Content/Waypoints"]
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-material = SubResource( 1 )
-points = PoolVector2Array( 400, -500, 400, -900, 500, -1000, 700, -1000 )
-width = 16.0
-default_color = Color( 0.4, 0.501961, 1, 1 )
-
 [node name="Planets" type="Node2D" parent="Content"]
 __meta__ = {
 "_edit_lock_": true
@@ -462,7 +455,7 @@ texture = ExtResource( 26 )
 anims/wigglewiggle = SubResource( 2 )
 
 [node name="Laser Moon" parent="Content/Controls" instance=ExtResource( 14 )]
-position = Vector2( 200, -1000 )
+position = Vector2( 400, -1000 )
 value_name = "laser"
 selection = [ "off", "on", "random" ]
 node_owner_path = NodePath("../Flood2")
