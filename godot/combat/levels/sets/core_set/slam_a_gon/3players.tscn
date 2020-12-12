@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -14,65 +14,10 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=13]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=15]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=16]
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=17]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=19]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 20.0
-
-[sub_resource type="Animation" id=2]
-resource_name = "Default"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 6, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "Default"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 6, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Default"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 6, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -84,20 +29,13 @@ match_duration_override = 80.0
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 17 )
-texture_scale = Vector2( 2, 2 )
-fg_color = Color( 0.5, 0.390667, 0.295, 1 )
-bg_color = Color( 0.39, 0.2691, 0.1482, 1 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -105,7 +43,18 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1800
+precision = 100.0
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 17 )
+texture_scale = Vector2( 2, 2 )
+fg_color = Color( 0.25, 0.16925, 0.1225, 1 )
+bg_color = Color( 0.23, 0.156745, 0.1173, 1 )
 
 [node name="O" type="Sprite" parent="Battlefield/Background" index="3"]
 modulate = Color( 1, 1, 1, 0.0470588 )
@@ -142,6 +91,12 @@ width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="GoalsP2" type="Node2D" parent="Battlefield/Middleground" index="0"]
 rotation = -1.5708
@@ -225,98 +180,81 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP1" index="3" instance=ExtResource( 18 )]
-modulate = Color( 0.494118, 0.694118, 1, 1 )
+modulate = Color( 0.35, 0.566667, 1, 1 )
 position = Vector2( -875, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
-[node name="LaserStop" type="StaticBody2D" parent="Battlefield/Middleground" index="3" groups=[
-"additional_lasers",
-]]
-position = Vector2( -2.66793e-12, -6.10352e-05 )
-rotation = -1.5708
-collision_layer = 131072
-collision_mask = 0
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="3"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Middleground/LaserStop" index="0"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/LaserStop" index="1"]
-modulate = Color( 1, 0, 0.45098, 1 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 15 )
-
-[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="4"]
-rotation = -1.5708
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D" index="0" groups=[
-"additional_lasers",
-] instance=ExtResource( 14 )]
-position = Vector2( 1750, 1 )
-rotation = 3.14159
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D/Laser" index="5" groups=[
-"animation_if_additional_lasers",
-]]
-anims/Default = SubResource( 2 )
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1800, 0 )
+[node name="Wall" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
+position = Vector2( 1600, -800 )
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
-[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="5"]
-rotation = 2.61799
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D2" index="0" groups=[
+[node name="Laser" parent="Battlefield/Middleground/Node2D/Wall" index="9" groups=[
 "additional_lasers",
 ] instance=ExtResource( 14 )]
-position = Vector2( 1750, 1 )
+position = Vector2( -50, 1 )
 rotation = 3.14159
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2/Laser" index="5" groups=[
-"animation_if_additional_lasers",
-]]
-anims/Default = SubResource( 3 )
+[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="4"]
+rotation = 2.0944
 
-[node name="Wall" parent="Battlefield/Middleground/Node2D2" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1800, 0 )
+[node name="Wall" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
+position = Vector2( 1600, -800 )
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
-[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="6"]
-rotation = 0.523599
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D3" index="0" groups=[
+[node name="Laser" parent="Battlefield/Middleground/Node2D2/Wall" index="9" groups=[
 "additional_lasers",
 ] instance=ExtResource( 14 )]
-position = Vector2( 1750, 1 )
+position = Vector2( -49.9999, 1 )
 rotation = 3.14159
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3/Laser" index="5" groups=[
-"animation_if_additional_lasers",
-]]
-anims/Default = SubResource( 4 )
+[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="5"]
+rotation = 4.18879
 
-[node name="Wall" parent="Battlefield/Middleground/Node2D3" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1800, 0 )
+[node name="Wall" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
+position = Vector2( 1600, -800 )
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="9" groups=[
+"additional_lasers",
+] instance=ExtResource( 14 )]
+position = Vector2( -50, 1 )
+rotation = 3.14159
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 type = 1
