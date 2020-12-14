@@ -22,7 +22,7 @@ static func which_quadrant(angle:float):
 	return int(tmp/(PI/2))%4+1
 	
 var laser_color = Color(1.0, .329, .298)
-const MAX_SEE_AHEAD = 20
+const MAX_SEE_AHEAD = 100
 var hit_pos = []
 
 var behaviour_mode = "wander"
@@ -60,21 +60,26 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 				behaviour = key
 				target_pos = best_candidate.global_position - position
 				from = "entities"
-	
+	hit_pos = []
 	var becareful = get_ahead()
 	var space_state = get_world_2d().direct_space_state
-	
+	var i = 0
 	for ahead in becareful:
-		var danger1 = position + ahead
-		var result = space_state.intersect_ray(position, danger1, [self], collision_mask, true, true)
+		i +=1
+		var danger = position + ahead
+		
+		var result = space_state.intersect_ray(position, danger, [self], collision_mask, true, true)
 		
 		if result :
-			hit_pos.append(result.position)
 			var collider = result.collider
+			
 			var e = ECM.E(collider)
 			if not e:
+				hit_pos.append(danger)
 				# If we collide with a NON entity
 				continue
+			hit_pos.append(result.position)
+			
 			var distance = dist(result.position, global_position)
 			if not e.has(component):
 				continue
@@ -93,7 +98,7 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 					if behaviour == "avoid":
 						target_pos = result.normal * MAX_AVOIDANCE_FORCE
 		else:
-			hit_pos.append(danger1)
+			hit_pos.append(danger-position)
 	return {"target": best_candidate, "behaviour": behaviour, "target_pos": target_pos, "from": from}
 	
 const CIRCLE_DIST = 50
@@ -121,7 +126,6 @@ func wander():
 
 
 func get_ahead()-> PoolVector2Array:
-	hit_pos= []
 	var pool = PoolVector2Array()
 	for pixels in [-45, -20, 0, 20, 45]:
 		pool.append(front.rotated(deg2rad(pixels)) * MAX_SEE_AHEAD)
