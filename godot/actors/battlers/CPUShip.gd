@@ -135,7 +135,6 @@ const MAX_AVOID = 10
 
 var last_target_pos = Vector2()
 var last_target = null
-var last_strategy = null
 var last_behaviour = "defaulsat"
 func choose_dir(target_pos):
 	"""
@@ -182,6 +181,7 @@ func control(delta):
 	last_behaviour = chosen_strategy["behaviour"]
 	var from = chosen_strategy["from"]
 	var target = chosen_strategy["target"]
+	last_target = target
 	
 	var which_target = "NOONE"
 	if target:
@@ -194,10 +194,11 @@ func control(delta):
 	
 	rotation_request = choose_dir(target_pos)
 	
+	if last_behaviour == "shoot":
+		rotation_request = choose_dir(-target_pos)
+	
 	# charge
 	if charging:
-		if last_behaviour == "shoot":
-			rotation_request = choose_dir(-target_pos)
 		charge = charge+delta
 	else:
 		charge = 0
