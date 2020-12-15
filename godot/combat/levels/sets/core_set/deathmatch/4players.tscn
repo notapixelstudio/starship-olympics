@@ -69,15 +69,8 @@ enabled = false
 texture = ExtResource( 10 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0.3, 0, 0.1, 1 )
-bg_color = Color( 0.121569, 0, 0, 1 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
-offset = 200
-elongation = 100
 hide_grid = true
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -100,6 +93,11 @@ bevel_ne = 400
 bevel_sw = 400
 bevel_se = 400
 
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0.4, 0, 0.133333, 1 )
+bg_color = Color( 0.16, 0, 0, 1 )
+
 [node name="Wall11" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1800, -1300 )
 line_width = 28
@@ -108,7 +106,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
 position = Vector2( -600, -1300 )
@@ -118,7 +122,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( 600, 1300 )
@@ -128,7 +138,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( -1800, -100 )
@@ -138,7 +154,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall10" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
 position = Vector2( -700, 700 )
@@ -148,7 +170,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall17" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( 700, -700 )
@@ -158,7 +186,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall17" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
 position = Vector2( 1800, 1300 )
@@ -168,7 +202,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall9" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall12" parent="Battlefield/Middleground" index="7" instance=ExtResource( 6 )]
 position = Vector2( 150, 150 )
@@ -258,7 +298,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall3" parent="Battlefield/Middleground" index="12" instance=ExtResource( 6 )]
 position = Vector2( -1190, 700 )
@@ -268,8 +314,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 6 )]
 position = Vector2( 1200, -690 )
@@ -279,8 +330,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Wall15" parent="Battlefield/Middleground" index="14" instance=ExtResource( 6 )]
 position = Vector2( -1200, -700 )
@@ -290,7 +346,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=[
 "additional_lasers",
@@ -312,7 +374,13 @@ line_texture = ExtResource( 13 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall18" index="4"]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall18" index="6" groups=[
 "additional_lasers",
