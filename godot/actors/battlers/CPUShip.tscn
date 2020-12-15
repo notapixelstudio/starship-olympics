@@ -5,5 +5,4 @@
 
 [node name="CPU" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
