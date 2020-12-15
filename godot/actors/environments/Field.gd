@@ -56,7 +56,6 @@ func refresh():
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
-	($Area2D/Entity/Strategic as Component).set_enabled(type == TYPE.hill or type == TYPE.conquerable)
 	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Area2D/Entity/Basket as Component).set_enabled(type == TYPE.basket)
 	
@@ -181,3 +180,10 @@ signal exited
 func _on_Area2D_body_exited(body):
 	emit_signal("exited", self, body)
 	
+func get_strategy(ship, distance, game_mode):
+	if type == TYPE.castle and game_mode.name == 'Take the Crown':
+		# avoid no-crown zones if you have the crown
+		if ECM.E(ship).has('Royal'):
+			return {"avoid": 1}
+		
+	return {}

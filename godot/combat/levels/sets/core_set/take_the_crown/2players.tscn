@@ -77,7 +77,6 @@ centered = false
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -100,7 +99,6 @@ bevel_se = 50
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -122,8 +120,6 @@ bevel_se = 900
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
-offset = 200
-elongation = 100
 hide_grid = true
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
@@ -157,9 +153,6 @@ fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
 bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
-type = 1
-flag_offset = 0
-isometric_effect = true
 opaque_tint = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
@@ -217,6 +210,7 @@ position = Vector2( -600, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 9 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
 position = Vector2( 600, 0 )

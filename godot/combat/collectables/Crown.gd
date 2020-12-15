@@ -47,3 +47,5 @@ func _integrate_forces(state):
 		
 	state.set_transform(xform)
 	
+func get_strategy(ship, distance, game_mode):
+	return {"seek": 10}
