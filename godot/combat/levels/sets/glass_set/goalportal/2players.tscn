@@ -39,6 +39,12 @@ height = 2800
 radius = 600
 precision = 100.0
 
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="O" type="Sprite" parent="Battlefield/Background" index="4"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )

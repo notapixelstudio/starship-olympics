@@ -100,6 +100,12 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.16296, 0.0672, 0.28, 1 )
 bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
 
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398

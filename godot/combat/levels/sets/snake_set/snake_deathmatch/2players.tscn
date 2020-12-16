@@ -28,13 +28,6 @@ enabled = false
 texture = ExtResource( 3 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 0.8, 0.8, 0.8, 0.9 )
-texture = ExtResource( 8 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.4, 0, 0.133333, 1 )
-bg_color = Color( 0.16, 0, 0, 1 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
@@ -56,6 +49,19 @@ bevel_nw = 300
 bevel_ne = 300
 bevel_sw = 300
 bevel_se = 300
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 0.8, 0.8, 0.8, 0.9 )
+texture = ExtResource( 8 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0.4, 0, 0.133333, 1 )
+bg_color = Color( 0.16, 0, 0, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 position = Vector2( -800, 500 )
