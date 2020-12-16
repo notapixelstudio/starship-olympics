@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/audio/gameplay/asteroids/zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_003_40731.ogg" type="AudioStream" id=35]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=36]
 [ext_resource path="res://assets/audio/gameplay/asteroids/tspt_deep_laser_blast_01_026.ogg" type="AudioStream" id=37]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=38]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -53,15 +54,15 @@ animations = [ {
 "name": "outline",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 31 ) ],
-"loop": true,
-"name": "full",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "shine",
 "speed": 60.0
+}, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "full",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=3]
@@ -187,12 +188,15 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Strategic" type="Node" parent="Entity"]
+script = ExtResource( 38 )
+
 [node name="Star" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 42
+frame = 10
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]

@@ -59,7 +59,13 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 sides = 5.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Rings" type="Node2D" parent="."]
 

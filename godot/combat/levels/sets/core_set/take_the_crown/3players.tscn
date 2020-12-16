@@ -79,7 +79,6 @@ centered = false
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
-elongation = 100
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -102,7 +101,6 @@ bevel_se = 50
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
-elongation = 100
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -124,8 +122,6 @@ bevel_se = 1085
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
 hollow = true
-offset = 200
-elongation = 100
 hide_grid = true
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
@@ -159,26 +155,11 @@ texture_scale = Vector2( 0.125, 0.125 )
 fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
 bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="5"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 position = Vector2( -800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone" index="0"]
-flag_offset = 0
-isometric_effect = true
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 450
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
 scale = Vector2( 1.13, 1.13 )
@@ -186,17 +167,8 @@ scale = Vector2( 1.13, 1.13 )
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
 position = Vector2( 800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone2" index="0"]
-flag_offset = 0
-isometric_effect = true
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 450
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone2" index="5"]
 scale = Vector2( 1.13, 1.13 )
@@ -247,7 +219,6 @@ rotation_degrees = 0.0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 12 )]
 position = Vector2( -459.619, -459.619 )
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 controls = "joy1"
 species = ExtResource( 10 )
 cpu = true

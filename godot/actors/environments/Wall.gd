@@ -273,3 +273,7 @@ func animate(animation_name: String):
 	if $AnimationPlayer:
 		if $AnimationPlayer.assigned_animation != animation_name:
 			$AnimationPlayer.play(animation_name)
+			
+
+func get_strategy(ship, distance, game_mode):
+	return {"avoid": 0.1}

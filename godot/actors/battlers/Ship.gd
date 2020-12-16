@@ -12,6 +12,15 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+var valuable = true setget _set_valuable
+
+func _set_valuable(value):
+	valuable = value
+	if not is_inside_tree():
+		yield(self, "ready")
+	var e = ECM.E(target_dest)
+	e.get('Strategic').disable()
+
 var spawner
 var trail
 var species_name: String
@@ -77,6 +86,8 @@ var charging_enough = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 var reload_time
+
+var game_mode : GameMode
 
 var bomb_count = 0
 
