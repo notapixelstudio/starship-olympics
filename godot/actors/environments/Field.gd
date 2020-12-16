@@ -181,9 +181,19 @@ func _on_Area2D_body_exited(body):
 	emit_signal("exited", self, body)
 	
 func get_strategy(ship, distance, game_mode):
-	if type == TYPE.castle and game_mode.name == 'Take the Crown':
-		# avoid no-crown zones if you have the crown
-		if ECM.E(ship).has('Royal'):
-			return {"avoid": 1}
-		
+	if type == TYPE.castle:
+		if game_mode.name == 'Take the Crown':
+			# avoid no-crown zones if you have the crown
+			if ECM.E(ship).has('Royal'):
+				return {"avoid": 1}
+		elif game_mode.name == 'Slam-a-Gon':
+			var owner_species = get_parent().species # ugly
+			# if you have the ball
+			if ECM.E(ship).has('Royal'):
+				# this is your goal, touch it
+				if ship.species == owner_species:
+					return {"seek": 10}
+				# this is an opponent goal, avoid it
+				else:
+					return {"avoid": 1}
 	return {}

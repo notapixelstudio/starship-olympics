@@ -24,14 +24,14 @@ func get_strategy(ship, distance, game_mode):
 		# pursue ships of opposing teams
 		if calling_ship_team != this_ship_team:
 			return {'seek': distance/2000, 'shoot': 0.5}
-	elif game_mode.name == 'Take the Crown':
-		# if you have the Crown, turn away from foes and shoot
+	elif game_mode.name == 'Take the Crown' or game_mode.name == 'Slam-a-Gon':
+		# if you have the Crown/Ball, turn away from foes and shoot
 		#if ECM.E(ship).has('Royal'):
 		#	return {'shoot': 0.5}
-		# if I have the Crown, try to touch me
+		# if I have the Crown/Ball, try to touch me
 		if ECM.E(get_master_ship()).has('Royal'):
 			return {'seek': 10}
-		# ignore me - the Crown is somewhere onto the battlefield
+		# ignore me - the Crown/Ball is somewhere onto the battlefield
 		else:
 			return {}
 		
