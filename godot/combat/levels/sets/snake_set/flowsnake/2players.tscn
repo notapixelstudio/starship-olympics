@@ -28,7 +28,6 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
@@ -48,12 +47,6 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 clock = true
-
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -99.9999, -99.9999 )
