@@ -105,14 +105,18 @@ func maybe_pop(bubble_shooter):
 		var i = 0
 		for b in get_group_bubbles():
 			if b:
-				b.pop(i, bubble_shooter)
+				b.pop(false, i, bubble_shooter)
 				i += 1
 	
-func pop(i, bubble_shooter):
+func pop(now, i=0, bubble_shooter=null):
 	about_to_pop = true
 	yield(get_tree().create_timer(i*0.1), "timeout") # pop in sequence
+	$CollisionShape2D.disabled = true
 	$AnimationPlayer.play('pop')
-	yield(get_tree().create_timer(0.5), "timeout")
+	if now:
+		$AnimationPlayer.seek(0.3)
+	else:
+		yield(get_tree().create_timer(0.5), "timeout")
 	emit_signal('killed', self, bubble_shooter)
 	$RandomPopSFX.play()
 	yield($RandomPopSFX, "finished")

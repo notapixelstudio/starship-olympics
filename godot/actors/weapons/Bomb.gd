@@ -155,13 +155,10 @@ func process_life_time():
 func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
-	elif body is Bubble:
-		create_bubble()
-		queue_free()
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		life_time.start() # enable ricochet combos
-		apply_central_impulse(linear_velocity.normalized()*1000)
+		apply_central_impulse(linear_velocity.normalized()*800)
 		
 		# ripple effect
 		
@@ -178,3 +175,15 @@ func create_bubble():
 	get_parent().call_deferred("add_child", bubble) # ugly
 	get_parent().get_parent().get_parent().call_deferred("connect_killable", bubble) # uglier
 	bubble.call_deferred("attempt_binding", entity.get('Owned').get_owned_by())
+
+func _on_NearArea_body_entered(body):
+	if body is Bubble:
+		if type == GameMode.BOMB_TYPE.bubble:
+			create_bubble()
+			queue_free()
+		else:
+			body.pop(true)
+			
+signal frozen
+func freeze():
+	emit_signal("frozen", self)

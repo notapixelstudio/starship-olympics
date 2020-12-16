@@ -45,15 +45,18 @@ tracks/1/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 
-[node name="CrownModeManager" parent="Managers" index="5"]
+[node name="PursueManager" parent="Managers" index="2"]
+enabled = false
+
+[node name="GoalModeManager" parent="Managers" index="9"]
+enabled = false
+
+[node name="CollectModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 7 )
 centered = false
-
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.992157, 1, 0, 0.156863 )
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
@@ -170,6 +173,7 @@ controls = "joy2"
 species = ExtResource( 8 )
 
 [node name="Camera" parent="." index="6"]
+zoom = Vector2( 5120, 5120 )
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]

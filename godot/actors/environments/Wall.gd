@@ -23,6 +23,8 @@ export var line_texture : Texture setget set_line_texture
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
 
+export(String, 'both', 'above', 'below') var under = 'both' setget set_under
+
 const texture_glass = preload('res://assets/sprites/stripes.png')
 
 const glow_strength = 1.08
@@ -76,6 +78,44 @@ func set_grid_color(value):
 func set_grid_rotation(value):
 	grid_rotation = value
 	refresh()
+	
+func set_under(value):
+	under = value
+	set_collision_layer_bit(4, false)
+	add_to_group('nostyle')
+	
+	if under == 'below':
+		z_as_relative = false
+		z_index = -50
+		$line.z_index = -50
+		$lineBelow.z_index = -60
+		$InnerPolygon2D.visible = false
+		set_collision_mask_bit(0, false)
+		set_collision_mask_bit(18, true)
+		modulate = Color(0.5,0.5,1)
+		$Polygon2D.color = Color(0.7,0.7,0.7)
+	elif under == 'above':
+		z_as_relative = true
+		z_index = 0
+		$line.z_index = 0
+		$lineBelow.z_index = -10
+		$InnerPolygon2D.visible = false
+		set_collision_mask_bit(0, true)
+		set_collision_mask_bit(18, false)
+		modulate = Color(1,0.5,0.5)
+		$Polygon2D.color = Color(0.7,0.7,0.7)
+	elif under == 'both':
+		z_as_relative = true
+		z_index = 0
+		$line.z_index = 0
+		$lineBelow.z_index = -10
+		$InnerPolygon2D.visible = true
+		set_collision_layer_bit(4, true)
+		set_collision_mask_bit(0, true)
+		set_collision_mask_bit(18, true)
+		remove_from_group('nostyle')
+		modulate = Color(1,1,1)
+		$Polygon2D.color = Color('#4f3f3c')
 	
 func _ready():
 	var gshape
@@ -143,7 +183,7 @@ func refresh():
 			cshape.set_shape(shape)
 			add_child(cshape)
 			
-	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass)
+	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass) and under == 'both'
 	
 	$Polygon2D.set_polygon(points)
 	$InnerPolygon2D.set_polygon(points)
@@ -157,8 +197,8 @@ func refresh():
 	$Grid.set_texture_rotation(rotation + deg2rad(grid_rotation))
 	
 	# glass pass-through
-	set_collision_layer_bit(4, type != TYPE.glass)
-	$Polygon2D.self_modulate = Color(1,1,1,0.9) if type == TYPE.glass else Color(1,1,1,1)
+	set_collision_layer_bit(4, type != TYPE.glass and under == 'both')
+	$Polygon2D.self_modulate = Color(1,1,1,0.8) if type == TYPE.glass or under == 'above' else Color(1,1,1,1)
 	$Polygon2D.texture = texture_glass if type == TYPE.glass else null
 	$Polygon2D.set_texture_rotation(rotation)
 	$Entity/CrownDropper.enabled = type == TYPE.glass
@@ -233,3 +273,7 @@ func animate(animation_name: String):
 	if $AnimationPlayer:
 		if $AnimationPlayer.assigned_animation != animation_name:
 			$AnimationPlayer.play(animation_name)
+			
+
+func get_strategy(ship, distance, game_mode):
+	return {"avoid": 0.1}

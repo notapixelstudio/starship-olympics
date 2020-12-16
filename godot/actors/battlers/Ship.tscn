@@ -17,7 +17,7 @@
 [ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
-[ext_resource path="res://combat/components/Valuable.gd" type="Script" id=18]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=18]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
 [ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=20]
 
@@ -69,7 +69,7 @@ gravity_scale = 2.0
 continuous_cd = 2
 contacts_reported = 10
 contact_monitor = true
-angular_damp = 25.0
+angular_damp = 80.0
 script = ExtResource( 1 )
 debug_enabled = true
 species = ExtResource( 2 )
@@ -186,7 +186,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 
-[node name="Valuable" type="Node" parent="TargetDest/Entity2D"]
+[node name="Strategic" type="Node" parent="TargetDest/Entity2D"]
 script = ExtResource( 18 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )

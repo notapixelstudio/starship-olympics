@@ -12,6 +12,15 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+var valuable = true setget _set_valuable
+
+func _set_valuable(value):
+	valuable = value
+	if not is_inside_tree():
+		yield(self, "ready")
+	var e = ECM.E(target_dest)
+	e.get('Strategic').disable()
+
 var spawner
 var trail
 var species_name: String
@@ -22,9 +31,9 @@ var velocity = Vector2(0,0)
 var previous_velocity = Vector2(0,0)
 var target_velocity = Vector2(0,0)
 var steer_force = 0
-var rotation_dir = 0
+var rotation_request = 0
 
-var THRUST = 3100
+var THRUST = 4400
 
 var shields = 0
 var max_shields = 1
@@ -35,26 +44,23 @@ var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_DASHING_CHARGE = 0.13
-const DASH_INTERCOOLDOWN = 0.5
+const MIN_CHARGE = 0.25
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
-const ANTI_RECOIL_OFFSET = 1000
-const CHARGE_MULTIPLIER = 4500
-const DASH_MULTIPLIER = 1.5
+const CHARGE_MULTIPLIER = 5500
+const DASH_BASE = -400
+const DASH_MULTIPLIER = 2.2
 const BOMB_OFFSET = 50
-const BOMB_BOOST = 200
-const BALL_BOOST = 500
-const BALL_CHARGE_MULTIPLIER = 1.4
-const BULLET_BOOST = 500
-const BULLET_CHARGE_MULTIPLIER = 0.8
+const BOMB_BOOST = 1000
+const BALL_BOOST = 1650
+const BALL_CHARGE_MULTIPLIER = 1.8
+const BULLET_BOOST = 1500
+const BULLET_CHARGE_MULTIPLIER = 1.3
+const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 
-var supercharge = 0
-
-const THRESHOLD_DIR = 0.3
-const ROTATION_TORQUE = 20000
+const ROTATION_TORQUE = 40000
 
 var responsive = false setget change_engine
 var info_player setget set_info_player
@@ -76,10 +82,12 @@ var width = 0
 var height = 0
 
 var charging = false
+var charging_enough = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
-var dash_intercooldown = 0
 var reload_time
+
+var game_mode : GameMode
 
 var bomb_count = 0
 
@@ -145,6 +153,7 @@ func set_lives(value: int):
 
 func _enter_tree():
 	charging = false
+	charging_enough = false
 	charge = 0
 	alive = true
 	outside_countup = 0
@@ -196,20 +205,22 @@ func _integrate_forces(state):
 	if not responsive:
 		return
 	set_applied_force(Vector2())
-	steer_force = max_steer_force * rotation_dir
+	steer_force = max_steer_force * rotation_request
+	
+	var thrusers_on = entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
 	if not absolute_controls:
-		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(entity.has('Thrusters') and not charging and not stunned)) # thrusters switch off when charging
+		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
-		#apply_impulse(Vector2(),target_velocity*THRUST)	
-		add_central_force(target_velocity*THRUST*int(entity.has('Thrusters') and not charging and not stunned))
+		#apply_impulse(Vector2(),target_velocity*THRUST)
+		add_central_force(target_velocity*THRUST*int(thrusers_on))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_dir * ROTATION_TORQUE)
+	set_applied_torque(rotation_request * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -288,18 +299,21 @@ func _physics_process(delta):
 		emit_signal("detection", body, self)
 		
 	dash_cooldown -= delta
-	dash_intercooldown -= delta
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		dash_restore_appearance()
-		yield(get_tree().create_timer(0.08), 'timeout') # wait a bit to be lenient with dash-through checks
+		yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with dash-through checks
 		entity.get('Dashing').disable()
+		
+	if charging and not charging_enough and charge > MIN_CHARGE:
+		charging_enough = true
+		#$GravitonField.enabled = true
+		charging_sfx.play()
+		dash_fat_appearance()
 		
 var will_fire
 func charge():
 	charging = true
-	#$GravitonField.enabled = true
-	charging_sfx.play()
-	dash_fat_appearance()
+	
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
@@ -316,10 +330,11 @@ func fire(override_charge = -1, dash_only = false):
 	var should_reload = false
 	
 	actual_charge = override_charge if override_charge > 0 else charge
-	var charge_impulse = supercharge + CHARGE_BASE + CHARGE_MULTIPLIER * min(actual_charge, MAX_CHARGE)
+	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
+	var will_dash = charging_enough
 	
-	# - (CHARGE_BASE + ANTI_RECOIL_OFFSET) is to avoid too much acceleration when repeatedly firing bombs
-	apply_impulse(Vector2(0,0), Vector2(max(0, charge_impulse*DASH_MULTIPLIER - (CHARGE_BASE + ANTI_RECOIL_OFFSET)), 0).rotated(rotation)) # recoil
+	if will_dash:
+		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
 	
 	if get_bombs_enabled() and not dash_only:
 		bomb_count += 1
@@ -332,7 +347,7 @@ func fire(override_charge = -1, dash_only = false):
 			elif bomb_type == GameMode.BOMB_TYPE.bullet:
 				impulse = charge_impulse*BULLET_CHARGE_MULTIPLIER+BULLET_BOOST
 			elif bomb_type == GameMode.BOMB_TYPE.bubble:
-				impulse = charge_impulse
+				impulse = charge_impulse+BUBBLE_BOOST
 			else:
 				impulse = charge_impulse+BOMB_BOOST
 				
@@ -348,6 +363,8 @@ func fire(override_charge = -1, dash_only = false):
 	#$GravitonField.enabled = false
 	
 	charging = false
+	charging_enough = false
+	
 	$Graphics/ChargeBar/ChargeAxis.visible = false
 	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
@@ -360,10 +377,11 @@ func fire(override_charge = -1, dash_only = false):
 	$Tween.stop_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
 	
-	if actual_charge > MIN_DASHING_CHARGE and dash_intercooldown <= 0:
+	if will_dash:
 		entity.get('Dashing').enable()
-		dash_cooldown = (actual_charge - MIN_DASHING_CHARGE)*0.6
-		dash_intercooldown = DASH_INTERCOOLDOWN
+		dash_cooldown = (actual_charge - MIN_CHARGE)*0.6
+	else:
+		tap()
 		
 	if should_reload:
 		yield(get_tree().create_timer(reload_time), "timeout")
@@ -417,25 +435,6 @@ func is_alive():
 func update_score(species_template, score, pos):
 	$PlayerInfo.update_score(score)
 	
-static func find_side(a: Vector2, b: Vector2, check: Vector2) -> float:
-	"""
-	Given two points a, b will return the side check is on.
- 	@return integer code for which side of the line ab c is on.  
-	1 means left turn, -1 means right turn.  Returns
- 	0 if all three are on a line (THRESHOLD will adjust the wiggle in movements)
-	"""
-	var possible_dirs : Array = [-1,1]
-	var cross = (b.x - a.x)*(check.y-a.y) - (b.y - a.y)*(check.x-a.x)
-	if (check + b).length() < 0.1: # FIXME const
-	#if check == -b:
-		cross = possible_dirs[randi()%len(possible_dirs)]
-
-	if cross > -THRESHOLD_DIR and cross < THRESHOLD_DIR:
-		if sign(check.y)==sign(b.y) or sign(b.x) == sign(check.x) :
-			return cross # smooth adjustment
-	
-	#return cross
-	return sign(cross) # coarse adjustment
 
 func get_id():
 	return info_player.id
@@ -474,11 +473,9 @@ func dash_fat_appearance():
 	
 func dash_thin_appearance():
 	$DashFxTimer.stop()
-	# don't show particles if dash is small (useful to have a more lenient dash)
-	if actual_charge > 0.25:
-		$Graphics/Sprite.scale = DASH_THIN
-		$DashParticles.emitting = true
-		$DashParticles.visible = true
+	$Graphics/Sprite.scale = DASH_THIN
+	$DashParticles.emitting = true
+	$DashParticles.visible = true
 	
 func _on_Dashing_enabled():
 	dash_thin_appearance()
@@ -549,3 +546,35 @@ func get_bombs_enabled():
 func update_weapon_indicator():
 	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
 	
+	
+func tap():
+	pass
+	#switch_emersion_state()
+	
+var under = false
+
+func switch_emersion_state():
+	if under:
+		emerge()
+	else:
+		submerge()
+	
+func submerge():
+	under = true
+	z_as_relative = false
+	z_index = -50
+	set_collision_layer_bit(0, false)
+	set_collision_layer_bit(18, true)
+	
+func emerge():
+	under = false
+	z_as_relative = true
+	z_index = 0
+	set_collision_layer_bit(0, true)
+	set_collision_layer_bit(18, false)
+	
+signal frozen
+func freeze():
+	if alive and not invincible:
+		emit_signal("frozen", self)
+		

@@ -6,6 +6,8 @@ extends Node
 
 class_name Arena
 
+
+const IGNORE_SHIP_GAMEMODE = ["Alchemical Bombing"]
 var width
 var height
 var someone_died = 0
@@ -134,6 +136,7 @@ func _ready():
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
+	Soundtrack.fade_out()
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
@@ -181,6 +184,7 @@ func _ready():
 	race_mode.connect('score', scores, "add_score")
 	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
+	conquest_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('score', scores, "add_score")
 	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
@@ -242,7 +246,14 @@ func _ready():
 	session.players = players
 		
 	if conquest_mode.enabled:
-		score_to_win_override = floor(len(get_tree().get_nodes_in_group('cell'))/2)+1
+		var cells = get_tree().get_nodes_in_group('cell')
+		var rocks = get_tree().get_nodes_in_group('rock')
+		if len(cells) > 0:
+			score_to_win_override = floor(len(cells)/2)+1
+		elif len(rocks) > 0:
+			score_to_win_override = 0
+			for rock in rocks:
+				score_to_win_override += rock.get_score()
 	
 	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
 
@@ -343,7 +354,10 @@ func _ready():
 		set_style(game_mode.arena_style)
 		
 	if not mockup:
-		Soundtrack.play("Fight", true)
+		if style and style.bgm:
+			Soundtrack.play(style.bgm, true)
+		else:
+			Soundtrack.stop()
 	else:
 		hud.visible = false
 	if not mockup:
@@ -615,10 +629,15 @@ func spawn_ship(player:PlayerSpawner):
 	ship.info_player = player.info_player
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
+	ship.game_mode = self.game_mode
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
+	# disable valuable on ship if we don't need to
 	
+	if game_mode.name in IGNORE_SHIP_GAMEMODE:
+		ship.valuable = false
+		print("================ IGNORE THAT =============")
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
 	
@@ -632,6 +651,7 @@ func spawn_ship(player:PlayerSpawner):
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
+	ship.connect("frozen", self, "_on_sth_just_froze")
 	ship.connect("spawn_bomb", self, "spawn_bomb", [ship])
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
@@ -677,6 +697,7 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 		bomb.connect("detonate", self, "bomb_detonated", [bomb])
+		bomb.connect("frozen", self, "_on_sth_just_froze")
 	
 	$Battlefield.add_child(bomb)
 	
@@ -779,8 +800,9 @@ func slomo():
 func _on_Rock_request_spawn(child):
 	if child is Rock:
 		child.connect('request_spawn', self, '_on_Rock_request_spawn')
+		child.connect('conquered', conquest_mode, '_on_sth_conquered')
+		child.connect('lost', conquest_mode, '_on_sth_lost')
 	$Battlefield.add_child(child)
-	
 
 func _on_EndlessArea_body_exited(body):
 	if body is Ship:
@@ -799,3 +821,21 @@ func connect_killable(killable):
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)
+
+const RockScene = preload('res://actors/environments/Rock.tscn')
+func _on_sth_just_froze(sth):
+	$Battlefield.call_deferred("remove_child", sth)
+	var rock = RockScene.instance()
+	rock.position = sth.position
+	rock.order = 2 if sth is Ship else 1
+	rock.ice = true
+	rock.deadly = false
+	rock.spawn_diamonds = false
+	rock.prisoner = sth
+	rock.self_destruct = true
+	rock.self_destruct_position = 'top'
+	rock.lifetime = 4
+	rock.angular_velocity = 0
+	$Battlefield.call_deferred("add_child", rock)
+	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
+	rock.call_deferred('start')

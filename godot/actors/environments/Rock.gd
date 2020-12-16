@@ -7,12 +7,29 @@ var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
 var StarScene = load('res://combat/collectables/Star.tscn')
 
 export var order : int = 4
-export var last_order : int = 1
+export var last_order : int = 2
 export var divisions : int = 4
 export var base_size : float = 50.0
 export var spawn_diamonds : bool = true
 export var contains_star : bool = false
 export var self_destruct : bool = false
+export var self_destruct_position = 'center'
+export var lifetime = 6
+export var deadly : bool = true
+export var ice : bool = false
+export var smallest_break : bool = true
+export var conquerable : bool = false
+
+var species : Resource
+var owner_ship : Ship
+
+var prisoner setget set_prisoner
+
+const colors = {
+	'deadly': Color(0.8, 0, 0.85),
+	'solid': Color(0.7, 0.7, 0.7),
+	'ice': Color(0.2,0.6,0.75)
+}
 
 var gshape
 var breakable = false
@@ -53,16 +70,45 @@ func _ready():
 	# workaround
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
 	
+	recolor()
+	
+	ECM.E(self).get('Deadly').set_enabled(deadly)
+	
+	$NoRotate/CountdownWrapper.position = Vector2(0,-gshape.height*0.9) if self_destruct_position == 'top' else Vector2(0,0)
+	
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
+	elif body is Ship and conquerable:
+		conquered_by(body)
 
 func try_break():
 	if not breakable:
 		return
+		
+	visible = false
+	
+	if prisoner:
+		if prisoner is Ship:
+			prisoner.rotation_degrees += rotation_degrees-45
+		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg2rad(rotation_degrees-45))
+		get_parent().get_parent().call_deferred('add_child', prisoner) # ugly: Battlefield
+		yield(prisoner, 'tree_entered')
+		# temporary disable collisions to avoid touching the rock
+		prisoner.get_node('CollisionShape2D').disabled = true
+		if prisoner is Bomb:
+			# temporary disable collisions with fields because of freeze rays
+			prisoner.set_collision_mask_bit(7, false)
+		yield(get_tree().create_timer(0.1), "timeout")
+		prisoner.get_node('CollisionShape2D').disabled = false
+		if prisoner is Bomb:
+			yield(get_tree().create_timer(0.15), "timeout")
+			prisoner.set_collision_mask_bit(7, true)
 	
 	breakable = false
-	queue_free()
+	
+	if order >= last_order or smallest_break:
+		queue_free()
 	
 	if order < last_order:
 		return
@@ -72,19 +118,19 @@ func try_break():
 	for i in range(divisions):
 		var child
 		if order > last_order+1:
-			child = new_child_rock()
+			child = new_child_rock(i)
 		elif order == last_order+1:
 			if spawn_diamonds and randf() < 0.025:
 				child = BigDiamondScene.instance()
 				child.appear = false
 			else:
-				child = new_child_rock()
+				child = new_child_rock(i)
 		else: # order <= last_order
 			if not spawn_diamonds or randf() < 0.15:
 				if contains_star and i == star_index:
 					child = StarScene.instance()
 				else:
-					child = new_child_rock()
+					child = new_child_rock(i)
 			else:
 				child = DiamondScene.instance()
 				child.appear = false
@@ -100,7 +146,7 @@ func try_break():
 			
 		emit_signal('request_spawn', child)
 		
-func new_child_rock():
+func new_child_rock(index):
 	var child = RockScene.instance()
 	child.mass = mass/divisions
 	child.order = order - 1
@@ -109,17 +155,26 @@ func new_child_rock():
 	child.last_order = last_order
 	child.divisions = divisions
 	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
+	child.deadly = deadly
+	child.ice = ice
+	child.smallest_break = smallest_break
+	child.species = species
+	child.owner_ship = owner_ship
+	child.conquerable = conquerable
 	child.start()
+	
+	if index == 0:
+		child.play_boom()
 	
 	return child
 	
 func become_breakable():
 	breakable = true
 	
-onready var countdown = $Countdown/Label
+onready var countdown = $NoRotate/CountdownWrapper/Countdown
 
 func _process(delta):
-	$Countdown.rotation = -rotation
+	$NoRotate.rotation = -rotation
 	
 func start():
 	if self_destruct:
@@ -127,26 +182,97 @@ func start():
 			yield($SelfDestructTimer, 'tree_entered')
 			
 		$SelfDestructTimer.start(randf())
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '5'
 		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '4'
+		while lifetime > 0:
+			yield($SelfDestructTimer, 'timeout')
+			decrease_lifetime()
+			$SelfDestructTimer.start(1)
 		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '3'
+func recolor():
+	var color
+	
+	if species:
+		color = species.color
+	elif deadly:
+		color = colors['deadly']
+	elif ice:
+		color = colors['ice']
+	else:
+		color = colors['solid']
+	
+	$Polygon2D.color = color
+	$Line2D.default_color = color
+	$LightLine2D.default_color = color
+	$LightLine2D2.default_color = color
+	$LightLine2D3.default_color = color
+	$LightLine2D4.default_color = color
+	$LightLine2DE.default_color = color
+	$LightLine2DE2.default_color = color
+	$LightLine2DE3.default_color = color
+	$LightLine2DE4.default_color = color
+	$NoRotate.modulate = color
+	
+	if species:
+		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
+		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
+	
+func get_score():
+	return pow(divisions, order)
+
+signal conquered
+signal lost
+
+func conquered_by(ship):
+	if ship.species != species:
+		if species:
+			emit_signal('lost', owner_ship, self, get_score())
+		species = ship.species
+		owner_ship = ship
+		recolor()
+		emit_signal('conquered', ship, self, get_score())
+		$AnimationPlayer.play("Conquered")
+
+func play_boom():
+	$RandomAudioStreamPlayer.play()
+	
+func get_strategy(ship, distance, game_mode):
+	if game_mode.name == 'Asteroid Coloring':
+		# claim unclaimed asteroids, according to their score
+		if not owner_ship:
+			return {"seek": get_score()}
+			
+		# claim opponents asteroids
+		if ship != owner_ship:
+			return {"seek": get_score()*1.8}
 		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '2'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
-		countdown.text = '1'
-		
-		$SelfDestructTimer.start(1)
-		yield($SelfDestructTimer, 'timeout')
+		# protect own asteroids by splitting them, if they can be splitted
+		if get_score() > 1:
+			return {"shoot": get_score()*0.25}
+			
+	# avoid deadly asteroids
+	if deadly:
+		return {"avoid": 5}
+	
+	return {"avoid": 0.1}
+	
+func set_prisoner(v):
+	prisoner = v
+	if prisoner is Bomb:
+		$Prisoner.texture = prisoner.get_node('Sprite').texture
+		$Prisoner.rotation_degrees = rad2deg(prisoner.linear_velocity.angle()) - 45
+	elif prisoner is Ship:
+		$Prisoner.texture = prisoner.species.ship
+		$Prisoner.rotation_degrees = prisoner.rotation_degrees - 45
+	
+func _unhandled_input(event):
+	if prisoner and prisoner is Ship:
+		if event.is_action_pressed(prisoner.controls+'_fire'):
+			$Prisoner/AnimationPlayer.play('Shake')
+			decrease_lifetime()
+			
+func decrease_lifetime():
+	lifetime -= 1
+	countdown.text = str(lifetime)
+	if lifetime == 0:
 		try_break()
 		

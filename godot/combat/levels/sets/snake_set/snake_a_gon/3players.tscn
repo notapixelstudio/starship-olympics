@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=1]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=2]
@@ -19,57 +19,6 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
-[sub_resource type="Animation" id=2]
-resource_name = "Default"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 6, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "Default"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 6, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Default"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 6, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
@@ -80,27 +29,38 @@ match_duration_override = 80.0
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 0.7, 0.7, 0.7, 1 )
-self_modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 10 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.16, 0.0981333, 0.032, 1 )
-bg_color = Color( 0.17, 0.10285, 0.0357, 1 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1800
 sides = 12.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 0.7, 0.7, 0.7, 0.9 )
+self_modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 10 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0.25, 0.16925, 0.1225, 1 )
+bg_color = Color( 0.23, 0.156745, 0.1173, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="GoalsP2" type="Node2D" parent="Battlefield/Middleground" index="0"]
 rotation = -1.5708
@@ -196,20 +156,20 @@ rotation = -1.5708
 position = Vector2( 1750, 1 )
 rotation = 3.14159
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D/Laser" index="5" groups=[
-"animation_if_additional_lasers",
-]]
-anims/Default = SubResource( 2 )
-
 [node name="Wall" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="5"]
 rotation = 2.61799
@@ -220,20 +180,20 @@ rotation = 2.61799
 position = Vector2( 1750, 1 )
 rotation = 3.14159
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2/Laser" index="5" groups=[
-"animation_if_additional_lasers",
-]]
-anims/Default = SubResource( 3 )
-
 [node name="Wall" parent="Battlefield/Middleground/Node2D2" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="6"]
 rotation = 0.523599
@@ -244,20 +204,20 @@ rotation = 0.523599
 position = Vector2( 1750, 1 )
 rotation = 3.14159
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3/Laser" index="5" groups=[
-"animation_if_additional_lasers",
-]]
-anims/Default = SubResource( 4 )
-
 [node name="Wall" parent="Battlefield/Middleground/Node2D3" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1800, 0 )
 line_width = 28
-solid_line_color = Color( 1.16, 0.76, 0.8, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
 script = ExtResource( 16 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 type = 1

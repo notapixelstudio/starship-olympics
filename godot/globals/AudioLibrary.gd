@@ -4,6 +4,7 @@ class_name AudioLibrary
 
 var this_sound:String
 var current_sound : AudioStreamPlayer
+var current_audio
 
 signal play_song
 
@@ -44,3 +45,20 @@ func next_song():
 func song_is_playing(song):
 	current_sound = song
 	Soundtrack.this_sound = current_sound.name
+	Soundtrack.current_audio = song
+
+func fade_out(duration=3.0):
+	if not Soundtrack.current_audio:
+		return
+		
+	var tween = Tween.new()
+	var song = Soundtrack.current_audio
+	song.add_child(tween)
+	tween.interpolate_property(song, "volume_db",
+		0, -80, duration,
+		Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.start()
+	yield(tween, 'tween_all_completed')
+	stop()
+	song.volume_db = 0
+	song.remove_child(tween)

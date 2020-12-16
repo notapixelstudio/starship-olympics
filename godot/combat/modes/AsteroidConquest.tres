@@ -1,0 +1,41 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://map/planets/rules/AsteroidColoring.tres" type="Resource" id=2]
+[ext_resource path="res://assets/icon/minicards/sets/asteroid_coloring.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon/star_mining_logo.png" type="Texture" id=5]
+[ext_resource path="res://combat/styles/flags.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+is_mutator = false
+name = "Asteroid Coloring"
+icon = ExtResource( 3 )
+logo = ExtResource( 5 )
+arena_style = ExtResource( 6 )
+description = "touch the asteroids"
+tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
+tagline_cons = "Getting killed will make you lose most of the coins"
+max_timeout = 35
+max_score = 100
+cumulative = false
+starting_lives = -1
+death = false
+crown = false
+hive = true
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = false
+shoot_bombs = true
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 2
+starting_ammo = -1
+reload_time = 3.0
+rules = [ ExtResource( 2 ) ]
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false

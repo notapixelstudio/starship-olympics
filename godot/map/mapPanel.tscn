@@ -68,12 +68,5 @@ texture = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="Minicards" type="GridContainer" parent="."]
-margin_left = 20.0
-margin_top = 28.0
-margin_right = 236.0
-margin_bottom = 158.0
-columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Minicards" type="Node2D" parent="."]
+position = Vector2( 125, 85 )

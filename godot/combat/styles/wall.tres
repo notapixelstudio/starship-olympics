@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
+[ext_resource path="res://assets/patterns/bricks.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+battlefield_texture = ExtResource( 2 )
+battlefield_texture_offset = Vector2( 0, 0 )
+battlefield_texture_scale = Vector2( 0.5, 0.5 )
+battlefield_texture_rotation_degrees = 0.0
+battlefield_fg_color = Color( 0.1, 0.293333, 0.5, 1 )
+battlefield_bg_color = Color( 0.092, 0.288267, 0.46, 1 )
+battlefield_opacity = 0.9
+wall_color = Color( 1.2, 0.470588, 0.196078, 1 )
+bgm = "destroy"
