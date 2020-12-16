@@ -27,13 +27,17 @@ func _ready():
 func _draw():
 	if not enabled:
 		return
-	draw_vector(parent.target_velocity*5, Vector2(), colors['GREEN'])
-	#draw_vector(parent.front * 5, Vector2(), colors['PINK'])
-	draw_vector(parent.wander_force*0.5, Vector2(), colors['PINK'])
 	
-	draw_vector(parent.avoidance, Vector2(), colors['WHITE'])
-	#for ahead in parent.get_ahead():
-	#	draw_vector(ahead, Vector2(), colors['WHITE'].darkened(0.3))
+	#draw_vector(parent.front * 5, Vector2(), colors['PINK'])
+	draw_vector(parent.target_pos*0.5, Vector2(), colors['PINK'])
+	
+	# draw_vector(parent.last_target_pos, Vector2(), colors['WHITE'])
+	var i = 0
+	print(parent.hit_pos)
+	for r in parent.hit_pos:
+		
+		draw_vector(r, Vector2(), colors['WHITE'].darkened(0.3))
+		i += 1
 	#draw_vector(parent.velocity.normalized()*5, Vector2(), colors['YELLOW'])
 
 

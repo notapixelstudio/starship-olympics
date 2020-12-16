@@ -6,6 +6,8 @@ extends Node
 
 class_name Arena
 
+
+const IGNORE_SHIP_GAMEMODE = ["Alchemical Bombing"]
 var width
 var height
 var someone_died = 0
@@ -627,10 +629,15 @@ func spawn_ship(player:PlayerSpawner):
 	ship.info_player = player.info_player
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
+	ship.game_mode = self.game_mode
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
+	# disable valuable on ship if we don't need to
 	
+	if game_mode.name in IGNORE_SHIP_GAMEMODE:
+		ship.valuable = false
+		print("================ IGNORE THAT =============")
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
 	
