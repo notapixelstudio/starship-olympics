@@ -151,12 +151,16 @@ func process_life_time():
 	
 	life_time.paused = false
 	
+var hit_count = 0
 # FIXME ? is this heavy? each bomb needs contact monitoring
 func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
+		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
+		hit_count += 1
+		$RicochetAudio.play()
 		life_time.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
 		
