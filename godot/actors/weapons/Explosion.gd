@@ -37,3 +37,7 @@ func _on_RepealField_body_entered(body):
 		var pursuer = ECM.E(body).get('Pursuer')
 		pursuer.disable()
 		pursuer.enable_with_timeout(1)
+
+func get_strategy(ship, distance, game_mode):
+	return {"avoid": 1}
+	

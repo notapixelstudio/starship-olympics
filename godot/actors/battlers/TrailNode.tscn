@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/battlers/TrailNode.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/trail.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=7]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=8]
 [ext_resource path="res://assets/shaders/offset_trail.png" type="Texture" id=9]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -17,7 +18,24 @@ resource_local_to_scene = true
 offsets = PoolRealArray( 0, 0.5, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="GDScript" id=3]
+script/source = "extends Area2D
+
+func get_strategy(ship, distance, game_mode):
+	if ship != get_parent().get_parent().ship: # very ugly
+		return {\"avoid\": 1}
+	return {}
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Area2D
+
+
+func get_strategy(ship, distance, game_mode):
+	return {\"avoid\": 1}
+"
+
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
 
 [node name="Trail" type="Position2D" groups=[
@@ -37,6 +55,7 @@ time_alive_per_point = 1.5
 [node name="NearArea" type="Area2D" parent="Trail"]
 collision_layer = 524288
 collision_mask = 3
+script = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/NearArea"]
 
@@ -64,9 +83,13 @@ __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
 
+[node name="Strategic" type="Node" parent="Trail/NearArea/Entity"]
+script = ExtResource( 10 )
+
 [node name="FarArea" type="Area2D" parent="Trail"]
 collision_layer = 524288
 collision_mask = 3
+script = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trail/FarArea"]
 
@@ -88,9 +111,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
 
+[node name="Strategic" type="Node" parent="Trail/FarArea/Entity"]
+script = ExtResource( 10 )
+
 [node name="InnerTrail" parent="." instance=ExtResource( 3 )]
 width = 18.0
-gradient = SubResource( 3 )
+gradient = SubResource( 4 )
 texture = ExtResource( 9 )
 trail_length = 5
 time_alive_per_point = 0.4
