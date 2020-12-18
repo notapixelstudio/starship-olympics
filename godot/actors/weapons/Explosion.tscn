@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/weapons/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sprites/interface/circle_glow.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/weapons/explosion_spikes.png" type="Texture" id=10]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -126,6 +127,9 @@ script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+
+[node name="Strategic" type="Node" parent="Entity"]
+script = ExtResource( 12 )
 
 [node name="Halo" type="Node2D" parent="."]
 
