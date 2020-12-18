@@ -225,14 +225,14 @@ func control(delta):
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
 	
-	wander_time -=delta
-	if wander_time < 0:
-		force_wander = not force_wander
-		if force_wander:
-			wander_time = MIN_WANDER_TIME + (randi() % WANDER_TIME)
-			behaviour_mode = "wander"
-		else:
-			wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
+	#wander_time -=delta
+	#if wander_time < 0:
+	#	force_wander = not force_wander
+	#	if force_wander:
+	#		wander_time = MIN_WANDER_TIME + (randi() % WANDER_TIME)
+	#		behaviour_mode = "wander"
+	#	else:
+	#		wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
 			
 	.control(delta)
 var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER
