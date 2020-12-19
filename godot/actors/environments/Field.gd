@@ -2,6 +2,8 @@ tool
 
 extends Node2D
 
+class_name Field
+
 enum TYPE { trigger, water, hostile, flow, castle, hill, basket, ghost, conquerable }
 export(TYPE) var type = TYPE.water setget set_type
 

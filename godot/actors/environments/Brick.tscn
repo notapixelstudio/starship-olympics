@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/environments/Brick.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/bricks/diamond.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/bricks/diamond_under.png" type="Texture" id=4]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=5]
-[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=6]
+[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 110, 60 )
@@ -70,11 +69,7 @@ collision_layer = 16
 collision_mask = 5
 script = ExtResource( 1 )
 
-[node name="Entity" type="Node" parent="."]
-script = ExtResource( 5 )
-
-[node name="Strategic" type="Node" parent="Entity"]
-script = ExtResource( 6 )
+[node name="Strategic" parent="." instance=ExtResource( 5 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

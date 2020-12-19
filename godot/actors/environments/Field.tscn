@@ -49,8 +49,6 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Strategic" parent="." instance=ExtResource( 8 )]
-
 [node name="IsoPolygon" type="Node2D" parent="."]
 modulate = Color( 1.36, 1.36, 1.36, 1 )
 script = ExtResource( 15 )
@@ -75,6 +73,8 @@ angular_damp = 10.0
 collision_layer = 128
 collision_mask = 10757
 script = SubResource( 2 )
+
+[node name="Strategic" parent="Area2D" instance=ExtResource( 8 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )

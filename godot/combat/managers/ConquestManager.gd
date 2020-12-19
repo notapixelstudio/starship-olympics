@@ -21,19 +21,11 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 			#emit_signal('lost', lost_species, entity.get_host())
 			#entity.get('Conquerable').set_species(null)
 			
-			# AI
-			#if ship.cpu:
-			#	entity.get('Strategic').enable()
-			
 		# elif
 		if entity.get('Conquerable').get_species() == null:
 			fill = true
 			entity.get('Conquerable').set_species(species)
 			emit_signal('conquered', species, entity.get_host())
-			
-			# AI
-			#if ship.cpu:
-			entity.get('Strategic').disable()
 			
 
 		

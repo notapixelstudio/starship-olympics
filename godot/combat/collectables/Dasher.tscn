@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=5]
-[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=6]
+[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/collectables/Dasher.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/signs/bolt.png" type="Texture" id=9]
@@ -100,6 +100,8 @@ mode = 2
 linear_damp = 5.0
 script = ExtResource( 7 )
 
+[node name="Strategic" parent="." instance=ExtResource( 6 )]
+
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 2 )
 __meta__ = {
@@ -112,12 +114,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 enabled = false
-
-[node name="Strategic" type="Node" parent="Entity"]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.772549, 0, 0.643137 )
