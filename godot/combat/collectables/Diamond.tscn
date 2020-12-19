@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=8]
 [ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
+[ext_resource path="res://combat/traits/Strategic.gd" type="Script" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 70.0
@@ -96,8 +97,8 @@ shape = SubResource( 1 )
 [node name="Glow" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.232437 )
-scale = Vector2( 0.855879, 0.855879 )
+modulate = Color( 0.305882, 1, 0.968627, 0.102589 )
+scale = Vector2( 0.945168, 0.945168 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
@@ -106,3 +107,6 @@ anims/Blink = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AppearFuhfuhfuh = ExtResource( 9 )
+
+[node name="Strategic" type="Node" parent="."]
+script = ExtResource( 10 )

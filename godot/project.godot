@@ -369,6 +369,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/battlers/Trail.gd"
 }, {
+"base": "Node",
+"class": "Trait",
+"language": "GDScript",
+"path": "res://addons/traits/Trait.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Wall",
 "language": "GDScript",
@@ -447,6 +452,7 @@ _global_script_class_icons={
 "TeamStats": "",
 "Trail": "",
 "Trail2D": "",
+"Trait": "",
 "Wall": ""
 }
 
@@ -474,6 +480,7 @@ global="*res://globals/global.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
+traits="*res://addons/traits/traits.gd"
 
 [display]
 
@@ -488,7 +495,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "randomAudioStreamPlayer" )
+enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "randomAudioStreamPlayer", "traits" )
 
 [importer_defaults]
 
