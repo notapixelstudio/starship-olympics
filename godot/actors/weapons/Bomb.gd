@@ -133,10 +133,11 @@ signal near_area_exited
 func _on_NearArea_area_exited(area):
 	emit_signal("near_area_exited", area, self)
 	
-
+signal expired
 func _on_LifeTime_timeout():
 	if not entity.has('StandAlone') and type != GameMode.BOMB_TYPE.bubble:
 		get_parent().call_deferred("remove_child", self)
+		emit_signal('expired')
 		if entity.has('Owned'):
 			entity.get('Owned').get_owned_by()._on_bomb_freed()
 		yield(get_tree().create_timer(1), "timeout")
@@ -151,12 +152,16 @@ func process_life_time():
 	
 	life_time.paused = false
 	
+var hit_count = 0
 # FIXME ? is this heavy? each bomb needs contact monitoring
 func _on_Bomb_body_entered(body):
 	if body is Brick:
 		body.break(entity.get('Owned').get_owned_by())
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
+		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
+		hit_count += 1
+		$RicochetAudio.play()
 		life_time.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
 		

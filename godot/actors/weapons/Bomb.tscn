@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://actors/weapons/BombCore.gd" type="Script" id=13]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/audio/gameplay/ball/zapsplat_science_fiction_thud_impact_hit_generic_002_29337.ogg" type="AudioStream" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -194,6 +195,10 @@ area_mask = 8
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 1.3
 autostart = true
+
+[node name="RicochetAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+bus = "SFX"
 [connection signal="body_entered" from="." to="." method="_on_Bomb_body_entered"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

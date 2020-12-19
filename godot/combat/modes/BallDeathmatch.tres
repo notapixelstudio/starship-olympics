@@ -1,10 +1,9 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=3]
 [ext_resource path="res://map/planets/rules/Deathmatch.tres" type="Resource" id=4]
-[ext_resource path="res://map/planets/rules/BallWeapon.tres" type="Resource" id=5]
 [ext_resource path="res://assets/icon/minicards/sets/ball_death.png" type="Texture" id=6]
 
 [resource]
@@ -35,7 +34,7 @@ deadly_trails_duration = 2.0
 bomb_type = 1
 starting_ammo = 3
 reload_time = 3.0
-rules = [ ExtResource( 4 ), ExtResource( 5 ) ]
+rules = [ ExtResource( 4 ) ]
 floodable = true
 flood = false
 laserable = false

@@ -86,8 +86,6 @@ func try_break():
 	if not breakable:
 		return
 		
-	visible = false
-	
 	if prisoner:
 		if prisoner is Ship:
 			prisoner.rotation_degrees += rotation_degrees-45

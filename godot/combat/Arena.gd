@@ -698,6 +698,7 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 		bomb.connect("detonate", self, "bomb_detonated", [bomb])
 		bomb.connect("frozen", self, "_on_sth_just_froze")
+		bomb.connect("expired", ship, "_on_bomb_expired")
 	
 	$Battlefield.add_child(bomb)
 	
