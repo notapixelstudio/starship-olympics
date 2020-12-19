@@ -63,3 +63,8 @@ func break(breaker):
 		
 	$BreakGlow.visible = false
 	
+func get_strategy(ship, distance, game_mode):
+	if game_mode.name == 'BrickBreak':
+		return {"avoid": 0.1, "seek": distance/500, "shoot": 0.5}
+	return {"avoid": 0.1}
+	
