@@ -13,6 +13,9 @@ signal remap
 
 func _process(delta):
 	$Container/Description.text = action
+	if "joy" in device:
+		"arghhh"
+	
 	
 func _set_device(value_):
 	device = value_

@@ -47,10 +47,11 @@ func joy_remap_action_to(event):
 
 func display_current_key():
 	var current_key = "..."
+	var keys = []
 	for event in InputMap.get_action_list(self.action):
 		if check_input_event(event):
 			current_key = global.event_to_text(self.action, event)
-			break
+			keys.append(current_key)
 	# JUST FOR MAPPING JOY
 	var text_to_button = current_key
 	if "joy" in action:
