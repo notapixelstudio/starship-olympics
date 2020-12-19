@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://assets/sprites/environments/grid.png" type="Texture" id=6]
 [ext_resource path="res://assets/patterns/wall/clear.png" type="Texture" id=7]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=8]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -1700, -15, -815, -900, 815, -900, 1700, -15, 1700, 15, 815, 900, -815, 900, -1700, 15 )
 
 [node name="Wall" type="StaticBody2D" groups=[
 "wall",
@@ -109,3 +112,5 @@ collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformArea"]
 visible = false
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 1 )

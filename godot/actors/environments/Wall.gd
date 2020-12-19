@@ -260,11 +260,7 @@ func refresh():
 	
 	update_iso()
 	
-	yield(self, 'ready')
-	
-	var shape = ConvexPolygonShape2D.new()
-	shape.set_points(points)
-	$PlatformArea/CollisionShape2D.shape = shape
+	$PlatformArea/CollisionShape2D.shape.set_points(points)
 	
 	
 func _process(delta):
