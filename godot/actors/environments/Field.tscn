@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=6]
 [ext_resource path="res://actors/environments/components/Flow.gd" type="Script" id=7]
-[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=8]
+[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/components/Hill.gd" type="Script" id=9]
 [ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/environments/crown_symbol.png" type="Texture" id=11]
@@ -18,7 +18,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Area2D
 
 # ugly as f
@@ -27,12 +27,12 @@ func get_strategy(ship, distance, game_mode):
 	
 "
 
-[sub_resource type="RectangleShape2D" id=2]
-
 [sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 50, 50 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=5]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -72,10 +72,12 @@ linear_damp = 1.0
 angular_damp = 10.0
 collision_layer = 128
 collision_mask = 10757
-script = SubResource( 5 )
+script = SubResource( 2 )
+
+[node name="Strategic" parent="Area2D" instance=ExtResource( 8 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Entity" type="Node2D" parent="Area2D"]
 script = ExtResource( 3 )
@@ -119,12 +121,6 @@ __meta__ = {
 }
 enabled = false
 
-[node name="Strategic" type="Node" parent="Area2D/Entity"]
-script = ExtResource( 8 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-
 [node name="Hill" type="Node2D" parent="Area2D/Entity"]
 script = ExtResource( 9 )
 __meta__ = {
@@ -160,7 +156,7 @@ collision_layer = 32768
 collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrownCollider"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -168,7 +164,7 @@ emitting = false
 amount = 100
 lifetime = 2.0
 fract_delta = false
-process_material = SubResource( 4 )
+process_material = SubResource( 5 )
 
 [node name="Flag" type="Sprite" parent="."]
 texture = ExtResource( 14 )

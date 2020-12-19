@@ -17,7 +17,7 @@
 [ext_resource path="res://actors/battlers/DebugShip.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
-[ext_resource path="res://combat/components/Strategic.gd" type="Script" id=18]
+[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
 [ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=20]
 
@@ -180,17 +180,7 @@ enabled = false
 [node name="TargetDest" type="Position2D" parent="."]
 script = ExtResource( 17 )
 
-[node name="Entity2D" type="Node2D" parent="TargetDest"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 6 )
-}
-
-[node name="Strategic" type="Node" parent="TargetDest/Entity2D"]
-script = ExtResource( 18 )
-__meta__ = {
-"_editor_icon": ExtResource( 8 )
-}
+[node name="Strategic" parent="TargetDest" instance=ExtResource( 18 )]
 
 [node name="DebugSprite" type="Sprite" parent="TargetDest"]
 visible = false

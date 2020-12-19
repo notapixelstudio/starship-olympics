@@ -33,7 +33,7 @@ func dist(a: Vector2, b: Vector2):
 
 var target_pos = Vector2()
 
-func choose_target(entities, component="Strategic") -> Dictionary:
+func choose_target(strategics, strategic_trait_name='Strategic') -> Dictionary:
 	"""
 	Among the possible target objects choose the highest priority one
 	"""
@@ -42,13 +42,13 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 	var behaviour = "wander"
 	var priority = 0
 	var from = "default"
-	for entity in entities:
-		var object = entity.get_host()
+	for strategic in strategics:
+		var object = strategic.host
 		if object == target_dest:
 			# avoid considering our own targetdest
 			continue
 		var distance = dist(object.global_position, global_position)
-		var strategy: Dictionary = entity.get(component).get_strategy(self, distance, self.game_mode)
+		var strategy: Dictionary = strategic.get_strategy(self, distance, self.game_mode)
 		for key in strategy:
 			if not key in self.possible_behaviours or key == "avoid":
 				continue
@@ -58,7 +58,7 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 				best_candidate = object
 				behaviour = key
 				target_pos = best_candidate.global_position - position
-				from = "entities"
+				from = "traits"
 	hit_pos = []
 	var becareful = get_ahead()
 	var space_state = get_world_2d().direct_space_state
@@ -69,20 +69,15 @@ func choose_target(entities, component="Strategic") -> Dictionary:
 		
 		var result = space_state.intersect_ray(position, danger, [self], collision_mask, true, true)
 		
-		if result :
+		if result:
 			var collider = result.collider
 			
-			var e = ECM.E(collider)
-			if not e:
-				hit_pos.append(danger)
-				# If we collide with a NON entity
+			if not traits.has_trait(collider, strategic_trait_name):
 				continue
-			hit_pos.append(result.position)
 			
 			var distance = dist(result.position, global_position)
-			if not e.has(component):
-				continue
-			var strategy = e.get(component).get_strategy(self, distance, game_mode)
+			
+			var strategy = traits.get_trait(collider, strategic_trait_name).get_strategy(self, distance, game_mode)
 			for key in strategy:
 				if not key in self.possible_behaviours:
 					continue
@@ -175,7 +170,7 @@ var force_wander = false
 
 func control(delta):
 	keep_decision -= delta
-	var chosen_strategy = choose_target(ECM.entities_with('Strategic'))
+	var chosen_strategy = choose_target(traits.get_all('Strategic'))
 	target_pos = chosen_strategy["target_pos"]
 	last_behaviour = chosen_strategy["behaviour"]
 	var from = chosen_strategy["from"]
