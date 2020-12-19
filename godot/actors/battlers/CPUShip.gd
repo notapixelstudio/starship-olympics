@@ -59,7 +59,7 @@ func choose_target(strategics, strategic_trait_name='Strategic') -> Dictionary:
 				best_candidate = object
 				behaviour = key
 				target_pos = best_candidate.global_position - position
-				from = "entities"
+				from = "traits"
 	hit_pos = []
 	var becareful = get_ahead()
 	var space_state = get_world_2d().direct_space_state
@@ -70,7 +70,7 @@ func choose_target(strategics, strategic_trait_name='Strategic') -> Dictionary:
 		
 		var result = space_state.intersect_ray(position, danger, [self], collision_mask, true, true)
 		
-		if result :
+		if result:
 			var collider = result.collider
 			
 			if not traits.has_trait(collider, strategic_trait_name):

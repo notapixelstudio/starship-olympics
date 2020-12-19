@@ -23,6 +23,7 @@ export var line_texture : Texture setget set_line_texture
 export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
 export var grid_rotation : float = 0 setget set_grid_rotation
 
+export var platform = false
 export(String, 'both', 'above', 'below') var under = 'both' setget set_under
 
 const texture_glass = preload('res://assets/sprites/stripes.png')
@@ -124,6 +125,9 @@ func _ready():
 			gshape = node
 	# extents.size = gshape.get_extents()
 	refresh()
+	
+	# disable platform area unless this is the OutsideWall (or if platform is true)
+	$PlatformArea/CollisionShape2D.disabled = not platform and name != 'OutsideWall'
 
 func get_rect_extents():
 	var gshape
@@ -260,7 +264,7 @@ func refresh():
 	
 	var shape = ConvexPolygonShape2D.new()
 	shape.set_points(points)
-	$Area2D/CollisionShape2D.shape = shape
+	$PlatformArea/CollisionShape2D.shape = shape
 	
 	
 func _process(delta):
