@@ -383,7 +383,7 @@ func fire(override_charge = -1, dash_only = false):
 	else:
 		tap()
 		
-	if should_reload:
+	if should_reload and reload_time > 0: # negative == no automatic reload
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
@@ -578,3 +578,8 @@ func freeze():
 	if alive and not invincible:
 		emit_signal("frozen", self)
 		
+func _on_bomb_expired():
+	# if no autoreload, reload after bomb expired
+	if reload_time < 0:
+		ammo.reload()
+	
