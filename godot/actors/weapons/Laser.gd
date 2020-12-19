@@ -114,3 +114,7 @@ func _on_RayArea_body_entered(body):
 func _on_RayArea_area_entered(area):
 	if area is Explosion:
 		damage()
+
+func get_strategy(ship, distance, game_mode):
+	return {"avoid": 1}
+	

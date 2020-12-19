@@ -9,7 +9,6 @@ var front = Vector2()
 var keep_decision = 0
 const DECISION_TIME = 5 
 
-const DANGER_ZONE = 200
 const MAX_AVOIDANCE_FORCE = 10
 
 static func angle_to_angle(from, to):
@@ -22,7 +21,7 @@ static func which_quadrant(angle:float):
 	return int(tmp/(PI/2))%4+1
 	
 var laser_color = Color(1.0, .329, .298)
-const MAX_SEE_AHEAD = 100
+const MAX_SEE_AHEAD = 200
 var hit_pos = []
 
 var behaviour_mode = "wander"
@@ -131,7 +130,7 @@ func get_ahead()-> PoolVector2Array:
 		pool.append(front.rotated(deg2rad(pixels)) * MAX_SEE_AHEAD)
 	return pool
 
-const MAX_AVOID = 10
+
 
 var last_target_pos = Vector2()
 var last_target = null
@@ -226,14 +225,14 @@ func control(delta):
 	#	$TrailParticles.emitting = true
 	#	dash_cooldown = 1
 	
-	wander_time -=delta
-	if wander_time < 0:
-		force_wander = not force_wander
-		if force_wander:
-			wander_time = MIN_WANDER_TIME + (randi() % WANDER_TIME)
-			behaviour_mode = "wander"
-		else:
-			wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
+	#wander_time -=delta
+	#if wander_time < 0:
+	#	force_wander = not force_wander
+	#	if force_wander:
+	#		wander_time = MIN_WANDER_TIME + (randi() % WANDER_TIME)
+	#		behaviour_mode = "wander"
+	#	else:
+	#		wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
 			
 	.control(delta)
 var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER

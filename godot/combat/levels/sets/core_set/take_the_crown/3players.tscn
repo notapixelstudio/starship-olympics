@@ -158,6 +158,10 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 position = Vector2( -800, 0 )
 
+[node name="Field" parent="Battlefield/Middleground/NoCrownZone" index="0"]
+flag_offset = 0
+isometric_effect = true
+
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
 radius = 450
 
@@ -166,6 +170,10 @@ scale = Vector2( 1.13, 1.13 )
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
 position = Vector2( 800, 0 )
+
+[node name="Field" parent="Battlefield/Middleground/NoCrownZone2" index="0"]
+flag_offset = 0
+isometric_effect = true
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
 radius = 450
