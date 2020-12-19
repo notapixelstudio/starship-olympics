@@ -2,24 +2,25 @@ extends Sprite
 
 class_name Controller
 
-export var device_id: int setget _set_device
+export var device: String setget _set_device
+onready var device_id: int = int(device.replace("joy", ""))
 
 func _set_device(value):
-	if not value is int:
-		if "joy" in value:
-			device_id = int(value.replace("joy", ""))
-		else: 
-			return
-	else:
-		device_id = value
+	if not "joy" in value:
+		return
+	device = value
+	setup_controls(global.input_mapping_joy[device])
 	if not is_inside_tree():
 		yield(self, "ready")
-	$Label.text = str(device_id)
+	$Label.text = device
 
-onready var controls = "joy"+str(device_id)
+var command_list = ["up", "down", "left", "right", "fire"]
 
-var command_list = ["up, down, left, right, fire"]
-
+func toggle(value):
+	visible = value
+	set_process_input(value)
+		
+	
 func clear_controls(action: String):
 	for input_event in InputMap.get_action_list(action):
 		if input_event is InputEventJoypadButton:
@@ -36,13 +37,16 @@ func _ready():
 	for button in get_children():
 		if button is Sprite:
 			clear_button(button)
+	toggle(false)
 	
 
 func setup_controls(controls: Dictionary):
+	print("Setting up this mapping: "+ str(controls))
 	for key in controls:
 		for c in controls[key]:
-			var control = global.invert_map(global.joy_input_map)[c]
-			map_control(self.controls+"_"+key, control)
+			var control = c
+			map_control(self.device+"_"+key, control)
+			print(self.device+"_"+key, control)
 			var button = get_node(control.to_upper())
 			button.visible = true
 			button.get_node("Line2D").visible =true

@@ -17,11 +17,12 @@ func _on_Element_value_changed(value):
 			child.visible = true
 			child.device = value
 		elif child is Controller:
-			child.visible = true
-			child.device_id = device
-
+			child.device = value
+			child.toggle("joy" in device)
+			
 func _on_Default_pressed():
-	global.set_default_mapping(device)
+	var mapping = global.set_default_mapping(device)
+	joypad.setup_controls(mapping)
 	_on_Element_value_changed(device)
 
 func control_remapped(action: String, new_control: String):

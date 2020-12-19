@@ -300,7 +300,14 @@ var default_input_joy := {
 	"down": ["13", "analog_1_1"],
 	"up":["12", "analog_0_-1"]
 }
-	
+
+var input_mapping_joy := {
+	"joy1": default_input_joy,
+	"joy2": default_input_joy,
+	"joy3": default_input_joy,
+	"joy4": default_input_joy
+}
+
 var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
 onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
 
@@ -310,22 +317,28 @@ func _set_joylayout(value):
 func _get_joylayout():
 	return joylayout
 	
-func set_default_mapping(device:String):
+func set_default_mapping(device:String) -> Dictionary:
+	var ret_mapping = {}
 	if "kb" in device:
+		ret_mapping = default_input
 		for action in default_input:
 			InputMap.action_erase_events(action)
 			if device in action:
 				var event = event_from_text(device, default_input[action])
 				remap_action_to(action, event)
+		
 	elif "joy" in device:
 		var device_id = int(device.replace("joy", ""))-1
+		ret_mapping = default_input_joy
 		for action in default_input_joy:
 			var complete_action = device + "_" + action
 			InputMap.action_erase_events(complete_action)
 			for command in default_input_joy[action]:
 				var event = event_from_text(device, command)
 				InputMap.action_add_event(complete_action, event)
-
+		
+	return ret_mapping
+	
 func check_input_event(action_: String, event:InputEvent):
 	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
 
