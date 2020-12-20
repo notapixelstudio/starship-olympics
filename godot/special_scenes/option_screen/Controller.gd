@@ -9,7 +9,11 @@ func _set_device(value):
 	if not "joy" in value:
 		return
 	device = value
-	setup_controls(global.input_mapping_joy[device])
+	var mapping = {}
+	for key in global.input_mapping:
+		if device in key:
+			mapping[key] = global.input_mapping[key]
+	setup_controls({device:mapping})
 	if not is_inside_tree():
 		yield(self, "ready")
 	$Label.text = device
@@ -41,9 +45,13 @@ func _ready():
 	
 
 func setup_controls(controls: Dictionary):
-	print("Setting up this mapping: "+ str(controls))
-	for key in controls:
-		for c in controls[key]:
+	print(" controls: " + str(controls))
+	if not device in controls:
+		print("MA VEEEROO??")
+		return
+	
+	for c in controls[device]:
+		for control in c:
 			var control = c
 			map_control(self.device+"_"+key, control)
 			print(self.device+"_"+key, control)
@@ -58,7 +66,7 @@ func handle_button(joy_event: InputEventJoypadButton):
 			
 func _input(event):
 	
-	if event.device != self.device_id -1 :
+	if event.device != self.device_id:
 		return
 	#if event is InputEventJoypadButton:
 	#	get_node(str(event.button_index)).visible = event.pressed
