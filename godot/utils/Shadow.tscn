@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://utils/Shadow.gd" type="Script" id=1]
+
+[node name="Shadow" type="Sprite"]
+self_modulate = Color( 0, 0, 0, 0.313726 )
+z_index = -3
+z_as_relative = false
+script = ExtResource( 1 )

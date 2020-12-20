@@ -33,7 +33,6 @@ centered = false
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 solid_line_color = Color( 0, 1.30196, 0.722181, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
@@ -55,12 +54,6 @@ rotation_degrees = 30.0
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.372, 0.62, 0.62, 1 )
 bg_color = Color( 0.336, 0.56, 0.56, 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Battlefield/Middleground" index="0"]
 node_a = NodePath("../../Background/OutsideWall")

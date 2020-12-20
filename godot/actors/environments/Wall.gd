@@ -248,6 +248,8 @@ func refresh():
 		$Entity/Deadly.enabled = false
 		$Entity/Trigger.enabled = false
 		
+	$Polygon2D.color = Color(1,1,1,0.4) if type == TYPE.glass else Color('#4f4f3c')
+	
 	# workaround for losing texture mode
 	$line.texture_mode = Line2D.LINE_TEXTURE_TILE
 	#$lineBelow.texture_mode = Line2D.LINE_TEXTURE_TILE

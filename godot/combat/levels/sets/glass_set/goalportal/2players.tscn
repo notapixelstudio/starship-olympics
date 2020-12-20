@@ -25,7 +25,6 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
@@ -39,12 +38,6 @@ height = 2800
 radius = 600
 precision = 100.0
 
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
 [node name="O" type="Sprite" parent="Battlefield/Background" index="4"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
@@ -54,7 +47,7 @@ texture = ExtResource( 1 )
 
 [node name="Zone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1500, 0 )
-collision_layer = 0
+collision_layer = 16
 type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone" index="5"]
@@ -67,7 +60,7 @@ precision = 100.0
 
 [node name="Launcher" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
 position = Vector2( 0, 800 )
-collision_layer = 0
+collision_layer = 16
 type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher" index="5"]
@@ -80,7 +73,7 @@ precision = 40.0
 
 [node name="Launcher2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( 0, -800 )
-collision_layer = 0
+collision_layer = 16
 type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher2" index="5"]
@@ -94,7 +87,7 @@ precision = 40.0
 [node name="Zone2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( 1510, 0 )
 rotation = 3.14159
-collision_layer = 0
+collision_layer = 16
 type = 4
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone2" index="5"]
