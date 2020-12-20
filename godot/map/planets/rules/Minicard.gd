@@ -1,7 +1,7 @@
 extends Sprite
 
 export var content : Resource setget set_content
-var status: String = "locked" 
+var status: String = "locked" setget set_status
 
 signal unlocked
 
@@ -15,9 +15,16 @@ func set_content(v):
 		$Shadow.texture = content.icon
 
 func unlock():
-	self.status = "unlocked"
-	yield(get_tree().create_timer(1), "timeout")
+	$AnimationPlayer.play("unlock")
+	yield($AnimationPlayer, "animation_finished")
 	emit_signal("unlocked")
 	
-func _process(delta):
-	$Label.text = status
+func set_status(v):
+	status = v
+	if status == 'locked':
+		self_modulate = Color(0,0,0,0.75)
+		$QuestionMark.visible = true
+	else:
+		self_modulate = Color(1,1,1,1)
+		$QuestionMark.visible = false
+		
