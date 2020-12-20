@@ -421,6 +421,7 @@ func get_state():
 		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
 		flood=flood,
+		unlocked_games=unlocked_games,
 		laser=laser
 	}
 	return save_dict
@@ -575,3 +576,5 @@ var glow_enable = true setget _set_glow
 func _set_glow(value):
 	glow_enable = value
 	
+
+var unlocked_games = []

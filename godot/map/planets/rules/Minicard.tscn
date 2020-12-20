@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://map/planets/rules/Minicard.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/card_minigame.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 3 )
 
 [node name="Minicard" type="Sprite" groups=[
 "minicard",
@@ -14,3 +19,18 @@ script = ExtResource( 1 )
 modulate = Color( 0, 0, 0, 0.235294 )
 show_behind_parent = true
 position = Vector2( 0, 24 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -164.0
+margin_top = 29.0
+margin_right = 181.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 1 )
+text = "STATUS"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

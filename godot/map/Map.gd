@@ -54,6 +54,7 @@ func set_slam_a_gon_bombs(value: bool):
 func _ready():
 	back = false
 	
+	
 	for x in range(WIDTH):
 		matrix.append([])
 		for y in range(HEIGHT):
@@ -224,6 +225,11 @@ func choose_level(level):
 			tween.interpolate_property(minicard, "global_position", minicard.global_position, get_viewport().size/2, 3,Tween.TRANS_LINEAR, Tween.EASE_IN)
 			tween.interpolate_property(minicard, "scale", Vector2(1,1), Vector2(15,15), 3,Tween.TRANS_LINEAR, Tween.EASE_IN, 1.5)
 			break
+	if chosen_minicard.status == "locked":
+		chosen_minicard.unlock()
+		yield(chosen_minicard, "unlocked")
+		global.unlocked_games.append(this_gamemode.name)
+		persistance.save_game()
 	tween.start()
 	yield(tween, "tween_all_completed")
 	chosen_minicard.position = back_pos
