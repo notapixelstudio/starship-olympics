@@ -28,6 +28,8 @@ onready var cursor_tween = $CursorMoveTween
 
 var settings = {} setget set_settings
 
+signal chose_level
+
 func set_settings(value):
 	settings = value
 	for key in settings:
@@ -209,3 +211,19 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
 		back = true
 		emit_signal("done")
+
+func choose_level(level):
+	var this_gamemode = level.game_mode
+	var back_pos = Vector2(0,0)
+	var chosen_minicard
+	for minicard in get_tree().get_nodes_in_group("minicard"):
+		if minicard.content == this_gamemode:
+			back_pos = minicard.position
+			chosen_minicard = minicard
+			minicard.global_position = get_viewport().size/2
+			minicard.scale = Vector2(10,10)
+			break
+	yield(get_tree().create_timer(3), "timeout")
+	chosen_minicard.position = back_pos
+	chosen_minicard.scale = Vector2(1,1)
+	emit_signal("chose_level")

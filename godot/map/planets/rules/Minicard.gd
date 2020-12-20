@@ -10,3 +10,4 @@ func set_content(v):
 	if content is GameMode:
 		texture = content.icon
 		$Shadow.texture = content.icon
+

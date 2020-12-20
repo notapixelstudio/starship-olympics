@@ -3,7 +3,9 @@
 [ext_resource path="res://map/planets/rules/Minicard.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/card_minigame.png" type="Texture" id=2]
 
-[node name="Minicard" type="Sprite"]
+[node name="Minicard" type="Sprite" groups=[
+"minicard",
+]]
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )

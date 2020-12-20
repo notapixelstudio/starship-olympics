@@ -14,10 +14,10 @@ var all_sports = [
 	# preload("res://map/planets/sets/core.tres")
 	]
 	
-
+var first_time = true
 var all_species = []
 onready var parallax = $ParallaxBackground
-
+onready var map = map_scene.instance()
 var combat
 
 # dictionary of InfoPlayer of players that will actually play
@@ -99,7 +99,6 @@ func combat(selected_players: Array, fight_mode : String):
 	remove_child(parallax)
 	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
-		var map = map_scene.instance()
 		
 		map.initialize(players, all_sports, session_scores.settings)
 		add_child(map)
@@ -108,7 +107,6 @@ func combat(selected_players: Array, fight_mode : String):
 		all_sports = map.selected_sports
 		for sport in all_sports:
 			global.send_stats("design", {"event_id": "selection:sports:{sport_name}".format({"sport_name": sport.name})})
-		
 		num_CPUs = map.cpu
 		global.send_stats("design", {"event_id": "selection:cpu:{num_cpu}:players:{num_players}".format({"num_cpu": str(num_CPUs), "num_players": str(num_players)})})
 		session_scores.settings = map.settings
@@ -119,13 +117,10 @@ func combat(selected_players: Array, fight_mode : String):
 			selection_screen.reset()
 			return
 		
-		map.queue_free()
 	
 	# if fight_mode == 'solo':
 	add_cpu(num_CPUs)
-		
 	session_scores.selected_sports = all_sports
-	
 	
 	for sport in all_sports:
 		
@@ -141,26 +136,25 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	sports_array.shuffle() # shuffle the planets at start
 	levels.shuffle()
-	# for planet in all_planets:
-	#	planet.shuffle_levels(len(players))
 	
-	print(session_scores.mutators)
-	add_child(parallax)
-	
-	# TUTORIAL
-	var tut = preload("res://special_scenes/Tutorial.tscn").instance()
-
-	add_child(tut)
-	yield(tut, "over")
-	# END TUTORIAL
+	first_time = true
 	played_levels = []
 	played_levels_scene = null
-	next_level()
 	
-	# TEST: send the queue
+	next_level(global.demo)
 	GameAnalytics.submit_events()
 
 func next_level(demo=false):
+	if not map.is_inside_tree():
+		add_child(map)
+		
+	var this_game = choose_next_level()
+	map.choose_level(this_game)
+	yield(map, "chose_level")
+	remove_child(map)
+	start_level(this_game, demo)
+	
+func choose_next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
 	
 	var last_sport = played_levels.back()
@@ -184,12 +178,19 @@ func next_level(demo=false):
 	current_level = levels.pop_back()
 	levels.push_front(current_level)
 	played_levels_scene=current_level
-	
-	# skip if we just played it
-	start_level(current_level.instance(), demo)
 	played_levels.append(new_sport)
+	return current_level.instance()
 	
 func start_level(_level, demo = false):
+	
+	if self.first_time:
+		# TUTORIAL
+		var tut = preload("res://special_scenes/Tutorial.tscn").instance()
+		add_child(tut)
+		yield(tut, "over")
+		# END TUTORIAL
+		self.first_time = false
+	
 	combat = _level
 	combat.initialize(session_scores)
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
