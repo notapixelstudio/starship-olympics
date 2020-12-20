@@ -17,7 +17,7 @@ var all_sports = [
 var first_time = true
 var all_species = []
 onready var parallax = $ParallaxBackground
-onready var map = map_scene.instance()
+var map
 var combat
 
 # dictionary of InfoPlayer of players that will actually play
@@ -99,7 +99,7 @@ func combat(selected_players: Array, fight_mode : String):
 	remove_child(parallax)
 	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
-		
+		map = map_scene.instance()
 		map.initialize(players, all_sports, session_scores.settings)
 		add_child(map)
 		yield(map, "done")
@@ -152,6 +152,7 @@ func next_level(demo=false):
 	map.choose_level(this_game)
 	yield(map, "chose_level")
 	remove_child(map)
+	add_child(parallax)
 	start_level(this_game, demo)
 	
 func choose_next_level(demo=false):
