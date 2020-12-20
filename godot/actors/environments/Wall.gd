@@ -260,6 +260,8 @@ func refresh():
 	
 	update_iso()
 	
+	if not $PlatformArea/CollisionShape2D.shape:
+		$PlatformArea/CollisionShape2D.shape = ConvexPolygonShape2D.new()
 	$PlatformArea/CollisionShape2D.shape.set_points(points)
 	
 	
