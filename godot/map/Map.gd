@@ -214,16 +214,22 @@ func _unhandled_input(event):
 		back = true
 		emit_signal("done")
 
+var screen_width = ProjectSettings.get_setting('display/window/size/width')
+var screen_height = ProjectSettings.get_setting('display/window/size/height')
+
 func choose_level(level):
 	var this_gamemode = level.game_mode
 	var back_pos = Vector2(0,0)
+	var back_scale = Vector2(1,1)
 	var chosen_minicard
 	for minicard in get_tree().get_nodes_in_group("minicard"):
 		if minicard.content == this_gamemode:
 			back_pos = minicard.position
+			back_scale = minicard.scale
 			chosen_minicard = minicard
-			tween.interpolate_property(minicard, "global_position", minicard.global_position, get_viewport().size/2, 3,Tween.TRANS_LINEAR, Tween.EASE_IN)
-			tween.interpolate_property(minicard, "scale", Vector2(1,1), Vector2(15,15), 3,Tween.TRANS_LINEAR, Tween.EASE_IN, 1.5)
+			minicard.z_index = 1000
+			tween.interpolate_property(minicard, "global_position", minicard.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 			break
 	if chosen_minicard.status == "locked":
 		chosen_minicard.unlock()
@@ -233,5 +239,6 @@ func choose_level(level):
 	tween.start()
 	yield(tween, "tween_all_completed")
 	chosen_minicard.position = back_pos
-	chosen_minicard.scale = Vector2(1,1)
+	chosen_minicard.scale = back_scale
+	chosen_minicard.z_index = 0
 	emit_signal("chose_level")
