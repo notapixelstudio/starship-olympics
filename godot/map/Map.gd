@@ -12,6 +12,7 @@ export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
 onready var camera = $Camera
 onready var panels = $CanvasLayerTop/PanelContainer
+onready var tween = $Tween
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
@@ -220,10 +221,11 @@ func choose_level(level):
 		if minicard.content == this_gamemode:
 			back_pos = minicard.position
 			chosen_minicard = minicard
-			minicard.global_position = get_viewport().size/2
-			minicard.scale = Vector2(10,10)
+			tween.interpolate_property(minicard, "global_position", minicard.global_position, get_viewport().size/2, 3,Tween.TRANS_LINEAR, Tween.EASE_IN)
+			tween.interpolate_property(minicard, "scale", Vector2(1,1), Vector2(15,15), 3,Tween.TRANS_LINEAR, Tween.EASE_IN, 1.5)
 			break
-	yield(get_tree().create_timer(3), "timeout")
+	tween.start()
+	yield(tween, "tween_all_completed")
 	chosen_minicard.position = back_pos
 	chosen_minicard.scale = Vector2(1,1)
 	emit_signal("chose_level")
