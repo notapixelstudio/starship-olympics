@@ -261,7 +261,7 @@ func _ready():
 	hud.initialize(session)
 	
 	camera.initialize(compute_arena_size())
-	$Battlefield.visible = false
+	# $Battlefield.visible = false
 	if score_to_win_override > 0:
 		game_mode.max_score = score_to_win_override
 	if match_duration_override > 0:

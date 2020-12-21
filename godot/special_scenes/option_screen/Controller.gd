@@ -47,18 +47,15 @@ func _ready():
 func setup_controls(controls: Dictionary):
 	print(" controls: " + str(controls))
 	if not device in controls:
-		print("MA VEEEROO??")
 		return
 	
-	for c in controls[device]:
-		for control in c:
-			var control = c
-			map_control(self.device+"_"+key, control)
-			print(self.device+"_"+key, control)
-			var button = get_node(control.to_upper())
-			button.visible = true
-			button.get_node("Line2D").visible =true
-			button.get_node("Line2D/Label").text = key
+	for control in controls[device]:
+		var command = controls[device][control] 
+		map_control(control, command)
+		var button = get_node(command.to_upper())
+		button.visible = true
+		button.get_node("Line2D").visible =true
+		button.get_node("Line2D/Label").text = control
 	
 	
 func handle_button(joy_event: InputEventJoypadButton):

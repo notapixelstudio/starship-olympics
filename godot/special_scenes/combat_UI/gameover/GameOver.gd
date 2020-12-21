@@ -37,7 +37,6 @@ func initialize(winners: Array, scores):
 	
 
 func _on_Rematch_pressed():
-	print_debug("rematcho")
 	emit_signal("rematch")
 
 func _on_Quit_pressed():

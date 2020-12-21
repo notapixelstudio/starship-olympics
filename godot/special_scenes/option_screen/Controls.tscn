@@ -81,7 +81,6 @@ text = "DEFAULT"
 [node name="Controller" parent="." instance=ExtResource( 1 )]
 position = Vector2( 789.845, 204.453 )
 scale = Vector2( 0.337603, 0.337603 )
-device = null
 
 [connection signal="value_changed" from="Element" to="." method="_on_Element_value_changed"]
 [connection signal="pressed" from="Default" to="." method="_on_Default_pressed"]
