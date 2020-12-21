@@ -2,9 +2,15 @@ extends Sprite
 
 export var content : Resource setget set_content
 var status: String = "locked" setget set_status
-
+var selected : bool = false setget set_select
 signal unlocked
 
+func set_select(v):
+	selected = v
+	if not is_inside_tree():
+		yield(self, "ready")
+	$Select.visible = selected
+	
 func set_content(v):
 	content = v
 	if not is_inside_tree():

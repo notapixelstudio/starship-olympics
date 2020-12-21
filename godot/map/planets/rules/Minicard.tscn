@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://map/planets/rules/Minicard.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/card_minigame.png" type="Texture" id=2]
+[ext_resource path="res://assets/sources/chaos/character_selection_rect.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/minicards/sets/question_mark.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -55,3 +56,10 @@ position = Vector2( 0, 24 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/unlock = SubResource( 1 )
+
+[node name="Select" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1.17191, -4.95359 )
+rotation = 1.5708
+scale = Vector2( 0.93574, 0.502937 )
+texture = ExtResource( 3 )

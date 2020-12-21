@@ -222,8 +222,14 @@ func choose_level(level):
 	var back_pos = Vector2(0,0)
 	var back_scale = Vector2(1,1)
 	var chosen_minicard
+	# animation pseudo random for choosing minicard
+	var minicards = get_tree().get_nodes_in_group("minicard")
+	
+	var index_selection = 0
+	var index = 0
 	for minicard in get_tree().get_nodes_in_group("minicard"):
 		if minicard.content == this_gamemode:
+			index_selection = index
 			back_pos = minicard.position
 			back_scale = minicard.scale
 			chosen_minicard = minicard
@@ -231,6 +237,17 @@ func choose_level(level):
 			tween.interpolate_property(minicard, "global_position", minicard.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 			tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 			break
+		index+=1
+	for i in range(2):
+		for minicard in minicards:
+			minicard.selected = true
+			yield(get_tree().create_timer(0.1 + float("0."+str(i))), "timeout")
+			minicard.selected = false
+	for i in range(index_selection):
+		minicards[i].selected = true
+		yield(get_tree().create_timer(0.2), "timeout")
+		minicards[i].selected = false
+		
 	if chosen_minicard.status == "locked":
 		chosen_minicard.unlock()
 		yield(chosen_minicard, "unlocked")
