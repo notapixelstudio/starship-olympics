@@ -30,6 +30,7 @@ onready var cursor_tween = $CursorMoveTween
 var settings = {} setget set_settings
 
 signal chose_level
+signal selection_finished
 
 func set_settings(value):
 	settings = value
@@ -238,16 +239,14 @@ func choose_level(level):
 			tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 			break
 		index+=1
-	for i in range(2):
-		for minicard in minicards:
-			minicard.selected = true
-			yield(get_tree().create_timer(0.1 + float("0."+str(i))), "timeout")
-			minicard.selected = false
-	for i in range(index_selection):
-		minicards[i].selected = true
-		yield(get_tree().create_timer(0.2), "timeout")
-		minicards[i].selected = false
-		
+	
+	random_selection(minicards, index_selection)
+	yield(self, "selection_finished")
+	minicards[index_selection].selected = true
+	var wait_time = 0.3
+	print("wait time: "+str(wait_time))
+	yield(get_tree().create_timer(wait_time), "timeout")
+	minicards[index_selection].selected = false
 	if chosen_minicard.status == "locked":
 		chosen_minicard.unlock()
 		yield(chosen_minicard, "unlocked")
@@ -259,3 +258,23 @@ func choose_level(level):
 	chosen_minicard.scale = back_scale
 	chosen_minicard.z_index = 0
 	emit_signal("chose_level")
+
+func random_selection(list, sel_index):
+	var index = 0
+	var wait_time = min(0.1 + float("0."+str(index)), 0.3)
+	for i in range(2):
+		wait_time = min(0.1 + float("0."+str(index)), 0.3)
+		print("wait time: "+str(wait_time))
+		for elem in list:
+			elem.selected = true
+			yield(get_tree().create_timer(wait_time), "timeout")
+			elem.selected = false
+		index += 1
+	# one last time
+	wait_time = min(0.1 + float("0."+str(index)), 0.3)
+	print("wait time: "+str(wait_time))
+	for i in range(sel_index):
+		list[i].selected = true
+		yield(get_tree().create_timer(wait_time), "timeout")
+		list[i].selected = false
+	emit_signal("selection_finished")
