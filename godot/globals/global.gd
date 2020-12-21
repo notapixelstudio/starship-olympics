@@ -308,9 +308,17 @@ func _get_input_mapping():
 					ret[action] = button
 	return ret
 
-var default_input :=  {"kb1_fire":"M", 
-"kb1_down":"Down", "kb1_left":"Left", "kb1_right":"Right", "kb1_up":"Up", 
-"kb2_down":"S", "kb2_fire":"1", "kb2_left":"A", "kb2_right":"D", "kb2_up":"W"
+var default_input :=  {
+	"kb1": {
+		"fire":["M"], "down":["Down"], "left":["Left"], "right":["Right"], "up":["Up"]
+	},
+	"kb2": { 
+		"down":["S"], "fire":["1"], "left":["A"], "right":["D"], "up":["W"]
+	},
+	"joy1": default_input_joy,
+	"joy2": default_input_joy,
+	"joy3": default_input_joy,
+	"joy4": default_input_joy
 }
 
 var default_input_joy := {
