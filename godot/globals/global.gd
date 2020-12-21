@@ -578,3 +578,13 @@ func _set_glow(value):
 	
 
 var unlocked_games = []
+
+var species_discovered_scene = preload("res://special_scenes/UnlockedSpecies.tscn")
+func unlock_species():
+	get_tree().paused = true
+	var unlocked_scene = species_discovered_scene.instance()
+	add_child(unlocked_scene)
+	yield(get_tree().create_timer(3), "timeout")
+	unlocked_scene.queue_free()
+	get_tree().paused = false
+	
