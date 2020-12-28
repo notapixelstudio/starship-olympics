@@ -2,7 +2,7 @@ extends Manager
 signal collected
 signal stolen
 
-func ship_near_area_entered(other : CollisionObject2D, ship : Ship):
+func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 	var entity = ECM.E(other)
 	
 	if not entity:
