@@ -807,8 +807,9 @@ func _on_EndlessArea_body_exited(body):
 		body.queue_free()
 		
 func _on_ship_fallen(ship, spawner):
-	ship.die(null, true) # die for good
+	ship.trail.destroy()
 	spawner.appears()
+	ship.die(null, true) # die for good
 	spawn_ship(spawner)
 	
 func connect_killable(killable):

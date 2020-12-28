@@ -118,5 +118,6 @@ gradient = SubResource( 5 )
 texture = ExtResource( 9 )
 trail_length = 5
 time_alive_per_point = 0.4
+
 [connection signal="add_point" from="Trail" to="." method="add_point_to_segment"]
 [connection signal="remove_point" from="Trail" to="." method="remove_point_to_segment"]

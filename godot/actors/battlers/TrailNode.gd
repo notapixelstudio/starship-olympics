@@ -91,7 +91,7 @@ func _ready():
 	
 func _process(delta):
 	update()
-	
+
 func update():
 	if not ship:
 		maybe_erase()
