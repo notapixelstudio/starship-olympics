@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=35]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10000 )
@@ -54,7 +55,11 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="DynamicFont" id=3]
+size = 512
+font_data = ExtResource( 35 )
+
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -105,7 +110,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:time_scale")
@@ -376,6 +381,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 uppercase = true
@@ -402,10 +408,10 @@ debug_mode = false
 enabled = true
 
 [node name="CenterCamera" type="Position2D" parent="."]
-script = SubResource( 3 )
+script = SubResource( 4 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 4 )
+"anims/Game Over" = SubResource( 5 )
 
 [connection signal="back_to_menu" from="CanvasLayer/Pause" to="." method="_on_Pause_back_to_menu"]
 [connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
