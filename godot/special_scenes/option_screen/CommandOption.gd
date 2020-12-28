@@ -13,8 +13,6 @@ signal remap
 
 func _process(delta):
 	$Container/Description.text = action
-	if "joy" in device:
-		"arghhh"
 	
 	
 func _set_device(value_):
@@ -47,3 +45,5 @@ func _on_Button_remap(action, event):
 	button.disabled = true
 	yield(get_tree().create_timer(0.4), "timeout")
 	button.disabled = false
+	# save
+	persistance.save_game()

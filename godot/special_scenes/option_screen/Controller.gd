@@ -49,14 +49,16 @@ func setup_controls(controls: Dictionary):
 	if not device in controls:
 		return
 	
-	for control in controls[device]:
-		var command = controls[device][control] 
-		map_control(control, command)
-		var button = get_node(command.to_upper())
-		button.visible = true
-		button.get_node("Line2D").visible =true
-		button.get_node("Line2D/Label").text = control
-	
+	for complete_control in controls[device]:
+		var commands = controls[device][complete_control]
+		for command in commands:
+			var action = complete_control.replace(str(device)+"_", "")
+			map_control(action, command)
+			var button = get_node(command.to_upper())
+			button.visible = true
+			button.get_node("Line2D").visible =true
+			button.get_node("Line2D/Label").text = action
+		
 	
 func handle_button(joy_event: InputEventJoypadButton):
 	get_node(str(joy_event.button_index)).show_button(joy_event)

@@ -294,19 +294,31 @@ func _set_input_mapping(value_):
 	for device in INPUT_ACTIONS:
 		for action in input_mapping:
 			if device in action:
-				var command = input_mapping[action]
-				var event = event_from_text(device, command)
-				remap_action_to(action, event)
+				var commands = input_mapping[action]
+				var events = []
+				for command in commands:
+					var event = event_from_text(device, command)
+					events.append(event)
+				remap_multiple_actions_to(action, events)
 	
 func _get_input_mapping():
 	var ret = {}
 	for device in INPUT_ACTIONS:
 		for action in InputMap.get_actions():
 			if device in action:
+				ret[action] = []
 				for event in InputMap.get_action_list(action):
 					var button = event_to_text(action, event)
-					ret[action] = button
+					ret[action].append(button)
 	return ret
+
+var default_input_joy := {
+	"fire": ["0", "1", "2", "3"], 
+	"right": ["15", "analog_0_1"],
+	"left": ["14", "analog_0_-1"], 
+	"down": ["13", "analog_1_1"],
+	"up":["12", "analog_1_-1"]
+}
 
 var default_input :=  {
 	"kb1": {
@@ -321,13 +333,7 @@ var default_input :=  {
 	"joy4": default_input_joy
 }
 
-var default_input_joy := {
-	"fire": ["0", "1", "2", "3"], 
-	"right": ["15", "analog_0_1"],
-	"left": ["14", "analog_0_-1"], 
-	"down": ["13", "analog_1_1"],
-	"up":["12", "analog_0_-1"]
-}
+
 
 var input_mapping_joy := {
 	"joy1": default_input_joy,
@@ -347,30 +353,43 @@ func _get_joylayout():
 	
 func set_default_mapping(device:String) -> Dictionary:
 	var ret_mapping = {}
-	if "kb" in device:
-		ret_mapping = default_input
-		for action in default_input:
-			InputMap.action_erase_events(action)
-			if device in action:
-				var event = event_from_text(device, default_input[action])
-				remap_action_to(action, event)
+	var this_mapping = default_input[device]
+	for action in this_mapping:
 		
-	elif "joy" in device:
-		var device_id = int(device.replace("joy", ""))-1
-		for action in default_input_joy:
-			var complete_action = device + "_" + action
-			var commands = []
-			InputMap.action_erase_events(complete_action)
-			for command in default_input_joy[action]:
-				command.append(command)
-				var event = event_from_text(device, command)
-				InputMap.action_add_event(complete_action, event)
-			ret_mapping[complete_action] = commands
+		var complete_action = device + "_" + action
+		InputMap.action_erase_events(action)
+		var events = []
+		for command in this_mapping[action]:
+			var event = event_from_text(device, command)
+			events.append(event)
+		remap_multiple_actions_to(complete_action, events)
+		ret_mapping[complete_action] = this_mapping[action]
+	persistance.save_game()
 	return ret_mapping
 	
 func check_input_event(action_: String, event:InputEvent):
 	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
 
+func remap_multiple_actions_to(action: String, new_events: Array, ui_flag=true) -> String:
+	"""
+	new_events: Array[InputEvent]
+	"""
+	var current_key = ""
+	
+	if ui_flag:
+		var acts = action.split("_")
+		var id = acts[len(acts)-1]
+		if id == "fire":
+			id = "accept"
+		var ui_action = "ui_"+id
+		for event in InputMap.get_action_list(action):
+			InputMap.action_erase_event(ui_action, event)
+		for new_event in new_events:
+			InputMap.action_add_event("ui_"+id, new_event)
+	InputMap.action_erase_events(action)
+	for new_event in new_events:
+		InputMap.action_add_event(action, new_event)
+	return action
 
 func remap_action_to(action: String, new_event: InputEvent, ui_flag=true) -> String:
 	var current_key = ""
