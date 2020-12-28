@@ -9,7 +9,12 @@ func _set_device(value):
 	if not "joy" in value:
 		return
 	device = value
-	setup_controls(global.input_mapping_joy[device])
+	device_id = int(device.replace("joy", ""))
+	var mapping = {}
+	for key in global.input_mapping:
+		if device in key:
+			mapping[key] = global.input_mapping[key]
+	setup_controls({device:mapping})
 	if not is_inside_tree():
 		yield(self, "ready")
 	$Label.text = device
@@ -23,42 +28,49 @@ func toggle(value):
 	
 func clear_controls(action: String):
 	for input_event in InputMap.get_action_list(action):
-		if input_event is InputEventJoypadButton:
-			var btn = (input_event as InputEventJoypadButton).button_index
-			clear_button(get_node(str(btn)))
+		var btn = global.event_to_text(action, input_event).to_upper()
+		clear_button(get_node(str(btn)))
+		
 			
 			
 func clear_button(button:Node2D):
 		button.get_node("Sprite").modulate.a = 0
 		button.get_node("Line2D").visible =false
 
-func _ready():
-	# let's hide them all 
+func empty_controls():
 	for button in get_children():
 		if button is Sprite:
 			clear_button(button)
+
+func _ready():
+	# let's hide them all 
+	empty_controls()
 	toggle(false)
 	
 
 func setup_controls(controls: Dictionary):
-	print("Setting up this mapping: "+ str(controls))
-	for key in controls:
-		for c in controls[key]:
-			var control = c
-			map_control(self.device+"_"+key, control)
-			print(self.device+"_"+key, control)
-			var button = get_node(control.to_upper())
+	print(" controls: " + str(controls))
+	empty_controls()
+	if not device in controls:
+		return
+	
+	for complete_control in controls[device]:
+		var commands = controls[device][complete_control]
+		for command in commands:
+			var action = complete_control.replace(str(device)+"_", "")
+			map_control(action, command)
+			var button = get_node(command.to_upper())
 			button.visible = true
 			button.get_node("Line2D").visible =true
-			button.get_node("Line2D/Label").text = key
-	
+			button.get_node("Line2D/Label").text = action
+		
 	
 func handle_button(joy_event: InputEventJoypadButton):
 	get_node(str(joy_event.button_index)).show_button(joy_event)
 			
 func _input(event):
 	
-	if event.device != self.device_id -1 :
+	if event.device != self.device_id:
 		return
 	#if event is InputEventJoypadButton:
 	#	get_node(str(event.button_index)).visible = event.pressed
