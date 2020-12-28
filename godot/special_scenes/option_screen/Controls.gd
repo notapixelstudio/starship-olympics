@@ -9,7 +9,6 @@ func _ready():
 			child.connect("clear_mapping", self, "clear_mapping")
 			child.connect("remap", self, "control_remapped")
 	
-	print("INPUT MAPPING: " + str(global.input_mapping))
 func _on_Element_value_changed(value):
 	device = value
 	

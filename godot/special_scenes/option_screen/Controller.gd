@@ -9,6 +9,7 @@ func _set_device(value):
 	if not "joy" in value:
 		return
 	device = value
+	device_id = int(device.replace("joy", ""))
 	var mapping = {}
 	for key in global.input_mapping:
 		if device in key:
@@ -27,25 +28,29 @@ func toggle(value):
 	
 func clear_controls(action: String):
 	for input_event in InputMap.get_action_list(action):
-		if input_event is InputEventJoypadButton:
-			var btn = (input_event as InputEventJoypadButton).button_index
-			clear_button(get_node(str(btn)))
+		var btn = global.event_to_text(action, input_event).to_upper()
+		clear_button(get_node(str(btn)))
+		
 			
 			
 func clear_button(button:Node2D):
 		button.get_node("Sprite").modulate.a = 0
 		button.get_node("Line2D").visible =false
 
-func _ready():
-	# let's hide them all 
+func empty_controls():
 	for button in get_children():
 		if button is Sprite:
 			clear_button(button)
+
+func _ready():
+	# let's hide them all 
+	empty_controls()
 	toggle(false)
 	
 
 func setup_controls(controls: Dictionary):
 	print(" controls: " + str(controls))
+	empty_controls()
 	if not device in controls:
 		return
 	

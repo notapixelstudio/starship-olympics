@@ -357,7 +357,6 @@ func set_default_mapping(device:String) -> Dictionary:
 	for action in this_mapping:
 		
 		var complete_action = device + "_" + action
-		InputMap.action_erase_events(action)
 		var events = []
 		for command in this_mapping[action]:
 			var event = event_from_text(device, command)
