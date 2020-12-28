@@ -35,6 +35,16 @@ func _on_Button_toggled(button_pressed):
 
 
 func _on_Button_remap(action, event):
+	var found = false
+	var text = global.event_to_text(action, event)
+	for action in global.input_mapping:
+		if device in action:
+			for command in global.input_mapping[action]:
+				if text == command:
+					found = true
+	if found:
+		print("I can't sorry, because someone else uses it")
+		return
 	emit_signal("clear_mapping", action)
 	var new_control_key = global.remap_action_to(action, event)
 	var text_to_button = new_control_key
