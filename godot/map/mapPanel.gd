@@ -74,6 +74,9 @@ func create_minicards():
 	var i = 0
 	for minigame in map_element.minigames:
 		var minicard = Minicard.instance()
+		minicard.status = "locked"
+		if minigame.name in global.unlocked_games:
+			minicard.status = "unlocked"
 		minicard.content = minigame
 		$Minicards.add_child(minicard)
 		minicard.position = Vector2(dx*(i%2) - dx/2, dy*floor(i/2) - dy/2)

@@ -12,6 +12,7 @@ export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
 onready var camera = $Camera
 onready var panels = $CanvasLayerTop/PanelContainer
+onready var tween = $Tween
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
@@ -27,6 +28,9 @@ onready var cpus = $Content/Controls/CPUs
 onready var cursor_tween = $CursorMoveTween
 
 var settings = {} setget set_settings
+
+signal chose_level
+signal selection_finished
 
 func set_settings(value):
 	settings = value
@@ -50,6 +54,7 @@ func set_slam_a_gon_bombs(value: bool):
 	
 func _ready():
 	back = false
+	
 	
 	for x in range(WIDTH):
 		matrix.append([])
@@ -209,3 +214,67 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
 		back = true
 		emit_signal("done")
+
+var screen_width = ProjectSettings.get_setting('display/window/size/width')
+var screen_height = ProjectSettings.get_setting('display/window/size/height')
+
+func choose_level(level):
+	var this_gamemode = level.game_mode
+	var back_pos = Vector2(0,0)
+	var back_scale = Vector2(1,1)
+	var chosen_minicard
+	# animation pseudo random for choosing minicard
+	var minicards = get_tree().get_nodes_in_group("minicard")
+	
+	var index_selection = 0
+	var index = 0
+	for minicard in get_tree().get_nodes_in_group("minicard"):
+		if minicard.content == this_gamemode:
+			index_selection = index
+			back_pos = minicard.position
+			back_scale = minicard.scale
+			chosen_minicard = minicard
+			minicard.z_index = 1000
+			tween.interpolate_property(minicard, "global_position", minicard.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			break
+		index+=1
+	
+	random_selection(minicards, index_selection)
+	yield(self, "selection_finished")
+	minicards[index_selection].selected = true
+	var wait_time = 0.3
+	print("wait time: "+str(wait_time))
+	yield(get_tree().create_timer(wait_time), "timeout")
+	minicards[index_selection].selected = false
+	if chosen_minicard.status == "locked":
+		chosen_minicard.unlock()
+		yield(chosen_minicard, "unlocked")
+		global.unlocked_games.append(this_gamemode.name)
+		persistance.save_game()
+	tween.start()
+	yield(tween, "tween_all_completed")
+	chosen_minicard.position = back_pos
+	chosen_minicard.scale = back_scale
+	chosen_minicard.z_index = 0
+	emit_signal("chose_level")
+
+func random_selection(list, sel_index):
+	var index = 0
+	var wait_time = min(0.1 + float("0."+str(index)), 0.3)
+	for i in range(2):
+		wait_time = min(0.1 + float("0."+str(index)), 0.3)
+		print("wait time: "+str(wait_time))
+		for elem in list:
+			elem.selected = true
+			yield(get_tree().create_timer(wait_time), "timeout")
+			elem.selected = false
+		index += 1
+	# one last time
+	wait_time = min(0.1 + float("0."+str(index)), 0.3)
+	print("wait time: "+str(wait_time))
+	for i in range(sel_index):
+		list[i].selected = true
+		yield(get_tree().create_timer(wait_time), "timeout")
+		list[i].selected = false
+	emit_signal("selection_finished")

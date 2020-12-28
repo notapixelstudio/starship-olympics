@@ -1,7 +1,16 @@
 extends Sprite
 
 export var content : Resource setget set_content
+var status: String = "locked" setget set_status
+var selected : bool = false setget set_select
+signal unlocked
 
+func set_select(v):
+	selected = v
+	if not is_inside_tree():
+		yield(self, "ready")
+	$Select.visible = selected
+	
 func set_content(v):
 	content = v
 	if not is_inside_tree():
@@ -10,3 +19,18 @@ func set_content(v):
 	if content is GameMode:
 		texture = content.icon
 		$Shadow.texture = content.icon
+
+func unlock():
+	$AnimationPlayer.play("unlock")
+	yield($AnimationPlayer, "animation_finished")
+	emit_signal("unlocked")
+	
+func set_status(v):
+	status = v
+	if status == 'locked':
+		self_modulate = Color(0,0,0,0.75)
+		$QuestionMark.visible = true
+	else:
+		self_modulate = Color(1,1,1,1)
+		$QuestionMark.visible = false
+		

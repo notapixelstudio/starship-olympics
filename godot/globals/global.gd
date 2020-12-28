@@ -448,6 +448,7 @@ func get_state():
 		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
 		flood=flood,
+		unlocked_games=unlocked_games,
 		laser=laser
 	}
 	
@@ -601,4 +602,16 @@ var glow_enable = true setget _set_glow
 
 func _set_glow(value):
 	glow_enable = value
+	
+
+var unlocked_games = []
+
+var species_discovered_scene = preload("res://special_scenes/UnlockedSpecies.tscn")
+func unlock_species():
+	get_tree().paused = true
+	var unlocked_scene = species_discovered_scene.instance()
+	add_child(unlocked_scene)
+	yield(get_tree().create_timer(3), "timeout")
+	unlocked_scene.queue_free()
+	get_tree().paused = false
 	
