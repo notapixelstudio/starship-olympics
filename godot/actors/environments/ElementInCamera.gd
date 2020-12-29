@@ -16,6 +16,7 @@ func manual_activate(follow, start: Vector2, wait):
 	print("will wait: "+str(wait))
 	yield(get_tree().create_timer(wait), "timeout")
 	manual_deactivate()
+	emit_signal("completed")
 
 func manual_deactivate():
 	set_process(false)

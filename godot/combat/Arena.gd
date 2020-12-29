@@ -53,6 +53,7 @@ onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
+onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
 signal screensize_changed(screensize)
 signal gameover
@@ -632,6 +633,15 @@ func spawn_ship(player:PlayerSpawner):
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
+	
+	# smoothly transition 
+	var focus = element_in_camera_scene.instance()
+	$Battlefield.add_child(focus)
+	yield(get_tree(), "idle_frame")
+	ship.remove_from_group("in_camera")
+	focus.manual_activate(ship, global.calculate_center(camera.camera_rect), 1)
+	yield(focus, "completed")
+	ship.add_to_group("in_camera")
 	
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type

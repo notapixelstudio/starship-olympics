@@ -76,7 +76,7 @@ var charging = false
 var charging_enough = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
-var reload_time
+var reload_time: int
 
 var game_mode : GameMode
 
