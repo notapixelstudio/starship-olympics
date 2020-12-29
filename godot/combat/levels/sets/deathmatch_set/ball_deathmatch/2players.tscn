@@ -45,7 +45,6 @@ centered = false
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
 type = 2
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
@@ -67,7 +66,6 @@ bevel_se = 500
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
 type = 2
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
@@ -88,8 +86,7 @@ bevel_se = 500
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
-offset = 600
-elongation = 100
+offset = 1200
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
@@ -235,6 +232,7 @@ cpu = true
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 976.562, 976.562 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]
