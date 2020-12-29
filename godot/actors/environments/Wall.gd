@@ -271,7 +271,8 @@ func _process(delta):
 	update_iso()
 	
 func update_iso():
-	$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
+	if not Engine.editor_hint: # global is not available at editor time
+		$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
 	
 func animate(animation_name: String):
 	if $AnimationPlayer:
