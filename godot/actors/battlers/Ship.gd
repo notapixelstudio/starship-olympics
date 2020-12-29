@@ -51,7 +51,7 @@ const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 
-const ROTATION_TORQUE = 40000
+const ROTATION_TORQUE = 40000*9 # 9 because we enlarged the radius by 3
 
 var responsive = false setget change_engine
 var info_player setget set_info_player
