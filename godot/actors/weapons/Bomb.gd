@@ -171,7 +171,11 @@ func _on_Bomb_body_entered(body):
 		ripple.position = position
 		get_parent().call_deferred("add_child", ripple)
 
+var bubble_already_spawned = false
 func create_bubble():
+	if bubble_already_spawned:
+		return
+		
 	var bubble = BubbleScene.instance()
 	#bubble.set_species(entity.get('Owned').get_owned_by().species)
 	bubble.symbol = symbol
@@ -180,6 +184,7 @@ func create_bubble():
 	get_parent().call_deferred("add_child", bubble) # ugly
 	get_parent().get_parent().get_parent().call_deferred("connect_killable", bubble) # uglier
 	bubble.call_deferred("attempt_binding", entity.get('Owned').get_owned_by())
+	bubble_already_spawned = true
 
 func _on_NearArea_body_entered(body):
 	if body is Bubble:
