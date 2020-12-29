@@ -634,6 +634,9 @@ func spawn_ship(player:PlayerSpawner):
 	
 	$Battlefield.add_child(ship)
 	
+	create_trail(ship)
+	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
+	
 	# smoothly transition 
 	var focus = element_in_camera_scene.instance()
 	$Battlefield.add_child(focus)
@@ -643,8 +646,6 @@ func spawn_ship(player:PlayerSpawner):
 	yield(focus, "completed")
 	ship.add_to_group("in_camera")
 	
-	create_trail(ship)
-	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
 	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
