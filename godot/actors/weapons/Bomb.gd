@@ -160,7 +160,7 @@ func _on_Bomb_body_entered(body):
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
-		hit_count += 1
+		hit_count = min(hit_count+1, 1000)
 		$RicochetAudio.play()
 		life_time.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
