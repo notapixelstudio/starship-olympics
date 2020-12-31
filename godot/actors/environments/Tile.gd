@@ -6,6 +6,8 @@ export var points = 1
 var conquering_ship : Ship
 var owner_ship : Ship setget set_owner_ship
 
+var fortified = false
+
 func set_owner_ship(v):
 	owner_ship = v
 	$Graphics.modulate = owner_ship.species.color
@@ -24,8 +26,27 @@ func _process(delta):
 		
 func conquest():
 	set_owner_ship(conquering_ship)
+	attempt_fortification()
+	for n in get_parent().get_neighbours(self):
+		n.attempt_fortification()
+	
+func attempt_fortification():
+	for n in get_parent().get_neighbours(self):
+		if n.owner_ship != owner_ship:
+			return
+	fortify()
+	
+func fortify():
+	if size > 1:
+		return
+	fortified = true
+	set_process(false) # disable reconquering
+	$Graphics/Fortification.visible = true
 
 func get_strategy(ship, distance, game_mode):
+	if fortified:
+		return {}
+		
 	if owner_ship == null and conquering_ship == null:
 		return {"seek": points}
 		
