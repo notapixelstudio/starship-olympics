@@ -276,9 +276,6 @@ func _ready():
 		yield(get_tree().create_timer(3), "timeout")
 		mode_description.disappears()
 	camera.isShake = true
-	yield(mode_description, "ready_to_fight")
-	$Battlefield.visible = true
-	hud.set_planet("", game_mode)
 	
 	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
@@ -353,6 +350,9 @@ func _ready():
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
+	yield(mode_description, "ready_to_fight")
+	hud.set_planet("", game_mode)
+	
 	if not mockup:
 		if style and style.bgm:
 			Soundtrack.play(style.bgm, true)
