@@ -13,7 +13,8 @@ export var cursor_scene : PackedScene
 onready var camera = $Camera
 onready var panels = $CanvasLayerTop/PanelContainer
 onready var tween = $Tween
-onready var focus_path_scene = preload("res://map/PathMap.tscn")
+export var focus_path_scene: PackedScene = preload("res://map/PathMap.tscn")
+export var element_in_camera_scene: PackedScene = preload("res://actors/environments/ElementInCamera.tscn")
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
@@ -282,18 +283,43 @@ func random_selection(list, sel_index):
 		list[i].selected = false
 	emit_signal("selection_finished")
 
+func _input(event):
+	if event.is_action_pressed("debug"):
+		Engine.time_scale -= 0.2
+	if event.is_action_pressed("continue"):
+		Engine.time_scale += 0.2
+		
 func unlock_set(set_to_unlock, path_to_traverse: Line2D):
+	
+	var center_camera = global.calculate_center(camera.camera_rect)
 	# remove from camera
 	var backs = []
 	for cameraman in get_tree().get_nodes_in_group("in_camera"):
 		backs.append(cameraman)
 		cameraman.remove_from_group("in_camera")
+	var element_in_camera = element_in_camera_scene.instance()
+	element_in_camera.position = center_camera
+	var start_path = path_to_traverse.points[0]
+	
+	add_child(element_in_camera)
+	element_in_camera.move(start_path, 2)
 	var focus = focus_path_scene.instance()
+	yield(element_in_camera, "completed")
+	
 	add_child(focus)
+	yield(get_tree(), "idle_frame")
 	focus.set_points(path_to_traverse.points)
-	yield(get_tree().create_timer(2), "timeout")
+	
 	focus.animate()
 	yield(focus, "completed")
+	element_in_camera.deactivate()
+	element_in_camera.position = set_to_unlock.position
+	
+	
+	# come back where the center was
+	element_in_camera.move(center_camera, 2)
+	yield(element_in_camera, "completed")
+	
 	for b in backs:
 		b.add_to_group("in_camera")
 	

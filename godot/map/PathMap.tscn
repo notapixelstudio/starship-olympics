@@ -14,11 +14,10 @@ script = ExtResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 
-[node name="Position2D" type="Position2D" parent="PathFollow2D" groups=[
-"in_camera",
-]]
+[node name="Position2D" type="Position2D" parent="PathFollow2D"]
 
-[node name="Sprite" type="Sprite" parent="PathFollow2D/Position2D"]
+[node name="DebugSprite" type="Sprite" parent="PathFollow2D/Position2D"]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]

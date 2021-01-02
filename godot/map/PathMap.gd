@@ -11,14 +11,17 @@ func set_points(points: PoolVector2Array):
 	for point in points:
 		self.curve.add_point(point)
 
+func reset():
+	follow.unit_offset = 0
+	
 func clear():
 	self.curve.clear_points()
 
-func _ready():
-	self.clear()
 	
 func animate():
-	tween.interpolate_property(follow, "unit_offset", 0.0, 1.0, duration,Tween.TRANS_LINEAR, Tween.EASE_IN)
+	follow.add_to_group("in_camera")
+	tween.interpolate_property(follow, "unit_offset", 0.0, 0.99, duration,Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 	yield(tween, "tween_completed")
+	follow.remove_from_group("in_camera")
 	emit_signal("completed")
