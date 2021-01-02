@@ -8,8 +8,16 @@ var owner_ship : Ship setget set_owner_ship
 
 var fortified = false
 
+signal conquered
+signal lost
+
 func set_owner_ship(v):
+	if owner_ship != null:
+		emit_signal('lost', owner_ship, self, get_score(), false)
+		
 	owner_ship = v
+	emit_signal('conquered', owner_ship, self, get_score(), false)
+	
 	$Graphics/Sprite.modulate = owner_ship.species.color
 	$Graphics/Fortification.modulate = owner_ship.species.color
 	$Graphics/Label.self_modulate = owner_ship.species.color
@@ -61,3 +69,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == 'flip':
 		conquering_ship = null
 		
+func get_score():
+	return points
+	
