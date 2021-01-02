@@ -1,7 +1,7 @@
 extends Position2D
 
 signal completed
-const SPEED =  4
+export var speed =  4
 
 var target
 func _ready():
@@ -39,5 +39,5 @@ func activate():
 		add_to_group("in_camera")
 
 func _process(delta):
-	position = lerp(position, target.position, delta*SPEED)
+	position = lerp(position, target.position, delta*speed)
 	

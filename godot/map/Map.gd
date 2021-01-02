@@ -13,6 +13,7 @@ export var cursor_scene : PackedScene
 onready var camera = $Camera
 onready var panels = $CanvasLayerTop/PanelContainer
 onready var tween = $Tween
+onready var focus_path_scene = preload("res://map/PathMap.tscn")
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
@@ -87,6 +88,8 @@ func _ready():
 	max_cpu = global.MAX_PLAYERS - human_players
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
+	
+	unlock_set($Content/Planets/Set5, $Content/Waypoints/Path3)
 
 func initialize(players, sports, settings_):
 	self.settings = settings_
@@ -278,3 +281,22 @@ func random_selection(list, sel_index):
 		yield(get_tree().create_timer(wait_time), "timeout")
 		list[i].selected = false
 	emit_signal("selection_finished")
+
+func unlock_set(set_to_unlock, path_to_traverse: Line2D):
+	# remove from camera
+	var backs = []
+	for cameraman in get_tree().get_nodes_in_group("in_camera"):
+		backs.append(cameraman)
+		cameraman.remove_from_group("in_camera")
+	var focus = focus_path_scene.instance()
+	add_child(focus)
+	focus.set_points(path_to_traverse.points)
+	yield(get_tree().create_timer(2), "timeout")
+	focus.animate()
+	yield(focus, "completed")
+	for b in backs:
+		b.add_to_group("in_camera")
+	
+	
+	
+	
