@@ -18,7 +18,7 @@ func set_owner_ship(v):
 	owner_ship = v
 	emit_signal('conquered', owner_ship, self, get_score(), false)
 	
-	$Graphics/Sprite.modulate = owner_ship.species.color
+	$Graphics/Partial.modulate = owner_ship.species.color
 	$Graphics/Fortification.modulate = owner_ship.species.color
 	$Graphics/Label.self_modulate = owner_ship.species.color
 	

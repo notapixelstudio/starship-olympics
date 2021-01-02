@@ -50,7 +50,7 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 2400
+radius = 2600
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
@@ -82,7 +82,7 @@ position = Vector2( -500, -100 )
 
 [node name="Tile6" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 9 )]
 size = 3
-points = 20
+points = 40
 
 [node name="Tile8" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 9 )]
 position = Vector2( 400, 0 )
@@ -432,22 +432,22 @@ position = Vector2( 0, -600 )
 [node name="Tile290" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 9 )]
 position = Vector2( 0, -1100 )
 size = 2
-points = 10
+points = 20
 
 [node name="Tile291" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 9 )]
 position = Vector2( 1100, 0 )
 size = 2
-points = 10
+points = 20
 
 [node name="Tile292" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 9 )]
 position = Vector2( 0, 1100 )
 size = 2
-points = 10
+points = 20
 
 [node name="Tile293" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 9 )]
 position = Vector2( -1100, 0 )
 size = 2
-points = 10
+points = 20
 
 [node name="Tile146" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 9 )]
 position = Vector2( 100, -700 )
@@ -845,50 +845,506 @@ position = Vector2( 100, -1500 )
 [node name="Tile285" parent="Battlefield/Middleground/Board" index="256" instance=ExtResource( 9 )]
 position = Vector2( 0, -1600 )
 
-[node name="Tile286" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 9 )]
+[node name="Tile294" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 9 )]
+position = Vector2( -1300, -500 )
+
+[node name="Tile295" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 9 )]
+position = Vector2( -1200, -600 )
+
+[node name="Tile296" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 9 )]
+position = Vector2( -1100, -700 )
+
+[node name="Tile297" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 9 )]
+position = Vector2( -1000, -800 )
+
+[node name="Tile298" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 9 )]
+position = Vector2( -900, -900 )
+
+[node name="Tile299" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 9 )]
+position = Vector2( -800, -1000 )
+
+[node name="Tile300" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 9 )]
+position = Vector2( -1600, -200 )
+
+[node name="Tile301" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 9 )]
+position = Vector2( -1500, -300 )
+
+[node name="Tile302" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 9 )]
+position = Vector2( -1400, -400 )
+
+[node name="Tile303" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 9 )]
+position = Vector2( -400, -1400 )
+
+[node name="Tile304" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 9 )]
+position = Vector2( -300, -1500 )
+
+[node name="Tile305" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 9 )]
+position = Vector2( -200, -1600 )
+
+[node name="Tile306" parent="Battlefield/Middleground/Board" index="269" instance=ExtResource( 9 )]
+position = Vector2( -700, -1100 )
+
+[node name="Tile307" parent="Battlefield/Middleground/Board" index="270" instance=ExtResource( 9 )]
+position = Vector2( -600, -1200 )
+
+[node name="Tile308" parent="Battlefield/Middleground/Board" index="271" instance=ExtResource( 9 )]
+position = Vector2( -500, -1300 )
+
+[node name="Tile309" parent="Battlefield/Middleground/Board" index="272" instance=ExtResource( 9 )]
+position = Vector2( -1700, -100 )
+
+[node name="Tile310" parent="Battlefield/Middleground/Board" index="273" instance=ExtResource( 9 )]
+position = Vector2( -100, -1700 )
+
+[node name="Tile311" parent="Battlefield/Middleground/Board" index="274" instance=ExtResource( 9 )]
+position = Vector2( 500, 1300 )
+
+[node name="Tile312" parent="Battlefield/Middleground/Board" index="275" instance=ExtResource( 9 )]
+position = Vector2( 600, 1200 )
+
+[node name="Tile313" parent="Battlefield/Middleground/Board" index="276" instance=ExtResource( 9 )]
+position = Vector2( 700, 1100 )
+
+[node name="Tile314" parent="Battlefield/Middleground/Board" index="277" instance=ExtResource( 9 )]
+position = Vector2( 800, 1000 )
+
+[node name="Tile315" parent="Battlefield/Middleground/Board" index="278" instance=ExtResource( 9 )]
+position = Vector2( 900, 900 )
+
+[node name="Tile316" parent="Battlefield/Middleground/Board" index="279" instance=ExtResource( 9 )]
+position = Vector2( 1000, 800 )
+
+[node name="Tile317" parent="Battlefield/Middleground/Board" index="280" instance=ExtResource( 9 )]
+position = Vector2( 200, 1600 )
+
+[node name="Tile318" parent="Battlefield/Middleground/Board" index="281" instance=ExtResource( 9 )]
+position = Vector2( 300, 1500 )
+
+[node name="Tile319" parent="Battlefield/Middleground/Board" index="282" instance=ExtResource( 9 )]
+position = Vector2( 400, 1400 )
+
+[node name="Tile320" parent="Battlefield/Middleground/Board" index="283" instance=ExtResource( 9 )]
+position = Vector2( 1400, 400 )
+
+[node name="Tile321" parent="Battlefield/Middleground/Board" index="284" instance=ExtResource( 9 )]
+position = Vector2( 1500, 300 )
+
+[node name="Tile322" parent="Battlefield/Middleground/Board" index="285" instance=ExtResource( 9 )]
+position = Vector2( 1600, 200 )
+
+[node name="Tile323" parent="Battlefield/Middleground/Board" index="286" instance=ExtResource( 9 )]
+position = Vector2( 1100, 700 )
+
+[node name="Tile324" parent="Battlefield/Middleground/Board" index="287" instance=ExtResource( 9 )]
+position = Vector2( 1200, 600 )
+
+[node name="Tile325" parent="Battlefield/Middleground/Board" index="288" instance=ExtResource( 9 )]
+position = Vector2( 1300, 500 )
+
+[node name="Tile326" parent="Battlefield/Middleground/Board" index="289" instance=ExtResource( 9 )]
+position = Vector2( 100, 1700 )
+
+[node name="Tile328" parent="Battlefield/Middleground/Board" index="290" instance=ExtResource( 9 )]
+position = Vector2( -1300, 500 )
+
+[node name="Tile329" parent="Battlefield/Middleground/Board" index="291" instance=ExtResource( 9 )]
+position = Vector2( -1200, 600 )
+
+[node name="Tile330" parent="Battlefield/Middleground/Board" index="292" instance=ExtResource( 9 )]
+position = Vector2( -800, 1000 )
+
+[node name="Tile331" parent="Battlefield/Middleground/Board" index="293" instance=ExtResource( 9 )]
+position = Vector2( -900, 900 )
+
+[node name="Tile332" parent="Battlefield/Middleground/Board" index="294" instance=ExtResource( 9 )]
+position = Vector2( -1000, 800 )
+
+[node name="Tile333" parent="Battlefield/Middleground/Board" index="295" instance=ExtResource( 9 )]
+position = Vector2( -1100, 700 )
+
+[node name="Tile334" parent="Battlefield/Middleground/Board" index="296" instance=ExtResource( 9 )]
+position = Vector2( -500, 1300 )
+
+[node name="Tile335" parent="Battlefield/Middleground/Board" index="297" instance=ExtResource( 9 )]
+position = Vector2( -600, 1200 )
+
+[node name="Tile336" parent="Battlefield/Middleground/Board" index="298" instance=ExtResource( 9 )]
+position = Vector2( -700, 1100 )
+
+[node name="Tile337" parent="Battlefield/Middleground/Board" index="299" instance=ExtResource( 9 )]
+position = Vector2( -1400, 400 )
+
+[node name="Tile338" parent="Battlefield/Middleground/Board" index="300" instance=ExtResource( 9 )]
+position = Vector2( -1500, 300 )
+
+[node name="Tile339" parent="Battlefield/Middleground/Board" index="301" instance=ExtResource( 9 )]
+position = Vector2( -1600, 200 )
+
+[node name="Tile340" parent="Battlefield/Middleground/Board" index="302" instance=ExtResource( 9 )]
+position = Vector2( -1700, 100 )
+
+[node name="Tile341" parent="Battlefield/Middleground/Board" index="303" instance=ExtResource( 9 )]
+position = Vector2( -400, 1400 )
+
+[node name="Tile342" parent="Battlefield/Middleground/Board" index="304" instance=ExtResource( 9 )]
+position = Vector2( -300, 1500 )
+
+[node name="Tile343" parent="Battlefield/Middleground/Board" index="305" instance=ExtResource( 9 )]
+position = Vector2( -200, 1600 )
+
+[node name="Tile344" parent="Battlefield/Middleground/Board" index="306" instance=ExtResource( 9 )]
+position = Vector2( -100, 1700 )
+
+[node name="Tile345" parent="Battlefield/Middleground/Board" index="307" instance=ExtResource( 9 )]
+position = Vector2( -1800, 0 )
+
+[node name="Tile346" parent="Battlefield/Middleground/Board" index="308" instance=ExtResource( 9 )]
+position = Vector2( 0, 1800 )
+
+[node name="Tile347" parent="Battlefield/Middleground/Board" index="309" instance=ExtResource( 9 )]
+position = Vector2( 500, -1300 )
+
+[node name="Tile348" parent="Battlefield/Middleground/Board" index="310" instance=ExtResource( 9 )]
+position = Vector2( 600, -1200 )
+
+[node name="Tile349" parent="Battlefield/Middleground/Board" index="311" instance=ExtResource( 9 )]
+position = Vector2( 1000, -800 )
+
+[node name="Tile350" parent="Battlefield/Middleground/Board" index="312" instance=ExtResource( 9 )]
+position = Vector2( 900, -900 )
+
+[node name="Tile351" parent="Battlefield/Middleground/Board" index="313" instance=ExtResource( 9 )]
+position = Vector2( 800, -1000 )
+
+[node name="Tile352" parent="Battlefield/Middleground/Board" index="314" instance=ExtResource( 9 )]
+position = Vector2( 700, -1100 )
+
+[node name="Tile353" parent="Battlefield/Middleground/Board" index="315" instance=ExtResource( 9 )]
+position = Vector2( 1300, -500 )
+
+[node name="Tile354" parent="Battlefield/Middleground/Board" index="316" instance=ExtResource( 9 )]
+position = Vector2( 1200, -600 )
+
+[node name="Tile355" parent="Battlefield/Middleground/Board" index="317" instance=ExtResource( 9 )]
+position = Vector2( 1100, -700 )
+
+[node name="Tile356" parent="Battlefield/Middleground/Board" index="318" instance=ExtResource( 9 )]
+position = Vector2( 400, -1400 )
+
+[node name="Tile357" parent="Battlefield/Middleground/Board" index="319" instance=ExtResource( 9 )]
+position = Vector2( 300, -1500 )
+
+[node name="Tile358" parent="Battlefield/Middleground/Board" index="320" instance=ExtResource( 9 )]
+position = Vector2( 200, -1600 )
+
+[node name="Tile359" parent="Battlefield/Middleground/Board" index="321" instance=ExtResource( 9 )]
+position = Vector2( 100, -1700 )
+
+[node name="Tile360" parent="Battlefield/Middleground/Board" index="322" instance=ExtResource( 9 )]
+position = Vector2( 1400, -400 )
+
+[node name="Tile361" parent="Battlefield/Middleground/Board" index="323" instance=ExtResource( 9 )]
+position = Vector2( 1500, -300 )
+
+[node name="Tile362" parent="Battlefield/Middleground/Board" index="324" instance=ExtResource( 9 )]
+position = Vector2( 1600, -200 )
+
+[node name="Tile363" parent="Battlefield/Middleground/Board" index="325" instance=ExtResource( 9 )]
+position = Vector2( 1700, -100 )
+
+[node name="Tile364" parent="Battlefield/Middleground/Board" index="326" instance=ExtResource( 9 )]
+position = Vector2( 0, -1800 )
+
+[node name="Tile366" parent="Battlefield/Middleground/Board" index="327" instance=ExtResource( 9 )]
+position = Vector2( -1400, -600 )
+
+[node name="Tile367" parent="Battlefield/Middleground/Board" index="328" instance=ExtResource( 9 )]
+position = Vector2( -1300, -700 )
+
+[node name="Tile368" parent="Battlefield/Middleground/Board" index="329" instance=ExtResource( 9 )]
+position = Vector2( -1200, -800 )
+
+[node name="Tile369" parent="Battlefield/Middleground/Board" index="330" instance=ExtResource( 9 )]
+position = Vector2( -1100, -900 )
+
+[node name="Tile370" parent="Battlefield/Middleground/Board" index="331" instance=ExtResource( 9 )]
+position = Vector2( -1000, -1000 )
+
+[node name="Tile371" parent="Battlefield/Middleground/Board" index="332" instance=ExtResource( 9 )]
+position = Vector2( -900, -1100 )
+
+[node name="Tile372" parent="Battlefield/Middleground/Board" index="333" instance=ExtResource( 9 )]
+position = Vector2( -1700, -300 )
+
+[node name="Tile373" parent="Battlefield/Middleground/Board" index="334" instance=ExtResource( 9 )]
+position = Vector2( -1600, -400 )
+
+[node name="Tile374" parent="Battlefield/Middleground/Board" index="335" instance=ExtResource( 9 )]
+position = Vector2( -1500, -500 )
+
+[node name="Tile375" parent="Battlefield/Middleground/Board" index="336" instance=ExtResource( 9 )]
+position = Vector2( -500, -1500 )
+
+[node name="Tile376" parent="Battlefield/Middleground/Board" index="337" instance=ExtResource( 9 )]
+position = Vector2( -400, -1600 )
+
+[node name="Tile377" parent="Battlefield/Middleground/Board" index="338" instance=ExtResource( 9 )]
+position = Vector2( -300, -1700 )
+
+[node name="Tile378" parent="Battlefield/Middleground/Board" index="339" instance=ExtResource( 9 )]
+position = Vector2( -800, -1200 )
+
+[node name="Tile379" parent="Battlefield/Middleground/Board" index="340" instance=ExtResource( 9 )]
+position = Vector2( -700, -1300 )
+
+[node name="Tile380" parent="Battlefield/Middleground/Board" index="341" instance=ExtResource( 9 )]
+position = Vector2( -600, -1400 )
+
+[node name="Tile381" parent="Battlefield/Middleground/Board" index="342" instance=ExtResource( 9 )]
+position = Vector2( -1800, -200 )
+
+[node name="Tile382" parent="Battlefield/Middleground/Board" index="343" instance=ExtResource( 9 )]
+position = Vector2( -200, -1800 )
+
+[node name="Tile383" parent="Battlefield/Middleground/Board" index="344" instance=ExtResource( 9 )]
+position = Vector2( -1900, -100 )
+
+[node name="Tile384" parent="Battlefield/Middleground/Board" index="345" instance=ExtResource( 9 )]
+position = Vector2( -100, -1900 )
+
+[node name="Tile385" parent="Battlefield/Middleground/Board" index="346" instance=ExtResource( 9 )]
+position = Vector2( 600, 1400 )
+
+[node name="Tile386" parent="Battlefield/Middleground/Board" index="347" instance=ExtResource( 9 )]
+position = Vector2( 700, 1300 )
+
+[node name="Tile387" parent="Battlefield/Middleground/Board" index="348" instance=ExtResource( 9 )]
+position = Vector2( 800, 1200 )
+
+[node name="Tile388" parent="Battlefield/Middleground/Board" index="349" instance=ExtResource( 9 )]
+position = Vector2( 900, 1100 )
+
+[node name="Tile389" parent="Battlefield/Middleground/Board" index="350" instance=ExtResource( 9 )]
+position = Vector2( 1000, 1000 )
+
+[node name="Tile390" parent="Battlefield/Middleground/Board" index="351" instance=ExtResource( 9 )]
+position = Vector2( 1100, 900 )
+
+[node name="Tile391" parent="Battlefield/Middleground/Board" index="352" instance=ExtResource( 9 )]
+position = Vector2( 300, 1700 )
+
+[node name="Tile392" parent="Battlefield/Middleground/Board" index="353" instance=ExtResource( 9 )]
+position = Vector2( 400, 1600 )
+
+[node name="Tile393" parent="Battlefield/Middleground/Board" index="354" instance=ExtResource( 9 )]
+position = Vector2( 500, 1500 )
+
+[node name="Tile394" parent="Battlefield/Middleground/Board" index="355" instance=ExtResource( 9 )]
+position = Vector2( 1500, 500 )
+
+[node name="Tile395" parent="Battlefield/Middleground/Board" index="356" instance=ExtResource( 9 )]
+position = Vector2( 1600, 400 )
+
+[node name="Tile396" parent="Battlefield/Middleground/Board" index="357" instance=ExtResource( 9 )]
+position = Vector2( 1700, 300 )
+
+[node name="Tile397" parent="Battlefield/Middleground/Board" index="358" instance=ExtResource( 9 )]
+position = Vector2( 1200, 800 )
+
+[node name="Tile398" parent="Battlefield/Middleground/Board" index="359" instance=ExtResource( 9 )]
+position = Vector2( 1300, 700 )
+
+[node name="Tile399" parent="Battlefield/Middleground/Board" index="360" instance=ExtResource( 9 )]
+position = Vector2( 1400, 600 )
+
+[node name="Tile400" parent="Battlefield/Middleground/Board" index="361" instance=ExtResource( 9 )]
+position = Vector2( 200, 1800 )
+
+[node name="Tile401" parent="Battlefield/Middleground/Board" index="362" instance=ExtResource( 9 )]
+position = Vector2( 1800, 200 )
+
+[node name="Tile402" parent="Battlefield/Middleground/Board" index="363" instance=ExtResource( 9 )]
+position = Vector2( 100, 1900 )
+
+[node name="Tile404" parent="Battlefield/Middleground/Board" index="364" instance=ExtResource( 9 )]
+position = Vector2( -1400, 600 )
+
+[node name="Tile405" parent="Battlefield/Middleground/Board" index="365" instance=ExtResource( 9 )]
+position = Vector2( -1300, 700 )
+
+[node name="Tile406" parent="Battlefield/Middleground/Board" index="366" instance=ExtResource( 9 )]
+position = Vector2( -900, 1100 )
+
+[node name="Tile407" parent="Battlefield/Middleground/Board" index="367" instance=ExtResource( 9 )]
+position = Vector2( -1000, 1000 )
+
+[node name="Tile408" parent="Battlefield/Middleground/Board" index="368" instance=ExtResource( 9 )]
+position = Vector2( -1100, 900 )
+
+[node name="Tile409" parent="Battlefield/Middleground/Board" index="369" instance=ExtResource( 9 )]
+position = Vector2( -1200, 800 )
+
+[node name="Tile410" parent="Battlefield/Middleground/Board" index="370" instance=ExtResource( 9 )]
+position = Vector2( -600, 1400 )
+
+[node name="Tile411" parent="Battlefield/Middleground/Board" index="371" instance=ExtResource( 9 )]
+position = Vector2( -700, 1300 )
+
+[node name="Tile412" parent="Battlefield/Middleground/Board" index="372" instance=ExtResource( 9 )]
+position = Vector2( -800, 1200 )
+
+[node name="Tile413" parent="Battlefield/Middleground/Board" index="373" instance=ExtResource( 9 )]
+position = Vector2( -1500, 500 )
+
+[node name="Tile414" parent="Battlefield/Middleground/Board" index="374" instance=ExtResource( 9 )]
+position = Vector2( -1600, 400 )
+
+[node name="Tile415" parent="Battlefield/Middleground/Board" index="375" instance=ExtResource( 9 )]
+position = Vector2( -1700, 300 )
+
+[node name="Tile416" parent="Battlefield/Middleground/Board" index="376" instance=ExtResource( 9 )]
+position = Vector2( -1800, 200 )
+
+[node name="Tile417" parent="Battlefield/Middleground/Board" index="377" instance=ExtResource( 9 )]
+position = Vector2( -500, 1500 )
+
+[node name="Tile418" parent="Battlefield/Middleground/Board" index="378" instance=ExtResource( 9 )]
+position = Vector2( -400, 1600 )
+
+[node name="Tile419" parent="Battlefield/Middleground/Board" index="379" instance=ExtResource( 9 )]
+position = Vector2( -300, 1700 )
+
+[node name="Tile420" parent="Battlefield/Middleground/Board" index="380" instance=ExtResource( 9 )]
+position = Vector2( -200, 1800 )
+
+[node name="Tile421" parent="Battlefield/Middleground/Board" index="381" instance=ExtResource( 9 )]
+position = Vector2( -1900, 100 )
+
+[node name="Tile422" parent="Battlefield/Middleground/Board" index="382" instance=ExtResource( 9 )]
+position = Vector2( -100, 1900 )
+
+[node name="Tile423" parent="Battlefield/Middleground/Board" index="383" instance=ExtResource( 9 )]
+position = Vector2( -2000, 0 )
+
+[node name="Tile424" parent="Battlefield/Middleground/Board" index="384" instance=ExtResource( 9 )]
+position = Vector2( 0, 2000 )
+
+[node name="Tile425" parent="Battlefield/Middleground/Board" index="385" instance=ExtResource( 9 )]
+position = Vector2( 600, -1400 )
+
+[node name="Tile426" parent="Battlefield/Middleground/Board" index="386" instance=ExtResource( 9 )]
+position = Vector2( 700, -1300 )
+
+[node name="Tile427" parent="Battlefield/Middleground/Board" index="387" instance=ExtResource( 9 )]
+position = Vector2( 1100, -900 )
+
+[node name="Tile428" parent="Battlefield/Middleground/Board" index="388" instance=ExtResource( 9 )]
+position = Vector2( 1000, -1000 )
+
+[node name="Tile429" parent="Battlefield/Middleground/Board" index="389" instance=ExtResource( 9 )]
+position = Vector2( 900, -1100 )
+
+[node name="Tile430" parent="Battlefield/Middleground/Board" index="390" instance=ExtResource( 9 )]
+position = Vector2( 800, -1200 )
+
+[node name="Tile431" parent="Battlefield/Middleground/Board" index="391" instance=ExtResource( 9 )]
+position = Vector2( 1400, -600 )
+
+[node name="Tile432" parent="Battlefield/Middleground/Board" index="392" instance=ExtResource( 9 )]
+position = Vector2( 1300, -700 )
+
+[node name="Tile433" parent="Battlefield/Middleground/Board" index="393" instance=ExtResource( 9 )]
+position = Vector2( 1200, -800 )
+
+[node name="Tile434" parent="Battlefield/Middleground/Board" index="394" instance=ExtResource( 9 )]
+position = Vector2( 500, -1500 )
+
+[node name="Tile435" parent="Battlefield/Middleground/Board" index="395" instance=ExtResource( 9 )]
+position = Vector2( 400, -1600 )
+
+[node name="Tile436" parent="Battlefield/Middleground/Board" index="396" instance=ExtResource( 9 )]
+position = Vector2( 300, -1700 )
+
+[node name="Tile437" parent="Battlefield/Middleground/Board" index="397" instance=ExtResource( 9 )]
+position = Vector2( 200, -1800 )
+
+[node name="Tile438" parent="Battlefield/Middleground/Board" index="398" instance=ExtResource( 9 )]
+position = Vector2( 1500, -500 )
+
+[node name="Tile439" parent="Battlefield/Middleground/Board" index="399" instance=ExtResource( 9 )]
+position = Vector2( 1600, -400 )
+
+[node name="Tile440" parent="Battlefield/Middleground/Board" index="400" instance=ExtResource( 9 )]
+position = Vector2( 1700, -300 )
+
+[node name="Tile441" parent="Battlefield/Middleground/Board" index="401" instance=ExtResource( 9 )]
+position = Vector2( 1800, -200 )
+
+[node name="Tile442" parent="Battlefield/Middleground/Board" index="402" instance=ExtResource( 9 )]
+position = Vector2( 100, -1900 )
+
+[node name="Tile443" parent="Battlefield/Middleground/Board" index="403" instance=ExtResource( 9 )]
+position = Vector2( 1900, -100 )
+
+[node name="Tile444" parent="Battlefield/Middleground/Board" index="404" instance=ExtResource( 9 )]
+position = Vector2( 0, -2000 )
+
+[node name="Tile445" parent="Battlefield/Middleground/Board" index="405" instance=ExtResource( 9 )]
+position = Vector2( 2000, 0 )
+
+[node name="Tile403" parent="Battlefield/Middleground/Board" index="406" instance=ExtResource( 9 )]
+position = Vector2( 1900, 100 )
+
+[node name="Tile365" parent="Battlefield/Middleground/Board" index="407" instance=ExtResource( 9 )]
+position = Vector2( 1800, 0 )
+
+[node name="Tile327" parent="Battlefield/Middleground/Board" index="408" instance=ExtResource( 9 )]
+position = Vector2( 1700, 100 )
+
+[node name="Tile286" parent="Battlefield/Middleground/Board" index="409" instance=ExtResource( 9 )]
 position = Vector2( 1300, -300 )
 
-[node name="Tile287" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 9 )]
+[node name="Tile287" parent="Battlefield/Middleground/Board" index="410" instance=ExtResource( 9 )]
 position = Vector2( 1400, -200 )
 
-[node name="Tile288" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 9 )]
+[node name="Tile288" parent="Battlefield/Middleground/Board" index="411" instance=ExtResource( 9 )]
 position = Vector2( 1500, -100 )
 
-[node name="Tile289" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 9 )]
+[node name="Tile289" parent="Battlefield/Middleground/Board" index="412" instance=ExtResource( 9 )]
 position = Vector2( 1600, 0 )
 
-[node name="Tile248" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 9 )]
+[node name="Tile248" parent="Battlefield/Middleground/Board" index="413" instance=ExtResource( 9 )]
 position = Vector2( 200, 1400 )
 
-[node name="Tile249" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 9 )]
+[node name="Tile249" parent="Battlefield/Middleground/Board" index="414" instance=ExtResource( 9 )]
 position = Vector2( 300, 1300 )
 
-[node name="Tile250" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 9 )]
+[node name="Tile250" parent="Battlefield/Middleground/Board" index="415" instance=ExtResource( 9 )]
 position = Vector2( 1300, 300 )
 
-[node name="Tile251" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 9 )]
+[node name="Tile251" parent="Battlefield/Middleground/Board" index="416" instance=ExtResource( 9 )]
 position = Vector2( 1400, 200 )
 
-[node name="Tile252" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 9 )]
+[node name="Tile252" parent="Battlefield/Middleground/Board" index="417" instance=ExtResource( 9 )]
 position = Vector2( 1500, 100 )
 
-[node name="Tile253" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 9 )]
+[node name="Tile253" parent="Battlefield/Middleground/Board" index="418" instance=ExtResource( 9 )]
 position = Vector2( 1000, 600 )
 
-[node name="Tile254" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 9 )]
+[node name="Tile254" parent="Battlefield/Middleground/Board" index="419" instance=ExtResource( 9 )]
 position = Vector2( 1100, 500 )
 
-[node name="Tile255" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 9 )]
+[node name="Tile255" parent="Battlefield/Middleground/Board" index="420" instance=ExtResource( 9 )]
 position = Vector2( 1200, 400 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( 0, 1950 )
+position = Vector2( 0, 2250 )
 rotation = -1.5708
+controls = "joy2"
 species = ExtResource( 10 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 0, -1950 )
+position = Vector2( 0, -2250 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 7 )
