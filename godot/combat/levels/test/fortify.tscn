@@ -9,7 +9,7 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/levels/test/Board.gd" type="Script" id=13]
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -884,7 +884,7 @@ position = Vector2( 1200, 400 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 0, 1950 )
 rotation = -1.5708
-species = ExtResource( 12 )
+species = ExtResource( 10 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]

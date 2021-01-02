@@ -10,7 +10,9 @@ var fortified = false
 
 func set_owner_ship(v):
 	owner_ship = v
-	$Graphics.modulate = owner_ship.species.color
+	$Graphics/Sprite.modulate = owner_ship.species.color
+	$Graphics/Fortification.modulate = owner_ship.species.color
+	$Graphics/Label.self_modulate = owner_ship.species.color
 	
 func _ready():
 	scale = Vector2(size, size)
