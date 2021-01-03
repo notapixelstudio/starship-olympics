@@ -90,7 +90,7 @@ func _ready():
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
 	
-	unlock_set($Content/Planets/Set5, $Content/Waypoints/Path3)
+	unlock_set($Content/Planets/Set3, $Content/Waypoints/Path2)
 
 func initialize(players, sports, settings_):
 	self.settings = settings_
@@ -309,12 +309,17 @@ func unlock_set(set_to_unlock, path_to_traverse: Line2D):
 	add_child(focus)
 	yield(get_tree(), "idle_frame")
 	focus.set_points(path_to_traverse.points)
+	focus.add_point(set_to_unlock.position)
 	
 	focus.animate()
-	yield(focus, "completed")
 	element_in_camera.deactivate()
-	element_in_camera.position = set_to_unlock.position
+	yield(focus, "completed")
 	
+	# Animation for unlocking SET
+	set_to_unlock.unlock()
+	yield(set_to_unlock, "unlocked")
+	
+	element_in_camera.position = set_to_unlock.position
 	
 	# come back where the center was
 	element_in_camera.move(center_camera, 2)

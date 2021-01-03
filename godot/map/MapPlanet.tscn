@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
@@ -32,6 +32,46 @@ animations = [ {
 [sub_resource type="DynamicFont" id=2]
 size = 30
 font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "unlock"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "UNSELECTABLE", "UNLOCKED!" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.1, 1.6, 2.1, 2.5, 3, 3.6, 4.2, 4.9 ),
+"transitions": PoolRealArray( 1, 0.267943, 1, 0.267943, 1, 0.267943, 1, 0.267943 ),
+"update": 0,
+"values": [ Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ) ]
+}
 
 [node name="MapPlanet" type="Node2D" groups=[
 "map_point",
@@ -76,3 +116,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/unlock = SubResource( 3 )

@@ -12,6 +12,7 @@ export var active : bool = false setget set_active
 var not_available = false setget set_availability
 
 signal updated
+signal unlocked
 
 func set_availability(value):
 	not_available = value
@@ -56,3 +57,8 @@ func refresh():
 		else:
 			$CheckBox.play('empty')
 			
+
+func unlock():
+	$AnimationPlayer.play("unlock")
+	yield($AnimationPlayer, "animation_finished")
+	emit_signal("unlocked")
