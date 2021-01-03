@@ -53,7 +53,8 @@ func fortify():
 	fortified = true
 	set_process(false) # disable reconquering
 	$Graphics/Fortification.visible = true
-	$Graphics/Wrapper.position.y = -19
+	$Graphics/Wrapper.position.y = -18
+	$Graphics/Wrapper/Label.modulate = Color(0.6,0.6,0.6)
 
 func get_strategy(ship, distance, game_mode):
 	if fortified:
