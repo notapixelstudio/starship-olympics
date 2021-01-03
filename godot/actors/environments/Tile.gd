@@ -65,10 +65,10 @@ func get_strategy(ship, distance, game_mode):
 		return {}
 		
 	if owner_ship == null and conquering_ship == null:
-		return {"seek": max(points, max_neighbour_value*1.1)} # neighbours are accounted for to enable surrounding big tiles
+		return {"seek": max(points, max_neighbour_value*1.1)*0.5} # neighbours are accounted for to enable surrounding big tiles
 		
 	if owner_ship != ship:
-		return {"seek": max(points, max_neighbour_value*1.1)*1.5}
+		return {"seek": max(points, max_neighbour_value*1.1)*0.6}
 		
 	return {}
 
