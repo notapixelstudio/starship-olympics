@@ -48,7 +48,7 @@ func initialize(p: PlayerStats, matchscore: MatchScores):
 	# ticks
 	for i in range(1, int(max_score)):
 		var tick = Line2D.new()
-		var opacity = 0.8 if max_score <= 10 or i%10 == 0 else 0.2
+		var opacity = 0.8 if max_score <= 10 or i%10 == 0 else (0.2 if max_score < 100 else 0)
 		tick.default_color = Color(0,0,0,opacity)
 		tick.width = 3
 		var x = round((max_bar_width - ministar_margin) / max_score * i)

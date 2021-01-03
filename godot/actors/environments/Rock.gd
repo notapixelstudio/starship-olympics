@@ -223,7 +223,7 @@ signal lost
 func conquered_by(ship):
 	if ship.species != species:
 		if species:
-			emit_signal('lost', owner_ship, self, get_score())
+			emit_signal('lost', owner_ship, self, get_score(), false)
 		species = ship.species
 		owner_ship = ship
 		recolor()

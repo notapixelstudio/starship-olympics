@@ -11,6 +11,7 @@ var host # this is the node the Trait is applied to, i.e., its parent
 func _ready():
 	host = get_parent()
 	add_to_group('Trait_'+name)
+	validate()
 	
 # override this in your Trait subclass if you want a more complex validation
 func validate():
