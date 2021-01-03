@@ -31,6 +31,8 @@ var max_shields = 1
 var deadly_trail = false
 var deadly_trail_powerup = false
 
+var golf = true
+
 var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
@@ -181,6 +183,10 @@ func _ready():
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
 	
+	if golf:
+		yield(get_tree().create_timer(1), "timeout")
+		charge()
+	
 func change_engine(value: bool):
 	responsive = value
 	set_physics_process(responsive)
@@ -198,7 +204,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusers_on = entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
+	var thrusers_on = not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
 	if not absolute_controls:
 		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
@@ -322,7 +328,7 @@ func fire(override_charge = -1, dash_only = false):
 	
 	actual_charge = override_charge if override_charge > 0 else charge
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
-	var will_dash = charging_enough
+	var will_dash = charging_enough and not golf
 	
 	if will_dash:
 		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
@@ -569,8 +575,12 @@ func freeze():
 	if alive and not invincible:
 		emit_signal("frozen", self)
 		
-func _on_bomb_expired():
+func _on_bomb_expired(bomb_position):
 	# if no autoreload, reload after bomb expired
 	if reload_time < 0:
 		ammo.reload()
-	
+		
+	if golf and is_inside_tree():
+		position = bomb_position
+		yield(get_tree().create_timer(1), "timeout")
+		charge()
