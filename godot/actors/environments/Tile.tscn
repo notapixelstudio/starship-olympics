@@ -87,26 +87,12 @@ rotation = 0.785398
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="Graphics"]
-self_modulate = Color( 0.6, 0.6, 0.6, 1 )
-margin_left = -100.0
-margin_top = -100.0
-margin_right = 100.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 2 )
-text = "50"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Fortification" type="Node2D" parent="Graphics"]
 visible = false
 scale = Vector2( 1.18, 1.18 )
 
 [node name="Sprite" type="Sprite" parent="Graphics/Fortification"]
-self_modulate = Color( 0.35, 0.35, 0.35, 1 )
+self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
 position = Vector2( 0, -16 )
 rotation = 0.785398
 scale = Vector2( 12.025, 12.025 )
@@ -119,6 +105,26 @@ polygon = PoolVector2Array( -85, -16, -85, 0, 0, 85, 0, 69 )
 [node name="Polygon2D2" type="Polygon2D" parent="Graphics/Fortification"]
 modulate = Color( 0.15, 0.15, 0.15, 1 )
 polygon = PoolVector2Array( 85, -16, 85, 0, 0, 85, 0, 69 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Graphics/Fortification"]
+modulate = Color( 0.3, 0.3, 0.3, 1 )
+polygon = PoolVector2Array( 85, -16, 81.3559, -12.7119, 0, -94.0678, -81.3559, -12.7119, -84.7458, -16.1017, 0, -100.847 )
+
+[node name="Wrapper" type="Node2D" parent="Graphics"]
+
+[node name="Label" type="Label" parent="Graphics/Wrapper"]
+self_modulate = Color( 0.6, 0.6, 0.6, 1 )
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 2 )
+text = "50"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flip = SubResource( 3 )

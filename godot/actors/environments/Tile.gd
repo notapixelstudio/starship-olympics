@@ -6,6 +6,7 @@ export var points = 1
 var conquering_ship : Ship
 var owner_ship : Ship setget set_owner_ship
 
+var neighbours
 var fortified = false
 
 signal conquered
@@ -20,13 +21,15 @@ func set_owner_ship(v):
 	
 	$Graphics/Partial.modulate = owner_ship.species.color
 	$Graphics/Fortification.modulate = owner_ship.species.color
-	$Graphics/Label.self_modulate = owner_ship.species.color
+	$Graphics/Wrapper/Label.self_modulate = owner_ship.species.color
 	
 func _ready():
 	scale = Vector2(size, size)
 	$Graphics.position = Vector2(0,32/size)
-	$Graphics/Label.text = '' if points == 1 else str(points)
-
+	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
+	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
+	neighbours = get_parent().get_neighbours(self) # tiles don't change neighbours over time
+	
 func _process(delta):
 	var bodies = $Area2D.get_overlapping_bodies()
 	for body in bodies:
@@ -37,21 +40,20 @@ func _process(delta):
 func conquest():
 	set_owner_ship(conquering_ship)
 	attempt_fortification()
-	for n in get_parent().get_neighbours(self):
+	for n in neighbours:
 		n.attempt_fortification()
 	
 func attempt_fortification():
-	for n in get_parent().get_neighbours(self):
+	for n in neighbours:
 		if n.owner_ship != owner_ship:
 			return
 	fortify()
 	
 func fortify():
-	if size > 1:
-		return
 	fortified = true
 	set_process(false) # disable reconquering
 	$Graphics/Fortification.visible = true
+	$Graphics/Wrapper.position.y = -19
 
 func get_strategy(ship, distance, game_mode):
 	if fortified:
