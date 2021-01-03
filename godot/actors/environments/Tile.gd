@@ -8,6 +8,7 @@ var owner_ship : Ship setget set_owner_ship
 
 var neighbours
 var fortified = false
+var max_neighbour_value = 0
 
 signal conquered
 signal lost
@@ -29,6 +30,9 @@ func _ready():
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
 	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
 	neighbours = get_parent().get_neighbours(self) # tiles don't change neighbours over time
+	
+	for n in neighbours:
+		max_neighbour_value = max(max_neighbour_value, n.get_score())
 	
 func _process(delta):
 	var bodies = $Area2D.get_overlapping_bodies()
@@ -61,10 +65,10 @@ func get_strategy(ship, distance, game_mode):
 		return {}
 		
 	if owner_ship == null and conquering_ship == null:
-		return {"seek": points}
+		return {"seek": max(points, max_neighbour_value*1.1)} # neighbours are accounted for to enable surrounding big tiles
 		
 	if owner_ship != ship:
-		return {"seek": points*1.5}
+		return {"seek": max(points, max_neighbour_value*1.1)*1.5}
 		
 	return {}
 
