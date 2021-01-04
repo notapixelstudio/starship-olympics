@@ -17,7 +17,7 @@
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
-match_duration_override = 50.0
+match_duration_override = 60.0
 
 [node name="ConquestModeManager" parent="Managers" index="8"]
 enabled = true
@@ -51,7 +51,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
 radius = 2600
-sides = 6.0
 rotation_degrees = 30.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
