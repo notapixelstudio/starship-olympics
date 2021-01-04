@@ -2,6 +2,8 @@ extends Node2D
 
 export var size = 1
 export var points = 1
+export var fortifiable = true
+export var need_royal = false
 
 var conquering_ship : Ship
 var owner_ship : Ship setget set_owner_ship
@@ -38,14 +40,16 @@ func _process(delta):
 	var bodies = $Area2D.get_overlapping_bodies()
 	for body in bodies:
 		if body is Ship and body != owner_ship and conquering_ship == null: # no self-conquest + former conqueror takes priority
-			conquering_ship = body
-			$AnimationPlayer.play('flip')
+			if not need_royal or ECM.E(body).has('Royal'):
+				conquering_ship = body
+				$AnimationPlayer.play('flip')
 		
 func conquest():
 	set_owner_ship(conquering_ship)
-	attempt_fortification()
-	for n in neighbours:
-		n.attempt_fortification()
+	if fortifiable:
+		attempt_fortification()
+		for n in neighbours:
+			n.attempt_fortification()
 	
 func attempt_fortification():
 	for n in neighbours:
