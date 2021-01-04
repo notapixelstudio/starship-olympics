@@ -5,6 +5,7 @@ func get_klass():
 	return 'Tile'
 
 export var size = 1 setget set_size
+export var sides = 4 setget set_sides
 export var points = 1
 export var fortifiable = true
 export var need_royal = false
@@ -24,6 +25,11 @@ func set_size(v):
 	$GRegularPolygon.radius = size*100
 	$Graphics/Wrapper.scale = Vector2(size,size)
 	$Graphics/Partial.scale = Vector2(size,size)*0.7
+	refresh_polygon()
+	
+func set_sides(v):
+	sides = v
+	$GRegularPolygon.sides = sides
 	refresh_polygon()
 
 func set_owner_ship(v):
