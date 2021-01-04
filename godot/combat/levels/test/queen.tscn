@@ -56,7 +56,7 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
-[node name="Board" type="YSort" parent="Battlefield/Middleground" index="0"]
+[node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
 z_index = -5
 z_as_relative = false
 
@@ -1957,6 +1957,7 @@ position = Vector2( -0.00012207, 2300 )
 rotation = -1.5708
 controls = "joy1"
 species = ExtResource( 7 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 0.00012207, -2300 )

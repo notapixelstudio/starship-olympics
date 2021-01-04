@@ -99,12 +99,22 @@ func get_strategy(ship, distance, game_mode):
 	if fortified:
 		return {}
 		
-	if owner_ship == null and conquering_ship == null:
-		return {"seek": max(points, max_neighbour_value*1.1)*0.5} # neighbours are accounted for to enable surrounding big tiles
-		
-	if owner_ship != ship:
-		return {"seek": max(points, max_neighbour_value*1.1)*0.6}
-		
+	if game_mode.name == 'Board Conquest':
+		if owner_ship == null and conquering_ship == null:
+			return {"seek": max(points, max_neighbour_value*1.1)*0.5} # neighbours are accounted for to enable surrounding big tiles
+			
+		if owner_ship != ship:
+			return {"seek": max(points, max_neighbour_value*1.1)*0.6}
+	elif game_mode.name == 'Queen of the Hive':
+		if not(ECM.E(ship).has('Royal')):
+			return {}
+			
+		if owner_ship == null and conquering_ship == null:
+			return {"seek": points*0.5}
+			
+		if owner_ship != ship:
+			return {"seek": points*0.6}
+			
 	return {}
 
 func _on_AnimationPlayer_animation_finished(anim_name):
