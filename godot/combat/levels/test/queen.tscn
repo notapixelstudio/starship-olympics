@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/QueenOfTheHive.tres" type="Resource" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/levels/test/Board.gd" type="Script" id=13]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -48,13 +47,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2600
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -64,7 +58,6 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 [node name="Board" type="YSort" parent="Battlefield/Middleground" index="0"]
 z_index = -5
 z_as_relative = false
-script = ExtResource( 13 )
 
 [node name="Tile21" parent="Battlefield/Middleground/Board" index="0" instance=ExtResource( 9 )]
 position = Vector2( -500, 100 )

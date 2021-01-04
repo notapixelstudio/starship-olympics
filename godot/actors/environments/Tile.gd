@@ -1,6 +1,10 @@
-extends Node2D
+tool
+extends Area2D
 
-export var size = 1
+func get_klass():
+	return 'Tile'
+
+export var size = 1 setget set_size
 export var points = 1
 export var fortifiable = true
 export var need_royal = false
@@ -15,6 +19,13 @@ var max_neighbour_value = 0
 signal conquered
 signal lost
 
+func set_size(v):
+	size = v
+	$GRegularPolygon.radius = size*100
+	$Graphics/Wrapper.scale = Vector2(size,size)
+	$Graphics/Partial.scale = Vector2(size,size)*0.7
+	refresh_polygon()
+
 func set_owner_ship(v):
 	if owner_ship != null:
 		emit_signal('lost', owner_ship, self, get_score(), false)
@@ -23,21 +34,34 @@ func set_owner_ship(v):
 	emit_signal('conquered', owner_ship, self, get_score(), false)
 	
 	$Graphics/Partial.modulate = owner_ship.species.color
-	$Graphics/Fortification.modulate = owner_ship.species.color
 	$Graphics/Wrapper/Label.self_modulate = owner_ship.species.color
 	
+func refresh_polygon():
+	var polygon = $GRegularPolygon.to_PoolVector2Array()
+	$CollisionPolygon2D.polygon = polygon
+	$Neighbourhood/CollisionPolygon2D.polygon = polygon
+	$Graphics/Background.polygon = polygon
+	
 func _ready():
-	scale = Vector2(size, size)
-	$Graphics.position = Vector2(0,32/size)
+	refresh_polygon()
+	
+	$Graphics.position = Vector2(0,32)
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
 	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
-	neighbours = get_parent().get_neighbours(self) # tiles don't change neighbours over time
+	
+	# tiles don't change neighbours over time
+	neighbours = []
+	for area in $Neighbourhood.get_overlapping_areas():
+		if area != self and area.has_method('get_klass') and area.get_klass() == 'Tile': # trick to avoid circular references
+			neighbours.append(area)
+			
+	$Neighbourhood.queue_free() # delete areas to save physics computations
 	
 	for n in neighbours:
 		max_neighbour_value = max(max_neighbour_value, n.get_score())
 	
 func _process(delta):
-	var bodies = $Area2D.get_overlapping_bodies()
+	var bodies = get_overlapping_bodies()
 	for body in bodies:
 		if body is Ship and body != owner_ship and conquering_ship == null: # no self-conquest + former conqueror takes priority
 			if not need_royal or ECM.E(body).has('Royal'):
@@ -53,14 +77,16 @@ func conquest():
 	
 func attempt_fortification():
 	for n in neighbours:
-		if n.owner_ship != owner_ship:
+		if owner_ship == null or n.owner_ship != owner_ship:
 			return
 	fortify()
 	
 func fortify():
 	fortified = true
 	set_process(false) # disable reconquering
-	$Graphics/Fortification.visible = true
+	$Graphics/Background.modulate = owner_ship.species.color
+	$Graphics/Background.self_modulate = Color(0.5,0.5,0.5)
+	$Graphics/Background.scale = Vector2(1,1)
 	$Graphics/Wrapper/Label.modulate = Color(0.3,0.3,0.3)
 
 func get_strategy(ship, distance, game_mode):
