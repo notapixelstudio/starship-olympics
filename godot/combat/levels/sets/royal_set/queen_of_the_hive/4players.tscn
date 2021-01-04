@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -13,6 +13,83 @@
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
+[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=16]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Feedback"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoCrownSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Decoration/Line2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Field:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.15, 0.78, 0.54, 1 ), Color( 0.95, 0.30875, 0.2375, 1 ) ]
+}
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -122,1835 +199,1340 @@ position = Vector2( 0, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile32" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 11 )]
-position = Vector2( 0, 688 )
-sides = 6
-need_royal = true
-
-[node name="Tile33" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 11 )]
-position = Vector2( 150, 774 )
-sides = 6
-need_royal = true
-
-[node name="Tile34" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 11 )]
+[node name="Tile34" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 11 )]
 position = Vector2( -150, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile35" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 11 )]
+[node name="Tile35" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 11 )]
 position = Vector2( 750, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile36" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 11 )]
+[node name="Tile36" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 11 )]
 position = Vector2( 900, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile37" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 11 )]
+[node name="Tile37" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 11 )]
 position = Vector2( 600, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile38" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 11 )]
+[node name="Tile38" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 11 )]
 position = Vector2( 600, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile39" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 11 )]
+[node name="Tile39" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 11 )]
 position = Vector2( 750, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile40" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 11 )]
+[node name="Tile40" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 11 )]
 position = Vector2( 450, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile41" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 11 )]
+[node name="Tile41" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 11 )]
 position = Vector2( 450, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile42" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 11 )]
+[node name="Tile42" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 11 )]
 position = Vector2( 600, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile43" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 11 )]
+[node name="Tile43" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 11 )]
 position = Vector2( 300, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile44" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 11 )]
+[node name="Tile44" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 11 )]
 position = Vector2( -600, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile45" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 11 )]
+[node name="Tile45" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 11 )]
 position = Vector2( -450, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile46" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 11 )]
+[node name="Tile46" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 11 )]
 position = Vector2( -750, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile47" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 11 )]
+[node name="Tile47" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 11 )]
 position = Vector2( -750, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile48" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 11 )]
+[node name="Tile48" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 11 )]
 position = Vector2( -600, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile49" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 11 )]
+[node name="Tile49" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 11 )]
 position = Vector2( -900, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile50" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 11 )]
+[node name="Tile50" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 11 )]
 position = Vector2( -900, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile51" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 11 )]
+[node name="Tile51" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 11 )]
 position = Vector2( -750, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile52" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 11 )]
+[node name="Tile52" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 11 )]
 position = Vector2( -1050, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile97" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 11 )]
+[node name="Tile97" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 11 )]
 position = Vector2( -450, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile98" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 11 )]
+[node name="Tile98" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 11 )]
 position = Vector2( -300, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile99" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 11 )]
+[node name="Tile99" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 11 )]
 position = Vector2( -600, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile100" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 11 )]
-position = Vector2( 0, 860 )
-sides = 6
-need_royal = true
-
-[node name="Tile101" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 11 )]
-position = Vector2( 150, 946 )
-sides = 6
-need_royal = true
-
-[node name="Tile102" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 11 )]
-position = Vector2( -150, 774 )
-sides = 6
-need_royal = true
-
-[node name="Tile103" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 11 )]
+[node name="Tile103" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 11 )]
 position = Vector2( -900, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile104" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 11 )]
+[node name="Tile104" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 11 )]
 position = Vector2( -750, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile105" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 11 )]
+[node name="Tile105" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 11 )]
 position = Vector2( -1050, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile106" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 11 )]
+[node name="Tile106" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 11 )]
 position = Vector2( -450, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile107" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 11 )]
-position = Vector2( -300, 860 )
-sides = 6
-need_royal = true
-
-[node name="Tile108" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 11 )]
+[node name="Tile108" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 11 )]
 position = Vector2( -600, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile109" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 11 )]
-position = Vector2( 0, 1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile110" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 11 )]
-position = Vector2( 150, 1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile111" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 11 )]
-position = Vector2( -150, 946 )
-sides = 6
-need_royal = true
-
-[node name="Tile112" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 11 )]
+[node name="Tile112" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 11 )]
 position = Vector2( -900, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile113" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 11 )]
+[node name="Tile113" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 11 )]
 position = Vector2( -750, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile114" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 11 )]
+[node name="Tile114" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 11 )]
 position = Vector2( -1050, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile115" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 11 )]
-position = Vector2( -450, 946 )
-sides = 6
-need_royal = true
-
-[node name="Tile116" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 11 )]
-position = Vector2( -300, 1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile117" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 11 )]
+[node name="Tile117" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 11 )]
 position = Vector2( -600, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile118" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 11 )]
-position = Vector2( 0, 1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile120" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 11 )]
-position = Vector2( -150, 1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile121" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 11 )]
+[node name="Tile121" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 11 )]
 position = Vector2( -900, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile122" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 11 )]
+[node name="Tile122" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 11 )]
 position = Vector2( -750, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile234" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 11 )]
-position = Vector2( -600, 1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile235" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 11 )]
-position = Vector2( -450, 1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile236" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 11 )]
+[node name="Tile236" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 11 )]
 position = Vector2( -750, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile237" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 11 )]
-position = Vector2( -150, 1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile238" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 11 )]
-position = Vector2( -300, 1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile239" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 11 )]
+[node name="Tile239" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 11 )]
 position = Vector2( -1050, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile240" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 11 )]
+[node name="Tile240" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 11 )]
 position = Vector2( -900, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile241" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 11 )]
+[node name="Tile241" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 11 )]
 position = Vector2( -750, 1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile242" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 11 )]
-position = Vector2( -600, 1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile243" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 11 )]
+[node name="Tile243" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 11 )]
 position = Vector2( -900, 1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile244" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 11 )]
-position = Vector2( -300, 1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile245" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 11 )]
-position = Vector2( -450, 1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile246" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 11 )]
+[node name="Tile246" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 11 )]
 position = Vector2( -1200, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile247" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 11 )]
+[node name="Tile247" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 11 )]
 position = Vector2( -1050, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile248" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 11 )]
+[node name="Tile248" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 11 )]
 position = Vector2( -900, 1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile249" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 11 )]
+[node name="Tile249" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 11 )]
 position = Vector2( -750, 1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile250" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 11 )]
+[node name="Tile250" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 11 )]
 position = Vector2( -1050, 1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile251" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 11 )]
-position = Vector2( -450, 1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile252" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 11 )]
-position = Vector2( -600, 1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile253" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 11 )]
+[node name="Tile253" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 11 )]
 position = Vector2( -1350, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile254" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 11 )]
+[node name="Tile254" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 11 )]
 position = Vector2( -1200, 1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile255" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 11 )]
+[node name="Tile255" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 11 )]
 position = Vector2( -1050, 1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile256" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 11 )]
+[node name="Tile256" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 11 )]
 position = Vector2( -900, 1376 )
 sides = 6
 need_royal = true
 
-[node name="Tile257" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 11 )]
+[node name="Tile257" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 11 )]
 position = Vector2( -1200, 1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile258" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 11 )]
-position = Vector2( -600, 1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile259" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 11 )]
+[node name="Tile259" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 11 )]
 position = Vector2( -750, 1462 )
 sides = 6
 need_royal = true
 
-[node name="Tile260" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 11 )]
+[node name="Tile260" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 11 )]
 position = Vector2( -1500, 1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile261" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 11 )]
+[node name="Tile261" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 11 )]
 position = Vector2( -1350, 1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile262" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 11 )]
-position = Vector2( 600, -1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile263" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 11 )]
+[node name="Tile263" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 11 )]
 position = Vector2( 750, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile264" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 11 )]
-position = Vector2( 450, -1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile265" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 11 )]
+[node name="Tile265" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 11 )]
 position = Vector2( 1050, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile266" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 11 )]
+[node name="Tile266" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 11 )]
 position = Vector2( 900, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile267" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 11 )]
-position = Vector2( 150, -1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile268" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 11 )]
-position = Vector2( 300, -1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile269" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 11 )]
+[node name="Tile269" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 11 )]
 position = Vector2( 750, -1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile270" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 11 )]
+[node name="Tile270" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 11 )]
 position = Vector2( 900, -1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile271" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 11 )]
-position = Vector2( 600, -1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile272" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 11 )]
+[node name="Tile272" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 11 )]
 position = Vector2( 1200, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile273" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 11 )]
+[node name="Tile273" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 11 )]
 position = Vector2( 1050, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile274" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 11 )]
-position = Vector2( 300, -1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile275" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 11 )]
-position = Vector2( 450, -1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile276" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 11 )]
+[node name="Tile276" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 11 )]
 position = Vector2( 900, -1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile277" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 11 )]
+[node name="Tile277" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 11 )]
 position = Vector2( 1050, -1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile278" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 11 )]
+[node name="Tile278" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 11 )]
 position = Vector2( 750, -1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile279" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 11 )]
+[node name="Tile279" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 11 )]
 position = Vector2( 1350, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile280" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 11 )]
+[node name="Tile280" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 11 )]
 position = Vector2( 1200, -1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile281" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 11 )]
-position = Vector2( 450, -1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile282" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 11 )]
-position = Vector2( 600, -1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile283" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 11 )]
+[node name="Tile283" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 11 )]
 position = Vector2( 1050, -1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile284" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 11 )]
+[node name="Tile284" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 11 )]
 position = Vector2( 1200, -1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile285" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 11 )]
+[node name="Tile285" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 11 )]
 position = Vector2( 900, -1376 )
 sides = 6
 need_royal = true
 
-[node name="Tile286" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 11 )]
+[node name="Tile286" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 11 )]
 position = Vector2( 1500, -1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile287" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 11 )]
+[node name="Tile287" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 11 )]
 position = Vector2( 1350, -1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile288" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 11 )]
-position = Vector2( 600, -1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile289" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 11 )]
+[node name="Tile289" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 11 )]
 position = Vector2( 750, -1462 )
 sides = 6
 need_royal = true
 
-[node name="Tile123" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 11 )]
+[node name="Tile123" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 11 )]
 position = Vector2( -1050, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile94" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 11 )]
+[node name="Tile94" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 11 )]
 position = Vector2( -900, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile95" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 11 )]
+[node name="Tile95" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 11 )]
 position = Vector2( -1050, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile96" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 11 )]
+[node name="Tile96" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 11 )]
 position = Vector2( -1050, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile89" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 11 )]
+[node name="Tile89" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 11 )]
 position = Vector2( -450, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile90" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 11 )]
+[node name="Tile90" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 11 )]
 position = Vector2( 450, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile91" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 11 )]
+[node name="Tile91" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 11 )]
 position = Vector2( 900, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile92" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 11 )]
+[node name="Tile92" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 11 )]
 position = Vector2( 1050, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile93" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 11 )]
+[node name="Tile93" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 11 )]
 position = Vector2( 1050, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile119" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 11 )]
+[node name="Tile119" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 11 )]
 position = Vector2( 450, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile124" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 11 )]
-position = Vector2( 300, 860 )
-sides = 6
-need_royal = true
-
-[node name="Tile125" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 11 )]
+[node name="Tile125" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 11 )]
 position = Vector2( 900, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile126" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 11 )]
+[node name="Tile126" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 11 )]
 position = Vector2( 750, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile127" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 11 )]
+[node name="Tile127" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 11 )]
 position = Vector2( 600, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile128" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 11 )]
+[node name="Tile128" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 11 )]
 position = Vector2( 1050, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile129" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 11 )]
-position = Vector2( 450, 946 )
-sides = 6
-need_royal = true
-
-[node name="Tile130" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 11 )]
-position = Vector2( 300, 1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile131" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 11 )]
+[node name="Tile131" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 11 )]
 position = Vector2( 900, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile132" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 11 )]
+[node name="Tile132" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 11 )]
 position = Vector2( 750, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile133" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 11 )]
+[node name="Tile133" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 11 )]
 position = Vector2( 600, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile134" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 11 )]
+[node name="Tile134" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 11 )]
 position = Vector2( 1050, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile53" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 11 )]
+[node name="Tile53" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 11 )]
 position = Vector2( 900, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile54" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 11 )]
+[node name="Tile54" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 11 )]
 position = Vector2( 1050, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile55" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 11 )]
+[node name="Tile55" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 11 )]
 position = Vector2( 750, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile56" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 11 )]
+[node name="Tile56" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 11 )]
 position = Vector2( 750, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile57" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 11 )]
+[node name="Tile57" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 11 )]
 position = Vector2( 900, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile58" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 11 )]
+[node name="Tile58" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 11 )]
 position = Vector2( 600, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile59" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 11 )]
+[node name="Tile59" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 11 )]
 position = Vector2( 600, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile60" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 11 )]
+[node name="Tile60" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 11 )]
 position = Vector2( 750, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile61" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 11 )]
+[node name="Tile61" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 11 )]
 position = Vector2( 450, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile65" parent="Battlefield/Middleground/Board" index="144" instance=ExtResource( 11 )]
+[node name="Tile65" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 11 )]
 position = Vector2( 450, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile66" parent="Battlefield/Middleground/Board" index="145" instance=ExtResource( 11 )]
+[node name="Tile66" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 11 )]
 position = Vector2( 600, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile67" parent="Battlefield/Middleground/Board" index="146" instance=ExtResource( 11 )]
+[node name="Tile67" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 11 )]
 position = Vector2( 300, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile68" parent="Battlefield/Middleground/Board" index="147" instance=ExtResource( 11 )]
+[node name="Tile68" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 11 )]
 position = Vector2( 300, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile69" parent="Battlefield/Middleground/Board" index="148" instance=ExtResource( 11 )]
+[node name="Tile69" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 11 )]
 position = Vector2( 450, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile70" parent="Battlefield/Middleground/Board" index="149" instance=ExtResource( 11 )]
+[node name="Tile70" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 11 )]
 position = Vector2( 150, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile71" parent="Battlefield/Middleground/Board" index="150" instance=ExtResource( 11 )]
+[node name="Tile71" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 11 )]
 position = Vector2( -450, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile72" parent="Battlefield/Middleground/Board" index="151" instance=ExtResource( 11 )]
+[node name="Tile72" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 11 )]
 position = Vector2( -300, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile73" parent="Battlefield/Middleground/Board" index="152" instance=ExtResource( 11 )]
+[node name="Tile73" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 11 )]
 position = Vector2( -600, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile74" parent="Battlefield/Middleground/Board" index="153" instance=ExtResource( 11 )]
+[node name="Tile74" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 11 )]
 position = Vector2( -600, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile75" parent="Battlefield/Middleground/Board" index="154" instance=ExtResource( 11 )]
+[node name="Tile75" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 11 )]
 position = Vector2( -450, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile76" parent="Battlefield/Middleground/Board" index="155" instance=ExtResource( 11 )]
+[node name="Tile76" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 11 )]
 position = Vector2( -750, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile77" parent="Battlefield/Middleground/Board" index="156" instance=ExtResource( 11 )]
+[node name="Tile77" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 11 )]
 position = Vector2( -750, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile78" parent="Battlefield/Middleground/Board" index="157" instance=ExtResource( 11 )]
+[node name="Tile78" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 11 )]
 position = Vector2( -600, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile79" parent="Battlefield/Middleground/Board" index="158" instance=ExtResource( 11 )]
+[node name="Tile79" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 11 )]
 position = Vector2( -900, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile80" parent="Battlefield/Middleground/Board" index="159" instance=ExtResource( 11 )]
-position = Vector2( 0, -688 )
-sides = 6
-need_royal = true
-
-[node name="Tile81" parent="Battlefield/Middleground/Board" index="160" instance=ExtResource( 11 )]
+[node name="Tile81" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 11 )]
 position = Vector2( 150, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile62" parent="Battlefield/Middleground/Board" index="161" instance=ExtResource( 11 )]
+[node name="Tile62" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 11 )]
 position = Vector2( 900, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile63" parent="Battlefield/Middleground/Board" index="162" instance=ExtResource( 11 )]
+[node name="Tile63" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 11 )]
 position = Vector2( 1050, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile64" parent="Battlefield/Middleground/Board" index="163" instance=ExtResource( 11 )]
+[node name="Tile64" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 11 )]
 position = Vector2( 750, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile135" parent="Battlefield/Middleground/Board" index="164" instance=ExtResource( 11 )]
+[node name="Tile135" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 11 )]
 position = Vector2( 450, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile136" parent="Battlefield/Middleground/Board" index="165" instance=ExtResource( 11 )]
+[node name="Tile136" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 11 )]
 position = Vector2( 600, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile137" parent="Battlefield/Middleground/Board" index="166" instance=ExtResource( 11 )]
+[node name="Tile137" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 11 )]
 position = Vector2( 300, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile138" parent="Battlefield/Middleground/Board" index="167" instance=ExtResource( 11 )]
-position = Vector2( 0, -860 )
-sides = 6
-need_royal = true
-
-[node name="Tile139" parent="Battlefield/Middleground/Board" index="168" instance=ExtResource( 11 )]
-position = Vector2( 150, -774 )
-sides = 6
-need_royal = true
-
-[node name="Tile140" parent="Battlefield/Middleground/Board" index="169" instance=ExtResource( 11 )]
+[node name="Tile140" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 11 )]
 position = Vector2( 900, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile141" parent="Battlefield/Middleground/Board" index="170" instance=ExtResource( 11 )]
+[node name="Tile141" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 11 )]
 position = Vector2( 1050, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile142" parent="Battlefield/Middleground/Board" index="171" instance=ExtResource( 11 )]
+[node name="Tile142" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 11 )]
 position = Vector2( 750, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile143" parent="Battlefield/Middleground/Board" index="172" instance=ExtResource( 11 )]
+[node name="Tile143" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 11 )]
 position = Vector2( 450, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile144" parent="Battlefield/Middleground/Board" index="173" instance=ExtResource( 11 )]
+[node name="Tile144" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 11 )]
 position = Vector2( 600, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile145" parent="Battlefield/Middleground/Board" index="174" instance=ExtResource( 11 )]
-position = Vector2( 300, -860 )
-sides = 6
-need_royal = true
-
-[node name="Tile146" parent="Battlefield/Middleground/Board" index="175" instance=ExtResource( 11 )]
-position = Vector2( 0, -1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile147" parent="Battlefield/Middleground/Board" index="176" instance=ExtResource( 11 )]
-position = Vector2( 150, -946 )
-sides = 6
-need_royal = true
-
-[node name="Tile148" parent="Battlefield/Middleground/Board" index="177" instance=ExtResource( 11 )]
+[node name="Tile148" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 11 )]
 position = Vector2( 900, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile149" parent="Battlefield/Middleground/Board" index="178" instance=ExtResource( 11 )]
+[node name="Tile149" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 11 )]
 position = Vector2( 1050, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile150" parent="Battlefield/Middleground/Board" index="179" instance=ExtResource( 11 )]
+[node name="Tile150" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 11 )]
 position = Vector2( 750, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile151" parent="Battlefield/Middleground/Board" index="180" instance=ExtResource( 11 )]
-position = Vector2( 450, -946 )
-sides = 6
-need_royal = true
-
-[node name="Tile152" parent="Battlefield/Middleground/Board" index="181" instance=ExtResource( 11 )]
+[node name="Tile152" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 11 )]
 position = Vector2( 600, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile153" parent="Battlefield/Middleground/Board" index="182" instance=ExtResource( 11 )]
-position = Vector2( 300, -1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile154" parent="Battlefield/Middleground/Board" index="183" instance=ExtResource( 11 )]
-position = Vector2( 0, -1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile155" parent="Battlefield/Middleground/Board" index="184" instance=ExtResource( 11 )]
-position = Vector2( 150, -1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile82" parent="Battlefield/Middleground/Board" index="185" instance=ExtResource( 11 )]
-position = Vector2( -150, -774 )
-sides = 6
-need_royal = true
-
-[node name="Tile83" parent="Battlefield/Middleground/Board" index="186" instance=ExtResource( 11 )]
+[node name="Tile83" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 11 )]
 position = Vector2( -150, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile84" parent="Battlefield/Middleground/Board" index="187" instance=ExtResource( 11 )]
+[node name="Tile84" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 11 )]
 position = Vector2( 0, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile85" parent="Battlefield/Middleground/Board" index="188" instance=ExtResource( 11 )]
+[node name="Tile85" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 11 )]
 position = Vector2( -300, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile86" parent="Battlefield/Middleground/Board" index="189" instance=ExtResource( 11 )]
+[node name="Tile86" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 11 )]
 position = Vector2( -300, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile87" parent="Battlefield/Middleground/Board" index="190" instance=ExtResource( 11 )]
+[node name="Tile87" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 11 )]
 position = Vector2( -150, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile88" parent="Battlefield/Middleground/Board" index="191" instance=ExtResource( 11 )]
+[node name="Tile88" parent="Battlefield/Middleground/Board" index="144" instance=ExtResource( 11 )]
 position = Vector2( -450, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile156" parent="Battlefield/Middleground/Board" index="192" instance=ExtResource( 11 )]
+[node name="Tile156" parent="Battlefield/Middleground/Board" index="145" instance=ExtResource( 11 )]
 position = Vector2( -1050, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile157" parent="Battlefield/Middleground/Board" index="193" instance=ExtResource( 11 )]
+[node name="Tile157" parent="Battlefield/Middleground/Board" index="146" instance=ExtResource( 11 )]
 position = Vector2( -600, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile158" parent="Battlefield/Middleground/Board" index="194" instance=ExtResource( 11 )]
+[node name="Tile158" parent="Battlefield/Middleground/Board" index="147" instance=ExtResource( 11 )]
 position = Vector2( -750, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile159" parent="Battlefield/Middleground/Board" index="195" instance=ExtResource( 11 )]
+[node name="Tile159" parent="Battlefield/Middleground/Board" index="148" instance=ExtResource( 11 )]
 position = Vector2( -900, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile160" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 11 )]
-position = Vector2( -150, -946 )
-sides = 6
-need_royal = true
-
-[node name="Tile161" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 11 )]
-position = Vector2( -300, -860 )
-sides = 6
-need_royal = true
-
-[node name="Tile162" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 11 )]
+[node name="Tile162" parent="Battlefield/Middleground/Board" index="149" instance=ExtResource( 11 )]
 position = Vector2( -450, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile163" parent="Battlefield/Middleground/Board" index="199" instance=ExtResource( 11 )]
+[node name="Tile163" parent="Battlefield/Middleground/Board" index="150" instance=ExtResource( 11 )]
 position = Vector2( -1050, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile170" parent="Battlefield/Middleground/Board" index="200" instance=ExtResource( 11 )]
+[node name="Tile170" parent="Battlefield/Middleground/Board" index="151" instance=ExtResource( 11 )]
 position = Vector2( -1200, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile171" parent="Battlefield/Middleground/Board" index="201" instance=ExtResource( 11 )]
+[node name="Tile171" parent="Battlefield/Middleground/Board" index="152" instance=ExtResource( 11 )]
 position = Vector2( -1200, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile172" parent="Battlefield/Middleground/Board" index="202" instance=ExtResource( 11 )]
+[node name="Tile172" parent="Battlefield/Middleground/Board" index="153" instance=ExtResource( 11 )]
 position = Vector2( -1200, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile173" parent="Battlefield/Middleground/Board" index="203" instance=ExtResource( 11 )]
+[node name="Tile173" parent="Battlefield/Middleground/Board" index="154" instance=ExtResource( 11 )]
 position = Vector2( -1200, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile174" parent="Battlefield/Middleground/Board" index="204" instance=ExtResource( 11 )]
+[node name="Tile174" parent="Battlefield/Middleground/Board" index="155" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile175" parent="Battlefield/Middleground/Board" index="205" instance=ExtResource( 11 )]
+[node name="Tile175" parent="Battlefield/Middleground/Board" index="156" instance=ExtResource( 11 )]
 position = Vector2( -1200, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile176" parent="Battlefield/Middleground/Board" index="206" instance=ExtResource( 11 )]
+[node name="Tile176" parent="Battlefield/Middleground/Board" index="157" instance=ExtResource( 11 )]
 position = Vector2( -1200, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile177" parent="Battlefield/Middleground/Board" index="207" instance=ExtResource( 11 )]
+[node name="Tile177" parent="Battlefield/Middleground/Board" index="158" instance=ExtResource( 11 )]
 position = Vector2( -1200, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile178" parent="Battlefield/Middleground/Board" index="208" instance=ExtResource( 11 )]
+[node name="Tile178" parent="Battlefield/Middleground/Board" index="159" instance=ExtResource( 11 )]
 position = Vector2( -1350, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile179" parent="Battlefield/Middleground/Board" index="209" instance=ExtResource( 11 )]
+[node name="Tile179" parent="Battlefield/Middleground/Board" index="160" instance=ExtResource( 11 )]
 position = Vector2( -1350, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile180" parent="Battlefield/Middleground/Board" index="210" instance=ExtResource( 11 )]
+[node name="Tile180" parent="Battlefield/Middleground/Board" index="161" instance=ExtResource( 11 )]
 position = Vector2( -1350, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile181" parent="Battlefield/Middleground/Board" index="211" instance=ExtResource( 11 )]
+[node name="Tile181" parent="Battlefield/Middleground/Board" index="162" instance=ExtResource( 11 )]
 position = Vector2( -1350, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile182" parent="Battlefield/Middleground/Board" index="212" instance=ExtResource( 11 )]
+[node name="Tile182" parent="Battlefield/Middleground/Board" index="163" instance=ExtResource( 11 )]
 position = Vector2( -1350, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile183" parent="Battlefield/Middleground/Board" index="213" instance=ExtResource( 11 )]
+[node name="Tile183" parent="Battlefield/Middleground/Board" index="164" instance=ExtResource( 11 )]
 position = Vector2( -1350, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile184" parent="Battlefield/Middleground/Board" index="214" instance=ExtResource( 11 )]
+[node name="Tile184" parent="Battlefield/Middleground/Board" index="165" instance=ExtResource( 11 )]
 position = Vector2( -1350, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile185" parent="Battlefield/Middleground/Board" index="215" instance=ExtResource( 11 )]
+[node name="Tile185" parent="Battlefield/Middleground/Board" index="166" instance=ExtResource( 11 )]
 position = Vector2( -1350, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile186" parent="Battlefield/Middleground/Board" index="216" instance=ExtResource( 11 )]
+[node name="Tile186" parent="Battlefield/Middleground/Board" index="167" instance=ExtResource( 11 )]
 position = Vector2( -1500, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile187" parent="Battlefield/Middleground/Board" index="217" instance=ExtResource( 11 )]
+[node name="Tile187" parent="Battlefield/Middleground/Board" index="168" instance=ExtResource( 11 )]
 position = Vector2( -1500, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile188" parent="Battlefield/Middleground/Board" index="218" instance=ExtResource( 11 )]
+[node name="Tile188" parent="Battlefield/Middleground/Board" index="169" instance=ExtResource( 11 )]
 position = Vector2( -1500, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile189" parent="Battlefield/Middleground/Board" index="219" instance=ExtResource( 11 )]
+[node name="Tile189" parent="Battlefield/Middleground/Board" index="170" instance=ExtResource( 11 )]
 position = Vector2( -1500, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile190" parent="Battlefield/Middleground/Board" index="220" instance=ExtResource( 11 )]
+[node name="Tile190" parent="Battlefield/Middleground/Board" index="171" instance=ExtResource( 11 )]
 position = Vector2( -1500, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile191" parent="Battlefield/Middleground/Board" index="221" instance=ExtResource( 11 )]
+[node name="Tile191" parent="Battlefield/Middleground/Board" index="172" instance=ExtResource( 11 )]
 position = Vector2( -1500, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile192" parent="Battlefield/Middleground/Board" index="222" instance=ExtResource( 11 )]
+[node name="Tile192" parent="Battlefield/Middleground/Board" index="173" instance=ExtResource( 11 )]
 position = Vector2( -1500, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile193" parent="Battlefield/Middleground/Board" index="223" instance=ExtResource( 11 )]
+[node name="Tile193" parent="Battlefield/Middleground/Board" index="174" instance=ExtResource( 11 )]
 position = Vector2( -1500, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile226" parent="Battlefield/Middleground/Board" index="224" instance=ExtResource( 11 )]
+[node name="Tile226" parent="Battlefield/Middleground/Board" index="175" instance=ExtResource( 11 )]
 position = Vector2( -1650, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile227" parent="Battlefield/Middleground/Board" index="225" instance=ExtResource( 11 )]
+[node name="Tile227" parent="Battlefield/Middleground/Board" index="176" instance=ExtResource( 11 )]
 position = Vector2( -1650, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile228" parent="Battlefield/Middleground/Board" index="226" instance=ExtResource( 11 )]
+[node name="Tile228" parent="Battlefield/Middleground/Board" index="177" instance=ExtResource( 11 )]
 position = Vector2( -1650, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile229" parent="Battlefield/Middleground/Board" index="227" instance=ExtResource( 11 )]
+[node name="Tile229" parent="Battlefield/Middleground/Board" index="178" instance=ExtResource( 11 )]
 position = Vector2( -1650, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile230" parent="Battlefield/Middleground/Board" index="228" instance=ExtResource( 11 )]
+[node name="Tile230" parent="Battlefield/Middleground/Board" index="179" instance=ExtResource( 11 )]
 position = Vector2( -1650, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile231" parent="Battlefield/Middleground/Board" index="229" instance=ExtResource( 11 )]
+[node name="Tile231" parent="Battlefield/Middleground/Board" index="180" instance=ExtResource( 11 )]
 position = Vector2( -1650, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile232" parent="Battlefield/Middleground/Board" index="230" instance=ExtResource( 11 )]
+[node name="Tile232" parent="Battlefield/Middleground/Board" index="181" instance=ExtResource( 11 )]
 position = Vector2( -1650, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile233" parent="Battlefield/Middleground/Board" index="231" instance=ExtResource( 11 )]
+[node name="Tile233" parent="Battlefield/Middleground/Board" index="182" instance=ExtResource( 11 )]
 position = Vector2( -1650, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile194" parent="Battlefield/Middleground/Board" index="232" instance=ExtResource( 11 )]
+[node name="Tile194" parent="Battlefield/Middleground/Board" index="183" instance=ExtResource( 11 )]
 position = Vector2( 1650, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile195" parent="Battlefield/Middleground/Board" index="233" instance=ExtResource( 11 )]
+[node name="Tile195" parent="Battlefield/Middleground/Board" index="184" instance=ExtResource( 11 )]
 position = Vector2( 1650, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile196" parent="Battlefield/Middleground/Board" index="234" instance=ExtResource( 11 )]
+[node name="Tile196" parent="Battlefield/Middleground/Board" index="185" instance=ExtResource( 11 )]
 position = Vector2( 1650, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile197" parent="Battlefield/Middleground/Board" index="235" instance=ExtResource( 11 )]
+[node name="Tile197" parent="Battlefield/Middleground/Board" index="186" instance=ExtResource( 11 )]
 position = Vector2( 1650, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile198" parent="Battlefield/Middleground/Board" index="236" instance=ExtResource( 11 )]
+[node name="Tile198" parent="Battlefield/Middleground/Board" index="187" instance=ExtResource( 11 )]
 position = Vector2( 1650, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile199" parent="Battlefield/Middleground/Board" index="237" instance=ExtResource( 11 )]
+[node name="Tile199" parent="Battlefield/Middleground/Board" index="188" instance=ExtResource( 11 )]
 position = Vector2( 1650, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile200" parent="Battlefield/Middleground/Board" index="238" instance=ExtResource( 11 )]
+[node name="Tile200" parent="Battlefield/Middleground/Board" index="189" instance=ExtResource( 11 )]
 position = Vector2( 1650, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile201" parent="Battlefield/Middleground/Board" index="239" instance=ExtResource( 11 )]
+[node name="Tile201" parent="Battlefield/Middleground/Board" index="190" instance=ExtResource( 11 )]
 position = Vector2( 1650, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile202" parent="Battlefield/Middleground/Board" index="240" instance=ExtResource( 11 )]
+[node name="Tile202" parent="Battlefield/Middleground/Board" index="191" instance=ExtResource( 11 )]
 position = Vector2( 1500, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile203" parent="Battlefield/Middleground/Board" index="241" instance=ExtResource( 11 )]
+[node name="Tile203" parent="Battlefield/Middleground/Board" index="192" instance=ExtResource( 11 )]
 position = Vector2( 1500, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile204" parent="Battlefield/Middleground/Board" index="242" instance=ExtResource( 11 )]
+[node name="Tile204" parent="Battlefield/Middleground/Board" index="193" instance=ExtResource( 11 )]
 position = Vector2( 1500, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile205" parent="Battlefield/Middleground/Board" index="243" instance=ExtResource( 11 )]
+[node name="Tile205" parent="Battlefield/Middleground/Board" index="194" instance=ExtResource( 11 )]
 position = Vector2( 1500, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile206" parent="Battlefield/Middleground/Board" index="244" instance=ExtResource( 11 )]
+[node name="Tile206" parent="Battlefield/Middleground/Board" index="195" instance=ExtResource( 11 )]
 position = Vector2( 1500, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile207" parent="Battlefield/Middleground/Board" index="245" instance=ExtResource( 11 )]
+[node name="Tile207" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 11 )]
 position = Vector2( 1500, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile208" parent="Battlefield/Middleground/Board" index="246" instance=ExtResource( 11 )]
+[node name="Tile208" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 11 )]
 position = Vector2( 1500, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile209" parent="Battlefield/Middleground/Board" index="247" instance=ExtResource( 11 )]
+[node name="Tile209" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 11 )]
 position = Vector2( 1500, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile210" parent="Battlefield/Middleground/Board" index="248" instance=ExtResource( 11 )]
+[node name="Tile210" parent="Battlefield/Middleground/Board" index="199" instance=ExtResource( 11 )]
 position = Vector2( 1350, -86 )
 sides = 6
 need_royal = true
 
-[node name="Tile211" parent="Battlefield/Middleground/Board" index="249" instance=ExtResource( 11 )]
+[node name="Tile211" parent="Battlefield/Middleground/Board" index="200" instance=ExtResource( 11 )]
 position = Vector2( 1350, 86 )
 sides = 6
 need_royal = true
 
-[node name="Tile212" parent="Battlefield/Middleground/Board" index="250" instance=ExtResource( 11 )]
+[node name="Tile212" parent="Battlefield/Middleground/Board" index="201" instance=ExtResource( 11 )]
 position = Vector2( 1350, 258 )
 sides = 6
 need_royal = true
 
-[node name="Tile213" parent="Battlefield/Middleground/Board" index="251" instance=ExtResource( 11 )]
+[node name="Tile213" parent="Battlefield/Middleground/Board" index="202" instance=ExtResource( 11 )]
 position = Vector2( 1350, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile214" parent="Battlefield/Middleground/Board" index="252" instance=ExtResource( 11 )]
+[node name="Tile214" parent="Battlefield/Middleground/Board" index="203" instance=ExtResource( 11 )]
 position = Vector2( 1350, -258 )
 sides = 6
 need_royal = true
 
-[node name="Tile215" parent="Battlefield/Middleground/Board" index="253" instance=ExtResource( 11 )]
+[node name="Tile215" parent="Battlefield/Middleground/Board" index="204" instance=ExtResource( 11 )]
 position = Vector2( 1350, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile216" parent="Battlefield/Middleground/Board" index="254" instance=ExtResource( 11 )]
+[node name="Tile216" parent="Battlefield/Middleground/Board" index="205" instance=ExtResource( 11 )]
 position = Vector2( 1350, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile217" parent="Battlefield/Middleground/Board" index="255" instance=ExtResource( 11 )]
+[node name="Tile217" parent="Battlefield/Middleground/Board" index="206" instance=ExtResource( 11 )]
 position = Vector2( 1350, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile218" parent="Battlefield/Middleground/Board" index="256" instance=ExtResource( 11 )]
+[node name="Tile218" parent="Battlefield/Middleground/Board" index="207" instance=ExtResource( 11 )]
 position = Vector2( 1200, 0 )
 sides = 6
 need_royal = true
 
-[node name="Tile219" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 11 )]
+[node name="Tile219" parent="Battlefield/Middleground/Board" index="208" instance=ExtResource( 11 )]
 position = Vector2( 1200, 172 )
 sides = 6
 need_royal = true
 
-[node name="Tile220" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 11 )]
+[node name="Tile220" parent="Battlefield/Middleground/Board" index="209" instance=ExtResource( 11 )]
 position = Vector2( 1200, 344 )
 sides = 6
 need_royal = true
 
-[node name="Tile221" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 11 )]
+[node name="Tile221" parent="Battlefield/Middleground/Board" index="210" instance=ExtResource( 11 )]
 position = Vector2( 1200, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile290" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 11 )]
-position = Vector2( 300, 1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile291" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 11 )]
-position = Vector2( 150, 1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile292" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 11 )]
-position = Vector2( 0, 1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile293" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 11 )]
-position = Vector2( -150, 1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile294" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 11 )]
-position = Vector2( -300, 1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile295" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 11 )]
-position = Vector2( 600, 1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile296" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 11 )]
-position = Vector2( 450, 1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile297" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 11 )]
+[node name="Tile297" parent="Battlefield/Middleground/Board" index="211" instance=ExtResource( 11 )]
 position = Vector2( 1050, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile298" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 11 )]
+[node name="Tile298" parent="Battlefield/Middleground/Board" index="212" instance=ExtResource( 11 )]
 position = Vector2( 900, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile299" parent="Battlefield/Middleground/Board" index="269" instance=ExtResource( 11 )]
+[node name="Tile299" parent="Battlefield/Middleground/Board" index="213" instance=ExtResource( 11 )]
 position = Vector2( 750, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile300" parent="Battlefield/Middleground/Board" index="270" instance=ExtResource( 11 )]
+[node name="Tile300" parent="Battlefield/Middleground/Board" index="214" instance=ExtResource( 11 )]
 position = Vector2( 1200, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile301" parent="Battlefield/Middleground/Board" index="271" instance=ExtResource( 11 )]
+[node name="Tile301" parent="Battlefield/Middleground/Board" index="215" instance=ExtResource( 11 )]
 position = Vector2( 1650, 430 )
 sides = 6
 need_royal = true
 
-[node name="Tile302" parent="Battlefield/Middleground/Board" index="272" instance=ExtResource( 11 )]
+[node name="Tile302" parent="Battlefield/Middleground/Board" index="216" instance=ExtResource( 11 )]
 position = Vector2( 1500, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile303" parent="Battlefield/Middleground/Board" index="273" instance=ExtResource( 11 )]
+[node name="Tile303" parent="Battlefield/Middleground/Board" index="217" instance=ExtResource( 11 )]
 position = Vector2( 1350, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile304" parent="Battlefield/Middleground/Board" index="274" instance=ExtResource( 11 )]
-position = Vector2( 300, 1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile305" parent="Battlefield/Middleground/Board" index="275" instance=ExtResource( 11 )]
-position = Vector2( 150, 1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile306" parent="Battlefield/Middleground/Board" index="276" instance=ExtResource( 11 )]
-position = Vector2( 0, 1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile307" parent="Battlefield/Middleground/Board" index="277" instance=ExtResource( 11 )]
-position = Vector2( -150, 1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile308" parent="Battlefield/Middleground/Board" index="278" instance=ExtResource( 11 )]
-position = Vector2( -300, 1720 )
-sides = 6
-need_royal = true
-
-[node name="Tile309" parent="Battlefield/Middleground/Board" index="279" instance=ExtResource( 11 )]
-position = Vector2( 600, 1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile310" parent="Battlefield/Middleground/Board" index="280" instance=ExtResource( 11 )]
-position = Vector2( 450, 1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile311" parent="Battlefield/Middleground/Board" index="281" instance=ExtResource( 11 )]
+[node name="Tile311" parent="Battlefield/Middleground/Board" index="218" instance=ExtResource( 11 )]
 position = Vector2( 1050, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile312" parent="Battlefield/Middleground/Board" index="282" instance=ExtResource( 11 )]
+[node name="Tile312" parent="Battlefield/Middleground/Board" index="219" instance=ExtResource( 11 )]
 position = Vector2( 900, 1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile313" parent="Battlefield/Middleground/Board" index="283" instance=ExtResource( 11 )]
+[node name="Tile313" parent="Battlefield/Middleground/Board" index="220" instance=ExtResource( 11 )]
 position = Vector2( 750, 1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile314" parent="Battlefield/Middleground/Board" index="284" instance=ExtResource( 11 )]
+[node name="Tile314" parent="Battlefield/Middleground/Board" index="221" instance=ExtResource( 11 )]
 position = Vector2( 1200, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile315" parent="Battlefield/Middleground/Board" index="285" instance=ExtResource( 11 )]
+[node name="Tile315" parent="Battlefield/Middleground/Board" index="222" instance=ExtResource( 11 )]
 position = Vector2( 1650, 602 )
 sides = 6
 need_royal = true
 
-[node name="Tile316" parent="Battlefield/Middleground/Board" index="286" instance=ExtResource( 11 )]
+[node name="Tile316" parent="Battlefield/Middleground/Board" index="223" instance=ExtResource( 11 )]
 position = Vector2( 1500, 688 )
 sides = 6
 need_royal = true
 
-[node name="Tile317" parent="Battlefield/Middleground/Board" index="287" instance=ExtResource( 11 )]
+[node name="Tile317" parent="Battlefield/Middleground/Board" index="224" instance=ExtResource( 11 )]
 position = Vector2( 1350, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile318" parent="Battlefield/Middleground/Board" index="288" instance=ExtResource( 11 )]
-position = Vector2( 300, 1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile319" parent="Battlefield/Middleground/Board" index="289" instance=ExtResource( 11 )]
-position = Vector2( 150, 1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile320" parent="Battlefield/Middleground/Board" index="290" instance=ExtResource( 11 )]
-position = Vector2( 0, 1720 )
-sides = 6
-need_royal = true
-
-[node name="Tile321" parent="Battlefield/Middleground/Board" index="291" instance=ExtResource( 11 )]
-position = Vector2( -150, 1806 )
-sides = 6
-need_royal = true
-
-[node name="Tile323" parent="Battlefield/Middleground/Board" index="292" instance=ExtResource( 11 )]
-position = Vector2( 600, 1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile324" parent="Battlefield/Middleground/Board" index="293" instance=ExtResource( 11 )]
-position = Vector2( 450, 1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile325" parent="Battlefield/Middleground/Board" index="294" instance=ExtResource( 11 )]
+[node name="Tile325" parent="Battlefield/Middleground/Board" index="225" instance=ExtResource( 11 )]
 position = Vector2( 1050, 1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile326" parent="Battlefield/Middleground/Board" index="295" instance=ExtResource( 11 )]
+[node name="Tile326" parent="Battlefield/Middleground/Board" index="226" instance=ExtResource( 11 )]
 position = Vector2( 900, 1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile327" parent="Battlefield/Middleground/Board" index="296" instance=ExtResource( 11 )]
+[node name="Tile327" parent="Battlefield/Middleground/Board" index="227" instance=ExtResource( 11 )]
 position = Vector2( 750, 1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile328" parent="Battlefield/Middleground/Board" index="297" instance=ExtResource( 11 )]
+[node name="Tile328" parent="Battlefield/Middleground/Board" index="228" instance=ExtResource( 11 )]
 position = Vector2( 1200, 1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile329" parent="Battlefield/Middleground/Board" index="298" instance=ExtResource( 11 )]
+[node name="Tile329" parent="Battlefield/Middleground/Board" index="229" instance=ExtResource( 11 )]
 position = Vector2( 1650, 774 )
 sides = 6
 need_royal = true
 
-[node name="Tile330" parent="Battlefield/Middleground/Board" index="299" instance=ExtResource( 11 )]
+[node name="Tile330" parent="Battlefield/Middleground/Board" index="230" instance=ExtResource( 11 )]
 position = Vector2( 1500, 860 )
 sides = 6
 need_royal = true
 
-[node name="Tile331" parent="Battlefield/Middleground/Board" index="300" instance=ExtResource( 11 )]
+[node name="Tile331" parent="Battlefield/Middleground/Board" index="231" instance=ExtResource( 11 )]
 position = Vector2( 1350, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile332" parent="Battlefield/Middleground/Board" index="301" instance=ExtResource( 11 )]
-position = Vector2( 300, 1720 )
-sides = 6
-need_royal = true
-
-[node name="Tile333" parent="Battlefield/Middleground/Board" index="302" instance=ExtResource( 11 )]
-position = Vector2( 150, 1806 )
-sides = 6
-need_royal = true
-
-[node name="Tile334" parent="Battlefield/Middleground/Board" index="303" instance=ExtResource( 11 )]
-position = Vector2( 0, 1892 )
-sides = 6
-need_royal = true
-
-[node name="Tile336" parent="Battlefield/Middleground/Board" index="304" instance=ExtResource( 11 )]
-position = Vector2( -450, 1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile337" parent="Battlefield/Middleground/Board" index="305" instance=ExtResource( 11 )]
-position = Vector2( 600, 1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile338" parent="Battlefield/Middleground/Board" index="306" instance=ExtResource( 11 )]
-position = Vector2( 450, 1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile339" parent="Battlefield/Middleground/Board" index="307" instance=ExtResource( 11 )]
+[node name="Tile339" parent="Battlefield/Middleground/Board" index="232" instance=ExtResource( 11 )]
 position = Vector2( 1050, 1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile340" parent="Battlefield/Middleground/Board" index="308" instance=ExtResource( 11 )]
+[node name="Tile340" parent="Battlefield/Middleground/Board" index="233" instance=ExtResource( 11 )]
 position = Vector2( 900, 1376 )
 sides = 6
 need_royal = true
 
-[node name="Tile341" parent="Battlefield/Middleground/Board" index="309" instance=ExtResource( 11 )]
+[node name="Tile341" parent="Battlefield/Middleground/Board" index="234" instance=ExtResource( 11 )]
 position = Vector2( 750, 1462 )
 sides = 6
 need_royal = true
 
-[node name="Tile342" parent="Battlefield/Middleground/Board" index="310" instance=ExtResource( 11 )]
+[node name="Tile342" parent="Battlefield/Middleground/Board" index="235" instance=ExtResource( 11 )]
 position = Vector2( 1200, 1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile343" parent="Battlefield/Middleground/Board" index="311" instance=ExtResource( 11 )]
+[node name="Tile343" parent="Battlefield/Middleground/Board" index="236" instance=ExtResource( 11 )]
 position = Vector2( 1650, 946 )
 sides = 6
 need_royal = true
 
-[node name="Tile344" parent="Battlefield/Middleground/Board" index="312" instance=ExtResource( 11 )]
+[node name="Tile344" parent="Battlefield/Middleground/Board" index="237" instance=ExtResource( 11 )]
 position = Vector2( 1500, 1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile345" parent="Battlefield/Middleground/Board" index="313" instance=ExtResource( 11 )]
+[node name="Tile345" parent="Battlefield/Middleground/Board" index="238" instance=ExtResource( 11 )]
 position = Vector2( 1350, 1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile222" parent="Battlefield/Middleground/Board" index="314" instance=ExtResource( 11 )]
+[node name="Tile222" parent="Battlefield/Middleground/Board" index="239" instance=ExtResource( 11 )]
 position = Vector2( 1200, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile223" parent="Battlefield/Middleground/Board" index="315" instance=ExtResource( 11 )]
+[node name="Tile223" parent="Battlefield/Middleground/Board" index="240" instance=ExtResource( 11 )]
 position = Vector2( 1200, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile224" parent="Battlefield/Middleground/Board" index="316" instance=ExtResource( 11 )]
+[node name="Tile224" parent="Battlefield/Middleground/Board" index="241" instance=ExtResource( 11 )]
 position = Vector2( 1200, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile225" parent="Battlefield/Middleground/Board" index="317" instance=ExtResource( 11 )]
+[node name="Tile225" parent="Battlefield/Middleground/Board" index="242" instance=ExtResource( 11 )]
 position = Vector2( 1200, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile164" parent="Battlefield/Middleground/Board" index="318" instance=ExtResource( 11 )]
+[node name="Tile164" parent="Battlefield/Middleground/Board" index="243" instance=ExtResource( 11 )]
 position = Vector2( -600, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile165" parent="Battlefield/Middleground/Board" index="319" instance=ExtResource( 11 )]
+[node name="Tile165" parent="Battlefield/Middleground/Board" index="244" instance=ExtResource( 11 )]
 position = Vector2( -750, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile166" parent="Battlefield/Middleground/Board" index="320" instance=ExtResource( 11 )]
+[node name="Tile166" parent="Battlefield/Middleground/Board" index="245" instance=ExtResource( 11 )]
 position = Vector2( -900, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile167" parent="Battlefield/Middleground/Board" index="321" instance=ExtResource( 11 )]
-position = Vector2( -150, -1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile168" parent="Battlefield/Middleground/Board" index="322" instance=ExtResource( 11 )]
-position = Vector2( -300, -1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile169" parent="Battlefield/Middleground/Board" index="323" instance=ExtResource( 11 )]
-position = Vector2( -450, -946 )
-sides = 6
-need_royal = true
-
-[node name="Tile322" parent="Battlefield/Middleground/Board" index="324" instance=ExtResource( 11 )]
-position = Vector2( 150, -1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile335" parent="Battlefield/Middleground/Board" index="325" instance=ExtResource( 11 )]
-position = Vector2( 300, -1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile346" parent="Battlefield/Middleground/Board" index="326" instance=ExtResource( 11 )]
-position = Vector2( 450, -1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile347" parent="Battlefield/Middleground/Board" index="327" instance=ExtResource( 11 )]
-position = Vector2( 0, -1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile348" parent="Battlefield/Middleground/Board" index="328" instance=ExtResource( 11 )]
+[node name="Tile348" parent="Battlefield/Middleground/Board" index="246" instance=ExtResource( 11 )]
 position = Vector2( -1050, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile349" parent="Battlefield/Middleground/Board" index="329" instance=ExtResource( 11 )]
+[node name="Tile349" parent="Battlefield/Middleground/Board" index="247" instance=ExtResource( 11 )]
 position = Vector2( -1200, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile350" parent="Battlefield/Middleground/Board" index="330" instance=ExtResource( 11 )]
+[node name="Tile350" parent="Battlefield/Middleground/Board" index="248" instance=ExtResource( 11 )]
 position = Vector2( -1350, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile351" parent="Battlefield/Middleground/Board" index="331" instance=ExtResource( 11 )]
+[node name="Tile351" parent="Battlefield/Middleground/Board" index="249" instance=ExtResource( 11 )]
 position = Vector2( -1500, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile352" parent="Battlefield/Middleground/Board" index="332" instance=ExtResource( 11 )]
+[node name="Tile352" parent="Battlefield/Middleground/Board" index="250" instance=ExtResource( 11 )]
 position = Vector2( -1650, -430 )
 sides = 6
 need_royal = true
 
-[node name="Tile353" parent="Battlefield/Middleground/Board" index="333" instance=ExtResource( 11 )]
-position = Vector2( -600, -1032 )
-sides = 6
-need_royal = true
-
-[node name="Tile354" parent="Battlefield/Middleground/Board" index="334" instance=ExtResource( 11 )]
+[node name="Tile354" parent="Battlefield/Middleground/Board" index="251" instance=ExtResource( 11 )]
 position = Vector2( -750, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile355" parent="Battlefield/Middleground/Board" index="335" instance=ExtResource( 11 )]
+[node name="Tile355" parent="Battlefield/Middleground/Board" index="252" instance=ExtResource( 11 )]
 position = Vector2( -900, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile356" parent="Battlefield/Middleground/Board" index="336" instance=ExtResource( 11 )]
-position = Vector2( -150, -1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile357" parent="Battlefield/Middleground/Board" index="337" instance=ExtResource( 11 )]
-position = Vector2( -300, -1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile358" parent="Battlefield/Middleground/Board" index="338" instance=ExtResource( 11 )]
-position = Vector2( -450, -1118 )
-sides = 6
-need_royal = true
-
-[node name="Tile359" parent="Battlefield/Middleground/Board" index="339" instance=ExtResource( 11 )]
-position = Vector2( 150, -1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile360" parent="Battlefield/Middleground/Board" index="340" instance=ExtResource( 11 )]
-position = Vector2( 300, -1720 )
-sides = 6
-need_royal = true
-
-[node name="Tile362" parent="Battlefield/Middleground/Board" index="341" instance=ExtResource( 11 )]
-position = Vector2( 0, -1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile363" parent="Battlefield/Middleground/Board" index="342" instance=ExtResource( 11 )]
+[node name="Tile363" parent="Battlefield/Middleground/Board" index="253" instance=ExtResource( 11 )]
 position = Vector2( -1050, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile364" parent="Battlefield/Middleground/Board" index="343" instance=ExtResource( 11 )]
+[node name="Tile364" parent="Battlefield/Middleground/Board" index="254" instance=ExtResource( 11 )]
 position = Vector2( -1200, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile365" parent="Battlefield/Middleground/Board" index="344" instance=ExtResource( 11 )]
+[node name="Tile365" parent="Battlefield/Middleground/Board" index="255" instance=ExtResource( 11 )]
 position = Vector2( -1350, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile366" parent="Battlefield/Middleground/Board" index="345" instance=ExtResource( 11 )]
+[node name="Tile366" parent="Battlefield/Middleground/Board" index="256" instance=ExtResource( 11 )]
 position = Vector2( -1500, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile367" parent="Battlefield/Middleground/Board" index="346" instance=ExtResource( 11 )]
+[node name="Tile367" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 11 )]
 position = Vector2( -1650, -602 )
 sides = 6
 need_royal = true
 
-[node name="Tile368" parent="Battlefield/Middleground/Board" index="347" instance=ExtResource( 11 )]
-position = Vector2( -600, -1204 )
-sides = 6
-need_royal = true
-
-[node name="Tile369" parent="Battlefield/Middleground/Board" index="348" instance=ExtResource( 11 )]
+[node name="Tile369" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 11 )]
 position = Vector2( -750, -1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile370" parent="Battlefield/Middleground/Board" index="349" instance=ExtResource( 11 )]
+[node name="Tile370" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 11 )]
 position = Vector2( -900, -1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile371" parent="Battlefield/Middleground/Board" index="350" instance=ExtResource( 11 )]
-position = Vector2( -150, -1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile372" parent="Battlefield/Middleground/Board" index="351" instance=ExtResource( 11 )]
-position = Vector2( -300, -1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile373" parent="Battlefield/Middleground/Board" index="352" instance=ExtResource( 11 )]
-position = Vector2( -450, -1290 )
-sides = 6
-need_royal = true
-
-[node name="Tile374" parent="Battlefield/Middleground/Board" index="353" instance=ExtResource( 11 )]
-position = Vector2( 150, -1806 )
-sides = 6
-need_royal = true
-
-[node name="Tile377" parent="Battlefield/Middleground/Board" index="354" instance=ExtResource( 11 )]
-position = Vector2( 0, -1720 )
-sides = 6
-need_royal = true
-
-[node name="Tile378" parent="Battlefield/Middleground/Board" index="355" instance=ExtResource( 11 )]
+[node name="Tile378" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 11 )]
 position = Vector2( -1050, -1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile379" parent="Battlefield/Middleground/Board" index="356" instance=ExtResource( 11 )]
+[node name="Tile379" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 11 )]
 position = Vector2( -1200, -1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile380" parent="Battlefield/Middleground/Board" index="357" instance=ExtResource( 11 )]
+[node name="Tile380" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 11 )]
 position = Vector2( -1350, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile381" parent="Battlefield/Middleground/Board" index="358" instance=ExtResource( 11 )]
+[node name="Tile381" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 11 )]
 position = Vector2( -1500, -860 )
 sides = 6
 need_royal = true
 
-[node name="Tile382" parent="Battlefield/Middleground/Board" index="359" instance=ExtResource( 11 )]
+[node name="Tile382" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 11 )]
 position = Vector2( -1650, -774 )
 sides = 6
 need_royal = true
 
-[node name="Tile383" parent="Battlefield/Middleground/Board" index="360" instance=ExtResource( 11 )]
-position = Vector2( -600, -1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile384" parent="Battlefield/Middleground/Board" index="361" instance=ExtResource( 11 )]
+[node name="Tile384" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 11 )]
 position = Vector2( -750, -1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile385" parent="Battlefield/Middleground/Board" index="362" instance=ExtResource( 11 )]
+[node name="Tile385" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 11 )]
 position = Vector2( -900, -1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile386" parent="Battlefield/Middleground/Board" index="363" instance=ExtResource( 11 )]
-position = Vector2( -150, -1634 )
-sides = 6
-need_royal = true
-
-[node name="Tile387" parent="Battlefield/Middleground/Board" index="364" instance=ExtResource( 11 )]
-position = Vector2( -300, -1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile388" parent="Battlefield/Middleground/Board" index="365" instance=ExtResource( 11 )]
-position = Vector2( -450, -1462 )
-sides = 6
-need_royal = true
-
-[node name="Tile392" parent="Battlefield/Middleground/Board" index="366" instance=ExtResource( 11 )]
-position = Vector2( 0, -1892 )
-sides = 6
-need_royal = true
-
-[node name="Tile393" parent="Battlefield/Middleground/Board" index="367" instance=ExtResource( 11 )]
+[node name="Tile393" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 11 )]
 position = Vector2( -1050, -1290 )
 sides = 6
 need_royal = true
 
-[node name="Tile394" parent="Battlefield/Middleground/Board" index="368" instance=ExtResource( 11 )]
+[node name="Tile394" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 11 )]
 position = Vector2( -1200, -1204 )
 sides = 6
 need_royal = true
 
-[node name="Tile395" parent="Battlefield/Middleground/Board" index="369" instance=ExtResource( 11 )]
+[node name="Tile395" parent="Battlefield/Middleground/Board" index="269" instance=ExtResource( 11 )]
 position = Vector2( -1350, -1118 )
 sides = 6
 need_royal = true
 
-[node name="Tile396" parent="Battlefield/Middleground/Board" index="370" instance=ExtResource( 11 )]
+[node name="Tile396" parent="Battlefield/Middleground/Board" index="270" instance=ExtResource( 11 )]
 position = Vector2( -1500, -1032 )
 sides = 6
 need_royal = true
 
-[node name="Tile397" parent="Battlefield/Middleground/Board" index="371" instance=ExtResource( 11 )]
+[node name="Tile397" parent="Battlefield/Middleground/Board" index="271" instance=ExtResource( 11 )]
 position = Vector2( -1650, -946 )
 sides = 6
 need_royal = true
 
-[node name="Tile398" parent="Battlefield/Middleground/Board" index="372" instance=ExtResource( 11 )]
-position = Vector2( -600, -1548 )
-sides = 6
-need_royal = true
-
-[node name="Tile399" parent="Battlefield/Middleground/Board" index="373" instance=ExtResource( 11 )]
+[node name="Tile399" parent="Battlefield/Middleground/Board" index="272" instance=ExtResource( 11 )]
 position = Vector2( -750, -1462 )
 sides = 6
 need_royal = true
 
-[node name="Tile400" parent="Battlefield/Middleground/Board" index="374" instance=ExtResource( 11 )]
+[node name="Tile400" parent="Battlefield/Middleground/Board" index="273" instance=ExtResource( 11 )]
 position = Vector2( -900, -1376 )
 sides = 6
 need_royal = true
 
-[node name="Tile401" parent="Battlefield/Middleground/Board" index="375" instance=ExtResource( 11 )]
-position = Vector2( -150, -1806 )
-sides = 6
-need_royal = true
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
+position = Vector2( 0, 1376 )
 
-[node name="Tile402" parent="Battlefield/Middleground/Board" index="376" instance=ExtResource( 11 )]
-position = Vector2( -300, -1720 )
-sides = 6
-need_royal = true
+[node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
+radius = 700
+sides = 6.0
+rotation_degrees = 30.0
 
-[node name="Tile403" parent="Battlefield/Middleground/Board" index="377" instance=ExtResource( 11 )]
-position = Vector2( -450, -1634 )
-sides = 6
-need_royal = true
+[node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
+visible = false
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
+position = Vector2( 0, -1376 )
+
+[node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
+radius = 700
+sides = 6.0
+rotation_degrees = 30.0
+
+[node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="2"]
+anims/Feedback = SubResource( 1 )
+
+[node name="Decoration" parent="Battlefield/Middleground/NoCrownZone2" index="5"]
+visible = false
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 
@@ -1988,4 +1570,6 @@ smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
+[editable path="Battlefield/Middleground/NoCrownZone"]
+[editable path="Battlefield/Middleground/NoCrownZone2"]
 [editable path="CanvasLayer/Pause"]
