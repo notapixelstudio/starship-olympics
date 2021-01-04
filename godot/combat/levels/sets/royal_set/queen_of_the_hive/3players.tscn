@@ -202,7 +202,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-radius = 2400
+radius = 2300
 rotation_degrees = 30.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -1265,7 +1265,6 @@ position = Vector2( 0, -2064 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 3 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1787.48, 1032 )
