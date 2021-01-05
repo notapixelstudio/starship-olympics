@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH ="user://savegame.save"
+const SAVE_PATH ="user://savegame.json"
 
 func save_game():
 	var save_dict = {}
@@ -17,7 +17,6 @@ func save_game():
 	var save_file = File.new()
 	save_file.open(SAVE_PATH, File.WRITE)
 	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
-	print(save_dict)
 	# Serialize the data dictionary to JSON
 	save_file.store_line(to_json(save_dict))
 	
@@ -31,7 +30,7 @@ func get_saved_data() -> Dictionary:
 			print("The save file does not exist.")
 			return {}
 		save_file.open(SAVE_PATH, File.READ)
-		print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
+		print("We are going to load from this JSON: ", save_file.get_path_absolute())
 		# parse file data - convert the JSON back to a dictionary
 		var data = {}
 		data = parse_json(save_file.get_as_text())

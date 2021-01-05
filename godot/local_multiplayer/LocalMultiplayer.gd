@@ -37,8 +37,8 @@ func reset():
 	campaign_mode = global.campaign_mode
 	
 func _ready():
-	for species_name in global.get_unlocked():
-		all_species.append(load(global.SPECIES_PATH+'/'+species_name+'.tres'))
+	for species in TheUnlocker.get_unlocked():
+		all_species.append(species)
 		
 	session_scores = SessionScores.new()
 	session_scores.players = players
@@ -46,7 +46,7 @@ func _ready():
 	campaign_mode = global.campaign_mode
 	players = {}
 
-	selection_screen.initialize(global.get_unlocked())
+	selection_screen.initialize()
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
@@ -147,7 +147,8 @@ func combat(selected_players: Array, fight_mode : String):
 func next_level(demo=false):
 	if not map.is_inside_tree():
 		add_child(map)
-		
+	map.check()
+	yield(map, "check_completed")
 	var this_game = choose_next_level()
 	map.choose_level(this_game)
 	yield(map, "chose_level")
@@ -256,7 +257,7 @@ func start_demo():
 	next_level(true)
 	
 func add_cpu(how_many: int):
-	var missing_species = global.get_ordered_species()
+	var missing_species = TheUnlocker.get_ordered_species()
 	for key in players:
 		var player = players[key]
 		var this_species_name = player.species.species_name

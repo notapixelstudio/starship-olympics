@@ -6,13 +6,22 @@ class_name MapPlanet
 
 export var planet : Resource setget set_planet
 onready var sprite = $Sprite
-
+var status : String = "locked" setget set_status
 export var active : bool = false setget set_active
 
 var not_available = false setget set_availability
 
 signal updated
+signal unlocked
 
+func set_status(v):
+	status = v
+	if status == 'locked':
+		self_modulate = Color(0,0,0,0.75)
+	else:
+		self_modulate = Color(1,1,1,1)
+	$Label.text = status
+				
 func set_availability(value):
 	not_available = value
 	if sprite:
@@ -56,3 +65,8 @@ func refresh():
 		else:
 			$CheckBox.play('empty')
 			
+
+func unlock():
+	$AnimationPlayer.play("unlock")
+	yield($AnimationPlayer, "animation_finished")
+	emit_signal("unlocked")
