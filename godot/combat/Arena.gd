@@ -246,14 +246,14 @@ func _ready():
 	session.players = players
 		
 	if conquest_mode.enabled:
-		var cells = get_tree().get_nodes_in_group('cell')
-		var rocks = get_tree().get_nodes_in_group('rock')
-		if len(cells) > 0:
-			score_to_win_override = floor(len(cells)/2)+1
-		elif len(rocks) > 0:
+		var conquerables = traits.get_all_with('Conquerable')
+		if len(conquerables) > 0:
 			score_to_win_override = 0
-			for rock in rocks:
-				score_to_win_override += rock.get_score()
+			for conquerable in conquerables:
+				score_to_win_override += conquerable.get_score()
+				# connect to manager
+				conquerable.connect('conquered', conquest_mode, "_on_sth_conquered")
+				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
 	
 	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
 
@@ -276,9 +276,6 @@ func _ready():
 		yield(get_tree().create_timer(3), "timeout")
 		mode_description.disappears()
 	camera.isShake = true
-	yield(mode_description, "ready_to_fight")
-	$Battlefield.visible = true
-	hud.set_planet("", game_mode)
 	
 	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
@@ -353,6 +350,9 @@ func _ready():
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
+	yield(mode_description, "ready_to_fight")
+	hud.set_planet("", game_mode)
+	
 	if not mockup:
 		if style and style.bgm:
 			Soundtrack.play(style.bgm, true)

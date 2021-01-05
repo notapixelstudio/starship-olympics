@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://actors/environments/Tile.gd" type="Script" id=2]
+[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/score_font.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=5]
+[ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=2]
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "conquest"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Partial:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Tile" type="Area2D" groups=[
+"in_camera",
+]]
+collision_layer = 128
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
+
+[node name="GRegularPolygon" type="Node" parent="."]
+script = ExtResource( 7 )
+sides = 4
+
+[node name="Conquerable" parent="." instance=ExtResource( 6 )]
+
+[node name="Strategic" parent="." instance=ExtResource( 3 )]
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2( 0, 32 )
+
+[node name="Background" type="Polygon2D" parent="Graphics"]
+self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
+scale = Vector2( 0.85, 0.85 )
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
+
+[node name="Partial" type="Sprite" parent="Graphics"]
+visible = false
+self_modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
+
+[node name="Wrapper" type="Node2D" parent="Graphics"]
+
+[node name="Label" type="Label" parent="Graphics/Wrapper"]
+self_modulate = Color( 0.9, 0.9, 0.9, 1 )
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Neighbourhood" type="Area2D" parent="."]
+scale = Vector2( 1.1, 1.1 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Neighbourhood"]
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/flip = SubResource( 2 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

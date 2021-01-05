@@ -7,6 +7,14 @@ func get_all(trait_name):
 		for node in nodes:
 			node.validate()
 	return nodes
+	
+# retrieve all objects having the specified Trait
+func get_all_with(trait_name):
+	var nodes = get_all(trait_name)
+	var objects = []
+	for n in nodes:
+		objects.append(n.host)
+	return objects
 
 # check if the given node has a Trait with the given name
 func has_trait(node, trait_name):
