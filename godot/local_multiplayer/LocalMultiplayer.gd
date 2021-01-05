@@ -37,8 +37,8 @@ func reset():
 	campaign_mode = global.campaign_mode
 	
 func _ready():
-	for species_name in global.get_unlocked():
-		all_species.append(load(global.SPECIES_PATH+'/'+species_name+'.tres'))
+	for species in TheUnlocker.get_unlocked():
+		all_species.append(species)
 		
 	session_scores = SessionScores.new()
 	session_scores.players = players
@@ -46,7 +46,7 @@ func _ready():
 	campaign_mode = global.campaign_mode
 	players = {}
 
-	selection_screen.initialize(global.get_unlocked())
+	selection_screen.initialize()
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self

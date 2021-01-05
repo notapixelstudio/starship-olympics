@@ -2,6 +2,7 @@ extends Resource
 
 class_name GameMode
 
+export var id : String
 export var is_mutator: bool = false
 export var name : String
 export var icon : StreamTexture
