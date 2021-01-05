@@ -52,7 +52,7 @@ func choose_target(strategics, strategic_trait_name='Strategic') -> Dictionary:
 		for key in strategy:
 			if not key in self.possible_behaviours or key == "avoid":
 				continue
-			var this_element_priority = strategy[key] / distance
+			var this_element_priority = strategy[key] / max(distance, 0.1)
 			if (self.keep_decision <= 0 and priority < this_element_priority) or (object == last_target and key == last_behaviour and self.keep_decision >= 0):
 				priority = this_element_priority
 				best_candidate = object
