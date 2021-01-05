@@ -229,6 +229,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/MapCell.gd"
 }, {
+"base": "Line2D",
+"class": "MapPath",
+"language": "GDScript",
+"path": "res://map/Path.gd"
+}, {
 "base": "MapCell",
 "class": "MapPlanet",
 "language": "GDScript",
@@ -429,6 +434,7 @@ _global_script_class_icons={
 "Laser": "",
 "Manager": "",
 "MapCell": "",
+"MapPath": "",
 "MapPlanet": "",
 "MatchScores": "",
 "ModeManager": "",

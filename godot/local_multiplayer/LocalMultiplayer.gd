@@ -147,7 +147,8 @@ func combat(selected_players: Array, fight_mode : String):
 func next_level(demo=false):
 	if not map.is_inside_tree():
 		add_child(map)
-		
+	map.check()
+	yield(map, "check_completed")
 	var this_game = choose_next_level()
 	map.choose_level(this_game)
 	yield(map, "chose_level")
@@ -256,7 +257,7 @@ func start_demo():
 	next_level(true)
 	
 func add_cpu(how_many: int):
-	var missing_species = global.get_ordered_species()
+	var missing_species = TheUnlocker.get_ordered_species()
 	for key in players:
 		var player = players[key]
 		var this_species_name = player.species.species_name

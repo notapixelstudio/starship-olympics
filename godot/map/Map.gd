@@ -33,6 +33,26 @@ var settings = {} setget set_settings
 
 signal chose_level
 signal selection_finished
+signal unlock_complete
+signal check_completed
+
+func check():
+	var set = $Content/Planets/Set6.planet
+	var locked = 0
+	
+	for minigame in set.minigames:
+		if not TheUnlocker.unlocked_games.get(minigame.id, false):
+			locked+=1
+	if locked <= 0:
+		# WE WILL UNLOCK!
+		unlock_via_path($Content/Planets/Set3, $Content/Planets/Set6)
+		TheUnlocker.unlock_set($Content/Planets/Set3.planet.id)
+		yield(self, "unlock_complete")
+		unlock_via_path($Content/Planets/Set2, $Content/Planets/Set6)
+		TheUnlocker.unlock_set($Content/Planets/Set2.planet.id)
+		yield(self, "unlock_complete")
+	yield(get_tree(), "idle_frame")
+	emit_signal("check_completed")
 
 func set_settings(value):
 	settings = value
@@ -74,13 +94,19 @@ func _ready():
 		panel.species = cursor.species
 		panel.enable()
 	
+	# TODO: NAMING CONVENTION
 	for sport in get_tree().get_nodes_in_group("sports"):
 		var levels = sport.planet.get("levels_"+str(num_players)+"players")
+		var set = sport.planet
+		
 		if not levels:
 			sport.not_available = true
 			
 		if sport.planet in selected_sports:
 			sport.active = true
+		sport.status = "locked"
+		if TheUnlocker.unlocked_sets.get(set.id, false):
+			sport.status = "unlocked"
 	
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
@@ -90,7 +116,7 @@ func _ready():
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
 	
-	unlock_set($Content/Planets/Set3, $Content/Waypoints/Path2)
+	# unlock_via_path($Content/Planets/Set2, $Content/Planets/Set3)
 
 func initialize(players, sports, settings_):
 	self.settings = settings_
@@ -232,7 +258,9 @@ func choose_level(level):
 	
 	var index_selection = 0
 	var index = 0
+	
 	for minicard in get_tree().get_nodes_in_group("minicard"):
+		
 		if minicard.content == this_gamemode:
 			index_selection = index
 			back_pos = minicard.position
@@ -244,6 +272,7 @@ func choose_level(level):
 			break
 		index+=1
 	
+	
 	random_selection(minicards, index_selection)
 	yield(self, "selection_finished")
 	minicards[index_selection].selected = true
@@ -254,8 +283,11 @@ func choose_level(level):
 	if chosen_minicard.status == "locked":
 		chosen_minicard.unlock()
 		yield(chosen_minicard, "unlocked")
-		global.unlocked_games.append(this_gamemode.name)
+		
+		# unlock and SAVE
+		TheUnlocker.unlock_game(this_gamemode.id)
 		persistance.save_game()
+	
 	tween.start()
 	yield(tween, "tween_all_completed")
 	chosen_minicard.position = back_pos
@@ -289,8 +321,16 @@ func _input(event):
 	if event.is_action_pressed("continue"):
 		Engine.time_scale += 0.2
 		
-func unlock_set(set_to_unlock, path_to_traverse: Line2D):
+func unlock_via_path(object_to_unlock, object_from):
 	
+	# let's grab the path that connect the two objects
+	var path_to_traverse = null
+	for path in get_tree().get_nodes_in_group("map_paths"):
+		assert(path is MapPath)
+		if path.to == object_to_unlock and path.from == object_from:
+			path_to_traverse = path
+			break
+	assert(path_to_traverse) # Path between the two NOT FOUND
 	var center_camera = global.calculate_center(camera.camera_rect)
 	# remove from camera
 	var backs = []
@@ -309,25 +349,28 @@ func unlock_set(set_to_unlock, path_to_traverse: Line2D):
 	add_child(focus)
 	yield(get_tree(), "idle_frame")
 	focus.set_points(path_to_traverse.points)
-	focus.add_point(set_to_unlock.position)
+	focus.add_point(object_to_unlock.position)
 	
 	focus.animate()
 	element_in_camera.deactivate()
 	yield(focus, "completed")
 	
 	# Animation for unlocking SET
-	set_to_unlock.unlock()
-	yield(set_to_unlock, "unlocked")
+	object_to_unlock.unlock()
+	yield(object_to_unlock, "unlocked")
 	
-	element_in_camera.position = set_to_unlock.position
+	element_in_camera.position = object_to_unlock.position
 	
 	# come back where the center was
 	element_in_camera.move(center_camera, 2)
+	focus.clear()
+	focus.queue_free()
 	yield(element_in_camera, "completed")
 	
 	for b in backs:
 		b.add_to_group("in_camera")
 	
+	emit_signal("unlock_complete")
 	
 	
 	

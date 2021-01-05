@@ -28,49 +28,57 @@ func get_resources(base_path: String) -> Dictionary:
 func _unlock_species(species: String):
 	unlocked_species[species] = true
 
+func unlock_set(set: String) -> void:
+	unlocked_sets[set] = true
+
 
 var unlocked_sets = {
-	"drones": true,
-	"trinkets": true,
-	"snake": true,
-	"asteroids": true,
-	"labs": true,
+	"drones": false,
+	"trinkets": false,
+	"snake": false,
+	"asteroids": false,
+	"labs": false,
 	"core": true,
-	"death": true,
-	"sports": true,
-	"beach": true,
+	"death": false,
+	"sports": false,
+	"beach": false,
 }
 var unlocked_games = {
-	"minefield": true,
-	"king": true,
-	"flowsnake": true,
-	"diamond": true,
-	"hive_fill": true,
-	"goal_portal": true,
-	"deathmatch": true,
-	"diamond_mining": true,
-	"diamond_snake": true,
-	"diamond_fish": true,
-	"deathmatch_snake": true,
-	"slam": true,
-	"brick_melee": true,
-	"asteroid_conquest": true,
-	"star_fish": true,
-	"brick_break": true,
-	"pong": true,
-	"deathmatch_ball": true,
-	"race": true,
-	"asteroid_deathmatch": true,
-	"deathmatch_limit": true,
-	"crown": true,
-	"race_under": true,
-	"star_mining": true,
-	"laser": true,
-	"alchemical_bonding": true,
-	"slam_snake": true,
-	"asteroid_survival": true
+	"minefield": false,
+	"king": false,
+	"flowsnake": false,
+	"diamond": false,
+	"hive_fill": false,
+	"goal_portal": false,
+	"deathmatch": false,
+	"diamond_mining": false,
+	"diamond_snake": false,
+	"diamond_fish": false,
+	"deathmatch_snake": false,
+	"slam": false,
+	"brick_melee": false,
+	"asteroid_conquest": false,
+	"star_fish": false,
+	"brick_break": false,
+	"pong": false,
+	"deathmatch_ball": false,
+	"race": false,
+	"asteroid_deathmatch": false,
+	"deathmatch_limit": false,
+	"crown": false,
+	"race_under": false,
+	"star_mining": false,
+	"laser": false,
+	"alchemical_bonding": false,
+	"slam_snake": false,
+	"asteroid_survival": false
 }
 
+func unlock_game(game_id: String) -> void:
+	# If fails means that we already unlocked this game
+	assert(not self.unlocked_games[game_id]) 
+	self.unlocked_games[game_id] = true
+	
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {
 	"mantiacs_1": true,
@@ -87,7 +95,7 @@ var unlocked_species = {
 }
 
 
-func get_ordered_species():
+func get_ordered_species() -> Array:
 	var ordered_species = get_unlocked()
 	ordered_species.sort_custom(self, 'compare_by_id')
 	return ordered_species
