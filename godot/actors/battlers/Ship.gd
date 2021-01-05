@@ -31,7 +31,7 @@ var max_shields = 1
 var deadly_trail = false
 var deadly_trail_powerup = false
 
-var golf = true
+var golf = false
 
 var charge = 0
 var actual_charge = 0
@@ -52,6 +52,8 @@ const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
+const ARKABALL_OFFSET = 250
+const ARKABALL_MULTIPLIER = 2
 
 const ROTATION_TORQUE = 40000*9 # 9 because we enlarged the radius by 3
 
@@ -96,6 +98,8 @@ onready var target_dest = $TargetDest
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
 
 var dead_ship_instance
+
+const arkaball_scene = preload('res://actors/environments/ArkaBall.tscn')
 
 signal dead
 signal stop_invincible
@@ -182,10 +186,6 @@ func _ready():
 	dash_process_material.color_ramp.gradient.set_color(0, species.color)
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
-	
-	if golf:
-		yield(get_tree().create_timer(1), "timeout")
-		charge()
 	
 func change_engine(value: bool):
 	responsive = value
@@ -328,12 +328,21 @@ func fire(override_charge = -1, dash_only = false):
 	
 	actual_charge = override_charge if override_charge > 0 else charge
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
-	var will_dash = charging_enough and not golf
+	var will_dash = charging_enough
 	
 	if will_dash:
 		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
 	
-	if get_bombs_enabled() and not dash_only:
+	if golf:
+		var impulse = charge_impulse*ARKABALL_MULTIPLIER
+		var arkaball = arkaball_scene.instance()
+		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
+		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
+		get_parent().add_child(arkaball)
+		arkaball.modulate = species.color
+		#arkaball.start()
+		golf = false
+	elif get_bombs_enabled() and not dash_only:
 		bomb_count += 1
 		if will_fire:
 			ammo.shot()
@@ -580,7 +589,13 @@ func _on_bomb_expired(bomb_position):
 	if reload_time < 0:
 		ammo.reload()
 		
-	if golf and is_inside_tree():
-		position = bomb_position
-		yield(get_tree().create_timer(1), "timeout")
-		charge()
+
+func _on_Ship_near_area_entered(sth, this):
+	if sth is ArkaBall:
+		sth.queue_free()
+		start_golf()
+
+func start_golf():
+	golf = true
+	yield(get_tree().create_timer(1), "timeout")
+	charge()
