@@ -32,6 +32,8 @@ func _on_ArkaBall_body_entered(body):
 	#		modulate = body.linked_to.species.color
 	if body is WallGoal and player != null and body.get_player().species != player.species:
 		body.do_goal(player, position)
+	elif body is Brick:
+		body.break(null)
 	
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 10}

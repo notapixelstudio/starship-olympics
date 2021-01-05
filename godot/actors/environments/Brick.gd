@@ -39,7 +39,8 @@ func set_type(v):
 	
 func break(breaker):
 	if type != TYPE.solid:
-		emit_signal('killed', self, breaker)
+		if breaker:
+			emit_signal('killed', self, breaker)
 		$CollisionShape2D.call_deferred('set_disabled', true)
 		$Under.visible = false
 		$Sprite.visible = false
