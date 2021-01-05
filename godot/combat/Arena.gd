@@ -196,6 +196,9 @@ func _ready():
 		portal.connect('went_through', race_mode, "_on_lap_done")
 		portal.connect('goal_done', goal_mode, "_on_goal_done")
 		
+	for goal in traits.get_all_with('Goal'):
+		goal.connect('goal_done', self, '_on_goal_done')
+		
 	var standalone : bool = true
 	var players = {}
 	var array_players = []
@@ -227,12 +230,10 @@ func _ready():
 			
 		else:
 			info_player = array_players[i] 
-			s.info_player = info_player
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
 		
-		s.info_player = info_player
 		players[info_player.id] = info_player
 		
 		# setup teams
@@ -241,10 +242,11 @@ func _ready():
 		elif not info_player.team:
 			info_player.team = info_player.id
 			
+		s.set_info_player(info_player)
 		i += 1
 	
 	session.players = players
-		
+	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
 		if len(conquerables) > 0:
@@ -848,3 +850,8 @@ func _on_sth_just_froze(sth):
 	$Battlefield.call_deferred("add_child", rock)
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
 	rock.call_deferred('start')
+
+func _on_goal_done(player, goal, pos):
+	scores.add_score(player.id, goal.get_score())
+	show_msg(player.species, goal.get_score(), pos)
+	

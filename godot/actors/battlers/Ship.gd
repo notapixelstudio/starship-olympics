@@ -53,7 +53,7 @@ const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 const ARKABALL_OFFSET = 250
-const ARKABALL_MULTIPLIER = 2
+const ARKABALL_MULTIPLIER = 3
 
 const ROTATION_TORQUE = 40000*9 # 9 because we enlarged the radius by 3
 
@@ -339,8 +339,8 @@ func fire(override_charge = -1, dash_only = false):
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
-		arkaball.modulate = species.color
-		#arkaball.start()
+		arkaball.set_player(info_player)
+		arkaball.start()
 		golf = false
 	elif get_bombs_enabled() and not dash_only:
 		bomb_count += 1
@@ -597,5 +597,5 @@ func _on_Ship_near_area_entered(sth, this):
 
 func start_golf():
 	golf = true
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	charge()

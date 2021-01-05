@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/sprites/weapons/ball_bomb.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/ArkaBall.gd" type="Script" id=2]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=3]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" type="AudioStream" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -27,6 +28,8 @@ can_sleep = false
 linear_velocity = Vector2( -1, 1 )
 linear_damp = 3.0
 script = ExtResource( 2 )
+
+[node name="Owned" parent="." instance=ExtResource( 5 )]
 
 [node name="Strategic" parent="." instance=ExtResource( 4 )]
 
