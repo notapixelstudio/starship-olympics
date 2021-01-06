@@ -29,21 +29,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Wall" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
-position = Vector2( 0, 400 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GRect" type="Node" parent="Battlefield/Background/Wall" index="7"]
-script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3050
-height = 200
-
-[node name="Wall2" parent="Battlefield/Background" index="5" instance=ExtResource( 4 )]
+[node name="Wall2" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
 position = Vector2( 0, 1100 )
+hollow = false
+type = 0
+hide_line = false
+hide_line_below = false
+hide_grid = false
+line_width = 48
+solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Background/Wall2" index="7"]
 script = ExtResource( 9 )
@@ -53,11 +52,20 @@ clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 100
 height = 1250
 
-[node name="OutsideWall" parent="Battlefield/Background" index="6" instance=ExtResource( 4 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="5" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
+type = 0
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
+solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
 script = ExtResource( 5 )
@@ -80,123 +88,163 @@ position = Vector2( 0, -200 )
 
 [node name="Brick8" parent="Battlefield/Middleground/YSort" index="0" instance=ExtResource( 7 )]
 position = Vector2( -700, -550 )
+type = 1
 
 [node name="Brick15" parent="Battlefield/Middleground/YSort" index="1" instance=ExtResource( 7 )]
 position = Vector2( 700, -550 )
+type = 1
 
 [node name="Brick17" parent="Battlefield/Middleground/YSort" index="2" instance=ExtResource( 7 )]
 position = Vector2( 700, -450 )
+type = 1
 
 [node name="Brick23" parent="Battlefield/Middleground/YSort" index="3" instance=ExtResource( 7 )]
 position = Vector2( 700, -850 )
+type = 1
 
 [node name="Brick29" parent="Battlefield/Middleground/YSort" index="4" instance=ExtResource( 7 )]
 position = Vector2( 1100, -50 )
+type = 1
 
 [node name="Brick30" parent="Battlefield/Middleground/YSort" index="5" instance=ExtResource( 7 )]
 position = Vector2( -1100, -1050 )
+type = 1
 
 [node name="Brick31" parent="Battlefield/Middleground/YSort" index="6" instance=ExtResource( 7 )]
 position = Vector2( -900, -450 )
+type = 1
 
 [node name="Brick36" parent="Battlefield/Middleground/YSort" index="7" instance=ExtResource( 7 )]
 position = Vector2( -700, -350 )
+type = 1
 
 [node name="Brick32" parent="Battlefield/Middleground/YSort" index="8" instance=ExtResource( 7 )]
 position = Vector2( -1100, 250 )
+type = 1
 
 [node name="Brick33" parent="Battlefield/Middleground/YSort" index="9" instance=ExtResource( 7 )]
 position = Vector2( -700, -850 )
+type = 1
 
 [node name="Brick76" parent="Battlefield/Middleground/YSort" index="10" instance=ExtResource( 7 )]
 position = Vector2( 900, -350 )
+type = 1
 
 [node name="Brick77" parent="Battlefield/Middleground/YSort" index="11" instance=ExtResource( 7 )]
 position = Vector2( 1100, -350 )
+type = 1
 
 [node name="Brick84" parent="Battlefield/Middleground/YSort" index="12" instance=ExtResource( 7 )]
 position = Vector2( -1100, -350 )
+type = 1
 
 [node name="Brick85" parent="Battlefield/Middleground/YSort" index="13" instance=ExtResource( 7 )]
 position = Vector2( -900, -350 )
+type = 1
 
 [node name="Brick57" parent="Battlefield/Middleground/YSort" index="14" instance=ExtResource( 7 )]
 position = Vector2( -1100, -50 )
+type = 1
 
 [node name="Brick98" parent="Battlefield/Middleground/YSort" index="15" instance=ExtResource( 7 )]
 position = Vector2( -1100, -850 )
+type = 1
 
 [node name="Brick108" parent="Battlefield/Middleground/YSort" index="16" instance=ExtResource( 7 )]
 position = Vector2( 700, 50 )
+type = 1
 
 [node name="Brick109" parent="Battlefield/Middleground/YSort" index="17" instance=ExtResource( 7 )]
 position = Vector2( 900, 50 )
+type = 1
 
 [node name="Brick113" parent="Battlefield/Middleground/YSort" index="18" instance=ExtResource( 7 )]
 position = Vector2( -500, 50 )
+type = 1
 
 [node name="Brick131" parent="Battlefield/Middleground/YSort" index="19" instance=ExtResource( 7 )]
 position = Vector2( 1100, -450 )
+type = 1
 
 [node name="Brick132" parent="Battlefield/Middleground/YSort" index="20" instance=ExtResource( 7 )]
 position = Vector2( 1100, -850 )
+type = 1
 
 [node name="Brick148" parent="Battlefield/Middleground/YSort" index="21" instance=ExtResource( 7 )]
 position = Vector2( 900, -450 )
+type = 1
 
 [node name="Brick141" parent="Battlefield/Middleground/YSort" index="22" instance=ExtResource( 7 )]
 position = Vector2( 100, -550 )
+type = 1
 
 [node name="Brick158" parent="Battlefield/Middleground/YSort" index="23" instance=ExtResource( 7 )]
 position = Vector2( -1100, -450 )
+type = 1
 
 [node name="Brick172" parent="Battlefield/Middleground/YSort" index="24" instance=ExtResource( 7 )]
 position = Vector2( -700, -1050 )
+type = 1
 
 [node name="Brick173" parent="Battlefield/Middleground/YSort" index="25" instance=ExtResource( 7 )]
 position = Vector2( -500, -950 )
+type = 1
 
 [node name="Brick180" parent="Battlefield/Middleground/YSort" index="26" instance=ExtResource( 7 )]
 position = Vector2( -1100, -550 )
+type = 1
 
 [node name="Brick202" parent="Battlefield/Middleground/YSort" index="27" instance=ExtResource( 7 )]
 position = Vector2( 500, 50 )
+type = 1
 
 [node name="Brick204" parent="Battlefield/Middleground/YSort" index="28" instance=ExtResource( 7 )]
 position = Vector2( 700, -350 )
+type = 1
 
 [node name="Brick206" parent="Battlefield/Middleground/YSort" index="29" instance=ExtResource( 7 )]
 position = Vector2( 900, -50 )
+type = 1
 
 [node name="Brick207" parent="Battlefield/Middleground/YSort" index="30" instance=ExtResource( 7 )]
 position = Vector2( 900, -1050 )
+type = 1
 
 [node name="Brick212" parent="Battlefield/Middleground/YSort" index="31" instance=ExtResource( 7 )]
 position = Vector2( 700, -1050 )
+type = 1
 
 [node name="Brick214" parent="Battlefield/Middleground/YSort" index="32" instance=ExtResource( 7 )]
 position = Vector2( -700, 250 )
+type = 1
 
 [node name="Brick215" parent="Battlefield/Middleground/YSort" index="33" instance=ExtResource( 7 )]
 position = Vector2( 1100, -950 )
+type = 1
 
 [node name="Brick230" parent="Battlefield/Middleground/YSort" index="34" instance=ExtResource( 7 )]
 position = Vector2( 1100, -550 )
+type = 1
 
 [node name="Brick25" parent="Battlefield/Middleground/YSort" index="35" instance=ExtResource( 7 )]
 position = Vector2( 700, -950 )
+type = 1
 
 [node name="Brick27" parent="Battlefield/Middleground/YSort" index="36" instance=ExtResource( 7 )]
 position = Vector2( 900, -950 )
+type = 1
 
 [node name="Brick37" parent="Battlefield/Middleground/YSort" index="37" instance=ExtResource( 7 )]
 position = Vector2( -900, -950 )
+type = 1
 
 [node name="Brick38" parent="Battlefield/Middleground/YSort" index="38" instance=ExtResource( 7 )]
 position = Vector2( -700, -950 )
+type = 1
 
 [node name="Brick235" parent="Battlefield/Middleground/YSort" index="39" instance=ExtResource( 7 )]
 position = Vector2( -1100, 150 )
+type = 1
 
 [node name="Brick16" parent="Battlefield/Middleground/YSort" index="40" instance=ExtResource( 7 )]
 position = Vector2( 500, -1350 )
@@ -228,36 +276,47 @@ type = 2
 
 [node name="Brick22" parent="Battlefield/Middleground/YSort" index="47" instance=ExtResource( 7 )]
 position = Vector2( 300, -550 )
+type = 1
 
 [node name="Brick24" parent="Battlefield/Middleground/YSort" index="48" instance=ExtResource( 7 )]
 position = Vector2( -300, -550 )
+type = 1
 
 [node name="Brick64" parent="Battlefield/Middleground/YSort" index="49" instance=ExtResource( 7 )]
 position = Vector2( 500, -850 )
+type = 1
 
 [node name="Brick65" parent="Battlefield/Middleground/YSort" index="50" instance=ExtResource( 7 )]
 position = Vector2( -500, -850 )
+type = 1
 
 [node name="Brick126" parent="Battlefield/Middleground/YSort" index="51" instance=ExtResource( 7 )]
 position = Vector2( 700, -50 )
+type = 1
 
 [node name="Brick174" parent="Battlefield/Middleground/YSort" index="52" instance=ExtResource( 7 )]
 position = Vector2( -1100, -950 )
+type = 1
 
 [node name="Brick176" parent="Battlefield/Middleground/YSort" index="53" instance=ExtResource( 7 )]
 position = Vector2( -300, 250 )
+type = 1
 
 [node name="Brick135" parent="Battlefield/Middleground/YSort" index="54" instance=ExtResource( 7 )]
 position = Vector2( 500, -50 )
+type = 1
 
 [node name="Brick232" parent="Battlefield/Middleground/YSort" index="55" instance=ExtResource( 7 )]
 position = Vector2( 900, -550 )
+type = 1
 
 [node name="Brick80" parent="Battlefield/Middleground/YSort" index="56" instance=ExtResource( 7 )]
 position = Vector2( -900, -550 )
+type = 1
 
 [node name="Brick86" parent="Battlefield/Middleground/YSort" index="57" instance=ExtResource( 7 )]
 position = Vector2( 500, -950 )
+type = 1
 
 [node name="Brick87" parent="Battlefield/Middleground/YSort" index="58" instance=ExtResource( 7 )]
 position = Vector2( -300, -350 )
@@ -265,9 +324,11 @@ type = 3
 
 [node name="Brick116" parent="Battlefield/Middleground/YSort" index="59" instance=ExtResource( 7 )]
 position = Vector2( 1100, 150 )
+type = 1
 
 [node name="Brick123" parent="Battlefield/Middleground/YSort" index="60" instance=ExtResource( 7 )]
 position = Vector2( -700, -50 )
+type = 1
 
 [node name="Brick175" parent="Battlefield/Middleground/YSort" index="61" instance=ExtResource( 7 )]
 position = Vector2( -900, -850 )
@@ -275,24 +336,31 @@ type = 3
 
 [node name="Brick209" parent="Battlefield/Middleground/YSort" index="62" instance=ExtResource( 7 )]
 position = Vector2( 1100, -1050 )
+type = 1
 
 [node name="Brick220" parent="Battlefield/Middleground/YSort" index="63" instance=ExtResource( 7 )]
 position = Vector2( -900, 250 )
+type = 1
 
 [node name="Brick28" parent="Battlefield/Middleground/YSort" index="64" instance=ExtResource( 7 )]
 position = Vector2( 1100, 250 )
+type = 1
 
 [node name="Brick93" parent="Battlefield/Middleground/YSort" index="65" instance=ExtResource( 7 )]
 position = Vector2( 700, 250 )
+type = 1
 
 [node name="Brick179" parent="Battlefield/Middleground/YSort" index="66" instance=ExtResource( 7 )]
 position = Vector2( 900, 250 )
+type = 1
 
 [node name="Brick221" parent="Battlefield/Middleground/YSort" index="67" instance=ExtResource( 7 )]
 position = Vector2( 300, 250 )
+type = 1
 
 [node name="Brick73" parent="Battlefield/Middleground/YSort" index="68" instance=ExtResource( 7 )]
 position = Vector2( -100, -550 )
+type = 1
 
 [node name="Brick81" parent="Battlefield/Middleground/YSort" index="69" instance=ExtResource( 7 )]
 position = Vector2( -100, -350 )
@@ -300,6 +368,7 @@ type = 3
 
 [node name="Brick121" parent="Battlefield/Middleground/YSort" index="70" instance=ExtResource( 7 )]
 position = Vector2( -900, -50 )
+type = 1
 
 [node name="Brick115" parent="Battlefield/Middleground/YSort" index="71" instance=ExtResource( 7 )]
 position = Vector2( -100, -50 )
@@ -307,51 +376,67 @@ type = 3
 
 [node name="Brick82" parent="Battlefield/Middleground/YSort" index="72" instance=ExtResource( 7 )]
 position = Vector2( 300, -450 )
+type = 1
 
 [node name="Brick88" parent="Battlefield/Middleground/YSort" index="73" instance=ExtResource( 7 )]
 position = Vector2( -700, -450 )
+type = 1
 
 [node name="Brick89" parent="Battlefield/Middleground/YSort" index="74" instance=ExtResource( 7 )]
 position = Vector2( -100, -450 )
+type = 1
 
 [node name="Brick107" parent="Battlefield/Middleground/YSort" index="75" instance=ExtResource( 7 )]
 position = Vector2( -300, -450 )
+type = 1
 
 [node name="Brick119" parent="Battlefield/Middleground/YSort" index="76" instance=ExtResource( 7 )]
 position = Vector2( 100, -450 )
+type = 1
 
 [node name="Brick140" parent="Battlefield/Middleground/YSort" index="77" instance=ExtResource( 7 )]
 position = Vector2( 1100, 50 )
+type = 1
 
 [node name="Brick144" parent="Battlefield/Middleground/YSort" index="78" instance=ExtResource( 7 )]
 position = Vector2( -1100, 50 )
+type = 1
 
 [node name="Brick145" parent="Battlefield/Middleground/YSort" index="79" instance=ExtResource( 7 )]
 position = Vector2( -700, 50 )
+type = 1
 
 [node name="Brick146" parent="Battlefield/Middleground/YSort" index="80" instance=ExtResource( 7 )]
 position = Vector2( -900, 50 )
+type = 1
 
 [node name="Brick170" parent="Battlefield/Middleground/YSort" index="81" instance=ExtResource( 7 )]
 position = Vector2( -500, -50 )
+type = 1
 
 [node name="Brick128" parent="Battlefield/Middleground/YSort" index="82" instance=ExtResource( 7 )]
 position = Vector2( 100, 150 )
+type = 1
 
 [node name="Brick181" parent="Battlefield/Middleground/YSort" index="83" instance=ExtResource( 7 )]
 position = Vector2( 100, 250 )
+type = 1
 
 [node name="Brick171" parent="Battlefield/Middleground/YSort" index="84" instance=ExtResource( 7 )]
 position = Vector2( 100, 50 )
+type = 1
 
 [node name="Brick129" parent="Battlefield/Middleground/YSort" index="85" instance=ExtResource( 7 )]
 position = Vector2( -100, 150 )
+type = 1
 
 [node name="Brick182" parent="Battlefield/Middleground/YSort" index="86" instance=ExtResource( 7 )]
 position = Vector2( -100, 250 )
+type = 1
 
 [node name="Brick183" parent="Battlefield/Middleground/YSort" index="87" instance=ExtResource( 7 )]
 position = Vector2( -100, 50 )
+type = 1
 
 [node name="Brick39" parent="Battlefield/Middleground/YSort" index="88" instance=ExtResource( 7 )]
 position = Vector2( 1100, -1250 )
@@ -495,6 +580,7 @@ type = 2
 
 [node name="Brick60" parent="Battlefield/Middleground/YSort" index="123" instance=ExtResource( 7 )]
 position = Vector2( -900, -1050 )
+type = 1
 
 [node name="Brick61" parent="Battlefield/Middleground/YSort" index="124" instance=ExtResource( 7 )]
 position = Vector2( -900, -1350 )
@@ -515,6 +601,7 @@ species = ExtResource( 13 )
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.49012e+11, 1.49012e+11 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

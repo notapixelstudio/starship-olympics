@@ -8,11 +8,12 @@ export (String) var team = ''
 # temporary for cpu
 export (bool) var cpu = false
 
+signal player_assigned(info_player)
 signal entered_battlefield
 
 var id : String
 var uid : int
-onready var info_player 
+var info_player 
 onready var sprite = $Sprite
 onready var animation = $AnimationPlayer
 
@@ -35,3 +36,8 @@ func appears():
 func is_cpu()->bool:
 	#return info_player.cpu
 	return cpu
+
+func set_info_player(v):
+	info_player = v
+	emit_signal('player_assigned', info_player)
+	
