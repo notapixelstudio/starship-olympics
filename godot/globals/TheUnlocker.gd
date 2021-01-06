@@ -27,9 +27,11 @@ func get_resources(base_path: String) -> Dictionary:
 
 func _unlock_species(species: String):
 	unlocked_species[species] = true
+	persistance.save_game()
 
 func unlock_set(set: String) -> void:
 	unlocked_sets[set] = true
+	persistance.save_game()
 
 
 var unlocked_sets = {
@@ -78,6 +80,7 @@ func unlock_game(game_id: String) -> void:
 	# If fails means that we already unlocked this game
 	assert(not self.unlocked_games[game_id]) 
 	self.unlocked_games[game_id] = true
+	persistance.save_game()
 	
 # dictionary of SPECIES with some values (like a bool unlocked)
 var unlocked_species = {

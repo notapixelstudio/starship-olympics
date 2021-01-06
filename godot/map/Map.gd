@@ -37,6 +37,7 @@ signal unlock_complete
 signal check_completed
 
 func check():
+	# THIS WILL UNLOCK trinkets and death
 	var set = $Content/Planets/Set6.planet
 	var locked = 0
 	
@@ -45,12 +46,14 @@ func check():
 			locked+=1
 	if locked <= 0:
 		# WE WILL UNLOCK!
-		unlock_via_path($Content/Planets/Set3, $Content/Planets/Set6)
-		TheUnlocker.unlock_set($Content/Planets/Set3.planet.id)
-		yield(self, "unlock_complete")
-		unlock_via_path($Content/Planets/Set2, $Content/Planets/Set6)
-		TheUnlocker.unlock_set($Content/Planets/Set2.planet.id)
-		yield(self, "unlock_complete")
+		if not TheUnlocker.unlocked_sets.get("trinkets", false):
+			unlock_via_path($Content/Planets/Set3, $Content/Planets/Set6)
+			TheUnlocker.unlock_set($Content/Planets/Set3.planet.id)
+			yield(self, "unlock_complete")
+		if not TheUnlocker.unlocked_sets.get("death", false):
+			unlock_via_path($Content/Planets/Set2, $Content/Planets/Set6)
+			TheUnlocker.unlock_set($Content/Planets/Set2.planet.id)
+			yield(self, "unlock_complete")
 	yield(get_tree(), "idle_frame")
 	emit_signal("check_completed")
 
@@ -94,7 +97,7 @@ func _ready():
 		panel.species = cursor.species
 		panel.enable()
 	
-	# TODO: NAMING CONVENTION
+	# TODO: NAMING CONVENTION in group with SPORT
 	for sport in get_tree().get_nodes_in_group("sports"):
 		var levels = sport.planet.get("levels_"+str(num_players)+"players")
 		var set = sport.planet
