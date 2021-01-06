@@ -342,11 +342,15 @@ alternating_angle = 0.0
 rotation_degrees = 0.0
 
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 3 )]
+position = Vector2( -1000, 1000 )
 
-[node name="CameraEye" parent="Battlefield/Foreground" index="1" instance=ExtResource( 13 )]
+[node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1000, -1000 )
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="2" instance=ExtResource( 13 )]
 position = Vector2( -1000, 1400 )
 
-[node name="CameraEye2" parent="Battlefield/Foreground" index="2" instance=ExtResource( 13 )]
+[node name="CameraEye2" parent="Battlefield/Foreground" index="3" instance=ExtResource( 13 )]
 position = Vector2( 1000, -1400 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
@@ -354,7 +358,6 @@ position = Vector2( -2100, 700 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 6 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 2100, -700 )

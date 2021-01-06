@@ -107,6 +107,8 @@ shape = SubResource( 4 )
 visible = false
 
 [node name="Area2D" type="Area2D" parent="MagField"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagField/Area2D"]
 shape = SubResource( 5 )
