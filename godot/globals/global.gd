@@ -348,7 +348,6 @@ func event_from_text(device: String, command: String) -> InputEvent:
 	elif "joy" in device:
 		var device_id = int(device.replace("joy", ""))-1
 		if "analog" in command:
-			command
 			e = InputEventJoypadMotion.new()
 			e.axis = int(command.split("_")[1])
 			e.axis_value = int(command.split("_")[2])
@@ -444,12 +443,12 @@ func get_base_entity(node : Node):
 		return null
 	return get_base_entity(node.get_parent())
 	
-func check_version(saved_version: String, version: String) -> bool:
+func check_version(saved_version: String, version_: String) -> bool:
 	# Will check if the version of the saved data is smaller the current
 	var saved_minor = saved_version.split(".")[1]
 	var saved_patch = saved_version.split(".")[2]
-	var minor = version.split(".")[1]
-	var patch = version.split(".")[2]
+	var minor = version_.split(".")[1]
+	var patch = version_.split(".")[2]
 	
 	return int(saved_patch) < int(patch)
 
@@ -459,13 +458,13 @@ func send_stats(category: String, stats: Dictionary):
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))
 	
-func join_str(array, sep=","):
+func join_str(array, sep=",") -> String:
 	var ret = ""
 	for e in array:
 		ret += e+sep
 	return ret.rstrip(sep)
-	return ret
-
+	
+	
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
 		rect.position.x + rect.size.x / 2,
@@ -500,7 +499,7 @@ var joy_input_map = {
 
 
 
-func event_to_text(action: String, event: InputEvent):
+func event_to_text(_action: String, event: InputEvent):
 	"""
 	event: @type InputEvent
 	"""

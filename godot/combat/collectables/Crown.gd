@@ -33,7 +33,7 @@ func _ready():
 func start():
 	set_physics_process(impulse > 0)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	apply_central_impulse(impulse*Vector2(1,0).rotated(linear_velocity.angle()))
 	
 func _integrate_forces(state):

@@ -55,7 +55,7 @@ func set_color(c):
 	$NoRotate.modulate = color
 	$Particles2D.modulate = color
 	
-func _process(delta):
+func _process(_delta):
 	$NoRotate.rotation = -rotation
 	#$NoRotate/Label.text = str(points)
 	#$NoRotate/Label.text = group

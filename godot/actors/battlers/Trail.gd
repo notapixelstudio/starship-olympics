@@ -167,7 +167,7 @@ func _should_shrink() -> bool:
 func erase_trail():
 	set_process(false)
 	monitor = []
-	for i in range(get_point_count()):
+	for _i in range(get_point_count()):
 		remove_custom_point(0)
 	yield(get_tree().create_timer(0.01), "timeout")
 	set_process(true)

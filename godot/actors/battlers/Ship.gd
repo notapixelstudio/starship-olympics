@@ -185,7 +185,7 @@ func change_engine(value: bool):
 	responsive = value
 	set_physics_process(responsive)
 	
-func _process(delta):
+func _process(_delta):
 	if bomb_type == GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview.rotation = -global_rotation
 	
@@ -423,7 +423,7 @@ func _on_NearArea_body_exited(body):
 func is_alive():
 	return alive
 
-func update_score(species_template, score, pos):
+func update_score(_species: Species, score, pos):
 	$PlayerInfo.update_score(score)
 	
 

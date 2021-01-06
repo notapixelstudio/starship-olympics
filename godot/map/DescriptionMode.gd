@@ -3,7 +3,7 @@ extends Control
 export var gamemode : Resource setget set_gamemode
 
 onready var animator = $AnimationPlayer
-onready var sport_name = $SportName
+
 onready var rule1 = $Rule1
 onready var rule2 = $Rule2
 

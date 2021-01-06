@@ -171,7 +171,7 @@ func become_breakable():
 	
 onready var countdown = $NoRotate/CountdownWrapper/Countdown
 
-func _process(delta):
+func _process(_delta):
 	$NoRotate.rotation = -rotation
 	
 func start():

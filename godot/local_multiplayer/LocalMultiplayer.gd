@@ -153,13 +153,15 @@ func next_level(demo=false):
 	map.choose_level(this_game)
 	yield(map, "chose_level")
 	remove_child(map)
-	add_child(parallax)
+	if not parallax.is_inside_tree():
+		add_child(parallax)
 	start_level(this_game, demo)
 	
 func choose_next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
-	
-	var last_sport = played_levels.back()
+	var last_sport = null
+	if len(played_levels) > 0:
+		last_sport = played_levels.back()
 	var num_players = len(players)
 	
 	if len(played_levels) >= len(sports_array) or demo:

@@ -2,7 +2,6 @@ extends Control
 
 onready var disclaimer = $Disclaimer
 onready var anim = $AnimationPlayer
-onready var skip = $Skip
 
 onready var line1 = $Line1
 onready var line2 = $Line2

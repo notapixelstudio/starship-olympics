@@ -17,7 +17,7 @@ onready var shadow = $CharacterWrapper/Character/Clip/Shadow
 onready var controls_sprite = $Controls 
 onready var player_infotext = $PlayerInfo/PlayerID
 onready var anim = $Ship/AnimationPlayer
-onready var label_anim = $SpeciesName/AnimationPlayer
+
 onready var select_rect = $CharacterWrapper/SelectRect
 onready var background = $CharacterWrapper/Character/Background
 onready var sel_animation = $CharacterWrapper/AnimationPlayer

@@ -179,7 +179,8 @@ var deselected = false
 func deselected(species: Species):
 	restart_timer()
 	var current_index = ordered_species.find(species)
-	selected_index.remove(selected_index.find(current_index))
+	if selected_index.find(current_index) >= 0:
+		selected_index.remove(selected_index.find(current_index))
 	var players = get_players()
 	if len(players) < MIN_PLAYERS:
 		deselected = true

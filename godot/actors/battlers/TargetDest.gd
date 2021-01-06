@@ -13,7 +13,7 @@ func _ready():
 func get_master_ship():
 	return node_owner
 
-func _process(delta):
+func _process(_delta):
 	position.x = (node_owner.velocity).length()/2
 
 func get_strategy(ship, distance, game_mode):

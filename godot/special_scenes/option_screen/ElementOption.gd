@@ -9,7 +9,7 @@ onready var description_node = $Container/Description
 const focus_color = Color(1,1,1)
 var index_value
 
-func _process(delta):
+func _process(_delta):
 	$Container/Description.text = label_description
 
 func _initialize():

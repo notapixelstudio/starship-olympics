@@ -12,7 +12,7 @@ export var grid_position : Vector2 setget set_grid_position
 var player 
 onready var move_tween = $MoveTween
 onready var animation_player = $Wrapper/Graphics/AnimationPlayer
-onready var animation_player_act = $Wrapper/Graphics/AnimationPlayerAct
+
 onready var ship = $Wrapper/Graphics/Ship
 onready var placemark = $Wrapper/Graphics/Placemark
 onready var label = $Wrapper/Graphics/LabelContainer/Label

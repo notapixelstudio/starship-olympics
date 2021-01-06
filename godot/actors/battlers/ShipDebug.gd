@@ -33,7 +33,6 @@ func _draw():
 	
 	# draw_vector(parent.last_target_pos, Vector2(), colors['WHITE'])
 	var i = 0
-	print(parent.hit_pos)
 	for r in parent.hit_pos:
 		
 		draw_vector(r, Vector2(), colors['WHITE'].darkened(0.3))
@@ -59,7 +58,7 @@ func draw_triangle_equilateral(center=Vector2(), direction=Vector2(), radius=50,
 	draw_polygon(points, ([_color]))
 
 
-func _process(delta):
+func _process(_delta):
 	if not enabled:
 		return
 		

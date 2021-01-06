@@ -57,7 +57,8 @@ func configure(deadly : bool = false, duration : float = 0.0):
 	var cm = GlowColor.new(ship.species.color, 1.8).color
 
 	if deadly:
-		add_to_group("Trails")
+		if not is_in_group("Trails"):
+			add_to_group("Trails")
 		trail.time_alive_per_point = duration
 		trail.min_dist = 20
 		trail.auto_alpha_gradient = false
@@ -70,7 +71,8 @@ func configure(deadly : bool = false, duration : float = 0.0):
 		trail.gradient.colors = PoolColorArray([c2,cm,c1])
 		inner_trail.modulate = Color(1,1,1,1)
 	else:
-		remove_from_group("Trails")
+		if is_in_group("Trails"):
+			remove_from_group("Trails")
 		collision_shape.call_deferred('set_disabled', true)
 		trail.time_alive_per_point = 0.9
 		trail.min_dist = 4
