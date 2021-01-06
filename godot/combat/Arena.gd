@@ -31,6 +31,7 @@ var run_time = 0
 
 onready var crown_mode = $Managers/CrownModeManager
 onready var kill_mode = $Managers/KillModeManager
+onready var last_man_mode = $Managers/LastManModeManager
 onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
 onready var race_mode = $Managers/RaceModeManager
@@ -114,6 +115,7 @@ func setup_level(mode : Resource):
 	# mode managers
 	crown_mode.enabled = mode.crown
 	kill_mode.enabled = mode.death
+	last_man_mode.enabled = mode.last_man
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
@@ -181,6 +183,7 @@ func _ready():
 	kill_mode.connect('score', scores, "add_score")
 	kill_mode.connect('broadcast_score', scores, "broadcast_score")
 	kill_mode.connect('show_msg', self, "show_msg")
+	last_man_mode.connect('broadcast_score', scores, "broadcast_score")
 	race_mode.connect('score', scores, "add_score")
 	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
@@ -510,7 +513,7 @@ func ship_just_died(ship, killer, for_good):
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
 				alive_players.append(s)
-		
+				
 		if not for_good:
 			focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
 		
@@ -523,6 +526,14 @@ func ship_just_died(ship, killer, for_good):
 			# notify scores if there are no players left
 			yield(get_tree().create_timer(0.3), 'timeout')
 			scores.no_players_left()
+			
+		# shrink the battlefield in last man standing
+		if game_mode.last_man:
+			if len(alive_players) == 3:
+				$LastManAnimationPlayer.play('Shrink')
+			elif len(alive_players) == 2:
+				yield($LastManAnimationPlayer, 'animation_finished')
+				$LastManAnimationPlayer.play('Shrink2')
 		
 		# skip respawn if there are no lives left
 		return
@@ -671,6 +682,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
+	ship.connect("dead", last_man_mode, "_on_sth_killed")
 	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")

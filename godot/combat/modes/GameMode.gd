@@ -18,6 +18,7 @@ export var starting_lives : int = -1
 
 # goal manager
 export var death : bool = false
+export var last_man : bool = false
 export var crown : bool = false
 export var hive : bool = false
 export var collect : bool = false

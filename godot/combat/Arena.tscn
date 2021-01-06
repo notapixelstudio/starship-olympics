@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=35]
+[ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=36]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10000 )
@@ -232,6 +233,13 @@ pitch_scale = 4.0
 
 [node name="KillModeManager" type="Node" parent="Managers"]
 script = ExtResource( 14 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+enabled = false
+
+[node name="LastManModeManager" type="Node" parent="Managers"]
+script = ExtResource( 36 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
