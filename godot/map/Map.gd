@@ -332,11 +332,12 @@ func unlock_via_path(object_to_unlock, object_from):
 			break
 	assert(path_to_traverse) # Path between the two NOT FOUND
 	var center_camera = global.calculate_center(camera.camera_rect)
-	# remove from camera
-	var backs = []
-	for cameraman in get_tree().get_nodes_in_group("in_camera"):
-		backs.append(cameraman)
+	# remove cursors from camera, if any
+	var cursors = []
+	for cameraman in get_tree().get_nodes_in_group("map_cursor"):
+		cursors.append(cameraman)
 		cameraman.remove_from_group("in_camera")
+		
 	var element_in_camera = element_in_camera_scene.instance()
 	element_in_camera.position = center_camera
 	var start_path = path_to_traverse.points[0]
@@ -363,12 +364,16 @@ func unlock_via_path(object_to_unlock, object_from):
 	
 	# come back where the center was
 	element_in_camera.move(center_camera, 2)
+	
+	# Let's clear everything
 	focus.clear()
 	focus.queue_free()
 	yield(element_in_camera, "completed")
+	element_in_camera.queue_free()
 	
-	for b in backs:
-		b.add_to_group("in_camera")
+	
+	for elem in cursors:
+		elem.add_to_group("in_camera")
 	
 	emit_signal("unlock_complete")
 	

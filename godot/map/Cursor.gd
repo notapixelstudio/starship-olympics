@@ -1,8 +1,8 @@
-tool
-
 extends Node2D
 
 var enabled
+
+class_name MapCursor
 
 export var species : Resource setget set_species
 export var player_i : int
