@@ -263,7 +263,6 @@ func choose_level(level):
 	var index = 0
 	
 	for minicard in get_tree().get_nodes_in_group("minicard"):
-		
 		if minicard.content == this_gamemode:
 			index_selection = index
 			back_pos = minicard.position
