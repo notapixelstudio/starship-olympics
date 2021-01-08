@@ -530,3 +530,14 @@ var glow_enable = true setget _set_glow
 func _set_glow(value):
 	glow_enable = value
 	
+
+# GAMEPLAY
+var session : TheSession
+var the_match : TheMatch
+
+func new_match():
+	the_match = TheMatch.new()
+	
+func new_session(players):
+	session = TheSession.new()
+	session.set_players(players)

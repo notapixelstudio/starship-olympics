@@ -1,7 +1,7 @@
 extends Node
 # This script handles scores and in-game stats
 
-class_name MatchScores
+class_name TheMatch
 
 var time_left:float
 var match_time: float
@@ -147,3 +147,6 @@ func get_player(id_player: String):
 		if id_player == player.id:
 			return player
 	return 
+
+func summary():
+	return {}

@@ -66,9 +66,9 @@ signal battle_start
 
 var array_players = [] # Dictionary of InfoPlayers
 
-var scores : MatchScores
+var scores : TheMatch
+var session: TheSession
 
-var session: SessionScores
 func initialize(_session) -> void:
 	session = _session
 	
@@ -155,9 +155,11 @@ func _ready():
 	# Analytics
 	analytics.start_elapsed_time()
 	
-
-	scores = MatchScores.new()
+	
+	global.new_match()
+	scores = TheMatch.new()
 	scores.connect("game_over", self, "on_gamemode_gameover")
+	
 	connect("update_stats", scores, "update_stats")
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
 	
