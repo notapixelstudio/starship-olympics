@@ -10,7 +10,7 @@ var lasting_time: float = 0.0
 var target_score: float = 100
 
 var scores = []
-var player_scores = []
+var player_scores: Array = []  # of PlayerStats
 var players = {} # Dictionary of InfoPlayers
 var teams = {}
 var sport
@@ -70,11 +70,13 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	if game_mode.cumulative:
 		cumulative_points=0
 	
+	global.session.add_match(self)
 	
 func sort_by_score(a, b):
 	return a.score > b.score
 	
 func update(delta: float):
+	# Would be called by Arena
 	if game_over:
 		return
 	
@@ -141,7 +143,7 @@ func to_JSON():
 	}
 	return ret
 
-
+	
 func get_player(id_player: String):
 	for player in player_scores:
 		if id_player == player.id:

@@ -197,7 +197,7 @@ func start_level(_level, demo = false):
 		self.first_time = false
 	
 	combat = _level
-	combat.initialize(session_scores)
+	
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])

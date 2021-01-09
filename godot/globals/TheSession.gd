@@ -31,9 +31,12 @@ func add_mutator(mutator: String):
 	if mutator in self.mutators:
 		self.mutators[mutator] = true
 
+func get_players():
+	return players
+	
 func set_players(_players):
 	for p in _players:
-		assert(p is InfoPlayer)
+		assert(_players[p] is InfoPlayer)
 	players = _players
 	
 func add_match(score):
@@ -41,6 +44,11 @@ func add_match(score):
 
 func set_settings(_settings):
 	settings = _settings
-
+func get_settings(key = null):
+	if not key:
+		return settings
+	else:
+		return settings[key]
+		
 func get_player(id_player: String):
 	return null if not id_player in players else players["id_player"]
