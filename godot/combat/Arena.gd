@@ -66,11 +66,7 @@ signal battle_start
 
 var array_players = [] # Dictionary of InfoPlayers
 
-var scores : MatchScores
-
-var session: SessionScores
-func initialize(_session) -> void:
-	session = _session
+var the_match : TheMatch
 	
 func compute_arena_size():
 	"""
@@ -124,9 +120,9 @@ func setup_level(mode : Resource):
 	pursue_manager.enabled = mode.pursuing_bombs
 	
 	#FIX
-	if session and mode.name in session.settings and not global.campaign_mode:
-		for key in session.settings[mode.name]:
-			var val = session.settings[mode.name][key]
+	if global.session and mode.name in global.session.get_settings() and not global.campaign_mode:
+		for key in global.session.get_settings(mode.name):
+			var val = global.session.get_settings(mode.name)[key]
 			mode.set(key, val)
 			# send stats for settings
 			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
@@ -155,10 +151,14 @@ func _ready():
 	# Analytics
 	analytics.start_elapsed_time()
 	
-
-	scores = MatchScores.new()
-	scores.connect("game_over", self, "on_gamemode_gameover")
-	connect("update_stats", scores, "update_stats")
+	
+	# Initialize the match
+	the_match = TheMatch.new()
+	the_match.connect("game_over", self, "on_gamemode_gameover")
+	global.the_match = the_match
+	connect("update_stats", the_match, "update_stats")
+	
+	
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
 	
 	
@@ -177,20 +177,25 @@ func _ready():
 	
 	combat_manager.connect('show_msg', self, "show_msg")
 	
+	# This won't be needed anymore, since the_match will be global
+	"""
 	crown_mode.connect('score', scores, "add_score")
 	kill_mode.connect('score', scores, "add_score")
 	kill_mode.connect('broadcast_score', scores, "broadcast_score")
-	kill_mode.connect('show_msg', self, "show_msg")
 	race_mode.connect('score', scores, "add_score")
-	race_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('score', scores, "add_score")
-	conquest_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('score', scores, "add_score")
+	goal_mode.connect('score', scores, "add_score")
+	survival_mode.connect('score', scores, "add_score")
+	"""
+	
+	kill_mode.connect('show_msg', self, "show_msg")
+	conquest_mode.connect('show_msg', self, "show_msg")
+	race_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
-	goal_mode.connect('score', scores, "add_score")
 	goal_mode.connect('show_msg', self, "show_msg")
-	survival_mode.connect('score', scores, "add_score")
+	
 	
 	for portal in get_tree().get_nodes_in_group("goal"):
 		portal.connect('went_through', race_mode, "_on_lap_done")
@@ -200,11 +205,11 @@ func _ready():
 	var players = {}
 	var array_players = []
 	
-	if session:
-		array_players = session.players.values()
+	if global.session:
+		array_players = global.session.get_players().values()
 		standalone = false
 	else:
-		session = SessionScores.new()
+		global.session = TheSession.new()
 	
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
@@ -243,7 +248,7 @@ func _ready():
 			
 		i += 1
 	
-	session.players = players
+	global.session.set_players(players)
 		
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
@@ -255,11 +260,10 @@ func _ready():
 				conquerable.connect('conquered', conquest_mode, "_on_sth_conquered")
 				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
 	
-	scores.initialize(players, game_mode, score_to_win_override, match_duration_override)
-
-	session.add_match(scores)
+	global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
+	
 	# initialize HUD
-	hud.initialize(session)
+	hud.initialize()
 	
 	camera.initialize(compute_arena_size())
 	# $Battlefield.visible = false
@@ -409,24 +413,21 @@ func focus_in_camera(node: Node2D, wait_time: float):
 const COUNTDOWN_LIMIT = 5.0
 
 func update_grid():
+	# TODO: maybe you can put directly inside grid
 	grid.set_points($Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array())
-	grid.set_t(scores.time_left)
+	grid.set_t(global.the_match.time_left)
 	
 func _process(delta):
-	if not scores:
-		return
-		
-	scores.update(delta)
+	the_match.update(delta)
 	update_grid()
-	
 	slomo()
 	
-	if int(scores.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
+	if int(global.the_match.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		# no countdown speaker right now. ISSUE #485
 		# $CanvasLayer/Countdown/AudioStreamPlayer.play()
 		pass
-	if scores.time_left < COUNTDOWN_LIMIT and scores.time_left > 0:
-		$CanvasLayer/Countdown.text = str(int(ceil(scores.time_left)))
+	if global.the_match.time_left < COUNTDOWN_LIMIT and global.the_match.time_left > 0:
+		$CanvasLayer/Countdown.text = str(int(ceil(global.the_match.time_left)))
 	else:
 		$CanvasLayer/Countdown.text = ""
 
@@ -436,7 +437,7 @@ func _input(event):
 			emit_signal("back_to_menu")
 			
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not global.demo and not scores.game_over:
+	if event.is_action_pressed("pause") and not global.demo and not global.the_match.game_over:
 		pause.start()
 		
 	var debug_pressed = event.is_action_pressed("debug")
@@ -515,12 +516,13 @@ func ship_just_died(ship, killer, for_good):
 		if len(alive_players) == 1:
 			# notify scores if there is only one player left
 			yield(get_tree().create_timer(1), 'timeout')
-			scores.one_player_left(alive_players[0].info_player)
+			# Used with old survival rules
+			# scores.one_player_left(alive_players[0].info_player)
 			
 		elif len(alive_players) == 0:
 			# notify scores if there are no players left
 			yield(get_tree().create_timer(0.3), 'timeout')
-			scores.no_players_left()
+			global.the_match.no_players_left()
 		
 		# skip respawn if there are no lives left
 		return
@@ -545,7 +547,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
-	if scores.game_over:
+	if global.the_match.game_over:
 		return
 	
 	# respawn
@@ -560,6 +562,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	
 func on_gamemode_gameover(winners: Array):
+	
 	if demo:
 		emit_signal("back_to_menu")
 		return
@@ -578,7 +581,7 @@ func on_gamemode_gameover(winners: Array):
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
 	
-	game_over.initialize(winners, scores)
+	game_over.initialize(winners)
 
 func _on_Show_Arena():
 	$Battlefield/Background.modulate = Color(1,1,1,1)
@@ -611,13 +614,12 @@ func create_trail(ship):
 	return trail
 
 func spawn_ship(player:PlayerSpawner):
-	var ship
+	var ship : Ship
 	if player.is_cpu():
 		ship = cpu_ship_scene.instance()
 	else:
 		ship = ship_scene.instance()
 	
-	ship.scores = scores
 	ship.camera = camera
 	ship.controls = player.controls
 	ship.species = player.species

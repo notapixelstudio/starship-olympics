@@ -7,21 +7,22 @@ export var pilot_stats_scene : PackedScene
 onready var animator = $AnimationPlayer
 onready var container = $Chart
 
-func initialize(winners: Array, match_scores):
+func initialize(winners: Array):
 	"""
 	Parameters
 	----------
 	winners : Array of PlayerStats
-	match_scores: MatchScores object for this match
+	
 		
 	"""
-	var sport = match_scores.sport
-	var players = match_scores.players
+	var the_match = global.the_match
+	var sport = the_match.sport
+	var players = the_match.players
 	for winner in winners:
-		winner.add_victory(winner.score >= match_scores.target_score) # sets the perfect flag
+		winner.add_victory(winner.score >= the_match.target_score) # sets the perfect flag
 		
-	var scores = match_scores.player_scores
-	var max_points = global.win
+	var scores = the_match.player_scores
+	var max_points = global.win # Points of the session
 	# sorted before and sorted after
 	var i = 0
 	for stats in scores:
@@ -42,7 +43,7 @@ func initialize(winners: Array, match_scores):
 			global.send_stats("design", {"event_id": "gameplay:{sport}:{key}:{id}".format({"sport":sport.name, "key": key, "id": stats.id}), "value": json_stats[key]}) 
 		for winner in winners:
 			global.send_stats("design", {"event_id": "gameplay:sport:{sport}:won:{id}".format({"sport": sport.name, "id": winner.id})}) 
-		global.send_stats("design", {"event_id": "gameplay:sport:{sport}:lasting_time".format({"sport": sport.name}), "value": match_scores.lasting_time}) 
+		global.send_stats("design", {"event_id": "gameplay:sport:{sport}:lasting_time".format({"sport": sport.name}), "value": the_match.lasting_time}) 
 	
 	animator.play("entrance")
 	

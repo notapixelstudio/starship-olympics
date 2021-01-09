@@ -2,7 +2,7 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
-var session_scores : SessionScores
+var session_scores : TheSession
 
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
@@ -25,23 +25,23 @@ var players : Dictionary # of InfoPlayer
 
 signal updated
 
-var campaign_mode : bool = false
+var campaign_mode : bool = false # Needed for instancing MAP
 
 func reset():
 	
-	session_scores = SessionScores.new()
-	session_scores.players = players
 	for key in players:
 		var player = players[key]
 		player.reset()
 	campaign_mode = global.campaign_mode
+	global.new_session(players)
+	
 	
 func _ready():
 	for species in TheUnlocker.get_unlocked():
 		all_species.append(species)
 		
-	session_scores = SessionScores.new()
-	session_scores.players = players
+	session_scores = TheSession.new()
+	session_scores.set_players(players)
 
 	campaign_mode = global.campaign_mode
 	players = {}
@@ -143,6 +143,7 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	next_level(global.demo)
 	GameAnalytics.submit_events()
+	global.new_session(players)
 
 func next_level(demo=false):
 	if not map.is_inside_tree():
@@ -196,7 +197,7 @@ func start_level(_level, demo = false):
 		self.first_time = false
 	
 	combat = _level
-	combat.initialize(session_scores)
+	
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])

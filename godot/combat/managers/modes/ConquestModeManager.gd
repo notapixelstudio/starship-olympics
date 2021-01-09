@@ -1,11 +1,10 @@
 extends ModeManager
 
-signal score
 signal show_msg
 
 func _on_sth_conquered(conquered_by, what, points=1, show_msg=true):
 	if enabled:
-		emit_signal('score', conquered_by.get_id(), points*score_multiplier)
+		.score(conquered_by.get_id(), points*score_multiplier)
 		if show_msg:
 			emit_signal('show_msg', conquered_by.species, points*score_multiplier, what.position)
 		

@@ -1,14 +1,13 @@
 extends Control
 
-var Bar = preload('res://combat/interface/hud/Bar.tscn')
+export var Bar = preload('res://combat/interface/hud/Bar.tscn')
 
-var matchscore
+var the_match: TheMatch
 var draw: bool = true
 onready var Bars = $Bars
 onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
-var session 
 
 func set_planet(planet: String, mode: GameMode):
 	$Content/ModePanel/PlanetName.text = planet
@@ -18,17 +17,17 @@ func set_planet(planet: String, mode: GameMode):
 func _ready():
 	set_process(false)
 
-func initialize(_session: SessionScores):
-	matchscore = _session.matches[0]
-	matchscore.connect('updated', self, '_on_matchscore_updated')
+func initialize():
+	the_match = global.the_match
+	the_match.connect('updated', self, '_on_matchscore_updated')
 	
-	TimeLeft.text = str(int(floor(matchscore.time_left)))
+	TimeLeft.text = str(the_match.time_left)
 	var i = 0
 
-	for player in matchscore.player_scores:
+	for player in the_match.player_scores:
 		var bar = Bar.instance()
 		Bars.add_child(bar)
-		bar.initialize(player, matchscore)
+		bar.initialize(player)
 		bar.player = player
 		i+=1
 		
@@ -42,14 +41,14 @@ func initialize(_session: SessionScores):
 
 func _process(_delta):
 	# update time left
-	TimeLeft.text = str(int(ceil(matchscore.time_left)))
+	TimeLeft.text = str(int(ceil(global.the_match.time_left)))
 
 func _on_matchscore_updated(author, broadcasted):
 	# update scores
 	var bars = Bars.get_children()
 	var last_value = bars[0].get_value()
 	for bar in bars:
-		var player : PlayerStats = (matchscore as MatchScores).get_player(bar.player.id)
+		var player : PlayerStats = global.the_match.get_player(bar.player.id)
 		bar.set_value(player.team_stats.score, player if broadcasted else author)
 		if last_value == bar.get_value():
 			draw = true
