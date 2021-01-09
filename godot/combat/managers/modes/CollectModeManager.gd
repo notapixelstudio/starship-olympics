@@ -6,7 +6,6 @@ const WAVE_DELAY = 3
 var to_next_wave = 2
 var current_wave = 0
 
-signal score
 signal show_msg
 signal spawn_next
 var spawners: Array
@@ -47,9 +46,9 @@ func _on_sth_collected(collector, collectee):
 		return
 		
 	if collectee is Diamond or collectee is Star:
-		var score = score_multiplier*collectee.points
-		emit_signal('score', collector.get_id(), score)
-		emit_signal('show_msg', collector.species, score, collectee.global_position)
+		var score_points = score_multiplier*collectee.points
+		.score(collector.get_id(), score_points)
+		emit_signal('show_msg', collector.species, score_points, collectee.global_position)
 		play_sound()
 		
 func _on_coins_dropped(dropper, amount):
