@@ -35,14 +35,14 @@ var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
-const MIN_CHARGE = 0.25
+const MIN_CHARGE = 0.2
 const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 5500
 const DASH_BASE = -400
 const DASH_MULTIPLIER = 2.2
 const BOMB_OFFSET = 50
-const BOMB_BOOST = 1000
+const BOMB_BOOST = 1100
 const BALL_BOOST = 1650
 const BALL_CHARGE_MULTIPLIER = 1.8
 const BULLET_BOOST = 1500
@@ -51,7 +51,7 @@ const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 
-const ROTATION_TORQUE = 40000*9 # 9 because we enlarged the radius by 3
+const ROTATION_TORQUE = 45000*9 # 9 because we enlarged the radius by 3
 
 var responsive = false setget change_engine
 var info_player setget set_info_player
