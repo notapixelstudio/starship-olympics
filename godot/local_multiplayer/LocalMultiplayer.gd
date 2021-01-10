@@ -104,7 +104,7 @@ func combat(selected_players: Array, fight_mode : String):
 		add_child(map)
 		yield(map, "done")
 		yield(get_tree(), "idle_frame")
-		all_sports = map.selected_sports
+		all_sports = map.get_selection()
 		for sport in all_sports:
 			global.send_stats("design", {"event_id": "selection:sports:{sport_name}".format({"sport_name": sport.name})})
 		num_CPUs = map.cpu

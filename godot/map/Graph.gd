@@ -8,7 +8,7 @@ func add_path(path):
 	graph[path] = [path.from, path.to]
 	
 
-func get_map_path(from: MapCell, to:MapCell) -> MapPath:
+func get_map_path(from: MapLocation, to:MapLocation):
 	for path in graph:
 		var elements = graph[path]
 		if from in elements and to in elements:

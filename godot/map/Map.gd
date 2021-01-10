@@ -212,7 +212,7 @@ func get_selection():
 	var ret = []
 	for set in selected_sports:
 		assert(set is MapPlanet)
-		ret.append(set)
+		ret.append(set.planet)
 	return ret
 	
 func _on_cell_pressed(cursor, cell):
@@ -249,8 +249,10 @@ func _on_Start_pressed(cursor):
 		print(locked_games)
 		if len(locked_games) == 0:
 			var p = (sport as MapLocation).get_element_to_unlock()
-			unlock_via_path(p, sport)
-			yield(self, "unlock_complete")
+			if p:
+				unlock_via_path(p, sport)
+				yield(self, "unlock_complete")
+			
 		
 	print("playing: "+ playing)
 	yield(get_tree().create_timer(1), "timeout")

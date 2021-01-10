@@ -36,10 +36,17 @@ func unlock_set(set: String) -> void:
 var unlocked_paths = {
 	
 }
-
+func get_status_path(path_id)->bool:
+	return unlocked_paths.get(path_id, false)
+	
+func get_status_location(loc_id)-> bool:
+	return unlocked_locations.get(loc_id, false)
+	
 var unlocked_locations = {
 	
 }
+
+
 var unlocked_sets = {
 	"drones": false,
 	"trinkets": false,
