@@ -1,4 +1,4 @@
-extends MapCell
+extends MapLocation
 
 class_name OptionCell
 

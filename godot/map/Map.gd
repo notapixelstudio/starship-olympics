@@ -119,6 +119,7 @@ func _ready():
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
 	
+	self.create_graph()
 	# unlock_via_path($Content/Planets/Set2, $Content/Planets/Set3)
 
 func initialize(players, sports, settings_):
@@ -199,23 +200,31 @@ func _on_cursor_cancel(cursor):
 	var panel = panels.get_node(cursor.player.id)
 	panel.map_element = null
 	panel.chosen = false
-	var i = selected_sports.find(cell.planet)
+	var i = selected_sports.find(cell)
 	if i >= 0:
 		selected_sports.remove(i)
 		players_ready -= 1
-		print("players ready "+ str(players_ready))
 	
 func get_cell(position):
 	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
 
+func get_selection():
+	var ret = []
+	for set in selected_sports:
+		assert(set is MapPlanet)
+		ret.append(set)
+	return ret
+	
 func _on_cell_pressed(cursor, cell):
 	# update data
+	print_debug(cell)
 	if cell.is_in_group("sports"):
 		var panel = panels.get_node(cursor.player.id)
 		panel.map_element = cell.planet
 		panel.chosen = true
-		if not cell.planet in selected_sports:
-			selected_sports.append(cell.planet)
+		if not cell in selected_sports:
+			print_debug(cell)
+			selected_sports.append(cell)
 		players_ready += 1
 		
 		_on_Start_pressed(cursor)
@@ -234,7 +243,15 @@ func _on_Start_pressed(cursor):
 		cursor.set_unresponsive()
 	var playing = ""
 	for sport in selected_sports:
-		playing += " "+ str(sport.name)
+		playing += " "+ str(sport.planet.id)
+		# Can we unlock?
+		var locked_games = sport.planet.locked_games()
+		print(locked_games)
+		if len(locked_games) == 0:
+			var p = (sport as MapLocation).get_element_to_unlock()
+			unlock_via_path(p, sport)
+			yield(self, "unlock_complete")
+		
 	print("playing: "+ playing)
 	yield(get_tree().create_timer(1), "timeout")
 	emit_signal('done')
@@ -323,7 +340,7 @@ func _input(event):
 	if event.is_action_pressed("continue"):
 		Engine.time_scale += 0.2
 		
-func unlock_via_path(object_to_unlock, object_from):
+func unlock_via_path(object_to_unlock, object_from) -> void:
 	
 	# let's grab the path that connect the two objects
 	var path_to_traverse = null
@@ -333,6 +350,7 @@ func unlock_via_path(object_to_unlock, object_from):
 			path_to_traverse = path
 			break
 	assert(path_to_traverse) # Path between the two NOT FOUND
+	path_to_traverse.status = "unlocked"
 	var center_camera = global.calculate_center(camera.camera_rect)
 	# remove cursors from camera, if any
 	var cursors = []
@@ -380,4 +398,12 @@ func unlock_via_path(object_to_unlock, object_from):
 	emit_signal("unlock_complete")
 	
 	
-	
+var graph = Graph.new()
+
+func create_graph():
+	for path in get_tree().get_nodes_in_group("map_paths"):
+		var loc : MapLocation = path.from
+		var to = path.to
+		loc.add_path(path)
+		graph.add_path(path)
+	print(graph)

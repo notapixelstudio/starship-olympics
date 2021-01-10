@@ -1,6 +1,4 @@
-tool
-
-extends MapCell
+extends MapLocation
 
 class_name MapPlanet
 
@@ -13,6 +11,9 @@ var not_available = false setget set_availability
 
 signal updated
 signal unlocked
+
+func get_id() -> String:
+	return planet.id
 
 func set_status(v):
 	status = v
@@ -56,6 +57,7 @@ func deactivate(cursor):
 func _ready():
 	sprite.texture = planet.planet_sprite
 	refresh()
+	
 	
 func refresh():
 	emit_signal('updated', active)

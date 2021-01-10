@@ -33,7 +33,13 @@ func unlock_set(set: String) -> void:
 	unlocked_sets[set] = true
 	persistance.save_game()
 
+var unlocked_paths = {
+	
+}
 
+var unlocked_locations = {
+	
+}
 var unlocked_sets = {
 	"drones": false,
 	"trinkets": false,
@@ -76,6 +82,9 @@ var unlocked_games = {
 	"asteroid_survival": false
 }
 
+func get_status_game(game_id)-> bool:
+	return unlocked_games.get(game_id, false)
+	
 func unlock_game(game_id: String) -> void:
 	# If fails means that we already unlocked this game
 	assert(not self.unlocked_games[game_id]) 
@@ -145,5 +154,8 @@ func get_state():
 	return {
 		unlocked_sets = unlocked_sets,
 		unlocked_games = unlocked_games,
-		unlocked_species = unlocked_species
+		unlocked_species = unlocked_species,
+		unlocked_locations=unlocked_locations,
+		unlocked_paths=unlocked_paths
+		
 	}

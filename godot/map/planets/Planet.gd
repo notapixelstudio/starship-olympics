@@ -57,3 +57,9 @@ func fetch_level(num_players : int) -> PackedScene:
 			
 	return current_level
 	
+func locked_games():
+	var ret = []
+	for minigame in self.minigames:
+		if not TheUnlocker.get_status_game(minigame.id):
+			ret.append(minigame)
+	return ret
