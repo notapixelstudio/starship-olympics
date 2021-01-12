@@ -50,8 +50,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5600
-height = 3600
+width = 6000
+height = 4000
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
@@ -62,7 +62,7 @@ bevel_se = 50
 order = 3
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
@@ -73,51 +73,51 @@ position = Vector2( -1100, -1000 )
 order = 2
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 conquerable = true
 
 [node name="Rock6" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
-position = Vector2( -2000, 1200 )
-order = 0
+position = Vector2( -2000, 1400 )
+order = 1
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 conquerable = true
 
 [node name="Rock7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
-position = Vector2( 2000, -1200 )
-order = 0
+position = Vector2( 2000, -1400 )
+order = 1
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 conquerable = true
 
 [node name="Rock8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
-position = Vector2( 2000, 1200 )
-order = 0
+position = Vector2( 2000, 1400 )
+order = 1
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
 conquerable = true
 
 [node name="Rock9" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
-position = Vector2( -2000, -1200 )
-order = 0
+position = Vector2( -2000, -1400 )
+order = 1
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
@@ -128,7 +128,7 @@ position = Vector2( 1100, -1000 )
 order = 2
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
@@ -139,7 +139,7 @@ position = Vector2( 1100, 1000 )
 order = 2
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
@@ -150,7 +150,7 @@ position = Vector2( -1100, 1000 )
 order = 2
 last_order = 1
 divisions = 3
-base_size = 100.0
+base_size = 80.0
 spawn_diamonds = false
 deadly = false
 smallest_break = false
@@ -161,14 +161,12 @@ position = Vector2( 2200, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( -2200, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 8 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 5.73972e+32, 5.73972e+32 )
