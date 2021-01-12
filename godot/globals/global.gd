@@ -116,8 +116,6 @@ func _set_sfx_volume(new_value):
 	var bus_name = "SFX"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 
-# templates
-var templates : Dictionary # {int : Resources}
 
 # DEBUG
 var debug : bool = false
@@ -150,44 +148,6 @@ const CONTROLSMAP_TO_KEY = {
 }
 
 const MAX_PLAYERS = 4
-
-# Species handler
-const SPECIES_PATH = "res://selection/characters"
-var ALL_SPECIES = {
-	SPECIES0 = "mantiacs_1",
-	SPECIES1 = "robolords_1",
-	SPECIES2 = "trixens_1",
-	SPECIES3 = "takonauts_1",
-	SPECIES4 = "pentagonions_1",
-	SPECIES5 = "toriels_1",
-	SPECIES6 = "robolords_2",
-	SPECIES7 = "trixens_2",
-	SPECIES8 = "toriels_2",
-	SPECIES9 = "takonauts_2",
-	SPECIES10 = 'mantiacs_2'
-}
-# dictionary of SPECIES with some values (like a bool unlocked)
-var unlocked_species = {
-	ALL_SPECIES.SPECIES0: true,
-	ALL_SPECIES.SPECIES1: true,
-	ALL_SPECIES.SPECIES2: true,
-	ALL_SPECIES.SPECIES3 : true,
-	ALL_SPECIES.SPECIES4 : true,
-	ALL_SPECIES.SPECIES5: true,
-	ALL_SPECIES.SPECIES6: false,
-	ALL_SPECIES.SPECIES7: false,
-	ALL_SPECIES.SPECIES8 : false,
-	ALL_SPECIES.SPECIES9 : false,
-	ALL_SPECIES.SPECIES10 : false
-}
-
-func get_ordered_species():
-	var ordered_species = get_unlocked().values()
-	ordered_species.sort_custom(self, 'compare_by_id')
-	return ordered_species
-
-func compare_by_id(a,b):
-	return a.id < b.id
 
 var colors = {
 	WHITE = Color(1.0, 1.0, 1.0),
@@ -231,7 +191,6 @@ func _ready():
 		if generic_locale == available_languages[lang]:
 			language = lang
 	
-	templates = get_species_templates()
 	var saved_data = persistance.get_saved_data()
 	var k = get_path()
 	var global_key = String(get_path())
@@ -255,36 +214,7 @@ func end_game():
 		yield(GameAnalytics, "message_sent")
 	get_tree().quit()
 
-func get_unlocked() -> Dictionary:
-	"""
-	Get all available unlocked species. 
-	@return: Dictionary [enum : resource] that has as keys the enum of the species
-	"""
-	var available : Dictionary  = {}
-	for species in unlocked_species:
-		if unlocked_species[species]:
-			available[species] = templates[species]
-			
-	return available
 
-
-func get_species_templates() -> Dictionary:
-	var species_templates = {}
-	var resources = dir_contents(SPECIES_PATH, "", ".tres")
-	var i = 0
-	for species in ALL_SPECIES:
-		if i > len(resources) -1:
-			pass
-			# print("This species: " + species.to_lower(), " is not available")
-		else:
-			var filename : String = ALL_SPECIES[species] + ".tres"
-			species_templates[str(ALL_SPECIES[species])] = load(SPECIES_PATH.plus_file(filename))
-			i+=1
-	return species_templates
-
-
-func _unlock_species(species : String):
-	unlocked_species[species] = true
 
 const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
@@ -418,7 +348,6 @@ func event_from_text(device: String, command: String) -> InputEvent:
 	elif "joy" in device:
 		var device_id = int(device.replace("joy", ""))-1
 		if "analog" in command:
-			command
 			e = InputEventJoypadMotion.new()
 			e.axis = int(command.split("_")[1])
 			e.axis_value = int(command.split("_")[2])
@@ -435,7 +364,6 @@ func get_state():
 	"""
 	return {
 		custom_win=custom_win,
-		unlocked_species=unlocked_species,
 		enable_analytics=enable_analytics,
 		language=language,
 		version=version,
@@ -448,7 +376,6 @@ func get_state():
 		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
 		flood=flood,
-		unlocked_games=unlocked_games,
 		laser=laser
 	}
 	
@@ -516,12 +443,12 @@ func get_base_entity(node : Node):
 		return null
 	return get_base_entity(node.get_parent())
 	
-func check_version(saved_version: String, version: String) -> bool:
+func check_version(saved_version: String, version_: String) -> bool:
 	# Will check if the version of the saved data is smaller the current
 	var saved_minor = saved_version.split(".")[1]
 	var saved_patch = saved_version.split(".")[2]
-	var minor = version.split(".")[1]
-	var patch = version.split(".")[2]
+	var minor = version_.split(".")[1]
+	var patch = version_.split(".")[2]
 	
 	return int(saved_patch) < int(patch)
 
@@ -531,13 +458,13 @@ func send_stats(category: String, stats: Dictionary):
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))
 	
-func join_str(array, sep=","):
+func join_str(array, sep=",") -> String:
 	var ret = ""
 	for e in array:
 		ret += e+sep
 	return ret.rstrip(sep)
-	return ret
-
+	
+	
 func calculate_center(rect: Rect2) -> Vector2:
 	return Vector2(
 		rect.position.x + rect.size.x / 2,
@@ -572,7 +499,7 @@ var joy_input_map = {
 
 
 
-func event_to_text(action: String, event: InputEvent):
+func event_to_text(_action: String, event: InputEvent):
 	"""
 	event: @type InputEvent
 	"""
@@ -604,14 +531,13 @@ func _set_glow(value):
 	glow_enable = value
 	
 
-var unlocked_games = []
+# GAMEPLAY
+var session : TheSession
+var the_match : TheMatch
 
-var species_discovered_scene = preload("res://special_scenes/UnlockedSpecies.tscn")
-func unlock_species():
-	get_tree().paused = true
-	var unlocked_scene = species_discovered_scene.instance()
-	add_child(unlocked_scene)
-	yield(get_tree().create_timer(3), "timeout")
-	unlocked_scene.queue_free()
-	get_tree().paused = false
+func new_match():
+	the_match = TheMatch.new()
 	
+func new_session(players):
+	session = TheSession.new()
+	session.set_players(players)

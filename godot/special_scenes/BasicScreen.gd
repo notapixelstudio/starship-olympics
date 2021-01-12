@@ -1,8 +1,8 @@
 extends Node
 class_name BasicScreen
 
-signal started()
-signal finished()
+signal started
+signal finished
 
 onready var transition = $Overlays/TransitionColor
 onready var anim = $AnimationPlayer

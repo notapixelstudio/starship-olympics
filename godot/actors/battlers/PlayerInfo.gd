@@ -44,8 +44,8 @@ func update_score(score):
 	point_score.set_msg(partial_score)
 	
 func update_score_ring():
-	if target.info_player and target.scores and target.info_player.stats:
-		$Wrapper/Scaled/Colored/Indicator.fraction = target.info_player.stats.score / target.scores.target_score
+	if target.info_player and target.info_player.stats:
+		$Wrapper/Scaled/Colored/Indicator.fraction = target.info_player.stats.score / global.the_match.target_score
 
 func _on_Royal_enabled():
 	$Wrapper/Scaled/RoyalGlow.visible = true
@@ -62,18 +62,21 @@ func _on_Royal_enabled():
 		if what.type == Crown.types.SOCCERBALL:
 			$Wrapper/SoccerBall.rotation = target.rotation
 			$Wrapper/SoccerBall/AnimationPlayer.play('appear')
+	# point_score.show()
 	return
-	point_score.show()
+	
 
 func _on_Royal_disabled():
 	$Wrapper/Scaled/RoyalGlow.visible = false
 	$Wrapper/Scaled/Crown.visible = false
 	$Wrapper/Ball.visible = false
 	$Wrapper/SoccerBall.visible = false
+	
+	# point_score.appear()
+	# yield(point_score, "end")
+	# point_score.hide()
 	return
-	point_score.appear()
-	yield(point_score, "end")
-	point_score.hide()
+	
 	
 func update_shields(shields):
 	pass

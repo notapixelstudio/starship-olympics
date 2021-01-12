@@ -62,9 +62,6 @@ font_data = ExtResource( 5 )
 "map_cursor",
 ]]
 script = ExtResource( 1 )
-player_i = 0
-cell_size = 0
-grid_position = Vector2( 0, 0 )
 
 [node name="MoveTween" type="Tween" parent="."]
 
@@ -95,7 +92,6 @@ scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 4 )
 
 [node name="LabelContainer" type="Node2D" parent="Wrapper/Graphics"]
-editor/display_folded = true
 position = Vector2( 0, -166 )
 __meta__ = {
 "_edit_group_": true
@@ -110,4 +106,5 @@ custom_fonts/font = SubResource( 3 )
 text = "P4"
 align = 1
 uppercase = true
+
 [connection signal="animation_finished" from="Wrapper/Graphics/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

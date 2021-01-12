@@ -234,15 +234,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/MapCell.gd"
 }, {
+"base": "Node2D",
+"class": "MapCursor",
+"language": "GDScript",
+"path": "res://map/Cursor.gd"
+}, {
+"base": "Line2D",
+"class": "MapPath",
+"language": "GDScript",
+"path": "res://map/Path.gd"
+}, {
 "base": "MapCell",
 "class": "MapPlanet",
 "language": "GDScript",
 "path": "res://map/MapPlanet.gd"
-}, {
-"base": "Node",
-"class": "MatchScores",
-"language": "GDScript",
-"path": "res://combat/MatchScores.gd"
 }, {
 "base": "Manager",
 "class": "ModeManager",
@@ -334,11 +339,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/planets/rules/Rule.gd"
 }, {
-"base": "Node",
-"class": "SessionScores",
-"language": "GDScript",
-"path": "res://combat/SessionScore.gd"
-}, {
 "base": "RigidBody2D",
 "class": "Ship",
 "language": "GDScript",
@@ -368,6 +368,16 @@ _global_script_classes=[ {
 "class": "TeamStats",
 "language": "GDScript",
 "path": "res://combat/TeamStats.gd"
+}, {
+"base": "Node",
+"class": "TheMatch",
+"language": "GDScript",
+"path": "res://globals/TheMatch.gd"
+}, {
+"base": "Node",
+"class": "TheSession",
+"language": "GDScript",
+"path": "res://globals/TheSession.gd"
 }, {
 "base": "Node2D",
 "class": "Trail",
@@ -440,8 +450,9 @@ _global_script_class_icons={
 "Laser": "",
 "Manager": "",
 "MapCell": "",
+"MapCursor": "",
+"MapPath": "",
 "MapPlanet": "",
-"MatchScores": "",
 "ModeManager": "",
 "Mutator": "",
 "NavigatorButton": "",
@@ -460,13 +471,14 @@ _global_script_class_icons={
 "Ripple": "",
 "Rock": "",
 "Rule": "",
-"SessionScores": "",
 "Ship": "",
 "Species": "",
 "Star": "",
 "StarIcon": "",
 "TargetDest": "",
 "TeamStats": "",
+"TheMatch": "",
+"TheSession": "",
 "Trail": "",
 "Trail2D": "",
 "Trait": "",
@@ -495,6 +507,7 @@ config/icon="res://logo.png"
 persistance="*res://globals/persistance.gd"
 Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
+TheUnlocker="*res://globals/TheUnlocker.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
@@ -514,6 +527,10 @@ window/size/fullscreen.debug=false
 [editor_plugins]
 
 enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "randomAudioStreamPlayer", "traits" )
+
+[gui]
+
+theme/custom_font="res://assets/theme/montserrat_eb_42.tres"
 
 [importer_defaults]
 
@@ -636,11 +653,13 @@ kb2_fire={
 }
 continue={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
 }
 debug={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"unicode":0,"echo":false,"script":null)
+ ]
 }
 joy3_right={
 "deadzone": 0.5,

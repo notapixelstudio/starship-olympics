@@ -3,7 +3,7 @@ extends PinJoint2D
 onready var a = get_node(node_a)
 onready var b = get_node(node_b)
 
-func _process(delta):
+func _process(_delta):
 	if not a or not b or a.about_to_pop or b.about_to_pop:
 		queue_free()
 		return

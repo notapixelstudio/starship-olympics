@@ -75,7 +75,8 @@ func create_minicards():
 	for minigame in map_element.minigames:
 		var minicard = Minicard.instance()
 		minicard.status = "locked"
-		if minigame.name in global.unlocked_games:
+		
+		if TheUnlocker.unlocked_games.get(minigame.id, false):
 			minicard.status = "unlocked"
 		minicard.content = minigame
 		$Minicards.add_child(minicard)

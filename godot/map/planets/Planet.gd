@@ -2,6 +2,7 @@ extends Resource
 
 class_name Planet
 
+export var id: String
 export var name : String
 export var tagline1 : String
 export var tagline2 : String

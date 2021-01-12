@@ -1,7 +1,7 @@
 extends Control
 
 onready var animator = $Animator
-onready var session = $Session
+onready var leaderboard = $LeaderBoard
 onready var buttons = $Buttons
 onready var continue_button = $Buttons/Continue
 
@@ -13,16 +13,16 @@ signal hide_arena
 func _ready():
 	buttons.visible = false
 	
-func initialize(winners: Array, scores):
+func initialize(winners: Array):
 	"""
 	Parameters
 	----------
 	winners : Array of PlayerStats
-	scores: MatchScores
+	
 		
 	"""
 	
-	session.initialize(winners, scores)
+	leaderboard.initialize(winners)
 	
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true

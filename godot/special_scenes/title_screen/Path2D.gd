@@ -11,8 +11,8 @@ var speed = 140
 func _ready():
 	randomize()
 	
-	for species_name in global.get_unlocked():
-		all_species.append(load(global.SPECIES_PATH+'/'+species_name+'.tres'))
+	for species in TheUnlocker.get_unlocked():
+		all_species.append(species)
 	
 	init_ship()
 	

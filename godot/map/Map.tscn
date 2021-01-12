@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://map/planets/sets/deathmatches.tres" type="Resource" id=11]
 [ext_resource path="res://map/planets/sets/snakes.tres" type="Resource" id=12]
+[ext_resource path="res://map/Path.gd" type="Script" id=13]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -353,35 +354,58 @@ default_color = Color( 0.4, 0.501961, 1, 1 )
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Path" type="Line2D" parent="Content/Waypoints"]
+[node name="Path" type="Line2D" parent="Content/Waypoints" groups=[
+"map_paths",
+]]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
 points = PoolVector2Array( 0, 100, 0, -100, -100, -200, -300, -200 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
+script = ExtResource( 13 )
 
-[node name="Path2" type="Line2D" parent="Content/Waypoints"]
+[node name="Path2" type="Line2D" parent="Content/Waypoints" groups=[
+"map_paths",
+]]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
 points = PoolVector2Array( 0, 100, 0, -300, 100, -400, 300, -400 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
+script = ExtResource( 13 )
 
-[node name="Path3" type="Line2D" parent="Content/Waypoints"]
+[node name="Path3" type="Line2D" parent="Content/Waypoints" groups=[
+"map_paths",
+]]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
 position = Vector2( 0, -100 )
 points = PoolVector2Array( 500, -300, 1100, -300 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
+script = ExtResource( 13 )
 
-[node name="Path4" type="Line2D" parent="Content/Waypoints"]
+[node name="Path5" type="Line2D" parent="Content/Waypoints" groups=[
+"map_paths",
+]]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+material = SubResource( 1 )
+position = Vector2( 0, -100 )
+points = PoolVector2Array( 100, 300, 200, 300, 400, 100, 900, 100, 900, -200, 1000, -300, 1100, -300 )
+width = 16.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+script = ExtResource( 13 )
+
+[node name="Path4" type="Line2D" parent="Content/Waypoints" groups=[
+"map_paths",
+]]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 material = SubResource( 1 )
 position = Vector2( 800, -50 )
 points = PoolVector2Array( 400, -450, 400, -850, 300, -950, 100, -950 )
 width = 16.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
+script = ExtResource( 13 )
 
 [node name="Planets" type="Node2D" parent="Content"]
 __meta__ = {
@@ -391,22 +415,27 @@ __meta__ = {
 [node name="Set2" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -200 )
 planet = ExtResource( 11 )
+active = false
 
 [node name="Set3" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -400 )
 planet = ExtResource( 7 )
+active = false
 
 [node name="Set5" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 1200, -400 )
 planet = ExtResource( 9 )
+active = false
 
 [node name="Set4" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 800, -1000 )
 planet = ExtResource( 12 )
+active = false
 
 [node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, 200 )
 planet = ExtResource( 8 )
+active = false
 
 [node name="Controls" type="Node2D" parent="Content"]
 

@@ -164,7 +164,7 @@ font_data = ExtResource( 34 )
 ]]
 collision_layer = 1024
 collision_mask = 1053
-mass = 512.0
+mass = 128.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
 angular_velocity = 0.3
@@ -198,6 +198,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
+frame = 20
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]

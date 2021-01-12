@@ -2,7 +2,7 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
-var session_scores : SessionScores
+var session_scores : TheSession
 
 const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
@@ -25,28 +25,28 @@ var players : Dictionary # of InfoPlayer
 
 signal updated
 
-var campaign_mode : bool = false
+var campaign_mode : bool = false # Needed for instancing MAP
 
 func reset():
 	
-	session_scores = SessionScores.new()
-	session_scores.players = players
 	for key in players:
 		var player = players[key]
 		player.reset()
 	campaign_mode = global.campaign_mode
+	global.new_session(players)
+	
 	
 func _ready():
-	for species_name in global.get_unlocked():
-		all_species.append(load(global.SPECIES_PATH+'/'+species_name+'.tres'))
+	for species in TheUnlocker.get_unlocked():
+		all_species.append(species)
 		
-	session_scores = SessionScores.new()
-	session_scores.players = players
+	session_scores = TheSession.new()
+	session_scores.set_players(players)
 
 	campaign_mode = global.campaign_mode
 	players = {}
 
-	selection_screen.initialize(global.get_unlocked())
+	selection_screen.initialize()
 	selection_screen.connect("fight", self, "combat")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
@@ -143,22 +143,26 @@ func combat(selected_players: Array, fight_mode : String):
 	
 	next_level(global.demo)
 	GameAnalytics.submit_events()
+	global.new_session(players)
 
 func next_level(demo=false):
 	if not map.is_inside_tree():
 		add_child(map)
-		
+	map.check()
+	yield(map, "check_completed")
 	var this_game = choose_next_level()
 	map.choose_level(this_game)
 	yield(map, "chose_level")
 	remove_child(map)
-	add_child(parallax)
+	if not parallax.is_inside_tree():
+		add_child(parallax)
 	start_level(this_game, demo)
 	
 func choose_next_level(demo=false):
 	""" Choose next level from the array of selected. If over, choose randomly """
-	
-	var last_sport = played_levels.back()
+	var last_sport = null
+	if len(played_levels) > 0:
+		last_sport = played_levels.back()
 	var num_players = len(players)
 	
 	if len(played_levels) >= len(sports_array) or demo:
@@ -193,7 +197,7 @@ func start_level(_level, demo = false):
 		self.first_time = false
 	
 	combat = _level
-	combat.initialize(session_scores)
+	
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
 	combat.connect("rematch", self, "_on_GameOver_rematch", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
@@ -256,7 +260,7 @@ func start_demo():
 	next_level(true)
 	
 func add_cpu(how_many: int):
-	var missing_species = global.get_ordered_species()
+	var missing_species = TheUnlocker.get_ordered_species()
 	for key in players:
 		var player = players[key]
 		var this_species_name = player.species.species_name

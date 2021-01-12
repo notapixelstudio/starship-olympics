@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=7]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,16 +18,60 @@ animations = [ {
 "name": "empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "true",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "blank",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "true",
+"speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "unlock"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "UNSELECTABLE", "UNLOCKED!" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.1, 1.6, 2.1, 2.5, 3, 3.6, 4.2, 4.9 ),
+"transitions": PoolRealArray( 1, 0.267943, 1, 0.267943, 1, 0.267943, 1, 0.267943 ),
+"update": 0,
+"values": [ Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ) ]
+}
 
 [node name="MapPlanet" type="Node2D" groups=[
 "map_point",
@@ -58,3 +103,20 @@ attenuation = 0.0412346
 [node name="switch_on" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
 attenuation = 0.0412346
+
+[node name="Label" type="Label" parent="."]
+margin_left = -243.066
+margin_top = 111.55
+margin_right = 259.934
+margin_bottom = 186.55
+custom_fonts/font = SubResource( 2 )
+text = "UNSELECTABLE"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/unlock = SubResource( 3 )

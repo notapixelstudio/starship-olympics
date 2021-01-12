@@ -83,11 +83,11 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		
 	$Core/CollisionShape2D.shape.radius = size*8
 	
-func _process(delta):
+func _process(_delta):
 	if type != GameMode.BOMB_TYPE.bubble:
 		$Sprite.rotation = linear_velocity.angle()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	process_life_time()
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
