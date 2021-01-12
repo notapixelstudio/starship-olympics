@@ -69,7 +69,7 @@ func _ready():
 func _process(delta):
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
-		if body is Ship and body != owner_ship and conquering_ship == null: # no self-conquest + former conqueror takes priority
+		if body is Ship and body != owner_ship and conquering_ship == null and not fortified: # no self-conquest + former conqueror takes priority
 			if not need_royal or ECM.E(body).has('Royal'):
 				conquering_ship = body
 				$AnimationPlayer.play('flip')
@@ -79,15 +79,21 @@ func conquest():
 	if fortifiable:
 		attempt_fortification()
 		for n in neighbours:
-			n.attempt_fortification()
+			if n.owner_ship == owner_ship or n.conquering_ship == owner_ship:
+				n.attempt_fortification()
 	
 func attempt_fortification():
 	for n in neighbours:
-		if owner_ship == null or n.owner_ship != owner_ship:
+		if not(n.owner_ship == owner_ship or n.conquering_ship == owner_ship):
 			return
 	fortify()
 	
 func fortify():
+	# check if this tile is flipping
+	if conquering_ship != null and owner_ship != conquering_ship:
+		# hijack flipping
+		conquering_ship = owner_ship
+		
 	fortified = true
 	set_process(false) # disable reconquering
 	$Graphics/Background.modulate = owner_ship.species.color
