@@ -17,11 +17,11 @@ signal unlocked
 func set_status(v):
 	status = v
 	if status == 'locked':
-		self_modulate = Color(0,0,0,0.75)
+		modulate = Color(0,0,0,0.75)
 	else:
-		self_modulate = Color(1,1,1,1)
+		modulate = Color(1,1,1,1)
 	$Label.text = status
-				
+	
 func set_availability(value):
 	not_available = value
 	if sprite:

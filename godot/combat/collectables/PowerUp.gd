@@ -18,3 +18,7 @@ func _ready():
 		$AnimationPlayer.play('AppearFuhfuhfuh')
 		yield($AnimationPlayer, "animation_finished")
 	$AnimationPlayer.play('idle')
+
+func get_strategy(ship, distance, game_mode):
+	return {"seek": 1}
+	
