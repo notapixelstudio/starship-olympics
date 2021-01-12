@@ -9,7 +9,7 @@ export var offset : float = 80
 export var color : Color = Color(1, 0, 1, 1) setget set_color
 export var inverted : bool = false setget set_inverted
 export var goal_owner : NodePath
-var species
+var player
 
 onready var wall = $StaticBody2D
 
@@ -28,9 +28,10 @@ func set_inverted(v):
 	refresh()
 
 func _ready():
-	yield(get_tree(), "idle_frame")
-	if goal_owner:
-		species = get_node(goal_owner).species
+	var player_spawner = get_node(goal_owner)
+	if player_spawner:
+		yield(player_spawner, "player_assigned")
+		set_player(player_spawner.get_player())
 	refresh()
 	
 func refresh():
@@ -51,10 +52,10 @@ func refresh():
 		$Particles2D.scale.x = -1 if inverted else 1
 		$Particles2D2.scale.x = -1 if inverted else 1
 		
-		if goal_owner:
-			$Line2D.modulate = species.color
-			$Particles2D.modulate = species.color
-			$SpikeParticles2D.modulate = species.color
+		if player:
+			$Line2D.modulate = player.species.color
+			$Particles2D.modulate = player.species.color
+			$SpikeParticles2D.modulate = player.species.color
 			$Line2D.self_modulate = Color(1.2,1.2,1.2,1) # ship colors are already vibrant
 		
 func enable():
@@ -100,7 +101,7 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 			do_goal(body.get_player(), body.position)
 			
 		if body is Crown and body.type == Crown.types.SOCCERBALL:
-			if body.owner_ship and body.owner_ship.species != species:
+			if body.owner_ship and body.owner_ship.get_player() != get_player():
 				do_goal(body.owner_ship.get_player(), position_before_teleporting)
 			body.owner_ship = null
 		
@@ -115,3 +116,8 @@ func get_score():
 func do_goal(player, pos):
 	emit_signal("goal_done", player, self, pos)
 	
+func set_player(v : InfoPlayer):
+	player = v
+	
+func get_player():
+	return player
