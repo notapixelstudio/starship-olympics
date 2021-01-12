@@ -29,9 +29,17 @@ centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
+type = 0
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
@@ -48,8 +56,9 @@ precision = 100.0
 modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 16 )
 texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.25, 0.16925, 0.1225, 1 )
-bg_color = Color( 0.23, 0.156745, 0.1173, 1 )
+fg_color = Color( 0.3, 0.2012, 0.144, 1 )
+bg_color = Color( 0.28, 0.19082, 0.1428, 1 )
+clock = false
 
 [node name="O" type="Sprite" parent="Battlefield/Background" index="3"]
 modulate = Color( 1, 1, 1, 0.0470588 )
@@ -130,7 +139,18 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 [node name="Wall" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
 position = Vector2( -1623, -450 )
 rotation = -1.5708
+hollow = false
+type = 0
+hide_line = false
+hide_line_below = false
+hide_grid = false
+line_width = 48
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
+line_texture = null
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 12 )
@@ -151,7 +171,18 @@ rotation = 1.5708
 [node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( 1624, 450 )
 rotation = -1.5708
+hollow = false
+type = 0
+hide_line = false
+hide_line_below = false
+hide_grid = false
+line_width = 48
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
+line_texture = null
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 12 )
@@ -189,6 +220,7 @@ cpu = true
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 7.7037e+22, 7.7037e+22 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

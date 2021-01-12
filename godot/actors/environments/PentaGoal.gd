@@ -55,24 +55,7 @@ func _ready():
 signal goal_done
 func _on_Field_entered(field, body):
 	if body is Ship and ECM.E(body).has('Royal') and body.species == species:
-		# depleted rings should be moved onto the battlefield surface
-		$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
-		
-		# decrease size
-		current_ring -= 1
-		$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
-		
-		if current_ring >= 0:
-			gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
-		
-		$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
-		emit_signal("goal_done", body)
-		
-		if current_ring < 0:
-			yield(get_tree().create_timer(0.1), "timeout")
-			field.queue_free()
-			remove_from_group("goal")
-			
+		do_goal(body.get_player(), body.position)
 	elif body is Crown:
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
@@ -80,4 +63,25 @@ func _on_Field_entered(field, body):
 		$AudioStreamPlayer2D.play()
 		yield($AudioStreamPlayer2D, "finished")
 		$AudioStreamPlayer2D.pitch_scale = 1
+		
+func get_score():
+	return 1
+	
+func do_goal(player, pos):
+	# depleted rings should be moved onto the battlefield surface
+	$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
+	
+	# decrease size
+	current_ring -= 1
+	$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
+	
+	if current_ring >= 0:
+		gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
+	
+	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
+	emit_signal("goal_done", player, self, pos)
+	
+	if current_ring < 0:
+		yield(get_tree().create_timer(0.1), "timeout")
+		field.queue_free()
 		
