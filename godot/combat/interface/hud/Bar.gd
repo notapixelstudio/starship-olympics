@@ -16,8 +16,6 @@ onready var sprite = $Ship/Sprite
 
 onready var ministar_margin = ministar_width * global.win
 
-var sprite_off
-var sprite_on
 var player
 var new_position setget change_position
 var current_value = 0
@@ -33,9 +31,7 @@ func initialize(p: PlayerStats):
 	var species = player.species
 	max_score = global.the_match.target_score
 	
-	sprite_on = species.ship
-	sprite_off = species.ship_off
-	sprite.texture = sprite_off
+	sprite.texture = species.ship
 	
 	# background
 	$Background.rect_position = Vector2(margin_left, margin_top)
@@ -102,7 +98,6 @@ func change_position(new_value):
 func streak_on():
 	if not streaking:
 		streaking = true
-		sprite.texture = sprite_on
 		add_streak_bar()
 	$StreakTimer.start(0.5)
 	update_current_streak_bar()
@@ -110,7 +105,6 @@ func streak_on():
 	
 func streak_off():
 	streaking = false
-	sprite.texture = sprite_off
 	
 	# stop glowing for older bars
 	if current_streak_bar:
