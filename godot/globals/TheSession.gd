@@ -1,6 +1,6 @@
 extends Node
 
-class_name SessionScores
+class_name TheSession
 
 
 # who is gonna play
@@ -31,14 +31,24 @@ func add_mutator(mutator: String):
 	if mutator in self.mutators:
 		self.mutators[mutator] = true
 
-func set_players(array_players):
-	players = array_players
+func get_players():
+	return players
+	
+func set_players(_players):
+	for p in _players:
+		assert(_players[p] is InfoPlayer)
+	players = _players
 	
 func add_match(score):
 	matches.insert(0, score)
 
 func set_settings(_settings):
 	settings = _settings
-
+func get_settings(key = null):
+	if not key:
+		return settings
+	else:
+		return settings[key]
+		
 func get_player(id_player: String):
 	return null if not id_player in players else players["id_player"]

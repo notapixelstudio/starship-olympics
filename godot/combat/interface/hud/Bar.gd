@@ -28,10 +28,10 @@ var streaking = false
 var current_streak_bar
 var streak_start
 
-func initialize(p: PlayerStats, matchscore: MatchScores):
+func initialize(p: PlayerStats):
 	player = p
 	var species = player.species
-	max_score = matchscore.target_score
+	max_score = global.the_match.target_score
 	
 	sprite_on = species.ship
 	sprite_off = species.ship_off
