@@ -9,3 +9,7 @@ func _ready():
 
 func score(id_player: String, amount : float, broadcasted = false):
 	global.the_match.add_score(id_player, amount, broadcasted)
+
+func broadcast_score(id_player : String, amount : float):
+	global.the_match.broadcast_score(id_player, amount)
+	

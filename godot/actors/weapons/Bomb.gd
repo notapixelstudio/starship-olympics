@@ -137,7 +137,7 @@ signal expired
 func _on_LifeTime_timeout():
 	if not entity.has('StandAlone') and type != GameMode.BOMB_TYPE.bubble:
 		get_parent().call_deferred("remove_child", self)
-		emit_signal('expired')
+		emit_signal('expired', self.position)
 		if entity.has('Owned'):
 			entity.get('Owned').get_owned_by()._on_bomb_freed()
 		yield(get_tree().create_timer(1), "timeout")

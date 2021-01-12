@@ -31,6 +31,7 @@ var run_time = 0
 
 onready var crown_mode = $Managers/CrownModeManager
 onready var kill_mode = $Managers/KillModeManager
+onready var last_man_mode = $Managers/LastManModeManager
 onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
 onready var race_mode = $Managers/RaceModeManager
@@ -110,6 +111,7 @@ func setup_level(mode : Resource):
 	# mode managers
 	crown_mode.enabled = mode.crown
 	kill_mode.enabled = mode.death
+	last_man_mode.enabled = mode.last_man
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
 	goal_mode.enabled = mode.goal
@@ -182,6 +184,8 @@ func _ready():
 	crown_mode.connect('score', scores, "add_score")
 	kill_mode.connect('score', scores, "add_score")
 	kill_mode.connect('broadcast_score', scores, "broadcast_score")
+	kill_mode.connect('show_msg', self, "show_msg")
+	last_man_mode.connect('broadcast_score', scores, "broadcast_score")
 	race_mode.connect('score', scores, "add_score")
 	conquest_mode.connect('score', scores, "add_score")
 	collect_mode.connect('score', scores, "add_score")
@@ -200,6 +204,9 @@ func _ready():
 	for portal in get_tree().get_nodes_in_group("goal"):
 		portal.connect('went_through', race_mode, "_on_lap_done")
 		portal.connect('goal_done', goal_mode, "_on_goal_done")
+		
+	for goal in traits.get_all_with('Goal'):
+		goal.connect('goal_done', self, '_on_goal_done')
 		
 	var standalone : bool = true
 	var players = {}
@@ -232,12 +239,10 @@ func _ready():
 			
 		else:
 			info_player = array_players[i] 
-			s.info_player = info_player
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
 		
-		s.info_player = info_player
 		players[info_player.id] = info_player
 		
 		# setup teams
@@ -246,6 +251,7 @@ func _ready():
 		elif not info_player.team:
 			info_player.team = info_player.id
 			
+		s.set_info_player(info_player)
 		i += 1
 	
 	global.session.set_players(players)
@@ -509,7 +515,7 @@ func ship_just_died(ship, killer, for_good):
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
 				alive_players.append(s)
-		
+				
 		if not for_good:
 			focus.manual_activate($CenterCamera, ship.dead_ship_instance.position, len(alive_players))
 		
@@ -523,6 +529,14 @@ func ship_just_died(ship, killer, for_good):
 			# notify scores if there are no players left
 			yield(get_tree().create_timer(0.3), 'timeout')
 			global.the_match.no_players_left()
+			
+		# shrink the battlefield in last man standing
+		if game_mode.last_man:
+			if len(alive_players) == 3:
+				$LastManAnimationPlayer.play('Shrink')
+			elif len(alive_players) == 2:
+				yield($LastManAnimationPlayer, 'animation_finished')
+				$LastManAnimationPlayer.play('Shrink2')
 		
 		# skip respawn if there are no lives left
 		return
@@ -671,6 +685,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
+	ship.connect("dead", last_man_mode, "_on_sth_killed")
 	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
@@ -850,3 +865,8 @@ func _on_sth_just_froze(sth):
 	$Battlefield.call_deferred("add_child", rock)
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
 	rock.call_deferred('start')
+
+func _on_goal_done(player, goal, pos):
+	global.the_match.add_score(player.id, goal.get_score())
+	show_msg(player.species, goal.get_score(), pos)
+	

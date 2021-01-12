@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
 [ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=21]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -34,15 +35,18 @@ radius = 48.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 550.0
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CircleShape2D" id=5]
+radius = 300.0
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="CanvasItemMaterial" id=6]
+
+[sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 30.0
 flag_disable_z = true
@@ -56,7 +60,7 @@ orbit_velocity_random = 0.0
 damping = 100.0
 damping_random = 1.0
 scale_random = 0.25
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 8 )
 
 [node name="Ship" type="RigidBody2D" groups=[
 "Foreground",
@@ -98,6 +102,21 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 4 )
+
+[node name="MagField" type="Node2D" parent="."]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="MagField"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagField/Area2D"]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="MagField"]
+modulate = Color( 0.337255, 0, 1, 0.317647 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 21 )
 
 [node name="charging" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX_effect"
@@ -195,14 +214,15 @@ one_shot = true
 
 [node name="DashParticles" type="Particles2D" parent="."]
 modulate = Color( 3, 3, 3, 1 )
-material = SubResource( 5 )
+material = SubResource( 6 )
 position = Vector2( -56, 0 )
 emitting = false
 amount = 80
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 9 )
 texture = ExtResource( 19 )
 
+[connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
