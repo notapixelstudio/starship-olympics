@@ -1,6 +1,7 @@
 extends Node2D
 
-class_name Pentagonion
+class_name Pentagoal
+
 
 onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
 
@@ -9,8 +10,7 @@ export var ring_width : float = 50 setget set_ring_width
 export var core_radius : float = 100 setget set_core_radius
 
 export var goal_owner : NodePath
-var species
-var info_player
+var player
 
 onready var current_ring : int = rings-1
 
@@ -45,16 +45,14 @@ func _ready():
 	gshape.radius = core_radius + ring_width*current_ring
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	
-	# set color if goal is owned by a player
-	yield(get_tree(), "idle_frame")
-	if goal_owner:
-		species = get_node(goal_owner).species
-		field.modulate = get_node(goal_owner).species.color
-		$Rings.modulate = get_node(goal_owner).species.color
+	var player_spawner = get_node(goal_owner)
+	if player_spawner:
+		yield(player_spawner, "player_assigned")
+		set_player(player_spawner.get_player())
 		
 signal goal_done
 func _on_Field_entered(field, body):
-	if body is Ship and ECM.E(body).has('Royal') and body.species == species:
+	if body is Ship and ECM.E(body).has('Royal') and body.get_player() == get_player():
 		do_goal(body.get_player(), body.position)
 	elif body is Crown:
 		$FeedbackLine.visible = true
@@ -85,3 +83,10 @@ func do_goal(player, pos):
 		yield(get_tree().create_timer(0.1), "timeout")
 		field.queue_free()
 		
+func set_player(v : InfoPlayer):
+	player = v
+	field.modulate = player.species.color
+	$Rings.modulate = player.species.color
+	
+func get_player():
+	return player

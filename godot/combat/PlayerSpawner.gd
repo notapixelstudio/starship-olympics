@@ -41,3 +41,6 @@ func set_info_player(v):
 	info_player = v
 	emit_signal('player_assigned', info_player)
 	
+func get_player():
+	return info_player
+	

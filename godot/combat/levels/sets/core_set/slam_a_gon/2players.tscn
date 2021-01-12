@@ -10,7 +10,7 @@
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=8]
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=9]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=10]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=11]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=12]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=15]
@@ -95,6 +95,7 @@ position = Vector2( -650, -800 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
+core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
@@ -102,18 +103,21 @@ position = Vector2( -650, 800 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
+core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
 position = Vector2( 650, 800 )
 rings = 3
 ring_width = 80.0
+core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
 position = Vector2( 650, -804.894 )
 rings = 3
 ring_width = 80.0
+core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
