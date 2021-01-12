@@ -33,6 +33,9 @@ func set_sides(v):
 	refresh_polygon()
 
 func set_owner_ship(v):
+	if v == owner_ship: # this could happen when there's a hijacking
+		return
+		
 	if owner_ship != null:
 		emit_signal('lost', owner_ship, self, get_score(), false)
 		
