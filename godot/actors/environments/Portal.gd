@@ -13,7 +13,6 @@ var species
 
 onready var wall = $StaticBody2D
 
-signal went_through
 signal goal_done
 
 func set_width(v):
@@ -67,6 +66,7 @@ func disable():
 	$StaticBody2D/CollisionShape2D.disabled = true
 	
 func _on_Area2D_body_entered(body : PhysicsBody2D):
+	var position_before_teleporting = body.position
 	var entity = ECM.E(body)
 	
 	if not entity:
@@ -97,11 +97,11 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 			
 		if body is Ship:
 			body.recheck_colliding()
-			emit_signal("went_through", body, self)
+			do_goal(body.get_player(), body.position)
 			
 		if body is Crown and body.type == Crown.types.SOCCERBALL:
 			if body.owner_ship and body.owner_ship.species != species:
-				emit_signal("goal_done", body.owner_ship)
+				do_goal(body.owner_ship.get_player(), position_before_teleporting)
 			body.owner_ship = null
 		
 		body.remove_collision_exception_with(wall)
@@ -109,3 +109,9 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 		if teleportable:
 			teleportable.enable()
 		
+func get_score():
+	return -1 if inverted else 1
+	
+func do_goal(player, pos):
+	emit_signal("goal_done", player, self, pos)
+	

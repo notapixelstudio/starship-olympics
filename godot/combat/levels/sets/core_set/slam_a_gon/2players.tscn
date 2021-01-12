@@ -58,7 +58,6 @@ texture = ExtResource( 16 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
 bg_color = Color( 0.28, 0.19082, 0.1428, 1 )
-clock = false
 
 [node name="O" type="Sprite" parent="Battlefield/Background" index="3"]
 modulate = Color( 1, 1, 1, 0.0470588 )
@@ -95,7 +94,6 @@ position = Vector2( -650, -800 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
-core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
@@ -103,21 +101,18 @@ position = Vector2( -650, 800 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
-core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
 position = Vector2( 650, 800 )
 rings = 3
 ring_width = 80.0
-core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
 position = Vector2( 650, -804.894 )
 rings = 3
 ring_width = 80.0
-core_radius = 100.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
@@ -135,7 +130,7 @@ size = 8.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 17 )]
-modulate = Color( 1, 0.407843, 0.407843, 1 )
+modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
 position = Vector2( -900, 0 )
 size = 8.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
