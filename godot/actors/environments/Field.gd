@@ -189,11 +189,11 @@ func get_strategy(ship, distance, game_mode):
 			if ECM.E(ship).has('Royal'):
 				return {"avoid": 1}
 		elif game_mode.name == 'Slam-a-Gon':
-			var owner_species = get_parent().species # ugly
+			var owner_player = get_parent().get_player() # ugly
 			# if you have the ball
 			if ECM.E(ship).has('Royal'):
 				# this is your goal, touch it
-				if ship.species == owner_species:
+				if ship.get_player() == owner_player:
 					return {"seek": 10}
 				# this is an opponent goal, avoid it
 				else:

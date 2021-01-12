@@ -34,8 +34,6 @@ onready var kill_mode = $Managers/KillModeManager
 onready var last_man_mode = $Managers/LastManModeManager
 onready var conquest_mode = $Managers/ConquestModeManager
 onready var collect_mode = $Managers/CollectModeManager
-onready var race_mode = $Managers/RaceModeManager
-onready var goal_mode = $Managers/GoalModeManager
 onready var survival_mode = $Managers/SurvivalModeManager
 
 onready var combat_manager = $Managers/CombatManager
@@ -114,9 +112,7 @@ func setup_level(mode : Resource):
 	last_man_mode.enabled = mode.last_man
 	collect_mode.enabled = mode.collect
 	conquest_mode.enabled = mode.hive
-	goal_mode.enabled = mode.goal
 	survival_mode.enabled = mode.survival
-	race_mode.enabled = mode.race
 	
 	# managers
 	pursue_manager.enabled = mode.pursuing_bombs
@@ -195,16 +191,9 @@ func _ready():
 	
 	kill_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('show_msg', self, "show_msg")
-	race_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('spawn_next', self, "on_next_wave")
-	goal_mode.connect('show_msg', self, "show_msg")
 	
-	
-	for portal in get_tree().get_nodes_in_group("goal"):
-		portal.connect('went_through', race_mode, "_on_lap_done")
-		portal.connect('goal_done', goal_mode, "_on_goal_done")
-		
 	for goal in traits.get_all_with('Goal'):
 		goal.connect('goal_done', self, '_on_goal_done')
 		

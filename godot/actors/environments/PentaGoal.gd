@@ -1,6 +1,7 @@
 extends Node2D
 
-class_name Pentagonion
+class_name Pentagoal
+
 
 onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
 
@@ -9,8 +10,7 @@ export var ring_width : float = 50 setget set_ring_width
 export var core_radius : float = 100 setget set_core_radius
 
 export var goal_owner : NodePath
-var species
-var info_player
+var player
 
 onready var current_ring : int = rings-1
 
@@ -45,34 +45,15 @@ func _ready():
 	gshape.radius = core_radius + ring_width*current_ring
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	
-	# set color if goal is owned by a player
-	yield(get_tree(), "idle_frame")
-	if goal_owner:
-		species = get_node(goal_owner).species
-		field.modulate = get_node(goal_owner).species.color
-		$Rings.modulate = get_node(goal_owner).species.color
+	var player_spawner = get_node(goal_owner)
+	if player_spawner:
+		yield(player_spawner, "player_assigned")
+		set_player(player_spawner.get_player())
 		
 signal goal_done
 func _on_Field_entered(field, body):
-	if body is Ship and ECM.E(body).has('Royal') and body.species == species:
-		# depleted rings should be moved onto the battlefield surface
-		$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
-		
-		# decrease size
-		current_ring -= 1
-		$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
-		
-		if current_ring >= 0:
-			gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
-		
-		$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
-		emit_signal("goal_done", body)
-		
-		if current_ring < 0:
-			yield(get_tree().create_timer(0.1), "timeout")
-			field.queue_free()
-			remove_from_group("goal")
-			
+	if body is Ship and ECM.E(body).has('Royal') and body.get_player() == get_player():
+		do_goal(body.get_player(), body.position)
 	elif body is Crown:
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
@@ -81,3 +62,31 @@ func _on_Field_entered(field, body):
 		yield($AudioStreamPlayer2D, "finished")
 		$AudioStreamPlayer2D.pitch_scale = 1
 		
+func get_score():
+	return 1
+	
+func do_goal(player, pos):
+	# depleted rings should be moved onto the battlefield surface
+	$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
+	
+	# decrease size
+	current_ring -= 1
+	$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
+	
+	if current_ring >= 0:
+		gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
+	
+	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
+	emit_signal("goal_done", player, self, pos)
+	
+	if current_ring < 0:
+		yield(get_tree().create_timer(0.1), "timeout")
+		field.queue_free()
+		
+func set_player(v : InfoPlayer):
+	player = v
+	field.modulate = player.species.color
+	$Rings.modulate = player.species.color
+	
+func get_player():
+	return player

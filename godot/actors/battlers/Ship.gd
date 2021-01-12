@@ -338,7 +338,7 @@ func fire(override_charge = -1, dash_only = false):
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
-		arkaball.set_player(info_player)
+		arkaball.set_player(get_player())
 		arkaball.start()
 		golf = false
 	elif get_bombs_enabled() and not dash_only:
@@ -598,3 +598,7 @@ func start_golf():
 	golf = true
 	yield(get_tree().create_timer(0.5), "timeout")
 	charge()
+
+func get_player():
+	return info_player
+	

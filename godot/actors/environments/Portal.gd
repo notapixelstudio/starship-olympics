@@ -9,11 +9,10 @@ export var offset : float = 80
 export var color : Color = Color(1, 0, 1, 1) setget set_color
 export var inverted : bool = false setget set_inverted
 export var goal_owner : NodePath
-var species
+var player
 
 onready var wall = $StaticBody2D
 
-signal went_through
 signal goal_done
 
 func set_width(v):
@@ -29,9 +28,10 @@ func set_inverted(v):
 	refresh()
 
 func _ready():
-	yield(get_tree(), "idle_frame")
-	if goal_owner:
-		species = get_node(goal_owner).species
+	var player_spawner = get_node(goal_owner)
+	if player_spawner:
+		yield(player_spawner, "player_assigned")
+		set_player(player_spawner.get_player())
 	refresh()
 	
 func refresh():
@@ -52,10 +52,10 @@ func refresh():
 		$Particles2D.scale.x = -1 if inverted else 1
 		$Particles2D2.scale.x = -1 if inverted else 1
 		
-		if goal_owner:
-			$Line2D.modulate = species.color
-			$Particles2D.modulate = species.color
-			$SpikeParticles2D.modulate = species.color
+		if player:
+			$Line2D.modulate = player.species.color
+			$Particles2D.modulate = player.species.color
+			$SpikeParticles2D.modulate = player.species.color
 			$Line2D.self_modulate = Color(1.2,1.2,1.2,1) # ship colors are already vibrant
 		
 func enable():
@@ -67,6 +67,7 @@ func disable():
 	$StaticBody2D/CollisionShape2D.disabled = true
 	
 func _on_Area2D_body_entered(body : PhysicsBody2D):
+	var position_before_teleporting = body.position
 	var entity = ECM.E(body)
 	
 	if not entity:
@@ -97,11 +98,11 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 			
 		if body is Ship:
 			body.recheck_colliding()
-			emit_signal("went_through", body, self)
+			do_goal(body.get_player(), body.position)
 			
 		if body is Crown and body.type == Crown.types.SOCCERBALL:
-			if body.owner_ship and body.owner_ship.species != species:
-				emit_signal("goal_done", body.owner_ship)
+			if body.owner_ship and body.owner_ship.get_player() != get_player():
+				do_goal(body.owner_ship.get_player(), position_before_teleporting)
 			body.owner_ship = null
 		
 		body.remove_collision_exception_with(wall)
@@ -109,3 +110,14 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 		if teleportable:
 			teleportable.enable()
 		
+func get_score():
+	return -1 if inverted else 1
+	
+func do_goal(player, pos):
+	emit_signal("goal_done", player, self, pos)
+	
+func set_player(v : InfoPlayer):
+	player = v
+	
+func get_player():
+	return player

@@ -1,8 +1,9 @@
 extends StaticBody2D
 
-export var goal_owner : NodePath
-
 class_name WallGoal
+
+
+export var goal_owner : NodePath
 
 var player setget set_player, get_player
 
@@ -19,7 +20,7 @@ func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
 		yield(player_spawner, "player_assigned")
-		set_player(player_spawner.info_player)
+		set_player(player_spawner.get_player())
 	
 func get_score():
 	return 1
