@@ -95,7 +95,7 @@ tracks/0/path = NodePath("Polygon2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -125,7 +125,7 @@ tracks/0/path = NodePath("Polygon2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -198,7 +198,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 20
+frame = 71
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -215,6 +215,8 @@ playback_speed = 2.0
 anims/Shake = SubResource( 3 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+self_modulate = Color( 1, 1, 1, 0.745098 )
+color = Color( 0.603922, 0.603922, 0.603922, 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color( 1.8, 1.8, 1.8, 1 )
@@ -280,6 +282,7 @@ anims/Forming = SubResource( 7 )
 [node name="SelfDestructTimer" type="Timer" parent="."]
 
 [node name="NoRotate" type="Node2D" parent="."]
+modulate = Color( 0, 0, 0, 1 )
 
 [node name="CountdownWrapper" type="Node2D" parent="NoRotate"]
 
