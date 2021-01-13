@@ -19,6 +19,7 @@ export var deadly : bool = true
 export var ice : bool = false
 export var smallest_break : bool = true
 export var conquerable : bool = false
+export var indestructible = false
 
 var species : Resource
 var owner_ship : Ship
@@ -32,9 +33,13 @@ const colors = {
 }
 
 var gshape
-var breakable = false
+var breakable = false setget set_breakable
 
 signal request_spawn
+
+func set_breakable(v):
+	breakable = v
+	recolor()
 
 func _ready():
 	if contains_star:
@@ -103,15 +108,16 @@ func try_break():
 			yield(get_tree().create_timer(0.15), "timeout")
 			prisoner.set_collision_mask_bit(7, true)
 	
-	breakable = false
+	self.breakable = false
 	
-	if order >= last_order or smallest_break:
+	if order >= last_order:
 		queue_free()
 	
 	if order < last_order:
 		return
 	
 	var star_index = randi() % divisions
+	var indestructible_index = randi() % divisions
 	
 	for i in range(divisions):
 		var child
@@ -142,6 +148,9 @@ func try_break():
 		if child is Star:
 			child.linear_velocity *= 10
 			
+		if i == indestructible_index and randf() < 0.75:
+			child.indestructible = true
+			
 		emit_signal('request_spawn', child)
 		
 func new_child_rock(index):
@@ -159,6 +168,7 @@ func new_child_rock(index):
 	child.species = species
 	child.owner_ship = owner_ship
 	child.conquerable = conquerable
+	child.indestructible = child.order < last_order and not smallest_break
 	child.start()
 	
 	if index == 0:
@@ -167,7 +177,8 @@ func new_child_rock(index):
 	return child
 	
 func become_breakable():
-	breakable = true
+	if not indestructible:
+		self.breakable = true
 	
 onready var countdown = $NoRotate/CountdownWrapper/Countdown
 
@@ -187,16 +198,7 @@ func start():
 			$SelfDestructTimer.start(1)
 		
 func recolor():
-	var color
-	
-	if species:
-		color = species.color
-	elif deadly:
-		color = colors['deadly']
-	elif ice:
-		color = colors['ice']
-	else:
-		color = colors['solid']
+	var color = get_color()
 	
 	$Polygon2D.color = color
 	$Line2D.default_color = color
@@ -208,12 +210,46 @@ func recolor():
 	$LightLine2DE2.default_color = color
 	$LightLine2DE3.default_color = color
 	$LightLine2DE4.default_color = color
-	$NoRotate.modulate = color
 	
 	if species:
 		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
 		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
+		
+	if breakable:
+		$Polygon2D.self_modulate = Color(1,1,1,0.25)
+		$NoRotate.modulate = get_color()
+		$Line2D.width = 36
+		$LightLine2D.visible = true
+		$LightLine2D2.visible = true
+		$LightLine2D3.visible = true
+		$LightLine2D4.visible = true
+		$LightLine2DE.visible = true
+		$LightLine2DE2.visible = true
+		$LightLine2DE3.visible = true
+		$LightLine2DE4.visible = true
+	else:
+		$Polygon2D.self_modulate = Color(1,1,1,0.75)
+		$NoRotate.modulate = Color(0,0,0,1)
+		$Line2D.width = 42
+		$LightLine2D.visible = false
+		$LightLine2D2.visible = false
+		$LightLine2D3.visible = false
+		$LightLine2D4.visible = false
+		$LightLine2DE.visible = false
+		$LightLine2DE2.visible = false
+		$LightLine2DE3.visible = false
+		$LightLine2DE4.visible = false
 	
+func get_color():
+	if species:
+		return species.color
+	elif deadly:
+		return colors['deadly']
+	elif ice:
+		return colors['ice']
+	else:
+		return colors['solid']
+		
 func get_score():
 	return pow(divisions, order)
 
@@ -244,7 +280,7 @@ func get_strategy(ship, distance, game_mode):
 			return {"seek": get_score()*1.8}
 		
 		# protect own asteroids by splitting them, if they can be splitted
-		if get_score() > 1:
+		if get_score() > 1 and not indestructible:
 			return {"shoot": get_score()*0.25}
 			
 	# avoid deadly asteroids
