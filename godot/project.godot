@@ -234,6 +234,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/MapCell.gd"
 }, {
+"base": "MapLocation",
+"class": "MapCheckpoint",
+"language": "GDScript",
+"path": "res://map/MapCheckpoint.gd"
+}, {
 "base": "Node2D",
 "class": "MapCursor",
 "language": "GDScript",
@@ -247,7 +252,7 @@ _global_script_classes=[ {
 "base": "Line2D",
 "class": "MapPath",
 "language": "GDScript",
-"path": "res://map/Path.gd"
+"path": "res://map/MapPath.gd"
 }, {
 "base": "MapLocation",
 "class": "MapPlanet",
@@ -450,6 +455,7 @@ _global_script_class_icons={
 "Laser": "",
 "Manager": "",
 "MapCell": "",
+"MapCheckpoint": "",
 "MapCursor": "",
 "MapLocation": "",
 "MapPath": "",

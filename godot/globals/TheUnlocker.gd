@@ -36,6 +36,10 @@ func unlock_set(set: String) -> void:
 var unlocked_paths = {
 	
 }
+func unlock_path(path_id: String) -> void:
+	unlocked_paths[path_id] = true
+	persistance.save_game()
+	
 func get_status_path(path_id)->bool:
 	return unlocked_paths.get(path_id, false)
 	
@@ -46,7 +50,10 @@ var unlocked_locations = {
 	
 }
 
-
+func unlock_location(loc_id: String) -> void:
+	unlocked_locations[loc_id] = true
+	persistance.save_game()
+	
 var unlocked_sets = {
 	"drones": false,
 	"trinkets": false,
@@ -58,6 +65,7 @@ var unlocked_sets = {
 	"sports": false,
 	"beach": false,
 }
+
 var unlocked_games = {
 	"minefield": false,
 	"king": false,

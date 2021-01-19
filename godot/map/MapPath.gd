@@ -39,9 +39,13 @@ func _ready():
 	print("THIS " + name + " CONNECTS "+ from.planet.id + " AND "+ to.planet.id +". Status: " + status)
 
 func get_status():
-	if self.name in TheUnlocker.unlocked_paths:
+	if TheUnlocker.get_status_path(self.name):
 		status = "unlocked"
 		visible = true
 	else: 
 		status = "locked"
 		visible = false
+
+func unlock():
+	self.status = "unlocked"
+	TheUnlocker.unlock_path(self.get_id())

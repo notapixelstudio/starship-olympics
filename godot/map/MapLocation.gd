@@ -20,3 +20,6 @@ func get_element_to_unlock():
 		var index = randi() % len(to_be_unlocked)
 		return paths_to.keys()[index]
 	return null
+
+func unlock():
+	pass

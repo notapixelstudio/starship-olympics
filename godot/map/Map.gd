@@ -13,7 +13,7 @@ export var cursor_scene : PackedScene
 onready var camera = $Camera
 onready var panels = $CanvasLayerTop/PanelContainer
 onready var tween = $Tween
-export var focus_path_scene: PackedScene = preload("res://map/PathMap.tscn")
+export var focus_path_scene: PackedScene
 export var element_in_camera_scene: PackedScene = preload("res://actors/environments/ElementInCamera.tscn")
 var num_players : int
 var human_players : int = 0
@@ -342,7 +342,7 @@ func _input(event):
 	if event.is_action_pressed("continue"):
 		Engine.time_scale += 0.2
 		
-func unlock_via_path(object_to_unlock, object_from) -> void:
+func unlock_via_path(object_to_unlock: MapLocation, object_from: MapLocation) -> void:
 	
 	# let's grab the path that connect the two objects
 	var path_to_traverse = null
@@ -352,7 +352,7 @@ func unlock_via_path(object_to_unlock, object_from) -> void:
 			path_to_traverse = path
 			break
 	assert(path_to_traverse) # Path between the two NOT FOUND
-	path_to_traverse.status = "unlocked"
+	path_to_traverse.unlock()
 	var center_camera = global.calculate_center(camera.camera_rect)
 	# remove cursors from camera, if any
 	var cursors = []
