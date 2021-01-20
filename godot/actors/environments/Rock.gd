@@ -110,7 +110,7 @@ func try_break():
 	
 	self.breakable = false
 	
-	if order >= last_order:
+	if order >= last_order or smallest_break:
 		queue_free()
 	
 	if order < last_order:
@@ -143,14 +143,22 @@ func try_break():
 			child.contains_star = true
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
-		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
+		child.linear_velocity = 0.5*linear_velocity + Vector2(75*order,0).rotated(2*PI/divisions*i)
 		
 		if child is Star:
 			child.linear_velocity *= 10
-			
-		if i == indestructible_index and randf() < 0.75:
-			child.indestructible = true
-			
+		elif child is Diamond:
+			pass
+		else: # child should be Rock
+			if i == indestructible_index and randf() < 0.75:
+				child.indestructible = true
+				
+			if child.indestructible or child.order < last_order:
+				child.self_destruct = false
+				child.spawn_diamonds = false
+				
+			child.start()
+		
 		emit_signal('request_spawn', child)
 		
 func new_child_rock(index):
@@ -161,7 +169,7 @@ func new_child_rock(index):
 	child.base_size = base_size
 	child.last_order = last_order
 	child.divisions = divisions
-	child.self_destruct = self_destruct and child.order >= last_order and randf() > pow(0.5,order)
+	child.self_destruct = self_destruct
 	child.deadly = deadly
 	child.ice = ice
 	child.smallest_break = smallest_break
@@ -169,7 +177,6 @@ func new_child_rock(index):
 	child.owner_ship = owner_ship
 	child.conquerable = conquerable
 	child.indestructible = child.order < last_order and not smallest_break
-	child.start()
 	
 	if index == 0:
 		child.play_boom()
@@ -211,6 +218,8 @@ func recolor():
 	$LightLine2DE3.default_color = color
 	$LightLine2DE4.default_color = color
 	
+	$NoRotate/CountdownWrapper.scale = Vector2(order, order)
+	
 	if species:
 		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
 		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
@@ -219,26 +228,10 @@ func recolor():
 		$Polygon2D.self_modulate = Color(1,1,1,0.25)
 		$NoRotate.modulate = get_color()
 		$Line2D.width = 36
-		$LightLine2D.visible = true
-		$LightLine2D2.visible = true
-		$LightLine2D3.visible = true
-		$LightLine2D4.visible = true
-		$LightLine2DE.visible = true
-		$LightLine2DE2.visible = true
-		$LightLine2DE3.visible = true
-		$LightLine2DE4.visible = true
 	else:
 		$Polygon2D.self_modulate = Color(1,1,1,0.75)
 		$NoRotate.modulate = Color(0,0,0,1)
-		$Line2D.width = 42
-		$LightLine2D.visible = false
-		$LightLine2D2.visible = false
-		$LightLine2D3.visible = false
-		$LightLine2D4.visible = false
-		$LightLine2DE.visible = false
-		$LightLine2DE2.visible = false
-		$LightLine2DE3.visible = false
-		$LightLine2DE4.visible = false
+		$Line2D.width = 36
 	
 func get_color():
 	if species:
