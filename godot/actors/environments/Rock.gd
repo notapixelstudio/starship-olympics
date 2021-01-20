@@ -155,6 +155,7 @@ func try_break():
 				
 			if child.indestructible or child.order < last_order:
 				child.self_destruct = false
+				child.spawn_diamonds = false
 				
 			child.start()
 		
