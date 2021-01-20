@@ -47,16 +47,9 @@ centered = false
 hollow = true
 offset = 200
 type = 2
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
 script = ExtResource( 1 )
@@ -70,16 +63,9 @@ precision = 100.0
 hollow = true
 offset = 200
 type = 2
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
@@ -93,16 +79,9 @@ precision = 100.0
 hollow = true
 offset = 200
 type = 2
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall3" index="4"]
 script = ExtResource( 1 )
@@ -115,17 +94,9 @@ precision = 100.0
 [node name="OutsideWall" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
@@ -153,6 +124,7 @@ divisions = 3
 base_size = 48.0
 spawn_diamonds = false
 self_destruct = true
+smallest_break = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 1900, 0 )

@@ -31,6 +31,7 @@ const colors = {
 	'solid': Color(0.7, 0.7, 0.7),
 	'ice': Color(0.2,0.6,0.75)
 }
+const spikes_texture = preload("res://assets/patterns/wall/spikes_some.png")
 
 var gshape
 var breakable = false setget set_breakable
@@ -232,6 +233,10 @@ func recolor():
 		$Polygon2D.self_modulate = Color(1,1,1,0.75)
 		$NoRotate.modulate = Color(0,0,0,1)
 		$Line2D.width = 36
+		
+	if deadly:
+		$Line2D.texture = spikes_texture
+		$Line2D.width = 30*(order+1)
 	
 func get_color():
 	if species:

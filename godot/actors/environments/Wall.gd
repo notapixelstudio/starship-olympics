@@ -27,6 +27,7 @@ export var platform = false
 export(String, 'both', 'above', 'below') var under = 'both' setget set_under
 
 const texture_glass = preload('res://assets/sprites/stripes.png')
+const spikes_texture = preload("res://assets/patterns/wall/spikesii.png")
 
 const glow_strength = 1.08
 
@@ -220,12 +221,15 @@ func refresh():
 	# wall types
 	var color
 	if type == TYPE.hostile:
-		color = GlowColor.new(Color(1,0,0,1), glow_strength).color
+		color = Color(1.2, 0, 0.85)
 		$Polygon2D.modulate = color
 		$line.modulate = color
 		$lineBelow.modulate = color
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
+		$line.texture = spikes_texture
+		$line.width = 100
+		$lineBelow.visible = false
 	elif type == TYPE.solid:
 		$Polygon2D.modulate = solid_line_color
 		$line.modulate = solid_line_color
