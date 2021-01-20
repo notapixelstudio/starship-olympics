@@ -60,16 +60,9 @@ centered = false
 hollow = true
 offset = 200
 type = 2
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 1 )
@@ -91,16 +84,9 @@ bevel_se = 450
 hollow = true
 offset = 200
 type = 2
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
@@ -121,17 +107,9 @@ bevel_se = 450
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
@@ -164,7 +142,9 @@ bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 order = 5
+divisions = 3
 base_size = 22.0
+deadly = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 950, 10 )
