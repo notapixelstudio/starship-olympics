@@ -58,7 +58,6 @@ centered = false
 
 [node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
-offset = 200
 type = 2
 hide_grid = true
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
@@ -82,7 +81,6 @@ bevel_se = 450
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
-offset = 200
 type = 2
 hide_grid = true
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
@@ -106,7 +104,6 @@ bevel_se = 450
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
-offset = 200
 hide_grid = true
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
@@ -142,9 +139,9 @@ bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 order = 5
-divisions = 3
 base_size = 22.0
 deadly = false
+ice = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 950, 10 )

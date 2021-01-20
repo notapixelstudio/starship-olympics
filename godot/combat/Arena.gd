@@ -842,7 +842,9 @@ func _on_sth_just_froze(sth):
 	$Battlefield.call_deferred("remove_child", sth)
 	var rock = RockScene.instance()
 	rock.position = sth.position
-	rock.order = 2 if sth is Ship else 1
+	rock.order = 1
+	if sth is Ship:
+		rock.base_size = 80
 	rock.ice = true
 	rock.deadly = false
 	rock.spawn_diamonds = false

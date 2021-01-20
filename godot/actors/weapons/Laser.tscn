@@ -94,5 +94,6 @@ visibility_rect = Rect2( -1000, -1000, 2000, 2000 )
 local_coords = false
 process_material = SubResource( 7 )
 texture = ExtResource( 4 )
+
 [connection signal="area_entered" from="RayArea" to="." method="_on_RayArea_area_entered"]
 [connection signal="body_entered" from="RayArea" to="." method="_on_RayArea_body_entered"]

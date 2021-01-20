@@ -29,7 +29,7 @@ var prisoner setget set_prisoner
 const colors = {
 	'deadly': Color(0.8, 0, 0.85),
 	'solid': Color(0.7, 0.7, 0.7),
-	'ice': Color(0.2,0.6,0.75)
+	'ice': Color(0,0.4,1)
 }
 const spikes_texture = preload("res://assets/patterns/wall/spikes_some.png")
 
@@ -85,8 +85,11 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
-	elif body is Ship and conquerable:
-		conquered_by(body)
+	elif body is Ship:
+		if conquerable:
+			conquered_by(body)
+		elif ice:
+			body.freeze()
 
 func try_break():
 	if not breakable:
