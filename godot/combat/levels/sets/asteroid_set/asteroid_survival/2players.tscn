@@ -13,7 +13,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
-length = 20.0
+length = 35.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:radius")
@@ -22,10 +22,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10.1, 20 ),
+"times": PoolRealArray( 0, 15, 30 ),
 "transitions": PoolRealArray( -2, -2, -2 ),
 "update": 0,
-"values": [ 1800, 1500, 1800 ]
+"values": [ 2200, 1900, 2200 ]
 }
 
 [node name="Arena" instance=ExtResource( 3 )]
@@ -63,7 +63,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 1500
+radius = 1900
 precision = 100.0
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
@@ -86,7 +86,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 1800
+radius = 2200
 precision = 100.0
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
@@ -109,7 +109,7 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 1800
+radius = 2200
 precision = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GCircle" index="0" groups=[
@@ -125,19 +125,20 @@ clock = true
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 order = 5
-base_size = 28.0
+last_order = 1
+divisions = 3
+base_size = 48.0
 spawn_diamonds = false
 self_destruct = true
-smallest_break = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1400, 10 )
+position = Vector2( 1900, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 2 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( -1400, 0 )
+position = Vector2( -1900, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 7 )

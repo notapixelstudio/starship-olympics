@@ -110,7 +110,7 @@ func try_break():
 	
 	self.breakable = false
 	
-	if order >= last_order:
+	if order >= last_order or smallest_break:
 		queue_free()
 	
 	if order < last_order:
@@ -143,17 +143,17 @@ func try_break():
 			child.contains_star = true
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
-		child.linear_velocity = 0.5*linear_velocity + Vector2(50*order,0).rotated(2*PI/divisions*i)
+		child.linear_velocity = 0.5*linear_velocity + Vector2(75*order,0).rotated(2*PI/divisions*i)
 		
 		if child is Star:
 			child.linear_velocity *= 10
 		elif child is Diamond:
 			pass
-		else:
+		else: # child should be Rock
 			if i == indestructible_index and randf() < 0.75:
 				child.indestructible = true
 				
-			if child.indestructible:
+			if child.indestructible or child.order < last_order:
 				child.self_destruct = false
 				
 			child.start()
