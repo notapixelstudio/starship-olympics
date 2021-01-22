@@ -174,9 +174,6 @@ match_duration_override = 55.0
 [node name="ConquestModeManager" parent="Managers" index="8"]
 enabled = true
 
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
@@ -202,15 +199,27 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2300
-rotation_degrees = 30.0
+sides = 6.0
+alternating_angle = 0.0
+rotation_degrees = 0.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
+rotation = 0.523599
 z_index = -5
 z_as_relative = false
 
@@ -1220,22 +1229,32 @@ sides = 6
 need_royal = true
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
-position = Vector2( 0, 1204 )
+position = Vector2( -602, 1042.69 )
+rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 550
 sides = 6.0
+alternating_angle = 0.0
 rotation_degrees = 30.0
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
 visible = false
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
-position = Vector2( -1050, -602 )
+position = Vector2( -608.327, -1046.35 )
+rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 550
 sides = 6.0
+alternating_angle = 0.0
 rotation_degrees = 30.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="2"]
@@ -1245,11 +1264,16 @@ anims/Feedback = SubResource( 1 )
 visible = false
 
 [node name="NoCrownZone3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
-position = Vector2( 1050, -602 )
+position = Vector2( 1210.33, 3.65271 )
+rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone3/Field" index="7"]
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 550
 sides = 6.0
+alternating_angle = 0.0
 rotation_degrees = 30.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone3" index="2"]
@@ -1261,21 +1285,21 @@ visible = false
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 0, -2064 )
-rotation = 1.5708
+position = Vector2( 1032, -1787.48 )
+rotation = 2.0944
 controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1787.48, 1032 )
-rotation = -2.618
+position = Vector2( 1032, 1787.48 )
+rotation = -2.0944
 controls = "joy2"
 species = ExtResource( 7 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( -1787.48, 1032 )
-rotation = -0.523599
+position = Vector2( -2064, -0.00177002 )
+rotation = -2.68221e-07
 controls = "joy2"
 species = ExtResource( 13 )
 cpu = true
