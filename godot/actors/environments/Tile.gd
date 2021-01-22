@@ -55,6 +55,7 @@ func _ready():
 	refresh_polygon()
 	
 	$Graphics.position = Vector2(0,32).rotated(-global_rotation)
+	$Graphics/Wrapper.rotation = -global_rotation
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
 	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
 	
