@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
+[ext_resource path="res://actors/environments/OneWayWall.tscn" type="PackedScene" id=12]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -18,9 +19,6 @@ game_mode = ExtResource( 2 )
 
 [node name="ConquestModeManager" parent="Managers" index="8"]
 enabled = true
-
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
@@ -30,7 +28,6 @@ centered = false
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 solid_line_color = Color( 0.83, 1.1, 0.92, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
@@ -77,22 +74,35 @@ deadly = false
 
 [node name="Bubble" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
 position = Vector2( 500, 600 )
+owner_player = NodePath("")
+symbol = "none"
 
 [node name="Bubble2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
 position = Vector2( 500, 900 )
+owner_player = NodePath("")
+symbol = "none"
 
 [node name="Bubble3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
 position = Vector2( 500, 1200 )
+owner_player = NodePath("")
+symbol = "none"
+
+[node name="OneWayWall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
+position = Vector2( -400, 1050 )
+
+[node name="OneWayWall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 12 )]
+position = Vector2( -1150, 750 )
+rotation = 1.5708
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -400, 700 )
 rotation = -1.5708
-controls = "joy1"
 species = ExtResource( 11 )
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock2" to="." method="_on_Rock_request_spawn"]

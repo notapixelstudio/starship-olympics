@@ -27,10 +27,11 @@ var owner_ship : Ship
 var prisoner setget set_prisoner
 
 const colors = {
-	'deadly': Color(0.8, 0, 0.85),
+	'deadly': Color(0.9, 0, 0.35),
 	'solid': Color(0.7, 0.7, 0.7),
-	'ice': Color(0.2,0.6,0.75)
+	'ice': Color(0,0.4,1)
 }
+const spikes_texture = preload("res://assets/patterns/wall/spikes_some.png")
 
 var gshape
 var breakable = false setget set_breakable
@@ -84,8 +85,11 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
-	elif body is Ship and conquerable:
-		conquered_by(body)
+	elif body is Ship:
+		if conquerable:
+			conquered_by(body)
+		elif ice:
+			body.freeze()
 
 func try_break():
 	if not breakable:
@@ -130,7 +134,7 @@ func try_break():
 			else:
 				child = new_child_rock(i)
 		else: # order <= last_order
-			if not spawn_diamonds or randf() < 0.15:
+			if not spawn_diamonds:
 				if contains_star and i == star_index:
 					child = StarScene.instance()
 				else:
@@ -232,6 +236,10 @@ func recolor():
 		$Polygon2D.self_modulate = Color(1,1,1,0.75)
 		$NoRotate.modulate = Color(0,0,0,1)
 		$Line2D.width = 36
+		
+	if deadly:
+		$Line2D.texture = spikes_texture
+		$Line2D.width = 30*(order+1)
 	
 func get_color():
 	if species:

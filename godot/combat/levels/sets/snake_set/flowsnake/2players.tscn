@@ -15,10 +15,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 style = ExtResource( 6 )
 
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
-[node name="SurvivalModeManager" parent="Managers" index="13"]
+[node name="SurvivalModeManager" parent="Managers" index="12"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -28,6 +25,7 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
+type = 1
 hide_grid = true
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
@@ -59,11 +57,11 @@ position = Vector2( 100, 100 )
 rotation = 0.785398
 controls = "joy2"
 species = ExtResource( 9 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 5.82078e+07, 5.82078e+07 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

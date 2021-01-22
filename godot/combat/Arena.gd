@@ -537,7 +537,7 @@ func ship_just_died(ship, killer, for_good):
 		return
 	
 	var respawn_timeout = 1.5
-	if crown_mode.enabled:
+	if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
 		if len(ECM.entities_with('Royal')) > 0:
 			if ECM.E(ship).has('Royal'):
 				respawn_timeout = 2.25
@@ -842,14 +842,16 @@ func _on_sth_just_froze(sth):
 	$Battlefield.call_deferred("remove_child", sth)
 	var rock = RockScene.instance()
 	rock.position = sth.position
-	rock.order = 2 if sth is Ship else 1
+	rock.order = 1
+	if sth is Ship:
+		rock.base_size = 80
 	rock.ice = true
 	rock.deadly = false
 	rock.spawn_diamonds = false
 	rock.prisoner = sth
 	rock.self_destruct = true
 	rock.self_destruct_position = 'top'
-	rock.lifetime = 4
+	rock.lifetime = 6
 	rock.angular_velocity = 0
 	$Battlefield.call_deferred("add_child", rock)
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')

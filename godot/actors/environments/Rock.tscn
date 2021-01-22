@@ -164,7 +164,7 @@ font_data = ExtResource( 34 )
 ]]
 collision_layer = 1024
 collision_mask = 1053
-mass = 128.0
+mass = 100.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
 angular_velocity = 0.3
@@ -198,7 +198,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 72
+frame = 73
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -223,6 +223,7 @@ modulate = Color( 1.8, 1.8, 1.8, 1 )
 material = SubResource( 4 )
 width = 36.0
 texture = ExtResource( 32 )
+texture_mode = 2
 
 [node name="LightLine2D" type="Line2D" parent="."]
 modulate = Color( 1, 1, 1, 0.392157 )
