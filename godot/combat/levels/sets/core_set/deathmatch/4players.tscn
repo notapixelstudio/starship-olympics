@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=13]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=15]
+[ext_resource path="res://assets/icon/skull.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -94,6 +95,18 @@ bevel_se = 450
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
+
+[node name="skull" type="Sprite" parent="Battlefield/Background" index="5"]
+modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
+position = Vector2( -1200, -100 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+
+[node name="skull2" type="Sprite" parent="Battlefield/Background" index="6"]
+modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
+position = Vector2( 1200, 3.8147e-06 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1900, -1400 )
