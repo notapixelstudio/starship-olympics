@@ -92,7 +92,7 @@ grid_color = Color( 0.945098, 0, 1, 0.588235 )
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 2 )
-points = PoolVector2Array( -2000, 0, -1000, -1000, 1000, -1000, 2000, 0, 0, 2600 )
+polygon = PoolVector2Array( -2000, 0, -1000, -1000, 1000, -1000, 2000, 0, 0, 2600 )
 
 [node name="Wall3" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1500, -1300 )
