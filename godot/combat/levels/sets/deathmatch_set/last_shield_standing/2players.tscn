@@ -73,9 +73,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 polygon = PoolVector2Array( 1000, 1000, -1000, -1000, 3000, -1000 )
 
 [node name="Ghost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
@@ -92,9 +89,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 polygon = PoolVector2Array( 1000, 1000, -1000, -1000, 3000, -1000 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
@@ -109,9 +103,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 polygon = PoolVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -3000, -1000, -1000 )
 
 [node name="Polygon2players" type="Polygon2D" parent="Battlefield/Background" index="7"]
@@ -250,13 +241,9 @@ width = 900
 
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 3 )]
 position = Vector2( -1000, 1000 )
-type = "shield"
-appear = true
 
 [node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 3 )]
 position = Vector2( 1000, -1000 )
-type = "shield"
-appear = true
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="2" instance=ExtResource( 13 )]
 position = Vector2( -1000, 1400 )
@@ -275,7 +262,6 @@ position = Vector2( 2100, -700 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 12 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
 position = Vector2( 100, 1300 )

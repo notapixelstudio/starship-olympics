@@ -134,7 +134,7 @@ func try_break():
 			else:
 				child = new_child_rock(i)
 		else: # order <= last_order
-			if not spawn_diamonds or randf() < 0.15:
+			if not spawn_diamonds:
 				if contains_star and i == star_index:
 					child = StarScene.instance()
 				else:

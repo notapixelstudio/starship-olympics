@@ -35,9 +35,6 @@ game_mode = ExtResource( 10 )
 [node name="KillModeManager" parent="Managers" index="6"]
 enabled = true
 
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
@@ -227,7 +224,6 @@ position = Vector2( 800, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 6 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 976.562, 976.562 )

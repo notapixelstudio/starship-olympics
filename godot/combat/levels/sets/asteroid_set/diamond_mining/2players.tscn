@@ -27,7 +27,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 3800, 3400, 3800 ]
+"values": [ 5400, 3800, 5400 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:height")
@@ -39,7 +39,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 2800, 2400, 2800 ]
+"values": [ 3000, 2600, 3000 ]
 }
 
 [node name="Arena" instance=ExtResource( 4 )]
@@ -71,8 +71,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3400
-height = 2400
+width = 3800
+height = 2600
 bevel = 450
 bevel_nw = 450
 bevel_ne = 450
@@ -94,8 +94,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3800
-height = 2800
+width = 5400
+height = 3000
 bevel = 450
 bevel_nw = 450
 bevel_ne = 450
@@ -104,6 +104,7 @@ bevel_se = 450
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
+offset = 800
 hide_grid = true
 solid_line_color = Color( 1.18, 0.9, 1.18, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
@@ -116,8 +117,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3800
-height = 2800
+width = 5400
+height = 3000
 bevel = 450
 bevel_nw = 450
 bevel_ne = 450
@@ -138,19 +139,19 @@ fg_color = Color( 0.16296, 0.0672, 0.28, 1 )
 bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
-order = 5
+order = 6
 base_size = 22.0
 deadly = false
 ice = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 950, 10 )
+position = Vector2( 1400, 10 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( -950, 0 )
+position = Vector2( -1400, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 8 )
