@@ -11,6 +11,7 @@ var selected_sports : Array
 export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
 onready var camera = $Camera
+onready var first_time_camera =$FirstTimeCamera
 onready var panels = $CanvasLayerTop/PanelContainer
 onready var tween = $Tween
 export var focus_path_scene: PackedScene
@@ -18,7 +19,7 @@ export var element_in_camera_scene: PackedScene = preload("res://actors/environm
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
-var max_cpu
+var max_cpu: int
 
 var hive_shoot_bombs = true setget set_hive_bombs
 var diamondsnatch_shoot_bombs = true setget set_diamondsnatch_bombs
@@ -33,29 +34,6 @@ var settings = {} setget set_settings
 
 signal chose_level
 signal selection_finished
-signal unlock_complete
-signal check_completed
-
-func check():
-	# THIS WILL UNLOCK trinkets and death
-	var set = $Content/Planets/Set6.planet
-	var locked = 0
-	
-	for minigame in set.minigames:
-		if not TheUnlocker.unlocked_games.get(minigame.id, false):
-			locked+=1
-	if locked <= 0:
-		# WE WILL UNLOCK!
-		if not TheUnlocker.unlocked_sets.get("trinkets", false):
-			unlock_via_path($Content/Planets/Set3, $Content/Planets/Set6)
-			TheUnlocker.unlock_set($Content/Planets/Set3.planet.id)
-			yield(self, "unlock_complete")
-		if not TheUnlocker.unlocked_sets.get("death", false):
-			unlock_via_path($Content/Planets/Set2, $Content/Planets/Set6)
-			TheUnlocker.unlock_set($Content/Planets/Set2.planet.id)
-			yield(self, "unlock_complete")
-	yield(get_tree(), "idle_frame")
-	emit_signal("check_completed")
 
 func set_settings(value):
 	settings = value
@@ -80,7 +58,22 @@ func set_slam_a_gon_bombs(value: bool):
 func _ready():
 	back = false
 	
+	# Check if it is the first time:
+	if not TheUnlocker.unlocked_paths:
 	
+		first_time_camera.current = true
+		camera.enabled = false
+		var first_set = $Content/Planets/Set6
+		
+		selected_sports = [first_set]
+		var central_panel = $CanvasLayerTop/PanelContainer/p1
+		central_panel.enable()
+		central_panel.map_element = first_set.planet
+		
+	else:
+		first_time_camera.current = false
+		camera.enabled = true
+		
 	for x in range(WIDTH):
 		matrix.append([])
 		for y in range(HEIGHT):
@@ -93,6 +86,7 @@ func _ready():
 		cursor.connect('try_move', self, '_on_cursor_try_move')
 		cursor.connect('select', self, '_on_cursor_select')
 		cursor.connect('cancel', self, '_on_cursor_cancel')
+		
 		var panel = panels.get_node(cursor.player.id)
 		panel.species = cursor.species
 		panel.enable()
@@ -119,12 +113,18 @@ func _ready():
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
 	
+	
 	self.create_graph()
+	if not TheUnlocker.unlocked_paths:
+		yield(get_tree().create_timer(3), "timeout")
+		emit_signal("done")
 	# unlock_via_path($Content/Planets/Set2, $Content/Planets/Set3)
 
 func initialize(players, sports, settings_):
 	self.settings = settings_
 	selected_sports = sports
+	num_players = len(players)
+	
 	
 	for player_id in players:
 		if not players[player_id].cpu:
@@ -134,10 +134,10 @@ func initialize(players, sports, settings_):
 	for player_id in players:
 		var player = players[player_id]
 		
-		if player.cpu:
+		if player.cpu or not TheUnlocker.unlocked_paths:
 			continue
 			
-		var cursor = cursor_scene.instance()
+		var cursor: MapCursor = cursor_scene.instance()
 		cursor.species = player.species
 		cursor.player = player
 		cursor.player_i = i
@@ -147,13 +147,9 @@ func initialize(players, sports, settings_):
 		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
-		
-		
-		
 		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
-	num_players = len(players)
 	
 	
 func _on_cursor_try_move(cursor, direction):
@@ -217,13 +213,12 @@ func get_selection():
 	
 func _on_cell_pressed(cursor, cell):
 	# update data
-	print_debug(cell)
+	
 	if cell.is_in_group("sports"):
 		var panel = panels.get_node(cursor.player.id)
 		panel.map_element = cell.planet
 		panel.chosen = true
 		if not cell in selected_sports:
-			print_debug(cell)
 			selected_sports.append(cell)
 		players_ready += 1
 		
@@ -246,15 +241,12 @@ func _on_Start_pressed(cursor):
 		playing += " "+ str(sport.planet.id)
 		# Can we unlock?
 		var locked_games = sport.planet.locked_games()
-		print(locked_games)
 		if len(locked_games) == 0:
 			var p = (sport as MapLocation).get_element_to_unlock()
 			if p:
 				unlock_via_path(p, sport)
 				yield(self, "unlock_complete")
-			
 		
-	print("playing: "+ playing)
 	yield(get_tree().create_timer(1), "timeout")
 	emit_signal('done')
 		

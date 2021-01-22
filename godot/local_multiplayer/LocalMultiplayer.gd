@@ -118,7 +118,6 @@ func combat(selected_players: Array, fight_mode : String):
 			return
 		
 	
-	# if fight_mode == 'solo':
 	add_cpu(num_CPUs)
 	session_scores.selected_sports = all_sports
 	
@@ -148,8 +147,6 @@ func combat(selected_players: Array, fight_mode : String):
 func next_level(demo=false):
 	if not map.is_inside_tree():
 		add_child(map)
-	map.check()
-	yield(map, "check_completed")
 	var this_game = choose_next_level()
 	map.choose_level(this_game)
 	yield(map, "chose_level")

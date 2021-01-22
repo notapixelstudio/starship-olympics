@@ -1,3 +1,4 @@
+tool
 extends MapLocation
 
 class_name MapPlanet

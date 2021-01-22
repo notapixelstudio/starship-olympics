@@ -36,7 +36,6 @@ func _ready():
 			break
 	
 	get_status()
-	print("THIS " + name + " CONNECTS "+ from.planet.id + " AND "+ to.planet.id +". Status: " + status)
 
 func get_status():
 	if TheUnlocker.get_status_path(self.name):
