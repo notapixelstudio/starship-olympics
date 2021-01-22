@@ -537,7 +537,7 @@ func ship_just_died(ship, killer, for_good):
 		return
 	
 	var respawn_timeout = 1.5
-	if crown_mode.enabled:
+	if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
 		if len(ECM.entities_with('Royal')) > 0:
 			if ECM.E(ship).has('Royal'):
 				respawn_timeout = 2.25
