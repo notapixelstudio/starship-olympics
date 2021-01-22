@@ -27,7 +27,7 @@ var owner_ship : Ship
 var prisoner setget set_prisoner
 
 const colors = {
-	'deadly': Color(0.8, 0, 0.85),
+	'deadly': Color(0.9, 0, 0.35),
 	'solid': Color(0.7, 0.7, 0.7),
 	'ice': Color(0,0.4,1)
 }

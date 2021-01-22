@@ -221,14 +221,14 @@ func refresh():
 	# wall types
 	var color
 	if type == TYPE.hostile:
-		color = Color(1.2, 0, 0.85)
+		color = Color(1.2, 0, 0.35)
 		$Polygon2D.modulate = color
 		$line.modulate = color
 		$lineBelow.modulate = color
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 		$line.texture = spikes_texture
-		$line.width = 100
+		$line.width = 150
 		$lineBelow.visible = false
 	elif type == TYPE.solid:
 		$Polygon2D.modulate = solid_line_color

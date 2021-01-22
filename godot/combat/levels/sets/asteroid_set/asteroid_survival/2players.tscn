@@ -102,6 +102,12 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 clock = true
 
+[node name="FloodWater" parent="Battlefield/Background" index="5"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 order = 5
 last_order = 1
