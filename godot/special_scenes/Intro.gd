@@ -25,6 +25,6 @@ func go_ahead():
 	
 	
 func _input(event):
-	if not event is InputEventMouse and not event is InputEventPanGesture and not event.pressed:
+	if not event is InputEventJoypadMotion and not event is InputEventMouse and not event is InputEventPanGesture and not event.pressed:
 		go_ahead()
 		set_process_input(false)
