@@ -16,12 +16,14 @@ modulate = Color( 0, 0, 0, 0.235294 )
 position = Vector2( -1.39876e-06, 32 )
 texture = ExtResource( 2 )
 texture_offset = Vector2( 100, 100 )
+texture_scale = Vector2( 0.99, 0.99 )
 polygon = PoolVector2Array( -300, -100, 300, -100, 300, 0, -300, 0 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 modulate = Color( 1.1, 1.1, 1.1, 1 )
 texture = ExtResource( 2 )
 texture_offset = Vector2( 100, 100 )
+texture_scale = Vector2( 0.99, 0.99 )
 polygon = PoolVector2Array( -300, -100, 300, -100, 300, 0, -300, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

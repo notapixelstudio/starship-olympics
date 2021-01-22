@@ -21,4 +21,3 @@ func set_width(v):
 	
 func _ready():
 	$ShadowPolygon2D.position = Vector2(0,32).rotated(-global_rotation)
-	
