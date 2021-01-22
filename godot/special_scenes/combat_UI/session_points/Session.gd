@@ -13,7 +13,6 @@ func initialize(winners: Array):
 	----------
 	winners : Array of PlayerStats
 	
-		
 	"""
 	var the_match = global.the_match
 	var sport = the_match.sport

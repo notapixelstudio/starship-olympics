@@ -41,10 +41,10 @@ func unlock_path(path_id: String) -> void:
 	persistance.save_game()
 	
 func get_status_path(path_id)->bool:
-	return unlocked_paths.get(path_id, false)
+	return unlocked_paths.get(path_id, "invisible")
 	
 func get_status_location(loc_id)-> bool:
-	return unlocked_locations.get(loc_id, false)
+	return unlocked_locations.get(loc_id, "invisible")
 	
 var unlocked_locations = {
 	
@@ -55,46 +55,46 @@ func unlock_location(loc_id: String) -> void:
 	persistance.save_game()
 	
 var unlocked_sets = {
-	"drones": false,
-	"trinkets": false,
-	"snake": false,
-	"asteroids": false,
-	"labs": false,
+	"drones": "invisible",
+	"trinkets": "invisible",
+	"snake": "invisible",
+	"asteroids": "invisible",
+	"labs": "invisible",
 	"core": true,
-	"death": false,
-	"sports": false,
-	"beach": false,
+	"death": "invisible",
+	"sports": "invisible",
+	"beach": "invisible",
 }
 
 var unlocked_games = {
-	"minefield": false,
-	"king": false,
-	"flowsnake": false,
-	"diamond": false,
-	"hive_fill": false,
-	"goal_portal": false,
-	"deathmatch": false,
-	"diamond_mining": false,
-	"diamond_snake": false,
-	"diamond_fish": false,
-	"deathmatch_snake": false,
-	"slam": false,
-	"brick_melee": false,
-	"asteroid_conquest": false,
-	"star_fish": false,
-	"brick_break": false,
-	"pong": false,
-	"deathmatch_ball": false,
-	"race": false,
-	"asteroid_deathmatch": false,
-	"deathmatch_limit": false,
-	"crown": false,
-	"race_under": false,
-	"star_mining": false,
-	"laser": false,
-	"alchemical_bonding": false,
-	"slam_snake": false,
-	"asteroid_survival": false
+	"minefield": "invisible",
+	"king": "invisible",
+	"flowsnake": "invisible",
+	"diamond": "invisible",
+	"hive_fill": "invisible",
+	"goal_portal": "invisible",
+	"deathmatch": "invisible",
+	"diamond_mining": "invisible",
+	"diamond_snake": "invisible",
+	"diamond_fish": "invisible",
+	"deathmatch_snake": "invisible",
+	"slam": "invisible",
+	"brick_melee": "invisible",
+	"asteroid_conquest": "invisible",
+	"star_fish": "invisible",
+	"brick_break": "invisible",
+	"pong": "invisible",
+	"deathmatch_ball": "invisible",
+	"race": "invisible",
+	"asteroid_deathmatch": "invisible",
+	"deathmatch_limit": "invisible",
+	"crown": "invisible",
+	"race_under": "invisible",
+	"star_mining": "invisible",
+	"laser": "invisible",
+	"alchemical_bonding": "invisible",
+	"slam_snake": "invisible",
+	"asteroid_survival": "invisible"
 }
 
 func get_status_game(game_id)-> bool:

@@ -5,7 +5,6 @@ class_name MapPlanet
 
 export var planet : Resource setget set_planet
 onready var sprite = $Sprite
-var status : String = "locked" setget set_status
 export var active : bool = false setget set_active
 
 var not_available = false setget set_availability
