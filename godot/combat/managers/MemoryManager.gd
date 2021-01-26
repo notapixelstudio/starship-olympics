@@ -21,10 +21,24 @@ const ADVANCED_FIGURES = [
 	'animals/b10'
 ]
 var figures = []
-var current_cards = {}
+
+"""
+static func _sort_by_last_taken_t(a, b):
+	if a.last_taken_t > b.last_taken_t:
+		return true
+	return false
+	
+func get_all_cards_sorted():
+	var cards = get_all_cards()
+	cards.sort_custom(self, '_sort_by_last_taken_t')
+	return cards
+"""
+
+func get_all_cards():
+	return get_tree().get_nodes_in_group('card')
 
 func _ready():
-	var cards = get_tree().get_nodes_in_group('card')
+	var cards = get_all_cards()
 	assert(len(cards) == 32)
 	for card in cards:
 		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
@@ -66,23 +80,32 @@ func _on_card_revealing_while_undetermined(card):
 	card.set_content(next_figure())
 	
 func _on_card_taken(card, player):
+	var previous_card = null
+	for c in get_all_cards():
+		# two cards can be selected at a given time, the current one and a previous one
+		if c != card and c.get_player() == player:
+			assert(previous_card == null)
+			previous_card = c
+			
+	if previous_card == null:
+		return
+		
+	# no more than two cards can be selected at a given time for each player
+	previous_card.set_player(null)
+	card.set_player(null)
+	
 	# wait a bit after animations
 	yield(card, 'revealed')
 	yield(get_tree().create_timer(1), "timeout")
 	
-	if current_cards.has(player):
-		# check if a matching pair was made
-		if card.equals(current_cards[player]):
-			global.the_match.add_score(player.id, 2)
-			global.arena.show_msg(player.species, 1, current_cards[player].position)
-			global.arena.show_msg(player.species, 1, card.position)
-			current_cards[player].queue_free()
-			card.queue_free()
-		else:
-			# flip cards back
-			current_cards[player].hide()
-			card.hide()
-		# in any case, remove the cards from the currently selected ones
-		current_cards.erase(player)
+	if card.equals(previous_card):
+		global.the_match.add_score(player.id, 2)
+		global.arena.show_msg(player.species, 1, previous_card.position)
+		global.arena.show_msg(player.species, 1, card.position)
+		previous_card.queue_free()
+		card.queue_free()
 	else:
-		current_cards[player] = card
+		# flip cards back
+		previous_card.hide()
+		card.hide()
+		

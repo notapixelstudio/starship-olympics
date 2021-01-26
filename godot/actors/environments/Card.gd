@@ -11,22 +11,23 @@ signal revealing_while_undetermined
 signal taken
 signal revealed
 
+var locked = false
+
 var player setget set_player, get_player
 
 func set_player(v):
-	if player != v and v != null:
-		emit_signal('taken', self, v)
-	
+	var previous_player = player
 	player = v
-	if player:
+	if player != null:
 		border.modulate = player.species.color
 		monogram.text = player.species.get_monogram()
 		monogram.modulate = player.species.color
 		border.visible = true
 		monogram.visible = true
-	else:
-		border.visible = false
-		monogram.visible = false
+		
+	# this should be emitted here, after the value is updated correctly
+	if player != previous_player and player != null:
+		emit_signal('taken', self, v)
 	
 func get_player():
 	return player
@@ -43,6 +44,10 @@ func refresh_texture():
 		$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
 
 func _on_tap(author):
+	if locked:
+		return
+		
+	locked = true
 	if author is Ship:
 		set_player(author.get_player())
 	reveal()
@@ -54,10 +59,17 @@ func reveal():
 	yield(anim, "animation_finished")
 	emit_signal("revealed")
 	anim.play("Float")
+	yield(get_tree().create_timer(0.3), "timeout") # wait a bit to avoid retaking a card
+	locked = false
 
 func hide():
 	self.set_player(null)
 	anim.play_backwards("Reveal")
+	yield(anim, "animation_finished")
+	
+	# selection feedback lingers on
+	border.visible = false
+	monogram.visible = false
 
 func equals(other_card):
 	return content == other_card.content
