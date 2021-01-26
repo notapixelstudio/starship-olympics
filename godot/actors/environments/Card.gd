@@ -3,9 +3,9 @@ extends Area2D
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 
-export var content = 'animals/a00' setget set_content
+export (String) var content = null setget set_content
 
-signal revealing
+signal revealing_while_undetermined
 
 func set_content(v):
 	content = v
@@ -15,10 +15,12 @@ func _ready():
 	refresh_texture()
 	
 func refresh_texture():
-	$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
+	if content:
+		$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
 
 func _on_tap(author):
-	emit_signal('revealing', self)
+	if content == null:
+		emit_signal('revealing_while_undetermined', self)
 	anim.play("Reveal")
 	yield(anim, "animation_finished")
 	anim.play("Float")

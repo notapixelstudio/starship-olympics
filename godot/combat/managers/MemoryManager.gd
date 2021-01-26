@@ -26,7 +26,7 @@ func _ready():
 	var cards = get_tree().get_nodes_in_group('card')
 	assert(len(cards) == 32)
 	for card in cards:
-		card.connect('revealing', self, '_on_card_revealing')
+		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
 	
 	# ---
 	# assign figures to cards
@@ -56,7 +56,8 @@ func _ready():
 	
 	assert(len(figures) == len(cards))
 	
-func _on_card_revealing(card):
+func _on_card_revealing_while_undetermined(card):
+	# card content is determined as they are flipped
 	card.set_content(next_figure())
 	
 func next_figure():
