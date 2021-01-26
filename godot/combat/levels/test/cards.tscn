@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=5]
@@ -11,10 +11,47 @@
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
+[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=12]
+[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=13]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+id = "memory"
+is_mutator = false
+name = "Memory Ark"
+icon = ExtResource( 13 )
+logo = ExtResource( 12 )
+description = "fill more cells than opponents"
+tagline_pro = "Don't forget your opponents would do the same"
+tagline_cons = "You could get killed in the meantime..."
+max_timeout = 300
+max_score = 32
+cumulative = false
+starting_lives = -1
+death = false
+last_man = false
+crown = false
+hive = true
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 2
+starting_ammo = -1
+reload_time = 3.0
+rules = [  ]
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
-game_mode = ExtResource( 2 )
+game_mode = SubResource( 1 )
 style = ExtResource( 7 )
 
 [node name="MemoryManager" type="Node" parent="Managers" index="0"]

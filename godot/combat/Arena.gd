@@ -126,6 +126,8 @@ func setup_level(mode : Resource):
 			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
 	
 func _ready():
+	global.arena = self
+	
 	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo

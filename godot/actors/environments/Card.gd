@@ -8,10 +8,15 @@ onready var monogram = $Ground/Front/Wrapper/Monogram
 export (String) var content = null setget set_content
 
 signal revealing_while_undetermined
+signal taken
+signal revealed
 
 var player setget set_player, get_player
 
 func set_player(v):
+	if player != v and v != null:
+		emit_signal('taken', self, v)
+	
 	player = v
 	if player:
 		border.modulate = player.species.color
@@ -40,12 +45,22 @@ func refresh_texture():
 func _on_tap(author):
 	if author is Ship:
 		set_player(author.get_player())
-	
+	reveal()
+
+func reveal():
 	if content == null:
 		emit_signal('revealing_while_undetermined', self)
 	anim.play("Reveal")
 	yield(anim, "animation_finished")
+	emit_signal("revealed")
 	anim.play("Float")
+
+func hide():
+	self.set_player(null)
+	anim.play_backwards("Reveal")
+
+func equals(other_card):
+	return content == other_card.content
 	
 func _on_Card_body_entered(body):
 	if body is Ship:

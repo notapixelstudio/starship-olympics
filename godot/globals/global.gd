@@ -534,6 +534,7 @@ func _set_glow(value):
 # GAMEPLAY
 var session : TheSession
 var the_match : TheMatch
+var arena
 
 func new_match():
 	the_match = TheMatch.new()

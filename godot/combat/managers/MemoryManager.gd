@@ -21,12 +21,14 @@ const ADVANCED_FIGURES = [
 	'animals/b10'
 ]
 var figures = []
+var current_cards = {}
 
 func _ready():
 	var cards = get_tree().get_nodes_in_group('card')
 	assert(len(cards) == 32)
 	for card in cards:
 		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
+		card.connect('taken', self, '_on_card_taken')
 	
 	# ---
 	# assign figures to cards
@@ -56,10 +58,31 @@ func _ready():
 	
 	assert(len(figures) == len(cards))
 	
+func next_figure():
+	return figures.pop_front()
+	
 func _on_card_revealing_while_undetermined(card):
 	# card content is determined as they are flipped
 	card.set_content(next_figure())
 	
-func next_figure():
-	return figures.pop_front()
+func _on_card_taken(card, player):
+	# wait a bit after animations
+	yield(card, 'revealed')
+	yield(get_tree().create_timer(1), "timeout")
 	
+	if current_cards.has(player):
+		# check if a matching pair was made
+		if card.equals(current_cards[player]):
+			global.the_match.add_score(player.id, 2)
+			global.arena.show_msg(player.species, 1, current_cards[player].position)
+			global.arena.show_msg(player.species, 1, card.position)
+			current_cards[player].queue_free()
+			card.queue_free()
+		else:
+			# flip cards back
+			current_cards[player].hide()
+			card.hide()
+		# in any case, remove the cards from the currently selected ones
+		current_cards.erase(player)
+	else:
+		current_cards[player] = card
