@@ -8,6 +8,9 @@ onready var timer = $Timer
 
 export (String) var content = null setget set_content
 
+export var auto_flip_back = false
+export var take_ownership = false
+
 signal revealing_while_undetermined
 signal taken
 signal revealed
@@ -58,7 +61,7 @@ func _on_tap(author):
 		return
 		
 	flipping = true
-	if author is Ship:
+	if take_ownership and author is Ship:
 		set_player(author.get_player())
 	reveal()
 
@@ -72,8 +75,9 @@ func reveal():
 	emit_signal("revealed")
 	anim.play("Float")
 	
-	# reflip after 4 seconds
-	timer.start(4)
+	if auto_flip_back:
+		# reflip after 4 seconds
+		timer.start(4)
 	
 func deselect():
 	selected = false
