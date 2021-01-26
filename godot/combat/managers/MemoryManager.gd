@@ -22,7 +22,6 @@ const ADVANCED_FIGURES = [
 ]
 var figures = []
 
-"""
 static func _sort_by_last_taken_t(a, b):
 	if a.last_taken_t > b.last_taken_t:
 		return true
@@ -32,7 +31,6 @@ func get_all_cards_sorted():
 	var cards = get_all_cards()
 	cards.sort_custom(self, '_sort_by_last_taken_t')
 	return cards
-"""
 
 func get_all_cards():
 	return get_tree().get_nodes_in_group('card')
@@ -84,15 +82,19 @@ func _on_card_taken(card, player):
 	for c in get_all_cards():
 		# two cards can be selected at a given time, the current one and a previous one
 		if c != card and c.get_player() == player:
-			assert(previous_card == null)
-			previous_card = c
+			if c.selected:
+				assert(previous_card == null)
+				previous_card = c
+			else:
+				# blur all cards that are from previous selections
+				c.blur()
 			
 	if previous_card == null:
 		return
-		
+	
 	# no more than two cards can be selected at a given time for each player
-	previous_card.set_player(null)
-	card.set_player(null)
+	previous_card.deselect()
+	card.deselect()
 	
 	# wait a bit after animations
 	yield(card, 'revealed')

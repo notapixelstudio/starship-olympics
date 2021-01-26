@@ -12,6 +12,9 @@ signal revealing_while_undetermined
 signal taken
 signal revealed
 
+var last_taken_t : float
+
+var selected = false
 var flipping = false
 var face_down = true
 
@@ -26,9 +29,13 @@ func set_player(v):
 		monogram.modulate = player.species.color
 		border.visible = true
 		monogram.visible = true
-		
+		selected = true
+	else:
+		blur()
+	
 	# this should be emitted here, after the value is updated correctly
 	if player != previous_player and player != null:
+		last_taken_t = OS.get_ticks_msec()
 		emit_signal('taken', self, v)
 	
 func get_player():
@@ -65,10 +72,16 @@ func reveal():
 	emit_signal("revealed")
 	anim.play("Float")
 	
-	# reflip after three seconds
-	timer.start(3)
+	# reflip after 4 seconds
+	timer.start(4)
 	
-
+func deselect():
+	selected = false
+	
+func blur():
+	border.visible = false
+	monogram.visible = false
+	
 func hide():
 	timer.stop()
 	if face_down:
@@ -77,11 +90,7 @@ func hide():
 	flipping = true
 	face_down = true
 	self.set_player(null)
-	
-	# selection feedback lingers on
-	border.visible = false
-	monogram.visible = false
-	
+	selected = false
 	anim.play_backwards("Reveal")
 	yield(anim, "animation_finished")
 	flipping = false
