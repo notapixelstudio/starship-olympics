@@ -225,7 +225,7 @@ func recolor():
 	$NoRotate/CountdownWrapper.scale = Vector2(order, order)
 	
 	if species:
-		$NoRotate/Monogram/Label.text = species.species_name.left(1).to_upper()
+		$NoRotate/Monogram/Label.text = species.get_monogram()
 		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
 		
 	if breakable:

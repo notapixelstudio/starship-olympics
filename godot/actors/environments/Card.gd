@@ -2,10 +2,29 @@ extends Area2D
 
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
+onready var border = $Ground/Front/Border
+onready var monogram = $Ground/Front/Wrapper/Monogram
 
 export (String) var content = null setget set_content
 
 signal revealing_while_undetermined
+
+var player setget set_player, get_player
+
+func set_player(v):
+	player = v
+	if player:
+		border.modulate = player.species.color
+		monogram.text = player.species.get_monogram()
+		monogram.modulate = player.species.color
+		border.visible = true
+		monogram.visible = true
+	else:
+		border.visible = false
+		monogram.visible = false
+	
+func get_player():
+	return player
 
 func set_content(v):
 	content = v
@@ -19,6 +38,9 @@ func refresh_texture():
 		$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
 
 func _on_tap(author):
+	if author is Ship:
+		set_player(author.get_player())
+	
 	if content == null:
 		emit_signal('revealing_while_undetermined', self)
 	anim.play("Reveal")

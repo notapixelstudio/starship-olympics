@@ -17,3 +17,7 @@ export (Texture) var character_beaten
 # color of the species
 export var color : Color
 export var color_2 : Color
+
+func get_monogram():
+	return species_name.left(1).to_upper()
+	
