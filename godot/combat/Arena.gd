@@ -415,6 +415,9 @@ func update_grid():
 	grid.set_t(global.the_match.time_left)
 	
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
+		
 	the_match.update(delta)
 	update_grid()
 	slomo()
