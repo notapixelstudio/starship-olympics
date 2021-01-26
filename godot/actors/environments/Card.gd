@@ -2,16 +2,23 @@ extends Area2D
 
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
-onready var figure = $Ground/Front/Figure
 
+export var content = 'animals/a00' setget set_content
+
+signal revealing
+
+func set_content(v):
+	content = v
+	refresh_texture()
+	
 func _ready():
-	var special = randf() > 0.7
-	if special:
-		figure.texture = load('res://assets/sprites/animals/b0' + str(randi() % 10) + '.png')
-	else:
-		figure.texture = load('res://assets/sprites/animals/a0' + str(randi() % 5) + '.png')
+	refresh_texture()
+	
+func refresh_texture():
+	$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
 
 func _on_tap(author):
+	emit_signal('revealing', self)
 	anim.play("Reveal")
 	yield(anim, "animation_finished")
 	anim.play("Float")
