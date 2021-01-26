@@ -13,14 +13,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 200 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 86
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Float"
+[sub_resource type="Animation" id=3]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -36,8 +35,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -64 ), Vector2( 0, -32 ), Vector2( 0, -64 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Reveal"
+[sub_resource type="Animation" id=4]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -184,7 +182,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 align = 1
 valign = 1
 __meta__ = {
@@ -204,8 +202,12 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Float = SubResource( 2 )
-anims/Reveal = SubResource( 3 )
+anims/Float = SubResource( 3 )
+anims/Reveal = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="body_entered" from="." to="." method="_on_Card_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Card_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

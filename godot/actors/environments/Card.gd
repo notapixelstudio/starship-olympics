@@ -4,6 +4,7 @@ onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
 onready var monogram = $Ground/Front/Wrapper/Monogram
+onready var timer = $Timer
 
 export (String) var content = null setget set_content
 
@@ -11,7 +12,8 @@ signal revealing_while_undetermined
 signal taken
 signal revealed
 
-var locked = false
+var flipping = false
+var face_down = true
 
 var player setget set_player, get_player
 
@@ -44,38 +46,51 @@ func refresh_texture():
 		$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
 
 func _on_tap(author):
-	if locked:
+	# no retaking
+	if not face_down or flipping:
 		return
 		
-	locked = true
+	flipping = true
 	if author is Ship:
 		set_player(author.get_player())
 	reveal()
 
 func reveal():
+	face_down = false
 	if content == null:
 		emit_signal('revealing_while_undetermined', self)
 	anim.play("Reveal")
 	yield(anim, "animation_finished")
+	flipping = false
 	emit_signal("revealed")
 	anim.play("Float")
-	yield(get_tree().create_timer(0.3), "timeout") # wait a bit to avoid retaking a card
-	locked = false
+	
+	# reflip after three seconds
+	timer.start(3)
+	
 
 func hide():
+	timer.stop()
+	if face_down:
+		return
+		
+	flipping = true
+	face_down = true
 	self.set_player(null)
-	anim.play_backwards("Reveal")
-	yield(anim, "animation_finished")
 	
 	# selection feedback lingers on
 	border.visible = false
 	monogram.visible = false
+	
+	anim.play_backwards("Reveal")
+	yield(anim, "animation_finished")
+	flipping = false
 
 func equals(other_card):
 	return content == other_card.content
 	
 func _on_Card_body_entered(body):
-	if body is Ship:
+	if face_down and body is Ship:
 		outline.visible = true
 		outline.modulate = body.species.color
 
@@ -83,3 +98,5 @@ func _on_Card_body_exited(body):
 	if body is Ship:
 		outline.visible = false
 		
+func _on_Timer_timeout():
+	hide()
