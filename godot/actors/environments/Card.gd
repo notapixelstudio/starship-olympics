@@ -15,8 +15,6 @@ signal revealing_while_undetermined
 signal taken
 signal revealed
 
-var last_taken_t : float
-
 var selected = false
 var flipping = false
 var face_down = true
@@ -26,19 +24,20 @@ var player setget set_player, get_player
 func set_player(v):
 	var previous_player = player
 	player = v
-	if player != null:
-		border.modulate = player.species.color
-		monogram.text = player.species.get_monogram()
-		monogram.modulate = player.species.color
-		border.visible = true
-		monogram.visible = true
-		selected = true
-	else:
-		blur()
+	
+	if take_ownership:
+		if player != null:
+			border.modulate = player.species.color
+			monogram.text = player.species.get_monogram()
+			monogram.modulate = player.species.color
+			border.visible = true
+			monogram.visible = true
+			selected = true
+		else:
+			blur()
 	
 	# this should be emitted here, after the value is updated correctly
 	if player != previous_player and player != null:
-		last_taken_t = OS.get_ticks_msec()
 		emit_signal('taken', self, v)
 	
 func get_player():
@@ -54,6 +53,8 @@ func _ready():
 func refresh_texture():
 	if content:
 		$Ground/Front/Figure.texture = load('res://assets/sprites/' + content + '.png')
+	else:
+		$Ground/Front/Figure.texture = null
 
 func _on_tap(author):
 	# no retaking
@@ -61,7 +62,7 @@ func _on_tap(author):
 		return
 		
 	flipping = true
-	if take_ownership and author is Ship:
+	if author is Ship:
 		set_player(author.get_player())
 	reveal()
 

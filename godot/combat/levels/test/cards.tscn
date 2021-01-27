@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=12]
 [ext_resource path="res://combat/styles/purple.tres" type="Resource" id=13]
+[ext_resource path="res://combat/levels/test/BlackDManager.gd" type="Script" id=14]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -55,7 +56,10 @@ size_multiplier = 2.5
 game_mode = SubResource( 1 )
 style = ExtResource( 7 )
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="BlackDManager" type="Node" parent="Managers" index="0"]
+script = ExtResource( 14 )
+
+[node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]

@@ -22,16 +22,6 @@ const ADVANCED_FIGURES = [
 ]
 var figures = []
 
-static func _sort_by_last_taken_t(a, b):
-	if a.last_taken_t > b.last_taken_t:
-		return true
-	return false
-	
-func get_all_cards_sorted():
-	var cards = get_all_cards()
-	cards.sort_custom(self, '_sort_by_last_taken_t')
-	return cards
-
 func get_all_cards():
 	return get_tree().get_nodes_in_group('card')
 
@@ -50,7 +40,6 @@ func _ready():
 	var basic_figures = BASIC_FIGURES.duplicate() + BASIC_FIGURES.duplicate() + BASIC_FIGURES.duplicate() + BASIC_FIGURES.duplicate()
 	basic_figures.shuffle()
 	assert(len(basic_figures) == 20)
-	
 	
 	# advanced figures appear in pairs, and sometimes do not appear at all (12 cards in total, so 6 of them out of 11 are shown in a single match)
 	var selected_advanced_figures = ADVANCED_FIGURES.duplicate()
