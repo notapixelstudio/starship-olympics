@@ -5,7 +5,7 @@ onready var leaderboard = $LeaderBoard
 onready var buttons = $Buttons
 onready var continue_button = $Buttons/Continue
 
-signal rematch
+signal pressed_continue
 signal back_to_menu
 signal show_arena
 signal hide_arena
@@ -35,9 +35,8 @@ func initialize(winners: Array):
 	buttons.get_child(int(session_over)).grab_focus()
 	
 	
-
-func _on_Rematch_pressed():
-	emit_signal("rematch")
+func _on_Continue_pressed():
+	emit_signal("pressed_continue")
 
 func _on_Quit_pressed():
 	global.end_game()

@@ -1,5 +1,7 @@
 extends Control
 
+class_name Map
+
 const WIDTH = 200
 const HEIGHT = 100
 const CELLSIZE = 200
@@ -76,7 +78,7 @@ func _ready():
 		
 	for x in range(WIDTH):
 		matrix.append([])
-		for y in range(HEIGHT):
+		for _y in range(HEIGHT):
 			matrix[x].append(null)
 			
 	for p in get_tree().get_nodes_in_group('map_point'):
@@ -401,3 +403,11 @@ func create_graph():
 		loc.add_path(path)
 		graph.add_path(path)
 	print(graph)
+
+func unlock_mode():
+	"""
+	This will find if and what to unlock and will make the animation or give input accordingly
+	"""
+	if not TheUnlocker.unlocked_paths:
+		first_time_camera.current = false
+		camera.enabled = true

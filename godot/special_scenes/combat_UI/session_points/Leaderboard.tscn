@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://special_scenes/combat_UI/session_points/Session.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Animation" id=1]
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[node name="Session" type="MarginContainer"]
+[node name="Leaderboard" type="MarginContainer"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0

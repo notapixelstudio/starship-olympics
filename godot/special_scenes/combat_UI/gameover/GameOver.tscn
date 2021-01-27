@@ -2,7 +2,7 @@
 
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
-[ext_resource path="res://special_scenes/combat_UI/session_points/Session.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -93,7 +93,7 @@ margin_top = -184.124
 margin_right = 238.332
 margin_bottom = 250.876
 
-[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Rematch_pressed"]
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
