@@ -4,7 +4,7 @@ const DIAMOND = 'environments/diamond'
 const BIG_DIAMOND = 'environments/diamond_big'
 const BLACK_DIAMOND = 'environments/diamond_black'
 
-var luck = 0.99999999
+var figures = []
 
 func get_all_cards():
 	return get_tree().get_nodes_in_group('card')
@@ -16,18 +16,15 @@ func _ready():
 		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
 		card.connect('taken', self, '_on_card_taken')
 	
-func next_figure():
-	if randf() > luck:
-		return BLACK_DIAMOND
-	luck *= luck # the chance of getting a black diamond increases for each new card
-	
-	if randf() > luck*0.8:
-		return null # there's also an increasing chance of getting an empty card
-	
-	if randf() < 0.1:
-		return BIG_DIAMOND
+	# figures
+	for i in cards.size():
+		figures.append(DIAMOND if randf() < 0.9 else BIG_DIAMOND if randf() < 0.6 else null)
 		
-	return DIAMOND
+	figures.shuffle()
+	figures[2 + randi() % 30] = BLACK_DIAMOND # skip first two flips
+	
+func next_figure():
+	return figures.pop_front()
 	
 func _on_card_revealing_while_undetermined(card):
 	# card content is determined as they are flipped
