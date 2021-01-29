@@ -55,8 +55,10 @@ func _ready():
 		for dir in dirs:
 			if displacement.has(dir) and displacement[dir].get_content() != MINE:
 				displacement[dir].set_content(BIG_DIAMOND)
-	
+				
 func intro():
+	global.the_match.connect('game_over', self, '_on_game_over')
+	
 	for card in get_all_cards():
 		card.reveal()
 		
@@ -92,3 +94,14 @@ func _on_card_taken(card, player, ship):
 	global.the_match.add_score(player.id, score)
 	global.arena.show_msg(player.species, score, card.position)
 	card.queue_free()
+
+# reveal cards at the end of the match
+func _on_game_over(_winners):
+	for card in get_all_cards():
+		card.set_pause_mode(PAUSE_MODE_PROCESS)
+		
+	yield(get_tree().create_timer(1), "timeout")
+	
+	for card in get_all_cards():
+		card.reveal()
+		
