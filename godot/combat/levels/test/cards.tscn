@@ -13,7 +13,7 @@
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=12]
 [ext_resource path="res://combat/styles/purple.tres" type="Resource" id=13]
-[ext_resource path="res://combat/managers/BlackDManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/managers/MinefieldManager.gd" type="Script" id=14]
 [ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Resource" id=1]
@@ -57,10 +57,10 @@ size_multiplier = 2.5
 game_mode = SubResource( 1 )
 style = ExtResource( 7 )
 
-[node name="BlackDManager" type="Node" parent="Managers" index="0"]
+[node name="MinefieldManager" type="Node" parent="Managers" index="0"]
 script = ExtResource( 14 )
 
-[node name="Intro" parent="Managers/BlackDManager" index="0" instance=ExtResource( 15 )]
+[node name="Intro" parent="Managers/MinefieldManager" index="0" instance=ExtResource( 15 )]
 
 [node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true

@@ -9,7 +9,7 @@ onready var timer = $Timer
 
 export (String) var content = null setget set_content, get_content
 
-export var auto_flip_back = false
+export var auto_flip_back = false setget set_auto_flip_back
 export var take_ownership = false
 
 signal revealing_while_undetermined
@@ -123,3 +123,9 @@ func _on_Card_body_exited(body):
 		
 func _on_Timer_timeout():
 	hide()
+
+func set_auto_flip_back(v):
+	auto_flip_back = v
+	if not auto_flip_back:
+		timer.stop()
+		
