@@ -66,7 +66,7 @@ func _on_card_revealing_while_undetermined(card):
 	# card content is determined as they are flipped
 	card.set_content(next_figure())
 	
-func _on_card_taken(card, player):
+func _on_card_taken(card, player, ship):
 	var previous_card = null
 	for c in get_all_cards():
 		# two cards can be selected at a given time, the current one and a previous one
@@ -99,4 +99,18 @@ func _on_card_taken(card, player):
 		# flip cards back
 		previous_card.hide()
 		card.hide()
+		
+func start():
+	global.the_match.connect('game_over', self, '_on_game_over')
+	
+# reveal cards at the end of the match
+func _on_game_over(_winners):
+	for card in get_all_cards():
+		card.set_auto_flip_back(false)
+		card.set_pause_mode(PAUSE_MODE_PROCESS)
+		
+	yield(get_tree().create_timer(1), "timeout")
+	
+	for card in get_all_cards():
+		card.reveal()
 		

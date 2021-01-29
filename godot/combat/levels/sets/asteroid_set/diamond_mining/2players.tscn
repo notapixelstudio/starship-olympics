@@ -27,7 +27,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 5400, 3800, 5400 ]
+"values": [ 5600, 4200, 5600 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:height")
@@ -39,7 +39,19 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 10, 20 ),
 "transitions": PoolRealArray( -2, -2, 1 ),
 "update": 0,
-"values": [ 3000, 2600, 3000 ]
+"values": [ 3200, 2400, 3200 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:bevel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 10, 20 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 450, 250, 450 ]
 }
 
 [node name="Arena" instance=ExtResource( 4 )]
@@ -71,13 +83,13 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 3800
-height = 2600
-bevel = 450
-bevel_nw = 450
-bevel_ne = 450
-bevel_sw = 450
-bevel_se = 450
+width = 4200
+height = 2400
+bevel = 250
+bevel_nw = 250
+bevel_ne = 250
+bevel_sw = 250
+bevel_se = 250
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
@@ -94,8 +106,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5400
-height = 3000
+width = 5600
+height = 3200
 bevel = 450
 bevel_nw = 450
 bevel_ne = 450
@@ -117,8 +129,8 @@ __meta__ = {
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 5400
-height = 3000
+width = 5600
+height = 3200
 bevel = 450
 bevel_nw = 450
 bevel_ne = 450
@@ -145,16 +157,18 @@ deadly = false
 ice = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 1400, 10 )
+position = Vector2( 2100, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( -1400, 0 )
+position = Vector2( -2100, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 8 )
+cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 62.5, 62.5 )

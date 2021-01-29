@@ -3,12 +3,13 @@ extends Area2D
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
+onready var background = $Ground/Front/Background
 onready var monogram = $Ground/Front/Wrapper/Monogram
 onready var timer = $Timer
 
-export (String) var content = null setget set_content
+export (String) var content = null setget set_content, get_content
 
-export var auto_flip_back = false
+export var auto_flip_back = false setget set_auto_flip_back
 export var take_ownership = false
 
 signal revealing_while_undetermined
@@ -20,6 +21,7 @@ var flipping = false
 var face_down = true
 
 var player setget set_player, get_player
+var ship
 
 func set_player(v):
 	var previous_player = player
@@ -38,7 +40,7 @@ func set_player(v):
 	
 	# this should be emitted here, after the value is updated correctly
 	if player != previous_player and player != null:
-		emit_signal('taken', self, v)
+		emit_signal('taken', self, v, ship)
 	
 func get_player():
 	return player
@@ -46,6 +48,9 @@ func get_player():
 func set_content(v):
 	content = v
 	refresh_texture()
+	
+func get_content():
+	return content
 	
 func _ready():
 	refresh_texture()
@@ -63,6 +68,7 @@ func _on_tap(author):
 		
 	flipping = true
 	if author is Ship:
+		ship = author
 		set_player(author.get_player())
 	reveal()
 
@@ -103,6 +109,9 @@ func hide():
 func equals(other_card):
 	return content == other_card.content
 	
+func set_tint(color):
+	$Ground/Front/Background.modulate = color
+	
 func _on_Card_body_entered(body):
 	if face_down and body is Ship:
 		outline.visible = true
@@ -114,3 +123,9 @@ func _on_Card_body_exited(body):
 		
 func _on_Timer_timeout():
 	hide()
+
+func set_auto_flip_back(v):
+	auto_flip_back = v
+	if not auto_flip_back:
+		timer.stop()
+		
