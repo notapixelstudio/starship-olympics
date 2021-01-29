@@ -1,6 +1,8 @@
 tool
 extends Area2D
 
+export var max_time = 10
+
 var active setget set_active, get_active
 var player setget set_player, get_player
 
@@ -40,6 +42,11 @@ func get_player():
 func _ready():
 	refresh_polygon()
 	$GShape.connect('changed', self, 'refresh_polygon')
+	$Timer.wait_time = max_time
+	set_process(false)
+	
+func _process(delta):
+	$Background.material.set_shader_param('time_left', max_time - $Timer.time_left)
 	
 func refresh_polygon():
 	var polygon = $GShape.to_PoolVector2Array()
@@ -47,12 +54,28 @@ func refresh_polygon():
 	$Background.polygon = polygon
 	$Border.points = $GShape.to_closed_PoolVector2Array()
 	
+func take_control(p):
+	set_player(p)
+	set_process(true)
+	$Timer.start(max_time)
+	$Background.material.set_shader_param('max_time', max_time)
+	
+func lose_control():
+	set_player(null)
+	set_process(false)
+	set_active(false)
+	$Timer.stop()
+	$Timer.wait_time = max_time
+	emit_signal('lost', self)
+	
 func _on_Zone_body_entered(body):
 	if active and body is Ship:
-		set_player(body.get_player())
+		take_control(body.get_player())
 		
 func _on_Zone_body_exited(body):
 	if active and body is Ship and body.get_player() == player:
-		set_player(null)
-		set_active(false)
-		emit_signal('lost', self)
+		lose_control()
+	
+func _on_Timer_timeout():
+	lose_control()
+	
