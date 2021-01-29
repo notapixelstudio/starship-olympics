@@ -1,21 +1,23 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=1]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
+[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=3]
+[ext_resource path="res://combat/styles/dots.tres" type="Resource" id=4]
 
 [resource]
-script = ExtResource( 3 )
-id = "hive_fill"
+script = ExtResource( 1 )
+id = "memory"
 is_mutator = false
-name = "Hive Filling"
-icon = ExtResource( 1 )
+name = "Memory Ark"
+icon = ExtResource( 3 )
 logo = ExtResource( 2 )
-description = "fill more cells than opponents"
+arena_style = ExtResource( 4 )
+description = "tap cards, match pairs"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
-max_timeout = 300
-max_score = 500
+max_timeout = 60
+max_score = 32
 cumulative = false
 starting_lives = -1
 death = false

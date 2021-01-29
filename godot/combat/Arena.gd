@@ -126,6 +126,8 @@ func setup_level(mode : Resource):
 			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
 	
 func _ready():
+	global.arena = self
+	
 	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
@@ -359,6 +361,13 @@ func _ready():
 			Soundtrack.stop()
 	else:
 		hud.visible = false
+		
+	for node in traits.get_all_with('Intro'):
+		node.intro()
+		
+	for node in traits.get_all_with('Intro'):
+		yield(node, 'done')
+	
 	if not mockup:
 		
 		var j = 0
@@ -413,6 +422,9 @@ func update_grid():
 	grid.set_t(global.the_match.time_left)
 	
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
+		
 	the_match.update(delta)
 	update_grid()
 	slomo()

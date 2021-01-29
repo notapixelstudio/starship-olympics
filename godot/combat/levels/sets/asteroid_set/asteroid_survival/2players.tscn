@@ -47,9 +47,16 @@ centered = false
 hollow = true
 offset = 200
 type = 2
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
 script = ExtResource( 1 )
@@ -63,9 +70,16 @@ precision = 100.0
 hollow = true
 offset = 200
 type = 2
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
@@ -79,9 +93,16 @@ precision = 100.0
 hollow = true
 offset = 200
 type = 1
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
@@ -101,6 +122,12 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 clock = true
+
+[node name="FloodWater" parent="Battlefield/Background" index="5"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 order = 5

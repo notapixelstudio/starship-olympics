@@ -554,7 +554,11 @@ func update_weapon_indicator():
 	
 	
 func tap():
-	pass
+	# transmit tap to overlapped Tappables
+	for area in $NearArea.get_overlapping_areas():
+		if traits.has_trait(area, 'Tappable'):
+			area._on_tap(self)
+			
 	#switch_emersion_state()
 	
 var under = false

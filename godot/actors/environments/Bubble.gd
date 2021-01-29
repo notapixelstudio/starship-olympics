@@ -48,7 +48,7 @@ func set_species(v):
 	species = v
 	set_color(species.color)
 	$Particles2D2.modulate = species.color_2
-	$NoRotate/Label.text = species.species_name.left(1).to_upper()# + species.species_name.substr(1,1)
+	$NoRotate/Label.text = species.get_monogram()
 
 func set_color(c):
 	color = c
