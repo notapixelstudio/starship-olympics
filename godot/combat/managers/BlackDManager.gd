@@ -11,24 +11,37 @@ func get_all_cards():
 
 func _ready():
 	var cards = get_all_cards()
-	assert(len(cards) == 32)
 	for card in cards:
 		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
 		card.connect('taken', self, '_on_card_taken')
 	
 	# figures
 	for i in cards.size():
-		figures.append(DIAMOND if randf() < 0.5 else BIG_DIAMOND if randf() < 0.6 else null)
+		figures.append(null if randf() < 0.5 else DIAMOND if randf() < 0.7 else BIG_DIAMOND)
 		
+	for i in range(6 + (randi() % 4)):
+		figures[i] = BLACK_DIAMOND
+	
 	figures.shuffle()
-	figures[2 + randi() % 30] = BLACK_DIAMOND # skip first two flips
+	
+func start():
+	for card in get_all_cards():
+		card.reveal()
+		
+	yield(get_tree().create_timer(3), "timeout")
+	
+	for card in get_all_cards():
+		card.hide()
 	
 func next_figure():
 	return figures.pop_front()
 	
 func _on_card_revealing_while_undetermined(card):
 	# card content is determined as they are flipped
-	card.set_content(next_figure())
+	var figure = next_figure()
+	card.set_content(figure)
+	if figure == BLACK_DIAMOND:
+		card.set_tint(Color(1,0.4,0.7))
 	
 func _on_card_taken(card, player):
 	# wait a bit after animations

@@ -3,6 +3,7 @@ extends Area2D
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
+onready var background = $Ground/Front/Background
 onready var monogram = $Ground/Front/Wrapper/Monogram
 onready var timer = $Timer
 
@@ -102,6 +103,9 @@ func hide():
 
 func equals(other_card):
 	return content == other_card.content
+	
+func set_tint(color):
+	background.modulate = color
 	
 func _on_Card_body_entered(body):
 	if face_down and body is Ship:
