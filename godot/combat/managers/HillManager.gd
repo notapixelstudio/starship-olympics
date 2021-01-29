@@ -18,6 +18,7 @@ func next_hill(previous_hill):
 		hill.set_active(false)
 		
 	# skip the previous hill
+	# FIXME should also avoid zones with ships inside them
 	var next_hill = previous_hill
 	while next_hill == previous_hill:
 		next_hill = hills[randi() % len(hills)]

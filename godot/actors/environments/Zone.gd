@@ -69,7 +69,7 @@ func lose_control():
 	emit_signal('lost', self)
 	
 func _on_Zone_body_entered(body):
-	if active and body is Ship:
+	if active and body is Ship and get_player() == null:
 		take_control(body.get_player())
 		
 func _on_Zone_body_exited(body):
