@@ -18,7 +18,7 @@ func _ready():
 	
 	# figures
 	for i in cards.size():
-		figures.append(DIAMOND if randf() < 0.9 else BIG_DIAMOND if randf() < 0.6 else null)
+		figures.append(DIAMOND if randf() < 0.5 else BIG_DIAMOND if randf() < 0.6 else null)
 		
 	figures.shuffle()
 	figures[2 + randi() % 30] = BLACK_DIAMOND # skip first two flips
