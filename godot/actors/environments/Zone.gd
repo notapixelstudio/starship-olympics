@@ -3,7 +3,7 @@ extends Area2D
 
 export var max_time = 10
 
-var active setget set_active, get_active
+export var active = false setget set_active, get_active
 var player setget set_player, get_player
 
 signal lost
@@ -11,8 +11,12 @@ signal lost
 func set_active(v):
 	active = v
 	
+	if not is_inside_tree():
+		yield(self, 'ready')
+	
 	$Background.visible = active
-	$Border.self_modulate = Color(1,1,1) if active else Color(1,1,1,0.2)
+	$Crown.visible = active
+	$Border.self_modulate = Color(1.1,1.1,1.1) if active else Color(1,1,1,0.2)
 	
 	if active:
 		add_to_group('in_camera')
@@ -28,12 +32,17 @@ func set_player(v):
 	if player != null:
 		$Background.modulate = player.species.color
 		$Border.modulate = player.species.color
-		$Wrapper/Monogram.modulate = player.species.color
+		$Border.self_modulate = Color(1.3,1.3,1.3)
+		$Crown.modulate = player.species.color
+		$Wrapper.modulate = player.species.color
+		$Wrapper/Crown.visible = true
 		$Wrapper/Monogram.text = player.species.get_monogram()
 	else:
 		$Background.modulate = Color(1,1,1)
 		$Border.modulate = Color(1,1,1)
-		$Wrapper/Monogram.modulate = Color(1,1,1)
+		$Crown.modulate = Color(1,1,1)
+		$Wrapper.modulate = Color(1,1,1)
+		$Wrapper/Crown.visible = false
 		$Wrapper/Monogram.text = ''
 		
 func get_player():

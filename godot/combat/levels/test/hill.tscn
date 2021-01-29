@@ -17,9 +17,9 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-id = "hive_fill"
+id = "king_of_the_hill"
 is_mutator = false
-name = "Hive Filling"
+name = "King of the Hill"
 icon = ExtResource( 12 )
 logo = ExtResource( 10 )
 arena_style = ExtResource( 6 )
@@ -106,6 +106,7 @@ isometric_effect = true
 opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Zone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+active = true
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone" index="5"]
 script = ExtResource( 9 )

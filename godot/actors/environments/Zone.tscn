@@ -1,16 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/environments/Zone.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=4]
 [ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=5]
+[ext_resource path="res://assets/modes/crown.png" type="Texture" id=6]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
 shader_param/time_left = 10.0
 shader_param/max_time = 0.0
 shader_param/active = true
+
+[sub_resource type="CanvasItemMaterial" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -28,20 +31,30 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="Background" type="Polygon2D" parent="."]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
 material = SubResource( 2 )
 texture = ExtResource( 5 )
 
 [node name="Border" type="Line2D" parent="."]
+self_modulate = Color( 1, 1, 1, 0.2 )
+material = SubResource( 3 )
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 1
 end_cap_mode = 1
 
+[node name="Crown" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.0588235 )
+position = Vector2( 0, -23 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 6 )
+
 [node name="Wrapper" type="Node2D" parent="."]
 
 [node name="Monogram" type="Label" parent="Wrapper"]
-self_modulate = Color( 0.92, 0.92, 0.92, 1 )
+modulate = Color( 1, 1, 1, 0.501961 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -56,6 +69,13 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Crown" type="Sprite" parent="Wrapper"]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+position = Vector2( 0, -150 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
 

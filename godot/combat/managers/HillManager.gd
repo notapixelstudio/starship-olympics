@@ -10,8 +10,6 @@ func _ready():
 	for hill in hills:
 		hill.connect('lost', self, '_on_hill_lost')
 	
-	next_hill(null)
-	
 func next_hill(previous_hill):
 	# only one hill is active at a given time
 	for hill in hills:
