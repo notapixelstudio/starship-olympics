@@ -7,15 +7,15 @@
 [ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=5]
 [ext_resource path="res://assets/modes/crown.png" type="Texture" id=6]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/time_left = 10.0
+shader_param/time_left = 0.0
 shader_param/max_time = 0.0
 shader_param/active = true
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 200
 font_data = ExtResource( 3 )
 
@@ -33,12 +33,12 @@ visible = false
 [node name="Background" type="Polygon2D" parent="."]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
-material = SubResource( 2 )
+material = SubResource( 1 )
 texture = ExtResource( 5 )
 
 [node name="Border" type="Line2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0.2 )
-material = SubResource( 3 )
+material = SubResource( 2 )
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 1
@@ -63,7 +63,7 @@ margin_left = -150.0
 margin_top = -150.0
 margin_right = 150.0
 margin_bottom = 150.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 __meta__ = {

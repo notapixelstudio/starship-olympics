@@ -55,7 +55,7 @@ func _ready():
 	set_process(false)
 	
 func _process(delta):
-	$Background.material.set_shader_param('time_left', max_time - $Timer.time_left)
+	$Background.material.set_shader_param('time_left', $Timer.time_left)
 	
 func refresh_polygon():
 	var polygon = $GShape.to_PoolVector2Array()
