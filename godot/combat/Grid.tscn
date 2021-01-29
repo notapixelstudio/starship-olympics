@@ -4,7 +4,7 @@
 [ext_resource path="res://combat/Grid.shader" type="Shader" id=2]
 [ext_resource path="res://combat/Grid.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=4]
-[ext_resource path="res://combat/SurvivalClock.shader" type="Shader" id=5]
+[ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
@@ -18,8 +18,8 @@ shader_param/cell_size = 200.0
 shader_param/stroke = 10.0
 shader_param/time = 3841.1
 shader_param/triangular = false
-shader_param/fg_color = Color( 0, 0.173333, 0.26, 1 )
-shader_param/bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+shader_param/fg_color = Color( 0.272, 0.4692, 0.68, 1 )
+shader_param/bg_color = Color( 0.26, 0.4355, 0.65, 1 )
 
 [node name="Grid" type="Polygon2D" groups=[
 "grid",

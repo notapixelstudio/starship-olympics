@@ -67,7 +67,16 @@ script = ExtResource( 14 )
 __meta__ = {
 "_editor_description_": ""
 }
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
 polygon = PoolVector2Array( -2500, 900, -2500, -900, 0, -750, 2500, -900, 2500, 900, 0, 750 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="WallGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
