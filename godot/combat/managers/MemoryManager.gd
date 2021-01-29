@@ -66,7 +66,7 @@ func _on_card_revealing_while_undetermined(card):
 	# card content is determined as they are flipped
 	card.set_content(next_figure())
 	
-func _on_card_taken(card, player):
+func _on_card_taken(card, player, ship):
 	var previous_card = null
 	for c in get_all_cards():
 		# two cards can be selected at a given time, the current one and a previous one

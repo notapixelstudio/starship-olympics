@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
@@ -14,12 +14,13 @@
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=12]
 [ext_resource path="res://combat/styles/purple.tres" type="Resource" id=13]
 [ext_resource path="res://combat/managers/BlackDManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-id = "black_diamond"
+id = "diamond_minefield"
 is_mutator = false
-name = "Black Diamond"
+name = "Diamond Minefield"
 icon = ExtResource( 12 )
 logo = ExtResource( 6 )
 arena_style = ExtResource( 13 )
@@ -29,7 +30,7 @@ tagline_cons = "You could get killed in the meantime..."
 max_timeout = 60
 max_score = 32
 cumulative = false
-starting_lives = -1
+starting_lives = 1
 death = false
 last_man = false
 crown = false
@@ -56,10 +57,10 @@ size_multiplier = 2.5
 game_mode = SubResource( 1 )
 style = ExtResource( 7 )
 
-[node name="BlackDManager" type="Node" parent="Managers" index="0" groups=[
-"wait_to_start",
-]]
+[node name="BlackDManager" type="Node" parent="Managers" index="0"]
 script = ExtResource( 14 )
+
+[node name="Intro" parent="Managers/BlackDManager" index="0" instance=ExtResource( 15 )]
 
 [node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
@@ -88,8 +89,8 @@ script = ExtResource( 5 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 6200
-height = 4500
+width = 6400
+height = 4600
 radius = 200
 precision = 50.0
 
@@ -105,8 +106,8 @@ isometric_effect = true
 opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="0"]
-position = Vector2( 0, 25 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( 0, 40 )
+scale = Vector2( 0.85, 0.85 )
 
 [node name="Card" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 9 )]
 position = Vector2( -250, -350 )
@@ -445,13 +446,13 @@ position = Vector2( 3250, -2150 )
 position = Vector2( 3250, 2050 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -2900, 0 )
+position = Vector2( -3050, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 2900, 0 )
+position = Vector2( 3050, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 11 )

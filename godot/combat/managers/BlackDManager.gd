@@ -1,10 +1,15 @@
 extends Node
 
+const DX = 500
+const DY = 600
+
 const DIAMOND = 'environments/diamond'
 const BIG_DIAMOND = 'environments/diamond_big'
-const BLACK_DIAMOND = 'environments/diamond_black'
+const MINE = 'weapons/mine'
 
-var figures = []
+var displacement = {}
+
+signal done
 
 func get_all_cards():
 	return get_tree().get_nodes_in_group('card')
@@ -12,19 +17,46 @@ func get_all_cards():
 func _ready():
 	var cards = get_all_cards()
 	for card in cards:
-		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
 		card.connect('taken', self, '_on_card_taken')
-	
-	# figures
-	for i in cards.size():
-		figures.append(null if randf() < 0.5 else DIAMOND if randf() < 0.7 else BIG_DIAMOND)
 		
-	for i in range(6 + (randi() % 4)):
-		figures[i] = BLACK_DIAMOND
-	
+		displacement[card.position] = card
+		
+	# figures
+	var figures = []
+	for i in cards.size():
+		if randf() < 0.08:
+			figures.append(MINE)
+		else:
+			figures.append(DIAMOND)
+		
 	figures.shuffle()
 	
-func start():
+	for i in cards.size():
+		cards[i].set_content(figures[i])
+		
+	# find all mines
+	for card in cards:
+		if card.get_content() != MINE:
+			continue
+			
+		card.set_tint(Color(1,0.4,0.7))
+		
+		# surround mines with gold
+		var dirs = [
+			card.position + Vector2(0, -DY),
+			card.position + Vector2(DX, -DY),
+			card.position + Vector2(DX, 0),
+			card.position + Vector2(DX, DY),
+			card.position + Vector2(0, DY),
+			card.position + Vector2(-DX, DY),
+			card.position + Vector2(-DX, 0),
+			card.position + Vector2(-DX, -DY)
+		]
+		for dir in dirs:
+			if displacement.has(dir) and displacement[dir].get_content() != MINE:
+				displacement[dir].set_content(BIG_DIAMOND)
+	
+func intro():
 	for card in get_all_cards():
 		card.reveal()
 		
@@ -32,20 +64,20 @@ func start():
 	
 	for card in get_all_cards():
 		card.hide()
+		
+	yield(get_tree().create_timer(0.5), "timeout")
 	
-func next_figure():
-	return figures.pop_front()
+	emit_signal("done")
 	
-func _on_card_revealing_while_undetermined(card):
-	# card content is determined as they are flipped
-	var figure = next_figure()
-	card.set_content(figure)
-	if figure == BLACK_DIAMOND:
-		card.set_tint(Color(1,0.4,0.7))
 	
-func _on_card_taken(card, player):
+func _on_card_taken(card, player, ship):
 	# wait a bit after animations
 	yield(card, 'revealed')
+	
+	if card.content == MINE:
+		ship.die(null)
+		return
+	
 	yield(get_tree().create_timer(1), "timeout")
 	
 	var score
@@ -56,8 +88,6 @@ func _on_card_taken(card, player):
 			score = 1
 		BIG_DIAMOND:
 			score = 3
-		BLACK_DIAMOND:
-			score = -100
 			
 	global.the_match.add_score(player.id, score)
 	global.arena.show_msg(player.species, score, card.position)

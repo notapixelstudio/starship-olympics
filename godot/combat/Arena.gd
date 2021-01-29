@@ -361,6 +361,13 @@ func _ready():
 			Soundtrack.stop()
 	else:
 		hud.visible = false
+		
+	for node in traits.get_all_with('Intro'):
+		node.intro()
+		
+	for node in traits.get_all_with('Intro'):
+		yield(node, 'done')
+	
 	if not mockup:
 		
 		var j = 0
