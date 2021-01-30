@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/environments/Zone.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=2]
@@ -19,6 +19,54 @@ shader_param/active = true
 size = 200
 font_data = ExtResource( 3 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "Appear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.01, 0.01 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Disappear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Taken"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
+}
+
 [node name="Zone" type="Area2D" groups=[
 "hill",
 ]]
@@ -37,7 +85,8 @@ material = SubResource( 1 )
 texture = ExtResource( 5 )
 
 [node name="Border" type="Line2D" parent="."]
-self_modulate = Color( 1, 1, 1, 0.2 )
+visible = false
+self_modulate = Color( 1.1, 1.1, 1.1, 1 )
 material = SubResource( 2 )
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
@@ -78,6 +127,11 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Appear = SubResource( 5 )
+anims/Disappear = SubResource( 4 )
+anims/Taken = SubResource( 6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Zone_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Zone_body_exited"]

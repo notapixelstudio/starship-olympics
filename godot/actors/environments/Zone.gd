@@ -16,9 +16,10 @@ func set_active(v):
 	
 	$Background.visible = active
 	$Crown.visible = active
-	$Border.self_modulate = Color(1.1,1.1,1.1) if active else Color(1,1,1,0.2)
+	$Border.visible = active
 	
 	if active:
+		$AnimationPlayer.play("Appear")
 		add_to_group('in_camera')
 	else:
 		remove_from_group('in_camera')
@@ -40,6 +41,7 @@ func set_player(v):
 	else:
 		$Background.modulate = Color(1,1,1)
 		$Border.modulate = Color(1,1,1)
+		$Border.self_modulate = Color(1.1,1.1,1.1)
 		$Crown.modulate = Color(1,1,1)
 		$Wrapper.modulate = Color(1,1,1)
 		$Wrapper/Crown.visible = false
@@ -64,18 +66,25 @@ func refresh_polygon():
 	$Border.points = $GShape.to_closed_PoolVector2Array()
 	
 func take_control(p):
+	$AnimationPlayer.play("Taken")
 	set_player(p)
 	set_process(true)
 	$Timer.start(max_time)
 	$Background.material.set_shader_param('max_time', max_time)
 	
 func lose_control():
+	$AnimationPlayer.play("Disappear")
+	yield($AnimationPlayer, "animation_finished")
+	
 	set_player(null)
 	set_process(false)
 	set_active(false)
 	$Timer.stop()
 	$Timer.wait_time = max_time
 	emit_signal('lost', self)
+	
+	# restore scale after animation
+	scale = Vector2(1,1)
 	
 func _on_Zone_body_entered(body):
 	if active and body is Ship and get_player() == null:
