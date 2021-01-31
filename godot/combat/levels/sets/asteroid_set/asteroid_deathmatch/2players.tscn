@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/icon/skull.png" type="Texture" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
@@ -147,6 +148,12 @@ type = 1
 flag_offset = 0
 isometric_effect = true
 opaque_tint = Color( 0, 0, 0, 0.8 )
+
+[node name="skull" type="Sprite" parent="Battlefield/Background" index="7"]
+modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
+position = Vector2( -8.7738e-05, -1.14441e-05 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 6 )
 
 [node name="Laser" parent="Battlefield/Middleground" index="0" instance=ExtResource( 13 )]
 position = Vector2( 0, -1390 )
