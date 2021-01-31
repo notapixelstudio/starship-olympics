@@ -408,6 +408,6 @@ func unlock_mode():
 	"""
 	This will find if and what to unlock and will make the animation or give input accordingly
 	"""
-	if not TheUnlocker.unlocked_paths:
+	if not TheUnlocker.first_check():
 		first_time_camera.current = false
 		camera.enabled = true

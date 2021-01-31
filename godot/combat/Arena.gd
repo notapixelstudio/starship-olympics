@@ -365,7 +365,6 @@ func _ready():
 	else:
 		hud.visible = false
 	if not mockup:
-		
 		var j = 0
 		var player_spawners = $SpawnPositions/Players.get_children()
 		get_tree().paused = true

@@ -12,7 +12,7 @@ var sports = {}  # {sport.name : Resource}
 var sports_array = []
 var all_sports = []
 
-var first_time = true
+var first_time = true # In order to show the TUTORIAL
 var all_species = []
 onready var parallax = $ParallaxBackground
 var map: Map
@@ -48,7 +48,7 @@ func _ready():
 	players = {}
 
 	selection_screen.initialize()
-	selection_screen.connect("fight", self, "combat")
+	selection_screen.connect("fight", self, "start_fight")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
 
@@ -69,13 +69,15 @@ var played_levels_scene: PackedScene
 var levels: Array
 
 
-func combat(selected_players: Array, fight_mode: String):
+func start_fight(selected_players: Array, fight_mode: String):
 	"""
+	After selection will handle the map and then the list of games
 	@param: selected_players : Array[PlayerSelection] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
 	"""
 	var i = 0
-
+	
+	# TODO: maybe reset function
 	# we need to reset players dictionary
 	players = {}
 	sports_array = []
@@ -86,6 +88,7 @@ func combat(selected_players: Array, fight_mode: String):
 
 	global.send_stats("design", {"event_id": "selection:num_players", "value": num_players})
 
+	# SET the players dictionary
 	i = 1
 	for player in selected_players:
 		players[player.id] = player.info
@@ -106,8 +109,8 @@ func combat(selected_players: Array, fight_mode: String):
 				"selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})
 			}
 		)
-
-	# PLANET SELECTION
+	
+	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
 	var num_CPUs = 0 if len(players) > 1 else 1

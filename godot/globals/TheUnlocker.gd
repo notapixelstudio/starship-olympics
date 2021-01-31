@@ -14,6 +14,10 @@ onready var set_resources: Dictionary = get_resources(SET_PATH)  # {int : Resour
 func _ready():
 	add_to_group("persist")
 
+var map_unlocked = true # If the map has been unlocked or not
+
+func is_map_unlocked() -> bool:
+	return map_unlocked
 
 func get_resources(base_path: String) -> Dictionary:
 	var ret = {}
@@ -171,6 +175,7 @@ func get_state():
 		unlocked_games = unlocked_games,
 		unlocked_species = unlocked_species,
 		unlocked_locations=unlocked_locations,
-		unlocked_paths=unlocked_paths
+		unlocked_paths=unlocked_paths,
+		map_unlocked=map_unlocked
 		
 	}
