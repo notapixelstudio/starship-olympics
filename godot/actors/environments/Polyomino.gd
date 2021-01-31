@@ -3,19 +3,9 @@ extends Area2D
 
 class_name Polyomino
 
-export var fill = Color(1,1,1) setget set_fill
-export var stroke = Color(0,0,0) setget set_stroke
-
 var order = 1
+var player
 
-func set_fill(v):
-	fill = v
-	$Polygon2D.color = fill
-	
-func set_stroke(v):
-	stroke = v
-	$Line2D.default_color = stroke
-	
 func _ready():
 	refresh()
 	set_order(order)
@@ -36,10 +26,11 @@ func get_polygon_global():
 func merge(other : Polyomino):
 	var result = Geometry.merge_polygons_2d(get_polygon_global(), other.get_polygon_global())
 	if len(result) != 1:
-		return # merge only adjacent minoes
+		return false # merge only adjacent minoes
 		
 	set_polygon_global(result[0])
 	set_order(order + other.order)
+	return true
 	
 func get_order():
 	return order
@@ -47,3 +38,35 @@ func get_order():
 func set_order(v):
 	order = v
 	$Wrapper/Monogram.text = str(order)
+
+func get_player():
+	return player
+	
+func set_player(v):
+	player = v
+	if player != null:
+		$Polygon2D.color = player.species.color
+		$Polygon2D.modulate.a8 = 215
+		#$Line2D.modulate = Color(0,0,0)
+		z_index = -13
+	else:
+		$Polygon2D.color = Color(1,1,1)
+		$Polygon2D.modulate.a8 = 30
+		#$Line2D.modulate = Color(1,1,1)
+		z_index = -14
+		
+func _process(delta):
+	var found = false
+	for body in get_overlapping_bodies():
+		if body is Ship and Geometry.is_point_in_polygon(body.global_position, transform.xform($CollisionPolygon2D.polygon)):
+			# two ships inside = no one takes it
+			if found:
+				set_player(null)
+				break
+			
+			found = true
+			set_player(body.get_player())
+	
+	if not found and get_player() != null:
+		set_player(null)
+		
