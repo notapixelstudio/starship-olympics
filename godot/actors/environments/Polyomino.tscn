@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/environments/Polyomino.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+font_data = ExtResource( 2 )
+
+[node name="Polyomino" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -150, -150, 150, -150, 150, 150, -150, 150 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 50, -50, 50, 50, -50, 50, -50, -50, 50, -50 )
+width = 20.0
+default_color = Color( 0, 0, 0, 1 )
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Wrapper" type="Node2D" parent="."]
+
+[node name="Monogram" type="Label" parent="Wrapper"]
+visible = false
+modulate = Color( 0, 0, 0, 0.501961 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -150.0
+margin_right = 150.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 1 )
+text = "T"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
