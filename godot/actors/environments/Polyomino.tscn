@@ -28,14 +28,14 @@ __meta__ = {
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.117647 )
+color = Color( 1, 1, 1, 0.117647 )
 texture = ExtResource( 3 )
 polygon = PoolVector2Array( -150, -150, 150, -150, 150, 150, -150, 150 )
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( -150, -150, 150, -150, 150, 150, -150, 150, -150, -150 )
 width = 20.0
-default_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+default_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -60,3 +60,5 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="."]
