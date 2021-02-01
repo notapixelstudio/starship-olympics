@@ -22,6 +22,7 @@ var face_down = true
 
 var player setget set_player, get_player
 var ship
+var character_player
 
 func set_player(v):
 	var previous_player = player
@@ -51,6 +52,23 @@ func set_content(v):
 	
 func get_content():
 	return content
+	
+func set_character_player(v):
+	character_player = v
+	if character_player != null:
+		$Ground/Front/Character.visible = true
+		$Ground/Front/Circle.visible = true
+		$Ground/Front/Border.visible = true
+		$Ground/Front/TopLeft.visible = true
+		
+		$Ground/Front/Background.modulate = character_player.species.color
+		$Ground/Front/TopLeft/Monogram.modulate = character_player.species.color
+		
+		$Ground/Front/Character.texture = character_player.species.character_ok
+		$Ground/Front/TopLeft/Monogram.text = character_player.species.get_monogram()
+		
+func get_character_player():
+	return character_player
 	
 func _ready():
 	refresh_texture()

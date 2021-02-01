@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/sprites/cards/card_outline.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
@@ -9,17 +9,24 @@
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/cards/card_border.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 200 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 52
+outline_size = 1
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 86
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -35,7 +42,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -64 ), Vector2( 0, -32 ), Vector2( 0, -64 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -127,6 +134,7 @@ tracks/6/keys = {
 "card",
 "in_camera",
 ]]
+position = Vector2( 200, 400 )
 scale = Vector2( 1.2, 1.2 )
 collision_layer = 0
 collision_mask = 3
@@ -165,11 +173,44 @@ texture = ExtResource( 2 )
 [node name="Figure" type="Sprite" parent="Ground/Front"]
 texture = ExtResource( 4 )
 
+[node name="Character" type="Sprite" parent="Ground/Front"]
+visible = false
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 6.01, 35, 352.27, 446.325 )
+
+[node name="Circle" type="Sprite" parent="Ground/Front"]
+visible = false
+self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
+position = Vector2( 83.5367, -131.729 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 11 )
+
 [node name="Border" type="Sprite" parent="Ground/Front"]
 visible = false
 self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
+
+[node name="TopLeft" type="Node2D" parent="Ground/Front"]
+visible = false
+position = Vector2( 86.6667, -135 )
+
+[node name="Monogram" type="Label" parent="Ground/Front/TopLeft"]
+modulate = Color( 0.0588235, 0.470588, 0.113725, 1 )
+self_modulate = Color( 0.92, 0.92, 0.92, 1 )
+margin_left = -102.667
+margin_top = -97.5
+margin_right = 98.3333
+margin_bottom = 102.5
+custom_fonts/font = SubResource( 2 )
+text = "M"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Wrapper" type="Node2D" parent="Ground/Front"]
 position = Vector2( 0, 170 )
@@ -181,7 +222,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 __meta__ = {
@@ -201,8 +242,8 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Float = SubResource( 3 )
-anims/Reveal = SubResource( 4 )
+anims/Float = SubResource( 4 )
+anims/Reveal = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
