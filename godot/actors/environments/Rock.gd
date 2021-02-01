@@ -85,12 +85,15 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
 		try_break()
-	elif body is Ship:
-		if conquerable:
-			conquered_by(body)
-		elif ice:
-			body.freeze()
-
+		return
+		
+	if body is Ship and conquerable:
+		conquered_by(body)
+		return
+		
+	if ice and body.has_method('freeze'):
+		body.freeze()
+		
 func try_break():
 	if not breakable:
 		return
@@ -311,3 +314,6 @@ func decrease_lifetime():
 	if lifetime == 0:
 		try_break()
 		
+func freeze():
+	ice = true
+	recolor()
