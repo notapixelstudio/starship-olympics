@@ -1,0 +1,218 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
+[ext_resource path="res://combat/managers/Collect4Manager.gd" type="Script" id=3]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=8]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=9]
+[ext_resource path="res://combat/modes/FindingYourself.tres" type="Resource" id=10]
+[ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=12]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=13]
+
+[node name="Arena" instance=ExtResource( 5 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 10 )
+
+[node name="Collect4Manager" type="Node" parent="Managers" index="0"]
+script = ExtResource( 3 )
+
+[node name="Intro" parent="Managers/Collect4Manager" index="0" instance=ExtResource( 12 )]
+
+[node name="ConquestModeManager" parent="Managers" index="9"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+hollow = true
+offset = 200
+hide_grid = true
+solid_line_color = Color( 0.635294, 1.14118, 0.72549, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 5400
+height = 2600
+bevel = 200
+bevel_nw = 200
+bevel_ne = 200
+bevel_sw = 200
+bevel_se = 200
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0.12, 0.488, 0.6, 1 )
+bg_color = Color( 0.112, 0.4256, 0.56, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="0"]
+position = Vector2( 0, 44 )
+
+[node name="Card" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 11 )]
+position = Vector2( -250, -355.882 )
+
+[node name="Card2" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 11 )]
+position = Vector2( -750, -355.882 )
+
+[node name="Card5" parent="Battlefield/Middleground/Node2D" index="2" instance=ExtResource( 11 )]
+position = Vector2( -1250, -355.882 )
+
+[node name="Card3" parent="Battlefield/Middleground/Node2D" index="3" instance=ExtResource( 11 )]
+position = Vector2( 750, -355.882 )
+
+[node name="Card4" parent="Battlefield/Middleground/Node2D" index="4" instance=ExtResource( 11 )]
+position = Vector2( 250, -355.882 )
+
+[node name="Card6" parent="Battlefield/Middleground/Node2D" index="5" instance=ExtResource( 11 )]
+position = Vector2( -250, -955.882 )
+
+[node name="Card7" parent="Battlefield/Middleground/Node2D" index="6" instance=ExtResource( 11 )]
+position = Vector2( -750, -955.882 )
+
+[node name="Card8" parent="Battlefield/Middleground/Node2D" index="7" instance=ExtResource( 11 )]
+position = Vector2( -1250, -955.882 )
+
+[node name="Card9" parent="Battlefield/Middleground/Node2D" index="8" instance=ExtResource( 11 )]
+position = Vector2( 750, -955.882 )
+
+[node name="Card10" parent="Battlefield/Middleground/Node2D" index="9" instance=ExtResource( 11 )]
+position = Vector2( 250, -955.882 )
+
+[node name="Card11" parent="Battlefield/Middleground/Node2D" index="10" instance=ExtResource( 11 )]
+position = Vector2( -1750, 244.118 )
+
+[node name="Card12" parent="Battlefield/Middleground/Node2D" index="11" instance=ExtResource( 11 )]
+position = Vector2( -1750, -355.882 )
+
+[node name="Card13" parent="Battlefield/Middleground/Node2D" index="12" instance=ExtResource( 11 )]
+position = Vector2( -1750, -955.882 )
+
+[node name="Card14" parent="Battlefield/Middleground/Node2D" index="13" instance=ExtResource( 11 )]
+position = Vector2( -2250, 244.118 )
+
+[node name="Card15" parent="Battlefield/Middleground/Node2D" index="14" instance=ExtResource( 11 )]
+position = Vector2( -2250, -355.882 )
+
+[node name="Card21" parent="Battlefield/Middleground/Node2D" index="15" instance=ExtResource( 11 )]
+position = Vector2( -2250, -955.882 )
+
+[node name="Card26" parent="Battlefield/Middleground/Node2D" index="16" instance=ExtResource( 11 )]
+position = Vector2( 1250, 244.118 )
+
+[node name="Card27" parent="Battlefield/Middleground/Node2D" index="17" instance=ExtResource( 11 )]
+position = Vector2( 1250, -355.882 )
+
+[node name="Card28" parent="Battlefield/Middleground/Node2D" index="18" instance=ExtResource( 11 )]
+position = Vector2( 1250, -955.882 )
+
+[node name="Card30" parent="Battlefield/Middleground/Node2D" index="19" instance=ExtResource( 11 )]
+position = Vector2( 1750, 244.118 )
+
+[node name="Card31" parent="Battlefield/Middleground/Node2D" index="20" instance=ExtResource( 11 )]
+position = Vector2( 1750, -355.882 )
+
+[node name="Card32" parent="Battlefield/Middleground/Node2D" index="21" instance=ExtResource( 11 )]
+position = Vector2( 1750, -955.882 )
+
+[node name="Card33" parent="Battlefield/Middleground/Node2D" index="22" instance=ExtResource( 11 )]
+position = Vector2( 2250, 244.118 )
+
+[node name="Card34" parent="Battlefield/Middleground/Node2D" index="23" instance=ExtResource( 11 )]
+position = Vector2( 2250, -355.882 )
+
+[node name="Card35" parent="Battlefield/Middleground/Node2D" index="24" instance=ExtResource( 11 )]
+position = Vector2( 2250, -955.882 )
+
+[node name="Card16" parent="Battlefield/Middleground/Node2D" index="25" instance=ExtResource( 11 )]
+position = Vector2( -250, 244.118 )
+
+[node name="Card17" parent="Battlefield/Middleground/Node2D" index="26" instance=ExtResource( 11 )]
+position = Vector2( -750, 244.118 )
+
+[node name="Card18" parent="Battlefield/Middleground/Node2D" index="27" instance=ExtResource( 11 )]
+position = Vector2( -1250, 244.118 )
+
+[node name="Card19" parent="Battlefield/Middleground/Node2D" index="28" instance=ExtResource( 11 )]
+position = Vector2( 750, 244.118 )
+
+[node name="Card20" parent="Battlefield/Middleground/Node2D" index="29" instance=ExtResource( 11 )]
+position = Vector2( 250, 244.118 )
+
+[node name="Card22" parent="Battlefield/Middleground/Node2D" index="30" instance=ExtResource( 11 )]
+position = Vector2( -1750, 844.118 )
+
+[node name="Card23" parent="Battlefield/Middleground/Node2D" index="31" instance=ExtResource( 11 )]
+position = Vector2( -2250, 844.118 )
+
+[node name="Card29" parent="Battlefield/Middleground/Node2D" index="32" instance=ExtResource( 11 )]
+position = Vector2( 1250, 844.118 )
+
+[node name="Card36" parent="Battlefield/Middleground/Node2D" index="33" instance=ExtResource( 11 )]
+position = Vector2( 1750, 844.118 )
+
+[node name="Card37" parent="Battlefield/Middleground/Node2D" index="34" instance=ExtResource( 11 )]
+position = Vector2( 2250, 844.118 )
+
+[node name="Card24" parent="Battlefield/Middleground/Node2D" index="35" instance=ExtResource( 11 )]
+position = Vector2( -250, 844.118 )
+
+[node name="Card25" parent="Battlefield/Middleground/Node2D" index="36" instance=ExtResource( 11 )]
+position = Vector2( -750, 844.118 )
+
+[node name="Card38" parent="Battlefield/Middleground/Node2D" index="37" instance=ExtResource( 11 )]
+position = Vector2( -1250, 844.118 )
+
+[node name="Card39" parent="Battlefield/Middleground/Node2D" index="38" instance=ExtResource( 11 )]
+position = Vector2( 750, 844.118 )
+
+[node name="Card40" parent="Battlefield/Middleground/Node2D" index="39" instance=ExtResource( 11 )]
+position = Vector2( 250, 844.118 )
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
+position = Vector2( -2550, -500 )
+rotation = 0.0
+controls = "joy1"
+species = ExtResource( 2 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
+position = Vector2( 2550, -500 )
+rotation = 3.14159
+controls = "joy2"
+species = ExtResource( 7 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 4 )]
+position = Vector2( 2550, 500 )
+rotation = 3.14159
+controls = "joy3"
+species = ExtResource( 8 )
+
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 4 )]
+position = Vector2( -2550, 500 )
+rotation = 0.0
+controls = "joy4"
+species = ExtResource( 13 )
+
+[node name="Camera" parent="." index="6"]
+zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+smoothing_speed = 0.3
+enabled = false
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="CanvasLayer/Pause"]

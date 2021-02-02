@@ -8,6 +8,7 @@ const BAD = 'environments/bad_eyes'
 
 var displacement = {}
 
+var players = 0
 var cards_left = {}
 
 signal done
@@ -34,6 +35,7 @@ func _ready():
 		if ps.get_player() == null:
 			yield(ps, "player_assigned")
 		cards_left[ps.get_player()] = FOUR
+		players += 1
 		for i in range(FOUR):
 			cards[indices[0]].set_character_player(ps.get_player())
 			indices.pop_front()
@@ -51,7 +53,7 @@ func intro():
 		if card.get_character_player() != null:
 			card.reveal()
 		
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(1 + players), "timeout")
 	
 	for card in get_all_cards():
 		card.hide()
