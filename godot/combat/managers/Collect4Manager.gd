@@ -2,11 +2,9 @@ extends Node
 
 const DX = 500
 const DY = 600
+const FOUR = 7
 
-const BAD_DIAMOND = 'environments/diamond_bad'
-const GOD_DIAMOND = 'environments/diamond_god'
-
-export var god_diamonds = 3*2
+const BAD = 'environments/bad_eyes'
 
 var displacement = {}
 
@@ -22,50 +20,32 @@ func _ready():
 		
 		displacement[card.position] = card
 		
-	# figures
-	var figures = []
-	for i in cards.size():
-		if i < god_diamonds:
-			figures.append(GOD_DIAMOND)
-		else:
-			figures.append(BAD_DIAMOND)
-		
-	figures.shuffle()
-	
-	for i in cards.size():
-		cards[i].set_content(figures[i])
-		cards[i].set_tint(Color(0.1,0.1,0.1))
-		
-	# find all mines
-	"""
 	for card in cards:
-		if card.get_content() != MINE:
-			continue
-			
-		card.set_tint(Color(1,0.4,0.7))
+		card.set_content(BAD)
 		
-		# surround mines with gold
-		var dirs = [
-			card.position + Vector2(0, -DY),
-			card.position + Vector2(DX, -DY),
-			card.position + Vector2(DX, 0),
-			card.position + Vector2(DX, DY),
-			card.position + Vector2(0, DY),
-			card.position + Vector2(-DX, DY),
-			card.position + Vector2(-DX, 0),
-			card.position + Vector2(-DX, -DY)
-		]
-		for dir in dirs:
-			if displacement.has(dir) and displacement[dir].get_content() != MINE:
-				displacement[dir].set_content(BIG_DIAMOND)
-				
-	"""
-	
+	# place player cards
+	var spawners = get_tree().get_nodes_in_group('player_spawner')
+	var indices = range(len(cards))
+	indices.shuffle()
+	indices = indices.slice(0, FOUR * len(spawners)) # add four cards per player
+	for ps in spawners:
+		if ps.get_player() == null:
+			yield(ps, "player_assigned")
+		for i in range(FOUR):
+			cards[indices[0]].set_character_player(ps.get_player())
+			indices.pop_front()
+			
+	for card in cards:
+		if card.get_character_player() == null:
+			card.set_tint(Color(0.1,0.1,0.1))
+		else:
+			card.set_content(null)
+		
 func intro():
 	global.the_match.connect('game_over', self, '_on_game_over')
 	
 	for card in get_all_cards():
-		if card.get_content() == GOD_DIAMOND:
+		if card.get_character_player() != null:
 			card.reveal()
 		
 	yield(get_tree().create_timer(3), "timeout")
@@ -85,18 +65,18 @@ func _on_card_taken(card, player, ship):
 	yield(get_tree().create_timer(1), "timeout")
 	
 	var score
-	match card.content:
-		null:
-			return
-		BAD_DIAMOND:
-			score = -1
-		GOD_DIAMOND:
-			score = 10
+	if card.get_character_player() == player:
+		score = 10
+	else:
+		score = -1
+		if card.get_character_player() == null:
+			card.queue_free()
+		else:
+			card.hide()
 			
 	global.the_match.add_score(player.id, score)
-	global.arena.show_msg(player.species, score, card.position)
-	card.queue_free()
-
+	global.arena.show_msg(player.species, score, card.global_position)
+	
 # reveal cards at the end of the match
 func _on_game_over(_winners):
 	for card in get_all_cards():

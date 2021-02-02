@@ -61,6 +61,9 @@ func set_character_player(v):
 		$Ground/Front/Border.visible = true
 		$Ground/Front/TopLeft.visible = true
 		
+		$Ground/Front/Background.self_modulate = Color(0.7,0.7,0.7)
+		$Ground/Front/TopLeft/Monogram.self_modulate = Color(0.7,0.7,0.7)
+		
 		$Ground/Front/Background.modulate = character_player.species.color
 		$Ground/Front/TopLeft/Monogram.modulate = character_player.species.color
 		
