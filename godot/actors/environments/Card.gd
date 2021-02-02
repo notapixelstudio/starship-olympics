@@ -150,3 +150,7 @@ func set_auto_flip_back(v):
 	if not auto_flip_back:
 		timer.stop()
 		
+func show_mark(v):
+	$Ground/Front/Wrapper/Monogram.visible = true
+	$Ground/Front/Wrapper/Monogram.text = str(v)
+	

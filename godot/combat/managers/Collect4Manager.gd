@@ -8,6 +8,8 @@ const BAD = 'environments/bad_eyes'
 
 var displacement = {}
 
+var cards_left = {}
+
 signal done
 
 func get_all_cards():
@@ -31,6 +33,7 @@ func _ready():
 	for ps in spawners:
 		if ps.get_player() == null:
 			yield(ps, "player_assigned")
+		cards_left[ps.get_player()] = FOUR
 		for i in range(FOUR):
 			cards[indices[0]].set_character_player(ps.get_player())
 			indices.pop_front()
@@ -59,6 +62,11 @@ func intro():
 	
 	
 func _on_card_taken(card, player, ship):
+	
+	if card.get_character_player() == player:
+		card.show_mark(cards_left[player])
+		cards_left[player] -= 1
+		
 	# wait a bit after animations
 	yield(card, 'revealed')
 	
