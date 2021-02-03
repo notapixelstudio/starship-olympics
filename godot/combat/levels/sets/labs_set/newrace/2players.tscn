@@ -1,28 +1,126 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Underrace.tres" type="Resource" id=10]
+[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( -400, 1400 ), Vector2( 1500, 1400 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( -400, -1000 ), Vector2( 1500, -1000 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1550, -200 ), Vector2( -500, -200 ) ]
+}
+
+[sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, -1800, 0, 0, 0, 0, 2600, -1800, 0, 0, 0, 0, 3400, -1000, 0, 0, 0, 0, 3400, 1000, 0, 0, 0, 0, 2600, 1800, 0, 0, 0, 0, -600, 1800, 0, 0, 0, 0, -1000, 1400, 0, 0, 0, 0, -1000, 1000, 0, 0, 0, 0, -600, 600, 0, 0, 0, 0, 1800, 600, 0, 0, 0, 0, 2200, 200, 0, 0, 0, 0, 2200, -200, 0, 0, 0, 0, 1800, -600, 0, 0, 0, 0, -1800, -600, 0, 0, 0, 0, -2200, -200, 0, 0, 0, 0, -2200, 1400, 0, 0, 0, 0, -2600, 1800, 0, 0, 0, 0, -3400, 1000, 0, 0, 0, 0, -3400, -1000, 0, 0, 0, 0, -2600, -1800, 0, 0, 0, 0, 0, -1800 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 180.0, 270.0 ]
 }
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
-
-[node name="RaceModeManager" parent="Managers" index="7"]
-enabled = true
-
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
@@ -31,7 +129,7 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
+type = 2
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
@@ -47,120 +145,14 @@ precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.670588 )
-position = Vector2( 0, 0 )
 
-[node name="Wall19" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
-modulate = Color( 0.5, 0.5, 1, 1 )
-position = Vector2( -1400, -1800 )
-rotation = 1.5708
-z_index = -50
-z_as_relative = false
-collision_layer = 2147483648
-collision_mask = 270336
-under = "below"
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall19" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall23" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-modulate = Color( 0.5, 0.5, 1, 1 )
-position = Vector2( 1400, -1800 )
-rotation = 1.5708
-z_index = -50
-z_as_relative = false
-collision_layer = 2147483648
-collision_mask = 270336
-under = "below"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall23" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall28" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
-modulate = Color( 1, 0.5, 0.5, 1 )
-position = Vector2( 600, 1800 )
-rotation = 1.5708
-collision_layer = 2147483648
-collision_mask = 8193
-under = "above"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall28" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall33" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
-modulate = Color( 1, 0.5, 0.5, 1 )
-position = Vector2( 600, -600 )
-rotation = 1.5708
-collision_layer = 2147483648
-collision_mask = 8193
-under = "above"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall33" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall29" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
-modulate = Color( 0.5, 0.5, 1, 1 )
-position = Vector2( 600, 600 )
-rotation = 1.5708
-z_index = -50
-z_as_relative = false
-collision_layer = 2147483648
-collision_mask = 270336
-under = "below"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall29" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall13" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
+[node name="Wall13" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 800, 1200 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall13" index="7"]
@@ -173,7 +165,7 @@ height = 400
 radius = 200
 precision = 10.0
 
-[node name="Wall14" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
+[node name="Wall14" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 400, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall14" index="7"]
@@ -186,7 +178,7 @@ height = 400
 radius = 200
 precision = 10.0
 
-[node name="Wall11" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
+[node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( 2600, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall11" index="7"]
@@ -199,7 +191,7 @@ height = 2800
 radius = 400
 precision = 10.0
 
-[node name="Wall20" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
+[node name="Wall20" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( -2600, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall20" index="7"]
@@ -212,7 +204,7 @@ height = 2800
 radius = 400
 precision = 10.0
 
-[node name="Wall21" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
+[node name="Wall21" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
 position = Vector2( -1400, 800 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall21" index="7"]
@@ -225,7 +217,7 @@ height = 2000
 radius = 400
 precision = 10.0
 
-[node name="Wall" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
 position = Vector2( 0, -1000 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall" index="7"]
@@ -238,89 +230,7 @@ height = 800
 radius = 400
 precision = 10.0
 
-[node name="Wall22" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
-modulate = Color( 1, 0.5, 0.5, 1 )
-position = Vector2( 3400, 0 )
-collision_layer = 2147483648
-collision_mask = 8193
-under = "above"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall22" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall31" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
-modulate = Color( 1, 0.5, 0.5, 1 )
-position = Vector2( -3400, 1000 )
-collision_layer = 2147483648
-collision_mask = 8193
-under = "above"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall31" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall32" parent="Battlefield/Middleground" index="13" instance=ExtResource( 5 )]
-modulate = Color( 1, 0.5, 0.5, 1 )
-position = Vector2( -3400, -1000 )
-collision_layer = 2147483648
-collision_mask = 8193
-under = "above"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall32" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall30" parent="Battlefield/Middleground" index="14" instance=ExtResource( 5 )]
-modulate = Color( 0.5, 0.5, 1, 1 )
-position = Vector2( -3400, 0 )
-z_index = -50
-z_as_relative = false
-collision_layer = 2147483648
-collision_mask = 270336
-under = "below"
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall30" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
-
-[node name="Wall24" parent="Battlefield/Middleground" index="15" instance=ExtResource( 5 )]
+[node name="Wall24" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
 position = Vector2( 2200, 1200 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall24" index="7"]
@@ -330,13 +240,13 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
-[node name="Wall25" parent="Battlefield/Middleground" index="16" instance=ExtResource( 5 )]
+[node name="Wall25" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
 position = Vector2( -1000, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall25" index="7"]
@@ -346,13 +256,13 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
-[node name="Wall26" parent="Battlefield/Middleground" index="17" instance=ExtResource( 5 )]
+[node name="Wall26" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
 position = Vector2( -1600, 1800 )
 rotation = 1.5708
 
@@ -363,13 +273,13 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
-[node name="Wall27" parent="Battlefield/Middleground" index="18" instance=ExtResource( 5 )]
+[node name="Wall27" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( -2800, -600 )
 rotation = 1.5708
 
@@ -380,14 +290,201 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
-bevel = 199
-bevel_nw = 199
-bevel_ne = 199
-bevel_sw = 199
-bevel_se = 199
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
-[node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="19"]
-curve = SubResource( 1 )
+[node name="LaserWall" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
+position = Vector2( 3000, 0.00012207 )
+rotation = 0.785398
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/LaserWall" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="LaserWall2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
+position = Vector2( 1700, 1400 )
+rotation = 2.35619
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall2" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/LaserWall2" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="LaserWall3" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
+position = Vector2( -400, 1400 )
+rotation = 2.35619
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall3" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/LaserWall3" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall3" index="10" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 1 )
+
+[node name="LaserWall4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 5 )]
+position = Vector2( -400, -1000 )
+rotation = 2.35619
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall4" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/LaserWall4" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall4" index="10" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 2 )
+
+[node name="LaserWall5" parent="Battlefield/Middleground" index="14" instance=ExtResource( 5 )]
+position = Vector2( 1550, -200 )
+rotation = -0.785398
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall5" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/LaserWall5" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall5" index="10" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 3 )
+
+[node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="15"]
+curve = SubResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="16"]
+position = Vector2( -1400, 200 )
+
+[node name="LaserWall6" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, -400 )
+rotation = -0.785398
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D/LaserWall6" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D/LaserWall6" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D" index="1" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 5 )
+
+[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="17"]
+position = Vector2( -2600, -1000 )
+
+[node name="LaserWall6" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, -400 )
+rotation = -0.785398
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D3/LaserWall6" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D3/LaserWall6" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3" index="1" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 6 )
+
+[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="18"]
+position = Vector2( -2600, 1000 )
+rotation = 3.14159
+
+[node name="LaserWall6" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, -400 )
+rotation = -0.785398
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D2/LaserWall6" index="8"]
+script = ExtResource( 3 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+width = 100
+height = 100
+
+[node name="Laser" parent="Battlefield/Middleground/Node2D2/LaserWall6" index="9" instance=ExtResource( 12 )]
+show_behind_parent = true
+position = Vector2( 36.0625, -36.0625 )
+rotation = -0.785395
+type = "barrier"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2" index="1" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 7 )
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 6 )]
+position = Vector2( -3.8147e-06, 1.52588e-05 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 0, -1800 )
@@ -399,6 +496,7 @@ species = ExtResource( 9 )
 zoom = Vector2( 156.25, 156.25 )
 smoothing_speed = 0.3
 zoomMin = 5.0
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]
