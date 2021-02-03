@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/modes/crown.png" type="Texture" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/time_left = 0.0
 shader_param/max_time = 0.0
@@ -19,7 +20,7 @@ shader_param/active = true
 size = 200
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Appear"
 length = 0.6
 tracks/0/type = "value"
@@ -35,8 +36,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.01, 0.01 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Disappear"
+[sub_resource type="Animation" id=5]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -129,8 +129,8 @@ texture = ExtResource( 6 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Appear = SubResource( 5 )
-anims/Disappear = SubResource( 4 )
+anims/Appear = SubResource( 4 )
+anims/Disappear = SubResource( 5 )
 anims/Taken = SubResource( 6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Zone_body_entered"]

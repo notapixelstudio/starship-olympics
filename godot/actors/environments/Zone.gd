@@ -14,16 +14,19 @@ func set_active(v):
 	if not is_inside_tree():
 		yield(self, 'ready')
 	
+	if active:
+		$AnimationPlayer.play("Appear")
+		add_to_group('in_camera')
+		setup_clock()
+		refresh_clock()
+	else:
+		remove_from_group('in_camera')
+		
+	yield(get_tree(), "idle_frame")
 	$Background.visible = active
 	$Crown.visible = active
 	$Border.visible = active
 	
-	if active:
-		$AnimationPlayer.play("Appear")
-		add_to_group('in_camera')
-	else:
-		remove_from_group('in_camera')
-		
 func get_active():
 	return active
 	
@@ -53,10 +56,16 @@ func get_player():
 func _ready():
 	refresh_polygon()
 	$GShape.connect('changed', self, 'refresh_polygon')
+	setup_clock()
+	
+func setup_clock():
 	$Timer.wait_time = max_time
 	set_process(false)
 	
 func _process(delta):
+	refresh_clock()
+	
+func refresh_clock():
 	$Background.material.set_shader_param('time_left', $Timer.time_left)
 	
 func refresh_polygon():
@@ -73,18 +82,15 @@ func take_control(p):
 	$Background.material.set_shader_param('max_time', max_time)
 	
 func lose_control():
+	set_process(false)
 	$AnimationPlayer.play("Disappear")
 	yield($AnimationPlayer, "animation_finished")
 	
 	set_player(null)
-	set_process(false)
 	set_active(false)
 	$Timer.stop()
 	$Timer.wait_time = max_time
 	emit_signal('lost', self)
-	
-	# restore scale after animation
-	scale = Vector2(1,1)
 	
 func _on_Zone_body_entered(body):
 	if active and body is Ship and get_player() == null:
