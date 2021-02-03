@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -9,8 +9,97 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
-[ext_resource path="res://combat/modes/Underrace.tres" type="Resource" id=10]
+[ext_resource path="res://combat/modes/BasicRace.tres" type="Resource" id=10]
+[ext_resource path="res://combat/managers/RaceManager.gd" type="Script" id=11]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=13]
+
+[sub_resource type="Animation" id=8]
+resource_name = "Rotate"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:type")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 5.5, 5.9, 6, 6.2, 9.6, 10 ),
+"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Rotate"
+length = 14.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:type")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 9.5, 9.9, 10, 10.2, 13.6, 14 ),
+"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Rotate"
+length = 19.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:type")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 14.5, 14.9, 15, 15.2, 18.6, 19 ),
+"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -122,6 +211,11 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 
+[node name="RaceManager" type="Node" parent="Managers" index="0" groups=[
+"wait_to_start",
+]]
+script = ExtResource( 11 )
+
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
@@ -129,7 +223,6 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-type = 2
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
@@ -151,6 +244,12 @@ type = 1
 flag_offset = 0
 isometric_effect = true
 opaque_tint = Color( 0, 0, 0, 0.8 )
+
+[node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="5"]
+modulate = Color( 1, 1, 1, 0.305882 )
+position = Vector2( -200, 0 )
+texture = ExtResource( 13 )
+polygon = PoolVector2Array( 0, -2150, 200, -2150, 200, -1400, 0, -1400 )
 
 [node name="Wall13" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 800, 1200 )
@@ -205,15 +304,15 @@ radius = 400
 precision = 10.0
 
 [node name="Wall21" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
-position = Vector2( -1400, 800 )
+position = Vector2( -1400, 1800 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall21" index="7"]
 script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
-clip = Rect2( -800, -1400, 800, 2000 )
+clip = Rect2( -800, -2000, 800, 2400 )
 width = 800
-height = 2000
+height = 4000
 radius = 400
 precision = 10.0
 
@@ -232,6 +331,7 @@ precision = 10.0
 
 [node name="Wall24" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
 position = Vector2( 2200, 1200 )
+scale = Vector2( 1.1, 1.1 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall24" index="7"]
 script = ExtResource( 2 )
@@ -246,8 +346,14 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall24" index="9" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 8 )
+
 [node name="Wall25" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
 position = Vector2( -1000, 0 )
+scale = Vector2( 1.1, 1.1 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall25" index="7"]
 script = ExtResource( 2 )
@@ -262,26 +368,15 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="Wall26" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
-position = Vector2( -1600, 1800 )
-rotation = 1.5708
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall25" index="9" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 10 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall26" index="7"]
-script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 800
-height = 400
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall27" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
+[node name="Wall27" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
 position = Vector2( -2800, -600 )
 rotation = 1.5708
+scale = Vector2( 1.1, 1.1 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall27" index="7"]
 script = ExtResource( 2 )
@@ -296,7 +391,12 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="LaserWall" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall27" index="9" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 9 )
+
+[node name="LaserWall" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( 3000, 0.00012207 )
 rotation = 0.785398
 
@@ -314,7 +414,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "barrier"
 
-[node name="LaserWall2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
+[node name="LaserWall2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 1700, 1400 )
 rotation = 2.35619
 
@@ -332,7 +432,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "barrier"
 
-[node name="LaserWall3" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
+[node name="LaserWall3" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
 position = Vector2( -400, 1400 )
 rotation = 2.35619
 
@@ -355,7 +455,7 @@ type = "barrier"
 ]]
 anims/Rotate = SubResource( 1 )
 
-[node name="LaserWall4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 5 )]
+[node name="LaserWall4" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
 position = Vector2( -400, -1000 )
 rotation = 2.35619
 
@@ -378,7 +478,7 @@ type = "barrier"
 ]]
 anims/Rotate = SubResource( 2 )
 
-[node name="LaserWall5" parent="Battlefield/Middleground" index="14" instance=ExtResource( 5 )]
+[node name="LaserWall5" parent="Battlefield/Middleground" index="13" instance=ExtResource( 5 )]
 position = Vector2( 1550, -200 )
 rotation = -0.785398
 
@@ -401,10 +501,12 @@ type = "barrier"
 ]]
 anims/Rotate = SubResource( 3 )
 
-[node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="15"]
+[node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="14" groups=[
+"race_path",
+]]
 curve = SubResource( 4 )
 
-[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="16"]
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="15"]
 position = Vector2( -1400, 200 )
 
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
@@ -430,7 +532,7 @@ type = "barrier"
 ]]
 anims/Rotate = SubResource( 5 )
 
-[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="17"]
+[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="16"]
 position = Vector2( -2600, -1000 )
 
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
@@ -456,7 +558,7 @@ type = "barrier"
 ]]
 anims/Rotate = SubResource( 6 )
 
-[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="18"]
+[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="17"]
 position = Vector2( -2600, 1000 )
 rotation = 3.14159
 
