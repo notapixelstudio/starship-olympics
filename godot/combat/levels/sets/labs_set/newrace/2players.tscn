@@ -185,10 +185,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PoolRealArray( 0, 3, 9 ),
+"transitions": PoolRealArray( 1, -2, -2 ),
 "update": 0,
-"values": [ 0.0, -90.0 ]
+"values": [ -45.0, -90.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -201,10 +201,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PoolRealArray( 0, 3, 9.1 ),
+"transitions": PoolRealArray( 1, -2, -2 ),
 "update": 0,
-"values": [ 180.0, 270.0 ]
+"values": [ 225.0, 270.0, 180.0 ]
 }
 
 [node name="Arena" instance=ExtResource( 4 )]
@@ -534,6 +534,7 @@ anims/Rotate = SubResource( 5 )
 
 [node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="16"]
 position = Vector2( -2600, -1000 )
+rotation = -0.785398
 
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
@@ -560,7 +561,7 @@ anims/Rotate = SubResource( 6 )
 
 [node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="17"]
 position = Vector2( -2600, 1000 )
-rotation = 3.14159
+rotation = 3.92699
 
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
