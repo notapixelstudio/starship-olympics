@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=12]
 [ext_resource path="res://combat/managers/HillManager.gd" type="Script" id=13]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=14]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -69,17 +70,9 @@ centered = false
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.83, 1.1, 0.92, 1 )
-line_texture = null
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 5 )
@@ -203,6 +196,12 @@ jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 800
+
+[node name="CameraEye" parent="Battlefield/Middleground" index="9" instance=ExtResource( 15 )]
+position = Vector2( -900, 900 )
+
+[node name="CameraEye2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 15 )]
+position = Vector2( 900, -900 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1900, 0 )
