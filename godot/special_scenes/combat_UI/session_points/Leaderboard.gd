@@ -46,15 +46,5 @@ func initialize(winners: Array):
 	
 	animator.play("entrance")
 	
-	"""
-	yield(animator, "animation_finished")
-	var players = container.get_children()
-	players.sort_custom(self, "sort_by_score")
-	for player in players:
-		player.new_position = pad * i
-		i += 1
-	
-
-func sort_by_score(a: PilotStats, b: PilotStats):
-	return a.get_player_info().session_score > b.get_player_info().session_score
-"""
+	if not TheUnlocker.is_map_unlocked():
+		TheUnlocker.will_unlock()

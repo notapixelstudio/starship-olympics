@@ -7,7 +7,6 @@ const HEIGHT = 100
 const CELLSIZE = 200
 
 var matrix = []
-var back = false
 
 var selected_sports : Array
 export var playlist_item : PackedScene
@@ -36,6 +35,7 @@ var settings = {} setget set_settings
 
 signal chose_level
 signal selection_finished
+signal back
 
 func set_settings(value):
 	settings = value
@@ -58,23 +58,18 @@ func set_slam_a_gon_bombs(value: bool):
 	settings["slam_a_gon"] = {"shoot_bombs" : slam_a_gon_shoot_bombs}
 	
 func _ready():
-	back = false
-	
 	# Check if it is the first time:
-	if not TheUnlocker.unlocked_paths:
-	
+	if TheUnlocker.is_map_unlocked():
+		first_time_camera.current = false
+		camera.enabled = true
+	else:
 		first_time_camera.current = true
 		camera.enabled = false
 		var first_set = $Content/Planets/Set6
-		
 		selected_sports = [first_set]
 		var central_panel = $CanvasLayerTop/PanelContainer/p1
 		central_panel.enable()
 		central_panel.map_element = first_set.planet
-		
-	else:
-		first_time_camera.current = false
-		camera.enabled = true
 		
 	for x in range(WIDTH):
 		matrix.append([])
@@ -122,12 +117,8 @@ func _ready():
 		emit_signal("done")
 	# unlock_via_path($Content/Planets/Set2, $Content/Planets/Set3)
 
-func initialize(players, sports, settings_):
-	self.settings = settings_
-	selected_sports = sports
+func initialize(players):
 	num_players = len(players)
-	
-	
 	for player_id in players:
 		if not players[player_id].cpu:
 			human_players += 1
@@ -253,13 +244,13 @@ func _on_Start_pressed(cursor):
 	emit_signal('done')
 		
 func _on_Back_pressed(cursor):
-	back = true
-	emit_signal("done")
+	
+	emit_signal("back")
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
-		back = true
-		emit_signal("done")
+		
+		emit_signal("back")
 
 var screen_width = ProjectSettings.get_setting('display/window/size/width')
 var screen_height = ProjectSettings.get_setting('display/window/size/height')

@@ -8,9 +8,7 @@ const combat_scene = "res://combat/levels/"
 const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
 
-var sports = {}  # {sport.name : Resource}
-var sports_array = []
-var all_sports = []
+var games = {}  # {sport.name : Resource}
 
 var first_time = true # In order to show the TUTORIAL
 var all_species = []
@@ -80,10 +78,8 @@ func start_fight(selected_players: Array, fight_mode: String):
 	# TODO: maybe reset function
 	# we need to reset players dictionary
 	players = {}
-	sports_array = []
 	played_levels = []
 	levels = []
-	all_sports = []
 	var num_players: int = len(selected_players)
 
 	global.send_stats("design", {"event_id": "selection:num_players", "value": num_players})
@@ -109,70 +105,73 @@ func start_fight(selected_players: Array, fight_mode: String):
 				"selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})
 			}
 		)
+	go_to_map()
+
+func return_to_selection_screen():
+	map.queue_free()
+	add_child(parallax)
+	add_child(selection_screen)
+	selection_screen.reset()
+	return
 	
+func continue_to_fight(map_selection: Dictionary) -> void:
+	"""
+	After map selection we need to set the structure for the selection of sports.
+	Will go back to selection screen or 
+	"""
+	var sets = map_selection.get("sets")
+	var settings = map_selection.get("settings", {})
+	
+	var num_CPUs = 0 if len(players) > 1 else 1
+	add_cpu(num_CPUs)
+	session_scores.selected_sports = sets
+
+	for s in sets:
+		var set: Planet = s
+		
+		# TODO: issue #428 . Handle mutator
+		# session_scores.set_mutators(sport.mutators)
+		sets[set.name] = set
+		var this_set_games = set.get_levels(len(players))
+		for level in this_set_games :
+			# Deduplication issue #405
+			if not level in levels:
+				levels.append(level)
+	
+	levels.shuffle()
+	first_time = true
+	
+	played_levels = []
+	played_levels_scene = null
+	
+	global.new_session(players)
+	next_level(global.demo)
+	GameAnalytics.submit_events()
+	
+	return
+	
+func go_to_map():
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
 	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
 		map = map_scene.instance()
-		map.initialize(players, all_sports, session_scores.settings)
+		map.initialize(players)
 		add_child(map)
-		yield(map, "done")
-		yield(get_tree(), "idle_frame")
-		all_sports = map.get_selection()
-		for sport in all_sports:
-			global.send_stats(
-				"design",
-				{"event_id": "selection:sports:{sport_name}".format({"sport_name": sport.name})}
-			)
-		num_CPUs = map.cpu
-		global.send_stats(
-			"design",
-			{
-				"event_id":
-				"selection:cpu:{num_cpu}:players:{num_players}".format(
-					{"num_cpu": str(num_CPUs), "num_players": str(num_players)}
-				)
-			}
-		)
-		session_scores.settings = map.settings
-		if map.back:
-			map.queue_free()
-			add_child(parallax)
-			add_child(selection_screen)
-			selection_screen.reset()
-			return
+		map.connect("back", self, "return_to_selection_screen")
+		map.connect("done", self, "continue_to_fight")
 
-	add_cpu(num_CPUs)
-	session_scores.selected_sports = all_sports
-
-	for sport in all_sports:
-		# issue #428 . Handle mutator
-		session_scores.set_mutators(sport.mutators)
-
-		sports[sport.name] = sport
-		sports_array.append(sport.name)
-		for level in sport.get_levels(num_players):
-			# Deduplication issue #405
-			if not level in levels:
-				levels.append(level)
-
-	sports_array.shuffle()  # shuffle the planets at start
-	levels.shuffle()
-
-	first_time = true
-	played_levels = []
-	played_levels_scene = null
-
-	next_level(global.demo)
-	GameAnalytics.submit_events()
-	global.new_session(players)
-
+	
 
 func next_level(demo = false):
+	"""
+	This function will select the next minigame, passing from the map
+	"""
+	
 	if not map.is_inside_tree():
 		add_child(map)
+	
 	var this_game = choose_next_level()
 	map.choose_level(this_game)
 	yield(map, "chose_level")
@@ -189,25 +188,19 @@ func choose_next_level(demo = false):
 		last_sport = played_levels.back()
 	var num_players = len(players)
 
-	if len(played_levels) >= len(sports_array) or demo:
+	if len(played_levels) >= len(levels) or demo:
 		played_levels = []
-		sports_array.shuffle()
+		levels.shuffle()
 
 	# we are going to play the following games:
-	var new_sport = sports_array.pop_back()
-	sports_array.push_front(new_sport)
-
-	while last_sport == new_sport:
-		new_sport = sports_array.pop_back()
-		sports_array.push_front(new_sport)
-		if len(sports_array) <= 1:
-			break
-
+	var next_game = levels.pop_back()
+	levels.push_front(next_game)
+	
 	# let's make sure that it is not the same of the previous one.
 	current_level = levels.pop_back()
 	levels.push_front(current_level)
 	played_levels_scene = current_level
-	played_levels.append(new_sport)
+	played_levels.append(next_game)
 	return current_level.instance()
 
 
@@ -252,7 +245,8 @@ func _on_continue_session(combat_scene, session_over = false):
 
 func end_session():
 	"""
-	This will handle the end of the session (Will unlock if there is something to unlock or will go back to selection)
+	This will handle the end of the session (Will unlock 
+	if there is something to unlock or will go back to selection)
 	"""
 	reset()
 	combat.queue_free()
@@ -260,13 +254,15 @@ func end_session():
 	if TheUnlocker.what_to_unlock():
 		if not map.is_inside_tree():
 			add_child(map)
-		map.unlock_mode()
-		yield(map, "unlocking_finished")
-		remove_child(map)
-		if not parallax.is_inside_tree():
-			add_child(parallax)
-	
-			add_child(selection_screen)
+		map.connect("unlocked_done", self, "back_to_selection_screen")
+	else:
+		back_to_selection_screen()
+		
+func back_to_selection_screen():
+	remove_child(map)
+	if not parallax.is_inside_tree():
+		add_child(parallax)
+		add_child(selection_screen)
 	selection_screen.reset()
 	if global.demo:
 		selection_screen.deselect()
@@ -313,6 +309,9 @@ func start_demo():
 
 
 func add_cpu(how_many: int):
+	"""
+	Add cpu to the current pool of players
+	"""
 	var missing_species = TheUnlocker.get_ordered_species()
 	for key in players:
 		var player = players[key]

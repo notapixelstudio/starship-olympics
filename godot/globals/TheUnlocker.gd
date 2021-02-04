@@ -10,9 +10,20 @@ onready var species_discovered_scene = preload("res://special_scenes/UnlockedSpe
 onready var games_resources: Dictionary = get_resources(GAMES_PATH)  # {int : Resources}
 onready var set_resources: Dictionary = get_resources(SET_PATH)  # {int : Resources}
 
+var unlock_time = false # flag to know if there is something to unlock
 
+func what_to_unlock() -> bool:
+	return unlock_time
+	
+func will_unlock():
+	# This function will activate a flag that will be used to set the flag 
+	# to unlock
+	unlock_time = true
+	
 func _ready():
 	add_to_group("persist")
+	unlock_time = false
+	
 
 var map_unlocked = true # If the map has been unlocked or not
 
