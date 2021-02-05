@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=14]
 [ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=15]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=16]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
@@ -446,16 +448,28 @@ position = Vector2( 3250, -2150 )
 position = Vector2( 3250, 2050 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -3050, 0 )
+position = Vector2( -3050, -1000 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 3050, 0 )
+position = Vector2( 3050, -1000 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 8 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
+position = Vector2( 3050, 1000 )
+rotation = 3.14159
+controls = "joy3"
+species = ExtResource( 16 )
+
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 7 )]
+position = Vector2( -3050, 1000 )
+rotation = 0.0
+controls = "joy4"
+species = ExtResource( 17 )
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
