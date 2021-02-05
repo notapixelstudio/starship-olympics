@@ -54,6 +54,7 @@ onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
+onready var standalone : bool = true
 onready var battlefield = $Battlefield
 
 signal screensize_changed(screensize)
@@ -201,7 +202,7 @@ func _ready():
 	for goal in traits.get_all_with('Goal'):
 		goal.connect('goal_done', self, '_on_goal_done')
 		
-	var standalone : bool = true
+	
 	var players = {}
 	var array_players = []
 	
@@ -600,6 +601,8 @@ func on_gamemode_gameover(winners: Array):
 	game_over.initialize(winners)
 
 func _on_Continue_session():
+	if standalone:
+		get_tree().reload_current_scene()
 	emit_signal("continue_session")
 	
 func _on_Show_Arena():
