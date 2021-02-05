@@ -505,13 +505,13 @@ func _on_Dashing_disabled():
 	dash_restore_appearance()
 	emit_signal('dash_ended', self)
 	
-func _on_Phasing_enabled():
-	modulate = Color(1,0,1)
-	global.arena.show_msg(species, 'PHASE', position)
-	
-func _on_Phasing_disabled():
-	modulate = Color(1,1,1)
-	global.arena.show_msg(species, 'END', position)
+#func _on_Phasing_enabled():
+#	modulate = Color(1,0,1)
+#	global.arena.show_msg(species, 'PHASE', position)
+
+#func _on_Phasing_disabled():
+#	modulate = Color(1,1,1)
+#	global.arena.show_msg(species, 'END', position)
 	
 func _on_bomb_freed():
 	bomb_count -= 1
