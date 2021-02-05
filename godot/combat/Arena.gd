@@ -54,6 +54,8 @@ onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
+onready var battlefield = $Battlefield
+
 signal screensize_changed(screensize)
 signal gameover
 signal restart

@@ -114,7 +114,17 @@ func do_game_over():
 	game_over = true
 	emit_signal("game_over", winners)
 	
-func add_score(id_player: String, amount : float, broadcasted = false):
+func set_score(id_player : String, amount : float, broadcasted = false):
+	var player = get_player(id_player)
+	player.score = amount
+	teams[player.team].score = amount
+	
+	if cumulative_points >= 0:
+		cumulative_points = amount
+		
+	emit_signal('updated', player, broadcasted) # author
+	
+func add_score(id_player : String, amount : float, broadcasted = false):
 	var player = get_player(id_player)
 	player.score = player.score + amount
 	teams[player.team].score += amount

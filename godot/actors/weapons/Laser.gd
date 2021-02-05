@@ -3,7 +3,7 @@ extends RayCast2D
 class_name Laser
 
 export var on = true setget set_on
-export (String, 'laser', 'freeze') var type = 'laser' setget set_type
+export (String, 'laser', 'freeze', 'barrier') var type = 'laser' setget set_type
 
 const FLASH_DURATION = 0.08
 const WIDTH = 40
@@ -30,6 +30,12 @@ func refresh_type():
 		gradient.set_color(0, Color8(100,180,300))
 		gradient.set_color(1, Color8(0,104,500))
 		particles_color = Color8(140,301,638)
+	elif type == 'barrier':
+		off_color = Color(1,1,1)
+		gradient = Gradient.new()
+		gradient.set_color(0, Color8(310,310,210))
+		gradient.set_color(1, Color8(500,500,400))
+		particles_color = Color8(340,340,300)
 
 func set_on(v, duration=null):
 	on = v
@@ -110,6 +116,9 @@ func _on_RayArea_body_entered(body):
 	if type == 'freeze':
 		if body.has_method('freeze') and not ECM.E(body).has('Dashing'):
 			body.freeze()
+	elif type == 'barrier':
+		if body.has_method('rebound') and not ECM.E(body).has('Dashing'):
+			body.rebound()
 			
 func _on_RayArea_area_entered(area):
 	if area is Explosion:
