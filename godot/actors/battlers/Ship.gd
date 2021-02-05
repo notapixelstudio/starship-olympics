@@ -104,6 +104,10 @@ const arkaball_scene = preload('res://actors/environments/ArkaBall.tscn')
 signal dead
 signal stop_invincible
 signal spawn_bomb
+
+signal dash_started
+signal dash_ended
+
 var invincible : bool
 
 var entity : Entity
@@ -485,9 +489,11 @@ func dash_thin_appearance():
 	
 func _on_Dashing_enabled():
 	dash_thin_appearance()
+	emit_signal('dash_started', self)
 	
 func _on_Dashing_disabled():
 	dash_restore_appearance()
+	emit_signal('dash_ended', self)
 	
 func _on_bomb_freed():
 	bomb_count -= 1
