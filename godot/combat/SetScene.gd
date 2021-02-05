@@ -17,6 +17,9 @@ func _ready():
 			assert(s is Planet)
 			var set: Planet = s
 			levels += set.get_levels(num_players)
+	
+	# FIXME shuffling logic should be here
+	
 	next_level()
 	
 func next_level():
