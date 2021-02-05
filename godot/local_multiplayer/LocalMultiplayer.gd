@@ -216,6 +216,7 @@ func start_level(_level, demo = false):
 	combat = _level
 
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
+	combat.connect("skip", self, "_on_continue_session", [combat])
 	combat.connect("continue_session", self, "_on_continue_session", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
