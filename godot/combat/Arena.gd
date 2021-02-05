@@ -54,7 +54,7 @@ onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
-onready var standalone : bool = true
+var standalone : bool = true
 onready var battlefield = $Battlefield
 
 signal screensize_changed(screensize)
@@ -65,6 +65,7 @@ signal back_to_menu
 signal slomo
 signal unslomo
 signal battle_start
+signal skip
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -814,7 +815,7 @@ func _on_Pause_restart():
 	emit_signal("restart")
 
 func _on_Pause_skip():
-	emit_signal("rematch") # WARNING this should be different if we are keeping scores
+	emit_signal("skip") # WARNING this should be different if we are keeping scores
 	
 const max_slomo_elements = 7
 

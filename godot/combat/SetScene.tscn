@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://combat/SetScene.gd" type="Script" id=1]
+[ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=2]
+
+[node name="Set" type="Node"]
+script = ExtResource( 1 )
+set1 = ExtResource( 2 )

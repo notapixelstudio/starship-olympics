@@ -227,7 +227,6 @@ func start_level(_level, demo = false):
 	combat.demo = demo
 
 	add_child(combat)
-	yield(combat, "ready")
 
 
 func _on_continue_session(combat_scene, session_over = false):
