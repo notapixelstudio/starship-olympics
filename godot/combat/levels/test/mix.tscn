@@ -50,12 +50,6 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.272, 0.4692, 0.68, 1 )
 bg_color = Color( 0.26, 0.4355, 0.65, 1 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
 [node name="Laser" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1700, 0 )
 type = "freeze"
@@ -74,18 +68,12 @@ deadly = false
 
 [node name="Bubble" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
 position = Vector2( 500, 600 )
-owner_player = NodePath("")
-symbol = "none"
 
 [node name="Bubble2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
 position = Vector2( 500, 900 )
-owner_player = NodePath("")
-symbol = "none"
 
 [node name="Bubble3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
 position = Vector2( 500, 1200 )
-owner_player = NodePath("")
-symbol = "none"
 
 [node name="OneWayWall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
 position = Vector2( -400, 1050 )

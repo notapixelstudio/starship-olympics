@@ -185,6 +185,10 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 
+[node name="Phasing" type="Node" parent="Entity2D"]
+script = ExtResource( 7 )
+enabled = false
+
 [node name="Dashing" type="Node" parent="Entity2D"]
 script = ExtResource( 7 )
 __meta__ = {
@@ -232,5 +236,7 @@ texture = ExtResource( 19 )
 [connection signal="enabled" from="Entity2D/Royal" to="PlayerInfo" method="_on_Royal_enabled"]
 [connection signal="disabled" from="Entity2D/Thrusters" to="." method="_on_Thrusters_disabled"]
 [connection signal="enabled" from="Entity2D/Thrusters" to="." method="_on_Thrusters_enabled"]
+[connection signal="disabled" from="Entity2D/Phasing" to="." method="_on_Phasing_disabled"]
+[connection signal="enabled" from="Entity2D/Phasing" to="." method="_on_Phasing_enabled"]
 [connection signal="disabled" from="Entity2D/Dashing" to="." method="_on_Dashing_disabled"]
 [connection signal="enabled" from="Entity2D/Dashing" to="." method="_on_Dashing_enabled"]
