@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=9]
@@ -357,6 +358,27 @@ modulate = Color( 1, 1, 1, 0.305882 )
 position = Vector2( -200, 0 )
 texture = ExtResource( 13 )
 polygon = PoolVector2Array( 0, -2150, 200, -2150, 200, -1400, 0, -1400 )
+
+[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="17"]
+modulate = Color( 0.2, 0.706667, 1, 0.254902 )
+position = Vector2( 2200, 0 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="18"]
+modulate = Color( 0.2, 0.705882, 1, 0.254902 )
+position = Vector2( -3400, -600 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Arrow2" type="Sprite" parent="Battlefield/Background" index="19"]
+modulate = Color( 0.2, 0.706667, 1, 0.254902 )
+position = Vector2( -987.802, -600 )
+rotation = -3.14159
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
 
 [node name="Wall13" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 800, 1200 )
