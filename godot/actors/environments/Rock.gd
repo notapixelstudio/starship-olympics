@@ -20,6 +20,7 @@ export var ice : bool = false
 export var smallest_break : bool = true
 export var conquerable : bool = false
 export var indestructible = false
+export var in_camera = true
 
 var species : Resource
 var owner_ship : Ship
@@ -43,6 +44,9 @@ func set_breakable(v):
 	recolor()
 
 func _ready():
+	if in_camera:
+		add_to_group('in_camera')
+		
 	if contains_star:
 		spawn_diamonds = false
 	
