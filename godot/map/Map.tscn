@@ -551,7 +551,6 @@ editor_draw_drag_margin = true
 zoomMin = 0.3
 zoomMax = 2.65
 zoom_offset = 1.574
-debug_mode = true
 
 [node name="FirstTimeCamera" type="Camera2D" parent="."]
 position = Vector2( 0, 240 )
@@ -572,19 +571,18 @@ __meta__ = {
 }
 
 [node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer"]
-margin_right = 495.0
+margin_right = 90.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [node name="p1" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 515.0
-margin_right = 765.0
+margin_left = 110.0
+margin_right = 360.0
 margin_bottom = 180.0
 
 [node name="p2" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 380.0
@@ -592,23 +590,21 @@ margin_right = 630.0
 margin_bottom = 180.0
 
 [node name="p3" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 515.0
-margin_right = 765.0
-margin_bottom = 180.0
-
-[node name="p4" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 650.0
 margin_right = 900.0
 margin_bottom = 180.0
 
+[node name="p4" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 920.0
+margin_right = 1170.0
+margin_bottom = 180.0
+
 [node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer"]
-margin_left = 785.0
+margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3

@@ -36,6 +36,7 @@ var settings = {} setget set_settings
 signal chose_level
 signal selection_finished
 signal back
+signal done
 
 func set_settings(value):
 	settings = value
@@ -109,13 +110,8 @@ func _ready():
 	max_cpu = global.MAX_PLAYERS - human_players
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
-	
-	
 	self.create_graph()
-	if not TheUnlocker.unlocked_paths:
-		yield(get_tree().create_timer(3), "timeout")
-		emit_signal("done")
-	# unlock_via_path($Content/Planets/Set2, $Content/Planets/Set3)
+	
 
 func initialize(players):
 	num_players = len(players)
@@ -127,7 +123,7 @@ func initialize(players):
 	for player_id in players:
 		var player = players[player_id]
 		
-		if player.cpu or not TheUnlocker.unlocked_paths:
+		if player.cpu:
 			continue
 			
 		var cursor: MapCursor = cursor_scene.instance()
@@ -217,7 +213,6 @@ func _on_cell_pressed(cursor, cell):
 		
 		_on_Start_pressed(cursor)
 	
-signal done
 var players_ready = 0
 
 func _on_Start_pressed(cursor):
@@ -230,21 +225,17 @@ func _on_Start_pressed(cursor):
 	for cursor in get_tree().get_nodes_in_group('map_cursor'):
 		cursor.set_unresponsive()
 	var playing = ""
+	var sets: Array = []
 	for sport in selected_sports:
+		sets.append(sport.planet)
 		playing += " "+ str(sport.planet.id)
 		# Can we unlock?
 		var locked_games = sport.planet.locked_games()
-		if len(locked_games) == 0:
-			var p = (sport as MapLocation).get_element_to_unlock()
-			if p:
-				unlock_via_path(p, sport)
-				yield(self, "unlock_complete")
-		
+	print(playing)
 	yield(get_tree().create_timer(1), "timeout")
-	emit_signal('done')
+	emit_signal('done', {"sets": sets})
 		
 func _on_Back_pressed(cursor):
-	
 	emit_signal("back")
 	
 func _unhandled_input(event):
@@ -382,7 +373,6 @@ func unlock_via_path(object_to_unlock: MapLocation, object_from: MapLocation) ->
 	for elem in cursors:
 		elem.add_to_group("in_camera")
 	
-	emit_signal("unlock_complete")
 	
 	
 var graph = Graph.new()

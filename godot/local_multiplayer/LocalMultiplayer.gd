@@ -125,13 +125,13 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
 	session_scores.selected_sports = sets
-
+	var dizio : Dictionary = {}
 	for s in sets:
 		var set: Planet = s
 		
 		# TODO: issue #428 . Handle mutator
 		# session_scores.set_mutators(sport.mutators)
-		sets[set.name] = set
+		dizio[set.name] = set
 		var this_set_games = set.get_levels(len(players))
 		for level in this_set_games :
 			# Deduplication issue #405
