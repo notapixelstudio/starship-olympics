@@ -286,16 +286,7 @@ deadly = false
 ice = true
 in_camera = false
 
-[node name="Ice13" parent="Battlefield/Background" index="6" instance=ExtResource( 15 )]
-position = Vector2( 3000, 0 )
-mode = 1
-order = 3
-spawn_diamonds = false
-deadly = false
-ice = true
-in_camera = false
-
-[node name="Ice3" parent="Battlefield/Background" index="7" instance=ExtResource( 15 )]
+[node name="Ice3" parent="Battlefield/Background" index="6" instance=ExtResource( 15 )]
 position = Vector2( -4250, 1250 )
 mode = 1
 spawn_diamonds = false
@@ -303,7 +294,7 @@ deadly = false
 ice = true
 in_camera = false
 
-[node name="Ice8" parent="Battlefield/Background" index="8" instance=ExtResource( 15 )]
+[node name="Ice8" parent="Battlefield/Background" index="7" instance=ExtResource( 15 )]
 position = Vector2( -1600, 2500 )
 mode = 1
 spawn_diamonds = false
@@ -311,7 +302,7 @@ deadly = false
 ice = true
 in_camera = false
 
-[node name="Ice4" parent="Battlefield/Background" index="9" instance=ExtResource( 15 )]
+[node name="Ice4" parent="Battlefield/Background" index="8" instance=ExtResource( 15 )]
 position = Vector2( -2500, -2700 )
 mode = 1
 spawn_diamonds = false
@@ -319,7 +310,7 @@ deadly = false
 ice = true
 in_camera = false
 
-[node name="Ice7" parent="Battlefield/Background" index="10" instance=ExtResource( 15 )]
+[node name="Ice7" parent="Battlefield/Background" index="9" instance=ExtResource( 15 )]
 position = Vector2( -4400, -2000 )
 mode = 1
 order = 3
@@ -328,7 +319,7 @@ deadly = false
 ice = true
 in_camera = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="12" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="11" instance=ExtResource( 5 )]
 hollow = true
 offset = 800
 hide_grid = true
@@ -347,34 +338,40 @@ precision = 100.0
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.670588 )
 
-[node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="16"]
+[node name="FloodWater" parent="Battlefield/Background" index="13"]
+type = 1
+flag_offset = 0
+isometric_effect = true
+opaque_tint = Color( 0, 0, 0, 0.8 )
+
+[node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="15"]
 modulate = Color( 1, 1, 1, 0.305882 )
 position = Vector2( -200, 0 )
 texture = ExtResource( 13 )
 polygon = PoolVector2Array( 0, -2250, 200, -2250, 200, -1400, 0, -1400 )
 
-[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="17"]
+[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="16"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 2200, 0 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="18"]
+[node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="17"]
 modulate = Color( 0.2, 0.705882, 1, 0.254902 )
 position = Vector2( -3450, -600 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Arrow2" type="Sprite" parent="Battlefield/Background" index="19"]
+[node name="Arrow2" type="Sprite" parent="Battlefield/Background" index="18"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( -987.802, -600 )
 rotation = -3.14159
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Arrow4" type="Sprite" parent="Battlefield/Background" index="20"]
+[node name="Arrow4" type="Sprite" parent="Battlefield/Background" index="19"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 712.198, -1850 )
 scale = Vector2( 2, 2 )
