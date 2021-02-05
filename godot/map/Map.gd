@@ -1,24 +1,26 @@
 extends Control
 
+class_name Map
+
 const WIDTH = 200
 const HEIGHT = 100
 const CELLSIZE = 200
 
 var matrix = []
-var back = false
 
 var selected_sports : Array
 export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
 onready var camera = $Camera
+onready var first_time_camera =$FirstTimeCamera
 onready var panels = $CanvasLayerTop/PanelContainer
 onready var tween = $Tween
-export var focus_path_scene: PackedScene = preload("res://map/PathMap.tscn")
+export var focus_path_scene: PackedScene
 export var element_in_camera_scene: PackedScene = preload("res://actors/environments/ElementInCamera.tscn")
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
-var max_cpu
+var max_cpu: int
 
 var hive_shoot_bombs = true setget set_hive_bombs
 var diamondsnatch_shoot_bombs = true setget set_diamondsnatch_bombs
@@ -33,29 +35,8 @@ var settings = {} setget set_settings
 
 signal chose_level
 signal selection_finished
-signal unlock_complete
-signal check_completed
-
-func check():
-	# THIS WILL UNLOCK trinkets and death
-	var set = $Content/Planets/Set6.planet
-	var locked = 0
-	
-	for minigame in set.minigames:
-		if not TheUnlocker.unlocked_games.get(minigame.id, false):
-			locked+=1
-	if locked <= 0:
-		# WE WILL UNLOCK!
-		if not TheUnlocker.unlocked_sets.get("trinkets", false):
-			unlock_via_path($Content/Planets/Set3, $Content/Planets/Set6)
-			TheUnlocker.unlock_set($Content/Planets/Set3.planet.id)
-			yield(self, "unlock_complete")
-		if not TheUnlocker.unlocked_sets.get("death", false):
-			unlock_via_path($Content/Planets/Set2, $Content/Planets/Set6)
-			TheUnlocker.unlock_set($Content/Planets/Set2.planet.id)
-			yield(self, "unlock_complete")
-	yield(get_tree(), "idle_frame")
-	emit_signal("check_completed")
+signal back
+signal done
 
 func set_settings(value):
 	settings = value
@@ -78,12 +59,22 @@ func set_slam_a_gon_bombs(value: bool):
 	settings["slam_a_gon"] = {"shoot_bombs" : slam_a_gon_shoot_bombs}
 	
 func _ready():
-	back = false
-	
-	
+	# Check if it is the first time:
+	if TheUnlocker.is_map_unlocked():
+		first_time_camera.current = false
+		camera.enabled = true
+	else:
+		first_time_camera.current = true
+		camera.enabled = false
+		var first_set = $Content/Planets/Set6
+		selected_sports = [first_set]
+		var central_panel = $CanvasLayerTop/PanelContainer/p1
+		central_panel.enable()
+		central_panel.map_element = first_set.planet
+		
 	for x in range(WIDTH):
 		matrix.append([])
-		for y in range(HEIGHT):
+		for _y in range(HEIGHT):
 			matrix[x].append(null)
 			
 	for p in get_tree().get_nodes_in_group('map_point'):
@@ -93,6 +84,7 @@ func _ready():
 		cursor.connect('try_move', self, '_on_cursor_try_move')
 		cursor.connect('select', self, '_on_cursor_select')
 		cursor.connect('cancel', self, '_on_cursor_cancel')
+		
 		var panel = panels.get_node(cursor.player.id)
 		panel.species = cursor.species
 		panel.enable()
@@ -118,13 +110,11 @@ func _ready():
 	max_cpu = global.MAX_PLAYERS - human_players
 	
 	cpus.initialize(int(human_players==1), max_cpu+1)
+	self.create_graph()
 	
-	# unlock_via_path($Content/Planets/Set2, $Content/Planets/Set3)
 
-func initialize(players, sports, settings_):
-	self.settings = settings_
-	selected_sports = sports
-	
+func initialize(players):
+	num_players = len(players)
 	for player_id in players:
 		if not players[player_id].cpu:
 			human_players += 1
@@ -136,7 +126,7 @@ func initialize(players, sports, settings_):
 		if player.cpu:
 			continue
 			
-		var cursor = cursor_scene.instance()
+		var cursor: MapCursor = cursor_scene.instance()
 		cursor.species = player.species
 		cursor.player = player
 		cursor.player_i = i
@@ -146,13 +136,9 @@ func initialize(players, sports, settings_):
 		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
-		
-		
-		
 		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
-	num_players = len(players)
 	
 	
 func _on_cursor_try_move(cursor, direction):
@@ -199,28 +185,34 @@ func _on_cursor_cancel(cursor):
 	var panel = panels.get_node(cursor.player.id)
 	panel.map_element = null
 	panel.chosen = false
-	var i = selected_sports.find(cell.planet)
+	var i = selected_sports.find(cell)
 	if i >= 0:
 		selected_sports.remove(i)
 		players_ready -= 1
-		print("players ready "+ str(players_ready))
 	
 func get_cell(position):
 	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
 
+func get_selection():
+	var ret = []
+	for set in selected_sports:
+		assert(set is MapPlanet)
+		ret.append(set.planet)
+	return ret
+	
 func _on_cell_pressed(cursor, cell):
 	# update data
+	
 	if cell.is_in_group("sports"):
 		var panel = panels.get_node(cursor.player.id)
 		panel.map_element = cell.planet
 		panel.chosen = true
-		if not cell.planet in selected_sports:
-			selected_sports.append(cell.planet)
+		if not cell in selected_sports:
+			selected_sports.append(cell)
 		players_ready += 1
 		
 		_on_Start_pressed(cursor)
 	
-signal done
 var players_ready = 0
 
 func _on_Start_pressed(cursor):
@@ -233,20 +225,23 @@ func _on_Start_pressed(cursor):
 	for cursor in get_tree().get_nodes_in_group('map_cursor'):
 		cursor.set_unresponsive()
 	var playing = ""
+	var sets: Array = []
 	for sport in selected_sports:
-		playing += " "+ str(sport.name)
-	print("playing: "+ playing)
+		sets.append(sport.planet)
+		playing += " "+ str(sport.planet.id)
+		# Can we unlock?
+		var locked_games = sport.planet.locked_games()
+	print(playing)
 	yield(get_tree().create_timer(1), "timeout")
-	emit_signal('done')
+	emit_signal('done', {"sets": sets})
 		
 func _on_Back_pressed(cursor):
-	back = true
-	emit_signal("done")
+	emit_signal("back")
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
-		back = true
-		emit_signal("done")
+		
+		emit_signal("back")
 
 var screen_width = ProjectSettings.get_setting('display/window/size/width')
 var screen_height = ProjectSettings.get_setting('display/window/size/height')
@@ -323,7 +318,7 @@ func _input(event):
 	if event.is_action_pressed("continue"):
 		Engine.time_scale += 0.2
 		
-func unlock_via_path(object_to_unlock, object_from):
+func unlock_via_path(object_to_unlock: MapLocation, object_from: MapLocation) -> void:
 	
 	# let's grab the path that connect the two objects
 	var path_to_traverse = null
@@ -333,6 +328,7 @@ func unlock_via_path(object_to_unlock, object_from):
 			path_to_traverse = path
 			break
 	assert(path_to_traverse) # Path between the two NOT FOUND
+	path_to_traverse.unlock()
 	var center_camera = global.calculate_center(camera.camera_rect)
 	# remove cursors from camera, if any
 	var cursors = []
@@ -377,7 +373,22 @@ func unlock_via_path(object_to_unlock, object_from):
 	for elem in cursors:
 		elem.add_to_group("in_camera")
 	
-	emit_signal("unlock_complete")
 	
 	
-	
+var graph = Graph.new()
+
+func create_graph():
+	for path in get_tree().get_nodes_in_group("map_paths"):
+		var loc : MapLocation = path.from
+		var to = path.to
+		loc.add_path(path)
+		graph.add_path(path)
+	print(graph)
+
+func unlock_mode():
+	"""
+	This will find if and what to unlock and will make the animation or give input accordingly
+	"""
+	if not TheUnlocker.first_check():
+		first_time_camera.current = false
+		camera.enabled = true

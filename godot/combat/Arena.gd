@@ -59,7 +59,7 @@ onready var battlefield = $Battlefield
 signal screensize_changed(screensize)
 signal gameover
 signal restart
-signal rematch
+signal continue_session
 signal back_to_menu
 signal slomo
 signal unslomo
@@ -371,7 +371,6 @@ func _ready():
 		yield(node, 'done')
 	
 	if not mockup:
-		
 		var j = 0
 		var player_spawners = $SpawnPositions/Players.get_children()
 		get_tree().paused = true
@@ -592,7 +591,7 @@ func on_gamemode_gameover(winners: Array):
 	set_time_scale(1)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
-	game_over.connect("rematch", self, "_on_GameOver_rematch")
+	game_over.connect("pressed_continue", self, "_on_Continue_session")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
@@ -600,6 +599,9 @@ func on_gamemode_gameover(winners: Array):
 	
 	game_over.initialize(winners)
 
+func _on_Continue_session():
+	emit_signal("continue_session")
+	
 func _on_Show_Arena():
 	$Battlefield/Background.modulate = Color(1,1,1,1)
 	$Battlefield/Middleground.modulate=Color(1,1,1,1)
@@ -804,9 +806,6 @@ func on_next_wave(diamonds, wait_time=1):
 		
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")
-
-func _on_GameOver_rematch():
-	emit_signal("rematch")
 
 func _on_Pause_restart():
 	emit_signal("restart")

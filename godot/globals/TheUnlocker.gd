@@ -10,10 +10,25 @@ onready var species_discovered_scene = preload("res://special_scenes/UnlockedSpe
 onready var games_resources: Dictionary = get_resources(GAMES_PATH)  # {int : Resources}
 onready var set_resources: Dictionary = get_resources(SET_PATH)  # {int : Resources}
 
+var unlock_time = false # flag to know if there is something to unlock
 
+func what_to_unlock() -> bool:
+	return unlock_time
+	
+func will_unlock():
+	# This function will activate a flag that will be used to set the flag 
+	# to unlock
+	unlock_time = true
+	
 func _ready():
 	add_to_group("persist")
+	unlock_time = false
+	
 
+var map_unlocked = true # If the map has been unlocked or not
+
+func is_map_unlocked() -> bool:
+	return map_unlocked
 
 func get_resources(base_path: String) -> Dictionary:
 	var ret = {}
@@ -33,49 +48,73 @@ func unlock_set(set: String) -> void:
 	unlocked_sets[set] = true
 	persistance.save_game()
 
+var unlocked_paths = {
+	
+}
+func unlock_path(path_id: String) -> void:
+	unlocked_paths[path_id] = true
+	persistance.save_game()
+	
+func get_status_path(path_id)->bool:
+	return unlocked_paths.get(path_id, "invisible")
+	
+func get_status_location(loc_id)-> bool:
+	return unlocked_locations.get(loc_id, "invisible")
+	
+var unlocked_locations = {
+	
+}
 
+func unlock_location(loc_id: String) -> void:
+	unlocked_locations[loc_id] = true
+	persistance.save_game()
+	
 var unlocked_sets = {
-	"drones": false,
-	"trinkets": false,
-	"snake": false,
-	"asteroids": false,
-	"labs": false,
+	"drones": "invisible",
+	"trinkets": "invisible",
+	"snake": "invisible",
+	"asteroids": "invisible",
+	"labs": "invisible",
 	"core": true,
-	"death": false,
-	"sports": false,
-	"beach": false,
-}
-var unlocked_games = {
-	"minefield": false,
-	"king": false,
-	"flowsnake": false,
-	"diamond": false,
-	"hive_fill": false,
-	"goal_portal": false,
-	"deathmatch": false,
-	"diamond_mining": false,
-	"diamond_snake": false,
-	"diamond_fish": false,
-	"deathmatch_snake": false,
-	"slam": false,
-	"brick_melee": false,
-	"asteroid_conquest": false,
-	"star_fish": false,
-	"brick_break": false,
-	"pong": false,
-	"deathmatch_ball": false,
-	"race": false,
-	"asteroid_deathmatch": false,
-	"deathmatch_limit": false,
-	"crown": false,
-	"race_under": false,
-	"star_mining": false,
-	"laser": false,
-	"alchemical_bonding": false,
-	"slam_snake": false,
-	"asteroid_survival": false
+	"death": "invisible",
+	"sports": "invisible",
+	"beach": "invisible",
 }
 
+var unlocked_games = {
+	"minefield": "invisible",
+	"king": "invisible",
+	"flowsnake": "invisible",
+	"diamond": "invisible",
+	"hive_fill": "invisible",
+	"goal_portal": "invisible",
+	"deathmatch": "invisible",
+	"diamond_mining": "invisible",
+	"diamond_snake": "invisible",
+	"diamond_fish": "invisible",
+	"deathmatch_snake": "invisible",
+	"slam": "invisible",
+	"brick_melee": "invisible",
+	"asteroid_conquest": "invisible",
+	"star_fish": "invisible",
+	"brick_break": "invisible",
+	"pong": "invisible",
+	"deathmatch_ball": "invisible",
+	"race": "invisible",
+	"asteroid_deathmatch": "invisible",
+	"deathmatch_limit": "invisible",
+	"crown": "invisible",
+	"race_under": "invisible",
+	"star_mining": "invisible",
+	"laser": "invisible",
+	"alchemical_bonding": "invisible",
+	"slam_snake": "invisible",
+	"asteroid_survival": "invisible"
+}
+
+func get_status_game(game_id)-> bool:
+	return unlocked_games.get(game_id, false)
+	
 func unlock_game(game_id: String) -> void:
 	# If fails means that we already unlocked this game
 	assert(not self.unlocked_games[game_id]) 
@@ -145,5 +184,9 @@ func get_state():
 	return {
 		unlocked_sets = unlocked_sets,
 		unlocked_games = unlocked_games,
-		unlocked_species = unlocked_species
+		unlocked_species = unlocked_species,
+		unlocked_locations=unlocked_locations,
+		unlocked_paths=unlocked_paths,
+		map_unlocked=map_unlocked
+		
 	}

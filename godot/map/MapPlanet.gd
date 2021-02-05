@@ -1,18 +1,19 @@
 tool
-
-extends MapCell
+extends MapLocation
 
 class_name MapPlanet
 
 export var planet : Resource setget set_planet
 onready var sprite = $Sprite
-var status : String = "locked" setget set_status
 export var active : bool = false setget set_active
 
 var not_available = false setget set_availability
 
 signal updated
 signal unlocked
+
+func get_id() -> String:
+	return planet.id
 
 func set_status(v):
 	status = v
@@ -56,6 +57,7 @@ func deactivate(cursor):
 func _ready():
 	sprite.texture = planet.planet_sprite
 	refresh()
+	
 	
 func refresh():
 	emit_signal('updated', active)

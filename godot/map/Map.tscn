@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://map/planets/sets/deathmatches.tres" type="Resource" id=11]
 [ext_resource path="res://map/planets/sets/snakes.tres" type="Resource" id=12]
-[ext_resource path="res://map/Path.gd" type="Script" id=13]
+[ext_resource path="res://map/MapPath.gd" type="Script" id=13]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/map/cards/laser_moon_off.png" type="Texture" id=27]
 [ext_resource path="res://assets/map/cards/laser_moon_on.png" type="Texture" id=28]
 [ext_resource path="res://assets/map/cards/laser_moon_random.png" type="Texture" id=29]
+[ext_resource path="res://map/FollowPath.tscn" type="PackedScene" id=30]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CanvasItemMaterial" id=1]
@@ -79,6 +80,7 @@ __meta__ = {
 }
 playlist_item = ExtResource( 3 )
 cursor_scene = ExtResource( 4 )
+focus_path_scene = ExtResource( 30 )
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -428,7 +430,9 @@ planet = ExtResource( 9 )
 position = Vector2( 800, -1000 )
 planet = ExtResource( 12 )
 
-[node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
+[node name="Set6" parent="Content/Planets" groups=[
+"in_camera",
+] instance=ExtResource( 6 )]
 position = Vector2( 0, 200 )
 planet = ExtResource( 8 )
 
@@ -537,22 +541,20 @@ __meta__ = {
 }
 
 [node name="Camera" parent="." instance=ExtResource( 33 )]
-limit_left = -1900
-limit_top = -900
-limit_right = 1500
-limit_bottom = 900
+current = false
 drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
-zoomMin = 2.1
+zoomMin = 0.3
 zoomMax = 2.65
-marginY = -150.0
 zoom_offset = 1.574
 
-[node name="Tween" type="Tween" parent="."]
+[node name="FirstTimeCamera" type="Camera2D" parent="."]
+position = Vector2( 0, 240 )
+zoom = Vector2( 1.2, 1.2 )
 
 [node name="CanvasLayerTop" type="CanvasLayer" parent="."]
 layer = 2
@@ -606,6 +608,8 @@ margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
+
+[node name="Tween" type="Tween" parent="."]
 
 [editable path="Content/Controls/Victories"]
 [editable path="Content/Controls/Flood Moon"]
