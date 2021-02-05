@@ -119,7 +119,7 @@ tracks/0/keys = {
 "values": [ Vector2( -400, 1400 ), Vector2( 1500, 1400 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -135,7 +135,7 @@ tracks/0/keys = {
 "values": [ Vector2( 2600, -150 ), Vector2( 2600, 850 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -151,7 +151,7 @@ tracks/0/keys = {
 "values": [ Vector2( -400, -1000 ), Vector2( 1500, -1000 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -167,12 +167,12 @@ tracks/0/keys = {
 "values": [ Vector2( 1550, -200 ), Vector2( -500, -200 ) ]
 }
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=8]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, -1800, 0, 0, 0, 0, 2600, -1800, 0, 0, 0, 0, 3400, -1000, 0, 0, 0, 0, 3400, 1000, 0, 0, 0, 0, 2600, 1800, 0, 0, 0, 0, -600, 1800, 0, 0, 0, 0, -1000, 1400, 0, 0, 0, 0, -1000, 1000, 0, 0, 0, 0, -600, 600, 0, 0, 0, 0, 1800, 600, 0, 0, 0, 0, 2200, 200, 0, 0, 0, 0, 2200, -200, 0, 0, 0, 0, 1800, -600, 0, 0, 0, 0, -1800, -600, 0, 0, 0, 0, -2200, -200, 0, 0, 0, 0, -2200, 1400, 0, 0, 0, 0, -2600, 1800, 0, 0, 0, 0, -3400, 1000, 0, 0, 0, 0, -3400, -1000, 0, 0, 0, 0, -2600, -1800, 0, 0, 0, 0, 0, -1800 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, -1850, 0, 0, 0, 0, 2650, -1850, 0, 0, 0, 0, 3450, -1050, 0, 0, 0, 0, 3450, 1100, 0, 0, 0, 0, 2750, 1850, 0, 0, 0, 0, -600, 1850, 0, 0, 0, 0, -1000, 1450, 0, 0, 0, 0, -1000, 1000, 0, 0, 0, 0, -600, 600, 0, 0, 0, 0, 1800, 600, 0, 0, 0, 0, 2200, 200, 0, 0, 0, 0, 2200, -200, 0, 0, 0, 0, 1800, -600, 0, 0, 0, 0, -1800, -600, 0, 0, 0, 0, -2200, -200, 0, 0, 0, 0, -2200, 1450, 0, 0, 0, 0, -2600, 1850, 0, 0, 0, 0, -3450, 950, 0, 0, 0, 0, -3450, -1100, 0, 0, 0, 0, -2650, -1850, 0, 0, 0, 0, 0, -1850 )
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -188,7 +188,7 @@ tracks/0/keys = {
 "values": [ 0.0, -90.0 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -204,7 +204,7 @@ tracks/0/keys = {
 "values": [ -45.0, -90.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -234,7 +234,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Ice" parent="Battlefield/Background" index="0" instance=ExtResource( 15 )]
-position = Vector2( 4000, -1850 )
+position = Vector2( 4100, -1850 )
 mode = 1
 spawn_diamonds = false
 deadly = false
@@ -242,7 +242,7 @@ ice = true
 in_camera = false
 
 [node name="Ice2" parent="Battlefield/Background" index="1" instance=ExtResource( 15 )]
-position = Vector2( 3400, 2050 )
+position = Vector2( 3400, 2150 )
 mode = 1
 order = 3
 spawn_diamonds = false
@@ -260,7 +260,7 @@ ice = true
 in_camera = false
 
 [node name="Ice5" parent="Battlefield/Background" index="3" instance=ExtResource( 15 )]
-position = Vector2( 2400, 2200 )
+position = Vector2( 2400, 2300 )
 mode = 1
 order = 2
 spawn_diamonds = false
@@ -269,7 +269,7 @@ ice = true
 in_camera = false
 
 [node name="Ice9" parent="Battlefield/Background" index="4" instance=ExtResource( 15 )]
-position = Vector2( -4600, 300 )
+position = Vector2( -4700, 300 )
 mode = 1
 order = 2
 spawn_diamonds = false
@@ -278,7 +278,7 @@ ice = true
 in_camera = false
 
 [node name="Ice12" parent="Battlefield/Background" index="5" instance=ExtResource( 15 )]
-position = Vector2( 4100, 800 )
+position = Vector2( 4200, 800 )
 mode = 1
 order = 1
 spawn_diamonds = false
@@ -296,7 +296,7 @@ ice = true
 in_camera = false
 
 [node name="Ice3" parent="Battlefield/Background" index="7" instance=ExtResource( 15 )]
-position = Vector2( -4150, 1250 )
+position = Vector2( -4250, 1250 )
 mode = 1
 spawn_diamonds = false
 deadly = false
@@ -304,7 +304,7 @@ ice = true
 in_camera = false
 
 [node name="Ice8" parent="Battlefield/Background" index="8" instance=ExtResource( 15 )]
-position = Vector2( -1600, 2400 )
+position = Vector2( -1600, 2500 )
 mode = 1
 spawn_diamonds = false
 deadly = false
@@ -312,7 +312,7 @@ ice = true
 in_camera = false
 
 [node name="Ice4" parent="Battlefield/Background" index="9" instance=ExtResource( 15 )]
-position = Vector2( -2500, -2600 )
+position = Vector2( -2500, -2700 )
 mode = 1
 spawn_diamonds = false
 deadly = false
@@ -320,7 +320,7 @@ ice = true
 in_camera = false
 
 [node name="Ice7" parent="Battlefield/Background" index="10" instance=ExtResource( 15 )]
-position = Vector2( -4400, -1900 )
+position = Vector2( -4400, -2000 )
 mode = 1
 order = 3
 spawn_diamonds = false
@@ -339,25 +339,19 @@ script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
 clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 7600
-height = 4400
+width = 7800
+height = 4600
 radius = 1200
 precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.670588 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="14"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
 [node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="16"]
 modulate = Color( 1, 1, 1, 0.305882 )
 position = Vector2( -200, 0 )
 texture = ExtResource( 13 )
-polygon = PoolVector2Array( 0, -2150, 200, -2150, 200, -1400, 0, -1400 )
+polygon = PoolVector2Array( 0, -2250, 200, -2250, 200, -1400, 0, -1400 )
 
 [node name="Arrow" type="Sprite" parent="Battlefield/Background" index="17"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
@@ -368,7 +362,7 @@ texture = ExtResource( 6 )
 
 [node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="18"]
 modulate = Color( 0.2, 0.705882, 1, 0.254902 )
-position = Vector2( -3400, -600 )
+position = Vector2( -3450, -600 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
@@ -382,7 +376,7 @@ texture = ExtResource( 6 )
 
 [node name="Arrow4" type="Sprite" parent="Battlefield/Background" index="20"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
-position = Vector2( 712.198, -1800 )
+position = Vector2( 712.198, -1850 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
@@ -445,7 +439,7 @@ position = Vector2( -1400, 1800 )
 script = ExtResource( 1 )
 center_offset = Vector2( 0, 0 )
 jitter = 0.0
-clip = Rect2( -800, -2000, 800, 2400 )
+clip = Rect2( -800, -2000, 800, 2500 )
 width = 800
 height = 4000
 radius = 400
@@ -534,6 +528,7 @@ anims/Rotate = SubResource( 3 )
 [node name="LaserWall3" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( -400, 1400 )
 rotation = 2.35619
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall3" index="8"]
 script = ExtResource( 3 )
@@ -557,6 +552,7 @@ anims/Rotate = SubResource( 4 )
 [node name="LaserWall6" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 2600, -150 )
 rotation = 3.92699
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall6" index="8"]
 script = ExtResource( 3 )
@@ -575,11 +571,12 @@ type = "freeze"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall6" index="10" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 11 )
+anims/Rotate = SubResource( 5 )
 
 [node name="LaserWall4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
 position = Vector2( -400, -1000 )
 rotation = 2.35619
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall4" index="8"]
 script = ExtResource( 3 )
@@ -598,11 +595,12 @@ type = "freeze"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall4" index="10" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 5 )
+anims/Rotate = SubResource( 6 )
 
 [node name="LaserWall5" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
 position = Vector2( 1550, -200 )
 rotation = -0.785398
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall5" index="8"]
 script = ExtResource( 3 )
@@ -621,12 +619,12 @@ type = "freeze"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall5" index="10" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 6 )
+anims/Rotate = SubResource( 7 )
 
 [node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="13" groups=[
 "race_path",
 ]]
-curve = SubResource( 7 )
+curve = SubResource( 8 )
 
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="14"]
 position = Vector2( -1400, 200 )
@@ -634,6 +632,7 @@ position = Vector2( -1400, 200 )
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 rotation = -0.785398
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D/LaserWall6" index="8"]
 script = ExtResource( 3 )
@@ -652,7 +651,7 @@ type = "freeze"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D" index="1" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 8 )
+anims/Rotate = SubResource( 9 )
 
 [node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="15"]
 position = Vector2( -2600, -1000 )
@@ -661,6 +660,7 @@ rotation = -0.785398
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 rotation = -0.785398
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D3/LaserWall6" index="8"]
 script = ExtResource( 3 )
@@ -679,7 +679,7 @@ type = "freeze"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3" index="1" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 9 )
+anims/Rotate = SubResource( 10 )
 
 [node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="16"]
 position = Vector2( -2600, 1000 )
@@ -688,6 +688,7 @@ rotation = 3.92699
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 rotation = -0.785398
+type = 2
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D2/LaserWall6" index="8"]
 script = ExtResource( 3 )
@@ -706,10 +707,10 @@ type = "freeze"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2" index="1" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 10 )
+anims/Rotate = SubResource( 11 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( 0, -1950 )
+position = Vector2( 0, -2050 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 9 )
