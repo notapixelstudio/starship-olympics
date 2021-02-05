@@ -80,6 +80,7 @@ var charging = false
 var charging_enough = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
+var phasing_cooldown = 0
 var reload_time: int
 
 var game_mode : GameMode
@@ -104,6 +105,10 @@ const arkaball_scene = preload('res://actors/environments/ArkaBall.tscn')
 signal dead
 signal stop_invincible
 signal spawn_bomb
+
+signal dash_started
+signal dash_ended
+
 var invincible : bool
 
 var entity : Entity
@@ -296,9 +301,14 @@ func _physics_process(delta):
 		emit_signal("detection", body, self)
 		
 	dash_cooldown -= delta
+	phasing_cooldown -= delta
+	
+	if phasing_cooldown <= 0 and entity.get('Phasing').enabled:
+		#yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with phase-through checks
+		entity.get('Phasing').disable()
+	
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		dash_restore_appearance()
-		yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with dash-through checks
 		entity.get('Dashing').disable()
 		
 	if charging and not charging_enough and charge > MIN_CHARGE:
@@ -386,6 +396,7 @@ func fire(override_charge = -1, dash_only = false):
 	if will_dash:
 		entity.get('Dashing').enable()
 		dash_cooldown = (actual_charge - MIN_CHARGE)*0.6
+		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
 	else:
 		tap()
 		
@@ -484,10 +495,23 @@ func dash_thin_appearance():
 	$DashParticles.visible = true
 	
 func _on_Dashing_enabled():
+	# dashing always enables phasing
+	entity.get('Phasing').enable()
+	
 	dash_thin_appearance()
+	emit_signal('dash_started', self)
 	
 func _on_Dashing_disabled():
 	dash_restore_appearance()
+	emit_signal('dash_ended', self)
+	
+#func _on_Phasing_enabled():
+#	modulate = Color(1,0,1)
+#	global.arena.show_msg(species, 'PHASE', position)
+
+#func _on_Phasing_disabled():
+#	modulate = Color(1,1,1)
+#	global.arena.show_msg(species, 'END', position)
 	
 func _on_bomb_freed():
 	bomb_count -= 1

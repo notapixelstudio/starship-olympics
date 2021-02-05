@@ -185,6 +185,10 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 
+[node name="Phasing" type="Node" parent="Entity2D"]
+script = ExtResource( 7 )
+enabled = false
+
 [node name="Dashing" type="Node" parent="Entity2D"]
 script = ExtResource( 7 )
 __meta__ = {

@@ -81,7 +81,7 @@ func _ready():
 	refresh_type()
 	$Line2D.gradient = gradient
 	$CollisionParticles2D.modulate = particles_color
-	$Entity/DashThroughDeadly.set_enabled(type == 'laser')
+	$Entity/PhaseThroughDeadly.set_enabled(type == 'laser')
 	$Entity/Trigger.set_enabled(type == 'laser')
 	
 func start():
@@ -114,10 +114,10 @@ func _on_RayArea_body_entered(body):
 		body.pop(true)
 	
 	if type == 'freeze':
-		if body.has_method('freeze') and not ECM.E(body).has('Dashing'):
+		if body.has_method('freeze') and not ECM.E(body).has('Phasing'):
 			body.freeze()
 	elif type == 'barrier':
-		if body.has_method('rebound') and not ECM.E(body).has('Dashing'):
+		if body.has_method('rebound') and not ECM.E(body).has('Phasing'):
 			body.rebound()
 			
 func _on_RayArea_area_entered(area):

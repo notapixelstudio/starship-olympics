@@ -74,7 +74,7 @@ script = ExtResource( 2 )
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 4 )
 
-[node name="DashThroughDeadly" type="Node" parent="Entity"]
+[node name="PhaseThroughDeadly" type="Node" parent="Entity"]
 script = ExtResource( 3 )
 
 [node name="Trigger" type="Node" parent="Entity"]
@@ -82,6 +82,10 @@ script = ExtResource( 3 )
 
 [node name="GCircle" type="Node" parent="."]
 script = ExtResource( 1 )
+center_offset = Vector2( 0, 0 )
+jitter = 0.0
+clip = Rect2( -10000, -10000, 20000, 20000 )
+radius = 100
 precision = 20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -95,4 +99,5 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
 [connection signal="changed" from="GCircle" to="." method="_on_GCircle_changed"]
