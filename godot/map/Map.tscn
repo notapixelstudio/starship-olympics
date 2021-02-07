@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/map/cards/laser_moon_on.png" type="Texture" id=28]
 [ext_resource path="res://assets/map/cards/laser_moon_random.png" type="Texture" id=29]
 [ext_resource path="res://map/FollowPath.tscn" type="PackedScene" id=30]
+[ext_resource path="res://map/planets/sets/asteroids.tres" type="Resource" id=31]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CanvasItemMaterial" id=1]
@@ -332,9 +333,6 @@ position = Vector2( 1400, 400 )
 [node name="Waypoint12" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -400, 0 )
 
-[node name="Waypoint13" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -400, 200 )
-
 [node name="Waypoint14" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( -200, 200 )
 
@@ -421,6 +419,10 @@ planet = ExtResource( 11 )
 [node name="Set3" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -400 )
 planet = ExtResource( 7 )
+
+[node name="Set7" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, 200 )
+planet = ExtResource( 31 )
 
 [node name="Set5" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 1200, -400 )

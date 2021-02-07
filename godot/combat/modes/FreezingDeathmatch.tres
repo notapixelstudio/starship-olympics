@@ -1,17 +1,19 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=1]
-[ext_resource path="res://assets/icon/asteroid_deathmatch_logo.png" type="Texture" id=2]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://map/planets/rules/Deathmatch.tres" type="Resource" id=4]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=2]
+[ext_resource path="res://map/planets/rules/Deathmatch.tres" type="Resource" id=3]
+[ext_resource path="res://assets/icon/asteroid_deathmatch_logo.png" type="Texture" id=4]
+[ext_resource path="res://assets/icon/minicards/sets/freezing_death.png" type="Texture" id=5]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 id = "asteroid_deathmatch"
 is_mutator = false
 name = "Freezing Death"
-logo = ExtResource( 2 )
-arena_style = ExtResource( 1 )
+icon = ExtResource( 5 )
+logo = ExtResource( 4 )
+arena_style = ExtResource( 2 )
 description = "kill the other players"
 tagline_pro = "A kill for the honour, a kill for the species"
 tagline_cons = "A self kill, apart from being embarassing, make you lose point"
@@ -34,7 +36,7 @@ deadly_trails_duration = 2.0
 bomb_type = 2
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 4 ) ]
+rules = [ ExtResource( 3 ) ]
 floodable = true
 flood = false
 laserable = false
