@@ -1,22 +1,10 @@
-[gd_resource type="Resource" load_steps=19 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=1]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/2players.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/4players.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/3players.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/modes/SnakeDeathmatch.tres" type="Resource" id=5]
 [ext_resource path="res://assets/map/cards/deathmathces_set.png" type="Texture" id=6]
-[ext_resource path="res://combat/levels/sets/snake/snake_deathmatch/2players.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/levels/sets/snake/snake_deathmatch/3players.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/levels/sets/death/ball_deathmatch/2players.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/levels/sets/snake/snake_deathmatch/4players.tscn" type="PackedScene" id=10]
-[ext_resource path="res://combat/levels/sets/asteroids/freezing_death/4players.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/levels/sets/asteroids/freezing_death/2players.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/FreezingDeathmatch.tres" type="Resource" id=13]
-[ext_resource path="res://combat/levels/sets/death/ball_deathmatch/4players.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=15]
-[ext_resource path="res://combat/levels/sets/death/ball_deathmatch/3players.tscn" type="PackedScene" id=16]
-[ext_resource path="res://combat/levels/sets/asteroids/freezing_death/3players.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/modes/BallDeathmatch.tres" type="Resource" id=18]
 
 [resource]
@@ -27,9 +15,5 @@ tagline1 = ""
 tagline2 = ""
 description = ""
 minigames = [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 5 ) ]
-levels_1players = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 7 ) ]
-levels_2players = [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 2 ), ExtResource( 7 ) ]
-levels_3players = [ ExtResource( 4 ), ExtResource( 17 ), ExtResource( 8 ), ExtResource( 16 ) ]
-levels_4players = [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 14 ) ]
 planet_sprite = ExtResource( 6 )
 mutators = [  ]

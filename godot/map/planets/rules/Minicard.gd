@@ -16,9 +16,9 @@ func set_content(v):
 	if not is_inside_tree():
 		yield(self, "ready")
 		
-	if content is GameMode:
-		texture = content.icon
-		$Shadow.texture = content.icon
+	if content is Minigame:
+		texture = content.get_icon()
+		$Shadow.texture = content.get_icon()
 
 func unlock():
 	$AnimationPlayer.play("unlock")

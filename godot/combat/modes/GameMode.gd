@@ -46,3 +46,10 @@ export var floodable : bool = true
 export var flood : bool = false
 export var laserable : bool = false
 export var additional_lasers : bool = false
+
+func get_id():
+	return id
+	
+func get_icon():
+	return icon
+	
