@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://map/planets/sets/death.tres" type="Resource" id=9]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://map/planets/sets/sports.tres" type="Resource" id=11]
+[ext_resource path="res://map/planets/sets/conquest.tres" type="Resource" id=12]
+[ext_resource path="res://map/planets/sets/crown.tres" type="Resource" id=13]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -31,6 +33,9 @@
 [ext_resource path="res://map/planets/sets/asteroids.tres" type="Resource" id=31]
 [ext_resource path="res://map/planets/sets/ice.tres" type="Resource" id=32]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
+[ext_resource path="res://map/planets/sets/cards.tres" type="Resource" id=34]
+[ext_resource path="res://map/planets/sets/survival.tres" type="Resource" id=35]
+[ext_resource path="res://map/planets/sets/diamonds.tres" type="Resource" id=36]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -98,9 +103,6 @@ polygon = PoolVector2Array( -700, -700, -600, -800, -300, -800, -300, -1200, -20
 [node name="Waypoint2" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, -400 )
 
-[node name="Waypoint3" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 0, -600 )
-
 [node name="Waypoint23" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 600, -600 )
 
@@ -125,9 +127,6 @@ position = Vector2( 600, -400 )
 [node name="Waypoint31" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 1000, 0 )
 
-[node name="Waypoint4" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( -400, -600 )
-
 [node name="Waypoint6" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -200 )
 
@@ -142,9 +141,6 @@ position = Vector2( 0, -400 )
 
 [node name="Waypoint37" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -600 )
-
-[node name="Waypoint38" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 400, -600 )
 
 [node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 800, -600 )
@@ -234,7 +230,7 @@ position = Vector2( 1000, 400 )
 position = Vector2( 1200, 400 )
 
 [node name="Waypoint58" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 800, 200 )
+position = Vector2( 800, -1000 )
 
 [node name="Waypoint59" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 1200, 0 )
@@ -335,9 +331,6 @@ position = Vector2( -200, 200 )
 [node name="Waypoint20" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 400, 0 )
 
-[node name="Waypoint21" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 1200, 200 )
-
 [node name="Waypoint5" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, 200 )
 
@@ -371,6 +364,18 @@ planet = ExtResource( 32 )
 position = Vector2( 0, -200 )
 planet = ExtResource( 7 )
 
+[node name="Set13" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 0, -600 )
+planet = ExtResource( 34 )
+
+[node name="Set14" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, -600 )
+planet = ExtResource( 35 )
+
+[node name="Set15" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 400, -600 )
+planet = ExtResource( 36 )
+
 [node name="Set9" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -200 )
 planet = ExtResource( 9 )
@@ -378,6 +383,14 @@ planet = ExtResource( 9 )
 [node name="Set10" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 800, -200 )
 planet = ExtResource( 11 )
+
+[node name="Set11" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 800, 200 )
+planet = ExtResource( 12 )
+
+[node name="Set12" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 1200, 200 )
+planet = ExtResource( 13 )
 
 [node name="Controls" type="Node2D" parent="Content"]
 
