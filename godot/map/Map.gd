@@ -91,7 +91,7 @@ func _ready():
 	
 	# TODO: NAMING CONVENTION in group with SPORT
 	for sport in get_tree().get_nodes_in_group("sports"):
-		var levels = sport.planet.get("levels_"+str(num_players)+"players")
+		var levels = sport.planet.get_levels(num_players)
 		var set = sport.planet
 		
 		if not levels:
