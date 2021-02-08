@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -8,7 +8,9 @@
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://map/planets/sets/snake.tres" type="Resource" id=7]
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=8]
+[ext_resource path="res://map/planets/sets/death.tres" type="Resource" id=9]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://map/planets/sets/sports.tres" type="Resource" id=11]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -368,6 +370,14 @@ planet = ExtResource( 32 )
 [node name="Set8" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -200 )
 planet = ExtResource( 7 )
+
+[node name="Set9" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 400, -200 )
+planet = ExtResource( 9 )
+
+[node name="Set10" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 800, -200 )
+planet = ExtResource( 11 )
 
 [node name="Controls" type="Node2D" parent="Content"]
 
