@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://map/planets/sets/cards.tres" type="Resource" id=34]
 [ext_resource path="res://map/planets/sets/survival.tres" type="Resource" id=35]
 [ext_resource path="res://map/planets/sets/diamonds.tres" type="Resource" id=36]
+[ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=37]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -141,9 +142,6 @@ position = Vector2( 0, -400 )
 
 [node name="Waypoint37" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 200, -600 )
-
-[node name="Waypoint40" parent="Content/Waypoints" instance=ExtResource( 5 )]
-position = Vector2( 800, -600 )
 
 [node name="Waypoint42" parent="Content/Waypoints" instance=ExtResource( 5 )]
 position = Vector2( 800, -800 )
@@ -375,6 +373,10 @@ planet = ExtResource( 35 )
 [node name="Set15" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -600 )
 planet = ExtResource( 36 )
+
+[node name="Set16" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 800, -600 )
+planet = ExtResource( 37 )
 
 [node name="Set9" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -200 )
