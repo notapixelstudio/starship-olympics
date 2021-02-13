@@ -1,6 +1,6 @@
 extends Sprite
 
-export var content : Resource setget set_content
+export var content : Resource setget set_content # Might be Minigame.
 var status: String = "locked" setget set_status
 var selected : bool = false setget set_select
 signal unlocked
