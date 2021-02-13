@@ -29,7 +29,7 @@ func shuffle_levels(num_players : int) -> void:
 func get_levels(num_players : int) -> Array:
 	var levels = []
 	for m in minigames:
-		levels.append(m.get("levels_" + str(num_players) + "players"))
+		levels.append(m.get("level_" + str(num_players) + "players"))
 		
 	return levels
 	
