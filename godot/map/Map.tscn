@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
-[ext_resource path="res://map/PlaylistItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=6]
@@ -84,7 +83,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-playlist_item = ExtResource( 3 )
 cursor_scene = ExtResource( 4 )
 focus_path_scene = ExtResource( 30 )
 

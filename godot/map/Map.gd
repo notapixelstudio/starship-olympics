@@ -2,6 +2,11 @@ extends Control
 
 class_name Map
 
+"""
+Map is for selection the games you are going to play
+It will get the players from the session, if session exists.
+"""
+
 const WIDTH = 200
 const HEIGHT = 100
 const CELLSIZE = 200
@@ -9,7 +14,7 @@ const CELLSIZE = 200
 var matrix = []
 
 var selected_sports : Array
-export var playlist_item : PackedScene
+export(String, 'map_locked', 'normal', 'win_stage') var state = 'normal' 
 export var cursor_scene : PackedScene
 onready var camera = $Camera
 onready var first_time_camera =$FirstTimeCamera
@@ -57,12 +62,42 @@ func set_diamondsnatch_bombs(value: bool):
 func set_slam_a_gon_bombs(value: bool):
 	slam_a_gon_shoot_bombs = value
 	settings["slam_a_gon"] = {"shoot_bombs" : slam_a_gon_shoot_bombs}
+
+func set_cursors_in_map(players: Dictionary):
+	"""
+	Given a list of InfoPlayers, it will create cursors for the map
+	"""
+	num_players = len(players)
+	for player_id in players:
+		if not players[player_id].cpu:
+			human_players += 1
+	var i = 0
+	for player_id in players:
+		var player: InfoPlayer = players[player_id]
+		if player.cpu:
+			continue
+		var cursor = create_cursor(player, i)
+		$Content.add_child(cursor)
+		
+		cursor.connect('try_move', self, '_on_cursor_try_move')
+		cursor.connect('select', self, '_on_cursor_select')
+		cursor.connect('cancel', self, '_on_cursor_cancel')
+		
+		var panel = panels.get_node(cursor.player.id)
+		panel.species = cursor.species
+		panel.enable()
+		i += 1
 	
 func _ready():
 	# Check if it is the first time:
 	if TheUnlocker.is_map_unlocked():
 		first_time_camera.current = false
 		camera.enabled = true
+		var player = InfoPlayer.new()
+		var players = {"p1": player.random_species()}
+		if global.session:
+			players = global.session.get_players()
+		self.set_cursors_in_map(players)
 	else:
 		first_time_camera.current = true
 		camera.enabled = false
@@ -72,6 +107,10 @@ func _ready():
 		central_panel.enable()
 		central_panel.map_element = first_set.planet
 		
+		
+			
+	
+	
 	for x in range(WIDTH):
 		matrix.append([])
 		for _y in range(HEIGHT):
@@ -80,14 +119,6 @@ func _ready():
 	for p in get_tree().get_nodes_in_group('map_point'):
 		matrix[int(p.position.x/CELLSIZE)][int(p.position.y/CELLSIZE)] = p
 		
-	for cursor in get_tree().get_nodes_in_group('map_cursor'):
-		cursor.connect('try_move', self, '_on_cursor_try_move')
-		cursor.connect('select', self, '_on_cursor_select')
-		cursor.connect('cancel', self, '_on_cursor_cancel')
-		
-		var panel = panels.get_node(cursor.player.id)
-		panel.species = cursor.species
-		panel.enable()
 	
 	# TODO: NAMING CONVENTION in group with SPORT
 	for sport in get_tree().get_nodes_in_group("sports"):
@@ -113,33 +144,17 @@ func _ready():
 	self.create_graph()
 	
 
-func initialize(players):
-	num_players = len(players)
-	for player_id in players:
-		if not players[player_id].cpu:
-			human_players += 1
-
-	var i = 0
-	for player_id in players:
-		var player = players[player_id]
-		
-		if player.cpu:
-			continue
-			
-		var cursor: MapCursor = cursor_scene.instance()
-		cursor.species = player.species
-		cursor.player = player
-		cursor.player_i = i
-		cursor.cell_size = CELLSIZE
-		cursor.grid_position = Vector2(0, 0)
-		cursor.z_index = 100 - i
-		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
-		cursor.wait = 0.25*i
-		$Content.add_child(cursor)
-		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
-		i += 1
+func create_cursor(player: InfoPlayer, index: int = 0) -> MapCursor:
 	
-	
+	var cursor: MapCursor = cursor_scene.instance()
+	cursor.species = player.species
+	cursor.player = player
+	cursor.cell_size = CELLSIZE
+	cursor.grid_position = Vector2(0, 0)
+	cursor.z_index = 100 - index
+	cursor.rotation_degrees = 60*(index-human_players/2.0 + 0.5)
+	cursor.wait = 0.25*index
+	return cursor
 	
 func _on_cursor_try_move(cursor, direction):
 	var desired_position = cursor.grid_position
@@ -391,6 +406,9 @@ func unlock_mode():
 	"""
 	This will find if and what to unlock and will make the animation or give input accordingly
 	"""
+	var winner: InfoPlayer = global.session.get_winner()
+	var cursor: MapCursor = create_cursor(winner)
+	$Content.add_child(cursor)
 	if not TheUnlocker.first_check():
 		first_time_camera.current = false
 		camera.enabled = true

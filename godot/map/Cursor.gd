@@ -5,7 +5,6 @@ var enabled
 class_name MapCursor
 
 export var species : Resource setget set_species
-export var player_i : int
 export var cell_size : int
 export var grid_position : Vector2 setget set_grid_position
 

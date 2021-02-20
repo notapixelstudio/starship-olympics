@@ -28,6 +28,8 @@ func initialize(winners: Array):
 	buttons.visible = true
 	var session_over = false
 	if winners:
+		var session_winner: InfoPlayer = winners[0]
+		global.session.session_winner(session_winner)
 		session_over = len(winners[0].session_score) >= global.win
 		continue_button.visible = not session_over
 		if session_over:

@@ -39,8 +39,6 @@ func _ready():
 	for species in TheUnlocker.get_unlocked():
 		all_species.append(species)
 
-	session_scores = TheSession.new()
-	session_scores.set_players(players)
 
 	campaign_mode = global.campaign_mode
 	players = {}
@@ -89,9 +87,9 @@ func start_fight(selected_players: Array, fight_mode: String):
 	for player in selected_players:
 		players[player.id] = player.info
 		i += 1
-
-	session_scores.players = players
-
+	
+	global.new_session(players)
+	
 	# Statistics
 	for player_id in players:
 		var info = players[player_id]
@@ -144,7 +142,6 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	played_levels = []
 	played_levels_scene = null
 	
-	global.new_session(players)
 	next_level(global.demo)
 	GameAnalytics.submit_events()
 	
@@ -157,7 +154,6 @@ func go_to_map():
 	var num_CPUs = 0 if len(players) > 1 else 1
 	if not campaign_mode:
 		map = map_scene.instance()
-		map.initialize(players)
 		add_child(map)
 		map.connect("back", self, "return_to_selection_screen")
 		map.connect("done", self, "continue_to_fight")
@@ -254,6 +250,7 @@ func end_session():
 	if TheUnlocker.what_to_unlock():
 		if not map.is_inside_tree():
 			add_child(map)
+		map.unlock_mode()
 		map.connect("unlocked_done", self, "back_to_selection_screen")
 	else:
 		back_to_selection_screen()

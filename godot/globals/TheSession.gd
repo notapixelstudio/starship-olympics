@@ -12,11 +12,20 @@ var matches : Array # of MatchScores
 var settings : Dictionary
 var selected_sports : Array # of Planet
 var wins = 3
+var winner: InfoPlayer
 
+	
+func session_winner(w: InfoPlayer):
+	winner = w
+
+func get_winner() -> InfoPlayer:
+	return winner
+	
 # mutators
-var mutators = {"flood": false,
-				"laser": false
-				}
+var mutators = {
+	"flood": false,
+	"laser": false
+	}
 
 func get_mutator(mutator: String):
 	if not mutator in self.mutators:
@@ -34,7 +43,7 @@ func add_mutator(mutator: String):
 func get_players():
 	return players
 	
-func set_players(_players):
+func set_players(_players: Dictionary):
 	for p in _players:
 		assert(_players[p] is InfoPlayer)
 	players = _players
