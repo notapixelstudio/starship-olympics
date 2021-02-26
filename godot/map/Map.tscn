@@ -83,8 +83,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+state = "win_stage"
 cursor_scene = ExtResource( 4 )
 focus_path_scene = ExtResource( 30 )
+inside_players = [ "kb1", "kb2" ]
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -568,6 +570,9 @@ size_flags_horizontal = 3
 [node name="Tween" type="Tween" parent="."]
 
 [editable path="Content/Controls/Victories"]
+
 [editable path="Content/Controls/Flood Moon"]
+
 [editable path="Content/Controls/Laser Moon"]
+
 [editable path="Content/Controls/CPUs"]

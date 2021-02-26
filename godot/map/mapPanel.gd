@@ -9,6 +9,7 @@ onready var info = $Info
 
 var map_element setget set_map_element
 var rest_text = "choose an arena"
+var win_text = "YOU WON. CHOOSE TO UNLOCK"
 var chosen = false setget set_chosen
 onready var background = $Background
 const deselected_modulate = Color(0.6,0.6,0.6,1)

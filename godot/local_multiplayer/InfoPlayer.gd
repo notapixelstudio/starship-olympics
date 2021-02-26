@@ -22,12 +22,18 @@ func to_dict():
 		"cpu": cpu
 	}
 
-func random_species() -> InfoPlayer:
+func random_species(excluded: Array = []) -> InfoPlayer:
 	"""
-	Return the object itself
+	@param: excluded:Array[resource (Species)] to be excluded from the selection 
+	pool
+	@return the object itself
 	"""
 	var all_species = TheUnlocker.get_unlocked()
-	self.species = all_species[randi()%len(all_species)]
+	var sel_species = []
+	for sp in all_species:
+		if not sp in excluded:
+			sel_species.append(sp)
+	self.species = sel_species[randi()%len(sel_species)]
 	return self
 	
 func to_stats():
