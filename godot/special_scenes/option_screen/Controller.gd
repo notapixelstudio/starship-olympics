@@ -28,7 +28,7 @@ func toggle(value):
 	
 func clear_controls(action: String):
 	for input_event in InputMap.get_action_list(action):
-		var btn = global.event_to_text(action, input_event).to_upper()
+		var btn = global.event_to_text(input_event).to_upper()
 		clear_button(get_node(str(btn)))
 		
 			
