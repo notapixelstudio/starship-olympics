@@ -51,6 +51,9 @@ func add_button():
 	add_button.connect("remap", self, "_on_Button_remap", [add_button])
 	
 func _on_Button_remap(action, event, button:RemapButton):
+	"""
+	Called from the button itself
+	"""
 	var found = false
 	var text = global.event_to_text(event)
 	for action in global.input_mapping:
@@ -61,7 +64,7 @@ func _on_Button_remap(action, event, button:RemapButton):
 	if found:
 		print("I can't sorry, because someone else uses it")
 		return
-	var new_control_key = global.remap_action_to(action, event)
+	var new_control_key = global.remap_action_to(action, event, button.current_event)
 	var text_to_button = new_control_key
 	if new_control_key in global.joy_input_map:
 		text_to_button = global.joy_input_map[new_control_key]
