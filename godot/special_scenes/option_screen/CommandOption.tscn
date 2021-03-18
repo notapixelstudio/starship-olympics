@@ -37,6 +37,12 @@ func add_button(button: ShowedButton):
 	anim.track_set_key_value(0, 2, dest)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play(\"Scroll\")
+	var speed = 1
+	if dest != 0:
+		speed = min(-100/dest, 1)
+	print(speed)
+	$AnimationPlayer.playback_speed = speed
+	
 	
 	
 func clear():
