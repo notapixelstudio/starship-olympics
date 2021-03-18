@@ -246,6 +246,16 @@ var joy_input_map = {
 	"15": "dpad right"
 }
 
+var keyboard_input_map = {
+	"Up": "Arrow_Up",
+	"Down": "Arrow_Down",
+	"Left": "Arrow_Left",
+	"Right": "Arrow_Right",
+	"BackSpace": "Backspace_Alt",
+	"*": "Asterisk",
+	
+}
+
 
 func event_to_text(event: InputEvent):
 	"""
@@ -253,7 +263,10 @@ func event_to_text(event: InputEvent):
 	return the event in a human readable form. For reference `joy_input_map`
 	"""
 	if event is InputEventKey:
-		return event.as_text()
+		var key = event.as_text()
+		if key in keyboard_input_map:
+			key = keyboard_input_map[key]
+		return key
 	elif event is InputEventJoypadButton:
 		return str(event.button_index)
 	elif event is InputEventJoypadMotion:
@@ -270,8 +283,13 @@ func event_from_text(device: String, command: String) -> InputEvent:
 	"""
 	var e : InputEvent
 	if "kb" in device:
+		var inverted_input_map = global.invert_map(keyboard_input_map)
+		var command_text = command
+		if command_text in inverted_input_map:
+			command_text = inverted_input_map[command_text]
+		command_text = OS.find_scancode_from_string(command_text)
 		e = InputEventKey.new()
-		e.scancode = OS.find_scancode_from_string(command)
+		e.scancode = command_text
 	elif "joy" in device:
 		var device_id = int(device.replace("joy", ""))-1
 		if "analog" in command:

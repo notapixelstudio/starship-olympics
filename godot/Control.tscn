@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+var operator = 1
+var timer: float = 0
+var trigger = 1 # 1 pixel per second
+func _process(delta):
+	timer += delta
+	var current_value = $HSlider.scroll_horizontal
+	$HSlider.scroll_horizontal += operator
+	if current_value == $HSlider.scroll_horizontal:
+		operator *= -1
+	print($HSlider.scroll_horizontal)
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 102.0
+margin_top = 2.0
+margin_right = -146.0
+margin_bottom = -75.0
+rect_clip_content = true
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = -375.0
+margin_right = 2210.0
+margin_bottom = 335.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_right = 365.0
+margin_bottom = 335.0
+text = "Diamoci Dentro"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+margin_left = 369.0
+margin_right = 734.0
+margin_bottom = 335.0
+text = "Diamoci Dentro"
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+margin_left = 738.0
+margin_right = 1103.0
+margin_bottom = 335.0
+text = "Diamoci Dentro"
+
+[node name="Button4" type="Button" parent="HBoxContainer"]
+margin_left = 1107.0
+margin_right = 1472.0
+margin_bottom = 335.0
+text = "Diamoci Dentro"
+
+[node name="Button5" type="Button" parent="HBoxContainer"]
+margin_left = 1476.0
+margin_right = 1841.0
+margin_bottom = 335.0
+text = "Diamoci Dentro"
+
+[node name="Button6" type="Button" parent="HBoxContainer"]
+margin_left = 1845.0
+margin_right = 2210.0
+margin_bottom = 335.0
+text = "Diamoci Dentro"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 494.0
+margin_top = 500.0
+margin_right = 949.0
+margin_bottom = 680.0
+text = "I don't like! no no no
+DIO SANTO"

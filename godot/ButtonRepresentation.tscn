@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/M_Key_Dark.png" type="Texture" id=1]
+[ext_resource path="res://ButtonRepresentation.gd" type="Script" id=2]
+
+[node name="ShowedButton" type="TextureRect"]
+margin_right = 217.0
+margin_bottom = 198.0
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+stretch_mode = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
