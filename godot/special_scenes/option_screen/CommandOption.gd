@@ -85,5 +85,6 @@ func _on_Button_pressed():
 
 
 func _on_RemoveMapping_pressed():
-	print("clear mapping")
+	global.clear_all_mapping(self.device + "_" + self.action)
+	buttons.clear()
 	
