@@ -7,7 +7,6 @@ onready var buttons = $Container/ScrollContainer
 # this needs always to be on screen
 
 export var remapScene: PackedScene
-export var remapButton: PackedScene
 export var action: String
 export var device: String setget _set_device
 export var button_scene : PackedScene
@@ -48,21 +47,23 @@ func _on_Button_remapped(action: String, new_control: String):
 func _on_Button_try_remap(action):
 	emit_signal("try_remap", action)
 	
-func on_remap(event, device, action):
+func on_remap(event: InputEvent, device: String, action: String):
 	"""
-	Add new mapping for the device and action
+	Add new mapping for the device and action. Remove the existing mapping, 
+	if any
 	"""
+	var device_action = device + "_" + action
 	var found = false
-	var text = global.event_to_text(event)
 	for action in global.input_mapping:
-		if device in action:
-			for command in global.input_mapping[action]:
-				if text == command:
-					found = true
-	if found:
-		print("I can't sorry, because someone else uses it")
-		return
-	var new_control_key = global.remap_action_to(device + "_" + action, event)
+		for command in global.input_mapping[action]:
+			if global.event_to_text(event) == command:
+				if action != device_action:
+					print("THis exists already")
+					return
+				print("found in " + action)
+				found = true
+	
+	var new_control_key = global.remap_action_to(device_action, event)
 	emit_signal("remap", action, new_control_key)
 	add_mapping_to_screen(event)
 	add.disabled = true
@@ -76,7 +77,7 @@ func add_mapping_to_screen(new_event: InputEvent):
 	var button: ShowedButton = button_scene.instance()
 	var metadata = get_metadata_from_event(new_event)
 	button.set_button(metadata['device_type'], metadata['button'], metadata['device'])
-	buttons.add_button(button)
+	buttons.add_element(button)
 	
 func _on_Button_pressed():
 	var remap : MapButtonScene = remapScene.instance()
