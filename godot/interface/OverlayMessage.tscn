@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://interface/AlertMessage.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 2 )
+
+[node name="ScreenOverlay" type="CanvasLayer"]
+script = ExtResource( 1 )
+message = "[color=red]aaa[/color] shashad "
+
+[node name="Alert" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 618.0
+color = Color( 0, 0, 0, 0.403922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="Alert"]
+anchor_right = 1.0
+margin_top = 22.934
+margin_bottom = 74.934
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Alert number one"
+text = "Alert number one"
+__meta__ = {
+"_edit_use_anchors_": false
+}

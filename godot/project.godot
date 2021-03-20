@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "Alert",
+"language": "GDScript",
+"path": "res://interface/AlertMessage.gd"
+}, {
 "base": "Node",
 "class": "Arena",
 "language": "GDScript",
@@ -445,6 +450,7 @@ _global_script_classes=[ {
 "path": "res://actors/environments/WallGoal.gd"
 } ]
 _global_script_class_icons={
+"Alert": "",
 "Arena": "",
 "ArenaStyle": "",
 "ArkaBall": "",

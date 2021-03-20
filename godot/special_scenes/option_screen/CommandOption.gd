@@ -19,21 +19,33 @@ onready var add = $Container/AddMapping
 func _process(delta):
 	$Container/Description.text = action
 
-func _ready():
-	var i = 0
+func clear():
+	scroll_container.clear()
+	
+func fill_mapping():
 	for event in InputMap.get_action_list(self.device + "_" + self.action):
 		add_mapping_to_screen(event)
+		
+func _ready():
+	var i = 0
+	setup()
+
+func setup():
+	clear()
+	fill_mapping()
 	
 func _set_device(value_):
 	device = value_
 	if not is_inside_tree():
 		yield(self, "ready")
+	
+	
 
 
 func _on_Button_try_remap(action):
 	emit_signal("try_remap", action)
 	
-func on_remap(event: InputEvent, device: String, action: String, substitute=false):
+func on_remap(event: InputEvent, device: String, action: String, substitute=true):
 	"""
 	Add new mapping for the device and action. Remove the existing mapping, 
 	if any
@@ -52,7 +64,8 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=fals
 					return
 				if substitute:
 					print("found in " + action)
-					InputMap.action_erase_event(action, event)
+					global.clear_mapping(action, event)
+					
 	
 	var new_control_key = global.remap_action_to(device_action, event)
 	emit_signal("remap", action, event, substitute)
@@ -71,6 +84,7 @@ func add_mapping_to_screen(new_event: InputEvent):
 	
 func _on_Button_pressed():
 	var remap : MapButtonScene = remapScene.instance()
+	remap.action = device + "_" + action
 	add_child(remap)
 	remap.connect("remap", self, "on_remap", [device, action])
 

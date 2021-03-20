@@ -385,6 +385,10 @@ func check_input_event(action_: String, event:InputEvent):
 
 func clear_mapping(action:String, event: InputEvent):
 	InputMap.action_erase_event(action, event)
+	var alert_scene = load("res://interface/OverlayMessage.tscn").instance()
+	alert_scene.message = "ACTION BINDING FOR [color=red]{action}[/color] OVERRIDDEN".format({"action": action.to_upper()})
+	add_child(alert_scene)
+	alert_scene.raise()
 	
 func clear_all_mapping(action: String):
 	InputMap.action_erase_events(action)
@@ -412,7 +416,7 @@ func remap_multiple_actions_to(action: String, new_events: Array, ui_flag=true) 
 		InputMap.action_add_event(action, new_event)
 	return action
 
-func remap_action_to(action: String, new_event: InputEvent, previous_event=null) -> String:
+func remap_action_to(action: String, new_event: InputEvent) -> String:
 	"""
 	Given an action, and an InputEvent will set an event.
 	You might pass the previous event if it's a substitution
@@ -424,10 +428,7 @@ func remap_action_to(action: String, new_event: InputEvent, previous_event=null)
 	if id == "fire":
 		id = "accept"
 	var ui_action = "ui_"+id
-	if previous_event:
-		assert(previous_event is InputEvent)
-		InputMap.action_erase_event(ui_action, previous_event)
-		InputMap.action_erase_event(action, previous_event)
+	
 	InputMap.action_add_event(ui_action, new_event)
 	InputMap.action_add_event(action, new_event)
 	return global.event_to_text(new_event)
