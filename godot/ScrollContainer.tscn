@@ -2,7 +2,8 @@
 
 [ext_resource path="res://special_scenes/option_screen/ScrollContainer.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
+resource_local_to_scene = true
 resource_name = "Scroll"
 length = 6.0
 loop = true
@@ -29,6 +30,9 @@ rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -40,4 +44,4 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Scroll"
-anims/Scroll = SubResource( 2 )
+anims/Scroll = SubResource( 1 )

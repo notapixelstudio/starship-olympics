@@ -383,6 +383,9 @@ func set_default_mapping(device:String) -> Dictionary:
 func check_input_event(action_: String, event:InputEvent):
 	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
 
+func clear_mapping(action:String, event: InputEvent):
+	InputMap.action_erase_event(action, event)
+	
 func clear_all_mapping(action: String):
 	InputMap.action_erase_events(action)
 	

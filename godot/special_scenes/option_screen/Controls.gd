@@ -24,10 +24,12 @@ func _on_Default_pressed():
 	joypad.setup_controls(mapping)
 	_on_Element_value_changed(device)
 
-func control_remapped(action: String, new_control: String):
+func control_remapped(action: String, event: InputEvent, substitute: bool):
+	for child in get_children():
+		if child is CommandRemap:
+			child.remove_mapping(event)
 	if not "joy" in action:
 		return
-	joypad.map_control(action.split("_")[1], new_control)
 
 func clear_mapping(action: String):
 	if not "joy" in action:

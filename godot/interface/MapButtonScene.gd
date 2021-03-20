@@ -23,5 +23,6 @@ func _input(event):
 			if abs(event.axis_value) < 0.5:
 				return
 		emit_signal("remap", event)
+		print(event)
 		set_process_input(false)
 		queue_free()

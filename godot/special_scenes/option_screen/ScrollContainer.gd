@@ -13,10 +13,14 @@ func calculate_dist(x, y):
 func _ready():
 	yield(get_tree().create_timer(0.3), "timeout")
 	var anim = $AnimationPlayer.get_animation('Scroll')
+	anim.resource_local_to_scene = true
 	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
 	anim.track_set_key_value(0, 0, dest)
 	anim.track_set_key_value(0, 2, dest)
 	$AnimationPlayer.play("Scroll")
+
+func get_elements() -> Array:
+	return buttons.get_children()
 	
 func add_element(element: Control):
 	buttons.add_child(element)

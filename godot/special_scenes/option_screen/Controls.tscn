@@ -27,48 +27,49 @@ label_description = "device"
 [node name="action1" parent="." instance=ExtResource( 3 )]
 margin_top = 54.0
 margin_right = 746.0
-margin_bottom = 112.0
-action = "fire"
+margin_bottom = 154.0
 
 [node name="action" parent="." instance=ExtResource( 3 )]
-margin_top = 116.0
+margin_top = 158.0
 margin_right = 746.0
-margin_bottom = 174.0
+margin_bottom = 258.0
 action = "down"
 
 [node name="action2" parent="." instance=ExtResource( 3 )]
-margin_top = 178.0
+margin_top = 262.0
 margin_right = 746.0
-margin_bottom = 236.0
+margin_bottom = 362.0
 action = "left"
 
 [node name="action3" parent="." instance=ExtResource( 3 )]
-margin_top = 240.0
+margin_top = 366.0
 margin_right = 746.0
-margin_bottom = 298.0
+margin_bottom = 466.0
 action = "right"
 
 [node name="action4" parent="." instance=ExtResource( 3 )]
-margin_top = 302.0
+margin_top = 470.0
 margin_right = 746.0
-margin_bottom = 360.0
+margin_bottom = 570.0
+action = "fire"
 
 [node name="Control" type="Control" parent="."]
-margin_top = 364.0
+margin_top = 574.0
 margin_right = 746.0
-margin_bottom = 444.0
+margin_bottom = 574.0
 size_flags_vertical = 3
 
 [node name="Default" type="Button" parent="."]
-margin_top = 448.0
+margin_top = 578.0
 margin_right = 746.0
-margin_bottom = 498.0
+margin_bottom = 628.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 6 )
 text = "DEFAULT"
 
 [node name="Controller" parent="." instance=ExtResource( 1 )]
+visible = false
 position = Vector2( 954.878, 353.515 )
 scale = Vector2( 0.887713, 0.921016 )
 
