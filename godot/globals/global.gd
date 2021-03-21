@@ -330,11 +330,11 @@ func _get_input_mapping():
 	return ret
 
 var default_input_joy := {
-	"fire": ["0", "1", "2", "3"], 
-	"right": ["15", "analog_0_1"],
-	"left": ["14", "analog_0_-1"], 
-	"down": ["13", "analog_1_1"],
-	"up":["12", "analog_1_-1"]
+	"fire": ["Cross", "Square", "Circle", "Triangle", "L1", "R1", "L2", "R2"], 
+	"right": ["Dpad_Right", "Left_Stick_Right"],
+	"left": ["Dpad_Left", "Left_Stick_Left"], 
+	"down": ["Dpad_Down", "Left_Stick_Down"],
+	"up":["Dpad_Up", "Left_Stick_Up"]
 }
 
 var default_input :=  {
@@ -369,12 +369,13 @@ func _get_joylayout():
 func set_default_mapping(device:String) -> Dictionary:
 	var ret_mapping = {}
 	var this_mapping = default_input[device]
+	var device_id: int = int(device.right(len(device)-1))-1
 	for action in this_mapping:
 		
 		var complete_action = device + "_" + action
 		var events = []
 		for command in this_mapping[action]:
-			var event = event_from_text(device, command)
+			var event = event_from_text(device, command, device_id)
 			events.append(event)
 		remap_multiple_actions_to(complete_action, events)
 		ret_mapping[complete_action] = this_mapping[action]

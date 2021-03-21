@@ -26,7 +26,6 @@ func get_metadata_from_event(event:InputEvent) -> String:
 func set_button(event: InputEvent):
 	connected_event = event
 	var device_type = get_metadata_from_event(event)
-	print(device_type)
 	var button = global.event_to_text(event)["key"]
 	var button_path = keyboard_path
 	if "kb" in device_type:

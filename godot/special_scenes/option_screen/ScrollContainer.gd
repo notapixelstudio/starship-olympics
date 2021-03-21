@@ -43,7 +43,6 @@ func clear():
 		b.queue_free()
 	yield(get_tree(), "idle_frame")
 	buttons.rect_size = rect_size
-	print(buttons.rect_size)
 	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
 	var anim = $AnimationPlayer.get_animation('Scroll')
 	anim.track_set_key_value(0, 0, 0)
