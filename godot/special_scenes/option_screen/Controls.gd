@@ -13,15 +13,13 @@ func _on_Element_value_changed(value):
 	device = value
 	if not is_inside_tree():
 		yield(self, "ready")
+	# we need to wait a frame in order to wait that everything will be available
 	yield(get_tree(), "idle_frame")
 	for child in get_children():
 		if child is CommandRemap:
 			child.visible = true
 			child.device = value
 			child.setup()
-		elif child is Controller:
-			child.device = value
-			child.toggle("joy" in device)
 			
 func _on_Default_pressed():
 	var mapping = global.set_default_mapping(device)

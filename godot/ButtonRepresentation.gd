@@ -6,7 +6,7 @@ var path_buttons: String = "res://assets/UI/Xelu_Free_Controller&Key_Prompts/"
 var keyboard_path: String = "Keyboard & Mouse/Dark/"
 var keyboard_suffix: String = "_Key_Dark"
 var extension: String = ".png"
-var ps_path = "PS4/PS4_"
+var ps_path = "Others/PS3/PS3_"
 var xbox_path = "Xbox One/XboxOne_"
 var default_joy_device = ps_path
 var connected_event: InputEvent
@@ -26,16 +26,22 @@ func get_metadata_from_event(event:InputEvent) -> String:
 func set_button(event: InputEvent):
 	connected_event = event
 	var device_type = get_metadata_from_event(event)
-	var button = global.event_to_text(event)
+	print(device_type)
+	var button = global.event_to_text(event)["key"]
 	var button_path = keyboard_path
 	if "kb" in device_type:
 		button_path = keyboard_path + button + keyboard_suffix + extension
-	if "ps" in device_type:
+		$Label.text = ""
+	elif "ps" in device_type:
 		button_path = ps_path + button + extension
-	if "xbox" in device_type:
+		$Label.text = str(event.device + 1)
+	elif "xbox" in device_type:
 		button_path = xbox_path + button + extension
-	if "default_joy" in device_type:
+		$Label.text = str(event.device + 1)
+	else :
 		button_path = default_joy_device + button + extension
+		$Label.text = str(event.device + 1)
+	
 	texture = load(path_buttons + button_path)
 	
 	

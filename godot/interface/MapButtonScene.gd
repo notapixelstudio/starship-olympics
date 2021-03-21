@@ -11,7 +11,7 @@ func check_input_event(event:InputEvent):
 	elif "joy" in self.action:
 		var device = int(self.action.split("_")[0].replace("joy", ""))-1
 		# event.axis equal to 6 and 7 are the anaolog axis. from Godot 3.2.4
-		return (event is InputEventJoypadButton or (event is InputEventJoypadMotion and event.axis != 7 and event.axis != 6)) and event.device == int(device)
+		return (event is InputEventJoypadButton or (event is InputEventJoypadMotion and event.axis != 7 and event.axis != 6))
 
 
 func _input(event):

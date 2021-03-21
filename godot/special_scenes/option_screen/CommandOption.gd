@@ -90,7 +90,9 @@ func _on_Button_pressed():
 
 func remove_mapping(event):
 	for button in scroll_container.get_elements():
-		if global.event_to_text(button.get_event()) == global.event_to_text(event):
+		var event_text = global.event_to_text(event)
+		var this_event_text = global.event_to_text(button.get_event())
+		if this_event_text["key"] == event_text["key"] and this_event_text["device_id"] == event_text["device_id"]:
 			global.clear_mapping(self.device + "_" + self.action, event)
 			button.queue_free()
 	
