@@ -3,57 +3,100 @@ extends MarginContainer
 
 class_name CommandRemap
 
-onready var button = $Container/Button
+onready var scroll_container = $Container/ScrollContainer
+# this needs always to be on screen
 
+export var remapScene: PackedScene
 export var action: String
 export var device: String setget _set_device
-
+export var button_scene : PackedScene
 signal clear_mapping
 signal remap
 
+onready var add = $Container/AddMapping
+
+
 func _process(delta):
 	$Container/Description.text = action
+
+func clear():
+	scroll_container.clear()
 	
+func fill_mapping():
+	for event in InputMap.get_action_list(self.device + "_" + self.action):
+		add_mapping_to_screen(event)
+		
+func _ready():
+	var i = 0
+
+func setup():
+	clear()
+	fill_mapping()
 	
 func _set_device(value_):
 	device = value_
 	if not is_inside_tree():
 		yield(self, "ready")
-	$Container/Button.action = device+"_"+action
-
-
-func _on_Button_remapped(action: String, new_control: String):
-	emit_signal("remapped", action, new_control)
+	setup()
+	
 
 
 func _on_Button_try_remap(action):
 	emit_signal("try_remap", action)
-
-
-func _on_Button_toggled(button_pressed):
-	pass # Replace with function body.
-
-
-func _on_Button_remap(action, event):
-	var found = false
-	var text = global.event_to_text(action, event)
+	
+func on_remap(event: InputEvent, device: String, action: String, substitute=true):
+	"""
+	Add new mapping for the device and action. Remove the existing mapping, 
+	if any
+	"""
+	var device_type = "kb"
+	if "joy" in device:
+		device_type = "joy"
+	var device_action = device + "_" + action
 	for action in global.input_mapping:
-		if device in action:
-			for command in global.input_mapping[action]:
-				if text == command:
-					found = true
-	if found:
-		print("I can't sorry, because someone else uses it")
-		return
-	emit_signal("clear_mapping", action)
-	var new_control_key = global.remap_action_to(action, event)
-	var text_to_button = new_control_key
-	if new_control_key in global.joy_input_map:
-		text_to_button = global.joy_input_map[new_control_key]
-	button.text = "%s " % text_to_button.to_upper()
-	emit_signal("remap", action, new_control_key)
-	button.disabled = true
-	yield(get_tree().create_timer(0.4), "timeout")
-	button.disabled = false
+		if not device_type in action:
+			continue
+		for command in global.input_mapping[action]:
+			if global.event_to_text(event) == command:
+				if action == device_action:
+					print("This exists already in " + action)
+					return
+				if substitute:
+					print("found in " + action)
+					global.clear_mapping(action, event)
+					
+	
+	var new_control_key = global.remap_action_to(device_action, event)
+	emit_signal("remap", action, event, substitute)
+	add_mapping_to_screen(event)
+	add.disabled = true
+	yield(get_tree().create_timer(0.1), "timeout")
+	add.disabled = false
 	# save
 	persistance.save_game()
+
+
+func add_mapping_to_screen(new_event: InputEvent):
+	var button: ShowedButton = button_scene.instance()
+	button.set_button(new_event)
+	scroll_container.add_element(button)
+	
+func _on_Button_pressed():
+	var remap : MapButtonScene = remapScene.instance()
+	remap.action = device + "_" + action
+	add_child(remap)
+	remap.connect("remap", self, "on_remap", [device, action])
+
+func remove_mapping(event):
+	for button in scroll_container.get_elements():
+		var event_text = global.event_to_text(event)
+		var this_event_text = global.event_to_text(button.get_event())
+		if this_event_text["key"] == event_text["key"] and this_event_text["device_id"] == event_text["device_id"]:
+			global.clear_mapping(self.device + "_" + self.action, event)
+			button.queue_free()
+	
+	
+func _on_RemoveMapping_pressed():
+	global.clear_all_mapping(self.device + "_" + self.action)
+	scroll_container.clear()
+	

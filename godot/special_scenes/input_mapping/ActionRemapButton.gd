@@ -1,6 +1,10 @@
 extends Button
 
+class_name RemapButton
+
 export var action: String = "ui_up" setget _set_action
+export var index: int = 1 # if index is -1 it's the add button
+var current_event: InputEvent
 
 signal remap
 
@@ -17,9 +21,17 @@ func _set_action(value_):
 	display_current_key()
 
 func _ready():
-	assert(InputMap.has_action(action))
 	set_process_input(false)
-	display_current_key()
+
+func setup(action_, index_):
+	"Called by its parent whenever action and index is ready"
+	self.action = action_
+	self.index = index_
+	if self.index >= 0:
+		self.current_event = InputMap.get_action_list(action)[index]
+		display_current_key()
+	else:
+		text = "   %s   " % "+"
 
 
 func _toggled(button_pressed):
@@ -39,23 +51,19 @@ func _input(event):
 			if abs(event.axis_value) < 0.5:
 				return
 		emit_signal("remap", self.action, event)
+		self.current_event = event
 		pressed=false
 		
-
-func joy_remap_action_to(event):
-	pass
-
+func is_add_button():
+	return index < 0
+	
 func display_current_key():
-	var current_key = "..."
+	var current_key = global.event_to_text(self.current_event)
 	var keys = []
-	for event in InputMap.get_action_list(self.action):
-		if check_input_event(event):
-			current_key = global.event_to_text(self.action, event)
-			keys.append(current_key)
 	# JUST FOR MAPPING JOY
-	var text_to_button = current_key
 	if "joy" in action:
-		text_to_button = global.joy_input_map[current_key]
-	text = "%s " % text_to_button.to_upper()
+		current_key = global.joy_input_map[current_key]
+	if current_key:
+		text = "   %s   " % current_key.to_upper()
 
 

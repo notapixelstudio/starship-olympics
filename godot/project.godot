@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "Alert",
+"language": "GDScript",
+"path": "res://interface/AlertMessage.gd"
+}, {
 "base": "Node",
 "class": "Arena",
 "language": "GDScript",
@@ -239,6 +244,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/Map.gd"
 }, {
+"base": "CanvasLayer",
+"class": "MapButtonScene",
+"language": "GDScript",
+"path": "res://interface/MapButtonScene.gd"
+}, {
 "base": "Node2D",
 "class": "MapCell",
 "language": "GDScript",
@@ -349,6 +359,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
+"base": "Button",
+"class": "RemapButton",
+"language": "GDScript",
+"path": "res://special_scenes/input_mapping/ActionRemapButton.gd"
+}, {
 "base": "Node2D",
 "class": "Ripple",
 "language": "GDScript",
@@ -368,6 +383,11 @@ _global_script_classes=[ {
 "class": "Ship",
 "language": "GDScript",
 "path": "res://actors/battlers/Ship.gd"
+}, {
+"base": "TextureRect",
+"class": "ShowedButton",
+"language": "GDScript",
+"path": "res://ButtonRepresentation.gd"
 }, {
 "base": "Resource",
 "class": "Species",
@@ -430,6 +450,7 @@ _global_script_classes=[ {
 "path": "res://actors/environments/WallGoal.gd"
 } ]
 _global_script_class_icons={
+"Alert": "",
 "Arena": "",
 "ArenaStyle": "",
 "ArkaBall": "",
@@ -476,6 +497,7 @@ _global_script_class_icons={
 "Laser": "",
 "Manager": "",
 "Map": "",
+"MapButtonScene": "",
 "MapCell": "",
 "MapCheckpoint": "",
 "MapCursor": "",
@@ -498,10 +520,12 @@ _global_script_class_icons={
 "Portal": "",
 "Portalz": "",
 "PowerUp": "",
+"RemapButton": "",
 "Ripple": "",
 "Rock": "",
 "Rule": "",
 "Ship": "",
+"ShowedButton": "",
 "Species": "",
 "Star": "",
 "StarIcon": "",
