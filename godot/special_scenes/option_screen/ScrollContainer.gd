@@ -24,8 +24,7 @@ func get_elements() -> Array:
 	
 func add_element(element: Control):
 	buttons.add_child(element)
-	yield(get_tree().create_timer(0.3), "timeout")
-	
+	yield(get_tree(), "idle_frame")
 	var anim = $AnimationPlayer.get_animation('Scroll')
 	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
 	anim.track_set_key_value(0, 0, dest)
@@ -40,8 +39,9 @@ func add_element(element: Control):
 	
 func clear():
 	for b in buttons.get_children():
+		b.hide()
 		b.queue_free()
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree(), "idle_frame")
 	buttons.rect_size = rect_size
 	print(buttons.rect_size)
 	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)

@@ -28,7 +28,6 @@ func fill_mapping():
 		
 func _ready():
 	var i = 0
-	setup()
 
 func setup():
 	clear()
@@ -38,7 +37,7 @@ func _set_device(value_):
 	device = value_
 	if not is_inside_tree():
 		yield(self, "ready")
-	
+	setup()
 	
 
 

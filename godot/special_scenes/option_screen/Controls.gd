@@ -19,7 +19,6 @@ func _on_Element_value_changed(value):
 		if child is CommandRemap:
 			child.visible = true
 			child.device = value
-			child.setup()
 			
 func _on_Default_pressed():
 	var mapping = global.set_default_mapping(device)
