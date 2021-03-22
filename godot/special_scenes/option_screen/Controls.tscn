@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://special_scenes/option_screen/Controller.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/option_screen/Controls.gd" type="Script" id=2]
 [ext_resource path="res://special_scenes/option_screen/CommandOption.tscn" type="PackedScene" id=3]
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=5]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=6]
-[ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=7]
 
 [node name="Controls" type="VBoxContainer"]
 anchor_right = 1.0
@@ -15,63 +12,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Element" parent="." instance=ExtResource( 7 )]
-anchor_right = 0.0
-margin_right = 1280.0
-margin_bottom = 50.0
-elem_type = 2
-is_global = true
-element_path = "device"
-label_description = "device"
-
 [node name="action1" parent="." instance=ExtResource( 3 )]
-margin_top = 54.0
 margin_right = 1280.0
-margin_bottom = 154.0
+margin_bottom = 75.0
 
 [node name="action" parent="." instance=ExtResource( 3 )]
-margin_top = 158.0
+margin_top = 79.0
 margin_right = 1280.0
-margin_bottom = 258.0
+margin_bottom = 154.0
 action = "down"
 
 [node name="action2" parent="." instance=ExtResource( 3 )]
-margin_top = 262.0
+margin_top = 158.0
 margin_right = 1280.0
-margin_bottom = 362.0
+margin_bottom = 233.0
 action = "left"
 
 [node name="action3" parent="." instance=ExtResource( 3 )]
-margin_top = 366.0
+margin_top = 237.0
 margin_right = 1280.0
-margin_bottom = 466.0
+margin_bottom = 312.0
 action = "right"
 
 [node name="action4" parent="." instance=ExtResource( 3 )]
-margin_top = 470.0
+margin_top = 316.0
 margin_right = 1280.0
-margin_bottom = 570.0
+margin_bottom = 391.0
 action = "fire"
 
 [node name="Control" type="Control" parent="."]
-margin_top = 574.0
-margin_right = 1280.0
-margin_bottom = 666.0
-size_flags_vertical = 3
-
-[node name="Default" type="Button" parent="."]
-margin_top = 670.0
+margin_top = 395.0
 margin_right = 1280.0
 margin_bottom = 720.0
-rect_min_size = Vector2( 0, 50 )
-theme = ExtResource( 5 )
-custom_fonts/font = ExtResource( 6 )
-text = "DEFAULT"
+size_flags_vertical = 3
 
 [node name="Controller" parent="." instance=ExtResource( 1 )]
 visible = false
 position = Vector2( 954.878, 353.515 )
 scale = Vector2( 0.887713, 0.921016 )
-
-[connection signal="value_changed" from="Element" to="." method="_on_Element_value_changed"]
-[connection signal="pressed" from="Default" to="." method="_on_Default_pressed"]

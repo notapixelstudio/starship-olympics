@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/theme/DefaultLabelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://OptionPanel.gd" type="Script" id=4]
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=5]
+
+[node name="Panel" type="Panel"]
+modulate = Color( 1, 1, 1, 0.713726 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -255.0
+margin_top = -261.0
+margin_right = 255.0
+margin_bottom = 261.0
+mouse_filter = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+navbar = "Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Navbar" type="Label" parent="VBoxContainer"]
+margin_right = 510.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 2 )
+text = "Options"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelItems" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 35.0
+margin_right = 510.0
+margin_bottom = 468.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+margin_top = 472.0
+margin_right = 510.0
+margin_bottom = 522.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-onready var device = $Element.value
+onready var device = "kb1"
 onready var joypad = $Controller
 
 func _ready():

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://combat/interface/uipack-space/PNG/metalPanel.png" type="Texture" id=3]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
 [ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
@@ -18,34 +18,55 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 834, 635 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.352941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Window" type="Sprite" parent="."]
-position = Vector2( 651.635, 357.94 )
-scale = Vector2( 0.745386, 0.745386 )
+[node name="Window" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 418.74
+margin_top = 107.648
+margin_right = -445.26
+margin_bottom = -223.352
 texture = ExtResource( 3 )
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GuiElements" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -329.0
-margin_top = -274.0
-margin_right = 349.0
-margin_bottom = 288.0
+margin_left = -381.821
+margin_top = 263.108
+margin_right = 326.179
+margin_bottom = 847.108
 theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="GuiElements"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -124.0
-margin_right = 124.0
-margin_bottom = 78.0002
+margin_left = -117.48
+margin_top = -515.46
+margin_right = 130.52
+margin_bottom = -437.46
 theme = ExtResource( 1 )
 text = "PAUSE"
 align = 1
@@ -53,34 +74,33 @@ valign = 1
 uppercase = true
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements"]
-margin_left = 238.0
-margin_top = 380.0
-margin_right = 420.0
-margin_bottom = 521.0
-alignment = 2
+margin_left = 221.52
+margin_top = -281.46
+margin_right = 469.52
+margin_bottom = -153.46
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Continue" type="Button" parent="GuiElements/Buttons"]
-margin_top = 13.0
-margin_right = 182.0
-margin_bottom = 42.0
+margin_right = 248.0
+margin_bottom = 29.0
 custom_fonts/font = SubResource( 1 )
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/Buttons"]
-margin_top = 46.0
-margin_right = 182.0
-margin_bottom = 75.0
+margin_top = 33.0
+margin_right = 248.0
+margin_bottom = 62.0
 custom_fonts/font = SubResource( 1 )
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/Buttons"]
-margin_top = 79.0
-margin_right = 182.0
-margin_bottom = 108.0
+margin_top = 66.0
+margin_right = 248.0
+margin_bottom = 95.0
 custom_fonts/font = SubResource( 1 )
 text = "SKIP LEVEL"
 
@@ -93,13 +113,14 @@ custom_fonts/font = SubResource( 1 )
 text = "OPTIONS"
 
 [node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
-margin_top = 112.0
-margin_right = 182.0
-margin_bottom = 141.0
+margin_top = 99.0
+margin_right = 248.0
+margin_bottom = 128.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT MATCH"
 
 [node name="Tween" type="Tween" parent="."]
+
 [connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="GuiElements/Buttons/SkipLevel" to="." method="_on_SkipLevel_pressed"]

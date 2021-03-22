@@ -15,6 +15,7 @@ func _ready():
 	
 	
 func start():
+	raise()
 	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
 	visible = true

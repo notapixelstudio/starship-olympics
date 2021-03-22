@@ -9,7 +9,6 @@
 [node name="RemapAction" type="MarginContainer"]
 margin_right = 1126.0
 margin_bottom = 58.0
-rect_min_size = Vector2( 450, 50 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -21,24 +20,24 @@ button_scene = ExtResource( 4 )
 
 [node name="Container" type="HBoxContainer" parent="."]
 margin_right = 1126.0
-margin_bottom = 100.0
+margin_bottom = 75.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Padding2" type="Label" parent="Container"]
-margin_top = 37.0
+margin_top = 24.0
 margin_right = 10.0
-margin_bottom = 63.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 10, 0 )
 custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="Description" type="Label" parent="Container"]
 margin_left = 14.0
-margin_top = 37.0
+margin_top = 24.0
 margin_right = 45.0
-margin_bottom = 63.0
+margin_bottom = 50.0
 custom_fonts/font = ExtResource( 3 )
 text = "up"
 align = 1
@@ -50,26 +49,27 @@ __meta__ = {
 
 [node name="Padding3" type="Label" parent="Container"]
 margin_left = 49.0
-margin_top = 37.0
+margin_top = 24.0
 margin_right = 149.0
-margin_bottom = 63.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 9
 custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ScrollContainer" parent="Container" instance=ExtResource( 6 )]
+margin_bottom = 75.0
 
 [node name="AddMapping" type="Button" parent="Container"]
 margin_left = 960.0
 margin_right = 1046.0
-margin_bottom = 100.0
+margin_bottom = 75.0
 text = "  +  "
 
 [node name="RemoveMapping" type="Button" parent="Container"]
 margin_left = 1050.0
 margin_right = 1126.0
-margin_bottom = 100.0
+margin_bottom = 75.0
 text = "  -  "
 
 [connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
