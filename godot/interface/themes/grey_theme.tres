@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=23 format=2]
+[gd_resource type="Theme" load_steps=37 format=2]
 
 [ext_resource path="res://interface/themes/grey/disabled.tres" type="StyleBox" id=1]
 [ext_resource path="res://interface/themes/grey/focus.tres" type="StyleBox" id=2]
@@ -22,6 +22,34 @@
 [ext_resource path="res://interface/themes/grey/tab_fg.tres" type="StyleBox" id=20]
 [ext_resource path="res://assets/fonts/kenvector_future_14.tres" type="DynamicFont" id=21]
 [ext_resource path="res://interface/themes/theme.gd" type="Script" id=22]
+
+[sub_resource type="ImageTexture" id=1]
+
+[sub_resource type="ImageTexture" id=2]
+
+[sub_resource type="ImageTexture" id=3]
+
+[sub_resource type="ImageTexture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="ImageTexture" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
 
 [resource]
 default_font = ExtResource( 21 )
@@ -722,24 +750,24 @@ GraphNode/styles/selectedframe = null
 GridContainer/constants/hseparation = 4
 GridContainer/constants/vseparation = 4
 GridContainer/constants/vseperation = 4
-HBoxContainer/constants/separation = 4
-HScrollBar/icons/decrement = null
-HScrollBar/icons/decrement_highlight = null
-HScrollBar/icons/increment = null
-HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = ExtResource( 14 )
-HScrollBar/styles/grabber_highlight = ExtResource( 15 )
-HScrollBar/styles/grabber_pressed = ExtResource( 16 )
-HScrollBar/styles/scroll = ExtResource( 12 )
-HScrollBar/styles/scroll_focus = ExtResource( 17 )
-HSeparator/styles/separator = null
+HBoxContainer/constants/separation = 0
+HScrollBar/icons/decrement = SubResource( 1 )
+HScrollBar/icons/decrement_highlight = SubResource( 2 )
+HScrollBar/icons/increment = SubResource( 3 )
+HScrollBar/icons/increment_highlight = SubResource( 4 )
+HScrollBar/styles/grabber = SubResource( 5 )
+HScrollBar/styles/grabber_highlight = SubResource( 6 )
+HScrollBar/styles/grabber_pressed = SubResource( 7 )
+HScrollBar/styles/scroll = SubResource( 8 )
+HScrollBar/styles/scroll_focus = SubResource( 9 )
+HSeparator/styles/separator = SubResource( 10 )
 HSlider/icons/grabber = null
 HSlider/icons/grabber_highlight = null
-HSlider/styles/grabber_area = ExtResource( 17 )
-HSlider/styles/slider = ExtResource( 12 )
+HSlider/styles/grabber_area = SubResource( 11 )
+HSlider/styles/slider = SubResource( 12 )
 HSplitContainer/constants/separation = 8
-HSplitContainer/icons/grabber = null
-HSplitContainer/styles/bg = ExtResource( 12 )
+HSplitContainer/icons/grabber = SubResource( 13 )
+HSplitContainer/styles/bg = SubResource( 14 )
 ItemList/colors/font_color = Color( 1, 1, 1, 1 )
 ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
 ItemList/colors/guide_color = Color( 1, 1, 1, 1 )
