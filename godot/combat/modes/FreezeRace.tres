@@ -1,36 +1,36 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
-[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=3]
-[ext_resource path="res://combat/styles/flags.tres" type="Resource" id=4]
-[ext_resource path="res://map/planets/rules/TileFilling.tres" type="Resource" id=5]
+[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/icon/minicards/sets/freeze_race.png" type="Texture" id=3]
+[ext_resource path="res://combat/styles/asphalt.tres" type="Resource" id=4]
+[ext_resource path="res://map/planets/rules/Race.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
-id = "tile_conquest"
+id = "freeze_race"
 is_mutator = false
-name = "Board Conquest"
+name = "Freeze Race"
 icon = ExtResource( 3 )
 logo = ExtResource( 2 )
 arena_style = ExtResource( 4 )
-description = "fill more cells than opponents"
-tagline_pro = "Don't forget your opponents would do the same"
-tagline_cons = "You could get killed in the meantime..."
-max_timeout = 40
-max_score = 500
+description = "kill the other players"
+tagline_pro = "A kill for the honour, a kill for the species"
+tagline_cons = "A self kill, apart from being embarassing, make you lose point"
+max_timeout = 45
+max_score = 30
 cumulative = false
 starting_lives = -1
 death = false
 last_man = false
 crown = false
-hive = true
+hive = false
 collect = false
 goal = false
 survival = false
 race = false
 pursuing_bombs = true
-shoot_bombs = true
+shoot_bombs = false
 deadly_trails = false
 deadly_trails_duration = 2.0
 bomb_type = 0

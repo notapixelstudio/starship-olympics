@@ -91,7 +91,7 @@ func _ready():
 	
 	# TODO: NAMING CONVENTION in group with SPORT
 	for sport in get_tree().get_nodes_in_group("sports"):
-		var levels = sport.planet.get("levels_"+str(num_players)+"players")
+		var levels = sport.planet.get_levels(num_players)
 		var set = sport.planet
 		
 		if not levels:
@@ -247,6 +247,7 @@ var screen_width = ProjectSettings.get_setting('display/window/size/width')
 var screen_height = ProjectSettings.get_setting('display/window/size/height')
 
 func choose_level(level):
+	# This will choose randonly one minigame. And animate afterwards
 	var this_gamemode = level.game_mode
 	var back_pos = Vector2(0,0)
 	var back_scale = Vector2(1,1)
@@ -257,8 +258,9 @@ func choose_level(level):
 	var index_selection = 0
 	var index = 0
 	
+	# TODO: This needs better refactoring.
 	for minicard in get_tree().get_nodes_in_group("minicard"):
-		if minicard.content == this_gamemode:
+		if minicard.content.get_id() == this_gamemode.get_id():
 			index_selection = index
 			back_pos = minicard.position
 			back_scale = minicard.scale

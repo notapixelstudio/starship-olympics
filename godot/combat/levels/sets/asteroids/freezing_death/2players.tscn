@@ -13,7 +13,7 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=11]
 [ext_resource path="res://assets/icon/skull.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/signs/freeze.png" type="Texture" id=13]
-[ext_resource path="res://combat/modes/AsteroidDeathmatch.tres" type="Resource" id=14]
+[ext_resource path="res://combat/modes/FreezingDeath.tres" type="Resource" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -48,9 +48,16 @@ centered = false
 hollow = true
 offset = 200
 type = 2
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
 script = ExtResource( 2 )
@@ -72,9 +79,16 @@ bevel_se = 450
 hollow = true
 offset = 200
 type = 2
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 2 )
@@ -95,9 +109,17 @@ bevel_se = 450
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
+type = 0
+hide_line = false
+hide_line_below = false
 hide_grid = true
+line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
@@ -184,7 +206,18 @@ deadly = false
 "nostyle",
 ] instance=ExtResource( 6 )]
 position = Vector2( 0, 1800 )
+hollow = false
+type = 0
+hide_line = false
+hide_line_below = false
+hide_grid = false
+line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
 script = ExtResource( 1 )
@@ -200,7 +233,18 @@ rotation_degrees = 0.0
 "nostyle",
 ] instance=ExtResource( 6 )]
 position = Vector2( 0, -1800 )
+hollow = false
+type = 0
+hide_line = false
+hide_line_below = false
+hide_grid = false
+line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+line_texture = null
+grid_color = Color( 1, 1, 1, 0.33 )
+grid_rotation = 0.0
+platform = false
+under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
 script = ExtResource( 1 )

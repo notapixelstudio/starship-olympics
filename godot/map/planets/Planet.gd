@@ -11,10 +11,6 @@ export var species : Resource # SpeciesTemplate
 export var description : String 
 export var minigames : Array = [Object(), Object(), Object(), Object()]
 
-export var levels_1players : Array = [Object(), Object(), Object(), Object()]
-export var levels_2players : Array = [Object(), Object(), Object(), Object()]
-export var levels_3players : Array = [Object(), Object(), Object(), Object()]
-export var levels_4players : Array = [Object(), Object(), Object(), Object()]
 
 var played_levels_1players : Array = []
 var played_levels_2players : Array = []
@@ -28,17 +24,17 @@ export var this_game_mode : Resource # GameMode
 export var mutators : Array = []
 
 func shuffle_levels(num_players : int) -> void:
-	levels_1players.shuffle()
-	levels_2players.shuffle()
-	levels_3players.shuffle()
-	levels_4players.shuffle()
-	get("levels_" + str(num_players) + "players").shuffle()
+	minigames.shuffle()
 	
 func get_levels(num_players : int) -> Array:
-	return get("levels_" + str(num_players) + "players")
-
+	var levels = []
+	for m in minigames:
+		levels.append(m.get("level_" + str(num_players) + "players"))
+		
+	return levels
+	
 func fetch_level(num_players : int) -> PackedScene:
-	""" Get one level from their pool """
+	""" Get one level from their pool 
 	var levels = get("levels_" + str(num_players) + "players")
 	var played_levels = get("played_levels_" + str(num_players) + "players")
 	var current_level = levels[len(played_levels)].instance()
@@ -56,10 +52,13 @@ func fetch_level(num_players : int) -> PackedScene:
 			played_levels.append(levels[0])
 			
 	return current_level
+	"""
+	
+	return minigames[0].get("levels_" + str(num_players) + "players")
 	
 func locked_games():
 	var ret = []
 	for minigame in self.minigames:
-		if not TheUnlocker.get_status_game(minigame.id):
+		if not TheUnlocker.get_status_game(minigame.get_id()):
 			ret.append(minigame)
 	return ret

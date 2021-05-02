@@ -181,7 +181,7 @@ func next_level(demo = false):
 	start_level(this_game, demo)
 
 
-func choose_next_level(demo = false):
+func choose_next_level(demo = false) -> Arena:
 	""" Choose next level from the array of selected. If over, choose randomly """
 	var last_sport = null
 	if len(played_levels) > 0:
