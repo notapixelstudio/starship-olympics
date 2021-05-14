@@ -712,6 +712,7 @@ func spawn_ship(player:PlayerSpawner):
 	
 	
 	crown_mode.connect('show_msg', ship, "update_score")
+	
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')

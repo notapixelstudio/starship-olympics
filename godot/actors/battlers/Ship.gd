@@ -209,7 +209,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusers_on = not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
+	var thrusers_on = not golf and entity.has('Thrusters') and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
 	if not absolute_controls:
 		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
@@ -341,7 +341,7 @@ func fire(override_charge = -1, dash_only = false):
 	var will_dash = charging_enough
 	
 	if will_dash:
-		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
+		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER*(1 if not hooked else 0.25)), 0).rotated(rotation)) # recoil only if dashing
 	
 	if golf:
 		var impulse = charge_impulse*ARKABALL_MULTIPLIER
@@ -404,6 +404,7 @@ func fire(override_charge = -1, dash_only = false):
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
+	
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		if shields > 0:
@@ -630,4 +631,22 @@ func start_golf():
 
 func get_player():
 	return info_player
+	
+var hooked = false
+func try_hook():
+	for area in $NearArea.get_overlapping_areas():
+		if traits.has_trait(area, 'Hookable'):
+			var body = traits.get_trait(area, 'Hookable').get_anchor_body()
+			hook_to(body.get_path())
+			return
+	
+func hook_to(what):
+	#$Hook.set_path(what)
+	hooked = true
+	entity.get('Thrusters').disable()
+	
+func unhook():
+	#$Hook.release()
+	hooked = false
+	entity.get('Thrusters').enable()
 	

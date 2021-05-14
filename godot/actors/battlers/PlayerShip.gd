@@ -73,6 +73,13 @@ func control(delta):
 		
 	# cooldown
 	fire_cooldown -= delta * Engine.time_scale
+	
+	# hook
+	if Input.is_action_just_pressed(controls+'_hook'):
+		try_hook()
+		
+	if Input.is_action_just_released(controls+'_hook'):
+		unhook()
 
 	.control(delta)
 	
