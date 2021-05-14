@@ -2,11 +2,12 @@ tool
 extends Area2D
 
 export var max_time = 10
+var last_time = max_time
 
 export var active = false setget set_active, get_active
 var player setget set_player, get_player
 
-signal lost
+signal disappeared
 
 func set_active(v):
 	active = v
@@ -78,22 +79,18 @@ func take_control(p):
 	$AnimationPlayer.play("Taken")
 	set_player(p)
 	set_process(true)
-	$Timer.start(max_time)
+	$Timer.start(last_time)
 	$Background.material.set_shader_param('max_time', max_time)
 	
 func lose_control():
 	set_process(false)
-	$AnimationPlayer.play("Disappear")
-	yield($AnimationPlayer, "animation_finished")
-	
 	set_player(null)
-	set_active(false)
+	last_time = $Timer.time_left
 	$Timer.stop()
-	$Timer.wait_time = max_time
-	emit_signal('lost', self)
+	
 	
 func _on_Zone_body_entered(body):
-	if active and body is Ship and get_player() == null:
+	if active and (not $AnimationPlayer.is_playing() or $AnimationPlayer.current_animation != 'Disappear') and body is Ship and get_player() == null:
 		take_control(body.get_player())
 		
 func _on_Zone_body_exited(body):
@@ -101,5 +98,10 @@ func _on_Zone_body_exited(body):
 		lose_control()
 	
 func _on_Timer_timeout():
-	lose_control()
-	
+	set_process(false)
+	$Timer.stop()
+	$Background.material.set_shader_param('time_left', 0)
+	$AnimationPlayer.play("Disappear")
+	yield($AnimationPlayer, "animation_finished")
+	set_active(false)
+	emit_signal('disappeared', self)

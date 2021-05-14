@@ -43,7 +43,7 @@ pursuing_bombs = true
 shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
-bomb_type = 0
+bomb_type = 2
 starting_ammo = -1
 reload_time = 3.0
 rules = [  ]
@@ -76,36 +76,24 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 4400
-height = 4400
-bevel = 100
-bevel_nw = 100
-bevel_ne = 100
-bevel_sw = 100
-bevel_se = 100
+width = 3700
+height = 3700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.272, 0.4692, 0.68, 1 )
 bg_color = Color( 0.26, 0.4355, 0.65, 1 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
 [node name="Zone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 active = true
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -114,9 +102,6 @@ position = Vector2( 1200, 0 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone2" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -125,9 +110,6 @@ position = Vector2( 1200, 1200 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone3" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -136,9 +118,6 @@ position = Vector2( 0, 1200 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone4" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -147,9 +126,6 @@ position = Vector2( -1200, 1200 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone5" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -158,9 +134,6 @@ position = Vector2( -1200, 0 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone6" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -169,9 +142,6 @@ position = Vector2( -1200, -1200 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone7" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -180,9 +150,6 @@ position = Vector2( 0, -1200 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone8" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
@@ -191,29 +158,27 @@ position = Vector2( 1200, -1200 )
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone9" index="5"]
 script = ExtResource( 9 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1200
 height = 1200
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="9" instance=ExtResource( 15 )]
-position = Vector2( -900, 900 )
+position = Vector2( -1200, 1200 )
 
 [node name="CameraEye2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 15 )]
-position = Vector2( 900, -900 )
+position = Vector2( 1200, -1200 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1900, 0 )
+position = Vector2( -1700, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 1900, 0 )
+position = Vector2( 1700, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 14 )
+cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )

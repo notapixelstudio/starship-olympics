@@ -11,7 +11,7 @@
 resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/time_left = 0.0
-shader_param/max_time = 0.0
+shader_param/max_time = 10
 shader_param/active = true
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -127,6 +127,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 4 )
