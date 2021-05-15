@@ -43,7 +43,7 @@ func set_player(v):
 		$Wrapper/Crown.visible = true
 		$Wrapper/Monogram.text = player.species.get_monogram()
 	else:
-		$Background.modulate = Color(1,1,1)
+		$Background.modulate = Color(1,1,1,0.2)
 		$Border.modulate = Color(1,1,1)
 		$Border.self_modulate = Color(1.1,1.1,1.1)
 		$Crown.modulate = Color(1,1,1)
@@ -94,8 +94,18 @@ func _on_Zone_body_entered(body):
 		take_control(body.get_player())
 		
 func _on_Zone_body_exited(body):
-	if active and body is Ship and body.get_player() == player:
-		lose_control()
+	if active:
+		if body is Ship and body.get_player() == player:
+			lose_control()
+			
+			# check if a single ship is inside the area, to give it control
+			var ships = []
+			for maybe_ship in get_overlapping_bodies():
+				if maybe_ship is Ship and maybe_ship != body:
+					ships.append(maybe_ship)
+					
+			if len(ships) == 1:
+				take_control(ships[0].get_player())
 	
 func _on_Timer_timeout():
 	set_process(false)
