@@ -70,6 +70,9 @@ tracks/0/keys = {
 [node name="Zone" type="Area2D" groups=[
 "hill",
 ]]
+scale = Vector2( 0.01, 0.01 )
+z_index = -10
+z_as_relative = false
 collision_layer = 0
 script = ExtResource( 1 )
 
@@ -96,9 +99,9 @@ end_cap_mode = 1
 
 [node name="Crown" type="Sprite" parent="."]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.0588235 )
+self_modulate = Color( 1, 1, 1, 0.2 )
 position = Vector2( 0, -23 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
 [node name="Wrapper" type="Node2D" parent="."]

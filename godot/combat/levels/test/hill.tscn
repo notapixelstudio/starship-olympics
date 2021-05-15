@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=5]
 [ext_resource path="res://combat/styles/palace.tres" type="Resource" id=6]
 [ext_resource path="res://actors/environments/Zone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
@@ -52,6 +52,24 @@ flood = false
 laserable = false
 additional_lasers = false
 
+[sub_resource type="Animation" id=3]
+resource_name = "Rotate"
+length = 60.0
+loop = true
+step = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GRegularPolygon:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 2, 2 ),
+"update": 0,
+"values": [ 42.5, 402.5 ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "Rotate"
 length = 60.0
@@ -66,7 +84,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1200, 700, 1400, 500, 1500, 500 ]
+"values": [ 1000, 1000, 600, 1200, 700, 2000, 400, 1500, 400 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Zone/GShape:height")
@@ -78,7 +96,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 600, 1300, 600, 1500, 600, 1500 ]
+"values": [ 1000, 1000, 400, 1500, 600, 2000, 600, 2000 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Zone2/GShape:width")
@@ -87,10 +105,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 18, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 800, 1000, 700, 2000, 400, 1000, 400, 1000, 400 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Zone2/GShape:height")
@@ -99,10 +117,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 800, 1500, 600, 2000, 600, 2000, 600, 2000 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Zone3/GShape:width")
@@ -114,7 +132,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 600, 1000, 700, 2000, 400, 1000, 400 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Zone3/GShape:height")
@@ -126,7 +144,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 400, 1500, 600, 2000, 600, 2000 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Zone4/GShape:width")
@@ -135,10 +153,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 18, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 800, 1000, 700, 2000, 400, 1000, 400, 1000, 400 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Zone4/GShape:height")
@@ -147,10 +165,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 800, 1500, 600, 2000, 600, 2000, 600, 2000 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Zone5/GShape:width")
@@ -159,10 +177,10 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 18, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 800, 1000, 700, 2000, 400, 1000, 400, 1000, 400 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Zone5/GShape:height")
@@ -174,7 +192,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 400, 1500, 600, 2000, 600, 2000 ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Zone6/GShape:width")
@@ -183,10 +201,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 18, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 800, 1000, 700, 2000, 400, 1000, 400, 1000, 400 ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("Zone6/GShape:height")
@@ -195,10 +213,10 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 800, 1500, 600, 2000, 600, 2000, 600, 2000 ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("Zone7/GShape:width")
@@ -210,7 +228,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 600, 1000, 700, 2000, 400, 1000, 400 ]
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("Zone7/GShape:height")
@@ -222,7 +240,7 @@ tracks/13/keys = {
 "times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 400, 1500, 600, 2000, 600, 2000 ]
 }
 tracks/14/type = "value"
 tracks/14/path = NodePath("Zone9/GShape:width")
@@ -231,10 +249,10 @@ tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 18, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 800, 1000, 700, 2000, 400, 1000, 400, 1000, 400 ]
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath("Zone9/GShape:height")
@@ -243,10 +261,10 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
-"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
+"times": PoolRealArray( 0, 28, 37, 45, 49, 52, 54, 56, 58, 60 ),
+"transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 800, 1500, 600, 2000, 600, 2000, 600, 2000 ]
 }
 tracks/16/type = "value"
 tracks/16/path = NodePath("Zone8/GShape:width")
@@ -258,7 +276,7 @@ tracks/16/keys = {
 "times": PoolRealArray( 0, 22, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 700, 1000, 500, 1000, 500 ]
+"values": [ 1000, 1000, 600, 1000, 700, 2000, 400, 1000, 400 ]
 }
 tracks/17/type = "value"
 tracks/17/path = NodePath("Zone8/GShape:height")
@@ -270,7 +288,7 @@ tracks/17/keys = {
 "times": PoolRealArray( 0, 32, 41, 49, 53, 56, 58, 60 ),
 "transitions": PoolRealArray( 1, -2, -2, -2, -2, 1, -2, 1 ),
 "update": 0,
-"values": [ 1000, 1000, 800, 1000, 600, 1000, 600, 1000 ]
+"values": [ 1000, 1000, 400, 1500, 600, 2000, 600, 2000 ]
 }
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -288,22 +306,23 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
-position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 hide_grid = true
 solid_line_color = Color( 0.83, 1.1, 0.92, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="8" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 3 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="9"]
 script = ExtResource( 5 )
-width = 3500
-height = 3500
-bevel = 150
-bevel_nw = 150
-bevel_ne = 150
-bevel_sw = 150
-bevel_se = 150
+radius = 2400
+sides = 8.0
+alternating_angle = 40.0
+rotation_degrees = 42.5
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -311,6 +330,7 @@ fg_color = Color( 0.272, 0.4692, 0.68, 1 )
 bg_color = Color( 0.26, 0.4355, 0.65, 1 )
 
 [node name="Zone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+scale = Vector2( 1, 1 )
 active = true
 
 [node name="GShape" type="Node" parent="Battlefield/Middleground/Zone" index="5"]
@@ -383,10 +403,10 @@ width = 1000
 height = 1000
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="9" instance=ExtResource( 15 )]
-position = Vector2( -1200, 1200 )
+position = Vector2( -1100, 1100 )
 
 [node name="CameraEye2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 15 )]
-position = Vector2( 1200, -1200 )
+position = Vector2( 1100, -1100 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="11" groups=[
 "animation_in_battle",
@@ -395,13 +415,13 @@ playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1500, 0 )
+position = Vector2( -1300, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 1500, 0 )
+position = Vector2( 1300, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 14 )
