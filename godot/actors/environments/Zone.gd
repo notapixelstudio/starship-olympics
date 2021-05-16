@@ -72,8 +72,35 @@ func refresh_clock():
 func refresh_polygon():
 	var polygon = $GShape.to_PoolVector2Array()
 	$CollisionPolygon2D.polygon = polygon
-	$Background.polygon = polygon
-	$Border.points = $GShape.to_closed_PoolVector2Array()
+	
+	var castle_points = []
+	var margin = 100
+	
+	castle_points.append(polygon[0]+Vector2(0,margin))
+	castle_points.append(polygon[0]+Vector2(margin,margin))
+	castle_points.append(polygon[0]+Vector2(margin,0))
+	
+	castle_points.append(polygon[1]+Vector2(-margin,0))
+	castle_points.append(polygon[1]+Vector2(-margin,margin))
+	castle_points.append(polygon[1]+Vector2(0,margin))
+	
+	castle_points.append(polygon[2]+Vector2(0,-margin))
+	castle_points.append(polygon[2]+Vector2(-margin,-margin))
+	castle_points.append(polygon[2]+Vector2(-margin,0))
+	
+	castle_points.append(polygon[3]+Vector2(margin,0))
+	castle_points.append(polygon[3]+Vector2(margin,-margin))
+	castle_points.append(polygon[3]+Vector2(0,-margin))
+	
+	castle_points.append(polygon[0]+Vector2(0,margin))
+	
+	$Border.points = PoolVector2Array(castle_points)
+	$Background.polygon = PoolVector2Array(castle_points)
+	
+	$Border/Tower1.position = polygon[0]
+	$Border/Tower2.position = polygon[1]
+	$Border/Tower3.position = polygon[2]
+	$Border/Tower4.position = polygon[3]
 	
 func take_control(p):
 	$AnimationPlayer.play("Taken")

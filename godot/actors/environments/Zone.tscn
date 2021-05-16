@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/environments/Zone.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=4]
 [ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=5]
 [ext_resource path="res://assets/modes/crown.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/signs/Osquare.png" type="Texture" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -96,6 +97,26 @@ width = 20.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 1
 end_cap_mode = 1
+
+[node name="Tower1" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Tower2" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Tower3" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Tower4" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
 
 [node name="Crown" type="Sprite" parent="."]
 visible = false

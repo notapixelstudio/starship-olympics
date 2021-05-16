@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=11]
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=12]
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 id = "map_coloring"
 is_mutator = false
@@ -49,7 +49,7 @@ flood = false
 laserable = false
 additional_lasers = false
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Node2D
 
 const DX = 300
@@ -110,7 +110,7 @@ func may_merge(a, b):
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
-game_mode = SubResource( 2 )
+game_mode = SubResource( 1 )
 
 [node name="ConquestModeManager" parent="Managers" index="8"]
 enabled = true
@@ -129,9 +129,6 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3900
 height = 1800
 
@@ -140,15 +137,9 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.272, 0.4692, 0.68, 1 )
 bg_color = Color( 0.26, 0.4355, 0.65, 1 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
 [node name="Map" type="Node2D" parent="Battlefield/Middleground" index="0"]
 position = Vector2( 0, 32 )
-script = SubResource( 1 )
+script = SubResource( 2 )
 
 [node name="Polyomino" parent="Battlefield/Middleground/Map" index="0" instance=ExtResource( 7 )]
 position = Vector2( -300, -450 )
