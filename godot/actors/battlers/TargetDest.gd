@@ -36,6 +36,10 @@ func get_strategy(ship, distance, game_mode):
 			return {}
 	elif game_mode.name == 'Pong':
 		return {'shoot': 10}
+	elif game_mode.get_id() == 'king_of_the_castle':
+		# pursue ships of opposing teams and keep close
+		if calling_ship_team != this_ship_team:
+			return {'seek': distance/500, 'shoot': 0.5}
 		
 	# default: shoot at ships of opposing teams, sometimes
 	if calling_ship_team != this_ship_team:

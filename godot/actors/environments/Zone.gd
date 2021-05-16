@@ -144,5 +144,5 @@ func _on_Timer_timeout():
 	emit_signal('disappeared', self)
 
 func get_strategy(ship, distance, game_mode):
-	return {"seek": 10} if active and get_player() == null or get_player() == ship.get_player() else {}
+	return {"seek": 10} if active and (get_player() == null or get_player() == ship.get_player()) else {}
 	
