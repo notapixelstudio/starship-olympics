@@ -2,11 +2,12 @@ tool
 extends Area2D
 
 export var max_time = 10
+var last_time = max_time
 
 export var active = false setget set_active, get_active
 var player setget set_player, get_player
 
-signal lost
+signal disappeared
 
 func set_active(v):
 	active = v
@@ -42,7 +43,7 @@ func set_player(v):
 		$Wrapper/Crown.visible = true
 		$Wrapper/Monogram.text = player.species.get_monogram()
 	else:
-		$Background.modulate = Color(1,1,1)
+		$Background.modulate = Color(1,1,1,0.2)
 		$Border.modulate = Color(1,1,1)
 		$Border.self_modulate = Color(1.1,1.1,1.1)
 		$Crown.modulate = Color(1,1,1)
@@ -71,35 +72,77 @@ func refresh_clock():
 func refresh_polygon():
 	var polygon = $GShape.to_PoolVector2Array()
 	$CollisionPolygon2D.polygon = polygon
-	$Background.polygon = polygon
-	$Border.points = $GShape.to_closed_PoolVector2Array()
+	
+	var castle_points = []
+	var margin = 100
+	
+	castle_points.append(polygon[0]+Vector2(0,margin))
+	castle_points.append(polygon[0]+Vector2(margin,margin))
+	castle_points.append(polygon[0]+Vector2(margin,0))
+	
+	castle_points.append(polygon[1]+Vector2(-margin,0))
+	castle_points.append(polygon[1]+Vector2(-margin,margin))
+	castle_points.append(polygon[1]+Vector2(0,margin))
+	
+	castle_points.append(polygon[2]+Vector2(0,-margin))
+	castle_points.append(polygon[2]+Vector2(-margin,-margin))
+	castle_points.append(polygon[2]+Vector2(-margin,0))
+	
+	castle_points.append(polygon[3]+Vector2(margin,0))
+	castle_points.append(polygon[3]+Vector2(margin,-margin))
+	castle_points.append(polygon[3]+Vector2(0,-margin))
+	
+	castle_points.append(polygon[0]+Vector2(0,margin))
+	
+	$Border.points = PoolVector2Array(castle_points)
+	$Background.polygon = PoolVector2Array(castle_points)
+	
+	$Border/Tower1.position = polygon[0]
+	$Border/Tower2.position = polygon[1]
+	$Border/Tower3.position = polygon[2]
+	$Border/Tower4.position = polygon[3]
 	
 func take_control(p):
 	$AnimationPlayer.play("Taken")
 	set_player(p)
 	set_process(true)
-	$Timer.start(max_time)
+	$Timer.start(last_time)
 	$Background.material.set_shader_param('max_time', max_time)
 	
 func lose_control():
 	set_process(false)
-	$AnimationPlayer.play("Disappear")
-	yield($AnimationPlayer, "animation_finished")
-	
 	set_player(null)
-	set_active(false)
+	last_time = $Timer.time_left
 	$Timer.stop()
-	$Timer.wait_time = max_time
-	emit_signal('lost', self)
+	
 	
 func _on_Zone_body_entered(body):
-	if active and body is Ship and get_player() == null:
+	if active and (not $AnimationPlayer.is_playing() or $AnimationPlayer.current_animation != 'Disappear') and body is Ship and get_player() == null:
 		take_control(body.get_player())
 		
 func _on_Zone_body_exited(body):
-	if active and body is Ship and body.get_player() == player:
-		lose_control()
+	if active:
+		if body is Ship and body.get_player() == player:
+			lose_control()
+			
+			# check if a single ship is inside the area, to give it control
+			var ships = []
+			for maybe_ship in get_overlapping_bodies():
+				if maybe_ship is Ship and maybe_ship != body:
+					ships.append(maybe_ship)
+					
+			if len(ships) == 1:
+				take_control(ships[0].get_player())
 	
 func _on_Timer_timeout():
-	lose_control()
+	set_process(false)
+	$Timer.stop()
+	$Background.material.set_shader_param('time_left', 0)
+	$AnimationPlayer.play("Disappear")
+	yield($AnimationPlayer, "animation_finished")
+	set_active(false)
+	emit_signal('disappeared', self)
+
+func get_strategy(ship, distance, game_mode):
+	return {"seek": 10} if active and (get_player() == null or get_player() == ship.get_player()) else {}
 	

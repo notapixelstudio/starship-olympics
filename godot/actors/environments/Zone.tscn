@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/environments/Zone.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=2]
@@ -6,12 +6,14 @@
 [ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=4]
 [ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=5]
 [ext_resource path="res://assets/modes/crown.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/signs/Osquare.png" type="Texture" id=7]
+[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/time_left = 0.0
-shader_param/max_time = 0.0
+shader_param/max_time = 10
 shader_param/active = true
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -70,17 +72,23 @@ tracks/0/keys = {
 [node name="Zone" type="Area2D" groups=[
 "hill",
 ]]
+scale = Vector2( 0.01, 0.01 )
+z_index = -10
+z_as_relative = false
 collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="Owned" parent="." instance=ExtResource( 2 )]
+
+[node name="Strategic" parent="." instance=ExtResource( 8 )]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 
 [node name="Background" type="Polygon2D" parent="."]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.784314 )
+modulate = Color( 1, 1, 1, 0.2 )
+self_modulate = Color( 1, 1, 1, 0.78 )
 material = SubResource( 1 )
 texture = ExtResource( 5 )
 
@@ -93,11 +101,31 @@ default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 1
 end_cap_mode = 1
 
+[node name="Tower1" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Tower2" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Tower3" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Tower4" type="Sprite" parent="Border"]
+self_modulate = Color( 1.15, 1.15, 1.15, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
 [node name="Crown" type="Sprite" parent="."]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.0588235 )
+self_modulate = Color( 1, 1, 1, 0.2 )
 position = Vector2( 0, -23 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
 [node name="Wrapper" type="Node2D" parent="."]
@@ -127,6 +155,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 4 )

@@ -109,7 +109,10 @@ var unlocked_games = {
 	"laser": "invisible",
 	"alchemical_bonding": "invisible",
 	"slam_snake": "invisible",
-	"asteroid_survival": "invisible"
+	"asteroid_survival": "invisible",
+	"ark_of_memory": "invisible",
+	"diamond_minefield": "invisible",
+	"finding_yourself": "invisible"
 }
 
 func get_status_game(game_id)-> bool:
