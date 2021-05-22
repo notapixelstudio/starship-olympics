@@ -8,8 +8,8 @@ export var rays = 4
 export var spread = 90
 export var offset = 45
 
+var ccw = +1
 var direction = Vector2(1,0)
-
 
 func fire():
 	for r in range(rays):
@@ -24,8 +24,8 @@ func fire_angled(angle):
 	get_parent().add_child(bullet)
 	
 func _process(delta):
-	direction = direction.rotated(rotation_speed*delta)
-	rotation += rotation_speed*delta
+	direction = direction.rotated(rotation_speed*delta*ccw)
+	rotation += rotation_speed*delta*ccw
 
 func set_rate(v):
 	rate = v
@@ -35,6 +35,10 @@ func _on_Timer_timeout():
 	fire()
 	
 func _ready():
+	ccw = +1 if randf() > 0.5 else -1
+	var random_angle = randf()*2*PI
+	direction = direction.rotated(random_angle)
+	rotation = random_angle
 	set_process(false)
 	
 func start():

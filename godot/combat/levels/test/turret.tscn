@@ -55,10 +55,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 40, 44, 48, 52, 56, 60 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 4, 8, 12, 20, 24, 28, 32, 44, 48, 52, 56, 60 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0.5, 1.0, 0.5, 1.0, 2.0, 4.0, 1.0, 1.0, 0.5, 0.5, 4.0, 1.0, 4.0, 1.0, 4.0 ]
+"values": [ 0.5, 1.0, 0.5, 1.0, 4.0, 1.0, 1.0, 0.5, 0.5, 4.0, 1.0, 4.0, 2.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Turret:rotation_speed")
@@ -67,7 +67,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 12, 24, 40, 64 ),
+"times": PoolRealArray( 0, 12, 24, 44, 64 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
 "update": 0,
 "values": [ 0.4, -2.4, 0.4, -0.4, 1.0 ]
@@ -79,7 +79,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 28, 36, 48 ),
+"times": PoolRealArray( 32, 40, 52 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -99,7 +99,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 40 ),
+"times": PoolRealArray( 0, 44 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 400, 600 ]
@@ -111,7 +111,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 40 ),
+"times": PoolRealArray( 0, 44 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 4, 6 ]
@@ -123,7 +123,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 40 ),
+"times": PoolRealArray( 0, 44 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 90, 60 ]
@@ -177,7 +177,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/Ghost" index="8"]
 script = ExtResource( 13 )
-radius = 1800
+radius = 2000
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -193,7 +193,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-radius = 1800
+radius = 2000
 sides = 4.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -204,19 +204,19 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 [node name="Mirrors" type="Node2D" parent="Battlefield/Background" index="6"]
 
 [node name="Mirror" parent="Battlefield/Background/Mirrors" index="0" instance=ExtResource( 3 )]
-position = Vector2( -600, 1300 )
+position = Vector2( -700, 1400 )
 rotation = 0.785398
 
 [node name="Mirror2" parent="Battlefield/Background/Mirrors" index="1" instance=ExtResource( 3 )]
-position = Vector2( 600, -1300 )
+position = Vector2( 700, -1400 )
 rotation = 0.785398
 
 [node name="Mirror3" parent="Battlefield/Background/Mirrors" index="2" instance=ExtResource( 3 )]
-position = Vector2( -1300, -600 )
+position = Vector2( -1400, -700 )
 rotation = -0.785398
 
 [node name="Mirror4" parent="Battlefield/Background/Mirrors" index="3" instance=ExtResource( 3 )]
-position = Vector2( 1300, 600 )
+position = Vector2( 1400, 700 )
 rotation = -0.785398
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="7" groups=[
@@ -232,6 +232,7 @@ anims/Rotate = SubResource( 2 )
 [node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
 weapon = ExtResource( 14 )
 rate = 0.5
+rotation_speed = 0.4
 
 [node name="Lasers" type="Node2D" parent="Battlefield/Middleground/Turret" index="3"]
 script = SubResource( 3 )
