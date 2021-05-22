@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -6,15 +6,16 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
-[ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=9]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=10]
 [ext_resource path="res://combat/modes/DiscoBullet.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=13]
+[ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=14]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Rotate"
 length = 60.0
 step = 1.0
@@ -31,34 +32,77 @@ tracks/0/keys = {
 "values": [ 0.0, -360.0 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Rotate"
-length = 60.0
+[sub_resource type="Animation" id=2]
+length = 64.0
 step = 1.0
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rate")
+tracks/0/path = NodePath("Turret:rate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 ]
+"values": [ 0.5, 1.0, 0.5, 1.0, 2.0, 1.0, 2.0, 1.0, 0.5, 1.0, 2.0, 4.0, 1.0, 4.0, 1.0, 4.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_speed")
+tracks/1/path = NodePath("Turret:rotation_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 12, 24, 36 ),
-"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"times": PoolRealArray( 0, 12, 24, 36, 52 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
 "update": 0,
-"values": [ 0.4, -0.8, 0.4, -0.8 ]
+"values": [ 0.4, -0.8, 0.4, -0.4, 0.8 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Turret/Lasers")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 28, 36, 48 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+}, {
+"args": [  ],
+"method": "deactivate"
+}, {
+"args": [  ],
+"method": "activate"
+} ]
+}
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+func activate():
+	switch(true)
+	
+func deactivate():
+	switch(false)
+	
+func switch(on):
+	for laser in get_children():
+		laser.set_on(on)
+		if on:
+			laser.visible = true
+			yield(get_tree().create_timer(1), \"timeout\")
+		else:
+			yield(get_tree().create_timer(1), \"timeout\")
+			laser.visible = false
+		
+func show():
+	visible = true
+	
+"
 
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
@@ -104,25 +148,53 @@ sides = 4.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="9" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 2 )
+anims/Rotate = SubResource( 1 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
-[node name="Turret" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
-weapon = ExtResource( 7 )
-rotation_speed = 0.4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Turret" index="3" groups=[
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 1 )
+anims/Rotate = SubResource( 2 )
+
+[node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
+weapon = ExtResource( 14 )
+rate = 0.5
+rotation_speed = 0.4
+
+[node name="Lasers" type="Node2D" parent="Battlefield/Middleground/Turret" index="3"]
+script = SubResource( 3 )
+
+[node name="Laser" parent="Battlefield/Middleground/Turret/Lasers" index="0" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 100, 0 )
+on = false
+
+[node name="Laser2" parent="Battlefield/Middleground/Turret/Lasers" index="1" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 0, 100 )
+rotation = 1.5708
+on = false
+
+[node name="Laser3" parent="Battlefield/Middleground/Turret/Lasers" index="2" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( -100, 0 )
+rotation = 3.14159
+on = false
+
+[node name="Laser4" parent="Battlefield/Middleground/Turret/Lasers" index="3" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 0, -100 )
+rotation = 4.71239
+on = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
 position = Vector2( -900, 900 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]

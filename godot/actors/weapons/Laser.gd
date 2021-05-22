@@ -40,6 +40,10 @@ func refresh_type():
 func set_on(v, duration=null):
 	on = v
 	enabled = on
+	
+	if not is_inside_tree():
+		yield(self, 'ready')
+	
 	$CastingParticles2D.emitting = on
 	
 	if on:
