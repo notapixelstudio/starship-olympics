@@ -228,7 +228,6 @@ func refresh():
 		$Entity/Deadly.enabled = true
 		$Entity/Trigger.enabled = true
 		$line.texture = spikes_texture
-		$line.width = 150
 		$lineBelow.visible = false
 	elif type == TYPE.solid:
 		$Polygon2D.modulate = solid_line_color

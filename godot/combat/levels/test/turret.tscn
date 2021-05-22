@@ -42,10 +42,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 40, 44, 48, 52, 56, 60 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0.5, 1.0, 0.5, 1.0, 2.0, 4.0, 1.0, 1.0, 0.5, 2.0, 2.0, 4.0, 1.0, 4.0, 1.0, 4.0 ]
+"values": [ 0.5, 1.0, 0.5, 1.0, 2.0, 4.0, 1.0, 1.0, 0.5, 0.5, 4.0, 1.0, 4.0, 1.0, 4.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Turret:rotation_speed")
@@ -54,7 +54,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 12, 24, 36, 64 ),
+"times": PoolRealArray( 0, 12, 24, 40, 64 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
 "update": 0,
 "values": [ 0.4, -2.4, 0.4, -0.4, 1.0 ]
@@ -86,7 +86,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 36 ),
+"times": PoolRealArray( 0, 40 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 400, 600 ]
@@ -98,7 +98,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 36 ),
+"times": PoolRealArray( 0, 40 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 4, 6 ]
@@ -110,7 +110,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 36 ),
+"times": PoolRealArray( 0, 40 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 90, 60 ]
@@ -170,6 +170,7 @@ radius = 1800
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
+type = 1
 hide_grid = true
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
