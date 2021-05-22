@@ -183,9 +183,7 @@ __meta__ = {
 radius = 1800
 sides = 4.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="9"]
 anims/Rotate = SubResource( 1 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
