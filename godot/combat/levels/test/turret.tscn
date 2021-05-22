@@ -2,7 +2,6 @@
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
-[ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
@@ -14,6 +13,7 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=13]
 [ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -45,7 +45,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0.5, 1.0, 0.5, 1.0, 2.0, 1.0, 2.0, 1.0, 0.5, 1.0, 2.0, 4.0, 1.0, 4.0, 1.0, 4.0 ]
+"values": [ 0.5, 1.0, 0.5, 1.0, 2.0, 4.0, 1.0, 1.0, 0.5, 2.0, 2.0, 4.0, 1.0, 4.0, 1.0, 4.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Turret:rotation_speed")
@@ -54,10 +54,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 12, 24, 36, 52 ),
+"times": PoolRealArray( 0, 12, 24, 36, 64 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
 "update": 0,
-"values": [ 0.4, -0.8, 0.4, -0.4, 0.8 ]
+"values": [ 0.4, -2.4, 0.4, -0.4, 1.0 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath("Turret/Lasers")
@@ -79,6 +79,42 @@ tracks/2/keys = {
 "method": "activate"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Turret:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 36 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 400, 600 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Turret:rays")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 36 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 6 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Turret:spread")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 36 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 90, 60 ]
+}
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Node2D
@@ -96,8 +132,9 @@ func switch(on):
 			laser.visible = true
 			yield(get_tree().create_timer(1), \"timeout\")
 		else:
-			yield(get_tree().create_timer(1), \"timeout\")
+			yield(get_tree().create_timer(0.5), \"timeout\")
 			laser.visible = false
+			yield(get_tree().create_timer(0.5), \"timeout\")
 		
 func show():
 	visible = true
@@ -127,7 +164,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/Ghost" index="8"]
 script = ExtResource( 13 )
-radius = 2400
+radius = 1800
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -142,7 +179,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-radius = 2400
+radius = 1800
 sides = 4.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="9" groups=[
@@ -160,7 +197,7 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 ]]
 anims/Rotate = SubResource( 2 )
 
-[node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
+[node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
 weapon = ExtResource( 14 )
 rate = 0.5
 rotation_speed = 0.4
@@ -192,13 +229,13 @@ rotation = 4.71239
 on = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
-position = Vector2( -900, 900 )
+position = Vector2( -700, 700 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
-position = Vector2( 900, -900 )
+position = Vector2( 700, -700 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 12 )

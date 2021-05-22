@@ -40,3 +40,5 @@ func _ready():
 func start():
 	set_process(true)
 	$Timer.start(1.0/rate)
+	fire()
+	
