@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/Mirror.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
@@ -20,12 +21,24 @@ resource_name = "Rotate"
 length = 60.0
 step = 1.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("GRegularPolygon:rotation_degrees")
+tracks/0/path = NodePath("OutsideWall/GRegularPolygon:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 60 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirrors:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 60 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -183,15 +196,33 @@ __meta__ = {
 radius = 1800
 sides = 4.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="9" groups=[
-"animation_in_battle",
-]]
-anims/Rotate = SubResource( 1 )
-
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+
+[node name="Mirrors" type="Node2D" parent="Battlefield/Background" index="6"]
+
+[node name="Mirror" parent="Battlefield/Background/Mirrors" index="0" instance=ExtResource( 3 )]
+position = Vector2( -600, 1300 )
+rotation = 0.785398
+
+[node name="Mirror2" parent="Battlefield/Background/Mirrors" index="1" instance=ExtResource( 3 )]
+position = Vector2( 600, -1300 )
+rotation = 0.785398
+
+[node name="Mirror3" parent="Battlefield/Background/Mirrors" index="2" instance=ExtResource( 3 )]
+position = Vector2( -1300, -600 )
+rotation = -0.785398
+
+[node name="Mirror4" parent="Battlefield/Background/Mirrors" index="3" instance=ExtResource( 3 )]
+position = Vector2( 1300, 600 )
+rotation = -0.785398
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="7" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
 "animation_in_battle",
@@ -201,7 +232,6 @@ anims/Rotate = SubResource( 2 )
 [node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
 weapon = ExtResource( 14 )
 rate = 0.5
-rotation_speed = 0.4
 
 [node name="Lasers" type="Node2D" parent="Battlefield/Middleground/Turret" index="3"]
 script = SubResource( 3 )
