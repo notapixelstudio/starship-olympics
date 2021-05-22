@@ -18,7 +18,7 @@ func fire():
 func fire_angled(angle):
 	var bullet = weapon.instance()
 	
-	bullet.velocity = direction.rotated(angle)*speed
+	bullet.linear_velocity = direction.rotated(angle)*speed
 	
 	# ugly
 	get_parent().add_child(bullet)

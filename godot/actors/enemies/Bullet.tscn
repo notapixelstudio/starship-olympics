@@ -7,11 +7,13 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 8209
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 0.0
 angular_damp = 0.0
-collision_layer = 4
-collision_mask = 17
 script = ExtResource( 2 )
 
 [node name="Entity" type="Node" parent="."]
