@@ -845,8 +845,9 @@ func _on_EndlessArea_body_exited(body):
 		
 func _on_ship_fallen(ship, spawner):
 	ship.trail.destroy()
-	spawner.appears()
 	ship.die(null, true) # die for good
+	yield(get_tree().create_timer(1), "timeout")
+	spawner.appears()
 	spawn_ship(spawner)
 	
 func connect_killable(killable):

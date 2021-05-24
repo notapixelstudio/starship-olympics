@@ -151,7 +151,9 @@ func _on_LifeTime_timeout():
 		get_parent().call_deferred("remove_child", self)
 		emit_signal('expired', self.position)
 		if entity.has('Owned'):
-			entity.get('Owned').get_owned_by()._on_bomb_freed()
+			var owner = entity.get('Owned').get_owned_by()
+			if is_instance_valid(owner):
+				owner._on_bomb_freed()
 		yield(get_tree().create_timer(1), "timeout")
 		call_deferred("queue_free")
 
@@ -206,7 +208,7 @@ func _on_NearArea_body_entered(body):
 		else:
 			body.pop(true)
 	elif type == GameMode.BOMB_TYPE.ice and body is Ship and entity.get('Owned').get_owned_by() != body:
-		body.freeze()
+		body.fall()
 		queue_free()
 		
 signal frozen

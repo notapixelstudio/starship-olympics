@@ -8,8 +8,10 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 	if not entity:
 		return
 		
-	if entity.has('Owned') and entity.get('Owned').get_owned_by().species == ship.species:
-		return
+	if entity.has('Owned'):
+		var owner = entity.get('Owned').get_owned_by()
+		if not is_instance_valid(owner) or owner.species == ship.species:
+			return
 		
 	if entity.has('Owned') and len(ECM.entities_with('Royal')) > 0:
 		var royal_species = {}
@@ -17,7 +19,7 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 			royal_species[queen.get_host().species] = true
 			
 		if not entity.get('Owned').get_owned_by().species in royal_species and not ECM.E(ship).has('Royal'):
-			return
+			return # FIXME? owner could be an invalid instance
 		
 	if entity.has('Pursuer'):
 		entity.get('Pursuer').set_keep_target_timeout()
