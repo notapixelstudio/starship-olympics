@@ -5,7 +5,7 @@ class_name Laser
 export var on = true setget set_on
 export (String, 'laser', 'freeze', 'barrier') var type = 'laser' setget set_type
 
-const FLASH_DURATION = 0.08
+const FLASH_DURATION = 0.1
 const WIDTH = 40
 const HINT_WIDTH = 6
 
@@ -40,6 +40,10 @@ func refresh_type():
 func set_on(v, duration=null):
 	on = v
 	enabled = on
+	
+	if not is_inside_tree():
+		yield(self, 'ready')
+	
 	$CastingParticles2D.emitting = on
 	
 	if on:
@@ -49,6 +53,16 @@ func set_on(v, duration=null):
 		$RayArea/CollisionShape2D.disabled = true
 	
 	if is_inside_tree():
+		$Line2D.width = WIDTH if on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		$Line2D.width = WIDTH if not on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		
+		$Line2D.width = WIDTH if on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		$Line2D.width = WIDTH if not on else HINT_WIDTH
+		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		
 		$Line2D.width = WIDTH if on else HINT_WIDTH
 		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
 		$Line2D.width = WIDTH if not on else HINT_WIDTH

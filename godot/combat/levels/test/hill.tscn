@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://combat/managers/HillManager.gd" type="Script" id=13]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=14]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=16]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=17]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -304,7 +306,29 @@ enabled = true
 texture = ExtResource( 3 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+[node name="Ghost" type="StaticBody2D" parent="Battlefield/Background" index="1" groups=[
+"wall",
+] instance=ExtResource( 4 )]
+position = Vector2( 3.05176e-05, 0 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+hollow = true
+offset = 200
+elongation = 100
+type = 2
+hide_grid = true
+solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/Ghost" index="8"]
+script = ExtResource( 16 )
+radius = 2400
+
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 hollow = true
 offset = 200
 hide_grid = true
