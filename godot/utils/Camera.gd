@@ -3,10 +3,10 @@ extends Camera2D
 export var zoomMin = 1.7
 export var zoomMax: float = 0
 export var marginX = 0
-export var marginY = 100.0
+export var marginY = 140.0
 export (float) var zoom_speed_enlarge = 0.13
 export (float) var zoom_speed_shrink = 0.02
-export(float, 0.1, 4.0) var zoom_offset : float = 0.75
+export(float, 0.0, 4.0) var zoom_offset : float = 0.3
 export(float, 0.01, 0.5) var zoom_speed : float = 0.02
 export(float, 0.01, 0.5) var offset_speed : float = 0.22
 export var debug_mode : bool = true
@@ -127,7 +127,7 @@ func calculate_center(rect: Rect2) -> Vector2:
 func calculate_zoom(rect: Rect2, viewport_size: Vector2) -> Vector2:
 	var max_zoom = max(
 		max(zoomMin, rect.size.x / viewport_size.x + zoom_offset),
-		max(zoomMin, rect.size.y / viewport_size.y  + zoom_offset))
+		max(zoomMin, rect.size.y / viewport_size.y + zoom_offset))
 	return Vector2(max_zoom, max_zoom)
 
 
@@ -136,6 +136,7 @@ func _draw() -> void:
 		return
 
 	draw_rect(camera_rect, Color("#ffffff"), false)
+	draw_rect(Rect2(screen_to_world(viewport_rect.position-Vector2(marginX,marginY))+Vector2(1,1), 2*screen_to_world(viewport_rect.size)-Vector2(2,2)), Color("#00ffff"), false)
 	draw_circle(calculate_center(camera_rect), 5, Color("#ffffff"))
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 

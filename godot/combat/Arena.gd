@@ -266,7 +266,10 @@ func _ready():
 	# initialize HUD
 	hud.initialize()
 	
+	# adapt camera to hud height
+	camera.marginY = hud.get_height()
 	camera.initialize(compute_arena_size())
+	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
 		game_mode.max_score = score_to_win_override

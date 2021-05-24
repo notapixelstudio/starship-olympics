@@ -4,6 +4,7 @@ export var Bar = preload('res://combat/interface/hud/Bar.tscn')
 
 var the_match: TheMatch
 var draw: bool = true
+var height
 onready var Bars = $Bars
 onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
@@ -34,9 +35,9 @@ func initialize():
 	var y = sort_bars(true)
 	
 	# adjust background
-	var h = 10 + y
-	$BarsBackground.rect_size.y = h
-	$BarsBottom.rect_position.y = h
+	height = 10 + y
+	$BarsBackground.rect_size.y = height
+	$BarsBottom.rect_position.y = height
 	set_process(true)
 
 func _process(_delta):
@@ -98,4 +99,7 @@ func compare_by_score_team_and_id(a:Bar, b:Bar):
 			return ta < tb
 	else:
 		return a.get_value() > b.get_value()
+	
+func get_height():
+	return height
 	

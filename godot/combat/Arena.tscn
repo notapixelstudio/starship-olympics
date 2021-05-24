@@ -305,9 +305,6 @@ shape = SubResource( 1 )
 [node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 23 )]
-fg_color = Color( 1, 1, 1, 1 )
-bg_color = Color( 0, 0, 0, 1 )
-clock = false
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 25 )]
 position = Vector2( 0, 20000 )
@@ -322,9 +319,6 @@ anims/Rotate = SubResource( 2 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
 script = ExtResource( 24 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 20000
 height = 20000
 
