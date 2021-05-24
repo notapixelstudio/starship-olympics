@@ -197,7 +197,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 52
+frame = 35
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -321,9 +321,6 @@ bus = "SFX"
 script = ExtResource( 36 )
 streams = [ ExtResource( 37 ) ]
 random_strategy = 2
-randomize_volume = false
-volume_min = 0.0
-volume_max = 0.0
 randomize_pitch = true
 pitch_min = 0.5
 pitch_max = 2.0

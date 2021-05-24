@@ -9,6 +9,7 @@ var BubbleScene = load('res://actors/environments/Bubble.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
+var ice_texture = preload('res://assets/sprites/weapons/bullet.png')
 var bubble_texture = preload('res://assets/sprites/weapons/bubble.png')
 var type
 var symbol = null
@@ -76,6 +77,17 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		mode = MODE_CHARACTER
 		linear_damp = 0
 		ECM.E($Core).get('Deadly').disable()
+		
+	elif type == GameMode.BOMB_TYPE.ice:
+		entity.get('Pursuer').disable()
+		entity.get('Deadly').disable()
+		$CollisionShape2D.shape.radius = size*80 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$NearArea/CollisionShape2D.shape.radius = size*80
+		$Sprite.texture = ice_texture
+		$Sprite.scale = Vector2(size*1.1, size*1.1)
+		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
+		mode = MODE_CHARACTER
+		
 	else:
 		$CollisionShape2D.shape.radius = size*22
 		$NearArea/CollisionShape2D.shape.radius = size*22
@@ -193,7 +205,10 @@ func _on_NearArea_body_entered(body):
 			queue_free()
 		else:
 			body.pop(true)
-			
+	elif type == GameMode.BOMB_TYPE.ice and body is Ship and entity.get('Owned').get_owned_by() != body:
+		body.freeze()
+		queue_free()
+		
 signal frozen
 func freeze():
 	emit_signal("frozen", self)

@@ -199,6 +199,7 @@ autostart = true
 [node name="RicochetAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 bus = "SFX"
+
 [connection signal="body_entered" from="." to="." method="_on_Bomb_body_entered"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]

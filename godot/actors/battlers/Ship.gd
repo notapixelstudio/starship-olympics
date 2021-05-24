@@ -119,7 +119,8 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
-	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png')
+	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_bullet.png')
 }
 
 var symbol
