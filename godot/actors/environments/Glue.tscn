@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/environments/Glue.gd" type="Script" id=1]
 
 [node name="Glue" type="Area2D"]
-z_index = 100
+z_index = -8
 z_as_relative = false
 collision_layer = 0
 collision_mask = 2
@@ -11,11 +11,11 @@ script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 1, 0.4, 0, 0.45098 )
-polygon = PoolVector2Array( -100, -300, 50, -300, 100, -250, 100, 250, 50, 300, -100, 300 )
+polygon = PoolVector2Array( -100, -100, 50, -100, 100, -50, 100, 50, 50, 100, -100, 100 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( -100, -300, 50, -300, 100, -250, 100, 250, 50, 300, -100, 300 )
+points = PoolVector2Array( -100, -100, 50, -100, 100, -50, 100, 50, 50, 100, -100, 100 )
 default_color = Color( 1, 0.376471, 0, 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -100, -300, 50, -300, 100, -250, 100, 250, 50, 300, -100, 300 )
+polygon = PoolVector2Array( -100, -100, 50, -100, 100, -50, 100, 50, 50, 100, -100, 100 )

@@ -210,7 +210,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusers_on = not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
+	var thrusers_on = not is_on_glue() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
 	if not absolute_controls:
 		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
@@ -339,7 +339,7 @@ func fire(override_charge = -1, dash_only = false):
 	
 	actual_charge = override_charge if override_charge > 0 else charge
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
-	var will_dash = charging_enough
+	var will_dash = charging_enough and is_aiming_away_glue()
 	
 	if will_dash:
 		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
@@ -632,3 +632,14 @@ func start_golf():
 func get_player():
 	return info_player
 	
+func is_on_glue():
+	for area in $NearArea.get_overlapping_areas():
+		if area is Glue:
+			return true
+	return false
+	
+func is_aiming_away_glue():
+	for area in $NearArea.get_overlapping_areas():
+		if area is Glue:
+			return abs(wrapf(area.rotation-rotation,-PI,PI)) < area.get_half_angle()
+	return true

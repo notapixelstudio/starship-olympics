@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=15]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=17]
+[ext_resource path="res://actors/environments/Glue.tscn" type="PackedScene" id=18]
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
@@ -29,28 +30,16 @@ centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1700
-precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -126,40 +115,22 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 modulate = Color( 0.32549, 1, 0.32549, 1 )
 position = Vector2( 900, 0 )
 rotation = -3.14159
-size = 8.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
 modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
 position = Vector2( -900, 0 )
-size = 8.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Wall" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
 position = Vector2( -1623, -450 )
 rotation = -1.5708
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall" index="8" groups=[
 "additional_lasers",
@@ -170,34 +141,28 @@ rotation = 1.5708
 [node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 6 )]
 position = Vector2( 1624, 450 )
 rotation = -1.5708
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser2" parent="Battlefield/Middleground/Wall2" index="8" groups=[
 "additional_lasers",
 ] instance=ExtResource( 9 )]
 position = Vector2( 0, -51 )
 rotation = -1.5708
+
+[node name="Glue" parent="Battlefield/Middleground" index="10" instance=ExtResource( 18 )]
+position = Vector2( 0, 1600 )
+rotation = -1.5708
+width = 600
+
+[node name="Glue2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 18 )]
+position = Vector2( 0, -1600 )
+rotation = 1.5708
+width = 600
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 type = 1

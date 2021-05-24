@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/Glue.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -150,7 +151,7 @@ playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 0, -900 )
+position = Vector2( 3150, -900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
@@ -165,21 +166,23 @@ show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
-position = Vector2( 0, 900 )
-rotation = 3.14159
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
-script = ExtResource( 1 )
-radius = 150
-sides = 4.0
-
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 position = Vector2( -800, 0 )
 
-[node name="NoCrownZone2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
+[node name="NoCrownZone2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
 position = Vector2( 800, 0 )
+
+[node name="Glue" parent="Battlefield/Middleground" index="4" instance=ExtResource( 15 )]
+position = Vector2( 0, 850 )
+rotation = -1.5708
+width = 600
+depth = 50
+
+[node name="Glue2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 15 )]
+position = Vector2( 0, -850 )
+rotation = 1.5708
+width = 600
+depth = 50
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 
@@ -188,14 +191,12 @@ position = Vector2( -600, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 4 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 600, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
