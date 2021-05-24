@@ -20,25 +20,16 @@ style = ExtResource( 12 )
 [node name="ConquestModeManager" parent="Managers" index="8"]
 enabled = true
 
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
-
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0.272, 0.4692, 0.68, 1 )
-bg_color = Color( 0.26, 0.4355, 0.65, 1 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
-solid_line_color = Color( 0.83, 1.1, 0.92, 1 )
+solid_line_color = Color( 0.635294, 1.14118, 0.72549, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -46,13 +37,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2000
-sides = 6.0
-alternating_angle = 0.0
 rotation_degrees = 30.0
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0.12, 0.488, 0.6, 1 )
+bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
 [node name="Nuke" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 
@@ -74,6 +65,7 @@ species = ExtResource( 11 )
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

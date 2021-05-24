@@ -2,9 +2,7 @@
 
 [ext_resource path="res://actors/environments/Mirror.gd" type="Script" id=1]
 
-[node name="Mirror" type="StaticBody2D" groups=[
-"in_camera",
-]]
+[node name="Mirror" type="StaticBody2D"]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 1 )
