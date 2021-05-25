@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=1]
+[ext_resource path="res://actors/environments/Goo.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/Glue.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec2 c1 = vec2(0.0, -100.0);
+uniform vec2 c2 = vec2(0.0, 0.0);
+uniform vec2 c3 = vec2(0.0, 100.0);
+uniform float radius = 140.0;
+uniform float thickness = 12.0;
+uniform vec4 color : hint_color = vec4(1.0,1.0,1.0,0.5);
+uniform float cushion = 0.6;
+const float SIZE = 600.0;
+
+float distance_from_segment(vec2 v, vec2 w, vec2 p){
+	float l = distance(v, w);
+	//if (l <= 0.01)
+	//	return distance(p, v);   // v == w case
+		
+	// Consider the line extending the segment, parameterized as v + x (w - v).
+	// We find projection of point p onto the line.
+	// It falls where x = [(p-v) . (w-v)] / |w-v|^2
+	// We clamp x from [0,1] to handle points outside the segment vw.
+	float x = clamp(dot(p - v, w - v) / (l*l), 0, 1);
+	return distance(p, v + x * (w - v)); // Projection falls on the segment
+}
+
+void fragment() {
+	vec2 uv = UV/TEXTURE_PIXEL_SIZE/SIZE;
+	vec2 cn1 = c1/SIZE;
+	vec2 cn2 = c2/SIZE;
+	vec2 cn3 = c3/SIZE;
+	float r = radius/SIZE;
+	
+	float d = min(distance_from_segment(cn1, cn2, uv), distance_from_segment(cn2, cn3, uv));
+	d = (1.0+2.0*cushion)*d - cushion*length(uv);
+	COLOR = vec4(color.rgb, step(d, r+thickness/SIZE) - step(d, r)*(1.0-color.a) + step(d, r*0.8+0.5*thickness/SIZE)*(1.0-color.a) - step(d, 0.8*r)*(1.0-color.a));
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/c1 = Vector2( 0, -100 )
+shader_param/c2 = Vector2( 0, 0 )
+shader_param/c3 = Vector2( 0, 100 )
+shader_param/radius = 140.0
+shader_param/thickness = 12.0
+shader_param/color = Color( 1, 0.470588, 0, 0.701961 )
+shader_param/cushion = 0.6
+
+[sub_resource type="CircleShape2D" id=4]
+
+[node name="Goo" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource( 3 )
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( -600, -600, 600, -600, 600, 600, -600, 600 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 0, -100 )
+collision_layer = 0
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource( 4 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 16.0
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+collision_layer = 0
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource( 4 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D2"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 16.0
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+position = Vector2( 0, 100 )
+collision_layer = 0
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+shape = SubResource( 4 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D3"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 16.0
+
+[node name="Glue" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -50, 0 )
+width = 300

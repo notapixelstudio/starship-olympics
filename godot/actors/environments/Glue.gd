@@ -5,7 +5,7 @@ class_name Glue
 
 export var width = 200 setget set_width
 export var depth = 100 setget set_depth
-export var half_angle = PI*0.6
+export var half_angle = PI*0.4
 
 func set_width(v):
 	width = v
@@ -20,12 +20,12 @@ func _ready():
 	
 func refresh_size():
 	var points = [
-		Vector2(-depth,-width/2),
-		Vector2(50,-width/2),
-		Vector2(100,-width/2+50),
-		Vector2(100,width/2-50),
-		Vector2(50,width/2),
-		Vector2(-depth,width/2)
+		Vector2(-depth,-width/2-50),
+		Vector2(50,-width/2-50),
+		Vector2(100,-width/2),
+		Vector2(100,width/2),
+		Vector2(50,width/2+50),
+		Vector2(-depth,width/2+50)
 	]
 	$Polygon2D.polygon = PoolVector2Array(points)
 	$CollisionPolygon2D.polygon = PoolVector2Array(points)
@@ -33,3 +33,6 @@ func refresh_size():
 
 func get_half_angle():
 	return half_angle
+
+func wobble(center, intensity):
+	get_parent().wobble(center, intensity) # FIXME

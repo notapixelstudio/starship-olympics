@@ -336,14 +336,21 @@ func fire(override_charge = -1, dash_only = false):
 	Fire a bomb
 	"""
 	var should_reload = false
+	var glue_away = is_aiming_away_glue()
+	var glued = is_on_glue()
+	var keep_glued = glued and not glue_away
+	dash_only = dash_only or (glued and glue_away)
 	
 	actual_charge = override_charge if override_charge > 0 else charge
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
-	var will_dash = charging_enough and is_aiming_away_glue()
+	var will_dash = charging_enough and glue_away
 	
-	if will_dash:
-		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
-	
+	if will_dash or keep_glued: # recoil only if dashing
+		var amount = max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER)
+		if keep_glued: # minimal or smaller recoil if attempting to dash while keeping glued
+			amount = max(amount*0.1, 100)
+		apply_impulse(Vector2(0,0), Vector2(amount, 0).rotated(rotation))
+		
 	if golf:
 		var impulse = charge_impulse*ARKABALL_MULTIPLIER
 		var arkaball = arkaball_scene.instance()
@@ -398,6 +405,8 @@ func fire(override_charge = -1, dash_only = false):
 		entity.get('Dashing').enable()
 		dash_cooldown = (actual_charge - MIN_CHARGE)*0.6
 		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
+		
+		tell_glue_to_wobble(charge_impulse)
 	else:
 		tap()
 		
@@ -643,3 +652,9 @@ func is_aiming_away_glue():
 		if area is Glue:
 			return abs(wrapf(area.rotation-rotation,-PI,PI)) < area.get_half_angle()
 	return true
+
+func tell_glue_to_wobble(intensity):
+	for area in $NearArea.get_overlapping_areas():
+		if area is Glue:
+			area.wobble(global_position, intensity)
+			
