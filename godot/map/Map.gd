@@ -91,11 +91,12 @@ func _ready():
 	
 	# TODO: NAMING CONVENTION in group with SPORT
 	for sport in get_tree().get_nodes_in_group("sports"):
-		var levels = sport.planet.get_levels(num_players)
+		# REMOVED check if there are no levels for this number of players
+		#var levels = sport.planet.get_levels(num_players)
 		var set = sport.planet
 		
-		if not levels:
-			sport.not_available = true
+		#if not levels:
+		#	sport.not_available = true
 			
 		if sport.planet in selected_sports:
 			sport.active = true

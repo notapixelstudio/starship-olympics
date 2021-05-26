@@ -61,10 +61,7 @@ func back():
 	return get_tree().change_scene(global.from_scene)
 
 
-var current_level
-var played_levels: Array
-var played_levels_scene: PackedScene
-var levels: Array
+
 
 
 func start_fight(selected_players: Array, fight_mode: String):
@@ -78,8 +75,6 @@ func start_fight(selected_players: Array, fight_mode: String):
 	# TODO: maybe reset function
 	# we need to reset players dictionary
 	players = {}
-	played_levels = []
-	levels = []
 	var num_players: int = len(selected_players)
 
 	global.send_stats("design", {"event_id": "selection:num_players", "value": num_players})
@@ -114,6 +109,10 @@ func return_to_selection_screen():
 	selection_screen.reset()
 	return
 	
+var selected_sets_sequence : Array = []
+var minigame_pools : Dictionary = {}
+var last_minigame = null
+
 func continue_to_fight(map_selection: Dictionary) -> void:
 	"""
 	After map selection we need to set the structure for the selection of sports.
@@ -125,24 +124,21 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
 	session_scores.selected_sports = sets
-	var dizio : Dictionary = {}
+	
+	selected_sets_sequence = []
+	minigame_pools = {}
+	last_minigame = null
+	
 	for s in sets:
-		var set: Planet = s
-		
-		# TODO: issue #428 . Handle mutator
-		# session_scores.set_mutators(sport.mutators)
-		dizio[set.name] = set
-		var this_set_games = set.get_levels(len(players))
-		for level in this_set_games :
-			# Deduplication issue #405
-			if not level in levels:
-				levels.append(level)
+		var set : Planet = s
+		selected_sets_sequence.append(set)
+		minigame_pools[set.name] = set.get_minigames()
+		assert(len(minigame_pools[set.name]) > 0)
+		minigame_pools[set.name].shuffle()
 	
-	levels.shuffle()
+	selected_sets_sequence.shuffle()
+	
 	first_time = true
-	
-	played_levels = []
-	played_levels_scene = null
 	
 	global.new_session(players)
 	next_level(global.demo)
@@ -162,8 +158,6 @@ func go_to_map():
 		map.connect("back", self, "return_to_selection_screen")
 		map.connect("done", self, "continue_to_fight")
 
-	
-
 func next_level(demo = false):
 	"""
 	This function will select the next minigame, passing from the map
@@ -180,29 +174,29 @@ func next_level(demo = false):
 		add_child(parallax)
 	start_level(this_game, demo)
 
+func get_next_minigame(set):
+	# replenish pool if empty
+	if len(minigame_pools[set.name]) == 0:
+		minigame_pools[set.name] = set.get_minigames()
+		minigame_pools[set.name].shuffle()
+		
+	return minigame_pools[set.name].pop_back()
 
 func choose_next_level(demo = false) -> Arena:
-	""" Choose next level from the array of selected. If over, choose randomly """
-	var last_sport = null
-	if len(played_levels) > 0:
-		last_sport = played_levels.back()
-	var num_players = len(players)
-
-	if len(played_levels) >= len(levels) or demo:
-		played_levels = []
-		levels.shuffle()
-
-	# we are going to play the following games:
-	var next_game = levels.pop_back()
-	levels.push_front(next_game)
+	""" Choose next level rotating sets and avoiding back to back duplicates minigames. """
+	var next_set = selected_sets_sequence.pop_back()
+	selected_sets_sequence.push_front(next_set)
 	
-	# let's make sure that it is not the same of the previous one.
-	current_level = levels.pop_back()
-	levels.push_front(current_level)
-	played_levels_scene = current_level
-	played_levels.append(next_game)
-	return current_level.instance()
-
+	var next_minigame = get_next_minigame(next_set)
+	
+	# WARNING this is not a while because it's better to repeat a level than to
+	# hang the game (in case a set contains all copies of the same levels)
+	if next_minigame == last_minigame: # best effort deduplication
+		next_minigame = get_next_minigame(next_set)
+	
+	last_minigame = next_minigame
+	
+	return next_minigame.get_level(len(players)).instance()
 
 func start_level(_level, demo = false):
 	if self.first_time:
@@ -269,11 +263,11 @@ func back_to_selection_screen():
 	
 
 func _on_Pause_restart(_combat):
-	var same_level = played_levels.back()
+	var same_level = last_minigame.get_level(len(players)).instance()
 	_combat.queue_free()
 	get_tree().paused = false
 
-	start_level(played_levels_scene.instance())
+	start_level(same_level)
 
 
 func _back_to_menu(node):
