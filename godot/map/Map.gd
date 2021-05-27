@@ -259,7 +259,8 @@ func choose_level(level):
 	var index_selection = 0
 	var index = 0
 	
-	# TODO: This needs better refactoring.
+	# Let's get che chosen minicard, in order to show the transition before the 
+	# match starts
 	for minicard in get_tree().get_nodes_in_group("minicard"):
 		if minicard.content.get_id() == this_gamemode.get_id():
 			index_selection = index
@@ -295,24 +296,23 @@ func choose_level(level):
 	chosen_minicard.z_index = 0
 	emit_signal("chose_level")
 
-func random_selection(list, sel_index):
-	var index = 0
-	var wait_time = min(0.1 + float("0."+str(index)), 0.3)
-	for i in range(2):
-		wait_time = min(0.1 + float("0."+str(index)), 0.3)
-		print("wait time: "+str(wait_time))
-		for elem in list:
-			elem.selected = true
-			yield(get_tree().create_timer(wait_time), "timeout")
-			elem.selected = false
-		index += 1
-	# one last time
-	wait_time = min(0.1 + float("0."+str(index)), 0.3)
-	print("wait time: "+str(wait_time))
-	for i in range(sel_index):
-		list[i].selected = true
+func random_selection(list: Array, sel_index, loops=3, max_duration=5):
+	var total_wait: float = 0
+	var duration_last_loop = max_duration * 0.8
+	var first_loops = max_duration-duration_last_loop
+	# each elements will have this speed for the first loops
+	var fastest_wait_time = first_loops / len(list) / loops
+	print("duration of last loop: " + str(duration_last_loop))
+	var num_iterations = len(list)*loops +sel_index
+	list.shuffle()
+	for i in range(num_iterations):
+		print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
+		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i)))
+		list[i%len(list)].selected = true
 		yield(get_tree().create_timer(wait_time), "timeout")
-		list[i].selected = false
+		total_wait+= wait_time
+		list[i%len(list)].selected = false
+	print("Waited for "+ str(total_wait))
 	emit_signal("selection_finished")
 
 func _input(event):
