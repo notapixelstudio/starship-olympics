@@ -273,14 +273,12 @@ func choose_level(level):
 			break
 		index+=1
 	
-	
 	random_selection(minicards, index_selection)
 	yield(self, "selection_finished")
-	minicards[index_selection].selected = true
-	var wait_time = 0.3
-	print("wait time: "+str(wait_time))
+	chosen_minicard.selected = true
+	var wait_time = 0.5
 	yield(get_tree().create_timer(wait_time), "timeout")
-	minicards[index_selection].selected = false
+	chosen_minicard.selected = false
 	if chosen_minicard.status == "locked":
 		chosen_minicard.unlock()
 		yield(chosen_minicard, "unlocked")
@@ -296,7 +294,9 @@ func choose_level(level):
 	chosen_minicard.z_index = 0
 	emit_signal("chose_level")
 
-func random_selection(list: Array, sel_index, loops=3, max_duration=5):
+func random_selection(list: Array, sel_index, loops=2, max_duration=5):
+	list.shuffle()
+	list.resize(5)
 	var total_wait: float = 0
 	var duration_last_loop = max_duration * 0.8
 	var first_loops = max_duration-duration_last_loop
@@ -304,10 +304,10 @@ func random_selection(list: Array, sel_index, loops=3, max_duration=5):
 	var fastest_wait_time = first_loops / len(list) / loops
 	print("duration of last loop: " + str(duration_last_loop))
 	var num_iterations = len(list)*loops +sel_index
-	list.shuffle()
-	for i in range(num_iterations):
+	
+	for i in range(num_iterations-1):
 		print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
-		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i)))
+		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(4, 1 + num_iterations-i)))
 		list[i%len(list)].selected = true
 		yield(get_tree().create_timer(wait_time), "timeout")
 		total_wait+= wait_time
