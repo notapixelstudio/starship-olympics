@@ -3,7 +3,7 @@ extends MapLocation
 
 class_name MapPlanet
 
-export var planet : Resource setget set_planet
+export var planet : Resource setget set_planet # Planet
 onready var sprite = $Sprite
 export var active : bool = false setget set_active
 

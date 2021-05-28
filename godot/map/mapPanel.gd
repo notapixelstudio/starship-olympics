@@ -2,6 +2,9 @@ extends Control
 
 export var Minicard : PackedScene
 
+class_name MapPanel
+
+
 var species setget set_species
 onready var sprite = $Sprite
 onready var desc = $Label
@@ -13,7 +16,9 @@ var chosen = false setget set_chosen
 onready var background = $Background
 const deselected_modulate = Color(0.6,0.6,0.6,1)
 
-
+func get_player() -> String:
+	return self.name.to_lower()
+	
 func _ready():
 	disable()
 	background.self_modulate = deselected_modulate
@@ -76,7 +81,7 @@ func create_minicards():
 		var minicard = Minicard.instance()
 		minicard.status = "locked"
 		
-		if TheUnlocker.unlocked_games.get(minigame.get_id(), false):
+		if TheUnlocker.unlocked_games.get(minigame.get_id(), TheUnlocker.INVISIBLE) == TheUnlocker.UNLOCKED:
 			minicard.status = "unlocked"
 		minicard.content = minigame
 		$Minicards.add_child(minicard)
@@ -87,3 +92,6 @@ func destroy_minicards():
 	for minicard in $Minicards.get_children():
 		minicard.queue_free()
 	
+func get_minicards():
+	return $Minicards.get_children()
+

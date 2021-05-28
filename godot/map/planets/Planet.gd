@@ -22,10 +22,3 @@ func shuffle_levels(num_players : int) -> void:
 	
 func get_minigames():
 	return minigames.duplicate()
-	
-func locked_games():
-	var ret = []
-	for minigame in self.minigames:
-		if not TheUnlocker.get_status_game(minigame.get_id()):
-			ret.append(minigame)
-	return ret

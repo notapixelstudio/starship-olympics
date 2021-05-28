@@ -23,6 +23,10 @@ signal updated
 
 var campaign_mode: bool = false  # Needed for instancing MAP
 
+class PlayerArena:
+	# This class will store an Arena and the player who chose it
+	var player_id: String
+	var this_game: Arena
 
 func reset():
 	"""
@@ -109,7 +113,8 @@ func return_to_selection_screen():
 	selection_screen.reset()
 	return
 	
-var selected_sets_sequence : Array = []
+var players_sequence : Array = []
+var selected_sets_by_player : Dictionary = {}
 var minigame_pools : Dictionary = {}
 var last_minigame = null
 
@@ -118,6 +123,7 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	After map selection we need to set the structure for the selection of sports.
 	Will go back to selection screen or 
 	"""
+	var players_selection = map_selection.get("players_selection")
 	var sets = map_selection.get("sets")
 	var settings = map_selection.get("settings", {})
 	
@@ -125,18 +131,20 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	add_cpu(num_CPUs)
 	session_scores.selected_sports = sets
 	
-	selected_sets_sequence = []
+	players_sequence = []
 	minigame_pools = {}
+	selected_sets_by_player = {}
 	last_minigame = null
 	
-	for s in sets:
-		var set : Planet = s
-		selected_sets_sequence.append(set)
+	for player in players_selection:
+		var set : Planet = players_selection[player]
+		selected_sets_by_player[player] = set
+		players_sequence.append(player)
 		minigame_pools[set.name] = set.get_minigames()
 		assert(len(minigame_pools[set.name]) > 0)
 		minigame_pools[set.name].shuffle()
 	
-	selected_sets_sequence.shuffle()
+	players_sequence.shuffle()
 	
 	first_time = true
 	
@@ -166,8 +174,9 @@ func next_level(demo = false):
 	if not map.is_inside_tree():
 		add_child(map)
 	
-	var this_game = choose_next_level()
-	map.choose_level(this_game)
+	var player_arena = choose_next_level()
+	var this_game = player_arena.this_game
+	map.choose_level(this_game, player_arena.player_id)
 	yield(map, "chose_level")
 	remove_child(map)
 	if not parallax.is_inside_tree():
@@ -182,10 +191,11 @@ func get_next_minigame(set):
 		
 	return minigame_pools[set.name].pop_back()
 
-func choose_next_level(demo = false) -> Arena:
+func choose_next_level(demo = false) -> PlayerArena : #{String: Arena}
 	""" Choose next level rotating sets and avoiding back to back duplicates minigames. """
-	var next_set = selected_sets_sequence.pop_back()
-	selected_sets_sequence.push_front(next_set)
+	var player = players_sequence.pop_back()
+	players_sequence.push_front(player)
+	var next_set = selected_sets_by_player[player]
 	
 	var next_minigame = get_next_minigame(next_set)
 	
@@ -195,8 +205,10 @@ func choose_next_level(demo = false) -> Arena:
 		next_minigame = get_next_minigame(next_set)
 	
 	last_minigame = next_minigame
-	
-	return next_minigame.get_level(len(players)).instance()
+	var player_arena : PlayerArena = PlayerArena.new()
+	player_arena.player_id = player
+	player_arena.this_game = next_minigame.get_level(len(players)).instance()
+	return player_arena
 
 func start_level(_level, demo = false):
 	if self.first_time:

@@ -4,6 +4,14 @@ const SPECIES_PATH = "res://selection/characters"
 const GAMES_PATH = "res://combat/modes"
 const SET_PATH = "res://map/planets/sets"
 
+# status
+const INVISIBLE = "invisible"
+const LOCKED = "locked"
+const UNLOCKED = "unlocked"
+
+export (String, "invisible", "locked", "unlocked") var status 
+
+
 # templates
 onready var species_resources: Dictionary = get_resources(SPECIES_PATH)  # {int : Resources}
 onready var species_discovered_scene = preload("res://special_scenes/UnlockedSpecies.tscn")
@@ -81,48 +89,18 @@ var unlocked_sets = {
 	"beach": "invisible",
 }
 
+# this can have only TWO status: UNLOCKED, LOCKED 
 var unlocked_games = {
-	"minefield": "invisible",
-	"king": "invisible",
-	"flowsnake": "invisible",
-	"diamond": "invisible",
-	"hive_fill": "invisible",
-	"goal_portal": "invisible",
-	"deathmatch": "invisible",
-	"diamond_mining": "invisible",
-	"diamond_snake": "invisible",
-	"diamond_fish": "invisible",
-	"deathmatch_snake": "invisible",
-	"slam": "invisible",
-	"brick_melee": "invisible",
-	"asteroid_conquest": "invisible",
-	"star_fish": "invisible",
-	"brick_break": "invisible",
-	"pong": "invisible",
-	"deathmatch_ball": "invisible",
-	"race": "invisible",
-	"asteroid_deathmatch": "invisible",
-	"deathmatch_limit": "invisible",
-	"crown": "invisible",
-	"race_under": "invisible",
-	"star_mining": "invisible",
-	"laser": "invisible",
-	"alchemical_bonding": "invisible",
-	"slam_snake": "invisible",
-	"asteroid_survival": "invisible",
-	"ark_of_memory": "invisible",
-	"diamond_minefield": "invisible",
-	"finding_yourself": "invisible",
-	"disco_bullet": "invisible"
+	
 }
 
-func get_status_game(game_id)-> bool:
-	return unlocked_games.get(game_id, false)
+func get_status_game(game_id)-> String:
+	return unlocked_games.get(game_id, LOCKED)
 	
 func unlock_game(game_id: String) -> void:
 	# If fails means that we already unlocked this game
-	assert(not self.unlocked_games[game_id]) 
-	self.unlocked_games[game_id] = true
+	assert(self.get_status_game(game_id) == TheUnlocker.LOCKED)
+	self.unlocked_games[game_id] = TheUnlocker.UNLOCKED
 	persistance.save_game()
 	
 # dictionary of SPECIES with some values (like a bool unlocked)

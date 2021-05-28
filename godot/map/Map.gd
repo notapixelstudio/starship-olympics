@@ -8,6 +8,7 @@ const CELLSIZE = 200
 
 var matrix = []
 
+var players_selection : Dictionary = {}
 var selected_sports : Array
 export var playlist_item : PackedScene
 export var cursor_scene : PackedScene
@@ -190,6 +191,7 @@ func _on_cursor_cancel(cursor):
 	if i >= 0:
 		selected_sports.remove(i)
 		players_ready -= 1
+	players_selection.erase(cursor.player.id)
 	
 func get_cell(position):
 	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
@@ -210,6 +212,7 @@ func _on_cell_pressed(cursor, cell):
 		panel.chosen = true
 		if not cell in selected_sports:
 			selected_sports.append(cell)
+		players_selection[cursor.player.id] = cell.planet
 		players_ready += 1
 		
 		_on_Start_pressed(cursor)
@@ -230,11 +233,10 @@ func _on_Start_pressed(cursor):
 	for sport in selected_sports:
 		sets.append(sport.planet)
 		playing += " "+ str(sport.planet.id)
-		# Can we unlock?
-		var locked_games = sport.planet.locked_games()
+		
 	print(playing)
 	yield(get_tree().create_timer(1), "timeout")
-	emit_signal('done', {"sets": sets})
+	emit_signal('done', {"sets": sets, "players_selection": players_selection})
 		
 func _on_Back_pressed(cursor):
 	emit_signal("back")
@@ -247,32 +249,37 @@ func _unhandled_input(event):
 var screen_width = ProjectSettings.get_setting('display/window/size/width')
 var screen_height = ProjectSettings.get_setting('display/window/size/height')
 
-func choose_level(level):
+func choose_level(level, player):
 	# This will choose randonly one minigame. And animate afterwards
 	var this_gamemode = level.game_mode
 	var back_pos = Vector2(0,0)
 	var back_scale = Vector2(1,1)
 	var chosen_minicard
-	# animation pseudo random for choosing minicard
-	var minicards = get_tree().get_nodes_in_group("minicard")
 	
 	var index_selection = 0
 	var index = 0
 	
 	# Let's get che chosen minicard, in order to show the transition before the 
 	# match starts
-	for minicard in get_tree().get_nodes_in_group("minicard"):
-		if minicard.content.get_id() == this_gamemode.get_id():
-			index_selection = index
-			back_pos = minicard.position
-			back_scale = minicard.scale
-			chosen_minicard = minicard
-			minicard.z_index = 1000
-			tween.interpolate_property(minicard, "global_position", minicard.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-			tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+	var found = false
+	for panel in get_tree().get_nodes_in_group("map_panel"):
+		if found:
 			break
+		for minicard in panel.get_minicards():
+			if minicard.content.get_id() == this_gamemode.get_id() and panel.get_player() == player:
+				index_selection = index
+				back_pos = minicard.position
+				back_scale = minicard.scale
+				chosen_minicard = minicard
+				minicard.z_index = 1000
+				tween.interpolate_property(minicard, "global_position", minicard.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+				tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+				found = true
+				break
 		index+=1
 	
+	# animation pseudo random for choosing minicard
+	var minicards = get_tree().get_nodes_in_group("minicard")
 	random_selection(minicards, index_selection)
 	yield(self, "selection_finished")
 	chosen_minicard.selected = true
@@ -296,7 +303,7 @@ func choose_level(level):
 
 func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 	list.shuffle()
-	list.resize(5)
+	list.resize(min(5, len(list)))
 	var total_wait: float = 0
 	var duration_last_loop = max_duration * 0.8
 	var first_loops = max_duration-duration_last_loop
@@ -306,7 +313,7 @@ func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 	var num_iterations = len(list)*loops +sel_index
 	
 	for i in range(num_iterations-1):
-		print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
+		# print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
 		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(4, 1 + num_iterations-i)))
 		list[i%len(list)].selected = true
 		yield(get_tree().create_timer(wait_time), "timeout")
