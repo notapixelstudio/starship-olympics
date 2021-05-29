@@ -90,20 +90,18 @@ func _ready():
 		panel.species = cursor.species
 		panel.enable()
 	
-	# TODO: NAMING CONVENTION in group with SPORT
+	# TODO: NAMING CONVENTION in group with SPORT. Should be SET ?
 	for sport in get_tree().get_nodes_in_group("sports"):
 		# REMOVED check if there are no levels for this number of players
 		# var levels = sport.planet.get_levels(num_players)
-		var set = sport.planet
+		var set: Planet = sport.planet
 		
 		#if not levels:
 		#	sport.not_available = true
 			
 		if sport.planet in selected_sports:
 			sport.active = true
-		sport.status = "locked"
-		if TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.UNLOCKED) == TheUnlocker.UNLOCKED:
-			sport.status = "unlocked"
+		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.UNLOCKED)
 	
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):

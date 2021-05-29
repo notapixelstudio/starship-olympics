@@ -19,10 +19,10 @@ func get_id() -> String:
 
 func set_status(v):
 	status = v
-	if status == 'locked':
-		modulate = Color(0,0,0,0.75)
-	else:
+	if status == TheUnlocker.UNLOCKED:
 		modulate = Color(1,1,1,1)
+	else:
+		modulate = Color(0,0,0,0.75)
 	$Label.text = status
 	
 func set_availability(value):
