@@ -2,7 +2,7 @@ extends MapCell
 
 class_name MapLocation
 
-export (String, "invisible", "locked", "unlocked") var status 
+
 
 var paths_to : Dictionary = {} # {MapLocation: [MapPath] }
 

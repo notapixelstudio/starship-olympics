@@ -78,15 +78,15 @@ func unlock_location(loc_id: String) -> void:
 	persistance.save_game()
 	
 var unlocked_sets = {
-	"drones": "invisible",
-	"trinkets": "invisible",
-	"snake": "invisible",
-	"asteroids": "invisible",
-	"labs": "invisible",
-	"core": true,
-	"death": "invisible",
-	"sports": "invisible",
-	"beach": "invisible",
+	"core": UNLOCKED,
+	"drones": INVISIBLE,
+	"trinkets": INVISIBLE,
+	"snake": INVISIBLE,
+	"asteroids": INVISIBLE,
+	"labs": INVISIBLE,
+	"death": INVISIBLE,
+	"sports": INVISIBLE,
+	"beach": INVISIBLE,
 }
 
 # this can have only TWO status: UNLOCKED, LOCKED 

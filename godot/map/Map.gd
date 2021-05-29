@@ -93,7 +93,7 @@ func _ready():
 	# TODO: NAMING CONVENTION in group with SPORT
 	for sport in get_tree().get_nodes_in_group("sports"):
 		# REMOVED check if there are no levels for this number of players
-		#var levels = sport.planet.get_levels(num_players)
+		# var levels = sport.planet.get_levels(num_players)
 		var set = sport.planet
 		
 		#if not levels:
@@ -102,7 +102,7 @@ func _ready():
 		if sport.planet in selected_sports:
 			sport.active = true
 		sport.status = "locked"
-		if TheUnlocker.unlocked_sets.get(set.id, false):
+		if TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.UNLOCKED) == TheUnlocker.UNLOCKED:
 			sport.status = "unlocked"
 	
 	

@@ -3,6 +3,8 @@ extends MapLocation
 
 class_name MapPlanet
 
+export (String, "invisible", "locked", "unlocked") var status setget set_status
+
 export var planet : Resource setget set_planet # Planet
 onready var sprite = $Sprite
 export var active : bool = false setget set_active
