@@ -101,7 +101,7 @@ func _ready():
 			
 		if sport.planet in selected_sports:
 			sport.active = true
-		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.UNLOCKED)
+		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.INVISIBLE)
 	
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
@@ -161,7 +161,7 @@ func _on_cursor_try_move(cursor, direction):
 		return
 	var panel = panels.get_node(cursor.player.id)
 	panel.map_element = null
-	if cell.is_in_group("sports"):
+	if cell.is_in_group("sports") and cell.get_status() == TheUnlocker.UNLOCKED:
 		panel.map_element = cell.planet
 	if cell is OptionCell:
 		panel.map_element = cell
@@ -172,6 +172,9 @@ func _on_cursor_select(cursor):
 	var cell = get_cell(CELLSIZE * cursor.grid_position)
 	
 	if not cell:
+		return
+		
+	if cell.is_in_group("sports") and cell.get_status() != TheUnlocker.UNLOCKED:
 		return
 	
 	cell.act(cursor)
@@ -204,7 +207,7 @@ func get_selection():
 func _on_cell_pressed(cursor, cell):
 	# update data
 	
-	if cell.is_in_group("sports"):
+	if cell.is_in_group("sports") and cell.get_status() == TheUnlocker.UNLOCKED:
 		var panel = panels.get_node(cursor.player.id)
 		panel.map_element = cell.planet
 		panel.chosen = true

@@ -53,7 +53,7 @@ func _unlock_species(species: String):
 	persistance.save_game()
 
 func unlock_set(set: String) -> void:
-	unlocked_sets[set] = true
+	unlocked_sets[set] = UNLOCKED
 	persistance.save_game()
 
 var unlocked_paths = {
@@ -79,14 +79,9 @@ func unlock_location(loc_id: String) -> void:
 	
 var unlocked_sets = {
 	"core": UNLOCKED,
-	"drones": INVISIBLE,
-	"trinkets": INVISIBLE,
-	"snake": INVISIBLE,
-	"asteroids": INVISIBLE,
-	"labs": INVISIBLE,
-	"death": INVISIBLE,
-	"sports": INVISIBLE,
-	"beach": INVISIBLE,
+	"diamonds": LOCKED,
+	"ice": LOCKED,
+	"survival": LOCKED,
 }
 
 # this can have only TWO status: UNLOCKED, LOCKED 

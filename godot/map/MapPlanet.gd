@@ -3,7 +3,7 @@ extends MapLocation
 
 class_name MapPlanet
 
-export (String, "invisible", "locked", "unlocked") var status setget set_status
+export (String, "invisible", "locked", "unlocked") var status setget set_status, get_status
 
 export var planet : Resource setget set_planet # Planet
 onready var sprite = $Sprite
@@ -17,12 +17,18 @@ signal unlocked
 func get_id() -> String:
 	return planet.id
 
+func get_status():
+	return status
+	
 func set_status(v):
 	status = v
 	if status == TheUnlocker.UNLOCKED:
 		modulate = Color(1,1,1,1)
-	else:
+	elif status == TheUnlocker.LOCKED:
 		modulate = Color(0,0,0,0.75)
+	else:
+		modulate = Color(0,0,0,0)
+		
 	$Label.text = status
 	
 func set_availability(value):
