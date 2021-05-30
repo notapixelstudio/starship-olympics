@@ -22,14 +22,16 @@ func get_status():
 	
 func set_status(v):
 	status = v
-	if status == TheUnlocker.UNLOCKED:
+	if Engine.editor_hint:
+		modulate = Color(1,1,1,1)
+	elif status == TheUnlocker.UNLOCKED:
 		modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
 		modulate = Color(0,0,0,0.75)
 	else:
 		modulate = Color(0,0,0,0)
 		
-	$Label.text = status
+	$DebugLabel.text = status
 	
 func set_availability(value):
 	not_available = value
@@ -63,7 +65,9 @@ func deactivate(cursor):
 	emit_signal('updated', active)
 	
 func _ready():
-	sprite.texture = planet.planet_sprite
+	if planet:
+		sprite.texture = planet.planet_sprite
+		$Label.text = planet.name
 	refresh()
 	
 	
@@ -80,3 +84,10 @@ func unlock():
 	$AnimationPlayer.play("unlock")
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("unlocked")
+
+func on_hover():
+	$Label.visible = true
+	
+func on_blur():
+	$Label.visible = false
+	

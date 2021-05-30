@@ -159,6 +159,15 @@ func _on_cursor_try_move(cursor, direction):
 	
 	if not cell:
 		return
+		
+	# fire blur
+	if prev_cell.has_method('on_blur'):
+		prev_cell.on_blur()
+		
+	# fire hover
+	if cell.has_method('on_hover'):
+		cell.on_hover()
+	
 	var panel = panels.get_node(cursor.player.id)
 	panel.map_element = null
 	if cell.is_in_group("sports") and cell.get_status() == TheUnlocker.UNLOCKED:

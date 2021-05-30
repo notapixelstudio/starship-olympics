@@ -79,9 +79,17 @@ func unlock_location(loc_id: String) -> void:
 	
 var unlocked_sets = {
 	"core": UNLOCKED,
-	"diamonds": LOCKED,
-	"ice": LOCKED,
-	"survival": LOCKED,
+	"diamonds": UNLOCKED,
+	"ice": UNLOCKED,
+	"survival": UNLOCKED,
+	"casino": UNLOCKED,
+	"snake": UNLOCKED,
+	"sports": UNLOCKED,
+	"asteroids": UNLOCKED,
+	"conquest": UNLOCKED,
+	"death": UNLOCKED,
+	"crown": UNLOCKED,
+	"cards": UNLOCKED,
 }
 
 # this can have only TWO status: UNLOCKED, LOCKED 
