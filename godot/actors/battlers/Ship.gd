@@ -634,12 +634,14 @@ func get_player():
 	
 func is_in_gel():
 	for area in $NearArea.get_overlapping_areas():
-		if area is Gel:
+		if traits.has_trait(area, 'Gel'):
 			return true
 	return false
 	
 func is_aiming_away_gel():
 	for area in $NearArea.get_overlapping_areas():
-		if area is Gel:
+		if traits.has_trait(area, 'Gel'):
+			if not area.is_escapable():
+				return false
 			return abs(wrapf(area.rotation-rotation,-PI,PI)) < area.get_half_angle()
 	return true

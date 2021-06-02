@@ -31,5 +31,8 @@ func refresh_size():
 	$CollisionPolygon2D.polygon = PoolVector2Array(points)
 	$Line2D.points = PoolVector2Array(points)
 
+func is_escapable():
+	return true
+	
 func get_half_angle():
 	return half_angle
