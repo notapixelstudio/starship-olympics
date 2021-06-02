@@ -1,7 +1,7 @@
 tool
 
 extends Area2D
-class_name Glue
+class_name Gel
 
 export var width = 200 setget set_width
 export var depth = 100 setget set_depth
