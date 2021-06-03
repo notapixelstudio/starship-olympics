@@ -192,6 +192,7 @@ func _ready():
 	dash_process_material.color_ramp.gradient.set_color(0, species.color)
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
+	$Graphics/ChargeBar/Crosshair.modulate = species.color
 	
 func change_engine(value: bool):
 	responsive = value
