@@ -207,6 +207,7 @@ func choose_next_level(demo = false) -> PlayerArena : #{String: Arena}
 	last_minigame = next_minigame
 	var player_arena : PlayerArena = PlayerArena.new()
 	player_arena.player_id = player
+	print(next_minigame.get_id())
 	player_arena.this_game = next_minigame.get_level(len(players)).instance()
 	return player_arena
 
