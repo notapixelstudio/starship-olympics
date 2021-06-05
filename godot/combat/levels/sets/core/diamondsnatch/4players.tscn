@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=18]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=19]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=20]
+[ext_resource path="res://actors/environments/Gel.gd" type="Script" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -62,10 +64,7 @@ game_mode = ExtResource( 14 )
 style = ExtResource( 11 )
 match_duration_override = 100.0
 
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
-[node name="CollectModeManager" parent="Managers" index="11"]
+[node name="CollectModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -76,7 +75,7 @@ centered = false
 hollow = true
 hide_grid = true
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 grid_color = Color( 0.945098, 0, 1, 0.588235 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -84,9 +83,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3800
 height = 2000
 radius = 1000
@@ -94,23 +90,20 @@ precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0.16296, 0.0672, 0.28, 1 )
-bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
+fg_color = Color( 0.19114, 0.1102, 0.38, 1 )
+bg_color = Color( 0.168875, 0.1085, 0.35, 1 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( 900, 0 )
 rotation = 0.785398
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 150
 height = 150
 
@@ -118,16 +111,13 @@ height = 150
 position = Vector2( -900, 0 )
 rotation = 0.785398
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 150
 height = 150
 
@@ -543,77 +533,52 @@ position = Vector2( -300, 0 )
 [node name="Wall6" parent="Battlefield/Middleground" index="42" instance=ExtResource( 8 )]
 position = Vector2( 900, -1000 )
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall6" index="4"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
 position = Vector2( -1900, 0 )
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
 position = Vector2( -900, 1000 )
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
 position = Vector2( 1900, 0 )
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall9" index="4"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Wall" parent="Battlefield/Middleground" index="46" instance=ExtResource( 8 )]
 position = Vector2( -900, -1000 )
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
 "additional_lasers",
@@ -630,17 +595,12 @@ anims/Default = SubResource( 1 )
 [node name="Wall4" parent="Battlefield/Middleground" index="47" instance=ExtResource( 8 )]
 position = Vector2( 900, 1000 )
 line_width = 28
-solid_line_color = Color( 1.1, 0.9, 1.1, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall4" index="6" groups=[
 "additional_lasers",
@@ -653,6 +613,26 @@ rotation = -1.5708
 "animation_if_additional_lasers",
 ]]
 anims/Default = SubResource( 2 )
+
+[node name="Gel" type="Area2D" parent="Battlefield/Middleground" index="48" instance=ExtResource( 20 )]
+position = Vector2( 0, 900 )
+rotation = -1.5708
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 21 )
+width = 1400
+
+[node name="Gel2" type="Area2D" parent="Battlefield/Middleground" index="49" instance=ExtResource( 20 )]
+position = Vector2( 0, -900 )
+rotation = 1.5708
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 21 )
+width = 1400
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )
