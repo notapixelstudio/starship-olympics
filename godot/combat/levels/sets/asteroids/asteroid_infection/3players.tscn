@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://combat/modes/AsteroidInfection.tres" type="Resource" id=8]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=10]
-[ext_resource path="res://combat/PlayerSpawner.gd" type="Script" id=11]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
 
 [sub_resource type="Animation" id=1]
@@ -55,11 +54,7 @@ grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="0"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1000
-precision = 100.0
 
 [node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 hollow = true
@@ -71,11 +66,7 @@ grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2200
-precision = 100.0
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
 hollow = true
@@ -87,11 +78,7 @@ grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2200
-precision = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GCircle" index="0" groups=[
 "animation_in_battle",
@@ -113,27 +100,21 @@ spawn_diamonds = false
 self_destruct = true
 smallest_break = false
 
-[node name="p1" type="Position2D" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-pause_mode = 2
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -1900 )
 rotation = 1.5708
-script = ExtResource( 11 )
 controls = "joy1"
 species = ExtResource( 2 )
 
-[node name="p2" type="Position2D" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-pause_mode = 2
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 1645.45, 950 )
 rotation = -2.61799
-script = ExtResource( 11 )
 controls = "joy2"
 species = ExtResource( 7 )
 
-[node name="p3" type="Position2D" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-pause_mode = 2
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
 position = Vector2( -1645.45, 950 )
 rotation = -0.523599
-script = ExtResource( 11 )
 controls = "joy2"
 species = ExtResource( 12 )
 
