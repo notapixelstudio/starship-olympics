@@ -30,38 +30,21 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 hollow = true
 elongation = 10
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.635294, 1.14118, 0.72549, 1 )
-line_texture = null
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 polygon = PoolVector2Array( -1400, 1700, -2500, 400, -3000, -1150, -1400, -1150, -1200, -1850, 1200, -1850, 1400, -1150, 3050, -1150, 2500, 400, 1400, 1700 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.12, 0.488, 0.6, 1 )
 bg_color = Color( 0.112, 0.4256, 0.56, 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="5"]
 visible = false
