@@ -24,7 +24,7 @@ func _ready():
 	# figures
 	var figures = []
 	for i in cards.size():
-		if randf() < 0.08:
+		if i < 10 + randi() % 4:
 			figures.append(MINE)
 		else:
 			figures.append(DIAMOND)
