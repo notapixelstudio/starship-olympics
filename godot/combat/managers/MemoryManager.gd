@@ -45,28 +45,28 @@ func _ready():
 	# if there are more than 2 players
 	var extra_basic_figures = BASIC_FIGURES.duplicate()
 	extra_basic_figures.shuffle()
-	extra_basic_figures.resize(4)
+	#extra_basic_figures.resize(5) basic figures are 5
 	
 	# for each player beyond the second
 	for i in range(max(0, global.the_match.get_number_of_players()-2)):
 		basic_figures += extra_basic_figures.duplicate() + extra_basic_figures.duplicate()
 		
 	basic_figures.shuffle()
-	assert(len(basic_figures) == 4 + global.the_match.get_number_of_players()*8)
+	assert(len(basic_figures) == global.the_match.get_number_of_players()*10)
 	
 	# advanced figures appear in pairs, and sometimes do not appear at all (12 cards in total, so 6 of them out of 11 are shown in a single match)
 	var selected_advanced_figures = ADVANCED_FIGURES.duplicate()
 	selected_advanced_figures.shuffle()
-	selected_advanced_figures.resize(2 + global.the_match.get_number_of_players()*2)
+	selected_advanced_figures.resize(4 + global.the_match.get_number_of_players())
 	
 	var advanced_figures = selected_advanced_figures.duplicate() + selected_advanced_figures.duplicate()
 	advanced_figures.shuffle()
-	assert(len(advanced_figures) == 4 + global.the_match.get_number_of_players()*4)
+	assert(len(advanced_figures) == 8 + global.the_match.get_number_of_players()*2)
 	
-	var mix = basic_figures.slice(12,len(basic_figures)-1) + advanced_figures.duplicate()
+	var mix = basic_figures.slice(16,len(basic_figures)-1) + advanced_figures.duplicate()
 	mix.shuffle()
-	# the first twelve figures are always basic
-	figures = basic_figures.slice(0,11) + mix
+	# the first sixteen figures are always basic
+	figures = basic_figures.slice(0,15) + mix
 	
 	assert(len(figures) == len(cards))
 	
