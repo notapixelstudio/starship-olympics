@@ -104,8 +104,8 @@ func reveal():
 	anim.play("Float")
 	
 	if auto_flip_back:
-		# reflip after 4 seconds
-		timer.start(4)
+		# reflip after 6 seconds
+		timer.start(6)
 	
 func deselect():
 	selected = false

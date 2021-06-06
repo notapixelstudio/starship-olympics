@@ -11,7 +11,7 @@
 [ext_resource path="res://combat/modes/ArkOfMemory.tres" type="Resource" id=9]
 [ext_resource path="res://combat/managers/MemoryManager.gd" type="Script" id=10]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=11]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=12]
 
 [node name="Arena" instance=ExtResource( 3 )]
 size_multiplier = 2.5
@@ -32,45 +32,23 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 elongation = 10
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.635294, 1.14118, 0.72549, 1 )
-line_texture = null
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-polygon = PoolVector2Array( -1400, 1700, -2500, 400, -3000, -1150, -1400, -1150, -1200, -1850, 1200, -1850, 1400, -1150, 3050, -1150, 2500, 400, 1400, 1700 )
+polygon = PoolVector2Array( -1600, 2000, -3200, 400, -3500, -1450, -2400, -1450, -2200, -2200, 2200, -2200, 2400, -1450, 3500, -1450, 3200, 400, 1600, 2000 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.12, 0.488, 0.6, 1 )
 bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="5"]
-visible = false
-polygon = PoolVector2Array( -1400, 1700, -2500, 400, -3000, -1150, -1400, -1150, -1200, -1850, 1200, -1850, 1400, -1150, 3050, -1150, 2500, 400, 1400, 1700 )
-
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="0"]
-position = Vector2( 0, 350 )
 
 [node name="Card" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 11 )]
 position = Vector2( -250, -350 )
@@ -132,128 +110,248 @@ position = Vector2( -1750, -350 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card13" parent="Battlefield/Middleground/Node2D" index="12" instance=ExtResource( 11 )]
+[node name="Card36" parent="Battlefield/Middleground/Node2D" index="12" instance=ExtResource( 11 )]
+position = Vector2( -2250, -350 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card13" parent="Battlefield/Middleground/Node2D" index="13" instance=ExtResource( 11 )]
 position = Vector2( -1750, -950 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card14" parent="Battlefield/Middleground/Node2D" index="13" instance=ExtResource( 11 )]
+[node name="Card14" parent="Battlefield/Middleground/Node2D" index="14" instance=ExtResource( 11 )]
 position = Vector2( 250, -1550 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card26" parent="Battlefield/Middleground/Node2D" index="14" instance=ExtResource( 11 )]
+[node name="Card26" parent="Battlefield/Middleground/Node2D" index="15" instance=ExtResource( 11 )]
 position = Vector2( 1250, 250 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card27" parent="Battlefield/Middleground/Node2D" index="15" instance=ExtResource( 11 )]
+[node name="Card37" parent="Battlefield/Middleground/Node2D" index="16" instance=ExtResource( 11 )]
+position = Vector2( 1750, 250 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card27" parent="Battlefield/Middleground/Node2D" index="17" instance=ExtResource( 11 )]
 position = Vector2( 1250, -350 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card28" parent="Battlefield/Middleground/Node2D" index="16" instance=ExtResource( 11 )]
+[node name="Card28" parent="Battlefield/Middleground/Node2D" index="18" instance=ExtResource( 11 )]
 position = Vector2( 1250, -950 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card29" parent="Battlefield/Middleground/Node2D" index="17" instance=ExtResource( 11 )]
+[node name="Card29" parent="Battlefield/Middleground/Node2D" index="19" instance=ExtResource( 11 )]
 position = Vector2( 2250, -950 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card30" parent="Battlefield/Middleground/Node2D" index="18" instance=ExtResource( 11 )]
+[node name="Card30" parent="Battlefield/Middleground/Node2D" index="20" instance=ExtResource( 11 )]
 position = Vector2( 750, -1550 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card31" parent="Battlefield/Middleground/Node2D" index="19" instance=ExtResource( 11 )]
+[node name="Card31" parent="Battlefield/Middleground/Node2D" index="21" instance=ExtResource( 11 )]
 position = Vector2( 1750, -350 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card32" parent="Battlefield/Middleground/Node2D" index="20" instance=ExtResource( 11 )]
+[node name="Card38" parent="Battlefield/Middleground/Node2D" index="22" instance=ExtResource( 11 )]
+position = Vector2( 2250, -350 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card32" parent="Battlefield/Middleground/Node2D" index="23" instance=ExtResource( 11 )]
 position = Vector2( 1750, -950 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card15" parent="Battlefield/Middleground/Node2D" index="21" instance=ExtResource( 11 )]
+[node name="Card15" parent="Battlefield/Middleground/Node2D" index="24" instance=ExtResource( 11 )]
 position = Vector2( -2250, -950 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card16" parent="Battlefield/Middleground/Node2D" index="22" instance=ExtResource( 11 )]
+[node name="Card16" parent="Battlefield/Middleground/Node2D" index="25" instance=ExtResource( 11 )]
 position = Vector2( -250, 250 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card17" parent="Battlefield/Middleground/Node2D" index="23" instance=ExtResource( 11 )]
+[node name="Card17" parent="Battlefield/Middleground/Node2D" index="26" instance=ExtResource( 11 )]
 position = Vector2( -750, 250 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card18" parent="Battlefield/Middleground/Node2D" index="24" instance=ExtResource( 11 )]
+[node name="Card18" parent="Battlefield/Middleground/Node2D" index="27" instance=ExtResource( 11 )]
 position = Vector2( -1250, 250 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card19" parent="Battlefield/Middleground/Node2D" index="25" instance=ExtResource( 11 )]
+[node name="Card35" parent="Battlefield/Middleground/Node2D" index="28" instance=ExtResource( 11 )]
+position = Vector2( -1750, 250 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card19" parent="Battlefield/Middleground/Node2D" index="29" instance=ExtResource( 11 )]
 position = Vector2( 750, 250 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card20" parent="Battlefield/Middleground/Node2D" index="26" instance=ExtResource( 11 )]
+[node name="Card20" parent="Battlefield/Middleground/Node2D" index="30" instance=ExtResource( 11 )]
 position = Vector2( 250, 250 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card21" parent="Battlefield/Middleground/Node2D" index="27" instance=ExtResource( 11 )]
+[node name="Card21" parent="Battlefield/Middleground/Node2D" index="31" instance=ExtResource( 11 )]
 position = Vector2( -250, 850 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card22" parent="Battlefield/Middleground/Node2D" index="28" instance=ExtResource( 11 )]
+[node name="Card22" parent="Battlefield/Middleground/Node2D" index="32" instance=ExtResource( 11 )]
 position = Vector2( -750, 850 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card23" parent="Battlefield/Middleground/Node2D" index="29" instance=ExtResource( 11 )]
+[node name="Card33" parent="Battlefield/Middleground/Node2D" index="33" instance=ExtResource( 11 )]
+position = Vector2( -1250, 850 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card23" parent="Battlefield/Middleground/Node2D" index="34" instance=ExtResource( 11 )]
 position = Vector2( -750, -1550 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card24" parent="Battlefield/Middleground/Node2D" index="30" instance=ExtResource( 11 )]
+[node name="Card39" parent="Battlefield/Middleground/Node2D" index="35" instance=ExtResource( 11 )]
+position = Vector2( -1250, -1550 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card56" parent="Battlefield/Middleground/Node2D" index="36" instance=ExtResource( 11 )]
+position = Vector2( -1750, -1550 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card40" parent="Battlefield/Middleground/Node2D" index="37" instance=ExtResource( 11 )]
+position = Vector2( 1250, -1550 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card50" parent="Battlefield/Middleground/Node2D" index="38" instance=ExtResource( 11 )]
+position = Vector2( 1750, -1550 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card24" parent="Battlefield/Middleground/Node2D" index="39" instance=ExtResource( 11 )]
 position = Vector2( 750, 850 )
 auto_flip_back = true
 take_ownership = true
 
-[node name="Card25" parent="Battlefield/Middleground/Node2D" index="31" instance=ExtResource( 11 )]
+[node name="Card34" parent="Battlefield/Middleground/Node2D" index="40" instance=ExtResource( 11 )]
+position = Vector2( 1250, 850 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card25" parent="Battlefield/Middleground/Node2D" index="41" instance=ExtResource( 11 )]
 position = Vector2( 250, 850 )
 auto_flip_back = true
 take_ownership = true
 
+[node name="Card41" parent="Battlefield/Middleground/Node2D" index="42" instance=ExtResource( 11 )]
+position = Vector2( -250, 1450 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card42" parent="Battlefield/Middleground/Node2D" index="43" instance=ExtResource( 11 )]
+position = Vector2( -750, 1450 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card51" parent="Battlefield/Middleground/Node2D" index="44" instance=ExtResource( 11 )]
+position = Vector2( -2750, -350 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card52" parent="Battlefield/Middleground/Node2D" index="45" instance=ExtResource( 11 )]
+position = Vector2( -2750, -950 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card53" parent="Battlefield/Middleground/Node2D" index="46" instance=ExtResource( 11 )]
+position = Vector2( -2250, 250 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card54" parent="Battlefield/Middleground/Node2D" index="47" instance=ExtResource( 11 )]
+position = Vector2( -1750, 850 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card55" parent="Battlefield/Middleground/Node2D" index="48" instance=ExtResource( 11 )]
+position = Vector2( -1250, 1450 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card43" parent="Battlefield/Middleground/Node2D" index="49" instance=ExtResource( 11 )]
+position = Vector2( 750, 1450 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card45" parent="Battlefield/Middleground/Node2D" index="50" instance=ExtResource( 11 )]
+position = Vector2( 2250, 250 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card46" parent="Battlefield/Middleground/Node2D" index="51" instance=ExtResource( 11 )]
+position = Vector2( 2750, -950 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card47" parent="Battlefield/Middleground/Node2D" index="52" instance=ExtResource( 11 )]
+position = Vector2( 2750, -350 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card48" parent="Battlefield/Middleground/Node2D" index="53" instance=ExtResource( 11 )]
+position = Vector2( 1750, 850 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card49" parent="Battlefield/Middleground/Node2D" index="54" instance=ExtResource( 11 )]
+position = Vector2( 1250, 1450 )
+auto_flip_back = true
+take_ownership = true
+
+[node name="Card44" parent="Battlefield/Middleground/Node2D" index="55" instance=ExtResource( 11 )]
+position = Vector2( 250, 1450 )
+auto_flip_back = true
+take_ownership = true
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -2050, 0 )
+position = Vector2( -3000, -900 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 2 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2050, 0 )
+position = Vector2( 3000, -900 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 4 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
-position = Vector2( -1550, 600 )
+position = Vector2( -2500, 300 )
 rotation = 0.0
 controls = "joy3"
 species = ExtResource( 7 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
-position = Vector2( 1550, 600 )
+position = Vector2( 2500, 300 )
 rotation = 3.14159
-controls = "joy4"
+controls = "joy2"
 species = ExtResource( 12 )
 
 [node name="Camera" parent="." index="6"]

@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
@@ -9,7 +8,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
@@ -69,9 +68,6 @@ match_duration_override = 100.0
 [node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
 
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 15 )
 centered = false
@@ -87,9 +83,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3600
 height = 2200
 bevel = 50
@@ -109,9 +102,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3600
 height = 2200
 bevel = 1085
@@ -131,9 +121,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3600
 height = 2200
 bevel = 1085
@@ -158,10 +145,6 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -800, 0 )
 
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone" index="0"]
-flag_offset = 0
-isometric_effect = true
-
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
 radius = 450
 
@@ -170,10 +153,6 @@ scale = Vector2( 1.13, 1.13 )
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
 position = Vector2( 800, 0 )
-
-[node name="Field" parent="Battlefield/Middleground/NoCrownZone2" index="0"]
-flag_offset = 0
-isometric_effect = true
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
 radius = 450
@@ -187,40 +166,15 @@ scale = Vector2( 1.13, 1.13 )
 playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
-[node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( 0, -1100 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+[node name="Gel" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
+position = Vector2( 0, 1000 )
+rotation = -1.5708
+width = 700
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 150
-sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
-
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 10 )]
-show_behind_parent = true
-position = Vector2( 0, 150 )
+[node name="Gel2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
+position = Vector2( 0, -1000 )
 rotation = 1.5708
-
-[node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 0, 1100 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 150
-sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
+width = 700
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 

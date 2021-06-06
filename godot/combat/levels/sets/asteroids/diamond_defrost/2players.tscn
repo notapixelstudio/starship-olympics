@@ -80,9 +80,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 4200
 height = 2400
 bevel = 250
@@ -103,9 +100,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 5600
 height = 3200
 bevel = 450
@@ -126,9 +120,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 5600
 height = 3200
 bevel = 450
@@ -149,12 +140,6 @@ texture = ExtResource( 8 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.16296, 0.0672, 0.28, 1 )
 bg_color = Color( 0.12752, 0.0624, 0.24, 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="5"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
 order = 6

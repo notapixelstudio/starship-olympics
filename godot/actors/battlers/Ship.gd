@@ -192,6 +192,7 @@ func _ready():
 	dash_process_material.color_ramp.gradient.set_color(0, species.color)
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
+	$Graphics/ChargeBar/Crosshair.modulate = species.color
 	
 func change_engine(value: bool):
 	responsive = value
@@ -258,6 +259,8 @@ func control(_delta):
 func update_charge_bar():
 	if not charging:
 		$Graphics/ChargeBar/Charge.visible = false
+		$Graphics/ChargeBar/ShootingLine.visible = false
+		$Graphics/ChargeBar/ShootingLine.enabled = false
 		return
 		
 	$Graphics/ChargeBar/Charge.visible = true
@@ -267,6 +270,10 @@ func update_charge_bar():
 	$Graphics/ChargeBar/Charge.set_point_position(1, v)
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, v)
 	$Graphics/ChargeBar/Charge/ArrowTip.position.x = v.x+26
+	
+	# shooting line visible only when charging enough enough
+	$Graphics/ChargeBar/ShootingLine.visible = charge > MIN_CHARGE*2
+	$Graphics/ChargeBar/ShootingLine.enabled = charge > MIN_CHARGE*2
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
@@ -325,6 +332,7 @@ func charge():
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
+		$Graphics/ChargeBar/ShootingLine.modulate = Color(1, 0.376471, 0)
 		if bomb_type != GameMode.BOMB_TYPE.bubble:
 			$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
 		$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,1)

@@ -162,3 +162,7 @@ func get_player(id_player: String):
 
 func summary():
 	return {}
+
+func get_number_of_players():
+	return len(players)
+	

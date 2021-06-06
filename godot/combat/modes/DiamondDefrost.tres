@@ -1,11 +1,10 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://combat/styles/purple.tres" type="Resource" id=2]
 [ext_resource path="res://map/planets/rules/Diamond.tres" type="Resource" id=3]
 [ext_resource path="res://assets/icon/minicards/sets/diamond_defrost.png" type="Texture" id=4]
 [ext_resource path="res://assets/icon/diamond_mining_logo.png" type="Texture" id=5]
-[ext_resource path="res://map/planets/rules/Asteroids.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 1 )
@@ -37,7 +36,7 @@ deadly_trails_duration = 2.0
 bomb_type = 2
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 3 ), ExtResource( 6 ) ]
+rules = [ ExtResource( 3 ) ]
 floodable = true
 flood = false
 laserable = false
