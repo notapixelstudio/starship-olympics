@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://combat/modes/AlchemicalBombing.tres" type="Resource" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=13]
 
 [node name="Arena" instance=ExtResource( 3 )]
 size_multiplier = 2.5
@@ -38,7 +40,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-radius = 1600
+radius = 2400
 rotation_degrees = 30.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -201,27 +203,31 @@ node_a = NodePath("..")
 node_b = NodePath("../../Bubble8")
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( 1000, 0 )
+position = Vector2( 1400, 0 )
 rotation = 3.14159
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( -1000, 0 )
+position = Vector2( -1400, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 6 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 10 )]
-position = Vector2( 0, -1000 )
+position = Vector2( 0, -1400 )
 rotation = 1.5708
 controls = "joy1"
-species = ExtResource( 6 )
+species = ExtResource( 13 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 10 )]
-position = Vector2( 0, 1000 )
+position = Vector2( 0, 1400 )
 rotation = -1.5708
 controls = "joy1"
-species = ExtResource( 6 )
+species = ExtResource( 12 )
+cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 3.30873e+20, 3.30873e+20 )

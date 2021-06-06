@@ -38,7 +38,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-radius = 1600
+radius = 2000
 rotation_degrees = 30.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -201,18 +201,18 @@ node_a = NodePath("..")
 node_b = NodePath("../../Bubble8")
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( 1000, 0 )
+position = Vector2( 1200, 0 )
 rotation = 3.14159
 species = ExtResource( 12 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( -1000, 0 )
+position = Vector2( -1200, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
-position = Vector2( 0, -1000 )
+position = Vector2( 0, -1200 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 10 )
