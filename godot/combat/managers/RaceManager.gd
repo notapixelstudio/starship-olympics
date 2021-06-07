@@ -27,6 +27,8 @@ func start():
 
 func _process(delta):
 	for ship in ships:
+		if not is_instance_valid(ship):
+			continue
 		var curve_offset = race_path.curve.get_closest_offset(ship.global_position)
 		var lap_length = race_path.curve.get_baked_length()
 		
