@@ -207,10 +207,14 @@ func _on_NearArea_body_entered(body):
 			queue_free()
 		else:
 			body.pop(true)
-	elif type == GameMode.BOMB_TYPE.ice and body is Ship and entity.get('Owned').get_owned_by() != body:
-		body.fall()
-		queue_free()
+	elif type == GameMode.BOMB_TYPE.ice and body != self and body.has_method('freeze'):
+		if not body is Ship:
+			body.freeze()
+			queue_free()
+		elif entity.get('Owned').get_owned_by() != body:
+			body.freeze()
+			queue_free()
 		
-signal frozen
-func freeze():
-	emit_signal("frozen", self)
+#signal frozen
+#func freeze():
+#	emit_signal("frozen", self)
