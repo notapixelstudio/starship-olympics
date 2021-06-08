@@ -110,14 +110,14 @@ func try_break():
 		yield(prisoner, 'tree_entered')
 		# temporary disable collisions to avoid touching the rock
 		prisoner.get_node('CollisionShape2D').disabled = true
-		if prisoner is Bomb:
-			# temporary disable collisions with fields because of freeze rays
-			prisoner.set_collision_mask_bit(7, false)
+		#if prisoner is Bomb:
+		#	# temporary disable collisions with fields because of freeze rays
+		#	prisoner.set_collision_mask_bit(7, false)
 		yield(get_tree().create_timer(0.1), "timeout")
 		prisoner.get_node('CollisionShape2D').disabled = false
-		if prisoner is Bomb:
-			yield(get_tree().create_timer(0.15), "timeout")
-			prisoner.set_collision_mask_bit(7, true)
+		#if prisoner is Bomb:
+		#	yield(get_tree().create_timer(0.15), "timeout")
+		#	prisoner.set_collision_mask_bit(7, true)
 	
 	self.breakable = false
 	
@@ -299,10 +299,11 @@ func get_strategy(ship, distance, game_mode):
 	
 func set_prisoner(v):
 	prisoner = v
-	if prisoner is Bomb:
-		$Prisoner.texture = prisoner.get_node('Sprite').texture
-		$Prisoner.rotation_degrees = rad2deg(prisoner.linear_velocity.angle()) - 45
-	elif prisoner is Ship:
+	#if prisoner is Bomb:
+	#	$Prisoner.texture = prisoner.get_node('Sprite').texture
+	#	$Prisoner.rotation_degrees = rad2deg(prisoner.linear_velocity.angle()) - 45
+	#el
+	if prisoner is Ship:
 		$Prisoner.texture = prisoner.species.ship
 		$Prisoner.rotation_degrees = prisoner.rotation_degrees - 45
 	

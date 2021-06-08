@@ -238,7 +238,7 @@ position = Vector2( 4100, -1850 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice2" parent="Battlefield/Background" index="1" instance=ExtResource( 15 )]
@@ -247,7 +247,7 @@ mode = 1
 order = 3
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice6" parent="Battlefield/Background" index="2" instance=ExtResource( 15 )]
@@ -256,7 +256,7 @@ mode = 1
 order = 3
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice5" parent="Battlefield/Background" index="3" instance=ExtResource( 15 )]
@@ -265,7 +265,7 @@ mode = 1
 order = 2
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice9" parent="Battlefield/Background" index="4" instance=ExtResource( 15 )]
@@ -274,7 +274,7 @@ mode = 1
 order = 2
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice12" parent="Battlefield/Background" index="5" instance=ExtResource( 15 )]
@@ -283,7 +283,7 @@ mode = 1
 order = 1
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice3" parent="Battlefield/Background" index="6" instance=ExtResource( 15 )]
@@ -291,7 +291,7 @@ position = Vector2( -4250, 1250 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice8" parent="Battlefield/Background" index="7" instance=ExtResource( 15 )]
@@ -299,7 +299,7 @@ position = Vector2( -1600, 2500 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice4" parent="Battlefield/Background" index="8" instance=ExtResource( 15 )]
@@ -307,7 +307,7 @@ position = Vector2( -2500, -2700 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="Ice7" parent="Battlefield/Background" index="9" instance=ExtResource( 15 )]
@@ -316,29 +316,18 @@ mode = 1
 order = 3
 spawn_diamonds = false
 deadly = false
-ice = true
+indestructible = true
 in_camera = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="11" instance=ExtResource( 5 )]
 hollow = true
 offset = 800
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 7800
 height = 4600
 radius = 1200
@@ -346,12 +335,6 @@ precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.670588 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="13"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="15"]
 modulate = Color( 1, 1, 1, 0.305882 )
@@ -388,175 +371,77 @@ texture = ExtResource( 6 )
 
 [node name="Wall13" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 800, 1200 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall13" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -1400, -1002, 2400, 20000 )
 width = 2800
 height = 400
 radius = 200
-precision = 10.0
 
 [node name="Wall14" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 400, 0 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall14" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -1000, -10000, 2400, 20000 )
 width = 2800
 height = 400
 radius = 200
-precision = 10.0
 
 [node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( 2600, 0 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall11" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -1, -10000, 20000, 20000 )
 width = 800
 height = 2800
 radius = 400
-precision = 10.0
 
 [node name="Wall20" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( -2600, 0 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall20" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -800, -200, 801, 20000 )
 width = 800
 height = 2800
 radius = 400
-precision = 10.0
 
 [node name="Wall21" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
 position = Vector2( -1400, 1800 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall21" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -800, -2000, 800, 2500 )
 width = 800
 height = 4000
 radius = 400
-precision = 10.0
 
 [node name="Wall" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
 position = Vector2( 0, -1000 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -10000, -400, 20000, 400 )
 width = 6000
 height = 800
 radius = 400
-precision = 10.0
 
 [node name="Wall24" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
 position = Vector2( 2200, 1200 )
 scale = Vector2( 1.1, 1.1 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall24" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -573,24 +458,10 @@ anims/Rotate = SubResource( 1 )
 [node name="Wall25" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
 position = Vector2( -1000, 0 )
 scale = Vector2( 1.1, 1.1 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall25" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -608,24 +479,10 @@ anims/Rotate = SubResource( 2 )
 position = Vector2( -2800, -600 )
 rotation = 1.5708
 scale = Vector2( 1.1, 1.1 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall27" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -642,26 +499,11 @@ anims/Rotate = SubResource( 3 )
 [node name="LaserWall3" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( -400, 1400 )
 rotation = 2.35619
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall3" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/LaserWall3" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -677,26 +519,11 @@ anims/Rotate = SubResource( 4 )
 [node name="LaserWall6" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 2600, -150 )
 rotation = 3.92699
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall6" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/LaserWall6" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -712,26 +539,11 @@ anims/Rotate = SubResource( 5 )
 [node name="LaserWall4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
 position = Vector2( -400, -1000 )
 rotation = 2.35619
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall4" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/LaserWall4" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -747,26 +559,11 @@ anims/Rotate = SubResource( 6 )
 [node name="LaserWall5" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
 position = Vector2( 1550, -200 )
 rotation = -0.785398
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/LaserWall5" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/LaserWall5" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -790,26 +587,11 @@ position = Vector2( -1400, 200 )
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 rotation = -0.785398
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D/LaserWall6" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D/LaserWall6" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -829,26 +611,11 @@ rotation = -0.785398
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 rotation = -0.785398
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D3/LaserWall6" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D3/LaserWall6" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -868,26 +635,11 @@ rotation = 3.92699
 [node name="LaserWall6" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -400 )
 rotation = -0.785398
-hollow = false
 type = 2
-hide_line = false
-hide_line_below = false
-hide_grid = false
-line_width = 48
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Node2D2/LaserWall6" index="8"]
 script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D2/LaserWall6" index="9" instance=ExtResource( 12 )]
 show_behind_parent = true
@@ -903,7 +655,6 @@ anims/Rotate = SubResource( 11 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 0, -2050 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]

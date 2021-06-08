@@ -9,7 +9,7 @@ var BubbleScene = load('res://actors/environments/Bubble.tscn')
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
-var ice_texture = preload('res://assets/sprites/weapons/bullet.png')
+var ice_texture = preload('res://assets/sprites/weapons/ice.png')
 var bubble_texture = preload('res://assets/sprites/weapons/bubble.png')
 var type
 var symbol = null
@@ -42,7 +42,10 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if ship:
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
-		$Sprite.modulate = ship.species.color
+		if type == GameMode.BOMB_TYPE.ice:
+			$Sprite.modulate = Color(0.9,1,1,1)
+		else:
+			$Sprite.modulate = ship.species.color
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
@@ -95,8 +98,10 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		
 	$Core/CollisionShape2D.shape.radius = size*8
 	
-func _process(_delta):
-	if type != GameMode.BOMB_TYPE.bubble:
+func _process(delta):
+	if type == GameMode.BOMB_TYPE.ice:
+		$Sprite.rotation += delta
+	elif type != GameMode.BOMB_TYPE.bubble:
 		$Sprite.rotation = linear_velocity.angle()
 	
 func _physics_process(_delta):
@@ -207,10 +212,14 @@ func _on_NearArea_body_entered(body):
 			queue_free()
 		else:
 			body.pop(true)
-	elif type == GameMode.BOMB_TYPE.ice and body is Ship and entity.get('Owned').get_owned_by() != body:
-		body.fall()
-		queue_free()
+	elif type == GameMode.BOMB_TYPE.ice and body != self and body.has_method('freeze'):
+		if not body is Ship:
+			body.freeze()
+			queue_free()
+		elif entity.get('Owned').get_owned_by() != body:
+			body.freeze()
+			queue_free()
 		
-signal frozen
-func freeze():
-	emit_signal("frozen", self)
+#signal frozen
+#func freeze():
+#	emit_signal("frozen", self)
