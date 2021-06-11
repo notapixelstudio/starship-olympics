@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/environments/turret.png" type="Texture" id=1]
 [ext_resource path="res://actors/enemies/Turret.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=3]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -25,11 +26,12 @@ tracks/0/keys = {
 
 [node name="Turret" type="StaticBody2D" groups=[
 "in_camera",
-"wait_to_start",
 ]]
 collision_layer = 0
 collision_mask = 8193
 script = ExtResource( 2 )
+
+[node name="Waiter" parent="." instance=ExtResource( 6 )]
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 4 )
