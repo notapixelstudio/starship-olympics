@@ -10,15 +10,14 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/characters/drones.tres" type="Resource" id=9]
 [ext_resource path="res://addons/geometry/GEllipse.gd" type="Script" id=10]
-[ext_resource path="res://combat/managers/BumpManager.gd" type="Script" id=11]
+[ext_resource path="res://combat/managers/BumpManager.tscn" type="PackedScene" id=11]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 7 )
 style = ExtResource( 6 )
 
-[node name="BumpManager" type="Node" parent="Managers" index="0"]
-script = ExtResource( 11 )
+[node name="BumpManager" parent="Managers" index="0" instance=ExtResource( 11 )]
 
 [node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
@@ -37,7 +36,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GEllipse" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 10 )
-rx = 1600
+rx = 1400
 ry = 1000
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -48,6 +47,7 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 3 )]
 position = Vector2( -1000, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 2 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 3 )]
