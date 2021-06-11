@@ -198,7 +198,6 @@ func _ready():
 	kill_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('show_msg', self, "show_msg")
-	collect_mode.connect('spawn_next', self, "on_next_wave")
 	
 	for goal in traits.get_all_with('Goal'):
 		goal.connect('goal_done', self, '_on_goal_done')
@@ -324,7 +323,6 @@ func _ready():
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
-		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
 		
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
@@ -735,7 +733,6 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 		bomb.connect("detonate", self, "bomb_detonated", [bomb])
-		bomb.connect("frozen", self, "_on_sth_just_froze")
 		bomb.connect("expired", ship, "_on_bomb_expired")
 	
 	$Battlefield.add_child(bomb)
@@ -803,16 +800,15 @@ func _on_sth_stolen(thief, mugged):
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
+signal wave_ready
+
 func on_next_wave(diamonds, wait_time=1):
 	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
-		yield(focus_in_camera, "completed") 
+		yield(focus_in_camera, "completed")
 	diamonds.spawn()
-	collect_mode.on_wave_ready()
+	emit_signal('wave_ready')
 	
-	#for collectable in collectables:
-	#	$Battlefield.add_child(collectable)
-		
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")
 
