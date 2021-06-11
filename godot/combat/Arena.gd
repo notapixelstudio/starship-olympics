@@ -24,7 +24,6 @@ export var underwater : bool = false
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
-var mockup: bool = false
 var debug = false
 # analytics
 var run_time = 0
@@ -359,43 +358,43 @@ func _ready():
 	yield(mode_description, "ready_to_fight")
 	hud.set_planet("", game_mode)
 	
-	if not mockup:
-		if style and style.bgm:
-			Soundtrack.play(style.bgm, true)
-		else:
-			Soundtrack.stop()
+	if style and style.bgm:
+		Soundtrack.play(style.bgm, true)
 	else:
-		hud.visible = false
-		
-	for node in traits.get_all_with('Intro'):
-		node.intro()
-		
-	for node in traits.get_all_with('Intro'):
-		yield(node, 'done')
+		Soundtrack.stop()
 	
-	if not mockup:
-		var j = 0
-		var player_spawners = $SpawnPositions/Players.get_children()
-		get_tree().paused = true
-		for s in player_spawners:
-			var spawner = s as PlayerSpawner
-			spawner.appears()
-			# waiting for the ship to be entered
-			yield(get_tree().create_timer(0.5), "timeout")
-			ships.append(spawn_ship(spawner))
-			j += 1
-			# wait for the last ship
-			if j >= len(player_spawners):
-				yield(spawner, "entered_battlefield")
-				
-		get_tree().paused = false
-		camera.activate_camera()
-
-	else:
-		spawn_ships()
+	var j = 0
+	var player_spawners = $SpawnPositions/Players.get_children()
+	get_tree().paused = true
+	for s in player_spawners:
+		var spawner = s as PlayerSpawner
+		spawner.appears()
+		# waiting for the ship to be entered
+		yield(get_tree().create_timer(0.5), "timeout")
+		ships.append(spawn_ship(spawner))
+		j += 1
+		# wait for the last ship
+		if j >= len(player_spawners):
+			yield(spawner, "entered_battlefield")
 	
-	yield(get_tree().create_timer(0.1), "timeout") # FIXME workaround to wait for all ships
-
+	get_tree().paused = false
+	camera.activate_camera()
+	
+	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
+	
+	# group by order for trait intro
+	var intro_nodes = {}
+	for trait in traits.get_all('Intro'):
+		if not(str(trait.order) in intro_nodes.keys()):
+			intro_nodes[str(trait.order)] = []
+		intro_nodes[str(trait.order)].append(trait.get_host())
+	
+	for group in intro_nodes:
+		for node in intro_nodes[group]:
+			node.intro()
+		for node in intro_nodes[group]:
+			yield(node, 'done')
+	
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
@@ -700,6 +699,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", last_man_mode, "_on_sth_killed")
 	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
+	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
 	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])

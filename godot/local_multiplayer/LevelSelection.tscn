@@ -1,10 +1,60 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
-[ext_resource path="res://local_multiplayer/LevelSelection.gd" type="Script" id=2]
 [ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
 [ext_resource path="res://special_scenes/option_screen/ElementOption.tscn" type="PackedScene" id=4]
 
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+var array_levels : Array
+var current_level : String 
+
+
+const LEVEL_PATH = \"res://combat/levels/\"
+var scene_in_viewport : Node
+onready var level_scene = $panel/ViewportContainer/Viewport
+signal arena_selected
+var back = false
+var can_choose = false
+var these_players = {}
+func _ready():
+	# if you want to make the ships move. Comment the following lines
+	get_tree().paused = true
+	#_initialize()
+	# let's wait a bit to avoid the immediate selection of the arena
+	yield(get_tree().create_timer(1.0), \"timeout\")
+	can_choose = true
+	$panel/Element.grab_focus()
+
+func _input(event):
+	if event.is_action_pressed(\"ui_accept\"):
+		if can_choose:
+			emit_signal(\"arena_selected\")
+	elif event.is_action_pressed(\"ui_cancel\"):
+		back = true
+		emit_signal(\"arena_selected\")
+		
+func initialize(players_scene:String=\"\", species={}):
+	these_players = species
+	array_levels = global.dir_contents(LEVEL_PATH, players_scene)
+	current_level = players_scene + \"players_toriels_1.tscn\"
+	scene_in_viewport = load(LEVEL_PATH+current_level).instance()
+	scene_in_viewport.mockup = true
+	yield(self, \"ready\")
+	level_scene.add_child(scene_in_viewport)
+	
+
+func _on_Element_value_changed(what):
+	level_scene.remove_child(scene_in_viewport)
+	scene_in_viewport = load(LEVEL_PATH+what).instance()
+	scene_in_viewport.mockup = true
+	scene_in_viewport.initialize(these_players)
+	level_scene.add_child(scene_in_viewport)
+
+func _exit_tree():
+	get_tree().paused = false
+"
 
 [node name="LevelSelection" type="ColorRect"]
 pause_mode = 2
@@ -12,7 +62,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 color = Color( 0, 0, 0, 0.313726 )
-script = ExtResource( 2 )
+script = SubResource( 1 )
 
 [node name="pause-window" type="Sprite" parent="."]
 position = Vector2( 612.724, 320.736 )
@@ -74,11 +124,8 @@ margin_left = -224.0
 margin_top = -155.0
 margin_right = 224.0
 margin_bottom = -130.0
-description = "current_level"
-optional_path = "array_levels"
-label_description = "Level"
 elem_type = 2
-is_global = false
+label_description = "Level"
 node_owner_path = NodePath("../../../LevelSelection")
 
 [connection signal="value_changed" from="panel/Element" to="." method="_on_Element_value_changed"]

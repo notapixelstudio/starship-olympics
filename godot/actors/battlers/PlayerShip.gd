@@ -37,6 +37,9 @@ func local_handling():
 	return target
 	
 func control(delta):
+	if not controls_enabled:
+		return
+		
 	#var target_vel = Vector2()
 	var front = Vector2(cos(rotation), sin(rotation))
 	#target_vel = local_handling()
@@ -80,3 +83,4 @@ func control(delta):
 
 	.control(delta)
 	
+

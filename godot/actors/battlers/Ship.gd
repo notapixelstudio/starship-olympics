@@ -12,6 +12,8 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+var controls_enabled = false
+
 var spawner
 var trail
 var species_name: String
@@ -176,6 +178,7 @@ func make_invincible():
 	invincible = false
 	
 func _ready():
+	disable_controls()
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
 	skin.ship_texture = species.ship
@@ -653,3 +656,16 @@ func is_aiming_away_gel():
 				return false
 			return abs(wrapf(area.rotation-rotation,-PI,PI)) < area.get_half_angle()
 	return true
+
+signal done
+func intro():
+	enable_controls()
+	yield(get_tree(), "idle_frame")
+	emit_signal('done')
+
+func disable_controls():
+	controls_enabled = false
+	
+func enable_controls():
+	controls_enabled = true
+	
