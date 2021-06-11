@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/FindingYourself.tres" type="Resource" id=2]
@@ -6,20 +6,16 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
+[ext_resource path="res://combat/managers/YourselfManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/managers/Collect4Manager.gd" type="Script" id=14]
-[ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=15]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 
-[node name="Collect4Manager" type="Node" parent="Managers" index="0"]
-script = ExtResource( 14 )
-
-[node name="Intro" parent="Managers/Collect4Manager" index="0" instance=ExtResource( 15 )]
+[node name="YourselfManager" parent="Managers" index="0" instance=ExtResource( 7 )]
 
 [node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true

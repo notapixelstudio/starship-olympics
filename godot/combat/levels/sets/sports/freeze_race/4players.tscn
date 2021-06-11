@@ -14,7 +14,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=13]
 [ext_resource path="res://combat/modes/FreezeRace.tres" type="Resource" id=14]
-[ext_resource path="res://combat/managers/RaceManager.gd" type="Script" id=15]
+[ext_resource path="res://combat/managers/RaceManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=16]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
 
@@ -226,10 +226,7 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 14 )
 
-[node name="RaceManager" type="Node" parent="Managers" index="0" groups=[
-"wait_to_start",
-]]
-script = ExtResource( 15 )
+[node name="RaceManager" parent="Managers" index="0" instance=ExtResource( 15 )]
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 11 )
@@ -240,7 +237,6 @@ position = Vector2( 4100, -1850 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -250,7 +246,6 @@ mode = 1
 order = 3
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -260,7 +255,6 @@ mode = 1
 order = 3
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -270,7 +264,6 @@ mode = 1
 order = 2
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -280,7 +273,6 @@ mode = 1
 order = 2
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -290,7 +282,6 @@ mode = 1
 order = 1
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -299,7 +290,6 @@ position = Vector2( -4250, 1250 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -308,7 +298,6 @@ position = Vector2( -1600, 2500 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -317,7 +306,6 @@ position = Vector2( -2500, -2700 )
 mode = 1
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
@@ -327,7 +315,6 @@ mode = 1
 order = 3
 spawn_diamonds = false
 deadly = false
-ice = true
 indestructible = true
 in_camera = false
 
