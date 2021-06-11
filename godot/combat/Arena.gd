@@ -24,7 +24,6 @@ export var underwater : bool = false
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
-var mockup: bool = false
 var debug = false
 # analytics
 var run_time = 0
@@ -359,41 +358,34 @@ func _ready():
 	yield(mode_description, "ready_to_fight")
 	hud.set_planet("", game_mode)
 	
-	if not mockup:
-		if style and style.bgm:
-			Soundtrack.play(style.bgm, true)
-		else:
-			Soundtrack.stop()
+	if style and style.bgm:
+		Soundtrack.play(style.bgm, true)
 	else:
-		hud.visible = false
-		
+		Soundtrack.stop()
+	
+	var j = 0
+	var player_spawners = $SpawnPositions/Players.get_children()
+	get_tree().paused = true
+	for s in player_spawners:
+		var spawner = s as PlayerSpawner
+		spawner.appears()
+		# waiting for the ship to be entered
+		yield(get_tree().create_timer(0.5), "timeout")
+		ships.append(spawn_ship(spawner))
+		j += 1
+		# wait for the last ship
+		if j >= len(player_spawners):
+			yield(spawner, "entered_battlefield")
+			
+	get_tree().paused = false
+	camera.activate_camera()
+	
 	for node in traits.get_all_with('Intro'):
 		node.intro()
 		
 	for node in traits.get_all_with('Intro'):
 		yield(node, 'done')
-	
-	if not mockup:
-		var j = 0
-		var player_spawners = $SpawnPositions/Players.get_children()
-		get_tree().paused = true
-		for s in player_spawners:
-			var spawner = s as PlayerSpawner
-			spawner.appears()
-			# waiting for the ship to be entered
-			yield(get_tree().create_timer(0.5), "timeout")
-			ships.append(spawn_ship(spawner))
-			j += 1
-			# wait for the last ship
-			if j >= len(player_spawners):
-				yield(spawner, "entered_battlefield")
-				
-		get_tree().paused = false
-		camera.activate_camera()
-
-	else:
-		spawn_ships()
-	
+		
 	yield(get_tree().create_timer(0.1), "timeout") # FIXME workaround to wait for all ships
 
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
