@@ -9,7 +9,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=8]
 [ext_resource path="res://combat/modes/ArkOfMemory.tres" type="Resource" id=9]
-[ext_resource path="res://combat/managers/MemoryManager.gd" type="Script" id=10]
+[ext_resource path="res://combat/managers/MemoryManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=12]
 
@@ -17,10 +17,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 
-[node name="MemoryManager" type="Node" parent="Managers" index="0" groups=[
-"wait_to_start",
-]]
-script = ExtResource( 10 )
+[node name="MemoryManager" parent="Managers" index="0" instance=ExtResource( 10 )]
 
 [node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true

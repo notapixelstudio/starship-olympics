@@ -5,7 +5,6 @@ onready var selection_screen = $SelectionScreen
 var session_scores: TheSession
 
 const combat_scene = "res://combat/levels/"
-const level_selection_scene = preload("res://local_multiplayer/LevelSelection.tscn")
 export var map_scene: PackedScene
 
 var games = {}  # {sport.name : Resource}

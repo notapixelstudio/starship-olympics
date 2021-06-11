@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/sprites/signs/nuke.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/Nuke.gd" type="Script" id=2]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="Animation" id=2]
 length = 4.0
@@ -60,14 +61,14 @@ tracks/3/keys = {
 "values": [ Color( 0.85, 1, 0, 1 ), Color( 0, 0.77, 0.282333, 1 ) ]
 }
 
-[node name="Nuke" type="Sprite" groups=[
-"wait_to_start",
-]]
+[node name="Nuke" type="Sprite"]
 modulate = Color( 0.653846, 0.946923, 0.0651538, 1 )
 self_modulate = Color( 1.2, 1.2, 1.2, 1 )
-material = SubResource( 3 )
+material = SubResource( 1 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Waiter" parent="." instance=ExtResource( 3 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Default = SubResource( 2 )

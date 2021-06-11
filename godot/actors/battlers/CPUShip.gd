@@ -169,6 +169,9 @@ var charging_time : int = 0
 var force_wander = false
 
 func control(delta):
+	if not controls_enabled:
+		return
+		
 	keep_decision -= delta
 	var chosen_strategy = choose_target(traits.get_all('Strategic'))
 	target_pos = chosen_strategy["target_pos"]

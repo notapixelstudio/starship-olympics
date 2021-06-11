@@ -24,7 +24,6 @@ export var underwater : bool = false
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
-var mockup: bool = false
 var debug = false
 # analytics
 var run_time = 0
@@ -198,7 +197,6 @@ func _ready():
 	kill_mode.connect('show_msg', self, "show_msg")
 	conquest_mode.connect('show_msg', self, "show_msg")
 	collect_mode.connect('show_msg', self, "show_msg")
-	collect_mode.connect('spawn_next', self, "on_next_wave")
 	
 	for goal in traits.get_all_with('Goal'):
 		goal.connect('goal_done', self, '_on_goal_done')
@@ -324,7 +322,6 @@ func _ready():
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
 		focus_in_camera.activate()
-		collect_mode.initialize(get_tree().get_nodes_in_group("spawner_group"))
 		
 	# connect already placed killable stuff (bricks, aliens, etc.)
 	for sth in get_tree().get_nodes_in_group("killables"):
@@ -361,43 +358,43 @@ func _ready():
 	yield(mode_description, "ready_to_fight")
 	hud.set_planet("", game_mode)
 	
-	if not mockup:
-		if style and style.bgm:
-			Soundtrack.play(style.bgm, true)
-		else:
-			Soundtrack.stop()
+	if style and style.bgm:
+		Soundtrack.play(style.bgm, true)
 	else:
-		hud.visible = false
-		
-	for node in traits.get_all_with('Intro'):
-		node.intro()
-		
-	for node in traits.get_all_with('Intro'):
-		yield(node, 'done')
+		Soundtrack.stop()
 	
-	if not mockup:
-		var j = 0
-		var player_spawners = $SpawnPositions/Players.get_children()
-		get_tree().paused = true
-		for s in player_spawners:
-			var spawner = s as PlayerSpawner
-			spawner.appears()
-			# waiting for the ship to be entered
-			yield(get_tree().create_timer(0.5), "timeout")
-			ships.append(spawn_ship(spawner))
-			j += 1
-			# wait for the last ship
-			if j >= len(player_spawners):
-				yield(spawner, "entered_battlefield")
-				
-		get_tree().paused = false
-		camera.activate_camera()
-
-	else:
-		spawn_ships()
+	var j = 0
+	var player_spawners = $SpawnPositions/Players.get_children()
+	get_tree().paused = true
+	for s in player_spawners:
+		var spawner = s as PlayerSpawner
+		spawner.appears()
+		# waiting for the ship to be entered
+		yield(get_tree().create_timer(0.5), "timeout")
+		ships.append(spawn_ship(spawner))
+		j += 1
+		# wait for the last ship
+		if j >= len(player_spawners):
+			yield(spawner, "entered_battlefield")
 	
-	yield(get_tree().create_timer(0.1), "timeout") # FIXME workaround to wait for all ships
-
+	get_tree().paused = false
+	camera.activate_camera()
+	
+	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
+	
+	# group by order for trait intro
+	var intro_nodes = {}
+	for trait in traits.get_all('Intro'):
+		if not(str(trait.order) in intro_nodes.keys()):
+			intro_nodes[str(trait.order)] = []
+		intro_nodes[str(trait.order)].append(trait.get_host())
+	
+	for group in intro_nodes:
+		for node in intro_nodes[group]:
+			node.intro()
+		for node in intro_nodes[group]:
+			yield(node, 'done')
+	
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
 		if bomb_spawner.owned_by_player and $Battlefield/Foreground.has_node(bomb_spawner.owned_by_player):
@@ -414,12 +411,12 @@ func _ready():
 		
 	emit_signal('battle_start')
 	
-	for node in get_tree().get_nodes_in_group('wait_to_start'):
+	for node in traits.get_all_with("Waiter"):
 		node.start()
-	
+		
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
-	
+
 const COUNTDOWN_LIMIT = 5.0
 
 func update_grid():
@@ -703,6 +700,7 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
+	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
 	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])
 	
@@ -735,7 +733,6 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 		bomb.connect("detonate", self, "bomb_detonated", [bomb])
-		bomb.connect("frozen", self, "_on_sth_just_froze")
 		bomb.connect("expired", ship, "_on_bomb_expired")
 	
 	$Battlefield.add_child(bomb)
@@ -803,16 +800,15 @@ func _on_sth_stolen(thief, mugged):
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
+signal wave_ready
+
 func on_next_wave(diamonds, wait_time=1):
 	if wait_time:
 		focus_in_camera.move(diamonds.position, wait_time)
-		yield(focus_in_camera, "completed") 
+		yield(focus_in_camera, "completed")
 	diamonds.spawn()
-	collect_mode.on_wave_ready()
+	emit_signal('wave_ready')
 	
-	#for collectable in collectables:
-	#	$Battlefield.add_child(collectable)
-		
 func _on_Pause_back_to_menu():
 	emit_signal("back_to_menu")
 

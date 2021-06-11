@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=17]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=18]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -61,10 +62,12 @@ size_multiplier = 2.5
 game_mode = ExtResource( 15 )
 style = ExtResource( 11 )
 
-[node name="CollectModeManager" parent="Managers" index="10"]
+[node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 20 )]
+
+[node name="CollectModeManager" parent="Managers" index="11"]
 enabled = true
 
-[node name="CollectAction" parent="Managers/CollectModeManager" index="1"]
+[node name="CollectAction" parent="Managers/CollectModeManager" index="0"]
 pitch_scale = 0.9
 bus = "SFX"
 
@@ -124,7 +127,6 @@ height = 200
 [node name="DiamondSpawner" parent="Battlefield/Middleground" index="2" instance=ExtResource( 13 )]
 
 [node name="Coin" parent="Battlefield/Middleground/DiamondSpawner" index="0" instance=ExtResource( 16 )]
-appear = false
 
 [node name="DiamondSpawner2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 13 )]
 position = Vector2( -600, 700 )

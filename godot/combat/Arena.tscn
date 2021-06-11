@@ -263,9 +263,6 @@ __meta__ = {
 }
 enabled = false
 
-[node name="Timer" type="Timer" parent="Managers/CollectModeManager"]
-wait_time = 6.0
-
 [node name="CollectAction" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
 stream = ExtResource( 20 )
 

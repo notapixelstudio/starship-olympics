@@ -10,7 +10,7 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/FreezeRace.tres" type="Resource" id=10]
-[ext_resource path="res://combat/managers/RaceManager.gd" type="Script" id=11]
+[ext_resource path="res://combat/managers/RaceManager.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=13]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=14]
@@ -224,10 +224,7 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 
-[node name="RaceManager" type="Node" parent="Managers" index="0" groups=[
-"wait_to_start",
-]]
-script = ExtResource( 11 )
+[node name="RaceManager" parent="Managers" index="0" instance=ExtResource( 11 )]
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
