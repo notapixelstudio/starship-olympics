@@ -1,5 +1,7 @@
 extends Trait
 
+export var order = 0
+
 func validate():
 	.validate()
 	assert(host.has_method('intro')) # ()
