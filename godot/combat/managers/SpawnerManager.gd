@@ -38,9 +38,12 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	elements_spawned += 1
 	global.arena.on_next_wave(next_spawner, wait_time)
 	
-func start():
+signal done
+func intro():
 	global.arena.connect('wave_ready', self, 'on_wave_ready')
 	self.initialize(get_tree().get_nodes_in_group("spawner_group"))
+	yield(get_tree().create_timer(1), "timeout")
+	emit_signal('done')
 	
 var wave_ready = false 
 func _process(delta):
