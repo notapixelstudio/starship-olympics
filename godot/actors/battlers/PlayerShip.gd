@@ -37,18 +37,22 @@ func local_handling():
 	return target
 	
 func control(delta):
-	var target_vel = Vector2()
+	#var target_vel = Vector2()
 	var front = Vector2(cos(rotation), sin(rotation))
-	target_vel = local_handling()
+	#target_vel = local_handling()
 	
-	if target_vel == Vector2.ZERO:
-		target_velocity = front
-		# this in order to keep the velocity constant
-		pass
-	else:
-		target_velocity = target_vel.normalized()
+	#if target_vel == Vector2.ZERO:
+	#	target_velocity = front
+	#	# this in order to keep the velocity constant
+	#	pass
+	#else:
+	#	target_velocity = target_vel.normalized()
+	target_velocity = local_handling()
 	#rotation_request = find_side(Vector2(0,0), front, target_velocity)
-	rotation_request = front.angle_to(target_velocity)
+	if target_velocity == Vector2.ZERO:
+		rotation_request = 0
+	else:
+		rotation_request = front.angle_to(target_velocity)
 	
 	# if we want tank mode control (relative control)
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
