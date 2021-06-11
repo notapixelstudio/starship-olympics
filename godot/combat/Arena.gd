@@ -416,10 +416,12 @@ func _ready():
 	
 	for node in get_tree().get_nodes_in_group('wait_to_start'):
 		node.start()
-	
+		
+	for node in traits.get_all_with("Waiter"):
+		node.start()
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
-	
+
 const COUNTDOWN_LIMIT = 5.0
 
 func update_grid():
