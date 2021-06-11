@@ -659,8 +659,8 @@ func is_aiming_away_gel():
 
 signal done
 func intro():
-	print("ove")
 	enable_controls()
+	yield(get_tree(), "idle_frame")
 	emit_signal('done')
 
 func disable_controls():
