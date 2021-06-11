@@ -414,9 +414,6 @@ func _ready():
 		
 	emit_signal('battle_start')
 	
-	for node in get_tree().get_nodes_in_group('wait_to_start'):
-		node.start()
-		
 	for node in traits.get_all_with("Waiter"):
 		node.start()
 		
