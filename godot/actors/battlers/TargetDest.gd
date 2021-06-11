@@ -40,6 +40,10 @@ func get_strategy(ship, distance, game_mode):
 		# pursue ships of opposing teams and keep close
 		if calling_ship_team != this_ship_team:
 			return {'seek': distance/500, 'shoot': 0.5}
+	elif game_mode.get_id() == 'bumper_ships':
+		# pursue ships of opposing teams, having fewer points
+		if calling_ship_team != this_ship_team:
+			return {'seek': distance}
 		
 	# default: shoot at ships of opposing teams, sometimes
 	if calling_ship_team != this_ship_team:
