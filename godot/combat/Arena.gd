@@ -700,7 +700,6 @@ func spawn_ship(player:PlayerSpawner):
 	ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
-	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
 	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])
 	

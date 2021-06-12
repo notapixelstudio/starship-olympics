@@ -40,6 +40,11 @@ func get_strategy(ship, distance, game_mode):
 		# pursue ships of opposing teams and keep close
 		if calling_ship_team != this_ship_team:
 			return {'seek': distance/500, 'shoot': 0.5}
+	elif game_mode.get_id() == 'bumper_ships':
+		# pursue ships of opposing teams, having fewer points
+		if calling_ship_team != this_ship_team:
+			var this_score = global.the_match.get_player(get_master_ship().get_id()).score
+			return {'seek': distance/600/(this_score+1), 'shoot': 0.5/(this_score+1)} # FIXME shoot is here to keep the ship less close
 		
 	# default: shoot at ships of opposing teams, sometimes
 	if calling_ship_team != this_ship_team:
