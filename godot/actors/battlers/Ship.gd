@@ -111,6 +111,8 @@ signal spawn_bomb
 signal dash_started
 signal dash_ended
 
+signal bump
+
 var invincible : bool
 
 var entity : Entity

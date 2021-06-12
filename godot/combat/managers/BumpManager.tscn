@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://combat/managers/BumpManager.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/FX/zapsplat_cartoon_twang_bounce_boing_spring_53049.ogg" type="AudioStream" id=4]
 
 [node name="BumpManager" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Waiter" parent="." instance=ExtResource( 2 )]
+
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 3 )
+streams = [ ExtResource( 4 ) ]
+random_strategy = 1
+randomize_pitch = true
+pitch_min = 0.5
+pitch_max = 1.2
