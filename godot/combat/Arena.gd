@@ -248,7 +248,7 @@ func _ready():
 		i += 1
 	
 	global.session.set_players(players)
-		
+	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
 		if len(conquerables) > 0:
@@ -258,6 +258,13 @@ func _ready():
 				# connect to manager
 				conquerable.connect('conquered', conquest_mode, "_on_sth_conquered")
 				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
+				
+	# FIXME this should eventually replace the system above
+	var score_definers = traits.get_all_with('ScoreDefiner')
+	if len(score_definers) > 0:
+		score_to_win_override = 0
+		for score_definer in score_definers:
+			score_to_win_override += score_definer.get_score()
 	
 	global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
 	

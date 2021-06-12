@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://combat/modes/DiamondMinefield.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
-[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
 [ext_resource path="res://combat/managers/MinefieldManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
@@ -11,51 +10,13 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=10]
 [ext_resource path="res://combat/styles/dots.tres" type="Resource" id=11]
-[ext_resource path="res://combat/styles/lightpurple.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=14]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=16]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 1 )
-id = "diamond_minefield"
-is_mutator = false
-name = "Diamond Minefield"
-icon = ExtResource( 3 )
-logo = ExtResource( 14 )
-arena_style = ExtResource( 12 )
-description = "tap cards, avoid black diamond"
-tagline_pro = "Don't forget your opponents would do the same"
-tagline_cons = "You could get killed in the meantime..."
-max_timeout = 60
-max_score = 100
-cumulative = false
-starting_lives = 1
-death = false
-last_man = false
-crown = false
-hive = true
-collect = false
-goal = false
-survival = false
-race = false
-pursuing_bombs = true
-shoot_bombs = false
-deadly_trails = false
-deadly_trails_duration = 2.0
-bomb_type = 2
-starting_ammo = -1
-reload_time = 3.0
-rules = [  ]
-floodable = true
-flood = false
-laserable = false
-additional_lasers = false
-
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
-game_mode = SubResource( 1 )
+game_mode = ExtResource( 1 )
 style = ExtResource( 11 )
 
 [node name="MinefieldManager" parent="Managers" index="0" instance=ExtResource( 5 )]
@@ -76,8 +37,8 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 2 )
-width = 6400
-height = 4600
+width = 6000
+height = 4200
 radius = 200
 precision = 50.0
 
@@ -87,7 +48,7 @@ fg_color = Color( 0.12, 0.488, 0.6, 1 )
 bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="0"]
-position = Vector2( 0, 40 )
+position = Vector2( -200, -210 )
 scale = Vector2( 0.85, 0.85 )
 
 [node name="Card" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 13 )]
@@ -300,152 +261,89 @@ position = Vector2( 2750, -950 )
 [node name="Card116" parent="Battlefield/Middleground/Node2D" index="69" instance=ExtResource( 13 )]
 position = Vector2( 2750, -1550 )
 
-[node name="Card51" parent="Battlefield/Middleground/Node2D" index="70" instance=ExtResource( 13 )]
-position = Vector2( -250, -2150 )
-
-[node name="Card52" parent="Battlefield/Middleground/Node2D" index="71" instance=ExtResource( 13 )]
-position = Vector2( -750, -2150 )
-
-[node name="Card53" parent="Battlefield/Middleground/Node2D" index="72" instance=ExtResource( 13 )]
-position = Vector2( -1250, -2150 )
-
-[node name="Card54" parent="Battlefield/Middleground/Node2D" index="73" instance=ExtResource( 13 )]
-position = Vector2( 750, -2150 )
-
-[node name="Card55" parent="Battlefield/Middleground/Node2D" index="74" instance=ExtResource( 13 )]
-position = Vector2( 250, -2150 )
-
-[node name="Card56" parent="Battlefield/Middleground/Node2D" index="75" instance=ExtResource( 13 )]
-position = Vector2( -1750, -2150 )
-
-[node name="Card57" parent="Battlefield/Middleground/Node2D" index="76" instance=ExtResource( 13 )]
-position = Vector2( 1250, -2150 )
-
-[node name="Card58" parent="Battlefield/Middleground/Node2D" index="77" instance=ExtResource( 13 )]
-position = Vector2( 1750, -2150 )
-
-[node name="Card59" parent="Battlefield/Middleground/Node2D" index="78" instance=ExtResource( 13 )]
-position = Vector2( 2250, -2150 )
-
-[node name="Card60" parent="Battlefield/Middleground/Node2D" index="79" instance=ExtResource( 13 )]
-position = Vector2( -2250, -2150 )
-
-[node name="Card91" parent="Battlefield/Middleground/Node2D" index="80" instance=ExtResource( 13 )]
-position = Vector2( -2750, -2150 )
-
-[node name="Card117" parent="Battlefield/Middleground/Node2D" index="81" instance=ExtResource( 13 )]
-position = Vector2( 2750, -2150 )
-
-[node name="Card120" parent="Battlefield/Middleground/Node2D" index="82" instance=ExtResource( 13 )]
+[node name="Card120" parent="Battlefield/Middleground/Node2D" index="70" instance=ExtResource( 13 )]
 position = Vector2( 2750, 850 )
 
-[node name="Card125" parent="Battlefield/Middleground/Node2D" index="83" instance=ExtResource( 13 )]
+[node name="Card125" parent="Battlefield/Middleground/Node2D" index="71" instance=ExtResource( 13 )]
 position = Vector2( 2750, 1450 )
 
-[node name="Card62" parent="Battlefield/Middleground/Node2D" index="84" instance=ExtResource( 13 )]
+[node name="Card62" parent="Battlefield/Middleground/Node2D" index="72" instance=ExtResource( 13 )]
 position = Vector2( -1750, 2050 )
 
-[node name="Card64" parent="Battlefield/Middleground/Node2D" index="85" instance=ExtResource( 13 )]
+[node name="Card64" parent="Battlefield/Middleground/Node2D" index="73" instance=ExtResource( 13 )]
 position = Vector2( 1250, 2050 )
 
-[node name="Card66" parent="Battlefield/Middleground/Node2D" index="86" instance=ExtResource( 13 )]
+[node name="Card66" parent="Battlefield/Middleground/Node2D" index="74" instance=ExtResource( 13 )]
 position = Vector2( 1750, 2050 )
 
-[node name="Card68" parent="Battlefield/Middleground/Node2D" index="87" instance=ExtResource( 13 )]
+[node name="Card68" parent="Battlefield/Middleground/Node2D" index="75" instance=ExtResource( 13 )]
 position = Vector2( 2250, 2050 )
 
-[node name="Card70" parent="Battlefield/Middleground/Node2D" index="88" instance=ExtResource( 13 )]
+[node name="Card70" parent="Battlefield/Middleground/Node2D" index="76" instance=ExtResource( 13 )]
 position = Vector2( -2250, 2050 )
 
-[node name="Card76" parent="Battlefield/Middleground/Node2D" index="89" instance=ExtResource( 13 )]
+[node name="Card76" parent="Battlefield/Middleground/Node2D" index="77" instance=ExtResource( 13 )]
 position = Vector2( -250, 2050 )
 
-[node name="Card77" parent="Battlefield/Middleground/Node2D" index="90" instance=ExtResource( 13 )]
+[node name="Card77" parent="Battlefield/Middleground/Node2D" index="78" instance=ExtResource( 13 )]
 position = Vector2( -750, 2050 )
 
-[node name="Card78" parent="Battlefield/Middleground/Node2D" index="91" instance=ExtResource( 13 )]
+[node name="Card78" parent="Battlefield/Middleground/Node2D" index="79" instance=ExtResource( 13 )]
 position = Vector2( -1250, 2050 )
 
-[node name="Card79" parent="Battlefield/Middleground/Node2D" index="92" instance=ExtResource( 13 )]
+[node name="Card79" parent="Battlefield/Middleground/Node2D" index="80" instance=ExtResource( 13 )]
 position = Vector2( 750, 2050 )
 
-[node name="Card80" parent="Battlefield/Middleground/Node2D" index="93" instance=ExtResource( 13 )]
+[node name="Card80" parent="Battlefield/Middleground/Node2D" index="81" instance=ExtResource( 13 )]
 position = Vector2( 250, 2050 )
 
-[node name="Card104" parent="Battlefield/Middleground/Node2D" index="94" instance=ExtResource( 13 )]
+[node name="Card104" parent="Battlefield/Middleground/Node2D" index="82" instance=ExtResource( 13 )]
 position = Vector2( -2750, 2050 )
 
-[node name="Card83" parent="Battlefield/Middleground/Node2D" index="95" instance=ExtResource( 13 )]
-position = Vector2( -3250, 250 )
-
-[node name="Card84" parent="Battlefield/Middleground/Node2D" index="96" instance=ExtResource( 13 )]
-position = Vector2( -3250, -350 )
-
-[node name="Card85" parent="Battlefield/Middleground/Node2D" index="97" instance=ExtResource( 13 )]
-position = Vector2( -3250, -950 )
-
-[node name="Card86" parent="Battlefield/Middleground/Node2D" index="98" instance=ExtResource( 13 )]
-position = Vector2( -3250, -1550 )
-
-[node name="Card87" parent="Battlefield/Middleground/Node2D" index="99" instance=ExtResource( 13 )]
-position = Vector2( -3250, 850 )
-
-[node name="Card88" parent="Battlefield/Middleground/Node2D" index="100" instance=ExtResource( 13 )]
-position = Vector2( -3250, 1450 )
-
-[node name="Card94" parent="Battlefield/Middleground/Node2D" index="101" instance=ExtResource( 13 )]
-position = Vector2( -3250, -2150 )
-
-[node name="Card96" parent="Battlefield/Middleground/Node2D" index="102" instance=ExtResource( 13 )]
-position = Vector2( -3250, 2050 )
-
-[node name="Card126" parent="Battlefield/Middleground/Node2D" index="103" instance=ExtResource( 13 )]
+[node name="Card126" parent="Battlefield/Middleground/Node2D" index="83" instance=ExtResource( 13 )]
 position = Vector2( 2750, 2050 )
 
-[node name="Card101" parent="Battlefield/Middleground/Node2D" index="104" instance=ExtResource( 13 )]
+[node name="Card101" parent="Battlefield/Middleground/Node2D" index="84" instance=ExtResource( 13 )]
 position = Vector2( 3250, 850 )
 
-[node name="Card102" parent="Battlefield/Middleground/Node2D" index="105" instance=ExtResource( 13 )]
+[node name="Card102" parent="Battlefield/Middleground/Node2D" index="85" instance=ExtResource( 13 )]
 position = Vector2( 3250, 250 )
 
-[node name="Card107" parent="Battlefield/Middleground/Node2D" index="106" instance=ExtResource( 13 )]
+[node name="Card107" parent="Battlefield/Middleground/Node2D" index="86" instance=ExtResource( 13 )]
 position = Vector2( 3250, -350 )
 
-[node name="Card108" parent="Battlefield/Middleground/Node2D" index="107" instance=ExtResource( 13 )]
+[node name="Card108" parent="Battlefield/Middleground/Node2D" index="87" instance=ExtResource( 13 )]
 position = Vector2( 3250, -950 )
 
-[node name="Card109" parent="Battlefield/Middleground/Node2D" index="108" instance=ExtResource( 13 )]
+[node name="Card109" parent="Battlefield/Middleground/Node2D" index="88" instance=ExtResource( 13 )]
 position = Vector2( 3250, -1550 )
 
-[node name="Card110" parent="Battlefield/Middleground/Node2D" index="109" instance=ExtResource( 13 )]
+[node name="Card110" parent="Battlefield/Middleground/Node2D" index="89" instance=ExtResource( 13 )]
 position = Vector2( 3250, 1450 )
 
-[node name="Card121" parent="Battlefield/Middleground/Node2D" index="110" instance=ExtResource( 13 )]
-position = Vector2( 3250, -2150 )
-
-[node name="Card124" parent="Battlefield/Middleground/Node2D" index="111" instance=ExtResource( 13 )]
+[node name="Card124" parent="Battlefield/Middleground/Node2D" index="90" instance=ExtResource( 13 )]
 position = Vector2( 3250, 2050 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -3050, -1000 )
+position = Vector2( -2850, -1000 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 3050, -1000 )
+position = Vector2( 2850, -1000 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 8 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
-position = Vector2( 3050, 1000 )
+position = Vector2( 2850, 1000 )
 rotation = 3.14159
 controls = "joy3"
 species = ExtResource( 16 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 7 )]
-position = Vector2( -3050, 1000 )
+position = Vector2( -2850, 1000 )
 rotation = 0.0
 controls = "joy4"
 species = ExtResource( 17 )

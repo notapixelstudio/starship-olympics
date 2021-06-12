@@ -7,6 +7,8 @@ const DIAMOND = 'environments/diamond'
 const BIG_DIAMOND = 'environments/diamond_big'
 const MINE = 'weapons/mine'
 
+var total_score = 0
+
 var displacement = {}
 
 signal done
@@ -24,10 +26,11 @@ func _ready():
 	# figures
 	var figures = []
 	for i in cards.size():
-		if i < 10 + randi() % 4:
+		if i < 9 + randi() % 2:
 			figures.append(MINE)
 		else:
 			figures.append(DIAMOND)
+			total_score += 1
 		
 	figures.shuffle()
 	
@@ -53,8 +56,9 @@ func _ready():
 			card.position + Vector2(-DX, -DY)
 		]
 		for dir in dirs:
-			if displacement.has(dir) and displacement[dir].get_content() != MINE:
+			if displacement.has(dir) and displacement[dir].get_content() == DIAMOND:
 				displacement[dir].set_content(BIG_DIAMOND)
+				total_score += 2 # 1+2 = 3, value of big diamond
 				
 func intro():
 	global.the_match.connect('game_over', self, '_on_game_over')
@@ -106,3 +110,6 @@ func _on_game_over(_winners):
 	for card in get_all_cards():
 		card.reveal()
 		
+func get_score():
+	return total_score
+	
