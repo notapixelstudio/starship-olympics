@@ -177,6 +177,8 @@ func next_level(demo = false):
 	var this_game = player_arena.this_game
 	map.choose_level(this_game, player_arena.player_id)
 	yield(map, "chose_level")
+	$TransitionScreen.transition()
+	yield($TransitionScreen, "transitioned")
 	remove_child(map)
 	if not parallax.is_inside_tree():
 		add_child(parallax)
