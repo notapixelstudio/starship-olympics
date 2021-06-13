@@ -384,6 +384,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
+"base": "Button",
+"class": "RemapButton",
+"language": "GDScript",
+"path": "res://special_scenes/input_mapping/ActionRemapButton.gd"
+}, {
 "base": "Node2D",
 "class": "Ripple",
 "language": "GDScript",
@@ -545,6 +550,7 @@ _global_script_class_icons={
 "Portal": "",
 "Portalz": "",
 "PowerUp": "",
+"RemapButton": "",
 "Ripple": "",
 "Rock": "",
 "Rule": "",
@@ -604,7 +610,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "ECM", "Godot-GameAnalytics", "geometry", "randomAudioStreamPlayer", "traits" )
+enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/Godot-GameAnalytics/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
 
 [gui]
 

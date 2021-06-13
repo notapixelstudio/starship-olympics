@@ -167,7 +167,8 @@ func _enter_tree():
 	
 	emit_signal('spawned', self)
 	dash_init_appearance()
-	make_invincible()
+	if controls_enabled:
+		make_invincible()
 	
 func make_invincible():
 	invincible = true
@@ -182,7 +183,7 @@ func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
 	skin.ship_texture = species.ship
-	skin.invincible(1.0)
+	# skin.invincible(1.0)
 	entity = ECM.E(self)
 	species_name = species.species_name
 	
@@ -660,6 +661,7 @@ func is_aiming_away_gel():
 signal done
 func intro():
 	enable_controls()
+	make_invincible()
 	yield(get_tree(), "idle_frame")
 	emit_signal('done')
 

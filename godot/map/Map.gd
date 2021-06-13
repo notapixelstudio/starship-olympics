@@ -38,6 +38,7 @@ signal chose_level
 signal selection_finished
 signal back
 signal done
+signal cleanup
 
 func set_settings(value):
 	settings = value
@@ -306,10 +307,14 @@ func choose_level(level, player):
 	
 	tween.start()
 	yield(tween, "tween_all_completed")
+	emit_signal("chose_level")
+	# TODO: danger of lock
+	yield(get_tree().create_timer(2), "timeout")
+	# everything back to position
 	chosen_minicard.position = back_pos
 	chosen_minicard.scale = back_scale
 	chosen_minicard.z_index = 0
-	emit_signal("chose_level")
+	emit_signal("cleanup")
 
 func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 	list.shuffle()
