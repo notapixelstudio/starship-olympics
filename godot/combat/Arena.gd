@@ -299,31 +299,7 @@ func _ready():
 	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
 		well.enabled = true
-	
-	# set up hive cells
-	
-	#for cell in get_tree().get_nodes_in_group('cell'):
-	#	var skip = false
-	#	for player_spawner in $SpawnPositions/Players.get_children():
-	#		if (cell.position - player_spawner.position).length() < 600:
-	#			skip = true
-	#			break
-	#	
-	#	if skip:
-	#		continue
-	#	
-	#	if pow(randf(),2) > 0.95:
-	#		var wall = wall_scene.instance()
-	#		var gshape = cell.get_gshape()
-	#		cell.remove_child(gshape)
-	#		wall.add_child(gshape)
-	#		wall.position = cell.position
-	#		wall.rotation = cell.rotation
-	#		#wall.fill_color = Color(0.8,0.8,0.8,1)
-	#		#wall.modulate = Color(0.5,0.5,0.5,1)
-	#		wall.scale = Vector2(0.8,0.8)
-	#		$Battlefield.add_child(wall)
-	#		cell.queue_free()
+
 	var ships = []
 	
 	# environment spawner: coins, etc.
@@ -372,7 +348,7 @@ func _ready():
 	
 	var j = 0
 	var player_spawners = $SpawnPositions/Players.get_children()
-	get_tree().paused = true
+
 	for s in player_spawners:
 		var spawner = s as PlayerSpawner
 		spawner.appears()
@@ -384,7 +360,6 @@ func _ready():
 		if j >= len(player_spawners):
 			yield(spawner, "entered_battlefield")
 	
-	get_tree().paused = false
 	camera.activate_camera()
 	
 	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
