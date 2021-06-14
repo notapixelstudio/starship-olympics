@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/traits/Waiter.gd" type="Script" id=2]
+[ext_resource path="res://combat/levels/sets/sports/tennis/TennisManager.gd" type="Script" id=3]
+
+[node name="TennisManager" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Waiter" type="Node" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 2 )

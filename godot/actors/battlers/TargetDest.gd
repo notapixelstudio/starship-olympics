@@ -34,8 +34,6 @@ func get_strategy(ship, distance, game_mode):
 		# ignore me - the Crown/Ball is somewhere onto the battlefield
 		else:
 			return {}
-	elif game_mode.name == 'Pong':
-		return {'shoot': 10}
 	elif game_mode.get_id() == 'king_of_the_castle':
 		# pursue ships of opposing teams and keep close
 		if calling_ship_team != this_ship_team:
