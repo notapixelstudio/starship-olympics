@@ -587,6 +587,7 @@ func _on_Continue_session():
 	if standalone:
 		# forced session to null
 		global.session = null
+		get_tree().paused = false
 		get_tree().reload_current_scene()
 	emit_signal("continue_session")
 	
