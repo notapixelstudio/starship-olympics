@@ -24,7 +24,7 @@ func get_strategy(ship, distance, game_mode):
 		# pursue ships of opposing teams
 		if calling_ship_team != this_ship_team:
 			return {'seek': distance/2000, 'shoot': 0.5}
-	elif game_mode.name == 'Take the Crown' or game_mode.name == 'Slam-a-Gon' or game_mode.name == 'Queen of the Hive':
+	elif game_mode.name == 'Take the Crown' or game_mode.name == 'Slam-a-Gon' or game_mode.name == 'Queen of the Hive' or game_mode.get_id() == 'tennis':
 		# if you have the Crown/Ball, turn away from foes and shoot
 		#if ECM.E(ship).has('Royal'):
 		#	return {'shoot': 0.5}
