@@ -12,7 +12,7 @@
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=11]
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
 shader_param/active = false
 shader_param/strength = 8.0
@@ -211,7 +211,7 @@ anims/invincible = ExtResource( 4 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 5 )
+material = SubResource( 1 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 
@@ -226,4 +226,5 @@ stream = ExtResource( 8 )
 bus = "SFX"
 
 [node name="Shadow" parent="." instance=ExtResource( 10 )]
+self_modulate = Color( 0, 0, 0, 0.313726 )
 sprite = NodePath("../Sprite")
