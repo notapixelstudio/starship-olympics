@@ -861,3 +861,10 @@ func _on_goal_done(player, goal, pos):
 	global.the_match.add_score(player.id, goal.get_score())
 	show_msg(player.species, goal.get_score(), pos)
 	
+var Ripple = load('res://actors/weapons/Ripple.tscn')
+func show_ripple(pos, size=1):
+	var ripple = Ripple.instance()
+	ripple.position = pos
+	ripple.scale = Vector2(size, size)
+	$Battlefield.call_deferred("add_child", ripple)
+	

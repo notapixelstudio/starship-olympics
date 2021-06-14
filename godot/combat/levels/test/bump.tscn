@@ -10,16 +10,16 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/characters/drones.tres" type="Resource" id=9]
 [ext_resource path="res://addons/geometry/GEllipse.gd" type="Script" id=10]
-[ext_resource path="res://combat/managers/BumpManager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/managers/BumperShipsManager.tscn" type="PackedScene" id=11]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 7 )
 style = ExtResource( 6 )
 
-[node name="BumpManager" parent="Managers" index="0" instance=ExtResource( 11 )]
+[node name="BumperShipsManager" parent="Managers" index="0" instance=ExtResource( 11 )]
 
-[node name="ConquestModeManager" parent="Managers" index="9"]
+[node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -29,7 +29,6 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
-offset = 200
 hide_grid = true
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )

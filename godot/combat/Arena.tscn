@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=12]
 [ext_resource path="res://assets/audio/FX/Fast Swish.wav" type="AudioStream" id=13]
 [ext_resource path="res://combat/managers/modes/KillModeManager.gd" type="Script" id=14]
+[ext_resource path="res://combat/managers/BumpManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/modes/ConquestModeManager.gd" type="Script" id=16]
 [ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=18]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=19]
@@ -171,6 +172,8 @@ gameover_scene = ExtResource( 2 )
 environment = ExtResource( 29 )
 
 [node name="Managers" type="Node" parent="."]
+
+[node name="BumpManager" parent="Managers" instance=ExtResource( 15 )]
 
 [node name="CombatManager" type="Node" parent="Managers"]
 script = ExtResource( 3 )
