@@ -10,8 +10,8 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://map/planets/rules/TileFilling.tres" type="Resource" id=9]
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=10]
-[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=11]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=12]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -70,7 +70,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 5 )
-radius = 1000
+radius = 900
 
 [node name="OutsideWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -83,7 +83,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall2" index="8"]
 script = ExtResource( 5 )
-radius = 650
+radius = 550
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -91,13 +91,13 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( 650, 0 )
+position = Vector2( 550, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 12 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( -650, 0 )
+position = Vector2( -550, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 11 )

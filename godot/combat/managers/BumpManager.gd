@@ -1,7 +1,7 @@
 extends Node
 
-const MIN_REL_VELOCITY = 0
-const IMPULSE_MULTIPLIER = 0.9
+const BASE_SPEED = 500
+const SPEED_MULTIPLIER = 1.5
 
 func start():
 	# listen to all ships
@@ -17,14 +17,11 @@ func _on_ship_collided(other, ship):
 	if ship.get_id() < other.get_id():
 		return
 	
-	# bump is good if there's enough speed involved
-	var relative_velocity = (ship.linear_velocity - other.linear_velocity)
-	if relative_velocity.length() < MIN_REL_VELOCITY:
-		return
-	
 	ship.emit_signal('bump')
-	ship.apply_central_impulse(relative_velocity*IMPULSE_MULTIPLIER)
 	other.emit_signal('bump')
-	other.apply_central_impulse(-relative_velocity*IMPULSE_MULTIPLIER)
 	global.arena.show_ripple((ship.position+other.position)/2, 2)
 	$RandomAudioStreamPlayer.play()
+	yield(get_tree(), "idle_frame")
+	ship.linear_velocity = ship.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*ship.linear_velocity.length())
+	other.linear_velocity = other.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*other.linear_velocity.length())
+	
