@@ -12,12 +12,17 @@ func set_msg(value):
 		var sgn = ""
 		if value >= 0:
 			sgn = "+"
+		else:
+			$Label.visible = false
+			$BadLabel.visible = true
 		msg = sgn+str(value)
 	else:
 		msg = value
 		
 	$Label.text = tr(msg)
-
+	$BadLabel.text = tr(msg)
+	
+	
 signal end
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if not still:

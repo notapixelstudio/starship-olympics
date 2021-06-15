@@ -100,14 +100,14 @@ type = 3
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -2000, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 2000, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 6 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3

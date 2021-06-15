@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://special_scenes/on_canvas_ui/FloatingMessage.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,12 @@
 size = 32
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 3
+outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=2]
@@ -20,6 +26,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -125, -50 ), Vector2( -125, -120 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BadLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
@@ -44,6 +62,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BadLabel" type="Label" parent="."]
+visible = false
+margin_left = -125.0
+margin_top = -50.0
+margin_right = 125.0
+margin_bottom = -10.0
+rect_pivot_offset = Vector2( 125, 20 )
+custom_fonts/font = SubResource( 3 )
+text = "+{}"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 2 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

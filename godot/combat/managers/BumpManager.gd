@@ -1,7 +1,7 @@
 extends Node
 
-const MIN_REL_VELOCITY = 175
-const IMPULSE_MULTIPLIER = 0.8
+const MIN_REL_VELOCITY = 0
+const IMPULSE_MULTIPLIER = 0.9
 
 func start():
 	# listen to all ships

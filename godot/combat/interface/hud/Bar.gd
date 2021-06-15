@@ -2,10 +2,10 @@ extends Node2D
 
 class_name Bar
 
-const max_bar_width = 940
+const max_bar_width = 910
 const bar_height = 20
 const ministar_width = 20
-const margin_left = 20
+const margin_left = 50
 const margin_top = 10
 const streak_arrow_width = 8
 var max_score
@@ -41,6 +41,11 @@ func initialize(p: PlayerStats):
 	# megabar
 	$MegaBar.color = species.color
 	
+	# ship and score
+	$Ship.position.x = margin_left
+	$Ship/ScoreLabel.text = str(floor(p.score))
+	$Ship/ScoreLabel.modulate = species.color
+	
 	# ticks
 	for i in range(1, int(max_score)):
 		var tick = Line2D.new()
@@ -73,6 +78,8 @@ func update_stars():
 			stars[i].perfect = player.session_score[i].perfect
 	
 func set_value(value, new_author):
+	$Ship/ScoreLabel.text = str(floor(value))
+	
 	if value == current_value:
 		return
 		
