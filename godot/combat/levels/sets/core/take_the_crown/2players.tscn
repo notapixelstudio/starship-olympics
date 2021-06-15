@@ -65,7 +65,7 @@ tracks/1/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
 
-[node name="CrownModeManager" parent="Managers" index="5"]
+[node name="CrownModeManager" parent="Managers" index="6"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -189,7 +189,6 @@ depth = 50
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -600, 0 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]

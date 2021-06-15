@@ -83,6 +83,11 @@ texture = ExtResource( 11 )
 visible = false
 texture = ExtResource( 12 )
 
-[node name="Shadow" parent="." instance=ExtResource( 13 )]
+[node name="CrownShadow" parent="." instance=ExtResource( 13 )]
+self_modulate = Color( 0, 0, 0, 0.313726 )
+scale = Vector2( 1.3, 1.3 )
+sprite = NodePath("../CrownSprite")
+
+[node name="BallShadow" parent="." instance=ExtResource( 13 )]
 self_modulate = Color( 0, 0, 0, 0.313726 )
 sprite = NodePath("../BallSprite")

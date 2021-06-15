@@ -754,7 +754,7 @@ func _on_sth_dropped(dropper, droppee):
 	droppee.position = dropper.position
 	if dropper is Ship:
 		droppee.linear_velocity = dropper.previous_velocity # this is used with glass walls
-		if droppee is Crown: # crown and balls are held in front of the ship
+		if droppee is Crown and droppee.type != Crown.types.CROWN: # balls are held in front of the ship
 			droppee.position += Vector2(Crown.GRAB_DISTANCE,0).rotated(dropper.rotation)
 	else:
 		droppee.linear_velocity = dropper.linear_velocity

@@ -24,6 +24,9 @@ func _ready():
 	$SoccerBallSprite.visible = type == types.SOCCERBALL
 	$TennisBallSprite.visible = type == types.TENNISBALL
 	
+	$CrownShadow.visible = type == types.CROWN
+	$BallShadow.visible = type != types.CROWN
+	
 	if type == types.CROWN:
 		$CollisionShape2D.shape.radius = 80
 	elif type == types.BALL:
