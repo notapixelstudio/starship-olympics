@@ -85,6 +85,8 @@ order = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
+[node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
+
 [node name="Graphics" parent="." instance=ExtResource( 3 )]
 
 [node name="NearArea" type="Area2D" parent="."]
@@ -201,8 +203,6 @@ __meta__ = {
 enabled = false
 
 [node name="Debug" parent="." instance=ExtResource( 15 )]
-
-[node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
 [node name="TargetDest" type="Position2D" parent="."]
 script = ExtResource( 17 )

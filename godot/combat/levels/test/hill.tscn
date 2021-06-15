@@ -44,7 +44,7 @@ pursuing_bombs = true
 shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
-bomb_type = 5
+bomb_type = 2
 starting_ammo = -1
 reload_time = 3.0
 rules = [  ]
@@ -298,7 +298,7 @@ game_mode = SubResource( 1 )
 [node name="HillManager" type="Node" parent="Managers" index="0"]
 script = ExtResource( 13 )
 
-[node name="ConquestModeManager" parent="Managers" index="9"]
+[node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]

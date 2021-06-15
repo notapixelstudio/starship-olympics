@@ -33,11 +33,11 @@ func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
 	if entity.has('Trigger') and bomb.entity.get('Owned').get_owned_by() != entity.get_host():
 		bomb.detonate()
 		
-func _on_sth_killed(sth, killer : Ship, ship_for_good=false):
-	if sth is Ship:
-		if killer and killer is Ship:
-			if sth == killer:
-				emit_signal('show_msg', sth.species, 'SELF KILL!', sth.position)
-			elif killer.info_player.team == sth.info_player.team:
-				emit_signal('show_msg', sth.species, 'MATE KILL!', sth.position)
-			
+#func _on_sth_killed(sth, killer : Ship, ship_for_good=false):
+#	if sth is Ship:
+#		if killer and killer is Ship:
+#			if sth == killer:
+#				emit_signal('show_msg', sth.species, 'SELF KILL!', sth.position)
+#			elif killer.info_player.team == sth.info_player.team:
+#				emit_signal('show_msg', sth.species, 'MATE KILL!', sth.position)
+#			

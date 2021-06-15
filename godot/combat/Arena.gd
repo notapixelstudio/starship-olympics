@@ -738,7 +738,7 @@ func show_msg(species: Species, msg, pos):
 	$Battlefield.add_child(msg_node)
 
 func _on_sth_collected(collector, collectee):
-	if collectee is Crown and collectee.type == Crown.types.SOCCERBALL:
+	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
 		
 	if collectee is PowerUp:
@@ -754,6 +754,8 @@ func _on_sth_dropped(dropper, droppee):
 	droppee.position = dropper.position
 	if dropper is Ship:
 		droppee.linear_velocity = dropper.previous_velocity # this is used with glass walls
+		if droppee is Crown and droppee.type != Crown.types.CROWN: # balls are held in front of the ship
+			droppee.position += Vector2(Crown.GRAB_DISTANCE,0).rotated(dropper.rotation)
 	else:
 		droppee.linear_velocity = dropper.linear_velocity
 		
