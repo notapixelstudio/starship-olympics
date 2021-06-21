@@ -288,7 +288,6 @@ func _ready():
 		mode_description.set_process_input(false)
 		yield(get_tree().create_timer(3), "timeout")
 		mode_description.disappears()
-	camera.isShake = true
 	
 	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
