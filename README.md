@@ -21,7 +21,7 @@ Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com
 
 [<img src="https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png" alt="Join our Discord Server" title="Join our Discord Server">]( https://discord.gg/tchr6qpj59) [<img src="https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png" alt="Follow us on Twitter" title="Follow us on Twitter">](https://twitter.com/notapixelstudio) [<img src="https://img.itch.zone/aW1nLzI2ODI2MjkucG5n/original/6qfdLm.png" alt="Follow us Instagram" title="Follow us on Instagram">](https://instagram.com/notapixelstudio)
 
-Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/3k4NzEj.
+Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/tchr6qpj59.
 
 ## Resources used and acknowledgements
 
