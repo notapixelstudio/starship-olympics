@@ -54,6 +54,7 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 		if not(player.team in teams):
 			team_score = TeamStats.new()
 			scores.append(team_score)
+			team_score.score = game_mode.starting_score
 			teams[player.team] = team_score
 		else:
 			team_score = teams[player.team]
