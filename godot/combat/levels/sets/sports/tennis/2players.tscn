@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://combat/minigames/Tennis.tres" type="Resource" id=1]
+[ext_resource path="res://combat/modes/Tennis.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
@@ -31,9 +31,9 @@ solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/Wall" index="8"]
 script = ExtResource( 2 )
-width = 800
-height = 3800
-radius = 400
+width = 400
+height = 2400
+radius = 200
 precision = 100.0
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
@@ -49,62 +49,63 @@ script = ExtResource( 14 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -2500, 900, -2500, -900, 0, -1500, 2500, -900, 2500, 900, 0, 1500 )
+polygon = PoolVector2Array( -2000, 600, -2000, -600, 0, -1000, 2000, -600, 2000, 600, 0, 1000 )
 
 [node name="WallGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
+position = Vector2( -2000, 6.10352e-05 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="WallGoal2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
-position = Vector2( 2500, 0 )
+position = Vector2( 2000, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
-position = Vector2( -2500, 900 )
+position = Vector2( -2000, 650 )
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
 script = ExtResource( 13 )
-radius = 300
+radius = 200
 sides = 4.0
 
 [node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
-position = Vector2( -2500, -900 )
+position = Vector2( -2000, -650 )
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
 script = ExtResource( 13 )
-radius = 300
+radius = 200
 sides = 4.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
-position = Vector2( 2500, -900 )
+position = Vector2( 2000, -650 )
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
 script = ExtResource( 13 )
-radius = 300
+radius = 200
 sides = 4.0
 
 [node name="Wall6" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
-position = Vector2( 2500, 900 )
+position = Vector2( 2000, 650 )
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall6" index="4"]
 script = ExtResource( 13 )
-radius = 300
+radius = 200
 sides = 4.0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = 3
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -2000, 0 )
+position = Vector2( -1300, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 2000, 0 )
+position = Vector2( 1300, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 6 )

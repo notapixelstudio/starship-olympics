@@ -52,7 +52,7 @@ func control(delta):
 	#	target_velocity = target_vel.normalized()
 	target_velocity = local_handling()
 	#rotation_request = find_side(Vector2(0,0), front, target_velocity)
-	if target_velocity == Vector2.ZERO:
+	if target_velocity.length() <= 0.1: # vector deadzone
 		rotation_request = 0
 	else:
 		rotation_request = front.angle_to(target_velocity)
@@ -75,8 +75,8 @@ func control(delta):
 		fire()
 		
 	# overcharge
-	if charge > MAX_OVERCHARGE:
-		fire()
+	#if charge > MAX_OVERCHARGE:
+	#	fire()
 		
 	# cooldown
 	fire_cooldown -= delta * Engine.time_scale

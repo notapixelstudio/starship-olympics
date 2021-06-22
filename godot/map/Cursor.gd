@@ -70,14 +70,16 @@ var left
 var right
 var accept
 
+const DEADZONE = 0.1
+
 func _process(delta):
 	if action_time >= 0.0:
 		action_time -= delta
 		
-	down = Input.is_action_just_pressed(player.controls+"_down")
-	up = Input.is_action_just_pressed(player.controls+"_up")
-	left = Input.is_action_just_pressed(player.controls+"_left")
-	right = Input.is_action_just_pressed(player.controls+"_right")
+	down = Input.is_action_just_pressed(player.controls+"_down") and Input.get_action_strength(player.controls+"_down") > DEADZONE
+	up = Input.is_action_just_pressed(player.controls+"_up") and Input.get_action_strength(player.controls+"_up") > DEADZONE
+	left = Input.is_action_just_pressed(player.controls+"_left") and Input.get_action_strength(player.controls+"_left") > DEADZONE
+	right = Input.is_action_just_pressed(player.controls+"_right") and Input.get_action_strength(player.controls+"_right") > DEADZONE
 	accept = Input.is_action_just_pressed(player.controls+"_fire")
 	
 	if not enabled and (down or up or left or right):
@@ -92,10 +94,10 @@ func _process(delta):
 	if accept and enabled:
 		emit_signal('select', self)
 	
-	down = Input.is_action_pressed(player.controls+"_down") and action_time <= 0.0
-	up = Input.is_action_pressed(player.controls+"_up") and action_time <= 0.0
-	left = Input.is_action_pressed(player.controls+"_left") and action_time <= 0.0
-	right = Input.is_action_pressed(player.controls+"_right") and action_time <= 0.0
+	down = Input.is_action_pressed(player.controls+"_down") and Input.get_action_strength(player.controls+"_down") > DEADZONE and action_time <= 0.0
+	up = Input.is_action_pressed(player.controls+"_up") and Input.get_action_strength(player.controls+"_up") > DEADZONE and action_time <= 0.0
+	left = Input.is_action_pressed(player.controls+"_left") and Input.get_action_strength(player.controls+"_left") > DEADZONE and action_time <= 0.0
+	right = Input.is_action_pressed(player.controls+"_right") and Input.get_action_strength(player.controls+"_right") > DEADZONE and action_time <= 0.0
 	accept = Input.is_action_pressed(player.controls+"_fire") and action_time <= 0.0
 	
 	for key in controls_map:

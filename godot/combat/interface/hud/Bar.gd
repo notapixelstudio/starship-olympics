@@ -43,7 +43,6 @@ func initialize(p: PlayerStats):
 	
 	# ship and score
 	$Ship.position.x = margin_left
-	$Ship/ScoreLabel.text = str(floor(p.score))
 	$Ship/ScoreLabel.modulate = species.color
 	
 	# ticks
@@ -65,6 +64,7 @@ func initialize(p: PlayerStats):
 		add_child(star)
 		
 	update_stars()
+	set_value(p.team_stats.score, p)
 	
 func update_stars():
 	var stars = []

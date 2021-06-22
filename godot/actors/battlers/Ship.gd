@@ -25,7 +25,7 @@ var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
 
-var THRUST = 4400
+var THRUST = 6500
 
 var shields = 0
 var max_shields = 1
@@ -43,12 +43,12 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
-const DASH_MULTIPLIER = 2.2
+const DASH_MULTIPLIER = 2.8
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1100
-const BALL_BOOST = 1650
+const BALL_BOOST = 2000
 const BOMB_CHARGE_MULTIPLIER = 1.4
-const BALL_CHARGE_MULTIPLIER = 1.8
+const BALL_CHARGE_MULTIPLIER = 2.1
 const BULLET_BOOST = 1500
 const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
@@ -57,7 +57,7 @@ const OUTSIDE_COUNTUP = 3.0
 const ARKABALL_OFFSET = 250
 const ARKABALL_MULTIPLIER = 3
 
-const ROTATION_TORQUE = 46000*9 # 9 because we enlarged the radius by 3
+const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
 var responsive = false setget change_engine
 var info_player setget set_info_player
@@ -83,7 +83,7 @@ var charging_enough = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 var phasing_cooldown = 0
-var reload_time: int
+var reload_time : float
 
 var game_mode : GameMode
 
@@ -369,6 +369,7 @@ func fire(override_charge = -1, dash_only = false):
 		golf = false
 	elif get_bombs_enabled() and not dash_only:
 		bomb_count += 1
+		will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0) # FIXME this is repeated twice, should also be reflected by visual feedback
 		if will_fire:
 			ammo.shot()
 			should_reload = true

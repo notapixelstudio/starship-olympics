@@ -5,7 +5,7 @@ class_name Brick
 
 var points = 1
 
-enum TYPE { solid, diamond, gold, respawner, harmful }
+enum TYPE { solid, diamond, gold, respawner, harmful, super }
 export(TYPE) var type = TYPE.diamond setget set_type
 
 signal killed
@@ -34,7 +34,12 @@ func set_type(v):
 		$Sprite.modulate = Color(0.1,0.9,0.2,1)
 		$Under.texture = load('res://assets/sprites/bricks/respawner_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/respawner.png')
-		
+	elif type == TYPE.super:
+		$Under.modulate = Color('#fff700')
+		$Sprite.modulate = Color('#fff700')
+		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
+		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
+		points = 10
 	# orange Color('#c18a2a')
 	
 func break(breaker):
@@ -53,7 +58,7 @@ func break(breaker):
 		queue_free()
 		return
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	
 	if type == TYPE.respawner:
 		$AnimationPlayer.play_backwards("Break")

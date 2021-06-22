@@ -484,8 +484,8 @@ func ship_just_died(ship, killer, for_good):
 	if not for_good:
 		$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 		
-		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity)
-		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*20)
+		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity*0.5)
+		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length())
 	
 	var focus
 	
