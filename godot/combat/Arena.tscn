@@ -293,7 +293,7 @@ script = ExtResource( 22 )
 [node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
 space_override = 3
 gravity = 0.0
-linear_damp = 8.0
+linear_damp = 9.0
 angular_damp = 25.0
 collision_layer = 0
 collision_mask = 8193
@@ -321,15 +321,6 @@ anims/Rotate = SubResource( 2 )
 script = ExtResource( 24 )
 width = 20000
 height = 20000
-
-[node name="GravitationalArea" type="Area2D" parent="Battlefield/Background"]
-visible = false
-space_override = 3
-linear_damp = 5.0
-collision_layer = 128
-collision_mask = 8193
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/GravitationalArea"]
 
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
