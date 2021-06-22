@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://combat/minigames/SlamAGon.tres" type="Resource" id=1]
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=2]
 [ext_resource path="res://combat/minigames/Sumo.tres" type="Resource" id=3]
 [ext_resource path="res://combat/minigames/GoalPortal.tres" type="Resource" id=4]
+[ext_resource path="res://combat/minigames/Tennis.tres" type="Resource" id=5]
 [ext_resource path="res://assets/map/cards/sports_set.png" type="Texture" id=12]
 
 [resource]
@@ -13,6 +14,6 @@ name = "Sports"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ) ]
+minigames = [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ]
 planet_sprite = ExtResource( 12 )
 mutators = [  ]

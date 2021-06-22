@@ -1,18 +1,16 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/rules/TileFilling.tres" type="Resource" id=2]
-[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=3]
-[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=4]
+[ext_resource path="res://assets/icon/minicards/sets/sumo.png" type="Texture" id=3]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
 id = "sumo"
 is_mutator = false
-name = "Board Conquest"
-icon = ExtResource( 4 )
-logo = ExtResource( 3 )
+name = "Sumo"
+icon = ExtResource( 3 )
 arena_style = ExtResource( 5 )
 description = "fill more cells than opponents"
 tagline_pro = "Don't forget your opponents would do the same"
