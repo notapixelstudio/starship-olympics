@@ -389,6 +389,7 @@ uppercase = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ReadyToFight"]
 playback_speed = 2.0
 anims/close = SubResource( 8 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="deactivated" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_deactivated"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]

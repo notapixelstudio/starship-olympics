@@ -74,22 +74,23 @@ func change_species(new_species):
 
 const FIRST_DELAY = 0.4
 const FOLLOW_DELAY = 0.2
+const DEADZONE = 0.1
 
 var action_time = 0.0
 func _process(delta):
 	if action_time >= 0.0:
 		action_time -= delta
-	if Input.is_action_just_pressed(controls+"_right") and not global.demo:
+	if Input.is_action_just_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo:
 		_on_Next_pressed()
 		action_time = FIRST_DELAY
-	if Input.is_action_just_pressed(controls+"_left") and not global.demo:
+	if Input.is_action_just_pressed(controls+"_left") and Input.get_action_strength(controls+"_left") > DEADZONE and not global.demo:
 		_on_Previous_pressed()
 		action_time = FIRST_DELAY
 		
-	if Input.is_action_pressed(controls+"_right") and not global.demo and action_time <= 0.0:
+	if Input.is_action_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo and action_time <= 0.0:
 		_on_Next_pressed()
 		action_time = FOLLOW_DELAY
-	elif Input.is_action_pressed(controls+"_left") and not global.demo and action_time <= 0.0:
+	elif Input.is_action_pressed(controls+"_left") and Input.get_action_strength(controls+"_left") > DEADZONE and not global.demo and action_time <= 0.0:
 		_on_Previous_pressed()
 		action_time = FOLLOW_DELAY
 		
