@@ -83,7 +83,7 @@ var charging_enough = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 var phasing_cooldown = 0
-var reload_time: int
+var reload_time : float
 
 var game_mode : GameMode
 
@@ -369,6 +369,7 @@ func fire(override_charge = -1, dash_only = false):
 		golf = false
 	elif get_bombs_enabled() and not dash_only:
 		bomb_count += 1
+		will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0) # FIXME this is repeated twice, should also be reflected by visual feedback
 		if will_fire:
 			ammo.shot()
 			should_reload = true

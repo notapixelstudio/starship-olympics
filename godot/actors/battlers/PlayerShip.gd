@@ -75,8 +75,8 @@ func control(delta):
 		fire()
 		
 	# overcharge
-	if charge > MAX_OVERCHARGE:
-		fire()
+	#if charge > MAX_OVERCHARGE:
+	#	fire()
 		
 	# cooldown
 	fire_cooldown -= delta * Engine.time_scale

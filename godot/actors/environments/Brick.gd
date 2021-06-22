@@ -53,7 +53,7 @@ func break(breaker):
 		queue_free()
 		return
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	
 	if type == TYPE.respawner:
 		$AnimationPlayer.play_backwards("Break")
