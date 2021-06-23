@@ -4,24 +4,24 @@ const BASE_SPEED = 500
 const SPEED_MULTIPLIER = 1.5
 
 func start():
-	# listen to all ships
-	for ship in get_tree().get_nodes_in_group('player_ship'):
-		ship.connect('body_entered', self, '_on_ship_collided', [ship])
+	# listen to all bumpers
+	for bumper in traits.get_all_with('Bumper'):
+		bumper.connect('body_entered', self, '_on_bumper_collided', [bumper])
 		
-func _on_ship_collided(other, ship):
-	assert(ship is Ship)
-	if not(other is Ship):
+func _on_bumper_collided(bumper_b, bumper_a):
+	assert(traits.has_trait(bumper_a, 'Bumper'))
+	if not(traits.has_trait(bumper_b, 'Bumper')):
 		return
 	
 	# avoid checking bump twice per collision
-	if ship.get_id() < other.get_id():
+	if bumper_a.get_instance_id() < bumper_b.get_instance_id():
 		return
 	
-	ship.emit_signal('bump')
-	other.emit_signal('bump')
-	global.arena.show_ripple((ship.position+other.position)/2, 2)
+	bumper_a.emit_signal('bump')
+	bumper_b.emit_signal('bump')
+	global.arena.show_ripple((bumper_a.position+bumper_b.position)/2, 2)
 	$RandomAudioStreamPlayer.play()
 	yield(get_tree(), "idle_frame")
-	ship.linear_velocity = ship.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*ship.linear_velocity.length())
-	other.linear_velocity = other.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*other.linear_velocity.length())
+	bumper_a.linear_velocity = bumper_a.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*bumper_a.linear_velocity.length())
+	bumper_b.linear_velocity = bumper_b.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*bumper_b.linear_velocity.length())
 	
