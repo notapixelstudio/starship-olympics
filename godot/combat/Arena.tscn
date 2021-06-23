@@ -16,6 +16,7 @@
 [ext_resource path="res://combat/managers/modes/KillModeManager.gd" type="Script" id=14]
 [ext_resource path="res://combat/managers/BumpManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/modes/ConquestModeManager.gd" type="Script" id=16]
+[ext_resource path="res://combat/managers/modes/SurvivalModeManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=18]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=19]
 [ext_resource path="res://assets/audio/FX/pickup--generic-pickup-sfx-for-collection-of-item--2-sound-effect-16598511.ogg" type="AudioStream" id=20]
@@ -32,7 +33,6 @@
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
-[ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=34]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=35]
 [ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=36]
 
@@ -275,12 +275,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="SurvivalModeManager" type="Node" parent="Managers"]
-script = ExtResource( 34 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
-enabled = false
+[node name="SurvivalModeManager" parent="Managers" instance=ExtResource( 17 )]
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
