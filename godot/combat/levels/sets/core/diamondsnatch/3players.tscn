@@ -19,7 +19,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=18]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=19]
-[ext_resource path="res://actors/environments/Gel.gd" type="Script" id=20]
+[ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -63,7 +63,9 @@ game_mode = ExtResource( 14 )
 style = ExtResource( 12 )
 match_duration_override = 90.0
 
-[node name="CollectModeManager" parent="Managers" index="10"]
+[node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 20 )]
+
+[node name="CollectModeManager" parent="Managers" index="12"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -123,7 +125,6 @@ height = 150
 [node name="DiamondSpawner" parent="Battlefield/Middleground" index="2" instance=ExtResource( 13 )]
 
 [node name="Coin" parent="Battlefield/Middleground/DiamondSpawner" index="0" instance=ExtResource( 15 )]
-appear = false
 
 [node name="DiamondSpawner2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 13 )]
 position = Vector2( -600, 700 )
@@ -611,25 +612,15 @@ rotation = -1.5708
 ]]
 anims/Default = SubResource( 2 )
 
-[node name="Gel" type="Area2D" parent="Battlefield/Middleground" index="48" instance=ExtResource( 19 )]
+[node name="Gel" parent="Battlefield/Middleground" index="48" instance=ExtResource( 19 )]
 position = Vector2( 0, 850 )
 rotation = -1.5708
-z_index = -8
-z_as_relative = false
-collision_layer = 0
-collision_mask = 2
-script = ExtResource( 20 )
 width = 1400
 depth = 50
 
-[node name="Gel2" type="Area2D" parent="Battlefield/Middleground" index="49" instance=ExtResource( 19 )]
+[node name="Gel2" parent="Battlefield/Middleground" index="49" instance=ExtResource( 19 )]
 position = Vector2( 0, -850 )
 rotation = 1.5708
-z_index = -8
-z_as_relative = false
-collision_layer = 0
-collision_mask = 2
-script = ExtResource( 20 )
 width = 1400
 depth = 50
 
