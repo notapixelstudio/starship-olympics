@@ -7,11 +7,17 @@ func start():
 	for ship in get_tree().get_nodes_in_group('player_ship'):
 		player_ships[ship.get_player().id] = ship
 		
+		ship.connect('collect', self, '_on_ship_collect', [ship])
 		ship.connect('spawned', self, '_on_ship_spawned')
 		ship.connect('dead', self, '_on_ship_died')
 		
 	# listen for score updates
 	global.the_match.connect('updated', self, '_on_score_updated')
+	
+func _on_ship_collect(what, ship):
+	if what is Fruit:
+		global.the_match.add_score(ship.get_player().id, 1)
+		global.arena.show_msg(ship.species, 1, what.global_position)
 	
 func _on_ship_spawned(ship):
 	update_trail(ship)

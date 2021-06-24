@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://combat/collectables/Fruit.gd" type="Script" id=7]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=9]
+[ext_resource path="res://combat/traits/Collectable.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 120.0
@@ -54,6 +55,8 @@ script = ExtResource( 7 )
 type = "pear"
 
 [node name="Strategic" parent="." instance=ExtResource( 6 )]
+
+[node name="Collectable" parent="." instance=ExtResource( 10 )]
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 2 )
