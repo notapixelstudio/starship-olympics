@@ -54,12 +54,14 @@ script = ExtResource( 4 )
 enabled = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+light_mask = 2
 color = Color( 0.309804, 0.247059, 0.235294, 1 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="InnerPolygon2D" type="Polygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0.109804 )
+light_mask = 2
 scale = Vector2( 0.5, 0.5 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
@@ -71,6 +73,7 @@ texture = ExtResource( 6 )
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
+light_mask = 2
 z_as_relative = false
 points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -99.9999, -100, 0, -100 )
 width = 48.0
@@ -84,6 +87,7 @@ round_precision = 20
 
 [node name="lineBelow" type="Line2D" parent="."]
 self_modulate = Color( 0.596078, 0.596078, 0.596078, 1 )
+light_mask = 2
 position = Vector2( -1.39876e-06, 32 )
 z_index = -10
 z_as_relative = false
@@ -110,3 +114,10 @@ collision_mask = 8193
 visible = false
 modulate = Color( 1, 0, 0, 1 )
 disabled = true
+
+[node name="NearWallZone" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="NearWallZone"]
+z_index = -12
+z_as_relative = false
+color = Color( 0, 0.27451, 1, 0.156863 )

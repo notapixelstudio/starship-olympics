@@ -194,6 +194,18 @@ func refresh():
 	$InnerPolygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
 	
+	# nearwall zones for wall dash
+	if type != TYPE.ghost and type != TYPE.decoration:
+		var enlarged = Geometry.offset_polygon_2d(points, 140.0, Geometry.JOIN_ROUND)[0]
+		
+		if hollow:
+			var shrunk = Geometry.offset_polygon_2d(points, -140.0, Geometry.JOIN_ROUND)[0]
+			var clipped = Geometry.clip_polygons_2d(enlarged, shrunk)
+			var internal = clipped[0] + PoolVector2Array([clipped[1][-1]]) + clipped[1] + PoolVector2Array([clipped[0][-1]])
+			$NearWallZone/Polygon2D.polygon = internal
+		else:
+			$NearWallZone/Polygon2D.polygon = enlarged
+			
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
 	$line.visible = not hide_line
@@ -276,7 +288,8 @@ func _process(delta):
 func update_iso():
 	if not Engine.editor_hint: # global is not available at editor time
 		$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
-	
+		$NearWallZone/Polygon2D.position = global.isometric_offset.rotated(-global_rotation)
+		
 func animate(animation_name: String):
 	if $AnimationPlayer:
 		if $AnimationPlayer.assigned_animation != animation_name:
