@@ -165,6 +165,9 @@ func remove_point_to_segment(point):
 	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 
+func set_duration(value):
+	trail.time_alive_per_point = value
 
-
-
+func add_duration(value):
+	trail.time_alive_per_point += value
+	

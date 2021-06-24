@@ -112,6 +112,7 @@ signal dash_started
 signal dash_ended
 
 signal bump
+signal collect
 
 var invincible : bool
 

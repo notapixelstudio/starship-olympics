@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=21]
 [ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=22]
 [ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=23]
+[ext_resource path="res://combat/traits/Collector.tscn" type="PackedScene" id=24]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -84,6 +85,8 @@ species = ExtResource( 2 )
 order = 1
 
 [node name="Bumper" parent="." instance=ExtResource( 23 )]
+
+[node name="Collector" parent="." instance=ExtResource( 24 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

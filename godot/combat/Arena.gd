@@ -620,7 +620,7 @@ func create_trail(ship):
 	ship.trail = trail
 	return trail
 
-func spawn_ship(player:PlayerSpawner):
+func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
 	if player.is_cpu():
 		ship = cpu_ship_scene.instance()
@@ -645,6 +645,9 @@ func spawn_ship(player:PlayerSpawner):
 	
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
+	
+	if force_intro:
+		ship.intro()
 	
 	# smoothly transition 
 	var focus = element_in_camera_scene.instance()
@@ -830,7 +833,7 @@ func _on_ship_fallen(ship, spawner):
 	ship.die(null, true) # die for good
 	yield(get_tree().create_timer(1), "timeout")
 	spawner.appears()
-	spawn_ship(spawner)
+	spawn_ship(spawner, true) # force intro
 	
 func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')

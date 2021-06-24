@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/managers/modes/FruitManager.gd" type="Script" id=2]
+
+[node name="FruitManager" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Waiter" parent="." instance=ExtResource( 1 )]
