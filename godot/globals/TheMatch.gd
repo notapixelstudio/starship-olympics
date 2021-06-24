@@ -115,6 +115,10 @@ func do_game_over():
 	game_over = true
 	emit_signal("game_over", winners)
 	
+func get_score(id_player : String):
+	var player = get_player(id_player)
+	return teams[player.team].score
+	
 func set_score(id_player : String, amount : float, broadcasted = false):
 	var player = get_player(id_player)
 	player.score = amount
