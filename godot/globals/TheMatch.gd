@@ -24,6 +24,9 @@ const DEADZONE = 0.1
 signal game_over
 signal updated
 
+func _init():
+	global.the_match = self
+
 func start():
 	set_process(true)
 

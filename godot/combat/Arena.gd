@@ -128,9 +128,15 @@ func setup_level(mode : Resource):
 			# send stats for settings
 			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
 	
-func _ready():
+func _init():
 	global.arena = self
+
+	# Initialize the match
+	the_match = TheMatch.new()
+	the_match.connect("game_over", self, "on_gamemode_gameover")
+	connect("update_stats", the_match, "update_stats")
 	
+func _ready():
 	set_process(false)
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
@@ -153,14 +159,7 @@ func _ready():
 	
 	# Analytics
 	analytics.start_elapsed_time()
-	
-	
-	# Initialize the match
-	the_match = TheMatch.new()
-	the_match.connect("game_over", self, "on_gamemode_gameover")
-	global.the_match = the_match
-	connect("update_stats", the_match, "update_stats")
-	
+
 	
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
 	

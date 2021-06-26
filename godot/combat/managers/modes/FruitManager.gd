@@ -2,11 +2,7 @@ extends Node
 
 var player_ships = {}
 
-func start():
-	# register all ships
-	for ship in get_tree().get_nodes_in_group('player_ship'):
-		register_ship(ship)
-		
+func _ready():
 	# listen for score updates
 	global.the_match.connect('updated', self, '_on_score_updated')
 	
