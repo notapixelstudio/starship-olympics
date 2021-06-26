@@ -5,14 +5,23 @@ var player_ships = {}
 func start():
 	# register all ships
 	for ship in get_tree().get_nodes_in_group('player_ship'):
-		player_ships[ship.get_player().id] = ship
-		
-		ship.connect('collect', self, '_on_ship_collect', [ship])
-		ship.connect('spawned', self, '_on_ship_spawned')
-		ship.connect('dead', self, '_on_ship_died')
+		register_ship(ship)
 		
 	# listen for score updates
 	global.the_match.connect('updated', self, '_on_score_updated')
+	
+	# listen for ship reentering as new
+	global.arena.connect('ship_spawned', self, '_on_ship_spawned') # if we receive this, the ship has spawned as new
+	
+func register_ship(ship):
+	player_ships[ship.get_player().id] = ship
+	
+	ship.connect('collect', self, '_on_ship_collect', [ship])
+	ship.connect('dead', self, '_on_ship_died')
+	ship.connect('spawned', self, '_on_ship_spawned') # if we receive this, the ship has REspwaned
+	
+func unregister_ship(ship):
+	player_ships.erase(ship.get_player().id)
 	
 func _on_ship_collect(what, ship):
 	if what is Fruit:
@@ -20,6 +29,7 @@ func _on_ship_collect(what, ship):
 		global.arena.show_msg(ship.species, 1, what.global_position)
 	
 func _on_ship_spawned(ship):
+	register_ship(ship) # this is needed only when a brand new ship is spawned
 	update_trail(ship)
 	
 func _on_score_updated(player, broadcasted):
@@ -37,3 +47,5 @@ func _on_ship_died(ship, killer, for_good):
 		global.the_match.add_score(ship.get_player().id, -malus)
 		global.arena.show_msg(ship.species, -malus, ship.position)
 	
+	if for_good:
+		unregister_ship(ship)

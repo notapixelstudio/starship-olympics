@@ -620,6 +620,7 @@ func create_trail(ship):
 	ship.trail = trail
 	return trail
 
+signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
 	if player.is_cpu():
@@ -645,6 +646,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
+	emit_signal('ship_spawned', ship)
 	
 	if force_intro:
 		ship.intro()
