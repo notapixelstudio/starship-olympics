@@ -424,7 +424,7 @@ func fire(override_charge = -1, dash_only = false):
 		
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
-		if shields > 0:
+		if shields > 0 and not for_good:
 			lower_shield()
 			make_invincible()
 			rebound()

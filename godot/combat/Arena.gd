@@ -830,9 +830,7 @@ func _on_Rock_request_spawn(child):
 	$Battlefield.add_child(child)
 
 func _on_EndlessArea_body_exited(body):
-	if body is Ship:
-		body.position = Vector2(0,0)
-	else:
+	if is_instance_valid(body):
 		body.queue_free()
 		
 func _on_ship_fallen(ship, spawner):
@@ -891,4 +889,7 @@ func unregister_ship(ship):
 	
 func get_ship_from_player(player):
 	return player_ships[player.id]
+	
+func is_ship_valid(ship):
+	return ship in player_ships.values()
 	
