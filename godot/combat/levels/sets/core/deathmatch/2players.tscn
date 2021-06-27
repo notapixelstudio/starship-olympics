@@ -260,10 +260,12 @@ sides = 4.0
 [node name="Glue" parent="Battlefield/Middleground/Variants/A" index="4" instance=ExtResource( 16 )]
 position = Vector2( -900, 500 )
 rotation = -0.785398
+depth = 0
 
 [node name="Glue2" parent="Battlefield/Middleground/Variants/A" index="5" instance=ExtResource( 16 )]
 position = Vector2( 900, -500 )
 rotation = 2.35619
+depth = 0
 
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
 visible = false
