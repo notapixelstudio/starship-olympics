@@ -191,7 +191,11 @@ func refresh():
 	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass) and under == 'both'
 	
 	$Polygon2D.set_polygon(points)
-	$InnerPolygon2D.set_polygon(points)
+	var shrunk = Geometry.offset_polygon_2d(points, -40)
+	if len(shrunk) > 0:
+		$InnerPolygon2D.set_polygon(shrunk[0])
+	else:
+		$InnerPolygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
 	
 	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
@@ -223,6 +227,7 @@ func refresh():
 	if type == TYPE.hostile:
 		color = Color(1.2, 0, 0.35)
 		$Polygon2D.modulate = color
+		$InnerPolygon2D.modulate = color
 		$line.modulate = color
 		$lineBelow.modulate = color
 		$Entity/Deadly.enabled = true
@@ -231,6 +236,7 @@ func refresh():
 		$lineBelow.visible = false
 	elif type == TYPE.solid:
 		$Polygon2D.modulate = solid_line_color
+		$InnerPolygon2D.modulate = solid_line_color
 		$line.modulate = solid_line_color
 		$lineBelow.modulate = solid_line_color
 		$Entity/Deadly.enabled = false
@@ -245,6 +251,7 @@ func refresh():
 	elif type == TYPE.glass:
 		color = Color(0.4,0.7,1.2,1)
 		$Polygon2D.modulate = color
+		$InnerPolygon2D.modulate = color
 		$line.modulate = color
 		$lineBelow.modulate = color
 		$lineBelow.self_modulate = Color(1,1,1,0.4)
