@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=14]
 [ext_resource path="res://assets/icon/skull.png" type="Texture" id=15]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=16]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -92,13 +93,13 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="skull" type="Sprite" parent="Battlefield/Background" index="5"]
+[node name="skull" type="Sprite" parent="Battlefield/Background" index="4"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
 position = Vector2( -1000, -100 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 15 )
 
-[node name="skull2" type="Sprite" parent="Battlefield/Background" index="6"]
+[node name="skull2" type="Sprite" parent="Battlefield/Background" index="5"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
 position = Vector2( 1000, 3.8147e-06 )
 scale = Vector2( 5, 5 )
@@ -191,39 +192,7 @@ line_texture = ExtResource( 7 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall12" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
-position = Vector2( 200, 200 )
-rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall12" index="5"]
-script = ExtResource( 2 )
-width = 700
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall14" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
-position = Vector2( -200, -200 )
-rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall14" index="5"]
-script = ExtResource( 2 )
-width = 700
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
 position = Vector2( 1700, -100 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -232,7 +201,7 @@ line_texture = ExtResource( 7 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="10" instance=ExtResource( 8 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
 position = Vector2( -1000, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -242,7 +211,7 @@ script = ExtResource( 1 )
 radius = 200
 sides = 4.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 8 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
 position = Vector2( 1000, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -251,6 +220,105 @@ line_texture = ExtResource( 7 )
 script = ExtResource( 1 )
 radius = 200
 sides = 4.0
+
+[node name="Variants" parent="Battlefield/Middleground" index="10" instance=ExtResource( 17 )]
+
+[node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
+visible = false
+
+[node name="Wall12" parent="Battlefield/Middleground/Variants/A" index="0" instance=ExtResource( 8 )]
+position = Vector2( 200, 200 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall12" index="5"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall14" parent="Battlefield/Middleground/Variants/A" index="1" instance=ExtResource( 8 )]
+position = Vector2( -200, -200 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall14" index="5"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
+
+[node name="Wall13" parent="Battlefield/Middleground/Variants/B" index="0" instance=ExtResource( 8 )]
+position = Vector2( 0, 400 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall13" index="5"]
+script = ExtResource( 2 )
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall15" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 8 )]
+position = Vector2( -400, 0 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall15" index="5"]
+script = ExtResource( 2 )
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall14" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 8 )]
+position = Vector2( 400, 0 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall14" index="5"]
+script = ExtResource( 2 )
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall16" parent="Battlefield/Middleground/Variants/B" index="3" instance=ExtResource( 8 )]
+position = Vector2( 0, -400 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall16" index="5"]
+script = ExtResource( 2 )
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
 [node name="Glue" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( -900, 500 )
@@ -263,7 +331,6 @@ rotation = 2.35619
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
