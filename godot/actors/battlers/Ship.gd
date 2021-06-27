@@ -134,6 +134,7 @@ func initialize():
 	pass
 
 signal spawned
+
 var bombs_enabled : bool = true setget set_bombs_enabled
 var bomb_type
 

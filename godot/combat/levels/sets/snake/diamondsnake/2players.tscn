@@ -11,13 +11,13 @@
 [ext_resource path="res://combat/styles/purple.tres" type="Resource" id=9]
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=10]
 [ext_resource path="res://actors/environments/DiamondSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=13]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=15]
 [ext_resource path="res://combat/modes/DiamondSnake.tres" type="Resource" id=16]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/managers/modes/FruitManager.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/collectables/Fruit.tscn" type="PackedScene" id=19]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -91,8 +91,8 @@ position = Vector2( 0, -800 )
 modulate = Color( 0.8, 0.8, 0.8, 0.9 )
 texture = ExtResource( 10 )
 texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.19114, 0.1102, 0.38, 1 )
-bg_color = Color( 0.168875, 0.1085, 0.35, 1 )
+fg_color = Color( 0.192157, 0.109804, 0.380392, 1 )
+bg_color = Color( 0.168627, 0.109804, 0.34902, 1 )
 
 [node name="Wall3" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( -1200, -1200 )
@@ -187,348 +187,490 @@ anims/Default = SubResource( 2 )
 [node name="DiamondSpawner" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
 position = Vector2( 0, 1050 )
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 11 )]
 position = Vector2( -600, -100 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner2" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner2" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner4" parent="Battlefield/Middleground" index="8" instance=ExtResource( 11 )]
 position = Vector2( 550, -1250 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner4" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner4" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner3" parent="Battlefield/Middleground" index="9" instance=ExtResource( 11 )]
 position = Vector2( 0, -1450 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner3" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner3" index="0" instance=ExtResource( 19 )]
+random = true
 
 [node name="DiamondSpawner8" parent="Battlefield/Middleground" index="10" instance=ExtResource( 11 )]
 position = Vector2( -550, -1250 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner8" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner8" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner9" parent="Battlefield/Middleground" index="11" instance=ExtResource( 11 )]
 position = Vector2( 600, -100 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner9" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner9" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner10" parent="Battlefield/Middleground" index="12" instance=ExtResource( 11 )]
 position = Vector2( 600, -800 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner10" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner10" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner11" parent="Battlefield/Middleground" index="13" instance=ExtResource( 11 )]
 position = Vector2( -600, -800 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner11" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner11" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner12" parent="Battlefield/Middleground" index="14" instance=ExtResource( 11 )]
 position = Vector2( -450, -800 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner12" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner12" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner14" parent="Battlefield/Middleground" index="15" instance=ExtResource( 11 )]
 position = Vector2( -450, -450 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner14" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner14" index="0" instance=ExtResource( 19 )]
+random = true
 
 [node name="DiamondSpawner15" parent="Battlefield/Middleground" index="16" instance=ExtResource( 11 )]
 position = Vector2( -950, -1150 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner15" index="0" instance=ExtResource( 12 )]
-position = Vector2( 500, 200 )
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner15" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner16" parent="Battlefield/Middleground" index="17" instance=ExtResource( 11 )]
 position = Vector2( 450, -950 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner16" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner16" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner17" parent="Battlefield/Middleground" index="18" instance=ExtResource( 11 )]
 position = Vector2( 450, -450 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner17" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner17" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner18" parent="Battlefield/Middleground" index="19" instance=ExtResource( 11 )]
 position = Vector2( 0, -800 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner18" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner18" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner13" parent="Battlefield/Middleground" index="20" instance=ExtResource( 11 )]
 position = Vector2( 450, -800 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner13" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner13" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner5" parent="Battlefield/Middleground" index="21" instance=ExtResource( 11 )]
 position = Vector2( 0, -100 )
 wave = 1
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner5" index="0" instance=ExtResource( 12 )]
+[node name="Fruit" parent="Battlefield/Middleground/DiamondSpawner5" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner6" parent="Battlefield/Middleground" index="22" instance=ExtResource( 11 )]
 position = Vector2( 0, 200 )
 wave = 2
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner6" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner6" index="0" instance=ExtResource( 19 )]
 position = Vector2( 0, -150 )
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner6" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner6" index="1" instance=ExtResource( 19 )]
 position = Vector2( 0, -450 )
+type = "cherry"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner6" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner6" index="2" instance=ExtResource( 19 )]
 position = Vector2( 0, 150 )
+type = "grape"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner6" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner6" index="3" instance=ExtResource( 19 )]
 position = Vector2( 0, 450 )
+type = "grape"
+random = true
 
 [node name="DiamondSpawner19" parent="Battlefield/Middleground" index="23" instance=ExtResource( 11 )]
 position = Vector2( 0, 200 )
 wave = 2
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner19" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner19" index="0" instance=ExtResource( 19 )]
 position = Vector2( -150, -750 )
+type = "grape"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner19" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner19" index="1" instance=ExtResource( 19 )]
 position = Vector2( 150, -750 )
+type = "grape"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner19" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner19" index="2" instance=ExtResource( 19 )]
 position = Vector2( 450, -750 )
+type = "grape"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner19" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner19" index="3" instance=ExtResource( 19 )]
 position = Vector2( -450, -750 )
+type = "cherry"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner19" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner19" index="4" instance=ExtResource( 19 )]
 position = Vector2( -750, -750 )
+type = "cherry"
+random = true
 
-[node name="Coin6" parent="Battlefield/Middleground/DiamondSpawner19" index="5" instance=ExtResource( 12 )]
+[node name="Coin6" parent="Battlefield/Middleground/DiamondSpawner19" index="5" instance=ExtResource( 19 )]
 position = Vector2( 750, -750 )
+type = "banana"
+random = true
 
-[node name="Coin7" parent="Battlefield/Middleground/DiamondSpawner19" index="6" instance=ExtResource( 12 )]
+[node name="Coin7" parent="Battlefield/Middleground/DiamondSpawner19" index="6" instance=ExtResource( 19 )]
 position = Vector2( 0, -900 )
+type = "cherry"
+random = true
 
-[node name="Coin8" parent="Battlefield/Middleground/DiamondSpawner19" index="7" instance=ExtResource( 12 )]
+[node name="Coin8" parent="Battlefield/Middleground/DiamondSpawner19" index="7" instance=ExtResource( 19 )]
 position = Vector2( 0, -1200 )
+random = true
 
-[node name="Coin9" parent="Battlefield/Middleground/DiamondSpawner19" index="8" instance=ExtResource( 12 )]
+[node name="Coin9" parent="Battlefield/Middleground/DiamondSpawner19" index="8" instance=ExtResource( 19 )]
 position = Vector2( 0, -600 )
+type = "banana"
+random = true
 
-[node name="Coin10" parent="Battlefield/Middleground/DiamondSpawner19" index="9" instance=ExtResource( 12 )]
+[node name="Coin10" parent="Battlefield/Middleground/DiamondSpawner19" index="9" instance=ExtResource( 19 )]
 position = Vector2( 0, -300 )
+type = "banana"
+random = true
 
 [node name="DiamondSpawner20" parent="Battlefield/Middleground" index="24" instance=ExtResource( 11 )]
 position = Vector2( 0, 1050 )
 wave = 2
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner20" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner20" index="0" instance=ExtResource( 19 )]
 position = Vector2( 0, -1400 )
+type = "banana"
+random = true
 
-[node name="Coin7" parent="Battlefield/Middleground/DiamondSpawner20" index="1" instance=ExtResource( 12 )]
+[node name="Coin7" parent="Battlefield/Middleground/DiamondSpawner20" index="1" instance=ExtResource( 19 )]
 position = Vector2( 0, -1200 )
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner20" index="2" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner20" index="2" instance=ExtResource( 19 )]
 position = Vector2( 0, -1800 )
+random = true
 
-[node name="Coin8" parent="Battlefield/Middleground/DiamondSpawner20" index="3" instance=ExtResource( 12 )]
+[node name="Coin8" parent="Battlefield/Middleground/DiamondSpawner20" index="3" instance=ExtResource( 19 )]
 position = Vector2( 0, -2000 )
+type = "grape"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner20" index="4" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner20" index="4" instance=ExtResource( 19 )]
 position = Vector2( 200, -1600 )
+type = "cherry"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner20" index="5" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner20" index="5" instance=ExtResource( 19 )]
 position = Vector2( -200, -1600 )
+type = "banana"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner20" index="6" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner20" index="6" instance=ExtResource( 19 )]
 position = Vector2( -400, -1600 )
+random = true
 
-[node name="Coin6" parent="Battlefield/Middleground/DiamondSpawner20" index="7" instance=ExtResource( 12 )]
+[node name="Coin6" parent="Battlefield/Middleground/DiamondSpawner20" index="7" instance=ExtResource( 19 )]
 position = Vector2( 400, -1600 )
+type = "grape"
+random = true
 
 [node name="DiamondSpawner7" parent="Battlefield/Middleground" index="25" instance=ExtResource( 11 )]
 position = Vector2( 0, -800 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner7" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner7" index="0" instance=ExtResource( 19 )]
 position = Vector2( 0, -150 )
+type = "grape"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner7" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner7" index="1" instance=ExtResource( 19 )]
 position = Vector2( 0, -450 )
+type = "grape"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner7" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner7" index="2" instance=ExtResource( 19 )]
 position = Vector2( 0, 150 )
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner7" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner7" index="3" instance=ExtResource( 19 )]
 position = Vector2( 0, 450 )
+random = true
 
 [node name="DiamondSpawner21" parent="Battlefield/Middleground" index="26" instance=ExtResource( 11 )]
 position = Vector2( 0, -350 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner21" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner21" index="0" instance=ExtResource( 19 )]
 position = Vector2( 0, -450 )
+type = "banana"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner21" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner21" index="1" instance=ExtResource( 19 )]
 position = Vector2( 0, -250 )
+type = "cherry"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner21" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner21" index="2" instance=ExtResource( 19 )]
 position = Vector2( 0, 450 )
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner21" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner21" index="3" instance=ExtResource( 19 )]
 position = Vector2( 0, 250 )
+type = "banana"
+random = true
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner21" index="4" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner21" index="4" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner22" parent="Battlefield/Middleground" index="27" instance=ExtResource( 11 )]
 position = Vector2( 1000, -800 )
 wave = 3
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner22" index="0" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner22" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner23" parent="Battlefield/Middleground" index="28" instance=ExtResource( 11 )]
 position = Vector2( -1000, -800 )
 wave = 3
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner23" index="0" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner23" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner34" parent="Battlefield/Middleground" index="29" instance=ExtResource( 11 )]
 position = Vector2( 0, -350 )
 wave = 3
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner34" index="0" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner34" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner35" parent="Battlefield/Middleground" index="30" instance=ExtResource( 11 )]
 position = Vector2( 0, -1250 )
 wave = 3
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner35" index="0" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner35" index="0" instance=ExtResource( 19 )]
+type = "grape"
+random = true
 
 [node name="DiamondSpawner33" parent="Battlefield/Middleground" index="31" instance=ExtResource( 11 )]
 position = Vector2( 0, -800 )
 wave = 2
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner33" index="0" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner33" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner24" parent="Battlefield/Middleground" index="32" instance=ExtResource( 11 )]
 position = Vector2( -800, -800 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner24" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner24" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner25" parent="Battlefield/Middleground" index="33" instance=ExtResource( 11 )]
 position = Vector2( 800, -800 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner25" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner25" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
 [node name="DiamondSpawner26" parent="Battlefield/Middleground" index="34" instance=ExtResource( 11 )]
 position = Vector2( 0, -799 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner26" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner26" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner26" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner26" index="1" instance=ExtResource( 19 )]
 position = Vector2( -150, 0 )
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner26" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner26" index="2" instance=ExtResource( 19 )]
 position = Vector2( 150, 0 )
+type = "grape"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner26" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner26" index="3" instance=ExtResource( 19 )]
 position = Vector2( 300, 0 )
+type = "banana"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner26" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner26" index="4" instance=ExtResource( 19 )]
 position = Vector2( -300, 0 )
+random = true
 
 [node name="DiamondSpawner27" parent="Battlefield/Middleground" index="35" instance=ExtResource( 11 )]
 position = Vector2( 0, 751 )
 rotation = 1.5708
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner27" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner27" index="0" instance=ExtResource( 19 )]
 rotation = -1.5708
+type = "banana"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner27" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner27" index="1" instance=ExtResource( 19 )]
 position = Vector2( -150, 0 )
 rotation = -1.5708
+type = "banana"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner27" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner27" index="2" instance=ExtResource( 19 )]
 position = Vector2( 150, 0 )
 rotation = -1.5708
+type = "cherry"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner27" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner27" index="3" instance=ExtResource( 19 )]
 position = Vector2( 300, 0 )
 rotation = -1.5708
+type = "grape"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner27" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner27" index="4" instance=ExtResource( 19 )]
 position = Vector2( -300, 0 )
 rotation = -1.5708
+random = true
 
 [node name="DiamondSpawner31" parent="Battlefield/Middleground" index="36" instance=ExtResource( 11 )]
 position = Vector2( 0, -349 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner31" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner31" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner31" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner31" index="1" instance=ExtResource( 19 )]
 position = Vector2( -150, 0 )
+type = "grape"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner31" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner31" index="2" instance=ExtResource( 19 )]
 position = Vector2( 150, 0 )
+type = "banana"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner31" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner31" index="3" instance=ExtResource( 19 )]
 position = Vector2( 300, 0 )
+type = "grape"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner31" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner31" index="4" instance=ExtResource( 19 )]
 position = Vector2( -300, 0 )
+type = "grape"
+random = true
 
 [node name="DiamondSpawner32" parent="Battlefield/Middleground" index="37" instance=ExtResource( 11 )]
 position = Vector2( 0, -1100 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner32" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner32" index="0" instance=ExtResource( 19 )]
+type = "cherry"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner32" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner32" index="1" instance=ExtResource( 19 )]
 position = Vector2( -200, 0 )
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner32" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner32" index="2" instance=ExtResource( 19 )]
 position = Vector2( 200, 0 )
+type = "grape"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner32" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner32" index="3" instance=ExtResource( 19 )]
 position = Vector2( 400, 0 )
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner32" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner32" index="4" instance=ExtResource( 19 )]
 position = Vector2( -400, 0 )
+type = "banana"
+random = true
 
 [node name="DiamondSpawner29" parent="Battlefield/Middleground" index="38" instance=ExtResource( 11 )]
 position = Vector2( 0, 251 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner29" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner29" index="0" instance=ExtResource( 19 )]
+type = "banana"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner29" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner29" index="1" instance=ExtResource( 19 )]
 position = Vector2( -100, -150 )
+type = "cherry"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner29" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner29" index="2" instance=ExtResource( 19 )]
 position = Vector2( 100, 150 )
+type = "banana"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner29" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner29" index="3" instance=ExtResource( 19 )]
 position = Vector2( 200, 300 )
+type = "cherry"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner29" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner29" index="4" instance=ExtResource( 19 )]
 position = Vector2( -200, -300 )
+type = "cherry"
+random = true
 
 [node name="DiamondSpawner30" parent="Battlefield/Middleground" index="39" instance=ExtResource( 11 )]
 position = Vector2( 0, 251 )
@@ -536,39 +678,56 @@ rotation = -3.14159
 scale = Vector2( 1, -1 )
 wave = 3
 
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner30" index="0" instance=ExtResource( 12 )]
+[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner30" index="0" instance=ExtResource( 19 )]
 scale = Vector2( -1, 1 )
+type = "cherry"
+random = true
 
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner30" index="1" instance=ExtResource( 12 )]
+[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner30" index="1" instance=ExtResource( 19 )]
 position = Vector2( -100, -150 )
 scale = Vector2( -1, 1 )
+type = "banana"
+random = true
 
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner30" index="2" instance=ExtResource( 12 )]
+[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner30" index="2" instance=ExtResource( 19 )]
 position = Vector2( 100, 150 )
 scale = Vector2( -1, 1 )
+type = "grape"
+random = true
 
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner30" index="3" instance=ExtResource( 12 )]
+[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner30" index="3" instance=ExtResource( 19 )]
 position = Vector2( 200, 300 )
 scale = Vector2( -1, 1 )
+type = "cherry"
+random = true
 
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner30" index="4" instance=ExtResource( 12 )]
+[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner30" index="4" instance=ExtResource( 19 )]
 position = Vector2( -200, -300 )
 scale = Vector2( -1, 1 )
+random = true
 
 [node name="DiamondSpawner28" parent="Battlefield/Middleground" index="40" instance=ExtResource( 11 )]
 position = Vector2( 0, -2100 )
 wave = 3
 
-[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner28" index="0" instance=ExtResource( 13 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/DiamondSpawner28" index="0" instance=ExtResource( 19 )]
 position = Vector2( 0, 850 )
+type = "cherry"
+random = true
 
-[node name="BigDiamond2" parent="Battlefield/Middleground/DiamondSpawner28" index="1" instance=ExtResource( 13 )]
+[node name="BigDiamond2" parent="Battlefield/Middleground/DiamondSpawner28" index="1" instance=ExtResource( 19 )]
 position = Vector2( 0, 3300 )
+random = true
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 20 )]
+position = Vector2( 0, 656 )
+
+[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 20 )]
+position = Vector2( 0, -1000 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -450, -1350 )
 rotation = 1.5708
-controls = "joy1"
 species = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]

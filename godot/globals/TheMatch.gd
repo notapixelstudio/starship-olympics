@@ -24,6 +24,9 @@ const DEADZONE = 0.1
 signal game_over
 signal updated
 
+func _init():
+	global.the_match = self
+
 func start():
 	set_process(true)
 
@@ -114,6 +117,10 @@ func no_players_left():
 func do_game_over():
 	game_over = true
 	emit_signal("game_over", winners)
+	
+func get_score(id_player : String):
+	var player = get_player(id_player)
+	return teams[player.team].score
 	
 func set_score(id_player : String, amount : float, broadcasted = false):
 	var player = get_player(id_player)

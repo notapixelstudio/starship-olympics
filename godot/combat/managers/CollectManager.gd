@@ -8,7 +8,7 @@ func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 	if not entity:
 		return
 		
-	if entity.has('Collectable') and ship.is_alive():
+	if (entity.has('Collectable') or traits.has_trait(other, 'Collectable')) and ship.is_alive():
 		var is_loadable = ECM.E(ship).could_have('Cargo') and not ECM.E(ship).has('Cargo')
 		
 		if not entity.has('Keepable') or entity.has('Keepable') and is_loadable:
@@ -25,6 +25,8 @@ func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 				
 			emit_signal('collected', ship, entity.get_host())
 			ship.emit_signal('collect', other)
+			if traits.has_trait(other, 'Collectable'):
+				other.emit_signal('collected', ship)
 			
 		if entity.has('Keepable') and is_loadable:
 			ECM.E(ship).get('Cargo').load(entity.get_host())

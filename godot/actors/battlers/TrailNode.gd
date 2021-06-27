@@ -95,7 +95,7 @@ func _process(delta):
 	update()
 
 func update():
-	if not ship:
+	if not ship or not is_instance_valid(ship):
 		maybe_erase()
 		return
 		
