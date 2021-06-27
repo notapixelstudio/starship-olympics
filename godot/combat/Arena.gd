@@ -465,6 +465,11 @@ func ship_just_died(ship, killer, for_good):
 		killer: Ship
 		
 	"""
+	
+	if for_good:
+		# this needs to be deferred, to make other listeners fire first
+		call_deferred('unregister_ship', ship)
+	
 	# stats
 	# TODO: maybe somewhere else
 	emit_signal("update_stats", ship.info_player, 1, "deaths")
@@ -645,6 +650,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
+	register_ship(ship)
 	emit_signal('ship_spawned', ship)
 	
 	if force_intro:
@@ -873,4 +879,16 @@ func show_ripple(pos, size=1):
 	ripple.position = pos
 	ripple.scale = Vector2(size, size)
 	$Battlefield.call_deferred("add_child", ripple)
+	
+# players -> ships register
+var player_ships = {}
+
+func register_ship(ship):
+	player_ships[ship.get_player().id] = ship
+	
+func unregister_ship(ship):
+	player_ships.erase(ship.get_player().id)
+	
+func get_ship_from_player(player):
+	return player_ships[player.id]
 	
