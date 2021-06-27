@@ -7,9 +7,10 @@ func _ready():
 	var index = randi() % len(children)
 	var i = 0
 	for child in children:
-		if debug and child.visible == false:
+		if debug:
 			# destroy invisible children
-			child.queue_free()
+			if child.visible == false:
+				child.queue_free()
 		else:
 			# destroy all children but one at random
 			if index != i:
