@@ -78,13 +78,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
+width = 3200
 height = 2400
-bevel = 450
-bevel_nw = 450
-bevel_ne = 450
-bevel_sw = 450
-bevel_se = 450
+bevel = 350
+bevel_nw = 350
+bevel_ne = 350
+bevel_sw = 350
+bevel_se = 350
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -175,7 +175,7 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( -1700, 100 )
+position = Vector2( -1600, 0 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
 
@@ -193,7 +193,7 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
-position = Vector2( 1700, -100 )
+position = Vector2( 1600, 0 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
 
@@ -201,27 +201,7 @@ line_texture = ExtResource( 7 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
-position = Vector2( -1000, 600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
-script = ExtResource( 1 )
-radius = 200
-sides = 4.0
-
-[node name="Wall4" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
-position = Vector2( 1000, -600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
-script = ExtResource( 1 )
-radius = 200
-sides = 4.0
-
-[node name="Variants" parent="Battlefield/Middleground" index="10" instance=ExtResource( 17 )]
+[node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
 visible = false
@@ -258,75 +238,129 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
-
-[node name="Wall13" parent="Battlefield/Middleground/Variants/B" index="0" instance=ExtResource( 8 )]
-position = Vector2( 0, 400 )
-rotation = -0.785398
+[node name="Wall3" parent="Battlefield/Middleground/Variants/A" index="2" instance=ExtResource( 8 )]
+position = Vector2( -1000, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall13" index="5"]
-script = ExtResource( 2 )
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/A/Wall3" index="4"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
 
-[node name="Wall15" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 8 )]
-position = Vector2( -400, 0 )
-rotation = -0.785398
+[node name="Wall4" parent="Battlefield/Middleground/Variants/A" index="3" instance=ExtResource( 8 )]
+position = Vector2( 1000, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall15" index="5"]
-script = ExtResource( 2 )
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/A/Wall4" index="4"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
 
-[node name="Wall14" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 8 )]
-position = Vector2( 400, 0 )
-rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall14" index="5"]
-script = ExtResource( 2 )
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall16" parent="Battlefield/Middleground/Variants/B" index="3" instance=ExtResource( 8 )]
-position = Vector2( 0, -400 )
-rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall16" index="5"]
-script = ExtResource( 2 )
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Glue" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
+[node name="Glue" parent="Battlefield/Middleground/Variants/A" index="4" instance=ExtResource( 16 )]
 position = Vector2( -900, 500 )
 rotation = -0.785398
 
-[node name="Glue2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 16 )]
+[node name="Glue2" parent="Battlefield/Middleground/Variants/A" index="5" instance=ExtResource( 16 )]
 position = Vector2( 900, -500 )
 rotation = 2.35619
+
+[node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
+visible = false
+
+[node name="Wall13" parent="Battlefield/Middleground/Variants/B" index="0" instance=ExtResource( 8 )]
+position = Vector2( 0, 400 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall13" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall15" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 8 )]
+position = Vector2( -400, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall15" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall16" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 8 )]
+position = Vector2( 0, -400 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall16" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall17" parent="Battlefield/Middleground/Variants/B" index="3" instance=ExtResource( 8 )]
+position = Vector2( 400, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall17" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall18" parent="Battlefield/Middleground/Variants/B" index="4" instance=ExtResource( 8 )]
+position = Vector2( -1000, 550 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall18" index="5"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall19" parent="Battlefield/Middleground/Variants/B" index="5" instance=ExtResource( 8 )]
+position = Vector2( 1000, -600 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall19" index="5"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
+
+[node name="Wall6" parent="Battlefield/Middleground/Variants/C" index="0" instance=ExtResource( 8 )]
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall6" index="4"]
+script = ExtResource( 1 )
+radius = 400
+sides = 4.0
+
+[node name="Wall7" parent="Battlefield/Middleground/Variants/C" index="1" instance=ExtResource( 8 )]
+position = Vector2( -600, 600 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall7" index="4"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall8" parent="Battlefield/Middleground/Variants/C" index="2" instance=ExtResource( 8 )]
+position = Vector2( 600, -600 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall8" index="4"]
+script = ExtResource( 1 )
+sides = 4.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )
