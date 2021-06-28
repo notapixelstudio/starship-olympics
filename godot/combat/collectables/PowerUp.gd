@@ -4,22 +4,35 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield') var type = 'shield'
+export (String, 'shield', 'snake') var type = 'shield' setget set_type
 export var appear = true
 
 signal collected
+
+const BEAM_COLORS = {
+	'shield': Color(0,1,1,1),
+	'snake': Color(1,0,1,1)
+}
 
 func _ready():
 	if not is_inside_tree():
 		yield(self, 'ready')
 	
-	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')
+	refresh_type()
 	
 	if appear:
 		$AnimationPlayer.play('AppearFhuFhuFhu')
 		yield($AnimationPlayer, "animation_finished")
 	$AnimationPlayer.play('idle')
 	activate()
+	
+func set_type(v):
+	type = v
+	refresh_type()
+	
+func refresh_type():
+	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')
+	$TeleportBeam.modulate = BEAM_COLORS[type]
 	
 func activate():
 	$CollisionShape2D.disabled = false

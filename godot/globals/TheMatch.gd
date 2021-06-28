@@ -24,7 +24,7 @@ var no_players = false
 const DEADZONE = 0.1
 signal game_over
 signal setup
-signal started
+signal updated
 signal tick
 
 func _init():

@@ -689,7 +689,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
 	ship.connect("dead", last_man_mode, "_on_sth_killed")
-	ship.connect("dead", combat_manager, "_on_sth_killed")
+	#ship.connect("dead", combat_manager, "_on_sth_killed")
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")

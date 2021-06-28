@@ -580,7 +580,7 @@ func apply_powerup(powerup):
 		deadly_trail_powerup = true
 		update_weapon_indicator()
 		entity.get('Thrusters').enable()
-		recheck_colliding()
+		# FIXME? should water disable the tail?
 		
 func rebound():
 	apply_central_impulse(Vector2(-2000,0).rotated(rotation))
