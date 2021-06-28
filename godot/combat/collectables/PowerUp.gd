@@ -15,10 +15,14 @@ func _ready():
 	
 	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')
 	
-	#if appear:
-	#	$AnimationPlayer.play('AppearFuhfuhfuh')
-	#	yield($AnimationPlayer, "animation_finished")
+	if appear:
+		$AnimationPlayer.play('AppearFhuFhuFhu')
+		yield($AnimationPlayer, "animation_finished")
 	$AnimationPlayer.play('idle')
+	activate()
+	
+func activate():
+	$CollisionShape2D.disabled = false
 
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 1}

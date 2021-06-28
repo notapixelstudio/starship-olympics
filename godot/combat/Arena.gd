@@ -751,7 +751,7 @@ func _on_sth_collected(collector, collectee):
 		collectee.owner_ship = collector
 		
 	if collectee is PowerUp:
-		show_msg(collector.species, collectee.type.to_upper(), collectee.position)
+		show_msg(collector.species, collectee.type.to_upper(), collectee.global_position)
 	
 	if collectee.get_parent().is_in_group("spawner_group"):
 		collectee.get_parent().call_deferred('remove', collectee)

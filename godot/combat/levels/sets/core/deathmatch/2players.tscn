@@ -204,10 +204,8 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
-debug = true
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
-visible = false
 
 [node name="Wall12" parent="Battlefield/Middleground/Variants/A" index="0" instance=ExtResource( 8 )]
 position = Vector2( 200, 200 )
@@ -270,6 +268,11 @@ depth = 0
 position = Vector2( 900, -500 )
 rotation = 2.35619
 depth = 0
+
+[node name="DramaticSpawner4" parent="Battlefield/Middleground/Variants/A" index="6" instance=ExtResource( 19 )]
+match_progress_trigger = 0.6
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
 
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
 visible = false
@@ -350,6 +353,18 @@ rotation = 1.5708
 width = 1200
 depth = 0
 
+[node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/B" index="8" instance=ExtResource( 19 )]
+position = Vector2( -1000, -100 )
+match_progress_trigger = 0.5
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner3" index="0" instance=ExtResource( 18 )]
+
+[node name="DramaticSpawner4" parent="Battlefield/Middleground/Variants/B" index="9" instance=ExtResource( 19 )]
+position = Vector2( 1000, 100 )
+match_progress_trigger = 0.5
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
+
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
 visible = false
 
@@ -392,6 +407,7 @@ width = 600
 depth = 0
 
 [node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
+visible = false
 
 [node name="Wall7" parent="Battlefield/Middleground/Variants/D" index="0" instance=ExtResource( 8 )]
 position = Vector2( -800, 450 )
@@ -439,6 +455,11 @@ depth = 0
 match_progress_trigger = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner" index="0" instance=ExtResource( 18 )]
+
+[node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
+match_progress_trigger = 0.75
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )

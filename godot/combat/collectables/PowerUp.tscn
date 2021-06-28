@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,8 +9,67 @@
 [ext_resource path="res://combat/traits/Collectable.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=9]
 
+[sub_resource type="Curve" id=4]
+bake_resolution = 400
+_data = [ Vector2( 0.991011, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 70.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "AppearFhuFhuFhu"
+length = 1.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 0.96, 1.1 ),
+"transitions": PoolRealArray( 1, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, -4000 ), Vector2( 0, 40 ), Vector2( 0, -40 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.61, 0.8, 0.96, 1.1 ),
+"transitions": PoolRealArray( 0.5, 0.5, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ), Vector2( 0.1, 1 ), Vector2( 1.2, 0.8 ), Vector2( 0.9, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.76 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TeleportBeam:width")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 0.353553, -2, -2 ),
+"update": 0,
+"values": [ 0.0, 30.0, 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -39,6 +98,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
 [node name="PowerUp" type="RigidBody2D" groups=[
@@ -73,15 +144,26 @@ z_index = -3
 z_as_relative = false
 texture = ExtResource( 5 )
 
+[node name="TeleportBeam" type="Line2D" parent="."]
+modulate = Color( 0.552941, 1, 0.988235, 1 )
+self_modulate = Color( 1.50196, 1.50196, 1.50196, 1 )
+points = PoolVector2Array( 0, 0, 0, -10000 )
+width = 0.0
+width_curve = SubResource( 4 )
+default_color = Color( 1, 1, 1, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1.00002, 1.00002, 1.00002, 1 )
-position = Vector2( 0, -0.00213341 )
+position = Vector2( 0, -4000 )
+scale = Vector2( 1e-05, 1 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
+anims/AppearFhuFhuFhu = SubResource( 3 )
 anims/idle = SubResource( 2 )
