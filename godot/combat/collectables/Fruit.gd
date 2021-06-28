@@ -21,3 +21,7 @@ func refresh():
 	$Sprite.texture = load('res://assets/sprites/fruits/'+type+'.png')
 	
 signal collected
+
+func collect(by):
+	# queue_free() # FIXME? these are managed by spawners... mmm
+	emit_signal('collected', by)

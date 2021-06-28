@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/icon/skull.png" type="Texture" id=15]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=16]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -202,8 +204,10 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
+debug = true
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
+visible = false
 
 [node name="Wall12" parent="Battlefield/Middleground/Variants/A" index="0" instance=ExtResource( 8 )]
 position = Vector2( 200, 200 )
@@ -388,7 +392,6 @@ width = 600
 depth = 0
 
 [node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
-visible = false
 
 [node name="Wall7" parent="Battlefield/Middleground/Variants/D" index="0" instance=ExtResource( 8 )]
 position = Vector2( -800, 450 )
@@ -431,6 +434,11 @@ position = Vector2( -750, 400 )
 rotation = -0.785398
 width = 600
 depth = 0
+
+[node name="DramaticSpawner" parent="Battlefield/Middleground/Variants/D" index="4" instance=ExtResource( 19 )]
+match_progress_trigger = 0.5
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner" index="0" instance=ExtResource( 18 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )

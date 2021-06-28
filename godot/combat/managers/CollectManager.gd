@@ -26,7 +26,7 @@ func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 			emit_signal('collected', ship, entity.get_host())
 			ship.emit_signal('collect', other)
 			if traits.has_trait(other, 'Collectable'):
-				other.emit_signal('collected', ship)
+				other.collect(ship)
 			
 		if entity.has('Keepable') and is_loadable:
 			ECM.E(ship).get('Cargo').load(entity.get_host())

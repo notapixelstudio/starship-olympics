@@ -3,26 +3,29 @@ extends Node
 
 class_name TheMatch
 
-var time_left:float
-var match_time: float
-var lasting_time: float = 0.0
+var time_left : float
+var time_left_secs : int
+var match_time : float
+var lasting_time : float = 0.0
 
-var target_score: float = 100
+var target_score : float = 100
 
 var scores = []
-var player_scores: Array = []  # of PlayerStats
+var player_scores : Array = []  # of PlayerStats
 var players = {} # Dictionary of InfoPlayers
 var teams = {}
 var sport
-var draw: bool = true
-var game_over:bool = false
+var draw : bool = true
+var game_over : bool = false
 var cumulative_points = 0
 var winners = [] # Array of winning Player stats
 var no_players = false
 
 const DEADZONE = 0.1
 signal game_over
-signal updated
+signal setup
+signal started
+signal tick
 
 func _init():
 	global.the_match = self
@@ -70,11 +73,13 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 		time_left = max_timeout
 	
 	match_time = time_left
+	time_left_secs = int(time_left)
 	
 	if game_mode.cumulative:
 		cumulative_points=0
 	
 	global.session.add_match(self)
+	emit_signal('setup')
 	
 func sort_by_score(a, b):
 	return a.score > b.score
@@ -86,6 +91,11 @@ func update(delta: float):
 	
 	time_left -= delta
 	time_left = max(0, time_left)
+	var new_time_left_secs = int(time_left)
+	if new_time_left_secs != time_left_secs:
+		time_left_secs = new_time_left_secs
+		emit_signal('tick', time_left)
+		
 	scores.sort_custom(self, "sort_by_score")
 	
 	var leader = scores[0]

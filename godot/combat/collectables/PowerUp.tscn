@@ -6,7 +6,7 @@
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/powerups/shield.png" type="Texture" id=5]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=8]
+[ext_resource path="res://combat/traits/Collectable.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -42,8 +42,6 @@ tracks/1/keys = {
 }
 
 [node name="PowerUp" type="RigidBody2D" groups=[
-"Foreground",
-"coin",
 "in_camera",
 ]]
 collision_layer = 2048
@@ -53,6 +51,8 @@ linear_damp = 1.0
 script = ExtResource( 9 )
 
 [node name="Strategic" parent="." instance=ExtResource( 6 )]
+
+[node name="Collectable" parent="." instance=ExtResource( 7 )]
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -74,8 +74,8 @@ z_as_relative = false
 texture = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1.10032, 1.10032, 1.10032, 1 )
-position = Vector2( 0, -10.7012 )
+modulate = Color( 1.00002, 1.00002, 1.00002, 1 )
+position = Vector2( 0, -0.00213341 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -84,5 +84,4 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/AppearFuhfuhfuh = ExtResource( 8 )
 anims/idle = SubResource( 2 )
