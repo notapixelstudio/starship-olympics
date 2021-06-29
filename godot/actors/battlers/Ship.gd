@@ -574,10 +574,10 @@ func lower_shield(amount = 1):
 		$Graphics/Sprite/AnimationPlayer.stop()
 	
 func wield_sword():
-	$Sword.active = true
+	$Sword.set_active(true)
 	
 func unwield_sword():
-	$Sword.active = false
+	$Sword.set_active(false)
 	
 func apply_powerup(powerup):
 	if powerup.type == 'shield':
