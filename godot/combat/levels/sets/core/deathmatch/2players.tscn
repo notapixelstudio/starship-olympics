@@ -204,6 +204,7 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
+debug = true
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
 
@@ -273,6 +274,7 @@ depth = 0
 match_progress_trigger = 0.1
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
+type = "sword"
 
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
 visible = false

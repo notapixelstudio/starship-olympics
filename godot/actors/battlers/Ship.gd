@@ -436,6 +436,7 @@ func die(killer : Ship, for_good = false):
 		
 		# powerups wear off
 		deadly_trail_powerup = false
+		unwield_sword()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -572,6 +573,12 @@ func lower_shield(amount = 1):
 		$Graphics/Sprite.material.set_shader_param('active', false)
 		$Graphics/Sprite/AnimationPlayer.stop()
 	
+func wield_sword():
+	$Sword.active = true
+	
+func unwield_sword():
+	$Sword.active = false
+	
 func apply_powerup(powerup):
 	if powerup.type == 'shield':
 		raise_shield()
@@ -581,6 +588,8 @@ func apply_powerup(powerup):
 		update_weapon_indicator()
 		entity.get('Thrusters').enable()
 		# FIXME? should water disable the tail?
+	elif powerup.type == 'sword':
+		wield_sword()
 		
 func rebound():
 	apply_central_impulse(Vector2(-2000,0).rotated(rotation))
