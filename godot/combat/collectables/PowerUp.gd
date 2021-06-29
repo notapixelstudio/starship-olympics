@@ -6,6 +6,7 @@ class_name PowerUp
 
 export (String, 'shield', 'snake', 'sword') var type = 'shield' setget set_type
 export var appear = true
+export var random_types = []
 
 signal collected
 
@@ -18,8 +19,11 @@ const BEAM_COLORS = {
 func _ready():
 	if not is_inside_tree():
 		yield(self, 'ready')
-	
-	refresh_type()
+		
+	if len(random_types) > 0:
+		self.set_type(random_types[randi() % len(random_types)])
+	else:
+		refresh_type()
 	
 	if appear:
 		$AnimationPlayer.play('AppearFhuFhuFhu')
