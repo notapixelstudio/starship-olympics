@@ -28,3 +28,6 @@ func to_stats():
 func reset():
 	session_score = []
 	
+func get_session_score_total():
+	return len(session_score)
+	
