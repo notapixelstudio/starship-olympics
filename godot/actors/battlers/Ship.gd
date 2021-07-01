@@ -437,6 +437,7 @@ func die(killer : Ship, for_good = false):
 		# powerups wear off
 		deadly_trail_powerup = false
 		unwield_sword()
+		unwield_flail()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -579,6 +580,16 @@ func wield_sword():
 func unwield_sword():
 	$Sword.set_active(false)
 	
+const Flail = preload('res://actors/weapons/Flail.tscn')
+func wield_flail():
+	var flail = Flail.instance()
+	flail.position = global_position
+	get_parent().add_child(flail)
+	flail.hook_to = get_path()
+	
+func unwield_flail():
+	pass
+	
 func apply_powerup(powerup):
 	if powerup.type == 'shield':
 		raise_shield()
@@ -590,6 +601,8 @@ func apply_powerup(powerup):
 		# FIXME? should water disable the tail?
 	elif powerup.type == 'sword':
 		wield_sword()
+	elif powerup.type == 'flail':
+		wield_flail()
 		
 func rebound():
 	apply_central_impulse(Vector2(-2000,0).rotated(rotation))

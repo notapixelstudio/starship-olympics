@@ -4,7 +4,7 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'snake', 'sword') var type = 'shield' setget set_type
+export (String, 'shield', 'snake', 'sword', 'flail') var type = 'shield' setget set_type
 export var appear = true
 export var random_types = []
 
@@ -13,7 +13,8 @@ signal collected
 const BEAM_COLORS = {
 	'shield': Color(0,1,1,1),
 	'snake': Color(1,0,1,1),
-	'sword': Color(1,0,0,1)
+	'sword': Color(1,0,0,1),
+	'flail': Color(1,0,0,1)
 }
 
 func _ready():

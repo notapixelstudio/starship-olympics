@@ -19,7 +19,7 @@ func _on_bumper_collided(bumper_b, bumper_a):
 	
 	bumper_a.emit_signal('bump')
 	bumper_b.emit_signal('bump')
-	global.arena.show_ripple((bumper_a.position+bumper_b.position)/2, 2)
+	global.arena.show_ripple((bumper_a.global_position+bumper_b.global_position)/2, 2)
 	$RandomAudioStreamPlayer.play()
 	yield(get_tree(), "idle_frame")
 	bumper_a.linear_velocity = bumper_a.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*bumper_a.linear_velocity.length())
