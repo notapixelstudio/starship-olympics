@@ -587,14 +587,18 @@ func unwield_sword():
 	$Sword.set_active(false)
 	
 const Flail = preload('res://actors/weapons/Flail.tscn')
+var the_flail = null
 func wield_flail():
-	var flail = Flail.instance()
-	flail.position = global_position
-	get_parent().add_child(flail)
-	flail.hook_to = get_path()
+	the_flail = Flail.instance()
+	the_flail.position = global_position
+	the_flail.rotation = global_rotation
+	get_parent().add_child(the_flail)
+	the_flail.hook_to = get_path()
 	
 func unwield_flail():
-	pass
+	if the_flail != null:
+		the_flail.queue_free()
+		the_flail = null
 	
 func apply_powerup(powerup):
 	global.arena.show_msg(species, powerup.type.to_upper(), global_position)

@@ -83,4 +83,6 @@ func control(delta):
 
 	.control(delta)
 	
-
+func get_color():
+	return species.color
+	
