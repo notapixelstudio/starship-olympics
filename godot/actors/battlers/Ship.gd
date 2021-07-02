@@ -621,6 +621,9 @@ func apply_powerup(powerup):
 	elif powerup.type == 'miniballs':
 		set_bomb_type(GameMode.BOMB_TYPE.ball)
 		update_weapon_indicator()
+	elif powerup.type == 'spikes':
+		set_bomb_type(GameMode.BOMB_TYPE.bullet)
+		update_weapon_indicator()
 		
 func rebound():
 	apply_central_impulse(Vector2(-2000,0).rotated(rotation))
