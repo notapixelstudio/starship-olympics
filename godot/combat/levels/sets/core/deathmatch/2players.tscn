@@ -369,6 +369,7 @@ position = Vector2( 1000, 100 )
 match_progress_trigger = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
+type = "sword"
 random_types = [ "shield", "sword" ]
 
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
@@ -460,25 +461,23 @@ depth = 0
 match_progress_trigger = 0.01
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "flail"
-random_types = [ "flail" ]
+type = "sword"
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
 match_progress_trigger = 0.75
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
-type = "sword"
-random_types = [ "shield", "sword" ]
+random_types = [ "shield", "snake", "sword" ]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1300, -900 )
 rotation = 3.14159
-controls = "joy2"
 species = ExtResource( 12 )
 
 [node name="Camera" parent="." index="6"]

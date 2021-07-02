@@ -37,28 +37,17 @@ centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 7 )]
 hollow = true
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2800
-precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -194,28 +183,13 @@ rotation = -0.785398
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 7 )]
 position = Vector2( 2298.1, -1449.57 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D/Wall" index="8" groups=[
 "additional_lasers",
@@ -229,28 +203,13 @@ rotation = -2.35619
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 7 )]
 position = Vector2( 2298.09, -1449.58 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D2/Wall" index="8" groups=[
 "additional_lasers",
@@ -264,28 +223,13 @@ rotation = 2.35619
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 7 )]
 position = Vector2( 2298.1, -1449.56 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="8" groups=[
 "additional_lasers",
@@ -299,28 +243,13 @@ rotation = 0.785398
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D4" index="0" instance=ExtResource( 7 )]
 position = Vector2( 2298.1, -1449.57 )
-hollow = false
-type = 0
-hide_line = false
-hide_line_below = false
-hide_grid = false
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-line_texture = null
-grid_color = Color( 1, 1, 1, 0.33 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D4/Wall" index="4"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 50
 sides = 4.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Laser" parent="Battlefield/Middleground/Node2D4/Wall" index="8" groups=[
 "additional_lasers",

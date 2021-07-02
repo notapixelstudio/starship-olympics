@@ -137,9 +137,14 @@ signal spawned
 
 var bombs_enabled : bool = true setget set_bombs_enabled
 var bomb_type
+var default_bomb_type
 
 func set_bombs_enabled(value: bool):
 	bombs_enabled = value
+	
+func set_default_bomb_type(value):
+	default_bomb_type = value
+	set_bomb_type(value)
 	
 func set_bomb_type(value):
 	bomb_type = value
@@ -435,6 +440,7 @@ func die(killer : Ship, for_good = false):
 		alive = false
 		
 		# powerups wear off
+		set_bomb_type(default_bomb_type)
 		deadly_trail_powerup = false
 		unwield_sword()
 		unwield_flail()
@@ -591,6 +597,8 @@ func unwield_flail():
 	pass
 	
 func apply_powerup(powerup):
+	global.arena.show_msg(species, powerup.type.to_upper(), global_position)
+	
 	if powerup.type == 'shield':
 		raise_shield()
 	elif powerup.type == 'snake':
@@ -603,6 +611,12 @@ func apply_powerup(powerup):
 		wield_sword()
 	elif powerup.type == 'flail':
 		wield_flail()
+	elif powerup.type == 'rockets':
+		set_bomb_type(GameMode.BOMB_TYPE.classic)
+		update_weapon_indicator()
+	elif powerup.type == 'miniballs':
+		set_bomb_type(GameMode.BOMB_TYPE.ball)
+		update_weapon_indicator()
 		
 func rebound():
 	apply_central_impulse(Vector2(-2000,0).rotated(rotation))

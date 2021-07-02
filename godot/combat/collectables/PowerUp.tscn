@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -112,6 +112,23 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "reset"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
 [node name="PowerUp" type="RigidBody2D" groups=[
 "in_camera",
 ]]
@@ -138,7 +155,7 @@ __meta__ = {
 }
 
 [node name="TeleportBeam" type="Line2D" parent="."]
-modulate = Color( 0.552941, 1, 0.988235, 1 )
+modulate = Color( 0, 1, 1, 1 )
 self_modulate = Color( 1.50196, 1.50196, 1.50196, 1 )
 points = PoolVector2Array( 0, 0, 0, -10000 )
 width = 0.0
@@ -149,7 +166,7 @@ end_cap_mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -4000 )
-scale = Vector2( 1e-05, 1 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -157,8 +174,10 @@ visible = false
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "reset"
 anims/AppearFhuFhuFhu = SubResource( 3 )
 anims/idle = SubResource( 4 )
+anims/reset = SubResource( 5 )
 
 [node name="Shadow" parent="." instance=ExtResource( 8 )]
 sprite = NodePath("../Sprite")
