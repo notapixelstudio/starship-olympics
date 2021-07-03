@@ -469,12 +469,6 @@ match_progress_trigger = 0.75
 type = "snake"
 random_types = [ "shield", "snake", "sword", "spikes" ]
 
-[node name="DramaticSpawner" parent="Battlefield/Middleground" index="9" instance=ExtResource( 19 )]
-match_progress_trigger = 0.01
-
-[node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "flail"
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )
 rotation = 0.0
