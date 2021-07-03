@@ -668,7 +668,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
-	ship.set_bomb_type(game_mode.bomb_type)
+	ship.set_default_bomb_type(game_mode.bomb_type)
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
@@ -707,11 +707,12 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
-const dasher_scene = preload('res://combat/collectables/Dasher.tscn')
+const mine_scene = preload('res://combat/collectables/Mine.tscn')
 func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb
-	if type == GameMode.BOMB_TYPE.dasher:
-		bomb = dasher_scene.instance()
+	if type == GameMode.BOMB_TYPE.mine:
+		bomb = mine_scene.instance()
+		bomb.set_owner_ship(ship)
 		bomb.position = ship.position
 		bomb.apply_central_impulse(impulse)
 	else:
@@ -750,9 +751,6 @@ func _on_sth_collected(collector, collectee):
 	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
 		
-	if collectee is PowerUp:
-		show_msg(collector.species, collectee.type.to_upper(), collectee.global_position)
-	
 	if collectee.get_parent().is_in_group("spawner_group"):
 		collectee.get_parent().call_deferred('remove', collectee)
 	else:

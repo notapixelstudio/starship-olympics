@@ -4,10 +4,16 @@ const BASE_SPEED = 500
 const SPEED_MULTIPLIER = 1.5
 
 func start():
-	# listen to all bumpers
+	# listen to bumpers already in place
 	for bumper in traits.get_all_with('Bumper'):
-		bumper.connect('body_entered', self, '_on_bumper_collided', [bumper])
+		register_bumper(bumper)
 		
+	# listen to newly created bumpers
+	Events.connect('bumper_created', self, 'register_bumper')
+	
+func register_bumper(bumper):
+	bumper.connect('body_entered', self, '_on_bumper_collided', [bumper])
+	
 func _on_bumper_collided(bumper_b, bumper_a):
 	assert(traits.has_trait(bumper_a, 'Bumper'))
 	if not(traits.has_trait(bumper_b, 'Bumper')):
@@ -19,7 +25,7 @@ func _on_bumper_collided(bumper_b, bumper_a):
 	
 	bumper_a.emit_signal('bump')
 	bumper_b.emit_signal('bump')
-	global.arena.show_ripple((bumper_a.position+bumper_b.position)/2, 2)
+	global.arena.show_ripple((bumper_a.global_position+bumper_b.global_position)/2, 2)
 	$RandomAudioStreamPlayer.play()
 	yield(get_tree(), "idle_frame")
 	bumper_a.linear_velocity = bumper_a.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*bumper_a.linear_velocity.length())

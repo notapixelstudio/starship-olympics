@@ -4,21 +4,35 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'snake') var type = 'shield' setget set_type
+export (String, 'shield', 'snake', 'sword', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs') var type = 'shield' setget set_type
 export var appear = true
+export var random_types = []
 
 signal collected
 
 const BEAM_COLORS = {
+	# cyan - protective
 	'shield': Color(0,1,1,1),
-	'snake': Color(1,0,1,1)
+	# magenta - strange
+	'snake': Color(1,0,1,1),
+	# orange - additions
+	'sword': Color(1,0.25,0,1),
+	'flail': Color(1,0.25,0,1),
+	# red - main weapon
+	'rockets': Color(1,0,0,1),
+	'miniballs': Color(1,0,0,1),
+	'spikes': Color(1,0,0,1),
+	'bombs': Color(1,0,0,1)
 }
 
 func _ready():
 	if not is_inside_tree():
 		yield(self, 'ready')
-	
-	refresh_type()
+		
+	if len(random_types) > 0:
+		self.set_type(random_types[randi() % len(random_types)])
+	else:
+		refresh_type()
 	
 	if appear:
 		$AnimationPlayer.play('AppearFhuFhuFhu')

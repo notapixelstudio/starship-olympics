@@ -17,9 +17,6 @@ func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 			if other is Diamond and ECM.E(ship).has('CoinBag'):
 				ECM.E(ship).get('CoinBag').add_coin()
 				
-			if other is Dasher:
-				ship.fire(1.0, true)
-				
 			if other is PowerUp:
 				ship.apply_powerup(other)
 				

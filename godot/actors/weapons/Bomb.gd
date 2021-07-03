@@ -55,7 +55,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		entity.get('Deadly').enable()
 		set_collision_mask_bit(2, true) # bombs colliding with bombs
 		$Sprite.scale = Vector2(1,1)
-		$CollisionShape2D.shape.radius = size*32 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$CollisionShape2D.shape.radius = size*32
 		$NearArea/CollisionShape2D.shape.radius = size*32
 		$Sprite.texture = ball_texture
 		$Sprite.scale = Vector2(size, size)
@@ -63,7 +63,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	elif type == GameMode.BOMB_TYPE.bullet:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		$CollisionShape2D.shape.radius = size*80 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = bullet_texture
 		$Sprite.scale = Vector2(size*1.1, size*1.1)
@@ -73,7 +73,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	elif type == GameMode.BOMB_TYPE.bubble:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').disable()
-		$CollisionShape2D.shape.radius = size*90 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$CollisionShape2D.shape.radius = size*90
 		$NearArea/CollisionShape2D.shape.radius = size*90
 		$Sprite.texture = bubble_texture
 		$Sprite.scale = Vector2(size*1.4, size*1.4)
@@ -84,7 +84,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	elif type == GameMode.BOMB_TYPE.ice:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').disable()
-		$CollisionShape2D.shape.radius = size*80 # WAAAARNING this likely alters all collision shapes of all bombs!
+		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = ice_texture
 		$Sprite.scale = Vector2(size*1.1, size*1.1)

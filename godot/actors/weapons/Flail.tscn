@@ -1,0 +1,192 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://actors/weapons/FlailBall.gd" type="Script" id=1]
+[ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/weapons/flail_ball.png" type="Texture" id=3]
+[ext_resource path="res://actors/weapons/Flail.gd" type="Script" id=5]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.9
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 90.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 25, 10 )
+
+[node name="Flail" type="Node2D"]
+z_index = -1
+z_as_relative = false
+script = ExtResource( 5 )
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2( -150, 0 )
+mass = 0.1
+physics_material_override = SubResource( 1 )
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 1.0
+script = ExtResource( 1 )
+
+[node name="Bumper" parent="Ball" instance=ExtResource( 2 )]
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource( 2 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( -50, 0 )
+node_a = NodePath("../Ball")
+node_b = NodePath("../Chain")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+node_a = NodePath("../Chain")
+node_b = NodePath("../Chain2")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain2" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain2"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2( -50, 0 )
+node_a = NodePath("../Chain2")
+node_b = NodePath("../Chain3")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain3" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain3"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+node_a = NodePath("../Chain3")
+node_b = NodePath("../Chain4")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain4" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain4"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2( -50, 0 )
+node_a = NodePath("../Chain4")
+node_b = NodePath("../Chain5")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain5" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain5"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+node_a = NodePath("../Chain5")
+node_b = NodePath("../Chain6")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain6" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain6"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2( -50, 0 )
+node_a = NodePath("../Chain6")
+node_b = NodePath("../Chain7")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain7" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain7"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="."]
+node_a = NodePath("../Chain7")
+node_b = NodePath("../Chain8")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain8" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain8"]
+shape = SubResource( 3 )
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="."]
+position = Vector2( -50, 0 )
+node_a = NodePath("../Chain8")
+node_b = NodePath("../Chain9")
+bias = 0.9
+softness = 10.0
+
+[node name="Chain9" type="RigidBody2D" parent="."]
+position = Vector2( -25, 0 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain9"]
+shape = SubResource( 3 )
+
+[node name="LastPinJoint" type="PinJoint2D" parent="."]
+node_a = NodePath("../Chain9")
+bias = 0.9
+softness = 10.0
