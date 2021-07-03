@@ -132,7 +132,7 @@ _global_script_classes=[ {
 "base": "RigidBody2D",
 "class": "Dasher",
 "language": "GDScript",
-"path": "res://combat/collectables/Dasher.gd"
+"path": "res://combat/collectables/OldDasher.gd"
 }, {
 "base": "RigidBody2D",
 "class": "DeadShip",
@@ -298,6 +298,11 @@ _global_script_classes=[ {
 "class": "MapPlanet",
 "language": "GDScript",
 "path": "res://map/MapPlanet.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Mine",
+"language": "GDScript",
+"path": "res://combat/collectables/Mine.gd"
 }, {
 "base": "Resource",
 "class": "Minigame",
@@ -533,6 +538,7 @@ _global_script_class_icons={
 "MapPanel": "",
 "MapPath": "",
 "MapPlanet": "",
+"Mine": "",
 "Minigame": "",
 "Mirror": "",
 "ModeManager": "",

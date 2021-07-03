@@ -707,11 +707,12 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
-const dasher_scene = preload('res://combat/collectables/Dasher.tscn')
+const mine_scene = preload('res://combat/collectables/Mine.tscn')
 func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb
-	if type == GameMode.BOMB_TYPE.dasher:
-		bomb = dasher_scene.instance()
+	if type == GameMode.BOMB_TYPE.mine:
+		bomb = mine_scene.instance()
+		bomb.set_owner_ship(ship)
 		bomb.position = ship.position
 		bomb.apply_central_impulse(impulse)
 	else:

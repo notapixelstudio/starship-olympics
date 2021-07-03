@@ -124,7 +124,7 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.ball: preload('res://assets/sprites/interface/charge_ball.png'),
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
-	GameMode.BOMB_TYPE.dasher: preload('res://assets/sprites/interface/charge_ball.png'),
+	GameMode.BOMB_TYPE.mine: preload('res://assets/sprites/interface/charge_ball.png'),
 	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png')
 }
 
@@ -390,7 +390,7 @@ func fire(override_charge = -1, dash_only = false):
 			else:
 				impulse = charge_impulse*BOMB_CHARGE_MULTIPLIER+BOMB_BOOST
 				
-			if bomb_type != GameMode.BOMB_TYPE.dasher or actual_charge > 0.2:
+			if bomb_type != GameMode.BOMB_TYPE.mine or actual_charge > 0.2:
 				emit_signal("spawn_bomb", bomb_type, symbol, position + Vector2(-BOMB_OFFSET,0).rotated(rotation),
 					Vector2(-impulse,0).rotated(rotation))
 					
@@ -624,6 +624,9 @@ func apply_powerup(powerup):
 	elif powerup.type == 'spikes':
 		set_bomb_type(GameMode.BOMB_TYPE.bullet)
 		update_weapon_indicator()
+	elif powerup.type == 'bombs':
+		set_bomb_type(GameMode.BOMB_TYPE.mine)
+		update_weapon_indicator()
 		
 func rebound():
 	apply_central_impulse(Vector2(-2000,0).rotated(rotation))
@@ -718,4 +721,5 @@ func disable_controls():
 	
 func enable_controls():
 	controls_enabled = true
+	
 	

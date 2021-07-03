@@ -32,7 +32,7 @@ export var pursuing_bombs : bool = true
 export var shoot_bombs : bool = true setget set_bombs
 export var deadly_trails : bool = false
 export var deadly_trails_duration : float = 2.0
-enum BOMB_TYPE { classic, ball, bullet, bubble, dasher, ice }
+enum BOMB_TYPE { classic, ball, bullet, bubble, mine, ice }
 export(BOMB_TYPE) var bomb_type = BOMB_TYPE.classic
 export var starting_ammo : int = -1
 export var reload_time : float = 3.0
