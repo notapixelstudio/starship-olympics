@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/modes/DiamondMinefield.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
@@ -9,18 +9,16 @@
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=10]
-[ext_resource path="res://combat/styles/dots.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=13]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=16]
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 1 )
-style = ExtResource( 11 )
 
 [node name="MinefieldManager" parent="Managers" index="0" instance=ExtResource( 5 )]
 
-[node name="ConquestModeManager" parent="Managers" index="9"]
+[node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
