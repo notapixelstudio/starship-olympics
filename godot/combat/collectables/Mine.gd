@@ -4,11 +4,17 @@ class_name Mine
 
 var owner_ship
 
+signal bump
+
 func set_owner_ship(v):
 	owner_ship = v
 	
 func get_owner_ship():
 	return owner_ship
+
+func _ready():
+	# FIXME? this could be enforced by the trait
+	Events.emit_signal('bumper_created', self)
 
 func make_solid():
 	set_collision_mask_bit(0, true)

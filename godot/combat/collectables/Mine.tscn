@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=1]
+[ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/environments/time_bomb.png" type="Texture" id=5]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/collectables/Mine.gd" type="Script" id=7]
@@ -77,8 +78,12 @@ collision_layer = 2048
 collision_mask = 3088
 mode = 2
 physics_material_override = SubResource( 1 )
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 5.0
 script = ExtResource( 7 )
+
+[node name="Bumper" parent="." instance=ExtResource( 2 )]
 
 [node name="Strategic" parent="." instance=ExtResource( 6 )]
 
