@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://assets/map/cards/diamonds_set.png" type="Texture" id=1]
 [ext_resource path="res://map/planets/Planet.gd" type="Script" id=2]
 [ext_resource path="res://combat/minigames/DiamondSnake.tres" type="Resource" id=3]
 [ext_resource path="res://combat/minigames/Diamondsnatch.tres" type="Resource" id=4]
 [ext_resource path="res://combat/minigames/DiamondDefrost.tres" type="Resource" id=5]
+[ext_resource path="res://combat/minigames/DiamondMinefield.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 2 )
@@ -13,6 +14,6 @@ name = "Diamonds"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ]
+minigames = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
 planet_sprite = ExtResource( 1 )
 mutators = [  ]
