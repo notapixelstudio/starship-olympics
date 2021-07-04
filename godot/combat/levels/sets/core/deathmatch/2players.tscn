@@ -273,7 +273,7 @@ depth = 0
 match_progress_trigger = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
-type = "sword"
+type = "miniballs"
 random_types = [ "shield", "sword", "spikes", "miniballs" ]
 
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
@@ -367,6 +367,7 @@ position = Vector2( 1000, 100 )
 match_progress_trigger = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
+type = "spikes"
 random_types = [ "shield", "sword", "spikes", "miniballs" ]
 
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
@@ -459,14 +460,13 @@ depth = 0
 match_progress_trigger = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "spikes"
 random_types = [ "shield", "miniballs", "spikes", "sword" ]
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
 match_progress_trigger = 0.75
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
-type = "snake"
+type = "miniballs"
 random_types = [ "shield", "miniballs", "sword", "spikes" ]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]

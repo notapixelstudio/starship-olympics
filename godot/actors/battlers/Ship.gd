@@ -440,10 +440,14 @@ func die(killer : Ship, for_good = false):
 		alive = false
 		
 		# powerups wear off
-		set_bomb_type(default_bomb_type)
-		deadly_trail_powerup = false
-		unwield_sword()
-		unwield_flail()
+		#set_bomb_type(default_bomb_type)
+		#deadly_trail_powerup = false
+		#unwield_sword()
+		#unwield_flail()
+		
+		# raise shields again if you had that powerup
+		if shields_active:
+			raise_shield()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -563,7 +567,9 @@ func next_symbol():
 	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 
+var shields_active = false
 func raise_shield(amount = 1):
+	shields_active = true
 	shields = min(max_shields, amount)
 	$PlayerInfo.update_shields(shields)
 	$Graphics/Sprite.material.set_shader_param('active', true)
