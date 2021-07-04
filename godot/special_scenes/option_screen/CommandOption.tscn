@@ -59,17 +59,20 @@ custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ScrollContainer" parent="Container" instance=ExtResource( 6 )]
+margin_right = 918.0
 
 [node name="AddMapping" type="Button" parent="Container"]
-margin_left = 960.0
-margin_right = 1046.0
+margin_left = 922.0
+margin_right = 1022.0
 margin_bottom = 100.0
+rect_min_size = Vector2( 100, 0 )
 text = "  +  "
 
 [node name="RemoveMapping" type="Button" parent="Container"]
-margin_left = 1050.0
+margin_left = 1026.0
 margin_right = 1126.0
 margin_bottom = 100.0
+rect_min_size = Vector2( 100, 0 )
 text = "  -  "
 
 [connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]

@@ -2,19 +2,22 @@ extends ColorRect
 
 signal back
 
+export var panel_normal: PackedScene
+export var panel_large: PackedScene
 export var title: String = "Options"
 onready var container = $Panel/PanelItems/Options
 onready var panel = $Panel/PanelItems
 onready var navbar_node = $Panel/PanelItems/Navbar
-
+	
+	
 func _ready():
-	container.connect("nav_to", self, "nav_to")
+	Events.connect("nav_to", self, "nav_to")
 
 
 var focus_index = 0
 
 var separator = " > "
-onready var navbar = [title]
+onready var navbar = [title] # Navbar of title string screen
 
 func back_to_menu():
 	emit_signal("back")
@@ -40,15 +43,23 @@ func _exit_tree():
 	persistance.save_game()
 
 func nav_to(title, menu_scene: Control):
+	"""
+	will update the navbar and instance the new scene inside the tree
+	"""
 	var opt = navbar[len(navbar)-1]
+	print("Exiting "+ opt)
+
 	container.visible = false
 	panel.add_child(menu_scene)
 	panel.move_child(menu_scene, 2)
 	container = panel.get_node(title)
 	container.visible  = true
+	
 	navbar.append(title)
 	navbar_node.text = global.join_str(navbar, separator)
+	
 	focus_index = 0
+	# resize to standard
 	enable_all()
 
 func back():
@@ -56,6 +67,12 @@ func back():
 	container.queue_free()
 	container = panel.get_node(navbar[len(navbar)-1])
 	container.visible = true
+	
+	# this will reset panel size
+	panel.visible = false
+	yield(get_tree(), "idle_frame")
+	panel.call_deferred("set_visible", true)
+	
 	navbar_node.text = global.join_str(navbar, separator)
 	
 func _on_Back_pressed():

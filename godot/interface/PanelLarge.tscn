@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/UI/paper panels/png/paper_panel_1057_x_1067.png" type="Texture" id=1]
+
+[node name="PanelLarge" type="TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -559.5
+margin_top = -305.0
+margin_right = 559.5
+margin_bottom = 305.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 64.0
+text = "NavBar"
+align = 1
+valign = 1
+
+[node name="Content" type="MarginContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -222.0
+margin_bottom = 217.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -214.5
+margin_top = -64.0
+margin_right = 215.5
+margin_bottom = -8.0
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
