@@ -158,7 +158,7 @@ __meta__ = {
 modulate = Color( 0, 1, 1, 1 )
 self_modulate = Color( 1.50196, 1.50196, 1.50196, 1 )
 points = PoolVector2Array( 0, 0, 0, -10000 )
-width = 0.0
+width = 18.9484
 width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -166,7 +166,8 @@ end_cap_mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1.1041, 1.1041, 1.1041, 1 )
-position = Vector2( 0, -11.1043 )
+position = Vector2( 0, -2948.45 )
+scale = Vector2( 0.0566234, 1 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

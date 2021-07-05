@@ -125,7 +125,8 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
 	GameMode.BOMB_TYPE.mine: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png')
+	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png'),
+	GameMode.BOMB_TYPE.wave: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
 var symbol
@@ -592,6 +593,18 @@ func wield_sword():
 func unwield_sword():
 	$Sword.set_active(false)
 	
+func wield_scythe():
+	if $RightScythe.active:
+		$LeftScythe.set_active(true)
+	else:
+		$RightScythe.set_active(true)
+	
+func unwield_scythe():
+	if $LeftScythe.active:
+		$LeftScythe.set_active(false)
+	else:
+		$RightScythe.set_active(false)
+	
 const Flail = preload('res://actors/weapons/Flail.tscn')
 var the_flail = null
 func wield_flail():
@@ -619,6 +632,8 @@ func apply_powerup(powerup):
 		# FIXME? should water disable the tail?
 	elif powerup.type == 'sword':
 		wield_sword()
+	elif powerup.type == 'scythe':
+		wield_scythe()
 	elif powerup.type == 'flail':
 		wield_flail()
 	elif powerup.type == 'rockets':
@@ -632,6 +647,9 @@ func apply_powerup(powerup):
 		update_weapon_indicator()
 	elif powerup.type == 'bombs':
 		set_bomb_type(GameMode.BOMB_TYPE.mine)
+		update_weapon_indicator()
+	elif powerup.type == 'waves':
+		set_bomb_type(GameMode.BOMB_TYPE.wave)
 		update_weapon_indicator()
 		
 func rebound():
