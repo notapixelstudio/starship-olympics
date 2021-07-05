@@ -238,7 +238,8 @@ func _integrate_forces(state):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_request * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
+	# setting a maximum torque should prevent ship oscillation
+	set_applied_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
