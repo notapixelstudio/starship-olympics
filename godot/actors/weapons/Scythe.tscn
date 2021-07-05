@@ -5,16 +5,17 @@
 
 [node name="Scythe" type="Area2D"]
 collision_layer = 128
-collision_mask = 1095
+collision_mask = 3
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( -8, 128 )
+position = Vector2( -40, 128 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -25.2257, 33.5612, -49.2528, 129.67, 6.81042, 213.765, -72.6125, 141.016, -33.2348, 28.8893 )
+position = Vector2( 0, 0.707092 )
+polygon = PoolVector2Array( -7.30316, 38.0667, -61.7504, 100.292, -58.922, 184.438, -29.2235, 223.329, -93.5702, 190.802, -93.5702, 80.4931, -17.2027, 21.8032 )
 
 [connection signal="body_entered" from="." to="." method="_on_Scythe_body_entered"]
