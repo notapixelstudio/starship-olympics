@@ -17,5 +17,6 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 0.707092 )
 polygon = PoolVector2Array( -7.30316, 38.0667, -61.7504, 100.292, -58.922, 184.438, -29.2235, 223.329, -93.5702, 190.802, -93.5702, 80.4931, -17.2027, 21.8032 )
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_Scythe_body_entered"]

@@ -16,5 +16,6 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 8, -24, 96, -24, 120, 0, 96, 24, 8, 24 )
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_Sword_body_entered"]
