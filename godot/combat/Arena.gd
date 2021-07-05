@@ -708,13 +708,21 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
 const mine_scene = preload('res://combat/collectables/Mine.tscn')
+const wave_scene = preload('res://actors/weapons/ShockWave.tscn')
 func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb
 	if type == GameMode.BOMB_TYPE.mine:
 		bomb = mine_scene.instance()
 		bomb.set_owner_ship(ship)
-		bomb.position = ship.position
+		bomb.position = ship.global_position
 		bomb.apply_central_impulse(impulse)
+	elif type == GameMode.BOMB_TYPE.wave:
+		bomb = wave_scene.instance()
+		bomb.set_owner_ship(ship)
+		bomb.position = ship.global_position
+		bomb.rotation = ship.global_rotation+PI
+		bomb.speed = 350 + impulse.length()/3
+		bomb.angle = PI/3 + impulse.length()/4000
 	else:
 		bomb = bomb_scene.instance()
 		bomb.initialize(type, pos, impulse, ship, size)

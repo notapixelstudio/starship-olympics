@@ -125,7 +125,8 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
 	GameMode.BOMB_TYPE.mine: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png')
+	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png'),
+	GameMode.BOMB_TYPE.wave: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
 var symbol
@@ -632,6 +633,9 @@ func apply_powerup(powerup):
 		update_weapon_indicator()
 	elif powerup.type == 'bombs':
 		set_bomb_type(GameMode.BOMB_TYPE.mine)
+		update_weapon_indicator()
+	elif powerup.type == 'waves':
+		set_bomb_type(GameMode.BOMB_TYPE.wave)
 		update_weapon_indicator()
 		
 func rebound():
