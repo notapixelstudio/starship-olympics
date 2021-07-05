@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/weapons/Scythe.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/weapons/scythe.png" type="Texture" id=2]
+
+[node name="Scythe" type="Area2D"]
+collision_layer = 128
+collision_mask = 1095
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -8, 128 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -25.2257, 33.5612, -49.2528, 129.67, 6.81042, 213.765, -72.6125, 141.016, -33.2348, 28.8893 )
+
+[connection signal="body_entered" from="." to="." method="_on_Scythe_body_entered"]

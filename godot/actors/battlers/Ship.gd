@@ -593,6 +593,18 @@ func wield_sword():
 func unwield_sword():
 	$Sword.set_active(false)
 	
+func wield_scythe():
+	if $RightScythe.active:
+		$LeftScythe.set_active(true)
+	else:
+		$RightScythe.set_active(true)
+	
+func unwield_scythe():
+	if $LeftScythe.active:
+		$LeftScythe.set_active(false)
+	else:
+		$RightScythe.set_active(false)
+	
 const Flail = preload('res://actors/weapons/Flail.tscn')
 var the_flail = null
 func wield_flail():
@@ -620,6 +632,8 @@ func apply_powerup(powerup):
 		# FIXME? should water disable the tail?
 	elif powerup.type == 'sword':
 		wield_sword()
+	elif powerup.type == 'scythe':
+		wield_scythe()
 	elif powerup.type == 'flail':
 		wield_flail()
 	elif powerup.type == 'rockets':
