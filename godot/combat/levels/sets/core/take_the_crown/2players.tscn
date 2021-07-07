@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=16]
+[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=17]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -183,6 +187,40 @@ position = Vector2( 0, -850 )
 rotation = 1.5708
 width = 600
 depth = 50
+
+[node name="DramaticSpawner" type="Node2D" parent="Battlefield/Middleground" index="6" instance=ExtResource( 19 )]
+position = Vector2( -1400, 0 )
+script = ExtResource( 17 )
+jitter = 6.0
+chance = 0.5
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/DramaticSpawner" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 18 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 16 )
+type = "sword"
+random_types = [ "magnet", "sword", "shield" ]
+
+[node name="DramaticSpawner2" type="Node2D" parent="Battlefield/Middleground" index="7" instance=ExtResource( 19 )]
+position = Vector2( 1400, 0 )
+script = ExtResource( 17 )
+jitter = 6.0
+chance = 0.5
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/DramaticSpawner2" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 18 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 16 )
+type = "magnet"
+random_types = [ "magnet", "sword", "shield" ]
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 
