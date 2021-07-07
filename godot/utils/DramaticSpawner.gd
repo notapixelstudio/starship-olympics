@@ -1,6 +1,6 @@
 extends Node2D
 
-export (float, 0, 1, 0.01) var match_progress_trigger = 2/3.0
+export (float, 0, 1, 0.01) var match_progress_trigger = 0.5
 export (float, 0, 10, 0.01) var jitter = 0.5
 export (float, 0, 1, 0.01) var chance = 1.0
 
