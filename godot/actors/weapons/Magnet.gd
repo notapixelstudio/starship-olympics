@@ -2,8 +2,8 @@ extends Area2D
 
 export var active = false setget set_active
 var owner_ship : Ship
-const ATTRACTION = 200
-const REPULSION = 300
+const ATTRACTION = 150
+const REPULSION = 220
 
 func _ready():
 	owner_ship = get_parent() # WARNING
