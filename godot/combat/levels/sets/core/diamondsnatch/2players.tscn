@@ -95,8 +95,8 @@ precision = 100.0
 modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 12 )
 texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.19114, 0.1102, 0.38, 1 )
-bg_color = Color( 0.168875, 0.1085, 0.35, 1 )
+fg_color = Color( 0.192157, 0.109804, 0.380392, 1 )
+bg_color = Color( 0.168627, 0.109804, 0.34902, 1 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( 900, 0 )
@@ -623,16 +623,13 @@ depth = 0
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )
 rotation = -0.785398
-controls = "joy1"
 species = ExtResource( 6 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
 controls = "joy2"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 23841.9, 23841.9 )

@@ -594,6 +594,12 @@ func wield_sword():
 func unwield_sword():
 	$Sword.set_active(false)
 	
+func wield_magnet():
+	$Magnet.set_active(true)
+	
+func unwield_magnet():
+	$Magnet.set_active(false)
+	
 func wield_scythe():
 	if $RightScythe.active:
 		$LeftScythe.set_active(true)
@@ -625,6 +631,8 @@ func apply_powerup(powerup):
 	
 	if powerup.type == 'shield':
 		raise_shield()
+	elif powerup.type == 'magnet':
+		wield_magnet()
 	elif powerup.type == 'snake':
 		entity.get('Thrusters').disable()
 		deadly_trail_powerup = true
