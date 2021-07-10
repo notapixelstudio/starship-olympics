@@ -1,4 +1,4 @@
-extends TextureRect
+extends Control
 
 onready var title = $Title
 onready var content = $Content

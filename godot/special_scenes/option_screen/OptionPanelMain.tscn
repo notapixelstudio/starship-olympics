@@ -20,7 +20,7 @@ __meta__ = {
 }
 
 [node name="Navbar" type="Label" parent="."]
-margin_right = 631.0
+margin_right = 1280.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 4 )
 text = "Options"
@@ -32,27 +32,29 @@ __meta__ = {
 
 [node name="Separator" type="Control" parent="."]
 margin_top = 37.0
-margin_right = 631.0
-margin_bottom = 127.0
+margin_right = 1280.0
+margin_bottom = 100.0
 size_flags_vertical = 3
 
-[node name="Options" type="VBoxContainer" parent="." instance=ExtResource( 1 )]
-margin_top = 133.0
-margin_right = 631.0
-margin_bottom = 399.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Options" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 106.0
+margin_right = 1280.0
+margin_bottom = 426.0
 
 [node name="Separator2" type="Control" parent="."]
-margin_top = 405.0
-margin_right = 631.0
+margin_top = 432.0
+margin_right = 1280.0
 margin_bottom = 495.0
 size_flags_vertical = 3
 
 [node name="Back" type="Button" parent="."]
 margin_top = 501.0
-margin_right = 631.0
+margin_right = 1280.0
 margin_bottom = 551.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 2 )

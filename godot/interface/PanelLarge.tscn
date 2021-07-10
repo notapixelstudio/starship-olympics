@@ -1,10 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/UI/paper panels/png/paper_panel_1057_x_1067.png" type="Texture" id=1]
 [ext_resource path="res://interface/Panel.gd" type="Script" id=2]
-[ext_resource path="res://special_scenes/option_screen/Controls.tscn" type="PackedScene" id=3]
 
-[node name="PanelLarge" type="TextureRect"]
+[node name="PanelLarge" type="Container"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -13,9 +11,6 @@ margin_left = -559.0
 margin_top = -280.0
 margin_right = 560.0
 margin_bottom = 296.0
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -38,18 +33,15 @@ margin_right = -60.0
 margin_bottom = 203.0
 follow_focus = true
 scroll_horizontal_enabled = false
-
-[node name="Controls" parent="Content" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 900.0
-margin_bottom = 628.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Back" type="Button" parent="."]
-anchor_left = 0.5
+anchor_left = 0.22118
 anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_right = 0.22118
+anchor_bottom = 1.00347
 margin_left = -214.5
 margin_top = -64.0
 margin_right = 215.5

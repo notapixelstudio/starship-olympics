@@ -3,14 +3,14 @@
 [ext_resource path="res://special_scenes/option_screen/CommandOption.gd" type="Script" id=1]
 [ext_resource path="res://interface/MapButtonScene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://ButtonRepresentation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/ButtonRepresentation.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/themes/grey/normal.tres" type="StyleBox" id=5]
 [ext_resource path="res://ScrollContainer.tscn" type="PackedScene" id=6]
 
 [node name="RemapAction" type="MarginContainer"]
 margin_right = 1126.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 450, 40 )
+rect_min_size = Vector2( 450, 50 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -23,7 +23,6 @@ button_scene = ExtResource( 4 )
 [node name="Panel" type="Panel" parent="."]
 margin_right = 1126.0
 margin_bottom = 100.0
-focus_mode = 2
 custom_styles/panel = ExtResource( 5 )
 
 [node name="Container" type="HBoxContainer" parent="."]
@@ -43,15 +42,15 @@ uppercase = true
 
 [node name="Description" type="Button" parent="Container"]
 margin_left = 14.0
-margin_right = 54.0
+margin_right = 57.0
 margin_bottom = 100.0
 custom_fonts/font = ExtResource( 3 )
-text = "up"
+text = "UP"
 
 [node name="Padding3" type="Label" parent="Container"]
-margin_left = 58.0
+margin_left = 61.0
 margin_top = 37.0
-margin_right = 158.0
+margin_right = 161.0
 margin_bottom = 63.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 9
@@ -59,18 +58,7 @@ custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ScrollContainer" parent="Container" instance=ExtResource( 6 )]
-margin_left = 162.0
-margin_right = 918.0
-
-[node name="AddMapping" type="Button" parent="Container"]
-margin_left = 922.0
-margin_right = 1022.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 0 )
-text = "  +  "
-
-[node name="RemoveMapping" type="Button" parent="Container"]
-margin_left = 1026.0
+margin_left = 165.0
 margin_right = 1126.0
 margin_bottom = 100.0
 
