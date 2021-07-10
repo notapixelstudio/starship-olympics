@@ -1,7 +1,8 @@
 extends Node2D
 
-export (float, 0, 1, 0.01) var match_progress_trigger = 2/3.0
+export (float, 0, 1, 0.01) var match_progress_trigger = 0.5
 export (float, 0, 10, 0.01) var jitter = 0.5
+export (float, 0, 1, 0.01) var chance = 1.0
 
 var total_time : float
 var content = []
@@ -16,6 +17,10 @@ func _on_match_setup():
 	
 func _on_match_tick(time_left):
 	if is_active() and time_left < (1-match_progress_trigger)*total_time:
+		if randf() > chance:
+			abort()
+			return
+			
 		yield(get_tree().create_timer(jitter*randf()), "timeout")
 		unstore()
 	
@@ -33,4 +38,7 @@ func unstore():
 	
 func is_active():
 	return len(content) > 0
+	
+func abort():
+	content = []
 	

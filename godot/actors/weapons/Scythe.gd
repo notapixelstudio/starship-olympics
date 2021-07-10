@@ -11,7 +11,8 @@ func set_active(v):
 	$Sprite.visible = active
 	$CollisionPolygon2D.set_disabled(not active)
 	
-func _on_Sword_body_entered(body):
+func _on_Scythe_body_entered(body):
 	if active and body != owner_ship:
 		if body is Ship:
 			body.die(owner_ship)
+			

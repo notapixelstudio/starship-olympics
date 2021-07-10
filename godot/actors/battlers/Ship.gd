@@ -125,7 +125,8 @@ var weapon_textures = {
 	GameMode.BOMB_TYPE.bullet: preload('res://assets/sprites/interface/charge_bullet.png'),
 	GameMode.BOMB_TYPE.bubble: preload('res://assets/sprites/interface/charge_bubble.png'),
 	GameMode.BOMB_TYPE.mine: preload('res://assets/sprites/interface/charge_ball.png'),
-	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png')
+	GameMode.BOMB_TYPE.ice: preload('res://assets/sprites/interface/charge_ice.png'),
+	GameMode.BOMB_TYPE.wave: preload('res://assets/sprites/interface/charge_ball.png')
 }
 
 var symbol
@@ -237,7 +238,8 @@ func _integrate_forces(state):
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
-	set_applied_torque(rotation_request * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
+	# setting a maximum torque should prevent ship oscillation
+	set_applied_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -440,10 +442,14 @@ func die(killer : Ship, for_good = false):
 		alive = false
 		
 		# powerups wear off
-		set_bomb_type(default_bomb_type)
-		deadly_trail_powerup = false
-		unwield_sword()
-		unwield_flail()
+		#set_bomb_type(default_bomb_type)
+		#deadly_trail_powerup = false
+		#unwield_sword()
+		#unwield_flail()
+		
+		# raise shields again if you had that powerup
+		if shields_active:
+			raise_shield()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -563,7 +569,9 @@ func next_symbol():
 	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 
+var shields_active = false
 func raise_shield(amount = 1):
+	shields_active = true
 	shields = min(max_shields, amount)
 	$PlayerInfo.update_shields(shields)
 	$Graphics/Sprite.material.set_shader_param('active', true)
@@ -586,6 +594,24 @@ func wield_sword():
 func unwield_sword():
 	$Sword.set_active(false)
 	
+func wield_magnet():
+	$Magnet.set_active(true)
+	
+func unwield_magnet():
+	$Magnet.set_active(false)
+	
+func wield_scythe():
+	if $RightScythe.active:
+		$LeftScythe.set_active(true)
+	else:
+		$RightScythe.set_active(true)
+	
+func unwield_scythe():
+	if $LeftScythe.active:
+		$LeftScythe.set_active(false)
+	else:
+		$RightScythe.set_active(false)
+	
 const Flail = preload('res://actors/weapons/Flail.tscn')
 var the_flail = null
 func wield_flail():
@@ -605,6 +631,8 @@ func apply_powerup(powerup):
 	
 	if powerup.type == 'shield':
 		raise_shield()
+	elif powerup.type == 'magnet':
+		wield_magnet()
 	elif powerup.type == 'snake':
 		entity.get('Thrusters').disable()
 		deadly_trail_powerup = true
@@ -613,6 +641,8 @@ func apply_powerup(powerup):
 		# FIXME? should water disable the tail?
 	elif powerup.type == 'sword':
 		wield_sword()
+	elif powerup.type == 'scythe':
+		wield_scythe()
 	elif powerup.type == 'flail':
 		wield_flail()
 	elif powerup.type == 'rockets':
@@ -626,6 +656,9 @@ func apply_powerup(powerup):
 		update_weapon_indicator()
 	elif powerup.type == 'bombs':
 		set_bomb_type(GameMode.BOMB_TYPE.mine)
+		update_weapon_indicator()
+	elif powerup.type == 'waves':
+		set_bomb_type(GameMode.BOMB_TYPE.wave)
 		update_weapon_indicator()
 		
 func rebound():

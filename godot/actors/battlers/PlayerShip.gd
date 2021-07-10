@@ -55,11 +55,12 @@ func control(delta):
 	if target_velocity.length() <= 0.1: # vector deadzone
 		rotation_request = 0
 	else:
+		# maximum speed (prevents moving faster in diagonal, and mitigates differences between controller models)
+		target_velocity = 1.3*target_velocity.normalized()*min(1.0, target_velocity.length())
 		rotation_request = front.angle_to(target_velocity)
 	
 	# if we want tank mode control (relative control)
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
-
 	
 	# charge
 	if charging:
