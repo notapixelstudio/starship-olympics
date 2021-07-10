@@ -9,10 +9,11 @@ size = 30
 font_data = ExtResource( 3 )
 
 [node name="ShowedButton" type="TextureRect"]
-margin_right = 217.0
-margin_bottom = 198.0
-size_flags_vertical = 3
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 texture = ExtResource( 1 )
+expand = true
 stretch_mode = 1
 script = ExtResource( 2 )
 __meta__ = {
@@ -21,7 +22,8 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_bottom = 52.0
+margin_right = -48.0
+margin_bottom = 38.0
 custom_fonts/font = SubResource( 1 )
 text = "1"
 valign = 1

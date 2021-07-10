@@ -5,6 +5,7 @@ class_name CommandRemap
 
 onready var scroll_container = $Container/ScrollContainer
 # this needs always to be on screen
+onready var panel = $Panel
 
 export var remapScene: PackedScene
 export var action: String
@@ -95,8 +96,18 @@ func remove_mapping(event):
 			global.clear_mapping(self.device + "_" + self.action, event)
 			button.queue_free()
 	
-	
+
 func _on_RemoveMapping_pressed():
 	global.clear_all_mapping(self.device + "_" + self.action)
 	scroll_container.clear()
 	
+
+
+func _on_Panel_focus_entered():
+	panel.add_stylebox_override("panel", load("res://interface/themes/grey/focus.tres"))
+	set_process_input(true)
+
+func _on_Panel_focus_exited():
+	panel.add_stylebox_override("panel", load("res://interface/themes/grey/normal.tres"))
+	set_process_input(false)
+

@@ -50,12 +50,6 @@ func _set_value(new_value):
 	else:
 		print_debug("Setter has been called without a proper setup")
 		
-func _initialize():
-	# description_node.text = description
-	# value_node.text = str(value)
-	# set node and animations if needed
-	pass
-	
 	
 func nested_get(ancestor: Node, path:String, separator:String = "."):
 	"""

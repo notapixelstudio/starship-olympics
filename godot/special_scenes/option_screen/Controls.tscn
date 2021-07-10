@@ -33,37 +33,37 @@ label_description = "device"
 
 [node name="action1" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 54.0
-margin_right = 1280.0
-margin_bottom = 154.0
+margin_right = 900.0
+margin_bottom = 94.0
 
-[node name="action" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 158.0
-margin_right = 1280.0
-margin_bottom = 258.0
+[node name="action" parent="." instance=ExtResource( 3 )]
+margin_top = 98.0
+margin_right = 900.0
+margin_bottom = 138.0
 action = "down"
 
-[node name="action2" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 262.0
-margin_right = 1280.0
-margin_bottom = 362.0
+[node name="action2" parent="." instance=ExtResource( 3 )]
+margin_top = 142.0
+margin_right = 900.0
+margin_bottom = 182.0
 action = "left"
 
-[node name="action3" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 366.0
-margin_right = 1280.0
-margin_bottom = 466.0
+[node name="action3" parent="." instance=ExtResource( 3 )]
+margin_top = 186.0
+margin_right = 900.0
+margin_bottom = 226.0
 action = "right"
 
-[node name="action4" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 470.0
-margin_right = 1280.0
-margin_bottom = 570.0
+[node name="action4" parent="." instance=ExtResource( 3 )]
+margin_top = 230.0
+margin_right = 900.0
+margin_bottom = 270.0
 action = "fire"
 
-[node name="Separator" type="Control" parent="VBoxContainer"]
-margin_top = 574.0
-margin_right = 1280.0
-margin_bottom = 660.0
+[node name="Control" type="Control" parent="."]
+margin_top = 274.0
+margin_right = 900.0
+margin_bottom = 666.0
 size_flags_vertical = 3
 
 [node name="Default" type="Button" parent="VBoxContainer"]
