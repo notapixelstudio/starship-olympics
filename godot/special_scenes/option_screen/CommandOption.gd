@@ -17,7 +17,7 @@ onready var add = $Container/AddMapping
 
 
 func _process(delta):
-	$Container/Description.text = action
+	$Container/Description.text = tr(action.to_upper())
 
 func clear():
 	scroll_container.clear()

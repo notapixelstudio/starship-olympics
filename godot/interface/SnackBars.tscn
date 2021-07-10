@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://interface/SnackBars.gd" type="Script" id=1]
+
+[node name="SnackBars" type="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -340.5
+margin_top = -90.5649
+margin_right = 340.5
+margin_bottom = -28.5649
+color = Color( 0.14902, 0.14902, 0.14902, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Can't do this shit"
+align = 1
+valign = 1

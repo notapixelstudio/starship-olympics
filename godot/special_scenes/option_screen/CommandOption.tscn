@@ -34,24 +34,17 @@ rect_min_size = Vector2( 10, 0 )
 custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
-[node name="Description" type="Label" parent="Container"]
+[node name="Description" type="Button" parent="Container"]
 margin_left = 14.0
-margin_top = 37.0
-margin_right = 45.0
-margin_bottom = 63.0
+margin_right = 54.0
+margin_bottom = 100.0
 custom_fonts/font = ExtResource( 3 )
 text = "up"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Padding3" type="Label" parent="Container"]
-margin_left = 49.0
+margin_left = 58.0
 margin_top = 37.0
-margin_right = 149.0
+margin_right = 158.0
 margin_bottom = 63.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 9
@@ -59,6 +52,7 @@ custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ScrollContainer" parent="Container" instance=ExtResource( 6 )]
+margin_left = 162.0
 margin_right = 918.0
 
 [node name="AddMapping" type="Button" parent="Container"]
