@@ -17,6 +17,9 @@ margin_top = -160.0
 margin_right = 315.5
 margin_bottom = 160.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 631.0
@@ -35,25 +38,31 @@ label_description = "language"
 margin_top = 54.0
 margin_right = 631.0
 margin_bottom = 104.0
+elem_type = 0
 is_global = true
 element_path = "full_screen"
 label_description = "FULLSCREEN"
+node_owner_path = NodePath("")
 
 [node name="Glow" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 108.0
 margin_right = 631.0
 margin_bottom = 158.0
+elem_type = 0
 is_global = true
 element_path = "glow_enable"
 label_description = "Glow"
+node_owner_path = NodePath("")
 
 [node name="Analytics" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 162.0
 margin_right = 631.0
 margin_bottom = 212.0
+elem_type = 0
 is_global = true
 element_path = "enable_analytics"
 label_description = "analytics"
+node_owner_path = NodePath("")
 
 [node name="Audio" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_right = 631.0

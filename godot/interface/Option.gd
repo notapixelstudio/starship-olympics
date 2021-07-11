@@ -4,16 +4,13 @@ signal back
 
 export var title: String = "Options"
 export var start_scene: PackedScene
-onready var container = $Panel/PanelItems/Options
-onready var panel = $Panel/PanelItems
-onready var navbar_node = $Panel/PanelItems/Navbar
-	
+onready var panel: UIOptionPanel = $PanelNormal
+onready var banner_info = $CanvasLayer/BannerInfo
 	
 func _ready():
 	Events.connect("nav_to", self, "nav_to")
 	assert( start_scene is PackedScene)
 	set_content(start_scene)
-
 
 var focus_index = 0
 
@@ -35,7 +32,6 @@ func nav_to(title, menu_scene: Control):
 	var opt = navbar[len(navbar)-1]
 	print("Exiting "+ opt)
 
-	container.visible = false
 	panel.add_child(menu_scene)
 	panel.move_child(menu_scene, 2)
 	container = panel.get_node(title)
@@ -71,9 +67,15 @@ func set_content(scene: PackedScene):
 	var panel_type = instance.panel_type
 	for option_panel in get_tree().get_nodes_in_group("UIOptionPanel"):
 		option_panel.visible = false
+	for info in banner_info.get_children():
+		info.queue_free()
+		
 	if panel_type == "normal":
 		panel = $PanelNormal
 	elif panel_type == "large":
 		panel = $PanelLarge
 	panel.visible = true
-		
+	panel.set_content(instance)
+	
+	if instance.banner_info:
+		banner_info.add_child(instance.banner_info.instance())

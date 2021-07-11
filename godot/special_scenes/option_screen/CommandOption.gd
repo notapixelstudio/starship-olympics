@@ -28,7 +28,7 @@ func fill_mapping():
 		add_mapping_to_screen(event)
 		
 func _ready():
-	var i = 0
+	self.rect_min_size.x = get_viewport().size.x * 0.8
 
 func setup():
 	clear()
