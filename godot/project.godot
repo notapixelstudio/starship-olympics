@@ -334,6 +334,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/OptionCell.gd"
 }, {
+"base": "MarginContainer",
+"class": "OptionContainer",
+"language": "GDScript",
+"path": "res://special_scenes/option_screen/OptionContainer.gd"
+}, {
 "base": "Component",
 "class": "Owned",
 "language": "GDScript",
@@ -474,6 +479,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/traits/Trait.gd"
 }, {
+"base": "Control",
+"class": "UIOptionPanel",
+"language": "GDScript",
+"path": "res://interface/Panel.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Wall",
 "language": "GDScript",
@@ -550,6 +560,7 @@ _global_script_class_icons={
 "Mutator": "",
 "NavigatorButton": "",
 "OptionCell": "",
+"OptionContainer": "",
 "Owned": "",
 "Paddle": "",
 "Pentagoal": "",
@@ -578,6 +589,7 @@ _global_script_class_icons={
 "Trail": "",
 "Trail2D": "",
 "Trait": "",
+"UIOptionPanel": "",
 "Wall": "",
 "WallGoal": ""
 }

@@ -3,6 +3,7 @@ extends ColorRect
 signal back
 
 export var title: String = "Options"
+export var start_scene: PackedScene
 onready var container = $Panel/PanelItems/Options
 onready var panel = $Panel/PanelItems
 onready var navbar_node = $Panel/PanelItems/Navbar
@@ -10,6 +11,8 @@ onready var navbar_node = $Panel/PanelItems/Navbar
 	
 func _ready():
 	Events.connect("nav_to", self, "nav_to")
+	assert( start_scene is PackedScene)
+	set_content(start_scene)
 
 
 var focus_index = 0
@@ -62,3 +65,15 @@ func _on_Back_pressed():
 		back_to_menu()
 	else:
 		back()
+
+func set_content(scene: PackedScene):
+	var instance: OptionContainer = scene.instance()
+	var panel_type = instance.panel_type
+	for option_panel in get_tree().get_nodes_in_group("UIOptionPanel"):
+		option_panel.visible = false
+	if panel_type == "normal":
+		panel = $PanelNormal
+	elif panel_type == "large":
+		panel = $PanelLarge
+	panel.visible = true
+		

@@ -1,4 +1,4 @@
-extends Control
+extends OptionContainer
 
 onready var device = $VBoxContainer/Element.value
 

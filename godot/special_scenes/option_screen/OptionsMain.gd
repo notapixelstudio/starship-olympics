@@ -1,4 +1,5 @@
-extends VBoxContainer
+extends OptionContainer
+
 
 func _ready():
 	for button in get_children():

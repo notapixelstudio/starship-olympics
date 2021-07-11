@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Option.gd" type="Script" id=2]
 [ext_resource path="res://interface/PanelLarge.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/PanelNormal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/ButtonRepresentation.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/option_screen/OptionsMain.tscn" type="PackedScene" id=6]
 
 [node name="Options" type="ColorRect"]
 anchor_right = 1.0
@@ -17,6 +18,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+start_scene = ExtResource( 6 )
 
 [node name="PanelNormal" parent="." instance=ExtResource( 4 )]
 
