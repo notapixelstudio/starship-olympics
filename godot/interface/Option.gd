@@ -11,50 +11,36 @@ func _ready():
 	Events.connect("nav_to", self, "nav_to")
 	assert( start_scene is PackedScene)
 	set_content(start_scene)
+	navbar_scene.append(start_scene)
 
 var focus_index = 0
 
 var separator = " > "
 onready var navbar = [title] # Navbar of title string screen
+onready var navbar_scene = []
 
 func back_to_menu():
 	emit_signal("back")
 	visible = false
+	self.set_content(navbar_scene.pop_back())
 
 func _exit_tree():
 	# Let's save the changes
 	persistance.save_game()
 
-func nav_to(title, menu_scene: Control):
+func nav_to(title, menu_scene: PackedScene):
 	"""
 	will update the navbar and instance the new scene inside the tree
 	"""
 	var opt = navbar[len(navbar)-1]
 	print("Exiting "+ opt)
-
-	panel.add_child(menu_scene)
-	panel.move_child(menu_scene, 2)
-	container = panel.get_node(title)
-	container.visible  = true
-	
 	navbar.append(title)
-	navbar_node.text = global.join_str(navbar, separator)
+	self.set_content(menu_scene)
 	
-	focus_index = 0
-
-
 func back():
 	var opt = navbar.pop_back()
-	container.queue_free()
-	container = panel.get_node(navbar[len(navbar)-1])
-	container.visible = true
 	
-	# this will reset panel size
-	panel.visible = false
-	yield(get_tree(), "idle_frame")
-	panel.call_deferred("set_visible", true)
 	
-	navbar_node.text = global.join_str(navbar, separator)
 	
 func _on_Back_pressed():
 	if len(navbar) <= 1:

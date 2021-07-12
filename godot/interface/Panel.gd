@@ -18,3 +18,7 @@ func set_content(instanced_scene: Node):
 		content.remove_child(child)
 	
 	content.add_child(instanced_scene)
+
+
+func _on_Back_pressed():
+	pass # Replace with function body.
