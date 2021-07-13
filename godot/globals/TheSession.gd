@@ -38,6 +38,8 @@ func set_players(_players):
 	for p in _players:
 		assert(_players[p] is InfoPlayer)
 	players = _players
+	for player in players.values():
+		player.reset()
 	
 func add_match(score):
 	matches.insert(0, score)
@@ -55,7 +57,10 @@ func get_player(id_player: String):
 	
 func get_last_winner():
 	var best_player = null
+	var best_score = 0
 	for player in players.values():
-		if best_player == null or player.get_session_score_total() > best_player.get_session_score_total():
+		var new_score = player.get_session_score_total()
+		if new_score > best_score:
 			best_player = player
+			best_score = new_score
 	return best_player

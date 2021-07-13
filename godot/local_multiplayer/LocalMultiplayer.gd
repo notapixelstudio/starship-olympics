@@ -31,19 +31,15 @@ func reset():
 	"""
 	This function will reset the session
 	"""
-	for key in players:
-		var player = players[key]
-		player.reset()
 	campaign_mode = global.campaign_mode
-	global.new_session(players)
+	session_scores = global.new_session(players)
 
+func _init():
+	reset()
 
 func _ready():
 	for species in TheUnlocker.get_unlocked():
 		all_species.append(species)
-
-	session_scores = TheSession.new()
-	session_scores.set_players(players)
 
 	campaign_mode = global.campaign_mode
 	players = {}
@@ -256,7 +252,7 @@ func end_session():
 	This will handle the end of the session (Will unlock 
 	if there is something to unlock or will go back to selection)
 	"""
-	reset()
+	#reset()
 	combat.queue_free()
 	get_tree().paused = false
 	if TheUnlocker.what_to_unlock():
@@ -285,13 +281,10 @@ func _on_Pause_restart(_combat):
 
 
 func _back_to_menu(node):
-	reset()
+	#reset()
 	combat.queue_free()
 	get_tree().paused = false
-	add_child(selection_screen)
-	selection_screen.reset()
-	if global.demo:
-		selection_screen.deselect()
+	go_to_map()
 
 
 func _on_Pause_back_to_menu(_combat):

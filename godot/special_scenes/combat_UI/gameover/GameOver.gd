@@ -27,7 +27,7 @@ func initialize(winners: Array):
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
 	var session_over = false
-	if winners:
+	if winners: # FIXME read from the session
 		session_over = len(winners[0].session_score) >= global.win
 		continue_button.visible = not session_over
 		if session_over:

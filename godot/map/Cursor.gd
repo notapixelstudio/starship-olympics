@@ -42,7 +42,8 @@ func _ready():
 	ship.rotation = -rotation - PI/2
 	$Wrapper/Graphics/LabelContainer.rotation = -rotation
 	
-	$Wrapper/Graphics/Ship/Winner.visible = global.session and global.session.get_last_winner().id == player.id
+	var winner = global.session.get_last_winner()
+	$Wrapper/Graphics/Ship/Winner.visible = winner and winner.id == player.id
 	
 	yield(get_tree().create_timer(wait), "timeout")
 	animation_player.play('Float')
