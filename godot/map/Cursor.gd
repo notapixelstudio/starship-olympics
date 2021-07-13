@@ -16,8 +16,11 @@ onready var animation_player = $Wrapper/Graphics/AnimationPlayer
 onready var ship = $Wrapper/Graphics/Ship
 onready var placemark = $Wrapper/Graphics/Placemark
 onready var label = $Wrapper/Graphics/LabelContainer/Label
+onready var winner = $Wrapper/Graphics/Ship/Winner
 
 var wait = 0
+
+var winner_status = false
 
 func set_grid_position(value):
 	grid_position = value
@@ -43,7 +46,7 @@ func _ready():
 	$Wrapper/Graphics/LabelContainer.rotation = -rotation
 	
 	var winner = global.session.get_last_winner()
-	$Wrapper/Graphics/Ship/Winner.visible = winner and winner.id == player.id
+	set_winner_status(winner and winner.id == player.id)
 	
 	yield(get_tree().create_timer(wait), "timeout")
 	animation_player.play('Float')
@@ -127,3 +130,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		animation_player.play('Float')
 	else:
 		animation_player.play('Float')
+
+func set_winner_status(value):
+	winner_status = value
+	winner.visible = winner_status
+	
+func is_winner():
+	return winner_status
+	
+func spend_winnership():
+	winner_status = false
+	winner.modulate = Color(0,0,0,1)

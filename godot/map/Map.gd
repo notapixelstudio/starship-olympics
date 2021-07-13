@@ -99,9 +99,7 @@ func _ready():
 		
 		#if not levels:
 		#	sport.not_available = true
-			
-		if sport.planet in selected_sports:
-			sport.active = true
+		
 		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.INVISIBLE)
 	
 	
@@ -184,9 +182,6 @@ func _on_cursor_select(cursor):
 	if not cell:
 		return
 		
-	if cell.is_in_group("sports") and cell.get_status() != TheUnlocker.UNLOCKED:
-		return
-	
 	cell.act(cursor)
 	
 func _on_cursor_cancel(cursor):
@@ -217,16 +212,21 @@ func get_selection():
 func _on_cell_pressed(cursor, cell):
 	# update data
 	
-	if cell.is_in_group("sports") and cell.get_status() == TheUnlocker.UNLOCKED:
-		var panel = panels.get_node(cursor.player.id)
-		panel.map_element = cell.planet
-		panel.chosen = true
-		if not cell in selected_sports:
-			selected_sports.append(cell)
-		players_selection[cursor.player.id] = cell.planet
-		players_ready += 1
-		
-		_on_Start_pressed(cursor)
+	if cell.is_in_group("sports"):
+		if cell.get_status() == TheUnlocker.UNLOCKED:
+			var panel = panels.get_node(cursor.player.id)
+			panel.map_element = cell.planet
+			panel.chosen = true
+			if not cell in selected_sports:
+				selected_sports.append(cell)
+			players_selection[cursor.player.id] = cell.planet
+			players_ready += 1
+			
+			_on_Start_pressed(cursor)
+		elif cell.get_status() == TheUnlocker.LOCKED and cursor.is_winner():
+			TheUnlocker.unlock_set(cell.get_id())
+			cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
+			cursor.spend_winnership()
 	
 var players_ready = 0
 
