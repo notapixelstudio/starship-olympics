@@ -52,3 +52,10 @@ func get_settings(key = null):
 		
 func get_player(id_player: String):
 	return null if not id_player in players else players["id_player"]
+	
+func get_last_winner():
+	var best_player = null
+	for player in players.values():
+		if best_player == null or player.get_session_score_total() > best_player.get_session_score_total():
+			best_player = player
+	return best_player
