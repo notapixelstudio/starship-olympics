@@ -13,7 +13,6 @@ func manual_activate(follow, start: Vector2, wait):
 	self.target = follow
 	set_process(true)
 	activate()
-	print("will wait: "+str(wait))
 	yield(get_tree().create_timer(wait), "timeout")
 	manual_deactivate()
 	emit_signal("completed")

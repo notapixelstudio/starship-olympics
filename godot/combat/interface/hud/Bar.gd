@@ -20,13 +20,13 @@ var player
 var new_position setget change_position
 var current_value = 0
 var previous_value = 0
-var author
+var author: InfoPlayer
 
 var streaking = false
 var current_streak_bar
 var streak_start
 
-func initialize(p: PlayerStats):
+func post_ready(p: InfoPlayer):
 	player = p
 	var species = player.species
 	max_score = global.the_match.target_score
@@ -64,7 +64,7 @@ func initialize(p: PlayerStats):
 		add_child(star)
 		
 	update_stars()
-	set_value(p.team_stats.score, p)
+	set_value(p.stats.score, p)
 	
 func update_stars():
 	var stars = []
@@ -77,13 +77,14 @@ func update_stars():
 			stars[i].won = true
 			stars[i].perfect = player.session_score[i].perfect
 	
-func set_value(value, new_author):
+func set_value(value: float, new_author: InfoPlayer):
 	$Ship/ScoreLabel.text = str(floor(value))
 	
 	if value == current_value:
 		return
 		
 	author = new_author
+	
 	previous_value = current_value
 	current_value = clamp(value, 0, max_score)
 	

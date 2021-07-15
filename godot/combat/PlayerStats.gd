@@ -4,27 +4,20 @@ extends Node
 class_name PlayerStats
 
 var id : String
-var species: Species setget _set_species
-var species_name : String
-var team : String
+
 var kills : int = 0
 var selfkills : int = 0
 var lives : int = 10
 var deaths : int = 0
 var bombs: int = 0
 var collectables : int  =0
+
 var score = 0.0
+
 var session_score = []
 
 var team_stats : TeamStats = null
-
-func add_victory(perfect = false):
-	session_score.append({'perfect': perfect})
-
-func _set_species(value):
-	species = value
-	species_name = species.species_name
-
+var team : String
 
 func to_stats():
 	return {

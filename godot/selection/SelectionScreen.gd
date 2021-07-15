@@ -124,11 +124,11 @@ func assign_controls(num_keyboards : int) -> Array:
 	return players_controls
 
 # utils
-func get_players() -> Array:
+func get_players() -> Array: # Array[InfoPlayer]
 	var players = []
 	for child in container.get_children():
 		if child.controls != "no" and child.selected:
-			players.append(child)
+			players.append(child.get_info_player())
 	return players
 
 func get_adjacent(operator:int, player_selection : Node):
@@ -196,6 +196,8 @@ func _unhandled_input(event):
 var fight_mode = "vs Mode"
 
 func _process(delta):
+	# TODO: what is this? 
+	
 	var teams = 0
 	var at_least_one_character_in_team_selected = false
 	var at_least_one_solo_selected = false
@@ -203,7 +205,7 @@ func _process(delta):
 	for child in container.get_children():
 		if child.disabled:
 			continue
-		var species_name = child.species.species_name
+		var species_name = child.species.name
 		if not species_name in dict_species:
 			dict_species[species_name] = { child.species.id: child}
 		else:

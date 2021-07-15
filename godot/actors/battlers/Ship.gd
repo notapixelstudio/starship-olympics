@@ -16,7 +16,6 @@ var controls_enabled = false
 
 var spawner
 var trail
-var species_name: String
 
 var cpu = false
 var velocity = Vector2(0,0)
@@ -65,7 +64,7 @@ var info_player setget set_info_player
 func set_info_player(value):
 	info_player = value
 	species = info_player.species
-	species_name = info_player.species_name
+	
 
 var count = 0
 var alive = true
@@ -195,7 +194,6 @@ func _ready():
 	skin.ship_texture = species.ship
 	# skin.invincible(1.0)
 	entity = ECM.E(self)
-	species_name = species.species_name
 	
 	entity.get('Conqueror').set_species(self)
 	self.responsive = true
