@@ -7,24 +7,24 @@
 [ext_resource path="res://assets/fonts/kenvector_future_14.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/fonts/score_font.TTF" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=3]
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 28
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
-
 [sub_resource type="DynamicFont" id=1]
-size = 44
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 28
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 44
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 22
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -96,7 +96,7 @@ margin_left = -61.5
 margin_top = 57.0
 margin_right = 61.5
 margin_bottom = 107.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 valign = 1
@@ -114,7 +114,7 @@ margin_left = -50.0
 margin_top = -46.0
 margin_right = 50.0
 margin_bottom = -15.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "230"
 align = 1
@@ -155,7 +155,7 @@ margin_left = 97.9918
 margin_top = 5.95102
 margin_right = 147.992
 margin_bottom = 70.951
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -166,7 +166,7 @@ margin_left = 105.861
 margin_top = 7.39406
 margin_right = 155.861
 margin_bottom = 54.3941
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = " st"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -53,22 +53,11 @@ func _on_matchscore_updated(author, broadcasted):
 	for bar in bars:
 		var player : PlayerStats = global.the_match.get_player(bar.player.id)
 		bar.set_value(player.team_stats.score, player if broadcasted else author)
-		if last_value == bar.get_value():
-			draw = true
-		else:
-			draw = false
 		
 	sort_bars(false)
 	
-	# leading player
-	if not draw:
-		var leading = bars[0]
-		Leading.set_species(leading.player.species)
-		LeadingLabel.text = leading.player.species_name
-	else:
-		Leading.set_species(null)
-		LeadingLabel.text = ""
-		
+	update_leaders()
+	
 	# stars
 	for bar in bars:
 		bar.update_stars()
@@ -105,3 +94,12 @@ func compare_by_score_team_and_id(a:Bar, b:Bar):
 func get_height():
 	return height
 	
+func update_leaders():
+	var leaders = global.the_match.get_leader_players()
+	if len(leaders) > 0:
+		var leading = leaders[0]
+		Leading.set_species(leading.species)
+		LeadingLabel.text = leading.species_name
+	else:
+		Leading.set_species(null)
+		LeadingLabel.text = ""

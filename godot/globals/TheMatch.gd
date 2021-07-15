@@ -18,6 +18,7 @@ var sport
 var draw : bool = true
 var game_over : bool = false
 var cumulative_points = 0
+var leaders = []
 var winners = [] # Array of winning Player stats
 var no_players = false
 
@@ -90,15 +91,29 @@ func update(delta: float):
 		return
 	
 	time_left -= delta
+	if time_left <= 0:
+		compute_game_status()
 	time_left = max(0, time_left)
 	var new_time_left_secs = int(time_left)
 	if new_time_left_secs != time_left_secs:
 		time_left_secs = new_time_left_secs
 		emit_signal('tick', time_left)
 		
+	lasting_time += delta
+	
+func compute_game_status():
 	scores.sort_custom(self, "sort_by_score")
 	
 	var leader = scores[0]
+	
+	leaders = []
+	for team in scores:
+		if team.score >= leader.score:
+			leaders.append(team)
+			
+	# no leaders if all team have the same score
+	if len(leaders) == len(scores):
+		leaders = []
 	
 	if leader.score >= target_score or time_left <= 0 or (cumulative_points>=target_score) or no_players:
 		winners = []
@@ -116,13 +131,12 @@ func update(delta: float):
 		
 		do_game_over()
 	
-	lasting_time += delta
-
 func one_player_left(player):
 	pass # this was used with old survival rules
 	
 func no_players_left():
 	no_players = true
+	compute_game_status()
 	
 func do_game_over():
 	game_over = true
@@ -140,6 +154,7 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 	if cumulative_points >= 0:
 		cumulative_points = amount
 		
+	compute_game_status()
 	emit_signal('updated', player, broadcasted) # author
 	
 func add_score(id_player : String, amount : float, broadcasted = false):
@@ -150,6 +165,7 @@ func add_score(id_player : String, amount : float, broadcasted = false):
 	if cumulative_points >= 0:
 		cumulative_points += amount
 		
+	compute_game_status()
 	emit_signal('updated', player, broadcasted) # author
 
 func broadcast_score(id_player : String, amount : float):
@@ -184,3 +200,9 @@ func summary():
 func get_number_of_players():
 	return len(players)
 	
+func get_leader_players():
+	var leader_players = []
+	for leader in leaders:
+		for p in leader.player_stats:
+			leader_players.append(p)
+	return leader_players
