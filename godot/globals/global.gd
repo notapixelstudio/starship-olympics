@@ -570,8 +570,9 @@ var session : TheSession
 var the_match : TheMatch
 var arena
 
-func new_match():
+func new_match() -> TheMatch:
 	the_match = TheMatch.new()
+	return the_match
 	
 func new_session(players):
 	session = TheSession.new()

@@ -3,7 +3,7 @@ tool
 
 class_name PilotStats
 
-var info setget set_info # PlayerStats
+var info: InfoPlayer
 
 var new_position setget change_position
 var max_points = 0
@@ -14,13 +14,13 @@ onready var stats_container = $Container/Stats/StatsContainer
 
 var just_won: bool = false
 
-func set_info(value):
-	# value is PlayerStats
+func set_info(value: InfoPlayer):
 	info = value
+	var player_stats: PlayerStats = info.stats
 	if container:
 		container.get_node("Headshot").set_species(info.species)
 		for stats in stats_container.get_children():
-			stats.stats_value = str(info.get(stats.key))
+			stats.stats_value = str(player_stats.get(stats.key))
 		stars.initialize(info.session_score, max_points, just_won)
 
 func change_position(new_value):

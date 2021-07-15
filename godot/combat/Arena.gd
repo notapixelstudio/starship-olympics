@@ -68,8 +68,6 @@ signal skip
 
 var array_players = [] # Dictionary of InfoPlayers
 
-var the_match : TheMatch
-	
 func compute_arena_size():
 	"""
 	compute the battlefield size
@@ -132,9 +130,9 @@ func _init():
 	global.arena = self
 
 	# Initialize the match
-	the_match = TheMatch.new()
-	the_match.connect("game_over", self, "on_gamemode_gameover")
-	connect("update_stats", the_match, "update_stats")
+	global.new_match()
+	global.the_match.connect("game_over", self, "on_gameover")
+	connect("update_stats", global.the_match, "update_stats")
 	
 func _ready():
 	set_process(false)
@@ -268,7 +266,7 @@ func _ready():
 	global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
 	
 	# initialize HUD
-	hud.initialize()
+	hud.post_ready()
 	
 	# adapt camera to hud height
 	camera.marginY = hud.get_height()
@@ -408,7 +406,7 @@ func _process(delta):
 	if Engine.is_editor_hint():
 		return
 		
-	the_match.update(delta)
+	global.the_match.update(delta)
 	update_grid()
 	slomo()
 	
@@ -564,8 +562,7 @@ func ship_just_died(ship, killer, for_good):
 	create_trail(ship)
 	
 	
-func on_gamemode_gameover(winners: Array):
-	
+func on_gameover():
 	if demo:
 		emit_signal("back_to_menu")
 		return
@@ -584,7 +581,7 @@ func on_gamemode_gameover(winners: Array):
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
 	
-	game_over.initialize(winners)
+	game_over.initialize()
 
 func _on_Continue_session():
 	if standalone:

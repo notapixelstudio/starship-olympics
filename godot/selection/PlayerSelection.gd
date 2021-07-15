@@ -6,7 +6,6 @@ class_name PlayerSelection
 Class for PlayerSelection logic. Will be set controls and Species template
 """
 
-var id:String
 var uid:int
 
 # enum duplicates in global
@@ -38,9 +37,14 @@ var controls : String
 var is_team : bool = false
 signal ready_takeoff
 
+onready var info: InfoPlayer = InfoPlayer.new()
+
 func get_ship_position():
 	return rect_position
 
+func get_info_player() -> InfoPlayer:
+	return self.info
+	
 func set_controls(new_controls:String):
 	"""
 	Set controls and disable if NO or CPU
@@ -52,19 +56,16 @@ func set_controls(new_controls:String):
 		disable_choice()
 	
 	speciesSelection.controls = controls
-	speciesSelection.initialize("P"+str(uid))
+	speciesSelection.post_ready("P"+str(uid))
 	
-var info # : InfoPlayer
 func _ready():
-	info = InfoPlayer.new()
-	info.id = name.to_lower()
+	info.set_id(name.to_lower())
 	
 	disabled = true
 	controls = global.CONTROLSMAP[key_controls]
+	
 	set_controls(controls)
 	change_species(species)
-	id = name.to_lower()
-	speciesSelection.initialize("P"+str(uid))
 
 func change_species(new_species):
 	# get the resource from the global
@@ -75,9 +76,11 @@ func change_species(new_species):
 const FIRST_DELAY = 0.4
 const FOLLOW_DELAY = 0.2
 const DEADZONE = 0.1
-
 var action_time = 0.0
+
 func _process(delta):
+	if "no" in controls:
+		return
 	if action_time >= 0.0:
 		action_time -= delta
 	if Input.is_action_just_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo:
@@ -137,7 +140,6 @@ func select_character():
 	emit_signal("selected", self)
 
 func setup_info():
-	info.species_name = species.species_name
 	info.controls = controls
 	info.species = species
 	

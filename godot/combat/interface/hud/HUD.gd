@@ -20,17 +20,17 @@ func set_planet(planet: String, mode: GameMode):
 func _ready():
 	set_process(false)
 
-func initialize():
+func post_ready():
 	the_match = global.the_match
 	the_match.connect('updated', self, '_on_matchscore_updated')
 	
 	TimeLeft.text = str(the_match.time_left)
 	var i = 0
 
-	for player in the_match.player_scores:
+	for player in the_match.players.values():
 		var bar = Bar.instance()
 		Bars.add_child(bar)
-		bar.initialize(player)
+		bar.post_ready(player)
 		bar.player = player
 		i+=1
 		
@@ -51,8 +51,8 @@ func _on_matchscore_updated(author, broadcasted):
 	var bars = Bars.get_children()
 	var last_value = bars[0].get_value()
 	for bar in bars:
-		var player : PlayerStats = global.the_match.get_player(bar.player.id)
-		bar.set_value(player.team_stats.score, player if broadcasted else author)
+		var player : InfoPlayer = global.the_match.get_player(bar.player.id)
+		bar.set_value(player.get_score(), player if broadcasted else author)
 		
 	sort_bars(false)
 	
@@ -97,9 +97,10 @@ func get_height():
 func update_leaders():
 	var leaders = global.the_match.get_leader_players()
 	if len(leaders) > 0:
-		var leading = leaders[0]
+		var leading: InfoPlayer = leaders[0]
 		Leading.set_species(leading.species)
-		LeadingLabel.text = leading.species_name
+		var n = leading.get_species_name()
+		LeadingLabel.text = leading.get_species_name()
 	else:
 		Leading.set_species(null)
 		LeadingLabel.text = ""
