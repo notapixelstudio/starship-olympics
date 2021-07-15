@@ -13,7 +13,7 @@ signal hide_arena
 func _ready():
 	buttons.visible = false
 	
-func initialize(winners: Array):
+func initialize():
 	"""
 	Parameters
 	----------
@@ -22,18 +22,20 @@ func initialize(winners: Array):
 		
 	"""
 	
-	leaderboard.initialize(winners)
-	
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
 	var session_over = false
-	if winners:
-		session_over = len(winners[0].session_score) >= global.win
-		continue_button.visible = not session_over
+	for player in global.session.players.values():
+		assert(player is InfoPlayer)
+		session_over = player.get_session_score_total() >= global.win
+		
+		#TODO: what do we do in case of DRAW of session? Will ignore it for now
 		if session_over:
 			Soundtrack.play('SessionOver', true)
-	buttons.get_child(int(session_over)).grab_focus()
+			continue_button.visible=false
+			break
 	
+	buttons.get_child(int(session_over)).grab_focus()
 	
 func _on_Continue_pressed():
 	emit_signal("pressed_continue")
@@ -46,16 +48,6 @@ func _on_Menu_pressed():
 	# TODO: It will be whoever receive the signal to unpause
 	emit_signal("back_to_menu")
 
-func sort_by_score(a, b):
-	"""
-	Parameters
-	----------
-	a : InfoPlayer
-	b : InfoPlayer
-		elements that will be sorted by their current match score
-		
-	"""
-	return len(a.session_score) > len(b.session_score)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):

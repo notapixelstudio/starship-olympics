@@ -4,13 +4,13 @@ class_name TheSession
 
 
 # who is gonna play
-var players : Dictionary setget set_players # of InfoPlayers setget
+var players : Dictionary setget set_players # of InfoPlayers
 
 # The matches played, with scores and stats
 var matches : Array # of MatchScores
 
 var settings : Dictionary
-var selected_sports : Array # of Planet
+var selected_sets : Array # of Planet
 var wins = 3
 
 # mutators
@@ -39,6 +39,10 @@ func set_players(_players):
 		assert(_players[p] is InfoPlayer)
 	players = _players
 	
+func reset_players():
+	for player in players.values():
+		player.reset()
+	
 func add_match(score):
 	matches.insert(0, score)
 
@@ -52,3 +56,16 @@ func get_settings(key = null):
 		
 func get_player(id_player: String):
 	return null if not id_player in players else players["id_player"]
+
+func setup_selected_sets(sets: Array):
+	self.selected_sets = sets
+	
+func get_last_winner():
+	var best_player = null
+	var best_score = 0
+	for player in players.values():
+		var new_score = player.get_session_score_total()
+		if new_score > best_score:
+			best_player = player
+			best_score = new_score
+	return best_player

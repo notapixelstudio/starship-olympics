@@ -2,7 +2,7 @@
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
-[ext_resource path="res://assets/map/cards/core_set.png" type="Texture" id=3]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=4]
 [ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=6]
@@ -30,18 +30,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 52
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 11 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "unlock"
+[sub_resource type="Animation" id=4]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
@@ -116,7 +115,8 @@ visible = false
 margin_left = -300.0
 margin_right = 300.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
+text = "The Hive"
 align = 1
 valign = 1
 uppercase = true
@@ -130,7 +130,7 @@ margin_left = -243.066
 margin_top = 111.55
 margin_right = 259.934
 margin_bottom = 186.55
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 uppercase = true
@@ -139,4 +139,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/unlock = SubResource( 3 )
+anims/unlock = SubResource( 4 )

@@ -79,17 +79,17 @@ func unlock_location(loc_id: String) -> void:
 	
 var unlocked_sets = {
 	"core": UNLOCKED,
-	"diamonds": UNLOCKED,
-	"ice": UNLOCKED,
-	"survival": UNLOCKED,
-	"casino": UNLOCKED,
-	"snake": UNLOCKED,
-	"sports": UNLOCKED,
-	"asteroids": UNLOCKED,
-	"conquest": UNLOCKED,
-	"death": UNLOCKED,
-	"crown": UNLOCKED,
-	"cards": UNLOCKED,
+	"diamonds": INVISIBLE,
+	"ice": INVISIBLE,
+	"survival": INVISIBLE,
+	"casino": INVISIBLE,
+	"snake": INVISIBLE,
+	"sports": LOCKED,
+	"asteroids": INVISIBLE,
+	"conquest": INVISIBLE,
+	"death": LOCKED,
+	"crown": INVISIBLE,
+	"cards": LOCKED,
 }
 
 # this can have only TWO status: UNLOCKED, LOCKED 
@@ -99,6 +99,9 @@ var unlocked_games = {
 
 func get_status_game(game_id)-> String:
 	return unlocked_games.get(game_id, LOCKED)
+	
+func get_status_set(set_id)-> String:
+	return unlocked_sets.get(set_id, LOCKED)
 	
 func unlock_game(game_id: String) -> void:
 	# If fails means that we already unlocked this game

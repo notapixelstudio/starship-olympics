@@ -2,8 +2,6 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
-var session_scores: TheSession
-
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
 
@@ -20,7 +18,6 @@ var players: Dictionary  # of InfoPlayer
 
 signal updated
 
-var campaign_mode: bool = false  # Needed for instancing MAP
 
 class PlayerArena:
 	# This class will store an Arena and the player who chose it
@@ -31,23 +28,18 @@ func reset():
 	"""
 	This function will reset the session
 	"""
-	for key in players:
-		var player = players[key]
-		player.reset()
-	campaign_mode = global.campaign_mode
 	global.new_session(players)
+	for player in players.values():
+		player.reset()
 
+func _init():
+	reset()
 
 func _ready():
 	for species in TheUnlocker.get_unlocked():
 		all_species.append(species)
-
-	session_scores = TheSession.new()
-	session_scores.set_players(players)
-
-	campaign_mode = global.campaign_mode
+	
 	players = {}
-
 	selection_screen.initialize()
 	selection_screen.connect("fight", self, "start_fight")
 	selection_screen.connect("back", self, "back")
@@ -69,6 +61,9 @@ func back():
 
 func start_fight(selected_players: Array, fight_mode: String):
 	"""
+	Parameters:
+		----------
+		selected_players : Array[InfoPlayer]
 	After selection will handle the map and then the list of games
 	@param: selected_players : Array[PlayerSelection] - Selected species from selection screen
 	It will transform the selected_players array in a dictionary of info players
@@ -85,24 +80,12 @@ func start_fight(selected_players: Array, fight_mode: String):
 	# SET the players dictionary
 	i = 1
 	for player in selected_players:
-		players[player.id] = player.info
+		assert(player is InfoPlayer)
+		players[player.id] = player
 		i += 1
 
-	session_scores.players = players
+	global.new_session(players)
 
-	# Statistics
-	for player_id in players:
-		var info = players[player_id]
-		global.send_stats(
-			"design", {"event_id": "selection:species:{key}".format({"key": info.species_name})}
-		)
-		global.send_stats(
-			"design",
-			{
-				"event_id":
-				"selection:players:{id}:{key}".format({"key": info.controls, "id": info.id})
-			}
-		)
 	go_to_map()
 
 func return_to_selection_screen():
@@ -128,7 +111,8 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
-	session_scores.selected_sports = sets
+	
+	global.session.setup_selected_sets(sets)
 	
 	players_sequence = []
 	minigame_pools = {}
@@ -158,12 +142,11 @@ func go_to_map():
 	remove_child(selection_screen)
 	remove_child(parallax)
 	var num_CPUs = 0 if len(players) > 1 else 1
-	if not campaign_mode:
-		map = map_scene.instance()
-		map.initialize(players)
-		add_child(map)
-		map.connect("back", self, "return_to_selection_screen")
-		map.connect("done", self, "continue_to_fight")
+	map = map_scene.instance()
+	map.initialize(players)
+	add_child(map)
+	map.connect("back", self, "return_to_selection_screen")
+	map.connect("done", self, "continue_to_fight")
 
 func next_level(demo = false):
 	"""
@@ -256,7 +239,7 @@ func end_session():
 	This will handle the end of the session (Will unlock 
 	if there is something to unlock or will go back to selection)
 	"""
-	reset()
+	#reset()
 	combat.queue_free()
 	get_tree().paused = false
 	if TheUnlocker.what_to_unlock():
@@ -285,13 +268,10 @@ func _on_Pause_restart(_combat):
 
 
 func _back_to_menu(node):
-	reset()
+	#reset()
 	combat.queue_free()
 	get_tree().paused = false
-	add_child(selection_screen)
-	selection_screen.reset()
-	if global.demo:
-		selection_screen.deselect()
+	go_to_map()
 
 
 func _on_Pause_back_to_menu(_combat):
@@ -308,7 +288,7 @@ func start_demo():
 		var other_species = all_species[i]
 		var info_player = InfoPlayer.new()
 		info_player.id = 'cpu'
-		info_player.species = other_species.species_name
+		info_player.species = other_species
 		info_player.cpu = true
 		info_player.species_template = other_species
 		players["cpu{id}".format({"id": i})] = info_player
@@ -322,11 +302,11 @@ func add_cpu(how_many: int):
 	"""
 	var missing_species = TheUnlocker.get_ordered_species()
 	for key in players:
-		var player = players[key]
-		var this_species_name = player.species.species_name
+		var player: InfoPlayer = players[key]
+		var this_species_name = player.get_species_name()
 		var i = 0
 		for species in missing_species:
-			if this_species_name == species.species_name:
+			if this_species_name == species.name:
 				break
 			i += 1
 		missing_species.remove(i)

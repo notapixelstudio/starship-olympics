@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://map/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://assets/animations/shake.anim" type="Animation" id=2]
 [ext_resource path="res://assets/map/placemark.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/species/pentagonions_ship.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/map/winner.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Act"
@@ -91,20 +92,29 @@ rotation = -1.5708
 scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 4 )
 
+[node name="Winner" type="Sprite" parent="Wrapper/Graphics/Ship"]
+position = Vector2( -3.58026, -0.0222352 )
+rotation = 1.5708
+scale = Vector2( 2.66667, 2.66667 )
+texture = ExtResource( 6 )
+
 [node name="LabelContainer" type="Node2D" parent="Wrapper/Graphics"]
-position = Vector2( 0, -166 )
+position = Vector2( 0, -88 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Label" type="Label" parent="Wrapper/Graphics/LabelContainer"]
 margin_left = -88.0
-margin_top = -29.0
+margin_top = -109.0
 margin_right = 89.0
-margin_bottom = 27.0
+margin_bottom = -53.0
 custom_fonts/font = SubResource( 3 )
 text = "P4"
 align = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="animation_finished" from="Wrapper/Graphics/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

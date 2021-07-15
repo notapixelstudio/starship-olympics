@@ -1,5 +1,6 @@
 tool
 extends Control
+
 """
 this Node is a renderer of the Species Selected. No logic in here. 
 """
@@ -36,7 +37,7 @@ func set_team(team_name: String):
 func unset_team():
 	$TeamMode.visible = false
 	
-func initialize(player_id:String):
+func post_ready(player_id:String):
 	"""
 	Factory for controls and species resource
 	"""
@@ -44,13 +45,13 @@ func initialize(player_id:String):
 	controls_sprite.texture = load(img_path + controls + ".png")
 	controls_sprite.controls = controls
 	
-func change_species(new_species:Species):
+func change_species(new_species: Species):
 	species = new_species
 	ship.texture = species.ship
-	species_name.text = species.species_name.to_upper()
+	species_name.text = species.name.to_upper()
 	#forcing multiple line
 	tagline1.text = tr(species.tagline1).replace("<br>", "\n")
-	tagline2.text = species.tagline2
+	tagline2.text = tr(species.tagline2)
 	character.texture = species.character_ok
 	shadow.texture = species.character_ok
 	select_rect.modulate = species.color

@@ -7,7 +7,6 @@ export (String, "invisible", "locked", "unlocked") var status setget set_status,
 
 export var planet : Resource setget set_planet # Planet
 onready var sprite = $Sprite
-export var active : bool = false setget set_active
 
 var not_available = false setget set_availability
 
@@ -27,7 +26,7 @@ func set_status(v):
 	elif status == TheUnlocker.UNLOCKED:
 		modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
-		modulate = Color(0,0,0,0.75)
+		modulate = Color(0,0,0,0.5)
 	else:
 		modulate = Color(0,0,0,0)
 		
@@ -40,46 +39,16 @@ func set_availability(value):
 		
 func set_planet(value):
 	planet = value
-	refresh()
-	
-func set_active(value):
-	active = value
-	refresh()
-	
-func toggle_active():
-	set_active(not active)
 	
 func act(cursor):
-	toggle_active()
 	.act(cursor)
-	if active:
-		cursor.on_sth_pressed()
-		$switch_on.play()
-	else:
-		$switch_off.play()
-	emit_signal('updated', active)
-
-func deactivate(cursor):
-	set_active(false)
-	$switch_off.play()
-	emit_signal('updated', active)
+	cursor.on_sth_pressed(status == TheUnlocker.UNLOCKED or status == TheUnlocker.LOCKED and cursor.is_winner())
 	
 func _ready():
 	if planet:
 		sprite.texture = planet.planet_sprite
 		$Label.text = planet.name
-	refresh()
 	
-	
-func refresh():
-	emit_signal('updated', active)
-	if is_inside_tree():
-		if active:
-			$CheckBox.play('true')
-		else:
-			$CheckBox.play('empty')
-			
-
 func unlock():
 	$AnimationPlayer.play("unlock")
 	yield($AnimationPlayer, "animation_finished")
