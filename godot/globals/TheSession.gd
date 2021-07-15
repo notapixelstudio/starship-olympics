@@ -38,6 +38,8 @@ func set_players(_players):
 	for p in _players:
 		assert(_players[p] is InfoPlayer)
 	players = _players
+	
+func reset_players():
 	for player in players.values():
 		player.reset()
 	

@@ -576,4 +576,5 @@ func new_match():
 func new_session(players):
 	session = TheSession.new()
 	session.set_players(players)
+	session.reset_players()
 	return session
