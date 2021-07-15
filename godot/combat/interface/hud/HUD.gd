@@ -11,9 +11,11 @@ onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
 
 func set_planet(planet: String, mode: GameMode):
-	$Content/ModePanel/PlanetName.text = planet
-	$Content/ModePanel/ModeIcon.texture = (mode as GameMode).logo
-	$Content/ModePanel/ModeIcon.visible = true
+	$Content/ModePanel/PlanetName.text = (mode as GameMode).name
+	$Content/ModePanel/Icon.texture = (mode as GameMode).icon
+	$Content/ModePanel/Icon.visible = true
+	$Content/ModePanel/Shadow.texture = (mode as GameMode).icon
+	$Content/ModePanel/Shadow.visible = true
 
 func _ready():
 	set_process(false)

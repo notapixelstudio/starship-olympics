@@ -7,19 +7,25 @@
 [ext_resource path="res://assets/fonts/kenvector_future_14.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/fonts/score_font.TTF" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-size = 44
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 22
-font_data = ExtResource( 6 )
-
 [sub_resource type="DynamicFont" id=3]
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 28
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 44
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -67,64 +73,37 @@ stretch_mode = 3
 anchor_right = 1.0
 rect_min_size = Vector2( 0, 100 )
 
-[node name="LeaderPanel" type="Control" parent="Content"]
+[node name="ModePanel" type="Control" parent="Content"]
 margin_right = 150.0
 margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Headshot" parent="Content/LeaderPanel" instance=ExtResource( 4 )]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 160.0
-margin_bottom = 160.0
-rect_scale = Vector2( 0.7, 0.7 )
-species = null
+[node name="Shadow" type="Sprite" parent="Content/ModePanel"]
+self_modulate = Color( 0, 0, 0, 0.156863 )
+position = Vector2( 74.857, 65.873 )
+scale = Vector2( 0.35, 0.35 )
 
-[node name="Label" type="Label" parent="Content/LeaderPanel"]
-margin_left = 10.0
-margin_top = 122.0
-margin_right = 102.0
-margin_bottom = 159.0
-custom_fonts/font = ExtResource( 5 )
-uppercase = true
-
-[node name="Fir" type="Label" parent="Content/LeaderPanel"]
-margin_left = 98.9918
-margin_top = 5.95102
-margin_right = 148.992
-margin_bottom = 70.951
-custom_fonts/font = SubResource( 1 )
-text = "1"
-
-[node name="st" type="Label" parent="Content/LeaderPanel"]
-margin_left = 106.861
-margin_top = 7.39406
-margin_right = 156.861
-margin_bottom = 54.3941
-custom_fonts/font = SubResource( 2 )
-text = " st"
-
-[node name="ModePanel" type="Control" parent="Content"]
-margin_left = 1130.0
-margin_right = 1280.0
-margin_bottom = 150.0
+[node name="Icon" type="Sprite" parent="Content/ModePanel"]
+position = Vector2( 74.8569, 49.8733 )
+scale = Vector2( 0.35, 0.35 )
 
 [node name="PlanetName" type="Label" parent="Content/ModePanel"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -61.5
+margin_top = 57.0
 margin_right = 61.5
-margin_bottom = 50.0
+margin_bottom = 107.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Planet Name"
 align = 1
 valign = 1
 uppercase = true
-
-[node name="ModeIcon" type="Sprite" parent="Content/ModePanel"]
-position = Vector2( 79.8569, 64.8733 )
-scale = Vector2( 0.15, 0.15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TimeLeft" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
@@ -143,3 +122,52 @@ valign = 1
 uppercase = true
 
 [node name="Tween" type="Tween" parent="Content"]
+
+[node name="LeaderPanel" type="Control" parent="Content"]
+margin_left = 1129.0
+margin_right = 1279.0
+margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Headshot" parent="Content/LeaderPanel" instance=ExtResource( 4 )]
+margin_left = 13.0
+margin_top = 11.0
+margin_right = 163.0
+margin_bottom = 161.0
+rect_scale = Vector2( 0.9, 0.8 )
+
+[node name="Label" type="Label" parent="Content/LeaderPanel"]
+margin_left = 13.0
+margin_top = 123.0
+margin_right = 152.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fir" type="Label" parent="Content/LeaderPanel"]
+margin_left = 97.9918
+margin_top = 5.95102
+margin_right = 147.992
+margin_bottom = 70.951
+custom_fonts/font = SubResource( 1 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="st" type="Label" parent="Content/LeaderPanel"]
+margin_left = 105.861
+margin_top = 7.39406
+margin_right = 155.861
+margin_bottom = 54.3941
+custom_fonts/font = SubResource( 2 )
+text = " st"
+__meta__ = {
+"_edit_use_anchors_": false
+}
