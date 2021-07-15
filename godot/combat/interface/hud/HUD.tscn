@@ -82,7 +82,7 @@ __meta__ = {
 
 [node name="Shadow" type="Sprite" parent="Content/ModePanel"]
 self_modulate = Color( 0, 0, 0, 0.156863 )
-position = Vector2( 74.857, 65.873 )
+position = Vector2( 74.857, 57.873 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="Icon" type="Sprite" parent="Content/ModePanel"]
@@ -92,14 +92,15 @@ scale = Vector2( 0.35, 0.35 )
 [node name="PlanetName" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -61.5
-margin_top = 57.0
-margin_right = 61.5
-margin_bottom = 107.0
+margin_left = -71.0
+margin_top = 50.0
+margin_right = 71.0
+margin_bottom = 100.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
-valign = 1
+valign = 2
+autowrap = true
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
