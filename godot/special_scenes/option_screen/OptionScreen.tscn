@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Option.gd" type="Script" id=2]
-[ext_resource path="res://interface/PanelLarge.tscn" type="PackedScene" id=3]
-[ext_resource path="res://interface/PanelNormal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/PanelMain.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/BannerInfoBinding.tscn" type="PackedScene" id=5]
-[ext_resource path="res://special_scenes/option_screen/OptionsMain.tscn" type="PackedScene" id=6]
 
 [node name="Options" type="ColorRect"]
 anchor_right = 1.0
@@ -18,23 +16,37 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-start_scene = ExtResource( 6 )
-
-[node name="PanelNormal" parent="." instance=ExtResource( 4 )]
-
-[node name="PanelLarge" parent="." instance=ExtResource( 3 )]
+start_scene = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_top = 5.96063
+margin_bottom = 69.9606
+text = "NavBar"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BannerInfo" type="MarginContainer" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -489.0
-margin_top = 32.0
+margin_top = 57.0
 margin_right = 489.0
-margin_bottom = 84.0
+margin_bottom = 109.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BannerInfoBinding" parent="CanvasLayer/BannerInfo" instance=ExtResource( 5 )]
+
+[node name="Container" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

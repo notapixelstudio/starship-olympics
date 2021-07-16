@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://special_scenes/option_screen/OptionsMain.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/option_screen/Audio.tscn" type="PackedScene" id=2]
 [ext_resource path="res://special_scenes/option_screen/ElementOptionCheckbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://special_scenes/option_screen/OptionButton.tscn" type="PackedScene" id=4]
@@ -16,7 +15,6 @@ margin_left = -315.5
 margin_top = -160.0
 margin_right = 315.5
 margin_bottom = 160.0
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,31 +36,25 @@ label_description = "language"
 margin_top = 54.0
 margin_right = 631.0
 margin_bottom = 104.0
-elem_type = 0
 is_global = true
 element_path = "full_screen"
 label_description = "FULLSCREEN"
-node_owner_path = NodePath("")
 
 [node name="Glow" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 108.0
 margin_right = 631.0
 margin_bottom = 158.0
-elem_type = 0
 is_global = true
 element_path = "glow_enable"
 label_description = "Glow"
-node_owner_path = NodePath("")
 
 [node name="Analytics" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 162.0
 margin_right = 631.0
 margin_bottom = 212.0
-elem_type = 0
 is_global = true
 element_path = "enable_analytics"
 label_description = "analytics"
-node_owner_path = NodePath("")
 
 [node name="Audio" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_right = 631.0
