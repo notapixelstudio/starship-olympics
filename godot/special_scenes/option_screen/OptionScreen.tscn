@@ -19,6 +19,7 @@ __meta__ = {
 start_scene = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Title" type="Label" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -43,10 +44,3 @@ __meta__ = {
 }
 
 [node name="BannerInfoBinding" parent="CanvasLayer/BannerInfo" instance=ExtResource( 5 )]
-
-[node name="Container" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}

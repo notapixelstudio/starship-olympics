@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://special_scenes/title_screen/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://special_scenes/title_screen/Path2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://special_scenes/title_screen/TitleScreen.gd" type="Script" id=6]
 [ext_resource path="res://logo.png" type="Texture" id=7]
-[ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=11]
@@ -79,17 +78,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 10 )
-
-[sub_resource type="InputEventAction" id=5]
-
-[sub_resource type="ShortCut" id=6]
-shortcut = SubResource( 5 )
 
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 10 )
@@ -170,8 +158,6 @@ multiplayer_scene = ExtResource( 2 )
 layer = 100
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 3 )]
-transition = 0.0
-smoothness = 0.0
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
@@ -186,9 +172,7 @@ rotation = 3.14159
 position = Vector2( 1058.52, 1065.99 )
 rotation = 3.14159
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TitleScreen" type="Control" parent="CanvasLayer"]
+[node name="TitleScreen" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -197,22 +181,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Animator" type="AnimationPlayer" parent="CanvasLayer/TitleScreen"]
+[node name="Animator" type="AnimationPlayer" parent="TitleScreen"]
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 anims/option_selected = SubResource( 3 )
 
-[node name="logo_ssf_olympic" type="Sprite" parent="CanvasLayer/TitleScreen"]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 640, 295 )
+[node name="logo_ssf_olympic" type="Sprite" parent="TitleScreen"]
+position = Vector2( 640, 210 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 
-[node name="Options" parent="CanvasLayer" instance=ExtResource( 8 )]
-mouse_filter = 1
-
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer"]
-visible = false
+[node name="Buttons" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -224,22 +203,11 @@ margin_bottom = 326.0
 theme = ExtResource( 9 )
 alignment = 1
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
-[node name="CampaignMode" type="Button" parent="CanvasLayer/Buttons"]
-visible = false
-margin_right = 290.0
-margin_bottom = 70.0
-rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = SubResource( 4 )
-disabled = true
-action_mode = 0
-shortcut = SubResource( 6 )
-text = "START"
-flat = true
-
-[node name="Custom Fight" type="Button" parent="CanvasLayer/Buttons"]
+[node name="Custom Fight" type="Button" parent="Buttons"]
 margin_top = 37.0
 margin_right = 290.0
 margin_bottom = 107.0
@@ -250,7 +218,7 @@ action_mode = 0
 text = "FIGHT"
 flat = true
 
-[node name="Options" type="Button" parent="CanvasLayer/Buttons"]
+[node name="Options" type="Button" parent="Buttons"]
 margin_top = 111.0
 margin_right = 290.0
 margin_bottom = 181.0
@@ -261,7 +229,7 @@ action_mode = 0
 text = "OPTIONS"
 flat = true
 
-[node name="Help" type="Button" parent="CanvasLayer/Buttons"]
+[node name="Help" type="Button" parent="Buttons"]
 visible = false
 margin_top = 148.0
 margin_right = 290.0
@@ -273,7 +241,7 @@ action_mode = 0
 text = "Help"
 flat = true
 
-[node name="Credits" type="Button" parent="CanvasLayer/Buttons"]
+[node name="Credits" type="Button" parent="Buttons"]
 visible = false
 margin_top = 148.0
 margin_right = 290.0
@@ -285,7 +253,7 @@ action_mode = 0
 text = "Credits"
 flat = true
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/Buttons"]
+[node name="QuitButton" type="Button" parent="Buttons"]
 margin_top = 185.0
 margin_right = 290.0
 margin_bottom = 255.0
@@ -335,10 +303,9 @@ anims/fade = SubResource( 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 13 )
-[connection signal="option_selected" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_option_selected"]
-[connection signal="start_multiplayer" from="CanvasLayer/TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
-[connection signal="back" from="CanvasLayer/Options" to="." method="_on_Options_back"]
-[connection signal="pressed" from="CanvasLayer/Buttons/CampaignMode" to="." method="_on_CampaignMode_pressed"]
-[connection signal="pressed" from="CanvasLayer/Buttons/Custom Fight" to="CanvasLayer/TitleScreen" method="_on_StartHuman_pressed"]
-[connection signal="pressed" from="CanvasLayer/Buttons/Options" to="CanvasLayer/TitleScreen" method="_on_Options_pressed"]
-[connection signal="pressed" from="CanvasLayer/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[connection signal="option_selected" from="TitleScreen" to="." method="_on_TitleScreen_option_selected"]
+[connection signal="start_multiplayer" from="TitleScreen" to="." method="_on_TitleScreen_start_multiplayer"]
+[connection signal="pressed" from="Buttons/Custom Fight" to="TitleScreen" method="_on_StartHuman_pressed"]
+[connection signal="pressed" from="Buttons/Options" to="TitleScreen" method="_on_Options_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

@@ -4,10 +4,10 @@ signal back
 
 export var title: String = "Options"
 export var start_scene: PackedScene
-onready var panel: UIOptionPanel = $PanelNormal
 onready var banner_info = $CanvasLayer/BannerInfo
 
-onready var container = $Container
+var focus_index = 0
+
 
 func _ready():
 	Events.connect("ui_back_menu", self,"back")
@@ -17,7 +17,6 @@ func _ready():
 	self.set_content(instanced_scene)
 	
 
-var focus_index = 0
 
 var separator = " > "
 onready var navbar = [title] # Navbar of title string screen

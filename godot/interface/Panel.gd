@@ -13,7 +13,8 @@ func _ready():
 	for button in get_tree().get_nodes_in_group("UI_Navigator"):
 		assert (button is NavigatorButton)
 		button.connect("request_nav_to", self, "_on_nav_pressed")
-
+	content.grab_focus()
+	
 func _on_nav_pressed(title: String, nav_menu: PackedScene):
 	Events.emit_signal("ui_nav_to", title, nav_menu.instance())
 	
