@@ -1,65 +1,56 @@
 extends ColorRect
 
-signal back
+signal back_at_you # signal that gives the line back to whoever instantiated the option
+
+class_name UIOptions
 
 export var title: String = "Options"
-onready var container = $Panel/PanelItems/Options
-onready var panel = $Panel/PanelItems
-onready var navbar_node = $Panel/PanelItems/Navbar
-
-func _ready():
-	container.connect("nav_to", self, "nav_to")
-
+export var start_scene: PackedScene
+onready var banner_info = $CanvasLayer/BannerInfo
 
 var focus_index = 0
 
+
+func _ready():
+	Events.connect("ui_back_menu", self,"back")
+	Events.connect("ui_nav_to", self, "nav_to")
+	assert( start_scene is PackedScene)
+	var instanced_scene = start_scene.instance()
+	self.set_content(instanced_scene)
+	
+
+
 var separator = " > "
-onready var navbar = [title]
+onready var navbar = [title] # Navbar of title string screen
+onready var navbar_scene = []
 
 func back_to_menu():
-	emit_signal("back")
-	visible = false
+	emit_signal("back_at_you")
+	queue_free()
 
-func enable_all():
-	visible = true
-	focus_index = 0
-	container.get_child(focus_index).grab_focus()
-	
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		container.get_child(container.get_child_count()-1).grab_focus()
-		back_to_menu()
-	if event.is_action_pressed("ui_up"):
-		focus_index = clamp(focus_index-1, 0, container.get_child_count() -1)
-		
-	if event.is_action_pressed("ui_down"):
-		focus_index = clamp(focus_index+1, 0, container.get_child_count() -1)
-		
 func _exit_tree():
 	# Let's save the changes
 	persistance.save_game()
 
-func nav_to(title, menu_scene: Control):
-	var opt = navbar[len(navbar)-1]
-	container.visible = false
-	panel.add_child(menu_scene)
-	panel.move_child(menu_scene, 2)
-	container = panel.get_node(title)
-	container.visible  = true
-	navbar.append(title)
-	navbar_node.text = global.join_str(navbar, separator)
-	focus_index = 0
-	enable_all()
-
-func back():
-	var opt = navbar.pop_back()
-	container.queue_free()
-	container = panel.get_node(navbar[len(navbar)-1])
-	container.visible = true
-	navbar_node.text = global.join_str(navbar, separator)
+func nav_to(title, menu_scene: UIOptionPanel):
+	"""
+	will update the navbar and instance the new scene inside the tree
+	"""
+	var current = navbar_scene[len(navbar_scene)-1]
+	remove_child(current)
+	self.set_content(menu_scene)
 	
-func _on_Back_pressed():
-	if len(navbar) <= 1:
-		back_to_menu()
+func back():
+	var current = navbar_scene.pop_back()
+	current.queue_free()
+	if len(navbar_scene) >= 1:
+		self.set_content(navbar_scene[len(navbar_scene)-1], false)
 	else:
-		back()
+		back_to_menu()
+
+func set_content(instanced_scene: UIOptionPanel, nav_forward: bool = true):
+	add_child(instanced_scene)
+	instanced_scene.get_focus()
+	if nav_forward:
+		navbar_scene.append(instanced_scene)
+	

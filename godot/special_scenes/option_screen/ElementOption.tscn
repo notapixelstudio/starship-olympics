@@ -40,9 +40,9 @@ custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="Description" type="Label" parent="Container"]
-margin_left = 34.0
+margin_left = 30.0
 margin_top = 12.0
-margin_right = 151.0
+margin_right = 152.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
@@ -53,17 +53,17 @@ __meta__ = {
 }
 
 [node name="Padding" type="Label" parent="Container"]
-margin_left = 155.0
+margin_left = 152.0
 margin_top = 12.0
-margin_right = 272.0
+margin_right = 275.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 276.0
-margin_right = 393.0
+margin_left = 275.0
+margin_right = 397.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 custom_constants/separation = 7
@@ -81,7 +81,7 @@ stretch_mode = 3
 
 [node name="Value" type="Label" parent="Container/ValueContainer"]
 margin_left = 17.0
-margin_right = 100.0
+margin_right = 105.0
 margin_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -94,8 +94,8 @@ valign = 1
 uppercase = true
 
 [node name="right" type="TextureButton" parent="Container/ValueContainer"]
-margin_left = 107.0
-margin_right = 117.0
+margin_left = 112.0
+margin_right = 122.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 5
@@ -113,5 +113,6 @@ margin_bottom = 35.0
 rect_min_size = Vector2( 2, 0 )
 custom_fonts/font = SubResource( 1 )
 uppercase = true
+
 [connection signal="focus_entered" from="." to="." method="_on_Element_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_Element_focus_exited"]

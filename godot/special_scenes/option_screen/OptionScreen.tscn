@@ -1,85 +1,47 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Option.gd" type="Script" id=2]
-[ext_resource path="res://assets/theme/DefaultLabelFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://special_scenes/option_screen/OptionsMain.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://interface/PanelMain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://interface/BannerInfoBinding.tscn" type="PackedScene" id=5]
 
 [node name="Options" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 5.96063
 margin_bottom = 5.96063
+mouse_filter = 2
 theme = ExtResource( 1 )
 color = Color( 0, 0, 0, 0.745098 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+start_scene = ExtResource( 3 )
 
-[node name="Panel" type="Panel" parent="."]
-modulate = Color( 1, 1, 1, 0.713726 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -315.5
-margin_top = -278.0
-margin_right = 315.5
-margin_bottom = 278.0
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="PanelItems" type="VBoxContainer" parent="Panel"]
-anchor_top = 0.5
+[node name="Title" type="Label" parent="CanvasLayer"]
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -274.0
-margin_bottom = 277.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Navbar" type="Label" parent="Panel/PanelItems"]
-margin_right = 631.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 3 )
-text = "Options"
+margin_top = 5.96063
+margin_bottom = 69.9606
+text = "NavBar"
 align = 1
-uppercase = true
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator" type="Control" parent="Panel/PanelItems"]
-margin_top = 37.0
-margin_right = 631.0
-margin_bottom = 127.0
-size_flags_vertical = 3
+[node name="BannerInfo" type="MarginContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -489.0
+margin_top = 57.0
+margin_right = 489.0
+margin_bottom = 109.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Options" parent="Panel/PanelItems" instance=ExtResource( 4 )]
-margin_top = 133.0
-margin_bottom = 399.0
-
-[node name="Separator2" type="Control" parent="Panel/PanelItems"]
-margin_top = 405.0
-margin_right = 631.0
-margin_bottom = 495.0
-size_flags_vertical = 3
-
-[node name="Back" type="Button" parent="Panel/PanelItems"]
-margin_top = 501.0
-margin_right = 631.0
-margin_bottom = 551.0
-rect_min_size = Vector2( 0, 50 )
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "BACK"
-[connection signal="pressed" from="Panel/PanelItems/Back" to="." method="_on_Back_pressed"]
+[node name="BannerInfoBinding" parent="CanvasLayer/BannerInfo" instance=ExtResource( 5 )]

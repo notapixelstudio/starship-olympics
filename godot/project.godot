@@ -334,6 +334,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/OptionCell.gd"
 }, {
+"base": "MarginContainer",
+"class": "OptionContainer",
+"language": "GDScript",
+"path": "res://special_scenes/option_screen/OptionContainer.gd"
+}, {
 "base": "Component",
 "class": "Owned",
 "language": "GDScript",
@@ -422,7 +427,7 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "ShowedButton",
 "language": "GDScript",
-"path": "res://ButtonRepresentation.gd"
+"path": "res://interface/ButtonRepresentation.gd"
 }, {
 "base": "Resource",
 "class": "Species",
@@ -473,6 +478,16 @@ _global_script_classes=[ {
 "class": "Trait",
 "language": "GDScript",
 "path": "res://addons/traits/Trait.gd"
+}, {
+"base": "Control",
+"class": "UIOptionPanel",
+"language": "GDScript",
+"path": "res://interface/Panel.gd"
+}, {
+"base": "ColorRect",
+"class": "UIOptions",
+"language": "GDScript",
+"path": "res://interface/Option.gd"
 }, {
 "base": "StaticBody2D",
 "class": "Wall",
@@ -550,6 +565,7 @@ _global_script_class_icons={
 "Mutator": "",
 "NavigatorButton": "",
 "OptionCell": "",
+"OptionContainer": "",
 "Owned": "",
 "Paddle": "",
 "Pentagoal": "",
@@ -578,6 +594,8 @@ _global_script_class_icons={
 "Trail": "",
 "Trail2D": "",
 "Trait": "",
+"UIOptionPanel": "",
+"UIOptions": "",
 "Wall": "",
 "WallGoal": ""
 }
@@ -623,7 +641,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/Godot-GameAnalytics/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gui]
 

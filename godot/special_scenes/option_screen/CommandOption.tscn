@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://special_scenes/option_screen/CommandOption.gd" type="Script" id=1]
 [ext_resource path="res://interface/MapButtonScene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://ButtonRepresentation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/ButtonRepresentation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/themes/grey/normal.tres" type="StyleBox" id=5]
 [ext_resource path="res://ScrollContainer.tscn" type="PackedScene" id=6]
 
 [node name="RemapAction" type="MarginContainer"]
 margin_right = 1126.0
-margin_bottom = 58.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 450, 50 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -18,6 +19,11 @@ remapScene = ExtResource( 2 )
 action = "up"
 device = "joy1"
 button_scene = ExtResource( 4 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1126.0
+margin_bottom = 100.0
+custom_styles/panel = ExtResource( 5 )
 
 [node name="Container" type="HBoxContainer" parent="."]
 margin_right = 1126.0
@@ -34,45 +40,29 @@ rect_min_size = Vector2( 10, 0 )
 custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
-[node name="Description" type="Label" parent="Container"]
+[node name="Description" type="Button" parent="Container"]
 margin_left = 14.0
-margin_top = 37.0
-margin_right = 45.0
-margin_bottom = 63.0
+margin_right = 57.0
+margin_bottom = 100.0
 custom_fonts/font = ExtResource( 3 )
-text = "up"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "UP"
 
 [node name="Padding3" type="Label" parent="Container"]
-margin_left = 49.0
+margin_left = 61.0
 margin_top = 37.0
-margin_right = 149.0
+margin_right = 591.0
 margin_bottom = 63.0
 rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 9
+size_flags_horizontal = 11
 custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="ScrollContainer" parent="Container" instance=ExtResource( 6 )]
-
-[node name="AddMapping" type="Button" parent="Container"]
-margin_left = 960.0
-margin_right = 1046.0
-margin_bottom = 100.0
-text = "  +  "
-
-[node name="RemoveMapping" type="Button" parent="Container"]
-margin_left = 1050.0
+margin_left = 595.0
 margin_right = 1126.0
 margin_bottom = 100.0
-text = "  -  "
 
 [connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
-[connection signal="pressed" from="Container/AddMapping" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Container/RemoveMapping" to="." method="_on_RemoveMapping_pressed"]
+[connection signal="focus_entered" from="Panel" to="." method="_on_Panel_focus_entered"]
+[connection signal="focus_exited" from="Panel" to="." method="_on_Panel_focus_exited"]

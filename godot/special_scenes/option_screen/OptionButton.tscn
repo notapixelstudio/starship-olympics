@@ -4,7 +4,9 @@
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://special_scenes/option_screen/OptionButton.gd" type="Script" id=3]
 
-[node name="Option" type="Button"]
+[node name="NavigatorButton" type="Button" groups=[
+"UI_Navigator",
+]]
 margin_top = 216.0
 margin_right = 445.0
 margin_bottom = 266.0
@@ -15,4 +17,5 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="." to="." method="_on_Controls_pressed"]

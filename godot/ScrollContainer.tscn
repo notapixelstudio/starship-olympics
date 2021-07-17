@@ -23,12 +23,10 @@ tracks/0/keys = {
 [node name="ScrollContainer" type="Control"]
 margin_left = 153.0
 margin_right = 956.0
-margin_bottom = 100.0
+margin_bottom = 80.0
 grow_horizontal = 2
-rect_min_size = Vector2( 0, 100 )
 rect_clip_content = true
 size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -37,6 +35,7 @@ __meta__ = {
 [node name="Buttons" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 20
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false

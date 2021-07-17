@@ -1,7 +1,6 @@
-extends VBoxContainer
+extends OptionContainer
 
-onready var device = $Element.value
-onready var joypad = $Controller
+onready var device = $UIButtonsContainer/Element.value
 
 func _ready():
 	for child in get_children():
@@ -22,7 +21,6 @@ func _on_Element_value_changed(value):
 			
 func _on_Default_pressed():
 	var mapping = global.set_default_mapping(device)
-	joypad.setup_controls(mapping)
 	_on_Element_value_changed(device)
 
 func control_remapped(action: String, event: InputEvent, substitute: bool):
@@ -35,4 +33,3 @@ func control_remapped(action: String, event: InputEvent, substitute: bool):
 func clear_mapping(action: String):
 	if not "joy" in action:
 		return
-	joypad.clear_controls(action)

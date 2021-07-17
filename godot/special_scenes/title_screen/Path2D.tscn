@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( -36.5058, -50.86, 36.5058, 50.86, -53.0463, -211.731, -138.672, -87.6835, 138.672, 87.6835, 578.762, 254.758, 0, 0, 0, 0, 677.733, 279.323, 0, 0, 0, 0, 702.278, 275.702, 0, 0, 0, 0, 717.568, 274.495, 0, 0, 0, 0, 733.663, 270.471, 144.343, -319.85, -144.343, 319.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
+"points": PoolVector2Array( -36.5058, -50.86, 36.5058, 50.86, -249.698, -754.354, 40.343, -213.85, -40.343, 213.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
 }
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -22,14 +22,14 @@ blend_mode = 1
 light_mode = 2
 
 [node name="Path2D" type="Path2D"]
+position = Vector2( 10, 2 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
 trail_scene = ExtResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2( -481.847, 67.3481 )
-rotation = -2.61352
-offset = 3413.82
+position = Vector2( -249.698, -754.354 )
+rotation = 0.846329
 
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
 scale = Vector2( 0.3, 0.3 )

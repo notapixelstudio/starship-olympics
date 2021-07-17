@@ -9,14 +9,14 @@ onready var hslider =$VBoxContainer/HSlider
 func _process(delta):
 	description_node.text = tr("Volume" + " " + bus_name)
 	
-func _initialize():
+func post_ready():
 	value = node_owner.get(variable_name)
 	yield(get_tree().create_timer(0.2), "timeout")
 	value_node.value = value
 	
 func _ready():
 	description_node.text = tr(description_node.text + " " + bus_name)	
-	_initialize()
+	post_ready()
 	
 func _on_HSlider_value_changed(new_value: int):
 	self.value = new_value
