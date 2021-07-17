@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/Panel.gd" type="Script" id=2]
 [ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=3]
-[ext_resource path="res://special_scenes/option_screen/ElemSlider.gd" type="Script" id=4]
 
 [node name="PanelAudio" type="Container"]
 anchor_left = 0.5
@@ -27,7 +25,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Audio" type="VBoxContainer" parent="Content"]
+[node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 778.0
 margin_bottom = 420.0
 size_flags_vertical = 3
@@ -35,49 +33,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Music" type="Panel" parent="Content/Audio" instance=ExtResource( 3 )]
+[node name="Music" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+margin_top = 0.0
 margin_right = 778.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 0, 50 )
-focus_mode = 2
-theme = ExtResource( 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 elem_type = 1
 is_global = true
 element_path = "master_volume"
 label_description = "Volume Master"
 
-[node name="Music2" type="Panel" parent="Content/Audio" instance=ExtResource( 3 )]
+[node name="Music2" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 margin_top = 54.0
 margin_right = 778.0
 margin_bottom = 104.0
-rect_min_size = Vector2( 0, 50 )
-focus_mode = 2
-theme = ExtResource( 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 elem_type = 1
 is_global = true
 element_path = "music_volume"
 label_description = "Volume Music"
 bus_name = "Music"
 
-[node name="Music3" type="Panel" parent="Content/Audio" instance=ExtResource( 3 )]
+[node name="Music3" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 margin_top = 108.0
 margin_right = 778.0
 margin_bottom = 158.0
-rect_min_size = Vector2( 0, 50 )
-focus_mode = 2
-theme = ExtResource( 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 elem_type = 1
 is_global = true
 element_path = "sfx_volume"
@@ -98,10 +76,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="focus_entered" from="Content/Audio/Music" to="Content/Audio/Music" method="_on_Music_focus_entered"]
-[connection signal="focus_exited" from="Content/Audio/Music" to="Content/Audio/Music" method="_on_Music_focus_exited"]
-[connection signal="focus_entered" from="Content/Audio/Music2" to="Content/Audio/Music2" method="_on_Music_focus_entered"]
-[connection signal="focus_exited" from="Content/Audio/Music2" to="Content/Audio/Music2" method="_on_Music_focus_exited"]
-[connection signal="focus_entered" from="Content/Audio/Music3" to="Content/Audio/Music3" method="_on_Music_focus_entered"]
-[connection signal="focus_exited" from="Content/Audio/Music3" to="Content/Audio/Music3" method="_on_Music_focus_exited"]
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

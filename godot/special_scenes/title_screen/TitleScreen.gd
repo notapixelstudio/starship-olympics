@@ -5,23 +5,30 @@ signal entered
 signal start_multiplayer
 
 onready var animation = $Animator
-var can_press = false
+onready var buttons = $Buttons
 
-func initialize():
-	animation.stop(true)
+export var options_scene: PackedScene
+
+func _ready():
+	self.appear()
+
+func appear():
+	for button in buttons.get_children():
+		button.disabled  = true
 	animation.play("fade_in")
 	yield(animation, "animation_finished")
-	emit_signal("entered")
-	can_press = true
+	for button in buttons.get_children():
+		button.disabled  = false
+	buttons.get_child(0).grab_focus()
 	
+func back_from_options():
+	self.appear()
 	
 func _on_Options_pressed():
 	animation.play("fade_out")
 	yield(animation, "animation_finished")
-	emit_signal("option_selected")
+	var options: UIOptions = options_scene.instance()
+	add_child(options)
+	options.connect("back_at_you", self, "back_from_options")
 
-	
-func _on_StartHuman_pressed():
-	if can_press:
-		emit_signal("start_multiplayer")
 

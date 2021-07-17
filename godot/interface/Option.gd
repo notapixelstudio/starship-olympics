@@ -1,6 +1,8 @@
 extends ColorRect
 
-signal back
+signal back_at_you # signal that gives the line back to whoever instantiated the option
+
+class_name UIOptions
 
 export var title: String = "Options"
 export var start_scene: PackedScene
@@ -23,9 +25,8 @@ onready var navbar = [title] # Navbar of title string screen
 onready var navbar_scene = []
 
 func back_to_menu():
-	emit_signal("back")
-	visible = false
-	self.set_content(navbar_scene.pop_back())
+	emit_signal("back_at_you")
+	queue_free()
 
 func _exit_tree():
 	# Let's save the changes
@@ -42,14 +43,14 @@ func nav_to(title, menu_scene: UIOptionPanel):
 func back():
 	var current = navbar_scene.pop_back()
 	current.queue_free()
-	self.set_content(navbar_scene[len(navbar_scene)-1])
-	
-func _on_Back_pressed():
-	if len(navbar) <= 1:
-		back_to_menu()
+	if len(navbar_scene) >= 1:
+		self.set_content(navbar_scene[len(navbar_scene)-1], false)
 	else:
-		back()
+		back_to_menu()
 
-func set_content(instanced_scene: UIOptionPanel):
+func set_content(instanced_scene: UIOptionPanel, nav_forward: bool = true):
 	add_child(instanced_scene)
-	navbar_scene.append(instanced_scene)
+	instanced_scene.get_focus()
+	if nav_forward:
+		navbar_scene.append(instanced_scene)
+	

@@ -18,7 +18,7 @@ func _ready():
 	
 func _process(delta):
 	follow.offset += speed*delta
-	if follow.unit_offset > 0.9: 
+	if follow.unit_offset > 0.97: 
 		init_ship()
 		follow.offset = 0.0
 

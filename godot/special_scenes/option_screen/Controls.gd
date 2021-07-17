@@ -1,6 +1,6 @@
 extends OptionContainer
 
-onready var device = $VBoxContainer/Element.value
+onready var device = $UIButtonsContainer/Element.value
 
 func _ready():
 	for child in get_children():

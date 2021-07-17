@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( -36.5058, -50.86, 36.5058, 50.86, -53.0463, -211.731, 40.343, -213.85, -40.343, 213.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
+"points": PoolVector2Array( -36.5058, -50.86, 36.5058, 50.86, -249.698, -754.354, 40.343, -213.85, -40.343, 213.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
 }
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -28,9 +28,8 @@ script = ExtResource( 1 )
 trail_scene = ExtResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2( -323.045, 135.681 )
-rotation = -2.73346
-offset = 3413.82
+position = Vector2( -249.698, -754.354 )
+rotation = 0.846329
 
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
 scale = Vector2( 0.3, 0.3 )
