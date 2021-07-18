@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://special_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://logo.png" type="Texture" id=4]
 [ext_resource path="res://special_scenes/option_screen/OptionScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -105,6 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 options_scene = ExtResource( 5 )
+local_multi_scene = ExtResource( 6 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 1 )
@@ -189,5 +191,6 @@ action_mode = 0
 text = "QUIT"
 flat = true
 
-[connection signal="pressed" from="Buttons/Fight" to="." method="_on_StartHuman_pressed"]
+[connection signal="pressed" from="Buttons/Fight" to="." method="_on_Fight_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

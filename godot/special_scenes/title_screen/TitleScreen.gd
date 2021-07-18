@@ -1,13 +1,12 @@
 extends Control
 
 signal option_selected
-signal entered
-signal start_multiplayer
 
 onready var animation = $Animator
 onready var buttons = $Buttons
 
 export var options_scene: PackedScene
+export var local_multi_scene: PackedScene
 
 func _ready():
 	self.appear()
@@ -32,3 +31,11 @@ func _on_Options_pressed():
 	options.connect("back_at_you", self, "back_from_options")
 
 
+
+
+func _on_Fight_pressed():
+	get_tree().change_scene_to(local_multi_scene)
+
+
+func _on_QuitButton_pressed():
+	global.end_game()
