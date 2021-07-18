@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://interface/ButtonRepresentation.tscn" type="PackedScene" id=1]
+
+[node name="BannerInfo" type="MarginContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -489.0
+margin_top = 57.0
+margin_right = 489.0
+margin_bottom = 109.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 978.0
+margin_bottom = 52.0
+color = Color( 0.160784, 0.0823529, 0.101961, 0.682353 )
+
+[node name="BannerInfoBinding" type="HBoxContainer" parent="."]
+margin_right = 978.0
+margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BannerInfoBinding"]
+margin_right = 135.0
+margin_bottom = 52.0
+text = "Press "
+
+[node name="ShowedButton" parent="BannerInfoBinding" instance=ExtResource( 1 )]
+margin_left = 139.0
+margin_right = 189.0
+margin_bottom = 52.0
+
+[node name="Label2" type="Label" parent="BannerInfoBinding"]
+margin_left = 193.0
+margin_right = 563.0
+margin_bottom = 52.0
+text = "to add a button, "
+
+[node name="ShowedButton2" parent="BannerInfoBinding" instance=ExtResource( 1 )]
+margin_left = 567.0
+margin_right = 617.0
+margin_bottom = 52.0
+
+[node name="Label3" type="Label" parent="BannerInfoBinding"]
+margin_left = 621.0
+margin_right = 978.0
+margin_bottom = 52.0
+text = "to clear buttons"

@@ -1,7 +1,5 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/M_Key_Dark.png" type="Texture" id=1]
-[ext_resource path="res://interface/ButtonRepresentation.gd" type="Script" id=2]
 [ext_resource path="res://interface/ButtonRepresentation.tscn" type="PackedScene" id=3]
 
 [node name="BannerInfoBinding" type="HBoxContainer"]
@@ -16,18 +14,10 @@ margin_right = 135.0
 margin_bottom = 52.0
 text = "Press "
 
-[node name="ShowedButton" type="TextureRect" parent="." instance=ExtResource( 3 )]
+[node name="ShowedButton" parent="." instance=ExtResource( 3 )]
 margin_left = 139.0
 margin_right = 189.0
 margin_bottom = 52.0
-rect_min_size = Vector2( 50, 50 )
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 1
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="."]
 margin_left = 193.0
@@ -35,18 +25,10 @@ margin_right = 563.0
 margin_bottom = 52.0
 text = "to add a button, "
 
-[node name="ShowedButton2" type="TextureRect" parent="." instance=ExtResource( 3 )]
+[node name="ShowedButton2" parent="." instance=ExtResource( 3 )]
 margin_left = 567.0
 margin_right = 617.0
 margin_bottom = 52.0
-rect_min_size = Vector2( 50, 50 )
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 1
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="."]
 margin_left = 621.0

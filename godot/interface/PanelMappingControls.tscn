@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/BannerInfo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://interface/Panel.gd" type="Script" id=3]
 [ext_resource path="res://special_scenes/option_screen/Controls.gd" type="Script" id=4]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=5]
@@ -8,7 +9,7 @@
 [ext_resource path="res://interface/BannerInfoBinding.tscn" type="PackedScene" id=7]
 [ext_resource path="res://special_scenes/option_screen/CommandOption.tscn" type="PackedScene" id=10]
 
-[node name="PanelRemapping" type="Container"]
+[node name="PanelRemapping" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -18,9 +19,6 @@ margin_top = -280.0
 margin_right = 560.0
 margin_bottom = 296.0
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 panel_type = "large"
 
 [node name="Title" type="Label" parent="."]
@@ -131,6 +129,10 @@ text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BannerInfo" parent="." instance=ExtResource( 2 )]
+margin_top = -57.0
+margin_bottom = -5.0
 
 [connection signal="value_changed" from="Content/Controls/UIButtonsContainer/Element" to="Content/Controls" method="_on_Element_value_changed"]
 [connection signal="pressed" from="Content/Controls/UIButtonsContainer/Default" to="Content/Controls" method="_on_Default_pressed"]
