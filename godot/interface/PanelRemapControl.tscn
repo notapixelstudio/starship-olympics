@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://interface/PanelAudio.tscn" type="PackedScene" id=1]
 [ext_resource path="res://interface/Panel.gd" type="Script" id=2]
 [ext_resource path="res://interface/PanelMappingControls.tscn" type="PackedScene" id=3]
 [ext_resource path="res://special_scenes/option_screen/OptionButton.tscn" type="PackedScene" id=7]
@@ -42,7 +41,7 @@ margin_right = 500.0
 margin_bottom = 50.0
 text = "CONFIGURE KEYBOARD"
 tooltip = "configure keyboard mapping"
-option_menu = ExtResource( 1 )
+option_menu = ExtResource( 3 )
 title = "Configure keyboard"
 
 [node name="Joypad" parent="Content/UIButtonsContainer" instance=ExtResource( 7 )]

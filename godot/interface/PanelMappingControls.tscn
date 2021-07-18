@@ -43,7 +43,7 @@ __meta__ = {
 }
 
 [node name="Controls" type="MarginContainer" parent="Content"]
-margin_right = 1110.0
+margin_right = 983.0
 margin_bottom = 490.0
 size_flags_vertical = 3
 script = ExtResource( 4 )
@@ -54,13 +54,13 @@ banner_info = ExtResource( 7 )
 panel_type = "large"
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content/Controls"]
-margin_right = 1110.0
+margin_right = 983.0
 margin_bottom = 490.0
 custom_constants/separation = 20
 
 [node name="Element" parent="Content/Controls/UIButtonsContainer" instance=ExtResource( 6 )]
 anchor_right = 0.0
-margin_right = 1110.0
+margin_right = 983.0
 margin_bottom = 50.0
 elem_type = 2
 is_global = true
@@ -69,47 +69,47 @@ label_description = "device"
 
 [node name="action1" parent="Content/Controls/UIButtonsContainer" instance=ExtResource( 10 )]
 margin_top = 70.0
-margin_right = 1110.4
+margin_right = 983.2
 margin_bottom = 120.0
-rect_min_size = Vector2( 1110.4, 50 )
+rect_min_size = Vector2( 983.2, 50 )
 
 [node name="action" parent="Content/Controls/UIButtonsContainer" instance=ExtResource( 10 )]
 margin_top = 140.0
-margin_right = 1110.4
+margin_right = 983.2
 margin_bottom = 190.0
-rect_min_size = Vector2( 1110.4, 50 )
+rect_min_size = Vector2( 983.2, 50 )
 action = "down"
 
 [node name="action2" parent="Content/Controls/UIButtonsContainer" instance=ExtResource( 10 )]
 margin_top = 210.0
-margin_right = 1110.4
+margin_right = 983.2
 margin_bottom = 260.0
-rect_min_size = Vector2( 1110.4, 50 )
+rect_min_size = Vector2( 983.2, 50 )
 action = "left"
 
 [node name="action3" parent="Content/Controls/UIButtonsContainer" instance=ExtResource( 10 )]
 margin_top = 280.0
-margin_right = 1110.4
+margin_right = 983.2
 margin_bottom = 330.0
-rect_min_size = Vector2( 1110.4, 50 )
+rect_min_size = Vector2( 983.2, 50 )
 action = "right"
 
 [node name="action4" parent="Content/Controls/UIButtonsContainer" instance=ExtResource( 10 )]
 margin_top = 350.0
-margin_right = 1110.4
+margin_right = 983.2
 margin_bottom = 400.0
-rect_min_size = Vector2( 1110.4, 50 )
+rect_min_size = Vector2( 983.2, 50 )
 action = "fire"
 
 [node name="Control" type="Control" parent="Content/Controls/UIButtonsContainer"]
 margin_top = 420.0
-margin_right = 1110.0
+margin_right = 983.0
 margin_bottom = 420.0
 size_flags_vertical = 3
 
 [node name="Default" type="Button" parent="Content/Controls/UIButtonsContainer"]
 margin_top = 440.0
-margin_right = 1110.0
+margin_right = 983.0
 margin_bottom = 490.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
