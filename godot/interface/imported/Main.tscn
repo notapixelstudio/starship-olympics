@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://interface/Toggle.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.854902, 0.34902, 0.34902, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Organizer" type="CenterContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Toggle" parent="Organizer" instance=ExtResource( 1 )]

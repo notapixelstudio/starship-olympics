@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://map/planets/sets/survival.tres" type="Resource" id=35]
 [ext_resource path="res://map/planets/sets/diamonds.tres" type="Resource" id=36]
 [ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=37]
+[ext_resource path="res://actors/battlers/Ship.tscn" type="PackedScene" id=38]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -569,6 +570,8 @@ margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Ship" parent="." instance=ExtResource( 38 )]
 
 [editable path="Content/Controls/Victories"]
 [editable path="Content/Controls/Flood Moon"]

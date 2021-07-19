@@ -1,0 +1,240 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://interface/imported/Scripts/ToggleTree.gd" type="Script" id=1]
+[ext_resource path="res://interface/imported/Images/Knob.png" type="Texture" id=2]
+[ext_resource path="res://interface/imported/Images/Blur.png" type="Texture" id=3]
+[ext_resource path="res://interface/imported/Images/Sad.png" type="Texture" id=4]
+[ext_resource path="res://interface/imported/Images/Smile.png" type="Texture" id=5]
+[ext_resource path="res://interface/imported/Images/GradientBase.png" type="Texture" id=6]
+[ext_resource path="res://interface/imported/Images/Base.png" type="Texture" id=7]
+
+[sub_resource type="VisualShader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_add;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+mode = 1
+modes/blend = 1
+flags/light_only = false
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Knob:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 210, 10 ), Vector2( 10, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Knob/Sad:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 120, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Knob/Smile:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -120, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Gradient:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Blur:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 255.001, 55.001 ), Vector2( 55.0007, 55.0007 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Knob:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.501 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10, 10 ), Vector2( 210, 10 ), Vector2( 210, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Knob/Sad:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 120, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Knob/Smile:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -120, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Gradient:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Blur:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 55.0007, 55.0007 ), Vector2( 255.001, 55.001 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "ToggleOff"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "ToggleOn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/ToggleOff/node = SubResource( 5 )
+states/ToggleOff/position = Vector2( 700, 52.875 )
+states/ToggleOn/node = SubResource( 6 )
+states/ToggleOn/position = Vector2( 316.5, 52.25 )
+transitions = [ "ToggleOn", "ToggleOff", SubResource( 7 ), "ToggleOff", "ToggleOn", SubResource( 8 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[node name="Toggle" type="CheckButton"]
+margin_left = 362.0
+margin_top = 250.0
+margin_right = 662.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 300, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Base" type="NinePatchRect" parent="."]
+margin_right = 300.0
+margin_bottom = 100.0
+texture = ExtResource( 7 )
+
+[node name="Gradient" type="NinePatchRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 300.0
+margin_bottom = 100.0
+texture = ExtResource( 6 )
+
+[node name="Blur" type="Sprite" parent="."]
+position = Vector2( 55.0007, 55.0007 )
+texture = ExtResource( 3 )
+
+[node name="Knob" type="NinePatchRect" parent="."]
+material = SubResource( 2 )
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 90.0004
+margin_bottom = 90.0
+rect_clip_content = true
+texture = ExtResource( 2 )
+
+[node name="Sad" type="Sprite" parent="Knob"]
+position = Vector2( 40, 40 )
+texture = ExtResource( 4 )
+
+[node name="Smile" type="Sprite" parent="Knob"]
+position = Vector2( 40, 40 )
+texture = ExtResource( 5 )
+offset = Vector2( -120, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ToggleOff = SubResource( 3 )
+anims/ToggleOn = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 10 )
+script = ExtResource( 1 )
+
+[connection signal="toggled" from="." to="AnimationTree" method="_on_Toggle_toggled"]
