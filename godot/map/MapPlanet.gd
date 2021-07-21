@@ -21,14 +21,16 @@ func get_status():
 	
 func set_status(v):
 	status = v
+	$Lock.visible = false
 	if Engine.editor_hint:
-		modulate = Color(1,1,1,1)
+		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.UNLOCKED:
-		modulate = Color(1,1,1,1)
+		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
-		modulate = Color(0,0,0,0.5)
+		$Sprite.modulate = Color(0,0,0,0.5)
+		$Lock.visible = true
 	else:
-		modulate = Color(0,0,0,0)
+		$Sprite.modulate = Color(0,0,0,0)
 		
 	$DebugLabel.text = status
 	

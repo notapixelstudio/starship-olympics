@@ -39,5 +39,5 @@ func add_line(p1, p2):
 	line.width = 6
 	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line.end_cap_mode = Line2D.LINE_CAP_ROUND
-	line.default_color = Color(0.6,0.6,1,0.4)
+	line.default_color = Color(0.6,0.6,1,0.3)
 	add_child(line)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/map/lock.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -140,3 +141,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/unlock = SubResource( 4 )
+
+[node name="Lock" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -27 )
+texture = ExtResource( 12 )
