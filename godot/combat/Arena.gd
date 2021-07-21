@@ -24,6 +24,8 @@ export var underwater : bool = false
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
+export var show_hud : bool = true
+
 var debug = false
 # analytics
 var run_time = 0
@@ -136,6 +138,11 @@ func _init():
 	
 func _ready():
 	set_process(false)
+	
+	# remove HUD if not needed (e.g., map)
+	if not show_hud:
+		$CanvasLayer/HUD.queue_free()
+	
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
@@ -335,7 +342,8 @@ func _ready():
 		set_style(game_mode.arena_style)
 		
 	yield(mode_description, "ready_to_fight")
-	hud.set_planet("", game_mode)
+	if show_hud:
+		hud.set_planet("", game_mode)
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
