@@ -25,6 +25,7 @@ export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
 export var show_hud : bool = true
+export var show_intro : bool = true
 
 var debug = false
 # analytics
@@ -286,14 +287,16 @@ func _ready():
 		game_mode.max_score = score_to_win_override
 	if match_duration_override > 0:
 		game_mode.max_timeout = match_duration_override
-	mode_description.gamemode = game_mode
-	mode_description.appears()
-	if demo:
-		# demo will wait 1 second and create a CPU match
-		mode_description.demomode(demo)
-		mode_description.set_process_input(false)
-		yield(get_tree().create_timer(3), "timeout")
-		mode_description.disappears()
+		
+	if show_intro:
+		mode_description.gamemode = game_mode
+		mode_description.appears()
+		if demo:
+			# demo will wait 1 second and create a CPU match
+			mode_description.demomode(demo)
+			mode_description.set_process_input(false)
+			yield(get_tree().create_timer(3), "timeout")
+			mode_description.disappears()
 	
 	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
@@ -343,7 +346,8 @@ func _ready():
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
-	yield(mode_description, "ready_to_fight")
+	if show_intro:
+		yield(mode_description, "ready_to_fight")
 	if show_hud:
 		hud.set_planet("", game_mode)
 	
