@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
@@ -37,8 +37,6 @@
 [ext_resource path="res://map/planets/sets/diamonds.tres" type="Resource" id=36]
 [ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=37]
 [ext_resource path="res://map/Path.tscn" type="PackedScene" id=38]
-
-[sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="Animation" id=2]
 resource_name = "wigglewiggle"
@@ -94,19 +92,6 @@ focus_path_scene = ExtResource( 30 )
 pause_mode = 2
 
 [node name="Waypoints" type="Node2D" parent="Content"]
-
-[node name="SmokedGlass" type="Polygon2D" parent="Content/Waypoints"]
-color = Color( 0, 0, 0, 0.392157 )
-polygon = PoolVector2Array( -700, -700, -600, -800, -300, -800, -300, -1200, -200, -1300, 1400, -1300, 1500, -1200, 1500, 400, 1400, 500, -600, 500, -700, 400 )
-
-[node name="Boundary" type="Line2D" parent="Content/Waypoints"]
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-material = SubResource( 1 )
-points = PoolVector2Array( -200, -1300, 1400, -1300, 1500, -1200, 1500, 400, 1400, 500, -600, 500, -700, 400, -700, -700, -600, -800, -300, -800, -300, -1200, -200, -1300 )
-width = 16.0
-default_color = Color( 0.4, 0.501961, 1, 1 )
-begin_cap_mode = 2
-end_cap_mode = 2
 
 [node name="Path" parent="Content/Waypoints" instance=ExtResource( 38 )]
 position = Vector2( -400, 500 )
