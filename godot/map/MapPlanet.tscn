@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
 [ext_resource path="res://map/planets/TheHive.tres" type="Resource" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/map/lock.png" type="Texture" id=12]
+[ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=13]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 120, 120 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -80,12 +84,19 @@ tracks/2/keys = {
 "values": [ Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ) ]
 }
 
-[node name="MapPlanet" type="Node2D" groups=[
+[node name="MapPlanet" type="Area2D" groups=[
 "map_point",
 "sports",
 ]]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource( 1 )
 planet = ExtResource( 2 )
+
+[node name="Tappable" parent="." instance=ExtResource( 13 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

@@ -50,6 +50,8 @@ func _ready():
 	if planet:
 		sprite.texture = planet.planet_sprite
 		$Label.text = planet.name
+		
+	self.set_status(TheUnlocker.get_status_set(self.get_id()))
 	
 func unlock():
 	$AnimationPlayer.play("unlock")
@@ -61,4 +63,7 @@ func on_hover():
 	
 func on_blur():
 	$Label.visible = false
+	
+func _on_tap(author):
+	print(author)
 	
