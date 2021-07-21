@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapGameMode.tres" type="Resource" id=2]
@@ -6,8 +6,11 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
+[ext_resource path="res://map/mapPanel.gd" type="Script" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://map/planets/rules/Minicard.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+[ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=15]
 [ext_resource path="res://map/planets/sets/snake.tres" type="Resource" id=16]
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=17]
@@ -170,6 +173,85 @@ species = ExtResource( 6 )
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 zoomMin = 4.0
+marginY = -225.0
+subtractHeight = 450
+
+[node name="CanvasLayerTop" type="CanvasLayer" parent="." index="9"]
+layer = 2
+
+[node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop" index="0"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -200.0
+margin_bottom = -20.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer" index="0"]
+margin_right = 90.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+
+[node name="p1" type="Control" parent="CanvasLayerTop/PanelContainer" index="1" groups=[
+"map_panel",
+] instance=ExtResource( 11 )]
+margin_left = 110.0
+margin_right = 360.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 250, 180 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Minicard = ExtResource( 9 )
+
+[node name="p2" type="Control" parent="CanvasLayerTop/PanelContainer" index="2" groups=[
+"map_panel",
+] instance=ExtResource( 11 )]
+margin_left = 380.0
+margin_right = 630.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 250, 180 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Minicard = ExtResource( 9 )
+
+[node name="p3" type="Control" parent="CanvasLayerTop/PanelContainer" index="3" groups=[
+"map_panel",
+] instance=ExtResource( 11 )]
+margin_left = 650.0
+margin_right = 900.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 250, 180 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Minicard = ExtResource( 9 )
+
+[node name="p4" type="Control" parent="CanvasLayerTop/PanelContainer" index="4" groups=[
+"map_panel",
+] instance=ExtResource( 11 )]
+margin_left = 920.0
+margin_right = 1170.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 250, 180 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Minicard = ExtResource( 9 )
+
+[node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer" index="5"]
+margin_left = 1190.0
+margin_right = 1280.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

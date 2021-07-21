@@ -272,11 +272,13 @@ func _ready():
 	
 	global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
 	
-	# initialize HUD
-	hud.post_ready()
+	if show_hud:
+		# initialize HUD
+		hud.post_ready()
 	
 	# adapt camera to hud height
-	camera.marginY = hud.get_height()
+	if show_hud:
+		camera.marginY = hud.get_height()
 	camera.initialize(compute_arena_size())
 	
 	# $Battlefield.visible = false
