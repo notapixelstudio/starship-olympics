@@ -1,17 +1,11 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/Map.gd" type="Script" id=2]
 [ext_resource path="res://map/PlaylistItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://map/planets/sets/snake.tres" type="Resource" id=7]
-[ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=8]
-[ext_resource path="res://map/planets/sets/death.tres" type="Resource" id=9]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=10]
-[ext_resource path="res://map/planets/sets/sports.tres" type="Resource" id=11]
-[ext_resource path="res://map/planets/sets/conquest.tres" type="Resource" id=12]
-[ext_resource path="res://map/planets/sets/crown.tres" type="Resource" id=13]
 [ext_resource path="res://map/OptionCell.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
@@ -29,16 +23,10 @@
 [ext_resource path="res://assets/map/cards/laser_moon_on.png" type="Texture" id=28]
 [ext_resource path="res://assets/map/cards/laser_moon_random.png" type="Texture" id=29]
 [ext_resource path="res://map/FollowPath.tscn" type="PackedScene" id=30]
-[ext_resource path="res://map/planets/sets/asteroids.tres" type="Resource" id=31]
-[ext_resource path="res://map/planets/sets/ice.tres" type="Resource" id=32]
 [ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
-[ext_resource path="res://map/planets/sets/cards.tres" type="Resource" id=34]
-[ext_resource path="res://map/planets/sets/survival.tres" type="Resource" id=35]
-[ext_resource path="res://map/planets/sets/diamonds.tres" type="Resource" id=36]
-[ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=37]
 [ext_resource path="res://map/Path.tscn" type="PackedScene" id=38]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "wigglewiggle"
 length = 10.0
 loop = true
@@ -56,7 +44,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "wigglewiggle"
 length = 10.0
 loop = true
@@ -116,51 +104,39 @@ __meta__ = {
 
 [node name="Set1" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -1900 )
-planet = ExtResource( 31 )
 
 [node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, 250 )
-planet = ExtResource( 8 )
 
 [node name="Set7" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -2300 )
-planet = ExtResource( 32 )
 
 [node name="Set8" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -2300 )
-planet = ExtResource( 7 )
 
 [node name="Set13" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -2700 )
-planet = ExtResource( 34 )
 
 [node name="Set14" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -2700 )
-planet = ExtResource( 35 )
 
 [node name="Set15" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -2700 )
-planet = ExtResource( 36 )
 
 [node name="Set16" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -450, -300 )
-planet = ExtResource( 37 )
 
 [node name="Set9" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -100, -400 )
-planet = ExtResource( 9 )
 
 [node name="Set10" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 450, -350 )
-planet = ExtResource( 11 )
 
 [node name="Set11" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 800, -1900 )
-planet = ExtResource( 12 )
 
 [node name="Set12" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 1200, -1900 )
-planet = ExtResource( 13 )
 
 [node name="Controls" type="Node2D" parent="Content"]
 
@@ -201,7 +177,7 @@ visible = false
 texture = ExtResource( 26 )
 
 [node name="AnimationPlayer" parent="Content/Controls/Flood Moon" index="2"]
-anims/wigglewiggle = SubResource( 2 )
+anims/wigglewiggle = SubResource( 1 )
 
 [node name="Laser Moon" parent="Content/Controls" instance=ExtResource( 14 )]
 position = Vector2( 400, -1000 )
@@ -223,7 +199,7 @@ visible = false
 texture = ExtResource( 29 )
 
 [node name="AnimationPlayer" parent="Content/Controls/Laser Moon" index="2"]
-anims/wigglewiggle = SubResource( 3 )
+anims/wigglewiggle = SubResource( 2 )
 
 [node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
 visible = false

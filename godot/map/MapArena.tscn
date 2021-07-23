@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapGameMode.tres" type="Resource" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
 [ext_resource path="res://map/MapManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://map/MapPanelContainer.gd" type="Script" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=15]
@@ -162,6 +163,7 @@ anchor_bottom = 1.0
 margin_top = -200.0
 margin_bottom = -20.0
 custom_constants/separation = 20
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -204,6 +206,8 @@ margin_left = 1190.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
+
+[node name="Tween" type="Tween" parent="CanvasLayerTop/PanelContainer" index="6"]
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

@@ -1,10 +1,11 @@
 extends Node
 
 export var panels_path : NodePath
-var panels
+var panels: MapPanelContainer
 
 var selected_planets = []
 var players_ready = 0
+var ready = false
 
 func _ready():
 	panels = get_node(panels_path)
@@ -15,7 +16,8 @@ func _ready():
 		panel.enable()
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
-
+	Events.connect("match_ended", self, '_on_match_ended')
+	
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:
 		tap(tapper, tappee)
@@ -39,6 +41,21 @@ func tap(ship : Ship, planet : MapPlanet):
 	#	cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
 	#	cursor.spend_winnership()
 func check_all_ready():
-	if players_ready == 
+	if not ready and players_ready == global.session.get_number_of_players():
+		ready = true
+		pick_next_minigame()
+		
+func pick_next_minigame():
+	var players = global.session.get_players()
+	var players_selection = {}
+	for id in players.keys():
+		var panel: MapPanel = panels.get_node(id)
+		players_selection[id] = panel.content
+	print(players_selection)
+	global.session.setup_players_selection(players_selection)
+	var player_and_minigame = global.session.choose_next_level()
 	yield(get_tree().create_timer(1), "timeout")
-	emit_signal('done', {"sets": sets, "players_selection": players_selection})
+	panels.choose_level(player_and_minigame["player"], player_and_minigame["level"])
+		
+func _on_match_ended():
+	pick_next_minigame()

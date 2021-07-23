@@ -138,6 +138,8 @@ func _init():
 	global.the_match.connect("game_over", self, "on_gameover")
 	connect("update_stats", global.the_match, "update_stats")
 	
+	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+	
 func _ready():
 	set_process(false)
 	
@@ -598,7 +600,7 @@ func on_gameover():
 	set_time_scale(1)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
-	game_over.connect("pressed_continue", self, "_on_Continue_session")
+	#game_over.connect("pressed_continue", self, "_on_Continue_session")
 	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
@@ -606,13 +608,13 @@ func on_gameover():
 	
 	game_over.initialize()
 
-func _on_Continue_session():
+func _on_continue_after_game_over(_session_over):
 	if standalone:
 		# forced session to null
 		global.session = null
 		get_tree().paused = false
 		get_tree().reload_current_scene()
-	emit_signal("continue_session")
+	#emit_signal("continue_session")
 	
 func _on_Show_Arena():
 	$Battlefield/Background.modulate = Color(1,1,1,1)

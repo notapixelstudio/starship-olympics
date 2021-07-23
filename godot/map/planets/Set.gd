@@ -9,7 +9,7 @@ export var tagline2 : String
 
 export var species : Resource # SpeciesTemplate
 export var description : String 
-export var minigames : Array = [Object(), Object(), Object(), Object()]
+export var minigames : Array = [Object(), Object(), Object(), Object()] # MiniGame
 
 export var planet_sprite : StreamTexture
 
@@ -20,7 +20,7 @@ export var mutators : Array = []
 func shuffle_levels(num_players : int) -> void:
 	minigames.shuffle()
 	
-func get_minigames():
+func get_minigames() -> Array:
 	return minigames.duplicate()
 
 func get_id() -> String:

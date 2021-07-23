@@ -3,12 +3,15 @@ extends Control
 onready var animator = $Animator
 onready var leaderboard = $LeaderBoard
 onready var buttons = $Buttons
+onready var back_to_menu_button = $Buttons/Menu
 onready var continue_button = $Buttons/Continue
 
 signal pressed_continue
 signal back_to_menu
 signal show_arena
 signal hide_arena
+
+var session_over = false
 
 func _ready():
 	buttons.visible = false
@@ -24,7 +27,7 @@ func initialize():
 	
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
-	var session_over = false
+	session_over = false
 	for player in global.session.players.values():
 		assert(player is InfoPlayer)
 		session_over = player.get_session_score_total() >= global.win
@@ -32,13 +35,13 @@ func initialize():
 		#TODO: what do we do in case of DRAW of session? Will ignore it for now
 		if session_over:
 			Soundtrack.play('SessionOver', true)
-			continue_button.visible=false
+			back_to_menu_button.visible=false
 			break
 	
 	buttons.get_child(int(session_over)).grab_focus()
 	
 func _on_Continue_pressed():
-	emit_signal("pressed_continue")
+	Events.emit_signal("continue_after_game_over", session_over)
 
 func _on_Quit_pressed():
 	global.end_game()
