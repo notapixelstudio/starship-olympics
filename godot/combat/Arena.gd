@@ -26,7 +26,7 @@ export var match_duration_override : float = 0
 
 export var show_hud : bool = true
 export var show_intro : bool = true
-export var dynamic_spawners: bool = false
+export var random_starting_position : bool = true
 
 var debug = false
 # analytics
@@ -220,14 +220,14 @@ func _ready():
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
 	# works with a session, not if you run from scene
-	spawners.shuffle()
+	if random_starting_position:
+		spawners.shuffle()
+		
 	# set up the spawners
 	var i = 0
 	for s in spawners:
-		var key = s.name
 		var info_player = InfoPlayer.new()
 		if standalone:
-			
 			info_player.cpu = s.cpu
 			info_player.species = s.species
 			info_player.controls = s.controls
@@ -235,8 +235,11 @@ func _ready():
 				info_player.id = "cpu"+str(i+1)
 			else:
 				info_player.id = s.name
-			
 		else:
+			# skip populating spawners if there are no more players
+			if i >= len(array_players):
+				break
+				
 			info_player = array_players[i] 
 			s.controls = info_player.controls
 			s.species = info_player.species
@@ -252,6 +255,11 @@ func _ready():
 			
 		s.set_info_player(info_player)
 		i += 1
+		
+	# destroy all unassigned player spawners
+	for s in spawners:
+		if not s.is_assigned():
+			s.free()
 	
 	global.session.set_players(players)
 	
