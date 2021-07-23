@@ -10,7 +10,7 @@ var games = {}  # {sport.name : Resource}
 var first_time = true # In order to show the TUTORIAL
 var all_species = []
 onready var parallax = $ParallaxBackground
-var map: Map
+var map # MapArena
 var combat
 
 # dictionary of InfoPlayer of players that will actually play
@@ -141,13 +141,9 @@ func go_to_map():
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
-	var num_CPUs = 0 if len(players) > 1 else 1
 	map = map_scene.instance()
-	map.initialize(players)
 	add_child(map)
-	map.connect("back", self, "return_to_selection_screen")
-	map.connect("done", self, "continue_to_fight")
-
+	
 func next_level(demo = false):
 	"""
 	This function will select the next minigame, passing from the map

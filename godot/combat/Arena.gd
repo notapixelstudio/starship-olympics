@@ -26,6 +26,7 @@ export var match_duration_override : float = 0
 
 export var show_hud : bool = true
 export var show_intro : bool = true
+export var dynamic_spawners: bool = false
 
 var debug = false
 # analytics
