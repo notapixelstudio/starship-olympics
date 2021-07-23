@@ -120,7 +120,7 @@ func continue_to_fight(map_selection: Dictionary) -> void:
 	last_minigame = null
 	
 	for player in players_selection:
-		var set : Planet = players_selection[player]
+		var set : Set = players_selection[player]
 		selected_sets_by_player[player] = set
 		players_sequence.append(player)
 		minigame_pools[set.name] = set.get_minigames()

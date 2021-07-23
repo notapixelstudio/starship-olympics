@@ -359,11 +359,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://special_scenes/combat_UI/session_points/PilotStats.gd"
 }, {
-"base": "Resource",
-"class": "Planet",
-"language": "GDScript",
-"path": "res://map/planets/Planet.gd"
-}, {
 "base": "Control",
 "class": "PlayerSelection",
 "language": "GDScript",
@@ -413,6 +408,11 @@ _global_script_classes=[ {
 "class": "Rule",
 "language": "GDScript",
 "path": "res://map/planets/rules/Rule.gd"
+}, {
+"base": "Resource",
+"class": "Set",
+"language": "GDScript",
+"path": "res://map/planets/Set.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Ship",
@@ -560,7 +560,6 @@ _global_script_class_icons={
 "Paddle": "",
 "Pentagoal": "",
 "PilotStats": "",
-"Planet": "",
 "PlayerSelection": "",
 "PlayerSpawner": "",
 "PlayerStats": "",
@@ -571,6 +570,7 @@ _global_script_class_icons={
 "Ripple": "",
 "Rock": "",
 "Rule": "",
+"Set": "",
 "Ship": "",
 "ShowedButton": "",
 "Species": "",

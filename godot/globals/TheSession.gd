@@ -31,7 +31,7 @@ func add_mutator(mutator: String):
 	if mutator in self.mutators:
 		self.mutators[mutator] = true
 
-func get_players():
+func get_players() -> Dictionary:
 	return players
 	
 func set_players(_players):
@@ -69,3 +69,7 @@ func get_last_winner():
 			best_player = player
 			best_score = new_score
 	return best_player
+
+func get_number_of_players():
+	return len(players)
+	

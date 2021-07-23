@@ -5,7 +5,7 @@ class_name MapPlanet
 
 export (String, "invisible", "locked", "unlocked") var status setget set_status, get_status
 
-export var planet : Resource setget set_planet # Planet
+export var set : Resource # Set
 onready var sprite = $Sprite
 
 var not_available = false setget set_availability
@@ -14,7 +14,7 @@ signal updated
 signal unlocked
 
 func get_id() -> String:
-	return planet.id
+	return set.get_id()
 
 func get_status():
 	return status
@@ -39,17 +39,20 @@ func set_availability(value):
 	if sprite:
 		$NA.visible = not_available
 		
-func set_planet(value):
-	planet = value
+func set_set(v):
+	set = v
+	
+func get_set():
+	return set
 	
 func act(cursor):
 	.act(cursor)
 	cursor.on_sth_pressed(status == TheUnlocker.UNLOCKED or status == TheUnlocker.LOCKED and cursor.is_winner())
 	
 func _ready():
-	if planet:
-		sprite.texture = planet.planet_sprite
-		$Label.text = planet.name
+	if set:
+		sprite.texture = set.planet_sprite
+		$Label.text = set.name
 		
 	self.set_status(TheUnlocker.get_status_set(self.get_id()))
 	
