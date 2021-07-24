@@ -114,6 +114,7 @@ func continue_fight() -> void:
 	After a session has ended, start a new one.
 	"""
 	# we get rid of the current map and initialize a new one.
+	remove_child(map)
 	map.queue_free()
 	go_to_map()
 	global.new_session(players)
@@ -168,6 +169,7 @@ func _on_continue_after_game_over(session_over = false):
 	"""
 	This callback will be called after the gameover.
 	"""
+	remove_child(combat)
 	combat.queue_free()
 	get_tree().paused = false
 	# FIXME: WHatever happens here is not really deterministic
