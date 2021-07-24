@@ -42,7 +42,6 @@ func _ready():
 	label.text = str(player.id)
 	placemark.modulate = player.species.color
 	ship.rotation = -rotation - PI/2
-	$Wrapper/Graphics/LabelContainer.rotation = -rotation
 	
 	var winner = global.session.get_last_winner()
 	
@@ -95,3 +94,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		animation_player.play('Float')
 	else:
 		animation_player.play('Float')
+
+func set_rotation_degrees(v):
+	rotation_degrees = v
+	$Wrapper/Graphics/LabelContainer.rotation = -rotation
+	$Wrapper/Graphics/Ship.rotation = -rotation-PI/2

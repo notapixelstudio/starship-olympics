@@ -85,6 +85,6 @@ func land_on(ship: Ship):
 	var i = 0
 	for c in cursors:
 		c.z_index = 100 - i
-		c.rotation_degrees = 60*(i - len(cursors)/2.0 + 0.5)
+		c.set_rotation_degrees(60*(i - len(cursors)/2.0 + 0.5))
 		c.wait = 0.25*i
 		i+=1
