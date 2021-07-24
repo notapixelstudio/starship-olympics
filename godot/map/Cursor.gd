@@ -83,7 +83,7 @@ func enable():
 func disable():
 	enabled = false
 	visible = false
-	
+
 func on_sth_pressed(sth_good = true):
 	if sth_good:
 		animation_player.play('Act')
