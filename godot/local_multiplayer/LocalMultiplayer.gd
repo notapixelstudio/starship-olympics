@@ -152,7 +152,7 @@ func start_minigame(minigame: Minigame, demo = false):
 	last_minigame = minigame
 	
 	combat.connect("restart", self, "_on_Pause_restart", [combat])
-	combat.connect("skip", self, "_on_continue_session", [combat])
+	combat.connect("skip", self, "_on_continue_after_game_over")
 	#combat.connect("continue_session", self, "_on_continue_session", [combat])
 	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
@@ -261,3 +261,4 @@ func add_cpu(how_many: int):
 		info_player.cpu = true
 		info_player.species = cpu_species
 		players[id_player] = info_player
+
