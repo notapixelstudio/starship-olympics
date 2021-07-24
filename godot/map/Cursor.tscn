@@ -70,13 +70,13 @@ script = ExtResource( 1 )
 position = Vector2( 0, -40 )
 
 [node name="Graphics" type="Node2D" parent="Wrapper"]
-position = Vector2( 0.01, -41.6111 )
+position = Vector2( 0, -18 )
+scale = Vector2( 1.1, 0.9 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/Graphics"]
-autoplay = "Float"
 anims/Act = SubResource( 1 )
 anims/Float = SubResource( 2 )
 anims/shake = ExtResource( 2 )
@@ -93,6 +93,7 @@ scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 4 )
 
 [node name="Winner" type="Sprite" parent="Wrapper/Graphics/Ship"]
+visible = false
 position = Vector2( -3.58026, -0.0222352 )
 rotation = 1.5708
 scale = Vector2( 2.66667, 2.66667 )
@@ -116,5 +117,3 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="animation_finished" from="Wrapper/Graphics/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -82,9 +82,12 @@ func land_on(ship: Ship):
 	cursor.position = self.position
 	get_parent().add_child(cursor)
 	cursors.append(cursor)
+	
+	# fan the cursors
 	var i = 0
 	for c in cursors:
 		c.z_index = 100 - i
 		c.set_rotation_degrees(60*(i - len(cursors)/2.0 + 0.5))
-		c.wait = 0.25*i
 		i+=1
+	
+	cursor.land()

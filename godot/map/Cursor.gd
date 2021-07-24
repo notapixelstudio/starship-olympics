@@ -17,8 +17,6 @@ onready var placemark = $Wrapper/Graphics/Placemark
 onready var label = $Wrapper/Graphics/LabelContainer/Label
 onready var winner = $Wrapper/Graphics/Ship/Winner
 
-var wait = 0
-
 var winner_status = false
 
 func set_grid_position(value):
@@ -44,9 +42,6 @@ func _ready():
 	ship.rotation = -rotation - PI/2
 	
 	var winner = global.session.get_last_winner()
-	
-	yield(get_tree().create_timer(wait), "timeout")
-	animation_player.play('Float')
 	
 signal try_move
 signal select
@@ -83,18 +78,9 @@ func disable():
 	enabled = false
 	visible = false
 
-func on_sth_pressed(sth_good = true):
-	if sth_good:
-		animation_player.play('Act')
-	else:
-		animation_player.play('shake')
+func land():
+	animation_player.play('Act')
 	
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == 'Act':
-		animation_player.play('Float')
-	else:
-		animation_player.play('Float')
-
 func set_rotation_degrees(v):
 	rotation_degrees = v
 	$Wrapper/Graphics/LabelContainer.rotation = -rotation
