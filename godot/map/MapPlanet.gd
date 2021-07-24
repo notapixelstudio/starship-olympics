@@ -48,10 +48,6 @@ func set_set(v: Set):
 func get_set():
 	return set
 	
-func act(cursor):
-	.act(cursor)
-	cursor.on_sth_pressed(status == TheUnlocker.UNLOCKED or status == TheUnlocker.LOCKED and cursor.is_winner())
-	
 func _ready():
 	if set:
 		sprite.texture = set.planet_sprite
@@ -71,10 +67,11 @@ func on_blur():
 	$Label.visible = false
 	
 func _on_tap(author: Ship):
-	self.land_on(author)
-
-	# remove author
-	author.get_parent().remove_child(author)
+	if self.get_status() == TheUnlocker.UNLOCKED:
+		self.land_on(author)
+		
+		# remove author
+		author.get_parent().remove_child(author)
 	
 func land_on(ship: Ship):
 	var cursor: MapCursor = cursor_scene.instance()
@@ -86,7 +83,6 @@ func land_on(ship: Ship):
 	# fan the cursors
 	var i = 0
 	for c in cursors:
-		c.z_index = 100 - i
 		c.set_rotation_degrees(60*(i - len(cursors)/2.0 + 0.5))
 		i+=1
 	
