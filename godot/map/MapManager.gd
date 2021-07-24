@@ -4,7 +4,7 @@ export var panels_path : NodePath
 var panels: MapPanelContainer
 
 var selected_planets = []
-var players_ready = 0
+var players_ready = {}
 var ready = false
 
 func _ready():
@@ -27,21 +27,26 @@ func tap(ship : Ship, planet : MapPlanet):
 	assert(planet is MapPlanet)
 	
 	if planet.get_status() == TheUnlocker.UNLOCKED:
+		
+		if ship.get_id() in players_ready:
+			return
+		
 		var panel = panels.get_node(ship.get_id())
 		panel.set_content(planet.get_set())
 		panel.set_chosen(true)
 		#if not planet in selected_planets:
 		#	selected_planets.append(planet)
 		#players_selection[cursor.player.id] = cell.planet
-		players_ready += 1
+		players_ready[ship.get_id()] = planet.get_set().get_id()
 		check_all_ready()
 		#_on_Start_pressed(cursor)
 	#elif cell.get_status() == TheUnlocker.LOCKED and cursor.is_winner():
 	#	TheUnlocker.unlock_set(cell.get_id())
 	#	cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
 	#	cursor.spend_winnership()
+
 func check_all_ready():
-	if not ready and players_ready == global.session.get_number_of_players():
+	if not ready and len(players_ready) == global.session.get_number_of_players():
 		ready = true
 		pick_next_minigame()
 		

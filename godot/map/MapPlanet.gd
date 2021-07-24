@@ -39,7 +39,8 @@ func set_availability(value):
 	if sprite:
 		$NA.visible = not_available
 		
-func set_set(v):
+func set_set(v: Set):
+	assert(v is Set)
 	set = v
 	
 func get_set():
