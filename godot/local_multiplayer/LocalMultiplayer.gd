@@ -172,6 +172,7 @@ func _on_continue_after_game_over(session_over = false):
 	get_tree().paused = false
 	# FIXME: WHatever happens here is not really deterministic
 	# maybe becaaauuse the combat isn't freeed when maaap is added
+	# maybe there is more than one maaaaap at the same tiiiiime
 	if session_over:
 		continue_fight()
 	else:
