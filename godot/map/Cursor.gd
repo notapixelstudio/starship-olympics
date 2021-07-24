@@ -46,7 +46,6 @@ func _ready():
 	$Wrapper/Graphics/LabelContainer.rotation = -rotation
 	
 	var winner = global.session.get_last_winner()
-	set_winner_status(winner and winner.id == player.id)
 	
 	yield(get_tree().create_timer(wait), "timeout")
 	animation_player.play('Float')
@@ -78,39 +77,6 @@ var accept
 
 const DEADZONE = 0.1
 
-func _process(delta):
-	if action_time >= 0.0:
-		action_time -= delta
-		
-	down = Input.is_action_just_pressed(player.controls+"_down") and Input.get_action_strength(player.controls+"_down") > DEADZONE
-	up = Input.is_action_just_pressed(player.controls+"_up") and Input.get_action_strength(player.controls+"_up") > DEADZONE
-	left = Input.is_action_just_pressed(player.controls+"_left") and Input.get_action_strength(player.controls+"_left") > DEADZONE
-	right = Input.is_action_just_pressed(player.controls+"_right") and Input.get_action_strength(player.controls+"_right") > DEADZONE
-	accept = Input.is_action_just_pressed(player.controls+"_fire")
-	
-	if not enabled and (down or up or left or right):
-		emit_signal("cancel", self)
-		return
-		
-	for key in controls_map:
-		if get(key):
-			emit_signal('try_move', self, controls_map[key])
-			action_time = FIRST_DELAY
-	
-	if accept and enabled:
-		emit_signal('select', self)
-	
-	down = Input.is_action_pressed(player.controls+"_down") and Input.get_action_strength(player.controls+"_down") > DEADZONE and action_time <= 0.0
-	up = Input.is_action_pressed(player.controls+"_up") and Input.get_action_strength(player.controls+"_up") > DEADZONE and action_time <= 0.0
-	left = Input.is_action_pressed(player.controls+"_left") and Input.get_action_strength(player.controls+"_left") > DEADZONE and action_time <= 0.0
-	right = Input.is_action_pressed(player.controls+"_right") and Input.get_action_strength(player.controls+"_right") > DEADZONE and action_time <= 0.0
-	accept = Input.is_action_pressed(player.controls+"_fire") and action_time <= 0.0
-	
-	for key in controls_map:
-		if get(key):
-			emit_signal('try_move', self, controls_map[key])
-			action_time = FOLLOW_DELAY
-	
 func enable():
 	enabled = true
 	visible = true
@@ -130,14 +96,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		animation_player.play('Float')
 	else:
 		animation_player.play('Float')
-
-func set_winner_status(value):
-	winner_status = value
-	winner.visible = winner_status
-	
-func is_winner():
-	return winner_status
-	
-func spend_winnership():
-	winner_status = false
-	winner.modulate = Color(0,0,0,1)

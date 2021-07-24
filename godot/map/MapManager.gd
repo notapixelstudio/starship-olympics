@@ -1,6 +1,10 @@
 extends Node
 
 export var panels_path : NodePath
+export var foreground_path: NodePath
+export var content_path: NodePath
+export var cursor_scene: PackedScene
+
 var panels: MapPanelContainer
 
 var selected_planets = []
@@ -39,6 +43,12 @@ func tap(ship : Ship, planet : MapPlanet):
 		#players_selection[cursor.player.id] = cell.planet
 		players_ready[ship.get_id()] = planet.get_set().get_id()
 		check_all_ready()
+		var cursor = cursor_scene.instance()
+		cursor.species = ship.species
+		cursor.player = ship.info_player
+		cursor.position = planet.position
+		get_node(content_path).add_child(cursor)
+		get_node(foreground_path).remove_child(ship)
 		#_on_Start_pressed(cursor)
 	#elif cell.get_status() == TheUnlocker.LOCKED and cursor.is_winner():
 	#	TheUnlocker.unlock_set(cell.get_id())

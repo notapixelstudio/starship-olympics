@@ -135,7 +135,6 @@ func initialize(players):
 		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
-		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
 	
