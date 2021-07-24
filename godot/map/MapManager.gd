@@ -43,9 +43,8 @@ func tap(ship : Ship, planet : MapPlanet):
 		#players_selection[cursor.player.id] = cell.planet
 		players_ready[ship.get_id()] = planet.get_set().get_id()
 		check_all_ready()
-		var cursor = cursor_scene.instance()
-		cursor.species = ship.species
-		cursor.player = ship.info_player
+		var cursor: MapCursor = cursor_scene.instance()
+		cursor.setup(ship.info_player)
 		cursor.position = planet.position
 		get_node(content_path).add_child(cursor)
 		get_node(foreground_path).remove_child(ship)

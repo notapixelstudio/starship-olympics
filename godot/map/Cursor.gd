@@ -4,7 +4,6 @@ var enabled
 
 class_name MapCursor
 
-export var species : Resource setget set_species
 export var player_i : int
 export var cell_size : int
 export var grid_position : Vector2 setget set_grid_position
@@ -34,14 +33,14 @@ func set_grid_position(value):
 	else:
 		position = cell_size * grid_position
 
-func set_species(value):
-	species = value
+func setup(infoplayer: InfoPlayer):
+	self.player = infoplayer
 	
 func _ready():
 	enable()
-	ship.texture = species.ship
+	ship.texture = player.species.ship
 	label.text = str(player.id)
-	placemark.modulate = (species as Species).color
+	placemark.modulate = player.species.color
 	ship.rotation = -rotation - PI/2
 	$Wrapper/Graphics/LabelContainer.rotation = -rotation
 	
