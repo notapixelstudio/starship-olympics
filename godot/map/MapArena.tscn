@@ -146,6 +146,9 @@ species = ExtResource( 6 )
 
 [node name="Enemies" type="Node2D" parent="CanvasLayer/Countdown/AudioStreamPlayer" index="0"]
 
+[node name="Pause" parent="CanvasLayer" index="3"]
+in_match = false
+
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3

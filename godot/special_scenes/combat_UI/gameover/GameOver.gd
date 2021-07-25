@@ -3,11 +3,10 @@ extends Control
 onready var animator = $Animator
 onready var leaderboard = $LeaderBoard
 onready var buttons = $Buttons
-onready var back_to_menu_button = $Buttons/Menu
+onready var back_to_menu_button = $Buttons/Map
 onready var continue_button = $Buttons/Continue
 
 signal pressed_continue
-signal back_to_menu
 signal show_arena
 signal hide_arena
 
@@ -41,16 +40,12 @@ func initialize():
 	buttons.get_child(int(session_over)).grab_focus()
 	
 func _on_Continue_pressed():
+	get_tree().paused = false
 	Events.emit_signal("continue_after_game_over", session_over)
 
 func _on_Quit_pressed():
 	global.end_game()
 	#get_tree().quit()
-
-func _on_Menu_pressed():
-	# TODO: It will be whoever receive the signal to unpause
-	emit_signal("back_to_menu")
-
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -66,3 +61,8 @@ func _unhandled_input(event):
 func _show_arena():
 	self.visible = false
 	emit_signal("show_arena")
+
+
+func _on_Map_pressed():
+	get_tree().paused = false
+	Events.emit_signal("nav_to_map")

@@ -1,11 +1,12 @@
 extends Control
 
+export var in_match = true
+
 onready var buttons = $GuiElements/Buttons
 onready var pause_window = $Window
 onready var gui = $GuiElements
 var unpause_ready = false
 
-signal back_to_menu
 signal restart
 signal skip
 
@@ -13,6 +14,11 @@ func _ready():
 	gui.visible = false
 	visible = false
 	
+	# hide buttons that are relevant only during matches
+	if not in_match:
+		$GuiElements/Buttons/Restart.queue_free()
+		$GuiElements/Buttons/SkipLevel.queue_free()
+		$GuiElements/Buttons/Quit1.queue_free()
 	
 func start():
 	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -44,12 +50,21 @@ func unpause():
 	get_tree().paused = false
 
 func _on_Restart_pressed():
+	get_tree().paused = false
 	emit_signal("restart")
 	
 func _on_SkipLevel_pressed():
+	get_tree().paused = false
 	emit_signal("skip")
 	
-func _on_QuitMatch_pressed():
-	# Get back to selection screen
+func _on_Quit1_pressed():
 	get_tree().paused = false
-	emit_signal("back_to_menu")
+	Events.emit_signal("nav_to_map")
+	
+func _on_Quit2_pressed():
+	get_tree().paused = false
+	Events.emit_signal("nav_to_character_selection")
+	
+func _on_Quit3_pressed():
+	get_tree().paused = false
+	Events.emit_signal("nav_to_menu")

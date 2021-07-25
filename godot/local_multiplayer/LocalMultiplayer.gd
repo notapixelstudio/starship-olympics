@@ -2,6 +2,7 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
+const menu_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
 
@@ -11,7 +12,7 @@ var first_time = true # In order to show the TUTORIAL
 var all_species = []
 onready var parallax = $ParallaxBackground
 var map # MapArena
-var combat
+var combat = null
 
 # dictionary of InfoPlayer of players that will actually play
 var players: Dictionary  # of InfoPlayer
@@ -47,15 +48,13 @@ func _ready():
 	
 	Events.connect("minigame_selected", self, "_on_minigame_selected")
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
-
+	
+	Events.connect('nav_to_menu', self, '_on_nav_to_menu')
+	Events.connect('nav_to_map', self, '_on_nav_to_map')
+	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
+	
 func _exit_tree():
 	global.local_multiplayer = null
-
-
-func back():
-	# This goes back to the previous scene
-	# TODO: maybe this is not the right way
-	return get_tree().change_scene(global.from_scene)
 
 func start_fight(selected_players: Array, fight_mode: String):
 	"""
@@ -88,7 +87,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 	
 	global.new_session(players)
 
-	go_to_map()
+	navigate_to_map()
 
 func return_to_selection_screen():
 	map.queue_free()
@@ -116,16 +115,8 @@ func continue_fight() -> void:
 	# we get rid of the current map and initialize a new one.
 	remove_child(map)
 	map.queue_free()
-	go_to_map()
+	navigate_to_map()
 	global.new_session(players)
-	
-	
-func go_to_map():
-	# map initialization
-	remove_child(selection_screen)
-	remove_child(parallax)
-	map = map_scene.instance()
-	add_child(map)
 	
 func next_level(minigame):
 	"""
@@ -151,10 +142,9 @@ func start_minigame(minigame: Minigame, demo = false):
 	combat = minigame.get_level(global.session.get_number_of_players()).instance()
 	last_minigame = minigame
 	
-	combat.connect("restart", self, "_on_Pause_restart", [combat])
+	combat.connect("restart", self, "_on_Pause_restart")
 	combat.connect("skip", self, "_on_continue_after_game_over")
 	#combat.connect("continue_session", self, "_on_continue_session", [combat])
-	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
 	connect("updated", combat, "hud_update")
 
 	for child in get_children():
@@ -164,14 +154,17 @@ func start_minigame(minigame: Minigame, demo = false):
 	combat.demo = demo
 	add_child(combat)
 
+func safe_destroy_combat():
+	if combat:
+		remove_child(combat)
+		combat.queue_free()
+		combat = null
 
 func _on_continue_after_game_over(session_over = false):
 	"""
 	This callback will be called after the gameover.
 	"""
-	remove_child(combat)
-	combat.queue_free()
-	get_tree().paused = false
+	safe_destroy_combat()
 	# FIXME: WHatever happens here is not really deterministic
 	# maybe becaaauuse the combat isn't freeed when maaap is added
 	# maybe there is more than one maaaaap at the same tiiiiime
@@ -181,36 +174,35 @@ func _on_continue_after_game_over(session_over = false):
 		if not map.is_inside_tree():
 			add_child(map)
 		Events.emit_signal("match_ended")
+	
+func _on_Pause_restart():
+	safe_destroy_combat()
+	start_minigame(last_minigame)
 
-func back_to_selection_screen():
-	remove_child(map)
+
+func _on_nav_to_menu():
+	get_tree().change_scene(menu_scene)
+	
+func _on_nav_to_character_selection():
+	safe_destroy_combat()
+	map.queue_free()
 	if not parallax.is_inside_tree():
 		add_child(parallax)
 		add_child(selection_screen)
 	selection_screen.reset()
 	if global.demo:
 		selection_screen.deselect()
+
+func _on_nav_to_map():
+	navigate_to_map()
 	
-
-func _on_Pause_restart(_combat):
-	_combat.queue_free()
-	get_tree().paused = false
-
-	start_minigame(last_minigame)
-
-
-func _back_to_menu(node):
-	#reset()
-	combat.queue_free()
-	get_tree().paused = false
-	go_to_map()
-
-
-func _on_Pause_back_to_menu(_combat):
-	_combat.queue_free()
-	get_tree().paused = false
-	add_child(selection_screen)
-
+func navigate_to_map():
+	safe_destroy_combat()
+	# map initialization
+	remove_child(selection_screen)
+	remove_child(parallax)
+	map = map_scene.instance()
+	add_child(map)
 
 func start_demo():
 	var demo_players = []

@@ -64,7 +64,6 @@ signal screensize_changed(screensize)
 signal gameover
 signal restart
 signal continue_session
-signal back_to_menu
 signal slomo
 signal unslomo
 signal battle_start
@@ -447,7 +446,7 @@ func _process(delta):
 func _input(event):
 	if demo:
 		if event is InputEventKey or event is InputEventJoypadButton:
-			emit_signal("back_to_menu")
+			Events.emit_signal("nav_to_character_selection")
 			
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo and not global.the_match.game_over:
@@ -589,7 +588,7 @@ func ship_just_died(ship, killer, for_good):
 	
 func on_gameover():
 	if demo:
-		emit_signal("back_to_menu")
+		Events.emit_signal("nav_to_character_selection")
 		return
 	for child in $Managers.get_children():
 		if child is ModeManager:
@@ -601,7 +600,6 @@ func on_gameover():
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
 	#game_over.connect("pressed_continue", self, "_on_Continue_session")
-	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
@@ -830,8 +828,6 @@ func on_next_wave(diamonds, wait_time=1):
 	diamonds.spawn()
 	emit_signal('wave_ready')
 	
-func _on_Pause_back_to_menu():
-	emit_signal("back_to_menu")
 
 func _on_Pause_restart():
 	emit_signal("restart")

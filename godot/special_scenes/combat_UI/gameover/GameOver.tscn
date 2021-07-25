@@ -53,13 +53,13 @@ margin_bottom = 41.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
-[node name="Menu" type="Button" parent="Buttons"]
+[node name="Map" type="Button" parent="Buttons"]
 margin_top = 45.0
 margin_right = 222.0
 margin_bottom = 87.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "BACK TO MENU"
+text = "QUIT TO MAP"
 
 [node name="Quit" type="Button" parent="Buttons"]
 visible = false
@@ -94,6 +94,6 @@ margin_right = 238.332
 margin_bottom = 250.876
 
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Buttons/Map" to="." method="_on_Map_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
