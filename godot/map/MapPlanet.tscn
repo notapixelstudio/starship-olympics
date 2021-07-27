@@ -1,35 +1,32 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://map/MapPlanet.gd" type="Script" id=1]
-[ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=3]
-[ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=5]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=6]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=7]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=11]
-[ext_resource path="res://assets/map/lock.png" type="Texture" id=12]
-[ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=13]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 120, 120 )
+[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
+[ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=5]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=6]
+[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=7]
+[ext_resource path="res://assets/map/lock.png" type="Texture" id=8]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=9]
+[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=11]
+[ext_resource path="res://map/MapPlanet.gd" type="Script" id=13]
+[ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "blank",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "true",
 "speed": 5.0
@@ -39,11 +36,11 @@ animations = [ {
 size = 52
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 11 )
+font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 30
-font_data = ExtResource( 10 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=5]
 length = 5.0
@@ -84,45 +81,35 @@ tracks/2/keys = {
 "values": [ Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ) ]
 }
 
-[node name="MapPlanet" type="Area2D" groups=[
-"map_point",
-"sports",
-]]
-collision_layer = 0
-collision_mask = 3
-script = ExtResource( 1 )
-cursor_scene = ExtResource( 2 )
+[node name="MapPlanet" instance=ExtResource( 2 )]
+script = ExtResource( 13 )
+cursor_scene = ExtResource( 4 )
 
-[node name="Tappable" parent="." instance=ExtResource( 13 )]
+[node name="Sprite" type="Sprite" parent="." index="3"]
+texture = ExtResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
-
-[node name="NA" type="Sprite" parent="."]
+[node name="NA" type="Sprite" parent="." index="4"]
 visible = false
 position = Vector2( -4.27081, -2.55557 )
 scale = Vector2( 0.886355, 0.868757 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
-[node name="CheckBox" type="AnimatedSprite" parent="."]
+[node name="CheckBox" type="AnimatedSprite" parent="." index="5"]
 visible = false
 position = Vector2( 84, -84 )
 frames = SubResource( 2 )
 animation = "empty"
 playing = true
 
-[node name="switch_off" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
+[node name="switch_off" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource( 10 )
 attenuation = 0.0412346
 
-[node name="switch_on" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 9 )
+[node name="switch_on" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource( 3 )
 attenuation = 0.0412346
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." index="8"]
 visible = false
 margin_left = -300.0
 margin_right = 300.0
@@ -136,7 +123,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebugLabel" type="Label" parent="."]
+[node name="DebugLabel" type="Label" parent="." index="9"]
 visible = false
 margin_left = -243.066
 margin_top = 111.55
@@ -150,10 +137,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
 anims/unlock = SubResource( 5 )
 
-[node name="Lock" type="Sprite" parent="."]
+[node name="Lock" type="Sprite" parent="." index="11"]
 visible = false
 position = Vector2( 0, -27 )
-texture = ExtResource( 12 )
+texture = ExtResource( 8 )

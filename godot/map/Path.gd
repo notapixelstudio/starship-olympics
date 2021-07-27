@@ -12,7 +12,7 @@ func _ready():
 	refresh()
 	
 func refresh():
-	for child in get_children():
+	for child in $Content.get_children():
 		child.queue_free()
 		
 	# add a smaller line to each segment
@@ -28,7 +28,7 @@ func refresh():
 		
 		var star = PathStar.instance()
 		star.position = p
-		add_child(star)
+		$Content.add_child(star)
 
 func add_line(p1, p2):
 	var dir = (p2-p1).normalized()
@@ -40,4 +40,10 @@ func add_line(p1, p2):
 	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	line.default_color = Color(0.6,0.6,1,0.3)
-	add_child(line)
+	$Content.add_child(line)
+
+func get_global_endpoints() -> Dictionary: # Dictionary {start: Vector2, end: Vector2}
+	return {
+		'start': to_global(points[0]),
+		'end': to_global(points[-1])
+	}

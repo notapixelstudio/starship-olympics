@@ -8,7 +8,10 @@ var selected_planets = []
 var players_ready = {}
 var ready = false
 
+var graph := Graph.new()
+
 func _ready():
+	# setup player panels
 	panels = get_node(panels_path)
 	var players = global.session.get_players()
 	for id in players.keys():
@@ -18,6 +21,31 @@ func _ready():
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
 	Events.connect("match_ended", self, '_on_match_ended')
+	
+	# wait for the entire Arena subtree to be ready
+	yield(get_tree(), "idle_frame")
+	
+	# connect MapLocations in a graph
+	var nodes = traits.get_all_with('Node')
+	for link in traits.get_all_with('Link'):
+		var endpoints = link.get_global_endpoints()
+		var start: MapLocation = null
+		var end: MapLocation = null
+		
+		for node in nodes:
+			var polygon = node.get_global_polygon()
+			if Geometry.is_point_in_polygon(endpoints.start, polygon):
+				start = node
+				continue # no self-links
+			
+			if Geometry.is_point_in_polygon(endpoints.end, polygon):
+				end = node
+				continue # no self-links
+			
+		if start != null and end != null:
+			graph.add_path(start, end)
+			
+	print(graph)
 	
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:
@@ -46,6 +74,8 @@ func tap(ship : Ship, planet : MapPlanet):
 	#	TheUnlocker.unlock_set(cell.get_id())
 	#	cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
 	#	cursor.spend_winnership()
+	elif planet.get_status() == TheUnlocker.LOCKED:
+		print('locked')
 
 func check_all_ready():
 	if not ready and len(players_ready) == global.session.get_number_of_players():
