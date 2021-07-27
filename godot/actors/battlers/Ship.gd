@@ -677,6 +677,7 @@ func tap():
 	for area in $NearArea.get_overlapping_areas():
 		if traits.has_trait(area, 'Tappable'):
 			area._on_tap(self)
+			Events.emit_signal('sth_tapped', self, area)
 			
 	#switch_emersion_state()
 	

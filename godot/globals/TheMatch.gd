@@ -55,9 +55,10 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	time_left = game_mode.max_timeout
 	if max_timeout:
 		time_left = max_timeout
-	
-	match_time = time_left
-	time_left_secs = int(time_left)
+		
+	if time_left != -1:
+		match_time = time_left
+		time_left_secs = int(time_left)
 	
 	if game_mode.cumulative:
 		cumulative_points=0
@@ -70,17 +71,18 @@ func sort_by_score(a: InfoPlayer, b: InfoPlayer):
 	
 func update(delta: float):
 	# Would be called by Arena
-	if game_over:
+	if game_over or time_left == -1:
 		return
 	
 	time_left -= delta
-	if time_left <= 0:
-		compute_game_status()
-	time_left = max(0, time_left)
 	var new_time_left_secs = int(time_left)
 	if new_time_left_secs != time_left_secs:
 		time_left_secs = new_time_left_secs
 		emit_signal('tick', time_left)
+		
+	if time_left <= 0:
+		emit_signal('tick', 0)
+		compute_game_status()
 		
 	lasting_time += delta
 	

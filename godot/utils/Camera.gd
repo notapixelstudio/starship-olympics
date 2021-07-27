@@ -4,6 +4,7 @@ export var zoomMin = 1.7
 export var zoomMax: float = 0
 export var marginX = 0
 export var marginY = 140.0
+export var subtractHeight = 0
 export (float) var zoom_speed_enlarge = 0.13
 export (float) var zoom_speed_shrink = 0.02
 export(float, 0.0, 4.0) var zoom_offset : float = 0.3
@@ -39,7 +40,7 @@ func _ready():
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	viewport_rect = get_viewport_rect()
 	# let's put some distance from the battlefield and the bars
-	viewport_rect.size.y -= marginY
+	viewport_rect.size.y -= marginY + subtractHeight
 	viewport_rect.size.x -= marginX
 	viewport_rect.position.y += marginY
 	viewport_rect.position.x += marginX

@@ -95,7 +95,7 @@ func _ready():
 	for sport in get_tree().get_nodes_in_group("sports"):
 		# REMOVED check if there are no levels for this number of players
 		# var levels = sport.planet.get_levels(num_players)
-		var set: Planet = sport.planet
+		var set: Set = sport.planet
 		
 		#if not levels:
 		#	sport.not_available = true
@@ -135,7 +135,6 @@ func initialize(players):
 		cursor.rotation_degrees = 60*(i-human_players/2.0 + 0.5)
 		cursor.wait = 0.25*i
 		$Content.add_child(cursor)
-		# $CanvasLayerTop.get_node(player_id).initialize(player.species)
 		i += 1
 	
 	
@@ -201,6 +200,7 @@ func _on_cursor_cancel(cursor):
 	
 func get_cell(position):
 	return matrix[int(position.x/CELLSIZE)][int(position.y/CELLSIZE)]
+
 
 func get_selection():
 	var ret = []

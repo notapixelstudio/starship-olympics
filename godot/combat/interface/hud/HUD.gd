@@ -23,8 +23,12 @@ func _ready():
 func post_ready():
 	the_match = global.the_match
 	the_match.connect('updated', self, '_on_matchscore_updated')
+	the_match.connect('tick', self, '_on_match_tick')
 	
-	TimeLeft.text = str(the_match.time_left)
+	if the_match.time_left != -1:
+		TimeLeft.text = str(the_match.time_left)
+	else:
+		TimeLeft.text = ''
 	var i = 0
 
 	for player in the_match.players.values():
@@ -42,9 +46,11 @@ func post_ready():
 	$BarsBottom.rect_position.y = height
 	set_process(true)
 
-func _process(_delta):
-	# update time left
-	TimeLeft.text = str(int(ceil(global.the_match.time_left)))
+func _on_match_tick(t):
+	update_time_left(t)
+	
+func update_time_left(t):
+	TimeLeft.text = str(int(ceil(t)))
 
 func _on_matchscore_updated(author, broadcasted):
 	# update scores

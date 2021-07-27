@@ -15,6 +15,6 @@ func get_id(): # FIXME? this resource should have its own ID
 func get_icon():
 	return game_mode.get_icon()
 	
-func get_level(num_players):
+func get_level(num_players) -> PackedScene:
 	return get("level_" + str(num_players) + "players")
 	

@@ -13,7 +13,7 @@ signal entered_battlefield
 
 var id : String
 var uid : int
-var info_player 
+var info_player = null
 onready var sprite = $Sprite
 onready var animation = $AnimationPlayer
 
@@ -43,4 +43,7 @@ func set_info_player(v):
 	
 func get_player():
 	return info_player
+	
+func is_assigned():
+	return info_player != null
 	

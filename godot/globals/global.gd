@@ -566,16 +566,35 @@ func _set_glow(value):
 	
 
 # GAMEPLAY
-var session : TheSession
-var the_match : TheMatch
+var the_match: TheMatch = null
+var session: TheSession = null
 var arena
 
 func new_match() -> TheMatch:
+	safe_destroy_match()
 	the_match = TheMatch.new()
 	return the_match
 	
-func new_session(players):
+func new_session(players := {}) -> TheSession:
+	safe_destroy_session()
 	session = TheSession.new()
 	session.set_players(players)
 	session.reset_players()
 	return session
+	
+func safe_destroy_match() -> void:
+	if is_match_running():
+		the_match.free()
+	the_match = null
+	
+func safe_destroy_session() -> void:
+	if is_session_running():
+		session.free()
+	session = null
+
+func is_match_running() -> bool:
+	return the_match != null and is_instance_valid(the_match)
+	
+func is_session_running() -> bool:
+	return session != null and is_instance_valid(session)
+	

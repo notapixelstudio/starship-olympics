@@ -2,6 +2,7 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
+const menu_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
 
@@ -10,8 +11,8 @@ var games = {}  # {sport.name : Resource}
 var first_time = true # In order to show the TUTORIAL
 var all_species = []
 onready var parallax = $ParallaxBackground
-var map: Map
-var combat
+var map # MapArena
+var combat = null
 
 # dictionary of InfoPlayer of players that will actually play
 var players: Dictionary  # of InfoPlayer
@@ -19,7 +20,7 @@ var players: Dictionary  # of InfoPlayer
 signal updated
 
 
-class PlayerArena:
+class ChosenArena:
 	# This class will store an Arena and the player who chose it
 	var player_id: String
 	var this_game: Arena
@@ -44,20 +45,16 @@ func _ready():
 	selection_screen.connect("fight", self, "start_fight")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
-
-
+	
+	Events.connect("minigame_selected", self, "_on_minigame_selected")
+	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+	
+	Events.connect('nav_to_menu', self, '_on_nav_to_menu')
+	Events.connect('nav_to_map', self, '_on_nav_to_map')
+	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
+	
 func _exit_tree():
 	global.local_multiplayer = null
-
-
-func back():
-	# This goes back to the previous scene
-	# TODO: maybe this is not the right way
-	return get_tree().change_scene(global.from_scene)
-
-
-
-
 
 func start_fight(selected_players: Array, fight_mode: String):
 	"""
@@ -83,10 +80,14 @@ func start_fight(selected_players: Array, fight_mode: String):
 		assert(player is InfoPlayer)
 		players[player.id] = player
 		i += 1
-
+	
+	# if single player, add a CPU
+	var num_CPUs = 0 if len(players) > 1 else 1
+	add_cpu(num_CPUs)
+	
 	global.new_session(players)
 
-	go_to_map()
+	navigate_to_map()
 
 func return_to_selection_screen():
 	map.queue_free()
@@ -100,72 +101,33 @@ var selected_sets_by_player : Dictionary = {}
 var minigame_pools : Dictionary = {}
 var last_minigame = null
 
-func continue_to_fight(map_selection: Dictionary) -> void:
-	"""
-	After map selection we need to set the structure for the selection of sports.
-	Will go back to selection screen or 
-	"""
-	var players_selection = map_selection.get("players_selection")
-	var sets = map_selection.get("sets")
-	var settings = map_selection.get("settings", {})
-	
-	var num_CPUs = 0 if len(players) > 1 else 1
-	add_cpu(num_CPUs)
-	
-	global.session.setup_selected_sets(sets)
-	
-	players_sequence = []
-	minigame_pools = {}
-	selected_sets_by_player = {}
-	last_minigame = null
-	
-	for player in players_selection:
-		var set : Planet = players_selection[player]
-		selected_sets_by_player[player] = set
-		players_sequence.append(player)
-		minigame_pools[set.name] = set.get_minigames()
-		assert(len(minigame_pools[set.name]) > 0)
-		minigame_pools[set.name].shuffle()
-	
-	players_sequence.shuffle()
-	
-	first_time = true
-	
-	global.new_session(players)
-	next_level(global.demo)
-	GameAnalytics.submit_events()
-	
-	return
-	
-func go_to_map():
-	# map initialization
-	remove_child(selection_screen)
-	remove_child(parallax)
-	var num_CPUs = 0 if len(players) > 1 else 1
-	map = map_scene.instance()
-	map.initialize(players)
-	add_child(map)
-	map.connect("back", self, "return_to_selection_screen")
-	map.connect("done", self, "continue_to_fight")
+func _on_minigame_selected(minigame: Minigame):
+	start_match(minigame)
 
-func next_level(demo = false):
+func start_match(minigame: Minigame) -> void:
+	next_level(minigame)
+	
+	
+func continue_fight() -> void:
+	"""
+	After a session has ended, start a new one.
+	"""
+	# we get rid of the current map and initialize a new one.
+	remove_child(map)
+	map.queue_free()
+	navigate_to_map()
+	global.new_session(players)
+	
+func next_level(minigame):
 	"""
 	This function will select the next minigame, passing from the map
 	"""
-	
-	if not map.is_inside_tree():
-		add_child(map)
-	
-	var player_arena = choose_next_level()
-	var this_game = player_arena.this_game
-	map.choose_level(this_game, player_arena.player_id)
-	yield(map, "chose_level")
+
 	$TransitionScreen.transition()
 	yield($TransitionScreen, "transitioned")
 	remove_child(map)
-	if not parallax.is_inside_tree():
-		add_child(parallax)
-	start_level(this_game, demo)
+	
+	start_minigame(minigame)
 
 func get_next_minigame(set):
 	# replenish pool if empty
@@ -175,41 +137,14 @@ func get_next_minigame(set):
 		
 	return minigame_pools[set.name].pop_back()
 
-func choose_next_level(demo = false) -> PlayerArena : #{String: Arena}
-	""" Choose next level rotating sets and avoiding back to back duplicates minigames. """
-	var player = players_sequence.pop_back()
-	players_sequence.push_front(player)
-	var next_set = selected_sets_by_player[player]
-	
-	var next_minigame = get_next_minigame(next_set)
-	
-	# WARNING this is not a while because it's better to repeat a level than to
-	# hang the game (in case a set contains all copies of the same levels)
-	if next_minigame == last_minigame: # best effort deduplication
-		next_minigame = get_next_minigame(next_set)
-	
-	last_minigame = next_minigame
-	var player_arena : PlayerArena = PlayerArena.new()
-	player_arena.player_id = player
-	print(next_minigame.get_id())
-	player_arena.this_game = next_minigame.get_level(len(players)).instance()
-	return player_arena
+func start_minigame(minigame: Minigame, demo = false):
 
-func start_level(_level, demo = false):
-	if self.first_time:
-		# TUTORIAL
-		var tut = preload("res://special_scenes/Tutorial.tscn").instance()
-		add_child(tut)
-		yield(tut, "over")
-		# END TUTORIAL
-		self.first_time = false
-
-	combat = _level
-
-	combat.connect("restart", self, "_on_Pause_restart", [combat])
-	combat.connect("skip", self, "_on_continue_session", [combat])
-	combat.connect("continue_session", self, "_on_continue_session", [combat])
-	combat.connect("back_to_menu", self, "_back_to_menu", [combat])
+	combat = minigame.get_level(global.session.get_number_of_players()).instance()
+	last_minigame = minigame
+	
+	combat.connect("restart", self, "_on_Pause_restart")
+	combat.connect("skip", self, "_on_continue_after_game_over")
+	#combat.connect("continue_session", self, "_on_continue_session", [combat])
 	connect("updated", combat, "hud_update")
 
 	for child in get_children():
@@ -217,68 +152,57 @@ func start_level(_level, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	combat.demo = demo
-
 	add_child(combat)
 
+func safe_destroy_combat():
+	if combat:
+		remove_child(combat)
+		combat.queue_free()
+		combat = null
 
-func _on_continue_session(combat_scene, session_over = false):
+func _on_continue_after_game_over(session_over = false):
 	"""
 	This callback will be called after the gameover.
-	Will handle if there is something to unlock
 	"""
-	combat_scene.queue_free()
-	get_tree().paused = false
+	safe_destroy_combat()
+	# FIXME: WHatever happens here is not really deterministic
+	# maybe becaaauuse the combat isn't freeed when maaap is added
+	# maybe there is more than one maaaaap at the same tiiiiime
 	if session_over:
-		end_session()
+		continue_fight()
 	else:
-		next_level()
-
-
-func end_session():
-	"""
-	This will handle the end of the session (Will unlock 
-	if there is something to unlock or will go back to selection)
-	"""
-	#reset()
-	combat.queue_free()
-	get_tree().paused = false
-	if TheUnlocker.what_to_unlock():
 		if not map.is_inside_tree():
 			add_child(map)
-		map.connect("unlocked_done", self, "back_to_selection_screen")
-	else:
-		back_to_selection_screen()
-		
-func back_to_selection_screen():
-	remove_child(map)
+		Events.emit_signal("match_ended")
+	
+func _on_Pause_restart():
+	safe_destroy_combat()
+	start_minigame(last_minigame)
+
+
+func _on_nav_to_menu():
+	get_tree().change_scene(menu_scene)
+	
+func _on_nav_to_character_selection():
+	safe_destroy_combat()
+	map.queue_free()
 	if not parallax.is_inside_tree():
 		add_child(parallax)
 		add_child(selection_screen)
 	selection_screen.reset()
 	if global.demo:
 		selection_screen.deselect()
+
+func _on_nav_to_map():
+	navigate_to_map()
 	
-
-func _on_Pause_restart(_combat):
-	var same_level = last_minigame.get_level(len(players)).instance()
-	_combat.queue_free()
-	get_tree().paused = false
-
-	start_level(same_level)
-
-
-func _back_to_menu(node):
-	#reset()
-	combat.queue_free()
-	get_tree().paused = false
-	go_to_map()
-
-
-func _on_Pause_back_to_menu(_combat):
-	_combat.queue_free()
-	get_tree().paused = false
-	add_child(selection_screen)
-
+func navigate_to_map():
+	safe_destroy_combat()
+	# map initialization
+	remove_child(selection_screen)
+	remove_child(parallax)
+	map = map_scene.instance()
+	add_child(map)
 
 func start_demo():
 	var demo_players = []
@@ -316,8 +240,17 @@ func add_cpu(how_many: int):
 	for i in range(max_cpu):
 		var cpu_species = missing_species[i]
 		var info_player = InfoPlayer.new()
-		var id_player = 'cpu' + str(i)
+		
+		var id_player = null
+		for x in range(global.MAX_PLAYERS):
+			var maybe_id = 'p'+str(x+1)
+			if not(maybe_id in players):
+				id_player = maybe_id
+				break
+		assert(id_player != null)
+		
 		info_player.id = id_player
 		info_player.cpu = true
 		info_player.species = cpu_species
 		players[id_player] = info_player
+

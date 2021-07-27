@@ -5,79 +5,74 @@ export var Minicard : PackedScene
 class_name MapPanel
 
 
-var species setget set_species
-onready var sprite = $Sprite
-onready var desc = $Label
-onready var info = $Info
+var player : InfoPlayer = null
 
-var map_element setget set_map_element
+var content
 var rest_text = "choose an arena"
-var chosen = false setget set_chosen
-onready var background = $Background
+var chosen = false
 const deselected_modulate = Color(0.6,0.6,0.6,1)
 
-func get_player() -> String:
+func get_id() -> String:
 	return self.name.to_lower()
 	
 func _ready():
-	disable()
-	background.self_modulate = deselected_modulate
+	if player == null:
+		disable()
+	$Background.self_modulate = deselected_modulate
 
 func set_chosen(chosen_):
 	if not is_inside_tree():
 		yield(self, "ready")
 	chosen = chosen_
 	if chosen:
-		background.self_modulate = Color(1.1,1.1,1.1,1)
+		$Background.self_modulate = Color(1.1,1.1,1.1,1)
 		$Tween.interpolate_property(self, 'rect_position',
 			rect_position, Vector2(rect_position.x,-30), 0.5,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		$Tween.start()
 	else:
-		background.self_modulate = deselected_modulate
+		$Background.self_modulate = deselected_modulate
 		$Tween.interpolate_property(self, 'rect_position',
 			rect_position, Vector2(rect_position.x,0), 0.5,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		$Tween.start()
 	
-func set_species(species_):
-	if not is_inside_tree():
-		yield(self, "ready")
-	if species_:
-		species = species_
-		sprite.texture = species.ship
-		desc.text = rest_text
-		background.modulate = species.color
+func set_player(v : InfoPlayer):
+	assert(v != null)
+	player = v
+	$Sprite.texture = player.species.ship
+	$Label.text = rest_text
+	$Background.modulate = player.species.color
 	
-func set_map_element(map_element_):
+func set_content(v):
 	if not is_inside_tree():
 		yield(self, "ready")
-	if map_element_:
-		map_element = map_element_
-		desc.text = map_element.name
-		info.text = map_element.description
+	if v:
+		content = v
+		$Label.text = content.name
+		$Info.text = content.description
 		create_minicards()
 	else:
-		desc.text = rest_text
-		info.text = ""
+		$Label.text = rest_text
+		$Info.text = ""
 		destroy_minicards()
 
 func enable():
 	modulate = Color(1,1,1,1)
-	sprite.visible = true
+	$Sprite.visible = true
 	
 func disable():
 	modulate = Color(1,1,1,0.1)
-	sprite.visible = false
+	$Sprite.visible = false
 	
 const dx = 110
 const dy = 70
 func create_minicards():
 	destroy_minicards() # FIXME ugly, but useful
-	if not map_element is Planet:
+	if not content is Set:
 		return
 	var i = 0
-	for minigame in map_element.minigames:
+	for minigame in content.minigames:
 		var minicard = Minicard.instance()
 		minicard.status = "locked"
 		

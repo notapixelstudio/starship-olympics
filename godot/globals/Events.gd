@@ -1,6 +1,15 @@
 extends Node
 
 signal bumper_created(bumper)
+signal sth_tapped(tapper, tappee)
+
+signal minigame_selected(minigame)
+signal match_ended
+signal continue_after_game_over(session_ended)
+
+signal nav_to_menu
+signal nav_to_map
+signal nav_to_character_selection
 
 # Option menu UI
 signal ui_back_menu

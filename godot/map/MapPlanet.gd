@@ -5,8 +5,10 @@ class_name MapPlanet
 
 export (String, "invisible", "locked", "unlocked") var status setget set_status, get_status
 
-export var planet : Resource setget set_planet # Planet
+export var set : Resource # Set
+export var cursor_scene: PackedScene
 onready var sprite = $Sprite
+var cursors = [] # of Cursor
 
 var not_available = false setget set_availability
 
@@ -14,21 +16,23 @@ signal updated
 signal unlocked
 
 func get_id() -> String:
-	return planet.id
+	return set.get_id()
 
 func get_status():
 	return status
 	
 func set_status(v):
 	status = v
+	$Lock.visible = false
 	if Engine.editor_hint:
-		modulate = Color(1,1,1,1)
+		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.UNLOCKED:
-		modulate = Color(1,1,1,1)
+		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
-		modulate = Color(0,0,0,0.5)
+		$Sprite.modulate = Color(0,0,0,0.5)
+		$Lock.visible = true
 	else:
-		modulate = Color(0,0,0,0)
+		$Sprite.modulate = Color(0,0,0,0)
 		
 	$DebugLabel.text = status
 	
@@ -37,17 +41,19 @@ func set_availability(value):
 	if sprite:
 		$NA.visible = not_available
 		
-func set_planet(value):
-	planet = value
+func set_set(v: Set):
+	assert(v is Set)
+	set = v
 	
-func act(cursor):
-	.act(cursor)
-	cursor.on_sth_pressed(status == TheUnlocker.UNLOCKED or status == TheUnlocker.LOCKED and cursor.is_winner())
+func get_set():
+	return set
 	
 func _ready():
-	if planet:
-		sprite.texture = planet.planet_sprite
-		$Label.text = planet.name
+	if set:
+		sprite.texture = set.planet_sprite
+		$Label.text = set.name
+		
+	self.set_status(TheUnlocker.get_status_set(self.get_id()))
 	
 func unlock():
 	$AnimationPlayer.play("unlock")
@@ -60,3 +66,24 @@ func on_hover():
 func on_blur():
 	$Label.visible = false
 	
+func _on_tap(author: Ship):
+	if self.get_status() == TheUnlocker.UNLOCKED:
+		self.land_on(author)
+		
+		# remove author
+		author.get_parent().remove_child(author)
+	
+func land_on(ship: Ship):
+	var cursor: MapCursor = cursor_scene.instance()
+	cursor.setup(ship.info_player)
+	cursor.position = self.position
+	get_parent().add_child(cursor)
+	cursors.append(cursor)
+	
+	# fan the cursors
+	var i = 0
+	for c in cursors:
+		c.set_rotation_degrees(60*(i - len(cursors)/2.0 + 0.5))
+		i+=1
+	
+	cursor.land()

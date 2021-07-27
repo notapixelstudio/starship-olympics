@@ -18,11 +18,17 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 834, 635 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.352941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Window" type="Sprite" parent="."]
 position = Vector2( 651.635, 357.94 )
@@ -54,33 +60,33 @@ uppercase = true
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements"]
 margin_left = 238.0
-margin_top = 380.0
-margin_right = 420.0
-margin_bottom = 521.0
+margin_top = 325.0
+margin_right = 440.0
+margin_bottom = 519.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Continue" type="Button" parent="GuiElements/Buttons"]
-margin_top = 13.0
-margin_right = 182.0
-margin_bottom = 42.0
+margin_right = 202.0
+margin_bottom = 29.0
 custom_fonts/font = SubResource( 1 )
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/Buttons"]
-margin_top = 46.0
-margin_right = 182.0
-margin_bottom = 75.0
+margin_top = 33.0
+margin_right = 202.0
+margin_bottom = 62.0
 custom_fonts/font = SubResource( 1 )
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/Buttons"]
-margin_top = 79.0
-margin_right = 182.0
-margin_bottom = 108.0
+margin_top = 66.0
+margin_right = 202.0
+margin_bottom = 95.0
 custom_fonts/font = SubResource( 1 )
 text = "SKIP LEVEL"
 
@@ -92,15 +98,32 @@ margin_bottom = 128.0
 custom_fonts/font = SubResource( 1 )
 text = "OPTIONS"
 
-[node name="QuitMatch" type="Button" parent="GuiElements/Buttons"]
-margin_top = 112.0
-margin_right = 182.0
-margin_bottom = 141.0
+[node name="Quit1" type="Button" parent="GuiElements/Buttons"]
+margin_top = 99.0
+margin_right = 202.0
+margin_bottom = 128.0
 custom_fonts/font = SubResource( 1 )
-text = "QUIT MATCH"
+text = "QUIT TO MAP"
+
+[node name="Quit2" type="Button" parent="GuiElements/Buttons"]
+margin_top = 132.0
+margin_right = 202.0
+margin_bottom = 161.0
+custom_fonts/font = SubResource( 1 )
+text = "QUIT TO CHARACTERS"
+
+[node name="Quit3" type="Button" parent="GuiElements/Buttons"]
+margin_top = 165.0
+margin_right = 202.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 1 )
+text = "QUIT TO MAIN MENU"
 
 [node name="Tween" type="Tween" parent="."]
+
 [connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="GuiElements/Buttons/SkipLevel" to="." method="_on_SkipLevel_pressed"]
-[connection signal="pressed" from="GuiElements/Buttons/QuitMatch" to="." method="_on_QuitMatch_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/Quit1" to="." method="_on_Quit1_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/Quit2" to="." method="_on_Quit2_pressed"]
+[connection signal="pressed" from="GuiElements/Buttons/Quit3" to="." method="_on_Quit3_pressed"]

@@ -26,7 +26,7 @@ func back_from_options():
 func _on_Options_pressed():
 	animation.play("fade_out")
 	yield(animation, "animation_finished")
-	var options: UIOptions = options_scene.instance()
+	var options = options_scene.instance()
 	add_child(options)
 	options.connect("back_at_you", self, "back_from_options")
 

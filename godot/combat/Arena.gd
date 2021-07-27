@@ -24,6 +24,10 @@ export var underwater : bool = false
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
+export var show_hud : bool = true
+export var show_intro : bool = true
+export var random_starting_position : bool = true
+
 var debug = false
 # analytics
 var run_time = 0
@@ -60,7 +64,6 @@ signal screensize_changed(screensize)
 signal gameover
 signal restart
 signal continue_session
-signal back_to_menu
 signal slomo
 signal unslomo
 signal battle_start
@@ -119,7 +122,7 @@ func setup_level(mode : Resource):
 	pursue_manager.enabled = mode.pursuing_bombs
 	
 	#FIX
-	if global.session and mode.name in global.session.get_settings() and not global.campaign_mode:
+	if global.is_session_running() and mode.name in global.session.get_settings() and not global.campaign_mode:
 		for key in global.session.get_settings(mode.name):
 			var val = global.session.get_settings(mode.name)[key]
 			mode.set(key, val)
@@ -134,8 +137,15 @@ func _init():
 	global.the_match.connect("game_over", self, "on_gameover")
 	connect("update_stats", global.the_match, "update_stats")
 	
+	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+	
 func _ready():
 	set_process(false)
+	
+	# remove HUD if not needed (e.g., map)
+	if not show_hud:
+		$CanvasLayer/HUD.queue_free()
+	
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
@@ -202,23 +212,23 @@ func _ready():
 	var players = {}
 	var array_players = []
 	
-	if global.session:
+	if global.is_session_running():
 		array_players = global.session.get_players().values()
 		standalone = false
 	else:
-		global.session = TheSession.new()
+		global.new_session()
 	
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
 	# works with a session, not if you run from scene
-	spawners.shuffle()
+	if random_starting_position:
+		spawners.shuffle()
+		
 	# set up the spawners
 	var i = 0
 	for s in spawners:
-		var key = s.name
 		var info_player = InfoPlayer.new()
 		if standalone:
-			
 			info_player.cpu = s.cpu
 			info_player.species = s.species
 			info_player.controls = s.controls
@@ -226,8 +236,11 @@ func _ready():
 				info_player.id = "cpu"+str(i+1)
 			else:
 				info_player.id = s.name
-			
 		else:
+			# skip populating spawners if there are no more players
+			if i >= len(array_players):
+				break
+				
 			info_player = array_players[i] 
 			s.controls = info_player.controls
 			s.species = info_player.species
@@ -243,8 +256,14 @@ func _ready():
 			
 		s.set_info_player(info_player)
 		i += 1
+		
+	# destroy all unassigned player spawners
+	for s in spawners:
+		if not s.is_assigned():
+			s.free()
 	
-	global.session.set_players(players)
+	if standalone:
+		global.session.set_players(players)
 	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
@@ -265,11 +284,13 @@ func _ready():
 	
 	global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
 	
-	# initialize HUD
-	hud.post_ready()
+	if show_hud:
+		# initialize HUD
+		hud.post_ready()
 	
 	# adapt camera to hud height
-	camera.marginY = hud.get_height()
+	if show_hud:
+		camera.marginY = hud.get_height()
 	camera.initialize(compute_arena_size())
 	
 	# $Battlefield.visible = false
@@ -277,14 +298,16 @@ func _ready():
 		game_mode.max_score = score_to_win_override
 	if match_duration_override > 0:
 		game_mode.max_timeout = match_duration_override
-	mode_description.gamemode = game_mode
-	mode_description.appears()
-	if demo:
-		# demo will wait 1 second and create a CPU match
-		mode_description.demomode(demo)
-		mode_description.set_process_input(false)
-		yield(get_tree().create_timer(3), "timeout")
-		mode_description.disappears()
+		
+	if show_intro:
+		mode_description.gamemode = game_mode
+		mode_description.appears()
+		if demo:
+			# demo will wait 1 second and create a CPU match
+			mode_description.demomode(demo)
+			mode_description.set_process_input(false)
+			yield(get_tree().create_timer(3), "timeout")
+			mode_description.disappears()
 	
 	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
@@ -334,8 +357,10 @@ func _ready():
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
-	yield(mode_description, "ready_to_fight")
-	hud.set_planet("", game_mode)
+	if show_intro:
+		yield(mode_description, "ready_to_fight")
+	if show_hud:
+		hud.set_planet("", game_mode)
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
@@ -422,7 +447,7 @@ func _process(delta):
 func _input(event):
 	if demo:
 		if event is InputEventKey or event is InputEventJoypadButton:
-			emit_signal("back_to_menu")
+			Events.emit_signal("nav_to_character_selection")
 			
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo and not global.the_match.game_over:
@@ -564,7 +589,7 @@ func ship_just_died(ship, killer, for_good):
 	
 func on_gameover():
 	if demo:
-		emit_signal("back_to_menu")
+		Events.emit_signal("nav_to_character_selection")
 		return
 	for child in $Managers.get_children():
 		if child is ModeManager:
@@ -575,21 +600,18 @@ func on_gameover():
 	set_time_scale(1)
 	get_tree().paused = true
 	var game_over = gameover_scene.instance()
-	game_over.connect("pressed_continue", self, "_on_Continue_session")
-	game_over.connect("back_to_menu", self, "_on_Pause_back_to_menu")
+	#game_over.connect("pressed_continue", self, "_on_Continue_session")
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
 	
 	game_over.initialize()
 
-func _on_Continue_session():
+func _on_continue_after_game_over(_session_over):
 	if standalone:
-		# forced session to null
-		global.session = null
-		get_tree().paused = false
+		# delete the session after a standalone execution
+		global.destroy_session()
 		get_tree().reload_current_scene()
-	emit_signal("continue_session")
 	
 func _on_Show_Arena():
 	$Battlefield/Background.modulate = Color(1,1,1,1)
@@ -805,8 +827,6 @@ func on_next_wave(diamonds, wait_time=1):
 	diamonds.spawn()
 	emit_signal('wave_ready')
 	
-func _on_Pause_back_to_menu():
-	emit_signal("back_to_menu")
 
 func _on_Pause_restart():
 	emit_signal("restart")

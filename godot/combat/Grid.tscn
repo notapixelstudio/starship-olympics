@@ -13,13 +13,14 @@ shader_param/max_time = 0
 shader_param/active = true
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/cell_size = 200.0
 shader_param/stroke = 10.0
 shader_param/time = 3841.1
 shader_param/triangular = false
-shader_param/fg_color = Color( 0.272, 0.4692, 0.68, 1 )
-shader_param/bg_color = Color( 0.26, 0.4355, 0.65, 1 )
+shader_param/fg_color = Color( 0.12, 0.488, 0.6, 1 )
+shader_param/bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
 [node name="Grid" type="Polygon2D" groups=[
 "grid",
