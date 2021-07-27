@@ -122,7 +122,7 @@ func setup_level(mode : Resource):
 	pursue_manager.enabled = mode.pursuing_bombs
 	
 	#FIX
-	if global.session and mode.name in global.session.get_settings() and not global.campaign_mode:
+	if global.is_session_running() and mode.name in global.session.get_settings() and not global.campaign_mode:
 		for key in global.session.get_settings(mode.name):
 			var val = global.session.get_settings(mode.name)[key]
 			mode.set(key, val)
@@ -212,11 +212,11 @@ func _ready():
 	var players = {}
 	var array_players = []
 	
-	if global.session:
+	if global.is_session_running():
 		array_players = global.session.get_players().values()
 		standalone = false
 	else:
-		global.session = TheSession.new()
+		global.new_session()
 	
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
@@ -262,7 +262,8 @@ func _ready():
 		if not s.is_assigned():
 			s.free()
 	
-	global.session.set_players(players)
+	if standalone:
+		global.session.set_players(players)
 	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
@@ -608,11 +609,9 @@ func on_gameover():
 
 func _on_continue_after_game_over(_session_over):
 	if standalone:
-		# forced session to null
-		global.session = null
-		get_tree().paused = false
+		# delete the session after a standalone execution
+		global.destroy_session()
 		get_tree().reload_current_scene()
-	#emit_signal("continue_session")
 	
 func _on_Show_Arena():
 	$Battlefield/Background.modulate = Color(1,1,1,1)
