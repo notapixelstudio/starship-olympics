@@ -32,6 +32,7 @@ func _ready():
 	add_to_group("persist")
 	unlock_time = false
 	
+	Events.connect('sth_unlocked', self, '_on_sth_unlocked')
 
 var map_unlocked = true # If the map has been unlocked or not
 
@@ -52,8 +53,8 @@ func _unlock_species(species: String):
 	unlocked_species[species] = true
 	persistance.save_game()
 
-func unlock_set(set: String) -> void:
-	unlocked_sets[set] = UNLOCKED
+func unlock_set(set: Set) -> void:
+	unlocked_sets[set.get_id()] = UNLOCKED
 	persistance.save_game()
 
 var unlocked_paths = {
@@ -178,3 +179,8 @@ func get_state():
 		map_unlocked=map_unlocked
 		
 	}
+
+func _on_sth_unlocked(what) -> void:
+	if what is Set:
+		unlock_set(what)
+		

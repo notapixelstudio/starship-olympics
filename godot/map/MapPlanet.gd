@@ -58,7 +58,8 @@ func _ready():
 func unlock():
 	$AnimationPlayer.play("unlock")
 	yield($AnimationPlayer, "animation_finished")
-	emit_signal("unlocked")
+	self.set_status(TheUnlocker.UNLOCKED)
+	Events.emit_signal("sth_unlocked", set)
 
 func on_hover():
 	$Label.visible = true

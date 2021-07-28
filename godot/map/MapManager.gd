@@ -45,7 +45,13 @@ func _ready():
 		if start != null and end != null:
 			graph.add_path(start, end)
 			
-	print(graph)
+	# test unlocking
+	yield(get_tree().create_timer(4), "timeout")
+	for node in nodes:
+		if node is MapPlanet and node.get_status() == TheUnlocker.LOCKED:
+			node.unlock()
+			break
+	
 	
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:

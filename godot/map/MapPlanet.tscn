@@ -14,71 +14,83 @@
 [ext_resource path="res://map/MapPlanet.gd" type="Script" id=13]
 [ext_resource path="res://assets/fonts/Anton-Regular.ttf" type="DynamicFontData" id=14]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "blank",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "true",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "blank",
+"speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 52
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/path = NodePath("DebugLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("DebugLabel:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ "UNSELECTABLE", "UNLOCKED!" ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("DebugLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.1, 1.6, 2.1, 2.5, 3, 3.6, 4.2, 4.9 ),
+"transitions": PoolRealArray( 1, 0.267943, 1, 0.267943, 1, 0.267943, 1, 0.267943 ),
+"update": 0,
+"values": [ Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ) ]
+}
 tracks/2/type = "value"
-tracks/2/path = NodePath("DebugLabel:rect_position")
+tracks/2/path = NodePath("Sprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.1, 1.6, 2.1, 2.5, 3, 3.6, 4.2, 4.9 ),
-"transitions": PoolRealArray( 1, 0.267943, 1, 0.267943, 1, 0.267943, 1, 0.267943 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ), Vector2( -243.066, 111.55 ), Vector2( -243.066, 100 ) ]
+"values": [ Color( 0, 0, 0, 0.5 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Lock:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="MapPlanet" instance=ExtResource( 2 )]
@@ -86,6 +98,7 @@ script = ExtResource( 13 )
 cursor_scene = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
+modulate = Color( 0, 0, 0, 0.5 )
 texture = ExtResource( 9 )
 
 [node name="NA" type="Sprite" parent="." index="4"]
@@ -97,7 +110,7 @@ texture = ExtResource( 5 )
 [node name="CheckBox" type="AnimatedSprite" parent="." index="5"]
 visible = false
 position = Vector2( 84, -84 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "empty"
 playing = true
 
@@ -114,7 +127,7 @@ visible = false
 margin_left = -300.0
 margin_right = 300.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "The Hive"
 align = 1
 valign = 1
@@ -126,10 +139,11 @@ __meta__ = {
 [node name="DebugLabel" type="Label" parent="." index="9"]
 visible = false
 margin_left = -243.066
-margin_top = 111.55
+margin_top = 104.62
 margin_right = 259.934
-margin_bottom = 186.55
-custom_fonts/font = SubResource( 4 )
+margin_bottom = 179.62
+custom_fonts/font = SubResource( 3 )
+text = "UNSELECTABLE"
 align = 1
 valign = 1
 uppercase = true
@@ -138,7 +152,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-anims/unlock = SubResource( 5 )
+anims/unlock = SubResource( 4 )
 
 [node name="Lock" type="Sprite" parent="." index="11"]
 visible = false
