@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://map/Path.gd" type="Script" id=1]
 [ext_resource path="res://map/traits/Link.tscn" type="PackedScene" id=2]
+[ext_resource path="res://map/PathStar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://map/PathLine.tscn" type="PackedScene" id=4]
 
 [node name="Path" type="Line2D"]
 self_modulate = Color( 1, 1, 1, 0 )
-points = PoolVector2Array( 800, -1000, 1000, -800, 1200, -1000, 1400, -1000 )
+points = PoolVector2Array( 95.6489, 127.42, 176.077, 272.402, 325.293, 46.9913, 474.509, 182.45, 320.001, 223.721, 411.012, 352.83, 736.958, 35.3496 )
 width = 5.0
 script = ExtResource( 1 )
+path_star_scene = ExtResource( 3 )
+path_line_scene = ExtResource( 4 )
 
 [node name="Link" parent="." instance=ExtResource( 2 )]
 

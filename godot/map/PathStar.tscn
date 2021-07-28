@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/map/waypoint.png" type="Texture" id=1]
+[ext_resource path="res://map/PathStar.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Appear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.7 ),
+"transitions": PoolRealArray( -2, 1, -2 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "appeared_enough"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Reset"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [node name="PathStar" type="Sprite"]
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Reset"
+anims/Appear = SubResource( 1 )
+anims/Reset = SubResource( 2 )
