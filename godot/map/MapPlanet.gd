@@ -3,7 +3,7 @@ extends MapLocation
 
 class_name MapPlanet
 
-export (String, "invisible", "locked", "unlocked") var status setget set_status, get_status
+export (String, "hidden", "locked", "unlocked") var status setget set_status, get_status
 
 export var set : Resource # Set
 export var cursor_scene: PackedScene
@@ -13,6 +13,7 @@ var cursors = [] # of Cursor
 var not_available = false setget set_availability
 
 signal updated
+signal unhid
 signal unlocked
 
 func get_id() -> String:
@@ -55,11 +56,25 @@ func _ready():
 		
 	self.set_status(TheUnlocker.get_status_set(self.get_id()))
 	
+func unhide():
+	if status != TheUnlocker.HIDDEN:
+		return
+		
+	$AnimationPlayer.play("Unhide")
+	yield($AnimationPlayer, "animation_finished")
+	self.set_status(TheUnlocker.LOCKED)
+	emit_signal('unhid')
+	Events.emit_signal("sth_unhid", set, self)
+	
 func unlock():
-	$AnimationPlayer.play("unlock")
+	if status != TheUnlocker.LOCKED:
+		return
+		
+	$AnimationPlayer.play("Unlock")
 	yield($AnimationPlayer, "animation_finished")
 	self.set_status(TheUnlocker.UNLOCKED)
-	Events.emit_signal("sth_unlocked", set)
+	emit_signal('unlocked')
+	Events.emit_signal("sth_unlocked", set, self)
 
 func on_hover():
 	$Label.visible = true

@@ -8,6 +8,8 @@ export var unlocked := false
 
 const D = 25
 
+signal appeared
+
 func set_points(v):
 	points = v
 	refresh()
@@ -51,3 +53,4 @@ func appear() -> void:
 		child.appear()
 		yield(child, 'appeared')
 		
+	emit_signal('appeared')

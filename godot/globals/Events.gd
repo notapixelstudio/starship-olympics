@@ -11,7 +11,8 @@ signal nav_to_menu
 signal nav_to_map
 signal nav_to_character_selection
 
-signal sth_unlocked(what)
+signal sth_unhid(what, by_what) # e.g., Set by MapPlanet
+signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
 
 # Option menu UI
 signal ui_back_menu

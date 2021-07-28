@@ -76,7 +76,7 @@ func create_minicards():
 		var minicard = Minicard.instance()
 		minicard.status = "locked"
 		
-		if TheUnlocker.unlocked_games.get(minigame.get_id(), TheUnlocker.INVISIBLE) == TheUnlocker.UNLOCKED:
+		if TheUnlocker.unlocked_games.get(minigame.get_id(), TheUnlocker.HIDDEN) == TheUnlocker.UNLOCKED:
 			minicard.status = "unlocked"
 		minicard.content = minigame
 		$Minicards.add_child(minicard)

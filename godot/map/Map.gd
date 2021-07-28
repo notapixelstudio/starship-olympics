@@ -100,7 +100,7 @@ func _ready():
 		#if not levels:
 		#	sport.not_available = true
 		
-		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.INVISIBLE)
+		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.HIDDEN)
 	
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):

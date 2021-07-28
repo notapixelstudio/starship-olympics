@@ -21,6 +21,7 @@ func _ready():
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
 	Events.connect("match_ended", self, '_on_match_ended')
+	Events.connect("sth_unlocked", self, '_on_sth_unlocked')
 	
 	# wait for the entire Arena subtree to be ready
 	yield(get_tree(), "idle_frame")
@@ -43,7 +44,7 @@ func _ready():
 				continue # no self-links
 			
 		if start != null and end != null:
-			graph.add_path(start, end)
+			graph.add_path(link, start, end)
 			
 	# test unlocking
 	yield(get_tree().create_timer(4), "timeout")
@@ -102,3 +103,17 @@ func pick_next_minigame():
 		
 func _on_match_ended():
 	pick_next_minigame()
+
+## WARNING if the game is killed halfway through, an inconsisent state could be persisted
+func _on_sth_unlocked(_what, by_what) -> void:
+	if by_what is MapPlanet:
+		var neighbourhood := graph.get_neighbourhood(by_what)
+		print(neighbourhood)
+		for n in neighbourhood.keys(): # MapLocations
+			if n is MapPlanet:
+				var path = neighbourhood[n]
+				path.appear()
+				yield(path, 'appeared')
+				n.unhide()
+				yield(n, 'unhid')
+				

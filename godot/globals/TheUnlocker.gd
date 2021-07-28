@@ -5,11 +5,11 @@ const GAMES_PATH = "res://combat/modes"
 const SET_PATH = "res://map/planets/sets"
 
 # status
-const INVISIBLE = "invisible"
+const HIDDEN = "hidden"
 const LOCKED = "locked"
 const UNLOCKED = "unlocked"
 
-export (String, "invisible", "locked", "unlocked") var status 
+export (String, "hidden", "locked", "unlocked") var status 
 
 
 # templates
@@ -32,6 +32,7 @@ func _ready():
 	add_to_group("persist")
 	unlock_time = false
 	
+	Events.connect('sth_unhid', self, '_on_sth_unhid')
 	Events.connect('sth_unlocked', self, '_on_sth_unlocked')
 
 var map_unlocked = true # If the map has been unlocked or not
@@ -53,6 +54,10 @@ func _unlock_species(species: String):
 	unlocked_species[species] = true
 	persistance.save_game()
 
+func unhide_set(set: Set) -> void:
+	unlocked_sets[set.get_id()] = LOCKED
+	persistance.save_game()
+	
 func unlock_set(set: Set) -> void:
 	unlocked_sets[set.get_id()] = UNLOCKED
 	persistance.save_game()
@@ -65,10 +70,10 @@ func unlock_path(path_id: String) -> void:
 	persistance.save_game()
 	
 func get_status_path(path_id)->bool:
-	return unlocked_paths.get(path_id, "invisible")
+	return unlocked_paths.get(path_id, "hidden")
 	
 func get_status_location(loc_id)-> bool:
-	return unlocked_locations.get(loc_id, "invisible")
+	return unlocked_locations.get(loc_id, "hidden")
 	
 var unlocked_locations = {
 	
@@ -80,16 +85,16 @@ func unlock_location(loc_id: String) -> void:
 	
 var unlocked_sets = {
 	"core": UNLOCKED,
-	"diamonds": INVISIBLE,
-	"ice": INVISIBLE,
-	"survival": INVISIBLE,
-	"casino": INVISIBLE,
-	"snake": INVISIBLE,
+	"diamonds": HIDDEN,
+	"ice": HIDDEN,
+	"survival": HIDDEN,
+	"casino": HIDDEN,
+	"snake": HIDDEN,
 	"sports": LOCKED,
-	"asteroids": INVISIBLE,
-	"conquest": INVISIBLE,
+	"asteroids": HIDDEN,
+	"conquest": HIDDEN,
 	"death": LOCKED,
-	"crown": INVISIBLE,
+	"crown": HIDDEN,
 	"cards": LOCKED,
 }
 
@@ -180,7 +185,11 @@ func get_state():
 		
 	}
 
-func _on_sth_unlocked(what) -> void:
+func _on_sth_unhid(what, _by_what) -> void:
+	if what is Set:
+		unhide_set(what)
+		
+func _on_sth_unlocked(what, _by_what) -> void:
 	if what is Set:
 		unlock_set(what)
 		
