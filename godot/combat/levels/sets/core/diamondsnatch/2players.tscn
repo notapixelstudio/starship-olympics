@@ -628,7 +628,7 @@ jitter = 4.0
 chance = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner" index="0" instance=ExtResource( 22 )]
-type = "snake"
+type = "magnet"
 random_types = [ "magnet", "snake" ]
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground" index="51" instance=ExtResource( 21 )]
@@ -637,7 +637,7 @@ jitter = 4.0
 chance = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner3" index="0" instance=ExtResource( 22 )]
-type = "snake"
+type = "magnet"
 random_types = [ "magnet", "snake" ]
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground" index="52" instance=ExtResource( 21 )]
@@ -655,8 +655,16 @@ jitter = 4.0
 chance = 0.5
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner4" index="0" instance=ExtResource( 22 )]
-type = "magnet"
+type = "snake"
 random_types = [ "magnet", "snake" ]
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="54" instance=ExtResource( 22 )]
+position = Vector2( -600, 600 )
+type = "rockets"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="55" instance=ExtResource( 22 )]
+position = Vector2( 600, -600 )
+type = "rockets"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )

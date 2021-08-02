@@ -15,7 +15,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 style = ExtResource( 8 )
 
-[node name="SurvivalModeManager" parent="Managers" index="12"]
+[node name="SurvivalModeManager" parent="Managers" index="13"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -32,13 +32,8 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1700
 sides = 12.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
