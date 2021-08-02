@@ -673,6 +673,26 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
 	
+	if force_intro:
+		ship.intro()
+	
+	# smoothly transition 
+	var focus = element_in_camera_scene.instance()
+	$Battlefield.add_child(focus)
+	yield(get_tree(), "idle_frame")
+	ship.remove_from_group("in_camera")
+	focus.manual_activate(ship, global.calculate_center(camera.camera_rect), 1)
+	yield(focus, "completed")
+	ship.add_to_group("in_camera")
+	
+	
+	# Check on gears
+	ship.set_bombs_enabled(game_mode.shoot_bombs)
+	ship.set_default_bomb_type(game_mode.bomb_type)
+	ship.set_ammo(game_mode.starting_ammo)
+	ship.set_reload_time(game_mode.reload_time)
+	ship.set_lives(game_mode.starting_lives)
+	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("frozen", self, "_on_sth_just_froze")
@@ -693,26 +713,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
 	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])
-	
-	if force_intro:
-		ship.intro()
-	
-	# smoothly transition 
-	var focus = element_in_camera_scene.instance()
-	$Battlefield.add_child(focus)
-	yield(get_tree(), "idle_frame")
-	ship.remove_from_group("in_camera")
-	focus.manual_activate(ship, global.calculate_center(camera.camera_rect), 1)
-	yield(focus, "completed")
-	ship.add_to_group("in_camera")
-	
-	
-	# Check on gears
-	ship.set_bombs_enabled(game_mode.shoot_bombs)
-	ship.set_default_bomb_type(game_mode.bomb_type)
-	ship.set_ammo(game_mode.starting_ammo)
-	ship.set_reload_time(game_mode.reload_time)
-	ship.set_lives(game_mode.starting_lives)
 	
 	# attach followcamera
 	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
