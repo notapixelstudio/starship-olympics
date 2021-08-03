@@ -15,9 +15,11 @@ func register_bumper(bumper):
 	bumper.connect('body_entered', self, '_on_bumper_collided', [bumper])
 	
 func _on_bumper_collided(bumper_b, bumper_a):
+	if not is_inside_tree():
+		return # FIXME this is beacuse we continue to listen bumpers with the bump manager of the map!
+	
 	assert(traits.has_trait(bumper_a, 'Bumper'))
-	if not(traits.has_trait(bumper_b, 'Bumper')):
-		return
+	assert(traits.has_trait(bumper_b, 'Bumper'))
 	
 	# avoid checking bump twice per collision
 	if bumper_a.get_instance_id() < bumper_b.get_instance_id():
