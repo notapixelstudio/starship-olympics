@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Feedback"
@@ -171,7 +172,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 match_duration_override = 55.0
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -182,41 +183,21 @@ centered = false
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-line_texture = null
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2300
-sides = 6.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
 rotation = 0.523599
@@ -1233,12 +1214,8 @@ position = Vector2( -602, 1042.69 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 550
 sides = 6.0
-alternating_angle = 0.0
 rotation_degrees = 30.0
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
@@ -1249,12 +1226,8 @@ position = Vector2( -608.327, -1046.35 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 550
 sides = 6.0
-alternating_angle = 0.0
 rotation_degrees = 30.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="2"]
@@ -1268,12 +1241,8 @@ position = Vector2( 1210.33, 3.65271 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone3/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 550
 sides = 6.0
-alternating_angle = 0.0
 rotation_degrees = 30.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone3" index="2"]
@@ -1281,6 +1250,18 @@ anims/Feedback = SubResource( 2 )
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone3" index="5"]
 visible = false
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="4" instance=ExtResource( 14 )]
+position = Vector2( -2064, 0 )
+type = "spikes"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 14 )]
+position = Vector2( 1032, -1787.48 )
+type = "spikes"
+
+[node name="PowerUp3" parent="Battlefield/Middleground" index="6" instance=ExtResource( 14 )]
+position = Vector2( 1032, 1787.48 )
+type = "spikes"
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 
@@ -1298,7 +1279,7 @@ species = ExtResource( 7 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( -2064, -0.00177002 )
+position = Vector2( -2064, 0 )
 rotation = -2.68221e-07
 controls = "joy2"
 species = ExtResource( 13 )
