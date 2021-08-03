@@ -610,7 +610,7 @@ func on_gameover():
 func _on_continue_after_game_over(_session_over):
 	if standalone:
 		# delete the session after a standalone execution
-		global.destroy_session()
+		global.safe_destroy_session()
 		get_tree().reload_current_scene()
 	
 func _on_Show_Arena():
