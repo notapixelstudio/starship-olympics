@@ -670,6 +670,11 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
 	register_ship(ship)
+	
+	# connect collect signals to enable powerup collection at start
+	ship.connect("body_entered", collect_manager, "ship_sth_entered", [ship])
+	ship.connect("near_area_entered", collect_manager, "ship_sth_entered")
+	
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
 	
@@ -699,8 +704,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("spawn_bomb", self, "spawn_bomb", [ship])
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
-	ship.connect("body_entered", collect_manager, "ship_sth_entered", [ship])
-	ship.connect("near_area_entered", collect_manager, "ship_sth_entered")
 	ship.connect("body_entered", environments_manager, "_on_sth_entered", [ship])
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
