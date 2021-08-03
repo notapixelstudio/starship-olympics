@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -6,17 +6,18 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=7]
+[ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=8]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Flowsnake.tres" type="Resource" id=10]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 style = ExtResource( 9 )
 
-[node name="SurvivalModeManager" parent="Managers" index="12"]
+[node name="SurvivalModeManager" parent="Managers" index="13"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -33,13 +34,8 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 2200
 sides = 12.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -47,23 +43,35 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 clock = true
 
+[node name="PowerUp" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
+position = Vector2( 0, -150 )
+type = "snake"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
+position = Vector2( -129.904, 75 )
+type = "snake"
+
+[node name="PowerUp3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+position = Vector2( 129.904, 75 )
+type = "snake"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 9.15527e-05, -99.9999 )
+position = Vector2( 0, -150 )
 rotation = -1.5708
 species = ExtResource( 3 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 86.6025, 50 )
-rotation = 0.523599
-controls = "joy2"
+position = Vector2( 129.904, 75 )
+rotation = 0.523595
+controls = "kb2"
 species = ExtResource( 2 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( -86.6025, 50 )
+position = Vector2( -129.904, 75 )
 rotation = 2.61799
-controls = "joy2"
+controls = "joy1"
 species = ExtResource( 7 )
 cpu = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://combat/modes/AsteroidInfection.tres" type="Resource" id=8]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=10]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
 
 [sub_resource type="Animation" id=1]
@@ -34,10 +35,10 @@ size_multiplier = 2.5
 game_mode = ExtResource( 8 )
 style = ExtResource( 10 )
 
-[node name="PursueManager" parent="Managers" index="2"]
+[node name="PursueManager" parent="Managers" index="3"]
 enabled = false
 
-[node name="SurvivalModeManager" parent="Managers" index="12"]
+[node name="SurvivalModeManager" parent="Managers" index="13"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -99,6 +100,18 @@ base_size = 44.0
 spawn_diamonds = false
 self_destruct = true
 smallest_break = false
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
+position = Vector2( 0, -1900 )
+type = "snake"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+position = Vector2( -1645.45, 950 )
+type = "snake"
+
+[node name="PowerUp3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 11 )]
+position = Vector2( 1645.45, 950 )
+type = "snake"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, -1900 )
