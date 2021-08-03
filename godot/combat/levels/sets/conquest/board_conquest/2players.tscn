@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=8]
 [ext_resource path="res://combat/modes/BoardConquest.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
@@ -1334,13 +1335,21 @@ rotation = 0.785398
 position = Vector2( 565.686, 1131.37 )
 rotation = 0.785398
 
+[node name="PowerUp" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
+position = Vector2( -1500, 1500 )
+type = "rockets"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+position = Vector2( 1500, -1500 )
+type = "rockets"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1484.92, 1484.92 )
+position = Vector2( -1500, 1500 )
 rotation = -0.785402
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 1484.92, -1484.92 )
+position = Vector2( 1500, -1500 )
 rotation = 2.3562
 controls = "joy2"
 species = ExtResource( 4 )
