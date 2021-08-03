@@ -160,7 +160,7 @@ func try_break():
 			child.contains_star = true
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
-		child.linear_velocity = 0.5*linear_velocity + Vector2(150*order,0).rotated(2*PI/divisions*i)
+		child.linear_velocity = 0.5*linear_velocity + Vector2(75*order,0).rotated(2*PI/divisions*i)
 		
 		if child is Star:
 			child.linear_velocity *= 10
