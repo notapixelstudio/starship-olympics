@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=7]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=8]
 [ext_resource path="res://combat/modes/Flowsnake.tres" type="Resource" id=9]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=10]
 
 [node name="Arena" instance=ExtResource( 6 )]
 size_multiplier = 2.5
@@ -40,6 +41,14 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 clock = true
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
+position = Vector2( -100, -100 )
+type = "snake"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
+position = Vector2( 100, 100 )
+type = "snake"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
 position = Vector2( -99.9999, -99.9999 )

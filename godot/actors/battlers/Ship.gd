@@ -25,6 +25,7 @@ var steer_force = 0
 var rotation_request = 0
 
 var THRUST = 6500
+var auto_thrust := false
 
 var shields = 0
 var max_shields = 1
@@ -637,6 +638,8 @@ func apply_powerup(powerup):
 		update_weapon_indicator()
 		entity.get('Thrusters').enable()
 		# FIXME? should water disable the tail?
+	elif powerup.type == 'kamikaze':
+		auto_thrust = true
 	elif powerup.type == 'sword':
 		wield_sword()
 	elif powerup.type == 'scythe':
@@ -657,6 +660,9 @@ func apply_powerup(powerup):
 		update_weapon_indicator()
 	elif powerup.type == 'waves':
 		set_bomb_type(GameMode.BOMB_TYPE.wave)
+		update_weapon_indicator()
+	elif powerup.type == 'bubbles':
+		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		
 func rebound():
@@ -754,4 +760,5 @@ func disable_controls():
 func enable_controls():
 	controls_enabled = true
 	
-	
+func is_auto_thrust() -> bool:
+	return auto_thrust or deadly_trail_powerup

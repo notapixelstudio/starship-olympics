@@ -674,6 +674,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	# connect collect signals to enable powerup collection at start
 	ship.connect("body_entered", collect_manager, "ship_sth_entered", [ship])
 	ship.connect("near_area_entered", collect_manager, "ship_sth_entered")
+	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship]) # this is for snake powerup to work
 	
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
@@ -715,7 +716,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
-	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])
 	
 	# attach followcamera
 	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
