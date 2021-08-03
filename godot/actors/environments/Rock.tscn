@@ -166,6 +166,8 @@ collision_mask = 1053
 mass = 100.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
 angular_velocity = 0.3
 angular_damp = 0.0
 script = ExtResource( 1 )
@@ -199,7 +201,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 30
+frame = 8
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]

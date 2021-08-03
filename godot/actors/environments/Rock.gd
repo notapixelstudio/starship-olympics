@@ -21,6 +21,7 @@ export var smallest_break : bool = true
 export var conquerable : bool = false
 export var indestructible = false
 export var in_camera = true
+export var density := 0.001
 
 var species : Resource
 var owner_ship : Ship
@@ -38,6 +39,7 @@ var gshape
 var breakable = false setget set_breakable
 
 signal request_spawn
+signal bump
 
 func set_breakable(v):
 	breakable = v
@@ -73,6 +75,7 @@ func _ready():
 	$CollisionShape2D.shape = gshape.to_Shape2D()
 	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
 	rotation_degrees = 45
+	mass = density*pow(gshape.width,2) # approximate to a square
 	
 	$Star.visible = contains_star
 	$Diamond.visible = spawn_diamonds and order >= last_order
@@ -93,6 +96,9 @@ func _on_Area2D_body_entered(body):
 		
 	if body is Ship and conquerable:
 		conquered_by(body)
+		if body.is_piercing():
+			try_break()
+			body.rebound()
 		return
 		
 	if ice and body.has_method('freeze'):
@@ -154,7 +160,7 @@ func try_break():
 			child.contains_star = true
 			
 		child.position = position + Vector2(gshape.width/2*sqrt(2)*0.4,0).rotated(2*PI/divisions*i)
-		child.linear_velocity = 0.5*linear_velocity + Vector2(75*order,0).rotated(2*PI/divisions*i)
+		child.linear_velocity = 0.5*linear_velocity + Vector2(150*order,0).rotated(2*PI/divisions*i)
 		
 		if child is Star:
 			child.linear_velocity *= 10
@@ -174,7 +180,7 @@ func try_break():
 		
 func new_child_rock(index):
 	var child = RockScene.instance()
-	child.mass = mass/divisions
+	child.density = density
 	child.order = order - 1
 	child.spawn_diamonds = spawn_diamonds
 	child.base_size = base_size

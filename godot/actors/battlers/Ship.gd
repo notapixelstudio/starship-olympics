@@ -762,3 +762,6 @@ func enable_controls():
 	
 func is_auto_thrust() -> bool:
 	return auto_thrust or deadly_trail_powerup
+
+func is_piercing() -> bool:
+	return $Sword.get_active()
