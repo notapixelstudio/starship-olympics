@@ -3,9 +3,9 @@
 [ext_resource path="res://assets/sprites/species/mantiacs/female_beaten.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/species/eelectrons.png" type="Texture" id=2]
 [ext_resource path="res://selection/Species.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/species/mantiacs/ship.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/species/eelectrons/ship_w.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/species/mantiacs/ship_plain.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/species/mantiacs/ship_w.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/species/eelectrons/ship.png" type="Texture" id=6]
 
 [resource]
 script = ExtResource( 3 )
@@ -14,9 +14,9 @@ species_id = 6
 name = "eelectrons"
 tagline1 = "virtual<br>constrictors"
 tagline2 = ""
-ship = ExtResource( 4 )
+ship = ExtResource( 6 )
 ship_off = ExtResource( 5 )
-ship_w = ExtResource( 6 )
+ship_w = ExtResource( 4 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 1 )
 color = Color( 0, 1, 0.952941, 1 )
