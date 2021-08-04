@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=16]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -161,7 +162,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 11 )
 style = ExtResource( 9 )
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -203,7 +204,7 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
-[node name="Mirrors" type="Node2D" parent="Battlefield/Background" index="6"]
+[node name="Mirrors" type="Node2D" parent="Battlefield/Background" index="5"]
 
 [node name="Mirror" parent="Battlefield/Background/Mirrors" index="0" instance=ExtResource( 3 )]
 position = Vector2( -700, 1400 )
@@ -221,7 +222,7 @@ rotation = -0.785398
 position = Vector2( 1400, 700 )
 rotation = -0.785398
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="7" groups=[
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="6" groups=[
 "animation_in_battle",
 ]]
 anims/Rotate = SubResource( 1 )
@@ -266,6 +267,18 @@ position = Vector2( 1300, 1300 )
 
 [node name="CameraEye2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
 position = Vector2( -1300, -1300 )
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="4" instance=ExtResource( 18 )]
+position = Vector2( -700, 700 )
+type = "snake"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 18 )]
+position = Vector2( -256.218, -956.218 )
+type = "snake"
+
+[node name="PowerUp3" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
+position = Vector2( 956.218, 256.218 )
+type = "snake"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
 position = Vector2( -700, 700 )

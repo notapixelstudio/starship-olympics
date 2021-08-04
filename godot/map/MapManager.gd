@@ -46,14 +46,6 @@ func _ready():
 		if start != null and end != null:
 			graph.add_path(link, start, end)
 			
-	# test unlocking
-	yield(get_tree().create_timer(4), "timeout")
-	for node in nodes:
-		if node is MapPlanet and node.get_status() == TheUnlocker.LOCKED:
-			node.unlock()
-			break
-	
-	
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:
 		tap(tapper, tappee)
@@ -82,7 +74,8 @@ func tap(ship : Ship, planet : MapPlanet):
 	#	cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
 	#	cursor.spend_winnership()
 	elif planet.get_status() == TheUnlocker.LOCKED:
-		print('locked')
+		# test unlocking
+		planet.unlock()
 
 func check_all_ready():
 	if not ready and len(players_ready) == global.session.get_number_of_players():
@@ -100,20 +93,20 @@ func pick_next_minigame():
 	var player_and_minigame = global.session.choose_next_level()
 	yield(get_tree().create_timer(1), "timeout")
 	panels.choose_level(player_and_minigame["player"], player_and_minigame["level"])
-		
+	
 func _on_match_ended():
 	pick_next_minigame()
 
 ## WARNING if the game is killed halfway through, an inconsisent state could be persisted
 func _on_sth_unlocked(_what, by_what) -> void:
-	if by_what is MapPlanet:
-		var neighbourhood := graph.get_neighbourhood(by_what)
-		print(neighbourhood)
-		for n in neighbourhood.keys(): # MapLocations
-			if n is MapPlanet:
-				var path = neighbourhood[n]
-				path.appear()
-				yield(path, 'appeared')
-				n.unhide()
-				yield(n, 'unhid')
-				
+	var neighbourhood := graph.get_neighbourhood(by_what)
+	for n in neighbourhood.keys(): # MapLocations
+		var path = neighbourhood[n]
+		path.appear()
+		yield(path, 'appeared')
+		if n is MapPlanet:
+			n.unhide()
+			yield(n, 'unhid')
+		elif n is Waypoint:
+			n.unlock()
+			

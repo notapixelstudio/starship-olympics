@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/Tennis.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/managers/TennisManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/WallGoal.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=14]
 
@@ -95,13 +96,20 @@ script = ExtResource( 13 )
 radius = 200
 sides = 4.0
 
+[node name="PowerUp" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
+position = Vector2( -1300, 0 )
+type = "magnet"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 12 )]
+position = Vector2( 1300, 0 )
+type = "magnet"
+
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = 3
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -1300, 0 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]

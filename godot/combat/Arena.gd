@@ -610,7 +610,7 @@ func on_gameover():
 func _on_continue_after_game_over(_session_over):
 	if standalone:
 		# delete the session after a standalone execution
-		global.destroy_session()
+		global.safe_destroy_session()
 		get_tree().reload_current_scene()
 	
 func _on_Show_Arena():
@@ -670,6 +670,13 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
 	register_ship(ship)
+	
+	# connect collect signals to enable powerup collection at start
+	ship.connect("body_entered", collect_manager, "ship_sth_entered", [ship])
+	ship.connect("near_area_entered", collect_manager, "ship_sth_entered")
+	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship]) # this is for snake powerup to work
+	
+	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
 	
 	if force_intro:
@@ -692,15 +699,12 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
 	
-	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
 	ship.connect("frozen", self, "_on_sth_just_froze")
 	ship.connect("spawn_bomb", self, "spawn_bomb", [ship])
 	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
 	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
-	ship.connect("body_entered", collect_manager, "ship_sth_entered", [ship])
-	ship.connect("near_area_entered", collect_manager, "ship_sth_entered")
 	ship.connect("body_entered", environments_manager, "_on_sth_entered", [ship])
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
@@ -712,7 +716,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
-	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship])
 	
 	# attach followcamera
 	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()

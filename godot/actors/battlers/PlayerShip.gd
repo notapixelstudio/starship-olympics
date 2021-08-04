@@ -51,6 +51,14 @@ func control(delta):
 	#else:
 	#	target_velocity = target_vel.normalized()
 	target_velocity = local_handling()
+	
+	if self.is_auto_thrust():
+		if target_velocity.length() <= 0.1:
+			target_velocity = front
+		else:
+			# always at maximum, no fine control
+			target_velocity = target_velocity.normalized()
+		
 	#rotation_request = find_side(Vector2(0,0), front, target_velocity)
 	if target_velocity.length() <= 0.1: # vector deadzone
 		rotation_request = 0
@@ -58,7 +66,7 @@ func control(delta):
 		# maximum speed (prevents moving faster in diagonal, and mitigates differences between controller models)
 		target_velocity = 1.3*target_velocity.normalized()*min(1.0, target_velocity.length())
 		rotation_request = front.angle_to(target_velocity)
-	
+		
 	# if we want tank mode control (relative control)
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 	
