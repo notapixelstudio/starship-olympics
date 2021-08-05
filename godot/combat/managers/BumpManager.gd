@@ -3,23 +3,21 @@ extends Node
 const BASE_SPEED = 500
 const SPEED_MULTIPLIER = 1.5
 
-func start():
-	# listen to bumpers already in place
-	#for bumper in traits.get_all_with('Bumper'):
-	#	register_bumper(bumper)
-	
+func _enter_tree():
 	# listen to newly created bumpers
 	Events.connect('bumper_created', self, 'register_bumper')
+	
+func _exit_tree():
+	# stop listening when outside tree
+	Events.disconnect('bumper_created', self, 'register_bumper')
 	
 func register_bumper(bumper):
 	bumper.connect('body_entered', self, '_on_bumper_collided', [bumper])
 	
 func _on_bumper_collided(bumper_b, bumper_a):
-	if not is_inside_tree():
-		return # FIXME this is beacuse we continue to listen bumpers with the bump manager of the map!
-	
-	assert(traits.has_trait(bumper_a, 'Bumper'))
-	assert(traits.has_trait(bumper_b, 'Bumper'))
+	# only two bumpers should bump
+	if not traits.has_trait(bumper_a, 'Bumper') or not traits.has_trait(bumper_b, 'Bumper'):
+		return
 	
 	# avoid checking bump twice per collision
 	if bumper_a.get_instance_id() < bumper_b.get_instance_id():
