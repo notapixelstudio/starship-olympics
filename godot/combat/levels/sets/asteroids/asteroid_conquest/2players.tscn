@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -10,15 +10,16 @@
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/AsteroidConquest.tres" type="Resource" id=10]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 
-[node name="PursueManager" parent="Managers" index="2"]
+[node name="PursueManager" parent="Managers" index="3"]
 enabled = false
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -45,6 +46,7 @@ bevel_sw = 50
 bevel_se = 50
 
 [node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
+order = 3
 last_order = 1
 divisions = 3
 base_size = 120.0
@@ -55,7 +57,7 @@ conquerable = true
 
 [node name="Rock8" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
 position = Vector2( 2600, 1400 )
-order = 1
+order = 2
 last_order = 1
 divisions = 3
 base_size = 120.0
@@ -66,7 +68,7 @@ conquerable = true
 
 [node name="Rock9" parent="Battlefield/Middleground" index="2" instance=ExtResource( 4 )]
 position = Vector2( -2600, -1400 )
-order = 1
+order = 2
 last_order = 1
 divisions = 3
 base_size = 120.0
@@ -96,6 +98,14 @@ spawn_diamonds = false
 deadly = false
 smallest_break = false
 conquerable = true
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 11 )]
+position = Vector2( -2200, 0 )
+type = "sword"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
+position = Vector2( 2200, 0 )
+type = "sword"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 2200, 0 )

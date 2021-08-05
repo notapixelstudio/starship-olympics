@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=2]
@@ -11,12 +11,13 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=11]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=12]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 3 )
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -1305,21 +1306,33 @@ rotation = 0.785398
 position = Vector2( 565.686, 1131.37 )
 rotation = 0.785398
 
+[node name="PowerUp" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
+position = Vector2( -1500, 1500 )
+type = "rockets"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
+position = Vector2( 1500, 1500 )
+type = "rockets"
+
+[node name="PowerUp3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
+position = Vector2( 1500, -1500 )
+type = "rockets"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1484.92, 1484.92 )
+position = Vector2( -1500, 1500 )
 rotation = -0.785402
 controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1484.92, -1484.92 )
-rotation = 5.49779
+position = Vector2( 1500, -1500 )
+rotation = 2.35619
 controls = "joy2"
 species = ExtResource( 10 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( 1484.92, 1484.92 )
-rotation = 7.06858
+position = Vector2( 1500, 1500 )
+rotation = 3.92699
 controls = "joy3"
 species = ExtResource( 11 )
 

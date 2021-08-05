@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://combat/modes/QueenOfTheHive.tres" type="Resource" id=10]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Feedback"
@@ -94,7 +95,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 match_duration_override = 45.0
 
-[node name="ConquestModeManager" parent="Managers" index="8"]
+[node name="ConquestModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -105,41 +106,21 @@ centered = false
 position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
-type = 0
-hide_line = false
-hide_line_below = false
 hide_grid = true
-line_width = 48
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-line_texture = null
 grid_color = Color( 1, 1, 1, 0.329412 )
-grid_rotation = 0.0
-platform = false
-under = "both"
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 1850
-sides = 6.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" index="3"]
-type = 1
-flag_offset = 0
-isometric_effect = true
-opaque_tint = Color( 0, 0, 0, 0.8 )
 
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
 rotation = 0.523599
@@ -148,1154 +129,722 @@ z_as_relative = false
 
 [node name="Tile20" parent="Battlefield/Middleground/Board" index="0" instance=ExtResource( 11 )]
 position = Vector2( -300, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile21" parent="Battlefield/Middleground/Board" index="1" instance=ExtResource( 11 )]
 position = Vector2( -150, 430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile22" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 11 )]
 position = Vector2( -450, 258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile23" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 11 )]
 position = Vector2( -450, 430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile24" parent="Battlefield/Middleground/Board" index="4" instance=ExtResource( 11 )]
 position = Vector2( -300, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile25" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 11 )]
 position = Vector2( -600, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile31" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 11 )]
 position = Vector2( 0, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile32" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 11 )]
 position = Vector2( 0, 688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile34" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 11 )]
 position = Vector2( -150, 602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile35" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 11 )]
 position = Vector2( 750, 258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile36" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 11 )]
 position = Vector2( 900, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile37" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 11 )]
 position = Vector2( 600, 172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile38" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 11 )]
 position = Vector2( 600, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile39" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 11 )]
 position = Vector2( 750, 430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile40" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 11 )]
 position = Vector2( 450, 258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile44" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 11 )]
 position = Vector2( -600, 0 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile45" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 11 )]
 position = Vector2( -450, 86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile46" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 11 )]
 position = Vector2( -750, -86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile47" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 11 )]
 position = Vector2( -750, 86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile48" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 11 )]
 position = Vector2( -600, 172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile49" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 11 )]
 position = Vector2( -900, 0 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile50" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 11 )]
 position = Vector2( -900, 172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile51" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 11 )]
 position = Vector2( -750, 258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile52" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 11 )]
 position = Vector2( -1050, 86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile97" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 11 )]
 position = Vector2( -450, 602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile98" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 11 )]
 position = Vector2( -300, 688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile99" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 11 )]
 position = Vector2( -600, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile100" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 11 )]
 position = Vector2( 0, 860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile102" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 11 )]
 position = Vector2( -150, 774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile103" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 11 )]
 position = Vector2( -900, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile104" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 11 )]
 position = Vector2( -750, 430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile105" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 11 )]
 position = Vector2( -1050, 258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile106" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 11 )]
 position = Vector2( -450, 774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile107" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 11 )]
 position = Vector2( -300, 860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile108" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 11 )]
 position = Vector2( -600, 688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile109" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 11 )]
 position = Vector2( 0, 1032 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile111" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 11 )]
 position = Vector2( -150, 946 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile112" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 11 )]
 position = Vector2( -900, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile113" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 11 )]
 position = Vector2( -750, 602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile114" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 11 )]
 position = Vector2( -1050, 430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile115" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 11 )]
 position = Vector2( -450, 946 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile116" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 11 )]
 position = Vector2( -300, 1032 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile117" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 11 )]
 position = Vector2( -600, 860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile118" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 11 )]
 position = Vector2( 0, 1204 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile120" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 11 )]
 position = Vector2( -150, 1118 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile121" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 11 )]
 position = Vector2( -900, 688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile122" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 11 )]
 position = Vector2( -750, 774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile234" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 11 )]
 position = Vector2( -600, 1032 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile235" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 11 )]
 position = Vector2( -450, 1118 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile236" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 11 )]
 position = Vector2( -750, 946 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile237" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 11 )]
 position = Vector2( -150, 1290 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile238" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 11 )]
 position = Vector2( -300, 1204 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile239" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 11 )]
 position = Vector2( -1050, 774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile240" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 11 )]
 position = Vector2( -900, 860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile262" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 11 )]
 position = Vector2( 600, -1032 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile263" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 11 )]
 position = Vector2( 750, -946 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile264" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 11 )]
 position = Vector2( 450, -1118 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile265" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 11 )]
 position = Vector2( 1050, -774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile266" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 11 )]
 position = Vector2( 900, -860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile267" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 11 )]
 position = Vector2( 150, -1290 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile268" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 11 )]
 position = Vector2( 300, -1204 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile123" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 11 )]
 position = Vector2( -1050, 602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile94" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 11 )]
 position = Vector2( -900, -172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile95" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 11 )]
 position = Vector2( -1050, -86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile96" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 11 )]
 position = Vector2( -1050, -258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile89" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 11 )]
 position = Vector2( -450, -86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile90" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 11 )]
 position = Vector2( 450, 86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile91" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 11 )]
 position = Vector2( 900, 172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile92" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 11 )]
 position = Vector2( 1050, 86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile93" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 11 )]
 position = Vector2( 1050, 258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile125" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 11 )]
 position = Vector2( 900, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile128" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 11 )]
 position = Vector2( 1050, 430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile134" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 11 )]
 position = Vector2( 1050, 602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile53" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 11 )]
 position = Vector2( 900, -172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile54" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 11 )]
 position = Vector2( 1050, -86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile55" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 11 )]
 position = Vector2( 750, -258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile56" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 11 )]
 position = Vector2( 750, -86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile57" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 11 )]
 position = Vector2( 900, 0 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile58" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 11 )]
 position = Vector2( 600, -172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile59" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 11 )]
 position = Vector2( 600, 0 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile60" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 11 )]
 position = Vector2( 750, 86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile61" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 11 )]
 position = Vector2( 450, -86 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile65" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 11 )]
 position = Vector2( 450, -430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile66" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 11 )]
 position = Vector2( 600, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile67" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 11 )]
 position = Vector2( 300, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile68" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 11 )]
 position = Vector2( 300, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile69" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 11 )]
 position = Vector2( 450, -258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile70" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 11 )]
 position = Vector2( 150, -430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile74" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 11 )]
 position = Vector2( -600, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile75" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 11 )]
 position = Vector2( -450, -258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile76" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 11 )]
 position = Vector2( -750, -430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile77" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 11 )]
 position = Vector2( -750, -258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile78" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 11 )]
 position = Vector2( -600, -172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile79" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 11 )]
 position = Vector2( -900, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile80" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 11 )]
 position = Vector2( 0, -688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile81" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 11 )]
 position = Vector2( 150, -602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile62" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 11 )]
 position = Vector2( 900, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile63" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 11 )]
 position = Vector2( 1050, -258 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile64" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 11 )]
 position = Vector2( 750, -430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile135" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 11 )]
 position = Vector2( 450, -602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile136" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 11 )]
 position = Vector2( 600, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile137" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 11 )]
 position = Vector2( 300, -688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile138" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 11 )]
 position = Vector2( 0, -860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile139" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 11 )]
 position = Vector2( 150, -774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile140" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 11 )]
 position = Vector2( 900, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile141" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 11 )]
 position = Vector2( 1050, -430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile142" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 11 )]
 position = Vector2( 750, -602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile143" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 11 )]
 position = Vector2( 450, -774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile144" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 11 )]
 position = Vector2( 600, -688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile145" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 11 )]
 position = Vector2( 300, -860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile146" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 11 )]
 position = Vector2( 0, -1032 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile147" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 11 )]
 position = Vector2( 150, -946 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile148" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 11 )]
 position = Vector2( 900, -688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile149" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 11 )]
 position = Vector2( 1050, -602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile150" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 11 )]
 position = Vector2( 750, -774 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile151" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 11 )]
 position = Vector2( 450, -946 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile152" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 11 )]
 position = Vector2( 600, -860 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile153" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 11 )]
 position = Vector2( 300, -1032 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile154" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 11 )]
 position = Vector2( 0, -1204 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile155" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 11 )]
 position = Vector2( 150, -1118 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile84" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 11 )]
 position = Vector2( 0, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile156" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 11 )]
 position = Vector2( -1050, -430 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile159" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 11 )]
 position = Vector2( -900, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile163" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 11 )]
 position = Vector2( -1050, -602 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile170" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 11 )]
 position = Vector2( -1200, 172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile171" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 11 )]
 position = Vector2( -1200, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile172" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 11 )]
 position = Vector2( -1200, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile173" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 11 )]
 position = Vector2( -1200, 688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile174" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile175" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 11 )]
 position = Vector2( -1200, -172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile176" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 11 )]
 position = Vector2( -1200, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile177" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 11 )]
 position = Vector2( -1200, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile218" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 11 )]
 position = Vector2( 1200, 0 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile219" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 11 )]
 position = Vector2( 1200, 172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile220" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 11 )]
 position = Vector2( 1200, 344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile221" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 11 )]
 position = Vector2( 1200, 516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile292" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 11 )]
 position = Vector2( 0, 1376 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile300" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 11 )]
 position = Vector2( 1200, 688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile222" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 11 )]
 position = Vector2( 1200, -172 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile223" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 11 )]
 position = Vector2( 1200, -344 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile224" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 11 )]
 position = Vector2( 1200, -516 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile225" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 11 )]
 position = Vector2( 1200, -688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile347" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 11 )]
 position = Vector2( 0, -1376 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="Tile349" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 11 )]
 position = Vector2( -1200, -688 )
-size = 1
 sides = 6
-points = 1
-fortifiable = true
 need_royal = true
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
@@ -1303,13 +852,8 @@ position = Vector2( 3.0127, 994.782 )
 rotation = 0.523599
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 600
 sides = 3.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
 visible = false
@@ -1319,13 +863,8 @@ position = Vector2( -3.0127, -994.782 )
 rotation = -2.618
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 600
 sides = 3.0
-alternating_angle = 0.0
-rotation_degrees = 0.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="2"]
 anims/Feedback = SubResource( 1 )
@@ -1333,16 +872,24 @@ anims/Feedback = SubResource( 1 )
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone2" index="5"]
 visible = false
 
+[node name="PowerUp" parent="Battlefield/Middleground" index="3" instance=ExtResource( 13 )]
+position = Vector2( -1600, 0 )
+type = "spikes"
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 13 )]
+position = Vector2( 1600, 0 )
+type = "spikes"
+
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1376, -0.000427246 )
+position = Vector2( 1600, 5.82077e-11 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( -1376, 0.000427246 )
+position = Vector2( -1600, 0 )
 rotation = -2.68221e-07
 controls = "joy2"
 species = ExtResource( 7 )

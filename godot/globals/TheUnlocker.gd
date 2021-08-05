@@ -123,6 +123,7 @@ var unlocked_species = {
 	"umidorians_1": true,
 	"pentagonions_1": true,
 	"auriels_1": true,
+	"eelectrons_1": true,
 	"robolords_2": false,
 	"trixens_2": false,
 	"auriels_2": false,
