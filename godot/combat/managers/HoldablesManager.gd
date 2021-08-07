@@ -6,6 +6,7 @@ func _ready():
 	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
 	Events.connect('holdable_dropped', self, '_on_loadable_dropped')
 	Events.connect('sths_bumped', self, '_on_sths_bumped')
+	Events.connect("ship_died", self, "_on_ship_died")
 	
 func _on_sth_collided_with_ship(sth, ship: Ship) -> void:
 	handle_collision(sth, ship)
@@ -23,6 +24,10 @@ func handle_collision(sth, ship: Ship) -> void:
 func _on_sths_bumped(sth1, sth2) -> void:
 	if sth1 is Ship and sth2 is Ship:
 		sth1.swap_holdables_with(sth2)
+		
+func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
+	if ship.has_holdable():
+		ship.drop_holdable()
 		
 func _on_holdable_loaded(holdable, ship):
 	traits.get_trait(holdable, 'Holdable').remove()

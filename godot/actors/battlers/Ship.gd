@@ -457,6 +457,7 @@ func die(killer : Ship, for_good = false):
 		if info_player.lives >= 0:
 			info_player.lives -= 1
 		emit_signal("dead", self, killer, for_good)
+		Events.emit_signal("ship_died", self, killer, for_good)
 		
 func stun():
 	stunned = true
