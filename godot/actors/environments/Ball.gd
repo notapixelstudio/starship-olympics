@@ -6,13 +6,16 @@ class_name Ball
 const GRAB_DISTANCE = 64
 
 export (String, 'crown', 'basket', 'soccer', 'tennis') var type setget set_type
-export var impulse := 0.0
+
+var impulse := 0.0
 
 func set_type(v):
 	type = v
 	refresh()
 	
 func _ready():
+	if type == 'soccer':
+		impulse = 5
 	set_physics_process(false)
 	refresh()
 	
@@ -29,9 +32,9 @@ func place_and_push(dropper, velocity) -> void:
 	if type == 'soccer':
 		linear_velocity *= 1.5
 		
-	start()
+	activate()
 
-func start():
+func activate():
 	set_physics_process(impulse > 0)
 	
 func _physics_process(_delta):
