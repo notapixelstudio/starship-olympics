@@ -43,7 +43,7 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
-const DASH_MULTIPLIER = 2.7
+const DASH_MULTIPLIER = 2.5 # was 2.7, decreased to lessen the chanche of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1100
 const BALL_BOOST = 2000
@@ -214,6 +214,7 @@ func change_engine(value: bool):
 func _process(_delta):
 	if bomb_type == GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview.rotation = -global_rotation
+	continuous_collision_check()
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -468,14 +469,19 @@ func unstun():
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
+	Events.emit_signal('sth_collided_with_ship', area, self)
 func _on_NearArea_body_entered(body):
 	emit_signal("near_area_entered", body, self)
+	Events.emit_signal('sth_collided_with_ship', body, self)
 	
 signal near_area_exited
 func _on_NearArea_area_exited(area):
 	emit_signal("near_area_exited", area, self)
 func _on_NearArea_body_exited(body):
 	emit_signal("near_area_exited", body, self)
+	
+func _on_Ship_body_entered(body):
+	Events.emit_signal('sth_collided_with_ship', body, self)
 	
 func is_alive():
 	return alive
@@ -765,3 +771,48 @@ func is_auto_thrust() -> bool:
 
 func is_piercing() -> bool:
 	return $Sword.get_active()
+
+# holdables
+var held = null
+var just_dropped := false
+func load_holdable(holdable) -> void:
+	# refuse to reload a holdable if sth has just been dropped!
+	if just_dropped:
+		return
+		
+	# refuse to reload a holdable that's already loaded
+	if holdable == held:
+		return
+		
+	if has_holdable():
+		drop_holdable()
+		
+	held = holdable
+	Events.emit_signal("holdable_loaded", held, self)
+
+func has_holdable() -> bool:
+	return held != null
+	
+func get_holdable():
+	return held
+	
+func drop_holdable():
+	if not self.has_holdable():
+		return
+		
+	var holdable = held
+	held = null
+	holdable.place_and_push(self, self.previous_velocity) # previous is needed for glass
+	Events.emit_signal("holdable_dropped", holdable, self)
+	
+	# disable loading for a while, to avoid reloading a holdable right after drop
+	just_dropped = true
+	yield(get_tree().create_timer(0.5), "timeout")
+	just_dropped = false
+
+# some collisions must be checked every frame
+func continuous_collision_check():
+	var overlappers = $NearArea.get_overlapping_bodies() + $NearArea.get_overlapping_areas()
+	for sth in overlappers:
+		if traits.has_trait(sth, 'Holdable') or traits.has_trait(sth, 'Dropper'):
+			Events.emit_signal('sth_is_overlapping_with_ship', sth, self)

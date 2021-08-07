@@ -1,9 +1,8 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://combat/styles/flags.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 3 )
@@ -12,7 +11,6 @@ is_mutator = false
 name = ""
 icon = ExtResource( 1 )
 logo = ExtResource( 2 )
-arena_style = ExtResource( 4 )
 description = "fill more cells than opponents"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
