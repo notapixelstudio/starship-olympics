@@ -1,6 +1,7 @@
 extends Node
 
 signal bumper_created(bumper)
+signal sths_bumped(sth1, sth2) # just one for pair
 signal sth_tapped(tapper, tappee)
 
 signal holdable_loaded(holdable, ship)

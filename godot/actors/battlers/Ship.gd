@@ -809,6 +809,11 @@ func drop_holdable():
 	just_dropped = true
 	yield(get_tree().create_timer(0.5), "timeout")
 	just_dropped = false
+	
+func swap_holdables_with(ship: Ship) -> void:
+	var swap = held
+	held = ship.held
+	ship.held = swap
 
 # some collisions must be checked every frame
 func continuous_collision_check():
