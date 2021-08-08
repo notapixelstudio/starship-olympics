@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=1]
-[ext_resource path="res://combat/styles/table.tres" type="Resource" id=2]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
+[ext_resource path="res://combat/modes/Lovers.tres" type="Resource" id=1]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=3]
 [ext_resource path="res://combat/managers/LoversManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
@@ -15,7 +16,6 @@
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 1 )
-style = ExtResource( 2 )
 
 [node name="LoversManager" parent="Managers" index="0" instance=ExtResource( 4 )]
 
@@ -26,25 +26,33 @@ enabled = true
 texture = ExtResource( 12 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 11 )]
+[node name="OuterGlass" type="Polygon2D" parent="Battlefield/Background" index="0"]
+modulate = Color( 0.4, 0.7, 1.2, 1 )
+self_modulate = Color( 1, 1, 1, 0.2 )
+texture = ExtResource( 6 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -2300, -700, -2300, 700, 0, 1100, 2300, 700, 2300, -700, 0, -1100, -2300, -700, -4000, -700, -4000, -1600, 3300, -1600, 3300, 2000, -4000, 2000, -4000, -700 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
 position = Vector2( 3.05176e-05, 0 )
 collision_layer = 2147483648
 hollow = true
-offset = 200
+offset = 800
 type = 4
 hide_grid = true
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 3 )
-width = 3000
-height = 2000
-bevel = 100
-bevel_nw = 100
-bevel_ne = 100
-bevel_sw = 100
-bevel_se = 100
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( -3.05176e-05, -1100, -2300, -700, -2300, 700, -3.05176e-05, 1100, 2300, 700, 2300, -700 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
+visible = false
+polygon = PoolVector2Array( -3.05176e-05, -1100, -2300, -700, -2300, 700, -3.05176e-05, 1100, 2300, 700, 2300, -700 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -56,38 +64,23 @@ collision_layer = 2147483648
 type = 4
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
+[node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
 script = ExtResource( 3 )
-width = 600
-height = 200
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
+width = 402
+height = 600
+radius = 200
+precision = 25.0
 
-[node name="Heart" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
-position = Vector2( 0, 1400 )
-
-[node name="Heart2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 16 )]
-position = Vector2( -1200, 1400 )
-
-[node name="Heart3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 16 )]
+[node name="Heart3" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( -650, 1400 )
 
-[node name="Heart4" parent="Battlefield/Foreground" index="3" instance=ExtResource( 16 )]
-position = Vector2( 1200, 1400 )
-
-[node name="Heart5" parent="Battlefield/Foreground" index="4" instance=ExtResource( 16 )]
-position = Vector2( 650, 1400 )
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( -1200, 0 )
+position = Vector2( -1700, 0 )
 rotation = 0.0
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( 1200, 0 )
+position = Vector2( 1700, 0 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 8 )
