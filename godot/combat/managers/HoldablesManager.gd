@@ -16,18 +16,18 @@ func _on_sth_is_overlapping_with_ship(sth, ship: Ship) -> void:
 	
 func handle_collision(sth, ship: Ship) -> void:
 	if traits.has_trait(sth, 'Holdable'):
-		ship.load_holdable(sth)
+		ship.get_cargo().load_holdable(sth)
 	elif traits.has_trait(sth, 'Dropper') or sth is Wall and sth.type == Wall.TYPE.glass: # FIXME if Wall is refactored, it should use Dropper
-		if ship.has_holdable():
-			ship.drop_holdable()
+		if ship.get_cargo().has_holdable():
+			ship.get_cargo().drop_holdable()
 			
 func _on_sths_bumped(sth1, sth2) -> void:
 	if sth1 is Ship and sth2 is Ship:
-		sth1.swap_holdables_with(sth2)
+		sth1.get_cargo().swap_holdables_with(sth2)
 		
 func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
-	if ship.has_holdable():
-		ship.drop_holdable()
+	if ship.get_cargo().has_holdable():
+		ship.get_cargo().drop_holdable()
 		
 func _on_holdable_loaded(holdable, ship):
 	traits.get_trait(holdable, 'Holdable').remove()
