@@ -32,6 +32,9 @@ self_modulate = Color( 1, 1, 1, 0.2 )
 texture = ExtResource( 6 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -2300, -700, -2300, 700, 0, 1100, 2300, 700, 2300, -700, 0, -1100, -2300, -700, -4000, -700, -4000, -1600, 3300, -1600, 3300, 2000, -4000, 2000, -4000, -700 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -71,8 +74,8 @@ height = 600
 radius = 200
 precision = 25.0
 
-[node name="Heart3" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
-position = Vector2( -650, 1400 )
+[node name="Heart" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
+position = Vector2( 0, 700 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1700, 0 )
