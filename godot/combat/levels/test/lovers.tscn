@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=1]
 [ext_resource path="res://combat/styles/table.tres" type="Resource" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=15]
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
@@ -72,6 +73,10 @@ position = Vector2( -1000, -600 )
 [node name="PentaGoal" parent="Battlefield/Middleground" index="4" instance=ExtResource( 14 )]
 position = Vector2( 1000, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
+
+[node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 15 )]
+position = Vector2( 700, -800 )
+type = "magnet"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1200, 1000 )
