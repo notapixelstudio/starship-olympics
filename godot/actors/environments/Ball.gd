@@ -5,7 +5,7 @@ class_name Ball
 
 const GRAB_DISTANCE = 64
 
-export (String, 'crown', 'basket', 'soccer', 'tennis') var type setget set_type
+export (String, 'crown', 'basket', 'soccer', 'tennis', 'heart') var type setget set_type
 
 var impulse := 0.0
 
