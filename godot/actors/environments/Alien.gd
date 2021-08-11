@@ -27,10 +27,10 @@ func _ready():
 	remove_from_group('in_camera')
 	
 	alien = BASIC_FIGURES[randi() % len(BASIC_FIGURES)]
-	$Sprite/Alien.texture = load('res://assets/sprites/' + alien + '.png')
+	$Graphics/Alien.texture = load('res://assets/sprites/' + alien + '.png')
 
 func start() -> void:
-	$Sprite/AnimationPlayer.play("Wobble")
+	$Graphics/AnimationPlayer.play("Wobble")
 
 func dive() -> void:
 	apply_central_impulse(Vector2.UP*200)

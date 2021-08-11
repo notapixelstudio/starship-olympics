@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://combat/managers/LoversManager.gd" type="Script" id=1]
-[ext_resource path="res://actors/environments/Heart.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -15,9 +15,33 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6, 18, 30, 31, 45, 50, 55 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 18, 30, 31, 45, 50, 55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
+"args": [  ],
+"method": "spawn_alien"
+}, {
 "args": [  ],
 "method": "spawn_alien"
 }, {
@@ -46,7 +70,7 @@ tracks/0/keys = {
 
 [node name="LoversManager" type="Node"]
 script = ExtResource( 1 )
-HeartScene = ExtResource( 2 )
+AlienScene = ExtResource( 2 )
 
 [node name="Waiter" parent="." instance=ExtResource( 3 )]
 

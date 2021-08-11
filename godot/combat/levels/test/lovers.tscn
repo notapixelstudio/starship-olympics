@@ -11,7 +11,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
-[ext_resource path="res://actors/environments/Heart.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=16]
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
@@ -74,7 +74,7 @@ height = 600
 radius = 200
 precision = 25.0
 
-[node name="Heart" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
+[node name="Alien" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( 0, 700 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]

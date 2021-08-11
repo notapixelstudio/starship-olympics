@@ -17,7 +17,7 @@ game_mode = ExtResource( 2 )
 
 [node name="MemoryManager" parent="Managers" index="0" instance=ExtResource( 6 )]
 
-[node name="ConquestModeManager" parent="Managers" index="9"]
+[node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -43,7 +43,7 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.12, 0.488, 0.6, 1 )
 bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
-[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="5"]
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="4"]
 visible = false
 polygon = PoolVector2Array( -1400, 1700, -2500, 400, -3000, -1150, -1400, -1150, -1200, -1850, 1200, -1850, 1400, -1150, 3050, -1150, 2500, 400, 1400, 1700 )
 
