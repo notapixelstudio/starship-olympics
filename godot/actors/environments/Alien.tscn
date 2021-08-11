@@ -14,6 +14,7 @@ shader_param/active = true
 shader_param/strength = 8.0
 shader_param/width = 6.0
 shader_param/outline_color = null
+shader_param/white_to_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Wobble"
@@ -52,6 +53,9 @@ script = ExtResource( 4 )
 type = "heart"
 
 [node name="Waiter" parent="." index="0" instance=ExtResource( 5 )]
+
+[node name="Glow" parent="." index="4"]
+visible = false
 
 [node name="Sprite" parent="." index="5"]
 visible = false
