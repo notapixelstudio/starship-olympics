@@ -580,6 +580,7 @@ func new_session(players := {}) -> TheSession:
 	session = TheSession.new()
 	session.set_players(players)
 	session.reset_players()
+	Events.emit_signal('session_started')
 	return session
 	
 func safe_destroy_match() -> void:

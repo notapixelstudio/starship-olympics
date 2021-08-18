@@ -131,7 +131,7 @@ func setup_level(mode : Resource):
 	
 func _init():
 	global.arena = self
-
+	
 	# Initialize the match
 	global.new_match()
 	global.the_match.connect("game_over", self, "on_gameover")

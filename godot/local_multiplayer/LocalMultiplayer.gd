@@ -105,6 +105,7 @@ func _on_minigame_selected(minigame: Minigame):
 	start_match(minigame)
 
 func start_match(minigame: Minigame) -> void:
+	Events.emit_signal('match_started')
 	next_level(minigame)
 	
 	
