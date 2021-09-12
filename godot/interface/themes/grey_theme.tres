@@ -17,7 +17,6 @@
 [ext_resource path="res://interface/themes/grey/grabber_highlight.tres" type="StyleBox" id=15]
 [ext_resource path="res://interface/themes/grey/grabber_pressed.tres" type="StyleBox" id=16]
 [ext_resource path="res://interface/themes/grey/scroll_focus.tres" type="StyleBox" id=17]
-[ext_resource path="res://interface/themes/grey/empty.tres" type="StyleBox" id=18]
 [ext_resource path="res://interface/themes/grey/tab_bg.tres" type="StyleBox" id=19]
 [ext_resource path="res://interface/themes/grey/tab_fg.tres" type="StyleBox" id=20]
 [ext_resource path="res://interface/themes/theme.gd" type="Script" id=22]
@@ -49,6 +48,8 @@
 [sub_resource type="ImageTexture" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
 
 [resource]
 BoxContainer/constants/separation = 4
@@ -785,7 +786,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
-Label/styles/normal = ExtResource( 18 )
+Label/styles/normal = SubResource( 15 )
 LineEdit/colors/cursor_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/read_only = Color( 1, 1, 1, 1 )

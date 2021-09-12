@@ -5,14 +5,13 @@ onready var value_node = $Container/ValueContainer/Value
 onready var left = $Container/ValueContainer/left
 onready var right = $Container/ValueContainer/right
 onready var container = $Container
-onready var description_node = $Container/Panel/Description
-onready var panel_description = $Container/Panel
+onready var description_node = $Container/Description
 
 const focus_color = Color(1,1,1)
 var index_value
 
 func _process(_delta):
-	$Container/Panel/Description.text = str(label_description)
+	$Container/Description.text = tr(str(label_description))
 	
 func _initialize():
 	left.visible = true
@@ -105,14 +104,14 @@ func _input(event):
 	
 
 func _on_Element_focus_entered():
-	panel_description.add_stylebox_override("panel", load("res://interface/themes/grey/focus.tres"))
+	description_node.add_stylebox_override("normal", load("res://interface/themes/grey/focus.tres"))
 	set_process_input(true)
 	description_node.modulate = focus_color.darkened(0.1)
 	value_node.modulate = focus_color.darkened(0.1)
 	
 
 func _on_Element_focus_exited():
-	panel_description.add_stylebox_override("panel", load("res://interface/themes/grey/normal.tres"))
+	description_node.add_stylebox_override("normal", load("res://interface/themes/grey/normal.tres"))
 	for node in container.get_children():
 		node.modulate = Color(1,1,1)
 	value_node.modulate = Color(1,1,1)

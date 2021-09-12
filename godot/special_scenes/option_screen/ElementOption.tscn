@@ -22,19 +22,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="Container"]
-margin_right = 130.0
+[node name="Description" type="Label" parent="Container"]
 margin_bottom = 50.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Description" type="Label" parent="Container/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 13
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 3 )
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
@@ -42,9 +34,9 @@ __meta__ = {
 }
 
 [node name="Padding" type="Label" parent="Container"]
-margin_left = 134.0
+margin_left = 4.0
 margin_top = 14.0
-margin_right = 265.0
+margin_right = 200.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
@@ -56,7 +48,7 @@ __meta__ = {
 }
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 269.0
+margin_left = 204.0
 margin_right = 400.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
