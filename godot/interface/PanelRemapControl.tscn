@@ -34,28 +34,28 @@ __meta__ = {
 }
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
-margin_right = 557.0
+margin_right = 538.0
 margin_bottom = 320.0
 script = ExtResource( 4 )
 
 [node name="Toggle" parent="Content/UIButtonsContainer" instance=ExtResource( 1 )]
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 557.0
+margin_right = 538.0
 margin_bottom = 100.0
 
 [node name="Dynamic" type="HBoxContainer" parent="Content/UIButtonsContainer"]
 margin_top = 104.0
-margin_right = 557.0
+margin_right = 538.0
 margin_bottom = 208.0
 
 [node name="Classic" type="VBoxContainer" parent="Content/UIButtonsContainer/Dynamic"]
-margin_right = 263.0
+margin_right = 254.0
 margin_bottom = 104.0
 
 [node name="Keyboard" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 7 )]
 margin_top = 0.0
-margin_right = 263.0
+margin_right = 254.0
 margin_bottom = 50.0
 text = "CONFIGURE KEYBOARD"
 tooltip = "configure keyboard mapping"
@@ -64,7 +64,7 @@ title = "Configure keyboard"
 
 [node name="Joypad" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 7 )]
 margin_top = 54.0
-margin_right = 263.0
+margin_right = 254.0
 margin_bottom = 104.0
 text = "CONFIGURE JOYPADS"
 tooltip = "Configure joypad mapping"
@@ -72,13 +72,13 @@ option_menu = ExtResource( 3 )
 title = "configure joypads"
 
 [node name="Custom" type="HBoxContainer" parent="Content/UIButtonsContainer/Dynamic"]
-margin_left = 267.0
-margin_right = 557.0
+margin_left = 258.0
+margin_right = 538.0
 margin_bottom = 104.0
 
 [node name="Custom" parent="Content/UIButtonsContainer/Dynamic/Custom" instance=ExtResource( 7 )]
 margin_top = 0.0
-margin_right = 290.0
+margin_right = 280.0
 margin_bottom = 104.0
 disabled = true
 text = "CUSTOM CONFIGURATION"
