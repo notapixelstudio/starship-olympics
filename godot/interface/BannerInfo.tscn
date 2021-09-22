@@ -14,40 +14,43 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 978.0
+margin_right = 1109.0
 margin_bottom = 52.0
 color = Color( 0.160784, 0.0823529, 0.101961, 0.682353 )
 
 [node name="BannerInfoBinding" type="HBoxContainer" parent="."]
-margin_right = 978.0
+margin_right = 1109.0
 margin_bottom = 52.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="BannerInfoBinding"]
-margin_right = 135.0
-margin_bottom = 52.0
+margin_top = 4.0
+margin_right = 150.0
+margin_bottom = 47.0
 text = "Press "
 
 [node name="ShowedButton" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 139.0
-margin_right = 189.0
+margin_left = 154.0
+margin_right = 204.0
 margin_bottom = 52.0
 
 [node name="Label2" type="Label" parent="BannerInfoBinding"]
-margin_left = 193.0
-margin_right = 563.0
-margin_bottom = 52.0
+margin_left = 208.0
+margin_top = 4.0
+margin_right = 623.0
+margin_bottom = 47.0
 text = "to add a button, "
 
 [node name="ShowedButton2" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 567.0
-margin_right = 617.0
+margin_left = 627.0
+margin_right = 677.0
 margin_bottom = 52.0
 
 [node name="Label3" type="Label" parent="BannerInfoBinding"]
-margin_left = 621.0
-margin_right = 978.0
-margin_bottom = 52.0
+margin_left = 681.0
+margin_top = 4.0
+margin_right = 1109.0
+margin_bottom = 47.0
 text = "to clear buttons"
