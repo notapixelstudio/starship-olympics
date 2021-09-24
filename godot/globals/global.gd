@@ -1,7 +1,7 @@
 extends Node
 
 # single truth point
-var local_multiplayer 
+var local_multiplayer
 
 const SETTINGS_FILENAME = "res://export.cfg"
 const E = 2.71828

@@ -21,7 +21,7 @@ func log_event(event: Dictionary, immediate: bool) -> void:
 	if immediate:
 		file.flush() # WARNING writing to disk too often could hurt performance
 
-func _ready():
+func _init():
 	# open the log file and go to the end
 	file = File.new()
 	file.open(LOG_PATH, File.READ_WRITE)

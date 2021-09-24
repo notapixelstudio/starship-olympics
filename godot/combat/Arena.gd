@@ -133,6 +133,13 @@ func _init():
 	global.arena = self
 	
 	if global.is_match_running():
+		standalone = false
+		
+	# create a standalone match
+	if standalone:
+		global.new_match()
+	
+	if global.is_match_running():
 		global.the_match.connect("game_over", self, "on_gameover")
 		connect("update_stats", global.the_match, "update_stats")
 		
@@ -213,7 +220,6 @@ func _ready():
 	
 	if global.is_game_running():
 		array_players = global.the_game.get_players()
-		standalone = false
 	
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
@@ -258,9 +264,10 @@ func _ready():
 	for s in spawners:
 		if not s.is_assigned():
 			s.free()
-	
-	if standalone:
-		global.session.set_players(players)
+			
+	if standalone and not global.is_game_running():
+		# create a fake game
+		global.new_game(players.values())
 	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
@@ -609,8 +616,6 @@ func on_gameover():
 
 func _on_continue_after_game_over(_session_over):
 	if standalone:
-		# delete the session after a standalone execution
-		global.safe_destroy_session()
 		get_tree().reload_current_scene()
 	
 func _on_Show_Arena():
