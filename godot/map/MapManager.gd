@@ -20,8 +20,9 @@ func _ready():
 		panel.enable()
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
-	Events.connect("match_ended", self, '_on_match_ended')
 	Events.connect("sth_unlocked", self, '_on_sth_unlocked')
+	
+	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	
 	# wait for the entire Arena subtree to be ready
 	yield(get_tree(), "idle_frame")
@@ -95,8 +96,9 @@ func pick_next_minigame():
 	yield(get_tree().create_timer(1), "timeout")
 	panels.choose_level(player_and_minigame["player"], player_and_minigame["level"])
 	
-func _on_match_ended():
-	pick_next_minigame()
+func _on_continue_after_game_over(session_ended):
+	if not session_ended:
+		pick_next_minigame()
 
 ## WARNING if the game is killed halfway through, an inconsisent state could be persisted
 func _on_sth_unlocked(_what, by_what) -> void:

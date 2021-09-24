@@ -611,6 +611,9 @@ func new_session() -> TheSession:
 	
 func safe_destroy_game() -> void:
 	if is_game_running():
+		# also delete the session
+		safe_destroy_session()
+		
 		Events.emit_signal("game_ended")
 		the_game.free()
 	the_game = null
@@ -623,6 +626,9 @@ func safe_destroy_match() -> void:
 	
 func safe_destroy_session() -> void:
 	if is_session_running():
+		# also delete the match
+		safe_destroy_match()
+		
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null

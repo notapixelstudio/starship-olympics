@@ -14,6 +14,7 @@ var session_over = false
 
 func _ready():
 	buttons.visible = false
+	global.safe_destroy_match()
 	
 func initialize():
 	"""
@@ -27,7 +28,7 @@ func initialize():
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
 	session_over = false
-	for player in global.session.players.values():
+	for player in global.the_game.get_players():
 		assert(player is InfoPlayer)
 		session_over = player.get_session_score_total() >= global.win
 		

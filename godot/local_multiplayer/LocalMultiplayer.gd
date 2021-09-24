@@ -128,11 +128,11 @@ func get_next_minigame(set):
 	return minigame_pools[set.name].pop_back()
 
 func start_minigame(minigame: Minigame, demo = false):
+	global.new_match()
 	combat = minigame.get_level(global.the_game.get_number_of_players()).instance()
 	last_minigame = minigame
 	
 	combat.connect("restart", self, "_on_Pause_restart")
-	combat.connect("skip", self, "_on_continue_after_game_over")
 	#combat.connect("continue_session", self, "_on_continue_session", [combat])
 	connect("updated", combat, "hud_update")
 
@@ -142,8 +142,7 @@ func start_minigame(minigame: Minigame, demo = false):
 			yield(child, 'tree_exited')
 	combat.demo = demo
 	add_child(combat)
-	global.new_match()
-
+	
 func safe_destroy_combat():
 	if combat:
 		remove_child(combat)
@@ -163,7 +162,6 @@ func _on_continue_after_game_over(session_over = false):
 	else:
 		if not map.is_inside_tree():
 			add_child(map)
-		Events.emit_signal("match_ended")
 	
 func _on_Pause_restart():
 	safe_destroy_combat()
@@ -186,6 +184,7 @@ func _on_nav_to_character_selection():
 		selection_screen.deselect()
 
 func _on_nav_to_map():
+	global.safe_destroy_session()
 	navigate_to_map()
 	
 func navigate_to_map():
