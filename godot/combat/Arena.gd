@@ -212,11 +212,9 @@ func _ready():
 	var players = {}
 	var array_players = []
 	
-	if global.is_session_running():
-		array_players = global.session.get_players().values()
+	if global.is_game_running():
+		array_players = global.the_game.get_players()
 		standalone = false
-	else:
-		global.new_session()
 	
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399

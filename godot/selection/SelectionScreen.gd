@@ -250,7 +250,6 @@ func _on_Timer_timeout():
 func _on_ReadyToFight_letsfight():
 	var players = get_players()
 	emit_signal("fight", players, fight_mode)
-	global.new_game(players)
 
 func reset():
 	ready_to_fight.deactivate()

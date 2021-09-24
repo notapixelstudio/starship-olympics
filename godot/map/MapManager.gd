@@ -13,10 +13,10 @@ var graph := Graph.new()
 func _ready():
 	# setup player panels
 	panels = get_node(panels_path)
-	var players = global.session.get_players()
-	for id in players.keys():
-		var panel = panels.get_node(id)
-		panel.set_player(players[id])
+	var players = global.the_game.get_players()
+	for player in players:
+		var panel = panels.get_node(player.id)
+		panel.set_player(player)
 		panel.enable()
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
@@ -78,16 +78,17 @@ func tap(ship : Ship, planet : MapPlanet):
 		planet.unlock()
 
 func check_all_ready():
-	if not ready and len(players_ready) == global.session.get_number_of_players():
+	if not ready and len(players_ready) == global.the_game.get_number_of_players():
 		ready = true
+		global.new_session()
 		pick_next_minigame()
 		
 func pick_next_minigame():
-	var players = global.session.get_players()
-	var players_selection = {}
-	for id in players.keys():
-		var panel: MapPanel = panels.get_node(id)
-		players_selection[id] = panel.content
+	var players = global.the_game.get_players()
+	var players_selection := {}
+	for player in players:
+		var panel: MapPanel = panels.get_node(player.id)
+		players_selection[player.id] = panel.content
 	print(players_selection)
 	global.session.setup_players_selection(players_selection)
 	var player_and_minigame = global.session.choose_next_level()

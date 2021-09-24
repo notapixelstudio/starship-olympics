@@ -587,21 +587,25 @@ var arena
 func new_game(players) -> TheGame:
 	safe_destroy_game()
 	the_game = TheGame.new()
-	the_game.set_human_players(players)
+	the_game.set_players(players)
 	Events.emit_signal("game_started")
 	return the_game
 
 func new_match() -> TheMatch:
 	safe_destroy_match()
 	the_match = TheMatch.new()
+	if self.is_session_running():
+		self.session.add_match(the_match)
 	Events.emit_signal("match_started")
 	return the_match
 	
-func new_session(players := {}) -> TheSession:
+func new_session() -> TheSession:
 	safe_destroy_session()
 	session = TheSession.new()
-	session.set_players(players)
-	session.reset_players()
+	
+	# whenever a new session is created, InfoPlayer stats should be cleared
+	the_game.reset_players()
+	
 	Events.emit_signal('session_started')
 	return session
 	

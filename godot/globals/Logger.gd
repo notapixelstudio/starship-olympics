@@ -31,10 +31,10 @@ func _ready():
 	
 	Events.connect('execution_started', self, '_on_execution_started')
 	Events.connect('game_started', self, '_on_game_started')
-	#Events.connect('session_started', self, '_on_session_started')
-	#Events.connect('match_started', self, '_on_match_started')
-	#Events.connect('match_ended', self, '_on_match_ended')
-	#Events.connect('session_ended', self, '_on_session_ended')
+	Events.connect('session_started', self, '_on_session_started')
+	Events.connect('match_started', self, '_on_match_started')
+	Events.connect('match_ended', self, '_on_match_ended')
+	Events.connect('session_ended', self, '_on_session_ended')
 	Events.connect('game_ended', self, '_on_game_ended')
 	Events.connect('execution_ended', self, '_on_execution_ended')
 	
