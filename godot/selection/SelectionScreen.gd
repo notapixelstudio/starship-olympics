@@ -23,7 +23,10 @@ func _ready():
 	# Soundtrack.play("Lobby", true)
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
-
+	
+func _enter_tree():
+	global.safe_destroy_game()
+	
 func initialize():
 	ordered_species = TheUnlocker.get_ordered_species()
 
@@ -250,6 +253,7 @@ func _on_Timer_timeout():
 func _on_ReadyToFight_letsfight():
 	var players = get_players()
 	emit_signal("fight", players, fight_mode)
+	global.new_game(players)
 
 func reset():
 	ready_to_fight.deactivate()

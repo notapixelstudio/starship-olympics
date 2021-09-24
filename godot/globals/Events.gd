@@ -4,9 +4,16 @@ signal bumper_created(bumper)
 signal sth_tapped(tapper, tappee)
 
 signal minigame_selected(minigame)
+
+signal videogame_started
+signal game_started
 signal session_started
 signal match_started
 signal match_ended
+signal session_ended
+signal game_ended
+signal videogame_ended
+
 signal continue_after_game_over(session_ended)
 
 signal nav_to_menu

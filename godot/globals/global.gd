@@ -180,6 +180,9 @@ func _input(event):
 		get_tree().paused = false
 		
 func _ready():
+	# we want to handle quit by ourselves
+	get_tree().set_auto_accept_quit(false)
+	
 	print("Starting game...")
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
@@ -208,13 +211,19 @@ func _ready():
 	
 
 func end_game():
-	print("Thanks for playing")
-	GameAnalytics.end_session()
-	if enable_analytics:
-		yield(GameAnalytics, "message_sent")
-	get_tree().quit()
-
-
+	# trigger quit
+	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+	
+func _notification(what):
+	# actual quitting
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		print("Thanks for playing")
+		GameAnalytics.end_session()
+		if enable_analytics:
+			yield(GameAnalytics, "message_sent")
+		Events.emit_signal('videogame_ended')
+		get_tree().quit() # default behavior
+	
 # INPUT MAPPING
 const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
@@ -566,9 +575,17 @@ func _set_glow(value):
 	
 
 # GAMEPLAY
+var the_game: TheGame = null
 var the_match: TheMatch = null
 var session: TheSession = null
 var arena
+
+func new_game(players) -> TheGame:
+	safe_destroy_game()
+	the_game = TheGame.new()
+	the_game.set_human_players(players)
+	Events.emit_signal("game_started", the_game)
+	return the_game
 
 func new_match() -> TheMatch:
 	safe_destroy_match()
@@ -583,6 +600,12 @@ func new_session(players := {}) -> TheSession:
 	Events.emit_signal('session_started')
 	return session
 	
+func safe_destroy_game() -> void:
+	if is_game_running():
+		Events.emit_signal("game_ended", the_game)
+		the_game.free()
+	the_game = null
+	
 func safe_destroy_match() -> void:
 	if is_match_running():
 		the_match.free()
@@ -592,7 +615,10 @@ func safe_destroy_session() -> void:
 	if is_session_running():
 		session.free()
 	session = null
-
+	
+func is_game_running() -> bool:
+	return the_game != null and is_instance_valid(the_game)
+	
 func is_match_running() -> bool:
 	return the_match != null and is_instance_valid(the_match)
 	
