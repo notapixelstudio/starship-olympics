@@ -182,9 +182,11 @@ func _on_Pause_restart():
 
 
 func _on_nav_to_menu():
+	global.safe_destroy_game()
 	get_tree().change_scene(menu_scene)
 	
 func _on_nav_to_character_selection():
+	global.safe_destroy_game()
 	safe_destroy_combat()
 	map.queue_free()
 	if not parallax.is_inside_tree():

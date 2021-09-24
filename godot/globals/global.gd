@@ -209,8 +209,12 @@ func _ready():
 	else:
 		print("Something went wrong while loading the game data")
 	
-
-func end_game():
+var execution_uuid : String
+func start_execution():
+	execution_uuid = UUID.v4()
+	Events.emit_signal('execution_started')
+	
+func end_execution():
 	# trigger quit
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 	
@@ -221,7 +225,7 @@ func _notification(what):
 		GameAnalytics.end_session()
 		if enable_analytics:
 			yield(GameAnalytics, "message_sent")
-		Events.emit_signal('videogame_ended')
+		Events.emit_signal('execution_ended')
 		get_tree().quit() # default behavior
 	
 # INPUT MAPPING
@@ -584,12 +588,13 @@ func new_game(players) -> TheGame:
 	safe_destroy_game()
 	the_game = TheGame.new()
 	the_game.set_human_players(players)
-	Events.emit_signal("game_started", the_game)
+	Events.emit_signal("game_started")
 	return the_game
 
 func new_match() -> TheMatch:
 	safe_destroy_match()
 	the_match = TheMatch.new()
+	Events.emit_signal("match_started")
 	return the_match
 	
 func new_session(players := {}) -> TheSession:
@@ -602,17 +607,19 @@ func new_session(players := {}) -> TheSession:
 	
 func safe_destroy_game() -> void:
 	if is_game_running():
-		Events.emit_signal("game_ended", the_game)
+		Events.emit_signal("game_ended")
 		the_game.free()
 	the_game = null
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
+		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
 	
 func safe_destroy_session() -> void:
 	if is_session_running():
+		Events.emit_signal("session_ended")
 		session.free()
 	session = null
 	

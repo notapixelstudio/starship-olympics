@@ -15,7 +15,8 @@ func datetime_to_str(datetime: Dictionary, fmt = "") -> String:
 func log_event(event: Dictionary, immediate: bool) -> void:
 	#event.running_time = OS.get_ticks_usec()
 	#event.datetime = datetime_to_str(OS.get_datetime(true))
-	event.local_datetime = datetime_to_str(OS.get_datetime())
+	#event.local_datetime = datetime_to_str(OS.get_datetime())
+	#event.execution_uuid = global.execution_uuid
 	file.store_line(to_json(event))
 	if immediate:
 		file.flush() # WARNING writing to disk too often could hurt performance
@@ -26,16 +27,16 @@ func _ready():
 	file.open(LOG_PATH, File.READ_WRITE)
 	file.seek_end()
 	
-	Events.connect('minigame_selected', self, '_on_minigame_selected')
+	#Events.connect('minigame_selected', self, '_on_minigame_selected')
 	
-	Events.connect('videogame_started', self, '_on_videogame_started')
+	Events.connect('execution_started', self, '_on_execution_started')
 	Events.connect('game_started', self, '_on_game_started')
-	Events.connect('session_started', self, '_on_session_started')
-	Events.connect('match_started', self, '_on_match_started')
-	Events.connect('match_ended', self, '_on_match_ended')
-	Events.connect('session_ended', self, '_on_session_ended')
+	#Events.connect('session_started', self, '_on_session_started')
+	#Events.connect('match_started', self, '_on_match_started')
+	#Events.connect('match_ended', self, '_on_match_ended')
+	#Events.connect('session_ended', self, '_on_session_ended')
 	Events.connect('game_ended', self, '_on_game_ended')
-	Events.connect('videogame_ended', self, '_on_videogame_ended')
+	Events.connect('execution_ended', self, '_on_execution_ended')
 	
 func _on_minigame_selected(minigame: Minigame) -> void:
 	log_event({
@@ -43,39 +44,31 @@ func _on_minigame_selected(minigame: Minigame) -> void:
 		'minigame': minigame.get_id()
 	}, true)
 
-var videogame_started_ms : int
-func _on_videogame_started() -> void:
-	videogame_started_ms = OS.get_ticks_msec()
+var execution_started_ms : int
+func _on_execution_started() -> void:
+	execution_started_ms = OS.get_ticks_msec()
 	log_event({
-		'event_name': 'videogame_started'
+		'event_name': 'execution_started'
 	}, true)
 	
-func _on_videogame_ended() -> void:
+func _on_execution_ended() -> void:
 	log_event({
-		'event_name': 'videogame_ended',
-		'duration_ms': OS.get_ticks_msec() - videogame_started_ms
+		'event_name': 'execution_ended',
+		'duration_ms': OS.get_ticks_msec() - execution_started_ms
 	}, true)
 	
 	
 var game_started_ms : int
-func _on_game_started(the_game : TheGame) -> void:
+func _on_game_started() -> void:
 	game_started_ms = OS.get_ticks_msec()
+	var event = global.the_game.to_log_dict()
+	event.event_name = 'game_started'
+	log_event(event, true)
 	
-	var human_players_dicts := []
-	for player in the_game.get_human_players():
-		human_players_dicts.append(player.to_dict())
-		
-	log_event({
-		'event_name': 'game_started',
-		'uuid': the_game.get_uuid(),
-		'human_players': human_players_dicts,
-		'human_players_count': len(human_players_dicts)
-	}, true)
-	
-func _on_game_ended(the_game : TheGame) -> void:
+func _on_game_ended() -> void:
 	log_event({
 		'event_name': 'game_ended',
-		'uuid': the_game.get_uuid(),
+		'game_uuid': global.the_game.get_uuid(),
 		'duration_ms': OS.get_ticks_msec() - game_started_ms
 	}, true)
 	

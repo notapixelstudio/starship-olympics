@@ -24,9 +24,6 @@ func _ready():
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 	
-func _enter_tree():
-	global.safe_destroy_game()
-	
 func initialize():
 	ordered_species = TheUnlocker.get_ordered_species()
 

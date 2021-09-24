@@ -38,4 +38,4 @@ func _on_Fight_pressed():
 
 
 func _on_QuitButton_pressed():
-	global.end_game()
+	global.end_execution()

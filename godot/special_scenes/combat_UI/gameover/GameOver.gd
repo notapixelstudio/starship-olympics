@@ -44,8 +44,7 @@ func _on_Continue_pressed():
 	Events.emit_signal("continue_after_game_over", session_over)
 
 func _on_Quit_pressed():
-	global.end_game()
-	#get_tree().quit()
+	global.end_execution()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
