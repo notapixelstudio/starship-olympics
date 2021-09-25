@@ -132,6 +132,10 @@ func setup_level(mode : Resource):
 func _init():
 	global.arena = self
 	
+func _enter_tree():
+	# this happens before descendants _ready() calls
+	# but after export vars are set for this node
+	
 	if global.is_match_running():
 		standalone = false
 		
