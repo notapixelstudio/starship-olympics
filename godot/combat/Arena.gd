@@ -135,6 +135,8 @@ func _init():
 func _enter_tree():
 	# this happens before descendants _ready() calls
 	# but after export vars are set for this node
+	# it is needed to actually take the "standalone" export var
+	# into consideration 
 	
 	if global.is_match_running():
 		standalone = false

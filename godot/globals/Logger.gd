@@ -24,7 +24,7 @@ func log_event(event: Dictionary, immediate: bool) -> void:
 func _init():
 	# open the log file and go to the end
 	file = File.new()
-	file.open(LOG_PATH, File.READ_WRITE)
+	file.open(LOG_PATH, File.WRITE)
 	file.seek_end()
 	
 	#Events.connect('minigame_selected', self, '_on_minigame_selected')
