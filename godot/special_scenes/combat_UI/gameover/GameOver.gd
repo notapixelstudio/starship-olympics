@@ -14,6 +14,7 @@ var session_over = false
 
 func _ready():
 	buttons.visible = false
+	global.safe_destroy_match()
 	
 func initialize():
 	"""
@@ -27,7 +28,7 @@ func initialize():
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
 	session_over = false
-	for player in global.session.players.values():
+	for player in global.the_game.get_players():
 		assert(player is InfoPlayer)
 		session_over = player.get_session_score_total() >= global.win
 		
@@ -44,8 +45,7 @@ func _on_Continue_pressed():
 	Events.emit_signal("continue_after_game_over", session_over)
 
 func _on_Quit_pressed():
-	global.end_game()
-	#get_tree().quit()
+	global.end_execution()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):

@@ -13,15 +13,16 @@ var graph := Graph.new()
 func _ready():
 	# setup player panels
 	panels = get_node(panels_path)
-	var players = global.session.get_players()
-	for id in players.keys():
-		var panel = panels.get_node(id)
-		panel.set_player(players[id])
+	var players = global.the_game.get_players()
+	for player in players:
+		var panel = panels.get_node(player.id)
+		panel.set_player(player)
 		panel.enable()
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
-	Events.connect("match_ended", self, '_on_match_ended')
 	Events.connect("sth_unlocked", self, '_on_sth_unlocked')
+	
+	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	
 	# wait for the entire Arena subtree to be ready
 	yield(get_tree(), "idle_frame")
@@ -78,24 +79,26 @@ func tap(ship : Ship, planet : MapPlanet):
 		planet.unlock()
 
 func check_all_ready():
-	if not ready and len(players_ready) == global.session.get_number_of_players():
+	if not ready and len(players_ready) == global.the_game.get_number_of_players():
 		ready = true
+		global.new_session()
 		pick_next_minigame()
 		
 func pick_next_minigame():
-	var players = global.session.get_players()
-	var players_selection = {}
-	for id in players.keys():
-		var panel: MapPanel = panels.get_node(id)
-		players_selection[id] = panel.content
+	var players = global.the_game.get_players()
+	var players_selection := {}
+	for player in players:
+		var panel: MapPanel = panels.get_node(player.id)
+		players_selection[player.id] = panel.content
 	print(players_selection)
 	global.session.setup_players_selection(players_selection)
 	var player_and_minigame = global.session.choose_next_level()
 	yield(get_tree().create_timer(1), "timeout")
 	panels.choose_level(player_and_minigame["player"], player_and_minigame["level"])
 	
-func _on_match_ended():
-	pick_next_minigame()
+func _on_continue_after_game_over(session_ended):
+	if not session_ended:
+		pick_next_minigame()
 
 ## WARNING if the game is killed halfway through, an inconsisent state could be persisted
 func _on_sth_unlocked(_what, by_what) -> void:

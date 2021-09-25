@@ -1,7 +1,7 @@
 extends Node
 
 # single truth point
-var local_multiplayer 
+var local_multiplayer
 
 const SETTINGS_FILENAME = "res://export.cfg"
 const E = 2.71828
@@ -180,6 +180,9 @@ func _input(event):
 		get_tree().paused = false
 		
 func _ready():
+	# we want to handle quit by ourselves
+	get_tree().set_auto_accept_quit(false)
+	
 	print("Starting game...")
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
@@ -206,15 +209,25 @@ func _ready():
 	else:
 		print("Something went wrong while loading the game data")
 	
-
-func end_game():
-	print("Thanks for playing")
-	GameAnalytics.end_session()
-	if enable_analytics:
-		yield(GameAnalytics, "message_sent")
-	get_tree().quit()
-
-
+var execution_uuid : String
+func start_execution():
+	execution_uuid = UUID.v4()
+	Events.emit_signal('execution_started')
+	
+func end_execution():
+	# trigger quit
+	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+	
+func _notification(what):
+	# actual quitting
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		print("Thanks for playing")
+		GameAnalytics.end_session()
+		if enable_analytics:
+			yield(GameAnalytics, "message_sent")
+		Events.emit_signal('execution_ended')
+		get_tree().quit() # default behavior
+	
 # INPUT MAPPING
 const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
@@ -566,32 +579,63 @@ func _set_glow(value):
 	
 
 # GAMEPLAY
+var the_game: TheGame = null
 var the_match: TheMatch = null
 var session: TheSession = null
 var arena
 
+func new_game(players) -> TheGame:
+	safe_destroy_game()
+	the_game = TheGame.new()
+	the_game.set_players(players)
+	Events.emit_signal("game_started")
+	return the_game
+
 func new_match() -> TheMatch:
 	safe_destroy_match()
 	the_match = TheMatch.new()
+	if self.is_session_running():
+		self.session.add_match(the_match)
+	Events.emit_signal("match_started")
 	return the_match
 	
-func new_session(players := {}) -> TheSession:
+func new_session() -> TheSession:
 	safe_destroy_session()
 	session = TheSession.new()
-	session.set_players(players)
-	session.reset_players()
+	
+	# whenever a new session is created, InfoPlayer stats should be cleared
+	the_game.reset_players()
+	
+	Events.emit_signal('session_started')
 	return session
+	
+func safe_destroy_game() -> void:
+	if is_game_running():
+		# also delete the session
+		safe_destroy_session()
+		
+		Events.emit_signal("game_ended")
+		the_game.free()
+	the_game = null
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
+		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
 	
 func safe_destroy_session() -> void:
 	if is_session_running():
+		# also delete the match
+		safe_destroy_match()
+		
+		Events.emit_signal("session_ended")
 		session.free()
 	session = null
-
+	
+func is_game_running() -> bool:
+	return the_game != null and is_instance_valid(the_game)
+	
 func is_match_running() -> bool:
 	return the_match != null and is_instance_valid(the_match)
 	

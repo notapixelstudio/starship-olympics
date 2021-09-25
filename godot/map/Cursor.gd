@@ -41,7 +41,7 @@ func _ready():
 	placemark.modulate = player.species.color
 	ship.rotation = -rotation - PI/2
 	
-	var winner = global.session.get_last_winner()
+	var winner = global.the_game.get_last_winner()
 	
 signal try_move
 signal select

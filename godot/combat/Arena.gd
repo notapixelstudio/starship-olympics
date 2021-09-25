@@ -57,7 +57,7 @@ onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
-var standalone : bool = true
+export var standalone : bool = true
 onready var battlefield = $Battlefield
 
 signal screensize_changed(screensize)
@@ -131,13 +131,25 @@ func setup_level(mode : Resource):
 	
 func _init():
 	global.arena = self
-
-	# Initialize the match
-	global.new_match()
-	global.the_match.connect("game_over", self, "on_gameover")
-	connect("update_stats", global.the_match, "update_stats")
 	
-	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+func _enter_tree():
+	# this happens before descendants _ready() calls
+	# but after export vars are set for this node
+	# it is needed to actually take the "standalone" export var
+	# into consideration 
+	
+	if global.is_match_running():
+		standalone = false
+		
+	# create a standalone match
+	if standalone:
+		global.new_match()
+	
+	if global.is_match_running():
+		global.the_match.connect("game_over", self, "on_gameover")
+		connect("update_stats", global.the_match, "update_stats")
+		
+		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	
 func _ready():
 	set_process(false)
@@ -212,11 +224,8 @@ func _ready():
 	var players = {}
 	var array_players = []
 	
-	if global.is_session_running():
-		array_players = global.session.get_players().values()
-		standalone = false
-	else:
-		global.new_session()
+	if global.is_game_running():
+		array_players = global.the_game.get_players()
 	
 	var spawners = $SpawnPositions/Players.get_children()
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
@@ -261,9 +270,10 @@ func _ready():
 	for s in spawners:
 		if not s.is_assigned():
 			s.free()
-	
-	if standalone:
-		global.session.set_players(players)
+			
+	if standalone and not global.is_game_running():
+		# create a fake game
+		global.new_game(players.values())
 	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
@@ -282,7 +292,8 @@ func _ready():
 		for score_definer in score_definers:
 			score_to_win_override += score_definer.get_score()
 	
-	global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
+	if global.is_match_running():
+		global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
 	
 	if show_hud:
 		# initialize HUD
@@ -425,21 +436,23 @@ const COUNTDOWN_LIMIT = 5.0
 func update_grid():
 	# TODO: maybe you can put directly inside grid
 	grid.set_points($Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array())
-	grid.set_t(global.the_match.time_left)
+	if global.is_match_running():
+		grid.set_t(global.the_match.time_left)
 	
 func _process(delta):
 	if Engine.is_editor_hint():
 		return
 		
-	global.the_match.update(delta)
+	if global.is_match_running():
+		global.the_match.update(delta)
 	update_grid()
 	slomo()
 	
-	if int(global.the_match.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
+	if global.is_match_running() and int(global.the_match.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		# no countdown speaker right now. ISSUE #485
 		# $CanvasLayer/Countdown/AudioStreamPlayer.play()
 		pass
-	if global.the_match.time_left < COUNTDOWN_LIMIT and global.the_match.time_left > 0:
+	if global.is_match_running() and global.the_match.time_left < COUNTDOWN_LIMIT and global.the_match.time_left > 0:
 		$CanvasLayer/Countdown.text = str(int(ceil(global.the_match.time_left)))
 	else:
 		$CanvasLayer/Countdown.text = ""
@@ -450,7 +463,7 @@ func _input(event):
 			Events.emit_signal("nav_to_character_selection")
 			
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not global.demo and not global.the_match.game_over:
+	if event.is_action_pressed("pause") and not global.demo and (not global.is_match_running() or not global.the_match.game_over):
 		pause.start()
 		
 	var debug_pressed = event.is_action_pressed("debug")
@@ -573,7 +586,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
-	if global.the_match.game_over:
+	if not global.is_match_running():
 		return
 	
 	# respawn
@@ -609,8 +622,6 @@ func on_gameover():
 
 func _on_continue_after_game_over(_session_over):
 	if standalone:
-		# delete the session after a standalone execution
-		global.safe_destroy_session()
 		get_tree().reload_current_scene()
 	
 func _on_Show_Arena():

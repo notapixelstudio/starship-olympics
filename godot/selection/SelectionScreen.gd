@@ -13,7 +13,6 @@ onready var smoke_screen = $SmokeScreen
 var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
-signal back
 signal start_demo
 
 var selected_index = []
@@ -24,7 +23,7 @@ func _ready():
 	# Soundtrack.play("Lobby", true)
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
-
+	
 func initialize():
 	ordered_species = TheUnlocker.get_ordered_species()
 
@@ -191,7 +190,7 @@ func deselected(species: Species):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
-		emit_signal("back")
+		Events.emit_signal("nav_to_menu")
 		
 var fight_mode = "vs Mode"
 

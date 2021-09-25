@@ -55,7 +55,8 @@ func _on_Restart_pressed():
 	
 func _on_SkipLevel_pressed():
 	get_tree().paused = false
-	emit_signal("skip")
+	global.safe_destroy_match()
+	Events.emit_signal("continue_after_game_over", false)
 	
 func _on_Quit1_pressed():
 	get_tree().paused = false

@@ -50,7 +50,7 @@ func update_score(score):
 	point_score.set_msg(partial_score)
 	
 func update_score_ring():
-	if target.info_player and target.info_player.stats:
+	if global.is_match_running() and target.info_player and target.info_player.stats:
 		$Wrapper/Scaled/Colored/Indicator.fraction = target.info_player.stats.score / global.the_match.target_score
 
 func _on_Royal_enabled():

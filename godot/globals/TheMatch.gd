@@ -63,7 +63,6 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	if game_mode.cumulative:
 		cumulative_points=0
 	
-	global.session.add_match(self)
 	emit_signal('setup')
 	
 func sort_by_score(a: InfoPlayer, b: InfoPlayer):

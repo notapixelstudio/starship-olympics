@@ -25,17 +25,6 @@ class ChosenArena:
 	var player_id: String
 	var this_game: Arena
 
-func reset():
-	"""
-	This function will reset the session
-	"""
-	global.new_session(players)
-	for player in players.values():
-		player.reset()
-
-func _init():
-	reset()
-
 func _ready():
 	for species in TheUnlocker.get_unlocked():
 		all_species.append(species)
@@ -85,7 +74,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
 	
-	global.new_session(players)
+	global.new_game(players.values())
 
 	navigate_to_map()
 
@@ -116,7 +105,8 @@ func continue_fight() -> void:
 	remove_child(map)
 	map.queue_free()
 	navigate_to_map()
-	global.new_session(players)
+	#global.new_session(players)
+	global.safe_destroy_session()
 	
 func next_level(minigame):
 	"""
@@ -138,12 +128,11 @@ func get_next_minigame(set):
 	return minigame_pools[set.name].pop_back()
 
 func start_minigame(minigame: Minigame, demo = false):
-
-	combat = minigame.get_level(global.session.get_number_of_players()).instance()
+	global.new_match()
+	combat = minigame.get_level(global.the_game.get_number_of_players()).instance()
 	last_minigame = minigame
 	
 	combat.connect("restart", self, "_on_Pause_restart")
-	combat.connect("skip", self, "_on_continue_after_game_over")
 	#combat.connect("continue_session", self, "_on_continue_session", [combat])
 	connect("updated", combat, "hud_update")
 
@@ -153,7 +142,7 @@ func start_minigame(minigame: Minigame, demo = false):
 			yield(child, 'tree_exited')
 	combat.demo = demo
 	add_child(combat)
-
+	
 func safe_destroy_combat():
 	if combat:
 		remove_child(combat)
@@ -173,7 +162,6 @@ func _on_continue_after_game_over(session_over = false):
 	else:
 		if not map.is_inside_tree():
 			add_child(map)
-		Events.emit_signal("match_ended")
 	
 func _on_Pause_restart():
 	safe_destroy_combat()
@@ -181,9 +169,11 @@ func _on_Pause_restart():
 
 
 func _on_nav_to_menu():
+	global.safe_destroy_game()
 	get_tree().change_scene(menu_scene)
 	
 func _on_nav_to_character_selection():
+	global.safe_destroy_game()
 	safe_destroy_combat()
 	map.queue_free()
 	if not parallax.is_inside_tree():
@@ -194,6 +184,7 @@ func _on_nav_to_character_selection():
 		selection_screen.deselect()
 
 func _on_nav_to_map():
+	global.safe_destroy_session()
 	navigate_to_map()
 	
 func navigate_to_map():
