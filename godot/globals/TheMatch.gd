@@ -126,8 +126,8 @@ func do_game_over():
 	emit_signal("game_over")
 	
 func get_score(id_player : String):
-	var player = get_player(id_player)
-	return player.score
+	var player : InfoPlayer = get_player(id_player)
+	return player.get_score()
 	
 func set_score(id_player : String, amount : float, broadcasted = false):
 	var player = get_player(id_player)
