@@ -18,7 +18,6 @@ Procedure:
 	8. submit events in queue
 """
 # From https://github.com/xsellier/godot-uuid
-const UUID = preload("uuid/uuid.gd")
 const Utils = preload("utils.gd") 
 const THRESHOLD_DIFF_TS = 10
 const MAX_RETRY = 5

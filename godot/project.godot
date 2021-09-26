@@ -465,6 +465,11 @@ _global_script_classes=[ {
 "path": "res://combat/TeamStats.gd"
 }, {
 "base": "Node",
+"class": "TheGame",
+"language": "GDScript",
+"path": "res://globals/TheGame.gd"
+}, {
+"base": "Node",
 "class": "TheMatch",
 "language": "GDScript",
 "path": "res://globals/TheMatch.gd"
@@ -498,6 +503,11 @@ _global_script_classes=[ {
 "class": "UIOptions",
 "language": "GDScript",
 "path": "res://interface/Option.gd"
+}, {
+"base": "Reference",
+"class": "UUID",
+"language": "GDScript",
+"path": "res://utils/uuid.gd"
 }, {
 "base": "StaticBody2D",
 "class": "Wall",
@@ -606,6 +616,7 @@ _global_script_class_icons={
 "StarIcon": "",
 "TargetDest": "",
 "TeamStats": "",
+"TheGame": "",
 "TheMatch": "",
 "TheSession": "",
 "Trail": "",
@@ -613,6 +624,7 @@ _global_script_class_icons={
 "Trait": "",
 "UIOptionPanel": "",
 "UIOptions": "",
+"UUID": "",
 "Wall": "",
 "WallGoal": "",
 "Waypoint": ""
@@ -645,6 +657,7 @@ GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
 traits="*res://addons/traits/traits.gd"
 Events="*res://globals/Events.gd"
+Logger="*res://globals/Logger.gd"
 
 [display]
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://special_scenes/Intro.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/title_screen/MainScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://special_scenes/Disclaimer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/audio/UI_effects/426759__magmi-soundtracks__scary-tension-buildup-02.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/soundtracks/lewislancaster-0013shed.ogg" type="AudioStream" id=6]
@@ -107,6 +107,9 @@ custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
 text = "MILLENNIA OF INTERGALACTIC WARS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Line2" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0 )

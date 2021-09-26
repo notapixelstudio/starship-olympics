@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=8]
 [ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 70.0
 
 [sub_resource type="Animation" id=2]
@@ -68,6 +68,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 3 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
@@ -87,13 +88,13 @@ position = Vector2( 0, 3 )
 texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Glow" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0 )
-scale = Vector2( 0.914945, 0.914945 )
+modulate = Color( 0.305882, 1, 0.968627, 0.378719 )
+scale = Vector2( 0.894649, 0.894649 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]

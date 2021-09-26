@@ -2,7 +2,7 @@
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://special_scenes/on_canvas_ui/FloatingMessage.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/crown_color.png" type="Texture" id=6]
@@ -79,7 +79,7 @@ scale = Vector2( 0.8, 0.8 )
 
 [node name="Crown" type="Sprite" parent="Wrapper"]
 visible = false
-scale = Vector2( 1.7, 1.7 )
+scale = Vector2( 1.8, 1.8 )
 z_index = 500
 z_as_relative = false
 texture = ExtResource( 6 )

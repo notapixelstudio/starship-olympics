@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
 [ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
-[ext_resource path="res://assets/fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 6 )
@@ -71,22 +71,23 @@ __meta__ = {
 }
 
 [node name="Continue" type="Button" parent="GuiElements/Buttons"]
+margin_top = 24.0
 margin_right = 202.0
-margin_bottom = 29.0
+margin_bottom = 49.0
 custom_fonts/font = SubResource( 1 )
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/Buttons"]
-margin_top = 33.0
+margin_top = 53.0
 margin_right = 202.0
-margin_bottom = 62.0
+margin_bottom = 78.0
 custom_fonts/font = SubResource( 1 )
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/Buttons"]
-margin_top = 66.0
+margin_top = 82.0
 margin_right = 202.0
-margin_bottom = 95.0
+margin_bottom = 107.0
 custom_fonts/font = SubResource( 1 )
 text = "SKIP LEVEL"
 
@@ -99,21 +100,21 @@ custom_fonts/font = SubResource( 1 )
 text = "OPTIONS"
 
 [node name="Quit1" type="Button" parent="GuiElements/Buttons"]
-margin_top = 99.0
+margin_top = 111.0
 margin_right = 202.0
-margin_bottom = 128.0
+margin_bottom = 136.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT TO MAP"
 
 [node name="Quit2" type="Button" parent="GuiElements/Buttons"]
-margin_top = 132.0
+margin_top = 140.0
 margin_right = 202.0
-margin_bottom = 161.0
+margin_bottom = 165.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/Buttons"]
-margin_top = 165.0
+margin_top = 169.0
 margin_right = 202.0
 margin_bottom = 194.0
 custom_fonts/font = SubResource( 1 )
