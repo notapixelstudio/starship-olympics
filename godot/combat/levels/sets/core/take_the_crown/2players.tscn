@@ -13,9 +13,9 @@
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
-[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
 
@@ -195,7 +195,7 @@ jitter = 4.0
 chance = 0.4
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "magnet"
+type = "sword"
 random_types = [ "magnet", "sword", "shield" ]
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground" index="7" instance=ExtResource( 19 )]
@@ -213,6 +213,7 @@ jitter = 4.0
 chance = 0.4
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
+type = "sword"
 random_types = [ "magnet", "sword", "shield" ]
 
 [node name="DramaticSpawner4" parent="Battlefield/Middleground" index="9" instance=ExtResource( 19 )]
@@ -221,6 +222,7 @@ jitter = 4.0
 chance = 0.4
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
+type = "sword"
 random_types = [ "magnet", "sword", "shield" ]
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 18 )]
@@ -231,10 +233,7 @@ type = "rockets"
 position = Vector2( 400, 400 )
 type = "rockets"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
-type = "crown"
-
-[node name="Crown2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 14 )]
+[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
