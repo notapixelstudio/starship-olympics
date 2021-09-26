@@ -1,11 +1,18 @@
 extends Node
 
+func _enter_tree():
+	# listen to bumpers bumping
+	Events.connect('sths_bumped', self, '_on_sths_bumped')
+	
+func _exit_tree():
+	# stop listening when outside tree
+	Events.disconnect('sths_bumped', self, '_on_sths_bumped')
+
 func _ready():
 	Events.connect('sth_collided_with_ship', self, '_on_sth_collided_with_ship')
 	Events.connect('sth_is_overlapping_with_ship', self, '_on_sth_is_overlapping_with_ship')
 	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
 	Events.connect('holdable_dropped', self, '_on_loadable_dropped')
-	Events.connect('sths_bumped', self, '_on_sths_bumped')
 	Events.connect("ship_died", self, "_on_ship_died")
 	
 func _on_sth_collided_with_ship(sth, ship: Ship) -> void:
