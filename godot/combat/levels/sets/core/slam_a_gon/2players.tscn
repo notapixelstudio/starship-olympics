@@ -11,7 +11,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=11]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=12]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=13]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=14]
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=15]
@@ -173,8 +173,7 @@ type = "rockets"
 position = Vector2( 1500, 0 )
 type = "rockets"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
-type = 1
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 1500, 10 )
