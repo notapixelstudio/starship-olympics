@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=8]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/modes/QueenOfTheHive.tres" type="Resource" id=10]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
@@ -16,8 +16,41 @@
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=16]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Feedback"
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=7]
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("FeedbackLine:width")
@@ -92,8 +125,24 @@ tracks/5/keys = {
 "values": [ Color( 1.15, 0.78, 0.54, 1 ), Color( 0.95, 0.30875, 0.2375, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Feedback"
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=11]
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("FeedbackLine:width")
@@ -168,8 +217,24 @@ tracks/5/keys = {
 "values": [ Color( 1.15, 0.78, 0.54, 1 ), Color( 0.95, 0.30875, 0.2375, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Feedback"
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=15]
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("FeedbackLine:width")
@@ -249,7 +314,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 match_duration_override = 60.0
 
-[node name="ConquestModeManager" parent="Managers" index="9"]
+[node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -1415,6 +1480,21 @@ need_royal = true
 position = Vector2( -602, 1042.69 )
 rotation = 0.523599
 
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="1"]
+polygon = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="2"]
+points = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/Area2D" index="2"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/CrownCollider" index="0"]
+shape = SubResource( 2 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="5"]
+process_material = SubResource( 3 )
+
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
 radius = 500
 sides = 6.0
@@ -1427,13 +1507,28 @@ visible = false
 position = Vector2( 602, -1042.69 )
 rotation = 0.523599
 
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="1"]
+polygon = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="2"]
+points = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/Area2D" index="2"]
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/CrownCollider" index="0"]
+shape = SubResource( 5 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="5"]
+process_material = SubResource( 6 )
+
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
 radius = 500
 sides = 6.0
 rotation_degrees = 30.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="2"]
-anims/Feedback = SubResource( 1 )
+anims/Feedback = SubResource( 7 )
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone2" index="5"]
 visible = false
@@ -1442,12 +1537,27 @@ visible = false
 position = Vector2( -1212.44, -700 )
 rotation = 0.523599
 
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone3/Field" index="1"]
+polygon = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone3/Field" index="2"]
+points = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14, -100, 173.205 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone3/Field/Area2D" index="2"]
+shape = SubResource( 8 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone3/Field/CrownCollider" index="0"]
+shape = SubResource( 9 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone3/Field" index="5"]
+process_material = SubResource( 10 )
+
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone3/Field" index="7"]
 radius = 200
 sides = 3.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone3" index="2"]
-anims/Feedback = SubResource( 2 )
+anims/Feedback = SubResource( 11 )
 
 [node name="NoCrownSign" parent="Battlefield/Middleground/NoCrownZone3" index="3"]
 scale = Vector2( 1, 1 )
@@ -1459,12 +1569,27 @@ visible = false
 position = Vector2( 1212.44, 700 )
 rotation = -2.618
 
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone4/Field" index="1"]
+polygon = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone4/Field" index="2"]
+points = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14, -100, 173.205 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone4/Field/Area2D" index="2"]
+shape = SubResource( 12 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone4/Field/CrownCollider" index="0"]
+shape = SubResource( 13 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone4/Field" index="5"]
+process_material = SubResource( 14 )
+
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone4/Field" index="7"]
 radius = 200
 sides = 3.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone4" index="2"]
-anims/Feedback = SubResource( 3 )
+anims/Feedback = SubResource( 15 )
 
 [node name="NoCrownSign" parent="Battlefield/Middleground/NoCrownZone4" index="3"]
 scale = Vector2( 1, 1 )
@@ -1488,7 +1613,8 @@ type = "spikes"
 position = Vector2( 1010.5, 1750.24 )
 type = "spikes"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
+type = "crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 2021, 0 )
@@ -1524,7 +1650,11 @@ smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="Battlefield/Middleground/NoCrownZone"]
+[editable path="Battlefield/Middleground/NoCrownZone/Field"]
 [editable path="Battlefield/Middleground/NoCrownZone2"]
+[editable path="Battlefield/Middleground/NoCrownZone2/Field"]
 [editable path="Battlefield/Middleground/NoCrownZone3"]
+[editable path="Battlefield/Middleground/NoCrownZone3/Field"]
 [editable path="Battlefield/Middleground/NoCrownZone4"]
+[editable path="Battlefield/Middleground/NoCrownZone4/Field"]
 [editable path="CanvasLayer/Pause"]
