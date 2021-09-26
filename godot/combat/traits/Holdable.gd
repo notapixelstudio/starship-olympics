@@ -5,6 +5,7 @@ var host_parent = null
 func validate():
 	.validate()
 	assert(host.has_method('place_and_push')) # needed to conserve position and linear velocity of its dropper
+	assert(host.has_method('get_texture'))
 	
 func _ready():
 	host_parent = host.get_parent()
@@ -14,3 +15,4 @@ func remove():
 	
 func restore():
 	host_parent.call_deferred('add_child', host) # defer to avoid considering the holdable again for loading during this frame
+	

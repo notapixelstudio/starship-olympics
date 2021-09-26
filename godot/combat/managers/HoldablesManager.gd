@@ -23,7 +23,18 @@ func handle_collision(sth, ship: Ship) -> void:
 			
 func _on_sths_bumped(sth1, sth2) -> void:
 	if sth1 is Ship and sth2 is Ship:
-		sth1.get_cargo().swap_holdables_with(sth2)
+		var cargo1 = sth1.get_cargo()
+		var cargo2 = sth2.get_cargo()
+		
+		var swap = cargo1.get_holdable()
+		cargo1.set_holdable(cargo2.get_holdable())
+		cargo2.set_holdable(swap)
+		
+		# refresh appearance of cargoes
+		cargo1.hide_holdable()
+		cargo2.hide_holdable()
+		cargo1.show_holdable()
+		cargo2.show_holdable()
 		
 func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 	if ship.get_cargo().has_holdable():

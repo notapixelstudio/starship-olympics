@@ -3,7 +3,7 @@ extends RigidBody2D
 
 class_name Ball
 
-const GRAB_DISTANCE = 64
+const GRAB_DISTANCE = 72
 
 export (String, 'crown', 'basket', 'soccer', 'tennis', 'heart') var type setget set_type
 
@@ -42,4 +42,7 @@ func _physics_process(_delta):
 	
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 10}
+	
+func get_texture():
+	return $Sprite.texture
 	

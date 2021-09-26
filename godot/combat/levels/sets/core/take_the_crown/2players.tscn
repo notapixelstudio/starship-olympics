@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
@@ -67,7 +67,7 @@ tracks/1/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
 
-[node name="CrownModeManager" parent="Managers" index="6"]
+[node name="CrownModeManager" parent="Managers" index="7"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -219,7 +219,7 @@ jitter = 4.0
 chance = 0.4
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
-type = "magnet"
+type = "sword"
 random_types = [ "magnet", "sword", "shield" ]
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 18 )]
@@ -230,7 +230,7 @@ type = "rockets"
 position = Vector2( 400, 400 )
 type = "rockets"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -400, -400 )
