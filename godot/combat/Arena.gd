@@ -146,7 +146,7 @@ func _enter_tree():
 		global.new_match()
 	
 	if global.is_match_running():
-		global.the_match.connect("game_over", self, "on_gameover")
+		global.the_match.connect("game_over", self, "on_gameover", [], CONNECT_ONESHOT)
 		connect("update_stats", global.the_match, "update_stats")
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
