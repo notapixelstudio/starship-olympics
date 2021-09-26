@@ -32,6 +32,7 @@ tracks/1/keys = {
 }
 
 [node name="Ripple" type="Node2D"]
+scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 
 [node name="halo" type="Sprite" parent="."]
@@ -49,4 +50,5 @@ multiplier = 0.6
 timeout = 0.1
 enabled = true
 gravity = -1024.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
