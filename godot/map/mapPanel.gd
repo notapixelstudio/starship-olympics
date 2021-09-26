@@ -7,7 +7,7 @@ class_name MapPanel
 
 var player : InfoPlayer = null
 
-var content
+var content # could be Set
 var rest_text = "choose an arena"
 var chosen = false
 const deselected_modulate = Color(0.6,0.6,0.6,1)

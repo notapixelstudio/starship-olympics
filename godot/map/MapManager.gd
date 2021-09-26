@@ -82,16 +82,19 @@ func check_all_ready():
 	if not ready and len(players_ready) == global.the_game.get_number_of_players():
 		ready = true
 		global.new_session()
+		setup_session()
 		pick_next_minigame()
 		
-func pick_next_minigame():
+func setup_session():
 	var players = global.the_game.get_players()
-	var players_selection := {}
+	var players_selection := {} # player_id -> Set
 	for player in players:
 		var panel: MapPanel = panels.get_node(player.id)
 		players_selection[player.id] = panel.content
 	print(players_selection)
 	global.session.setup_players_selection(players_selection)
+
+func pick_next_minigame():
 	var player_and_minigame = global.session.choose_next_level()
 	yield(get_tree().create_timer(1), "timeout")
 	panels.choose_level(player_and_minigame["player"], player_and_minigame["level"])

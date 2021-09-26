@@ -53,9 +53,6 @@ func setup_selected_sets(sets: Array):
 	self.selected_sets = sets
 	
 func setup_players_selection(players_selection: Dictionary) -> void:
-	var sets = players_selection.get("sets")
-	var settings = players_selection.get("settings", {})
-	
 	# var num_CPUs = 0 if len(players) > 1 else 1
 	# add_cpu(num_CPUs)
 	
@@ -66,10 +63,10 @@ func setup_players_selection(players_selection: Dictionary) -> void:
 	selected_sets_by_player = {}
 	last_minigame = null
 	
-	for player in players_selection:
-		var set : Set = players_selection[player]
-		selected_sets_by_player[player] = set
-		players_sequence.append(player)
+	for player_id in players_selection:
+		var set : Set = players_selection[player_id]
+		selected_sets_by_player[player_id] = set
+		players_sequence.append(player_id)
 		minigame_pools[set.name] = set.get_minigames()
 		assert(len(minigame_pools[set.name]) > 0)
 		minigame_pools[set.name].shuffle()
