@@ -1,7 +1,6 @@
 extends Control
 
 onready var animator = $Animator
-onready var leaderboard = $LeaderBoard
 onready var buttons = $Buttons
 onready var back_to_menu_button = $Buttons/Map
 onready var continue_button = $Buttons/Continue
@@ -14,7 +13,6 @@ var session_over = false
 
 func _ready():
 	buttons.visible = false
-	global.safe_destroy_match()
 	
 func initialize():
 	"""

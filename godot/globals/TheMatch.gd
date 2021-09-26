@@ -170,8 +170,13 @@ func to_JSON():
 func get_player(id_player: String) -> InfoPlayer:
 	return players[id_player]
 
-func summary():
-	return {}
+func summary()->Dictionary:
+	"""
+	Summary stats of a played match.
+	"""
+	return {
+		"winners": winners
+	}
 
 func get_number_of_players():
 	return len(players)

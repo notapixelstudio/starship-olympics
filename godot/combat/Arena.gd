@@ -274,6 +274,7 @@ func _ready():
 	if standalone and not global.is_game_running():
 		# create a fake game
 		global.new_game(players.values())
+		global.new_session()
 	
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')

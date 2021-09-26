@@ -594,8 +594,6 @@ func new_game(players) -> TheGame:
 func new_match() -> TheMatch:
 	safe_destroy_match()
 	the_match = TheMatch.new()
-	if self.is_session_running():
-		self.session.add_match(the_match)
 	Events.emit_signal("match_started")
 	return the_match
 	
@@ -620,6 +618,7 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
+		global.session.add_match(the_match.summary())
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
