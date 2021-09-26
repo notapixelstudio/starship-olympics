@@ -10,7 +10,7 @@ var active : bool = false
 
 var owner_ship = null setget set_owner_ship
 
-const GRAB_DISTANCE = 64
+const GRAB_DISTANCE = 72
 
 func set_owner_ship(v):
 	owner_ship = v
