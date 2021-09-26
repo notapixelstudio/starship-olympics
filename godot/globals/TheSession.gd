@@ -8,7 +8,7 @@ class PlayerArena:
 	var minigame: PackedScene
 
 # The matches played, with scores and stats
-var matches : Array # of TheMatch
+var matches : Array # of TheMatchSummary (a dictionary)
 
 var minigame_pools : Dictionary
 var players_sequence : Array
@@ -38,9 +38,6 @@ func add_mutator(mutator: String):
 	if mutator in self.mutators:
 		self.mutators[mutator] = true
 	
-func add_match(score):
-	matches.insert(0, score)
-
 func set_settings(_settings):
 	settings = _settings
 func get_settings(key = null):
@@ -104,4 +101,12 @@ func choose_next_level(demo = false) -> Dictionary : #{String: Minigame}
 	
 	last_minigame = next_minigame
 	return {"player": player, "level": next_minigame}
+
+func add_match(last_match: Dictionary):
+	matches.insert(0, last_match)
 	
+func get_last_match() -> Dictionary:
+	if len(matches) > 0:
+		return matches[0]
+	else:
+		return {}
