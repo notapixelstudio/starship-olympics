@@ -628,7 +628,7 @@ func unwield_flail():
 const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
 var current_powerup_type := ''
 func apply_powerup(powerup):
-	if current_powerup_type != '':
+	if current_powerup_type != '' and PowerUp.is_exclusive(current_powerup_type) and PowerUp.is_exclusive(powerup.type):
 		# drop the old powerup
 		var old_powerup = PowerupScene.instance()
 		old_powerup.type = current_powerup_type
