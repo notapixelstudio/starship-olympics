@@ -52,9 +52,11 @@ func _ready():
 		
 signal goal_done
 func _on_Field_entered(field, body):
-	if body is Ship and ECM.E(body).has('Royal') and body.get_player() == get_player():
-		do_goal(body.get_player(), body.position)
-	elif body is Crown:
+	if body is Ship and body.get_cargo().has_holdable() and body.get_player() == get_player():
+		var cargo = body.get_cargo().get_holdable()
+		if cargo is Ball and cargo.type == 'basket':
+			do_goal(body.get_player(), body.position)
+	elif body is Ball:
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")

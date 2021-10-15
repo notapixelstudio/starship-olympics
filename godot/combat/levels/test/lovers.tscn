@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://combat/modes/Lovers.tres" type="Resource" id=1]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=3]
+[ext_resource path="res://combat/managers/LoversManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=6]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=12]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
+[ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=16]
+
+[node name="Arena" instance=ExtResource( 9 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 1 )
+
+[node name="LoversManager" parent="Managers" index="0" instance=ExtResource( 4 )]
+
+[node name="ConquestModeManager" parent="Managers" index="11"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 12 )
+centered = false
+
+[node name="OuterGlass" type="Polygon2D" parent="Battlefield/Background" index="0"]
+modulate = Color( 0.4, 0.7, 1.2, 1 )
+self_modulate = Color( 1, 1, 1, 0.2 )
+texture = ExtResource( 6 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -2300, -700, -2300, 700, 0, 1100, 2300, 700, 2300, -700, 0, -1100, -2300, -700, -4000, -700, -4000, -1600, 3300, -1600, 3300, 2000, -4000, 2000, -4000, -700 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
+position = Vector2( 3.05176e-05, 0 )
+collision_layer = 2147483648
+hollow = true
+offset = 800
+type = 4
+hide_grid = true
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( -3.05176e-05, -1100, -2300, -700, -2300, 700, -3.05176e-05, 1100, 2300, 700, 2300, -700 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
+visible = false
+polygon = PoolVector2Array( -3.05176e-05, -1100, -2300, -700, -2300, 700, -3.05176e-05, 1100, 2300, 700, 2300, -700 )
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0.42, 0.189, 0.189, 1 )
+bg_color = Color( 0.4, 0.124, 0.1286, 1 )
+
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
+collision_layer = 2147483648
+type = 4
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+
+[node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
+script = ExtResource( 3 )
+width = 402
+height = 600
+radius = 200
+precision = 25.0
+
+[node name="Alien" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
+position = Vector2( 0, 700 )
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
+position = Vector2( -1700, 0 )
+rotation = 0.0
+species = ExtResource( 13 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
+position = Vector2( 1700, 0 )
+rotation = 3.14159
+controls = "kb2"
+species = ExtResource( 8 )
+
+[node name="Camera" parent="." index="6"]
+zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+smoothing_speed = 0.3
+enabled = false
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="CanvasLayer/Pause"]

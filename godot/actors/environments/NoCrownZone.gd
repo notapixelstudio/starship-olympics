@@ -15,7 +15,7 @@ func _process(delta):
 	$NoCrownSign.rotation = -rotation
 
 func _on_Field_entered(field, body):
-	if body is Crown:
+	if body is Ball:
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")

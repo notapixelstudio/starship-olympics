@@ -8,7 +8,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/managers/TennisManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/WallGoal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=12]
@@ -104,8 +104,8 @@ type = "magnet"
 position = Vector2( 1300, 0 )
 type = "magnet"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
-type = 3
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
+type = "tennis"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -1300, 0 )
@@ -117,6 +117,7 @@ position = Vector2( 1300, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 6 )
+cpu = true
 
 [node name="Camera" parent="." index="6"]
 smoothing_speed = 0.3

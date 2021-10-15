@@ -1,0 +1,54 @@
+extends Node
+
+func _enter_tree():
+	# listen to bumpers bumping
+	Events.connect('sths_bumped', self, '_on_sths_bumped')
+	
+func _exit_tree():
+	# stop listening when outside tree
+	Events.disconnect('sths_bumped', self, '_on_sths_bumped')
+
+func _ready():
+	Events.connect('sth_collided_with_ship', self, '_on_sth_collided_with_ship')
+	Events.connect('sth_is_overlapping_with_ship', self, '_on_sth_is_overlapping_with_ship')
+	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
+	Events.connect('holdable_dropped', self, '_on_loadable_dropped')
+	Events.connect("ship_died", self, "_on_ship_died")
+	
+func _on_sth_collided_with_ship(sth, ship: Ship) -> void:
+	handle_collision(sth, ship)
+	
+func _on_sth_is_overlapping_with_ship(sth, ship: Ship) -> void:
+	handle_collision(sth, ship)
+	
+func handle_collision(sth, ship: Ship) -> void:
+	if traits.has_trait(sth, 'Holdable'):
+		ship.get_cargo().load_holdable(sth)
+	elif traits.has_trait(sth, 'Dropper') or sth is Wall and sth.type == Wall.TYPE.glass: # FIXME if Wall is refactored, it should use Dropper
+		if ship.get_cargo().has_holdable():
+			ship.get_cargo().drop_holdable()
+			
+func _on_sths_bumped(sth1, sth2) -> void:
+	if sth1 is Ship and sth2 is Ship:
+		var cargo1 = sth1.get_cargo()
+		var cargo2 = sth2.get_cargo()
+		
+		var swap = cargo1.get_holdable()
+		cargo1.set_holdable(cargo2.get_holdable())
+		cargo2.set_holdable(swap)
+		
+		# refresh appearance of cargoes
+		cargo1.hide_holdable()
+		cargo2.hide_holdable()
+		cargo1.show_holdable()
+		cargo2.show_holdable()
+		
+func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
+	if ship.get_cargo().has_holdable():
+		ship.get_cargo().drop_holdable()
+		
+func _on_holdable_loaded(holdable, ship):
+	traits.get_trait(holdable, 'Holdable').remove()
+	
+func _on_loadable_dropped(holdable, ship):
+	traits.get_trait(holdable, 'Holdable').restore()
