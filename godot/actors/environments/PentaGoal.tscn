@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/environments/PentaGoal.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=2]
@@ -7,9 +7,26 @@
 [ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=5]
 [ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/traits/Dropper.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Feedback"
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=4]
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("FeedbackLine:width")
@@ -58,6 +75,23 @@ script = ExtResource( 1 )
 [node name="Field" parent="." instance=ExtResource( 2 )]
 type = 4
 
+[node name="Polygon2D" parent="Field" index="1"]
+polygon = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14 )
+
+[node name="Line2D" parent="Field" index="2"]
+points = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057 )
+
+[node name="Dropper" parent="Field/Area2D" index="0" instance=ExtResource( 8 )]
+
+[node name="CollisionShape2D" parent="Field/Area2D" index="2"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Field/CrownCollider" index="0"]
+shape = SubResource( 2 )
+
+[node name="Particles2D" parent="Field" index="5"]
+process_material = SubResource( 3 )
+
 [node name="GRegularPolygon" type="Node" parent="Field"]
 script = ExtResource( 3 )
 __meta__ = {
@@ -79,7 +113,9 @@ texture_mode = -488090432
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.2
-anims/Feedback = SubResource( 1 )
+anims/Feedback = SubResource( 4 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+
+[editable path="Field"]

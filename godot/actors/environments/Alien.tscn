@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/balls/heart.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/animals/b00.png" type="Texture" id=3]
+[ext_resource path="res://actors/environments/Alien.gd" type="Script" id=4]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=2]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1.1, 0.9 ), Vector2( 0.9, 1.1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dive"
+} ]
+}
+
+[node name="Alien" instance=ExtResource( 1 )]
+mode = 2
+script = ExtResource( 4 )
+type = "heart"
+
+[node name="Waiter" parent="." index="0" instance=ExtResource( 5 )]
+
+[node name="Glow" parent="." index="4"]
+visible = false
+
+[node name="Sprite" parent="." index="5"]
+visible = false
+scale = Vector2( 0.964, 1.036 )
+texture = ExtResource( 2 )
+
+[node name="Shadow" parent="." index="6"]
+visible = false
+
+[node name="Graphics" type="Node2D" parent="." index="7"]
+
+[node name="Alien" type="Sprite" parent="Graphics" index="0"]
+scale = Vector2( 0.964, 1.036 )
+texture = ExtResource( 3 )
+region_rect = Rect2( -8, -8, 130, 123 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics" index="1"]
+anims/Wobble = SubResource( 2 )
+
+[node name="Shadow" parent="Graphics" index="2" instance=ExtResource( 6 )]
+scale = Vector2( 0.964, 1.036 )
+sprite = NodePath("../Alien")

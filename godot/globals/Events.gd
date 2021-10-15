@@ -1,7 +1,17 @@
 extends Node
 
 signal bumper_created(bumper)
+
+signal ship_died(ship, killer, for_good)
+
+signal sths_bumped(sth1, sth2) # just one for pair
 signal sth_tapped(tapper, tappee)
+
+signal holdable_loaded(holdable, ship)
+signal holdable_dropped(holdable, ship)
+
+signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
+signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
 signal minigame_selected(minigame)
 

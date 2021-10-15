@@ -146,7 +146,7 @@ func _enter_tree():
 		global.new_match()
 	
 	if global.is_match_running():
-		global.the_match.connect("game_over", self, "on_gameover")
+		global.the_match.connect("game_over", self, "on_gameover", [], CONNECT_ONESHOT)
 		connect("update_stats", global.the_match, "update_stats")
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
@@ -917,17 +917,23 @@ func show_ripple(pos, size=1):
 	$Battlefield.call_deferred("add_child", ripple)
 	
 # players -> ships register
-var player_ships = {}
+var player_ships := {}
 
-func register_ship(ship):
+func register_ship(ship : Ship) -> void:
 	player_ships[ship.get_player().id] = ship
 	
-func unregister_ship(ship):
+func unregister_ship(ship : Ship) -> void:
 	player_ships.erase(ship.get_player().id)
 	
-func get_ship_from_player(player):
+func get_ship_from_player(player : InfoPlayer) -> Ship:
 	return player_ships[player.id]
 	
-func is_ship_valid(ship):
+func get_ship_from_player_id(player_id : String) -> Ship:
+	return player_ships[player_id]
+	
+func is_ship_valid(ship : Ship) -> bool:
 	return ship in player_ships.values()
+	
+func player_has_valid_ship(player : InfoPlayer) -> bool:
+	return player.id in player_ships
 	

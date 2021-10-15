@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,8 +14,9 @@
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=12]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=14]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=16]
+[ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -34,7 +35,41 @@ tracks/0/keys = {
 "values": [ 1285, 50 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13, 3.06162e-14, 500, -500, 6.12323e-14 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13, 3.06162e-14, 500, -500, 6.12323e-14 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13, 3.06162e-14, 500, -500, 6.12323e-14 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13, 3.06162e-14, 500, -500, 6.12323e-14 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=8]
 length = 10.0
 loop = true
 tracks/0/type = "value"
@@ -67,7 +102,9 @@ size_multiplier = 2.5
 game_mode = ExtResource( 14 )
 match_duration_override = 120.0
 
-[node name="CrownModeManager" parent="Managers" index="6"]
+[node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 17 )]
+
+[node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -147,6 +184,21 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 13 )]
 position = Vector2( -850, 0 )
 
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="1"]
+polygon = PoolVector2Array( 3.06162e-14, 500, -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="2"]
+points = PoolVector2Array( 3.06162e-14, 500, -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13, 3.06162e-14, 500 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/Area2D" index="2"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/CrownCollider" index="0"]
+shape = SubResource( 3 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="5"]
+process_material = SubResource( 4 )
+
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
 radius = 500
 
@@ -155,6 +207,21 @@ scale = Vector2( 1.25, 1.25 )
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 13 )]
 position = Vector2( 850, 0 )
+
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="1"]
+polygon = PoolVector2Array( 3.06162e-14, 500, -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="2"]
+points = PoolVector2Array( 3.06162e-14, 500, -500, 6.12323e-14, -9.18485e-14, -500, 500, -1.22465e-13, 3.06162e-14, 500 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/Area2D" index="2"]
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/CrownCollider" index="0"]
+shape = SubResource( 6 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="5"]
+process_material = SubResource( 7 )
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
 radius = 500
@@ -166,7 +233,7 @@ scale = Vector2( 1.25, 1.25 )
 "animation_in_battle",
 ]]
 playback_speed = 0.2
-anims/Rotate = SubResource( 2 )
+anims/Rotate = SubResource( 8 )
 
 [node name="Gel" parent="Battlefield/Middleground" index="3" instance=ExtResource( 11 )]
 position = Vector2( 0, 1150 )
@@ -196,7 +263,8 @@ type = "rockets"
 position = Vector2( 550, 550 )
 type = "rockets"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
+type = "crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -550, -550 )
@@ -233,5 +301,7 @@ smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="Battlefield/Middleground/NoCrownZone"]
+[editable path="Battlefield/Middleground/NoCrownZone/Field"]
 [editable path="Battlefield/Middleground/NoCrownZone2"]
+[editable path="Battlefield/Middleground/NoCrownZone2/Field"]
 [editable path="CanvasLayer/Pause"]

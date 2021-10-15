@@ -12,7 +12,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=11]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=12]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=13]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=14]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=15]
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=16]
@@ -111,7 +111,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP1" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
+modulate = Color( 0.35, 0.566667, 1, 1 )
 position = Vector2( -900, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
@@ -140,7 +140,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP2" index="3" instance=ExtResource( 17 )]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
+modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
 position = Vector2( -875, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
@@ -169,7 +169,6 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP3" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0.35, 0.566667, 1, 1 )
 position = Vector2( -875, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
@@ -242,8 +241,7 @@ type = "rockets"
 position = Vector2( 1212.44, -700 )
 type = "rockets"
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
-type = 1
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 0, 1400 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/environments/NoCrownZone.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=2]
@@ -7,9 +7,26 @@
 [ext_resource path="res://assets/sprites/environments/no_crown.png" type="Texture" id=5]
 [ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/sprites/environments/rhombus.png" type="Texture" id=7]
+[ext_resource path="res://combat/traits/Dropper.tscn" type="PackedScene" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Feedback"
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=4]
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("FeedbackLine:width")
@@ -92,6 +109,26 @@ modulate = Color( 0.95, 0.30875, 0.2375, 1 )
 type = 4
 opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
 
+[node name="IsoPolygon" parent="Field" index="0"]
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+
+[node name="Polygon2D" parent="Field" index="1"]
+polygon = PoolVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14 )
+
+[node name="Line2D" parent="Field" index="2"]
+points = PoolVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400 )
+
+[node name="Dropper" parent="Field/Area2D" index="0" instance=ExtResource( 8 )]
+
+[node name="CollisionShape2D" parent="Field/Area2D" index="2"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Field/CrownCollider" index="0"]
+shape = SubResource( 2 )
+
+[node name="Particles2D" parent="Field" index="5"]
+process_material = SubResource( 3 )
+
 [node name="GRegularPolygon" type="Node" parent="Field"]
 script = ExtResource( 3 )
 __meta__ = {
@@ -109,7 +146,7 @@ texture_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.2
-anims/Feedback = SubResource( 1 )
+anims/Feedback = SubResource( 4 )
 
 [node name="NoCrownSign" type="Sprite" parent="."]
 modulate = Color( 0.235294, 0, 0.109804, 1 )
@@ -155,3 +192,5 @@ points = PoolVector2Array( 290, 0, 300.321, 9.67888, 340, -30, 30, -340, -10, -3
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 50
+
+[editable path="Field"]

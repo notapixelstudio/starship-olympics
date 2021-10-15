@@ -43,7 +43,7 @@ const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
-const DASH_MULTIPLIER = 2.7
+const DASH_MULTIPLIER = 2.5 # was 2.7, decreased to lessen the chanche of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1100
 const BALL_BOOST = 2000
@@ -214,6 +214,7 @@ func change_engine(value: bool):
 func _process(_delta):
 	if bomb_type == GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview.rotation = -global_rotation
+	continuous_collision_check()
 	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
@@ -456,6 +457,7 @@ func die(killer : Ship, for_good = false):
 		if info_player.lives >= 0:
 			info_player.lives -= 1
 		emit_signal("dead", self, killer, for_good)
+		Events.emit_signal("ship_died", self, killer, for_good)
 		
 func stun():
 	stunned = true
@@ -468,14 +470,19 @@ func unstun():
 signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
+	Events.emit_signal('sth_collided_with_ship', area, self)
 func _on_NearArea_body_entered(body):
 	emit_signal("near_area_entered", body, self)
+	Events.emit_signal('sth_collided_with_ship', body, self)
 	
 signal near_area_exited
 func _on_NearArea_area_exited(area):
 	emit_signal("near_area_exited", area, self)
 func _on_NearArea_body_exited(body):
 	emit_signal("near_area_exited", body, self)
+	
+func _on_Ship_body_entered(body):
+	Events.emit_signal('sth_collided_with_ship', body, self)
 	
 func is_alive():
 	return alive
@@ -765,3 +772,13 @@ func is_auto_thrust() -> bool:
 
 func is_piercing() -> bool:
 	return $Sword.get_active()
+	
+func get_cargo():
+	return $Cargo
+
+# some collisions must be checked every frame
+func continuous_collision_check():
+	var overlappers = $NearArea.get_overlapping_bodies() + $NearArea.get_overlapping_areas()
+	for sth in overlappers:
+		if traits.has_trait(sth, 'Holdable') or traits.has_trait(sth, 'Dropper'):
+			Events.emit_signal('sth_is_overlapping_with_ship', sth, self)
