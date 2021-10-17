@@ -708,6 +708,7 @@ func tap():
 			Events.emit_signal('sth_tapped', self, area)
 			
 	#switch_emersion_state()
+	trigger_all_my_stuff()
 	
 var under = false
 
@@ -797,3 +798,9 @@ func continuous_collision_check():
 	for sth in overlappers:
 		if traits.has_trait(sth, 'Holdable') or traits.has_trait(sth, 'Dropper'):
 			Events.emit_signal('sth_is_overlapping_with_ship', sth, self)
+
+func trigger_all_my_stuff():
+	for triggerable in traits.get_all_with('RemoteTriggerable'):
+		if triggerable.get_owner_ship() == self:
+			triggerable.detonate()
+			
