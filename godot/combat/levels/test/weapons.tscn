@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=10]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://actors/environments/Gel.gd" type="Script" id=12]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=14]
 
@@ -134,13 +133,8 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="Glue" type="Area2D" parent="Battlefield/Middleground" index="9" instance=ExtResource( 14 )]
+[node name="Glue" parent="Battlefield/Middleground" index="9" instance=ExtResource( 14 )]
 position = Vector2( -2000, 600 )
-z_index = -8
-z_as_relative = false
-collision_layer = 0
-collision_mask = 2
-script = ExtResource( 12 )
 width = 2000
 depth = 0
 
