@@ -11,6 +11,13 @@ func set_owner_ship(v):
 	
 func get_owner_ship():
 	return owner_ship
+	
+func set_lifetime(v):
+	$Timer.wait_time = v
+	
+func set_radius(v):
+	$Area2D/CollisionShape2D.shape.radius = v
+	$BlastRadius.scale = Vector2(v/60, v/60)
 
 func _ready():
 	# FIXME? this could be enforced by the trait
@@ -28,4 +35,9 @@ func explode():
 		if body.has_method('die'):
 			body.apply_central_impulse(500*(global_position-body.global_position).normalized())
 			body.die(self.get_owner_ship())
-	
+			
+		if body.has_method('detonate'):
+			body.detonate()
+			
+func _on_Timer_timeout():
+	detonate()

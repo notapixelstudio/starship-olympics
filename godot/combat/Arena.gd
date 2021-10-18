@@ -749,7 +749,9 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb = mine_scene.instance()
 		bomb.set_owner_ship(ship)
 		bomb.position = ship.global_position
-		bomb.apply_central_impulse(impulse)
+		bomb.set_lifetime(max(1.0, impulse.length()/4000))
+		bomb.set_radius(max(600.0, impulse.length()/7))
+		bomb.apply_central_impulse(impulse*1.2)
 	elif type == GameMode.BOMB_TYPE.wave:
 		bomb = wave_scene.instance()
 		bomb.set_owner_ship(ship)
