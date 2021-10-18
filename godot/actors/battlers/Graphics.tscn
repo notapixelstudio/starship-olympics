@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=2]
@@ -11,13 +11,15 @@
 [ext_resource path="res://assets/audio/gameplay/shields/zapsplat_magic_wand_zap_spark_power_001_12551.ogg" type="AudioStream" id=9]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
 shader_param/active = false
-shader_param/strength = 8.0
+shader_param/strength = 0.0
 shader_param/width = 4
-shader_param/outline_color = null
+shader_param/outline_color = Color( 0, 0.984314, 1, 1 )
+shader_param/white_to_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "appear"
@@ -60,6 +62,18 @@ tracks/2/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shield:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 0, 0.984314, 1, 1 ), Color( 0.556863, 1, 1, 0.2 ), Color( 0, 0.984314, 1, 0.352941 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.8
@@ -87,6 +101,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
 "values": [ 2.0, 4.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shield:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0, 0.984314, 1, 0.352941 ), Color( 0.368627, 0.988235, 1, 0.352941 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -140,6 +166,18 @@ tracks/3/keys = {
 "stream": ExtResource( 9 )
 } ],
 "times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Shield:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.368627, 0.988235, 1, 0 ) ]
 }
 
 [node name="Graphics" type="Position2D"]
@@ -224,6 +262,12 @@ anims/cancel = SubResource( 4 )
 scale = Vector2( 0.2, 0.2 )
 stream = ExtResource( 8 )
 bus = "SFX"
+
+[node name="Shield" type="Sprite" parent="Sprite"]
+modulate = Color( 0, 0.984314, 1, 0 )
+show_behind_parent = true
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 12 )
 
 [node name="Shadow" parent="." instance=ExtResource( 10 )]
 sprite = NodePath("../Sprite")

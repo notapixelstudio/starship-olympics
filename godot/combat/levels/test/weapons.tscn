@@ -1,0 +1,171 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=2]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=3]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=6]
+[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=7]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=10]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://actors/environments/Gel.gd" type="Script" id=12]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=14]
+
+[node name="Arena" instance=ExtResource( 1 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 10 )
+style = ExtResource( 7 )
+match_duration_override = 80.0
+
+[node name="ConquestModeManager" parent="Managers" index="10"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+position = Vector2( 3.05176e-05, 0 )
+hollow = true
+hide_grid = true
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 5 )
+width = 4000
+height = 3400
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0, 0.48, 0.24, 1 )
+bg_color = Color( 0, 0.2, 0.166667, 1 )
+
+[node name="DramaticSpawner" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
+match_progress_trigger = 0.01
+
+[node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner" index="0" instance=ExtResource( 9 )]
+type = "waves"
+
+[node name="DramaticSpawner2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
+
+[node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner2" index="0" instance=ExtResource( 9 )]
+type = "waves"
+
+[node name="DramaticSpawner3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+position = Vector2( 0, 1400 )
+match_progress_trigger = 0.2
+
+[node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner3" index="0" instance=ExtResource( 9 )]
+
+[node name="PowerUp2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 9 )]
+position = Vector2( -1500, 0 )
+type = "rockets"
+
+[node name="PowerUp3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
+position = Vector2( 1500, 0 )
+type = "rockets"
+
+[node name="Wall" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
+position = Vector2( -1000, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
+script = ExtResource( 5 )
+height = 600
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 4 )]
+position = Vector2( 0, -1000 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
+script = ExtResource( 5 )
+width = 600
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 4 )]
+position = Vector2( 1000, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
+script = ExtResource( 5 )
+height = 600
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 4 )]
+position = Vector2( 0, 1000 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
+script = ExtResource( 5 )
+width = 600
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Glue" type="Area2D" parent="Battlefield/Middleground" index="9" instance=ExtResource( 14 )]
+position = Vector2( -2000, 600 )
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 12 )
+width = 2000
+depth = 0
+
+[node name="Glue2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 14 )]
+position = Vector2( 2000, -600 )
+rotation = 3.14159
+width = 2000
+depth = 0
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
+position = Vector2( -1500, 0 )
+rotation = 0.0
+controls = "joy1"
+species = ExtResource( 6 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1500, 0 )
+rotation = 3.14159
+controls = "joy2"
+species = ExtResource( 13 )
+
+[node name="Camera" parent="." index="6"]
+zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+smoothing_speed = 0.3
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="CanvasLayer/Pause"]

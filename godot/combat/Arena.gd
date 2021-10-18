@@ -756,9 +756,9 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.position = ship.global_position
 		bomb.rotation = ship.global_rotation+PI
 		bomb.growth = max(300, impulse.length()/10)
-		bomb.speed = 1200 - impulse.length()/8
-		bomb.lifetime = max(0.5, impulse.length()/3000)
-		bomb.angle = PI/3 + impulse.length()/1500
+		bomb.speed = 1500 - impulse.length()/6
+		bomb.lifetime = max(0.6, impulse.length()/3400)
+		bomb.angle = 2*PI/3 + impulse.length()/3000
 	else:
 		bomb = bomb_scene.instance()
 		bomb.initialize(type, pos, impulse, ship, size)

@@ -189,5 +189,6 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
 shape = SubResource( 4 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
 [connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]

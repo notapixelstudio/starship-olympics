@@ -633,20 +633,21 @@ func unwield_flail():
 		the_flail = null
 	
 const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
-var current_powerup_type := ''
+var current_exclusive_powerup_type := ''
 func apply_powerup(powerup):
-	if current_powerup_type != '' and PowerUp.is_exclusive(current_powerup_type) and PowerUp.is_exclusive(powerup.type):
+	if current_exclusive_powerup_type != '' and PowerUp.is_exclusive(current_exclusive_powerup_type) and PowerUp.is_exclusive(powerup.type):
 		# drop the old powerup
 		var old_powerup = PowerupScene.instance()
-		old_powerup.type = current_powerup_type
+		old_powerup.type = current_exclusive_powerup_type
 		old_powerup.appear = false
 		var behind = Vector2(-1,0).rotated(global_rotation)
 		old_powerup.position = global_position + 150*behind
 		old_powerup.linear_velocity = 300*behind
 		# ugly
-		get_parent().add_child(old_powerup)
+		get_parent().get_parent().add_child(old_powerup)
 		
-	current_powerup_type = powerup.type
+	if PowerUp.is_exclusive(powerup.type):
+		current_exclusive_powerup_type = powerup.type
 	
 	global.arena.show_msg(species, powerup.type.to_upper(), global_position)
 	

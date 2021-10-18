@@ -13,9 +13,9 @@ void fragment()
     if(!active) {
 		COLOR = texture(TEXTURE, UV);
 	}
-	else if(distance(texture(TEXTURE, UV), vec4(1.0, 1.0, 1.0,1.0)) <= 0.8) {
-		COLOR = white_to_color;
-	}
+	//else if(distance(texture(TEXTURE, UV), vec4(1.0, 1.0, 1.0,1.0)) <= 0.8) {
+	//	COLOR = white_to_color;
+	//}
 	else {
 		vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
 	   

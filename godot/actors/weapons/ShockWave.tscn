@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/weapons/ShockWave.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=4]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=5]
+[ext_resource path="res://combat/components/Owned.gd" type="Script" id=6]
 
-[sub_resource type="ConcavePolygonShape2D" id=1]
+[sub_resource type="ConcavePolygonShape2D" id=4]
 resource_local_to_scene = true
 
 [sub_resource type="Curve" id=2]
@@ -41,6 +42,18 @@ tracks/1/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Electricity:width")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 4.0, 0.0 ]
+}
 
 [node name="ShockWave" type="Area2D"]
 collision_layer = 128
@@ -62,13 +75,25 @@ __meta__ = {
 [node name="Trigger" type="Node" parent="Entity"]
 script = ExtResource( 3 )
 
+[node name="Owned" type="Node" parent="Entity"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 20, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
 width = 35.0
+width_curve = SubResource( 2 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Electricity" type="Line2D" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+width = 4.0
 width_curve = SubResource( 2 )
 default_color = Color( 1, 1, 1, 1 )
 
