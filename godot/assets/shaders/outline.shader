@@ -5,7 +5,6 @@ uniform bool active = true;
 uniform float strength = 8.0;
 uniform float width : hint_range(0.0, 16.0);
 uniform vec4 outline_color : hint_color;
-uniform vec4 white_to_color : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
 const float DIAG = 0.707;
  
 void fragment()
@@ -13,9 +12,6 @@ void fragment()
     if(!active) {
 		COLOR = texture(TEXTURE, UV);
 	}
-	//else if(distance(texture(TEXTURE, UV), vec4(1.0, 1.0, 1.0,1.0)) <= 0.8) {
-	//	COLOR = white_to_color;
-	//}
 	else {
 		vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
 	   
