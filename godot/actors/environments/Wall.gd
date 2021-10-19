@@ -128,7 +128,7 @@ func _ready():
 	refresh()
 	
 	# disable platform area unless this is the OutsideWall (or if platform is true)
-	$PlatformArea/CollisionShape2D.disabled = not platform and name != 'OutsideWall'
+	$PlatformArea/CollisionShape2D.set_deferred('disabled', not platform and name != 'OutsideWall')
 
 func get_rect_extents():
 	var gshape

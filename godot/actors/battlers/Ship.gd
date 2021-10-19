@@ -632,7 +632,23 @@ func unwield_flail():
 		the_flail.queue_free()
 		the_flail = null
 	
+const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
+var current_exclusive_powerup_type := ''
 func apply_powerup(powerup):
+	if current_exclusive_powerup_type != '' and PowerUp.is_exclusive(current_exclusive_powerup_type) and PowerUp.is_exclusive(powerup.type):
+		# drop the old powerup
+		var old_powerup = PowerupScene.instance()
+		old_powerup.type = current_exclusive_powerup_type
+		old_powerup.appear = false
+		var behind = Vector2(-1,0).rotated(global_rotation)
+		old_powerup.position = global_position + 150*behind
+		old_powerup.linear_velocity = 300*behind
+		# ugly
+		get_parent().get_parent().add_child(old_powerup)
+		
+	if PowerUp.is_exclusive(powerup.type):
+		current_exclusive_powerup_type = powerup.type
+	
 	global.arena.show_msg(species, powerup.type.to_upper(), global_position)
 	
 	if powerup.type == 'shield':
@@ -693,6 +709,7 @@ func tap():
 			Events.emit_signal('sth_tapped', self, area)
 			
 	#switch_emersion_state()
+	trigger_all_my_stuff()
 	
 var under = false
 
@@ -782,3 +799,9 @@ func continuous_collision_check():
 	for sth in overlappers:
 		if traits.has_trait(sth, 'Holdable') or traits.has_trait(sth, 'Dropper'):
 			Events.emit_signal('sth_is_overlapping_with_ship', sth, self)
+
+func trigger_all_my_stuff():
+	for triggerable in traits.get_all_with('RemoteTriggerable'):
+		if triggerable.get_owner_ship() == self:
+			triggerable.detonate()
+			

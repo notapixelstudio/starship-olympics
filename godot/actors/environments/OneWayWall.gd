@@ -9,14 +9,14 @@ func set_width(v):
 	$Polygon2D.polygon = PoolVector2Array([
 		Vector2(-width/2, -100),
 		Vector2(width/2, -100),
-		Vector2(width/2, 0),
-		Vector2(-width/2, 0)
+		Vector2(width/2-200, 100),
+		Vector2(-width/2+200, 100)
 	])
 	$ShadowPolygon2D.polygon = PoolVector2Array([
 		Vector2(-width/2, -100),
 		Vector2(width/2, -100),
-		Vector2(width/2, 0),
-		Vector2(-width/2, 0)
+		Vector2(width/2-200, 100),
+		Vector2(-width/2+200, 100)
 	])
 	
 func _ready():

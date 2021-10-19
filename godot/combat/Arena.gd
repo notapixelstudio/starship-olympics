@@ -749,14 +749,18 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb = mine_scene.instance()
 		bomb.set_owner_ship(ship)
 		bomb.position = ship.global_position
-		bomb.apply_central_impulse(impulse)
+		bomb.set_lifetime(max(1.0, impulse.length()/4000))
+		bomb.set_radius(max(600.0, impulse.length()/7))
+		bomb.apply_central_impulse(impulse*1.2)
 	elif type == GameMode.BOMB_TYPE.wave:
 		bomb = wave_scene.instance()
 		bomb.set_owner_ship(ship)
 		bomb.position = ship.global_position
 		bomb.rotation = ship.global_rotation+PI
-		bomb.speed = 350 + impulse.length()/3
-		bomb.angle = PI/3 + impulse.length()/4000
+		bomb.growth = max(300, impulse.length()/10)
+		bomb.speed = 1500 - impulse.length()/6
+		bomb.lifetime = max(0.6, impulse.length()/4000)
+		bomb.angle = 2*PI/3 + impulse.length()/3000
 	else:
 		bomb = bomb_scene.instance()
 		bomb.initialize(type, pos, impulse, ship, size)
@@ -937,3 +941,7 @@ func is_ship_valid(ship : Ship) -> bool:
 func player_has_valid_ship(player : InfoPlayer) -> bool:
 	return player.id in player_ships
 	
+
+
+func _on_PowerUp_collected():
+	pass # Replace with function body.

@@ -32,8 +32,10 @@ func store():
 		
 func unstore():
 	# put children back into the tree
+	# WARNING the node is inserted as sibling of self
 	for child in content:
-		add_child(child)
+		get_parent().add_child(child)
+		child.global_position += global_position
 	content = []
 	
 func is_active():

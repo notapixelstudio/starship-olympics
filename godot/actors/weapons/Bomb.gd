@@ -135,9 +135,10 @@ func detonate():
 		
 	explosion.position = position
 	emit_signal("detonate")
-	get_parent().call_deferred("add_child", explosion)
-	get_parent().call_deferred("remove_child", self)
-	yield(get_tree().create_timer(1), "timeout")
+	if get_parent():
+		get_parent().call_deferred("add_child", explosion)
+		get_parent().call_deferred("remove_child", self)
+		yield(get_tree().create_timer(1), "timeout")
 	call_deferred("queue_free")
 
 
@@ -189,6 +190,8 @@ func _on_Bomb_body_entered(body):
 		var ripple = Ripple.instance()
 		ripple.position = position
 		get_parent().call_deferred("add_child", ripple)
+	elif body is Mine:
+		detonate()
 
 var bubble_already_spawned = false
 func create_bubble():

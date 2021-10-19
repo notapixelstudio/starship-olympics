@@ -10,24 +10,37 @@ export var random_types = []
 
 signal collected
 
-const BEAM_COLORS = {
-	# cyan - protective
-	'shield': Color(0,1,1,1),
-	'magnet': Color(0,1,1,1),
-	# magenta - strange
-	'snake': Color(1,0,1,1),
-	'kamikaze': Color(1,0,1,1),
-	# orange - additions
-	'sword': Color(1,0.25,0,1),
-	'scythe': Color(1,0.25,0,1),
-	'flail': Color(1,0.25,0,1),
-	# red - main weapon
-	'rockets': Color(1,0,0,1),
-	'miniballs': Color(1,0,0,1),
-	'spikes': Color(1,0,0,1),
-	'bombs': Color(1,0,0,1),
-	'waves': Color(1,0,0,1),
-	'bubbles': Color(1,0,0,1)
+const CATEGORY = {
+	'shield': 'protection',
+	'magnet': 'protection',
+	
+	'snake': 'strange',
+	'kamikaze': 'strange',
+	
+	'sword': 'addition',
+	'scythe': 'addition',
+	'flail': 'addition',
+	
+	'rockets': 'main',
+	'miniballs': 'main',
+	'spikes': 'main',
+	'bombs': 'main',
+	'waves': 'main',
+	'bubbles': 'main'
+}
+
+const EXCLUSIVE = {
+	'main': true,
+	'strange': false,
+	'protection': false,
+	'addition': false
+}
+
+const COLOR = {
+	'main': Color(1,0,0,1),
+	'strange': Color(1,0,1,1),
+	'protection': Color(0,1,1,1),
+	'addition': Color(1,0.25,0,1)
 }
 
 func _ready():
@@ -51,10 +64,10 @@ func set_type(v):
 	
 func refresh_type():
 	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')
-	$TeleportBeam.modulate = BEAM_COLORS[type]
+	$TeleportBeam.modulate = self.get_color(type)
 	
 func activate():
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred('disabled', false)
 
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 1}
@@ -62,3 +75,9 @@ func get_strategy(ship, distance, game_mode):
 func collect(by):
 	queue_free()
 	emit_signal('collected', by)
+
+static func get_color(t):
+	return COLOR[CATEGORY[t]]
+	
+static func is_exclusive(t):
+	return EXCLUSIVE[CATEGORY[t]]

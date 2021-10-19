@@ -88,9 +88,6 @@ func _ready():
 	
 	trail_f = trail_length
 	
-	collision_shape.shape = ConcavePolygonShape2D.new()
-	farcollision_shape.shape = ConcavePolygonShape2D.new()
-	
 func _process(delta):
 	update()
 
@@ -143,12 +140,15 @@ func add_point_to_segment(point):
 		return
 	segments.append(points[len(points)-1])
 	segments.append(point)
+	collision_shape.shape = ConcavePolygonShape2D.new()
 	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	# FarArea
 	if len(points) < GRACE_POINTS:
 		return
 	farsegments.append(points[len(points)-GRACE_POINTS])
 	farsegments.append(points[len(points)-GRACE_POINTS+1])
+	
+	farcollision_shape.shape = ConcavePolygonShape2D.new()
 	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 
 func remove_point_to_segment(point):
@@ -162,6 +162,9 @@ func remove_point_to_segment(point):
 	segments.pop_front()
 	farsegments.pop_front()
 	farsegments.pop_front()
+	
+	collision_shape.shape = ConcavePolygonShape2D.new()
+	farcollision_shape.shape = ConcavePolygonShape2D.new()
 	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
 	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
 
