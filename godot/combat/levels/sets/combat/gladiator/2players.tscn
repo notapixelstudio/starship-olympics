@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,10 +14,38 @@
 [ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/OneWayWall.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/sprites/signs/crossed-swords.svg" type="Texture" id=14]
-[ext_resource path="res://actors/environments/SpeciesDecal.gd" type="Script" id=15]
+[ext_resource path="res://combat/levels/sets/combat/gladiator/HouseManager.gd" type="Script" id=15]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=16]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=19]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shut_sw"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/OutsideWall/GBeveledRect:bevel_sw")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 100, 1650 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Middleground/OneWayWall:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.784314, 0, 1 ), Color( 1, 0.784314, 0, 1 ), Color( 1, 0.784314, 0, 0 ) ]
+}
 
 [node name="Arena" instance=ExtResource( 11 )]
 size_multiplier = 2.5
@@ -30,6 +58,10 @@ enabled = true
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 19 )
 centered = false
+
+[node name="HouseManager" type="AnimationPlayer" parent="Battlefield" index="0"]
+anims/shut_sw = SubResource( 1 )
+script = ExtResource( 15 )
 
 [node name="ExternalGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 9 )]
 hollow = true
@@ -46,14 +78,15 @@ __meta__ = {
 }
 width = 4800
 height = 3400
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 9 )]
 hollow = true
+offset = 600
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -81,6 +114,7 @@ bg_color = Color( 0, 0.2, 0.166667, 1 )
 
 [node name="crossed-swords" type="Sprite" parent="Battlefield/Background" index="5"]
 modulate = Color( 1, 0.784314, 0, 0.0392157 )
+position = Vector2( 0, 32 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 14 )
 
@@ -93,7 +127,27 @@ line_texture = ExtResource( 6 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall13" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
+[node name="Wall14" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
+position = Vector2( -800, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall14" index="4"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+
+[node name="Wall15" parent="Battlefield/Middleground" index="2" instance=ExtResource( 9 )]
+position = Vector2( 800, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+
+[node name="Wall13" parent="Battlefield/Middleground" index="3" instance=ExtResource( 9 )]
 position = Vector2( -2500, 1800 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -102,7 +156,7 @@ line_texture = ExtResource( 6 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall9" parent="Battlefield/Middleground" index="2" instance=ExtResource( 9 )]
+[node name="Wall9" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
 position = Vector2( 2500, 1800 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -111,7 +165,7 @@ line_texture = ExtResource( 6 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall12" parent="Battlefield/Middleground" index="3" instance=ExtResource( 9 )]
+[node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 9 )]
 position = Vector2( 2500, -1800 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -119,14 +173,6 @@ line_texture = ExtResource( 6 )
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
 script = ExtResource( 1 )
 sides = 4.0
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="4" instance=ExtResource( 4 )]
-position = Vector2( -2150, 900 )
-type = "rockets"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 4 )]
-position = Vector2( -1600, 1450 )
-type = "waves"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 4 )]
 position = Vector2( 2150, -900 )
@@ -137,7 +183,7 @@ position = Vector2( 1600, -1450 )
 type = "waves"
 
 [node name="OneWayWall" parent="Battlefield/Middleground" index="8" instance=ExtResource( 13 )]
-modulate = Color( 1, 0.784314, 0, 1 )
+modulate = Color( 1, 0.784314, 0, 0.95 )
 position = Vector2( -1600, 900 )
 rotation = 0.785398
 width = 2400
@@ -148,20 +194,26 @@ position = Vector2( 1600, -900 )
 rotation = -2.35619
 width = 2400
 
-[node name="SpeciesDecalP1" type="Node2D" parent="Battlefield/Middleground" index="10" instance=ExtResource( 17 )]
+[node name="SpeciesDecalP1" parent="Battlefield/Middleground" index="10" instance=ExtResource( 17 )]
 modulate = Color( 0, 1, 0.952941, 1 )
-position = Vector2( -1900, 1200 )
+position = Vector2( -1900, 1232 )
 rotation = -0.785398
 scale = Vector2( 0.6, 0.6 )
-script = ExtResource( 15 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 17 )]
-modulate = Color( 0, 1, 0.952941, 1 )
-position = Vector2( 1900, -1200 )
+position = Vector2( 1900, -1168 )
 rotation = 2.35619
 scale = Vector2( 0.6, 0.6 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
+
+[node name="PowerUpSW1" parent="Battlefield/Middleground" index="12" instance=ExtResource( 4 )]
+position = Vector2( -2150, 900 )
+type = "rockets"
+
+[node name="PowerUpSW2" parent="Battlefield/Middleground" index="13" instance=ExtResource( 4 )]
+position = Vector2( -1600, 1450 )
+type = "waves"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -2150, 1450 )
@@ -180,5 +232,7 @@ zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+[connection signal="collected" from="Battlefield/Middleground/PowerUpSW1" to="Battlefield/HouseManager" method="_on_PowerUp_collected" binds= [ "sw" ]]
+[connection signal="collected" from="Battlefield/Middleground/PowerUpSW2" to="Battlefield/HouseManager" method="_on_PowerUp_collected" binds= [ "sw" ]]
 
 [editable path="CanvasLayer/Pause"]

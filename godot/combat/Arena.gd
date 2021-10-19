@@ -941,3 +941,7 @@ func is_ship_valid(ship : Ship) -> bool:
 func player_has_valid_ship(player : InfoPlayer) -> bool:
 	return player.id in player_ships
 	
+
+
+func _on_PowerUp_collected():
+	pass # Replace with function body.
