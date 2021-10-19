@@ -49,6 +49,7 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	for player_id in players:
 		var player: InfoPlayer = players[player_id]
 		player.new_match()
+		player.add_score(game_mode.starting_score)
 		player_scores.append(player)
 		
 		
