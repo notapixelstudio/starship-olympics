@@ -34,3 +34,10 @@ func start() -> void:
 
 func dive() -> void:
 	apply_central_impulse(Vector2.UP*200)
+
+func get_texture():
+	return $Graphics/Alien.texture
+	
+func is_rotatable():
+	return false
+	

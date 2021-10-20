@@ -2,6 +2,8 @@ extends Node2D
 
 var owner_ship: Ship
 
+onready var sprite = $Wrapper/Sprite
+
 func _ready():
 	owner_ship = get_parent() # WARNING
 	
@@ -52,20 +54,22 @@ func drop_holdable():
 	
 func show_holdable():
 	if held != null:
-		$Sprite.texture = held.get_texture()
+		sprite.texture = held.get_texture()
 		if held.show_on_top():
-			$Sprite.z_index = 20
-			$Sprite.z_as_relative = false
+			sprite.z_index = 20
+			sprite.z_as_relative = false
+			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5)
 		else:
-			$Sprite.position = Vector2(Ball.GRAB_DISTANCE, 0)
+			$Wrapper.position = Vector2(Ball.GRAB_DISTANCE, 0)
 
 func hide_holdable():
-	$Sprite.texture = null
-	$Sprite.position = Vector2(0,0)
-	$Sprite.z_index = 0
-	$Sprite.z_as_relative = true
+	sprite.texture = null
+	$Wrapper.position = Vector2(0,0)
+	sprite.z_index = 0
+	sprite.z_as_relative = true
 
 func _process(delta):
-	if held != null and held.show_on_top():
-		$Sprite.rotation = -global_rotation
-		$Sprite.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5).rotated(-global_rotation)
+	if held != null and not held.is_rotatable():
+		sprite.rotation = -global_rotation
+		if held.show_on_top():
+			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5).rotated(-global_rotation)

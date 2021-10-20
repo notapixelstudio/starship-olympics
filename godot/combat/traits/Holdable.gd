@@ -7,6 +7,7 @@ func validate():
 	assert(host.has_method('place_and_push')) # needed to conserve position and linear velocity of its dropper
 	assert(host.has_method('get_texture'))
 	assert(host.has_method('show_on_top'))
+	assert(host.has_method('is_rotatable'))
 	
 func _ready():
 	host_parent = host.get_parent()

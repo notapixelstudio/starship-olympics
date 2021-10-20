@@ -49,3 +49,5 @@ func get_texture():
 func show_on_top():
 	return type == 'crown'
 	
+func is_rotatable():
+	return type != 'crown'
