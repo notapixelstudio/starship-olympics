@@ -53,8 +53,19 @@ func drop_holdable():
 func show_holdable():
 	if held != null:
 		$Sprite.texture = held.get_texture()
-		$Sprite.position = Vector2(Ball.GRAB_DISTANCE, 0)
+		if held.show_on_top():
+			$Sprite.z_index = 20
+			$Sprite.z_as_relative = false
+		else:
+			$Sprite.position = Vector2(Ball.GRAB_DISTANCE, 0)
 
 func hide_holdable():
 	$Sprite.texture = null
 	$Sprite.position = Vector2(0,0)
+	$Sprite.z_index = 0
+	$Sprite.z_as_relative = true
+
+func _process(delta):
+	if held != null and held.show_on_top():
+		$Sprite.rotation = -global_rotation
+		$Sprite.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5).rotated(-global_rotation)

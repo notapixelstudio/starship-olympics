@@ -46,3 +46,6 @@ func get_strategy(ship, distance, game_mode):
 func get_texture():
 	return $Sprite.texture
 	
+func show_on_top():
+	return type == 'crown'
+	
