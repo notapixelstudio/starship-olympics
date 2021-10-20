@@ -18,12 +18,17 @@ func load_holdable(holdable) -> void:
 	if holdable == held:
 		return
 		
+	var replaced = null
 	if has_holdable():
+		replaced = held
 		drop_holdable()
 		
 	held = holdable
 	show_holdable()
 	Events.emit_signal("holdable_loaded", held, owner_ship)
+	
+	if replaced != null:
+		Events.emit_signal("holdable_replaced", replaced, held, owner_ship)
 
 func has_holdable() -> bool:
 	return held != null
@@ -73,3 +78,10 @@ func _process(delta):
 		sprite.rotation = -global_rotation
 		if held.show_on_top():
 			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5).rotated(-global_rotation)
+
+func empty():
+	if held != null:
+		held.free()
+		held = null
+		hide_holdable()
+	

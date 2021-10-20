@@ -43,6 +43,8 @@ func _on_sths_bumped(sth1, sth2) -> void:
 		cargo1.show_holdable()
 		cargo2.show_holdable()
 		
+		Events.emit_signal("holdable_swapped", cargo1.get_holdable(), cargo2.get_holdable(), sth1, sth2)
+		
 func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 	if ship.get_cargo().has_holdable():
 		ship.get_cargo().drop_holdable()

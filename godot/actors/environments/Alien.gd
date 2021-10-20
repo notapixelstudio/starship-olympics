@@ -1,4 +1,5 @@
 extends Ball
+class_name Alien
 
 const BASIC_FIGURES = [
 	'animals/a00',
@@ -20,14 +21,14 @@ const ADVANCED_FIGURES = [
 	'animals/b09',
 	'animals/b10'
 ]
-var alien : String
+var kind : String
 
 func _ready():
 	._ready()
 	remove_from_group('in_camera')
 	
-	alien = BASIC_FIGURES[randi() % len(BASIC_FIGURES)]
-	$Graphics/Alien.texture = load('res://assets/sprites/' + alien + '.png')
+	kind = BASIC_FIGURES[randi() % len(BASIC_FIGURES)]
+	$Graphics/Alien.texture = load('res://assets/sprites/' + kind + '.png')
 
 func start() -> void:
 	$Graphics/AnimationPlayer.play("Wobble")
@@ -40,4 +41,7 @@ func get_texture():
 	
 func is_rotatable():
 	return false
+	
+func get_kind():
+	return kind
 	

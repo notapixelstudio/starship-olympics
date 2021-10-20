@@ -9,6 +9,8 @@ signal sth_tapped(tapper, tappee)
 
 signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship)
+signal holdable_replaced(old, new, ship)
+signal holdable_swapped(holdable1, holdable2, ship1, ship2)
 
 signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
