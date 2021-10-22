@@ -77,13 +77,6 @@ func start_fight(selected_players: Array, fight_mode: String):
 	global.new_game(players.values())
 
 	navigate_to_map()
-
-func return_to_selection_screen():
-	map.queue_free()
-	add_child(parallax)
-	add_child(selection_screen)
-	selection_screen.reset()
-	return
 	
 var players_sequence : Array = []
 var selected_sets_by_player : Dictionary = {}
@@ -185,6 +178,7 @@ func _on_nav_to_character_selection():
 
 func _on_nav_to_map():
 	global.safe_destroy_session()
+	map.queue_free()
 	navigate_to_map()
 	
 func navigate_to_map():
