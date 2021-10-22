@@ -51,3 +51,7 @@ func show_on_top():
 	
 func is_rotatable():
 	return type != 'crown'
+
+func is_loadable():
+	return is_inside_tree()
+	

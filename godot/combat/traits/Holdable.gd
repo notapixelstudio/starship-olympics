@@ -8,6 +8,7 @@ func validate():
 	assert(host.has_method('get_texture'))
 	assert(host.has_method('show_on_top'))
 	assert(host.has_method('is_rotatable'))
+	assert(host.has_method('is_loadable'))
 	
 func _ready():
 	host_parent = host.get_parent()
