@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://actors/weapons/Magnet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://utils/Cargo.tscn" type="PackedScene" id=28]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=29]
+[ext_resource path="res://actors/weapons/Shields.tscn" type="PackedScene" id=30]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -103,6 +104,8 @@ order = 1
 
 [node name="LeftScythe" parent="." instance=ExtResource( 26 )]
 scale = Vector2( 1, -1 )
+
+[node name="Shields" parent="." instance=ExtResource( 30 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+var owner_ship : Ship
+
+func _ready():
+	owner_ship = get_parent()
+
+func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape):
+	if body is Bomb and body.get_owner_ship() != owner_ship:
+		body.queue_free()
+		
+		var local_shape_owner_id = $Area2D.shape_find_owner(local_shape)
+		var shield_side = $Area2D.shape_owner_get_owner(local_shape_owner_id)
+		
+		shield_side.call_deferred('set_disabled', true)
+		shield_side.set_visible(false)
+"
+
+[node name="Shields" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Left" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 0, -200, 150, -150, 200, 0, -200, 0, -150, -150 )
+
+[node name="Sprite" type="Sprite" parent="Area2D/Left"]
+modulate = Color( 0, 0.780392, 1, 0.466667 )
+position = Vector2( -200, -200 )
+scale = Vector2( 3.33, 3.33 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[node name="Right" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 0, 200, 150, 150, 200, 0, -200, 0, -150, 150 )
+
+[node name="Sprite" type="Sprite" parent="Area2D/Right"]
+modulate = Color( 0, 0.780392, 1, 0.466667 )
+position = Vector2( 200, 200 )
+rotation = -3.14159
+scale = Vector2( 3.33, 3.33 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_Area2D_body_shape_entered"]

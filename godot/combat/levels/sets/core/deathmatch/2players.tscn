@@ -244,6 +244,7 @@ random_types = [ "shield", "sword", "spikes", "miniballs" ]
 match_progress_trigger = 0.75
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
+type = "sword"
 random_types = [ "shield", "sword", "rockets", "miniballs" ]
 
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
@@ -347,7 +348,6 @@ match_progress_trigger = 0.7
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
 position = Vector2( -1000, -100 )
-type = "rockets"
 random_types = [ "shield", "sword", "rockets", "miniballs" ]
 
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
@@ -440,20 +440,18 @@ depth = 0
 match_progress_trigger = 0.01
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "sword"
 random_types = [ "shield", "miniballs", "spikes", "sword", "waves" ]
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
-type = "miniballs"
+type = "waves"
 random_types = [ "shield", "miniballs", "sword", "rockets", "waves" ]
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/D" index="6" instance=ExtResource( 19 )]
 match_progress_trigger = 0.75
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner3" index="0" instance=ExtResource( 18 )]
-type = "waves"
 random_types = [ "shield", "waves" ]
 
 [node name="E" type="Node2D" parent="Battlefield/Middleground/Variants" index="4"]
