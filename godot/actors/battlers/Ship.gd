@@ -577,13 +577,14 @@ func next_symbol():
 
 var shields_active = false
 func raise_shield(amount = 1):
-	shields_active = true
-	shields = min(max_shields, amount)
-	$PlayerInfo.update_shields(shields)
-	$Graphics/Sprite.material.set_shader_param('active', true)
-	$Graphics/Sprite/AnimationPlayer.play('appear')
-	yield($Graphics/Sprite/AnimationPlayer, 'animation_finished')
-	$Graphics/Sprite/AnimationPlayer.play('blink')
+	$Shields.up()
+	#shields_active = true
+	#shields = min(max_shields, amount)
+	#$PlayerInfo.update_shields(shields)
+	#$Graphics/Sprite.material.set_shader_param('active', true)
+	#$Graphics/Sprite/AnimationPlayer.play('appear')
+	#yield($Graphics/Sprite/AnimationPlayer, 'animation_finished')
+	#$Graphics/Sprite/AnimationPlayer.play('blink')
 	
 func lower_shield(amount = 1):
 	shields = max(0, shields - amount)
@@ -594,6 +595,12 @@ func lower_shield(amount = 1):
 		$Graphics/Sprite.material.set_shader_param('active', false)
 		$Graphics/Sprite/AnimationPlayer.stop()
 	
+func _on_Shields_hit():
+	make_invincible()
+	rebound()
+	if has_method('vibration_feedback'):
+		call('vibration_feedback', false)
+
 func wield_sword():
 	$Sword.set_active(true)
 	

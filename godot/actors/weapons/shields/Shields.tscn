@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/weapons/shields/ShieldLayer.tscn" type="PackedScene" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+signal hit
+
+var owner_ship : Ship
+
+export var layers := 2
+export var sectors := [2, 3]
+export var radii := [150.0, 50.0]
+export var angles := [0.0, PI/2]
+export var angle_speeds := [-PI/5, PI/5]
+export var padding := 16.0
+export var layer_scene : PackedScene
+
+var layer_children := []
+
+func _ready():
+	owner_ship = get_parent()
+	
+	var r := 0.0
+	for i in range(layers):
+		var layer = layer_scene.instance()
+		layer.rotation = angles[i]
+		layer.angle_speed = angle_speeds[i]
+		layer.sectors = sectors[i]
+		layer.inner_radius = r
+		r += radii[i]
+		layer.outer_radius = r
+		r += padding
+		add_child(layer)
+		layer_children.append(layer)
+		layer.connect('body_shape_entered', self, '_on_Area2D_body_shape_entered', [layer])
+		
+
+func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
+	if body is Bomb and body.get_owner_ship() != owner_ship:
+		body.queue_free()
+		
+		var local_shape_owner_id = layer.shape_find_owner(local_shape)
+		var sector = layer.shape_owner_get_owner(local_shape_owner_id)
+		
+		sector.down()
+		
+		emit_signal('hit')
+
+func up():
+	for layer in layer_children:
+		layer.up()
+
+func down():
+	for layer in layer_children:
+		layer.down()
+	
+func _process(delta):
+	rotation = -get_parent().global_rotation
+	
+"
+
+[node name="Shields" type="Node2D"]
+modulate = Color( 0, 0.568627, 1, 0.431373 )
+script = SubResource( 1 )
+layer_scene = ExtResource( 3 )
