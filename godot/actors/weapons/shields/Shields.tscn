@@ -9,11 +9,11 @@ signal hit
 
 var owner_ship : Ship
 
-export var layers := 2
-export var sectors := [2, 3]
-export var radii := [150.0, 50.0]
-export var angles := [0.0, PI/2]
-export var angle_speeds := [-PI/5, PI/5]
+export var layers := 3
+export var sectors := [2, 2, 3]
+export var radii := [150.0, 50.0, 25.0]
+export var angles := [0.0, PI/2, 0.0]
+export var angle_speeds := [-PI/5, PI/5, -PI/3]
 export var padding := 16.0
 export var layer_scene : PackedScene
 
@@ -36,7 +36,6 @@ func _ready():
 		layer_children.append(layer)
 		layer.connect('body_shape_entered', self, '_on_Area2D_body_shape_entered', [layer])
 		
-
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
 	if body is Bomb and body.get_owner_ship() != owner_ship:
 		body.queue_free()
@@ -50,7 +49,9 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer
 
 func up():
 	for layer in layer_children:
-		layer.up()
+		if not layer.is_fully_up():
+			layer.up()
+			break
 
 func down():
 	for layer in layer_children:
@@ -62,6 +63,6 @@ func _process(delta):
 "
 
 [node name="Shields" type="Node2D"]
-modulate = Color( 0, 0.568627, 1, 0.431373 )
+modulate = Color( 0, 0.568627, 1, 1 )
 script = SubResource( 1 )
 layer_scene = ExtResource( 3 )

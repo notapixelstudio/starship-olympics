@@ -596,7 +596,6 @@ func lower_shield(amount = 1):
 		$Graphics/Sprite/AnimationPlayer.stop()
 	
 func _on_Shields_hit():
-	make_invincible()
 	rebound()
 	if has_method('vibration_feedback'):
 		call('vibration_feedback', false)

@@ -4,7 +4,7 @@ export var sector_scene : PackedScene
 export var inner_radius := 100.0
 export var outer_radius := 200.0
 export var sectors := 2
-export var padding := 0.0
+export var padding := 8.0
 export var angle_speed := PI/5
 
 var sector_children := []
@@ -17,7 +17,7 @@ func _ready():
 		sector.outer_radius = outer_radius
 		sector.angle = angle
 		sector.rotation = angle*i
-		sector.position = Vector2(0, padding).rotated(sector.rotation)
+		sector.padding = padding
 		add_child(sector)
 		sector_children.append(sector)
 		
@@ -32,3 +32,8 @@ func down():
 	for sector in sector_children:
 		sector.down()
 		
+func is_fully_up():
+	for sector in sector_children:
+		if not sector.is_up():
+			return false
+	return true

@@ -223,6 +223,7 @@ func refresh():
 	$lineBelow.texture = line_texture
 	
 	# wall types
+	$lineBelow.self_modulate = Color(0.6,0.6,0.6,1) # default
 	var color
 	if type == TYPE.hostile:
 		color = Color(1.2, 0, 0.35)
