@@ -20,7 +20,7 @@ func _ready():
 		sector.padding = padding
 		#if i == 0:
 		#	sector.type = 'indestructible'
-		sector.type = 'regen'
+		#sector.type = 'regen'
 		add_child(sector)
 		sector_children.append(sector)
 		
