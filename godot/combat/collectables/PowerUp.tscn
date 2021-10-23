@@ -235,8 +235,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1.14995, 1.14995, 1.14995, 1 )
 position = Vector2( 0, -4000 )
 scale = Vector2( 1e-05, 1 )
 texture = ExtResource( 5 )
@@ -244,6 +242,7 @@ texture = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 2 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "reset"
@@ -253,5 +252,4 @@ anims/reset = SubResource( 5 )
 anims/tease = SubResource( 6 )
 
 [node name="Shadow" parent="." instance=ExtResource( 8 )]
-visible = false
 sprite = NodePath("../Sprite")
