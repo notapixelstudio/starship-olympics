@@ -16,12 +16,19 @@ func _draw():
 	draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
 
 func up():
-	self.call_deferred('set_disabled', false)
+	enable_collisions()
 	$AnimationPlayer.play("reset")
 
 func down():
-	self.call_deferred('set_disabled', true)
+	# collisions will be disabled near the end of the animation
+	$AnimationPlayer.stop() # this would make the sector flash again - too powerful and less intuitive
 	$AnimationPlayer.play("Disappear")
+	
+func enable_collisions():
+	self.call_deferred('set_disabled', false)
+	
+func disable_collisions():
+	self.call_deferred('set_disabled', true)
 	
 func is_up():
 	return not disabled
