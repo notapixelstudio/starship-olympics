@@ -1,6 +1,13 @@
 extends Node
 
 class_name TheSession
+var uuid : String
+
+func _init():
+	uuid = UUID.v4()
+	
+func get_uuid() -> String:
+	return uuid
 
 class PlayerArena:
 	# This class will store an Arena and the player who chose it
@@ -110,3 +117,11 @@ func get_last_match() -> Dictionary:
 		return matches[0]
 	else:
 		return {}
+
+func to_dict() -> Dictionary:
+	"""
+	"""
+	return {
+		"uuid": get_uuid(),
+		"matches": self.matches
+	}
