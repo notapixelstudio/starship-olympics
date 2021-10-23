@@ -12,7 +12,8 @@ func _ready():
 	set_polygon(create_polygon(COLLISION_POLYGON_PRECISION))
 
 func _draw():
-	draw_colored_polygon(create_polygon(DRAW_PRECISION, padding), Color.white, PoolVector2Array(), null, null, true)
+	var polygon = create_polygon(DRAW_PRECISION, padding)
+	draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
 
 func up():
 	self.call_deferred('set_disabled', false)
