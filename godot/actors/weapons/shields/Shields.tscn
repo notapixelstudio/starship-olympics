@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-signal hit
+signal hit(by)
 
 var owner_ship : Ship
 
@@ -46,7 +46,7 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer
 		
 		sector.down()
 		
-		emit_signal('hit')
+		emit_signal('hit', body)
 
 func up():
 	$AudioStreamPlayer2D.play()
