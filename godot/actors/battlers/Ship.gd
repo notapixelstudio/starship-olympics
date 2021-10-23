@@ -432,7 +432,6 @@ func fire(override_charge = -1, dash_only = false):
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		if shields > 0 and not for_good:
-			lower_shield()
 			make_invincible()
 			rebound()
 			if has_method('vibration_feedback'):
@@ -446,10 +445,6 @@ func die(killer : Ship, for_good = false):
 		#deadly_trail_powerup = false
 		#unwield_sword()
 		#unwield_flail()
-		
-		# raise shields again if you had that powerup
-		if shields_active:
-			raise_shield()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -575,25 +570,11 @@ func next_symbol():
 	$Graphics/ChargeBar/BombPreview.modulate = Bubble.symbol_colors[symbol]
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 
-var shields_active = false
-func raise_shield(amount = 1):
-	shields_active = true
-	shields = min(max_shields, amount)
-	$PlayerInfo.update_shields(shields)
-	$Graphics/Sprite.material.set_shader_param('active', true)
-	$Graphics/Sprite/AnimationPlayer.play('appear')
-	yield($Graphics/Sprite/AnimationPlayer, 'animation_finished')
-	$Graphics/Sprite/AnimationPlayer.play('blink')
-	
-func lower_shield(amount = 1):
-	shields = max(0, shields - amount)
-	$PlayerInfo.update_shields(shields)
-	if shields == 0:
-		$Graphics/Sprite/AnimationPlayer.play('cancel')
-		yield($Graphics/Sprite/AnimationPlayer, 'animation_finished')
-		$Graphics/Sprite.material.set_shader_param('active', false)
-		$Graphics/Sprite/AnimationPlayer.stop()
-	
+func _on_Shields_hit(by):
+	rebound((global_position-by.global_position).normalized())
+	if has_method('vibration_feedback'):
+		call('vibration_feedback', false)
+
 func wield_sword():
 	$Sword.set_active(true)
 	
@@ -652,7 +633,7 @@ func apply_powerup(powerup):
 	global.arena.show_msg(species, powerup.type.to_upper(), global_position)
 	
 	if powerup.type == 'shield':
-		raise_shield()
+		$Shields.up()
 	elif powerup.type == 'magnet':
 		wield_magnet()
 	elif powerup.type == 'snake':
@@ -688,8 +669,10 @@ func apply_powerup(powerup):
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		
-func rebound():
-	apply_central_impulse(Vector2(-2000,0).rotated(rotation))
+func rebound(direction = null):
+	if direction == null:
+		direction = Vector2(-1,0).rotated(rotation)
+	apply_central_impulse(2000*direction)
 	
 func get_deadly_trail():
 	return deadly_trail_powerup or deadly_trail

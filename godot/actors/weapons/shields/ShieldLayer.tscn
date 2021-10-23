@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/weapons/shields/ShieldLayer.gd" type="Script" id=1]
+[ext_resource path="res://actors/weapons/shields/ShieldSector.tscn" type="PackedScene" id=2]
+
+[node name="ShieldLayer" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 1 )
+sector_scene = ExtResource( 2 )

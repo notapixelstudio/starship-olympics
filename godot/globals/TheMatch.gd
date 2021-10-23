@@ -131,6 +131,9 @@ func get_score(id_player : String):
 	return player.get_score()
 	
 func set_score(id_player : String, amount : float, broadcasted = false):
+	if game_over:
+		return
+		
 	var player = get_player(id_player)
 	player.score = amount
 	
@@ -141,6 +144,9 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 	emit_signal('updated', player, broadcasted) # author
 	
 func add_score(id_player : String, amount : float, broadcasted = false):
+	if game_over:
+		return
+		
 	var player: InfoPlayer = get_player(id_player)
 	player.add_score(amount)
 	
@@ -151,6 +157,9 @@ func add_score(id_player : String, amount : float, broadcasted = false):
 	emit_signal('updated', player, broadcasted) # author
 
 func broadcast_score(id_player : String, amount : float):
+	if game_over:
+		return
+		
 	var player = get_player(id_player)
 	for p in player_scores:
 		if p.team != player.team:

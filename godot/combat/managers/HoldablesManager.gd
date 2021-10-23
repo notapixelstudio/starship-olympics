@@ -22,7 +22,7 @@ func _on_sth_is_overlapping_with_ship(sth, ship: Ship) -> void:
 	handle_collision(sth, ship)
 	
 func handle_collision(sth, ship: Ship) -> void:
-	if traits.has_trait(sth, 'Holdable'):
+	if traits.has_trait(sth, 'Holdable') and sth.is_loadable():
 		ship.get_cargo().load_holdable(sth)
 	elif traits.has_trait(sth, 'Dropper') or sth is Wall and sth.type == Wall.TYPE.glass: # FIXME if Wall is refactored, it should use Dropper
 		if ship.get_cargo().has_holdable():

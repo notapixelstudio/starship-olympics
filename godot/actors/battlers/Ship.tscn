@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://actors/weapons/Magnet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://utils/Cargo.tscn" type="PackedScene" id=28]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=29]
+[ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -103,6 +104,11 @@ order = 1
 
 [node name="LeftScythe" parent="." instance=ExtResource( 26 )]
 scale = Vector2( 1, -1 )
+
+[node name="Shields" parent="." instance=ExtResource( 30 )]
+
+[node name="Entity" type="Node" parent="Shields"]
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -262,6 +268,7 @@ texture = ExtResource( 19 )
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
+[connection signal="hit" from="Shields" to="." method="_on_Shields_hit"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]

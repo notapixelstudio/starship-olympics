@@ -223,6 +223,9 @@ func _on_NearArea_body_entered(body):
 			body.freeze()
 			queue_free()
 		
+func get_owner_ship():
+	return entity.get('Owned').get_owned_by()
+
 #signal frozen
 #func freeze():
 #	emit_signal("frozen", self)

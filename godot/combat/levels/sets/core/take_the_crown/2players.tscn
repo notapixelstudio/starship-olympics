@@ -195,7 +195,7 @@ jitter = 4.0
 chance = 0.4
 
 [node name="PowerUp" parent="Battlefield/Middleground/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "magnet"
+type = "sword"
 random_types = [ "magnet", "sword", "shield" ]
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground" index="7" instance=ExtResource( 19 )]
@@ -239,6 +239,7 @@ type = "crown"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -400, -400 )
 rotation = 0.785398
+controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]

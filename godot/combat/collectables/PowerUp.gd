@@ -6,6 +6,7 @@ class_name PowerUp
 
 export (String, 'shield', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs', 'waves', 'bubbles') var type = 'shield' setget set_type
 export var appear = true
+export var tease = false
 export var random_types = []
 
 signal collected
@@ -52,6 +53,9 @@ func _ready():
 	else:
 		refresh_type()
 	
+	if tease:
+		$AnimationPlayer.play('tease')
+		yield($AnimationPlayer, "animation_finished")
 	if appear:
 		$AnimationPlayer.play('AppearFhuFhuFhu')
 		yield($AnimationPlayer, "animation_finished")
