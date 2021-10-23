@@ -571,7 +571,7 @@ func next_symbol():
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 
 func _on_Shields_hit(by):
-	rebound((global_position-by.global_position).normalized())
+	rebound((global_position-by.global_position).normalized(), 1200.0)
 	if has_method('vibration_feedback'):
 		call('vibration_feedback', false)
 
@@ -669,10 +669,10 @@ func apply_powerup(powerup):
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		
-func rebound(direction = null):
+func rebound(direction = null, strength := 2000.0):
 	if direction == null:
 		direction = Vector2(-1,0).rotated(rotation)
-	apply_central_impulse(2000*direction)
+	apply_central_impulse(strength*direction)
 	
 func get_deadly_trail():
 	return deadly_trail_powerup or deadly_trail
