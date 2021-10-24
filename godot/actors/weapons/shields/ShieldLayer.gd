@@ -18,8 +18,8 @@ func _ready():
 		sector.angle = angle
 		sector.rotation = angle*i
 		sector.padding = padding
-		#if i == 0:
-		#	sector.type = 'indestructible'
+		if i == 0:
+			sector.type = 'indestructible'
 		#sector.type = 'regen'
 		add_child(sector)
 		sector_children.append(sector)

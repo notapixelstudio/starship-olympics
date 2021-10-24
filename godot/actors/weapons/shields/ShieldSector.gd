@@ -8,19 +8,22 @@ export (String, 'normal', 'indestructible', 'regen') var type ='normal'
 
 const COLLISION_POLYGON_PRECISION := PI/8
 const DRAW_PRECISION := PI/32
+var draw_precision : float
 
 func _ready():
+	draw_precision = DRAW_PRECISION
 	set_polygon(create_polygon(COLLISION_POLYGON_PRECISION))
 	match type:
 		'normal':
 			self_modulate = Color('#008bff')
 		'indestructible':
 			self_modulate = Color.white
+			draw_precision = PI/6 # more rough appearance
 		'regen':
 			self_modulate = Color.green
 
 func _draw():
-	var polygon = create_polygon(DRAW_PRECISION, padding)
+	var polygon = create_polygon(draw_precision, padding)
 	draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
 
 func up():

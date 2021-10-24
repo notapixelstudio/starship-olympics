@@ -578,6 +578,7 @@ jitter = 0.0
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner" index="0" instance=ExtResource( 18 )]
 tease = true
+random_types = [ "shield", "plate", "skin" ]
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/E" index="5" instance=ExtResource( 19 )]
 position = Vector2( -700, -600 )
@@ -587,6 +588,7 @@ chance = 0.9
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
 tease = true
+random_types = [ "shield", "plate", "skin" ]
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/E" index="6" instance=ExtResource( 19 )]
 position = Vector2( 700, 600 )
@@ -596,6 +598,7 @@ chance = 0.9
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner3" index="0" instance=ExtResource( 18 )]
 tease = true
+random_types = [ "shield", "plate", "skin" ]
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="9" instance=ExtResource( 18 )]
 position = Vector2( -1300, 900 )
@@ -614,7 +617,6 @@ species = ExtResource( 12 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1300, -900 )
 rotation = 3.14159
-controls = "joy2"
 species = ExtResource( 13 )
 
 [node name="Camera" parent="." index="6"]
