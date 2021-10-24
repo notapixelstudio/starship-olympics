@@ -54,11 +54,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/interface/hud/Bar.gd"
 }, {
-"base": "Node",
-"class": "BasicScreen",
-"language": "GDScript",
-"path": "res://special_scenes/BasicScreen.gd"
-}, {
 "base": "Diamond",
 "class": "BigDiamond",
 "language": "GDScript",
@@ -272,7 +267,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "MapButtonScene",
 "language": "GDScript",
-"path": "res://interface/MapButtonScene.gd"
+"path": "res://ui/settings/remapping/MapButtonScene.gd"
 }, {
 "base": "MapLocation",
 "class": "MapCheckpoint",
@@ -337,17 +332,12 @@ _global_script_classes=[ {
 "base": "Button",
 "class": "NavigatorButton",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/OptionButton.gd"
+"path": "res://ui/common_elements/NavigateButton.gd"
 }, {
 "base": "MapLocation",
 "class": "OptionCell",
 "language": "GDScript",
 "path": "res://map/OptionCell.gd"
-}, {
-"base": "MarginContainer",
-"class": "OptionContainer",
-"language": "GDScript",
-"path": "res://special_scenes/option_screen/OptionContainer.gd"
 }, {
 "base": "Component",
 "class": "Owned",
@@ -442,7 +432,7 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "ShowedButton",
 "language": "GDScript",
-"path": "res://interface/ButtonRepresentation.gd"
+"path": "res://ui/settings/remapping/elements/ButtonRepresentation.gd"
 }, {
 "base": "Resource",
 "class": "Species",
@@ -502,7 +492,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "UIOptionPanel",
 "language": "GDScript",
-"path": "res://interface/Panel.gd"
+"path": "res://ui/settings/PanelRemapControls.gd"
 }, {
 "base": "ColorRect",
 "class": "UIOptions",
@@ -539,7 +529,6 @@ _global_script_class_icons={
 "AudioLibrary": "",
 "Ball": "",
 "Bar": "",
-"BasicScreen": "",
 "BigDiamond": "",
 "Bomb": "",
 "BombCore": "",
@@ -597,7 +586,6 @@ _global_script_class_icons={
 "Mutator": "",
 "NavigatorButton": "",
 "OptionCell": "",
-"OptionContainer": "",
 "Owned": "",
 "Paddle": "",
 "PathStar": "",
@@ -647,7 +635,7 @@ secret_key.release="75ec3f402122495fff616460f45ffef6e0c04ce9"
 [application]
 
 config/name="superstarfighter"
-run/main_scene="res://special_scenes/Intro.tscn"
+run/main_scene="res://ui/menu_scenes/intro_screen/Intro.tscn"
 boot_splash/image="res://assets/art/translucid.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://logo.png"

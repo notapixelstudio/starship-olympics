@@ -14,7 +14,6 @@ export (String, "hidden", "locked", "unlocked") var status
 
 # templates
 onready var species_resources: Dictionary = get_resources(SPECIES_PATH)  # {int : Resources}
-onready var species_discovered_scene = preload("res://special_scenes/UnlockedSpecies.tscn")
 onready var games_resources: Dictionary = get_resources(GAMES_PATH)  # {int : Resources}
 onready var set_resources: Dictionary = get_resources(SET_PATH)  # {int : Resources}
 
@@ -140,15 +139,6 @@ func get_ordered_species() -> Array:
 
 func compare_by_id(a: Species, b: Species):
 	return a.species_id < b.species_id
-
-
-func unlock_species():
-	get_tree().paused = true
-	var unlocked_scene = species_discovered_scene.instance()
-	add_child(unlocked_scene)
-	yield(get_tree().create_timer(3), "timeout")
-	unlocked_scene.queue_free()
-	get_tree().paused = false
 
 
 func get_unlocked() -> Array:

@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/settings/PanelRemapControls.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/option_screen/ElemSlider.tscn" type="PackedScene" id=2]
+
+[node name="PanelAudio" type="Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -389.0
+margin_top = -278.5
+margin_right = 389.0
+margin_bottom = 278.5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="MarginContainer" parent="."]
+margin_top = 65.0
+margin_right = 778.0
+margin_bottom = 485.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
+margin_right = 778.0
+margin_bottom = 420.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 0.0
+margin_right = 778.0
+margin_bottom = 50.0
+elem_type = 1
+is_global = true
+element_path = "master_volume"
+label_description = "Volume Master"
+
+[node name="Music2" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 54.0
+margin_right = 778.0
+margin_bottom = 104.0
+elem_type = 1
+is_global = true
+element_path = "music_volume"
+label_description = "Volume Music"
+bus_name = "Music"
+
+[node name="Music3" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 108.0
+margin_right = 778.0
+margin_bottom = 158.0
+elem_type = 1
+is_global = true
+element_path = "sfx_volume"
+label_description = "Volume SFX"
+bus_name = "SFX"
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -129.5
+margin_top = -65.0
+margin_right = 110.5
+margin_bottom = -7.0
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

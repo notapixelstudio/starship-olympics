@@ -1,4 +1,4 @@
-extends OptionContainer
+extends MarginContainer
 
 onready var device = $UIButtonsContainer/Element.value
 
