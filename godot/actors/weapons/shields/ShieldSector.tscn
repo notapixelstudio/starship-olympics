@@ -17,6 +17,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "disable_collisions"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "reset"
