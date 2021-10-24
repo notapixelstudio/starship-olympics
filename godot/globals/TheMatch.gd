@@ -27,8 +27,14 @@ signal setup
 signal updated
 signal tick
 
+var uuid: String
+
 func _init():
 	global.the_match = self
+	uuid = UUID.v4()
+	
+func get_uuid() -> String:
+	return uuid
 
 func start():
 	set_process(true)
@@ -170,21 +176,16 @@ func update_stats(info_player: InfoPlayer, amount: int, stat: String):
 	var stat_value = info_player.stats.get(stat)
 	info_player.stats.set(stat, stat_value + amount)
 
-func to_JSON():
-	var ret = {
-		
-	}
-	return ret
-
 	
 func get_player(id_player: String) -> InfoPlayer:
 	return players[id_player]
 
-func summary()->Dictionary:
+func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
 	return {
+		"uuid": get_uuid(),
 		"winners": winners
 	}
 
