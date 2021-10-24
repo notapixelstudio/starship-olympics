@@ -71,7 +71,8 @@ func refresh_type():
 	$TeleportBeam.modulate = self.get_color(type)
 	
 func activate():
-	$CollisionShape2D.set_deferred('disabled', false)
+	if not Engine.editor_hint:
+		$CollisionShape2D.set_deferred('disabled', false)
 
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 1}
