@@ -27,9 +27,9 @@ func _ready():
 func _process(delta):
 	rotation += delta * angle_speed
 
-func up():
+func up(type):
 	for sector in sector_children:
-		sector.up()
+		sector.up(type)
 
 func down():
 	for sector in sector_children:

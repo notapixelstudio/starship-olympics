@@ -48,11 +48,11 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer
 		
 		emit_signal('hit', body)
 
-func up():
+func up(type):
 	$AudioStreamPlayer2D.play()
 	for layer in layer_children:
 		if not layer.is_fully_up():
-			layer.up()
+			layer.up(type)
 			break
 
 func down():
