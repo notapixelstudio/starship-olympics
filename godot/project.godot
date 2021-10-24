@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/NPC/Bull.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://actors/enemies/Bullet.gd"
+}, {
 "base": "Area2D",
 "class": "Cell",
 "language": "GDScript",
@@ -499,6 +504,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://interface/Option.gd"
 }, {
+"base": "ColorRect",
+"class": "UIOptions",
+"language": "GDScript",
+"path": "res://interface/Option.gd"
+}, {
 "base": "Reference",
 "class": "UUID",
 "language": "GDScript",
@@ -538,6 +548,7 @@ _global_script_class_icons={
 "Brick": "",
 "Bubble": "",
 "Bull": "",
+"Bullet": "",
 "Cell": "",
 "CollectableSpawner": "",
 "CommandRemap": "",

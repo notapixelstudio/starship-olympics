@@ -632,8 +632,8 @@ func apply_powerup(powerup):
 	
 	global.arena.show_msg(species, powerup.type.to_upper(), global_position)
 	
-	if powerup.type == 'shield':
-		$Shields.up()
+	if powerup.type in ['shield', 'plate', 'skin']:
+		$Shields.up(powerup.type)
 	elif powerup.type == 'magnet':
 		wield_magnet()
 	elif powerup.type == 'snake':

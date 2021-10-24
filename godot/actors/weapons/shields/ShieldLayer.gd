@@ -18,15 +18,18 @@ func _ready():
 		sector.angle = angle
 		sector.rotation = angle*i
 		sector.padding = padding
+		if i == 0:
+			sector.type = 'indestructible'
+		#sector.type = 'regen'
 		add_child(sector)
 		sector_children.append(sector)
 		
 func _process(delta):
 	rotation += delta * angle_speed
 
-func up():
+func up(type):
 	for sector in sector_children:
-		sector.up()
+		sector.up(type)
 
 func down():
 	for sector in sector_children:

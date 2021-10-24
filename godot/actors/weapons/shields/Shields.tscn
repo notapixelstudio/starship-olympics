@@ -38,7 +38,7 @@ func _ready():
 		layer.connect('body_shape_entered', self, '_on_Area2D_body_shape_entered', [layer])
 		
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
-	if body is Bomb and body.get_owner_ship() != owner_ship:
+	if body is Bomb and body.get_owner_ship() != owner_ship or body is Bullet:
 		body.queue_free()
 		
 		var local_shape_owner_id = layer.shape_find_owner(local_shape)
@@ -48,11 +48,11 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer
 		
 		emit_signal('hit', body)
 
-func up():
+func up(type):
 	$AudioStreamPlayer2D.play()
 	for layer in layer_children:
 		if not layer.is_fully_up():
-			layer.up()
+			layer.up(type)
 			break
 
 func down():
@@ -65,9 +65,9 @@ func _process(delta):
 "
 
 [node name="Shields" type="Node2D"]
-modulate = Color( 0, 0.568627, 1, 1 )
 script = SubResource( 1 )
 layer_scene = ExtResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
+bus = "SFX"
