@@ -1,6 +1,6 @@
 extends Node
 
-const LOG_PATH ="user://log.ndjson"
+const LOG_PATH = "user://log.ndjson"
 var file : File
 
 func datetime_to_str(datetime: Dictionary, fmt = "") -> String:
