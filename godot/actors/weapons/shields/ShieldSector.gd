@@ -20,6 +20,7 @@ func _draw():
 
 func up(new_type):
 	type = new_type
+	draw_precision = DRAW_PRECISION
 	match type:
 		'shield':
 			self_modulate = Color('#008bff')

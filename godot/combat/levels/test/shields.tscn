@@ -8,7 +8,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=9]
+[ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=10]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 
@@ -29,7 +29,7 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 hide_grid = true
-solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -42,8 +42,8 @@ rotation_degrees = 30.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0, 0.173333, 0.26, 1 )
-bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+fg_color = Color( 0.3, 0.2012, 0.144, 1 )
+bg_color = Color( 0.28, 0.19082, 0.1428, 1 )
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 position = Vector2( -504, 0 )
