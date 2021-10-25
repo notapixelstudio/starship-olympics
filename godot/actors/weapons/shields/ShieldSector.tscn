@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/weapons/shields/ShieldSector.gd" type="Script" id=1]
 
@@ -72,8 +72,24 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ) ]
 }
 
+[sub_resource type="GDScript" id=4]
+script/source = "extends Node2D
+
+var polygon = null
+
+func _draw():
+	if polygon != null:
+		draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
+
+func _process(_delta):
+	position = global.isometric_offset.rotated(-global_rotation)
+	
+"
+
 [node name="Sector" type="CollisionPolygon2D"]
 modulate = Color( 1, 1, 1, 0 )
+z_index = 20
+z_as_relative = false
 disabled = true
 script = ExtResource( 1 )
 
@@ -81,3 +97,9 @@ script = ExtResource( 1 )
 anims/Disappear = SubResource( 1 )
 anims/IndestructibleHit = SubResource( 2 )
 anims/reset = SubResource( 3 )
+
+[node name="Shadow" type="Node2D" parent="."]
+modulate = Color( 0, 0, 0, 0.54902 )
+z_index = -5
+z_as_relative = false
+script = SubResource( 4 )
