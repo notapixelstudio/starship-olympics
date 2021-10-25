@@ -204,7 +204,6 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
-debug = true
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
 visible = false
@@ -577,6 +576,7 @@ match_progress_trigger = 0.01
 jitter = 0.0
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner" index="0" instance=ExtResource( 18 )]
+type = "skin"
 tease = true
 random_types = [ "shield", "plate", "skin" ]
 
@@ -587,6 +587,7 @@ jitter = 2.0
 chance = 0.9
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
+type = "plate"
 tease = true
 random_types = [ "shield", "plate", "skin" ]
 
@@ -597,6 +598,7 @@ jitter = 2.0
 chance = 0.9
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner3" index="0" instance=ExtResource( 18 )]
+type = "plate"
 tease = true
 random_types = [ "shield", "plate", "skin" ]
 

@@ -18,9 +18,6 @@ func _ready():
 		sector.angle = angle
 		sector.rotation = angle*i
 		sector.padding = padding
-		if i == 0:
-			sector.type = 'indestructible'
-		#sector.type = 'regen'
 		add_child(sector)
 		sector_children.append(sector)
 		
@@ -40,3 +37,13 @@ func is_fully_up():
 		if not sector.is_up():
 			return false
 	return true
+	
+func has_plate():
+	for sector in sector_children:
+		if sector.type == 'plate':
+			return true
+	return false
+
+func get_sectors() -> Array:
+	return sector_children
+	

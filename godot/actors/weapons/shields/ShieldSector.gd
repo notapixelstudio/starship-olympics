@@ -51,6 +51,9 @@ func disable_collisions():
 	
 func is_up():
 	return not disabled
+	
+func is_available():
+	return not self.is_up() and not type == 'skin' # skin sectors are never available
 
 func create_polygon(precision : float, padding := 0.0) -> PoolVector2Array:
 	var steps := ceil(angle / precision)
