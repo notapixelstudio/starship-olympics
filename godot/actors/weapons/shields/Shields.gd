@@ -129,7 +129,11 @@ func up(type) -> bool:
 func down():
 	for layer in layer_children:
 		layer.down()
-	
+		
+func switch_off():
+	for layer in layer_children:
+		layer.switch_off()
+		
 func _process(delta):
 	rotation = -get_parent().global_rotation
 	

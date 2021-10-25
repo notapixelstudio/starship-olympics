@@ -47,13 +47,19 @@ func disable_collisions():
 	self.call_deferred('set_disabled', true)
 	if type == 'skin':
 		yield(get_tree().create_timer(5), "timeout")
-		up('skin')
+		if type == 'skin': # shield type could have changed (e.g., if switched off)
+			up('skin')
 	
 func is_up():
 	return not disabled
 	
 func is_available():
 	return not self.is_up() and not type == 'skin' # skin sectors are never available
+	
+func switch_off():
+	type = 'shield'
+	disable_collisions()
+	modulate = Color(1.0,1.0,1.0,0.0)
 
 func create_polygon(precision : float, padding := 0.0) -> PoolVector2Array:
 	var steps := ceil(angle / precision)

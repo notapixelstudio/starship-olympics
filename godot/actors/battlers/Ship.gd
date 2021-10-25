@@ -440,11 +440,8 @@ func die(killer : Ship, for_good = false):
 			
 		alive = false
 		
-		# powerups wear off
-		#set_bomb_type(default_bomb_type)
-		#deadly_trail_powerup = false
-		#unwield_sword()
-		#unwield_flail()
+		# shields wear off
+		$Shields.switch_off()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish

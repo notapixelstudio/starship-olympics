@@ -32,6 +32,10 @@ func down():
 	for sector in sector_children:
 		sector.down()
 		
+func switch_off():
+	for sector in sector_children:
+		sector.switch_off()
+		
 func is_fully_up():
 	for sector in sector_children:
 		if not sector.is_up():
