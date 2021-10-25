@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "CanvasLayer",
-"class": "Alert",
-"language": "GDScript",
-"path": "res://interface/AlertMessage.gd"
-}, {
 "base": "Ball",
 "class": "Alien",
 "language": "GDScript",
@@ -117,7 +112,7 @@ _global_script_classes=[ {
 "base": "MarginContainer",
 "class": "CommandRemap",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/CommandOption.gd"
+"path": "res://ui/settings/remapping/elements/RemapAction.gd"
 }, {
 "base": "Node",
 "class": "Component",
@@ -132,7 +127,7 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "Controller",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/Controller.gd"
+"path": "res://ui/menu_scenes/option_screen/Controller.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Crown",
@@ -237,7 +232,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "GenericOption",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/GenericOption.gd"
+"path": "res://ui/common_elements/GenericOption.gd"
 }, {
 "base": "Reference",
 "class": "GlowColor",
@@ -404,11 +399,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
-"base": "Button",
-"class": "RemapButton",
-"language": "GDScript",
-"path": "res://special_scenes/input_mapping/ActionRemapButton.gd"
-}, {
 "base": "Node2D",
 "class": "Ripple",
 "language": "GDScript",
@@ -497,17 +487,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "UIOptionPanel",
 "language": "GDScript",
-"path": "res://ui/settings/PanelRemapControls.gd"
+"path": "res://ui/settings/UIOptionPanel.gd"
 }, {
 "base": "ColorRect",
 "class": "UIOptions",
 "language": "GDScript",
-"path": "res://interface/Option.gd"
-}, {
-"base": "ColorRect",
-"class": "UIOptions",
-"language": "GDScript",
-"path": "res://interface/Option.gd"
+"path": "res://ui/menu_scenes/option_screen/OptionScreen.gd"
 }, {
 "base": "Reference",
 "class": "UUID",
@@ -530,7 +515,6 @@ _global_script_classes=[ {
 "path": "res://map/Waypoint.gd"
 } ]
 _global_script_class_icons={
-"Alert": "",
 "Alien": "",
 "Arena": "",
 "ArenaStyle": "",
@@ -609,7 +593,6 @@ _global_script_class_icons={
 "Portal": "",
 "Portalz": "",
 "PowerUp": "",
-"RemapButton": "",
 "Ripple": "",
 "Rock": "",
 "Rule": "",
