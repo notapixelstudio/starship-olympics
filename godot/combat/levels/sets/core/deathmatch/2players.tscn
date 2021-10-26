@@ -277,6 +277,7 @@ chance = 0.8
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
 type = "plate"
 tease = true
+random_types = [ "plate", "shields" ]
 
 [node name="DramaticSpawner5" parent="Battlefield/Middleground/Variants/A" index="7" instance=ExtResource( 19 )]
 position = Vector2( -1000, 0 )
@@ -383,6 +384,7 @@ chance = 0.8
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
 type = "shields"
 tease = true
+random_types = [ "shields", "plate" ]
 
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
 visible = false
@@ -477,7 +479,7 @@ jitter = 2.0
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner2" index="0" instance=ExtResource( 18 )]
-type = "plate"
+type = "shields"
 tease = true
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
@@ -486,7 +488,7 @@ jitter = 2.0
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner3" index="0" instance=ExtResource( 18 )]
-type = "plate"
+type = "shields"
 tease = true
 
 [node name="E" type="Node2D" parent="Battlefield/Middleground/Variants" index="4"]
@@ -540,6 +542,7 @@ jitter = 2.0
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner" index="0" instance=ExtResource( 18 )]
 type = "plate"
 tease = true
+random_types = [ "plate", "shields" ]
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/E" index="5" instance=ExtResource( 19 )]
 position = Vector2( -1000, 600 )
