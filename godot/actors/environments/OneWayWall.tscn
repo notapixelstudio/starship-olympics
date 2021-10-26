@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/patterns/oneway2.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1200, 100 )
+extents = Vector2( 450, 100 )
 
 [node name="OneWayWall" type="StaticBody2D"]
 collision_layer = 16
@@ -13,11 +13,11 @@ script = ExtResource( 1 )
 
 [node name="ShadowPolygon2D" type="Polygon2D" parent="."]
 modulate = Color( 0.53, 0.53, 0.53, 1 )
-position = Vector2( 0, 32 )
+position = Vector2( -1.39876e-06, 32 )
 z_index = -14
 z_as_relative = false
 texture = ExtResource( 2 )
-texture_offset = Vector2( 0, 100 )
+texture_offset = Vector2( 0, 99 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -300, -100, 300, -100, 100, 100, -100, 100 )
 
@@ -26,7 +26,7 @@ visible = false
 modulate = Color( 1.1, 1.1, 1.1, 1 )
 self_modulate = Color( 1, 1, 1, 0.705882 )
 texture = ExtResource( 2 )
-texture_offset = Vector2( 100, 100 )
+texture_offset = Vector2( 100, 99 )
 texture_scale = Vector2( 0.99, 0.99 )
 polygon = PoolVector2Array( -300, -100, 300, -100, 100, 100, -100, 100 )
 
