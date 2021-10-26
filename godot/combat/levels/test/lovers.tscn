@@ -27,6 +27,7 @@ texture = ExtResource( 12 )
 centered = false
 
 [node name="OuterGlass" type="Polygon2D" parent="Battlefield/Background" index="0"]
+visible = false
 modulate = Color( 0.4, 0.7, 1.2, 1 )
 self_modulate = Color( 1, 1, 1, 0.2 )
 texture = ExtResource( 6 )
@@ -36,7 +37,28 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
+[node name="OutsideWallz" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( 3.05176e-05, 0 )
+hollow = true
+offset = 800
+type = 2
+hide_grid = true
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWallz" index="8"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -3.05176e-05, 1200, 2300, 800, 2300, -800 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWallz" index="9"]
+visible = false
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -3.05176e-05, 1200, 2300, 800, 2300, -800 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 11 )]
 position = Vector2( 3.05176e-05, 0 )
 collision_layer = 2147483648
 hollow = true
@@ -51,11 +73,11 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -3.05176e-05, 1200, 2300, 800, 2300, -800 )
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -600, 1100, -600, -900, -3.05176e-05, -1050, 600, -900, 600, 1100, 2300, 800, 2300, -800 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
-polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -3.05176e-05, 1200, 2300, 800, 2300, -800 )
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -600, 1100, -600, -900, -3.05176e-05, -1050, 600, -900, 600, 1100, 2300, 800, 2300, -800 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
