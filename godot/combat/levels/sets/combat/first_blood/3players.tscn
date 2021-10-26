@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/signs/first_blood.svg" type="Texture" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
@@ -85,6 +86,12 @@ polygon = PoolVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1
 [node name="Polygon4players" type="Polygon2D" parent="Battlefield/Background" index="6"]
 visible = false
 polygon = PoolVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -3000, -1000, -1000 )
+
+[node name="first_blood" type="Sprite" parent="Battlefield/Background" index="7"]
+self_modulate = Color( 0.85, 0, 0.325833, 0.117647 )
+position = Vector2( 0, 900 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( 200, -100 )
