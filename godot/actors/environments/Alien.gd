@@ -23,6 +23,9 @@ const ADVANCED_FIGURES = [
 ]
 var kind : String
 
+var direction := Vector2.UP
+var step := 3
+
 func _ready():
 	._ready()
 	remove_from_group('in_camera')
@@ -34,8 +37,18 @@ func start() -> void:
 	$Graphics/AnimationPlayer.play("Wobble")
 
 func dive() -> void:
-	apply_central_impulse(Vector2.UP*200)
-
+	apply_central_impulse(direction*200)
+	match step:
+		0:
+			direction = Vector2.UP
+		1,2,3,4:
+			direction = Vector2.LEFT
+		5:
+			direction = Vector2.UP
+		6,7,8,9:
+			direction = Vector2.RIGHT
+	step = (step+1) % 10
+	
 func get_texture():
 	return $Graphics/Alien.texture
 	
