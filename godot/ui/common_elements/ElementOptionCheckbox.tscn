@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/menu_scenes/option_screen/CheckBoxOption.gd" type="Script" id=2]
 [ext_resource path="res://ui/common_elements/ElementOptionCheckbox.gd" type="Script" id=3]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=4]
 
@@ -13,11 +12,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-elem_type = 0
-is_global = false
-element_path = ""
-label_description = ""
-node_owner_path = NodePath("")
 
 [node name="ElementCheckbox" type="CheckBox" parent="."]
 margin_right = 247.0
@@ -25,7 +19,6 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 0, 31 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
-script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="ElementCheckbox"]
 

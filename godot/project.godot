@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "MarginContainer",
 "class": "CommandRemap",
 "language": "GDScript",
-"path": "res://ui/settings/remapping/elements/RemapAction.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/RemapAction.gd"
 }, {
 "base": "Node",
 "class": "Component",
@@ -127,7 +127,7 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "Controller",
 "language": "GDScript",
-"path": "res://ui/menu_scenes/option_screen/Controller.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/joypad/Controller.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Crown",
@@ -267,7 +267,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "MapButtonScene",
 "language": "GDScript",
-"path": "res://ui/settings/remapping/MapButtonScene.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/AddBinding.gd"
 }, {
 "base": "MapLocation",
 "class": "MapCheckpoint",
@@ -427,7 +427,7 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "ShowedButton",
 "language": "GDScript",
-"path": "res://ui/settings/remapping/elements/ButtonRepresentation.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.gd"
 }, {
 "base": "Resource",
 "class": "Species",
@@ -487,12 +487,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "UIOptionPanel",
 "language": "GDScript",
-"path": "res://ui/settings/UIOptionPanel.gd"
+"path": "res://ui/option_scenes/settings/UIOptionPanel.gd"
 }, {
 "base": "ColorRect",
 "class": "UIOptions",
 "language": "GDScript",
-"path": "res://ui/menu_scenes/option_screen/OptionScreen.gd"
+"path": "res://ui/option_scenes/OptionScreen.gd"
 }, {
 "base": "Reference",
 "class": "UUID",

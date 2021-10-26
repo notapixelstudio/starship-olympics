@@ -1,14 +1,45 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ui/settings/UIOptionPanel.gd" type="Script" id=1]
-[ext_resource path="res://interface/UIButtonsContainerMapping.gd" type="Script" id=2]
+[ext_resource path="res://interface/UIButtonsContainerMapping.gd" type="Script" id=1]
+[ext_resource path="res://ui/option_scenes/settings/remapping/PanelRemapping.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/common_elements/NavigateButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/settings/remapping/PanelRemapping.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+class_name UIOptionPanel
+
+onready var content = $Content
+onready var back_button = $Back
+# N.B.: \"find_node\" is not really efficient but we need to be generic 
+# moreover Option will have few  
+onready var container = find_node(\"UIButtonsContainer\", true)
+
+func _ready():
+	add_to_group(\"UIOptionPanel\")
+	assert(content)
+	assert(container)
+	assert(back_button)
+	for button in get_tree().get_nodes_in_group(\"UI_Navigator\"):
+		assert (button is NavigatorButton)
+		button.connect(\"request_nav_to\", self, \"_on_nav_pressed\")
+	
+	
+	
+func _on_nav_pressed(title: String, nav_menu: PackedScene):
+	Events.emit_signal(\"ui_nav_to\", title, nav_menu.instance())
+	
+func _on_Back_pressed():
+	Events.emit_signal(\"ui_back_menu\")
+
+func get_focus():
+	container.get_child(0).grab_focus()
+"
 
 [node name="PanelMain" type="Control"]
 margin_right = 585.0
 margin_bottom = 340.0
-script = ExtResource( 1 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -29,7 +60,7 @@ __meta__ = {
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 538.0
 margin_bottom = 320.0
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="Toggle" type="CheckButton" parent="Content/UIButtonsContainer"]
 margin_right = 538.0
@@ -47,7 +78,7 @@ margin_bottom = 104.0
 [node name="Keyboard" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 3 )]
 margin_right = 254.0
 text = "CONFIGURE KEYBOARD"
-option_menu = ExtResource( 4 )
+option_menu = ExtResource( 2 )
 title = "Configure keyboard"
 
 [node name="Joypad" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 3 )]
@@ -55,7 +86,7 @@ margin_top = 54.0
 margin_right = 254.0
 margin_bottom = 104.0
 text = "CONFIGURE JOYPADS"
-option_menu = ExtResource( 4 )
+option_menu = ExtResource( 2 )
 title = "configure joypads"
 
 [node name="Custom" type="HBoxContainer" parent="Content/UIButtonsContainer/Dynamic"]
@@ -68,7 +99,7 @@ margin_right = 280.0
 margin_bottom = 104.0
 disabled = true
 text = "CUSTOM CONFIGURATION"
-option_menu = ExtResource( 4 )
+option_menu = ExtResource( 2 )
 title = "custom configuration"
 
 [node name="Back" type="Button" parent="."]

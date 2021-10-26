@@ -1,24 +1,24 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://interface/themes/grey/normal.tres" type="StyleBox" id=1]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://ui/settings/remapping/elements/RemapAction.gd" type="Script" id=3]
-[ext_resource path="res://ui/settings/remapping/elements/ButtonRepresentation.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/settings/remapping/MapButtonScene.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui/settings/remapping/elements/ScrollContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/RemapAction.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/AddBinding.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/ScrollContainer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" type="PackedScene" id=6]
 
 [node name="RemapAction" type="MarginContainer"]
 margin_right = 1126.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 944, 50 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-remapScene = ExtResource( 5 )
+remapScene = ExtResource( 4 )
 action = "up"
 device = "joy1"
-button_scene = ExtResource( 4 )
+button_scene = ExtResource( 6 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 1126.0
@@ -37,7 +37,7 @@ margin_top = 39.0
 margin_right = 10.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 10, 0 )
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
 [node name="Description" type="Label" parent="Container"]
@@ -45,7 +45,7 @@ margin_left = 14.0
 margin_top = 39.0
 margin_right = 43.0
 margin_bottom = 60.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "UP"
 
 [node name="Padding3" type="Label" parent="Container"]
@@ -55,10 +55,10 @@ margin_right = 584.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 11
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 uppercase = true
 
-[node name="ScrollContainer" parent="Container" instance=ExtResource( 6 )]
+[node name="ScrollContainer" parent="Container" instance=ExtResource( 5 )]
 margin_left = 588.0
 margin_right = 1126.0
 margin_bottom = 100.0

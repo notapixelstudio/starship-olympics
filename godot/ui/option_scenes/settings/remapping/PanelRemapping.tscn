@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/BannerInfo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/option_scenes/settings/remapping/RemappingContainer.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+class_name UIOptionPanel
+
+onready var content = $Content
+onready var back_button = $Back
+# N.B.: \"find_node\" is not really efficient but we need to be generic 
+# moreover Option will have few  
+onready var container = find_node(\"UIButtonsContainer\", true)
+
+func _ready():
+	add_to_group(\"UIOptionPanel\")
+	assert(content)
+	assert(container)
+	assert(back_button)
+	for button in get_tree().get_nodes_in_group(\"UI_Navigator\"):
+		assert (button is NavigatorButton)
+		button.connect(\"request_nav_to\", self, \"_on_nav_pressed\")
+	
+	
+	
+func _on_nav_pressed(title: String, nav_menu: PackedScene):
+	Events.emit_signal(\"ui_nav_to\", title, nav_menu.instance())
+	
+func _on_Back_pressed():
+	Events.emit_signal(\"ui_back_menu\")
+
+func get_focus():
+	container.get_child(0).grab_focus()
+"
+
+[node name="PanelRemapping" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -559.0
+margin_top = -280.0
+margin_right = 560.0
+margin_bottom = 296.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BannerInfo" parent="." instance=ExtResource( 1 )]
+margin_top = -57.0
+margin_right = 620.0
+margin_bottom = -5.0
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 64.0
+text = "NavBar"
+align = 1
+valign = 1
+
+[node name="Content" type="ScrollContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 30.0
+margin_top = -222.0
+margin_right = -60.0
+margin_bottom = 203.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" parent="Content" instance=ExtResource( 2 )]
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 0.22118
+anchor_top = 1.0
+anchor_right = 0.22118
+anchor_bottom = 1.00347
+margin_left = -214.5
+margin_top = -64.0
+margin_right = 215.5
+margin_bottom = -8.0
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
