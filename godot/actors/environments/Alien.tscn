@@ -7,7 +7,7 @@
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -56,7 +56,7 @@ texture = ExtResource( 2 )
 visible = false
 
 [node name="Graphics" type="Node2D" parent="." index="7"]
-scale = Vector2( 1.1, 0.9 )
+scale = Vector2( 1.036, 0.964 )
 
 [node name="Alien" type="Sprite" parent="Graphics" index="0"]
 scale = Vector2( 0.964, 1.036 )
@@ -64,7 +64,8 @@ texture = ExtResource( 3 )
 region_rect = Rect2( -8, -8, 130, 123 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics" index="1"]
-anims/Wobble = SubResource( 2 )
+playback_speed = 2.0
+anims/Wobble = SubResource( 1 )
 
 [node name="Shadow" parent="Graphics" index="2" instance=ExtResource( 6 )]
 scale = Vector2( 0.964, 1.036 )

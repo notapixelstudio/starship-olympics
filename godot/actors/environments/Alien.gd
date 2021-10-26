@@ -37,7 +37,11 @@ func start() -> void:
 	$Graphics/AnimationPlayer.play("Wobble")
 
 func dive() -> void:
-	apply_central_impulse(direction*200)
+	var strength = 200
+	if direction == Vector2.UP:
+		strength = 400
+		
+	apply_central_impulse(direction*strength)
 	match step:
 		0:
 			direction = Vector2.UP

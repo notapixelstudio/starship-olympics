@@ -7,17 +7,17 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "hive_fill"
+id = "cute_invaders"
 is_mutator = false
-name = ""
+name = "Cute Invaders"
 icon = ExtResource( 3 )
 logo = ExtResource( 2 )
 arena_style = ExtResource( 4 )
 description = "fill more cells than opponents"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
-max_timeout = 300
-max_score = 500
+max_timeout = 60
+max_score = 20
 starting_score = 0
 cumulative = false
 starting_lives = -1
@@ -30,7 +30,7 @@ goal = false
 survival = false
 race = false
 pursuing_bombs = true
-shoot_bombs = false
+shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
 bomb_type = 0
