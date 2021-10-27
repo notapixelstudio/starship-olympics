@@ -22,4 +22,4 @@ func set_kind(v):
 	if not is_inside_tree():
 		yield(self, 'ready')
 	$Alien.texture = load('res://assets/sprites/animals/a0' + str(kind) + '.png')
-	$Soil.modulate = COLORS[kind]
+	$Ground.modulate = COLORS[kind]

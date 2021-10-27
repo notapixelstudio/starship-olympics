@@ -49,7 +49,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 2 )
-width = 5000
+width = 6500
 height = 3000
 
 [node name="GridWrapper" parent="Battlefield/Background" index="3"]
@@ -61,44 +61,48 @@ fg_color = Color( 0.42, 0.189, 0.189, 1 )
 bg_color = Color( 0.4, 0.124, 0.1286, 1 )
 
 [node name="Homeworld" parent="Battlefield/Background" index="5" instance=ExtResource( 3 )]
-position = Vector2( -1650, -700 )
+position = Vector2( -2000, -750 )
 ground_radius = 350
 atmosphere_radius = 800
 
 [node name="Homeworld2" parent="Battlefield/Background" index="6" instance=ExtResource( 3 )]
-position = Vector2( -1950, 950 )
+position = Vector2( -2500, 950 )
 atmosphere_radius = 750
 kind = 3
 
 [node name="Homeworld3" parent="Battlefield/Background" index="7" instance=ExtResource( 3 )]
-position = Vector2( -850, 300 )
+position = Vector2( -1350, 450 )
 ground_radius = 150
 atmosphere_radius = 400
 kind = 4
 
 [node name="Homeworld4" parent="Battlefield/Background" index="8" instance=ExtResource( 3 )]
-position = Vector2( -2950, -450 )
+position = Vector2( -3050, -100 )
 ground_radius = 125
 atmosphere_radius = 350
-kind = 3
+kind = 1
 
 [node name="Homeworld5" parent="Battlefield/Background" index="9" instance=ExtResource( 3 )]
-position = Vector2( 2350, -600 )
+position = Vector2( 2900, -600 )
 ground_radius = 225
 atmosphere_radius = 450
 kind = 4
 
 [node name="Homeworld6" parent="Battlefield/Background" index="10" instance=ExtResource( 3 )]
-position = Vector2( 1600, 750 )
+position = Vector2( 2150, 750 )
 ground_radius = 500
 atmosphere_radius = 950
 kind = 2
 
 [node name="Homeworld7" parent="Battlefield/Background" index="11" instance=ExtResource( 3 )]
-position = Vector2( 1150, -900 )
+position = Vector2( 1650, -900 )
 ground_radius = 250
 atmosphere_radius = 700
 kind = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Middleground" index="0"]
+modulate = Color( 1, 1, 1, 0.0784314 )
+polygon = PoolVector2Array( -800, -2200, 800, -2200, 800, 2300, -800, 2300 )
 
 [node name="Alien" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( -250, 1050 )
@@ -128,22 +132,22 @@ position = Vector2( -250, 2600 )
 position = Vector2( 250, 2900 )
 
 [node name="Alien8" parent="Battlefield/Foreground" index="9" instance=ExtResource( 16 )]
-position = Vector2( -350, 2300 )
+position = Vector2( 600, 800 )
 
 [node name="Alien37" parent="Battlefield/Foreground" index="10" instance=ExtResource( 16 )]
-position = Vector2( -750, 1200 )
+position = Vector2( -650, 1200 )
 
 [node name="Alien38" parent="Battlefield/Foreground" index="11" instance=ExtResource( 16 )]
 position = Vector2( 0, 1200 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( -1700, 0 )
+position = Vector2( -1900, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( 1700, 0 )
+position = Vector2( 1900, 0 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 8 )
