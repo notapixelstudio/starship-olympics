@@ -429,7 +429,6 @@ width = 600
 depth = 0
 
 [node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
-visible = false
 
 [node name="Wall7" parent="Battlefield/Middleground/Variants/D" index="0" instance=ExtResource( 8 )]
 position = Vector2( -800, 450 )
@@ -474,7 +473,7 @@ width = 600
 depth = 0
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/D" index="4" instance=ExtResource( 19 )]
-position = Vector2( -1100, 700 )
+position = Vector2( -1300, 900 )
 jitter = 2.0
 chance = 0.8
 
@@ -483,7 +482,7 @@ type = "shields"
 tease = true
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
-position = Vector2( 1100, -700 )
+position = Vector2( 1300, -900 )
 jitter = 2.0
 chance = 0.8
 
@@ -492,6 +491,7 @@ type = "shields"
 tease = true
 
 [node name="E" type="Node2D" parent="Battlefield/Middleground/Variants" index="4"]
+visible = false
 
 [node name="Wall7" parent="Battlefield/Middleground/Variants/E" index="0" instance=ExtResource( 8 )]
 position = Vector2( -150, -600 )
