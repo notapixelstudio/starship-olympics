@@ -608,7 +608,7 @@ func new_session() -> TheSession:
 	return session
 	
 func safe_destroy_game() -> void:
-	if is_game_running():
+	if is_game_running():<
 		# also delete the session
 		safe_destroy_session()
 		
@@ -618,7 +618,7 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
-		global.session.add_match(the_match.summary())
+		global.session.add_match(the_match.to_dict())
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
