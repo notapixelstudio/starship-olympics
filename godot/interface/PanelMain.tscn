@@ -80,6 +80,14 @@ text = "REMAP CONTROLS"
 option_menu = ExtResource( 3 )
 title = "Remap controls"
 
+[node name="Demo" parent="Content/UIButtonsContainer" instance=ExtResource( 9 )]
+margin_top = 324.0
+margin_right = 778.0
+margin_bottom = 374.0
+is_global = true
+element_path = "demo_mode"
+label_description = "DEMO MODE"
+
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0

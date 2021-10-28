@@ -41,6 +41,19 @@ func _set_full_screen(value: bool):
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+var demo_mode = true setget _set_demo_mode
+
+func _set_demo_mode(value: bool):
+	demo_mode = value
+	read_file("res://assets/config/demo_unlocker.json")
+	OS.window_fullscreen = full_screen
+	OS.move_window_to_foreground()
+	if full_screen:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	persistance.save_game()
+
 func _set_language(value:String):
 	language = value
 	TranslationServer.set_locale(available_languages[language])
@@ -208,7 +221,21 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-	
+
+func read_file(path: String) -> Dictionary:
+	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
+	var file = File.new()
+	if not file.file_exists(path):
+		print("The save file does not exist.")
+		return {}
+	file.open(path, File.READ)
+	print("We are going to load from this JSON: ", file.get_path_absolute())
+	# parse file data - convert the JSON back to a dictionary
+	var data = {}
+	data = parse_json(file.get_as_text())
+	file.close()
+	return data
+
 var execution_uuid : String
 func start_execution():
 	execution_uuid = UUID.v4()
