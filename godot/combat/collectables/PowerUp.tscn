@@ -235,8 +235,8 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -4000 )
-scale = Vector2( 1e-05, 1 )
+modulate = Color( 1.02385, 1.02385, 1.02385, 1 )
+position = Vector2( 0, -2.54347 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

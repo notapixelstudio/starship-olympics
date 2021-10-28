@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/animals/a00.png" type="Texture" id=1]
+[ext_resource path="res://actors/environments/Planet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/environments/Homeworld.gd" type="Script" id=3]
+
+[node name="Homeworld" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="Ground" parent="." index="1"]
+modulate = Color( 1, 0.27, 0, 1 )
+
+[node name="Alien" type="Sprite" parent="." index="3"]
+texture = ExtResource( 1 )

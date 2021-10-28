@@ -440,11 +440,8 @@ func die(killer : Ship, for_good = false):
 			
 		alive = false
 		
-		# powerups wear off
-		#set_bomb_type(default_bomb_type)
-		#deadly_trail_powerup = false
-		#unwield_sword()
-		#unwield_flail()
+		# shields wear off
+		$Shields.switch_off()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -571,7 +568,7 @@ func next_symbol():
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 
 func _on_Shields_hit(by):
-	rebound((global_position-by.global_position).normalized(), 1200.0)
+	rebound((global_position-by.global_position).normalized(), 1500.0)
 	if has_method('vibration_feedback'):
 		call('vibration_feedback', false)
 
@@ -614,26 +611,33 @@ func unwield_flail():
 		the_flail = null
 	
 const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
+
+func drop_powerup(type):
+	var powerup = PowerupScene.instance()
+	powerup.type = type
+	powerup.appear = false
+	var behind = Vector2(-1,0).rotated(global_rotation)
+	powerup.position = global_position + 150*behind
+	powerup.linear_velocity = 300*behind
+	# ugly
+	get_parent().get_parent().add_child(powerup)
+
 var current_exclusive_powerup_type := ''
 func apply_powerup(powerup):
 	if current_exclusive_powerup_type != '' and PowerUp.is_exclusive(current_exclusive_powerup_type) and PowerUp.is_exclusive(powerup.type):
 		# drop the old powerup
-		var old_powerup = PowerupScene.instance()
-		old_powerup.type = current_exclusive_powerup_type
-		old_powerup.appear = false
-		var behind = Vector2(-1,0).rotated(global_rotation)
-		old_powerup.position = global_position + 150*behind
-		old_powerup.linear_velocity = 300*behind
-		# ugly
-		get_parent().get_parent().add_child(old_powerup)
+		drop_powerup(current_exclusive_powerup_type)
 		
 	if PowerUp.is_exclusive(powerup.type):
 		current_exclusive_powerup_type = powerup.type
 	
-	global.arena.show_msg(species, powerup.type.to_upper(), global_position)
-	
-	if powerup.type == 'shield':
-		$Shields.up()
+	var success = true
+	if powerup.type in ['shield', 'shields', 'plate', 'skin']:
+		success = $Shields.up(powerup.type)
+		if not success:
+			# drop unused powerup
+			drop_powerup(powerup.type)
+			
 	elif powerup.type == 'magnet':
 		wield_magnet()
 	elif powerup.type == 'snake':
@@ -668,6 +672,9 @@ func apply_powerup(powerup):
 	elif powerup.type == 'bubbles':
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
+		
+	if success:
+		global.arena.show_msg(species, powerup.type.to_upper(), global_position)
 		
 func rebound(direction = null, strength := 2000.0):
 	if direction == null:

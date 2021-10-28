@@ -4,7 +4,7 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs', 'waves', 'bubbles') var type = 'shield' setget set_type
+export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs', 'waves', 'bubbles') var type = 'shield' setget set_type
 export var appear = true
 export var tease = false
 export var random_types = []
@@ -13,6 +13,9 @@ signal collected
 
 const CATEGORY = {
 	'shield': 'protection',
+	'shields': 'protection',
+	'plate': 'protection',
+	'skin': 'protection',
 	'magnet': 'protection',
 	
 	'snake': 'strange',
@@ -71,7 +74,8 @@ func refresh_type():
 	$TeleportBeam.modulate = self.get_color(type)
 	
 func activate():
-	$CollisionShape2D.set_deferred('disabled', false)
+	if not Engine.editor_hint:
+		$CollisionShape2D.set_deferred('disabled', false)
 
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 1}

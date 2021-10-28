@@ -1,73 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/audio/gameplay/shields/jessey_drake_synth_space_weird_synthy_sci_fi_power_up_short_2_snth_jd.ogg" type="AudioStream" id=1]
+[ext_resource path="res://actors/weapons/shields/Shields.gd" type="Script" id=2]
 [ext_resource path="res://actors/weapons/shields/ShieldLayer.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-signal hit(by)
-
-var owner_ship : Ship
-
-export var layers := 3
-export var sectors := [2, 2, 3]
-export var radii := [150.0, 50.0, 25.0]
-export var angles := [0.0, PI/2, 0.0]
-export var angle_speeds := [-PI/5, PI/5, -PI/3]
-export var padding := 16.0
-export var layer_scene : PackedScene
-
-var layer_children := []
-
-func _ready():
-	owner_ship = get_parent()
-	
-	var r := 0.0
-	for i in range(layers):
-		var layer = layer_scene.instance()
-		layer.rotation = angles[i]
-		layer.angle_speed = angle_speeds[i]
-		layer.sectors = sectors[i]
-		layer.inner_radius = r
-		r += radii[i]
-		layer.outer_radius = r
-		r += padding
-		add_child(layer)
-		layer_children.append(layer)
-		layer.connect('body_shape_entered', self, '_on_Area2D_body_shape_entered', [layer])
-		
-func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
-	if body is Bomb and body.get_owner_ship() != owner_ship:
-		body.queue_free()
-		
-		var local_shape_owner_id = layer.shape_find_owner(local_shape)
-		var sector = layer.shape_owner_get_owner(local_shape_owner_id)
-		
-		sector.down()
-		
-		emit_signal('hit', body)
-
-func up():
-	$AudioStreamPlayer2D.play()
-	for layer in layer_children:
-		if not layer.is_fully_up():
-			layer.up()
-			break
-
-func down():
-	for layer in layer_children:
-		layer.down()
-	
-func _process(delta):
-	rotation = -get_parent().global_rotation
-	
-"
-
 [node name="Shields" type="Node2D"]
-modulate = Color( 0, 0.568627, 1, 1 )
-script = SubResource( 1 )
+script = ExtResource( 2 )
 layer_scene = ExtResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
+bus = "SFX"

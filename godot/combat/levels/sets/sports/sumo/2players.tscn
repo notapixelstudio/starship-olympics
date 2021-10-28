@@ -30,7 +30,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
-radius = 850
+radius = 750
 
 [node name="OutsideWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 3 )]
 position = Vector2( 3.05176e-05, 0 )
@@ -43,7 +43,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall2" index="8"]
 script = ExtResource( 1 )
-radius = 550
+radius = 500
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -51,13 +51,13 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 550, 0 )
+position = Vector2( 500, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( -550, 0 )
+position = Vector2( -500, 0 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 2 )

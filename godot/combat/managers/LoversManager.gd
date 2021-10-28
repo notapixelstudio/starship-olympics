@@ -1,21 +1,8 @@
 extends Node
 
-export var AlienScene: PackedScene
-export var y := 1800.0
-export var width := 4000.0
-
 func _ready():
 	Events.connect("holdable_replaced", self, '_on_holdable_replaced')
 	Events.connect("holdable_swapped", self, '_on_holdable_swapped')
-
-func start():
-	$AnimationPlayer.play("Spawn")
-
-func spawn_alien():
-	var alien = AlienScene.instance()
-	alien.position = Vector2(width*(randf()-0.5), y)
-	global.arena.battlefield.add_child(alien)
-	alien.start()
 
 func _on_holdable_replaced(old, new, ship):
 	if old is Alien and new is Alien and old.get_kind() == new.get_kind():

@@ -24,16 +24,30 @@ func _ready():
 func _process(delta):
 	rotation += delta * angle_speed
 
-func up():
+func up(type):
 	for sector in sector_children:
-		sector.up()
+		sector.up(type)
 
 func down():
 	for sector in sector_children:
 		sector.down()
+		
+func switch_off():
+	for sector in sector_children:
+		sector.switch_off()
 		
 func is_fully_up():
 	for sector in sector_children:
 		if not sector.is_up():
 			return false
 	return true
+	
+func has_plate():
+	for sector in sector_children:
+		if sector.type == 'plate':
+			return true
+	return false
+
+func get_sectors() -> Array:
+	return sector_children
+	

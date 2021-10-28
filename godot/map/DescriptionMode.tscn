@@ -1,17 +1,15 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=3]
-[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=4]
+[ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=5]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=7]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=8]
-[ext_resource path="res://map/RuleDescription.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
-size = 150
+size = 80
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 8 )
@@ -19,7 +17,7 @@ font_data = ExtResource( 8 )
 [sub_resource type="Animation" id=2]
 length = 3.5
 tracks/0/type = "animation"
-tracks/0/path = NodePath("Description2/AnimationPlayer")
+tracks/0/path = NodePath("Continue/AnimationPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -28,105 +26,21 @@ tracks/0/keys = {
 "clips": PoolStringArray( "blink" ),
 "times": PoolRealArray( 2.4 )
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Rule1:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Rule2:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
 
 [sub_resource type="Animation" id=3]
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 2, -0.5 ),
-"update": 0,
-"values": [ Vector2( 2.5, 2.5 ), Vector2( 0.5, 0.5 ) ]
-}
 
 [sub_resource type="Animation" id=4]
 length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 640, 313 ), Vector2( 120, 60 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Continue:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 640, 313 ), Vector2( 1205, 60 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.15, 0.15 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Description2:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -137,13 +51,7 @@ tracks/2/keys = {
 size = 24
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 40
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 8 )
 
 [node name="DescriptionMode" type="Control"]
 pause_mode = 2
@@ -157,21 +65,9 @@ __meta__ = {
 }
 gamemode = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 640, 313 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1000
-z_as_relative = false
-texture = ExtResource( 4 )
-
-[node name="Label" type="Label" parent="Sprite"]
+[node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -600.0
-margin_top = -541.0
-margin_right = -600.0
-margin_bottom = -541.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "MINIGAME"
@@ -195,14 +91,14 @@ volume_db = 15.0
 mix_target = 1
 bus = "SFX"
 
-[node name="Description2" type="Label" parent="."]
+[node name="Continue" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -622.005
+margin_left = -640.0
 margin_top = 293.522
-margin_right = 635.995
+margin_right = 640.0
 margin_bottom = 343.522
 custom_fonts/font = SubResource( 6 )
 text = "press FIRE to continue"
@@ -213,7 +109,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Description2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Continue"]
 anims/blink = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -221,106 +117,4 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="Rule1" type="HBoxContainer" parent="."]
-visible = false
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -0.00687296
-margin_top = 150.0
-margin_right = -0.00683594
-margin_bottom = 208.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Control2" type="Control" parent="Rule1"]
-margin_right = 421.0
-margin_bottom = 58.0
-size_flags_horizontal = 3
-
-[node name="Sprite" type="TextureRect" parent="Rule1"]
-margin_left = 425.0
-margin_right = 425.0
-margin_bottom = 58.0
-stretch_mode = 6
-
-[node name="Control3" type="Control" parent="Rule1"]
-margin_left = 429.0
-margin_right = 429.0
-margin_bottom = 58.0
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="Rule1"]
-margin_left = 433.0
-margin_top = 4.0
-margin_right = 854.0
-margin_bottom = 54.0
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Control" type="Control" parent="Rule1"]
-margin_left = 858.0
-margin_right = 1280.0
-margin_bottom = 58.0
-size_flags_horizontal = 3
-
-[node name="Rule2" type="HBoxContainer" parent="."]
-visible = false
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -0.00933034
-margin_top = 214.0
-margin_right = -0.00927734
-margin_bottom = 272.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Control2" type="Control" parent="Rule2"]
-margin_right = 421.0
-margin_bottom = 58.0
-size_flags_horizontal = 3
-
-[node name="Sprite" type="TextureRect" parent="Rule2"]
-margin_left = 425.0
-margin_right = 425.0
-margin_bottom = 58.0
-stretch_mode = 6
-
-[node name="Control4" type="Control" parent="Rule2"]
-margin_left = 429.0
-margin_right = 429.0
-margin_bottom = 58.0
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="Rule2"]
-margin_left = 433.0
-margin_top = 4.0
-margin_right = 854.0
-margin_bottom = 54.0
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Control" type="Control" parent="Rule2"]
-margin_left = 858.0
-margin_right = 1280.0
-margin_bottom = 58.0
-size_flags_horizontal = 3
+[node name="Description" parent="." instance=ExtResource( 4 )]
