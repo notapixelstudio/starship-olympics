@@ -17,7 +17,9 @@ func _ready():
 func _draw():
 	var polygon = create_polygon(draw_precision, padding)
 	draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
-
+	$Shadow.polygon = polygon
+	$Shadow.update()
+	
 func up(new_type):
 	type = new_type
 	draw_precision = DRAW_PRECISION

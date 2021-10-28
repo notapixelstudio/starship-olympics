@@ -27,16 +27,38 @@ texture = ExtResource( 12 )
 centered = false
 
 [node name="OuterGlass" type="Polygon2D" parent="Battlefield/Background" index="0"]
+visible = false
 modulate = Color( 0.4, 0.7, 1.2, 1 )
 self_modulate = Color( 1, 1, 1, 0.2 )
 texture = ExtResource( 6 )
 texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -2300, -700, -2300, 700, 0, 1100, 2300, 700, 2300, -700, 0, -1100, -2300, -700, -4000, -700, -4000, -1600, 3300, -1600, 3300, 2000, -4000, 2000, -4000, -700 )
+polygon = PoolVector2Array( -2300, -800, -2300, -800, -2300, -800, -2300, -800, -2300, 800, 0, 1200, 2300, 800, 2300, -800, 0, -1200, -2300, -800, -4000, -700, -4000, -1600, 3300, -1600, 3300, 2000, -4000, 2000, -4000, -700 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
+[node name="OutsideWallz" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( 3.05176e-05, 0 )
+hollow = true
+offset = 800
+type = 2
+hide_grid = true
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWallz" index="8"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -3.05176e-05, 1200, 2300, 800, 2300, -800 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWallz" index="9"]
+visible = false
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -3.05176e-05, 1200, 2300, 800, 2300, -800 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 11 )]
 position = Vector2( 3.05176e-05, 0 )
 collision_layer = 2147483648
 hollow = true
@@ -51,11 +73,11 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -3.05176e-05, -1100, -2300, -700, -2300, 700, -3.05176e-05, 1100, 2300, 700, 2300, -700 )
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -600, 1100, -600, -900, -3.05176e-05, -1050, 600, -900, 600, 1100, 2300, 800, 2300, -800 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
-polygon = PoolVector2Array( -3.05176e-05, -1100, -2300, -700, -2300, 700, -3.05176e-05, 1100, 2300, 700, 2300, -700 )
+polygon = PoolVector2Array( -3.05176e-05, -1200, -2300, -800, -2300, 800, -600, 1100, -600, -900, -3.05176e-05, -1050, 600, -900, 600, 1100, 2300, 800, 2300, -800 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -69,23 +91,129 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
 script = ExtResource( 3 )
-width = 402
-height = 600
-radius = 200
+width = 202
+height = 500
+radius = 100
 precision = 25.0
 
 [node name="Alien" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
-position = Vector2( 0, 700 )
+position = Vector2( -250, 900 )
+
+[node name="Alien2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 16 )]
+position = Vector2( 250, 900 )
+
+[node name="Alien35" parent="Battlefield/Foreground" index="2" instance=ExtResource( 16 )]
+position = Vector2( -250, 450 )
+
+[node name="Alien36" parent="Battlefield/Foreground" index="3" instance=ExtResource( 16 )]
+position = Vector2( 250, 450 )
+
+[node name="Alien3" parent="Battlefield/Foreground" index="4" instance=ExtResource( 16 )]
+position = Vector2( -250, 3650 )
+
+[node name="Alien4" parent="Battlefield/Foreground" index="5" instance=ExtResource( 16 )]
+position = Vector2( 250, 3650 )
+
+[node name="Alien29" parent="Battlefield/Foreground" index="6" instance=ExtResource( 16 )]
+position = Vector2( -250, 4150 )
+
+[node name="Alien31" parent="Battlefield/Foreground" index="7" instance=ExtResource( 16 )]
+position = Vector2( 250, 4150 )
+
+[node name="Alien5" parent="Battlefield/Foreground" index="8" instance=ExtResource( 16 )]
+position = Vector2( -1250, 1600 )
+
+[node name="Alien6" parent="Battlefield/Foreground" index="9" instance=ExtResource( 16 )]
+position = Vector2( -750, 1600 )
+
+[node name="Alien8" parent="Battlefield/Foreground" index="10" instance=ExtResource( 16 )]
+position = Vector2( -1750, 1600 )
+
+[node name="Alien7" parent="Battlefield/Foreground" index="11" instance=ExtResource( 16 )]
+position = Vector2( 1250, 1600 )
+
+[node name="Alien9" parent="Battlefield/Foreground" index="12" instance=ExtResource( 16 )]
+position = Vector2( 1750, 1600 )
+
+[node name="Alien19" parent="Battlefield/Foreground" index="13" instance=ExtResource( 16 )]
+position = Vector2( -1250, 1150 )
+
+[node name="Alien20" parent="Battlefield/Foreground" index="14" instance=ExtResource( 16 )]
+position = Vector2( -1750, 1150 )
+
+[node name="Alien21" parent="Battlefield/Foreground" index="15" instance=ExtResource( 16 )]
+position = Vector2( 1250, 1150 )
+
+[node name="Alien22" parent="Battlefield/Foreground" index="16" instance=ExtResource( 16 )]
+position = Vector2( 1750, 1150 )
+
+[node name="Alien10" parent="Battlefield/Foreground" index="17" instance=ExtResource( 16 )]
+position = Vector2( 750, 1600 )
+
+[node name="Alien13" parent="Battlefield/Foreground" index="18" instance=ExtResource( 16 )]
+position = Vector2( -1250, 2100 )
+
+[node name="Alien14" parent="Battlefield/Foreground" index="19" instance=ExtResource( 16 )]
+position = Vector2( -750, 2100 )
+
+[node name="Alien15" parent="Battlefield/Foreground" index="20" instance=ExtResource( 16 )]
+position = Vector2( -1750, 2100 )
+
+[node name="Alien16" parent="Battlefield/Foreground" index="21" instance=ExtResource( 16 )]
+position = Vector2( 1250, 2100 )
+
+[node name="Alien17" parent="Battlefield/Foreground" index="22" instance=ExtResource( 16 )]
+position = Vector2( 1750, 2100 )
+
+[node name="Alien18" parent="Battlefield/Foreground" index="23" instance=ExtResource( 16 )]
+position = Vector2( 750, 2100 )
+
+[node name="Alien11" parent="Battlefield/Foreground" index="24" instance=ExtResource( 16 )]
+position = Vector2( -1250, 2600 )
+
+[node name="Alien12" parent="Battlefield/Foreground" index="25" instance=ExtResource( 16 )]
+position = Vector2( -750, 2600 )
+
+[node name="Alien23" parent="Battlefield/Foreground" index="26" instance=ExtResource( 16 )]
+position = Vector2( -1750, 2600 )
+
+[node name="Alien33" parent="Battlefield/Foreground" index="27" instance=ExtResource( 16 )]
+position = Vector2( -1750, 4150 )
+
+[node name="Alien34" parent="Battlefield/Foreground" index="28" instance=ExtResource( 16 )]
+position = Vector2( 1750, 4150 )
+
+[node name="Alien24" parent="Battlefield/Foreground" index="29" instance=ExtResource( 16 )]
+position = Vector2( 1250, 2600 )
+
+[node name="Alien25" parent="Battlefield/Foreground" index="30" instance=ExtResource( 16 )]
+position = Vector2( 1750, 2600 )
+
+[node name="Alien26" parent="Battlefield/Foreground" index="31" instance=ExtResource( 16 )]
+position = Vector2( 750, 2600 )
+
+[node name="Alien27" parent="Battlefield/Foreground" index="32" instance=ExtResource( 16 )]
+position = Vector2( -1250, 3150 )
+
+[node name="Alien28" parent="Battlefield/Foreground" index="33" instance=ExtResource( 16 )]
+position = Vector2( -750, 3150 )
+
+[node name="Alien30" parent="Battlefield/Foreground" index="34" instance=ExtResource( 16 )]
+position = Vector2( 1250, 3150 )
+
+[node name="Alien32" parent="Battlefield/Foreground" index="35" instance=ExtResource( 16 )]
+position = Vector2( 750, 3150 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1700, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
 position = Vector2( 1700, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 8 )
 
 [node name="Camera" parent="." index="6"]

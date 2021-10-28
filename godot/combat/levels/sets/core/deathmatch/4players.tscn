@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -17,6 +17,14 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=15]
 [ext_resource path="res://assets/icon/skull.png" type="Texture" id=16]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=18]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=20]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=21]
+[ext_resource path="res://utils/Variants.gd" type="Script" id=22]
+[ext_resource path="res://actors/environments/Gel.gd" type="Script" id=23]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=24]
+[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=25]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -61,7 +69,7 @@ style = ExtResource( 5 )
 score_to_win_override = 12
 match_duration_override = 80.0
 
-[node name="KillModeManager" parent="Managers" index="7"]
+[node name="KillModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -156,75 +164,7 @@ line_texture = ExtResource( 6 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 150, 150 )
-rotation = -0.785398
-line_width = 28
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall12" index="5"]
-script = ExtResource( 2 )
-width = 800
-height = 150
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall14" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
-position = Vector2( -150, -150 )
-rotation = -0.785398
-line_width = 28
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall14" index="5"]
-script = ExtResource( 2 )
-width = 800
-height = 150
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall16" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
-position = Vector2( -450, -450 )
-rotation = -0.785398
-line_width = 28
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall16" index="5"]
-script = ExtResource( 2 )
-width = 800
-height = 150
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall13" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
-position = Vector2( 450, 450 )
-rotation = -0.785398
-line_width = 28
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall13" index="5"]
-script = ExtResource( 2 )
-width = 800
-height = 150
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
-
-[node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
 position = Vector2( 1900, 100 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -234,29 +174,7 @@ line_texture = ExtResource( 6 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="10" instance=ExtResource( 8 )]
-position = Vector2( -1200, 800 )
-line_width = 28
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
-script = ExtResource( 1 )
-radius = 200
-sides = 4.0
-
-[node name="Wall4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 8 )]
-position = Vector2( 1200, -800 )
-line_width = 28
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
-script = ExtResource( 1 )
-radius = 200
-sides = 4.0
-
-[node name="Wall15" parent="Battlefield/Middleground" index="12" instance=ExtResource( 8 )]
+[node name="Wall15" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
 position = Vector2( -1200, -800 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -278,7 +196,7 @@ rotation = -1.5708
 ]]
 anims/Default = SubResource( 1 )
 
-[node name="Wall18" parent="Battlefield/Middleground" index="13" instance=ExtResource( 8 )]
+[node name="Wall18" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
 position = Vector2( 1200, 800 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -300,21 +218,774 @@ rotation = 1.5708
 ]]
 anims/Default = SubResource( 2 )
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="14" instance=ExtResource( 17 )]
+[node name="PowerUp" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
 position = Vector2( -1500, 1000 )
 type = "rockets"
 
-[node name="PowerUp2" parent="Battlefield/Middleground" index="15" instance=ExtResource( 17 )]
+[node name="PowerUp2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 17 )]
 position = Vector2( 1500, 1000 )
 type = "rockets"
 
-[node name="PowerUp3" parent="Battlefield/Middleground" index="16" instance=ExtResource( 17 )]
+[node name="PowerUp3" parent="Battlefield/Middleground" index="10" instance=ExtResource( 17 )]
 position = Vector2( 1500, -1000 )
 type = "rockets"
 
-[node name="PowerUp4" parent="Battlefield/Middleground" index="17" instance=ExtResource( 17 )]
+[node name="PowerUp4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 17 )]
 position = Vector2( -1500, -1000 )
 type = "rockets"
+
+[node name="Variants" type="Node2D" parent="Battlefield/Middleground" index="12" instance=ExtResource( 21 )]
+script = ExtResource( 22 )
+
+[node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
+
+[node name="Wall12" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="0" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 600, 600 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall12" index="5"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall14" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="1" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 200, 200 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall14" index="5"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall15" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="2" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -200, -200 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall15" index="5"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall16" parent="Battlefield/Middleground/Variants/A" index="3" instance=ExtResource( 8 )]
+position = Vector2( -600, -600 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall16" index="5"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall3" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="4" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -1250, 750 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/A/Wall3" index="4"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+
+[node name="Wall4" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="5" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 1250, -750 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/A/Wall4" index="4"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+
+[node name="Glue" type="Area2D" parent="Battlefield/Middleground/Variants/A" index="6" instance=ExtResource( 20 )]
+position = Vector2( -1150, 650 )
+rotation = -0.785398
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+depth = 0
+
+[node name="Glue2" type="Area2D" parent="Battlefield/Middleground/Variants/A" index="7" instance=ExtResource( 20 )]
+position = Vector2( 1150, -650 )
+rotation = 2.35619
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+depth = 0
+
+[node name="DramaticSpawner4" type="Node2D" parent="Battlefield/Middleground/Variants/A" index="8" instance=ExtResource( 19 )]
+position = Vector2( 200, 200 )
+script = ExtResource( 25 )
+match_progress_trigger = 0.4
+chance = 0.8
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+position = Vector2( 200, 200 )
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+random_types = [ "plate", "shields" ]
+
+[node name="DramaticSpawner7" parent="Battlefield/Middleground/Variants/A" index="9" instance=ExtResource( 19 )]
+position = Vector2( -200, -200 )
+match_progress_trigger = 0.4
+chance = 0.8
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner7" index="0" instance=ExtResource( 17 )]
+position = Vector2( 200, 200 )
+type = "plate"
+tease = true
+random_types = [ "plate", "shields" ]
+
+[node name="DramaticSpawner8" parent="Battlefield/Middleground/Variants/A" index="10" instance=ExtResource( 19 )]
+position = Vector2( -600, -600 )
+match_progress_trigger = 0.4
+chance = 0.8
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner8" index="0" instance=ExtResource( 17 )]
+position = Vector2( 200, 200 )
+type = "shields"
+tease = true
+random_types = [ "plate", "shields" ]
+
+[node name="DramaticSpawner5" type="Node2D" parent="Battlefield/Middleground/Variants/A" index="11" instance=ExtResource( 19 )]
+position = Vector2( -1000, 0 )
+script = ExtResource( 25 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/A/DramaticSpawner5" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+position = Vector2( -250, 0 )
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner6" type="Node2D" parent="Battlefield/Middleground/Variants/A" index="12" instance=ExtResource( 19 )]
+position = Vector2( 1000, 0 )
+script = ExtResource( 25 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/A/DramaticSpawner6" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+position = Vector2( 250, 0 )
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+
+[node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
+visible = false
+
+[node name="Wall13" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="0" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 0, 400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall13" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall15" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="1" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -400, 0 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall15" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall16" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="2" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 0, -400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall16" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall17" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="3" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 400, 0 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall17" index="8"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall18" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="4" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -1000, 550 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall18" index="5"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall19" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="5" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 1000, -600 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall19" index="5"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Glue3" type="Area2D" parent="Battlefield/Middleground/Variants/B" index="6" instance=ExtResource( 20 )]
+position = Vector2( 600, 1400 )
+rotation = -1.5708
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 1200
+depth = 0
+
+[node name="Glue4" type="Area2D" parent="Battlefield/Middleground/Variants/B" index="7" instance=ExtResource( 20 )]
+position = Vector2( -600, -1400 )
+rotation = 1.5708
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 1200
+depth = 0
+
+[node name="DramaticSpawner5" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="8" instance=ExtResource( 19 )]
+position = Vector2( -1500, -450 )
+script = ExtResource( 25 )
+match_progress_trigger = 0.7
+jitter = 4.0
+chance = 0.8
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/B/DramaticSpawner5" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+random_types = [ "shields", "plate" ]
+
+[node name="DramaticSpawner6" parent="Battlefield/Middleground/Variants/B" index="9" instance=ExtResource( 19 )]
+position = Vector2( 1550, 450 )
+match_progress_trigger = 0.7
+jitter = 4.0
+chance = 0.8
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner6" index="0" instance=ExtResource( 17 )]
+type = "shields"
+tease = true
+random_types = [ "shields", "plate" ]
+
+[node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
+visible = false
+
+[node name="Wall6" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="0" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+scale = Vector2( 1.1, 1.1 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall6" index="4"]
+script = ExtResource( 1 )
+radius = 350
+sides = 4.0
+
+[node name="Wall7" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="1" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -1000, 600 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall7" index="4"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall8" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="2" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 1000, -600 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall8" index="4"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Glue" type="Area2D" parent="Battlefield/Middleground/Variants/C" index="3" instance=ExtResource( 20 )]
+position = Vector2( -1900, 250 )
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 600
+depth = 0
+
+[node name="Glue2" type="Area2D" parent="Battlefield/Middleground/Variants/C" index="4" instance=ExtResource( 20 )]
+position = Vector2( 1900, -250 )
+rotation = 3.14159
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 600
+depth = 0
+
+[node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
+visible = false
+
+[node name="Wall7" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="0" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -1000, 550 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall7" index="8"]
+script = ExtResource( 2 )
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall8" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="1" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 1000, -550 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall8" index="8"]
+script = ExtResource( 2 )
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Glue3" type="Area2D" parent="Battlefield/Middleground/Variants/D" index="2" instance=ExtResource( 20 )]
+position = Vector2( 950, -500 )
+rotation = 2.35619
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 600
+depth = 0
+
+[node name="Glue4" type="Area2D" parent="Battlefield/Middleground/Variants/D" index="3" instance=ExtResource( 20 )]
+position = Vector2( -950, 500 )
+rotation = -0.785398
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 600
+depth = 0
+
+[node name="DramaticSpawner2" type="Node2D" parent="Battlefield/Middleground/Variants/D" index="4" instance=ExtResource( 19 )]
+position = Vector2( -1500, 1000 )
+script = ExtResource( 25 )
+jitter = 2.0
+chance = 0.8
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/D/DramaticSpawner2" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner3" type="Node2D" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 19 )]
+position = Vector2( 1500, -1000 )
+script = ExtResource( 25 )
+jitter = 2.0
+chance = 0.8
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/D/DramaticSpawner3" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner4" parent="Battlefield/Middleground/Variants/D" index="6" instance=ExtResource( 19 )]
+position = Vector2( 1500, 1000 )
+jitter = 2.0
+chance = 0.8
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner4" index="0" instance=ExtResource( 17 )]
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner5" parent="Battlefield/Middleground/Variants/D" index="7" instance=ExtResource( 19 )]
+position = Vector2( -1600, -950 )
+jitter = 2.0
+chance = 0.8
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/D/DramaticSpawner5" index="0" instance=ExtResource( 17 )]
+position = Vector2( 100, -50 )
+type = "shields"
+tease = true
+
+[node name="E" type="Node2D" parent="Battlefield/Middleground/Variants" index="4"]
+visible = false
+
+[node name="Wall7" type="StaticBody2D" parent="Battlefield/Middleground/Variants/E" index="0" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( -350, -800 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/E/Wall7" index="8"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 99
+bevel_nw = 99
+bevel_ne = 99
+bevel_sw = 99
+bevel_se = 99
+
+[node name="Wall8" type="StaticBody2D" parent="Battlefield/Middleground/Variants/E" index="1" groups=[
+"wall",
+] instance=ExtResource( 8 )]
+position = Vector2( 350, 800 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/E/Wall8" index="8"]
+script = ExtResource( 2 )
+width = 700
+height = 200
+bevel = 99
+bevel_nw = 99
+bevel_ne = 99
+bevel_sw = 99
+bevel_se = 99
+
+[node name="Glue3" type="Area2D" parent="Battlefield/Middleground/Variants/E" index="2" instance=ExtResource( 20 )]
+position = Vector2( 1900, 100 )
+rotation = 3.14159
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 1200
+depth = 0
+
+[node name="Glue4" type="Area2D" parent="Battlefield/Middleground/Variants/E" index="3" instance=ExtResource( 20 )]
+position = Vector2( -1900, -100 )
+rotation = 6.28319
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+width = 1200
+depth = 0
+
+[node name="DramaticSpawner" type="Node2D" parent="Battlefield/Middleground/Variants/E" index="4" instance=ExtResource( 19 )]
+script = ExtResource( 25 )
+match_progress_trigger = 0.25
+jitter = 2.0
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/E/DramaticSpawner" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "plate"
+tease = true
+random_types = [ "plate", "shields" ]
+
+[node name="DramaticSpawner2" type="Node2D" parent="Battlefield/Middleground/Variants/E" index="5" instance=ExtResource( 19 )]
+position = Vector2( -1000, 600 )
+script = ExtResource( 25 )
+match_progress_trigger = 0.6
+chance = 0.4
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/E/DramaticSpawner2" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+position = Vector2( -200, 200 )
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner3" type="Node2D" parent="Battlefield/Middleground/Variants/E" index="6" instance=ExtResource( 19 )]
+position = Vector2( 1000, -600 )
+script = ExtResource( 25 )
+match_progress_trigger = 0.6
+chance = 0.4
+
+[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/E/DramaticSpawner3" index="0" groups=[
+"in_camera",
+] instance=ExtResource( 17 )]
+position = Vector2( 200, -200 )
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 18 )
+type = "shields"
+tease = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1500, 1000 )

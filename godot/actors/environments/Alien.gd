@@ -34,8 +34,8 @@ func start() -> void:
 	$Graphics/AnimationPlayer.play("Wobble")
 
 func dive() -> void:
-	apply_central_impulse(Vector2.UP*200)
-
+	apply_central_impulse(Vector2.UP*400)
+	
 func get_texture():
 	return $Graphics/Alien.texture
 	

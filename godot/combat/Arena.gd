@@ -165,7 +165,8 @@ func _ready():
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
-
+	
+	# ??? FIXME? this method does nothing here
 	compute_arena_size()
 	camera.zoom *= size_multiplier
 	

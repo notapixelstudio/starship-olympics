@@ -568,7 +568,7 @@ func next_symbol():
 	$Graphics/ChargeBar/BombPreview/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 
 func _on_Shields_hit(by):
-	rebound((global_position-by.global_position).normalized(), 1200.0)
+	rebound((global_position-by.global_position).normalized(), 1500.0)
 	if has_method('vibration_feedback'):
 		call('vibration_feedback', false)
 
