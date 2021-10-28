@@ -1,9 +1,8 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://assets/icon/minicards/sets/crown.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/crown_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://map/planets/rules/Crown.tres" type="Resource" id=4]
 [ext_resource path="res://combat/styles/palace.tres" type="Resource" id=5]
 
 [resource]
@@ -14,7 +13,7 @@ name = "Take the Crown"
 icon = ExtResource( 1 )
 logo = ExtResource( 2 )
 arena_style = ExtResource( 5 )
-description = "wear the crown as long as you can"
+description = "take and keep the crown"
 tagline_pro = "If killing is not enough, steal it by bumping in the queen"
 tagline_cons = "getting killed will make you lose the crown, if you have it"
 max_timeout = 80
@@ -37,7 +36,6 @@ deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 4 ) ]
 floodable = true
 flood = false
 laserable = true
