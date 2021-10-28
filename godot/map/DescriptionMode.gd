@@ -25,7 +25,7 @@ func refresh():
 	})
 	"""
 	$Label.text = tr(gamemode.name)
-	
+	$LabelShadow.text = tr(gamemode.name)
 	"""
 	if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
 		$Description3.text = 'No bombs!'
