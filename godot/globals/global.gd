@@ -608,7 +608,7 @@ func new_session() -> TheSession:
 	return session
 	
 func safe_destroy_game() -> void:
-	if is_game_running():<
+	if is_game_running():
 		# also delete the session
 		safe_destroy_session()
 		
