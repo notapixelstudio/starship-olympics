@@ -47,11 +47,10 @@ func _input(event):
 
 func appears():
 	visible = true
-	animator.play("getin")
-	yield(animator, "animation_finished")
+	$AudioStreamPlayer.play()
+	yield(get_tree().create_timer(1), 'timeout')
 	$Description.type(tr(gamemode.description))
 	yield($Description, "done")
-	$AudioStreamPlayer.play()
 	animator.play("describeme")
 	
 func disappears():
