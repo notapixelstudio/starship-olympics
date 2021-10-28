@@ -25,7 +25,6 @@ func refresh():
 	})
 	"""
 	$Label.text = tr(gamemode.name)
-	$Description.text = tr(gamemode.description)
 	
 	"""
 	if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
@@ -50,6 +49,8 @@ func appears():
 	visible = true
 	animator.play("getin")
 	yield(animator, "animation_finished")
+	$Description.type(tr(gamemode.description))
+	yield($Description, "done")
 	$AudioStreamPlayer.play()
 	animator.play("describeme")
 	

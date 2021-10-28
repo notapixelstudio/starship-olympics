@@ -3,6 +3,7 @@
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=3]
+[ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=7]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=8]
@@ -48,12 +49,6 @@ tracks/0/keys = {
 
 [sub_resource type="DynamicFont" id=6]
 size = 24
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 40
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 8 )
@@ -122,20 +117,4 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="Description" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -640.0
-margin_top = 100.0
-margin_right = 640.0
-margin_bottom = 243.0
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 7 )
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Description" parent="." instance=ExtResource( 4 )]
