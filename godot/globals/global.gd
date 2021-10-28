@@ -41,17 +41,14 @@ func _set_full_screen(value: bool):
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-var demo_mode = true setget _set_demo_mode
+var demo_mode = false setget _set_demo_mode
 
 func _set_demo_mode(value: bool):
 	demo_mode = value
-	read_file("res://assets/config/demo_unlocker.json")
-	OS.window_fullscreen = full_screen
-	OS.move_window_to_foreground()
-	if full_screen:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	var data = read_file("res://assets/config/demo_unlocker.json")
+	if data:
+		TheUnlocker.load_state(data)
 	persistance.save_game()
 
 func _set_language(value:String):
