@@ -5,11 +5,11 @@ class_name Homeworld
 export (String, 'animals/a00', 'animals/a01', 'animals/a02', 'animals/a03', 'animals/a04') var kind := 'animals/a00' setget set_kind, get_kind
 
 const COLORS := {
-	'animals/a00': Color.orangered,
-	'animals/a01': Color.yellow,
-	'animals/a02': Color.mediumvioletred,
-	'animals/a03': Color.cornflower,
-	'animals/a04': Color.mediumseagreen
+	'animals/a00': Color('#ec7505'),
+	'animals/a01': Color('#e9c000'),
+	'animals/a02': Color('#a01754'),
+	'animals/a03': Color('#5171a5'),
+	'animals/a04': Color('#2bb077')
 }
 
 func set_ground_radius(v):
