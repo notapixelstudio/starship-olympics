@@ -110,7 +110,7 @@ func get_status_set(set_id)-> String:
 	return unlocked_sets.get(set_id, LOCKED)
 	
 func unlock_game(game_id: String) -> void:
-	# If fails means that we already unlocked this game
+	# If this fails means that we already unlocked this game
 	assert(self.get_status_game(game_id) == TheUnlocker.LOCKED)
 	self.unlocked_games[game_id] = TheUnlocker.UNLOCKED
 	persistance.save_game()

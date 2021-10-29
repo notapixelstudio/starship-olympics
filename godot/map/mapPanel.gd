@@ -74,11 +74,7 @@ func create_minicards():
 	var i = 0
 	for minigame in content.minigames:
 		var minicard = Minicard.instance()
-		minicard.status = "locked"
-		
-		if TheUnlocker.unlocked_games.get(minigame.get_id(), TheUnlocker.HIDDEN) == TheUnlocker.UNLOCKED:
-			minicard.status = "unlocked"
-		minicard.content = minigame
+		minicard.set_content(minigame)
 		$Minicards.add_child(minicard)
 		minicard.position = Vector2(dx*(i%2) - dx/2, dy*floor(i/2) - dy/2)
 		i += 1
