@@ -19,6 +19,8 @@ func set_content(v):
 	if content is Minigame:
 		texture = content.get_icon()
 		$Shadow.texture = content.get_icon()
+		
+		self.update_status()
 
 func unlock():
 	$AnimationPlayer.play("unlock")
@@ -34,3 +36,13 @@ func set_status(v):
 		self_modulate = Color(1,1,1,1)
 		$QuestionMark.visible = false
 		
+func update_status():
+	if TheUnlocker.unlocked_games.get(content.get_id(), TheUnlocker.HIDDEN) == TheUnlocker.UNLOCKED:
+		self.set_status("unlocked")
+	else:
+		self.set_status("locked")
+		
+func _enter_tree():
+	# this is to support the unlocking of a minicard that's shown in two or more panels
+	update_status()
+	
