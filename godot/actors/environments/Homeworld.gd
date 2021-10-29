@@ -1,7 +1,8 @@
 tool
 extends "res://actors/environments/Planet.gd"
+class_name Homeworld
 
-export var kind := 0 setget set_kind
+export var kind := 0 setget set_kind, get_kind
 
 const COLORS := [
 	Color.orangered,
@@ -23,3 +24,6 @@ func set_kind(v):
 		yield(self, 'ready')
 	$Alien.texture = load('res://assets/sprites/animals/a0' + str(kind) + '.png')
 	$Ground.modulate = COLORS[kind]
+
+func get_kind():
+	return kind

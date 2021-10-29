@@ -3,7 +3,7 @@
 [ext_resource path="res://combat/modes/Lovers.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=2]
 [ext_resource path="res://actors/environments/Homeworld.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/managers/LoversManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
@@ -17,7 +17,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 1 )
 
-[node name="LoversManager" parent="Managers" index="0" instance=ExtResource( 4 )]
+[node name="FoundlingsManager" parent="Managers" index="0" instance=ExtResource( 4 )]
 
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
@@ -143,7 +143,6 @@ position = Vector2( 0, 1200 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1900, 0 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
