@@ -1,0 +1,42 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/icon/minicards/sets/foundlings.png" type="Texture" id=3]
+[ext_resource path="res://combat/styles/love.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "space_foundlings"
+is_mutator = false
+name = "Tired Invaders"
+icon = ExtResource( 3 )
+logo = ExtResource( 2 )
+arena_style = ExtResource( 4 )
+description = "take the aliens back to their homeworld"
+tagline_pro = "Don't forget your opponents would do the same"
+tagline_cons = "You could get killed in the meantime..."
+max_timeout = 60
+max_score = 20
+starting_score = 0
+cumulative = false
+starting_lives = -1
+death = false
+last_man = false
+crown = false
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false
