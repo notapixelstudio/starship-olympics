@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=2]
 [ext_resource path="res://actors/environments/Homeworld.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=6]
+[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
@@ -201,15 +203,27 @@ position = Vector2( -200, -5250 )
 position = Vector2( 200, -5250 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( -1650, 0 )
+position = Vector2( -1650, -250 )
 rotation = 0.0
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( 1650, 0 )
+position = Vector2( 1650, -250 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 8 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 10 )]
+position = Vector2( -1650, 250 )
+rotation = 0.0
+controls = "joy3"
+species = ExtResource( 5 )
+
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 10 )]
+position = Vector2( 1650, 250 )
+rotation = 3.14159
+controls = "joy4"
+species = ExtResource( 7 )
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
