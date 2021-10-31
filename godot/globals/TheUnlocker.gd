@@ -88,7 +88,7 @@ var unlocked_sets = {
 	"diamonds": HIDDEN,
 	"ice": HIDDEN,
 	"survival": HIDDEN,
-	"casino": HIDDEN,
+	"casino": LOCKED,
 	"snake": HIDDEN,
 	"sports": LOCKED,
 	"asteroids": HIDDEN,

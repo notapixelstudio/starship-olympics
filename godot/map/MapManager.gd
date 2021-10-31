@@ -1,6 +1,7 @@
 extends Node
 
 export var panels_path : NodePath
+export var BallScene : PackedScene
 
 var panels: MapPanelContainer
 
@@ -55,7 +56,10 @@ func _on_all_ships_spawned():
 	var winner = global.the_game.get_last_winner()
 	if winner != null:
 		var winner_ship = global.arena.get_ship_from_player(winner)
-		winner_ship.modulate = Color(1,0,0,1)
+		var star = BallScene.instance()
+		star.set_type('star')
+		add_child(star) # has to be inside the tree to be loaded
+		winner_ship.get_cargo().load_holdable(star)
 		
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:
@@ -84,9 +88,11 @@ func tap(ship : Ship, planet : MapPlanet):
 	#	TheUnlocker.unlock_set(cell.get_id())
 	#	cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
 	#	cursor.spend_winnership()
-	elif planet.get_status() == TheUnlocker.LOCKED:
-		# test unlocking
-		planet.unlock()
+	elif planet.get_status() == TheUnlocker.LOCKED and ship.get_cargo().has_holdable():
+		var cargo = ship.get_cargo()
+		if cargo.get_holdable().has_type('star'):
+			planet.unlock()
+			cargo.empty()
 
 func check_all_ready():
 	if not ready and len(players_ready) == global.the_game.get_number_of_players():
