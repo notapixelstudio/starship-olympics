@@ -24,6 +24,8 @@ func _ready():
 	
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	
+	global.arena.connect("all_ships_spawned", self, '_on_all_ships_spawned')
+	
 	# wait for the entire Arena subtree to be ready
 	yield(get_tree(), "idle_frame")
 	
@@ -47,6 +49,14 @@ func _ready():
 		if start != null and end != null:
 			graph.add_path(link, start, end)
 			
+	
+func _on_all_ships_spawned():
+	# give a star to the winner of the former session
+	var winner = global.the_game.get_last_winner()
+	if winner != null:
+		var winner_ship = global.arena.get_ship_from_player(winner)
+		winner_ship.modulate = Color(1,0,0,1)
+		
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:
 		tap(tapper, tappee)
