@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=6]
+[ext_resource path="res://actors/environments/Alien.gd" type="Script" id=7]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
@@ -13,6 +14,9 @@
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=16]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 100.0
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
@@ -105,101 +109,549 @@ kind = "animals/a04"
 modulate = Color( 1, 1, 1, 0.0784314 )
 polygon = PoolVector2Array( -900, -2200, 900, -2200, 900, 2300, -900, 2300 )
 
-[node name="Alien2" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
-position = Vector2( -200, -950 )
+[node name="Alien2" type="RigidBody2D" parent="Battlefield/Middleground" index="1" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 950 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien35" parent="Battlefield/Foreground" index="1" instance=ExtResource( 16 )]
-position = Vector2( -200, -1350 )
+[node name="Alien35" type="RigidBody2D" parent="Battlefield/Middleground" index="2" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 1350 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien36" parent="Battlefield/Foreground" index="2" instance=ExtResource( 16 )]
-position = Vector2( 200, -1350 )
+[node name="Alien36" type="RigidBody2D" parent="Battlefield/Middleground" index="3" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 1350 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien3" parent="Battlefield/Foreground" index="3" instance=ExtResource( 16 )]
-position = Vector2( -600, -2950 )
+[node name="Alien3" type="RigidBody2D" parent="Battlefield/Middleground" index="4" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -600, 2950 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien5" parent="Battlefield/Foreground" index="4" instance=ExtResource( 16 )]
-position = Vector2( 200, -2950 )
+[node name="Alien5" type="RigidBody2D" parent="Battlefield/Middleground" index="5" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 2950 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien4" parent="Battlefield/Foreground" index="5" instance=ExtResource( 16 )]
-position = Vector2( -200, -2950 )
+[node name="Alien4" type="RigidBody2D" parent="Battlefield/Middleground" index="6" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 2950 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien6" parent="Battlefield/Foreground" index="6" instance=ExtResource( 16 )]
-position = Vector2( -200, -2550 )
+[node name="Alien6" type="RigidBody2D" parent="Battlefield/Middleground" index="7" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 2550 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien7" parent="Battlefield/Foreground" index="7" instance=ExtResource( 16 )]
-position = Vector2( 600, -2950 )
+[node name="Alien7" type="RigidBody2D" parent="Battlefield/Middleground" index="8" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 600, 2950 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien32" parent="Battlefield/Foreground" index="8" instance=ExtResource( 16 )]
-position = Vector2( -600, -3350 )
+[node name="Alien32" type="RigidBody2D" parent="Battlefield/Middleground" index="9" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -600, 3350 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien33" parent="Battlefield/Foreground" index="9" instance=ExtResource( 16 )]
-position = Vector2( 600, -3350 )
+[node name="Alien33" type="RigidBody2D" parent="Battlefield/Middleground" index="10" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 600, 3350 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien8" parent="Battlefield/Foreground" index="10" instance=ExtResource( 16 )]
-position = Vector2( 200, -950 )
+[node name="Alien8" type="RigidBody2D" parent="Battlefield/Middleground" index="11" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 950 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien38" parent="Battlefield/Foreground" index="11" instance=ExtResource( 16 )]
-position = Vector2( 200, -2550 )
+[node name="Alien38" type="RigidBody2D" parent="Battlefield/Middleground" index="12" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 2550 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien22" parent="Battlefield/Foreground" index="12" instance=ExtResource( 16 )]
-position = Vector2( 200, -6850 )
+[node name="Alien22" type="RigidBody2D" parent="Battlefield/Middleground" index="13" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 6850 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien23" parent="Battlefield/Foreground" index="13" instance=ExtResource( 16 )]
-position = Vector2( -200, -6850 )
+[node name="Alien23" type="RigidBody2D" parent="Battlefield/Middleground" index="14" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 6850 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien42" parent="Battlefield/Foreground" index="14" instance=ExtResource( 16 )]
-position = Vector2( -600, -7250 )
+[node name="Alien42" type="RigidBody2D" parent="Battlefield/Middleground" index="15" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -600, 7250 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien26" parent="Battlefield/Foreground" index="15" instance=ExtResource( 16 )]
-position = Vector2( 600, -7250 )
+[node name="Alien26" type="RigidBody2D" parent="Battlefield/Middleground" index="16" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 600, 7250 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien27" parent="Battlefield/Foreground" index="16" instance=ExtResource( 16 )]
-position = Vector2( -200, -8550 )
+[node name="Alien27" type="RigidBody2D" parent="Battlefield/Middleground" index="17" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 8550 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien28" parent="Battlefield/Foreground" index="17" instance=ExtResource( 16 )]
-position = Vector2( 200, -7650 )
+[node name="Alien28" type="RigidBody2D" parent="Battlefield/Middleground" index="18" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 7650 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien29" parent="Battlefield/Foreground" index="18" instance=ExtResource( 16 )]
-position = Vector2( -200, -7650 )
+[node name="Alien29" type="RigidBody2D" parent="Battlefield/Middleground" index="19" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 7650 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien31" parent="Battlefield/Foreground" index="19" instance=ExtResource( 16 )]
-position = Vector2( 200, -8550 )
+[node name="Alien31" type="RigidBody2D" parent="Battlefield/Middleground" index="20" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 8550 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien9" parent="Battlefield/Foreground" index="20" instance=ExtResource( 16 )]
-position = Vector2( 600, -4150 )
+[node name="Alien9" type="RigidBody2D" parent="Battlefield/Middleground" index="21" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 600, 4150 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien10" parent="Battlefield/Foreground" index="21" instance=ExtResource( 16 )]
-position = Vector2( -600, -3750 )
+[node name="Alien10" type="RigidBody2D" parent="Battlefield/Middleground" index="22" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -600, 3750 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien11" parent="Battlefield/Foreground" index="22" instance=ExtResource( 16 )]
-position = Vector2( 200, -3750 )
+[node name="Alien11" type="RigidBody2D" parent="Battlefield/Middleground" index="23" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 3750 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien12" parent="Battlefield/Foreground" index="23" instance=ExtResource( 16 )]
-position = Vector2( -200, -3750 )
+[node name="Alien12" type="RigidBody2D" parent="Battlefield/Middleground" index="24" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 3750 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien13" parent="Battlefield/Foreground" index="24" instance=ExtResource( 16 )]
-position = Vector2( -200, -3350 )
+[node name="Alien13" type="RigidBody2D" parent="Battlefield/Middleground" index="25" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 3350 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien14" parent="Battlefield/Foreground" index="25" instance=ExtResource( 16 )]
-position = Vector2( 600, -3750 )
+[node name="Alien14" type="RigidBody2D" parent="Battlefield/Middleground" index="26" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 600, 3750 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien39" parent="Battlefield/Foreground" index="26" instance=ExtResource( 16 )]
-position = Vector2( -600, -4150 )
+[node name="Alien39" type="RigidBody2D" parent="Battlefield/Middleground" index="27" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -600, 4150 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien40" parent="Battlefield/Foreground" index="27" instance=ExtResource( 16 )]
-position = Vector2( 200, -3350 )
+[node name="Alien40" type="RigidBody2D" parent="Battlefield/Middleground" index="28" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 3350 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien17" parent="Battlefield/Foreground" index="28" instance=ExtResource( 16 )]
-position = Vector2( 200, -5650 )
+[node name="Alien17" type="RigidBody2D" parent="Battlefield/Middleground" index="29" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 5650 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien18" parent="Battlefield/Foreground" index="29" instance=ExtResource( 16 )]
-position = Vector2( -200, -5650 )
+[node name="Alien18" type="RigidBody2D" parent="Battlefield/Middleground" index="30" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 5650 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien19" parent="Battlefield/Foreground" index="30" instance=ExtResource( 16 )]
-position = Vector2( -200, -5250 )
+[node name="Alien19" type="RigidBody2D" parent="Battlefield/Middleground" index="31" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( -200, 5250 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
-[node name="Alien41" parent="Battlefield/Foreground" index="31" instance=ExtResource( 16 )]
-position = Vector2( 200, -5250 )
+[node name="Alien41" type="RigidBody2D" parent="Battlefield/Middleground" index="32" groups=[
+"Ball",
+"in_camera",
+] instance=ExtResource( 16 )]
+position = Vector2( 200, 5250 )
+collision_layer = 512
+collision_mask = 50706
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.0
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource( 7 )
+type = "heart"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1650, -250 )
