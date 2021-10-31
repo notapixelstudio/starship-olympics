@@ -19,10 +19,10 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 
-[node name="PursueManager" parent="Managers" index="3"]
+[node name="PursueManager" parent="Managers" index="4"]
 enabled = false
 
-[node name="KillModeManager" parent="Managers" index="7"]
+[node name="KillModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -41,7 +41,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-radius = 2400
+radius = 2100
 rotation_degrees = 30.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -204,43 +204,43 @@ node_a = NodePath("..")
 node_b = NodePath("../../Bubble8")
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="14" instance=ExtResource( 14 )]
-position = Vector2( -1400, 0 )
+position = Vector2( -1100, 0 )
 type = "bubbles"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="15" instance=ExtResource( 14 )]
-position = Vector2( 0, -1400 )
+position = Vector2( 0, -1100 )
 type = "bubbles"
 
 [node name="PowerUp3" parent="Battlefield/Middleground" index="16" instance=ExtResource( 14 )]
-position = Vector2( 1400, 0 )
+position = Vector2( 1100, 0 )
 type = "bubbles"
 
 [node name="PowerUp4" parent="Battlefield/Middleground" index="17" instance=ExtResource( 14 )]
-position = Vector2( 0, 1400 )
+position = Vector2( 0, 1100 )
 type = "bubbles"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( 1400, 0 )
+position = Vector2( 1100, 0 )
 rotation = 3.14159
 species = ExtResource( 11 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( -1400, 0 )
+position = Vector2( -1100, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 6 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 10 )]
-position = Vector2( 0, -1400 )
+position = Vector2( 0, -1100 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 13 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 10 )]
-position = Vector2( 0, 1400 )
+position = Vector2( 0, 1100 )
 rotation = -1.5708
 controls = "joy1"
 species = ExtResource( 12 )
