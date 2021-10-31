@@ -68,6 +68,7 @@ signal slomo
 signal unslomo
 signal battle_start
 signal skip
+signal all_ships_spawned
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -397,6 +398,7 @@ func _ready():
 	camera.activate_camera()
 	
 	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
+	emit_signal("all_ships_spawned")
 	
 	# group by order for trait intro
 	var intro_nodes = {}

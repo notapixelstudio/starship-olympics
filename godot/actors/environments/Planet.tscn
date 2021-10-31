@@ -19,6 +19,11 @@ script = ExtResource( 2 )
 radius = 200
 precision = 25.0
 
+[node name="NearArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NearArea"]
+polygon = PoolVector2Array( 220, 0, 198.213, 95.4544, 137.168, 172.003, 48.9546, 214.484, -48.9546, 214.484, -137.168, 172.003, -198.213, 95.4544, -220, 2.69422e-14, -198.213, -95.4544, -137.168, -172.003, -48.9546, -214.484, 48.9546, -214.484, 137.168, -172.003, 198.213, -95.4544 )
+
 [node name="Atmosphere" parent="." instance=ExtResource( 1 )]
 type = 2
 platform = true
@@ -27,3 +32,5 @@ platform = true
 script = ExtResource( 2 )
 radius = 600
 precision = 50.0
+
+[connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]
