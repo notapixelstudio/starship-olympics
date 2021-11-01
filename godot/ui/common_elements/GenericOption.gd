@@ -19,9 +19,6 @@ var node_owner
 func _ready():
 	node_owner = get_tree().get_root().get_node(node_owner_path)
 	set_process_input(false)
-	
-func post_ready():
-	pass
 
 func _set_value(new_value):
 	value = new_value
