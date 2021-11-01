@@ -8,7 +8,7 @@ export var title: String
 
 signal request_nav_to #asking to Session container to nav through
 
-		
+
 func _process(delta):
 	self.text = tr(title.to_upper())
 	

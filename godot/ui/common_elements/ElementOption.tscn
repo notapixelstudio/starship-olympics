@@ -17,11 +17,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-elem_type = 0
-is_global = false
-element_path = ""
-label_description = ""
-node_owner_path = NodePath("")
 
 [node name="Container" type="HBoxContainer" parent="."]
 margin_right = 400.0
@@ -44,7 +39,7 @@ __meta__ = {
 [node name="Padding" type="Label" parent="Container"]
 margin_left = 4.0
 margin_top = 14.0
-margin_right = 200.0
+margin_right = 304.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -56,10 +51,9 @@ __meta__ = {
 }
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 204.0
+margin_left = 308.0
 margin_right = 400.0
 margin_bottom = 50.0
-size_flags_horizontal = 3
 custom_constants/separation = 7
 
 [node name="left" type="TextureButton" parent="Container/ValueContainer"]

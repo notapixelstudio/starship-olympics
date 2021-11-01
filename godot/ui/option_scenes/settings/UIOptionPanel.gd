@@ -18,7 +18,6 @@ func _ready():
 		button.connect("request_nav_to", self, "_on_nav_pressed")
 	
 	
-	
 func _on_nav_pressed(title: String, nav_menu: PackedScene):
 	Events.emit_signal("ui_nav_to", title, nav_menu.instance())
 	

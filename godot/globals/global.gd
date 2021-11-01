@@ -41,12 +41,23 @@ func _set_full_screen(value: bool):
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-var demo_mode = false setget _set_demo_mode
+var unlock_mode = "custom" setget _set_unlock_mode
+var array_unlock_mode = ["custom", "demo", "core", "unlocked"]
 
-func _set_demo_mode(value: bool):
-	demo_mode = value
-	
-	var data = read_file("res://assets/config/demo_unlocker.json")
+func _set_unlock_mode(value: String):
+	# This is atypical, but we want to keep the unlocker mode to custom when we come back at it
+	# unlock_mode = value
+	var file_unlocker := {
+		"demo": "res://assets/config/demo_unlocker.json",
+		"core": "res://assets/config/only_core.json",
+		"unlocked": "res://assets/config/unlocked_unlocker.json"
+	}
+	var file_path := ""
+	if value in file_unlocker:
+		file_path = file_unlocker[value]
+	else:
+		file_path = "res://assets/config/custom_unlocker.json"
+	var data = read_file(file_path)
 	if data:
 		TheUnlocker.load_state(data)
 	persistance.save_game()
@@ -665,3 +676,21 @@ func is_match_running() -> bool:
 func is_session_running() -> bool:
 	return session != null and is_instance_valid(session)
 	
+##############################
+### Utils ##
+#############################
+func nested_get(ancestor: Node, path:String, separator:String = "."):
+	"""
+	:param Node ancestor: Ancestor node that has the nested references
+	:param str path: String separated by 'separator' that indicates the path
+	:param str separator: separator for the 
+	:return value from path, NULL if does not exists
+	"""
+	var nests = path.split(separator)
+	var object = ancestor
+	var parent
+	for property in nests:
+		object = object.get(property)
+		if object is Node:
+			parent = object
+	return object

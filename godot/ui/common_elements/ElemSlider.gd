@@ -8,15 +8,12 @@ onready var hslider =$VBoxContainer/HSlider
 
 func _process(delta):
 	description_node.text = tr("Volume" + " " + bus_name)
-	
+
 func post_ready():
-	value = node_owner.get(variable_name)
-	yield(get_tree().create_timer(0.2), "timeout")
+	description_node.text = tr(description_node.text + " " + bus_name)
+	value = node_owner.get(element_path)
 	value_node.value = value
 	
-func _ready():
-	description_node.text = tr(description_node.text + " " + bus_name)	
-	post_ready()
 	
 func _on_HSlider_value_changed(new_value: int):
 	self.value = new_value
@@ -29,7 +26,6 @@ func _on_HSlider_focus_entered():
 	
 func _on_HSlider_focus_exited():
 	add_stylebox_override("panel", load("res://interface/themes/grey/normal.tres"))
-
 
 
 func _on_Music_focus_entered():
