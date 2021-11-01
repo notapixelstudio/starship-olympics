@@ -7,7 +7,8 @@
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=6]
+size = 14
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -25,13 +26,13 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 44
+size = 40
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 22
+size = 18
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -102,7 +103,7 @@ margin_left = -71.0
 margin_top = 50.0
 margin_right = 71.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 valign = 2
@@ -160,10 +161,10 @@ __meta__ = {
 }
 
 [node name="Fir" type="Label" parent="Content/LeaderPanel"]
-margin_left = 97.9918
-margin_top = 5.95102
-margin_right = 147.992
-margin_bottom = 70.951
+margin_left = 98.0
+margin_top = 4.0
+margin_right = 148.0
+margin_bottom = 71.0
 custom_fonts/font = SubResource( 4 )
 text = "1"
 __meta__ = {
@@ -171,10 +172,10 @@ __meta__ = {
 }
 
 [node name="st" type="Label" parent="Content/LeaderPanel"]
-margin_left = 105.861
-margin_top = 7.39406
-margin_right = 155.861
-margin_bottom = 54.3941
+margin_left = 117.0
+margin_top = 7.0
+margin_right = 156.0
+margin_bottom = 54.0
 custom_fonts/font = SubResource( 5 )
 text = " st"
 __meta__ = {
