@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/HUD/bars_bottom.png" type="Texture" id=2]
 [ext_resource path="res://assets/HUD/hud.png" type="Texture" id=3]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=6]
+size = 14
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -18,13 +20,19 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 44
+size = 14
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 22
+[sub_resource type="DynamicFont" id=5]
+size = 18
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -95,7 +103,7 @@ margin_left = -71.0
 margin_top = 50.0
 margin_right = 71.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 valign = 2
@@ -142,33 +150,33 @@ margin_bottom = 161.0
 rect_scale = Vector2( 0.9, 0.8 )
 
 [node name="Label" type="Label" parent="Content/LeaderPanel"]
-margin_left = 13.0
-margin_top = 123.0
-margin_right = 152.0
-margin_bottom = 160.0
-align = 1
+margin_left = 19.0
+margin_top = 128.0
+margin_right = 151.0
+margin_bottom = 166.0
+custom_fonts/font = SubResource( 3 )
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Fir" type="Label" parent="Content/LeaderPanel"]
-margin_left = 97.9918
-margin_top = 5.95102
-margin_right = 147.992
-margin_bottom = 70.951
-custom_fonts/font = SubResource( 3 )
+margin_left = 98.0
+margin_top = 4.0
+margin_right = 148.0
+margin_bottom = 71.0
+custom_fonts/font = SubResource( 4 )
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="st" type="Label" parent="Content/LeaderPanel"]
-margin_left = 105.861
-margin_top = 7.39406
-margin_right = 155.861
-margin_bottom = 54.3941
-custom_fonts/font = SubResource( 4 )
+margin_left = 117.0
+margin_top = 7.0
+margin_right = 156.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 5 )
 text = " st"
 __meta__ = {
 "_edit_use_anchors_": false
