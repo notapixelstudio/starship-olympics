@@ -41,7 +41,7 @@ font_data = ExtResource( 14 )
 size = 30
 font_data = ExtResource( 14 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Unhide"
 length = 1.5
 tracks/0/type = "value"
@@ -141,7 +141,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-anims/Unhide = SubResource( 6 )
+anims/Unhide = SubResource( 4 )
 anims/Unlock = SubResource( 5 )
 
 [node name="Lock" type="Sprite" parent="." index="11"]

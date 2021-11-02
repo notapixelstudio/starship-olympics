@@ -77,7 +77,8 @@ func unlock():
 	Events.emit_signal("sth_unlocked", set, self)
 
 func show_tap_preview(_author):
-	$Label.visible = true
+	if status == TheUnlocker.UNLOCKED:
+		$Label.visible = true
 	
 func hide_tap_preview():
 	$Label.visible = false
