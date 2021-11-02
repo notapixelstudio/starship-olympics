@@ -61,7 +61,7 @@ func _ready():
 				total_score += 2 # 1+2 = 3, value of big diamond
 				
 func intro():
-	global.the_match.connect('game_over', self, '_on_game_over')
+	Events.connect('match_ended', self, '_on_match_ended')
 	
 	for card in get_all_cards():
 		card.reveal()
@@ -86,6 +86,10 @@ func _on_card_taken(card, player, ship):
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
+	# do nothing if the game has already ended
+	if not global.is_match_running():
+		return
+	
 	var score
 	match card.content:
 		null:
@@ -100,7 +104,7 @@ func _on_card_taken(card, player, ship):
 	card.queue_free()
 
 # reveal cards at the end of the match
-func _on_game_over(_winners):
+func _on_match_ended():
 	for card in get_all_cards():
 		card.set_auto_flip_back(false)
 		card.set_pause_mode(PAUSE_MODE_PROCESS)
