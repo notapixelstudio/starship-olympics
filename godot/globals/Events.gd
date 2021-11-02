@@ -5,6 +5,10 @@ signal bumper_created(bumper)
 signal ship_died(ship, killer, for_good)
 
 signal sths_bumped(sth1, sth2) # just one for pair
+
+signal tappable_entered(tappable, ship)
+signal tappable_exited(tappable, ship)
+signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
 signal holdable_loaded(holdable, ship)

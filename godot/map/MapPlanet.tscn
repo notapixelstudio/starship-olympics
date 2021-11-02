@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
 [ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
@@ -40,9 +39,9 @@ font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
-font_data = ExtResource( 1 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 resource_name = "Unhide"
 length = 1.5
 tracks/0/type = "value"
@@ -58,8 +57,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Unlock"
+[sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -143,8 +141,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-anims/Unhide = SubResource( 5 )
-anims/Unlock = SubResource( 4 )
+anims/Unhide = SubResource( 6 )
+anims/Unlock = SubResource( 5 )
 
 [node name="Lock" type="Sprite" parent="." index="11"]
 visible = false
