@@ -5,7 +5,7 @@ class_name Ball
 
 const GRAB_DISTANCE = 72
 
-export (String, 'crown', 'basket', 'soccer', 'tennis', 'heart', 'star') var type setget set_type
+export (String, 'crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown') var type setget set_type
 
 var impulse := 0.0
 
@@ -47,10 +47,10 @@ func get_texture():
 	return $Sprite.texture
 	
 func show_on_top():
-	return type == 'crown'
+	return type == 'crown' or type == 'negacrown'
 	
 func is_rotatable():
-	return type != 'crown' and type != 'star'
+	return type != 'crown' and type != 'negacrown' and type != 'star'
 
 func is_loadable():
 	return is_inside_tree()
