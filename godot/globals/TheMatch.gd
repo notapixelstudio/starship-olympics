@@ -20,6 +20,7 @@ var cumulative_points = 0
 var leaders = []
 var winners = [] # Array of winning InfoPlayer
 var no_players = false
+var end_on_perfect := true
 
 const DEADZONE = 0.1
 signal game_over
@@ -47,6 +48,7 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	target_score = game_mode.max_score
 	
 	players = _players
+	end_on_perfect = game_mode.end_on_perfect
 	
 	if max_score:
 		target_score = max_score
@@ -103,7 +105,9 @@ func compute_game_status():
 		if player.get_score() >= leader.get_score():
 			leaders.append(player)
 	
-	if leader.get_score() >= target_score or time_left <= 0 or (cumulative_points>=target_score) or no_players:
+	var perfect_end : bool = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
+	
+	if perfect_end or time_left <= 0 or no_players:
 		winners = []
 		var draw = true
 		var last_value = leader.get_score()

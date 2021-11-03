@@ -13,7 +13,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 4 )
 
-[node name="ConquestModeManager" parent="Managers" index="10"]
+[node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -53,7 +53,6 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 500, 0 )
 rotation = 3.14159
-controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
