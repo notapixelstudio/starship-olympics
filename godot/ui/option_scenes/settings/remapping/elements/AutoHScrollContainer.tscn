@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/ScrollContainer.gd" type="Script" id=1]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/AutoHScrollContainer.gd" type="Script" id=1]
 
 [sub_resource type="Animation" id=1]
 resource_local_to_scene = true
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.0, 0.0 ]
 }
 
-[node name="ScrollContainer" type="Control"]
+[node name="AutoHScrollContainer" type="Control"]
 margin_left = 153.0
 margin_right = 956.0
 margin_bottom = 80.0

@@ -7,8 +7,14 @@
 [ext_resource path="res://ui/common_elements/ElementOption.tscn" type="PackedScene" id=5]
 
 [node name="RemappingContainer" type="MarginContainer"]
-margin_right = 944.0
-margin_bottom = 490.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -472.0
+margin_top = -245.0
+margin_right = 472.0
+margin_bottom = 245.0
 size_flags_vertical = 3
 script = ExtResource( 2 )
 __meta__ = {
@@ -24,10 +30,9 @@ custom_constants/separation = 20
 anchor_right = 0.0
 margin_right = 944.0
 margin_bottom = 50.0
-elem_type = 2
-is_global = true
 element_path = "device"
 label_description = "device"
+elem_type = 2
 
 [node name="action1" parent="UIButtonsContainer" instance=ExtResource( 4 )]
 margin_top = 70.0
