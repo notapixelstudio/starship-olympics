@@ -43,25 +43,32 @@ func _ready():
 	var basic_figures = BASIC_FIGURES.duplicate() + BASIC_FIGURES.duplicate() + BASIC_FIGURES.duplicate() + BASIC_FIGURES.duplicate()
 	
 	# if there are more than 2 players
-	var extra_basic_figures = BASIC_FIGURES.duplicate()
-	extra_basic_figures.shuffle()
-	#extra_basic_figures.resize(5) basic figures are 5
-	
-	# for each player beyond the second
-	for i in range(max(0, global.the_match.get_number_of_players()-2)):
-		basic_figures += extra_basic_figures.duplicate() + extra_basic_figures.duplicate()
+	var extra_players = max(0, global.the_match.get_number_of_players()-2)
+	if extra_players > 0:
+		var extra_basic_figures = BASIC_FIGURES.duplicate()
+		extra_basic_figures.shuffle() # basic figures are 5
+		
+		var super_extra_basic_figures = BASIC_FIGURES.duplicate()
+		super_extra_basic_figures.shuffle()
+		super_extra_basic_figures.resize(extra_players) # basic figures are 5
+		
+		# for each player beyond the second
+		for i in range(extra_players):
+			basic_figures += extra_basic_figures.duplicate() + extra_basic_figures.duplicate()
+			
+		basic_figures += super_extra_basic_figures.duplicate() + super_extra_basic_figures.duplicate()
 		
 	basic_figures.shuffle()
-	assert(len(basic_figures) == global.the_match.get_number_of_players()*10)
+	assert(len(basic_figures) == global.the_match.get_number_of_players()*10 + extra_players*2)
 	
 	# advanced figures appear in pairs, and sometimes do not appear at all (12 cards in total, so 6 of them out of 11 are shown in a single match)
 	var selected_advanced_figures = ADVANCED_FIGURES.duplicate()
 	selected_advanced_figures.shuffle()
-	selected_advanced_figures.resize(4 + global.the_match.get_number_of_players())
+	selected_advanced_figures.resize(6)
 	
 	var advanced_figures = selected_advanced_figures.duplicate() + selected_advanced_figures.duplicate()
 	advanced_figures.shuffle()
-	assert(len(advanced_figures) == 8 + global.the_match.get_number_of_players()*2)
+	assert(len(advanced_figures) == 12)
 	
 	var mix = basic_figures.slice(16,len(basic_figures)-1) + advanced_figures.duplicate()
 	mix.shuffle()
