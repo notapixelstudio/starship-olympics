@@ -16,6 +16,7 @@ export var max_score: int = 100
 export var starting_score : int = 0
 export var cumulative: bool = false
 export var starting_lives : int = -1
+export var end_on_perfect := true
 
 # goal manager
 export var death : bool = false

@@ -82,7 +82,7 @@ func refresh_texture():
 	else:
 		$Ground/Front/Figure.texture = null
 
-func _on_tap(author):
+func tap(author):
 	# no retaking
 	if not face_down or flipping:
 		return
@@ -134,14 +134,20 @@ func set_tint(color):
 	$Ground/Front/Background.modulate = color
 	
 func _on_Card_body_entered(body):
-	if face_down and body is Ship:
-		outline.visible = true
-		outline.modulate = body.species.color
-
-func _on_Card_body_exited(body):
 	if body is Ship:
-		outline.visible = false
+		Events.emit_signal("tappable_entered", self, body)
 		
+func show_tap_preview(ship : Ship):
+	outline.visible = true
+	outline.modulate = ship.species.color
+	
+func _on_ExitArea_body_exited(body):
+	if body is Ship:
+		Events.emit_signal("tappable_exited", self, body)
+		
+func hide_tap_preview():
+	outline.visible = false
+	
 func _on_Timer_timeout():
 	hide()
 

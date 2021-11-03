@@ -47,7 +47,7 @@ func _ready():
 			card.set_content(null)
 		
 func intro():
-	global.the_match.connect('game_over', self, '_on_game_over')
+	Events.connect('match_ended', self, '_on_match_ended')
 	
 	for card in get_all_cards():
 		if card.get_character_player() != null:
@@ -74,6 +74,10 @@ func _on_card_taken(card, player, ship):
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
+	# do nothing if the game has already ended
+	if not global.is_match_running():
+		return
+	
 	var score
 	if card.get_character_player() == player:
 		score = 10
@@ -88,7 +92,7 @@ func _on_card_taken(card, player, ship):
 	global.arena.show_msg(player.species, score, card.global_position)
 	
 # reveal cards at the end of the match
-func _on_game_over(_winners):
+func _on_match_ended():
 	for card in get_all_cards():
 		card.set_auto_flip_back(false)
 		card.set_pause_mode(PAUSE_MODE_PROCESS)

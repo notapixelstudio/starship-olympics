@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/sprites/cards/card_outline.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
@@ -13,7 +13,10 @@
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 160, 200 )
+extents = Vector2( 120, 170 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 180, 230 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 52
@@ -52,10 +55,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Ground/Front:scale")
@@ -135,7 +138,7 @@ tracks/6/keys = {
 "in_camera",
 ]]
 position = Vector2( 200, 400 )
-scale = Vector2( 1.2, 1.2 )
+scale = Vector2( 1.5, 1.5 )
 collision_layer = 0
 collision_mask = 3
 script = ExtResource( 6 )
@@ -145,7 +148,17 @@ script = ExtResource( 6 )
 [node name="Owned" parent="." instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -30 )
 shape = SubResource( 1 )
+
+[node name="ExitArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+modulate = Color( 1, 0.188235, 0, 1 )
+position = Vector2( 0, -30 )
+shape = SubResource( 6 )
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.235294 )
@@ -171,7 +184,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Figure" type="Sprite" parent="Ground/Front"]
-scale = Vector2( 1.1, 1.1 )
 texture = ExtResource( 4 )
 
 [node name="Character" type="Sprite" parent="Ground/Front"]
@@ -250,5 +262,5 @@ anims/Reveal = SubResource( 5 )
 wait_time = 4.0
 
 [connection signal="body_entered" from="." to="." method="_on_Card_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_Card_body_exited"]
+[connection signal="body_exited" from="ExitArea" to="." method="_on_ExitArea_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

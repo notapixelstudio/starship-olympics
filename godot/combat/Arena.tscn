@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://combat/managers/HoldablesManager.tscn" type="PackedScene" id=34]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=35]
 [ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=36]
+[ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=37]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10000 )
@@ -173,6 +174,8 @@ gameover_scene = ExtResource( 2 )
 environment = ExtResource( 29 )
 
 [node name="Managers" type="Node" parent="."]
+
+[node name="TappablesManager" parent="Managers" instance=ExtResource( 37 )]
 
 [node name="BumpManager" parent="Managers" instance=ExtResource( 15 )]
 

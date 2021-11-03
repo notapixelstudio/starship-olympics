@@ -76,19 +76,20 @@ func unlock():
 	emit_signal('unlocked')
 	Events.emit_signal("sth_unlocked", set, self)
 
-func on_hover():
-	$Label.visible = true
+func show_tap_preview(_author):
+	if status == TheUnlocker.UNLOCKED:
+		$Label.visible = true
 	
-func on_blur():
+func hide_tap_preview():
 	$Label.visible = false
 	
-func _on_tap(author: Ship):
+func tap(author: Ship):
 	if self.get_status() == TheUnlocker.UNLOCKED:
 		self.land_on(author)
 		
 		# remove author
 		author.get_parent().remove_child(author)
-	
+		
 func land_on(ship: Ship):
 	var cursor: MapCursor = cursor_scene.instance()
 	cursor.setup(ship.info_player)

@@ -463,6 +463,7 @@ signal near_area_entered
 func _on_NearArea_area_entered(area):
 	emit_signal("near_area_entered", area, self)
 	Events.emit_signal('sth_collided_with_ship', area, self)
+	
 func _on_NearArea_body_entered(body):
 	emit_signal("near_area_entered", body, self)
 	Events.emit_signal('sth_collided_with_ship', body, self)
@@ -491,6 +492,8 @@ func recheck_colliding():
 		_on_NearArea_body_entered(body)
 	for area in $NearArea.get_overlapping_areas():
 		_on_NearArea_area_entered(area)
+		if traits.has_trait(area, 'Tappable'):
+			Events.emit_signal("tappable_entered", area, self)
 
 const DASH_RESTORED = Vector2(1,1)
 const DASH_THIN = Vector2(1.5,0.5)
@@ -692,12 +695,7 @@ func update_weapon_indicator():
 	
 	
 func tap():
-	# transmit tap to overlapped Tappables
-	for area in $NearArea.get_overlapping_areas():
-		if traits.has_trait(area, 'Tappable'):
-			area._on_tap(self)
-			Events.emit_signal('sth_tapped', self, area)
-			
+	Events.emit_signal('tap', self)
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
