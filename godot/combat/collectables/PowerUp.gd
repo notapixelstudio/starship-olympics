@@ -4,7 +4,7 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs', 'waves', 'bubbles') var type = 'shield' setget set_type
+export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs', 'waves', 'bubbles', 'drill') var type = 'shield' setget set_type
 export var appear = true
 export var tease = false
 export var random_types = []
@@ -30,7 +30,8 @@ const CATEGORY = {
 	'spikes': 'main',
 	'bombs': 'main',
 	'waves': 'main',
-	'bubbles': 'main'
+	'bubbles': 'main',
+	'drill': 'main'
 }
 
 const EXCLUSIVE = {
