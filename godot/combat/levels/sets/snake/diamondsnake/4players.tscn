@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=17]
 [ext_resource path="res://combat/modes/DiamondSnake.tres" type="Resource" id=18]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -64,7 +65,7 @@ match_duration_override = 90.0
 
 [node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 19 )]
 
-[node name="CollectModeManager" parent="Managers" index="12"]
+[node name="CollectModeManager" parent="Managers" index="14"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -90,8 +91,8 @@ position = Vector2( 0, -800 )
 modulate = Color( 0.8, 0.8, 0.8, 0.9 )
 texture = ExtResource( 11 )
 texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0.19114, 0.1102, 0.38, 1 )
-bg_color = Color( 0.168875, 0.1085, 0.35, 1 )
+fg_color = Color( 0.192157, 0.109804, 0.380392, 1 )
+bg_color = Color( 0.168627, 0.109804, 0.34902, 1 )
 
 [node name="Wall3" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1500, -1300 )
@@ -563,6 +564,22 @@ position = Vector2( 0, 850 )
 
 [node name="BigDiamond2" parent="Battlefield/Middleground/DiamondSpawner28" index="1" instance=ExtResource( 14 )]
 position = Vector2( 0, 3300 )
+
+[node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 20 )]
+position = Vector2( -600, -1300 )
+type = "snake"
+
+[node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 20 )]
+position = Vector2( -200, -1450 )
+type = "snake"
+
+[node name="PowerUp3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 20 )]
+position = Vector2( 200, -1450 )
+type = "snake"
+
+[node name="PowerUp4" parent="Battlefield/Foreground" index="3" instance=ExtResource( 20 )]
+position = Vector2( 600, -1300 )
+type = "snake"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -600, -1300 )
