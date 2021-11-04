@@ -1,9 +1,8 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://assets/icon/minicards/sets/flowsnake.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/asteroid_survival_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://map/planets/rules/Survival.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 3 )
@@ -20,6 +19,7 @@ max_score = 30
 starting_score = 0
 cumulative = false
 starting_lives = 1
+end_on_perfect = true
 death = false
 last_man = false
 crown = false
@@ -35,7 +35,6 @@ deadly_trails_duration = 30.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 5 ) ]
 floodable = false
 flood = false
 laserable = false

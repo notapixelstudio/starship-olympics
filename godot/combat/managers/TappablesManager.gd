@@ -2,10 +2,15 @@ extends Node
 
 var active_tappables := {}
 
-func _ready():
+func _enter_tree():
 	Events.connect("tappable_entered", self, '_on_tappable_entered')
 	Events.connect("tappable_exited", self, '_on_tappable_exited')
 	Events.connect("tap", self, '_on_tap')
+	
+func _exit_tree():
+	Events.disconnect("tappable_entered", self, '_on_tappable_entered')
+	Events.disconnect("tappable_exited", self, '_on_tappable_exited')
+	Events.disconnect("tap", self, '_on_tap')
 	
 func _on_tappable_entered(tappable, ship : Ship):
 	# activate another tappable only if there isn't an older one for this ship
