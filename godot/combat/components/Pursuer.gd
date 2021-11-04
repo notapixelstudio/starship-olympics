@@ -6,9 +6,18 @@ export var keep_target_timeout : float = 1.0
 export var detection_insensitive_timeout : float = 1.0
 var keep_target_t : float = 0
 var detection_insensitive_t : float = 0
+var pursued := false
 
 func set_target(value):
-	target = value
+	if value == null:
+		target = null
+		return true
+		
+	if not pursued:
+		target = value
+		pursued = true
+		return true
+	return false
 	
 func get_target():
 	return target
