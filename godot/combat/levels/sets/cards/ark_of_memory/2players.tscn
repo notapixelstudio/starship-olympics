@@ -213,12 +213,13 @@ take_ownership = true
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -2050, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 2050, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 11 )
 
 [node name="Camera" parent="." index="6"]
