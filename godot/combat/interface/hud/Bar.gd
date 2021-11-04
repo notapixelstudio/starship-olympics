@@ -88,11 +88,11 @@ func set_value(value: float, new_author: InfoPlayer):
 	previous_value = current_value
 	current_value = clamp(value, 0, max_score)
 	
-	if current_value > previous_value:
-		streak_on()
-		
 	$Ship.position.x = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
 	
+	if current_value != previous_value:
+		streak_on()
+		
 func get_value():
 	return current_value
 
@@ -115,7 +115,7 @@ func streak_off():
 	streaking = false
 	
 	# stop glowing for older bars
-	if current_streak_bar:
+	if current_streak_bar != null:
 		current_streak_bar.color = author.species.color
 
 func _on_StreakTimer_timeout():
@@ -134,13 +134,17 @@ func add_streak_bar():
 func update_current_streak_bar():
 	var left = margin_left + (max_bar_width - ministar_margin) / max_score * streak_start
 	var right = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
+	var actual_arrow_width = max(0,min(right-left, streak_arrow_width)) # negative streaks have no arrow
 	current_streak_bar.polygon = PoolVector2Array([
 		Vector2(left, margin_top+bar_height),
 		Vector2(left, margin_top),
-		Vector2(max(left,right-streak_arrow_width), margin_top),
+		Vector2(right-actual_arrow_width, margin_top),
 		Vector2(right, margin_top+bar_height/2),
-		Vector2(max(left,right-streak_arrow_width), margin_top+bar_height)
+		Vector2(right-actual_arrow_width, margin_top+bar_height)
 	])
+	# darken the streak if it's negative
+	if right < left:
+		current_streak_bar.modulate = Color(0,0,0,0.8)
 	
 func update_megabar():
 	var right = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
@@ -151,3 +155,4 @@ func update_megabar():
 		Vector2(right, margin_top+bar_height/2),
 		Vector2(max(margin_left,right-streak_arrow_width), margin_top+bar_height)
 	])
+	

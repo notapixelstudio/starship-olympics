@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/minigames/TakeTheCrown.tres" type="Resource" id=1]
 [ext_resource path="res://map/planets/Set.gd" type="Script" id=2]
 [ext_resource path="res://assets/map/cards/crown_set.png" type="Texture" id=3]
 [ext_resource path="res://combat/minigames/QueenOfTheHive.tres" type="Resource" id=4]
+[ext_resource path="res://combat/minigames/Negacrown.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 2 )
@@ -12,6 +13,6 @@ name = "Crown"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 1 ), ExtResource( 4 ) ]
+minigames = [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ) ]
 planet_sprite = ExtResource( 3 )
 mutators = [  ]

@@ -11,12 +11,11 @@
 [ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=9]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
-[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=12]
+[ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=13]
+[ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
-[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -36,31 +35,61 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-length = 10.0
+resource_name = "Rotate"
+length = 8.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("NoCrownZone:rotation_degrees")
+tracks/0/path = NodePath("GRect:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [ 50, 800 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("NoCrownZone2:rotation_degrees")
+tracks/1/path = NodePath("GRect:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [ 800, 50 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("GRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 50, 800 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 800, 50 ]
 }
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -148,13 +177,7 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
 opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
-"animation_in_battle",
-]]
-playback_speed = 0.2
-anims/Rotate = SubResource( 2 )
-
-[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 3150, -900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -170,34 +193,51 @@ show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
-position = Vector2( -800, 0 )
-
-[node name="NoCrownZone2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
-position = Vector2( 800, 0 )
-
-[node name="Gel" parent="Battlefield/Middleground" index="4" instance=ExtResource( 15 )]
+[node name="Gel" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 position = Vector2( 0, 850 )
 rotation = -1.5708
 width = 600
 depth = 50
 
-[node name="Gel2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 15 )]
+[node name="Gel2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
 position = Vector2( 0, -850 )
 rotation = 1.5708
 width = 600
 depth = 50
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
-position = Vector2( -400, -400 )
-type = "rockets"
+[node name="GlassWall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+position = Vector2( -800, 0 )
+rotation = 0.785398
+collision_layer = 2147483648
+type = 4
 
-[node name="PowerUp2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 18 )]
-position = Vector2( 400, 400 )
-type = "rockets"
+[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
+script = ExtResource( 12 )
+width = 425
+height = 425
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
-type = "crown"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 2 )
+
+[node name="GlassWall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+position = Vector2( 800, 0 )
+rotation = 0.785398
+collision_layer = 2147483648
+type = 4
+
+[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall2" index="8"]
+script = ExtResource( 12 )
+width = 425
+height = 425
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=[
+"animation_in_battle",
+]]
+anims/Rotate = SubResource( 3 )
+
+[node name="Negacrown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -400, -400 )
