@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapGameMode.tres" type="Resource" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=12]
 [ext_resource path="res://map/planets/sets/crown.tres" type="Resource" id=13]
+[ext_resource path="res://map/planets/sets/snake.tres" type="Resource" id=14]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=15]
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=17]
 [ext_resource path="res://map/planets/sets/death.tres" type="Resource" id=18]
@@ -79,17 +80,21 @@ position = Vector2( -600, 650 )
 points = PoolVector2Array( 500, -400, 350, -300, -25, -400, -150, -250 )
 unlocked = true
 
-[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="3" instance=ExtResource( 41 )]
+[node name="Path8" parent="Battlefield/Middleground/Content/Paths" index="3" instance=ExtResource( 41 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( 1600, -200, 1000, -100, 900, 0, 575, 50, 500, -50, -100, -150 )
+
+[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="4" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 600, -525, 550, -700 )
 unlocked = true
 
-[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="4" instance=ExtResource( 41 )]
+[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="5" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 550, -700, 700, -875, 900, -750, 1000, -875 )
 unlocked = true
 
-[node name="Waypoint" parent="Battlefield/Middleground/Content/Paths" index="5" instance=ExtResource( 12 )]
+[node name="Waypoint" parent="Battlefield/Middleground/Content/Paths" index="6" instance=ExtResource( 12 )]
 position = Vector2( -50, -50 )
 
 [node name="Planets" type="Node2D" parent="Battlefield/Middleground/Content" index="1"]
@@ -109,7 +114,11 @@ set = ExtResource( 43 )
 position = Vector2( -450, -275 )
 set = ExtResource( 13 )
 
-[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
+[node name="Snake" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
+position = Vector2( 1100, 450 )
+set = ExtResource( 14 )
+
+[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 15 )]
 position = Vector2( 425, -325 )
 set = ExtResource( 18 )
 
