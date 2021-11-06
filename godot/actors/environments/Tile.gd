@@ -75,7 +75,7 @@ func _process(delta):
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
 		if body is Ship and body != owner_ship and conquering_ship == null and not fortified: # no self-conquest + former conqueror takes priority
-			if not need_royal or body.get_cargo().check_type('crown'):
+			if not need_royal or body.get_cargo().check_type('bee_crown'):
 				conquering_ship = body
 				$AnimationPlayer.play('flip')
 		
@@ -116,8 +116,8 @@ func get_strategy(ship, distance, game_mode):
 			
 		if owner_ship != ship:
 			return {"seek": max(points, max_neighbour_value*1.1)*0.6}
-	elif game_mode.name == 'Queen of the Hive':
-		if not(ship.get_cargo().check_type('crown')):
+	elif game_mode.id == 'queen_of_the_hive':
+		if not(ship.get_cargo().check_type('bee_crown')):
 			return {}
 			
 		if owner_ship == null and conquering_ship == null:

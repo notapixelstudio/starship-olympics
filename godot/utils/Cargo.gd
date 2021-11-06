@@ -81,7 +81,8 @@ func _process(delta):
 	if held != null and not held.is_rotatable():
 		sprite.rotation = -global_rotation
 		if held.show_on_top():
-			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5).rotated(-global_rotation)
+			var grab_distance = Ball.GRAB_DISTANCE * (2.0 if held.has_type('bee_crown') else 1.5)
+			$Wrapper.position = Vector2(0, -grab_distance).rotated(-global_rotation)
 
 func empty():
 	if held != null:
