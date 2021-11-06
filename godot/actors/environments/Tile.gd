@@ -65,7 +65,8 @@ func _ready():
 		if area != self and area.has_method('get_klass') and area.get_klass() == 'Tile': # trick to avoid circular references
 			neighbours.append(area)
 			
-	$Neighbourhood.queue_free() # delete areas to save physics computations
+	if Engine.is_editor_hint(): # watch out for deleting this node when this is executed as a tool script!
+		$Neighbourhood.queue_free() # delete areas to save physics computations
 	
 	for n in neighbours:
 		max_neighbour_value = max(max_neighbour_value, n.get_score())
@@ -74,7 +75,7 @@ func _process(delta):
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
 		if body is Ship and body != owner_ship and conquering_ship == null and not fortified: # no self-conquest + former conqueror takes priority
-			if not need_royal or ECM.E(body).has('Royal'):
+			if not need_royal or body.get_cargo().check_type('crown'):
 				conquering_ship = body
 				$AnimationPlayer.play('flip')
 		
@@ -116,7 +117,7 @@ func get_strategy(ship, distance, game_mode):
 		if owner_ship != ship:
 			return {"seek": max(points, max_neighbour_value*1.1)*0.6}
 	elif game_mode.name == 'Queen of the Hive':
-		if not(ECM.E(ship).has('Royal')):
+		if not(ship.get_cargo().check_type('crown')):
 			return {}
 			
 		if owner_ship == null and conquering_ship == null:
