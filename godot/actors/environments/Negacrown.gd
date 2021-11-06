@@ -1,7 +1,7 @@
 extends Ball
 
 var charging := false
-var speed := 20
+var speed := 25
 var patience := 8
 
 func _ready():
