@@ -45,3 +45,9 @@ func is_rotatable():
 func get_kind():
 	return kind
 	
+func has_kind(k):
+	return self.get_kind() == k
+	
+func is_equivalent_to(holdable2):
+	return .is_equivalent_to(holdable2) and self.has_kind(holdable2.get_kind())
+	

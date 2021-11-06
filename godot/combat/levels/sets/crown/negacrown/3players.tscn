@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -11,13 +11,12 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=12]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Rotate"
 length = 8.0
 loop = true
@@ -48,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 50, 800 ]
+"values": [ 100, 800 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("GRect:height")
@@ -60,10 +59,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 50 ]
+"values": [ 800, 100 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Rotate"
 length = 8.0
 loop = true
@@ -167,7 +166,7 @@ bevel_se = 1085
 "animation_in_battle",
 ]]
 playback_speed = 0.5
-anims/Rotate = SubResource( 3 )
+anims/Rotate = SubResource( 1 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -176,19 +175,10 @@ texture_scale = Vector2( 0.125, 0.125 )
 fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
 bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
-[node name="GlassWall" type="StaticBody2D" parent="Battlefield/Middleground" index="0" groups=[
-"wall",
-] instance=ExtResource( 6 )]
+[node name="GlassWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -800, 0 )
 rotation = 0.785398
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
@@ -215,7 +205,7 @@ height = 425
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=[
 "animation_in_battle",
 ]]
-anims/Rotate = SubResource( 4 )
+anims/Rotate = SubResource( 3 )
 
 [node name="Gel" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
 position = Vector2( 0, 1000 )

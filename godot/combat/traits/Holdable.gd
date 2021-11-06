@@ -9,6 +9,7 @@ func validate():
 	assert(host.has_method('show_on_top'))
 	assert(host.has_method('is_rotatable'))
 	assert(host.has_method('is_loadable'))
+	assert(host.has_method('is_equivalent_to'))
 	
 func _ready():
 	host_parent = host.get_parent()

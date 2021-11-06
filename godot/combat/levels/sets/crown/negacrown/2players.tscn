@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 50, 800 ]
+"values": [ 100, 800 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("GRect:height")
@@ -60,7 +60,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 50 ]
+"values": [ 800, 100 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -77,7 +77,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 50, 800 ]
+"values": [ 100, 800 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("GRect:height")
@@ -89,7 +89,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 50 ]
+"values": [ 800, 100 ]
 }
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -213,8 +213,8 @@ type = 4
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
 script = ExtResource( 12 )
-width = 425
-height = 425
+width = 450
+height = 450
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=[
 "animation_in_battle",
