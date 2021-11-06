@@ -5,13 +5,16 @@ class_name Ball
 
 const GRAB_DISTANCE = 72
 
-export (String, 'crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown') var type setget set_type
+export (String, 'crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown') var type setget set_type, get_type
 
 var impulse := 0.0
 
 func set_type(v):
 	type = v
 	refresh()
+	
+func get_type():
+	return type
 	
 func _ready():
 	if type == 'soccer':

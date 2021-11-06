@@ -818,3 +818,5 @@ func trigger_all_my_stuff():
 		if triggerable.get_owner_ship() == self:
 			triggerable.detonate()
 			
+func get_target_destination():
+	return $TargetDest.global_position
