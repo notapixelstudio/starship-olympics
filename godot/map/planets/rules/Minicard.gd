@@ -37,7 +37,7 @@ func set_status(v):
 		$QuestionMark.visible = false
 		
 func update_status():
-	if TheUnlocker.unlocked_games.get(content.get_id(), TheUnlocker.HIDDEN) == TheUnlocker.UNLOCKED:
+	if TheUnlocker.get_status("minigames", content.get_id(), TheUnlocker.HIDDEN) == TheUnlocker.UNLOCKED:
 		self.set_status("unlocked")
 	else:
 		self.set_status("locked")

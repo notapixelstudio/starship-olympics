@@ -53,8 +53,7 @@ func _ready():
 	if set:
 		sprite.texture = set.planet_sprite
 		$Label.text = set.name
-		
-	self.set_status(TheUnlocker.get_status_set(self.get_id()))
+	self.set_status(TheUnlocker.get_status("sets", self.get_id()))
 	
 func unhide():
 	if status != TheUnlocker.HIDDEN:
