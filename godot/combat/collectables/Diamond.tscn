@@ -80,11 +80,13 @@ texture = ExtResource( 7 )
 [node name="SpriteEffect2" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect3" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -93,8 +95,8 @@ shape = SubResource( 1 )
 [node name="Glow" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.378719 )
-scale = Vector2( 0.894649, 0.894649 )
+modulate = Color( 0.305882, 1, 0.968627, 0.0354107 )
+scale = Vector2( 0.967786, 0.967786 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]

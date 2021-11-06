@@ -194,21 +194,9 @@ bus = "SFX"
 script = ExtResource( 5 )
 streams = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 11 ) ]
 random_strategy = 1
-randomize_volume = false
-volume_min = 0.0
-volume_max = 0.0
-randomize_pitch = false
-pitch_min = 1.0
-pitch_max = 1.0
 
 [node name="RandomBindSFX" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX"
 script = ExtResource( 5 )
 streams = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ) ]
 random_strategy = 1
-randomize_volume = false
-volume_min = 0.0
-volume_max = 0.0
-randomize_pitch = false
-pitch_min = 1.0
-pitch_max = 1.0
