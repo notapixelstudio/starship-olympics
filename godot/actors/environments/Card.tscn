@@ -15,21 +15,21 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 170 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 180, 230 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=8]
 size = 52
 outline_size = 1
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=9]
 size = 86
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=10]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -158,7 +158,7 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
 modulate = Color( 1, 0.188235, 0, 1 )
 position = Vector2( 0, -30 )
-shape = SubResource( 2 )
+shape = SubResource( 7 )
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.235294 )
@@ -184,6 +184,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Figure" type="Sprite" parent="Ground/Front"]
+scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 4 )
 
 [node name="Character" type="Sprite" parent="Ground/Front"]
@@ -217,7 +218,7 @@ margin_left = -102.667
 margin_top = -97.5
 margin_right = 98.3333
 margin_bottom = 102.5
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 8 )
 text = "M"
 align = 1
 valign = 1
@@ -235,7 +236,7 @@ margin_left = -101.0
 margin_top = -100.0
 margin_right = 100.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 9 )
 align = 1
 valign = 1
 __meta__ = {
@@ -245,17 +246,17 @@ __meta__ = {
 [node name="Back" type="Node2D" parent="Ground"]
 
 [node name="Background" type="Sprite" parent="Ground/Back"]
-modulate = Color( 0.62, 0.5084, 0.5084, 1 )
+modulate = Color( 0.75, 0.615, 0.615, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Internal" type="Sprite" parent="Ground/Back"]
-modulate = Color( 0.52, 0.4368, 0.4368, 1 )
+modulate = Color( 0.68, 0.5576, 0.5576, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Float = SubResource( 5 )
+anims/Float = SubResource( 10 )
 anims/Reveal = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
