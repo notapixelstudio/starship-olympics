@@ -27,11 +27,12 @@ func refresh():
 		yield(self, 'ready')
 	$Sprite.texture = load('res://assets/sprites/balls/'+type+'.png')
 	
-func place_and_push(dropper, velocity) -> void:
+func place_and_push(dropper, velocity, direction:='forward') -> void:
+	var dir = 1.0 if direction == 'forward' else -1.0
 	global_position = dropper.global_position
-	global_position = dropper.global_position + Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
+	global_position = dropper.global_position + dir*Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
 	
-	linear_velocity = velocity
+	linear_velocity = velocity if direction == 'forward' else -300.0*velocity.normalized()
 	if type == 'soccer':
 		linear_velocity *= 1.5
 		
@@ -59,5 +60,8 @@ func is_loadable():
 	return is_inside_tree()
 	
 func has_type(t):
-	return type == t
+	return self.get_type() == t
+	
+func is_equivalent_to(holdable2):
+	return self.has_type(holdable2.get_type())
 	

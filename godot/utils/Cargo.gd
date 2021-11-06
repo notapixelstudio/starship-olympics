@@ -20,8 +20,12 @@ func load_holdable(holdable) -> void:
 		
 	var replaced = null
 	if has_holdable():
+		# refuse to load a holdable of the same type
+		if holdable.is_equivalent_to(held):
+			return
+		
 		replaced = held
-		drop_holdable()
+		drop_holdable('backwards')
 		
 	held = holdable
 	show_holdable()
@@ -42,13 +46,13 @@ func set_holdable(holdable):
 func get_holdable():
 	return held
 	
-func drop_holdable():
+func drop_holdable(direction:='forward'):
 	if not self.has_holdable():
 		return
 		
 	var holdable = held
 	held = null
-	holdable.place_and_push(owner_ship, owner_ship.previous_velocity) # previous is needed for glass
+	holdable.place_and_push(owner_ship, owner_ship.previous_velocity, direction) # previous is needed for glass
 	hide_holdable()
 	Events.emit_signal("holdable_dropped", holdable, owner_ship)
 	
