@@ -89,3 +89,15 @@ func empty():
 		held = null
 		hide_holdable()
 	
+func check_type(t):
+	if not self.has_holdable():
+		return false
+	
+	return self.get_holdable().has_type(t)
+	
+func check_class(klass):
+	if not self.has_holdable():
+		return false
+	
+	return self.get_holdable() is klass
+	
