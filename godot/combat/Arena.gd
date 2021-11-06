@@ -578,14 +578,14 @@ func ship_just_died(ship, killer, for_good):
 	
 	var respawn_timeout = 1.5
 	if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
-		respawn_timeout = 0.75
+		#respawn_timeout = 0.75
 		var cargo = ship.get_cargo()
 		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
 			respawn_timeout = 2.25
-	elif conquest_mode.enabled:
-		respawn_timeout = 0.75
-	elif game_mode.name == "GoalPortal":
-		respawn_timeout = 0.75
+	#elif conquest_mode.enabled:
+	#	respawn_timeout = 0.75
+	#elif game_mode.name == "GoalPortal":
+	#	respawn_timeout = 0.75
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
