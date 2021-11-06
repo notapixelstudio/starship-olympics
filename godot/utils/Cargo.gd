@@ -20,8 +20,12 @@ func load_holdable(holdable) -> void:
 		
 	var replaced = null
 	if has_holdable():
+		# refuse to load a holdable of the same type
+		if holdable.is_equivalent_to(held):
+			return
+		
 		replaced = held
-		drop_holdable()
+		drop_holdable('backwards')
 		
 	held = holdable
 	show_holdable()
@@ -42,13 +46,13 @@ func set_holdable(holdable):
 func get_holdable():
 	return held
 	
-func drop_holdable():
+func drop_holdable(direction:='forward'):
 	if not self.has_holdable():
 		return
 		
 	var holdable = held
 	held = null
-	holdable.place_and_push(owner_ship, owner_ship.previous_velocity) # previous is needed for glass
+	holdable.place_and_push(owner_ship, owner_ship.previous_velocity, direction) # previous is needed for glass
 	hide_holdable()
 	Events.emit_signal("holdable_dropped", holdable, owner_ship)
 	
@@ -77,11 +81,24 @@ func _process(delta):
 	if held != null and not held.is_rotatable():
 		sprite.rotation = -global_rotation
 		if held.show_on_top():
-			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5).rotated(-global_rotation)
+			var grab_distance = Ball.GRAB_DISTANCE * (2.0 if held.has_type('bee_crown') else 1.5)
+			$Wrapper.position = Vector2(0, -grab_distance).rotated(-global_rotation)
 
 func empty():
 	if held != null:
 		held.free()
 		held = null
 		hide_holdable()
+	
+func check_type(t):
+	if not self.has_holdable():
+		return false
+	
+	return self.get_holdable().has_type(t)
+	
+func check_class(klass):
+	if not self.has_holdable():
+		return false
+	
+	return self.get_holdable() is klass
 	

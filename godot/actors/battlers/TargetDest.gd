@@ -29,7 +29,7 @@ func get_strategy(ship, distance, game_mode):
 		#if ECM.E(ship).has('Royal'):
 		#	return {'shoot': 0.5}
 		# if I have the Crown/Ball, try to touch me
-		if ECM.E(get_master_ship()).has('Royal'):
+		if get_master_ship().get_cargo().check_class(Ball):
 			return {'seek': 10, 'shoot': 7000/max(distance,0.1)}
 		# ignore me - the Crown/Ball is somewhere onto the battlefield
 		else:

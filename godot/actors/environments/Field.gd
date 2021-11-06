@@ -184,14 +184,14 @@ func _on_Area2D_body_exited(body):
 	
 func get_strategy(ship, distance, game_mode):
 	if type == TYPE.castle:
-		if game_mode.name == 'Take the Crown':
+		if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
 			# avoid no-crown zones if you have the crown
-			if ECM.E(ship).has('Royal'):
+			if ship.get_cargo().check_type('crown') or ship.get_cargo().check_type('bee_crown'):
 				return {"avoid": 1}
-		elif game_mode.name == 'Slam-a-Gon':
+		elif game_mode.id == 'slam':
 			var owner_player = get_parent().get_player() # ugly
 			# if you have the ball
-			if ECM.E(ship).has('Royal'):
+			if ship.get_cargo().check_class(Ball):
 				# this is your goal, touch it
 				if ship.get_player() == owner_player:
 					return {"seek": 10}

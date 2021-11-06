@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
 [ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=12]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=13]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=15]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=16]
@@ -49,7 +48,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 50, 800 ]
+"values": [ 100, 800 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("GRect:height")
@@ -61,7 +60,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 50 ]
+"values": [ 800, 100 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -181,19 +180,10 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
 bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
-[node name="GlassWall" type="StaticBody2D" parent="Battlefield/Middleground" index="0" groups=[
-"wall",
-] instance=ExtResource( 6 )]
+[node name="GlassWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -850, 0 )
 rotation = 0.785398
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
