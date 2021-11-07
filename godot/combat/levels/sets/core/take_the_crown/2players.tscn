@@ -133,9 +133,7 @@ bevel_ne = 885
 bevel_sw = 885
 bevel_se = 885
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
 
@@ -148,9 +146,7 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
 opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=["animation_in_battle"]]
 playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
@@ -163,9 +159,7 @@ script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
 show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708

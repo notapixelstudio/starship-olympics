@@ -133,9 +133,7 @@ script = ExtResource( 1 )
 radius = 50
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="8" groups=[
-"additional_lasers",
-] instance=ExtResource( 9 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 9 )]
 position = Vector2( 0, 51 )
 rotation = 1.5708
 
@@ -149,9 +147,7 @@ script = ExtResource( 1 )
 radius = 50
 sides = 4.0
 
-[node name="Laser2" parent="Battlefield/Middleground/Wall2" index="8" groups=[
-"additional_lasers",
-] instance=ExtResource( 9 )]
+[node name="Laser2" parent="Battlefield/Middleground/Wall2" index="8" groups=["additional_lasers"] instance=ExtResource( 9 )]
 position = Vector2( 0, -51 )
 rotation = -1.5708
 

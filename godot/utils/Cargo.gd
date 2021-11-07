@@ -25,7 +25,7 @@ func load_holdable(holdable) -> void:
 			return
 		
 		replaced = held
-		drop_holdable('backwards')
+		drop_holdable(replaced)
 		
 	held = holdable
 	show_holdable()
@@ -46,15 +46,23 @@ func set_holdable(holdable):
 func get_holdable():
 	return held
 	
-func drop_holdable(direction:='forward'):
+func drop_holdable(cause):
 	if not self.has_holdable():
 		return
+
+	var direction : String
+	if traits.has_trait(cause, "Holdable"):
+		direction = 'backward' # avoid juggling
+	elif traits.has_trait(cause, "Dropper"):
+		direction = 'forward' # no-zones will rebound
+	elif cause == owner_ship:
+		direction = 'forward' # upon death, cargo is dropped forward
 		
 	var holdable = held
 	held = null
 	holdable.place_and_push(owner_ship, owner_ship.previous_velocity, direction) # previous is needed for glass
 	hide_holdable()
-	Events.emit_signal("holdable_dropped", holdable, owner_ship)
+	Events.emit_signal("holdable_dropped", holdable, owner_ship, cause)
 	
 	# disable loading for a while, to avoid reloading a holdable right after drop
 	just_dropped = true
