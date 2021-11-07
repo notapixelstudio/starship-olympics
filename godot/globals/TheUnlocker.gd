@@ -10,9 +10,6 @@ export (String, "hidden", "locked", "unlocked") var status
 
 func _ready():
 	add_to_group("persist_unlocking")
-	
-	# Events.connect('sth_unhid', self, '_on_sth_unhid')
-	# Events.connect('sth_unlocked', self, '_on_sth_unlocked')
 
 var unlocked_elements = {
 	"sets": {
@@ -69,8 +66,7 @@ func unlock_element(group_id: String, element_id: String) -> void:
 		self.unlocked_elements[group_id][element_id] = UNLOCKED
 	else:
 		self.unlocked_elements[group_id] = {element_id: UNLOCKED}
-	Events.emit_signal('sth_unlocked', group_id, element_id)
-	
+
 
 
 func load_state(data: Dictionary):
