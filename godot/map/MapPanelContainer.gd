@@ -75,7 +75,7 @@ func choose_level(player_id: String, minigame: Minigame):
 		chosen_minicard.unlock()
 		yield(chosen_minicard, "unlocked")
 		# unlock and SAVE
-		TheUnlocker.unlock_game(this_gamemode.id)
+		TheUnlocker.unlock_element("minigames", this_gamemode.id)
 		persistance.save_game()
 	
 	tween.start()

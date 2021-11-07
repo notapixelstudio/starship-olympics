@@ -22,7 +22,6 @@ func add_path(path, from: MapLocation, to: MapLocation) -> void:
 ## return the MapLocation neighbours of the given MapLocation, along with their connecting Path
 func get_neighbourhood(loc: MapLocation) -> Dictionary: # {MapLocation: Path}
 	assert(neighbours.has(loc))
-	
 	return neighbours[loc]
 
 func _to_string() -> String:

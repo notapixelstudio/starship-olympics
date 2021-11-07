@@ -4,7 +4,7 @@ extends Line2D
 export var path_star_scene: PackedScene
 export var path_line_scene: PackedScene
 
-export var unlocked := false
+onready var unlocked_status := TheUnlocker.get_status("map_paths", self.name, TheUnlocker.HIDDEN)
 
 const D = 25
 
@@ -16,7 +16,7 @@ func set_points(v):
 	
 func _ready():
 	refresh()
-	if unlocked:
+	if unlocked_status == TheUnlocker.UNLOCKED:
 		# wait for tree to be refreshed
 		yield(get_tree(), "idle_frame")
 		appear()
