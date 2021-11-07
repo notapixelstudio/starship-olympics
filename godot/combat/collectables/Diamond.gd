@@ -16,9 +16,12 @@ func _ready():
 	$Glow/AnimationPlayer.seek(1.2, true)
 	
 	if appear:
+		self.set_tangible(false)
 		$AnimationPlayer.play('AppearFuhfuhfuh')
-		
 		
 func get_strategy(ship, distance, game_mode):
 	return {'seek': points}
+	
+func set_tangible(tangible : bool):
+	set_collision_mask_bit(1, tangible) # ship near area
 	
