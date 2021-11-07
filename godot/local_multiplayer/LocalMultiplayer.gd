@@ -2,7 +2,7 @@ extends Node
 
 onready var selection_screen = $SelectionScreen
 
-const menu_scene = "res://special_scenes/title_screen/MainScreen.tscn"
+const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
 
