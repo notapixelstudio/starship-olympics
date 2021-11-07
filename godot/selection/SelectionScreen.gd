@@ -257,6 +257,3 @@ func reset():
 
 func _on_ReadyToFight_deactivated():
 	smoke_screen.visible = false
-
-func compare_by_id(a: Species, b: Species):
-	return a.species_id < b.species_id

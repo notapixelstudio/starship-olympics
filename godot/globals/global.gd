@@ -688,6 +688,9 @@ func get_ordered_species() -> Array:
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
 	for species_id in unlocked_species:
 		ordered_species.append(global.get_species(species_id))
-	ordered_species.sort_custom(self, 'compare_by_id')
+	ordered_species.sort_custom(self, 'compare_by_species_id')
 	return ordered_species
 
+func compare_by_species_id(a: Species, b: Species):
+	return a.species_id < b.species_id
+	
