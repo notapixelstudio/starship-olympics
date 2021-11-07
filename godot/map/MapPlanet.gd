@@ -71,6 +71,7 @@ func unlock():
 		
 	$AnimationPlayer.play("Unlock")
 	yield($AnimationPlayer, "animation_finished")
+	TheUnlocker.unlock_element("sets", self.get_id())
 	self.set_status(TheUnlocker.UNLOCKED)
 	emit_signal('unlocked')
 	Events.emit_signal("sth_unlocked", set, self)

@@ -64,13 +64,11 @@ func get_status(group_id: String, element_id: String, default := LOCKED) -> Stri
 		return default
 		
 
-func unlock_element(group_id: String, element_id: String) -> void:
-	# If this fails means that we already unlocked this game
-	assert(self.get_status(group_id, element_id) == LOCKED)
+func unlock_element(group_id: String, element_id: String, new_status=UNLOCKED) -> void:
 	if group_id in self.unlocked_elements:
-		self.unlocked_elements[group_id][element_id] = UNLOCKED
+		self.unlocked_elements[group_id][element_id] = new_status
 	else:
-		self.unlocked_elements[group_id] = {element_id: UNLOCKED}
+		self.unlocked_elements[group_id] = {element_id: new_status}
 	persistance.save_group_to_file(PERSIST_GROUP)
 
 

@@ -77,17 +77,9 @@ func tap(ship : Ship, planet : MapPlanet):
 		var panel = panels.get_node(ship.get_id())
 		panel.set_content(planet.get_set())
 		panel.set_chosen(true)
-		#if not planet in selected_planets:
-		#	selected_planets.append(planet)
-		#players_selection[cursor.player.id] = cell.planet
 		players_ready[ship.get_id()] = planet.get_set()
 		check_all_ready()
-		
-		#_on_Start_pressed(cursor)
-	#elif cell.get_status() == TheUnlocker.LOCKED and cursor.is_winner():
-	#	TheUnlocker.unlock_set(cell.get_id())
-	#	cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
-	#	cursor.spend_winnership()
+
 	elif planet.get_status() == TheUnlocker.LOCKED and ship.get_cargo().has_holdable():
 		var cargo = ship.get_cargo()
 		if cargo.get_holdable().has_type('star'):
@@ -124,12 +116,14 @@ func _on_sth_unlocked(_what, by_what) -> void:
 	var neighbourhood := graph.get_neighbourhood(by_what)
 	for n in neighbourhood.keys(): # MapLocations
 		var path = neighbourhood[n]
-		path.appear()
-		TheUnlocker.unlock_element("map_paths", path.name)
+		if TheUnlocker.get_status("map_paths", path.name, TheUnlocker.HIDDEN) == TheUnlocker.HIDDEN:
+			path.appear()
+			TheUnlocker.unlock_element("map_paths", path.name)
 		yield(path, 'appeared')
 		if n is MapPlanet:
 			n.unhide()
 			yield(n, 'unhid')
+			TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
 		elif n is Waypoint:
 			n.unlock()
 			
