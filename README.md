@@ -23,20 +23,24 @@ Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com
 
 Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our Discord: https://discord.gg/tchr6qpj59.
 
-## Resources used and acknowledgements
+## LICENSE
 
-All the resources hereby cited are free and royalty-free. Made by the community or contributors.
+All the code used in this project is opensource and under the MIT License so you can use any part of it on your games developped in GodotEngine (that is also under the [MIT License](https://godotengine.org/license)).
 
-## Assets
+### Game Assets and Third party
+
+All the game assets (art, audio, texture, .svg files) under the folder assets, if not explicitly stated otherwise are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/).
+
+All the third-party resources are free and royalty-free contributors.
 
 (Since this game is in Development the following list might change often)
 
-### Soundtrack
+#### Soundtrack
 
 - [Mattek - Paradoxal Activity](https://soundcloud.com/themattek/mattek-paradoxal-activity)
 - Sounds and music from [freesound](https://freesound.org/people/salvob41/downloaded_sounds)
 
-### Sounds
+#### Sounds
 
 - [Aidave from freesound](https://freesound.org/people/aidave/downloaded_sounds)
 - [List of free sounds](https://v-play.net/game-resources/16-sites-featuring-free-game-sounds)
@@ -45,7 +49,7 @@ All the resources hereby cited are free and royalty-free. Made by the community 
 - [Jalastram](https://freesound.org/people/jalastram/packs/17801)
 - [LewislancasterMusic](https://soundcloud.com/lewislancastermusic) : 0555, 0013shed
 
-### Images
+#### Images
 
 - icons got from [icons8](https://icons8.com) website
 - icons from the excellent https://game-icons.net project!
