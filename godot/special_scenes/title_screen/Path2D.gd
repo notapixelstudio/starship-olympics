@@ -10,9 +10,9 @@ var all_speed = [150, 120, 200, 130, 140]
 var speed = 140
 func _ready():
 	randomize()
-	
-	for species in TheUnlocker.get_unlocked():
-		all_species.append(species)
+	var unlocked_species = TheUnlocker.get_unlocked_list("species")
+	for species_id in unlocked_species:
+		all_species.append(global.get_species(species_id))
 	
 	init_ship()
 	

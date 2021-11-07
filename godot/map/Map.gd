@@ -61,18 +61,9 @@ func set_slam_a_gon_bombs(value: bool):
 	settings["slam_a_gon"] = {"shoot_bombs" : slam_a_gon_shoot_bombs}
 	
 func _ready():
-	# Check if it is the first time:
-	if TheUnlocker.is_map_unlocked():
-		first_time_camera.current = false
-		camera.enabled = true
-	else:
-		first_time_camera.current = true
-		camera.enabled = false
-		var first_set = $Content/Planets/Set6
-		selected_sports = [first_set]
-		var central_panel = $CanvasLayerTop/PanelContainer/p1
-		central_panel.enable()
-		central_panel.map_element = first_set.planet
+	
+	first_time_camera.current = false
+	camera.enabled = true
 		
 	for x in range(WIDTH):
 		matrix.append([])
@@ -100,7 +91,7 @@ func _ready():
 		#if not levels:
 		#	sport.not_available = true
 		
-		sport.status = TheUnlocker.unlocked_sets.get(set.id, TheUnlocker.HIDDEN)
+		sport.status = TheUnlocker.get_status("sets", set.id, TheUnlocker.HIDDEN)
 	
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
@@ -224,7 +215,7 @@ func _on_cell_pressed(cursor, cell):
 			
 			_on_Start_pressed(cursor)
 		elif cell.get_status() == TheUnlocker.LOCKED and cursor.is_winner():
-			TheUnlocker.unlock_set(cell.get_id())
+			TheUnlocker.unlock_elements("sets", cell.get_id())
 			cell.set_status(TheUnlocker.get_status_set(cell.get_id()))
 			cursor.spend_winnership()
 	
@@ -302,7 +293,7 @@ func choose_level(level, player):
 		yield(chosen_minicard, "unlocked")
 		
 		# unlock and SAVE
-		TheUnlocker.unlock_game(this_gamemode.id)
+		TheUnlocker.unlock_element("minigames", this_gamemode.id)
 		persistance.save_game()
 	
 	tween.start()
@@ -409,11 +400,3 @@ func create_graph():
 		loc.add_path(path)
 		graph.add_path(path)
 	print(graph)
-
-func unlock_mode():
-	"""
-	This will find if and what to unlock and will make the animation or give input accordingly
-	"""
-	if not TheUnlocker.first_check():
-		first_time_camera.current = false
-		camera.enabled = true

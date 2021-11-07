@@ -23,10 +23,11 @@ func _ready():
 	# Soundtrack.play("Lobby", true)
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+	post_ready()
 	
-func initialize():
-	ordered_species = TheUnlocker.get_ordered_species()
-
+func post_ready():
+	ordered_species = global.get_ordered_species()
+	
 	var i = 0
 	for child in container.get_children():
 		assert(child is PlayerSelection)
@@ -256,4 +257,3 @@ func reset():
 
 func _on_ReadyToFight_deactivated():
 	smoke_screen.visible = false
-	

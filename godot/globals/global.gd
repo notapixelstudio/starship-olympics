@@ -665,3 +665,32 @@ func is_match_running() -> bool:
 func is_session_running() -> bool:
 	return session != null and is_instance_valid(session)
 	
+###############################
+##### FILE SYSTEM UTILS #######
+###############################
+const SPECIES_PATH = "res://selection/characters"
+
+func get_resources(base_path: String) -> Dictionary:
+	var ret = {}
+	var resources = global.dir_contents(base_path, "", ".tres")
+	for filename in resources:
+		var this_res = load(base_path.plus_file(filename))
+		var res_id = this_res.id
+		ret[res_id] = this_res
+	return ret
+
+onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
+func get_species(species_id: String):
+	return species_resources[species_id]
+
+func get_ordered_species() -> Array:
+	var ordered_species = []
+	var unlocked_species = TheUnlocker.get_unlocked_list("species")
+	for species_id in unlocked_species:
+		ordered_species.append(global.get_species(species_id))
+	ordered_species.sort_custom(self, 'compare_by_species_id')
+	return ordered_species
+
+func compare_by_species_id(a: Species, b: Species):
+	return a.species_id < b.species_id
+	

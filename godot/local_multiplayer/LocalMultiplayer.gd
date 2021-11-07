@@ -26,11 +26,11 @@ class ChosenArena:
 	var this_game: Arena
 
 func _ready():
-	for species in TheUnlocker.get_unlocked():
-		all_species.append(species)
-	
+	var unlocked_species = TheUnlocker.get_unlocked_list("species")
+	for species_id in unlocked_species:
+		all_species.append(global.get_species(species_id))
+		
 	players = {}
-	selection_screen.initialize()
 	selection_screen.connect("fight", self, "start_fight")
 	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
@@ -41,6 +41,10 @@ func _ready():
 	Events.connect('nav_to_menu', self, '_on_nav_to_menu')
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
+	
+	# will save the game before starting a new game 
+	# So all the options will be saved
+	persistance.save_game()
 	
 func _exit_tree():
 	global.local_multiplayer = null
@@ -209,7 +213,7 @@ func add_cpu(how_many: int):
 	"""
 	Add cpu to the current pool of players
 	"""
-	var missing_species = TheUnlocker.get_ordered_species()
+	var missing_species = global.get_ordered_species()
 	for key in players:
 		var player: InfoPlayer = players[key]
 		var this_species_name = player.get_species_name()

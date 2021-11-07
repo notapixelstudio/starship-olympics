@@ -40,6 +40,3 @@ func _ready():
 		i+=1
 		
 	animator.play("entrance")
-	
-	if not TheUnlocker.is_map_unlocked():
-		TheUnlocker.will_unlock()
