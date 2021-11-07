@@ -15,7 +15,7 @@
 
 ## Follow the development
 
-This game is being developed on **`Godot v3.3.4`** 
+This game is being developed on **`Godot v3.4.0`** 
 
 Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or on [Instagram](https://instagram.com/notapixelstudio) 
 
