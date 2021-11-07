@@ -12,7 +12,7 @@ signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
 signal holdable_loaded(holdable, ship)
-signal holdable_dropped(holdable, ship)
+signal holdable_dropped(holdable, ship, cause)
 signal holdable_replaced(old, new, ship)
 signal holdable_swapped(holdable1, holdable2, ship1, ship2)
 

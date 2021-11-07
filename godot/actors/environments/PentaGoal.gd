@@ -29,6 +29,7 @@ func set_core_radius(value):
 func _ready():
 	# connect feedback signal 
 	field.connect("entered", self, "_on_Field_entered")
+	Events.connect("holdable_dropped", self, "_on_holdable_dropped")
 	
 	for i in range(rings):
 		var shape = GRegularPolygon.new()
@@ -52,11 +53,7 @@ func _ready():
 		
 signal goal_done
 func _on_Field_entered(field, body):
-	if body is Ship and body.get_cargo().has_holdable() and body.get_player() == get_player():
-		var cargo = body.get_cargo().get_holdable()
-		if cargo is Ball and cargo.type == 'basket':
-			do_goal(body.get_player(), body.position)
-	elif body is Ball:
+	if body is Ball:
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
@@ -64,6 +61,16 @@ func _on_Field_entered(field, body):
 		yield($AudioStreamPlayer2D, "finished")
 		$AudioStreamPlayer2D.pitch_scale = 1
 		
+func _on_holdable_dropped(holdable, ship, cause):
+	if cause != $Field/Area2D: # WARNING this is convoluted
+		return
+		
+	var is_basket_ball = holdable is Ball and holdable.has_type('basket')
+	var same_player = ship.get_player() == get_player()
+	
+	if is_basket_ball and same_player:
+		do_goal(ship.get_player(), ship.position)
+	
 func get_score():
 	return 1
 	

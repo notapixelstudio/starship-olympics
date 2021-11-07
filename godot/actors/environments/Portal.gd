@@ -1,8 +1,6 @@
 tool
 extends Node2D
 
-class_name Portal
-
 export var linked_to_path : NodePath
 export var width : float = 300 setget set_width
 export var offset : float = 80
