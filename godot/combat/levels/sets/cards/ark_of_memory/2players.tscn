@@ -6,9 +6,9 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
 [ext_resource path="res://combat/managers/MemoryManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=11]
 
 [node name="Arena" instance=ExtResource( 1 )]
@@ -51,72 +51,72 @@ polygon = PoolVector2Array( -1400, 1700, -2500, 400, -3000, -1150, -1400, -1150,
 position = Vector2( 0, 350 )
 
 [node name="Card" parent="Battlefield/Middleground/YSort" index="0" instance=ExtResource( 9 )]
-position = Vector2( -250, -350 )
+position = Vector2( -250, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card2" parent="Battlefield/Middleground/YSort" index="1" instance=ExtResource( 9 )]
-position = Vector2( -750, -350 )
+position = Vector2( -750, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card5" parent="Battlefield/Middleground/YSort" index="2" instance=ExtResource( 9 )]
-position = Vector2( -1250, -350 )
+position = Vector2( -1250, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card3" parent="Battlefield/Middleground/YSort" index="3" instance=ExtResource( 9 )]
-position = Vector2( 750, -350 )
+position = Vector2( 750, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card4" parent="Battlefield/Middleground/YSort" index="4" instance=ExtResource( 9 )]
-position = Vector2( 250, -350 )
+position = Vector2( 250, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card6" parent="Battlefield/Middleground/YSort" index="5" instance=ExtResource( 9 )]
-position = Vector2( -250, -950 )
+position = Vector2( -250, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card7" parent="Battlefield/Middleground/YSort" index="6" instance=ExtResource( 9 )]
-position = Vector2( -750, -950 )
+position = Vector2( -750, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card8" parent="Battlefield/Middleground/YSort" index="7" instance=ExtResource( 9 )]
-position = Vector2( -1250, -950 )
+position = Vector2( -1250, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card9" parent="Battlefield/Middleground/YSort" index="8" instance=ExtResource( 9 )]
-position = Vector2( 750, -950 )
+position = Vector2( 750, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card10" parent="Battlefield/Middleground/YSort" index="9" instance=ExtResource( 9 )]
-position = Vector2( 250, -950 )
+position = Vector2( 250, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card11" parent="Battlefield/Middleground/YSort" index="10" instance=ExtResource( 9 )]
-position = Vector2( -250, -1550 )
+position = Vector2( -250, -1700 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card12" parent="Battlefield/Middleground/YSort" index="11" instance=ExtResource( 9 )]
-position = Vector2( -1750, -350 )
+position = Vector2( -1750, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card13" parent="Battlefield/Middleground/YSort" index="12" instance=ExtResource( 9 )]
-position = Vector2( -1750, -950 )
+position = Vector2( -1750, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card14" parent="Battlefield/Middleground/YSort" index="13" instance=ExtResource( 9 )]
-position = Vector2( 250, -1550 )
+position = Vector2( 250, -1700 )
 auto_flip_back = true
 take_ownership = true
 
@@ -126,37 +126,37 @@ auto_flip_back = true
 take_ownership = true
 
 [node name="Card27" parent="Battlefield/Middleground/YSort" index="15" instance=ExtResource( 9 )]
-position = Vector2( 1250, -350 )
+position = Vector2( 1250, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card28" parent="Battlefield/Middleground/YSort" index="16" instance=ExtResource( 9 )]
-position = Vector2( 1250, -950 )
+position = Vector2( 1250, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card29" parent="Battlefield/Middleground/YSort" index="17" instance=ExtResource( 9 )]
-position = Vector2( 2250, -950 )
+position = Vector2( 2250, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card30" parent="Battlefield/Middleground/YSort" index="18" instance=ExtResource( 9 )]
-position = Vector2( 750, -1550 )
+position = Vector2( 750, -1700 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card31" parent="Battlefield/Middleground/YSort" index="19" instance=ExtResource( 9 )]
-position = Vector2( 1750, -350 )
+position = Vector2( 1750, -400 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card32" parent="Battlefield/Middleground/YSort" index="20" instance=ExtResource( 9 )]
-position = Vector2( 1750, -950 )
+position = Vector2( 1750, -1050 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card15" parent="Battlefield/Middleground/YSort" index="21" instance=ExtResource( 9 )]
-position = Vector2( -2250, -950 )
+position = Vector2( -2250, -1050 )
 auto_flip_back = true
 take_ownership = true
 
@@ -186,40 +186,40 @@ auto_flip_back = true
 take_ownership = true
 
 [node name="Card21" parent="Battlefield/Middleground/YSort" index="27" instance=ExtResource( 9 )]
-position = Vector2( -250, 850 )
+position = Vector2( -250, 900 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card22" parent="Battlefield/Middleground/YSort" index="28" instance=ExtResource( 9 )]
-position = Vector2( -750, 850 )
+position = Vector2( -750, 900 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card23" parent="Battlefield/Middleground/YSort" index="29" instance=ExtResource( 9 )]
-position = Vector2( -750, -1550 )
+position = Vector2( -750, -1700 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card24" parent="Battlefield/Middleground/YSort" index="30" instance=ExtResource( 9 )]
-position = Vector2( 750, 850 )
+position = Vector2( 750, 900 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="Card25" parent="Battlefield/Middleground/YSort" index="31" instance=ExtResource( 9 )]
-position = Vector2( 250, 850 )
+position = Vector2( 250, 900 )
 auto_flip_back = true
 take_ownership = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -2050, 0 )
+position = Vector2( -2200, -50 )
 rotation = 0.0
 controls = "joy1"
-species = ExtResource( 10 )
+species = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 2050, 0 )
+position = Vector2( 2200, -50 )
 rotation = 3.14159
-controls = "joy2"
+controls = "joy1"
 species = ExtResource( 11 )
 
 [node name="Camera" parent="." index="6"]

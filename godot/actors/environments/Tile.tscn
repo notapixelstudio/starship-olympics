@@ -70,12 +70,19 @@ sides = 4
 
 [node name="Strategic" parent="." instance=ExtResource( 3 )]
 
+[node name="Foreground" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
+
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2( -1.39876e-06, 32 )
 
 [node name="Background" type="Polygon2D" parent="Graphics"]
 self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
 scale = Vector2( 0.85, 0.85 )
+z_index = -15
+z_as_relative = false
 polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="Partial" type="Sprite" parent="Graphics"]

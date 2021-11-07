@@ -1,10 +1,9 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/board_conquest.png" type="Texture" id=3]
 [ext_resource path="res://combat/styles/flags.tres" type="Resource" id=4]
-[ext_resource path="res://map/planets/rules/TileFilling.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -14,7 +13,7 @@ name = "Board Conquest"
 icon = ExtResource( 3 )
 logo = ExtResource( 2 )
 arena_style = ExtResource( 4 )
-description = "fill more cells than opponents"
+description = "color the board"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
 max_timeout = 40
@@ -22,6 +21,7 @@ max_score = 500
 starting_score = 0
 cumulative = false
 starting_lives = -1
+end_on_perfect = true
 death = false
 last_man = false
 crown = false
@@ -37,7 +37,6 @@ deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 5 ) ]
 floodable = true
 flood = false
 laserable = false
