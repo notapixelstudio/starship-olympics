@@ -26,6 +26,9 @@ func refresh():
 	"""
 	$Label.text = tr(gamemode.name)
 	$LabelShadow.text = tr(gamemode.name)
+	var label_width = $Label.get("custom_fonts/font").get_string_size(tr(gamemode.name)).x
+	$LineLeft.position.x = -62 - label_width/2 - 35
+	$LineRight.position.x = 998 + label_width/2 + 35
 	"""
 	if "shoot_bombs" in gamemode and not gamemode["shoot_bombs"]:
 		$Description3.text = 'No bombs!'
