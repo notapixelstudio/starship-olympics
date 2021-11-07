@@ -42,6 +42,10 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
+	# will save the game before starting a new game 
+	# So all the options will be saved
+	persistance.save_game()
+	
 func _exit_tree():
 	global.local_multiplayer = null
 

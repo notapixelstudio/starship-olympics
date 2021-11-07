@@ -50,7 +50,7 @@ func _ready():
 		if start != null and end != null:
 			graph.add_path(link, start, end)
 			
-	
+	print(graph.to_string())
 func _on_all_ships_spawned():
 	# give a star to the winner of the former session
 	var winner = global.the_game.get_last_winner()
@@ -125,7 +125,7 @@ func _on_sth_unlocked(_what, by_what) -> void:
 	for n in neighbourhood.keys(): # MapLocations
 		var path = neighbourhood[n]
 		path.appear()
-		TheUnlocker.unlock_element("map_paths", path.get_path())
+		TheUnlocker.unlock_element("map_paths", path.name)
 		yield(path, 'appeared')
 		if n is MapPlanet:
 			n.unhide()

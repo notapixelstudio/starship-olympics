@@ -12,6 +12,11 @@ func _ready():
 	add_to_group(PERSIST_GROUP)
 
 var unlocked_elements = {
+	"map_paths": {
+		"Path5" : UNLOCKED,
+		"Path6" : UNLOCKED,
+		"Path7" : UNLOCKED,
+	},
 	"sets": {
 		"core": UNLOCKED,
 		"diamonds": HIDDEN,
