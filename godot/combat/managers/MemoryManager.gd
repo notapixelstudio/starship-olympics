@@ -112,9 +112,10 @@ func _on_card_taken(card, player, ship):
 		return
 	
 	if card.equals(previous_card):
-		global.the_match.add_score(player.id, 2)
-		global.arena.show_msg(player.species, 1, previous_card.position)
-		global.arena.show_msg(player.species, 1, card.position)
+		var multiplier = 2 if card.get_content() in ADVANCED_FIGURES else 1
+		global.the_match.add_score(player.id, 2*multiplier)
+		global.arena.show_msg(player.species, 1*multiplier, previous_card.position)
+		global.arena.show_msg(player.species, 1*multiplier, card.position)
 		previous_card.queue_free()
 		card.queue_free()
 	else:

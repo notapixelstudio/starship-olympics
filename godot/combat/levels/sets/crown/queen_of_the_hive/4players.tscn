@@ -16,10 +16,10 @@
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=16]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=17]
 points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -33,10 +33,10 @@ orbit_velocity_random = 0.0
 radial_accel = -200.0
 scale = 6.0
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=18]
 points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=19]
 points = PoolVector2Array( -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500, -433.013, 250, -433.013, -250 )
 
 [sub_resource type="ParticlesMaterial" id=6]
@@ -125,10 +125,10 @@ tracks/5/keys = {
 "values": [ Color( 1.15, 0.78, 0.54, 1 ), Color( 0.95, 0.30875, 0.2375, 1 ) ]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=20]
 points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=21]
 points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
 
 [sub_resource type="ParticlesMaterial" id=10]
@@ -217,10 +217,10 @@ tracks/5/keys = {
 "values": [ Color( 1.15, 0.78, 0.54, 1 ), Color( 0.95, 0.30875, 0.2375, 1 ) ]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=22]
 points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=23]
 points = PoolVector2Array( -100, -173.205, 200, -4.89859e-14, -100, 173.205, -100, -173.205 )
 
 [sub_resource type="ParticlesMaterial" id=14]
@@ -314,7 +314,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 match_duration_override = 60.0
 
-[node name="ConquestModeManager" parent="Managers" index="10"]
+[node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -1487,10 +1487,10 @@ polygon = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.
 points = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/Area2D" index="2"]
-shape = SubResource( 1 )
+shape = SubResource( 16 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/CrownCollider" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 17 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="5"]
 process_material = SubResource( 3 )
@@ -1514,10 +1514,10 @@ polygon = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.
 points = PoolVector2Array( 3.06162e-14, 500, -433.013, 250, -433.013, -250, -5.35938e-13, -500, 433.013, -250, 433.013, 250, 3.06162e-14, 500 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/Area2D" index="2"]
-shape = SubResource( 4 )
+shape = SubResource( 18 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/CrownCollider" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 19 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="5"]
 process_material = SubResource( 6 )
@@ -1544,10 +1544,10 @@ polygon = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14 )
 points = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14, -100, 173.205 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone3/Field/Area2D" index="2"]
-shape = SubResource( 8 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone3/Field/CrownCollider" index="0"]
-shape = SubResource( 9 )
+shape = SubResource( 21 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone3/Field" index="5"]
 process_material = SubResource( 10 )
@@ -1576,10 +1576,10 @@ polygon = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14 )
 points = PoolVector2Array( -100, 173.205, -100, -173.205, 200, -4.89859e-14, -100, 173.205 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone4/Field/Area2D" index="2"]
-shape = SubResource( 12 )
+shape = SubResource( 22 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone4/Field/CrownCollider" index="0"]
-shape = SubResource( 13 )
+shape = SubResource( 23 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone4/Field" index="5"]
 process_material = SubResource( 14 )
@@ -1614,7 +1614,7 @@ position = Vector2( 1010.5, 1750.24 )
 type = "spikes"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
-type = "crown"
+type = "bee_crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 2021, 0 )

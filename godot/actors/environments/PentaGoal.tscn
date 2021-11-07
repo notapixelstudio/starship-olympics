@@ -9,10 +9,10 @@
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/traits/Dropper.tscn" type="PackedScene" id=8]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -84,10 +84,10 @@ points = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.77
 [node name="Dropper" parent="Field/Area2D" index="0" instance=ExtResource( 8 )]
 
 [node name="CollisionShape2D" parent="Field/Area2D" index="2"]
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D" parent="Field/CrownCollider" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="Particles2D" parent="Field" index="5"]
 process_material = SubResource( 3 )

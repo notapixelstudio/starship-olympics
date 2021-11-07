@@ -61,7 +61,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 4 )
 style = ExtResource( 6 )
 
-[node name="KillModeManager" parent="Managers" index="8"]
+[node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -382,7 +382,7 @@ jitter = 4.0
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
-type = "shields"
+type = "plate"
 tease = true
 random_types = [ "shields", "plate" ]
 
@@ -540,7 +540,7 @@ match_progress_trigger = 0.25
 jitter = 2.0
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "plate"
+type = "shields"
 tease = true
 random_types = [ "plate", "shields" ]
 

@@ -528,8 +528,8 @@ func ship_just_died(ship, killer, for_good):
 	if not for_good:
 		$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 		
-		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity*0.5)
-		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length())
+		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity*0.35)
+		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*2*randf())
 	
 	var focus
 	
@@ -578,15 +578,14 @@ func ship_just_died(ship, killer, for_good):
 	
 	var respawn_timeout = 1.5
 	if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
-		if len(ECM.entities_with('Royal')) > 0:
-			if ECM.E(ship).has('Royal'):
-				respawn_timeout = 2.25
-			else:
-				respawn_timeout = 0.75
-	elif conquest_mode.enabled:
-		respawn_timeout = 0.75
-	elif game_mode.name == "GoalPortal":
-		respawn_timeout = 0.75
+		#respawn_timeout = 0.75
+		var cargo = ship.get_cargo()
+		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
+			respawn_timeout = 2.25
+	#elif conquest_mode.enabled:
+	#	respawn_timeout = 0.75
+	#elif game_mode.name == "GoalPortal":
+	#	respawn_timeout = 0.75
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -944,7 +943,8 @@ func is_ship_valid(ship : Ship) -> bool:
 func player_has_valid_ship(player : InfoPlayer) -> bool:
 	return player.id in player_ships
 	
-
+func get_all_valid_ships() -> Array:
+	return player_ships.values()
 
 func _on_PowerUp_collected():
 	pass # Replace with function body.

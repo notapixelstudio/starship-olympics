@@ -27,12 +27,13 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 		if entity.get('Pursuer').has_detection_insensitive_timed_out():
 			var old_target = entity.get('Pursuer').get_target()
 			if ship != old_target:
-				entity.get('Pursuer').set_target(ship)
-				entity.get('Pursuer').set_detection_insensitive_timeout()
-				if sth is Bull:
-					$BullTargetLocked.play()
-				else:
-					$TargetLocked.play()
+				var success = entity.get('Pursuer').set_target(ship)
+				if success:
+					entity.get('Pursuer').set_detection_insensitive_timeout()
+					if sth is Bull:
+						$BullTargetLocked.play()
+					else:
+						$TargetLocked.play()
 					
 func _physics_process(delta):
 	for targeter_e in ECM.entities_with('Pursuer'):

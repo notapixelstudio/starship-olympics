@@ -34,7 +34,7 @@ func start() -> void:
 	$Graphics/AnimationPlayer.play("Wobble")
 
 func dive() -> void:
-	apply_central_impulse(Vector2.UP*400)
+	apply_central_impulse(Vector2.UP*300)
 	
 func get_texture():
 	return $Graphics/Alien.texture
@@ -44,4 +44,10 @@ func is_rotatable():
 	
 func get_kind():
 	return kind
+	
+func has_kind(k):
+	return self.get_kind() == k
+	
+func is_equivalent_to(holdable2):
+	return .is_equivalent_to(holdable2) and self.has_kind(holdable2.get_kind())
 	

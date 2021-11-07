@@ -1,0 +1,43 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon/crown_logo.png" type="Texture" id=2]
+[ext_resource path="res://combat/styles/stronghold.tres" type="Resource" id=3]
+[ext_resource path="res://assets/icon/minicards/sets/negacrown.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "negacrown"
+is_mutator = false
+name = "Negacrown"
+icon = ExtResource( 4 )
+logo = ExtResource( 2 )
+arena_style = ExtResource( 3 )
+description = "avoid the crown"
+tagline_pro = "If killing is not enough, steal it by bumping in the queen"
+tagline_cons = "getting killed will make you lose the crown, if you have it"
+max_timeout = 80
+max_score = 40
+starting_score = 40
+cumulative = false
+starting_lives = -1
+end_on_perfect = false
+death = false
+last_man = false
+crown = true
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+floodable = true
+flood = false
+laserable = true
+additional_lasers = false

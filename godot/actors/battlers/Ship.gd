@@ -271,11 +271,14 @@ func _integrate_forces(state):
 func control(_delta):
 	update_charge_bar()
 	
+var overcharging := false
+signal overcharging_started
 func update_charge_bar():
 	if not charging:
 		$Graphics/ChargeBar/Charge.visible = false
 		$Graphics/ChargeBar/ShootingLine.visible = false
 		$Graphics/ChargeBar/ShootingLine.enabled = false
+		overcharging = false
 		return
 		
 	$Graphics/ChargeBar/Charge.visible = true
@@ -294,6 +297,9 @@ func update_charge_bar():
 	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
 		var visible = int(floor(charge * 15)) % 2
 		$Graphics/ChargeBar/Charge.visible = visible
+		if not overcharging:
+			overcharging = true
+			emit_signal("overcharging_started")
 
 signal detection
 func _physics_process(delta):
@@ -341,8 +347,10 @@ func _physics_process(delta):
 		dash_fat_appearance()
 		
 var will_fire
+signal charging_started
 func charge():
 	charging = true
+	emit_signal("charging_started")
 	
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
@@ -354,6 +362,7 @@ func charge():
 	else:
 		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
 	
+signal charging_ended
 func fire(override_charge = -1, dash_only = false):
 	"""
 	Fire a bomb
@@ -405,6 +414,7 @@ func fire(override_charge = -1, dash_only = false):
 	
 	charging = false
 	charging_enough = false
+	emit_signal("charging_ended")
 	
 	$Graphics/ChargeBar/ChargeAxis.visible = false
 	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
@@ -612,6 +622,14 @@ func unwield_flail():
 	if the_flail != null:
 		the_flail.queue_free()
 		the_flail = null
+		
+func wield_drill():
+	$Drill.set_active(true)
+	set_bombs_enabled(false)
+	update_weapon_indicator()
+	
+func unwield_drill():
+	$Drill.set_active(false)
 	
 const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
 
@@ -633,6 +651,11 @@ func apply_powerup(powerup):
 		
 	if PowerUp.is_exclusive(powerup.type):
 		current_exclusive_powerup_type = powerup.type
+		
+		# FIXME
+		if powerup.type != 'drill':
+			set_bombs_enabled(true)
+			unwield_drill()
 	
 	var success = true
 	if powerup.type in ['shield', 'shields', 'plate', 'skin']:
@@ -657,6 +680,8 @@ func apply_powerup(powerup):
 		wield_scythe()
 	elif powerup.type == 'flail':
 		wield_flail()
+	elif powerup.type == 'drill':
+		wield_drill()
 	elif powerup.type == 'rockets':
 		set_bomb_type(GameMode.BOMB_TYPE.classic)
 		update_weapon_indicator()
@@ -793,3 +818,5 @@ func trigger_all_my_stuff():
 		if triggerable.get_owner_ship() == self:
 			triggerable.detonate()
 			
+func get_target_destination():
+	return $TargetDest.global_position
