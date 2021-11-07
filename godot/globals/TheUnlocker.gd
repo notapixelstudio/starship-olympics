@@ -7,9 +7,9 @@ const UNLOCKED = "unlocked"
 
 export (String, "hidden", "locked", "unlocked") var status 
 
-
+const PERSIST_GROUP = "persist_unlocking"
 func _ready():
-	add_to_group("persist_unlocking")
+	add_to_group(PERSIST_GROUP)
 
 var unlocked_elements = {
 	"sets": {
@@ -66,7 +66,7 @@ func unlock_element(group_id: String, element_id: String) -> void:
 		self.unlocked_elements[group_id][element_id] = UNLOCKED
 	else:
 		self.unlocked_elements[group_id] = {element_id: UNLOCKED}
-
+	persistance.save_group_to_file(PERSIST_GROUP)
 
 
 func load_state(data: Dictionary):
