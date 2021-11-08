@@ -1,0 +1,196 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://logo.png" type="Texture" id=4]
+[ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=1]
+tracks/0/type = "value"
+tracks/0/path = NodePath("logo_ssf_olympic:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("logo_ssf_olympic:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 0.615572, 1 ),
+"update": 0,
+"values": [ Vector2( 640, 295 ), Vector2( 640, 295 ), Vector2( 640, 210 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Buttons:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("logo_ssf_olympic:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 0.63728, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Buttons:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+options_scene = ExtResource( 5 )
+local_multi_scene = ExtResource( 6 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+anims/option_selected = SubResource( 3 )
+
+[node name="logo_ssf_olympic" type="Sprite" parent="."]
+position = Vector2( 640, 210 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -145.0
+margin_top = 34.0
+margin_right = 145.0
+margin_bottom = 326.0
+theme = ExtResource( 1 )
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Fight" type="Button" parent="Buttons"]
+margin_top = 37.0
+margin_right = 290.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+action_mode = 0
+text = "FIGHT"
+flat = true
+
+[node name="Options" type="Button" parent="Buttons"]
+margin_top = 111.0
+margin_right = 290.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+action_mode = 0
+text = "OPTIONS"
+flat = true
+
+[node name="Help" type="Button" parent="Buttons"]
+visible = false
+margin_top = 148.0
+margin_right = 290.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 210, 70 )
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+action_mode = 0
+text = "Help"
+flat = true
+
+[node name="Credits" type="Button" parent="Buttons"]
+visible = false
+margin_top = 148.0
+margin_right = 290.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 0, 70 )
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+action_mode = 0
+text = "Credits"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+margin_top = 185.0
+margin_right = 290.0
+margin_bottom = 255.0
+rect_min_size = Vector2( 0, 70 )
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+action_mode = 0
+text = "QUIT"
+flat = true
+
+[connection signal="pressed" from="Buttons/Fight" to="." method="_on_Fight_pressed"]
+[connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

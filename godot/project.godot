@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "CanvasLayer",
-"class": "Alert",
-"language": "GDScript",
-"path": "res://interface/AlertMessage.gd"
-}, {
 "base": "Ball",
 "class": "Alien",
 "language": "GDScript",
@@ -53,11 +48,6 @@ _global_script_classes=[ {
 "class": "Bar",
 "language": "GDScript",
 "path": "res://combat/interface/hud/Bar.gd"
-}, {
-"base": "Node",
-"class": "BasicScreen",
-"language": "GDScript",
-"path": "res://special_scenes/BasicScreen.gd"
 }, {
 "base": "Diamond",
 "class": "BigDiamond",
@@ -122,7 +112,7 @@ _global_script_classes=[ {
 "base": "MarginContainer",
 "class": "CommandRemap",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/CommandOption.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/RemapAction.gd"
 }, {
 "base": "Node",
 "class": "Component",
@@ -137,7 +127,7 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "Controller",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/Controller.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/joypad/Controller.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Crown",
@@ -242,7 +232,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "GenericOption",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/GenericOption.gd"
+"path": "res://ui/common_elements/GenericOption.gd"
 }, {
 "base": "Reference",
 "class": "GlowColor",
@@ -282,7 +272,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "MapButtonScene",
 "language": "GDScript",
-"path": "res://interface/MapButtonScene.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/AddBinding.gd"
 }, {
 "base": "MapLocation",
 "class": "MapCheckpoint",
@@ -347,17 +337,12 @@ _global_script_classes=[ {
 "base": "Button",
 "class": "NavigatorButton",
 "language": "GDScript",
-"path": "res://special_scenes/option_screen/OptionButton.gd"
+"path": "res://ui/common_elements/NavigateButton.gd"
 }, {
 "base": "MapLocation",
 "class": "OptionCell",
 "language": "GDScript",
 "path": "res://map/OptionCell.gd"
-}, {
-"base": "MarginContainer",
-"class": "OptionContainer",
-"language": "GDScript",
-"path": "res://special_scenes/option_screen/OptionContainer.gd"
 }, {
 "base": "Component",
 "class": "Owned",
@@ -414,11 +399,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
-"base": "Button",
-"class": "RemapButton",
-"language": "GDScript",
-"path": "res://special_scenes/input_mapping/ActionRemapButton.gd"
-}, {
 "base": "Node2D",
 "class": "Ripple",
 "language": "GDScript",
@@ -447,7 +427,7 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "ShowedButton",
 "language": "GDScript",
-"path": "res://interface/ButtonRepresentation.gd"
+"path": "res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.gd"
 }, {
 "base": "Resource",
 "class": "Species",
@@ -507,12 +487,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "UIOptionPanel",
 "language": "GDScript",
-"path": "res://interface/Panel.gd"
+"path": "res://ui/option_scenes/settings/UIOptionPanel.gd"
 }, {
 "base": "ColorRect",
 "class": "UIOptions",
 "language": "GDScript",
-"path": "res://interface/Option.gd"
+"path": "res://ui/option_scenes/OptionScreen.gd"
 }, {
 "base": "Reference",
 "class": "UUID",
@@ -535,7 +515,6 @@ _global_script_classes=[ {
 "path": "res://map/Waypoint.gd"
 } ]
 _global_script_class_icons={
-"Alert": "",
 "Alien": "",
 "Arena": "",
 "ArenaStyle": "",
@@ -544,7 +523,6 @@ _global_script_class_icons={
 "AudioLibrary": "",
 "Ball": "",
 "Bar": "",
-"BasicScreen": "",
 "BigDiamond": "",
 "Bomb": "",
 "BombCore": "",
@@ -604,7 +582,6 @@ _global_script_class_icons={
 "Mutator": "",
 "NavigatorButton": "",
 "OptionCell": "",
-"OptionContainer": "",
 "Owned": "",
 "Paddle": "",
 "PathStar": "",
@@ -616,7 +593,6 @@ _global_script_class_icons={
 "Polyomino": "",
 "Portalz": "",
 "PowerUp": "",
-"RemapButton": "",
 "Ripple": "",
 "Rock": "",
 "Rule": "",
@@ -653,7 +629,7 @@ secret_key.release="75ec3f402122495fff616460f45ffef6e0c04ce9"
 [application]
 
 config/name="superstarfighter"
-run/main_scene="res://special_scenes/Intro.tscn"
+run/main_scene="res://ui/menu_scenes/intro_screen/Intro.tscn"
 boot_splash/image="res://assets/art/translucid.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://logo.png"

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/common_elements/NavigateButton.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=4]
+
+[node name="NavigateButton" type="Button" groups=[
+"UI_Navigator",
+]]
+margin_right = 445.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "NAVIGATE TO"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "navigate to"
+
+[connection signal="focus_entered" from="." to="." method="_on_NavigatorButton_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_NavigatorButton_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_Controls_pressed"]

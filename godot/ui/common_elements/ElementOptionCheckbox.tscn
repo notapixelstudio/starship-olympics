@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/common_elements/ElementOptionCheckbox.gd" type="Script" id=3]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=4]
+
+[node name="MarginContainer" type="MarginContainer"]
+margin_right = 247.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementCheckbox" type="CheckBox" parent="."]
+margin_right = 247.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 31 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="ElementCheckbox"]
+
+[connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
+[connection signal="toggled" from="ElementCheckbox" to="." method="_on_ElementCheckbox_toggled"]
