@@ -72,12 +72,7 @@ damping_random = 1.0
 scale_random = 0.25
 color_ramp = SubResource( 8 )
 
-[node name="Ship" type="RigidBody2D" groups=[
-"Foreground",
-"in_camera",
-"player_ship",
-"players",
-]]
+[node name="Ship" type="RigidBody2D" groups=["Foreground", "in_camera", "player_ship", "players"]]
 collision_mask = 1169
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
@@ -123,15 +118,15 @@ scale = Vector2( 1.25, 1.25 )
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2948
+collision_mask = 900
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NearArea"]
 shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-input_pickable = false
 collision_layer = 32
 collision_mask = 4101
+input_pickable = false
 
 [node name="Entity" type="Node" parent="DetectionArea"]
 script = ExtResource( 4 )
