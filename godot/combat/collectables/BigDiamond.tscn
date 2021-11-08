@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/collectables/BigDiamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/sprites/environments/diamond_big.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=8]
 [ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 100.0
@@ -42,11 +43,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 0.956863, 0.305882, 0 ), Color( 1, 0.956863, 0.305882, 0 ), Color( 1, 0.92549, 0.305882, 0.388235 ), Color( 1, 0.956863, 0.305882, 0 ) ]
 }
 
-[node name="BigDiamond" type="RigidBody2D" groups=[
-"Foreground",
-"coin",
-"in_camera",
-]]
+[node name="BigDiamond" type="RigidBody2D" groups=["Foreground", "coin", "in_camera"]]
 collision_layer = 2048
 collision_mask = 3090
 linear_damp = 1.0
@@ -66,15 +63,18 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Shadow" parent="." instance=ExtResource( 10 )]
+sprite = NodePath("../Sprite")
+
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 7 )
-scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
-visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 7 )
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 5, 5 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect2" type="Sprite" parent="."]
@@ -91,7 +91,8 @@ texture = ExtResource( 7 )
 shape = SubResource( 1 )
 
 [node name="Glow" type="Node2D" parent="."]
-scale = Vector2( 1.4, 1.4 )
+visible = false
+scale = Vector2( 1.2, 1.2 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
 modulate = Color( 1, 0.932843, 0.305882, 0.297243 )
