@@ -42,11 +42,7 @@ tracks/1/keys = {
 "values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0.388235 ), Color( 0.305882, 1, 0.968627, 0 ) ]
 }
 
-[node name="Diamond" type="RigidBody2D" groups=[
-"Foreground",
-"coin",
-"in_camera",
-]]
+[node name="Diamond" type="RigidBody2D" groups=["Foreground", "coin", "in_camera"]]
 collision_layer = 2048
 collision_mask = 3090
 linear_damp = 1.0
@@ -80,11 +76,13 @@ texture = ExtResource( 7 )
 [node name="SpriteEffect2" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect3" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -93,8 +91,8 @@ shape = SubResource( 1 )
 [node name="Glow" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.378719 )
-scale = Vector2( 0.894649, 0.894649 )
+modulate = Color( 0.305882, 1, 0.968627, 0.273144 )
+scale = Vector2( 0.91053, 0.91053 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]

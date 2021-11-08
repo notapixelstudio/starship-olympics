@@ -49,11 +49,13 @@ func refresh_polygon():
 	var polygon = $GRegularPolygon.to_PoolVector2Array()
 	$CollisionPolygon2D.polygon = polygon
 	$Neighbourhood/CollisionPolygon2D.polygon = polygon
+	$Foreground.polygon = polygon
 	$Graphics/Background.polygon = polygon
 	
 func _ready():
 	refresh_polygon()
 	
+	$Foreground.position = Vector2(0,16).rotated(-global_rotation)
 	$Graphics.position = Vector2(0,32).rotated(-global_rotation)
 	$Graphics/Wrapper.rotation = -global_rotation
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
@@ -65,7 +67,7 @@ func _ready():
 		if area != self and area.has_method('get_klass') and area.get_klass() == 'Tile': # trick to avoid circular references
 			neighbours.append(area)
 			
-	if Engine.is_editor_hint(): # watch out for deleting this node when this is executed as a tool script!
+	if not Engine.is_editor_hint(): # watch out for deleting this node when this is executed as a tool script!
 		$Neighbourhood.queue_free() # delete areas to save physics computations
 	
 	for n in neighbours:
@@ -101,8 +103,10 @@ func fortify():
 		
 	fortified = true
 	set_process(false) # disable reconquering
+	$Foreground.modulate = owner_ship.species.color
+	$Foreground.self_modulate = Color(0.5,0.5,0.5)
 	$Graphics/Background.modulate = owner_ship.species.color
-	$Graphics/Background.self_modulate = Color(0.5,0.5,0.5)
+	$Graphics/Background.self_modulate = Color(0.3,0.3,0.3)
 	$Graphics/Background.scale = Vector2(1,1)
 	$Graphics/Wrapper/Label.modulate = Color(0.3,0.3,0.3)
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://combat/modes/BoardConquest.tres" type="Resource" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
@@ -9,16 +8,16 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/toriels_1.tres" type="Resource" id=10]
+[ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/takonauts_1.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=12]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=13]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 3 )
 
-[node name="ConquestModeManager" parent="Managers" index="9"]
+[node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -32,14 +31,10 @@ hide_grid = true
 solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
+[node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
-__meta__ = {
-"_editor_icon": ExtResource( 2 )
-}
-radius = 2400
-sides = 4.0
-rotation_degrees = 45.0
+width = 3400
+height = 3400
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -1298,24 +1293,28 @@ position = Vector2( -1500, 1500 )
 rotation = -0.785402
 controls = "joy1"
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1500, -1500 )
 rotation = 2.35619
 controls = "joy2"
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( 1500, 1500 )
 rotation = 3.92699
 controls = "joy3"
 species = ExtResource( 10 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
 position = Vector2( -1500, -1500 )
 rotation = 0.785398
 controls = "joy4"
 species = ExtResource( 12 )
+cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )

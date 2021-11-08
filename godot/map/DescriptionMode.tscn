@@ -57,8 +57,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=7]
-size = 24
-outline_size = 5
+size = 26
+outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 8 )
 
@@ -66,6 +66,7 @@ font_data = ExtResource( 8 )
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = -80.0
 rect_rotation = -0.00219995
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -96,6 +97,9 @@ __meta__ = {
 modulate = Color( 1, 0.870588, 0.372549, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 9.06067e-06
+margin_top = -0.235977
+margin_bottom = -0.235962
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
@@ -146,3 +150,39 @@ one_shot = true
 autostart = true
 
 [node name="Description" parent="." instance=ExtResource( 4 )]
+margin_top = 84.0
+margin_bottom = 227.0
+
+[node name="LineLeft" type="Polygon2D" parent="."]
+position = Vector2( -61.8767, 12.5112 )
+color = Color( 1, 0.870588, 0.372549, 1 )
+polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+
+[node name="Shadow" type="Polygon2D" parent="LineLeft"]
+show_behind_parent = true
+position = Vector2( 0, 7 )
+color = Color( 0, 0, 0, 0.196078 )
+polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+
+[node name="Line2D" type="Line2D" parent="LineLeft"]
+points = PoolVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 288 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+joint_mode = 2
+
+[node name="LineRight" type="Polygon2D" parent="."]
+position = Vector2( 995.123, 12.511 )
+color = Color( 1, 0.870588, 0.372549, 1 )
+polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+
+[node name="Shadow" type="Polygon2D" parent="LineRight"]
+show_behind_parent = true
+position = Vector2( 0, 7 )
+color = Color( 0, 0, 0, 0.196078 )
+polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+
+[node name="Line2D" type="Line2D" parent="LineRight"]
+points = PoolVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 288 )
+width = 3.0
+default_color = Color( 0, 0, 0, 1 )
+joint_mode = 2
