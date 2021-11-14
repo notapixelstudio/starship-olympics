@@ -22,6 +22,8 @@ var winners = [] # Array of winning InfoPlayer
 var no_players = false
 var end_on_perfect := true
 
+var replay: TheReplay
+
 const DEADZONE = 0.1
 signal game_over
 signal setup
@@ -72,6 +74,8 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	if game_mode.cumulative:
 		cumulative_points=0
 	
+	replay = TheReplay.new()
+	replay.start()
 	emit_signal('setup')
 	
 func sort_by_score(a: InfoPlayer, b: InfoPlayer):
@@ -93,6 +97,7 @@ func update(delta: float):
 		compute_game_status()
 		
 	lasting_time += delta
+	replay.update(delta)
 	
 func compute_game_status():
 	if game_over:
@@ -134,6 +139,7 @@ func no_players_left():
 	
 func do_game_over():
 	game_over = true
+	global.to_file(replay.to_dict(), "replay_"+get_uuid())
 	emit_signal("game_over")
 	
 func get_score(id_player : String):

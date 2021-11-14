@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://combat/ArenaSimulator.gd" type="Script" id=1]
+[ext_resource path="res://utils/Camera.gd" type="Script" id=33]
+
+[node name="Arena" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Camera" type="Camera2D" parent="."]
+pause_mode = 2
+current = true
+zoom = Vector2( 8192, 8192 )
+script = ExtResource( 33 )
+zoomMin = 2.5
+debug_mode = false
+enabled = true

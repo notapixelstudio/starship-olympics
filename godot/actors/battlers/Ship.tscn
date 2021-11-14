@@ -72,7 +72,7 @@ damping_random = 1.0
 scale_random = 0.25
 color_ramp = SubResource( 8 )
 
-[node name="Ship" type="RigidBody2D" groups=["Foreground", "in_camera", "player_ship", "players"]]
+[node name="Ship" type="RigidBody2D" groups=["Foreground", "in_camera", "player_ship", "players", "replayable"]]
 collision_mask = 1169
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0

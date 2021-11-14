@@ -820,3 +820,7 @@ func trigger_all_my_stuff():
 			
 func get_target_destination():
 	return $TargetDest.global_position
+
+func get_class() -> String:
+	return "Ship"
+

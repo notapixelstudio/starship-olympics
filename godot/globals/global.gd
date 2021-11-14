@@ -244,6 +244,17 @@ func read_file(path: String) -> Dictionary:
 	file.close()
 	return data
 
+func to_file(dict_to_save: Dictionary, filepath: String):
+	# Create a file
+	var save_file = File.new()
+	save_file.open(filepath, File.WRITE)
+	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
+	# Serialize the data dictionary to JSON
+	save_file.store_line(to_json(dict_to_save))
+	
+	# Write the JSON to the file and save to disk
+	save_file.close()
+	
 var execution_uuid : String
 func start_execution():
 	execution_uuid = UUID.v4()
