@@ -17,7 +17,7 @@ func get_type():
 	return type
 	
 func _ready():
-	if type == 'soccer':
+	if type == 'soccer' or type == 'skull':
 		impulse = 5
 	set_physics_process(false)
 	refresh()

@@ -12,19 +12,35 @@ func _ready():
 
 func set_player(p: InfoPlayer) -> void:
 	player = p
-	modulate = player.species.color
+	$Empty.modulate = player.species.color
 	
 func get_player() -> InfoPlayer:
 	return player
 
 
 func _on_SkullHole_body_entered(body):
-	if not full and body is Ship and body.get_cargo().check_type('skull') and body.get_player() == player:
+	if full:
+		return
+		
+	var done := false
+	if body is Ship and body.get_cargo().check_type('skull') and body.get_player() == player:
 		body.get_cargo().empty()
+		done = true
+	elif body is Ball and body.has_type('skull'):
+		body.queue_free()
+		done = true
+		
+	if done:
 		global.the_match.add_score(player.id, self.get_score())
+		global.arena.show_msg(player.species, 1, global_position)
 		$Empty.visible = false
 		$Full.visible = true
 		full = true
+		
+		$Tween.stop_all()
+		$Tween.interpolate_property($Full, "modulate", $Full.modulate, player.species.color, 1.5,
+			Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
+		$Tween.start()
 		
 func get_score():
 	return 1

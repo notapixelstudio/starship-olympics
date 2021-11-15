@@ -53,7 +53,7 @@ func drop_holdable(cause):
 	var direction : String
 	if traits.has_trait(cause, "Holdable"):
 		direction = 'backward' # avoid juggling
-	elif traits.has_trait(cause, "Dropper"):
+	elif traits.has_trait(cause, "Dropper") or cause is Wall and cause.type == Wall.TYPE.glass:
 		direction = 'forward' # no-zones will rebound
 	elif cause == owner_ship:
 		direction = 'forward' # upon death, cargo is dropped forward
