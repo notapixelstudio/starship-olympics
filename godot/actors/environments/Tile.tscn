@@ -53,9 +53,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[node name="Tile" type="Area2D" groups=[
-"in_camera",
-]]
+[node name="Tile" type="Area2D" groups=["in_camera"]]
 collision_layer = 128
 script = ExtResource( 2 )
 
@@ -73,6 +71,7 @@ sides = 4
 [node name="Foreground" type="Polygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
+position = Vector2( -6.99382e-07, 16 )
 polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="Graphics" type="Node2D" parent="."]

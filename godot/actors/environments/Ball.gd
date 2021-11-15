@@ -3,9 +3,9 @@ extends RigidBody2D
 
 class_name Ball
 
-const GRAB_DISTANCE = 72
+const GRAB_DISTANCE = 84
 
-export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown') var type setget set_type, get_type
+export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type setget set_type, get_type
 
 var impulse := 0.0
 
@@ -54,7 +54,7 @@ func show_on_top():
 	return type in ['crown', 'negacrown', 'bee_crown']
 	
 func is_rotatable():
-	return not type in ['crown', 'negacrown', 'bee_crown', 'star']
+	return not type in ['crown', 'negacrown', 'bee_crown', 'star', 'skull']
 
 func is_loadable():
 	return is_inside_tree()
