@@ -19,14 +19,14 @@ func get_player() -> InfoPlayer:
 
 
 func _on_SkullHole_body_entered(body):
-	if full:
+	if full or body.is_queued_for_deletion():
 		return
 		
 	var done := false
 	if body is Ship and body.get_cargo().check_type('skull') and body.get_player() == player:
 		body.get_cargo().empty()
 		done = true
-	elif body is Ball and body.has_type('skull'):
+	elif body is Ball and body.has_type('skull') and body.active: # active is needed to score points on newly created skulls
 		body.queue_free()
 		done = true
 		

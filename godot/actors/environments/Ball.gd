@@ -8,6 +8,7 @@ const GRAB_DISTANCE = 84
 export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type setget set_type, get_type
 
 var impulse := 0.0
+var trail
 
 func set_type(v):
 	type = v
@@ -17,10 +18,24 @@ func get_type():
 	return type
 	
 func _ready():
-	if type == 'soccer' or type == 'skull':
+	if type == 'soccer':
 		impulse = 5
 	set_physics_process(false)
 	refresh()
+	
+func _enter_tree():
+	trail = Trail2D.new()
+	trail.gradient = Gradient.new()
+	trail.gradient.set_color(0, Color(1,1,1,0))
+	trail.gradient.set_color(1, Color(1,1,1,0.1))
+	trail.trail_length = 30
+	trail.width = 90
+	add_child(trail)
+	
+func _exit_tree():
+	remove_child(trail)
+	get_parent().add_child(trail)
+	trail.disappear()
 	
 func refresh():
 	if not is_inside_tree():
