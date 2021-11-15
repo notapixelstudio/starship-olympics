@@ -116,7 +116,7 @@ var disappearing := false
 func _process(delta: float):
 	if disappearing:
 		if width > 0:
-			width *= 0.94
+			width = max(0, width-delta*100.0)
 		else:
 			queue_free()
 	elif target:
