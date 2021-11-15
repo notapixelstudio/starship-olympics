@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://map/planets/Set.gd" type="Script" id=1]
 [ext_resource path="res://combat/minigames/FirstBlood.tres" type="Resource" id=2]
 [ext_resource path="res://combat/minigames/Sumo.tres" type="Resource" id=3]
 [ext_resource path="res://combat/minigames/Deathmatch.tres" type="Resource" id=4]
+[ext_resource path="res://combat/minigames/SkullCollectors.tres" type="Resource" id=5]
 [ext_resource path="res://assets/map/cards/deathmathces_set.png" type="Texture" id=6]
 
 [resource]
@@ -13,6 +14,6 @@ name = "Combat"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
+minigames = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ) ]
 planet_sprite = ExtResource( 6 )
 mutators = [  ]
