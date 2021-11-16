@@ -50,7 +50,7 @@ func _set_unlock_mode(value: String):
 	var file_unlocker := {
 		"demo": "res://assets/config/demo_unlocker.json",
 		"core": "res://assets/config/only_core.json",
-		"unlocked": "res://assets/config/unlocked_unlocker.json"
+		"unlocked": "res://assets/config/unlocked.json"
 	}
 	var file_path := ""
 	if value in file_unlocker:

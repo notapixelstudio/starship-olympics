@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/levels/sets/combat/nine_lives/DontDieManager.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=15]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -222,6 +223,10 @@ type = "spikes"
 position = Vector2( 1950, -750 )
 type = "spikes"
 
+[node name="PowerUp3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 14 )]
+position = Vector2( -1950, -750 )
+type = "spikes"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1950, 750 )
 rotation = 0.0
@@ -232,6 +237,12 @@ position = Vector2( 1950, -750 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 6 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
+position = Vector2( -1950, -750 )
+rotation = 0.0
+controls = "joy2"
+species = ExtResource( 15 )
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 62.5, 62.5 )
