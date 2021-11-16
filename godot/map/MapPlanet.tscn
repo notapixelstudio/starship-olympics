@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
@@ -33,14 +33,22 @@ animations = [ {
 
 [sub_resource type="DynamicFont" id=2]
 size = 52
-outline_size = 4
+outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 52
 font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 32
-outline_size = 4
+outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
 font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -124,6 +132,7 @@ margin_left = -300.0
 margin_top = 50.0
 margin_right = 300.0
 margin_bottom = 150.0
+custom_colors/font_color = Color( 0.419608, 0.27451, 0.113725, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "The Hive"
 align = 1
@@ -133,12 +142,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tagline" type="Label" parent="." index="9"]
+[node name="Label2" type="Label" parent="." index="9"]
+visible = false
+margin_left = -300.0
+margin_top = 46.0
+margin_right = 300.0
+margin_bottom = 146.0
+custom_colors/font_color = Color( 1, 0.870588, 0.372549, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "The Hive"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tagline" type="Label" parent="." index="10"]
 visible = false
 margin_left = -300.0
 margin_top = 1.0
 margin_right = 300.0
 margin_bottom = 101.0
+custom_colors/font_color = Color( 0.4, 0.305882, 0.305882, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "The Hive"
 align = 1
@@ -148,7 +174,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebugLabel" type="Label" parent="." index="10"]
+[node name="Tagline2" type="Label" parent="." index="11"]
+visible = false
+margin_left = -300.0
+margin_top = -3.0
+margin_right = 300.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 8 )
+text = "The Hive"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DebugLabel" type="Label" parent="." index="12"]
 visible = false
 margin_left = -243.066
 margin_top = 52.31
@@ -162,11 +203,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
 anims/Unhide = SubResource( 4 )
 anims/Unlock = SubResource( 5 )
 
-[node name="Lock" type="Sprite" parent="." index="12"]
+[node name="Lock" type="Sprite" parent="." index="14"]
 visible = false
 position = Vector2( 0, -27 )
 texture = ExtResource( 8 )
