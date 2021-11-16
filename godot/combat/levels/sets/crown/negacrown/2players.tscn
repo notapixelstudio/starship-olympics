@@ -162,9 +162,7 @@ bevel_ne = 885
 bevel_sw = 885
 bevel_se = 885
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
 
@@ -186,9 +184,7 @@ script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
 show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
@@ -216,9 +212,7 @@ script = ExtResource( 12 )
 width = 450
 height = 450
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 2 )
 
 [node name="GlassWall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
@@ -232,9 +226,7 @@ script = ExtResource( 12 )
 width = 425
 height = 425
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 3 )
 
 [node name="Negacrown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]

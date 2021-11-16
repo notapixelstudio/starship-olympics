@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/battlers/Graphics.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=2]
@@ -6,8 +6,16 @@
 [ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=4]
 [ext_resource path="res://assets/sprites/interface/ammo_bomb_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=6]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=7]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=11]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/strength = 8.0
+shader_param/width = 4
+shader_param/outline_color = null
 
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )
@@ -78,6 +86,7 @@ anims/invincible = ExtResource( 4 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 

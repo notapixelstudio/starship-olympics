@@ -116,16 +116,12 @@ line_texture = ExtResource( 7 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 11 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=["additional_lasers"] instance=ExtResource( 11 )]
 show_behind_parent = true
 position = Vector2( 0, -100 )
 rotation = -1.5708
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall10" index="7" groups=[
-"animation_if_additional_lasers",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall10" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 1 )
 
 [node name="Wall15" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
@@ -137,16 +133,12 @@ line_texture = ExtResource( 7 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 11 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=["additional_lasers"] instance=ExtResource( 11 )]
 show_behind_parent = true
 position = Vector2( 0, 100 )
 rotation = 1.5708
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall15" index="7" groups=[
-"animation_if_additional_lasers",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall15" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 2 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
@@ -275,7 +267,7 @@ match_progress_trigger = 0.4
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
-type = "plate"
+type = "shields"
 tease = true
 random_types = [ "plate", "shields" ]
 
@@ -382,7 +374,7 @@ jitter = 4.0
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
-type = "shields"
+type = "plate"
 tease = true
 random_types = [ "shields", "plate" ]
 

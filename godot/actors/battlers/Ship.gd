@@ -39,7 +39,6 @@ var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
 const MIN_CHARGE = 0.2
-const MAX_OVERCHARGE = 1.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
@@ -294,7 +293,7 @@ func update_charge_bar():
 	$Graphics/ChargeBar/ShootingLine.enabled = charge > MIN_CHARGE*2
 	
 	# overcharge feedback
-	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
+	if charge > MAX_CHARGE:
 		var visible = int(floor(charge * 15)) % 2
 		$Graphics/ChargeBar/Charge.visible = visible
 		if not overcharging:
@@ -337,7 +336,7 @@ func _physics_process(delta):
 		entity.get('Phasing').disable()
 	
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
-		dash_restore_appearance()
+		#dash_restore_appearance()
 		entity.get('Dashing').disable()
 		
 	if charging and not charging_enough and charge > MIN_CHARGE:
@@ -425,12 +424,12 @@ func fire(override_charge = -1, dash_only = false):
 	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
-	$Tween.stop_all()
+	$Tween.remove_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
 	
 	if will_dash:
 		entity.get('Dashing').enable()
-		dash_cooldown = (actual_charge - MIN_CHARGE)*0.6
+		dash_cooldown = (min(actual_charge, MAX_CHARGE) - MIN_CHARGE)*0.6
 		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
 	else:
 		tap()
@@ -510,14 +509,14 @@ const DASH_THIN = Vector2(1.5,0.5)
 const DASH_FAT = Vector2(0.8,1.2)
 
 func dash_init_appearance():
-	$Tween.stop_all()
+	$Tween.remove_all()
 	$Graphics/Sprite.scale = DASH_RESTORED
 	$DashParticles.restart()
 	$DashParticles.emitting = false
 	$DashParticles.visible = false
 	
 func dash_restore_appearance():
-	$Tween.stop_all()
+	$Tween.remove_all()
 	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_RESTORED, 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
 	$Tween.start()
@@ -526,7 +525,7 @@ func dash_restore_appearance():
 	$DashParticles.emitting = false
 	
 func dash_fat_appearance():
-	$Tween.stop_all()
+	$Tween.remove_all()
 	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
 		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()

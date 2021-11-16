@@ -111,10 +111,15 @@ func remove_custom_point(index):
 	if len(points) <= 0:
 		emit_signal("no_points")
 
-		
+var disappearing := false
 #warning-ignore:unused_argument
 func _process(delta: float):
-	if target:
+	if disappearing:
+		if width > 0:
+			width = max(0, width-delta*100.0)
+		else:
+			queue_free()
+	elif target:
 		match persistence:
 			Persistence.FRAME_RATE_INDIPENDENT:
 				add_custom_point(target.global_position)
@@ -186,4 +191,7 @@ func set_target(p_value: Node2D):
 func set_target_path(p_value: NodePath):
 	target_path = p_value
 	target = get_node(p_value) as Node2D if has_node(p_value) else null
+	
+func disappear():
+	disappearing = true
 	

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://combat/styles/muscle.tres" type="Resource" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/sumo.png" type="Texture" id=3]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -10,7 +10,7 @@ id = "sumo"
 is_mutator = false
 name = "Sumo"
 icon = ExtResource( 3 )
-arena_style = ExtResource( 5 )
+arena_style = ExtResource( 2 )
 description = "push the other players onto the spikes"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
@@ -18,6 +18,7 @@ max_timeout = 40
 max_score = 10
 starting_score = 10
 cumulative = false
+shared_targets = true
 starting_lives = -1
 end_on_perfect = false
 death = true

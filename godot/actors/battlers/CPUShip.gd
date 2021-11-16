@@ -201,7 +201,7 @@ func control(delta):
 		charge = 0
 	
 	# overcharge feedback
-	if charge > MAX_CHARGE + (MAX_OVERCHARGE-MAX_CHARGE)/2:
+	if charge > MAX_CHARGE:
 		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
 	
 	if not charging and choose_fire() and fire_cooldown <= 0:
@@ -211,7 +211,7 @@ func control(delta):
 	wait_for_chargedshot -= 1 * Engine.time_scale
 	
 	# overcharge
-	if charge > MAX_OVERCHARGE or (charging and charging_time < 0):
+	if charge > MAX_CHARGE or (charging and charging_time < 0):
 		fire()
 		
 	# cooldown
