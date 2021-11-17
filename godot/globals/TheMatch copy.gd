@@ -1,8 +1,8 @@
 extends Node
-# This script handles scores and in-game stats
+## This script handles scores and in-game stats
 
 class_name TheMatch
-
+## time left
 var time_left : float
 var time_left_secs : int
 var match_time : float

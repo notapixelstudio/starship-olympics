@@ -1,6 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/ArenaSimulator.gd" type="Script" id=1]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
+[ext_resource path="res://combat/ShipFake.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/species/mantiacs/ship.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=6]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=11]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=12]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=13]
+[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=14]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=21]
+[ext_resource path="res://assets/sprites/species/robolords/ship.png" type="Texture" id=22]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 
 [node name="Arena" type="Node"]
@@ -14,6 +25,97 @@ pause_mode = 2
 current = true
 zoom = Vector2( 8192, 8192 )
 script = ExtResource( 33 )
-zoomMin = 2.5
-debug_mode = false
-enabled = true
+
+[node name="Ship1" type="Sprite" parent="." groups=["in_camera"]]
+position = Vector2( -1239.85, 14.1787 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+species = ExtResource( 2 )
+
+[node name="Ship0" type="Sprite" parent="." groups=["in_camera"]]
+position = Vector2( 1292.17, 6.72705 )
+rotation = -3.14159
+texture = ExtResource( 22 )
+script = ExtResource( 3 )
+species = ExtResource( 21 )
+
+[node name="OutsideWall" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 9 )]
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+hollow = true
+offset = 400
+elongation = 100
+hide_grid = true
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+
+[node name="GCircle" type="Node" parent="OutsideWall"]
+script = ExtResource( 13 )
+__meta__ = {
+"_editor_icon": ExtResource( 14 )
+}
+radius = 1700
+
+[node name="O" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 0, 32 )
+rotation = 0.785398
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 6 )
+
+[node name="Line2D" type="Line2D" parent="O"]
+points = PoolVector2Array( -480.833, -480.833, -120, -120 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="O"]
+position = Vector2( 880, 880 )
+points = PoolVector2Array( -760, -760, -399.167, -399.167 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Middleground" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Middleground" groups=["wall"] instance=ExtResource( 9 )]
+position = Vector2( -1623, -450 )
+rotation = -1.5708
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Middleground/Wall"]
+script = ExtResource( 12 )
+radius = 50
+sides = 4.0
+
+[node name="Wall2" type="StaticBody2D" parent="Middleground" groups=["wall"] instance=ExtResource( 9 )]
+position = Vector2( 1624, 450 )
+rotation = -1.5708
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Middleground/Wall2"]
+script = ExtResource( 12 )
+radius = 50
+sides = 4.0

@@ -246,6 +246,7 @@ func read_file(path: String) -> Dictionary:
 
 func to_file(dict_to_save: Dictionary, filepath: String):
 	# Create a file
+	filepath = "user://" + filepath
 	var save_file = File.new()
 	save_file.open(filepath, File.WRITE)
 	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")

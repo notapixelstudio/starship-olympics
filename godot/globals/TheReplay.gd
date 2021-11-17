@@ -20,7 +20,7 @@ class ReplayableElement:
 	func to_dict() -> Dictionary:
 		return {
 			"type" : self.type,
-			"position": self.position,
+			"position": var2str(self.position),
 			"rotation": self.rotation,
 			"arguments": self.extra
 		}
@@ -62,4 +62,4 @@ func update(delta):
 	
 
 func to_dict() -> Dictionary:
-	return self.replay_data
+	return {"minigame": global.the_match.this_game_mode.get_id(), "data":self.replay_data}

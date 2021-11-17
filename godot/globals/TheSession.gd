@@ -10,7 +10,7 @@ func get_uuid() -> String:
 	return uuid
 
 class PlayerArena:
-	# This class will store an Arena and the player who chose it
+	## This class will store an Arena and the player who chose it
 	var player_id: String
 	var minigame: PackedScene
 
@@ -26,7 +26,7 @@ var settings : Dictionary
 var selected_sets : Array # of Planet
 var wins = 3
 
-# mutators
+## mutators
 var mutators = {
 	"flood": false,
 	"laser": false
