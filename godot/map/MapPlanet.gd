@@ -53,6 +53,9 @@ func _ready():
 	if set:
 		sprite.texture = set.planet_sprite
 		$Label.text = set.name
+		$Tagline.text = set.tagline1
+		$Label2.text = set.name
+		$Tagline2.text = set.tagline1
 	self.set_status(TheUnlocker.get_status("sets", self.get_id()))
 	
 func unhide():
@@ -79,9 +82,15 @@ func unlock():
 func show_tap_preview(_author):
 	if status == TheUnlocker.UNLOCKED:
 		$Label.visible = true
+		$Tagline.visible = true
+		$Label2.visible = true
+		$Tagline2.visible = true
 	
 func hide_tap_preview():
 	$Label.visible = false
+	$Tagline.visible = false
+	$Label2.visible = false
+	$Tagline2.visible = false
 	
 func tap(author: Ship):
 	if self.get_status() == TheUnlocker.UNLOCKED:
