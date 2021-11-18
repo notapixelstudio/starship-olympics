@@ -2,7 +2,7 @@ extends Ball
 
 var charging := false
 var speed := 25
-var patience := 8
+var patience := 7
 
 func _ready():
 	set_physics_process(true)
@@ -32,10 +32,12 @@ func charge():
 	
 func dash():
 	charging = false
-	if patience <= 4 and randf() < 0.33:
+	if patience <= 4 and randf() < 0.3:
 		var child = load("res://actors/environments/Negacrown.tscn").instance()
 		child.global_position = global_position
+		child.patience = 6
 		get_parent().add_child(child)
+		child.start()
 		apply_central_impulse(1500*Vector2(1,0).rotated(global_rotation))
 		child.apply_central_impulse(-1500*Vector2(1,0).rotated(global_rotation))
 	else:
