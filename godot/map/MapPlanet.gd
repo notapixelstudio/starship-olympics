@@ -85,12 +85,14 @@ func show_tap_preview(_author):
 		$Tagline.visible = true
 		$Label2.visible = true
 		$Tagline2.visible = true
+		$CameraEye.set_active(true)
 	
 func hide_tap_preview():
 	$Label.visible = false
 	$Tagline.visible = false
 	$Label2.visible = false
 	$Tagline2.visible = false
+	$CameraEye.set_active(false)
 	
 func tap(author: Ship):
 	if self.get_status() == TheUnlocker.UNLOCKED:

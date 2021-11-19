@@ -11,7 +11,6 @@
 [ext_resource path="res://map/MapPanelContainer.gd" type="Script" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://map/mapPanel.tscn" type="PackedScene" id=11]
-[ext_resource path="res://map/Waypoint.tscn" type="PackedScene" id=12]
 [ext_resource path="res://map/planets/sets/crown.tres" type="Resource" id=13]
 [ext_resource path="res://map/planets/sets/snake.tres" type="Resource" id=14]
 [ext_resource path="res://map/MapPlanet.tscn" type="PackedScene" id=15]
@@ -21,6 +20,7 @@
 [ext_resource path="res://assets/map/cards/planets/lumira_iv.png" type="Texture" id=19]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=20]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=21]
+[ext_resource path="res://assets/map/cards/planets/mantharn.png" type="Texture" id=22]
 [ext_resource path="res://map/Path.tscn" type="PackedScene" id=41]
 [ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=43]
 
@@ -69,7 +69,7 @@ fg_color = Color( 0.12, 0.488, 0.6, 1 )
 bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
 [node name="Sprite" type="Sprite" parent="Battlefield/Background" index="4"]
-position = Vector2( 7.62939e-06, 0 )
+position = Vector2( 7.62939e-06, 3100 )
 scale = Vector2( 8, 8 )
 z_index = -100
 z_as_relative = false
@@ -82,32 +82,13 @@ scale = Vector2( 2, 2 )
 
 [node name="Paths" type="Node2D" parent="Battlefield/Middleground/Content" index="0"]
 
-[node name="Path" parent="Battlefield/Middleground/Content/Paths" index="0" instance=ExtResource( 41 )]
-position = Vector2( -400, 500 )
-points = PoolVector2Array( 500, -250, 650, -200, 950, -250 )
-
-[node name="Path3" parent="Battlefield/Middleground/Content/Paths" index="1" instance=ExtResource( 41 )]
+[node name="Path7" parent="Battlefield/Middleground/Content/Paths" index="0" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
-points = PoolVector2Array( 925, -1000, 550, -1100, 250, -925 )
+points = PoolVector2Array( 500, -350, 275, -275, 225, -150, -150, 75, -200, -50 )
 
-[node name="Path7" parent="Battlefield/Middleground/Content/Paths" index="2" instance=ExtResource( 41 )]
+[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="1" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
-points = PoolVector2Array( 500, -400, 350, -300, -25, -400, -150, -250 )
-
-[node name="Path8" parent="Battlefield/Middleground/Content/Paths" index="3" instance=ExtResource( 41 )]
-position = Vector2( -600, 650 )
-points = PoolVector2Array( 1600, -200, 1000, -100, 900, 0, 575, 50, 500, -50, -100, -150 )
-
-[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="4" instance=ExtResource( 41 )]
-position = Vector2( -600, 650 )
-points = PoolVector2Array( 600, -525, 550, -700 )
-
-[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="5" instance=ExtResource( 41 )]
-position = Vector2( -600, 650 )
-points = PoolVector2Array( 550, -700, 700, -875, 900, -750, 1000, -875 )
-
-[node name="Waypoint" parent="Battlefield/Middleground/Content/Paths" index="6" instance=ExtResource( 12 )]
-position = Vector2( -50, -50 )
+points = PoolVector2Array( 700, -450, 850, -500, 800, -775, 875, -725, 975, -750, 1000, -875 )
 
 [node name="Planets" type="Node2D" parent="Battlefield/Middleground/Content" index="1"]
 __meta__ = {
@@ -124,49 +105,59 @@ texture = ExtResource( 19 )
 [node name="Shadow" parent="Battlefield/Middleground/Content/Planets/LumiraIV" index="1" instance=ExtResource( 20 )]
 sprite = NodePath("../Sprite")
 
-[node name="Core" parent="Battlefield/Middleground/Content/Planets" index="1" instance=ExtResource( 15 )]
+[node name="Mantharn" type="Node2D" parent="Battlefield/Middleground/Content/Planets" index="1"]
+position = Vector2( 532, -285.5 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/Content/Planets/Mantharn" index="0"]
+modulate = Color( 0.68, 0.68, 0.68, 1 )
+texture = ExtResource( 22 )
+
+[node name="Shadow" parent="Battlefield/Middleground/Content/Planets/Mantharn" index="1" instance=ExtResource( 20 )]
+sprite = NodePath("../Sprite")
+
+[node name="Core" parent="Battlefield/Middleground/Content/Planets" index="2" instance=ExtResource( 15 )]
 position = Vector2( 0, 250 )
 set = ExtResource( 17 )
 
-[node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="2" instance=ExtResource( 15 )]
+[node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
 position = Vector2( -800, 500 )
 set = ExtResource( 43 )
 
-[node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
+[node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 15 )]
 position = Vector2( -450, -275 )
 set = ExtResource( 13 )
 
-[node name="Snake" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 15 )]
+[node name="Snake" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
 position = Vector2( 1100, 450 )
 set = ExtResource( 14 )
 
-[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
+[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 15 )]
 position = Vector2( 425, -325 )
 set = ExtResource( 18 )
 
-[node name="Combat2" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 15 )]
+[node name="Combat2" parent="Battlefield/Middleground/Content/Planets" index="7" instance=ExtResource( 15 )]
 position = Vector2( 950, -350 )
 set = ExtResource( 16 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1300, 3600 )
+position = Vector2( -450, 4400 )
 rotation = -1.5708
 species = ExtResource( 10 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( -700, 3600 )
+position = Vector2( -150, 4400 )
 rotation = -1.5708
 controls = "kb2"
 species = ExtResource( 6 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
-position = Vector2( 700, 3600 )
+position = Vector2( 150, 4400 )
 rotation = -1.5708
 controls = "kb2"
 species = ExtResource( 6 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 8 )]
-position = Vector2( 1300, 3600 )
+position = Vector2( 450, 4400 )
 rotation = -1.5708
 controls = "kb2"
 species = ExtResource( 6 )
@@ -183,8 +174,14 @@ smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0
 subtractHeight = 450
+enabled = false
 
-[node name="CanvasLayerTop" type="CanvasLayer" parent="." index="9"]
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
+position = Vector2( 0, 3900 )
+current = true
+zoom = Vector2( 6, 6 )
+
+[node name="CanvasLayerTop" type="CanvasLayer" parent="." index="10"]
 layer = 2
 
 [node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop" index="0"]
