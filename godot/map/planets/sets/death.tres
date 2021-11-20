@@ -2,16 +2,16 @@
 
 [ext_resource path="res://map/planets/Set.gd" type="Script" id=1]
 [ext_resource path="res://combat/minigames/FirstBlood.tres" type="Resource" id=2]
-[ext_resource path="res://combat/minigames/Sumo.tres" type="Resource" id=3]
+[ext_resource path="res://combat/minigames/NineLives.tres" type="Resource" id=3]
 [ext_resource path="res://combat/minigames/Deathmatch.tres" type="Resource" id=4]
 [ext_resource path="res://combat/minigames/SkullCollectors.tres" type="Resource" id=5]
-[ext_resource path="res://assets/map/cards/deathmathces_set.png" type="Texture" id=6]
+[ext_resource path="res://assets/map/cards/combat.png" type="Texture" id=6]
 
 [resource]
 script = ExtResource( 1 )
 id = "combat"
-name = "Combat"
-tagline1 = ""
+name = "Manthar'n"
+tagline1 = "the Deadly Playgrounds of"
 tagline2 = ""
 description = ""
 minigames = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ) ]
