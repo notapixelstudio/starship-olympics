@@ -42,9 +42,12 @@ func get_uuid() -> String:
 
 func start():
 	set_process(true)
+	replay = TheReplay.new()
+	replay.start()
 
 func stop():
 	set_process(false)
+	replay.stop()
 
 func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
 	player_scores = []
@@ -76,8 +79,6 @@ func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0,
 	if game_mode.cumulative:
 		cumulative_points=0
 	
-	replay = TheReplay.new()
-	replay.start()
 	emit_signal('setup')
 	
 func sort_by_score(a: InfoPlayer, b: InfoPlayer):
@@ -99,7 +100,6 @@ func update(delta: float):
 		compute_game_status()
 		
 	lasting_time += delta
-	replay.update(delta)
 	
 func compute_game_status():
 	if game_over:

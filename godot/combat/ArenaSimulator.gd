@@ -1,12 +1,23 @@
 extends Node
 
 onready var camera = $Camera
+onready var anim = $AnimationPlayer
 
 var data
 var ts_zero := 0
+
+	
 func _ready():
 	camera.initialize(compute_arena_size())
-	var file_data = global.read_file("user://replay_c64e03a5-4ad0-4cf8-b930-7e3a15aab2ce.json")
+	
+	var animation = anim.get_animation("replay")
+	var track_index = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(track_index, "Enemy:position:x")
+	animation.track_insert_key(track_index, 0.0, 0)
+	animation.track_insert_key(track_index, 0.5, 100)
+
+
+	var file_data = global.read_file("user://replay_883f7d01-5af4-4b9a-9439-79d5f538ec4c.json")
 	data = file_data["data"]
 	ts_zero = data[0]["timestamp"]
 	var ts = ts_zero

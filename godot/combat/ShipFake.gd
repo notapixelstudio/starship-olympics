@@ -10,5 +10,7 @@ func setup(new_pos, new_rot):
 	new_rotation = new_rot
 
 func _process(delta):
-	position = lerp(position, new_position, 0.01)
-	rotation = lerp(rotation, new_rotation, 0.01)
+	if new_position != null:
+		position = lerp(position, new_position, 0.01)
+	if new_rotation != null:
+		rotation = lerp(rotation, new_rotation, 0.01)
