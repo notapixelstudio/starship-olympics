@@ -1,6 +1,7 @@
 extends MarginContainer
 
-onready var device = $UIButtonsContainer/Element.value
+onready var device = $UIButtonsContainer/Device.value
+
 
 func _ready():
 	for child in get_children():

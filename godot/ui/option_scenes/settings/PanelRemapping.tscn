@@ -5,23 +5,17 @@
 [ext_resource path="res://ui/option_scenes/settings/UIOptionPanel.gd" type="Script" id=3]
 
 [node name="PanelRemapping" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -559.0
-margin_top = -280.0
-margin_right = 560.0
-margin_bottom = 296.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BannerInfo" parent="." instance=ExtResource( 1 )]
-margin_top = -57.0
+margin_top = -54.0
 margin_right = -2.0
-margin_bottom = -5.0
+margin_bottom = -2.0
 
 [node name="Title" type="Label" parent="."]
 anchor_right = 1.0
@@ -31,6 +25,14 @@ align = 1
 valign = 1
 
 [node name="Content" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -459.0
+margin_top = -245.0
+margin_right = 459.0
+margin_bottom = 245.0
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.22118
