@@ -401,7 +401,7 @@ func _ready():
 	camera.activate_camera()
 	
 	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
-	emit_signal("all_ships_spawned")
+	emit_signal("all_ships_spawned", player_spawners)
 	
 	# group by order for trait intro
 	var intro_nodes = {}
@@ -508,11 +508,17 @@ func ship_just_died(ship, killer, for_good):
 		killer: Ship
 		
 	"""
+	var home : bool = game_mode.respawn_from_home
+	
+	if home:
+		respawn_from_home(ship, ship.spawner)
+	
+	for_good = for_good or home
 	
 	if for_good:
 		# this needs to be deferred, to make other listeners fire first
 		call_deferred('unregister_ship', ship)
-	
+		
 	# stats
 	# TODO: maybe somewhere else
 	emit_signal("update_stats", ship.info_player, 1, "deaths")
@@ -881,8 +887,12 @@ func _on_EndlessArea_body_exited(body):
 		body.queue_free()
 		
 func _on_ship_fallen(ship, spawner):
+	respawn_from_home(ship, spawner)
+	
+func respawn_from_home(ship, spawner):
 	ship.trail.destroy()
-	ship.die(null, true) # die for good
+	if ship.alive:
+		ship.die(null, true) # die for good
 	yield(get_tree().create_timer(1), "timeout")
 	spawner.appears()
 	spawn_ship(spawner, true) # force intro

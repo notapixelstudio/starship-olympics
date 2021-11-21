@@ -17,6 +17,7 @@ export var starting_score : int = 0
 export var cumulative: bool = false
 export var shared_targets := true
 export var starting_lives : int = -1
+export var respawn_from_home := false
 export var end_on_perfect := true
 
 # goal manager

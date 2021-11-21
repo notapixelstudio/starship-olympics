@@ -51,7 +51,7 @@ func _ready():
 			graph.add_path(link, start, end)
 			
 	print(graph.to_string())
-func _on_all_ships_spawned():
+func _on_all_ships_spawned(spawners):
 	# give a star to the winner of the former session
 	var winner = global.the_game.get_last_winner()
 	if winner != null:
