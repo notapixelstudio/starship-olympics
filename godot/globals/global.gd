@@ -17,8 +17,14 @@ func _set_analytics(new_value):
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "add_event")
 
-var array_device = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
-onready var device 
+var array_keyboard_device = ["kb1", "kb2"]
+onready var keyboard_device 
+var array_joypad_device = ["joy1", "joy2", "joy3", "joy4"]
+onready var joypad_device 
+
+var array_custom_device = ["custom1"]
+onready var custom_device 
+
 
 var available_languages = {
 	"english": "en",

@@ -1,6 +1,6 @@
 extends TextureRect
 
-class_name ShowedButton
+class_name ButtonRepresentation
 
 var path_buttons: String = "res://assets/UI/Xelu_Free_Controller&Key_Prompts/"
 var keyboard_path: String = "Keyboard & Mouse/Dark/"

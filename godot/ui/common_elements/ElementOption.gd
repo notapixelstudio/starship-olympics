@@ -16,6 +16,9 @@ var max_value
 var array_value
 
 func _ready():
+	setup()
+	
+func setup():
 	if not label_description:
 		label_description = element_path
 		

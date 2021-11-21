@@ -1,5 +1,5 @@
 tool
-extends MarginContainer
+extends Control
 
 class_name CommandRemap
 
@@ -40,8 +40,6 @@ func _set_device(value_):
 		yield(self, "ready")
 	setup()
 	
-
-
 func _on_Button_try_remap(action):
 	emit_signal("try_remap", action)
 	
@@ -78,7 +76,7 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=true
 
 
 func add_mapping_to_screen(new_event: InputEvent):
-	var button: ShowedButton = button_scene.instance()
+	var button: ButtonRepresentation = button_scene.instance()
 	button.set_button(new_event)
 	scroll_container.add_element(button)
 	

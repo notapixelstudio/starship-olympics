@@ -1,24 +1,31 @@
 extends MarginContainer
 
-onready var device = $UIButtonsContainer/Device.value
-
+var device
+export (String, "keyboard", "joypad", "custom") var device_type = "keyboard"
 
 func _ready():
+	var path = device_type + "_device"
+	$UIButtonsContainer/Device.element_path = path
+	$UIButtonsContainer/Device.setup()
 	for child in get_children():
 		if child is CommandRemap:
 			child.connect("clear_mapping", self, "clear_mapping")
 			child.connect("remap", self, "control_remapped")
+			
 	
 func _on_Element_value_changed(value):
 	device = value
+	if device == null:
+		return
 	if not is_inside_tree():
 		yield(self, "ready")
 	# we need to wait a frame in order to wait that everything will be available
 	yield(get_tree(), "idle_frame")
-	for child in get_children():
+	for child in $UIButtonsContainer.get_children():
 		if child is CommandRemap:
 			child.visible = true
 			child.device = value
+			child.setup()
 			
 func _on_Default_pressed():
 	var mapping = global.set_default_mapping(device)
