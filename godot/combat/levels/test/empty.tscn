@@ -45,6 +45,14 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Battlefield/Middleground" index="0"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Middleground/StaticBody2D" index="0"]
+polygon = PoolVector2Array( -1100, -300, -1000, -300, -1000, 300, -1100, 300 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/StaticBody2D" index="1"]
+polygon = PoolVector2Array( -1000, -300, -1000, 300, -1100, 300, -1100, -300 )
+
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = "drill"
 

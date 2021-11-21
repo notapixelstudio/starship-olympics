@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
 [ext_resource path="res://map/Cursor.tscn" type="PackedScene" id=4]
@@ -32,9 +33,23 @@ animations = [ {
 } ]
 
 [sub_resource type="DynamicFont" id=2]
-size = 52
-outline_size = 4
+size = 72
+outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 72
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 42
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 42
 font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -114,9 +129,11 @@ attenuation = 0.0412346
 
 [node name="Label" type="Label" parent="." index="8"]
 visible = false
-margin_left = -300.0
-margin_right = 300.0
-margin_bottom = 100.0
+margin_left = -500.0
+margin_top = 166.0
+margin_right = 500.0
+margin_bottom = 266.0
+custom_colors/font_color = Color( 0.419608, 0.27451, 0.113725, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "The Hive"
 align = 1
@@ -126,12 +143,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebugLabel" type="Label" parent="." index="9"]
+[node name="Label2" type="Label" parent="." index="9"]
+visible = false
+margin_left = -500.0
+margin_top = 159.0
+margin_right = 500.0
+margin_bottom = 259.0
+custom_colors/font_color = Color( 1, 0.870588, 0.372549, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "The Hive"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tagline" type="Label" parent="." index="10"]
+visible = false
+margin_left = -500.0
+margin_top = 101.0
+margin_right = 500.0
+margin_bottom = 201.0
+custom_colors/font_color = Color( 0.4, 0.305882, 0.305882, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "The Hive"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tagline2" type="Label" parent="." index="11"]
+visible = false
+margin_left = -500.0
+margin_top = 95.0
+margin_right = 500.0
+margin_bottom = 195.0
+custom_fonts/font = SubResource( 8 )
+text = "The Hive"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DebugLabel" type="Label" parent="." index="12"]
 visible = false
 margin_left = -243.066
-margin_top = 102.31
+margin_top = 52.31
 margin_right = 259.934
-margin_bottom = 177.31
+margin_bottom = 127.31
 custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
@@ -140,11 +204,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
 anims/Unhide = SubResource( 4 )
 anims/Unlock = SubResource( 5 )
 
-[node name="Lock" type="Sprite" parent="." index="11"]
+[node name="Lock" type="Sprite" parent="." index="14"]
 visible = false
 position = Vector2( 0, -27 )
 texture = ExtResource( 8 )
+
+[node name="CameraEye" parent="." index="16" instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 0, 200 )
+active = false

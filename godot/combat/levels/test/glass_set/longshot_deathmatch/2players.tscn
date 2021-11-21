@@ -52,11 +52,8 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 5 )
 
-[node name="KillModeManager" parent="Managers" index="6"]
+[node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
-
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 9 )
@@ -65,7 +62,6 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
@@ -74,9 +70,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 3200
 height = 2200
 bevel = 400
@@ -93,9 +86,6 @@ type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall14" index="5"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 500
 height = 500
 bevel = 100
@@ -111,16 +101,12 @@ position = Vector2( -1000, -500 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 11 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=["additional_lasers"] instance=ExtResource( 11 )]
 show_behind_parent = true
 position = Vector2( 0, -100 )
 rotation = -1.5708
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall10" index="7" groups=[
-"animation_if_additional_lasers",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall10" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 1 )
 
 [node name="Wall15" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
@@ -130,16 +116,12 @@ position = Vector2( 1000, 500 )
 script = ExtResource( 1 )
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=[
-"additional_lasers",
-] instance=ExtResource( 11 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=["additional_lasers"] instance=ExtResource( 11 )]
 show_behind_parent = true
 position = Vector2( 0, 100 )
 rotation = 1.5708
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall15" index="7" groups=[
-"animation_if_additional_lasers",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall15" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 2 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
@@ -216,6 +198,7 @@ cpu = true
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 10, 10 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

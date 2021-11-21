@@ -56,7 +56,7 @@ func get_unlocked_list(group_id: String, status: String = UNLOCKED) -> Array:
 				list_unlocked.append(element)
 	return list_unlocked
 	
-func get_status(group_id: String, element_id: String, default := LOCKED) -> String:
+func get_status(group_id: String, element_id: String, default := HIDDEN) -> String:
 	var group_object = self.unlocked_elements.get(group_id)
 	if group_object :
 		return group_object.get(element_id, default)

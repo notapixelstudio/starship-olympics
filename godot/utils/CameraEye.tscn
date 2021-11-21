@@ -3,9 +3,7 @@
 [ext_resource path="res://utils/CameraEye.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/eye.png" type="Texture" id=2]
 
-[node name="CameraEye" type="Sprite" groups=[
-"in_camera",
-]]
+[node name="CameraEye" type="Sprite" groups=["in_camera"]]
 modulate = Color( 0.207843, 0.741176, 1, 0.435294 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )

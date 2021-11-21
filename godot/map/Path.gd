@@ -16,7 +16,7 @@ func set_points(v):
 	
 func _ready():
 	refresh()
-	if unlocked_status == TheUnlocker.UNLOCKED:
+	if unlocked_status == TheUnlocker.UNLOCKED or Engine.editor_hint:
 		# wait for tree to be refreshed
 		yield(get_tree(), "idle_frame")
 		appear()
