@@ -77,7 +77,8 @@ func show_holdable():
 			sprite.z_as_relative = false
 			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5)
 		else:
-			$Wrapper.position = Vector2(Ball.GRAB_DISTANCE, 0)
+			var grab_distance = Ball.GRAB_DISTANCE * 1.5 if held.has_type('skull') else 1.0
+			$Wrapper.position = Vector2(grab_distance, 0)
 
 func hide_holdable():
 	sprite.texture = null
@@ -89,7 +90,7 @@ func _process(delta):
 	if held != null and not held.is_rotatable():
 		sprite.rotation = -global_rotation
 		if held.show_on_top():
-			var grab_distance = Ball.GRAB_DISTANCE * (2.0 if held.has_type('bee_crown') or held.has_type('skull') else 1.5)
+			var grab_distance = Ball.GRAB_DISTANCE * (2.0 if held.has_type('bee_crown') else 1.5)
 			$Wrapper.position = Vector2(0, -grab_distance).rotated(-global_rotation)
 
 func empty():
