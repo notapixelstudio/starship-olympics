@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=18]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=20]
+[ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=21]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
@@ -61,6 +62,19 @@ texture = ExtResource( 11 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
+
+[node name="SpeciesDecal" parent="Battlefield/Background" index="4" instance=ExtResource( 21 )]
+position = Vector2( -1200, 700 )
+rotation = -0.785398
+scale = Vector2( 0.75, 0.75 )
+goal_owner = NodePath("../../../SpawnPositions/Players/p1")
+
+[node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 21 )]
+modulate = Color( 0.32549, 1, 0.32549, 1 )
+position = Vector2( 1200, -700 )
+rotation = 2.35619
+scale = Vector2( 0.75, 0.75 )
+goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Wall5" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1800, 0 )
@@ -659,12 +673,12 @@ texture = ExtResource( 20 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1200, 700 )
-rotation = 0.0
+rotation = -0.785398
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1200, -700 )
-rotation = 3.14159
+rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 15 )
 
