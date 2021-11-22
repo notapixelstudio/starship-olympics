@@ -71,6 +71,9 @@ func show_on_top():
 func is_rotatable():
 	return not type in ['crown', 'negacrown', 'bee_crown', 'star', 'skull']
 
+func is_glowing():
+	return true
+	
 func is_loadable():
 	return is_inside_tree()
 	

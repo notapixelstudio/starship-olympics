@@ -76,15 +76,21 @@ func show_holdable():
 			sprite.z_index = 20
 			sprite.z_as_relative = false
 			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5)
+			$RoyalGlow.position.x = 0
 		else:
-			var grab_distance = Ball.GRAB_DISTANCE * 1.5 if held.has_type('skull') else 1.0
+			var grab_distance = Ball.GRAB_DISTANCE * (1.5 if held.has_type('skull') else 1.0)
 			$Wrapper.position = Vector2(grab_distance, 0)
+			$RoyalGlow.position.x = 75
+			
+		if held.is_glowing():
+			$RoyalGlow.visible = true
 
 func hide_holdable():
 	sprite.texture = null
 	$Wrapper.position = Vector2(0,0)
 	sprite.z_index = 0
 	sprite.z_as_relative = true
+	$RoyalGlow.visible = false
 
 func _process(delta):
 	if held != null and not held.is_rotatable():
