@@ -161,7 +161,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 11 )
 style = ExtResource( 9 )
 
-[node name="ConquestModeManager" parent="Managers" index="10"]
+[node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -221,14 +221,10 @@ rotation = -0.785398
 position = Vector2( 1400, 700 )
 rotation = -0.785398
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="6" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="6" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 2 )
 
 [node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
