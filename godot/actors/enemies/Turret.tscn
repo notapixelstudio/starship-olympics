@@ -39,9 +39,12 @@ tracks/0/keys = {
 "values": [ Vector2( 2, 2 ) ]
 }
 
-[node name="Turret" type="StaticBody2D" groups=["in_camera"]]
+[node name="Turret" type="RigidBody2D" groups=["in_camera"]]
 collision_layer = 0
-collision_mask = 8193
+collision_mask = 10757
+mass = 5000.0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Waiter" parent="." instance=ExtResource( 6 )]
@@ -78,4 +81,5 @@ polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
 anims/Fire = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
+[connection signal="body_entered" from="." to="." method="_on_Turret_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

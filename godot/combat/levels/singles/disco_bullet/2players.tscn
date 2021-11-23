@@ -48,6 +48,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=2]
+resource_name = "Default"
 length = 68.0
 step = 1.0
 tracks/0/type = "value"
@@ -224,14 +225,15 @@ rotation = -0.785398
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="6" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=["animation_in_battle"]]
-anims/Rotate = SubResource( 2 )
-
-[node name="Turret" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
+[node name="Turret" parent="Battlefield/Middleground" index="0" instance=ExtResource( 16 )]
 weapon = ExtResource( 14 )
 rate = 0.25
 
-[node name="Lasers" type="Node2D" parent="Battlefield/Middleground/Turret" index="3"]
+[node name="Routine" type="AnimationPlayer" parent="Battlefield/Middleground/Turret" index="0"]
+root_node = NodePath("../..")
+anims/Default = SubResource( 2 )
+
+[node name="Lasers" type="Node2D" parent="Battlefield/Middleground/Turret" index="4"]
 script = SubResource( 3 )
 
 [node name="Laser" parent="Battlefield/Middleground/Turret/Lasers" index="0" instance=ExtResource( 7 )]
@@ -257,24 +259,23 @@ position = Vector2( 0, -100 )
 rotation = 4.71239
 on = false
 
-[node name="CameraEye" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
+[node name="CameraEye" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 position = Vector2( 1300, 1300 )
 
-[node name="CameraEye2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
+[node name="CameraEye2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
 position = Vector2( -1300, -1300 )
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="4" instance=ExtResource( 17 )]
+[node name="PowerUp" parent="Battlefield/Middleground" index="3" instance=ExtResource( 17 )]
 position = Vector2( -700, 700 )
 type = "snake"
 
-[node name="PowerUp2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 17 )]
+[node name="PowerUp2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 17 )]
 position = Vector2( 700, -700 )
 type = "snake"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
 position = Vector2( -700, 700 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
