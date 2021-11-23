@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://combat/levels/sets/combat/nine_lives/DontDieManager.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=16]
 [ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=5]
@@ -437,7 +438,37 @@ enabled = true
 texture = ExtResource( 5 )
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 10 )]
+[node name="Wall12" parent="Battlefield/Background" index="0" instance=ExtResource( 10 )]
+position = Vector2( -800, -1000 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall12" index="8"]
+script = ExtResource( 16 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( -400, -600, 200, 0, -400, 0 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/Wall12" index="9"]
+visible = false
+polygon = PoolVector2Array( -400, -600, 200, 0, -400, 0 )
+
+[node name="Wall13" parent="Battlefield/Background" index="1" instance=ExtResource( 10 )]
+position = Vector2( 1000, -1000 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall13" index="8"]
+script = ExtResource( 16 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 200, -600, 200, 0, -400, 0 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/Wall13" index="9"]
+visible = false
+polygon = PoolVector2Array( 200, -600, 200, 0, -400, 0 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 10 )]
 hollow = true
 offset = 800
 hide_grid = true
@@ -463,6 +494,14 @@ texture = ExtResource( 4 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.48, 0, 0.16, 1 )
 bg_color = Color( 0.121569, 0, 0, 1 )
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="6"]
+points = PoolVector2Array( -400, 600, -300, 700, -50, 700, 0, 550, 50, 700, 300, 700, 400, 600 )
+width = 40.0
+default_color = Color( 0.768627, 0.4, 1, 0.054902 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Wall9" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1100, -400 )
