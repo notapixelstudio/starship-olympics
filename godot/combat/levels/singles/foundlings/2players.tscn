@@ -42,11 +42,11 @@ __meta__ = {
 }
 
 [node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 11 )]
-visible = false
 position = Vector2( 3.05176e-05, 0 )
+collision_layer = 2147483648
 hollow = true
 offset = 800
-type = 2
+type = 4
 hide_grid = true
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
