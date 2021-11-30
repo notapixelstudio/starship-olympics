@@ -78,4 +78,9 @@ func set_rotation_and_stuff(angle):
 
 func _on_Turret_body_entered(body):
 	if not active and body is Bomb and self.has_node('Routine'):
-		$Routine.play('Default')
+		if active:
+			$Routine.stop()
+			self.set_active(false)
+		else:
+			$Routine.play('Default')
+			self.set_active(true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=15]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=16]
 [ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=17]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=5]
 resource_name = "Default"
@@ -618,6 +619,18 @@ visible = false
 position = Vector2( 0, -150 )
 rotation = 4.71239
 on = false
+
+[node name="Gel" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
+position = Vector2( 0, -950 )
+rotation = 1.5708
+width = 600
+depth = 50
+
+[node name="Gel2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 18 )]
+position = Vector2( 0, 950 )
+rotation = 4.71239
+width = 600
+depth = 50
 
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 position = Vector2( -1500, 750 )

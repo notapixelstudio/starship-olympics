@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/AlchemicalBombing.tres" type="Resource" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=13]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -207,6 +208,18 @@ type = "bubbles"
 [node name="PowerUp2" parent="Battlefield/Middleground" index="15" instance=ExtResource( 11 )]
 position = Vector2( 1000, 0 )
 type = "bubbles"
+
+[node name="Gel" parent="Battlefield/Middleground" index="16" instance=ExtResource( 13 )]
+position = Vector2( 0, -1300 )
+rotation = 1.5708
+width = 600
+depth = 50
+
+[node name="Gel2" parent="Battlefield/Middleground" index="17" instance=ExtResource( 13 )]
+position = Vector2( 0, 1350 )
+rotation = 4.71239
+width = 600
+depth = 50
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 1000, 0 )

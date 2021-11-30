@@ -596,8 +596,6 @@ func ship_just_died(ship, killer, for_good):
 	#elif game_mode.name == "GoalPortal":
 	#	respawn_timeout = 0.75
 	
-	yield(get_tree().create_timer(respawn_timeout), "timeout")
-	
 	if not global.is_match_running():
 		return
 	
@@ -890,10 +888,14 @@ func _on_ship_fallen(ship, spawner):
 	respawn_from_home(ship, spawner)
 	
 func respawn_from_home(ship, spawner):
+	var respawn_timeout = 1.0
+	if game_mode.id == 'skull_collector':
+		respawn_timeout = 2.5
+	
 	ship.trail.destroy()
 	if ship.alive:
 		ship.die(null, true) # die for good
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	spawner.appears()
 	spawn_ship(spawner, true) # force intro
 	
