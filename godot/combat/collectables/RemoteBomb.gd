@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-class_name Mine
+class_name RemoteBomb
 
 var owner_ship
 

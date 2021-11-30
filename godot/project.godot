@@ -312,7 +312,7 @@ _global_script_classes=[ {
 "base": "RigidBody2D",
 "class": "Mine",
 "language": "GDScript",
-"path": "res://combat/collectables/Mine.gd"
+"path": "res://actors/environments/Mine.gd"
 }, {
 "base": "Resource",
 "class": "Minigame",
@@ -398,6 +398,11 @@ _global_script_classes=[ {
 "class": "PowerUp",
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
+}, {
+"base": "RigidBody2D",
+"class": "RemoteBomb",
+"language": "GDScript",
+"path": "res://combat/collectables/RemoteBomb.gd"
 }, {
 "base": "Node2D",
 "class": "Ripple",
@@ -593,6 +598,7 @@ _global_script_class_icons={
 "Polyomino": "",
 "Portalz": "",
 "PowerUp": "",
+"RemoteBomb": "",
 "Ripple": "",
 "Rock": "",
 "Rule": "",

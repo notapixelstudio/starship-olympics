@@ -752,7 +752,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
-const mine_scene = preload('res://combat/collectables/Mine.tscn')
+const mine_scene = preload('res://combat/collectables/RemoteBomb.tscn')
 const wave_scene = preload('res://actors/weapons/ShockWave.tscn')
 func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb

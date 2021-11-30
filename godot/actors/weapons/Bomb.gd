@@ -192,7 +192,7 @@ func _on_Bomb_body_entered(body):
 		ripple.position = position
 		get_parent().call_deferred("add_child", ripple)
 	
-	if body is Mine:
+	if body is RemoteBomb:
 		detonate()
 
 var bubble_already_spawned = false

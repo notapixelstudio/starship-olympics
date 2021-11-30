@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=2]
 [ext_resource path="res://actors/environments/Homeworld.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
@@ -346,6 +347,63 @@ physics_material_override = SubResource( 1 )
 [node name="Alien61" parent="Battlefield/Middleground" index="60" instance=ExtResource( 16 )]
 position = Vector2( -200, 11700 )
 physics_material_override = SubResource( 1 )
+
+[node name="Mine" parent="Battlefield/Middleground" index="61" instance=ExtResource( 5 )]
+position = Vector2( 0, 5450 )
+
+[node name="Mine2" parent="Battlefield/Middleground" index="62" instance=ExtResource( 5 )]
+position = Vector2( -200, 7250 )
+
+[node name="Mine3" parent="Battlefield/Middleground" index="63" instance=ExtResource( 5 )]
+position = Vector2( 201, 7250 )
+
+[node name="Mine4" parent="Battlefield/Middleground" index="64" instance=ExtResource( 5 )]
+position = Vector2( 601, 9000 )
+
+[node name="Mine5" parent="Battlefield/Middleground" index="65" instance=ExtResource( 5 )]
+position = Vector2( -599, 9000 )
+
+[node name="Mine6" parent="Battlefield/Middleground" index="66" instance=ExtResource( 5 )]
+position = Vector2( 1, 8250 )
+
+[node name="Mine7" parent="Battlefield/Middleground" index="67" instance=ExtResource( 5 )]
+position = Vector2( 1, 10600 )
+
+[node name="Mine8" parent="Battlefield/Middleground" index="68" instance=ExtResource( 5 )]
+position = Vector2( 1, 11900 )
+
+[node name="Mine9" parent="Battlefield/Middleground" index="69" instance=ExtResource( 5 )]
+position = Vector2( 1, 11500 )
+
+[node name="Mine10" parent="Battlefield/Middleground" index="70" instance=ExtResource( 5 )]
+position = Vector2( 1, 12300 )
+
+[node name="Mine17" parent="Battlefield/Middleground" index="71" instance=ExtResource( 5 )]
+position = Vector2( 0, 15000 )
+
+[node name="Mine18" parent="Battlefield/Middleground" index="72" instance=ExtResource( 5 )]
+position = Vector2( 0, 14600 )
+
+[node name="Mine19" parent="Battlefield/Middleground" index="73" instance=ExtResource( 5 )]
+position = Vector2( 0, 15400 )
+
+[node name="Mine11" parent="Battlefield/Middleground" index="74" instance=ExtResource( 5 )]
+position = Vector2( -399, 11900 )
+
+[node name="Mine13" parent="Battlefield/Middleground" index="75" instance=ExtResource( 5 )]
+position = Vector2( 200, 13700 )
+
+[node name="Mine14" parent="Battlefield/Middleground" index="76" instance=ExtResource( 5 )]
+position = Vector2( -200, 13700 )
+
+[node name="Mine15" parent="Battlefield/Middleground" index="77" instance=ExtResource( 5 )]
+position = Vector2( -600, 13300 )
+
+[node name="Mine16" parent="Battlefield/Middleground" index="78" instance=ExtResource( 5 )]
+position = Vector2( 600, 13300 )
+
+[node name="Mine12" parent="Battlefield/Middleground" index="79" instance=ExtResource( 5 )]
+position = Vector2( 401, 11900 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1650, 0 )
