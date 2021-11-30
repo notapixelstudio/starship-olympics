@@ -31,7 +31,7 @@ var available_languages = {
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
 var full_screen = true setget _set_full_screen
-
+	
 func _set_full_screen(value: bool):
 	full_screen = value
 	OS.window_fullscreen = full_screen
@@ -40,7 +40,37 @@ func _set_full_screen(value: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	
+onready var graphics_quality: String = "maximum" setget _set_graphics_quality
+var array_graphics_quality: Array = ["minimum","low", "medium", "high", "maximum"]
 
+func _set_graphics_quality(value: String):
+	graphics_quality = value
+	match graphics_quality:
+		"minimum":
+			set_stretch(4)
+		"very low":
+			set_stretch(3)
+		"low":
+			set_stretch(2)
+		"medium":
+			set_stretch(1.75)
+		"high":
+			set_stretch(1.5)
+		"very high":
+			set_stretch(1.25)
+		"maximum":
+			set_stretch(1)
+			
+func set_stretch(stretch):
+	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT,  SceneTree.STRETCH_ASPECT_KEEP, OS.get_window_size(), stretch)
+	
+func get_graphics_scale() -> Vector2:
+	var viewport_size := get_tree().get_root().get_size()
+	var world_size := Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
+	return viewport_size/world_size
+	
 var unlock_mode = "custom" setget _set_unlock_mode
 var array_unlock_mode = ["custom", "demo", "core", "unlocked"]
 
@@ -229,7 +259,11 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-
+		
+	# this is needed because the game resizes itself at start
+	#yield(get_tree().create_timer(0.1),"timeout")
+	#_set_graphics_quality(graphics_quality)
+	
 func read_file(path: String) -> Dictionary:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
@@ -499,6 +533,7 @@ func get_state():
 		sfx_volume=sfx_volume,
 		demo=demo,
 		full_screen=full_screen,
+		graphics_quality=graphics_quality,
 		rumbling=rumbling,
 		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,

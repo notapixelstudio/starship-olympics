@@ -55,43 +55,52 @@ margin_bottom = 158.0
 element_path = "glow_enable"
 label_description = "Glow"
 
-[node name="Analytics" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
+[node name="GraphicsQuality" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
 margin_top = 162.0
 margin_right = 778.0
 margin_bottom = 212.0
+element_path = "graphics_quality"
+label_description = "Graphics Quality"
+elem_type = 2
+
+[node name="Analytics" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 216.0
+margin_right = 778.0
+margin_bottom = 266.0
 element_path = "enable_analytics"
 label_description = "analytics"
 
 [node name="Audio" parent="Content/UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 216.0
+margin_top = 270.0
 margin_right = 778.0
-margin_bottom = 266.0
+margin_bottom = 320.0
 text = "AUDIO"
 option_menu = ExtResource( 5 )
 title = "Audio"
 
 [node name="Controls" parent="Content/UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 270.0
+margin_top = 324.0
 margin_right = 778.0
-margin_bottom = 320.0
+margin_bottom = 374.0
 text = "REMAP CONTROLS"
 option_menu = ExtResource( 6 )
 title = "Remap controls"
 
 [node name="UnlockMode" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_top = 324.0
+margin_top = 378.0
 margin_right = 778.0
-margin_bottom = 374.0
+margin_bottom = 428.0
 element_path = "unlock_mode"
 label_description = "Unlock mode"
 elem_type = 2
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 1.01795
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 1.01795
 margin_left = -129.5
 margin_top = -65.0
 margin_right = 110.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -56,6 +56,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends CanvasLayer
+
+func _ready():
+	scale = global.get_graphics_scale()
+"
 
 [sub_resource type="DynamicFont" id=3]
 size = 512
@@ -292,12 +299,12 @@ script = ExtResource( 22 )
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
+collision_layer = 0
+collision_mask = 8193
 space_override = 3
 gravity = 0.0
 linear_damp = 9.0
 angular_damp = 25.0
-collision_layer = 0
-collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace"]
 visible = false
@@ -312,9 +319,7 @@ position = Vector2( 0, 20000 )
 z_index = 50
 z_as_relative = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=["animation_in_battle"]]
 playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 
@@ -343,6 +348,7 @@ height = 20000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
+script = SubResource( 6 )
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 27 )]
 pause_mode = 2
