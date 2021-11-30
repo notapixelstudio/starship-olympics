@@ -11,42 +11,18 @@ radius = 140.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
-length = 10.0
+length = 2.0
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2, 2.2, 4.2, 6.2, 8.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "dive"
-}, {
-"args": [  ],
-"method": "dive"
-}, {
-"args": [  ],
-"method": "dive"
-}, {
-"args": [  ],
-"method": "dive"
-}, {
 "args": [  ],
 "method": "dive"
 } ]
