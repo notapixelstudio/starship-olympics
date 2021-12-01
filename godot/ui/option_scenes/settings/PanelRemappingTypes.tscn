@@ -49,6 +49,7 @@ margin_right = 254.0
 text = "CONFIGURE KEYBOARD"
 option_menu = ExtResource( 2 )
 title = "Configure keyboard"
+extra_args = "keyboard"
 
 [node name="Joypad" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 3 )]
 margin_top = 54.0
@@ -57,6 +58,7 @@ margin_bottom = 104.0
 text = "CONFIGURE JOYPADS"
 option_menu = ExtResource( 2 )
 title = "configure joypads"
+extra_args = "joypad"
 
 [node name="Custom" type="HBoxContainer" parent="Content/UIButtonsContainer/Dynamic"]
 margin_left = 258.0
@@ -70,6 +72,7 @@ disabled = true
 text = "CUSTOM CONFIGURATION"
 option_menu = ExtResource( 2 )
 title = "custom configuration"
+extra_args = "custom"
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5

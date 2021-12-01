@@ -3,6 +3,9 @@ extends MarginContainer
 var device
 export (String, "keyboard", "joypad", "custom") var device_type = "keyboard"
 
+func setup_device(new_device_type):
+	device_type = new_device_type
+	
 func _ready():
 	var path = device_type + "_device"
 	$UIButtonsContainer/Device.element_path = path
