@@ -148,8 +148,17 @@ anims/fade = SubResource( 4 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
 
-[node name="ScreenCanvas" type="CanvasLayer" parent="."]
+[node name="TitleScreen" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 640, 360 )
 
-[node name="TitleScreen" parent="ScreenCanvas" instance=ExtResource( 7 )]
-margin_left = 2.0
-margin_right = 2.0
+[node name="ScreenCanvas" type="CanvasLayer" parent="."]
+scale = Vector2( 0.5, 0.5 )
+transform = Transform2D( 0.5, 0, 0, 0.5, 0, 0 )

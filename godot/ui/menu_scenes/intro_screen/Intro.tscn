@@ -19,7 +19,7 @@ font_data = ExtResource( 3 )
 resource_name = "Appear"
 length = 7.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Line1:modulate")
+tracks/0/path = NodePath("CanvasLayer2/Line1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Line2:modulate")
+tracks/1/path = NodePath("CanvasLayer2/Line2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Line3:modulate")
+tracks/2/path = NodePath("CanvasLayer2/Line3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -72,7 +72,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/path = NodePath("CanvasLayer2/AudioStreamPlayer2D:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -85,20 +85,25 @@ tracks/4/keys = {
 }
 
 [node name="Intro" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 main_screen = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Line1" type="RichTextLabel" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Line1" type="RichTextLabel" parent="CanvasLayer2"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 196.0
 margin_right = 1277.0
@@ -111,7 +116,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Line2" type="RichTextLabel" parent="."]
+[node name="Line2" type="RichTextLabel" parent="CanvasLayer2"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 293.0
 margin_right = 1277.0
@@ -121,7 +126,7 @@ bbcode_enabled = true
 bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
 text = "FINALLY CAME TO AN END"
 
-[node name="Line3" type="RichTextLabel" parent="."]
+[node name="Line3" type="RichTextLabel" parent="CanvasLayer2"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 380.0
 margin_right = 1277.0
@@ -132,16 +137,17 @@ bbcode_enabled = true
 bbcode_text = "[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]"
 text = "WHEN THE GAMES WERE CREATED"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer2"]
+root_node = NodePath("../..")
 anims/Appear = SubResource( 3 )
 
-[node name="Disclaimer" parent="." instance=ExtResource( 4 )]
+[node name="Disclaimer" parent="CanvasLayer2" instance=ExtResource( 4 )]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer2"]
 stream = ExtResource( 5 )
 bus = "Music"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer2"]
 stream = ExtResource( 6 )
 autoplay = true
 bus = "Music"

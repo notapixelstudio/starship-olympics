@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapGameMode.tres" type="Resource" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=20]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=21]
 [ext_resource path="res://assets/map/cards/planets/mantharn.png" type="Texture" id=22]
+[ext_resource path="res://map/CanvasLayerTop.gd" type="Script" id=23]
 [ext_resource path="res://map/Path.tscn" type="PackedScene" id=41]
 [ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=43]
 
@@ -199,13 +200,14 @@ zoom = Vector2( 6, 6 )
 
 [node name="CanvasLayerTop" type="CanvasLayer" parent="." index="10"]
 layer = 2
+script = ExtResource( 23 )
 
 [node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop" index="0"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -200.0
-margin_bottom = -20.0
+margin_top = -180.0
+rect_pivot_offset = Vector2( 640, 90 )
 custom_constants/separation = 20
 script = ExtResource( 9 )
 __meta__ = {

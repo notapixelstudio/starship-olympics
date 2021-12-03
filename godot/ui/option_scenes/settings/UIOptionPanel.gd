@@ -7,6 +7,9 @@ onready var back_button = $Back
 # N.B.: "find_node" is not really efficient but we need to be generic 
 onready var container = find_node("UIButtonsContainer", true)
 
+func _process(delta):
+	rect_scale = global.get_graphics_scale()
+	
 func _ready():
 	add_to_group("UIOptionPanel")
 	assert(content)
