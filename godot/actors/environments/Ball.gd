@@ -9,6 +9,7 @@ export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'st
 
 var impulse := 0.0
 var trail
+var player : InfoPlayer
 
 func set_type(v):
 	type = v
@@ -83,3 +84,8 @@ func has_type(t):
 func is_equivalent_to(holdable2):
 	return self.has_type(holdable2.get_type())
 	
+func set_player(v: InfoPlayer):
+	player = v
+	
+func get_player() -> InfoPlayer:
+	return player

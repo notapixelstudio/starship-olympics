@@ -20,6 +20,8 @@ radius = 200
 precision = 25.0
 
 [node name="NearArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 513
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NearArea"]
 polygon = PoolVector2Array( 220, 0, 198.213, 95.4544, 137.168, 172.003, 48.9546, 214.484, -48.9546, 214.484, -137.168, 172.003, -198.213, 95.4544, -220, 2.69422e-14, -198.213, -95.4544, -137.168, -172.003, -48.9546, -214.484, 48.9546, -214.484, 137.168, -172.003, 198.213, -95.4544 )
