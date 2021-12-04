@@ -1,6 +1,14 @@
 extends Node
 
 func _ready():
+	yield(get_tree(), "idle_frame") # wait for variants to settle
+	var aliens = Homeworld.COLORS.keys()
+	aliens.shuffle()
+	var i = 0
+	for homeworld in get_tree().get_nodes_in_group('homeworld'):
+		homeworld.set_kind(aliens[i])
+		i = (i+1) % len(aliens)
+		
 	Events.connect("planet_reached", self, '_on_planet_reached')
 	
 func _on_planet_reached(planet, sth):
