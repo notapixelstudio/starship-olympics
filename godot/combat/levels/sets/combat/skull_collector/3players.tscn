@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
@@ -21,11 +21,7 @@
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=19]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=20]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=21]
-[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=22]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=23]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=24]
-[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=25]
-[ext_resource path="res://utils/Variants.gd" type="Script" id=26]
 
 [node name="Arena" instance=ExtResource( 16 )]
 size_multiplier = 2.5
@@ -33,6 +29,7 @@ game_mode = ExtResource( 7 )
 
 [node name="SkullManager" parent="Managers" index="0" instance=ExtResource( 11 )]
 skull_scene = ExtResource( 14 )
+future_spawners_path = NodePath("../../Battlefield/Foreground/FutureSpawners")
 
 [node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
@@ -197,23 +194,15 @@ type = "rockets"
 position = Vector2( 1400, -700 )
 type = "rockets"
 
-[node name="Variants" type="Node2D" parent="Battlefield/Middleground" index="13" instance=ExtResource( 10 )]
-script = ExtResource( 26 )
+[node name="Variants" parent="Battlefield/Middleground" index="13" instance=ExtResource( 10 )]
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
 visible = false
 
-[node name="Wall6" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="0" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall6" parent="Battlefield/Middleground/Variants/A" index="0" instance=ExtResource( 15 )]
 position = Vector2( 100, -500 )
 rotation = 0.785398
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall6" index="8"]
@@ -226,17 +215,10 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall8" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="1" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall8" parent="Battlefield/Middleground/Variants/A" index="1" instance=ExtResource( 15 )]
 position = Vector2( -100, 500 )
 rotation = 0.785398
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall8" index="8"]
@@ -249,17 +231,10 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall7" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="2" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall7" parent="Battlefield/Middleground/Variants/A" index="2" instance=ExtResource( 15 )]
 position = Vector2( 500, 100 )
 rotation = 2.35619
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall7" index="8"]
@@ -272,17 +247,10 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall9" type="StaticBody2D" parent="Battlefield/Middleground/Variants/A" index="3" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall9" parent="Battlefield/Middleground/Variants/A" index="3" instance=ExtResource( 15 )]
 position = Vector2( -500, -100 )
 rotation = 2.35619
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/A/Wall9" index="8"]
@@ -298,16 +266,9 @@ bevel_se = 1
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
 visible = false
 
-[node name="Wall4" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="0" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall4" parent="Battlefield/Middleground/Variants/B" index="0" instance=ExtResource( 15 )]
 position = Vector2( 500, 0 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall4" index="8"]
@@ -319,16 +280,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall3" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="1" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall3" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 15 )]
 position = Vector2( -500, 0 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall3" index="8"]
@@ -340,16 +294,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="2" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 15 )]
 position = Vector2( -500, -500 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall" index="8"]
 script = ExtResource( 21 )
@@ -360,16 +306,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall5" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="3" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall5" parent="Battlefield/Middleground/Variants/B" index="3" instance=ExtResource( 15 )]
 position = Vector2( -500, 500 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall5" index="8"]
 script = ExtResource( 21 )
@@ -380,16 +318,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall2" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="4" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall2" parent="Battlefield/Middleground/Variants/B" index="4" instance=ExtResource( 15 )]
 position = Vector2( 500, -500 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall2" index="8"]
 script = ExtResource( 21 )
@@ -400,16 +330,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall6" type="StaticBody2D" parent="Battlefield/Middleground/Variants/B" index="5" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall6" parent="Battlefield/Middleground/Variants/B" index="5" instance=ExtResource( 15 )]
 position = Vector2( 500, 500 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/Wall6" index="8"]
 script = ExtResource( 21 )
@@ -420,31 +342,17 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="DramaticSpawner" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="6" instance=ExtResource( 13 )]
-script = ExtResource( 25 )
+[node name="DramaticSpawner" parent="Battlefield/Middleground/Variants/B" index="6" instance=ExtResource( 13 )]
 match_progress_trigger = 0.1
 
-[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/B/DramaticSpawner" index="0" groups=["in_camera"] instance=ExtResource( 6 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 22 )
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner" index="0" instance=ExtResource( 6 )]
 type = "waves"
 
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
 visible = false
 
-[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="0" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall" parent="Battlefield/Middleground/Variants/C" index="0" instance=ExtResource( 15 )]
 position = Vector2( 0, 400 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/C/Wall" index="8"]
 script = ExtResource( 21 )
@@ -456,16 +364,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall3" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="1" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall3" parent="Battlefield/Middleground/Variants/C" index="1" instance=ExtResource( 15 )]
 position = Vector2( -500, 900 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/C/Wall3" index="8"]
@@ -477,16 +378,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall4" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="2" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall4" parent="Battlefield/Middleground/Variants/C" index="2" instance=ExtResource( 15 )]
 position = Vector2( 500, 900 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/C/Wall4" index="8"]
@@ -498,16 +392,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall5" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="3" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall5" parent="Battlefield/Middleground/Variants/C" index="3" instance=ExtResource( 15 )]
 position = Vector2( 500, -900 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/C/Wall5" index="8"]
@@ -519,16 +406,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall6" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="4" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall6" parent="Battlefield/Middleground/Variants/C" index="4" instance=ExtResource( 15 )]
 position = Vector2( -500, -900 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/C/Wall6" index="8"]
@@ -540,16 +420,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall2" type="StaticBody2D" parent="Battlefield/Middleground/Variants/C" index="5" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall2" parent="Battlefield/Middleground/Variants/C" index="5" instance=ExtResource( 15 )]
 position = Vector2( 0, -400 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/C/Wall2" index="8"]
 script = ExtResource( 21 )
@@ -561,59 +433,34 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="DramaticSpawner" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="6" instance=ExtResource( 13 )]
+[node name="DramaticSpawner" parent="Battlefield/Middleground/Variants/C" index="6" instance=ExtResource( 13 )]
 position = Vector2( 0, 900 )
-script = ExtResource( 25 )
 match_progress_trigger = 0.1
 chance = 0.9
 
-[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/C/DramaticSpawner" index="0" groups=["in_camera"] instance=ExtResource( 6 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 22 )
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner" index="0" instance=ExtResource( 6 )]
 type = "waves"
 
-[node name="DramaticSpawner2" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="7" instance=ExtResource( 13 )]
+[node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/C" index="7" instance=ExtResource( 13 )]
 position = Vector2( 0, -850 )
-script = ExtResource( 25 )
 match_progress_trigger = 0.1
 chance = 0.9
 
-[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/C/DramaticSpawner2" index="0" groups=["in_camera"] instance=ExtResource( 6 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 22 )
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner2" index="0" instance=ExtResource( 6 )]
 type = "waves"
 
-[node name="DramaticSpawner3" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="8" instance=ExtResource( 13 )]
-script = ExtResource( 25 )
+[node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/C" index="8" instance=ExtResource( 13 )]
 match_progress_trigger = 0.4
 chance = 0.9
 
-[node name="PowerUp" type="RigidBody2D" parent="Battlefield/Middleground/Variants/C/DramaticSpawner3" index="0" groups=["in_camera"] instance=ExtResource( 6 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 22 )
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner3" index="0" instance=ExtResource( 6 )]
 type = "shields"
 
 [node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
 
-[node name="Wall" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="0" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall" parent="Battlefield/Middleground/Variants/D" index="0" instance=ExtResource( 15 )]
 position = Vector2( -500, -700 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall" index="8"]
@@ -626,16 +473,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall5" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="1" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall5" parent="Battlefield/Middleground/Variants/D" index="1" instance=ExtResource( 15 )]
 position = Vector2( -250, -250 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall5" index="8"]
 script = ExtResource( 21 )
@@ -647,16 +486,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall6" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="2" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall6" parent="Battlefield/Middleground/Variants/D" index="2" instance=ExtResource( 15 )]
 position = Vector2( 250, -250 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall6" index="8"]
 script = ExtResource( 21 )
@@ -668,16 +499,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall7" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="3" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall7" parent="Battlefield/Middleground/Variants/D" index="3" instance=ExtResource( 15 )]
 position = Vector2( 250, 250 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall7" index="8"]
 script = ExtResource( 21 )
@@ -689,16 +512,8 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall8" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="4" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall8" parent="Battlefield/Middleground/Variants/D" index="4" instance=ExtResource( 15 )]
 position = Vector2( -250, 250 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall8" index="8"]
 script = ExtResource( 21 )
@@ -710,16 +525,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall2" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="5" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall2" parent="Battlefield/Middleground/Variants/D" index="5" instance=ExtResource( 15 )]
 position = Vector2( 500, -700 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall2" index="8"]
@@ -732,16 +540,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall3" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="6" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall3" parent="Battlefield/Middleground/Variants/D" index="6" instance=ExtResource( 15 )]
 position = Vector2( -500, 700 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall3" index="8"]
@@ -754,16 +555,9 @@ bevel_ne = 30
 bevel_sw = 30
 bevel_se = 30
 
-[node name="Wall4" type="StaticBody2D" parent="Battlefield/Middleground/Variants/D" index="7" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall4" parent="Battlefield/Middleground/Variants/D" index="7" instance=ExtResource( 15 )]
 position = Vector2( 500, 700 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/Wall4" index="8"]
@@ -779,16 +573,9 @@ bevel_se = 30
 [node name="E" type="Node2D" parent="Battlefield/Middleground/Variants" index="4"]
 visible = false
 
-[node name="Wall6" type="StaticBody2D" parent="Battlefield/Middleground/Variants/E" index="0" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall6" parent="Battlefield/Middleground/Variants/E" index="0" instance=ExtResource( 15 )]
 position = Vector2( -432.843, -424.264 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/E/Wall6" index="8"]
@@ -801,16 +588,9 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall8" type="StaticBody2D" parent="Battlefield/Middleground/Variants/E" index="1" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall8" parent="Battlefield/Middleground/Variants/E" index="1" instance=ExtResource( 15 )]
 position = Vector2( 432.843, 424.264 )
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/E/Wall8" index="8"]
@@ -823,17 +603,10 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall7" type="StaticBody2D" parent="Battlefield/Middleground/Variants/E" index="2" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall7" parent="Battlefield/Middleground/Variants/E" index="2" instance=ExtResource( 15 )]
 position = Vector2( 424.264, -432.843 )
 rotation = 1.5708
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/E/Wall7" index="8"]
@@ -846,17 +619,10 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall9" type="StaticBody2D" parent="Battlefield/Middleground/Variants/E" index="3" groups=["wall"] instance=ExtResource( 15 )]
+[node name="Wall9" parent="Battlefield/Middleground/Variants/E" index="3" instance=ExtResource( 15 )]
 position = Vector2( -424.264, 432.843 )
 rotation = 1.5708
 collision_layer = 2147483648
-collision_mask = 270337
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_group_": true
-}
-offset = 400
-elongation = 100
 type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/E/Wall9" index="8"]
@@ -946,6 +712,17 @@ modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 2000, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
+
+[node name="FutureSpawners" type="Node2D" parent="Battlefield/Foreground" index="19"]
+
+[node name="p1" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="0"]
+position = Vector2( -100, 100 )
+
+[node name="p2" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="1"]
+position = Vector2( 100, -100 )
+
+[node name="p3" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="2"]
+position = Vector2( -100, -100 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 17 )]
 position = Vector2( -1400, 700 )

@@ -30,6 +30,7 @@ game_mode = ExtResource( 8 )
 
 [node name="SkullManager" parent="Managers" index="0" instance=ExtResource( 12 )]
 skull_scene = ExtResource( 15 )
+future_spawners_path = NodePath("../../Battlefield/Foreground/FutureSpawners")
 
 [node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
@@ -743,6 +744,20 @@ modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 2200, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 10 )
+
+[node name="FutureSpawners" type="Node2D" parent="Battlefield/Foreground" index="24"]
+
+[node name="p1" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="0"]
+position = Vector2( -100, 100 )
+
+[node name="p2" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="1"]
+position = Vector2( 100, -100 )
+
+[node name="p3" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="2"]
+position = Vector2( -100, -100 )
+
+[node name="p4" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="3"]
+position = Vector2( 100, 100 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 18 )]
 position = Vector2( -1600, 700 )

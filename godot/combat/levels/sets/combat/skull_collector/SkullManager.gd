@@ -1,6 +1,7 @@
 extends Node
 
 export var skull_scene : PackedScene
+export var future_spawners_path : NodePath
 
 func _ready():
 	Events.connect('ship_died', self, '_on_ship_died')
@@ -18,5 +19,7 @@ func _on_ship_died(ship, killer, for_good):
 
 func _on_all_ships_spawned(spawners):
 	# move spawners to the center
+	var future_spawners = get_node(future_spawners_path)
+	
 	for spawner in spawners:
-		spawner.position = Vector2(0,0)
+		spawner.global_position = future_spawners.get_node(spawner.name).global_position
