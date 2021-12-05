@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=29]
 [ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
+[ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -91,6 +92,8 @@ order = 1
 [node name="Collector" parent="." instance=ExtResource( 24 )]
 
 [node name="Cargo" parent="." instance=ExtResource( 28 )]
+
+[node name="WeaponSlot" parent="." instance=ExtResource( 32 )]
 
 [node name="Magnet" parent="." instance=ExtResource( 27 )]
 

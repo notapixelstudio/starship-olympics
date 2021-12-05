@@ -518,6 +518,11 @@ _global_script_classes=[ {
 "class": "Waypoint",
 "language": "GDScript",
 "path": "res://map/Waypoint.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://actors/weapons/arsenal/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Alien": "",
@@ -621,7 +626,8 @@ _global_script_class_icons={
 "UUID": "",
 "Wall": "",
 "WallGoal": "",
-"Waypoint": ""
+"Waypoint": "",
+"Weapon": ""
 }
 
 [Analytics]
