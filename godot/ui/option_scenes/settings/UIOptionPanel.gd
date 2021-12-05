@@ -6,7 +6,11 @@ onready var content = $Content
 onready var back_button = $Back
 # N.B.: "find_node" is not really efficient but we need to be generic 
 onready var container = find_node("UIButtonsContainer", true)
-
+var extra_args
+ 
+func setup_device(args: String):
+	content.setup_device(args)
+	
 func _ready():
 	add_to_group("UIOptionPanel")
 	assert(content)

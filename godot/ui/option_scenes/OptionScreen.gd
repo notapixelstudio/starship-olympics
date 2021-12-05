@@ -50,9 +50,9 @@ func back():
 
 func set_content(instanced_scene: UIOptionPanel, nav_forward: bool, extra_args =  null):
 	# extra_args need to be setup before _ready()
+	add_child(instanced_scene)
 	if extra_args:
 		instanced_scene.setup_device(extra_args)
-	add_child(instanced_scene)
 	instanced_scene.get_focus()
 	if nav_forward:
 		navbar_scene.append(instanced_scene)
