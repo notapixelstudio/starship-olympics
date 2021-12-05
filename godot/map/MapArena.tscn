@@ -202,17 +202,9 @@ zoom = Vector2( 6, 6 )
 layer = 2
 script = ExtResource( 23 )
 
-[node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop" index="0"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -194.0
-rect_pivot_offset = Vector2( 640, 90 )
-custom_constants/separation = 20
+[node name="PanelContainer" type="Node2D" parent="CanvasLayerTop" index="0"]
+position = Vector2( 0, 500 )
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer" index="0"]
 margin_right = 90.0

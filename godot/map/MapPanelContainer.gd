@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Node2D
 
 class_name MapPanelContainer
 
