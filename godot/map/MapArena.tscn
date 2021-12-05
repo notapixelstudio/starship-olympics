@@ -203,57 +203,48 @@ layer = 2
 script = ExtResource( 23 )
 
 [node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop" index="0"]
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -180.0
-rect_pivot_offset = Vector2( 640, 90 )
+margin_left = -530.0
+margin_top = -202.0
+margin_right = 530.0
+margin_bottom = -22.0
 custom_constants/separation = 20
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer" index="0"]
-margin_right = 90.0
-margin_bottom = 180.0
-size_flags_horizontal = 3
-
-[node name="p1" parent="CanvasLayerTop/PanelContainer" index="1" instance=ExtResource( 11 )]
+[node name="p1" parent="CanvasLayerTop/PanelContainer" index="0" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 110.0
-margin_right = 360.0
+margin_right = 250.0
 margin_bottom = 180.0
 
-[node name="p2" parent="CanvasLayerTop/PanelContainer" index="2" instance=ExtResource( 11 )]
+[node name="p2" parent="CanvasLayerTop/PanelContainer" index="1" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 380.0
-margin_right = 630.0
+margin_left = 270.0
+margin_right = 520.0
 margin_bottom = 180.0
 
-[node name="p3" parent="CanvasLayerTop/PanelContainer" index="3" instance=ExtResource( 11 )]
+[node name="p3" parent="CanvasLayerTop/PanelContainer" index="2" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 650.0
-margin_right = 900.0
+margin_left = 540.0
+margin_right = 790.0
 margin_bottom = 180.0
 
-[node name="p4" parent="CanvasLayerTop/PanelContainer" index="4" instance=ExtResource( 11 )]
+[node name="p4" parent="CanvasLayerTop/PanelContainer" index="3" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 920.0
-margin_right = 1170.0
+margin_left = 810.0
+margin_right = 1060.0
 margin_bottom = 180.0
 
-[node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer" index="5"]
-margin_left = 1190.0
-margin_right = 1280.0
-margin_bottom = 180.0
-size_flags_horizontal = 3
-
-[node name="Tween" type="Tween" parent="CanvasLayerTop/PanelContainer" index="6"]
+[node name="Tween" type="Tween" parent="CanvasLayerTop/PanelContainer" index="4"]
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
