@@ -184,15 +184,15 @@ sides = 4.0
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 6 )]
 position = Vector2( -1400, 700 )
-type = "rockets"
+type = "rocket_gun"
 
 [node name="PowerUp3" parent="Battlefield/Middleground" index="11" instance=ExtResource( 6 )]
 position = Vector2( -1400, -700 )
-type = "rockets"
+type = "rocket_gun"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="12" instance=ExtResource( 6 )]
 position = Vector2( 1400, -700 )
-type = "rockets"
+type = "rocket_gun"
 
 [node name="Variants" parent="Battlefield/Middleground" index="13" instance=ExtResource( 10 )]
 
@@ -346,7 +346,7 @@ bevel_se = 30
 match_progress_trigger = 0.1
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner" index="0" instance=ExtResource( 6 )]
-type = "waves"
+type = "wave_gun"
 
 [node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
 visible = false
@@ -439,7 +439,7 @@ match_progress_trigger = 0.1
 chance = 0.9
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner" index="0" instance=ExtResource( 6 )]
-type = "waves"
+type = "wave_gun"
 
 [node name="DramaticSpawner2" parent="Battlefield/Middleground/Variants/C" index="7" instance=ExtResource( 13 )]
 position = Vector2( 0, -850 )
@@ -447,7 +447,7 @@ match_progress_trigger = 0.1
 chance = 0.9
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner2" index="0" instance=ExtResource( 6 )]
-type = "waves"
+type = "wave_gun"
 
 [node name="DramaticSpawner3" parent="Battlefield/Middleground/Variants/C" index="8" instance=ExtResource( 13 )]
 match_progress_trigger = 0.4
