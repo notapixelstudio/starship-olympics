@@ -49,7 +49,7 @@ tracks/0/keys = {
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
 
-[node name="KillModeManager" parent="Managers" index="8"]
+[node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -162,15 +162,15 @@ type = "shields"
 
 [node name="PowerUp4" parent="Battlefield/Foreground" index="3" instance=ExtResource( 4 )]
 position = Vector2( -2100, 1600 )
-type = "rocket_gun"
+type = "miniball_gun"
 
 [node name="PowerUp8" parent="Battlefield/Foreground" index="4" instance=ExtResource( 4 )]
 position = Vector2( 700, -1200 )
-type = "rocket_gun"
+type = "miniball_gun"
 
 [node name="PowerUp9" parent="Battlefield/Foreground" index="5" instance=ExtResource( 4 )]
 position = Vector2( 2100, 200 )
-type = "rocket_gun"
+type = "miniball_gun"
 
 [node name="PowerUp10" parent="Battlefield/Foreground" index="6" instance=ExtResource( 4 )]
 position = Vector2( 1300, 1000 )
