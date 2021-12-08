@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/Gel.gd" type="Script" id=15]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=16]
 
 [node name="Arena" instance=ExtResource( 3 )]
 size_multiplier = 2.5
@@ -217,6 +219,41 @@ type = "bubble_gun"
 [node name="PowerUp4" parent="Battlefield/Middleground" index="17" instance=ExtResource( 14 )]
 position = Vector2( 0, 1100 )
 type = "bubble_gun"
+
+[node name="Gel" type="Area2D" parent="Battlefield/Middleground" index="18" instance=ExtResource( 16 )]
+position = Vector2( -1515.54, -875 )
+rotation = 0.523602
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 15 )
+width = 1000
+depth = 50
+
+[node name="Gel2" type="Area2D" parent="Battlefield/Middleground" index="19" instance=ExtResource( 16 )]
+position = Vector2( -1515.54, 875 )
+rotation = -0.523598
+z_index = -8
+z_as_relative = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 15 )
+width = 1000
+depth = 50
+
+[node name="Gel3" parent="Battlefield/Middleground" index="20" instance=ExtResource( 16 )]
+position = Vector2( 1515.54, 875 )
+rotation = -2.61799
+scale = Vector2( 1, 1 )
+width = 1000
+depth = 50
+
+[node name="Gel4" parent="Battlefield/Middleground" index="21" instance=ExtResource( 16 )]
+position = Vector2( 1515.54, -875 )
+rotation = 2.61799
+width = 1000
+depth = 50
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
 position = Vector2( 1100, 0 )
