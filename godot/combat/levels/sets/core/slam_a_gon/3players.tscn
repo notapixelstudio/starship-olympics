@@ -42,7 +42,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-radius = 1800
+radius = 1900
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -176,7 +176,7 @@ goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="3"]
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1600, -800 )
+position = Vector2( 1650, -900 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -185,9 +185,7 @@ script = ExtResource( 1 )
 radius = 50
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Node2D/Wall" index="8" groups=[
-"additional_lasers",
-] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Node2D/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
 position = Vector2( -50, 1 )
 rotation = 3.14159
 
@@ -195,7 +193,7 @@ rotation = 3.14159
 rotation = 2.0944
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1600, -800 )
+position = Vector2( 1711.6, -806.699 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -204,9 +202,7 @@ script = ExtResource( 1 )
 radius = 50
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Node2D2/Wall" index="8" groups=[
-"additional_lasers",
-] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Node2D2/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
 position = Vector2( -49.9999, 1 )
 rotation = 3.14159
 
@@ -214,7 +210,7 @@ rotation = 3.14159
 rotation = 4.18879
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1600, -800 )
+position = Vector2( 1668.3, -818.301 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -223,9 +219,7 @@ script = ExtResource( 1 )
 radius = 50
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="8" groups=[
-"additional_lasers",
-] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
 position = Vector2( -50, 1 )
 rotation = 3.14159
 
