@@ -29,17 +29,8 @@ func _process(delta):
 		
 	update_scale()
 	
-	$Wrapper/Ball.rotation += delta
-	$Wrapper/SoccerBall.rotation += delta
-	$Wrapper/TennisBall.rotation += delta
-	
-	$Wrapper/Crown.position = Vector2(0,-Crown.GRAB_DISTANCE*1.7)
-	$Wrapper/Ball.position = Vector2(Crown.GRAB_DISTANCE,0).rotated(target.rotation)
-	$Wrapper/SoccerBall.position = Vector2(Crown.GRAB_DISTANCE,0).rotated(target.rotation)
-	$Wrapper/TennisBall.position = Vector2(Crown.GRAB_DISTANCE,0).rotated(target.rotation)
-	
 func update_scale():
-	$Wrapper/Scaled.scale = Vector2(1,1) if not target.camera else target.camera.zoom
+	$Wrapper/Scaled.scale = Vector2(7,7) if not target.camera or not target.camera.enabled else target.camera.zoom
 	
 func update_rotation():
 	rotation = -target.rotation

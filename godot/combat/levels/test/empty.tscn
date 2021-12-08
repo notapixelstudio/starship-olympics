@@ -54,11 +54,12 @@ polygon = PoolVector2Array( -1100, -300, -1000, -300, -1000, 300, -1100, 300 )
 polygon = PoolVector2Array( -1000, -300, -1000, 300, -1100, 300, -1100, -300 )
 
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
-type = "drill"
+position = Vector2( -140, 813 )
+type = "rocket_gun"
 
 [node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 9 )]
-position = Vector2( -1204.76, 1006.26 )
-type = "rockets"
+position = Vector2( -567, 641 )
+type = "wave_gun"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1200, 1000 )
@@ -66,7 +67,7 @@ rotation = 0.0
 species = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 0, 1000 )
+position = Vector2( 818, 1043 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 13 )

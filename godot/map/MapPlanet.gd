@@ -30,7 +30,7 @@ func set_status(v):
 	elif status == TheUnlocker.UNLOCKED:
 		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
-		$Sprite.modulate = Color(0,0,0,0.5)
+		$Sprite.modulate = Color(0,0,0,0)
 		$Lock.visible = true
 	else:
 		$Sprite.modulate = Color(0,0,0,0)
