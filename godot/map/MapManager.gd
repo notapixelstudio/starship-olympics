@@ -64,7 +64,7 @@ func _on_all_ships_spawned(spawners):
 		# also unhide new unlockable content
 		var nodes = traits.get_all_with('Node')
 		for node in nodes:
-			if node.get_status() == 'unlocked':
+			if node.get_status() == TheUnlocker.UNLOCKED:
 				self.explore(node)
 		
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):

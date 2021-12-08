@@ -62,6 +62,8 @@ func unhide():
 	if status != TheUnlocker.HIDDEN:
 		return
 		
+	$AnimationPlayer.play("Unhide")
+	yield($AnimationPlayer, "animation_finished")
 	self.set_status(TheUnlocker.LOCKED)
 	emit_signal('unhid')
 	Events.emit_signal("sth_unhid", set, self)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=2]
@@ -56,6 +56,10 @@ font_data = ExtResource( 14 )
 size = 30
 font_data = ExtResource( 14 )
 
+[sub_resource type="Animation" id=9]
+resource_name = "Unhide"
+length = 0.1
+
 [sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "value"
@@ -88,6 +92,7 @@ script = ExtResource( 13 )
 cursor_scene = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
+modulate = Color( 0, 0, 0, 0.5 )
 texture = ExtResource( 9 )
 
 [node name="NA" type="Sprite" parent="." index="4"]
@@ -189,6 +194,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
+anims/Unhide = SubResource( 9 )
 anims/Unlock = SubResource( 5 )
 
 [node name="Lock" type="Sprite" parent="." index="14"]
