@@ -292,12 +292,12 @@ script = ExtResource( 22 )
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
+collision_layer = 0
+collision_mask = 8193
 space_override = 3
 gravity = 0.0
 linear_damp = 9.0
 angular_damp = 25.0
-collision_layer = 0
-collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace"]
 visible = false
@@ -312,9 +312,7 @@ position = Vector2( 0, 20000 )
 z_index = 50
 z_as_relative = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=["animation_in_battle"]]
 playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 

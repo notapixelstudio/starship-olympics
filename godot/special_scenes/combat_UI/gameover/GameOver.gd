@@ -10,6 +10,7 @@ signal show_arena
 signal hide_arena
 
 var session_over = false
+export var sure_scene: PackedScene
 
 func _ready():
 	buttons.visible = false
@@ -36,7 +37,10 @@ func initialize():
 			back_to_menu_button.visible=false
 			break
 	
-	buttons.get_child(int(session_over)).grab_focus()
+	for button in buttons.get_children():
+		if button.visible:
+			button.grab_focus()
+			break
 	
 func _on_Continue_pressed():
 	get_tree().paused = false
@@ -62,5 +66,17 @@ func _show_arena():
 
 
 func _on_Map_pressed():
-	get_tree().paused = false
-	Events.emit_signal("nav_to_map")
+	var confirm = sure_scene.instance()
+	for button in buttons.get_children():
+		button.focus_mode = Control.FOCUS_NONE
+	add_child(confirm)
+	confirm.setup("map")
+	yield(confirm, "choice_selected")
+	if confirm.choice:
+		get_tree().paused = false
+		Events.emit_signal("nav_to_map")
+	else:
+		for button in buttons.get_children():
+			button.focus_mode = Control.FOCUS_ALL
+	confirm.queue_free()
+	
