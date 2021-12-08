@@ -8,7 +8,7 @@ class_name MapPanel
 var player : InfoPlayer = null
 
 var content # could be Set
-var rest_text = "choose an arena"
+var rest_text = "select\na planet"
 var chosen = false
 const deselected_modulate = Color(0.6,0.6,0.6,1)
 
@@ -41,7 +41,7 @@ func set_player(v : InfoPlayer):
 	assert(v != null)
 	player = v
 	$Sprite.texture = player.species.ship
-	$Label.text = rest_text
+	$Info.text = rest_text
 	$Background.modulate = player.species.color
 	
 func set_content(v):
@@ -53,8 +53,8 @@ func set_content(v):
 		$Info.text = content.description
 		create_minicards()
 	else:
-		$Label.text = rest_text
-		$Info.text = ""
+		$Label.text = ""
+		$Info.text = rest_text
 		destroy_minicards()
 
 func enable():

@@ -13,9 +13,7 @@ size = 24
 outline_size = 3
 font_data = ExtResource( 2 )
 
-[node name="Panel" type="Control" groups=[
-"map_panel",
-]]
+[node name="Panel" type="Control" groups=["map_panel"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1030.0
@@ -36,9 +34,8 @@ centered = false
 anchor_right = 1.0
 margin_top = -20.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "insert coin"
+custom_fonts/font = SubResource( 2 )
 align = 1
 valign = 1
 autowrap = true
@@ -51,9 +48,10 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = 60.0
 margin_bottom = 102.0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "insert coin"
+custom_fonts/font = SubResource( 2 )
+text = "
+"
 align = 1
 valign = 1
 autowrap = true

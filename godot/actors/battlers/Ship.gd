@@ -681,13 +681,13 @@ func apply_powerup(powerup):
 		wield_flail()
 	elif powerup.type == 'drill':
 		wield_drill()
-	elif powerup.type == 'rockets':
+	elif powerup.type == 'rocket_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.classic)
 		update_weapon_indicator()
-	elif powerup.type == 'miniballs':
+	elif powerup.type == 'miniball_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.ball)
 		update_weapon_indicator()
-	elif powerup.type == 'spikes':
+	elif powerup.type == 'spike_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bullet)
 		update_weapon_indicator()
 	elif powerup.type == 'bombs':
@@ -700,8 +700,11 @@ func apply_powerup(powerup):
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		
+	if powerup.has_category('weapon'):
+		$WeaponSlot.wield(powerup.type)
+		
 	if success:
-		global.arena.show_msg(species, powerup.type.to_upper(), global_position)
+		global.arena.show_msg(species, powerup.type.to_upper().replace('_',' '), global_position)
 		
 func rebound(direction = null, strength := 2000.0):
 	if direction == null:

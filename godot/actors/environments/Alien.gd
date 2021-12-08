@@ -42,6 +42,9 @@ func get_texture():
 func is_rotatable():
 	return false
 	
+func is_glowing():
+	return false
+	
 func get_kind():
 	return kind
 	

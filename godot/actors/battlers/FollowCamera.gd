@@ -22,7 +22,7 @@ func ship_just_died(ship, killer, for_good):
 		queue_free()
 	
 func _physics_process(delta):
-	if is_inside_tree() and node_owner.is_inside_tree():
+	if is_instance_valid(self) and self.is_inside_tree() and is_instance_valid(node_owner) and node_owner.is_inside_tree():
 		var space_state = get_world_2d().direct_space_state
 		var where = node_owner.global_position
 		var result = space_state.intersect_ray(position, where, [self, node_owner], pow(2,7), true, true)

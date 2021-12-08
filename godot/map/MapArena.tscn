@@ -19,9 +19,9 @@
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=17]
 [ext_resource path="res://map/planets/sets/death.tres" type="Resource" id=18]
 [ext_resource path="res://assets/map/cards/planets/lumira_iv.png" type="Texture" id=19]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=20]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=21]
 [ext_resource path="res://assets/map/cards/planets/mantharn.png" type="Texture" id=22]
+[ext_resource path="res://map/planets/reveal/Revealable.tscn" type="PackedScene" id=23]
 [ext_resource path="res://map/Path.tscn" type="PackedScene" id=41]
 [ext_resource path="res://map/planets/sets/casino.tres" type="Resource" id=43]
 
@@ -78,7 +78,7 @@ texture = ExtResource( 3 )
 
 [node name="Content" type="Node2D" parent="Battlefield/Middleground" index="0"]
 pause_mode = 2
-position = Vector2( 0, 3200 )
+position = Vector2( 0, 2950 )
 scale = Vector2( 2, 2 )
 z_index = -4
 z_as_relative = false
@@ -88,58 +88,40 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LumiraIV" type="Node2D" parent="Battlefield/Middleground/Content/Planets" index="0"]
-position = Vector2( -822, 433 )
-
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/Content/Planets/LumiraIV" index="0"]
-modulate = Color( 0.68, 0.68, 0.68, 1 )
-texture = ExtResource( 19 )
-
-[node name="Shadow" parent="Battlefield/Middleground/Content/Planets/LumiraIV" index="1" instance=ExtResource( 20 )]
-z_index = -5
-sprite = NodePath("../Sprite")
-
-[node name="CoredanPrime" type="Node2D" parent="Battlefield/Middleground/Content/Planets" index="1"]
+[node name="CoredanPrime" parent="Battlefield/Middleground/Content/Planets" index="0" instance=ExtResource( 23 )]
 position = Vector2( 3, 433 )
-
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/Content/Planets/CoredanPrime" index="0"]
-modulate = Color( 0.68, 0.68, 0.68, 1 )
 texture = ExtResource( 12 )
+linked_to = NodePath("../Core")
 
-[node name="Shadow" parent="Battlefield/Middleground/Content/Planets/CoredanPrime" index="1" instance=ExtResource( 20 )]
-z_index = -5
-sprite = NodePath("../Sprite")
-
-[node name="Mantharn" type="Node2D" parent="Battlefield/Middleground/Content/Planets" index="2"]
-position = Vector2( 532, -285.5 )
-
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/Content/Planets/Mantharn" index="0"]
-modulate = Color( 0.68, 0.68, 0.68, 1 )
-texture = ExtResource( 22 )
-
-[node name="Shadow" parent="Battlefield/Middleground/Content/Planets/Mantharn" index="1" instance=ExtResource( 20 )]
-z_index = -5
-sprite = NodePath("../Sprite")
-
-[node name="Core" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
+[node name="Core" parent="Battlefield/Middleground/Content/Planets" index="1" instance=ExtResource( 15 )]
 position = Vector2( 0, 250 )
 set = ExtResource( 17 )
 
-[node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 15 )]
+[node name="LumiraIV" parent="Battlefield/Middleground/Content/Planets" index="2" instance=ExtResource( 23 )]
+position = Vector2( -822, 433 )
+texture = ExtResource( 19 )
+linked_to = NodePath("../Casual")
+
+[node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
 position = Vector2( -801.5, 503.5 )
 set = ExtResource( 43 )
 
-[node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
+[node name="Mantharn" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 23 )]
+position = Vector2( 528, -292 )
+texture = ExtResource( 22 )
+linked_to = NodePath("../Combat")
+
+[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
+position = Vector2( 420.5, -321.5 )
+set = ExtResource( 18 )
+
+[node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 15 )]
 position = Vector2( -450, -275 )
 set = ExtResource( 13 )
 
-[node name="Snake" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 15 )]
+[node name="Snake" parent="Battlefield/Middleground/Content/Planets" index="7" instance=ExtResource( 15 )]
 position = Vector2( 1100, 450 )
 set = ExtResource( 14 )
-
-[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="7" instance=ExtResource( 15 )]
-position = Vector2( 424, -315 )
-set = ExtResource( 18 )
 
 [node name="Combat2" parent="Battlefield/Middleground/Content/Planets" index="8" instance=ExtResource( 15 )]
 position = Vector2( 950, -350 )
