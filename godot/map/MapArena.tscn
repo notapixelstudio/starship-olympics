@@ -107,12 +107,12 @@ position = Vector2( -801.5, 503.5 )
 set = ExtResource( 43 )
 
 [node name="Mantharn" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 23 )]
-position = Vector2( 528, -292 )
+position = Vector2( 528, -242 )
 texture = ExtResource( 22 )
 linked_to = NodePath("../Combat")
 
 [node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
-position = Vector2( 420.5, -321.5 )
+position = Vector2( 420.5, -271.5 )
 set = ExtResource( 18 )
 
 [node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 15 )]
@@ -135,7 +135,7 @@ points = PoolVector2Array( 500, -350, 275, -275, 225, -150, 150, -175, -100, -12
 
 [node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="1" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
-points = PoolVector2Array( 700, -450, 850, -500, 825, -700, 900, -650, 975, -675, 1000, -875 )
+points = PoolVector2Array( 700, -450, 850, -475, 825, -675, 900, -625, 975, -650, 1000, -825 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -450, 4400 )
