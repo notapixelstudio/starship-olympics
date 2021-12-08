@@ -67,6 +67,10 @@ func unhide():
 	self.set_status(TheUnlocker.LOCKED)
 	emit_signal('unhid')
 	Events.emit_signal("sth_unhid", set, self)
+	for body in get_overlapping_bodies():
+		if body is Ship:
+			show_tap_preview(body)
+			break
 	
 func unlock():
 	if status != TheUnlocker.LOCKED:
@@ -78,14 +82,25 @@ func unlock():
 	self.set_status(TheUnlocker.UNLOCKED)
 	emit_signal('unlocked')
 	Events.emit_signal("sth_unlocked", set, self)
+	for body in get_overlapping_bodies():
+		if body is Ship:
+			show_tap_preview(body)
+			break
 
 func show_tap_preview(_author):
 	if status == TheUnlocker.UNLOCKED:
 		$Label.visible = true
 		$Tagline.visible = true
+		$Tagline.text = set.tagline1
 		$Label2.visible = true
 		$Tagline2.visible = true
+		$Tagline2.text = set.tagline1
 		$CameraEye.set_active(true)
+	elif status == TheUnlocker.LOCKED:
+		$Tagline.visible = true
+		$Tagline.text = "???"
+		$Tagline2.visible = true
+		$Tagline2.text = "???"
 	
 func hide_tap_preview():
 	$Label.visible = false
