@@ -596,6 +596,8 @@ func ship_just_died(ship, killer, for_good):
 	#elif game_mode.name == "GoalPortal":
 	#	respawn_timeout = 0.75
 	
+	yield(get_tree().create_timer(respawn_timeout), "timeout")
+	
 	if not global.is_match_running():
 		return
 	
