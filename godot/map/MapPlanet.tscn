@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=2]
@@ -55,22 +55,6 @@ font_data = ExtResource( 14 )
 [sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 14 )
-
-[sub_resource type="Animation" id=4]
-resource_name = "Unhide"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.5 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 length = 1.5
@@ -205,7 +189,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
-anims/Unhide = SubResource( 4 )
 anims/Unlock = SubResource( 5 )
 
 [node name="Lock" type="Sprite" parent="." index="14"]
