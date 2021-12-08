@@ -214,15 +214,16 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="TopHUD"]
-margin_right = 474.0
+margin_right = 477.0
 margin_bottom = 31.0
 rect_clip_content = true
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TopHUD"]
-margin_left = 487.0
-margin_right = 792.0
-margin_bottom = 31.0
+margin_left = 490.0
+margin_top = 3.0
+margin_right = 789.0
+margin_bottom = 28.0
 custom_fonts/font = SubResource( 1 )
 text = "SELECT 1 TO 4 PLAYERS"
 align = 1
@@ -230,7 +231,7 @@ valign = 1
 uppercase = true
 
 [node name="Control2" type="Control" parent="TopHUD"]
-margin_left = 805.0
+margin_left = 802.0
 margin_right = 1280.0
 margin_bottom = 31.0
 rect_clip_content = true

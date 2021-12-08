@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/MapGameMode.tres" type="Resource" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://map/planets/sets/core.tres" type="Resource" id=17]
 [ext_resource path="res://map/planets/sets/death.tres" type="Resource" id=18]
 [ext_resource path="res://assets/map/cards/planets/lumira_iv.png" type="Texture" id=19]
+[ext_resource path="res://combat/styles/lightpurple.tres" type="Resource" id=20]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=21]
 [ext_resource path="res://assets/map/cards/planets/mantharn.png" type="Texture" id=22]
 [ext_resource path="res://map/planets/reveal/Revealable.tscn" type="PackedScene" id=23]
@@ -28,6 +29,7 @@
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
+style = ExtResource( 20 )
 show_hud = false
 show_intro = false
 random_starting_position = false
@@ -48,7 +50,7 @@ visible = false
 hollow = true
 offset = 200
 hide_grid = true
-solid_line_color = Color( 0.635294, 1.14118, 0.72549, 1 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
@@ -66,8 +68,8 @@ visible = false
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0.12, 0.488, 0.6, 1 )
-bg_color = Color( 0.112, 0.4256, 0.56, 1 )
+fg_color = Color( 0.360383, 0.203, 0.7, 1 )
+bg_color = Color( 0.30615, 0.2015, 0.65, 1 )
 
 [node name="Sprite" type="Sprite" parent="Battlefield/Background" index="4"]
 position = Vector2( 7.62939e-06, 3100 )

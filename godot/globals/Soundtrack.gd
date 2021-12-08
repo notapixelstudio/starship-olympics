@@ -7,6 +7,7 @@ var array_songs setget , _get_songs
 var current_album
 var current_song setget change_song
 
+
 func change_song(new_song):
 	if new_song != current_song :
 		play(new_song, true)
