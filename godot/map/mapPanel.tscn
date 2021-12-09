@@ -16,12 +16,13 @@ font_data = ExtResource( 2 )
 [node name="Panel" type="Control" groups=["map_panel"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1030.0
-margin_bottom = -570.0
-rect_min_size = Vector2( 250, 180 )
+margin_right = -990.0
+margin_bottom = -540.0
+rect_min_size = Vector2( 290, 180 )
 script = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 290.0 ]
 }
 Minicard = ExtResource( 5 )
 
@@ -31,9 +32,11 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Label" type="Label" parent="."]
+anchor_top = 0.05
 anchor_right = 1.0
+anchor_bottom = 0.05
 margin_top = -20.0
-margin_bottom = 22.0
+margin_bottom = 5.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 align = 1
@@ -47,7 +50,7 @@ __meta__ = {
 [node name="Info" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 60.0
-margin_bottom = 102.0
+margin_bottom = 113.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "
@@ -61,7 +64,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 125, 170 )
+position = Vector2( 145, 175 )
 rotation = -1.5708
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
@@ -69,4 +72,4 @@ texture = ExtResource( 3 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Minicards" type="Node2D" parent="."]
-position = Vector2( 125, 85 )
+position = Vector2( 145, 85 )
