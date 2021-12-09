@@ -57,13 +57,18 @@ func initialize(rect_extention:Rect2):
 
 const MAX_DIST_OFFSET = 10
 
-func _process(_delta: float) -> void:
+var frames = 0
+func _physics_process(_delta: float) -> void:
+	frames += 1
+	
 	if isShake:
 		shake_process(_delta)    
 	if stop:
 		return
 	time+=_delta
-	
+	if frames % 2:
+		# let's update the camera only on odd frames
+		return
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
