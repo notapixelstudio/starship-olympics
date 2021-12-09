@@ -158,9 +158,7 @@ font_data = ExtResource( 34 )
 size = 52
 font_data = ExtResource( 34 )
 
-[node name="Rock" type="RigidBody2D" groups=[
-"rock",
-]]
+[node name="Rock" type="RigidBody2D" groups=["rock"]]
 collision_layer = 1024
 collision_mask = 1053
 mass = 100.0
@@ -201,7 +199,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 8
+frame = 54
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
