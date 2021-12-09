@@ -1,0 +1,691 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=4]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=5]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=8]
+
+[node name="SkullVariants" instance=ExtResource( 5 )]
+
+[node name="A" type="Node2D" parent="." index="0"]
+
+[node name="Wall6" type="StaticBody2D" parent="A" index="0" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 100, -500 )
+rotation = 0.785398
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="A/Wall6" index="8"]
+script = ExtResource( 8 )
+width = 500
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall8" type="StaticBody2D" parent="A" index="1" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -100, 500 )
+rotation = 0.785398
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="A/Wall8" index="8"]
+script = ExtResource( 8 )
+width = 500
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall7" type="StaticBody2D" parent="A" index="2" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, 100 )
+rotation = 2.35619
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="A/Wall7" index="8"]
+script = ExtResource( 8 )
+width = 500
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall9" type="StaticBody2D" parent="A" index="3" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, -100 )
+rotation = 2.35619
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="A/Wall9" index="8"]
+script = ExtResource( 8 )
+width = 500
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="B" type="Node2D" parent="." index="1"]
+visible = false
+
+[node name="Wall4" type="StaticBody2D" parent="B" index="0" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, 0 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="B/Wall4" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 600
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall3" type="StaticBody2D" parent="B" index="1" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, 0 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="B/Wall3" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 600
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall" type="StaticBody2D" parent="B" index="2" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, -500 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="B/Wall" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 300
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall5" type="StaticBody2D" parent="B" index="3" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, 500 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="B/Wall5" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 300
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall2" type="StaticBody2D" parent="B" index="4" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, -500 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="B/Wall2" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 300
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall6" type="StaticBody2D" parent="B" index="5" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, 500 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="B/Wall6" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 300
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="DramaticSpawner" type="Node2D" parent="B" index="6" instance=ExtResource( 6 )]
+script = ExtResource( 4 )
+match_progress_trigger = 0.1
+
+[node name="PowerUp" type="RigidBody2D" parent="B/DramaticSpawner" index="0" groups=["in_camera"] instance=ExtResource( 7 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 1 )
+type = "wave_gun"
+
+[node name="C" type="Node2D" parent="." index="2"]
+visible = false
+
+[node name="Wall" type="StaticBody2D" parent="C" index="0" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 0, 400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="C/Wall" index="8"]
+script = ExtResource( 8 )
+width = 1150
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall3" type="StaticBody2D" parent="C" index="1" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, 900 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="C/Wall3" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 200
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall4" type="StaticBody2D" parent="C" index="2" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, 900 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="C/Wall4" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 200
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall5" type="StaticBody2D" parent="C" index="3" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, -900 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="C/Wall5" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 200
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall6" type="StaticBody2D" parent="C" index="4" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, -900 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="C/Wall6" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 200
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall2" type="StaticBody2D" parent="C" index="5" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 0, -400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="C/Wall2" index="8"]
+script = ExtResource( 8 )
+width = 1150
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="DramaticSpawner" type="Node2D" parent="C" index="6" instance=ExtResource( 6 )]
+position = Vector2( 0, 900 )
+script = ExtResource( 4 )
+match_progress_trigger = 0.1
+chance = 0.9
+
+[node name="PowerUp" type="RigidBody2D" parent="C/DramaticSpawner" index="0" groups=["in_camera"] instance=ExtResource( 7 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 1 )
+type = "wave_gun"
+
+[node name="DramaticSpawner2" type="Node2D" parent="C" index="7" instance=ExtResource( 6 )]
+position = Vector2( 0, -850 )
+script = ExtResource( 4 )
+match_progress_trigger = 0.1
+chance = 0.9
+
+[node name="PowerUp" type="RigidBody2D" parent="C/DramaticSpawner2" index="0" groups=["in_camera"] instance=ExtResource( 7 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 1 )
+type = "wave_gun"
+
+[node name="DramaticSpawner3" type="Node2D" parent="C" index="8" instance=ExtResource( 6 )]
+script = ExtResource( 4 )
+match_progress_trigger = 0.4
+chance = 0.9
+
+[node name="PowerUp" type="RigidBody2D" parent="C/DramaticSpawner3" index="0" groups=["in_camera"] instance=ExtResource( 7 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 1 )
+type = "shields"
+
+[node name="D" type="Node2D" parent="." index="3"]
+visible = false
+
+[node name="Wall" type="StaticBody2D" parent="D" index="0" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, -700 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="D/Wall" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 250
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall5" type="StaticBody2D" parent="D" index="1" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -250, -250 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="D/Wall5" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall6" type="StaticBody2D" parent="D" index="2" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 250, -250 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="D/Wall6" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall7" type="StaticBody2D" parent="D" index="3" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 250, 250 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="D/Wall7" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall8" type="StaticBody2D" parent="D" index="4" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -250, 250 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+
+[node name="GBeveledRect" type="Node" parent="D/Wall8" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall2" type="StaticBody2D" parent="D" index="5" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, -700 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="D/Wall2" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 250
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall3" type="StaticBody2D" parent="D" index="6" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -500, 700 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="D/Wall3" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 250
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall4" type="StaticBody2D" parent="D" index="7" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 500, 700 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="D/Wall4" index="8"]
+script = ExtResource( 8 )
+width = 150
+height = 250
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="E" type="Node2D" parent="." index="4"]
+visible = false
+
+[node name="Wall6" type="StaticBody2D" parent="E" index="0" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -432.843, -424.264 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="E/Wall6" index="8"]
+script = ExtResource( 8 )
+width = 1000
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall8" type="StaticBody2D" parent="E" index="1" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 432.843, 424.264 )
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="E/Wall8" index="8"]
+script = ExtResource( 8 )
+width = 1000
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall7" type="StaticBody2D" parent="E" index="2" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 424.264, -432.843 )
+rotation = 1.5708
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="E/Wall7" index="8"]
+script = ExtResource( 8 )
+width = 1000
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall9" type="StaticBody2D" parent="E" index="3" groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -424.264, 432.843 )
+rotation = 1.5708
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="E/Wall9" index="8"]
+script = ExtResource( 8 )
+width = 1000
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1

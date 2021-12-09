@@ -1,6 +1,8 @@
 extends Ball
 class_name Alien
 
+export var dive_speed := 300.0
+
 const BASIC_FIGURES = [
 	'animals/a00',
 	'animals/a01',
@@ -34,7 +36,7 @@ func start() -> void:
 	$Graphics/AnimationPlayer.play("Wobble")
 
 func dive() -> void:
-	apply_central_impulse(Vector2.UP*300)
+	apply_central_impulse(Vector2.UP*dive_speed)
 	
 func get_texture():
 	return $Graphics/Alien.texture
