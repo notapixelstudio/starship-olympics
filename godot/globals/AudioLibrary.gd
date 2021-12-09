@@ -58,7 +58,7 @@ func fade_out(duration=3.0):
 		0, -80, duration,
 		Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
-	#yield(tween, 'tween_all_completed')
-	#stop()
-	#song.volume_db = 0
-	#song.remove_child(tween)
+	yield(tween, 'tween_all_completed')
+	stop()
+	song.volume_db = 0
+	song.remove_child(tween)
