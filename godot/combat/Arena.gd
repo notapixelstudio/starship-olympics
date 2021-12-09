@@ -158,17 +158,16 @@ func _ready():
 	# remove HUD if not needed (e.g., map)
 	if not show_hud:
 		$CanvasLayer/HUD.queue_free()
-	
+	else:
+		Soundtrack.fade_out()
+		
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
-	Soundtrack.fade_out()
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
 	
-	# ??? FIXME? this method does nothing here
-	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
 	# Engine.time_scale = 0.2
