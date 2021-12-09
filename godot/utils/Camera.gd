@@ -45,11 +45,16 @@ func _ready():
 	viewport_rect.position.y += marginY
 	viewport_rect.position.x += marginX
 
+var initial_arena_size : Rect2 
+var arena_center : Vector2
+
 func initialize(rect_extention:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
 	camera_rect = rect_extention
+	initial_arena_size = rect_extention
+	arena_center = calculate_center(initial_arena_size)
 	margin_min = arena_size/2
-	offset = calculate_center(camera_rect)
+	offset = arena_center
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
 	offset.x -= marginX/2*zoom.x
 	offset.y -= marginY/2*zoom.y # offset moves the camera center, which has to be corrected by half the margin
@@ -66,9 +71,11 @@ func _physics_process(_delta: float) -> void:
 	if stop:
 		return
 	time+=_delta
-	if frames % 2:
+	if frames < 5:
 		# let's update the camera only on odd frames
 		return
+	else:
+		frames = 0
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
@@ -108,16 +115,13 @@ func _physics_process(_delta: float) -> void:
 	else: 
 		zoom_speed = zoom_speed_shrink
 	
-	offset.x = lerp(offset.x, offset_to_be.x - marginX/2*zoom.x, offset_speed)
-	offset.y = lerp(offset.y, offset_to_be.y - marginY/2*zoom.y, offset_speed)
+	offset.x = clamp(lerp(offset.x, offset_to_be.x - marginX/2*zoom.x, offset_speed), arena_center.x-300, arena_center.x+300)
+	offset.y = clamp(lerp(offset.y, offset_to_be.y - marginY/2*zoom.y, offset_speed), arena_center.y-300, arena_center.y+300)
 	if zoomMax != 0 :
 		#offset.x = max(offset.x, max_offset.x)
 		zoom.x = min(zoom.x, zoomMax)
 		zoom.y = min(zoom.y, zoomMax)
-		
 
-#	if debug_mode:
-#		update()
 	if enabled:
 		current = true
 	else: 
