@@ -281,10 +281,10 @@ texture = ExtResource( 19 )
 script = SubResource( 10 )
 
 [node name="CameraEye" parent="CameraRect" instance=ExtResource( 29 )]
-position = Vector2( -200, -200 )
+position = Vector2( -400, -400 )
 
 [node name="CameraEye2" parent="CameraRect" instance=ExtResource( 29 )]
-position = Vector2( 200, 200 )
+position = Vector2( 400, 400 )
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
