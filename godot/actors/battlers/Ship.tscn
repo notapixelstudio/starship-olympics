@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -76,7 +76,14 @@ damping_random = 1.0
 scale_random = 0.25
 color_ramp = SubResource( 8 )
 
-[node name="Ship" type="RigidBody2D" groups=["Foreground", "in_camera", "player_ship", "players"]]
+[sub_resource type="GDScript" id=10]
+script/source = "extends Node2D
+
+func _process(_delta):
+	self.rotation = -get_parent().global_rotation
+"
+
+[node name="Ship" type="RigidBody2D" groups=["Foreground", "player_ship", "players"]]
 collision_mask = 1169
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
@@ -243,12 +250,6 @@ enabled = false
 
 [node name="Debug" parent="." instance=ExtResource( 15 )]
 
-[node name="CameraEye" parent="." instance=ExtResource( 29 )]
-position = Vector2( 200, -100 )
-
-[node name="CameraEye2" parent="." instance=ExtResource( 29 )]
-position = Vector2( 200, 100 )
-
 [node name="TargetDest" type="Position2D" parent="."]
 script = ExtResource( 17 )
 
@@ -275,6 +276,15 @@ amount = 80
 local_coords = false
 process_material = SubResource( 9 )
 texture = ExtResource( 19 )
+
+[node name="CameraRect" type="Node2D" parent="."]
+script = SubResource( 10 )
+
+[node name="CameraEye" parent="CameraRect" instance=ExtResource( 29 )]
+position = Vector2( -200, -200 )
+
+[node name="CameraEye2" parent="CameraRect" instance=ExtResource( 29 )]
+position = Vector2( 200, 200 )
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
