@@ -45,32 +45,49 @@ func _ready():
 	viewport_rect.position.y += marginY
 	viewport_rect.position.x += marginX
 
+var initial_arena_size : Rect2 
+var arena_center : Vector2
+
 func initialize(rect_extention:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
 	camera_rect = rect_extention
+	initial_arena_size = rect_extention
+	arena_center = calculate_center(initial_arena_size)
 	margin_min = arena_size/2
-	offset = calculate_center(camera_rect)
+	offset = arena_center
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
 	offset.x -= marginX/2*zoom.x
 	offset.y -= marginY/2*zoom.y # offset moves the camera center, which has to be corrected by half the margin
-	set_process(false)
+	set_physics_process(false)
 
 const MAX_DIST_OFFSET = 10
 
-func _process(_delta: float) -> void:
+var frames = 0
+func _physics_process(_delta: float) -> void:
+	frames += 1
+	
 	if isShake:
 		shake_process(_delta)    
 	if stop:
 		return
 	time+=_delta
-	
+	if frames < 5:
+		# let's update the camera only on odd frames
+		return
+	else:
+		frames = 0
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
 		if len(elements_in_camera):
 			camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
-		for ship in elements_in_camera:
-			camera_rect = camera_rect.expand(ship.global_position)
+		for element in elements_in_camera:
+			if element.has_method('get_camera_rect'):
+				camera_rect = camera_rect.merge(element.get_camera_rect())
+			else:
+				camera_rect = camera_rect.expand(element.global_position)
+		# clip camera to arena size
+		camera_rect = camera_rect.clip(initial_arena_size)
 	else:
 		camera_rect.position = lerp(camera_rect.position, full_arena.position, _delta*SPEED/Engine.time_scale)
 		camera_rect.size = lerp(camera_rect.size, full_arena.size, _delta*SPEED/Engine.time_scale)
@@ -109,10 +126,7 @@ func _process(_delta: float) -> void:
 		#offset.x = max(offset.x, max_offset.x)
 		zoom.x = min(zoom.x, zoomMax)
 		zoom.y = min(zoom.y, zoomMax)
-		
 
-#	if debug_mode:
-#		update()
 	if enabled:
 		current = true
 	else: 
@@ -142,7 +156,7 @@ func _draw() -> void:
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
-	set_process(enabled)
+	set_physics_process(enabled)
 	
 func world_to_screen(p : Vector2) -> Vector2:
 	return (p-offset)/zoom - Vector2(-marginX/2, -marginY/2) + viewport_rect.size/2

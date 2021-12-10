@@ -139,6 +139,10 @@ points = PoolVector2Array( 500, -350, 275, -275, 225, -150, 150, -175, -100, -12
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 700, -425, 850, -475, 825, -675, 900, -625, 975, -650, 1000, -825 )
 
+[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="2" instance=ExtResource( 41 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( -225, -250, -300, -475, -125, -625, 50, -525, 125, -575, 100, -650, 150, -825 )
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -450, 4400 )
 rotation = -1.5708
@@ -197,21 +201,21 @@ __meta__ = {
 }
 
 [node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer" index="0"]
-margin_right = 90.0
+margin_right = 10.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [node name="p1" parent="CanvasLayerTop/PanelContainer" index="1" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 110.0
-margin_right = 360.0
+margin_left = 30.0
+margin_right = 320.0
 margin_bottom = 180.0
 
 [node name="p2" parent="CanvasLayerTop/PanelContainer" index="2" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 380.0
+margin_left = 340.0
 margin_right = 630.0
 margin_bottom = 180.0
 
@@ -219,18 +223,18 @@ margin_bottom = 180.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 650.0
-margin_right = 900.0
+margin_right = 940.0
 margin_bottom = 180.0
 
 [node name="p4" parent="CanvasLayerTop/PanelContainer" index="4" instance=ExtResource( 11 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 920.0
-margin_right = 1170.0
+margin_left = 960.0
+margin_right = 1250.0
 margin_bottom = 180.0
 
 [node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer" index="5"]
-margin_left = 1190.0
+margin_left = 1270.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
