@@ -62,7 +62,6 @@ func initialize(rect_extent:Rect2):
 
 const MAX_DIST_OFFSET = 10
 
-var nelem := 0
 func _process(_delta: float) -> void:
 	if isShake:
 		shake_process(_delta)    
@@ -72,9 +71,6 @@ func _process(_delta: float) -> void:
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
-		if nelem != len(elements_in_camera):
-			nelem = len(elements_in_camera)
-			print(elements_in_camera)
 		if len(elements_in_camera):
 			if elements_in_camera[0].has_method('get_camera_rect'):
 				camera_rect = elements_in_camera[0].get_camera_rect()
