@@ -72,10 +72,7 @@ func _process(_delta: float) -> void:
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
 		if len(elements_in_camera):
-			if elements_in_camera[0].has_method('get_camera_rect'):
-				camera_rect = elements_in_camera[0].get_camera_rect()
-			else:
-				camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
+			camera_rect = Rect2(Vector2(0,0), Vector2(0,0)) # always keep the center of the battlefield inside the view
 		for element in elements_in_camera:
 			if element.has_method('get_camera_rect'):
 				camera_rect = camera_rect.merge(element.get_camera_rect())
