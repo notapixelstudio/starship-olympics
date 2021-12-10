@@ -1,7 +1,8 @@
 tool
 extends RigidBody2D
+class_name Marble
 
-export var radius := 200.0 setget set_radius
+export var radius := 180.0 setget set_radius
 export var score := 1
 
 var species : Species
@@ -43,6 +44,7 @@ func conquered_by(ship):
 func recolor():
 	modulate = species.color
 	$Monogram/Label.text = species.get_monogram()
+	$AnimationPlayer.play("Conquered")
 	
 func _on_Marble_body_entered(body):
 	if body is Ship:

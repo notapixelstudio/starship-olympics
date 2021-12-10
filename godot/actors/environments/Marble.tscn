@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/environments/Marble.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/environments/marble_shine.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=7]
+[ext_resource path="res://assets/audio/gameplay/asteroids/zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_003_40731.ogg" type="AudioStream" id=8]
 
 [sub_resource type="PhysicsMaterial" id=2]
 rough = true
@@ -14,7 +15,7 @@ bounce = 100.0
 
 [sub_resource type="CircleShape2D" id=1]
 resource_local_to_scene = true
-radius = 200.0
+radius = 180.0
 
 [sub_resource type="GDScript" id=12]
 script/source = "extends Node2D
@@ -34,10 +35,57 @@ func _process(delta):
 size = 250
 font_data = ExtResource( 3 )
 
-[node name="Marble" type="RigidBody2D"]
+[sub_resource type="Animation" id=6]
+resource_local_to_scene = true
+resource_name = "Conquered"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1.2, 1.2, 1.2, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Marble" type="RigidBody2D" groups=["in_camera"]]
 collision_layer = 1024
-collision_mask = 15957
-mass = 25.0
+collision_mask = 15965
+mass = 22.5
 physics_material_override = SubResource( 2 )
 contacts_reported = 5
 contact_monitor = true
@@ -53,23 +101,25 @@ shape = SubResource( 1 )
 [node name="Shadow" type="Polygon2D" parent="."]
 position = Vector2( 0, 32 )
 color = Color( 0, 0, 0, 0.196078 )
-polygon = PoolVector2Array( 200, 0, 197.766, 29.8085, 191.115, 58.951, 180.194, 86.7767, 165.248, 112.664, 146.61, 136.035, 124.698, 156.366, 100, 173.205, 73.0682, 186.175, 44.5042, 194.986, 14.946, 199.441, -14.946, 199.441, -44.5042, 194.986, -73.0682, 186.175, -100, 173.205, -124.698, 156.366, -146.61, 136.035, -165.248, 112.664, -180.194, 86.7767, -191.115, 58.951, -197.766, 29.8085, -200, 2.44921e-14, -197.766, -29.8085, -191.115, -58.951, -180.194, -86.7767, -165.248, -112.664, -146.61, -136.035, -124.698, -156.366, -100, -173.205, -73.0682, -186.175, -44.5042, -194.986, -14.946, -199.441, 14.946, -199.441, 44.5042, -194.986, 73.0682, -186.175, 100, -173.205, 124.698, -156.366, 146.61, -136.035, 165.248, -112.664, 180.194, -86.7767, 191.115, -58.951, 197.766, -29.8085 )
+polygon = PoolVector2Array( 180, 0, 177.545, 29.627, 170.247, 58.4459, 158.305, 85.6705, 142.045, 110.558, 121.911, 132.43, 98.4507, 150.69, 72.3052, 164.839, 44.1874, 174.492, 14.8643, 179.385, -14.8643, 179.385, -44.1874, 174.492, -72.3052, 164.839, -98.4507, 150.69, -121.911, 132.43, -142.045, 110.558, -158.305, 85.6705, -170.247, 58.4459, -177.545, 29.627, -180, 2.20429e-14, -177.545, -29.627, -170.247, -58.4459, -158.305, -85.6705, -142.045, -110.558, -121.911, -132.43, -98.4507, -150.69, -72.3052, -164.839, -44.1874, -174.492, -14.8643, -179.385, 14.8643, -179.385, 44.1874, -174.492, 72.3052, -164.839, 98.4507, -150.69, 121.911, -132.43, 142.045, -110.558, 158.305, -85.6705, 170.247, -58.4459, 177.545, -29.627 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 1, 1, 1, 0.196078 )
-polygon = PoolVector2Array( 200, 0, 197.766, 29.8085, 191.115, 58.951, 180.194, 86.7767, 165.248, 112.664, 146.61, 136.035, 124.698, 156.366, 100, 173.205, 73.0682, 186.175, 44.5042, 194.986, 14.946, 199.441, -14.946, 199.441, -44.5042, 194.986, -73.0682, 186.175, -100, 173.205, -124.698, 156.366, -146.61, 136.035, -165.248, 112.664, -180.194, 86.7767, -191.115, 58.951, -197.766, 29.8085, -200, 2.44921e-14, -197.766, -29.8085, -191.115, -58.951, -180.194, -86.7767, -165.248, -112.664, -146.61, -136.035, -124.698, -156.366, -100, -173.205, -73.0682, -186.175, -44.5042, -194.986, -14.946, -199.441, 14.946, -199.441, 44.5042, -194.986, 73.0682, -186.175, 100, -173.205, 124.698, -156.366, 146.61, -136.035, 165.248, -112.664, 180.194, -86.7767, 191.115, -58.951, 197.766, -29.8085 )
+polygon = PoolVector2Array( 180, 0, 177.545, 29.627, 170.247, 58.4459, 158.305, 85.6705, 142.045, 110.558, 121.911, 132.43, 98.4507, 150.69, 72.3052, 164.839, 44.1874, 174.492, 14.8643, 179.385, -14.8643, 179.385, -44.1874, 174.492, -72.3052, 164.839, -98.4507, 150.69, -121.911, 132.43, -142.045, 110.558, -158.305, 85.6705, -170.247, 58.4459, -177.545, 29.627, -180, 2.20429e-14, -177.545, -29.627, -170.247, -58.4459, -158.305, -85.6705, -142.045, -110.558, -121.911, -132.43, -98.4507, -150.69, -72.3052, -164.839, -44.1874, -174.492, -14.8643, -179.385, 14.8643, -179.385, 44.1874, -174.492, 72.3052, -164.839, 98.4507, -150.69, 121.911, -132.43, 142.045, -110.558, 158.305, -85.6705, 170.247, -58.4459, 177.545, -29.627 )
 
 [node name="Spiral" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.156863 )
-scale = Vector2( 1.6, 1.6 )
+rotation = 2.60683
+scale = Vector2( 1.44, 1.44 )
 texture = ExtResource( 4 )
 
 [node name="Decoration" type="Node2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0.0784314 )
-scale = Vector2( 1.6, 1.6 )
+scale = Vector2( 1.44, 1.44 )
 script = SubResource( 12 )
 
 [node name="Glow" type="Sprite" parent="Decoration"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.454902 )
 scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 7 )
@@ -79,7 +129,7 @@ self_modulate = Color( 1, 1, 1, 0.454902 )
 texture = ExtResource( 7 )
 
 [node name="Shine" type="Sprite" parent="Decoration"]
-self_modulate = Color( 1, 1, 1, 0.454902 )
+self_modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( -38.75, -74.375 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
@@ -91,15 +141,16 @@ scale = Vector2( 2.08333, 1.54167 )
 texture = ExtResource( 5 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 200, 0, 197.766, 29.8085, 191.115, 58.951, 180.194, 86.7767, 165.248, 112.664, 146.61, 136.035, 124.698, 156.366, 100, 173.205, 73.0682, 186.175, 44.5042, 194.986, 14.946, 199.441, -14.946, 199.441, -44.5042, 194.986, -73.0682, 186.175, -100, 173.205, -124.698, 156.366, -146.61, 136.035, -165.248, 112.664, -180.194, 86.7767, -191.115, 58.951, -197.766, 29.8085, -200, 2.44921e-14, -197.766, -29.8085, -191.115, -58.951, -180.194, -86.7767, -165.248, -112.664, -146.61, -136.035, -124.698, -156.366, -100, -173.205, -73.0682, -186.175, -44.5042, -194.986, -14.946, -199.441, 14.946, -199.441, 44.5042, -194.986, 73.0682, -186.175, 100, -173.205, 124.698, -156.366, 146.61, -136.035, 165.248, -112.664, 180.194, -86.7767, 191.115, -58.951, 197.766, -29.8085, 200, 0 )
+points = PoolVector2Array( 180, 0, 177.545, 29.627, 170.247, 58.4459, 158.305, 85.6705, 142.045, 110.558, 121.911, 132.43, 98.4507, 150.69, 72.3052, 164.839, 44.1874, 174.492, 14.8643, 179.385, -14.8643, 179.385, -44.1874, 174.492, -72.3052, 164.839, -98.4507, 150.69, -121.911, 132.43, -142.045, 110.558, -158.305, 85.6705, -170.247, 58.4459, -177.545, 29.627, -180, 2.20429e-14, -177.545, -29.627, -170.247, -58.4459, -158.305, -85.6705, -142.045, -110.558, -121.911, -132.43, -98.4507, -150.69, -72.3052, -164.839, -44.1874, -174.492, -14.8643, -179.385, 14.8643, -179.385, 44.1874, -174.492, 72.3052, -164.839, 98.4507, -150.69, 121.911, -132.43, 142.045, -110.558, 158.305, -85.6705, 170.247, -58.4459, 177.545, -29.627, 180, 0 )
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Monogram" type="Node2D" parent="."]
+scale = Vector2( 0.9, 0.9 )
 script = SubResource( 10 )
 
 [node name="Label" type="Label" parent="Monogram"]
-self_modulate = Color( 1, 1, 1, 0.196078 )
+self_modulate = Color( 1, 1, 1, 0.27451 )
 margin_left = -150.0
 margin_top = -150.0
 margin_right = 150.0
@@ -110,5 +161,11 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Conquered = SubResource( 6 )
+anims/RESET = SubResource( 13 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_Marble_body_entered"]
