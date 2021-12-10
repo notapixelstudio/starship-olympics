@@ -11,12 +11,12 @@ export(float, 0.0, 4.0) var zoom_offset : float = 0.3
 export(float, 0.01, 0.5) var zoom_speed : float = 0.02
 export(float, 0.01, 0.5) var offset_speed : float = 0.22
 export var debug_mode : bool = true
-
+export var enabled:bool = false
 
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
 const SPEED = 0.8
-export var enabled:bool = false
+
 var margin_min = Vector2(0,0)
 var margin_max = Vector2()
 var rect_extents = Vector2()
@@ -30,6 +30,7 @@ const IN_CAMERA = "in_camera"
 var show_all: bool = false
 
 func _ready():
+	enabled = global.enable_camera
 	randomize()
 	curPos = position
 	if enabled:
