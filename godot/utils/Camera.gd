@@ -58,7 +58,7 @@ func initialize(rect_extention:Rect2):
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
 	offset.x -= marginX/2*zoom.x
 	offset.y -= marginY/2*zoom.y # offset moves the camera center, which has to be corrected by half the margin
-	set_process(false)
+	set_physics_process(false)
 
 const MAX_DIST_OFFSET = 10
 
