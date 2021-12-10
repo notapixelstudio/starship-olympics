@@ -15,6 +15,10 @@ func _ready():
 			connect("play_song", self, "song_is_playing")
 	
 func play(sound : String = "", force_stop = false):
+	for child in get_children():
+		if child is Tween:
+			child.stop_all()
+			
 	if force_stop:
 		stop()
 	if sound == name:
@@ -59,6 +63,7 @@ func fade_out(duration=3.0):
 		Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
 	yield(tween, 'tween_all_completed')
+	tween.stop_all()
 	stop()
 	song.volume_db = 0
 	song.remove_child(tween)
