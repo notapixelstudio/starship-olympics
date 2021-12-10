@@ -48,10 +48,10 @@ func _ready():
 var initial_arena_size : Rect2 
 var arena_center : Vector2
 
-func initialize(rect_extention:Rect2):
+func initialize(rect_extent:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
-	camera_rect = rect_extention
-	initial_arena_size = rect_extention
+	camera_rect = rect_extent
+	initial_arena_size = rect_extent
 	arena_center = calculate_center(initial_arena_size)
 	margin_min = arena_size/2
 	offset = arena_center
@@ -62,6 +62,7 @@ func initialize(rect_extention:Rect2):
 
 const MAX_DIST_OFFSET = 10
 
+var nelem := 0
 func _process(_delta: float) -> void:
 	if isShake:
 		shake_process(_delta)    
@@ -71,8 +72,14 @@ func _process(_delta: float) -> void:
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
+		if nelem != len(elements_in_camera):
+			nelem = len(elements_in_camera)
+			print(elements_in_camera)
 		if len(elements_in_camera):
-			camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
+			if elements_in_camera[0].has_method('get_camera_rect'):
+				camera_rect = elements_in_camera[0].get_camera_rect()
+			else:
+				camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
 		for element in elements_in_camera:
 			if element.has_method('get_camera_rect'):
 				camera_rect = camera_rect.merge(element.get_camera_rect())

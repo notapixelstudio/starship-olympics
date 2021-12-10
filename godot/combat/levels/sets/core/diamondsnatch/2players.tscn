@@ -633,6 +633,7 @@ species = ExtResource( 7 )
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 23841.9, 23841.9 )
 smoothing_speed = 0.3
+debug_mode = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
