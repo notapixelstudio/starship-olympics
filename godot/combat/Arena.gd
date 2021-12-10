@@ -158,6 +158,7 @@ func _ready():
 	if not show_hud:
 		$CanvasLayer/HUD.queue_free()
 	else:
+		camera.enabled = global.enable_camera
 		Soundtrack.fade_out()
 		
 	# Pick controller label
@@ -705,6 +706,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
+	ship.set_default_bomb_type(game_mode.bomb_type)
 	ship.set_default_bomb_type(game_mode.bomb_type)
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)

@@ -30,7 +30,6 @@ const IN_CAMERA = "in_camera"
 var show_all: bool = false
 
 func _ready():
-	enabled = global.enable_camera
 	randomize()
 	curPos = position
 	if enabled:

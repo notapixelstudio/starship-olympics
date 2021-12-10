@@ -58,12 +58,13 @@ func fade_out(duration=3.0):
 	var tween = Tween.new()
 	var song = Soundtrack.current_audio
 	song.add_child(tween)
+	tween.connect("tween_all_completed", self, "comeback", [song, tween])
 	tween.interpolate_property(song, "volume_db",
 		0, -80, duration,
 		Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
-	yield(tween, 'tween_all_completed')
-	tween.stop_all()
+
+func comeback(song, tween):
 	stop()
 	song.volume_db = 0
-	song.remove_child(tween)
+	tween.queue_free()
