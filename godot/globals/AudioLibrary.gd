@@ -15,6 +15,10 @@ func _ready():
 			connect("play_song", self, "song_is_playing")
 	
 func play(sound : String = "", force_stop = false):
+	var song = Soundtrack.current_audio
+	if song and song.get_child_count() > 0:
+		comeback()
+			
 	if force_stop:
 		stop()
 	if sound == name:
@@ -54,11 +58,15 @@ func fade_out(duration=3.0):
 	var tween = Tween.new()
 	var song = Soundtrack.current_audio
 	song.add_child(tween)
+	tween.connect("tween_all_completed", self, "comeback")
 	tween.interpolate_property(song, "volume_db",
 		0, -80, duration,
 		Tween.TRANS_SINE, Tween.EASE_IN)
 	tween.start()
-	yield(tween, 'tween_all_completed')
+
+func comeback():
+	var song = Soundtrack.current_audio
+	var tween = song.get_child(0)
 	stop()
 	song.volume_db = 0
-	song.remove_child(tween)
+	tween.queue_free()

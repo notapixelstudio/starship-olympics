@@ -8,6 +8,8 @@ const E = 2.71828
 
 const isometric_offset = Vector2(0,32)
 
+var enable_camera := true 
+
 var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 

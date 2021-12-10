@@ -5,18 +5,18 @@ export var zoomMax: float = 0
 export var marginX = 0
 export var marginY = 140.0
 export var subtractHeight = 0
-export (float) var zoom_speed_enlarge = 0.05
+export (float) var zoom_speed_enlarge = 0.1
 export (float) var zoom_speed_shrink = 0.02
 export(float, 0.0, 4.0) var zoom_offset : float = 0.3
 export(float, 0.01, 0.5) var zoom_speed : float = 0.02
 export(float, 0.01, 0.5) var offset_speed : float = 0.22
 export var debug_mode : bool = true
-
+export var enabled:bool = false
 
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
 const SPEED = 0.8
-export var enabled:bool = false
+
 var margin_min = Vector2(0,0)
 var margin_max = Vector2()
 var rect_extents = Vector2()
@@ -48,10 +48,10 @@ func _ready():
 var initial_arena_size : Rect2 
 var arena_center : Vector2
 
-func initialize(rect_extention:Rect2):
+func initialize(rect_extent:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
-	camera_rect = rect_extention
-	initial_arena_size = rect_extention
+	camera_rect = rect_extent
+	initial_arena_size = rect_extent
 	arena_center = calculate_center(initial_arena_size)
 	margin_min = arena_size/2
 	offset = arena_center
@@ -62,27 +62,24 @@ func initialize(rect_extention:Rect2):
 
 const MAX_DIST_OFFSET = 10
 
-var frames = 0
-func _physics_process(_delta: float) -> void:
-	frames += 1
-	
+func _process(_delta: float) -> void:
 	if isShake:
 		shake_process(_delta)    
 	if stop:
 		return
 	time+=_delta
-	if frames < 5:
-		# let's update the camera only on odd frames
-		return
-	else:
-		frames = 0
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
 		if len(elements_in_camera):
-			camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
-		for ship in elements_in_camera:
-			camera_rect = camera_rect.expand(ship.global_position)
+			camera_rect = Rect2(Vector2(0,0), Vector2(0,0)) # always keep the center of the battlefield inside the view
+		for element in elements_in_camera:
+			if element.has_method('get_camera_rect'):
+				camera_rect = camera_rect.merge(element.get_camera_rect())
+			else:
+				camera_rect = camera_rect.expand(element.global_position)
+		# clip camera to arena size
+		camera_rect = camera_rect.clip(initial_arena_size)
 	else:
 		camera_rect.position = lerp(camera_rect.position, full_arena.position, _delta*SPEED/Engine.time_scale)
 		camera_rect.size = lerp(camera_rect.size, full_arena.size, _delta*SPEED/Engine.time_scale)
@@ -115,8 +112,8 @@ func _physics_process(_delta: float) -> void:
 	else: 
 		zoom_speed = zoom_speed_shrink
 	
-	offset.x = clamp(lerp(offset.x, offset_to_be.x - marginX/2*zoom.x, offset_speed), arena_center.x-300, arena_center.x+300)
-	offset.y = clamp(lerp(offset.y, offset_to_be.y - marginY/2*zoom.y, offset_speed), arena_center.y-300, arena_center.y+300)
+	offset.x = lerp(offset.x, offset_to_be.x - marginX/2*zoom.x, offset_speed)
+	offset.y = lerp(offset.y, offset_to_be.y - marginY/2*zoom.y, offset_speed)
 	if zoomMax != 0 :
 		#offset.x = max(offset.x, max_offset.x)
 		zoom.x = min(zoom.x, zoomMax)

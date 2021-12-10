@@ -822,3 +822,7 @@ func trigger_all_my_stuff():
 			
 func get_target_destination():
 	return $TargetDest.global_position
+
+const CAMERA_RECT_SIZE := 800.0
+func get_camera_rect() -> Rect2:
+	return Rect2(global_position - Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE)/2, Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE))
