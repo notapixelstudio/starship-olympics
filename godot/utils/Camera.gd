@@ -48,39 +48,31 @@ func _ready():
 var initial_arena_size : Rect2 
 var arena_center : Vector2
 
-func initialize(rect_extention:Rect2):
+func initialize(rect_extent:Rect2):
 	elements_in_camera = get_tree().get_nodes_in_group("players")
-	camera_rect = rect_extention
-	initial_arena_size = rect_extention
+	camera_rect = rect_extent
+	initial_arena_size = rect_extent
 	arena_center = calculate_center(initial_arena_size)
 	margin_min = arena_size/2
 	offset = arena_center
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
 	offset.x -= marginX/2*zoom.x
 	offset.y -= marginY/2*zoom.y # offset moves the camera center, which has to be corrected by half the margin
-	set_physics_process(false)
+	set_process(false)
 
 const MAX_DIST_OFFSET = 10
 
-var frames = 0
-func _physics_process(_delta: float) -> void:
-	frames += 1
-	
+func _process(_delta: float) -> void:
 	if isShake:
 		shake_process(_delta)    
 	if stop:
 		return
 	time+=_delta
-	if frames < 5:
-		# let's update the camera only on odd frames
-		return
-	else:
-		frames = 0
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
 	if not show_all:
 		if len(elements_in_camera):
-			camera_rect = Rect2(elements_in_camera[0].global_position, Vector2())
+			camera_rect = Rect2(Vector2(0,0), Vector2(0,0)) # always keep the center of the battlefield inside the view
 		for element in elements_in_camera:
 			if element.has_method('get_camera_rect'):
 				camera_rect = camera_rect.merge(element.get_camera_rect())
@@ -156,7 +148,7 @@ func _draw() -> void:
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
-	set_physics_process(enabled)
+	set_process(enabled)
 	
 func world_to_screen(p : Vector2) -> Vector2:
 	return (p-offset)/zoom - Vector2(-marginX/2, -marginY/2) + viewport_rect.size/2

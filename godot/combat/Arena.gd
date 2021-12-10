@@ -55,7 +55,6 @@ onready var pause = $CanvasLayer/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
-onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
 export var standalone : bool = true
 onready var battlefield = $Battlefield
@@ -704,16 +703,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	if force_intro:
 		ship.intro()
 	
-	# smoothly transition 
-	var focus = element_in_camera_scene.instance()
-	$Battlefield.add_child(focus)
-	yield(get_tree(), "idle_frame")
-	ship.remove_from_group("in_camera")
-	focus.manual_activate(ship, global.calculate_center(camera.camera_rect), 1)
-	yield(focus, "completed")
-	ship.add_to_group("in_camera")
-	
-	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
 	ship.set_default_bomb_type(game_mode.bomb_type)
@@ -738,14 +727,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
-	
-	# attach followcamera
-	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
-	follow.node_owner = ship.get_node("TargetDest")
-	follow.add_to_group("in_camera")
-	$Battlefield.add_child(follow)
-	ship.connect("dead", follow, "ship_just_died")
-	
 	
 	crown_mode.connect('show_msg', ship, "update_score")
 	return ship
