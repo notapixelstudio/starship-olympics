@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -250,6 +251,12 @@ position = Vector2( 1950, -1200 )
 ground_radius = 150
 atmosphere_radius = 350
 kind = "animals/a04"
+
+[node name="CameraEye" parent="Battlefield/Background" index="6" instance=ExtResource( 17 )]
+position = Vector2( 0, -2200 )
+
+[node name="CameraEye2" parent="Battlefield/Background" index="7" instance=ExtResource( 17 )]
+position = Vector2( 0, 2300 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Middleground" index="0"]
 modulate = Color( 1, 1, 1, 0.0784314 )
