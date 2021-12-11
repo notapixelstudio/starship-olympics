@@ -12,7 +12,7 @@ func _ready():
 	Events.connect("planet_reached", self, '_on_planet_reached')
 	
 	# set speed according to player count
-	var dive_speed = 250 + 50*global.the_game.get_number_of_players()
+	var dive_speed = 300 #200 + 50*global.the_game.get_number_of_players()
 	for alien in get_tree().get_nodes_in_group('Alien'):
 		alien.dive_speed = dive_speed
 	
