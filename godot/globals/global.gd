@@ -504,6 +504,7 @@ func get_state():
 		rumbling=rumbling,
 		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
+		enable_camera=enable_camera,
 		flood=flood,
 		laser=laser
 	}
