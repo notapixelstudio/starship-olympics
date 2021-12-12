@@ -77,9 +77,9 @@ func set_rotation_and_stuff(angle):
 	$SpriteOff/Eye.rotation = -rotation
 
 func _on_Turret_body_entered(body):
-	if not active and body is Bomb and self.has_node('Routine'):
+	if body is Bomb and self.has_node('Routine'):
 		if active:
-			$Routine.stop()
+			$Routine.stop(false)
 			self.set_active(false)
 		else:
 			$Routine.play('Default')

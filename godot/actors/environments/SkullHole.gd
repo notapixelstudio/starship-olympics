@@ -37,6 +37,8 @@ func _on_SkullHole_body_entered(body):
 		$Full.visible = true
 		full = true
 		
+		$RandomAudioStreamPlayer.play()
+		
 		$Tween.stop_all()
 		$Tween.interpolate_property($Full, "modulate", $Full.modulate, player.species.color, 1.5,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
