@@ -452,7 +452,7 @@ func _process(delta):
 	if global.is_match_running():
 		global.the_match.update(delta)
 	update_grid()
-	slomo()
+	#slomo()
 	
 	if global.is_match_running() and int(global.the_match.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		# no countdown speaker right now. ISSUE #485

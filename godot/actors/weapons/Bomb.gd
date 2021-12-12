@@ -53,7 +53,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if type == GameMode.BOMB_TYPE.ball:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		set_collision_mask_bit(2, true) # bombs colliding with bombs
+		#set_collision_mask_bit(2, true) # bombs colliding with bombs
 		$Sprite.scale = Vector2(1,1)
 		$CollisionShape2D.shape.radius = size*32
 		$NearArea/CollisionShape2D.shape.radius = size*32
@@ -63,7 +63,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	elif type == GameMode.BOMB_TYPE.bullet:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		set_collision_mask_bit(2, true) # bombs colliding with bombs
+		#set_collision_mask_bit(2, true) # bombs colliding with bombs
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = bullet_texture
