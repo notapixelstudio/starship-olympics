@@ -22,6 +22,15 @@ func _set_analytics(new_value):
 var array_device = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
 onready var device 
 
+var array_time_scale = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0"] 
+var time_scale = "1.0" setget _set_time_scale
+
+func _set_time_scale(new_value):
+	time_scale = new_value
+	# decomment if we want to update Engine.time_scale globally
+	# Engine.time_scale = float(time_scale)
+
+
 var available_languages = {
 	"english": "en",
 	"español": "es",
@@ -506,6 +515,7 @@ func get_state():
 		glow_enable=glow_enable,
 		enable_camera=enable_camera,
 		flood=flood,
+		time_scale=time_scale,
 		laser=laser
 	}
 	
