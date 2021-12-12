@@ -11,8 +11,9 @@ export(float, 0.0, 4.0) var zoom_offset : float = 0.3
 export(float, 0.01, 0.5) var zoom_speed : float = 0.02
 export(float, 0.01, 0.5) var offset_speed : float = 0.22
 export var debug_mode : bool = true
-export var enabled:bool = false
+export var disabled_override :bool = false
 
+var enabled = false
 var camera_rect : = Rect2()
 var viewport_rect : = Rect2()
 const SPEED = 0.8
@@ -32,7 +33,7 @@ var show_all: bool = false
 func _ready():
 	randomize()
 	curPos = position
-	if enabled:
+	if not disabled_override:
 		current = true
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	if len(elements_in_camera):
@@ -119,7 +120,7 @@ func _process(_delta: float) -> void:
 		zoom.x = min(zoom.x, zoomMax)
 		zoom.y = min(zoom.y, zoomMax)
 
-	if enabled:
+	if not disabled_override:
 		current = true
 	else: 
 		current = false
@@ -148,7 +149,7 @@ func _draw() -> void:
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
-	set_process(enabled)
+	set_process(not disabled_override or enabled)
 	
 func world_to_screen(p : Vector2) -> Vector2:
 	return (p-offset)/zoom - Vector2(-marginX/2, -marginY/2) + viewport_rect.size/2
