@@ -14,7 +14,6 @@ var someone_died = 0
 export (PackedScene) var gameover_scene
 export (bool) var demo = false
 export (float) var size_multiplier = 2.0
-export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
 export var style : Resource setget set_style
 export var planet_name : String
@@ -31,6 +30,7 @@ export var random_starting_position : bool = true
 var debug = false
 # analytics
 var run_time = 0
+var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 
 onready var crown_mode = $Managers/CrownModeManager
 onready var kill_mode = $Managers/KillModeManager
@@ -104,7 +104,7 @@ func get_time_scale():
 	return time_scale
 	
 func update_time_scale():
-	Engine.time_scale = float(global.time_scale)
+	Engine.time_scale = self.time_scale
 
 signal update_stats
 
@@ -424,7 +424,7 @@ func _ready():
 	for turret in get_tree().get_nodes_in_group("turret"):
 		turret.initialize(self)
 		
-	update_time_scale()
+	self.time_scale = float(global.time_scale)
 	set_process(true)
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
