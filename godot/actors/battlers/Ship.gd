@@ -27,8 +27,6 @@ var rotation_request = 0
 var THRUST = 6500
 var auto_thrust := false
 
-var shields = 0
-var max_shields = 1
 var deadly_trail = false
 var deadly_trail_powerup = false
 
@@ -173,6 +171,9 @@ func _enter_tree():
 	outside_countup = 0
 	
 	update_weapon_indicator()
+	
+	# shields always start off
+	$Shields.switch_off()
 	
 	emit_signal('spawned', self)
 	dash_init_appearance()
@@ -440,17 +441,7 @@ func fire(override_charge = -1, dash_only = false):
 		
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
-		if shields > 0 and not for_good:
-			make_invincible()
-			rebound()
-			if has_method('vibration_feedback'):
-				call('vibration_feedback', false)
-			return
-			
 		alive = false
-		
-		# shields wear off
-		$Shields.switch_off()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
