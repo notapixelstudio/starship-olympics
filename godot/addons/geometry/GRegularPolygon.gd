@@ -41,5 +41,9 @@ func to_Shape2D():
 	return shape
 	
 func get_extents() -> Vector2:
-	return Vector2(2*radius, 2*radius)
+	var points = self.to_PoolVector2Array()
+	var rect := Rect2(Vector2(0,0), Vector2(0,0))
+	for p in points:
+		rect = rect.expand(p)
+	return rect.size
 	
