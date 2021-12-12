@@ -32,8 +32,10 @@ __meta__ = {
 }
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
+anchor_top = -0.06639
+anchor_bottom = -0.06639
 margin_right = 778.0
-margin_bottom = 428.0
+margin_bottom = 482.0
 
 [node name="Language" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -96,11 +98,20 @@ element_path = "unlock_mode"
 label_description = "Unlock mode"
 elem_type = 2
 
+[node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 432.0
+margin_right = 778.0
+margin_bottom = 482.0
+element_path = "time_scale"
+label_description = "Engine Time scale"
+elem_type = 2
+
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 1.08618
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 1.08618
 margin_left = -129.5
 margin_top = -65.0
 margin_right = 110.5

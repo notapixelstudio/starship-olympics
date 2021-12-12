@@ -104,7 +104,7 @@ func get_time_scale():
 	return time_scale
 	
 func update_time_scale():
-	Engine.time_scale = time_scale
+	Engine.time_scale = float(global.time_scale)
 
 signal update_stats
 
