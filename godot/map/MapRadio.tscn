@@ -24,12 +24,12 @@ polygon = PoolVector2Array( 0, -150, 125, -25, 0, 100, -125, -25 )
 visible = true
 polygon = PoolVector2Array( 0, -200, 175, -25, 0, 150, -175, -25 )
 
-[node name="Sprite" type="Sprite" parent="." index="4"]
-position = Vector2( 0, -28 )
-
-[node name="Frame" type="Sprite" parent="." index="5"]
+[node name="Frame" type="Sprite" parent="." index="4"]
 position = Vector2( 0, -28 )
 texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="." index="5"]
+position = Vector2( 0, -28 )
 
 [node name="Wrapper" type="Node2D" parent="." index="6"]
 z_index = 10
