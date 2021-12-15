@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
@@ -6,7 +6,13 @@
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
 [ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+use_mipmaps = true
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -22,12 +28,8 @@ outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 6 )
-
 [node name="Pause" type="Control"]
 pause_mode = 2
-modulate = Color( 1, 1, 1, 0.640902 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 834, 635 )
@@ -46,6 +48,8 @@ __meta__ = {
 }
 
 [node name="Window" type="Sprite" parent="."]
+modulate = Color( 1.15, 1.15, 1.15, 1 )
+self_modulate = Color( 0, 0.556863, 1, 1 )
 position = Vector2( 651.635, 357.94 )
 scale = Vector2( 0.745386, 0.745386 )
 texture = ExtResource( 3 )
@@ -55,34 +59,44 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -329.0
+margin_left = -326.0
 margin_top = -274.0
 margin_right = 349.0
-margin_bottom = 288.0
+margin_bottom = 263.0
 theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="GuiElements"]
+modulate = Color( 1.15, 1.15, 1.15, 1 )
+self_modulate = Color( 0, 0.556863, 1, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -124.0
+margin_top = -24.0
 margin_right = 124.0
-margin_bottom = 78.0002
+margin_bottom = 54.0002
 theme = ExtResource( 1 )
-text = "PAUSE"
+custom_fonts/font = SubResource( 4 )
+text = "GAME PAUSED"
 align = 1
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GuiElements"]
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-margin_left = -339.0
-margin_top = 120.0
-margin_right = 339.0
-margin_bottom = 562.0
+anchor_bottom = 1.0
+margin_left = -338.5
+margin_top = -446.0
+margin_right = 339.5
+margin_bottom = -20.0
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,13 +132,13 @@ __meta__ = {
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
 margin_top = 82.0
 margin_right = 678.0
-margin_bottom = 222.0
-rect_min_size = Vector2( 0, 140 )
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-margin_top = 226.0
+margin_top = 116.0
 margin_right = 678.0
-margin_bottom = 396.0
+margin_bottom = 430.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -134,22 +148,19 @@ __meta__ = {
 
 [node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 margin_right = 678.0
-margin_bottom = 25.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 45.0
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 29.0
+margin_top = 49.0
 margin_right = 678.0
-margin_bottom = 54.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 94.0
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 58.0
+margin_top = 98.0
 margin_right = 678.0
-margin_bottom = 83.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 143.0
 text = "SKIP LEVEL"
 
 [node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
@@ -157,28 +168,30 @@ visible = false
 margin_top = 99.0
 margin_right = 182.0
 margin_bottom = 128.0
-custom_fonts/font = SubResource( 1 )
 text = "OPTIONS"
 
-[node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 87.0
+[node name="Control" type="Control" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 147.0
 margin_right = 678.0
-margin_bottom = 112.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 167.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 171.0
+margin_right = 678.0
+margin_bottom = 216.0
 text = "QUIT TO MAP"
 
 [node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 116.0
+margin_top = 220.0
 margin_right = 678.0
-margin_bottom = 141.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 265.0
 text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 145.0
+margin_top = 269.0
 margin_right = 678.0
-margin_bottom = 170.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 314.0
 text = "QUIT TO MAIN MENU"
 
 [node name="Tween" type="Tween" parent="."]

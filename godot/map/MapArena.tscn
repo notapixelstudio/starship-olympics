@@ -171,22 +171,22 @@ species = ExtResource( 6 )
 
 [node name="Enemies" type="Node2D" parent="CanvasLayer/Countdown/AudioStreamPlayer" index="0"]
 
-[node name="Pause" parent="CanvasLayer" index="3"]
+[node name="Pause" parent="CanvasLayer2" index="0"]
 in_match = false
-
-[node name="Camera" parent="." index="6"]
-current = false
-zoom = Vector2( 1.77636e+15, 1.77636e+15 )
-smoothing_speed = 0.3
-zoomMin = 4.0
-marginY = -225.0
-subtractHeight = 450
-disabled_override = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="7"]
 position = Vector2( 0, 4000 )
 current = true
 zoom = Vector2( 6, 6 )
+
+[node name="Camera" parent="." index="8"]
+current = false
+zoom = Vector2( 1.11022e+16, 1.11022e+16 )
+smoothing_speed = 0.3
+zoomMin = 4.0
+marginY = -225.0
+subtractHeight = 450
+disabled_override = true
 
 [node name="CanvasLayerTop" type="CanvasLayer" parent="." index="10"]
 layer = 2
@@ -245,5 +245,3 @@ size_flags_horizontal = 3
 [node name="Tween" type="Tween" parent="CanvasLayerTop/PanelContainer" index="6"]
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]
