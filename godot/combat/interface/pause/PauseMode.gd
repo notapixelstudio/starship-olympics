@@ -2,7 +2,7 @@ extends Control
 
 export var in_match = true
 
-onready var buttons = $GuiElements/Buttons
+onready var buttons = $GuiElements/VBoxContainer/Buttons
 onready var pause_window = $Window
 onready var gui = $GuiElements
 var unpause_ready = false
@@ -16,9 +16,15 @@ func _ready():
 	
 	# hide buttons that are relevant only during matches
 	if not in_match:
-		$GuiElements/Buttons/Restart.queue_free()
-		$GuiElements/Buttons/SkipLevel.queue_free()
-		$GuiElements/Buttons/Quit1.queue_free()
+		$GuiElements/VBoxContainer/Buttons/Restart.queue_free()
+		$GuiElements/VBoxContainer/Buttons/SkipLevel.queue_free()
+		$GuiElements/VBoxContainer/Buttons/Quit1.queue_free()
+		$GuiElements/VBoxContainer/Minigame.queue_free()
+		$GuiElements/VBoxContainer/Description.queue_free()
+	else:
+		yield(get_tree(), "idle_frame") # wait for match to be set up
+		$GuiElements/VBoxContainer/Minigame.text = global.the_match.get_game_mode().name
+		$GuiElements/VBoxContainer/Description.text = global.the_match.get_game_mode().description
 	
 func start():
 	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT)
