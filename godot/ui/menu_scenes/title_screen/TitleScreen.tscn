@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://logo.png" type="Texture" id=4]
 [ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
@@ -108,7 +107,6 @@ margin_top = 37.0
 margin_right = 290.0
 margin_bottom = 107.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
 action_mode = 0
 text = "FIGHT"
 flat = true
@@ -118,7 +116,6 @@ margin_top = 111.0
 margin_right = 290.0
 margin_bottom = 181.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
 action_mode = 0
 text = "OPTIONS"
 flat = true
@@ -129,7 +126,6 @@ margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 210, 70 )
-custom_fonts/font = ExtResource( 3 )
 disabled = true
 action_mode = 0
 text = "Help"
@@ -141,7 +137,6 @@ margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
 rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 3 )
 disabled = true
 action_mode = 0
 text = "Credits"
@@ -152,7 +147,6 @@ margin_top = 185.0
 margin_right = 290.0
 margin_bottom = 255.0
 rect_min_size = Vector2( 0, 70 )
-custom_fonts/font = ExtResource( 3 )
 action_mode = 0
 text = "QUIT"
 flat = true

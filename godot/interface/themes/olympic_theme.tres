@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=37 format=2]
+[gd_resource type="Theme" load_steps=39 format=2]
 
 [ext_resource path="res://interface/themes/olympic/scroll.tres" type="StyleBox" id=1]
 [ext_resource path="res://interface/themes/olympic/panel.tres" type="StyleBox" id=2]
@@ -20,6 +20,14 @@
 [ext_resource path="res://interface/themes/olympic/tab_fg.tres" type="StyleBox" id=18]
 [ext_resource path="res://interface/themes/olympic/scroll_focus.tres" type="StyleBox" id=19]
 [ext_resource path="res://interface/themes/olympic/hover.tres" type="StyleBox" id=20]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=21]
+
+[sub_resource type="DynamicFont" id=17]
+size = 30
+use_mipmaps = true
+extra_spacing_top = 4
+extra_spacing_bottom = 4
+font_data = ExtResource( 21 )
 
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.309804, 0.270588, 0.239216, 1 )
@@ -66,7 +74,7 @@ Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
 Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 Button/constants/hseparation = 2
-Button/fonts/font = null
+Button/fonts/font = SubResource( 17 )
 Button/styles/disabled = ExtResource( 8 )
 Button/styles/focus = ExtResource( 5 )
 Button/styles/hover = ExtResource( 20 )
