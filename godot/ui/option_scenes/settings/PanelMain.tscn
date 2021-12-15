@@ -32,8 +32,6 @@ __meta__ = {
 }
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
-anchor_top = -0.06639
-anchor_bottom = -0.06639
 margin_right = 778.0
 margin_bottom = 482.0
 
@@ -64,7 +62,7 @@ margin_top = 162.0
 margin_right = 778.0
 margin_bottom = 212.0
 element_path = "enable_camera"
-label_description = "Camera"
+label_description = "Dynamic camera"
 
 [node name="Analytics" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
 margin_top = 216.0
@@ -104,8 +102,9 @@ margin_top = 432.0
 margin_right = 778.0
 margin_bottom = 482.0
 element_path = "time_scale"
-label_description = "Engine Time scale"
+label_description = "Game Speed"
 elem_type = 2
+suffix = "X"
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
