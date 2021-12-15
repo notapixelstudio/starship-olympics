@@ -10,9 +10,8 @@ export var single_texture: Texture
 var index : int = 0
 var node_owner
 
-export var description = "{_} victories"
+export var description = "set the number of victories"
 onready var sprite = $Sprite
-onready var label = $Label
 
 func _ready():
 	while not node_owner:
@@ -22,11 +21,9 @@ func _ready():
 		
 	# start the looping animation with a random value
 	$AnimationPlayer.advance(randf()*4)
-	label.text = self.name
-
+	$Label.text = self.name
 
 func initialize( starting_from: int = 0, options: int = 0):
-	
 	var new_selection = []
 	for i in range(starting_from, options):
 		new_selection.append(i)
@@ -53,3 +50,8 @@ func tap(author: Ship):
 	# label.text = description.format({"_": selection[index]})
 	$act.play()
 	
+func show_tap_preview(_author):
+	$Label.visible = true
+	
+func hide_tap_preview():
+	$Label.visible = false
