@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
 [ext_resource path="res://map/MapLocation.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=4]
 [ext_resource path="res://map/MapOption.gd" type="Script" id=5]
+[ext_resource path="res://assets/map/cards/option.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
@@ -35,7 +36,11 @@ script = ExtResource( 5 )
 position = Vector2( 0, -28 )
 texture = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="." index="5"]
+[node name="Frame" type="Sprite" parent="." index="5"]
+position = Vector2( 0, -28 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="." index="6"]
 visible = false
 margin_left = -200.0
 margin_top = 50.0
@@ -49,10 +54,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 autoplay = "wigglewiggle"
 anims/wigglewiggle = SubResource( 2 )
 
-[node name="act" type="AudioStreamPlayer2D" parent="." index="7"]
+[node name="act" type="AudioStreamPlayer2D" parent="." index="8"]
 stream = ExtResource( 2 )
 attenuation = 0.0412346
