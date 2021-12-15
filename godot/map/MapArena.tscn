@@ -24,7 +24,7 @@
 [ext_resource path="res://assets/map/cards/planets/mantharn.png" type="Texture" id=22]
 [ext_resource path="res://map/planets/reveal/Revealable.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/map/cards/planets/queen_motherboard.png" type="Texture" id=24]
-[ext_resource path="res://map/MapOption.tscn" type="PackedScene" id=25]
+[ext_resource path="res://map/MapRadio.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=26]
 [ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=27]
 [ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=28]
@@ -152,21 +152,19 @@ points = PoolVector2Array( -225, -250, -250, -425, -300, -525, -125, -575, -75, 
 
 [node name="Options" type="Node2D" parent="Battlefield/Middleground/Content" index="2"]
 
-[node name="Victories" parent="Battlefield/Middleground/Content/Options" index="0" instance=ExtResource( 25 )]
-position = Vector2( 600, 475 )
-value_name = "custom_win"
-selection = [ 1, 3, 5 ]
-
-[node name="1" type="Sprite" parent="Battlefield/Middleground/Content/Options/Victories/Sprite" index="0"]
-visible = false
+[node name="One-shot Game" parent="Battlefield/Middleground/Content/Options" index="0" instance=ExtResource( 25 )]
+position = Vector2( 500, 475 )
+value = [ 1 ]
 texture = ExtResource( 27 )
 
-[node name="3" type="Sprite" parent="Battlefield/Middleground/Content/Options/Victories/Sprite" index="1"]
-visible = false
+[node name="Classic Game" parent="Battlefield/Middleground/Content/Options" index="1" instance=ExtResource( 25 )]
+position = Vector2( 625, 350 )
+value = [ 3 ]
 texture = ExtResource( 28 )
 
-[node name="5" type="Sprite" parent="Battlefield/Middleground/Content/Options/Victories/Sprite" index="2"]
-visible = false
+[node name="Epic Game" parent="Battlefield/Middleground/Content/Options" index="2" instance=ExtResource( 25 )]
+position = Vector2( 750, 475 )
+value = [ 5 ]
 texture = ExtResource( 26 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
@@ -199,7 +197,7 @@ in_match = false
 
 [node name="Camera" parent="." index="6"]
 current = false
-zoom = Vector2( 6.77628e+18, 6.77628e+18 )
+zoom = Vector2( 1.03398e+22, 1.03398e+22 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0
@@ -269,5 +267,4 @@ size_flags_horizontal = 3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="Battlefield/Middleground/Content/Options/Victories"]
 [editable path="CanvasLayer/Pause"]
