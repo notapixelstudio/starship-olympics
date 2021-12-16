@@ -42,7 +42,7 @@ __meta__ = {
 [node name="BlackOverlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.352941 )
+color = Color( 0, 0, 0, 0.431373 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,9 +93,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -338.5
-margin_top = -446.0
+margin_top = -477.0
 margin_right = 339.5
-margin_bottom = -20.0
+margin_bottom = -16.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,8 +103,9 @@ __meta__ = {
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
 modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_top = 21.0
 margin_right = 678.0
-margin_bottom = 53.0
+margin_bottom = 74.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
@@ -116,9 +117,9 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
-margin_top = 57.0
+margin_top = 78.0
 margin_right = 678.0
-margin_bottom = 78.0
+margin_bottom = 99.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "find the x and do the y"
@@ -130,15 +131,15 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
-margin_top = 82.0
+margin_top = 103.0
 margin_right = 678.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 0, 30 )
+margin_bottom = 143.0
+rect_min_size = Vector2( 0, 40 )
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-margin_top = 116.0
+margin_top = 147.0
 margin_right = 678.0
-margin_bottom = 430.0
+margin_bottom = 461.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -186,7 +187,7 @@ text = "QUIT TO MAP"
 margin_top = 220.0
 margin_right = 678.0
 margin_bottom = 265.0
-text = "QUIT TO CHARACTERS"
+text = "QUIT TO CHARACTER SELECTION"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 margin_top = 269.0
