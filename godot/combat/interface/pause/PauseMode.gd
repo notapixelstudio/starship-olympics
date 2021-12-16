@@ -1,6 +1,7 @@
 extends Control
 
 export var in_match = true
+export var map_texture : Texture
 
 onready var buttons = $GuiElements/VBoxContainer/Buttons
 onready var pause_window = $Window
@@ -21,6 +22,7 @@ func _ready():
 		$GuiElements/VBoxContainer/Buttons/Quit1.queue_free()
 		$GuiElements/VBoxContainer/Minigame.queue_free()
 		$GuiElements/VBoxContainer/Description.queue_free()
+		$Window.texture = map_texture
 	else:
 		yield(get_tree(), "idle_frame") # wait for match to be set up
 		$GuiElements/VBoxContainer/Minigame.text = global.the_match.get_game_mode().name

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/UI/pause-window-map.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=4]
@@ -38,11 +39,12 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+map_texture = ExtResource( 8 )
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.431373 )
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,9 +95,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -338.5
-margin_top = -477.0
+margin_top = -489.0
 margin_right = 339.5
-margin_bottom = -16.0
+margin_bottom = -35.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,9 +105,9 @@ __meta__ = {
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
 modulate = Color( 1, 0.870588, 0.372549, 1 )
-margin_top = 21.0
+margin_top = 24.0
 margin_right = 678.0
-margin_bottom = 74.0
+margin_bottom = 77.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
@@ -117,9 +119,9 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
-margin_top = 78.0
+margin_top = 81.0
 margin_right = 678.0
-margin_bottom = 99.0
+margin_bottom = 102.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "find the x and do the y"
@@ -131,15 +133,15 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
-margin_top = 103.0
+margin_top = 106.0
 margin_right = 678.0
-margin_bottom = 143.0
-rect_min_size = Vector2( 0, 40 )
+margin_bottom = 148.0
+rect_min_size = Vector2( 0, 42 )
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-margin_top = 147.0
+margin_top = 152.0
 margin_right = 678.0
-margin_bottom = 461.0
+margin_bottom = 454.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -149,19 +151,19 @@ __meta__ = {
 
 [node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 margin_right = 678.0
-margin_bottom = 45.0
+margin_bottom = 43.0
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 49.0
+margin_top = 47.0
 margin_right = 678.0
-margin_bottom = 94.0
+margin_bottom = 90.0
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 98.0
+margin_top = 94.0
 margin_right = 678.0
-margin_bottom = 143.0
+margin_bottom = 137.0
 text = "SKIP LEVEL"
 
 [node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
@@ -172,27 +174,27 @@ margin_bottom = 128.0
 text = "OPTIONS"
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 147.0
+margin_top = 141.0
 margin_right = 678.0
-margin_bottom = 167.0
+margin_bottom = 161.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 171.0
+margin_top = 165.0
 margin_right = 678.0
-margin_bottom = 216.0
+margin_bottom = 208.0
 text = "QUIT TO MAP"
 
 [node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 220.0
+margin_top = 212.0
 margin_right = 678.0
-margin_bottom = 265.0
+margin_bottom = 255.0
 text = "QUIT TO CHARACTER SELECTION"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 269.0
+margin_top = 259.0
 margin_right = 678.0
-margin_bottom = 314.0
+margin_bottom = 302.0
 text = "QUIT TO MAIN MENU"
 
 [node name="Tween" type="Tween" parent="."]
