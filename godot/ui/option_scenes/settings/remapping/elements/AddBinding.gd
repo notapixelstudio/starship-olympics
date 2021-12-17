@@ -1,6 +1,6 @@
-extends CanvasLayer
+extends ColorRect
 
-class_name MapButtonScene
+class_name AddingBindingControls
 
 export var action: String
 signal remap
