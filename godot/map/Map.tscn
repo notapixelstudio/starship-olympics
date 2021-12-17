@@ -205,10 +205,13 @@ anims/wigglewiggle = SubResource( 2 )
 visible = false
 position = Vector2( 1000, -400 )
 script = ExtResource( 18 )
-var_name = "cpu"
+value_name = "win"
+selection = [  ]
 global_option = false
 node_owner_path = NodePath("../../..")
+single_texture = null
 description = "{_} CPUS"
+var_name = "cpu"
 
 [node name="0" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="0"]
 visible = false
@@ -274,21 +277,21 @@ __meta__ = {
 }
 
 [node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer"]
-margin_right = 90.0
+margin_right = 10.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [node name="p1" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 110.0
-margin_right = 360.0
+margin_left = 30.0
+margin_right = 320.0
 margin_bottom = 180.0
 
 [node name="p2" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 380.0
+margin_left = 340.0
 margin_right = 630.0
 margin_bottom = 180.0
 
@@ -296,18 +299,18 @@ margin_bottom = 180.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 650.0
-margin_right = 900.0
+margin_right = 940.0
 margin_bottom = 180.0
 
 [node name="p4" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 920.0
-margin_right = 1170.0
+margin_left = 960.0
+margin_right = 1250.0
 margin_bottom = 180.0
 
 [node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer"]
-margin_left = 1190.0
+margin_left = 1270.0
 margin_right = 1280.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
