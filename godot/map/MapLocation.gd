@@ -27,3 +27,6 @@ func _on_MapLocation_body_entered(body):
 func _on_ExitArea_body_exited(body):
 	if body is Ship:
 		Events.emit_signal("tappable_exited", self, body)
+
+func get_status():
+	return TheUnlocker.HIDDEN
