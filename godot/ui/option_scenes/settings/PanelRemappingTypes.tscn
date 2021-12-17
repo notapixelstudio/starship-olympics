@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://interface/UIButtonsContainerMapping.gd" type="Script" id=1]
 [ext_resource path="res://ui/option_scenes/settings/PanelRemapping.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/common_elements/NavigateButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/option_scenes/settings/UIOptionPanel.gd" type="Script" id=4]
+[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Print_Screen_Key_Dark.png" type="Texture" id=5]
+[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Q_Key_Dark.png" type="Texture" id=6]
 
 [node name="PanelMain" type="Control"]
 anchor_right = 1.0
@@ -33,12 +35,14 @@ script = ExtResource( 1 )
 
 [node name="Toggle" type="CheckButton" parent="Content/UIButtonsContainer"]
 margin_right = 538.0
-margin_bottom = 51.0
+margin_bottom = 108.0
+custom_icons/off = ExtResource( 5 )
+custom_icons/on = ExtResource( 6 )
 
 [node name="Dynamic" type="HBoxContainer" parent="Content/UIButtonsContainer"]
-margin_top = 55.0
+margin_top = 112.0
 margin_right = 538.0
-margin_bottom = 159.0
+margin_bottom = 216.0
 
 [node name="Classic" type="VBoxContainer" parent="Content/UIButtonsContainer/Dynamic"]
 margin_right = 254.0

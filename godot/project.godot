@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "AddingBindingControls",
+"language": "GDScript",
+"path": "res://ui/option_scenes/settings/remapping/elements/AddBinding.gd"
+}, {
 "base": "Ball",
 "class": "Alien",
 "language": "GDScript",
@@ -274,11 +279,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/Map.gd"
 }, {
-"base": "CanvasLayer",
-"class": "MapButtonScene",
-"language": "GDScript",
-"path": "res://ui/option_scenes/settings/remapping/elements/AddBinding.gd"
-}, {
 "base": "MapLocation",
 "class": "MapCheckpoint",
 "language": "GDScript",
@@ -530,6 +530,7 @@ _global_script_classes=[ {
 "path": "res://actors/weapons/arsenal/Weapon.gd"
 } ]
 _global_script_class_icons={
+"AddingBindingControls": "",
 "Alien": "",
 "Arena": "",
 "ArenaStyle": "",
@@ -583,7 +584,6 @@ _global_script_class_icons={
 "Laser": "",
 "Manager": "",
 "Map": "",
-"MapButtonScene": "",
 "MapCheckpoint": "",
 "MapCursor": "",
 "MapLocation": "",

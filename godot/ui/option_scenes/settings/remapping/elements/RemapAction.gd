@@ -51,6 +51,13 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=true
 	var device_type = "kb"
 	if "joy" in device:
 		device_type = "joy"
+	if self.device == "kb" and not event is InputEventKey:
+		print("Can't map Input different than keyboard events")
+		return
+	if self.device == "joy" and not event is InputEventJoypadButton and not event is InputEventJoypadMotion:
+		print("Can't map Input different than joypad events")
+		return
+		 
 	var device_action = device + "_" + action
 	for action in global.input_mapping:
 		if not device_type in action:
@@ -81,7 +88,7 @@ func add_mapping_to_screen(new_event: InputEvent):
 	scroll_container.add_element(button)
 	
 func _on_Button_pressed():
-	var remap : MapButtonScene = remapScene.instance()
+	var remap : AddingBindingControls = remapScene.instance()
 	remap.action = device + "_" + action
 	add_child(remap)
 	remap.connect("remap", self, "on_remap", [device, action])
@@ -99,8 +106,11 @@ func _on_RemoveMapping_pressed():
 	global.clear_all_mapping(self.device + "_" + self.action)
 	scroll_container.clear()
 	
-
-
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		_on_Button_pressed()
+		_on_Panel_focus_exited()
+		
 func _on_Panel_focus_entered():
 	panel.add_stylebox_override("panel", load("res://interface/themes/grey/focus.tres"))
 	set_process_input(true)
