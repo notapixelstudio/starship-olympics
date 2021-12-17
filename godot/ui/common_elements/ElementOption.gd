@@ -103,13 +103,13 @@ func _input(event):
 
 func _on_Element_focus_entered():
 	set_process_input(true)
-	description_node.add_stylebox_override("normal", load("res://interface/themes/grey/focus.tres"))
+	description_node.add_stylebox_override("normal", load("res://interface/themes/olympic/focus.tres"))
 	description_node.modulate = focus_color.darkened(0.1)
 	value_node.modulate = focus_color.darkened(0.1)
 	
 
 func _on_Element_focus_exited():
-	description_node.add_stylebox_override("normal", load("res://interface/themes/grey/normal.tres"))
+	description_node.add_stylebox_override("normal", load("res://interface/themes/olympic/normal.tres"))
 	for node in container.get_children():
 		node.modulate = Color(1,1,1)
 	value_node.modulate = Color(1,1,1)
