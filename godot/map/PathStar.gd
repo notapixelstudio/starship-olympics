@@ -9,8 +9,11 @@ func _ready() -> void:
 	if Engine.editor_hint:
 		appear()
 
-func appear() -> void:
+func appear(force: bool = false) -> void:
 	$AnimationPlayer.play('Appear')
+	if force:
+		$AnimationPlayer.advance($AnimationPlayer.get_animation("Appear").length)
+		
 
 func appeared_enough() -> void:
 	emit_signal('appeared')

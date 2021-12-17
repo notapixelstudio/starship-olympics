@@ -23,12 +23,15 @@ func set_endpoints(start_: Vector2, end_: Vector2) -> void:
 	current = start
 	refresh()
 	
-func appear() -> void:
+func appear(force: bool = false) -> void:
 	var distance = start.distance_to(end)
-	
-	# constant speed
-	$Tween.interpolate_property(self, 'current', current, end, distance/500, Tween.TRANS_LINEAR)
-	$Tween.start()
+	if force:
+		self.current = end
+		emit_signal("appeared")
+	else:
+		# constant speed
+		$Tween.interpolate_property(self, 'current', current, end, distance/500, Tween.TRANS_LINEAR)
+		$Tween.start()
 	
 func refresh() -> void:
 	set_points(PoolVector2Array([start, current]))
