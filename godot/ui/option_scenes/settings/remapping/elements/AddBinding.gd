@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends ColorRect
 
 class_name AddingBindingControls
 

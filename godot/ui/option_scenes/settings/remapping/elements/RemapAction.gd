@@ -14,7 +14,6 @@ export var button_scene : PackedScene
 signal clear_mapping
 signal remap
 
-onready var add = $Container/AddMapping
 
 
 func _process(delta):
@@ -75,9 +74,6 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=true
 	var new_control_key = global.remap_action_to(device_action, event)
 	emit_signal("remap", action, event, substitute)
 	add_mapping_to_screen(event)
-	add.disabled = true
-	yield(get_tree().create_timer(0.1), "timeout")
-	add.disabled = false
 	# save
 	persistance.save_game()
 
