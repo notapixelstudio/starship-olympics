@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
 [ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
@@ -34,7 +33,7 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 834, 635 )
-theme = ExtResource( 1 )
+theme = ExtResource( 4 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -65,7 +64,6 @@ margin_left = -326.0
 margin_top = -274.0
 margin_right = 349.0
 margin_bottom = 263.0
-theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -79,7 +77,6 @@ margin_left = -124.0
 margin_top = -24.0
 margin_right = 124.0
 margin_bottom = 54.0002
-theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 4 )
 text = "GAME PAUSED"
 align = 1
@@ -95,9 +92,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -338.5
-margin_top = -489.0
+margin_top = -465.0
 margin_right = 339.5
-margin_bottom = -35.0
+margin_bottom = -30.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,9 +102,9 @@ __meta__ = {
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
 modulate = Color( 1, 0.870588, 0.372549, 1 )
-margin_top = 24.0
+margin_top = 5.0
 margin_right = 678.0
-margin_bottom = 77.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
@@ -119,9 +116,9 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
-margin_top = 81.0
+margin_top = 62.0
 margin_right = 678.0
-margin_bottom = 102.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "find the x and do the y"
@@ -133,15 +130,15 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
-margin_top = 106.0
+margin_top = 87.0
 margin_right = 678.0
-margin_bottom = 148.0
+margin_bottom = 129.0
 rect_min_size = Vector2( 0, 42 )
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-margin_top = 152.0
+margin_top = 133.0
 margin_right = 678.0
-margin_bottom = 454.0
+margin_bottom = 435.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {

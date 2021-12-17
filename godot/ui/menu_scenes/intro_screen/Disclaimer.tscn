@@ -5,7 +5,6 @@
 [ext_resource path="res://ui/common_elements/ElementOptionCheckbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
 
-
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
@@ -103,7 +102,6 @@ margin_left = -421.907
 margin_top = 11.494
 margin_right = -246.907
 margin_bottom = 61.494
-is_global = true
 element_path = "enable_analytics"
 label_description = "ENABLE ANALYTICS"
 
@@ -120,4 +118,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Disclaimer"]
 anims/Appear = SubResource( 3 )
+
 [connection signal="pressed" from="Disclaimer/Button" to="." method="_on_Button_pressed"]

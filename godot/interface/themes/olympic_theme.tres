@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=39 format=2]
+[gd_resource type="Theme" load_steps=40 format=2]
 
 [ext_resource path="res://interface/themes/olympic/scroll.tres" type="StyleBox" id=1]
 [ext_resource path="res://interface/themes/olympic/panel.tres" type="StyleBox" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://interface/themes/olympic/scroll_focus.tres" type="StyleBox" id=19]
 [ext_resource path="res://interface/themes/olympic/hover.tres" type="StyleBox" id=20]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=21]
+[ext_resource path="res://interface/themes/olympic/hover_pressed.tres" type="StyleBox" id=22]
 
 [sub_resource type="DynamicFont" id=17]
 size = 28
@@ -82,8 +83,9 @@ Button/styles/normal = ExtResource( 3 )
 Button/styles/pressed = ExtResource( 4 )
 CheckBox/colors/font_color = Color( 1, 1, 1, 1 )
 CheckBox/colors/font_color_disabled = Color( 1, 1, 1, 1 )
-CheckBox/colors/font_color_hover = Color( 1, 1, 1, 1 )
-CheckBox/colors/font_color_pressed = Color( 0.8, 0.8, 0.8, 1 )
+CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/colors/icon_color_hover = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
@@ -94,7 +96,8 @@ CheckBox/icons/radio_unchecked = ExtResource( 10 )
 CheckBox/icons/unchecked = ExtResource( 11 )
 CheckBox/styles/disabled = ExtResource( 8 )
 CheckBox/styles/focus = ExtResource( 5 )
-CheckBox/styles/hover = SubResource( 16 )
+CheckBox/styles/hover = ExtResource( 20 )
+CheckBox/styles/hover_pressed = ExtResource( 22 )
 CheckBox/styles/normal = ExtResource( 3 )
 CheckBox/styles/pressed = ExtResource( 4 )
 CheckButton/colors/font_color = Color( 1, 1, 1, 1 )
