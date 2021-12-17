@@ -55,8 +55,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		entity.get('Deadly').enable()
 		#set_collision_mask_bit(2, true) # bombs colliding with bombs
 		$Sprite.scale = Vector2(1,1)
-		$CollisionShape2D.shape.radius = size*32
-		$NearArea/CollisionShape2D.shape.radius = size*32
+		$CollisionShape2D.shape.radius = size*80
+		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = ball_texture
 		$Sprite.scale = Vector2(size, size)
 		
