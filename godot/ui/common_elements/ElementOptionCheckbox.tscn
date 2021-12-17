@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/common_elements/ElementOptionCheckbox.gd" type="Script" id=3]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=4]
 
@@ -17,7 +16,6 @@ __meta__ = {
 margin_right = 247.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 31 )
-theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="ElementCheckbox"]

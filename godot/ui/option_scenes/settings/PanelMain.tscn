@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/option_scenes/settings/UIOptionPanel.gd" type="Script" id=1]
 [ext_resource path="res://ui/common_elements/ElementOptionCheckbox.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/common_elements/NavigateButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/option_scenes/settings/PanelAudio.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/option_scenes/settings/PanelRemappingTypes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=7]
 
 [node name="PanelMain" type="Container"]
 anchor_left = 0.5
@@ -16,6 +17,7 @@ margin_left = -389.0
 margin_top = -278.5
 margin_right = 389.0
 margin_bottom = 278.5
+theme = ExtResource( 7 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,8 +34,6 @@ __meta__ = {
 }
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
-anchor_top = -0.06639
-anchor_bottom = -0.06639
 margin_right = 778.0
 margin_bottom = 482.0
 
@@ -64,7 +64,7 @@ margin_top = 162.0
 margin_right = 778.0
 margin_bottom = 212.0
 element_path = "enable_camera"
-label_description = "Camera"
+label_description = "Dynamic camera"
 
 [node name="Analytics" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
 margin_top = 216.0
@@ -104,8 +104,9 @@ margin_top = 432.0
 margin_right = 778.0
 margin_bottom = 482.0
 element_path = "time_scale"
-label_description = "Engine Time scale"
+label_description = "Game Speed"
 elem_type = 2
+suffix = "X"
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
