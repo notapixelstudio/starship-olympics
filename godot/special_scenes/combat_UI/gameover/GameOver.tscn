@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=2]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://special_scenes/combat_UI/gameover/AreYouSure.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -19,6 +20,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+sure_scene = ExtResource( 4 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -36,10 +38,10 @@ __meta__ = {
 }
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-margin_left = 1030.0
-margin_top = 520.0
-margin_right = 1252.0
-margin_bottom = 699.0
+margin_left = 942.0
+margin_top = 480.0
+margin_right = 1238.0
+margin_bottom = 659.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 __meta__ = {
@@ -48,15 +50,15 @@ __meta__ = {
 }
 
 [node name="Continue" type="Button" parent="Buttons"]
-margin_right = 222.0
-margin_bottom = 41.0
+margin_right = 296.0
+margin_bottom = 51.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
 [node name="Map" type="Button" parent="Buttons"]
-margin_top = 45.0
-margin_right = 222.0
-margin_bottom = 87.0
+margin_top = 55.0
+margin_right = 296.0
+margin_bottom = 106.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "QUIT TO MAP"
@@ -71,14 +73,14 @@ size_flags_vertical = 3
 text = "QUIT"
 
 [node name="Control" type="Control" parent="Buttons"]
-margin_top = 91.0
-margin_right = 222.0
-margin_bottom = 133.0
+margin_top = 110.0
+margin_right = 296.0
+margin_bottom = 124.0
 size_flags_vertical = 3
 
 [node name="ShowArena" type="Button" parent="Buttons"]
-margin_top = 137.0
-margin_right = 222.0
+margin_top = 128.0
+margin_right = 296.0
 margin_bottom = 179.0
 size_flags_vertical = 3
 text = "SHOW ARENA"

@@ -334,7 +334,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-radius = 2300
+radius = 2200
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -1598,47 +1598,52 @@ scale = Vector2( 1, 1 )
 visible = false
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 14 )]
-position = Vector2( -2021, 0 )
+position = Vector2( -1971, 0 )
 type = "spike_gun"
 
 [node name="PowerUp4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 14 )]
-position = Vector2( 2021, 0 )
+position = Vector2( 1971, 0 )
 type = "spike_gun"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 14 )]
-position = Vector2( -1010.5, -1750.24 )
+position = Vector2( -975.5, -1700.24 )
 type = "spike_gun"
 
 [node name="PowerUp3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 14 )]
-position = Vector2( 1010.5, 1750.24 )
+position = Vector2( 975.5, 1700.24 )
 type = "spike_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = "bee_crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 2021, 0 )
+position = Vector2( 1960.37, 0 )
 rotation = 3.14159
+scale = Vector2( 0.97, 0.97 )
 controls = "joy1"
 species = ExtResource( 3 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1010.5, 1750.24 )
+position = Vector2( 980.185, 1697.73 )
 rotation = -2.09439
+scale = Vector2( 0.97, 0.97 )
 controls = "joy2"
 species = ExtResource( 7 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( -1010.5, -1750.24 )
+position = Vector2( -980.185, -1697.73 )
 rotation = 1.0472
+scale = Vector2( 0.97, 0.97 )
 controls = "joy2"
 species = ExtResource( 13 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 5 )]
-position = Vector2( -2021, -0.00134277 )
+position = Vector2( -1960.37, -0.00130249 )
 rotation = -2.68221e-07
+scale = Vector2( 0.97, 0.97 )
 controls = "joy1"
 species = ExtResource( 12 )
 cpu = true

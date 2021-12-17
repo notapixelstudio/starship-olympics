@@ -64,7 +64,7 @@ func _on_all_ships_spawned(spawners):
 		# also unhide new unlockable content
 		var nodes = traits.get_all_with('Node')
 		for node in nodes:
-			if node.get_status() == 'unlocked':
+			if node.get_status() == TheUnlocker.UNLOCKED:
 				self.explore(node)
 		
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
@@ -125,11 +125,11 @@ func explore(node) -> void:
 		if TheUnlocker.get_status("map_paths", path.name, TheUnlocker.HIDDEN) == TheUnlocker.HIDDEN:
 			path.appear()
 			TheUnlocker.unlock_element("map_paths", path.name)
-		yield(path, 'appeared')
-		if n is MapPlanet:
-			n.unhide()
-			yield(n, 'unhid')
-			TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
-		elif n is Waypoint:
-			n.unlock()
-			
+			yield(path, 'appeared')
+			if n is MapPlanet:
+				n.unhide()
+				yield(n, 'unhid')
+				TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
+			elif n is Waypoint:
+				n.unlock()
+				

@@ -9,7 +9,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=11]
 [ext_resource path="res://combat/modes/GoalPortal.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=13]
@@ -146,9 +146,7 @@ width = 200
 height = 200
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 10 )]
-rotation = 2.35619
-type = 2
-impulse = 5.0
+type = "soccer"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -700, 0 )

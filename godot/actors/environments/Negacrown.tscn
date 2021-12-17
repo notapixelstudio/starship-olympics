@@ -121,13 +121,13 @@ tracks/3/keys = {
 "values": [ Vector2( 2.5, 2.5 ) ]
 }
 
-[node name="Negacrown" instance=ExtResource( 1 )]
+[node name="Negacrown" groups=["Negacrown"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 type = "negacrown"
 
 [node name="Waiter" parent="." index="0" instance=ExtResource( 4 )]
 
-[node name="Sprite" parent="." index="5"]
+[node name="Sprite" parent="." index="6"]
 texture = ExtResource( 3 )
 
 [node name="ChargeTimer" type="Timer" parent="." index="7"]

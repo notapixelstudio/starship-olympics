@@ -12,24 +12,9 @@ func _ready():
 	add_to_group(PERSIST_GROUP)
 
 var unlocked_elements = {
-	"map_paths": {
-		"Path5" : UNLOCKED,
-		"Path6" : UNLOCKED,
-		"Path7" : UNLOCKED,
-	},
+	"map_paths": {},
 	"sets": {
-		"core": UNLOCKED,
-		"diamonds": HIDDEN,
-		"ice": HIDDEN,
-		"survival": HIDDEN,
-		"casino": LOCKED,
-		"snake": HIDDEN,
-		"sports": LOCKED,
-		"asteroids": HIDDEN,
-		"conquest": HIDDEN,
-		"death": LOCKED,
-		"crown": HIDDEN,
-		"cards": LOCKED,
+		"core": UNLOCKED
 	},
 	"species": {
 		"mantiacs_1": UNLOCKED,

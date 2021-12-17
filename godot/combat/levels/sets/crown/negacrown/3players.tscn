@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 50, 800 ]
+"values": [ 100, 800 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("GRect:height")
@@ -88,13 +88,13 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 50 ]
+"values": [ 800, 100 ]
 }
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
-match_duration_override = 100.0
+match_duration_override = 90.0
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
 
@@ -162,9 +162,7 @@ bevel_ne = 1085
 bevel_sw = 1085
 bevel_se = 1085
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
 
@@ -183,12 +181,10 @@ type = 4
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
 script = ExtResource( 1 )
-width = 425
-height = 425
+width = 450
+height = 450
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 2 )
 
 [node name="GlassWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
@@ -202,9 +198,7 @@ script = ExtResource( 1 )
 width = 425
 height = 425
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 3 )
 
 [node name="Gel" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
@@ -224,21 +218,18 @@ position = Vector2( -450, -450 )
 rotation = 0.785398
 controls = "joy1"
 species = ExtResource( 5 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 450, 450 )
 rotation = -2.3562
 controls = "joy2"
 species = ExtResource( 8 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
 position = Vector2( 450, -450 )
 rotation = 2.3562
 controls = "joy3"
 species = ExtResource( 4 )
-cpu = true
 
 [node name="Camera" parent="." index="6"]
 zoom = Vector2( 2441.41, 2441.41 )

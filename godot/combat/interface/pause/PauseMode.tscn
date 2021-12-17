@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
@@ -6,6 +6,21 @@
 [ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=4]
 [ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 6 )
@@ -45,6 +60,9 @@ margin_top = -274.0
 margin_right = 349.0
 margin_bottom = 288.0
 theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="GuiElements"]
 anchor_left = 0.5
@@ -58,11 +76,55 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Buttons" type="VBoxContainer" parent="GuiElements"]
-margin_left = 238.0
-margin_top = 325.0
-margin_right = 440.0
-margin_bottom = 519.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GuiElements"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -339.0
+margin_top = 120.0
+margin_right = 339.0
+margin_bottom = 562.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
+modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_right = 678.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "MINIGAME"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
+margin_top = 57.0
+margin_right = 678.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "find the x and do the y"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
+margin_top = 82.0
+margin_right = 678.0
+margin_bottom = 222.0
+rect_min_size = Vector2( 0, 140 )
+
+[node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
+margin_top = 226.0
+margin_right = 678.0
+margin_bottom = 396.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -70,28 +132,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Continue" type="Button" parent="GuiElements/Buttons"]
-margin_top = 24.0
-margin_right = 202.0
-margin_bottom = 49.0
+[node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_right = 678.0
+margin_bottom = 25.0
 custom_fonts/font = SubResource( 1 )
 text = "CONTINUE"
 
-[node name="Restart" type="Button" parent="GuiElements/Buttons"]
-margin_top = 53.0
-margin_right = 202.0
-margin_bottom = 78.0
+[node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 29.0
+margin_right = 678.0
+margin_bottom = 54.0
 custom_fonts/font = SubResource( 1 )
 text = "RESTART"
 
-[node name="SkipLevel" type="Button" parent="GuiElements/Buttons"]
-margin_top = 82.0
-margin_right = 202.0
-margin_bottom = 107.0
+[node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 58.0
+margin_right = 678.0
+margin_bottom = 83.0
 custom_fonts/font = SubResource( 1 )
 text = "SKIP LEVEL"
 
-[node name="Options" type="Button" parent="GuiElements/Buttons"]
+[node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false
 margin_top = 99.0
 margin_right = 182.0
@@ -99,32 +160,32 @@ margin_bottom = 128.0
 custom_fonts/font = SubResource( 1 )
 text = "OPTIONS"
 
-[node name="Quit1" type="Button" parent="GuiElements/Buttons"]
-margin_top = 111.0
-margin_right = 202.0
-margin_bottom = 136.0
+[node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 87.0
+margin_right = 678.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT TO MAP"
 
-[node name="Quit2" type="Button" parent="GuiElements/Buttons"]
-margin_top = 140.0
-margin_right = 202.0
-margin_bottom = 165.0
+[node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 116.0
+margin_right = 678.0
+margin_bottom = 141.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT TO CHARACTERS"
 
-[node name="Quit3" type="Button" parent="GuiElements/Buttons"]
-margin_top = 169.0
-margin_right = 202.0
-margin_bottom = 194.0
+[node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+margin_top = 145.0
+margin_right = 678.0
+margin_bottom = 170.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT TO MAIN MENU"
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="pressed" from="GuiElements/Buttons/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="GuiElements/Buttons/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="GuiElements/Buttons/SkipLevel" to="." method="_on_SkipLevel_pressed"]
-[connection signal="pressed" from="GuiElements/Buttons/Quit1" to="." method="_on_Quit1_pressed"]
-[connection signal="pressed" from="GuiElements/Buttons/Quit2" to="." method="_on_Quit2_pressed"]
-[connection signal="pressed" from="GuiElements/Buttons/Quit3" to="." method="_on_Quit3_pressed"]
+[connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/SkipLevel" to="." method="_on_SkipLevel_pressed"]
+[connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Quit1" to="." method="_on_Quit1_pressed"]
+[connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Quit2" to="." method="_on_Quit2_pressed"]
+[connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Quit3" to="." method="_on_Quit3_pressed"]

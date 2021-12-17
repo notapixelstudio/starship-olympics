@@ -5,8 +5,9 @@
 [ext_resource path="res://assets/sprites/balls/skull.png" type="Texture" id=3]
 
 [node name="Skull" instance=ExtResource( 1 )]
+collision_mask = 50710
 script = ExtResource( 2 )
 type = "skull"
 
-[node name="Sprite" parent="." index="4"]
+[node name="Sprite" parent="." index="5"]
 texture = ExtResource( 3 )
