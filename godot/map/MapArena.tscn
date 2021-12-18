@@ -176,7 +176,7 @@ texture = ExtResource( 29 )
 
 [node name="Moons" type="Node2D" parent="Battlefield/Middleground/Content" index="3"]
 
-[node name="MapMoon" parent="Battlefield/Middleground/Content/Moons" index="0" instance=ExtResource( 30 )]
+[node name="Flood Moon" parent="Battlefield/Middleground/Content/Moons" index="0" instance=ExtResource( 30 )]
 position = Vector2( -1350, 125 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
@@ -214,7 +214,7 @@ zoom = Vector2( 6, 6 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 6.31093e+24, 6.31093e+24 )
+zoom = Vector2( 1.54076e+27, 1.54076e+27 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0

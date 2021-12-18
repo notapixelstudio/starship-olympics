@@ -8,6 +8,9 @@ func set_sprite(v):
 	
 func _ready():
 	yield(get_tree(), "idle_frame") # wait for e.g., ships to prepare
+	redraw()
+	
+func redraw():
 	texture = get_node(sprite).texture
 	
 func _process(_delta):
