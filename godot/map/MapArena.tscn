@@ -99,32 +99,32 @@ position = Vector2( 3, 433 )
 texture = ExtResource( 12 )
 linked_to = NodePath("../Core")
 
-[node name="CoredanPrime2" parent="Battlefield/Middleground/Content/Planets" index="1" instance=ExtResource( 23 )]
-position = Vector2( -450, -25 )
-texture = ExtResource( 24 )
-linked_to = NodePath("../Crown")
-
-[node name="Core" parent="Battlefield/Middleground/Content/Planets" index="2" instance=ExtResource( 15 )]
+[node name="Core" parent="Battlefield/Middleground/Content/Planets" index="1" instance=ExtResource( 15 )]
 position = Vector2( 0, 250 )
 set = ExtResource( 17 )
 
-[node name="LumiraIV" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 23 )]
+[node name="LumiraIV" parent="Battlefield/Middleground/Content/Planets" index="2" instance=ExtResource( 23 )]
 position = Vector2( -822, 433 )
 texture = ExtResource( 19 )
 linked_to = NodePath("../Casual")
 
-[node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 15 )]
+[node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
 position = Vector2( -801.5, 503.5 )
 set = ExtResource( 43 )
 
-[node name="Mantharn" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 23 )]
+[node name="Mantharn" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 23 )]
 position = Vector2( 532.5, -245 )
 texture = ExtResource( 22 )
 linked_to = NodePath("../Combat")
 
-[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 15 )]
+[node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
 position = Vector2( 425, -275 )
 set = ExtResource( 18 )
+
+[node name="QueenMotherboard" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 23 )]
+position = Vector2( -450, -25 )
+texture = ExtResource( 24 )
+linked_to = NodePath("../Crown")
 
 [node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="7" instance=ExtResource( 15 )]
 position = Vector2( -450, -275 )
@@ -144,11 +144,19 @@ set = ExtResource( 16 )
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 500, -350, 275, -275, 225, -150, 150, -175, -100, -125 )
 
-[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="1" instance=ExtResource( 41 )]
+[node name="Path8" parent="Battlefield/Middleground/Content/Paths" index="1" instance=ExtResource( 41 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( -675, -425, -600, -350, -675, -275, -300, -175 )
+
+[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="2" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 700, -425, 850, -475, 825, -675, 900, -625, 975, -650, 1000, -825 )
 
-[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="2" instance=ExtResource( 41 )]
+[node name="Path9" parent="Battlefield/Middleground/Content/Paths" index="3" instance=ExtResource( 41 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( 1525, -375, 1650, -525, 1525, -725, 1425, -675, 1375, -750, 1425, -825, 1125, -925 )
+
+[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="4" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( -225, -250, -250, -425, -300, -525, -125, -575, -75, -550, 100, -825 )
 
@@ -214,7 +222,7 @@ zoom = Vector2( 6, 6 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 1.54076e+27, 1.54076e+27 )
+zoom = Vector2( 6.01857e+28, 6.01857e+28 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0

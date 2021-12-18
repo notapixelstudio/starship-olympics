@@ -25,6 +25,9 @@ func refresh() -> void:
 	$StatusSprite.texture = textures[value_index]
 	
 func tap(author: Ship):
+	if not status == TheUnlocker.UNLOCKED:
+		return
+		
 	global.set(value_name, values[ (value_index+1) % len(values) ])
 	self.refresh()
 	$act.play()

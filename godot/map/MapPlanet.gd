@@ -3,8 +3,6 @@ extends MapLocation
 
 class_name MapPlanet
 
-export (String, "hidden", "locked", "unlocked") var status setget set_status, get_status
-
 export var set : Resource # Set
 export var cursor_scene: PackedScene
 onready var sprite = $Sprite
@@ -18,12 +16,11 @@ signal unlocked
 
 func get_id() -> String:
 	return set.get_id()
-
-func get_status():
-	return status
 	
 func set_status(v):
 	status = v
+	if not is_inside_tree():
+		yield(self, 'ready')
 	$Lock.visible = false
 	if Engine.editor_hint:
 		$Sprite.modulate = Color(1,1,1,1)
