@@ -147,26 +147,33 @@ points = PoolVector2Array( 500, -350, 275, -275, 225, -150, 150, -175, -100, -12
 
 [node name="Path10" parent="Battlefield/Middleground/Content/Paths" index="1" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
-points = PoolVector2Array( -325, -175, -675, -275, -600, -350, -675, -425 )
+points = PoolVector2Array( -325, -175, -525, -250, -625, -200, -675, -275 )
 
-[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="2" instance=ExtResource( 41 )]
+[node name="Path12" parent="Battlefield/Middleground/Content/Paths" index="2" instance=ExtResource( 41 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( -675, -275, -600, -350, -675, -425 )
+
+[node name="Path5" parent="Battlefield/Middleground/Content/Paths" index="3" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 700, -425, 850, -475, 825, -675, 900, -625, 975, -650, 1000, -825 )
 
-[node name="Path11" parent="Battlefield/Middleground/Content/Paths" index="3" instance=ExtResource( 41 )]
+[node name="Path11" parent="Battlefield/Middleground/Content/Paths" index="4" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( 1125, -925, 1425, -825, 1375, -750, 1425, -675, 1525, -725, 1650, -525, 1525, -375 )
 
-[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="4" instance=ExtResource( 41 )]
+[node name="Path6" parent="Battlefield/Middleground/Content/Paths" index="5" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
-points = PoolVector2Array( -300, -175, -475, -500, -275, -675 )
+points = PoolVector2Array( -650, -525, -475, -500, -275, -675 )
 
-[node name="Path8" parent="Battlefield/Middleground/Content/Paths" index="5" instance=ExtResource( 41 )]
+[node name="Path8" parent="Battlefield/Middleground/Content/Paths" index="6" instance=ExtResource( 41 )]
 position = Vector2( -600, 650 )
 points = PoolVector2Array( -275, -675, -150, -575, -75, -550, 100, -825 )
 
-[node name="Waypoint" parent="Battlefield/Middleground/Content/Paths" index="6" instance=ExtResource( 31 )]
+[node name="Waypoint" parent="Battlefield/Middleground/Content/Paths" index="7" instance=ExtResource( 31 )]
 position = Vector2( -875, -25 )
+
+[node name="Waypoint2" parent="Battlefield/Middleground/Content/Paths" index="8" instance=ExtResource( 31 )]
+position = Vector2( -1275, 375 )
 
 [node name="Options" type="Node2D" parent="Battlefield/Middleground/Content" index="2"]
 
@@ -230,7 +237,7 @@ zoom = Vector2( 6, 6 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 3.76161e+29, 3.76161e+29 )
+zoom = Vector2( 9.40402e+29, 9.40402e+29 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0
