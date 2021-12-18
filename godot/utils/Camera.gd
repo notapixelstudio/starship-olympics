@@ -149,7 +149,7 @@ func _draw() -> void:
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
-	set_process(not disabled_override or enabled)
+	set_process(not disabled_override and enabled)
 	
 func world_to_screen(p : Vector2) -> Vector2:
 	return (p-offset)/zoom - Vector2(-marginX/2, -marginY/2) + viewport_rect.size/2
