@@ -54,7 +54,7 @@ polygon = PoolVector2Array( -1000, -300, -1000, 300, -1100, 300, -1100, -300 )
 
 [node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 position = Vector2( -140, 813 )
-type = "rocket_gun"
+type = "wave_gun"
 
 [node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 9 )]
 position = Vector2( -567, 641 )
@@ -71,11 +71,9 @@ rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 13 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 debug_mode = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

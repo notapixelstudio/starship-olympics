@@ -5,9 +5,11 @@ func _ready():
 
 func disable():
 	for button in get_children():
-		button.disabled = true
+		if button is Button:
+			button.disabled = true
 
 func enable():
 	for button in get_children():
-		button.disabled = false
+		if button is Button:
+			button.disabled = false
 	get_child(0).grab_focus()

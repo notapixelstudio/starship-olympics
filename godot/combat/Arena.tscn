@@ -340,7 +340,7 @@ height = 20000
 [node name="Enemies" type="Node2D" parent="SpawnPositions"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
+layer = 50
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 27 )]
 pause_mode = 2
@@ -368,7 +368,10 @@ stream = ExtResource( 30 )
 [node name="DemoLabel" parent="CanvasLayer" instance=ExtResource( 31 )]
 visible = false
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 32 )]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" parent="CanvasLayer2" instance=ExtResource( 32 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -385,5 +388,5 @@ script = SubResource( 4 )
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 5 )
 
-[connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
-[connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
+[connection signal="restart" from="CanvasLayer2/Pause" to="." method="_on_Pause_restart"]
+[connection signal="skip" from="CanvasLayer2/Pause" to="." method="_on_Pause_skip"]

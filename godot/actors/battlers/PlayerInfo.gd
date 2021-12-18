@@ -18,6 +18,9 @@ func _ready():
 	update_scale()
 	update_rotation()
 	
+	# hide outside matches
+	self.visible = global.is_match_running()
+	
 func _enter_tree():
 	if target:
 		update_rotation()

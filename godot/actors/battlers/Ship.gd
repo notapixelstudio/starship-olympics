@@ -43,9 +43,9 @@ const DASH_BASE = -400
 const DASH_MULTIPLIER = 2.5 # was 2.7, decreased to lessen the chanche of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1100
-const BALL_BOOST = 2000
+const BALL_BOOST = 2300
 const BOMB_CHARGE_MULTIPLIER = 1.4
-const BALL_CHARGE_MULTIPLIER = 2.1
+const BALL_CHARGE_MULTIPLIER = 2.2
 const BULLET_BOOST = 1500
 const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
@@ -681,13 +681,13 @@ func apply_powerup(powerup):
 	elif powerup.type == 'spike_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bullet)
 		update_weapon_indicator()
-	elif powerup.type == 'bombs':
+	elif powerup.type == 'bomb':
 		set_bomb_type(GameMode.BOMB_TYPE.mine)
 		update_weapon_indicator()
-	elif powerup.type == 'waves':
+	elif powerup.type == 'wave_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.wave)
 		update_weapon_indicator()
-	elif powerup.type == 'bubbles':
+	elif powerup.type == 'bubble_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		

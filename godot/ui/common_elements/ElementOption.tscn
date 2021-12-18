@@ -8,7 +8,7 @@
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowRightWhite.png" type="Texture" id=6]
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowTransparent.png" type="Texture" id=7]
 
-[node name="Element" type="MarginContainer"]
+[node name="Element" type="Panel"]
 anchor_right = 1.0
 margin_right = -880.0
 margin_bottom = 36.0
@@ -39,9 +39,9 @@ __meta__ = {
 
 [node name="Padding" type="Label" parent="Container"]
 margin_left = 4.0
-margin_top = 14.0
+margin_top = 9.0
 margin_right = 196.0
-margin_bottom = 35.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 align = 1
@@ -93,8 +93,6 @@ grow_vertical = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 2 )
-text = "
-"
 valign = 1
 uppercase = true
 

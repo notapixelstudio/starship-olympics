@@ -294,6 +294,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/MapLocation.gd"
 }, {
+"base": "MapLocation",
+"class": "MapOption",
+"language": "GDScript",
+"path": "res://map/MapOption.gd"
+}, {
 "base": "Control",
 "class": "MapPanel",
 "language": "GDScript",
@@ -313,6 +318,11 @@ _global_script_classes=[ {
 "class": "MapPlanet",
 "language": "GDScript",
 "path": "res://map/MapPlanet.gd"
+}, {
+"base": "MapLocation",
+"class": "MapRadio",
+"language": "GDScript",
+"path": "res://map/MapRadio.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Marble",
@@ -587,10 +597,12 @@ _global_script_class_icons={
 "MapCheckpoint": "",
 "MapCursor": "",
 "MapLocation": "",
+"MapOption": "",
 "MapPanel": "",
 "MapPanelContainer": "",
 "MapPath": "",
 "MapPlanet": "",
+"MapRadio": "",
 "Marble": "",
 "Mine": "",
 "Minigame": "",
@@ -679,10 +691,6 @@ window/size/fullscreen.debug=false
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/Godot-GameAnalytics/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
-
-[gui]
-
-theme/custom_font="res://assets/theme/montserrat_eb_42.tres"
 
 [importer_defaults]
 

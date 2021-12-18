@@ -32,7 +32,7 @@ func get_last_winner() -> InfoPlayer:
 	var best_score = 0
 	for player in players:
 		var new_score = player.get_session_score_total()
-		if new_score > best_score:
+		if new_score > best_score and best_score >= global.win:
 			best_player = player
 			best_score = new_score
 	return best_player

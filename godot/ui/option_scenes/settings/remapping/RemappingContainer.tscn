@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/option_scenes/settings/remapping/RemappingContainer.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/RemapAction.tscn" type="PackedScene" id=4]
@@ -11,9 +11,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -459.0
+margin_left = -836.0
 margin_top = -245.0
-margin_right = 459.0
+margin_right = 836.0
 margin_bottom = 245.0
 size_flags_vertical = 3
 script = ExtResource( 2 )
@@ -23,13 +23,13 @@ __meta__ = {
 device_type = "joypad"
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="."]
-margin_right = 1049.0
+margin_right = 1672.0
 margin_bottom = 490.0
 custom_constants/separation = 20
 
 [node name="Device" parent="UIButtonsContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_right = 1049.0
+margin_right = 1672.0
 margin_bottom = 50.0
 element_path = "joypad_device"
 label_description = "device"
@@ -37,42 +37,42 @@ elem_type = 2
 
 [node name="action1" parent="UIButtonsContainer" instance=ExtResource( 4 )]
 margin_top = 70.0
-margin_right = 1049.6
-margin_bottom = 120.0
+margin_right = 1672.0
+margin_bottom = 101.0
 
 [node name="action" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 140.0
-margin_right = 1049.6
-margin_bottom = 190.0
+margin_top = 121.0
+margin_right = 1672.0
+margin_bottom = 152.0
 action = "down"
 
 [node name="action2" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 210.0
-margin_right = 1049.6
-margin_bottom = 260.0
+margin_top = 172.0
+margin_right = 1672.0
+margin_bottom = 203.0
 action = "left"
 
 [node name="action3" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 280.0
-margin_right = 1049.6
-margin_bottom = 330.0
+margin_top = 223.0
+margin_right = 1672.0
+margin_bottom = 254.0
 action = "right"
 
 [node name="action4" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 350.0
-margin_right = 1049.6
-margin_bottom = 400.0
+margin_top = 274.0
+margin_right = 1672.0
+margin_bottom = 305.0
 action = "fire"
 
 [node name="Control" type="Control" parent="UIButtonsContainer"]
-margin_top = 420.0
-margin_right = 1049.0
+margin_top = 325.0
+margin_right = 1672.0
 margin_bottom = 420.0
 size_flags_vertical = 3
 
 [node name="Default" type="Button" parent="UIButtonsContainer"]
 margin_top = 440.0
-margin_right = 1049.0
+margin_right = 1672.0
 margin_bottom = 490.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
