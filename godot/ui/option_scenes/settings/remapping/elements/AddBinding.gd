@@ -5,6 +5,9 @@ class_name AddingBindingControls
 export var action: String
 signal remap
 
+func _ready():
+	set_process_input(false)
+	
 func check_input_event(event:InputEvent):
 	if "kb" in self.action:
 		return event is InputEventKey
