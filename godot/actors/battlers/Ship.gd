@@ -681,13 +681,13 @@ func apply_powerup(powerup):
 	elif powerup.type == 'spike_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bullet)
 		update_weapon_indicator()
-	elif powerup.type == 'bombs':
+	elif powerup.type == 'bomb':
 		set_bomb_type(GameMode.BOMB_TYPE.mine)
 		update_weapon_indicator()
-	elif powerup.type == 'waves':
+	elif powerup.type == 'wave_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.wave)
 		update_weapon_indicator()
-	elif powerup.type == 'bubbles':
+	elif powerup.type == 'bubble_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		
