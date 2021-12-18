@@ -22,6 +22,9 @@ func refresh() -> void:
 	self.set_active(global.get(value_name) == value[0])
 	
 func tap(author: Ship):
+	if not status == TheUnlocker.UNLOCKED:
+		return
+		
 	global.set(value_name, value[0])
 	$act.play()
 	

@@ -260,10 +260,8 @@ rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 15 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

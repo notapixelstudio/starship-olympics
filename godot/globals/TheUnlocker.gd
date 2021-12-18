@@ -12,6 +12,7 @@ func _ready():
 	add_to_group(PERSIST_GROUP)
 
 var unlocked_elements = {
+	"map_locations": {},
 	"map_paths": {},
 	"sets": {
 		"core": UNLOCKED
