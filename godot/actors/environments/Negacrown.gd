@@ -54,9 +54,14 @@ func get_nearest_ship() -> Ship:
 	if len(ships) <= 1: # needed to avoid preferring one ship at start
 		return null
 	
-	var nearest = ships[0]
-	var distance = global_position.distance_to(nearest.global_position)
+	var nearest = null
+	var distance = 100000000 # Infinity
 	for ship in ships:
+		# follow the players with more points only
+		var leaders = len(global.the_match.get_leader_players())
+		var players = global.the_match.get_number_of_players()
+		if not (ship.get_player() in global.the_match.get_leader_players()) and leaders < players and leaders != 0:
+			continue
 		var d = global_position.distance_to(ship.global_position)
 		var holdable = ship.get_cargo().get_holdable()
 		var already_haunted = holdable != null and holdable is Ball and holdable.has_type('negacrown')
