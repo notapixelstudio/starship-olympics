@@ -130,9 +130,7 @@ func explore(node) -> void:
 				n.unhide()
 				yield(n, 'unhid')
 				TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
-			elif n is Waypoint:
-				n.unlock()
 			elif n is MapLocation:
 				n.set_status(TheUnlocker.UNLOCKED)
-				TheUnlocker.unlock_element("map_locations", n.get_id(), TheUnlocker.LOCKED)
+				TheUnlocker.unlock_element("map_locations", n.get_id(), TheUnlocker.UNLOCKED)
 				

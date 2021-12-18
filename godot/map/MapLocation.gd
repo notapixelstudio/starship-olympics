@@ -4,7 +4,7 @@ class_name MapLocation
 
 export (String, "hidden", "locked", "unlocked") var status = TheUnlocker.HIDDEN setget set_status, get_status
 
-func _ready():
+func _enter_tree():
 	self.set_status(TheUnlocker.get_status("map_locations", self.get_id()))
 	
 func get_status():
