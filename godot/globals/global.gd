@@ -95,8 +95,8 @@ func set_version(value):
 
 # OPTIONS need a min and a MAX
 const min_win = 1
-var win = 3
-const max_win = 5
+var win = 5
+const max_win = 10
 
 var campaign_win = win
 

@@ -7,14 +7,14 @@ export var value_name : String = "flood"
 export var values : Array
 export var texture : Texture setget set_texture
 export var textures : Array setget set_textures # Array of Textures
-export var description = "flood arenas"
+export var label = "flood moon"
 
 var value_index = 0
 
 func _ready():
 	assert(len(values) == len(textures))
 	
-	$Wrapper/Label.text = self.name
+	$Wrapper/Label.text = label
 	refresh()
 	
 func refresh() -> void:
