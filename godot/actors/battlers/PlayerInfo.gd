@@ -18,9 +18,6 @@ func _ready():
 	update_scale()
 	update_rotation()
 	
-	# hide outside matches
-	self.visible = global.is_match_running()
-	
 func _enter_tree():
 	if target:
 		update_rotation()
@@ -33,7 +30,7 @@ func _process(delta):
 	update_scale()
 	
 func update_scale():
-	$Wrapper/Scaled.scale = Vector2(7,7) if not target.camera or not target.camera.enabled else target.camera.zoom
+	$Wrapper/Scaled.scale = Vector2(5,5) if not target.camera or not target.camera.enabled else target.camera.zoom
 	
 func update_rotation():
 	rotation = -target.rotation
