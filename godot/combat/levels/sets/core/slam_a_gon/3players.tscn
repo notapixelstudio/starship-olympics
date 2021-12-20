@@ -111,7 +111,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP1" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0.35, 0.566667, 1, 1 )
+modulate = Color( 0, 0.4, 1, 1 )
 position = Vector2( -900, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
@@ -140,7 +140,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP2" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
+modulate = Color( 0.848, 0.288, 0.96, 1 )
 position = Vector2( -875, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
@@ -258,10 +258,8 @@ controls = "joy3"
 species = ExtResource( 9 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 9.3132e+06, 9.3132e+06 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]
