@@ -303,7 +303,7 @@ match_progress_trigger = 0.4
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner7" index="0" instance=ExtResource( 16 )]
-type = "shields"
+type = "plate"
 tease = true
 random_types = [ "plate", "shields" ]
 
@@ -398,7 +398,7 @@ jitter = 4.0
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner5" index="0" instance=ExtResource( 16 )]
-type = "shields"
+type = "plate"
 tease = true
 random_types = [ "shields", "plate" ]
 
@@ -556,23 +556,19 @@ tease = true
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1400, 900 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 13 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 1400, -900 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 12 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
 position = Vector2( 1400, 900 )
 rotation = -1.5708
 controls = "joy2"
 species = ExtResource( 10 )
-cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 156.25, 156.25 )

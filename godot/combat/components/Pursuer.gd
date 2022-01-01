@@ -3,21 +3,15 @@ extends Component
 var target : Ship setget set_target, get_target
 
 export var keep_target_timeout : float = 1.0
-export var detection_insensitive_timeout : float = 1.0
+export var detection_insensitive_timeout : float = 0.5
 var keep_target_t : float = 0
 var detection_insensitive_t : float = 0
-var pursued := false
+var last_valid_target = null
 
 func set_target(value):
-	if value == null:
-		target = null
-		return true
-		
-	if not pursued:
-		target = value
-		pursued = true
-		return true
-	return false
+	target = value
+	if target:
+		last_valid_target = target
 	
 func get_target():
 	return target
@@ -44,3 +38,7 @@ func has_detection_insensitive_timed_out():
 func enable_with_timeout(wait_time):
 	yield(get_tree().create_timer(wait_time), "timeout")
 	enable()
+
+func get_last_valid_target():
+	return last_valid_target
+	

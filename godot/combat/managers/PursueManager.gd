@@ -21,20 +21,19 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 		if not entity.get('Owned').get_owned_by().species in royal_species and not ECM.E(ship).has('Royal'):
 			return # FIXME? owner could be an invalid instance
 		
-	if entity.has('Pursuer'):
-		entity.get('Pursuer').set_keep_target_timeout()
-		
-		if entity.get('Pursuer').has_detection_insensitive_timed_out():
-			var old_target = entity.get('Pursuer').get_target()
-			if ship != old_target:
-				var success = entity.get('Pursuer').set_target(ship)
-				if success:
-					entity.get('Pursuer').set_detection_insensitive_timeout()
-					if sth is Bull:
-						$BullTargetLocked.play()
-					else:
-						$TargetLocked.play()
-					
+	if entity.has('Pursuer') and entity.get('Pursuer').has_detection_insensitive_timed_out():
+		var old_target = entity.get('Pursuer').get_last_valid_target()
+		if ship != old_target:
+			# pursue time is renewed only if a new target is found
+			entity.get('Pursuer').set_keep_target_timeout()
+			
+			entity.get('Pursuer').set_target(ship)
+			entity.get('Pursuer').set_detection_insensitive_timeout()
+			if sth is Bull:
+				$BullTargetLocked.play()
+			else:
+				$TargetLocked.play()
+				
 func _physics_process(delta):
 	for targeter_e in ECM.entities_with('Pursuer'):
 		targeter_e.get('Pursuer').update_timeouts(delta)
