@@ -46,6 +46,7 @@ func _physics_process(delta):
 		var target = targeter_e.get('Pursuer').get_target()
 		
 		if global.arena.is_ship_valid(target):
-			var thrust = 50 if targeter_e.has('Thrusters') else 20
-			targeter.apply_impulse(Vector2(0,0), (target.position - targeter.position).normalized()*thrust)
+			targeter_e.get('Pursuer').thrust += 1 if targeter_e.has('Thrusters') else 0.5
+			
+			targeter.apply_impulse(Vector2(0,0), (target.position - targeter.position).normalized()*targeter_e.get('Pursuer').thrust)
 			
