@@ -67,7 +67,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = bullet_texture
-		$Sprite.scale = Vector2(size*1.2, size*1.2)
+		$Sprite.scale = Vector2(size*0.6, size*0.6)
 		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
 		mode = MODE_CHARACTER
 		
