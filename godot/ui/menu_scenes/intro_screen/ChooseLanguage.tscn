@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/common_elements/ElementOption.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/menu_scenes/intro_screen/ChooseLanguage.gd" type="Script" id=2]
+[ext_resource path="res://ui/menu_scenes/intro_screen/Intro.tscn" type="PackedScene" id=3]
+
+[node name="IntroLanguage" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+main_screen = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Language" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -231.5
+margin_top = -25.0
+margin_right = 231.5
+margin_bottom = 25.0
+element_path = "language"
+label_description = "language"
+elem_type = 2
