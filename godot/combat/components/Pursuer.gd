@@ -7,7 +7,7 @@ export var detection_insensitive_timeout : float = 0.5
 var keep_target_t : float = 0
 var detection_insensitive_t : float = 0
 var last_valid_target = null
-var thrust := 0
+var thrust := 0.0
 
 func set_target(value):
 	target = value
