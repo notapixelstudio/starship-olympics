@@ -58,7 +58,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = ball_texture
-		$Sprite.scale = Vector2(size, size)
+		$Sprite.scale = Vector2(size*1.1, size*1.1)
 		
 	elif type == GameMode.BOMB_TYPE.bullet:
 		entity.get('Pursuer').disable()
