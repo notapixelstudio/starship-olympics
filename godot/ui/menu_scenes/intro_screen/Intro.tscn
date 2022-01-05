@@ -1,67 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/menu_scenes/intro_screen/Intro.gd" type="Script" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/menu_scenes/intro_screen/Disclaimer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/audio/UI_effects/426759__magmi-soundtracks__scary-tension-buildup-02.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/soundtracks/lewislancaster-0013shed.ogg" type="AudioStream" id=6]
-
-[sub_resource type="DynamicFont" id=1]
-size = 38
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 54
-font_data = ExtResource( 3 )
+[ext_resource path="res://assets/UI/futureui-panel.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/species/photo_2022-01-02_22-04-40.jpg" type="Texture" id=8]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Appear"
 length = 7.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Line1:modulate")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Line2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 2.5, 3.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Line3:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 4.5, 5.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 7 ),
+"times": PoolRealArray( 2.1, 7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ true ],
@@ -71,17 +29,68 @@ tracks/3/keys = {
 "method": "go_ahead"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 1.2 ),
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( -0.3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Photo2022-01-0222-04-40:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Futureui-panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Photo2022-01-0222-04-40:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Futureui-panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="Intro" type="Control"]
@@ -97,45 +106,12 @@ main_screen = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
-
-[node name="Line1" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 196.0
-margin_right = 1277.0
-margin_bottom = 294.0
-custom_fonts/normal_font = SubResource( 1 )
-bbcode_enabled = true
-bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
-text = "MILLENNIA OF INTERGALACTIC WARS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Line2" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 293.0
-margin_right = 1277.0
-margin_bottom = 391.0
-custom_fonts/normal_font = SubResource( 1 )
-bbcode_enabled = true
-bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
-text = "FINALLY CAME TO AN END"
-
-[node name="Line3" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 380.0
-margin_right = 1277.0
-margin_bottom = 478.0
-custom_fonts/italics_font = SubResource( 2 )
-custom_fonts/normal_font = SubResource( 1 )
-bbcode_enabled = true
-bbcode_text = "[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]"
-text = "WHEN THE GAMES WERE CREATED"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Appear = SubResource( 3 )
-
 [node name="Disclaimer" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
@@ -145,3 +121,27 @@ bus = "Music"
 stream = ExtResource( 6 )
 autoplay = true
 bus = "Music"
+
+[node name="Photo2022-01-0222-04-40" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 208.061, 358.59 )
+scale = Vector2( 0.283883, 0.283883 )
+texture = ExtResource( 8 )
+
+[node name="Futureui-panel" type="Sprite" parent="."]
+position = Vector2( 795.824, 397.263 )
+scale = Vector2( 1.01658, 0.983965 )
+texture = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Appear = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="Typewriter" parent="." instance=ExtResource( 3 )]
+margin_left = -204.273
+margin_top = -68.1793
+margin_right = 399.727
+margin_bottom = 45.8207
+text = "...what? ...has a century passed already?"
+align = 0
+autowrap = true
