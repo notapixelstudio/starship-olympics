@@ -179,6 +179,9 @@ func _enter_tree():
 	dash_init_appearance()
 	if controls_enabled:
 		make_invincible()
+		
+	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.4)
+	$AutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
 	
 func make_invincible():
 	invincible = true

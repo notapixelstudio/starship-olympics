@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://actors/weapons/Scythe.tscn" type="PackedScene" id=26]
 [ext_resource path="res://actors/weapons/Magnet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://utils/Cargo.tscn" type="PackedScene" id=28]
+[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=29]
 [ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
@@ -268,6 +269,9 @@ amount = 80
 local_coords = false
 process_material = SubResource( 9 )
 texture = ExtResource( 19 )
+
+[node name="AutoTrail" parent="." instance=ExtResource( 29 )]
+width = 140
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
