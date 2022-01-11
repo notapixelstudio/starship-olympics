@@ -23,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, -2, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, -2, 1, 1 ),
 "update": 0,
-"values": [ 40.0, 80.0, 80.0, 0.01 ]
+"values": [ 10.0, 60.0, 60.0, 0.01, 0.01 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Image:scale")
@@ -90,7 +90,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 40.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
@@ -160,7 +159,6 @@ autoplay = "Wow"
 anims/Wow = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 3 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
