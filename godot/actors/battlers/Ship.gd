@@ -172,9 +172,6 @@ func _enter_tree():
 	
 	update_weapon_indicator()
 	
-	# shields always start off
-	$Shields.switch_off()
-	
 	emit_signal('spawned', self)
 	dash_init_appearance()
 	if controls_enabled:
@@ -182,6 +179,15 @@ func _enter_tree():
 		
 	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.4)
 	$AutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
+	
+	# wait for something... idk, shields are sometimes stuck on
+	yield(get_tree(), "idle_frame")
+	
+	# shields always start off
+	$Shields.switch_off()
+	
+	# basic shields: two sectors
+	$Shields.up('shields')
 	
 func make_invincible():
 	invincible = true
