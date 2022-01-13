@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/AlchemicalBombing.tres" type="Resource" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=13]
+[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=15]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -45,6 +48,22 @@ radius = 1900
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.372, 0.62, 0.62, 1 )
 bg_color = Color( 0.336, 0.56, 0.56, 1 )
+
+[node name="Wall" type="StaticBody2D" parent="Battlefield/Background" index="4" groups=["wall"] instance=ExtResource( 4 )]
+collision_layer = 2147483648
+collision_mask = 270337
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+offset = 400
+elongation = 100
+type = 4
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/Wall" index="8"]
+script = ExtResource( 15 )
+radius = 425
+precision = 50.0
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Battlefield/Middleground" index="0"]
 node_a = NodePath("../../Background/OutsideWall")
@@ -202,15 +221,33 @@ node_b = NodePath("../../Bubble8")
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="14" instance=ExtResource( 11 )]
 position = Vector2( -1050, 0 )
-type = "bubbles"
+type = "bubble_gun"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="15" instance=ExtResource( 11 )]
 position = Vector2( 1050, 0 )
-type = "bubbles"
+type = "bubble_gun"
 
 [node name="PowerUp3" parent="Battlefield/Middleground" index="16" instance=ExtResource( 11 )]
 position = Vector2( 0, -1050 )
-type = "bubbles"
+type = "bubble_gun"
+
+[node name="Gel" parent="Battlefield/Middleground" index="17" instance=ExtResource( 14 )]
+position = Vector2( 0, -1600 )
+rotation = 1.5708
+width = 500
+depth = 50
+
+[node name="Gel2" parent="Battlefield/Middleground" index="18" instance=ExtResource( 14 )]
+position = Vector2( -1385.64, 800 )
+rotation = -0.523598
+width = 500
+depth = 50
+
+[node name="Gel3" parent="Battlefield/Middleground" index="19" instance=ExtResource( 14 )]
+position = Vector2( 1385.64, 800 )
+rotation = -2.61799
+width = 500
+depth = 50
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( 1050, 0 )

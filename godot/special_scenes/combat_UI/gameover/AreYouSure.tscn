@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://special_scenes/combat_UI/gameover/AreYouSure.gd" type="Script" id=1]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
+
+[node name="Sure" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.5
+margin_top = -122.0
+margin_right = 216.5
+margin_bottom = 122.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 8.0
+margin_bottom = 51.0
+text = "Are you sure to "
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 48.0
+margin_bottom = 91.0
+text = "go back to menu?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YES" type="Button" parent="."]
+margin_top = 152.0
+margin_right = 150.0
+margin_bottom = 203.0
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "YES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NO" type="Button" parent="."]
+margin_left = 282.951
+margin_top = 152.587
+margin_right = 432.951
+margin_bottom = 203.587
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "NO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="YES" to="." method="_on_YES_pressed"]
+[connection signal="pressed" from="NO" to="." method="_on_NO_pressed"]

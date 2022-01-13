@@ -87,4 +87,4 @@ func choose_level(player_id: String, minigame: Minigame):
 	chosen_minicard.position = back_pos
 	chosen_minicard.scale = back_scale
 	chosen_minicard.z_index = 0
-	emit_signal("cleanup")
+	

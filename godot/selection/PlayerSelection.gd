@@ -9,7 +9,7 @@ Class for PlayerSelection logic. Will be set controls and Species template
 var uid:int
 
 # enum duplicates in global
-enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
+enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4,RM1, RM2,RM3,RM4, NO, CPU}
 
 signal selected
 signal deselected

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -28,9 +28,13 @@
 [ext_resource path="res://actors/weapons/Scythe.tscn" type="PackedScene" id=26]
 [ext_resource path="res://actors/weapons/Magnet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://utils/Cargo.tscn" type="PackedScene" id=28]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=29]
+[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=29]
 [ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
+[ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
+[ext_resource path="res://actors/weapons/arsenal/WaveGun.tscn" type="PackedScene" id=33]
+[ext_resource path="res://actors/weapons/arsenal/RocketGun.tscn" type="PackedScene" id=34]
+[ext_resource path="res://actors/weapons/arsenal/NoWeapon.tscn" type="PackedScene" id=35]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -43,7 +47,7 @@ radius = 48.0
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 550.0
+radius = 700.0
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 300.0
@@ -91,6 +95,14 @@ order = 1
 [node name="Collector" parent="." instance=ExtResource( 24 )]
 
 [node name="Cargo" parent="." instance=ExtResource( 28 )]
+
+[node name="WeaponSlot" parent="." instance=ExtResource( 32 )]
+visible = false
+arsenal = {
+"none": ExtResource( 35 ),
+"rocket_gun": ExtResource( 34 ),
+"wave_gun": ExtResource( 33 )
+}
 
 [node name="Magnet" parent="." instance=ExtResource( 27 )]
 
@@ -231,12 +243,6 @@ enabled = false
 
 [node name="Debug" parent="." instance=ExtResource( 15 )]
 
-[node name="CameraEye" parent="." instance=ExtResource( 29 )]
-position = Vector2( 200, -100 )
-
-[node name="CameraEye2" parent="." instance=ExtResource( 29 )]
-position = Vector2( 200, 100 )
-
 [node name="TargetDest" type="Position2D" parent="."]
 script = ExtResource( 17 )
 
@@ -263,6 +269,9 @@ amount = 80
 local_coords = false
 process_material = SubResource( 9 )
 texture = ExtResource( 19 )
+
+[node name="AutoTrail" parent="." instance=ExtResource( 29 )]
+width = 140
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]

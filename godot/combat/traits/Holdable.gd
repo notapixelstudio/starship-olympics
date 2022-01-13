@@ -8,6 +8,7 @@ func validate():
 	assert(host.has_method('get_texture'))
 	assert(host.has_method('show_on_top'))
 	assert(host.has_method('is_rotatable'))
+	assert(host.has_method('is_glowing'))
 	assert(host.has_method('is_loadable'))
 	assert(host.has_method('has_type'))
 	assert(host.has_method('is_equivalent_to'))

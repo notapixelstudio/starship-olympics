@@ -4,7 +4,7 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniballs', 'rockets', 'spikes', 'bombs', 'waves', 'bubbles', 'drill') var type = 'shield' setget set_type
+export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' setget set_type
 export var appear = true
 export var tease = false
 export var random_types = []
@@ -25,24 +25,24 @@ const CATEGORY = {
 	'scythe': 'addition',
 	'flail': 'addition',
 	
-	'rockets': 'main',
-	'miniballs': 'main',
-	'spikes': 'main',
-	'bombs': 'main',
-	'waves': 'main',
-	'bubbles': 'main',
-	'drill': 'main'
+	'rocket_gun': 'weapon',
+	'miniball_gun': 'weapon',
+	'spike_gun': 'weapon',
+	'bomb': 'weapon',
+	'wave_gun': 'weapon',
+	'bubble_gun': 'weapon',
+	'drill': 'weapon'
 }
 
 const EXCLUSIVE = {
-	'main': true,
+	'weapon': true,
 	'strange': false,
 	'protection': false,
 	'addition': false
 }
 
 const COLOR = {
-	'main': Color(1,0,0,1),
+	'weapon': Color(1,0,0,1),
 	'strange': Color(1,0,1,1),
 	'protection': Color(0,1,1,1),
 	'addition': Color(1,0.25,0,1)
@@ -84,6 +84,9 @@ func get_strategy(ship, distance, game_mode):
 func collect(by):
 	queue_free()
 	emit_signal('collected', by)
+
+func has_category(category: String) -> bool:
+	return CATEGORY[type] == category
 
 static func get_color(t):
 	return COLOR[CATEGORY[t]]

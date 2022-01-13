@@ -35,6 +35,10 @@ func get_last_winner() -> InfoPlayer:
 		if new_score > best_score:
 			best_player = player
 			best_score = new_score
+			
+	if best_score < global.win:
+		return null
+		
 	return best_player
 	
 func reset_players():

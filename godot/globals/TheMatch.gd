@@ -22,9 +22,7 @@ var winners = [] # Array of winning InfoPlayer
 var no_players = false
 var end_on_perfect := true
 
-var this_game_mode : GameMode
 var replay: TheReplay
-
 const DEADZONE = 0.1
 signal game_over
 signal setup
@@ -49,7 +47,8 @@ func stop():
 	set_process(false)
 	replay.stop()
 
-func initialize(_players: Dictionary, game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
+func initialize(_players: Dictionary, _game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
+	game_mode = _game_mode
 	player_scores = []
 	this_game_mode = game_mode
 	target_score = game_mode.max_score
@@ -210,3 +209,7 @@ func get_leader_players() -> Array:
 		Array[InfoPlayer] 
 	"""
 	return self.leaders
+
+func get_game_mode() -> GameMode:
+	return game_mode
+	

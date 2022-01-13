@@ -16,7 +16,7 @@ func set_atmosphere_radius(v):
 	atmosphere_radius = v
 	$Atmosphere/GCircle.set_radius(v)
 	$Air.polygon = $Atmosphere/GCircle.to_PoolVector2Array()
-
+	$FarArea/CollisionPolygon2D.polygon = $Atmosphere/GCircle.to_PoolVector2Array()
 
 func _on_NearArea_body_entered(body):
 	Events.emit_signal("planet_reached", self, body)

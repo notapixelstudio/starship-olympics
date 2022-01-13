@@ -20,11 +20,7 @@ bounce = 100.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 90.0
 
-[node name="Crown" type="RigidBody2D" groups=[
-"Crown",
-"Foreground",
-"in_camera",
-]]
+[node name="Crown" type="RigidBody2D" groups=["Crown", "Foreground", "in_camera"]]
 collision_layer = 512
 collision_mask = 50192
 physics_material_override = SubResource( 1 )

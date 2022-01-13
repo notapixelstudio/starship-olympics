@@ -27,8 +27,6 @@ var rotation_request = 0
 var THRUST = 6500
 var auto_thrust := false
 
-var shields = 0
-var max_shields = 1
 var deadly_trail = false
 var deadly_trail_powerup = false
 
@@ -44,10 +42,10 @@ const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
 const DASH_MULTIPLIER = 2.5 # was 2.7, decreased to lessen the chanche of tunneling
 const BOMB_OFFSET = 50
-const BOMB_BOOST = 1100
-const BALL_BOOST = 2000
-const BOMB_CHARGE_MULTIPLIER = 1.4
-const BALL_CHARGE_MULTIPLIER = 2.1
+const BOMB_BOOST = 1600
+const BALL_BOOST = 2300
+const BOMB_CHARGE_MULTIPLIER = 1.65
+const BALL_CHARGE_MULTIPLIER = 2.2
 const BULLET_BOOST = 1500
 const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
@@ -174,10 +172,16 @@ func _enter_tree():
 	
 	update_weapon_indicator()
 	
+	# shields always start off
+	$Shields.switch_off()
+	
 	emit_signal('spawned', self)
 	dash_init_appearance()
 	if controls_enabled:
 		make_invincible()
+		
+	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.4)
+	$AutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
 	
 func make_invincible():
 	invincible = true
@@ -440,17 +444,7 @@ func fire(override_charge = -1, dash_only = false):
 		
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
-		if shields > 0 and not for_good:
-			make_invincible()
-			rebound()
-			if has_method('vibration_feedback'):
-				call('vibration_feedback', false)
-			return
-			
 		alive = false
-		
-		# shields wear off
-		$Shields.switch_off()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -681,27 +675,30 @@ func apply_powerup(powerup):
 		wield_flail()
 	elif powerup.type == 'drill':
 		wield_drill()
-	elif powerup.type == 'rockets':
+	elif powerup.type == 'rocket_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.classic)
 		update_weapon_indicator()
-	elif powerup.type == 'miniballs':
+	elif powerup.type == 'miniball_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.ball)
 		update_weapon_indicator()
-	elif powerup.type == 'spikes':
+	elif powerup.type == 'spike_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bullet)
 		update_weapon_indicator()
-	elif powerup.type == 'bombs':
+	elif powerup.type == 'bomb':
 		set_bomb_type(GameMode.BOMB_TYPE.mine)
 		update_weapon_indicator()
-	elif powerup.type == 'waves':
+	elif powerup.type == 'wave_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.wave)
 		update_weapon_indicator()
-	elif powerup.type == 'bubbles':
+	elif powerup.type == 'bubble_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
 		
+	if powerup.has_category('weapon'):
+		$WeaponSlot.wield(powerup.type)
+		
 	if success:
-		global.arena.show_msg(species, powerup.type.to_upper(), global_position)
+		global.arena.show_msg(species, powerup.type.to_upper().replace('_',' '), global_position)
 		
 func rebound(direction = null, strength := 2000.0):
 	if direction == null:
@@ -823,3 +820,6 @@ func get_target_destination():
 func get_class() -> String:
 	return "Ship"
 
+const CAMERA_RECT_SIZE := 800.0
+func get_camera_rect() -> Rect2:
+	return Rect2(global_position - Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE)/2, Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE))

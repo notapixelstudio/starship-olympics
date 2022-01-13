@@ -124,7 +124,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 0.5 ),
 "update": 0,
-"values": [ 1.0, 0.01 ]
+"values": [ 1.0, 0.1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Battlefield/Background:modulate")
@@ -292,12 +292,12 @@ script = ExtResource( 22 )
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
+collision_layer = 0
+collision_mask = 8193
 space_override = 3
 gravity = 0.0
 linear_damp = 9.0
 angular_damp = 25.0
-collision_layer = 0
-collision_mask = 8193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace"]
 visible = false
@@ -312,9 +312,7 @@ position = Vector2( 0, 20000 )
 z_index = 50
 z_as_relative = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=["animation_in_battle"]]
 playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 
@@ -342,7 +340,7 @@ height = 20000
 [node name="Enemies" type="Node2D" parent="SpawnPositions"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
+layer = 50
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 27 )]
 pause_mode = 2
@@ -370,7 +368,10 @@ stream = ExtResource( 30 )
 [node name="DemoLabel" parent="CanvasLayer" instance=ExtResource( 31 )]
 visible = false
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource( 32 )]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" parent="CanvasLayer2" instance=ExtResource( 32 )]
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -378,9 +379,8 @@ pause_mode = 2
 current = true
 zoom = Vector2( 8192, 8192 )
 script = ExtResource( 33 )
-zoomMin = 2.5
+zoomMin = 3.0
 debug_mode = false
-enabled = true
 
 [node name="CenterCamera" type="Position2D" parent="."]
 script = SubResource( 4 )
@@ -388,5 +388,5 @@ script = SubResource( 4 )
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
 "anims/Game Over" = SubResource( 5 )
 
-[connection signal="restart" from="CanvasLayer/Pause" to="." method="_on_Pause_restart"]
-[connection signal="skip" from="CanvasLayer/Pause" to="." method="_on_Pause_skip"]
+[connection signal="restart" from="CanvasLayer2/Pause" to="." method="_on_Pause_restart"]
+[connection signal="skip" from="CanvasLayer2/Pause" to="." method="_on_Pause_skip"]

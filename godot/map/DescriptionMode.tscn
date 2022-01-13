@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://interface/themes/grey_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=3]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=4]
@@ -33,7 +33,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "clips": PoolStringArray( "blink" ),
-"times": PoolRealArray( 2.4 )
+"times": PoolRealArray( 1 )
 }
 
 [sub_resource type="Animation" id=4]
@@ -124,6 +124,7 @@ mix_target = 1
 bus = "SFX"
 
 [node name="Continue" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -186,3 +187,5 @@ points = PoolVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
+
+[connection signal="done" from="Description" to="." method="_on_Description_done"]

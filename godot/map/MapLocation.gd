@@ -2,6 +2,27 @@ extends Area2D
 
 class_name MapLocation
 
+export (String, "hidden", "locked", "unlocked") var status = TheUnlocker.HIDDEN setget set_status, get_status
+
+func _enter_tree():
+	self.set_status(TheUnlocker.get_status("map_locations", self.get_id()))
+	
+func get_status():
+	return status
+	
+func set_status(v):
+	status = v
+	if not is_inside_tree():
+		yield(self, 'ready')
+	if Engine.editor_hint:
+		modulate = Color(1,1,1,1)
+	elif status == TheUnlocker.UNLOCKED:
+		modulate = Color(1,1,1,1)
+	elif status == TheUnlocker.LOCKED:
+		modulate = Color(0,0,0,0)
+	else:
+		modulate = Color(0,0,0,0)
+
 func get_id() -> String:
 	return self.name
 

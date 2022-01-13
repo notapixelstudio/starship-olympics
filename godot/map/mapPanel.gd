@@ -8,7 +8,7 @@ class_name MapPanel
 var player : InfoPlayer = null
 
 var content # could be Set
-var rest_text = "choose an arena"
+var rest_text = "select\na planet"
 var chosen = false
 const deselected_modulate = Color(0.6,0.6,0.6,1)
 
@@ -19,6 +19,8 @@ func _ready():
 	if player == null:
 		disable()
 	$Background.self_modulate = deselected_modulate
+	Events.connect("tappable_entered", self, '_on_tappable_entered')
+	Events.connect("tappable_exited", self, '_on_tappable_exited')
 
 func set_chosen(chosen_):
 	if not is_inside_tree():
@@ -41,7 +43,7 @@ func set_player(v : InfoPlayer):
 	assert(v != null)
 	player = v
 	$Sprite.texture = player.species.ship
-	$Label.text = rest_text
+	$Info.text = rest_text
 	$Background.modulate = player.species.color
 	
 func set_content(v):
@@ -49,12 +51,15 @@ func set_content(v):
 		yield(self, "ready")
 	if v:
 		content = v
-		$Label.text = content.name
+		if TheUnlocker.get_status('sets', v.get_id()) == TheUnlocker.UNLOCKED:
+			$Label.text = content.name
+		else:
+			$Label.text = "???"
 		$Info.text = content.description
 		create_minicards()
 	else:
-		$Label.text = rest_text
-		$Info.text = ""
+		$Label.text = ""
+		$Info.text = rest_text
 		destroy_minicards()
 
 func enable():
@@ -86,3 +91,16 @@ func destroy_minicards():
 func get_minicards():
 	return $Minicards.get_children()
 
+# content preview on hover
+func _on_tappable_entered(tappable, ship):
+	if ship.get_player() != player:
+		return
+		
+	if tappable is MapPlanet and tappable.get_status() != 'hidden':
+		set_content(tappable.get_set())
+		
+func _on_tappable_exited(tappable, ship):
+	if ship.get_player() != player:
+		return
+		
+	set_content(null)
