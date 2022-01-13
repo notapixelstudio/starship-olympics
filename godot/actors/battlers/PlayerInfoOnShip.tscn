@@ -6,8 +6,11 @@
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/battlers/AmmoIndicator.tscn" type="PackedScene" id=8]
 
-[sub_resource type="DynamicFont" id=5]
-size = 24
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 42
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [node name="PlayerInfo" type="Position2D"]
@@ -24,10 +27,10 @@ z_as_relative = false
 
 [node name="PlayerID" type="Label" parent="Wrapper/Scaled/Colored"]
 margin_left = -46.0833
-margin_top = 48.75
+margin_top = -111.25
 margin_right = 46.9167
-margin_bottom = 84.75
-custom_fonts/font = SubResource( 5 )
+margin_bottom = -62.25
+custom_fonts/font = SubResource( 1 )
 text = "P1"
 align = 1
 valign = 1

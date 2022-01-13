@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=12]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=15]
@@ -210,18 +209,6 @@ anims/Rotate = SubResource( 3 )
 playback_speed = 0.2
 anims/Rotate = SubResource( 4 )
 
-[node name="Gel" parent="Battlefield/Middleground" index="3" instance=ExtResource( 11 )]
-position = Vector2( 0, 1150 )
-rotation = -1.5708
-width = 800
-depth = 150
-
-[node name="Gel2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 11 )]
-position = Vector2( 0, -1150 )
-rotation = 1.5708
-width = 800
-depth = 150
-
 [node name="Negacrown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
@@ -252,10 +239,8 @@ controls = "joy4"
 species = ExtResource( 10 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 6103.52, 6103.52 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

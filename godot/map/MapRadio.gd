@@ -6,7 +6,7 @@ class_name MapRadio
 export var value_name : String = "custom_win"
 export var value : Array # workaround for variant types
 export var texture : Texture setget set_texture 
-export var description = "set the number of victories"
+export var label = "victories"
 
 var active := false setget set_active
 
@@ -15,13 +15,16 @@ func _ready():
 	
 	add_to_group('radio_'+value_name)
 	
-	$Wrapper/Label.text = self.name
+	$Wrapper/Label.text = label
 	refresh()
 	
 func refresh() -> void:
 	self.set_active(global.get(value_name) == value[0])
 	
 func tap(author: Ship):
+	if not status == TheUnlocker.UNLOCKED:
+		return
+		
 	global.set(value_name, value[0])
 	$act.play()
 	

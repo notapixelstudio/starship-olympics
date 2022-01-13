@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
-[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
@@ -151,7 +150,7 @@ playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 3150, -900 )
+position = Vector2( 0, -900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
@@ -164,29 +163,26 @@ show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+position = Vector2( 0, 900 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
+script = ExtResource( 1 )
+radius = 150
+sides = 4.0
+
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
 position = Vector2( -800, 0 )
 
-[node name="NoCrownZone2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
+[node name="NoCrownZone2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
 position = Vector2( 800, 0 )
 
-[node name="Gel" parent="Battlefield/Middleground" index="4" instance=ExtResource( 15 )]
-position = Vector2( 0, 850 )
-rotation = -1.5708
-width = 600
-depth = 50
-
-[node name="Gel2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 15 )]
-position = Vector2( 0, -850 )
-rotation = 1.5708
-width = 600
-depth = 50
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
+[node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 18 )]
 position = Vector2( -400, -400 )
 type = "rocket_gun"
 
-[node name="PowerUp2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 18 )]
+[node name="PowerUp2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
 position = Vector2( 400, 400 )
 type = "rocket_gun"
 
@@ -203,12 +199,9 @@ position = Vector2( 400, 400 )
 rotation = -2.35619
 controls = "joy2"
 species = ExtResource( 7 )
-cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]
