@@ -24,6 +24,19 @@ func _ready():
 	fight_node.visible = false
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 	post_ready()
+
+	global.remotesServer.connect("new_remote_connected", self, "_onNewRemote")
+	global.remotesServer.connect("remote_disconnected", self, "_onRemoteDisconnected")
+	
+func _onNewRemote(id):
+	print("new Remote")
+	var remoteControl = "rm"+str(id)
+	add_controls(remoteControl)
+ 
+func _onRemoteDisconnected(id):
+	var joy = "rm"+str(id)
+	change_controls(joy, "no")
+	pass
 	
 func post_ready():
 	ordered_species = global.get_ordered_species()
@@ -119,7 +132,13 @@ func assign_controls(num_keyboards : int) -> Array:
 		players_controls.append("joy"+str(i+1))
 		if len(players_controls) >= MAX_PLAYERS:
 			break
-
+	# check on remotes
+	var numRemotes = global.remotesServer.get_connected_remotes()
+	for i in range(numRemotes):
+		players_controls.append("rm"+str(i+1))
+		if len(players_controls) >= MAX_PLAYERS:
+			break
+			
 	# now put NO on the rest of players
 	return players_controls
 

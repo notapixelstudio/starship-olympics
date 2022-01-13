@@ -58,7 +58,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = ball_texture
-		$Sprite.scale = Vector2(size, size)
+		$Sprite.scale = Vector2(size*1.1, size*1.1)
 		
 	elif type == GameMode.BOMB_TYPE.bullet:
 		entity.get('Pursuer').disable()
@@ -67,8 +67,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = bullet_texture
-		$Sprite.scale = Vector2(size*1.2, size*1.2)
-		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
+		$Sprite.scale = Vector2(size*0.6, size*0.6)
 		mode = MODE_CHARACTER
 		
 	elif type == GameMode.BOMB_TYPE.bubble:
@@ -89,7 +88,6 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = ice_texture
 		$Sprite.scale = Vector2(size*1.1, size*1.1)
-		$Sprite.modulate = $Sprite.modulate.darkened(0.3)
 		mode = MODE_CHARACTER
 		
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=12]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
-[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
@@ -189,19 +188,7 @@ show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="Gel" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
-position = Vector2( 0, 850 )
-rotation = -1.5708
-width = 600
-depth = 50
-
-[node name="Gel2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
-position = Vector2( 0, -850 )
-rotation = 1.5708
-width = 600
-depth = 50
-
-[node name="GlassWall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+[node name="GlassWall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( -800, 0 )
 rotation = 0.785398
 collision_layer = 2147483648
@@ -215,7 +202,7 @@ height = 450
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 2 )
 
-[node name="GlassWall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+[node name="GlassWall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( 800, 0 )
 rotation = 0.785398
 collision_layer = 2147483648

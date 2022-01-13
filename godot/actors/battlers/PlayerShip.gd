@@ -9,7 +9,10 @@ var device_controller_id : int
 
 func _ready():
 	cpu = false
-	device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+	if ("rm" in controls):
+		device_controller_id = 0
+	else:
+		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	connect('dead', self, '_on_dead')
 	
 func _on_dead(me, killer, for_good=false):

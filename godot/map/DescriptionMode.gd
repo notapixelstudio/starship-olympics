@@ -4,9 +4,6 @@ export var gamemode : Resource setget set_gamemode
 
 onready var animator = $AnimationPlayer
 
-onready var rule1 = $Rule1
-onready var rule2 = $Rule2
-
 ##  signal to emit when we are ready to fight
 signal ready_to_fight
 
