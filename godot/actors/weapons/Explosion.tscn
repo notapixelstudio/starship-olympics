@@ -23,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, -2, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, -2, 1 ),
 "update": 0,
-"values": [ 10.0, 60.0, 60.0, 0.01, 0.01 ]
+"values": [ 20.0, 80.0, 80.0, 40.0, 0.01 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Image:scale")
@@ -90,6 +90,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=3]
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
@@ -110,9 +111,6 @@ __meta__ = {
 
 [node name="Deadly" type="Node" parent="Entity"]
 script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
 
 [node name="Trigger" type="Node" parent="Entity"]
 script = ExtResource( 4 )

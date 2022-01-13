@@ -80,3 +80,8 @@ func _on_Royal_disabled():
 	# point_score.hide()
 	return
 	
+func reset_health(amount):
+	$Wrapper/Scaled/Colored/HealthBar.set_total(amount)
+
+func update_health(amount):
+	$Wrapper/Scaled/Colored/HealthBar.set_amount(amount)

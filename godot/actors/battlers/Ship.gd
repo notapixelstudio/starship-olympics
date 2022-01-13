@@ -70,6 +70,8 @@ var stunned = false
 var stun_countdown = 0
 var outside_countup = 0
 
+var max_health := 3
+var health := max_health
 
 var screen_size = Vector2()
 var width = 0
@@ -169,6 +171,9 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	outside_countup = 0
+	
+	$PlayerInfo.reset_health(max_health)
+	self.set_health(max_health)
 	
 	update_weapon_indicator()
 	
@@ -442,6 +447,30 @@ func fire(override_charge = -1, dash_only = false):
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
+func set_health(amount : int) -> void:
+	health = amount
+	$PlayerInfo.update_health(amount)
+	
+func damage(hazard, damager : Ship):
+	if invincible or not alive:
+		return
+		
+	self.set_health(health - 1)
+	if health <= 0:
+		die(damager)
+	else:
+		rebound((global_position-hazard.global_position).normalized(), 2500.0)
+		
+		if has_method('vibration_feedback'):
+			call('vibration_feedback', false)
+		
+		Events.emit_signal("ship_damaged", self, hazard, damager)
+		
+		# slight, invisible invincibility
+		invincible = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		invincible = false
+	
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		alive = false
