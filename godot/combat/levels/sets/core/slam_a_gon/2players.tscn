@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=15]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=17]
-[ext_resource path="res://actors/environments/Gel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=19]
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -40,7 +39,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-radius = 1700
+radius = 1600
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -72,7 +71,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="PentaGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 17 )]
-position = Vector2( -900, 0 )
+position = Vector2( -850, 0 )
 rotation = 3.14159
 rings = 4
 ring_width = 80.0
@@ -80,33 +79,33 @@ core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 17 )]
-position = Vector2( -650, -800 )
+position = Vector2( -600, -800 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 17 )]
-position = Vector2( -650, 800 )
+position = Vector2( -600, 800 )
 rotation = 3.14159
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 17 )]
-position = Vector2( 650, 800 )
+position = Vector2( 600, 800 )
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 17 )]
-position = Vector2( 650, -804.894 )
+position = Vector2( 600, -804.894 )
 rings = 3
 ring_width = 80.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 17 )]
-position = Vector2( 900, 5.95105 )
+position = Vector2( 850, 5.95105 )
 rings = 4
 ring_width = 80.0
 core_radius = 150.0
@@ -114,17 +113,19 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP1" parent="Battlefield/Middleground" index="6" instance=ExtResource( 16 )]
 modulate = Color( 0.32549, 1, 0.32549, 1 )
-position = Vector2( 900, 0 )
+position = Vector2( 850, 0 )
 rotation = -3.14159
+size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
-modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
-position = Vector2( -900, 0 )
+modulate = Color( 0.848, 0.288, 0.96, 1 )
+position = Vector2( -850, 0 )
+size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Wall" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
-position = Vector2( -1623, -450 )
+position = Vector2( -1517, -450 )
 rotation = -1.5708
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -138,7 +139,7 @@ position = Vector2( 0, 51 )
 rotation = 1.5708
 
 [node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 6 )]
-position = Vector2( 1624, 450 )
+position = Vector2( 1518, 450 )
 rotation = -1.5708
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -151,41 +152,29 @@ sides = 4.0
 position = Vector2( 0, -51 )
 rotation = -1.5708
 
-[node name="Glue" parent="Battlefield/Middleground" index="10" instance=ExtResource( 18 )]
-position = Vector2( 0, 1600 )
-rotation = -1.5708
-width = 600
+[node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 19 )]
+position = Vector2( -1400, 0 )
+type = "rocket_gun"
 
-[node name="Glue2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 18 )]
-position = Vector2( 0, -1600 )
-rotation = 1.5708
-width = 600
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="12" instance=ExtResource( 19 )]
-position = Vector2( -1500, 0 )
-type = "rockets"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="13" instance=ExtResource( 19 )]
-position = Vector2( 1500, 0 )
-type = "rockets"
+[node name="PowerUp2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 19 )]
+position = Vector2( 1400, 0 )
+type = "rocket_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( 1500, 10 )
+position = Vector2( 1400, 10 )
 rotation = 3.14159
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( -1500, 0 )
+position = Vector2( -1400, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 10 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 7.7037e+22, 7.7037e+22 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

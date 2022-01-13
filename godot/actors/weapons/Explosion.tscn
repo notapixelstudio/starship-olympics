@@ -16,7 +16,6 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="Animation" id=2]
-length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D:shape:radius")
 tracks/0/interp = 1
@@ -24,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, -2, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, -2, 1, 1 ),
 "update": 0,
-"values": [ 40.0, 80.0, 80.0, 0.01 ]
+"values": [ 10.0, 60.0, 60.0, 0.01, 0.01 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Image:scale")
@@ -36,7 +35,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
+"times": PoolRealArray( 0, 0.3, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0.6, 0.6 ), Vector2( 1.2, 1.2 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
@@ -48,7 +47,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.8 ),
+"times": PoolRealArray( 0, 0.2, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.9, 0.9 ), Vector2( 2, 2 ), Vector2( 1.2, 1.2 ) ]
@@ -60,7 +59,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
+"times": PoolRealArray( 0, 0.6, 1 ),
 "transitions": PoolRealArray( 0.5, 0.5, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -72,7 +71,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.8, 0.8 ), Vector2( 5, 5 ) ]
@@ -84,14 +83,13 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 0.35, 0.61, 1 ), Color( 1, 0.352941, 0, 0 ) ]
 }
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 40.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 400.0
@@ -161,7 +159,6 @@ autoplay = "Wow"
 anims/Wow = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 3 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
@@ -177,7 +174,7 @@ gravity = -1024.0
 
 [node name="RepealField" type="Area2D" parent="."]
 collision_layer = 65536
-collision_mask = 2564
+collision_mask = 10757
 
 [node name="Entity" type="Node" parent="RepealField"]
 script = ExtResource( 2 )

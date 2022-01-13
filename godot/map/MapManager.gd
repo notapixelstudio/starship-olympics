@@ -21,7 +21,6 @@ func _ready():
 		panel.enable()
 		
 	Events.connect("sth_tapped", self, '_on_sth_tapped')
-	Events.connect("sth_unlocked", self, '_on_sth_unlocked')
 	
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	
@@ -51,6 +50,7 @@ func _ready():
 			graph.add_path(link, start, end)
 			
 	print(graph.to_string())
+	
 func _on_all_ships_spawned(spawners):
 	# give a star to the winner of the former session
 	var winner = global.the_game.get_last_winner()
@@ -60,6 +60,12 @@ func _on_all_ships_spawned(spawners):
 		star.set_type('star')
 		add_child(star) # has to be inside the tree to be loaded
 		winner_ship.get_cargo().load_holdable(star)
+		
+		# also unhide new unlockable content
+		var nodes = traits.get_all_with('Node')
+		for node in nodes:
+			if node.get_status() == TheUnlocker.UNLOCKED:
+				self.explore(node)
 		
 func _on_sth_tapped(tapper : Ship, tappee : MapPlanet):
 	if tapper is Ship and tappee is MapPlanet:
@@ -112,18 +118,19 @@ func _on_continue_after_game_over(session_ended):
 		pick_next_minigame()
 
 ## WARNING if the game is killed halfway through, an inconsisent state could be persisted
-func _on_sth_unlocked(_what, by_what) -> void:
-	var neighbourhood := graph.get_neighbourhood(by_what)
+func explore(node) -> void:
+	var neighbourhood := graph.get_neighbourhood(node)
 	for n in neighbourhood.keys(): # MapLocations
 		var path = neighbourhood[n]
 		if TheUnlocker.get_status("map_paths", path.name, TheUnlocker.HIDDEN) == TheUnlocker.HIDDEN:
 			path.appear()
 			TheUnlocker.unlock_element("map_paths", path.name)
-		yield(path, 'appeared')
-		if n is MapPlanet:
-			n.unhide()
-			yield(n, 'unhid')
-			TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
-		elif n is Waypoint:
-			n.unlock()
-			
+			yield(path, 'appeared')
+			if n is MapPlanet:
+				n.unhide()
+				yield(n, 'unhid')
+				TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
+			elif n is MapLocation:
+				n.set_status(TheUnlocker.UNLOCKED)
+				TheUnlocker.unlock_element("map_locations", n.get_id(), TheUnlocker.UNLOCKED)
+				

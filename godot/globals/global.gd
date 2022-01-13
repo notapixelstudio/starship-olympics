@@ -8,6 +8,8 @@ const E = 2.71828
 
 const isometric_offset = Vector2(0,32)
 
+var enable_camera := true 
+
 var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 
@@ -17,8 +19,30 @@ func _set_analytics(new_value):
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "add_event")
 
-var array_device = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
-onready var device 
+var array_keyboard_device = ["kb1", "kb2"]
+onready var keyboard_device 
+var array_joypad_device = ["joy1", "joy2", "joy3", "joy4"]
+onready var joypad_device 
+
+var array_custom_device = ["custom1"]
+onready var custom_device 
+
+var remotesServer
+
+var ui_rightPressed = false
+var ui_leftPressed  = false
+var ui_upPressed    = false
+var ui_downPressed  = false
+	
+
+var array_time_scale = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0"] 
+var time_scale = "1.0" setget _set_time_scale
+
+func _set_time_scale(new_value):
+	time_scale = new_value
+	# decomment if we want to update Engine.time_scale globally
+	# Engine.time_scale = float(time_scale)
+
 
 var available_languages = {
 	"english": "en",
@@ -108,8 +132,8 @@ func set_version(value):
 
 # OPTIONS need a min and a MAX
 const min_win = 1
-var win = 3
-const max_win = 5
+var win = 5
+const max_win = 10
 
 var campaign_win = win
 
@@ -174,7 +198,7 @@ var debug : bool = false
 # Soundtrack
 onready var bgm = Soundtrack
 # Controls
-enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4, NO, CPU}
+enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4,RM1,RM2,RM3,RM4, NO, CPU}
 
 const CONTROLSMAP = {
 	Controls.NO : "no",
@@ -184,7 +208,11 @@ const CONTROLSMAP = {
 	Controls.JOY1 : "joy1",
 	Controls.JOY2 : "joy2",
 	Controls.JOY3 : "joy3",
-	Controls.JOY4 : "joy4"
+	Controls.JOY4 : "joy4",
+	Controls.RM1 : "rm1",
+	Controls.RM1 : "rm2",
+	Controls.RM1 : "rm3",
+	Controls.RM1 : "rm4",
 }
 
 const CONTROLSMAP_TO_KEY = {
@@ -195,7 +223,11 @@ const CONTROLSMAP_TO_KEY = {
 	"joy1" : Controls.JOY1,
 	"joy2" : Controls.JOY2,
 	"joy3" : Controls.JOY3,
-	"joy4" : Controls.JOY4
+	"joy4" : Controls.JOY4,
+	"rm1" : Controls.RM1,
+	"rm2" : Controls.RM2,
+	"rm3" : Controls.RM3,
+	"rm4" : Controls.RM4
 }
 
 const MAX_PLAYERS = 4
@@ -229,7 +261,7 @@ func _input(event):
 	if demo and event.is_action_pressed("force_reset"):
 		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
 		get_tree().paused = false
-		
+
 func _ready():
 	# we want to handle quit by ourselves
 	get_tree().set_auto_accept_quit(false)
@@ -238,6 +270,11 @@ func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
+	remotesServer = preload("res://Server.tscn").instance()
+	remotesServer.connect("remote_command_received",self,"_onRemoteCommand")	
+	
+	add_child(remotesServer)
+		
 	# setup language and add if not exists
 	var generic_locale = TranslationServer.get_locale().split("_")[0]
 	# language = TranslationServer.get_locale_name(generic_locale).to_lower()
@@ -259,11 +296,85 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-		
-	# this is needed because the game resizes itself at start
-	#yield(get_tree().create_timer(0.1),"timeout")
-	#_set_graphics_quality(graphics_quality)
+
+func getRemotesServer():
+	return remotesServer
+
 	
+func handleEvent(pressed,strength, event):
+	var ev = InputEventAction.new()
+	ev.action = event
+	ev.pressed = pressed
+	ev.strength = abs(strength)
+	Input.parse_input_event(ev)
+
+func handleEventAccept(cmd, event):
+	var ev = InputEventAction.new()
+	ev.action = event
+	if cmd == "1" or cmd == "2":
+		ev.pressed = true
+	elif cmd == "0" or cmd == "3":
+		ev.pressed = false
+	# Feedback.
+	Input.parse_input_event(ev)
+
+func handleEventFire(cmd, event):
+	var ev = InputEventAction.new()
+	ev.action = event
+	if cmd == "1" or cmd == "2":
+		ev.pressed = true
+	elif cmd == "0" or cmd == "3":
+		ev.pressed = false
+	# Feedback.
+	Input.parse_input_event(ev)
+		
+func _onRemoteCommand(id,strength,button):
+	#print("Received data: %s" % cmds)
+	var controlsString = "rm" + str(id)
+	var data = str2var(strength)
+	if data[0] >= 0:
+		handleEvent(true,data[0],controlsString + "_right")
+		handleEvent(false,data[0],controlsString + "_left")
+	else:
+		handleEvent(false,data[0],controlsString + "_right")
+		handleEvent(true,data[0],controlsString + "_left")
+
+	if data[1] >= 0:
+		handleEvent(true,data[1],controlsString + "_down")
+		handleEvent(false,data[1],controlsString + "_up")
+	else:
+		handleEvent(false,data[1],controlsString + "_down")
+		handleEvent(true,data[1],controlsString + "_up")
+
+#		if data[0] >= 0.5:
+#			if !ui_rightPressed:
+#				handleEvent(true,data[0], "ui_right")
+#				ui_rightPressed = true
+#			ui_leftPressed = false
+#
+#		elif data[0] <= 0.5:
+#			if !ui_leftPressed:
+#				handleEvent(true,data[0],"ui_left")
+#				ui_leftPressed = true
+#			ui_rightPressed = false
+#
+#		if data[1] >= 0.5:
+#			if !ui_downPressed:
+#				handleEvent(true,data[1], "ui_down")
+#				ui_downPressed = true
+#			ui_upPressed = false
+#
+#		elif data[1] <= 0.5:
+#			if !ui_upPressed:
+#				handleEvent(true,data[1], "ui_up")		
+#				ui_upPressed = true
+#			ui_downPressed = false
+			
+		
+	handleEventFire(button,controlsString + "_fire")
+	handleEventAccept(button,"ui_accept")
+	 
+		
 func read_file(path: String) -> Dictionary:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
@@ -298,7 +409,7 @@ func _notification(what):
 		get_tree().quit() # default behavior
 	
 # INPUT MAPPING
-const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4"]
+const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4","rm1","rm2","rm3","rm4"]
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
 
 var joy_input_map = {
@@ -537,7 +648,9 @@ func get_state():
 		rumbling=rumbling,
 		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
+		enable_camera=enable_camera,
 		flood=flood,
+		time_scale=time_scale,
 		laser=laser
 	}
 	

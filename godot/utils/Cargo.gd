@@ -29,6 +29,8 @@ func load_holdable(holdable) -> void:
 		
 	held = holdable
 	show_holdable()
+	if traits.has_trait(holdable, 'Owned'):
+		holdable.set_player(owner_ship.get_player())
 	Events.emit_signal("holdable_loaded", held, owner_ship)
 	
 	if replaced != null:

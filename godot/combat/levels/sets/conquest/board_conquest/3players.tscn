@@ -1303,15 +1303,15 @@ rotation = 0.785398
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
 position = Vector2( -1500, 1500 )
-type = "rockets"
+type = "rocket_gun"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 position = Vector2( 1500, 1500 )
-type = "rockets"
+type = "rocket_gun"
 
 [node name="PowerUp3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
 position = Vector2( 1500, -1500 )
-type = "rockets"
+type = "rocket_gun"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1500, 1500 )

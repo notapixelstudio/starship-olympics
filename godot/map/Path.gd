@@ -4,7 +4,7 @@ extends Line2D
 export var path_star_scene: PackedScene
 export var path_line_scene: PackedScene
 
-onready var unlocked_status := TheUnlocker.get_status("map_paths", self.name, TheUnlocker.HIDDEN)
+onready var unlocked_status := TheUnlocker.get_status("map_paths", self.name, TheUnlocker.UNLOCKED if Engine.editor_hint else TheUnlocker.HIDDEN)
 
 const D = 25
 
@@ -16,10 +16,8 @@ func set_points(v):
 	
 func _ready():
 	refresh()
-	if unlocked_status == TheUnlocker.UNLOCKED or Engine.editor_hint:
-		# wait for tree to be refreshed
-		yield(get_tree(), "idle_frame")
-		appear()
+	if unlocked_status != TheUnlocker.HIDDEN:
+		appear(unlocked_status==TheUnlocker.UNLOCKED)
 	
 func refresh():
 	for child in $Content.get_children():
@@ -48,9 +46,10 @@ func get_global_endpoints() -> Dictionary: # Dictionary {start: Vector2, end: Ve
 		'end': to_global(points[-1])
 	}
 
-func appear() -> void:
+func appear(force: bool = false) -> void:
 	for child in $Content.get_children():
-		child.appear()
-		yield(child, 'appeared')
+		child.appear(force)
+		if not force:
+			yield(child, 'appeared')
 		
 	emit_signal('appeared')

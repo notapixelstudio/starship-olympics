@@ -14,7 +14,6 @@ var someone_died = 0
 export (PackedScene) var gameover_scene
 export (bool) var demo = false
 export (float) var size_multiplier = 2.0
-export var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 export var game_mode : Resource # Gamemode - might be useful
 export var style : Resource setget set_style
 export var planet_name : String
@@ -31,6 +30,7 @@ export var random_starting_position : bool = true
 var debug = false
 # analytics
 var run_time = 0
+var time_scale : float = 1.0 setget set_time_scale, get_time_scale
 
 onready var crown_mode = $Managers/CrownModeManager
 onready var kill_mode = $Managers/KillModeManager
@@ -51,11 +51,10 @@ onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
-onready var pause = $CanvasLayer/Pause
+onready var pause = $CanvasLayer2/Pause
 onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
-onready var element_in_camera_scene = preload("res://actors/environments/ElementInCamera.tscn")
 
 export var standalone : bool = true
 onready var battlefield = $Battlefield
@@ -105,7 +104,7 @@ func get_time_scale():
 	return time_scale
 	
 func update_time_scale():
-	Engine.time_scale = time_scale
+	Engine.time_scale = self.time_scale
 
 signal update_stats
 
@@ -158,17 +157,17 @@ func _ready():
 	# remove HUD if not needed (e.g., map)
 	if not show_hud:
 		$CanvasLayer/HUD.queue_free()
-	
+	else:
+		camera.enabled = global.enable_camera
+		Soundtrack.fade_out()
+		
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = demo
 	
-	Soundtrack.fade_out()
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
 	
-	# ??? FIXME? this method does nothing here
-	compute_arena_size()
 	camera.zoom *= size_multiplier
 	
 	# Engine.time_scale = 0.2
@@ -425,7 +424,7 @@ func _ready():
 	for turret in get_tree().get_nodes_in_group("turret"):
 		turret.initialize(self)
 		
-	update_time_scale()
+	self.time_scale = float(global.time_scale)
 	set_process(true)
 	for anim in get_tree().get_nodes_in_group("animation_in_battle"):
 		anim.play("Rotate")
@@ -453,7 +452,7 @@ func _process(delta):
 	if global.is_match_running():
 		global.the_match.update(delta)
 	update_grid()
-	slomo()
+	#slomo()
 	
 	if global.is_match_running() and int(global.the_match.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		# no countdown speaker right now. ISSUE #485
@@ -705,18 +704,9 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	if force_intro:
 		ship.intro()
 	
-	# smoothly transition 
-	var focus = element_in_camera_scene.instance()
-	$Battlefield.add_child(focus)
-	yield(get_tree(), "idle_frame")
-	ship.remove_from_group("in_camera")
-	focus.manual_activate(ship, global.calculate_center(camera.camera_rect), 1)
-	yield(focus, "completed")
-	ship.add_to_group("in_camera")
-	
-	
 	# Check on gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
+	ship.set_default_bomb_type(game_mode.bomb_type)
 	ship.set_default_bomb_type(game_mode.bomb_type)
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
@@ -739,14 +729,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("dead", collect_manager, "_on_ship_killed")
 	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
 	ship.connect("fallen", self, "_on_ship_fallen")
-	
-	# attach followcamera
-	var follow = load("res://actors/battlers/FollowCamera.tscn").instance()
-	follow.node_owner = ship.get_node("TargetDest")
-	follow.add_to_group("in_camera")
-	$Battlefield.add_child(follow)
-	ship.connect("dead", follow, "ship_just_died")
-	
 	
 	crown_mode.connect('show_msg', ship, "update_score")
 	return ship
@@ -890,10 +872,14 @@ func _on_ship_fallen(ship, spawner):
 	respawn_from_home(ship, spawner)
 	
 func respawn_from_home(ship, spawner):
+	var respawn_timeout = 1.0
+	if game_mode.id == 'skull_collector':
+		respawn_timeout = 2.5
+	
 	ship.trail.destroy()
 	if ship.alive:
 		ship.die(null, true) # die for good
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	spawner.appears()
 	spawn_ship(spawner, true) # force intro
 	

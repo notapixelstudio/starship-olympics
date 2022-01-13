@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/option_scenes/settings/UIOptionPanel.gd" type="Script" id=1]
 [ext_resource path="res://ui/common_elements/ElementOptionCheckbox.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/common_elements/NavigateButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/option_scenes/settings/PanelAudio.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/option_scenes/settings/PanelRemappingTypes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=7]
 
 [node name="PanelMain" type="Container"]
 anchor_left = 0.5
@@ -16,14 +17,15 @@ margin_left = -391.0
 margin_top = -278.5
 margin_right = 389.0
 margin_bottom = 278.5
-rect_scale = Vector2( 0.5, 0.5 )
-rect_pivot_offset = Vector2( 390, 278 )
+theme = ExtResource( 7 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Content" type="MarginContainer" parent="."]
+anchor_top = -0.0574506
+anchor_bottom = -0.043088
 margin_top = 65.0
 margin_right = 778.0
 margin_bottom = 485.0
@@ -33,7 +35,7 @@ __meta__ = {
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 778.0
-margin_bottom = 428.0
+margin_bottom = 482.0
 
 [node name="Language" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -57,14 +59,12 @@ margin_bottom = 158.0
 element_path = "glow_enable"
 label_description = "Glow"
 
-[node name="GraphicsQuality" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
+[node name="Camera" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
 margin_top = 162.0
 margin_right = 778.0
 margin_bottom = 212.0
-element_path = "graphics_quality"
-label_description = "Graphics Quality"
-elem_type = 2
+element_path = "enable_camera"
+label_description = "Dynamic camera"
 
 [node name="Analytics" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
 margin_top = 216.0
@@ -98,11 +98,21 @@ element_path = "unlock_mode"
 label_description = "Unlock mode"
 elem_type = 2
 
+[node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 432.0
+margin_right = 778.0
+margin_bottom = 482.0
+element_path = "time_scale"
+label_description = "Game Speed"
+elem_type = 2
+suffix = "X"
+
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
-anchor_top = 1.01795
+anchor_top = 1.08618
 anchor_right = 0.5
-anchor_bottom = 1.01795
+anchor_bottom = 1.08618
 margin_left = -129.5
 margin_top = -65.0
 margin_right = 110.5

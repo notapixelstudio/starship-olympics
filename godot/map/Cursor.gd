@@ -39,6 +39,7 @@ func _ready():
 	ship.texture = player.species.ship
 	label.text = str(player.id)
 	placemark.modulate = player.species.color
+	label.modulate = player.species.color
 	ship.rotation = -rotation - PI/2
 	
 	var winner = global.the_game.get_last_winner()

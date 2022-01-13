@@ -3,8 +3,6 @@ extends MapLocation
 
 class_name MapPlanet
 
-export (String, "hidden", "locked", "unlocked") var status setget set_status, get_status
-
 export var set : Resource # Set
 export var cursor_scene: PackedScene
 onready var sprite = $Sprite
@@ -18,19 +16,18 @@ signal unlocked
 
 func get_id() -> String:
 	return set.get_id()
-
-func get_status():
-	return status
 	
 func set_status(v):
 	status = v
+	if not is_inside_tree():
+		yield(self, 'ready')
 	$Lock.visible = false
 	if Engine.editor_hint:
 		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.UNLOCKED:
 		$Sprite.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
-		$Sprite.modulate = Color(0,0,0,0.5)
+		$Sprite.modulate = Color(0,0,0,0)
 		$Lock.visible = true
 	else:
 		$Sprite.modulate = Color(0,0,0,0)
@@ -67,6 +64,10 @@ func unhide():
 	self.set_status(TheUnlocker.LOCKED)
 	emit_signal('unhid')
 	Events.emit_signal("sth_unhid", set, self)
+	for body in get_overlapping_bodies():
+		if body is Ship:
+			show_tap_preview(body)
+			break
 	
 func unlock():
 	if status != TheUnlocker.LOCKED:
@@ -78,14 +79,25 @@ func unlock():
 	self.set_status(TheUnlocker.UNLOCKED)
 	emit_signal('unlocked')
 	Events.emit_signal("sth_unlocked", set, self)
+	for body in get_overlapping_bodies():
+		if body is Ship:
+			show_tap_preview(body)
+			break
 
 func show_tap_preview(_author):
 	if status == TheUnlocker.UNLOCKED:
 		$Label.visible = true
 		$Tagline.visible = true
+		$Tagline.text = set.tagline1
 		$Label2.visible = true
 		$Tagline2.visible = true
+		$Tagline2.text = set.tagline1
 		$CameraEye.set_active(true)
+	elif status == TheUnlocker.LOCKED:
+		$Tagline.visible = true
+		$Tagline.text = "???"
+		$Tagline2.visible = true
+		$Tagline2.text = "???"
 	
 func hide_tap_preview():
 	$Label.visible = false

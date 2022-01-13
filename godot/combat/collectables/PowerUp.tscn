@@ -194,9 +194,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[node name="PowerUp" type="RigidBody2D" groups=[
-"in_camera",
-]]
+[node name="PowerUp" type="RigidBody2D" groups=["in_camera"]]
 collision_layer = 2048
 collision_mask = 3090
 mode = 2
@@ -235,8 +233,8 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1.14274, 1.14274, 1.14274, 1 )
-position = Vector2( 0, -15.226 )
+modulate = Color( 1.12164, 1.12164, 1.12164, 1 )
+position = Vector2( 0, -12.9753 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -25,6 +25,9 @@ func set_ring_width(value):
 
 func set_core_radius(value):
 	core_radius = value
+	
+func update_label_size():
+	$LabelWrapper.scale = Vector2(1,1)*gshape.radius/100/$LabelWrapper/Label.get_total_character_count()*2
 
 func _ready():
 	# connect feedback signal 
@@ -50,6 +53,7 @@ func _ready():
 	if player_spawner:
 		yield(player_spawner, "player_assigned")
 		set_player(player_spawner.get_player())
+		update_label_size()
 		
 signal goal_done
 func _on_Field_entered(field, body):
@@ -84,8 +88,12 @@ func do_goal(player, pos):
 	
 	if current_ring >= 0:
 		gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
-	
+		self.call_deferred('update_label_size')
+	else:
+		$LabelWrapper/Label.queue_free()
+		
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
+	
 	emit_signal("goal_done", player, self, pos)
 	
 	if current_ring < 0:
@@ -96,6 +104,8 @@ func set_player(v : InfoPlayer):
 	player = v
 	field.modulate = player.species.color
 	$Rings.modulate = player.species.color
+	$LabelWrapper/Label.modulate = player.species.color
+	$LabelWrapper/Label.text = player.id
 	
 func get_player():
 	return player

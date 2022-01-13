@@ -30,7 +30,7 @@ func _process(delta):
 	update_scale()
 	
 func update_scale():
-	$Wrapper/Scaled.scale = Vector2(1,1) if not target.camera else target.camera.zoom
+	$Wrapper/Scaled.scale = Vector2(5,5) if not target.camera or not target.camera.enabled else target.camera.zoom
 	
 func update_rotation():
 	rotation = -target.rotation

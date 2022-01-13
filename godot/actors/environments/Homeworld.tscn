@@ -4,7 +4,7 @@
 [ext_resource path="res://actors/environments/Planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/environments/Homeworld.gd" type="Script" id=3]
 
-[node name="Homeworld" instance=ExtResource( 2 )]
+[node name="Homeworld" groups=["homeworld", "in_camera"] instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
 [node name="Ground" parent="." index="1"]

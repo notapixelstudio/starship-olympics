@@ -14,11 +14,11 @@
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=13]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( -300, -519.615, 600, -1.46958e-13, -300, 519.615, -300, -519.615 )
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( -250, -433.013, 500, -1.22465e-13, -250, 433.013, -250, -433.013 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( -300, -519.615, 600, -1.46958e-13, -300, 519.615, -300, -519.615 )
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( -250, -433.013, 500, -1.22465e-13, -250, 433.013, -250, -433.013 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 resource_local_to_scene = true
@@ -31,11 +31,11 @@ orbit_velocity_random = 0.0
 radial_accel = -200.0
 scale = 6.0
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( -300, -519.615, 600, -1.46958e-13, -300, 519.615, -300, -519.615 )
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( -250, -433.013, 500, -1.22465e-13, -250, 433.013, -250, -433.013 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( -300, -519.615, 600, -1.46958e-13, -300, 519.615, -300, -519.615 )
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( -250, -433.013, 500, -1.22465e-13, -250, 433.013, -250, -433.013 )
 
 [sub_resource type="ParticlesMaterial" id=6]
 resource_local_to_scene = true
@@ -148,7 +148,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
-radius = 1850
+radius = 1750
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -840,93 +840,73 @@ position = Vector2( 1200, 516 )
 sides = 6
 need_royal = true
 
-[node name="Tile292" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 11 )]
-position = Vector2( 0, 1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile300" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 11 )]
-position = Vector2( 1200, 688 )
-sides = 6
-need_royal = true
-
-[node name="Tile222" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 11 )]
+[node name="Tile222" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 11 )]
 position = Vector2( 1200, -172 )
 sides = 6
 need_royal = true
 
-[node name="Tile223" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 11 )]
+[node name="Tile223" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 11 )]
 position = Vector2( 1200, -344 )
 sides = 6
 need_royal = true
 
-[node name="Tile224" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 11 )]
+[node name="Tile224" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 11 )]
 position = Vector2( 1200, -516 )
 sides = 6
 need_royal = true
 
-[node name="Tile225" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 11 )]
+[node name="Tile225" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 11 )]
 position = Vector2( 1200, -688 )
 sides = 6
 need_royal = true
 
-[node name="Tile347" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 11 )]
-position = Vector2( 0, -1376 )
-sides = 6
-need_royal = true
-
-[node name="Tile349" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 11 )]
-position = Vector2( -1200, -688 )
-sides = 6
-need_royal = true
-
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
-position = Vector2( 3.0127, 994.782 )
+position = Vector2( 3.0127, 894.782 )
 rotation = 0.523599
 
 [node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="1"]
-polygon = PoolVector2Array( -300, 519.615, -300, -519.615, 600, -1.46958e-13 )
+polygon = PoolVector2Array( -250, 433.013, -250, -433.013, 500, -1.22465e-13 )
 
 [node name="Line2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="2"]
-points = PoolVector2Array( -300, 519.615, -300, -519.615, 600, -1.46958e-13, -300, 519.615 )
+points = PoolVector2Array( -250, 433.013, -250, -433.013, 500, -1.22465e-13, -250, 433.013 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/Area2D" index="2"]
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Field/CrownCollider" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 9 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone/Field" index="5"]
 process_material = SubResource( 3 )
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone/Field" index="7"]
-radius = 600
+radius = 500
 sides = 3.0
 
 [node name="Decoration" parent="Battlefield/Middleground/NoCrownZone" index="5"]
 visible = false
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
-position = Vector2( -3.0127, -994.782 )
+position = Vector2( -3.0127, -894.782 )
 rotation = -2.618
 
 [node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="1"]
-polygon = PoolVector2Array( -300, 519.615, -300, -519.615, 600, -1.46958e-13 )
+polygon = PoolVector2Array( -250, 433.013, -250, -433.013, 500, -1.22465e-13 )
 
 [node name="Line2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="2"]
-points = PoolVector2Array( -300, 519.615, -300, -519.615, 600, -1.46958e-13, -300, 519.615 )
+points = PoolVector2Array( -250, 433.013, -250, -433.013, 500, -1.22465e-13, -250, 433.013 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/Area2D" index="2"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone2/Field/CrownCollider" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 11 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone2/Field" index="5"]
 process_material = SubResource( 6 )
 
 [node name="GRegularPolygon" parent="Battlefield/Middleground/NoCrownZone2/Field" index="7"]
-radius = 600
+radius = 500
 sides = 3.0
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="2"]
@@ -937,20 +917,21 @@ visible = false
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="3" instance=ExtResource( 13 )]
 position = Vector2( -1600, 0 )
-type = "spikes"
+type = "spike_gun"
 
 [node name="PowerUp2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 13 )]
 position = Vector2( 1600, 0 )
-type = "spikes"
+type = "spike_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = "bee_crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1600, 5.82077e-11 )
+position = Vector2( 1600, 0 )
 rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 3 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( -1600, 0 )
@@ -959,7 +940,7 @@ controls = "joy2"
 species = ExtResource( 7 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 
@@ -969,4 +950,3 @@ smoothing_speed = 0.3
 [editable path="Battlefield/Middleground/NoCrownZone/Field"]
 [editable path="Battlefield/Middleground/NoCrownZone2"]
 [editable path="Battlefield/Middleground/NoCrownZone2/Field"]
-[editable path="CanvasLayer/Pause"]
