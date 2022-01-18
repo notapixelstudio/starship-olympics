@@ -176,6 +176,7 @@ func refresh():
 				var shape = ConvexPolygonShape2D.new()
 				var a = points[i]
 				var b = points[(i+1) % len(points)]
+				# elongation is used to avoid jumping outside the battlefield walls
 				var elo = (b-a).normalized()*elongation
 				var elo_polygon := PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo])
 				var clipped_elo_polygon : PoolVector2Array = Geometry.clip_polygons_2d(elo_polygon, points)[0] # this is to avoid elongation spikes inside the arena
@@ -184,11 +185,10 @@ func refresh():
 				add_child(cshape)
 				
 		else:
-			var cshape = CollisionShape2D.new()
-			var shape = ConvexPolygonShape2D.new()
-			shape.set_points(points)
-			cshape.set_shape(shape)
-			add_child(cshape)
+			var cpolygon = CollisionPolygon2D.new()
+			cpolygon.visible = false
+			cpolygon.polygon = points
+			add_child(cpolygon)
 			
 	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass) and under == 'both'
 	
