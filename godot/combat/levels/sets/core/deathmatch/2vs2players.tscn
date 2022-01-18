@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=3]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
@@ -15,8 +15,6 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
 [ext_resource path="res://assets/sprites/signs/X.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=16]
-[ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=18]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=19]
 
@@ -69,121 +67,28 @@ enabled = true
 texture = ExtResource( 9 )
 centered = false
 
-[node name="Top" type="Node2D" parent="Battlefield/Background" index="1"]
-position = Vector2( 0, -1000 )
-
-[node name="Grid2" parent="Battlefield/Background/Top" index="0" instance=ExtResource( 17 )]
-modulate = Color( 0, 0.25098, 0.364706, 0.9 )
-polygon = PoolVector2Array( 1200, -900, 1500, -600, 1500, 600, 1200, 900, -1200, 900, -1500, 600, -1500, -600, -1200, -900 )
-fg_color = Color( 0, 0.48, 0.24, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
-
-[node name="Bottom" type="Node2D" parent="Battlefield/Background" index="2"]
-position = Vector2( 0, 1000 )
-
-[node name="Grid3" parent="Battlefield/Background/Bottom" index="0" instance=ExtResource( 17 )]
-modulate = Color( 0, 0.25098, 0.364706, 0.9 )
-polygon = PoolVector2Array( 1200, -900, 1500, -600, 1500, 600, 1200, 900, -1200, 900, -1500, 600, -1500, -600, -1200, -900 )
-fg_color = Color( 0, 0.48, 0.24, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
-
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="Glass" type="Polygon2D" parent="Battlefield/Background" index="4"]
-modulate = Color( 0.4, 0.7, 1.2, 1 )
-self_modulate = Color( 1, 1, 1, 0.109804 )
-texture = ExtResource( 16 )
-texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( 1200, -2150, 1350, -2150, 1750, -1750, 1750, 1750, 1350, 2150, -1350, 2150, -1750, 1750, -1750, -1750, -1350, -2150, 1200, -2150, 1200, -1900, -1200, -1900, -1500, -1600, -1500, -400, -1200, -100, 1200, -100, 1500, -400, 1500, 400, 1200, 100, -1200, 100, -1500, 400, -1500, 1600, -1200, 1900, 1200, 1900, 1500, 1600, 1500, -1600, 1200, -1900 )
-
-[node name="OutsideWall" parent="Battlefield/Background" index="5" instance=ExtResource( 7 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 7 )]
 hollow = true
-offset = 200
-type = 2
-hide_line = true
-hide_line_below = true
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 18 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 2 )
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 3 )
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_description_": ""
 }
-width = 3000
-height = 3800
-bevel = 300
-bevel_nw = 300
-bevel_ne = 300
-bevel_sw = 300
-bevel_se = 300
+polygon = PoolVector2Array( -1500, -1600, -1200, -1900, 1200, -1900, 1500, -1600, 1500, -400, 1900, 0, 1500, 400, 1500, 1600, 1200, 1900, -1200, 1900, -1500, 1600, -1500, 400, -1900, 0, -1500, -400 )
 
-[node name="OutWall" parent="Battlefield/Background" index="6" instance=ExtResource( 7 )]
-position = Vector2( 0, -1000 )
-rotation = 1.5708
-collision_layer = 0
-hollow = true
-offset = 200
-type = 4
-hide_grid = true
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 18 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutWall" index="3"]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-width = 1800
-height = 3000
-bevel = 300
-bevel_nw = 300
-bevel_ne = 300
-bevel_sw = 300
-bevel_se = 300
-
-[node name="OutWall2" parent="Battlefield/Background" index="7" instance=ExtResource( 7 )]
-position = Vector2( 0, 1000 )
-rotation = 1.5708
-collision_layer = 0
-hollow = true
-offset = 200
-type = 4
-hide_grid = true
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 18 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutWall2" index="3"]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-width = 1800
-height = 3000
-bevel = 300
-bevel_nw = 300
-bevel_ne = 300
-bevel_sw = 300
-bevel_se = 300
-
-[node name="X" type="Sprite" parent="Battlefield/Background" index="8"]
-modulate = Color( 0.4, 0.7, 1.2, 1 )
-position = Vector2( -1500, 0 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 14 )
-
-[node name="O" type="Sprite" parent="Battlefield/Background" index="9"]
-modulate = Color( 0.4, 0.7, 1.2, 1 )
-position = Vector2( 1500, 0 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 15 )
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
+visible = false
+polygon = PoolVector2Array( -1500, -1600, -1200, -1900, 1200, -1900, 1500, -1600, 1500, -400, 1900, 0, 1500, 400, 1500, 1600, 1200, 1900, -1200, 1900, -1500, 1600, -1500, 400, -1900, 0, -1500, -400 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -400, -1900 )
@@ -249,7 +154,37 @@ script = ExtResource( 1 )
 radius = 200
 sides = 4.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="5" groups=["in_camera"] instance=ExtResource( 7 )]
+[node name="Wall6" parent="Battlefield/Middleground" index="5" groups=["in_camera"] instance=ExtResource( 7 )]
+position = Vector2( -1500, 0 )
+collision_layer = 2147483648
+type = 4
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 18 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall6" index="8"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -400, 300, -100, 2700, -100, 3000, -400, 3400, 0, 3000, 400, 2700, 100, 300, 100, 0, 400, -400, 0 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall6" index="9"]
+visible = false
+polygon = PoolVector2Array( 0, -400, 300, -100, 2700, -100, 3000, -400, 3400, 0, 3000, 400, 2700, 100, 300, 100, 0, 400, -400, 0 )
+
+[node name="X" type="Sprite" parent="Battlefield/Middleground" index="6"]
+modulate = Color( 0.4, 0.7, 1.2, 1 )
+position = Vector2( -1500, 0 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 14 )
+
+[node name="O" type="Sprite" parent="Battlefield/Middleground" index="7"]
+modulate = Color( 0.4, 0.7, 1.2, 1 )
+position = Vector2( 1500, 0 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 15 )
+
+[node name="Wall4" parent="Battlefield/Middleground" index="8" groups=["in_camera"] instance=ExtResource( 7 )]
 position = Vector2( 800, 1000 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 18 )
@@ -259,7 +194,7 @@ script = ExtResource( 1 )
 radius = 200
 sides = 4.0
 
-[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="6"]
+[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="9"]
 position = Vector2( 600, -1000 )
 rotation = -3.14159
 __meta__ = {
@@ -298,7 +233,7 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="7"]
+[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="10"]
 position = Vector2( -600, 1000 )
 rotation = -3.14159
 __meta__ = {

@@ -5,7 +5,7 @@ class_name Wall
 
 export (bool) var hollow setget set_hollow
 
-export (int) var offset setget set_offset
+export (int) var offset = 2000 setget set_offset
 export (int) var elongation setget set_elongation
 
 enum TYPE { solid, hostile, ghost, decoration, glass }
@@ -171,22 +171,14 @@ func refresh():
 	
 	if not type == TYPE.ghost and not type == TYPE.decoration:
 		if hollow:
-			for i in range(len(points)):
-				var cshape = CollisionShape2D.new()
-				var shape = ConvexPolygonShape2D.new()
-				var a = points[i]
-				var b = points[(i+1) % len(points)]
-				var elo = (b-a).normalized()*elongation
-				shape.set_points(PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo]))
-				cshape.set_shape(shape)
-				add_child(cshape)
-				
+			# WARNING it works only for simple shapes that do not yield more than one polygon during
+			# offset and boolean operations
+			var exterior : PoolVector2Array = Geometry.offset_polygon_2d(points, offset, Geometry.JOIN_ROUND)[0]
+			var clipped : Array = Geometry.clip_polygons_2d(exterior, points)
+			var donut : PoolVector2Array = clipped[0] + PoolVector2Array([clipped[1][-1]]) + clipped[1] + PoolVector2Array([clipped[0][-1]])
+			$CollisionPolygon2D.polygon = donut
 		else:
-			var cshape = CollisionShape2D.new()
-			var shape = ConvexPolygonShape2D.new()
-			shape.set_points(points)
-			cshape.set_shape(shape)
-			add_child(cshape)
+			$CollisionPolygon2D.polygon = points
 			
 	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass) and under == 'both'
 	
