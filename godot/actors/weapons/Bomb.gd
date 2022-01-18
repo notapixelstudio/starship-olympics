@@ -3,10 +3,9 @@ extends RigidBody2D
 
 class_name Bomb
 
-var Explosion = load('res://actors/weapons/Explosion.tscn')
-var Ripple = load('res://actors/weapons/Ripple.tscn')
-var BubbleScene = load('res://actors/environments/Bubble.tscn')
-
+export var Explosion : PackedScene
+export var Ripple : PackedScene
+export var BubbleScene : PackedScene
 export var PfftScene : PackedScene
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')

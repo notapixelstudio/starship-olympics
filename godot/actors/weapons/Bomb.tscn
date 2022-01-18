@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
 [ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/audio/gameplay/ball/zapsplat_science_fiction_thud_impact_hit_generic_002_29337.ogg" type="AudioStream" id=17]
+[ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=18]
+[ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=19]
+[ext_resource path="res://actors/weapons/Ripple.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -76,6 +79,9 @@ contacts_reported = 1
 contact_monitor = true
 linear_damp = 2.0
 script = ExtResource( 1 )
+Explosion = ExtResource( 19 )
+Ripple = ExtResource( 20 )
+BubbleScene = ExtResource( 18 )
 PfftScene = ExtResource( 2 )
 
 [node name="AutoTrail" parent="." instance=ExtResource( 16 )]
