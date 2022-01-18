@@ -414,6 +414,10 @@ stream = ExtResource( 5 )
 volume_db = 10.0
 bus = "SFX"
 
+[node name="voice" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = 10.0
+bus = "SFX"
+
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 6 )
 bus = "SFX"

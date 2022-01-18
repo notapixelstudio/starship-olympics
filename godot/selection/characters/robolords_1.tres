@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/species/robolords/beaten.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/species/robolords.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/species/robolords/ship.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/species/robolords/ship_plain.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/species/robolords/ship_w.png" type="Texture" id=6]
+[ext_resource path="res://selection/audio/robolord.wav" type="AudioStream" id=7]
 
 [resource]
 script = ExtResource( 3 )
@@ -19,5 +20,6 @@ ship_off = ExtResource( 5 )
 ship_w = ExtResource( 6 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 1 )
+voice = ExtResource( 7 )
 color = Color( 1, 0.2, 0.2, 1 )
 color_2 = Color( 0.996078, 0, 0.490196, 1 )

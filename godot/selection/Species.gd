@@ -12,6 +12,7 @@ export (StreamTexture) var ship_off
 export (StreamTexture) var ship_w
 export (Texture) var character_ok
 export (Texture) var character_beaten
+export (AudioStream) var voice
 
 
 # color of the species

@@ -135,6 +135,8 @@ func select_character():
 	selected = true
 	wrapper.z_index = 1000
 	speciesSelection.select()
+	sfx.get_node("voice").set_stream(species.voice)
+	sfx.get_node("voice").play()
 	#sfx.get_node("selected").play()
 	setup_info()
 	emit_signal("selected", self)

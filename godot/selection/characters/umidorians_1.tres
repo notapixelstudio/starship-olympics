@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://selection/Species.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/species/umidorians.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/species/umidorians/tsunamians1_beaten.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/species/umidorians/ship_w.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/species/umidorians/ship.png" type="Texture" id=6]
+[ext_resource path="res://selection/audio/umidorians2.wav" type="AudioStream" id=7]
 
 [resource]
 script = ExtResource( 1 )
@@ -19,5 +20,6 @@ ship_off = ExtResource( 3 )
 ship_w = ExtResource( 5 )
 character_ok = ExtResource( 2 )
 character_beaten = ExtResource( 4 )
+voice = ExtResource( 7 )
 color = Color( 0, 0.466667, 1, 1 )
 color_2 = Color( 0.403922, 0.282353, 1, 1 )
