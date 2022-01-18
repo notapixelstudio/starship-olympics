@@ -39,6 +39,7 @@ func disable_collisions():
 
 func _on_ShieldWall_body_entered(body):
 	if body is Bomb or body is Bullet:
+		body.dissolve()
 		body.queue_free()
 		
 		self.down()
