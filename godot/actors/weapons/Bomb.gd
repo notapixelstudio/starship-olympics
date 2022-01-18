@@ -16,7 +16,6 @@ var symbol = null
 
 var entity : Entity
 onready var life_time = $LifeTime
-onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
 
 func _ready():
@@ -115,7 +114,6 @@ func _integrate_forces(state):
 	
 	# teleport
 	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
-		trail.erase_trail()
 		xform.origin = entity.get('Teleportable').get_destination()
 		entity.get('Teleportable').teleport_done()
 		
