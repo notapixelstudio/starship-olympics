@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=14]
 [ext_resource path="res://assets/icon/skull.png" type="Texture" id=15]
-[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=16]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=19]
@@ -504,11 +503,6 @@ type = "rocket_gun"
 [node name="PowerUp2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 18 )]
 position = Vector2( 1300, -900 )
 type = "rocket_gun"
-
-[node name="ShieldWall" parent="Battlefield/Middleground" index="11" instance=ExtResource( 16 )]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall" index="3"]
-polygon = PoolVector2Array( -400, -950, -400, -750, 100, -750, 100, -950 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )
