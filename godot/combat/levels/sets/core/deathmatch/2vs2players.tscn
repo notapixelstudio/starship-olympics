@@ -84,11 +84,11 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -1500, -1600, -1200, -1900, 1200, -1900, 1500, -1600, 1500, -400, 1900, 0, 1500, 400, 1500, 1600, 1200, 1900, -1200, 1900, -1500, 1600, -1500, 400, -1900, 0, -1500, -400 )
+polygon = PoolVector2Array( -1500, -1600, -1200, -1900, 1200, -1900, 1500, -1600, 1500, -350, 1850, 0, 1500, 350, 1500, 1600, 1200, 1900, -1200, 1900, -1500, 1600, -1500, 350, -1850, 0, -1500, -350 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
-polygon = PoolVector2Array( -1500, -1600, -1200, -1900, 1200, -1900, 1500, -1600, 1500, -400, 1900, 0, 1500, 400, 1500, 1600, 1200, 1900, -1200, 1900, -1500, 1600, -1500, 400, -1900, 0, -1500, -400 )
+polygon = PoolVector2Array( -1500, -1600, -1200, -1900, 1200, -1900, 1500, -1600, 1500, -350, 1850, 0, 1500, 350, 1500, 1600, 1200, 1900, -1200, 1900, -1500, 1600, -1500, 350, -1850, 0, -1500, -350 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 position = Vector2( -400, -1900 )
@@ -156,8 +156,7 @@ sides = 4.0
 
 [node name="Wall6" parent="Battlefield/Middleground" index="5" groups=["in_camera"] instance=ExtResource( 7 )]
 position = Vector2( -1500, 0 )
-collision_layer = 2147483648
-type = 4
+type = 2
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 18 )
 
