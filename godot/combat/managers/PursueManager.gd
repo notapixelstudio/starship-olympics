@@ -10,7 +10,7 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 		
 	if entity.has('Owned'):
 		var owner = entity.get('Owned').get_owned_by()
-		if not is_instance_valid(owner) or owner.species == ship.species:
+		if not is_instance_valid(owner) or owner.get_team() == ship.get_team():
 			return
 		
 	if entity.has('Owned') and len(ECM.entities_with('Royal')) > 0:
