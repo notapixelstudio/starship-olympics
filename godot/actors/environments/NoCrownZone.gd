@@ -1,14 +1,16 @@
-extends Node2D
+tool
+extends Field
 
+export var visible_decorations := true
 
-onready var field = $Field
 func _ready():
-	var gshape = field.get_gshape()
+	var gshape = self.get_gshape()
 	
 	# connect feedback signal 
-	field.connect("entered", self, "_on_Field_entered")
+	self.connect("entered", self, "_on_Field_entered")
 	
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
+	$Decoration.visible = visible_decorations
 	
 func _process(delta):
 	# keep the symbols up
