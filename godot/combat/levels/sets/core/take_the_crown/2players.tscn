@@ -175,8 +175,18 @@ sides = 4.0
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
 position = Vector2( -800, 0 )
 
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
+script = ExtResource( 1 )
+radius = 400
+sides = 4.0
+
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
 position = Vector2( 800, 0 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone2" index="12"]
+script = ExtResource( 1 )
+radius = 400
+sides = 4.0
 
 [node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 18 )]
 position = Vector2( -400, -400 )
