@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
+[ext_resource path="res://assets/sprites/environments/rhombus.png" type="Texture" id=5]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
@@ -33,6 +34,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 1285, 50 ]
 }
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
@@ -138,7 +156,54 @@ sides = 4.0
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 13 )]
 z_index = -1
 z_as_relative = false
-visible_decorations = false
+
+[node name="IsoPolygon" parent="Battlefield/Middleground/NoCrownZone" index="0"]
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 3 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":2600,"bevel":400,"bevel_nw":400,"bevel_ne":400,"bevel_sw":400,"bevel_se":400)
+
+
+[node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone" index="1"]
+polygon = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone" index="2"]
+points = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Area2D" index="2"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/CrownCollider" index="0"]
+shape = SubResource( 3 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone" index="5"]
+process_material = SubResource( 4 )
+
+[node name="FeedbackLine" parent="Battlefield/Middleground/NoCrownZone" index="7"]
+points = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
+
+[node name="NoCrownSign" parent="Battlefield/Middleground/NoCrownZone" index="9"]
+scale = Vector2( 2, 2 )
+
+[node name="rhombus" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="0"]
+modulate = Color( 0.235294, 0, 0.109804, 1 )
+position = Vector2( -150, 1025 )
+
+[node name="rhombus2" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="1"]
+position = Vector2( -150, -1025 )
+
+[node name="Line2D" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="4"]
+points = PoolVector2Array( 250, 0, 275, 25, 350, -50, 350, -875, 200, -1025, 150, -975, 100, -1025, -50, -875, 0, -825, 50, -875, -100, -1025, -150, -975, -200, -1025, -350, -875, -350, -50, -275, 25, -250, 0, -275, -25, -350, 50, -350, 875, -200, 1025, -150, 975, -100, 1025, 50, 875, 0, 825, -50, 875, 100, 1025, 150, 975, 200, 1025, 350, 875, 350, 50, 275, -25, 250, 0 )
+width = 8.0
+
+[node name="rhombus5" type="Sprite" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="5"]
+modulate = Color( 0.235294, 0, 0.109804, 1 )
+position = Vector2( 150, 1025 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
+
+[node name="rhombus6" type="Sprite" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="6"]
+modulate = Color( 0.235294, 0, 0.109804, 1 )
+position = Vector2( 150, -1025 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
 script = ExtResource( 3 )
@@ -151,35 +216,35 @@ bevel_sw = 400
 bevel_se = 400
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 10 )]
-position = Vector2( -1000, 0 )
+position = Vector2( -750, 0 )
 type = "crown"
 
 [node name="Crown2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 10 )]
-position = Vector2( 1000, 0 )
+position = Vector2( 750, 0 )
 type = "crown"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1000, -500 )
+position = Vector2( -1100, -500 )
 rotation = 0.0
 species = ExtResource( 6 )
 team = "A"
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( -1000, 500 )
+position = Vector2( -1100, 500 )
 rotation = 0.0
 controls = "joy2"
 species = ExtResource( 16 )
 team = "A"
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( 1000, -500 )
+position = Vector2( 1100, -500 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 4 )
 team = "B"
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( 1000, 500 )
+position = Vector2( 1100, 500 )
 rotation = 3.14159
 controls = "joy4"
 species = ExtResource( 17 )
@@ -190,3 +255,5 @@ zoom = Vector2( 6103.52, 6103.52 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="Battlefield/Middleground/NoCrownZone"]
