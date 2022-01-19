@@ -147,6 +147,7 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -800, 0 )
+decoration_scale = 1.1
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
 script = ExtResource( 17 )
@@ -155,6 +156,7 @@ sides = 4.0
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
 position = Vector2( 800, 0 )
+decoration_scale = 1.1
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone2" index="12"]
 script = ExtResource( 17 )
