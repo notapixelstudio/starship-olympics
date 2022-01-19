@@ -1,0 +1,192 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
+[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=12]
+[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=13]
+[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=14]
+[ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=15]
+[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=16]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=17]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:bevel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 1285, 50 ]
+}
+
+[node name="Arena" instance=ExtResource( 7 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 12 )
+match_duration_override = 120.0
+
+[node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 15 )]
+
+[node name="CrownModeManager" parent="Managers" index="9"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 14 )
+centered = false
+
+[node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 8 )]
+hollow = true
+offset = 200
+type = 2
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+width = 3800
+height = 2600
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 8 )]
+hollow = true
+offset = 200
+type = 2
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+width = 3800
+height = 2600
+bevel = 1285
+bevel_nw = 1285
+bevel_ne = 1285
+bevel_sw = 1285
+bevel_se = 1285
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 8 )]
+hollow = true
+hide_grid = true
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+width = 3800
+height = 2600
+bevel = 1285
+bevel_nw = 1285
+bevel_ne = 1285
+bevel_sw = 1285
+bevel_se = 1285
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
+playback_speed = 0.5
+anims/Rotate = SubResource( 1 )
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 11 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
+bg_color = Color( 0.28, 0.14, 0.14, 1 )
+
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
+position = Vector2( 0, -1300 )
+offset = 400
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+script = ExtResource( 1 )
+radius = 250
+sides = 4.0
+
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
+position = Vector2( 0, 1300 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
+script = ExtResource( 1 )
+radius = 250
+sides = 4.0
+
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 13 )]
+z_index = -1
+z_as_relative = false
+visible_decorations = false
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
+script = ExtResource( 3 )
+width = 800
+height = 2600
+bevel = 400
+bevel_nw = 400
+bevel_ne = 400
+bevel_sw = 400
+bevel_se = 400
+
+[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 10 )]
+position = Vector2( -1000, 0 )
+type = "crown"
+
+[node name="Crown2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 10 )]
+position = Vector2( 1000, 0 )
+type = "crown"
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
+position = Vector2( -1000, -500 )
+rotation = 0.0
+species = ExtResource( 6 )
+team = "A"
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
+position = Vector2( -1000, 500 )
+rotation = 0.0
+controls = "joy2"
+species = ExtResource( 16 )
+team = "A"
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
+position = Vector2( 1000, -500 )
+rotation = 3.14159
+controls = "kb2"
+species = ExtResource( 4 )
+team = "B"
+
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
+position = Vector2( 1000, 500 )
+rotation = 3.14159
+controls = "joy4"
+species = ExtResource( 17 )
+team = "B"
+
+[node name="Camera" parent="." index="7"]
+zoom = Vector2( 6103.52, 6103.52 )
+smoothing_speed = 0.3
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
