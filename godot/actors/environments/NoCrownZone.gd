@@ -2,6 +2,7 @@ tool
 extends Field
 
 export var visible_decorations := true
+export var symbol_scale := 2.0
 
 func _ready():
 	var gshape = self.get_gshape()
@@ -11,6 +12,7 @@ func _ready():
 	
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	$Decoration.visible = visible_decorations
+	$NoCrownSign.scale = Vector2(symbol_scale, symbol_scale)
 	
 func _process(delta):
 	# keep the symbols up
