@@ -179,8 +179,11 @@ func refresh():
 				# elongation is used to avoid jumping outside the battlefield walls
 				var elo = (b-a).normalized()*elongation
 				var elo_polygon := PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo])
-				var clipped_elo_polygon : PoolVector2Array = Geometry.clip_polygons_2d(elo_polygon, points)[0] # this is to avoid elongation spikes inside the arena
-				shape.set_points(clipped_elo_polygon)
+				var clipped_elo_polygons : Array = Geometry.clip_polygons_2d(elo_polygon, points) # this is to avoid elongation spikes inside the arena
+				if len(clipped_elo_polygons) > 0:
+					shape.set_points(clipped_elo_polygons[0])
+				else:
+					shape.set_points(elo_polygon)
 				cshape.set_shape(shape)
 				add_child(cshape)
 				
