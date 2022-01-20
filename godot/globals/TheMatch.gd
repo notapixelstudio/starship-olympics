@@ -209,3 +209,14 @@ func get_leader_players() -> Array:
 func get_game_mode() -> GameMode:
 	return game_mode
 	
+func get_players_in_team(team : String) -> Array: # of InfoPlayer
+	var result := []
+	for player in player_scores:
+		if player.team == team:
+			result.append(player)
+	return result
+	
+func add_score_to_team(team : String, amount : float):
+	for player in get_players_in_team(team):
+		add_score(player.id, amount)
+		
