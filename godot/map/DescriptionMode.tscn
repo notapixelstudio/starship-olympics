@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://map/DescriptionMode.gd" type="Script" id=2]
@@ -60,6 +60,10 @@ tracks/0/keys = {
 size = 26
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 40
 font_data = ExtResource( 8 )
 
 [node name="DescriptionMode" type="Control"]
@@ -153,6 +157,7 @@ autostart = true
 [node name="Description" parent="." instance=ExtResource( 4 )]
 margin_top = 84.0
 margin_bottom = 227.0
+custom_fonts/normal_font = SubResource( 8 )
 
 [node name="LineLeft" type="Polygon2D" parent="."]
 position = Vector2( -61.8767, 12.5112 )
