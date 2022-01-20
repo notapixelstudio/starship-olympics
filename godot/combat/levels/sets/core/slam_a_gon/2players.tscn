@@ -56,7 +56,7 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O" index="0"]
-points = PoolVector2Array( -480.833, -480.833, -120, -120 )
+points = PoolVector2Array( -433.315, -433.315, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -64,7 +64,7 @@ end_cap_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background/O" index="1"]
 position = Vector2( 880, 880 )
-points = PoolVector2Array( -760, -760, -399.167, -399.167 )
+points = PoolVector2Array( -760, -760, -464.787, -464.787 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -119,7 +119,7 @@ size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
-modulate = Color( 0.848, 0.288, 0.96, 1 )
+modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( -850, 0 )
 size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")

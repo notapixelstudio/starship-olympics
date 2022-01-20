@@ -911,7 +911,7 @@ func _on_sth_just_froze(sth):
 	rock.call_deferred('start')
 
 func _on_goal_done(player, goal, pos):
-	global.the_match.add_score(player.id, goal.get_score())
+	global.the_match.add_score_to_team(player.team, goal.get_score())
 	show_msg(player.species, goal.get_score(), pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
