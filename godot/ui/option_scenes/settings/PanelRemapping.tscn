@@ -13,22 +13,29 @@ __meta__ = {
 }
 
 [node name="BannerInfo" parent="." instance=ExtResource( 1 )]
-margin_top = -54.0
-margin_right = -2.0
-margin_bottom = -2.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -639.0
+margin_top = 48.0
+margin_right = 639.0
+margin_bottom = 100.0
 
 [node name="Content" parent="." instance=ExtResource( 2 )]
+margin_left = -524.0
+margin_top = -243.0
+margin_right = 557.0
+margin_bottom = 210.0
 device_type = "keyboard"
 
 [node name="Back" type="Button" parent="."]
-anchor_left = 0.22118
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.22118
-anchor_bottom = 1.00347
-margin_left = -214.5
-margin_top = -64.0
-margin_right = 215.5
-margin_bottom = -8.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -215.0
+margin_top = -98.4984
+margin_right = 215.0
+margin_bottom = -40.0
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
