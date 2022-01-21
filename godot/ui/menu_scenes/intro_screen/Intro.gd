@@ -3,7 +3,7 @@ extends Control
 onready var disclaimer = $Disclaimer
 onready var anim = $AnimationPlayer
 
-var line1 = tr("...WHAT?! Has a [i]century[/i] passed already?")
+var line1 = tr("...WHAT?!... Has a [i]century[/i] passed already?")
 var line2 = tr("A-hem... Welcome mortals!")
 var line3 = tr("Welcome back to another edition of...")
 
@@ -27,7 +27,6 @@ func go_ahead():
 	
 	
 func _on_Typewriter_done():
-	var text_to_find = typewriter.get_text()
 	step += 1
 	
 	yield(get_tree().create_timer(1.5), "timeout")
@@ -39,9 +38,9 @@ func _on_Typewriter_done():
 		set_process_input(false)
 		return 
 	typewriter.type(lines[step])
-	$AudioStreamPlayer2D2.stream = load(voice_lines[step])
-	yield(get_tree().create_timer(1), "timeout")
-	$AudioStreamPlayer2D2.play()
+#	$AudioStreamPlayer2D2.stream = load(voice_lines[step])
+#	yield(get_tree().create_timer(1), "timeout")
+#	$AudioStreamPlayer2D2.play()
 
 
 func _on_Control_completed():
