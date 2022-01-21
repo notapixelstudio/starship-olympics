@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://ui/menu_scenes/intro_screen/Intro.gd" type="Script" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.tscn" type="PackedScene" id=2]
@@ -8,7 +8,11 @@
 [ext_resource path="res://assets/audio/soundtracks/lewislancaster-0013shed.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/UI/futureui-panel.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/species/photo_2022-01-02_22-04-40.jpg" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/Cadman/Cadman_BoldItalic.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://ui/common_elements/CircularProgressBar/CircularProgressBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/fonts/Cadman/Cadman_Bold.otf" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/fonts/Cadman/Cadman_Italic.otf" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/fonts/Cadman/cadman.regular.otf" type="DynamicFontData" id=13]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Appear"
@@ -47,7 +51,7 @@ tracks/2/path = NodePath("Referee:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -109,9 +113,21 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 13 )
 
 [node name="Intro" type="Control"]
 anchor_right = 1.0
@@ -163,6 +179,18 @@ margin_left = -202.028
 margin_top = -38.9953
 margin_right = 401.972
 margin_bottom = 75.0047
+custom_fonts/bold_italics_font = SubResource( 7 )
+custom_fonts/italics_font = SubResource( 8 )
+custom_fonts/bold_font = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 5 )
 
+[node name="CircularProgressBar" parent="." instance=ExtResource( 10 )]
+margin_left = 1135.93
+margin_top = 585.926
+margin_right = -0.0673828
+margin_bottom = 5.92572
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="done" from="Typewriter" to="." method="_on_Typewriter_done"]
+[connection signal="completed" from="CircularProgressBar" to="." method="_on_Control_completed"]
