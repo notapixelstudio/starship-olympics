@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://special_scenes/on_canvas_ui/FloatingMessage.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/battlers/AmmoIndicator.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=2]
+resource_local_to_scene = true
+size = 42
+outline_size = 10
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
@@ -20,6 +26,21 @@ script = ExtResource( 1 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Scaled" type="Node2D" parent="Wrapper"]
+
+[node name="PlayerIDTeamOutline" type="Label" parent="Wrapper/Scaled"]
+visible = false
+margin_left = -46.0833
+margin_top = -111.25
+margin_right = 46.9167
+margin_bottom = -62.25
+custom_fonts/font = SubResource( 2 )
+text = "P1"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Colored" type="Node2D" parent="Wrapper/Scaled"]
 z_index = 20

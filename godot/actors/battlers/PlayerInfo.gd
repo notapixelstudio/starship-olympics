@@ -4,6 +4,7 @@ export var target_path: NodePath = @".."
 
 onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
 onready var player_id = $Wrapper/Scaled/Colored/PlayerID
+onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
 onready var target_entity = ECM.E(target)
 onready var point_score = $Wrapper/Scaled/Colored/PointsScored
 onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
@@ -13,6 +14,12 @@ func _ready():
 		player_id.text = tr(target.info_player.id)
 		if target.info_player.cpu:
 			player_id.text = tr("CPU")
+			
+		if target.info_player.has_proper_team():
+			player_team_outline.visible = true
+			player_team_outline.text = tr(target.info_player.id)
+			player_team_outline.modulate = target.info_player.get_team_color()
+			
 	$Wrapper/Scaled/Colored.modulate = target.species.color
 	
 	update_scale()

@@ -211,9 +211,9 @@ func _ready():
 	$Graphics/ChargeBar/Crosshair.modulate = species.color
 	
 	# if we are on a proper team, switch on the outline
-	if info_player.team != info_player.id:
+	if info_player.has_proper_team():
 		$Graphics/Sprite.material.set_shader_param('active', true)
-		var color = Color('#ff4a2e') if info_player.team == 'A' else Color('#1a59ff')
+		var color = info_player.get_team_color()
 		$Graphics/Sprite.material.set_shader_param('color', color)
 	
 func change_engine(value: bool):
