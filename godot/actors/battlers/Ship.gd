@@ -213,8 +213,8 @@ func _ready():
 	# if we are on a proper team, switch on the outline
 	if info_player.team != info_player.id:
 		$Graphics/Sprite.material.set_shader_param('active', true)
-		var color = Color('#ff2e2e') if info_player.team == 'A' else Color('#1a59ff')
-		$Graphics/Sprite.material.set_shader_param('outline_color', color)
+		var color = Color('#ff4a2e') if info_player.team == 'A' else Color('#1a59ff')
+		$Graphics/Sprite.material.set_shader_param('color', color)
 	
 func change_engine(value: bool):
 	responsive = value
