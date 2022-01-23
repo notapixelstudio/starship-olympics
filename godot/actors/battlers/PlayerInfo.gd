@@ -8,6 +8,10 @@ onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
 onready var target_entity = ECM.E(target)
 onready var point_score = $Wrapper/Scaled/Colored/PointsScored
 onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
+onready var minisun = $Wrapper/Scaled/Colored/Minisun
+onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
+onready var minisun_outline = $Wrapper/Scaled/Minisun
+onready var minimoon_outline = $Wrapper/Scaled/Minimoon
 
 func _ready():
 	if target.info_player:
@@ -18,7 +22,16 @@ func _ready():
 		if target.info_player.has_proper_team():
 			player_team_outline.visible = true
 			player_team_outline.text = tr(target.info_player.id)
-			player_team_outline.modulate = target.info_player.get_team_color()
+			
+			minisun_outline.visible = target.info_player.team == 'A'
+			minimoon_outline.visible = target.info_player.team == 'B'
+			minisun.visible = target.info_player.team == 'A'
+			minimoon.visible = target.info_player.team == 'B'
+			
+			var team_color = target.info_player.get_team_color()
+			player_team_outline.modulate = team_color
+			minisun_outline.material.set_shader_param('color', team_color)
+			minimoon_outline.material.set_shader_param('color', team_color)
 			
 	$Wrapper/Scaled/Colored.modulate = target.species.color
 	
