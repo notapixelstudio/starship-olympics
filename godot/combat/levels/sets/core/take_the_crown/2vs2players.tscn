@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=16]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=17]
+[ext_resource path="res://utils/LeftRightClippedPolygon2D.gd" type="Script" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -127,8 +128,27 @@ bevel_se = 1285
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
 
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="4"]
+modulate = Color( 1, 1, 1, 0.137255 )
+color = Color( 1, 0.290196, 0.180392, 1 )
+polygon = PoolVector2Array( -250, -1300, -600, -1300, -1900, 0, -600, 1300, -250, 1300, 0, 1050, 0, -1050 )
+script = ExtResource( 18 )
+shape_path = NodePath("../OutsideWall/GBeveledRect")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background" index="5"]
+modulate = Color( 1, 1, 1, 0.137255 )
+color = Color( 0.101961, 0.34902, 1, 1 )
+polygon = PoolVector2Array( 250, -1300, 600, -1300, 1900, 0, 600, 1300, -250, 1300, 0, 1050, 0, -1050 )
+script = ExtResource( 18 )
+shape_path = NodePath("../OutsideWall/GBeveledRect")
+side = "right"
+
+[node name="GridWrapper" parent="Battlefield/Background" index="6"]
+modulate = Color( 1, 1, 1, 0.0392157 )
+
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
+use_parent_material = true
 texture = ExtResource( 11 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.32, 0.1632, 0.1632, 1 )

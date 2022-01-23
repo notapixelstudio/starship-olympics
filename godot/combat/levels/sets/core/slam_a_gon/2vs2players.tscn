@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
 [ext_resource path="res://addons/geometry/GEllipse.gd" type="Script" id=4]
@@ -14,13 +13,11 @@
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=13]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=16]
-[ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=18]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 18 )
-style = ExtResource( 1 )
 score_to_win_override = 12
 match_duration_override = 120.0
 
@@ -40,14 +37,38 @@ rx = 2700
 ry = 2000
 precision = 200.0
 
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background" index="2"]
+modulate = Color( 1, 1, 1, 0.137255 )
+color = Color( 1, 0.290196, 0.180392, 1 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 0, 0, 0, 147.705, 0, 294.603, 0, 439.893, 0, 582.779, 0, 722.483, 0, 858.241, 0, 989.312, 0, 1114.98, 0, 1234.56, 0, 1347.39, 0, 1452.87, 0, 1550.41, 0, 1639.48, 0, 1719.6, 0, 1790.33, 0, 1851.28, 0, 1902.11, 0, 1942.56, 0, 1972.4, 0, 1991.47, 0, 1999.66, -149.611, 1996.93, -348.298, 1983.29, -545.083, 1958.82, -738.89, 1923.65, -928.662, 1877.98, -1113.36, 1822.05, -1291.98, 1756.16, -1463.54, 1680.69, -1627.11, 1596.03, -1781.8, 1502.66, -1926.75, 1401.09, -2061.18, 1291.86, -2184.35, 1175.57, -2295.59, 1052.86, -2394.29, 924.408, -2479.91, 790.902, -2552, 653.077, -2610.14, 511.686, -2654.03, 367.499, -2683.42, 221.305, -2698.16, 73.903, -2698.16, -73.903, -2683.42, -221.305, -2654.03, -367.499, -2610.14, -511.686, -2552, -653.077, -2479.91, -790.902, -2394.29, -924.408, -2295.59, -1052.86, -2184.35, -1175.57, -2061.18, -1291.86, -1926.75, -1401.09, -1781.8, -1502.66, -1627.11, -1596.03, -1463.54, -1680.69, -1291.98, -1756.16, -1113.36, -1822.05, -928.662, -1877.98, -738.89, -1923.65, -545.083, -1958.82, -348.298, -1983.29, -149.611, -1996.93, 0, -1999.66, 0, -1991.47, 0, -1972.4, 0, -1942.56, 0, -1902.11, 0, -1851.28, 0, -1790.33, 0, -1719.6, 0, -1639.48, 0, -1550.41, 0, -1452.87, 0, -1347.39, 0, -1234.56, 0, -1114.98, 0, -989.312, 0, -858.241, 0, -722.483, 0, -582.779, 0, -439.893, 0, -294.603, 0, -147.705 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Polygon2D3" type="Polygon2D" parent="Battlefield/Background" index="3"]
+modulate = Color( 1, 1, 1, 0.137255 )
+position = Vector2( -16, 0 )
+scale = Vector2( -1, 1 )
+color = Color( 0.101961, 0.34902, 1, 1 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 0, 0, 0, 147.705, 0, 294.603, 0, 439.893, 0, 582.779, 0, 722.483, 0, 858.241, 0, 989.312, 0, 1114.98, 0, 1234.56, 0, 1347.39, 0, 1452.87, 0, 1550.41, 0, 1639.48, 0, 1719.6, 0, 1790.33, 0, 1851.28, 0, 1902.11, 0, 1942.56, 0, 1972.4, 0, 1991.47, 0, 1999.66, -149.611, 1996.93, -348.298, 1983.29, -545.083, 1958.82, -738.89, 1923.65, -928.662, 1877.98, -1113.36, 1822.05, -1291.98, 1756.16, -1463.54, 1680.69, -1627.11, 1596.03, -1781.8, 1502.66, -1926.75, 1401.09, -2061.18, 1291.86, -2184.35, 1175.57, -2295.59, 1052.86, -2394.29, 924.408, -2479.91, 790.902, -2552, 653.077, -2610.14, 511.686, -2654.03, 367.499, -2683.42, 221.305, -2698.16, 73.903, -2698.16, -73.903, -2683.42, -221.305, -2654.03, -367.499, -2610.14, -511.686, -2552, -653.077, -2479.91, -790.902, -2394.29, -924.408, -2295.59, -1052.86, -2184.35, -1175.57, -2061.18, -1291.86, -1926.75, -1401.09, -1781.8, -1502.66, -1627.11, -1596.03, -1463.54, -1680.69, -1291.98, -1756.16, -1113.36, -1822.05, -928.662, -1877.98, -738.89, -1923.65, -545.083, -1958.82, -348.298, -1983.29, -149.611, -1996.93, 0, -1999.66, 0, -1991.47, 0, -1972.4, 0, -1942.56, 0, -1902.11, 0, -1851.28, 0, -1790.33, 0, -1719.6, 0, -1639.48, 0, -1550.41, 0, -1452.87, 0, -1347.39, 0, -1234.56, 0, -1114.98, 0, -989.312, 0, -858.241, 0, -722.483, 0, -582.779, 0, -439.893, 0, -294.603, 0, -147.705 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="GridWrapper" parent="Battlefield/Background" index="4"]
+modulate = Color( 1, 1, 1, 0.0392157 )
+
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
+modulate = Color( 1, 1, 1, 0.901961 )
+use_parent_material = true
 texture = ExtResource( 12 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
 bg_color = Color( 0.28, 0.19082, 0.1428, 1 )
 
-[node name="O" type="Sprite" parent="Battlefield/Background" index="3"]
+[node name="O" type="Sprite" parent="Battlefield/Background" index="5"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
 rotation = 0.785398
@@ -110,20 +131,7 @@ ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
-[node name="SpeciesDecalP1" parent="Battlefield/Middleground" index="6" instance=ExtResource( 17 )]
-modulate = Color( 0.32549, 1, 0.32549, 1 )
-position = Vector2( 1550, -700 )
-rotation = -3.14159
-size = 6.0
-goal_owner = NodePath("../../../SpawnPositions/Players/p3")
-
-[node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 17 )]
-modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
-position = Vector2( -1550, -700 )
-size = 6.0
-goal_owner = NodePath("../../../SpawnPositions/Players/p1")
-
-[node name="PentaGoal7" parent="Battlefield/Middleground" index="8" instance=ExtResource( 16 )]
+[node name="PentaGoal7" parent="Battlefield/Middleground" index="6" instance=ExtResource( 16 )]
 position = Vector2( -950, 950 )
 rotation = 3.14159
 rings = 4
@@ -131,24 +139,12 @@ ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
-[node name="PentaGoal8" parent="Battlefield/Middleground" index="9" instance=ExtResource( 16 )]
+[node name="PentaGoal8" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
 position = Vector2( 950, 955.951 )
 rings = 4
 ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
-
-[node name="SpeciesDecalP3" parent="Battlefield/Middleground" index="10" instance=ExtResource( 17 )]
-position = Vector2( 1550, 700 )
-rotation = -3.14159
-size = 6.0
-goal_owner = NodePath("../../../SpawnPositions/Players/p4")
-
-[node name="SpeciesDecalP4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 17 )]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
-position = Vector2( -1550, 700 )
-size = 6.0
-goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
 
