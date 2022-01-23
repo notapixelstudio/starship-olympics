@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/BannerInfo.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ui/option_scenes/settings/remapping/RemappingContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
 [ext_resource path="res://ui/option_scenes/settings/UIOptionPanel.gd" type="Script" id=3]
+[ext_resource path="res://ui/option_scenes/settings/remapping/RemappingContainer.gd" type="Script" id=4]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://ui/option_scenes/settings/remapping/RemapActionRefactoring.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/common_elements/ElementOption.tscn" type="PackedScene" id=7]
 
 [node name="PanelRemapping" type="Control"]
 anchor_right = 1.0
@@ -20,12 +24,43 @@ margin_top = 48.0
 margin_right = 639.0
 margin_bottom = 100.0
 
-[node name="Content" parent="." instance=ExtResource( 2 )]
-margin_left = -524.0
-margin_top = -243.0
-margin_right = 557.0
-margin_bottom = 210.0
-device_type = "keyboard"
+[node name="Content" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -161.0
+margin_top = -114.0
+margin_right = 161.0
+margin_bottom = 114.0
+size_flags_vertical = 3
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Device" parent="Content" instance=ExtResource( 7 )]
+anchor_right = 0.0
+margin_right = 322.0
+margin_bottom = 228.0
+element_path = "joypad_device"
+label_description = "device"
+elem_type = 2
+
+[node name="UIButtonsContainer" type="GridContainer" parent="Content"]
+margin_right = 322.0
+margin_bottom = 228.0
+columns = 2
+
+[node name="RemapAction" parent="Content/UIButtonsContainer" instance=ExtResource( 6 )]
+
+[node name="Default" type="Button" parent="Content"]
+margin_right = 322.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "DEFAULT"
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5
@@ -41,4 +76,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="value_changed" from="Content/Device" to="Content" method="_on_Element_value_changed"]
+[connection signal="pressed" from="Content/Default" to="Content" method="_on_Default_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

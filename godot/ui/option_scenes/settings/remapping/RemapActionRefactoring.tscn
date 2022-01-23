@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/option_scenes/settings/remapping/RemapActionRefactoring.gd" type="Script" id=1]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/AutoHScrollContainer.tscn" type="PackedScene" id=2]
+
+[node name="RemapAction" type="Panel"]
+margin_bottom = 14.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Padding" type="Label" parent="Container"]
+margin_top = 13.0
+margin_bottom = 27.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action" type="Label" parent="Container"]
+margin_left = 4.0
+margin_top = 13.0
+margin_right = 4.0
+margin_bottom = 27.0
+
+[node name="Padding2" type="Label" parent="Container"]
+margin_left = 8.0
+margin_top = 13.0
+margin_right = 8.0
+margin_bottom = 27.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AutoHScrollContainer" parent="Container" instance=ExtResource( 2 )]
+margin_left = 12.0
+margin_right = 40.0
+margin_bottom = 40.0

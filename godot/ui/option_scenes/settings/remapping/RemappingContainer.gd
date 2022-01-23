@@ -1,18 +1,19 @@
-extends MarginContainer
+extends Control
 
 var device
 export (String, "keyboard", "joypad", "custom") var device_type = "keyboard"
+onready var device_node = $Device
 
 func setup_device(new_device_type: String):
 	device_type = new_device_type
 	var path = device_type + "_device"
-	$UIButtonsContainer/Device.element_path = path
-	$UIButtonsContainer/Device.setup()
+	device_node.element_path = path
+	device_node.setup()
 	
 func _ready():
 	var path = device_type + "_device"
-	$UIButtonsContainer/Device.element_path = path
-	$UIButtonsContainer/Device.setup()
+	device_node.element_path = path
+	device_node.setup()
 	for child in get_children():
 		if child is CommandRemap:
 			child.connect("clear_mapping", self, "clear_mapping")
