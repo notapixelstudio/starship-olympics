@@ -137,7 +137,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4, 8, 12 ),
 "transitions": PoolRealArray( -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 500, 500, 1800, 1800 ]
+"values": [ 500, 500, 1700, 1700 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NoCrownZone2/GBeveledRect:height")
@@ -149,7 +149,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 4, 8, 12 ),
 "transitions": PoolRealArray( -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 500, 1800, 1800, 500 ]
+"values": [ 500, 1700, 1700, 500 ]
 }
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -294,7 +294,7 @@ anims/Rotate = SubResource( 4 )
 [node name="NoCrownZone" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 12 )]
 position = Vector2( 0, 400 )
 visible_decorations = false
-symbol_scale = 1.5
+symbol_scale = 1.4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/NoCrownZone" index="12"]
 script = ExtResource( 2 )
@@ -309,7 +309,7 @@ bevel_se = 99
 [node name="NoCrownZone2" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 12 )]
 position = Vector2( 0, -400 )
 visible_decorations = false
-symbol_scale = 1.5
+symbol_scale = 1.4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/NoCrownZone2" index="12"]
 script = ExtResource( 2 )
