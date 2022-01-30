@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://interface/themes/olympic/normal.tres" type="StyleBox" id=1]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/RemapAction.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/AutoHScrollContainer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/AddBinding.tscn" type="PackedScene" id=7]
 
 [node name="RemapAction" type="MarginContainer" groups=["remapping_actions"]]
 margin_right = 70.0
@@ -15,7 +14,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-remapScene = ExtResource( 7 )
 action = "up"
 device = "kb1"
 button_scene = ExtResource( 6 )

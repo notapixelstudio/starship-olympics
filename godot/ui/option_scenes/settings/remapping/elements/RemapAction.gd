@@ -8,7 +8,6 @@ onready var scroll_container = $Container/ScrollContainer
 onready var panel = $Panel
 onready var description_node = $Container/Description
 
-export var remapScene: PackedScene
 export var action: String
 export var device: String setget _set_device
 export var button_scene : PackedScene
@@ -78,12 +77,6 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=true
 func add_mapping_to_screen(new_event: InputEvent):
 	scroll_container.add_event(new_event)
 	
-func _on_Button_pressed():
-	var remap : AddingBindingControls = remapScene.instance()
-	remap.action = device + "_" + action
-	add_child(remap)
-	remap.connect("remap", self, "on_remap", [device, action])
-
 func remove_mapping(event):
 	for button in scroll_container.get_elements():
 		var event_text = global.event_to_text(event)
