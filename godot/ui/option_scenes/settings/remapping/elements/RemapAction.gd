@@ -6,6 +6,7 @@ class_name CommandRemap
 onready var scroll_container = $Container/ScrollContainer
 # this needs always to be on screen
 onready var panel = $Panel
+onready var description_node = $Container/Description
 
 export var remapScene: PackedScene
 export var action: String
@@ -13,7 +14,6 @@ export var device: String setget _set_device
 export var button_scene : PackedScene
 signal clear_mapping
 signal remap
-
 
 
 func _process(delta):
@@ -26,9 +26,6 @@ func fill_mapping():
 	for event in InputMap.get_action_list(self.device + "_" + self.action):
 		add_mapping_to_screen(event)
 		
-func _ready():
-	self.rect_min_size.x = get_viewport().size.x * 0.8
-
 func setup():
 	clear()
 	fill_mapping()
@@ -44,7 +41,7 @@ func _on_Button_try_remap(action):
 	
 func on_remap(event: InputEvent, device: String, action: String, substitute=true):
 	"""
-	Add new mapping for the device and action. Remove the existing mapping, 
+	Add new mapping for the device and< action. Remove the existing mapping, 
 	if any
 	"""
 	var device_type = "kb"
@@ -79,9 +76,7 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=true
 
 
 func add_mapping_to_screen(new_event: InputEvent):
-	var button: ButtonRepresentation = button_scene.instance()
-	button.set_button(new_event)
-	scroll_container.add_element(button)
+	scroll_container.add_event(new_event)
 	
 func _on_Button_pressed():
 	var remap : AddingBindingControls = remapScene.instance()
@@ -104,14 +99,25 @@ func _on_RemoveMapping_pressed():
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		_on_Button_pressed()
-		_on_Panel_focus_exited()
-		
-func _on_Panel_focus_entered():
-	panel.add_stylebox_override("panel", load("res://interface/themes/grey/focus.tres"))
+		Events.emit_signal("ask_mapping_action", self.device + "_" + self.action)
+		_on_focus_exited()
+
+
+func _on_focus_entered():
+	# WARNING: I had to manually set to the "self" node the FocusMode=All in 
+	# order to this to work
+	# will ask the event bus to show the info
+	Events.emit_signal("show_info", "controls")
 	set_process_input(true)
+	panel.add_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
+	description_node.set("custom_colors/font_color",Color(0,0,0))
 
-func _on_Panel_focus_exited():
-	panel.add_stylebox_override("panel", load("res://interface/themes/grey/normal.tres"))
+
+func _on_focus_exited():
+	# WARNING: I had to manually set to the "self" node the FocusMode=All in 
+	# order to this to work
+	# will ask the event bus to hide the info
+	Events.emit_signal("hide_info") 
+	panel.add_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
+	description_node.set("custom_colors/font_color", null)
 	set_process_input(false)
-

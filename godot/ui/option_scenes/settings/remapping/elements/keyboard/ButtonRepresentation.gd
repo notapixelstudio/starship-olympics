@@ -2,6 +2,8 @@ extends TextureRect
 
 class_name ButtonRepresentation
 
+export var show_device_id: bool
+
 var path_buttons: String = "res://assets/UI/Xelu_Free_Controller&Key_Prompts/"
 var keyboard_path: String = "Keyboard & Mouse/Dark/"
 var keyboard_suffix: String = "_Key_Dark"
@@ -10,6 +12,10 @@ var ps_path = "Others/PS3/PS3_"
 var xbox_path = "Xbox One/XboxOne_"
 var default_joy_device = ps_path
 var connected_event: InputEvent
+
+func _ready():
+	if not show_device_id:
+		$Label.visible = false
 
 func get_event():
 	return connected_event
@@ -37,7 +43,7 @@ func set_button(event: InputEvent):
 	elif "xbox" in device_type:
 		button_path = xbox_path + button + extension
 		$Label.text = str(event.device + 1)
-	else :
+	elif "not recognised" in device_type :
 		button_path = default_joy_device + button + extension
 		$Label.text = str(event.device + 1)
 	

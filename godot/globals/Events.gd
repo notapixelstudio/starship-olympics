@@ -44,3 +44,8 @@ signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
 # Option menu UI
 signal ui_back_menu
 signal ui_nav_to(title, scene)
+
+# this is being used to show some additional information
+signal show_info(what_to_show)
+signal hide_info
+signal ask_mapping_action(complete_action)

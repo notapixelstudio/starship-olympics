@@ -19,6 +19,16 @@ func _set_analytics(new_value):
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "add_event")
 
+#######################################
+############# Controls ################
+#######################################
+
+var array_joypad_setup = ["custom", "everything", "minimal", ""]
+onready var joypad_setup
+
+var array_keyboard_setup = ["custom", "everything", "minimal", ""]
+onready var k_setup
+
 var array_keyboard_device = ["kb1", "kb2"]
 onready var keyboard_device 
 var array_joypad_device = ["joy1", "joy2", "joy3", "joy4"]
@@ -586,15 +596,13 @@ func remap_action_to(action: String, new_event: InputEvent) -> String:
 	Given an action, and an InputEvent will set an event.
 	You might pass the previous event if it's a substitution
 	return event to text
+	param: 
+		action: e.g. kb1_fire
 	"""
 	var current_key = ""
 	var acts = action.split("_")
 	var id = acts[len(acts)-1]
-	if id == "fire":
-		id = "accept"
-	var ui_action = "ui_"+id
 	
-	InputMap.action_add_event(ui_action, new_event)
 	InputMap.action_add_event(action, new_event)
 	return global.event_to_text(new_event)
 	

@@ -2,7 +2,8 @@ extends Control
 
 var device
 export (String, "keyboard", "joypad", "custom") var device_type = "keyboard"
-onready var device_node = $Device
+onready var device_node = $VBoxContainer/Device
+onready var actions_container = $VBoxContainer/UIButtonsContainer
 
 func setup_device(new_device_type: String):
 	device_type = new_device_type
@@ -14,10 +15,9 @@ func _ready():
 	var path = device_type + "_device"
 	device_node.element_path = path
 	device_node.setup()
-	for child in get_children():
-		if child is CommandRemap:
-			child.connect("clear_mapping", self, "clear_mapping")
-			child.connect("remap", self, "control_remapped")
+	for child in get_tree().get_nodes_in_group("remapping_actions"):
+		child.connect("clear_mapping", self, "clear_mapping")
+		child.connect("remap", self, "control_remapped")
 			
 	
 func _on_Element_value_changed(value):
@@ -28,8 +28,7 @@ func _on_Element_value_changed(value):
 		yield(self, "ready")
 	# we need to wait a frame in order to wait that everything will be available
 	yield(get_tree(), "idle_frame")
-	for child in $UIButtonsContainer.get_children():
-		if child is CommandRemap:
+	for child in get_tree().get_nodes_in_group("remapping_actions"):
 			child.visible = true
 			child.device = value
 			child.setup()

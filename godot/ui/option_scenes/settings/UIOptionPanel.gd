@@ -15,7 +15,6 @@ func _ready():
 	add_to_group("UIOptionPanel")
 	assert(content)
 	assert(container)
-	assert(back_button)
 	for button in get_tree().get_nodes_in_group("UI_Navigator"):
 		assert (button is NavigatorButton)
 		button.connect("request_nav_to", self, "_on_nav_pressed")

@@ -1,11 +1,121 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/BannerInfo.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Esc_Key_Dark.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 2 ),
+"update": 0,
+"values": [ Vector2( 0, -80 ), Vector2( 0, 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="BannerInfo" type="MarginContainer"]
+visible = false
 anchor_right = 1.0
 margin_top = 40.0
 margin_bottom = 90.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -23,7 +133,7 @@ __meta__ = {
 }
 
 [node name="PaddingBegin" type="Control" parent="BannerInfoBinding"]
-margin_right = 81.0
+margin_right = 319.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( -581.991, -77.759 )
 size_flags_horizontal = 3
@@ -32,38 +142,54 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="BannerInfoBinding"]
-margin_left = 85.0
-margin_top = 3.0
-margin_right = 235.0
-margin_bottom = 46.0
+margin_left = 323.0
+margin_top = 18.0
+margin_right = 362.0
+margin_bottom = 32.0
 text = "Press "
 
 [node name="ShowedButton" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 239.0
-margin_right = 289.0
+margin_left = 366.0
+margin_right = 416.0
 margin_bottom = 50.0
+show_device_id = false
 
 [node name="Label2" type="Label" parent="BannerInfoBinding"]
-margin_left = 293.0
-margin_top = 3.0
-margin_right = 708.0
-margin_bottom = 46.0
-text = "to add a button, "
+margin_left = 420.0
+margin_top = 18.0
+margin_right = 560.0
+margin_bottom = 32.0
+text = "to add a button. Press"
 
 [node name="ShowedButton2" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 712.0
-margin_right = 762.0
+margin_left = 564.0
+margin_right = 614.0
 margin_bottom = 50.0
+texture = ExtResource( 3 )
+show_device_id = false
+
+[node name="Label4" type="Label" parent="BannerInfoBinding"]
+margin_left = 618.0
+margin_top = 18.0
+margin_right = 728.0
+margin_bottom = 32.0
+text = "(Or keep pressed"
+
+[node name="ShowedButton3" parent="BannerInfoBinding" instance=ExtResource( 1 )]
+margin_left = 732.0
+margin_right = 782.0
+margin_bottom = 50.0
+show_device_id = false
 
 [node name="Label3" type="Label" parent="BannerInfoBinding"]
-margin_left = 766.0
-margin_top = 3.0
-margin_right = 1194.0
-margin_bottom = 46.0
-text = "to clear buttons"
+margin_left = 786.0
+margin_top = 18.0
+margin_right = 957.0
+margin_bottom = 32.0
+text = ") in orderd to clear buttons"
 
 [node name="PaddingEnd" type="Control" parent="BannerInfoBinding"]
-margin_left = 1198.0
+margin_left = 961.0
 margin_right = 1280.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( -581.991, -77.759 )
@@ -71,3 +197,14 @@ size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/appear = SubResource( 2 )
+anims/disappear = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
