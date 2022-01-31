@@ -14,7 +14,9 @@ export var button_scene : PackedScene
 signal clear_mapping
 signal remap
 
-
+func _ready():
+	Events.connect("remap_event", self, "on_remap")
+	
 func _process(delta):
 	$Container/Description.text = tr(action.to_upper())
 
@@ -35,13 +37,10 @@ func _set_device(value_):
 		yield(self, "ready")
 	setup()
 	
-func _on_Button_try_remap(action):
-	emit_signal("try_remap", action)
-	
-func on_remap(event: InputEvent, device: String, action: String, substitute=true):
+
+func on_remap(event: InputEvent):
 	"""
-	Add new mapping for the device and< action. Remove the existing mapping, 
-	if any
+	Add new mapping with event. Update the visualization of the mapping and save
 	"""
 	var device_type = "kb"
 	if "joy" in device:
@@ -62,13 +61,8 @@ func on_remap(event: InputEvent, device: String, action: String, substitute=true
 				if action == device_action:
 					print("This exists already in " + action)
 					return
-				if substitute:
-					print("found in " + action)
-					global.clear_mapping(action, event)
-					
 	
 	var new_control_key = global.remap_action_to(device_action, event)
-	emit_signal("remap", action, event, substitute)
 	add_mapping_to_screen(event)
 	# save
 	persistance.save_game()

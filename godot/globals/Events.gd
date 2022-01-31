@@ -49,3 +49,4 @@ signal ui_nav_to(title, scene)
 signal show_info(what_to_show)
 signal hide_info
 signal ask_mapping_action(complete_action)
+signal remap_event(new_event)
