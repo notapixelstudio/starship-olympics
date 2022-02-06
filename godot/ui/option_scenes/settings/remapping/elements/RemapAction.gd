@@ -12,10 +12,10 @@ export var action: String
 export var device: String setget _set_device
 export var button_scene : PackedScene
 signal clear_mapping
-signal remap
 
 func _ready():
 	Events.connect("remap_event", self, "on_remap")
+	set_process_input(false)
 	
 func _process(delta):
 	$Container/Description.text = tr(action.to_upper())
@@ -38,8 +38,19 @@ func _set_device(value_):
 	setup()
 	
 
-func on_remap(event: InputEvent, complete_action):
-	return
+func on_remap(event: InputEvent, complete_action: String):
+	if complete_action != self.device + "_" + self.action:
+		return
+	for action in global.input_mapping:
+		if not self.device in action:
+			continue
+		for command in global.input_mapping[action]:
+			if global.event_to_text(event) == command:
+				print("This exists already in " + action)
+	var new_control_key = global.remap_action_to(complete_action, event)
+	add_mapping_to_screen(event)
+	# save
+	persistance.save_game()
 	
 
 
@@ -61,7 +72,7 @@ func _on_RemoveMapping_pressed():
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		Events.emit_signal("ask_mapping_action", self, self.device + "_" + self.action)
+		Events.emit_signal("ask_mapping_action", self.device + "_" + self.action)
 		_on_focus_exited()
 
 
@@ -70,10 +81,9 @@ func _on_focus_entered():
 	# order to this to work
 	# will ask the event bus to show the info
 	Events.emit_signal("show_info", "controls")
-	set_process_input(true)
 	panel.add_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
 	description_node.set("custom_colors/font_color",Color(0,0,0))
-
+	set_process_input(true)
 
 func _on_focus_exited():
 	# WARNING: I had to manually set to the "self" node the FocusMode=All in 

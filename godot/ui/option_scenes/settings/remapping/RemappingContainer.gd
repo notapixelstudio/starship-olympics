@@ -39,7 +39,7 @@ func _on_Default_pressed():
 
 func control_remapped(action: String, event: InputEvent, substitute: bool):
 	for child in get_children():
-		if child is CommandRemap:
+		if child is RemapAction:
 			child.remove_mapping(event)
 	if not "joy" in action:
 		return

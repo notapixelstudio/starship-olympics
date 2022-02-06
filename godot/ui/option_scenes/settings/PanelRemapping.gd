@@ -8,7 +8,7 @@ func setup_device(args: String):
 func _ready():
 	Events.connect("ask_mapping_action", self, "show_remap_scene")
 	
-func show_remap_scene(remap_action_node: RemapAction, action: String):
+func show_remap_scene(action: String):
 	var remap: AddingBindingControls = what_to_remap_scene.instance()
 	remap.action = action
 	add_child(remap)
