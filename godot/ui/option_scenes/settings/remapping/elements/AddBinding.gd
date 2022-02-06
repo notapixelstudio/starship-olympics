@@ -3,7 +3,6 @@ extends ColorRect
 class_name AddingBindingControls
 
 export var action: String
-signal remap
 
 func _ready():
 	set_process_input(false)
@@ -22,11 +21,11 @@ func check_input_event(event:InputEvent):
 func _input(event):
 	# Note that you can use the _input callback instead, especially if
 	# you want to work with gamepads.
-	if check_input_event(event) and event.is_pressed():
+	if check_input_event(event):
 		# DO NOTHING if less than DEADZONE
 		if event is InputEventJoypadMotion:
 			if abs(event.axis_value) < 0.5:
 				return
-		Events.emit_signal("remap_event", event)
+		Events.emit_signal("remap_event", event, action)
 		set_process_input(false)
 		queue_free()

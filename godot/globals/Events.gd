@@ -48,5 +48,4 @@ signal ui_nav_to(title, scene)
 # this is being used to show some additional information
 signal show_info(what_to_show)
 signal hide_info
-signal ask_mapping_action(complete_action)
-signal remap_event(new_event)
+signal ask_mapping_action(remap_action_node, complete_action)

@@ -1,7 +1,7 @@
 tool
 extends Control
 
-class_name CommandRemap
+class_name RemapAction
 
 onready var scroll_container = $Container/ScrollContainer
 # this needs always to be on screen
@@ -38,34 +38,9 @@ func _set_device(value_):
 	setup()
 	
 
-func on_remap(event: InputEvent):
-	"""
-	Add new mapping with event. Update the visualization of the mapping and save
-	"""
-	var device_type = "kb"
-	if "joy" in device:
-		device_type = "joy"
-	if self.device == "kb" and not event is InputEventKey:
-		print("Can't map Input different than keyboard events")
-		return
-	if self.device == "joy" and not event is InputEventJoypadButton and not event is InputEventJoypadMotion:
-		print("Can't map Input different than joypad events")
-		return
-		 
-	var device_action = device + "_" + action
-	for action in global.input_mapping:
-		if not device_type in action:
-			continue
-		for command in global.input_mapping[action]:
-			if global.event_to_text(event) == command:
-				if action == device_action:
-					print("This exists already in " + action)
-					return
+func on_remap(event: InputEvent, complete_action):
+	return
 	
-	var new_control_key = global.remap_action_to(device_action, event)
-	add_mapping_to_screen(event)
-	# save
-	persistance.save_game()
 
 
 func add_mapping_to_screen(new_event: InputEvent):
@@ -86,7 +61,7 @@ func _on_RemoveMapping_pressed():
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		Events.emit_signal("ask_mapping_action", self.device + "_" + self.action)
+		Events.emit_signal("ask_mapping_action", self, self.device + "_" + self.action)
 		_on_focus_exited()
 
 
