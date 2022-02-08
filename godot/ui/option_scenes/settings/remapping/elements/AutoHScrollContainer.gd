@@ -1,7 +1,7 @@
 extends Control
 
 var operator = 50
-onready var buttons = $Buttons
+onready var buttons = $MarginContainer/Buttons
 onready var destination = rect_size.x - buttons.rect_size.x
 
 export var button_scene: PackedScene

@@ -9,7 +9,7 @@ resource_name = "Scroll"
 length = 6.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Buttons:rect_position:x")
+tracks/0/path = NodePath("MarginContainer/Buttons:rect_position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -21,23 +21,30 @@ tracks/0/keys = {
 "values": [ 0.0, 0.0, 0.0 ]
 }
 
-[node name="AutoHScrollContainer" type="MarginContainer"]
+[node name="AutoHScrollContainer" type="Control"]
 margin_left = 153.0
 margin_right = 232.0
 margin_bottom = 80.0
 grow_horizontal = 2
+rect_min_size = Vector2( 300, 50 )
 rect_clip_content = true
-size_flags_horizontal = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 button_scene = ExtResource( 2 )
 
-[node name="Buttons" type="HBoxContainer" parent="."]
-margin_right = 79.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 300.0
 margin_bottom = 80.0
-custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 300.0
+margin_bottom = 80.0
+custom_constants/separation = 10
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false

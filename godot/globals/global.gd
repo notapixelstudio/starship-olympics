@@ -23,11 +23,11 @@ func _set_analytics(new_value):
 ############# Controls ################
 #######################################
 
-var array_joypad_setup = ["custom", "everything", "minimal", ""]
-onready var joypad_setup
+var array_joypad_preset = ["custom", "everything", "minimal", ""]
+onready var joypad_preset
 
-var array_keyboard_setup = ["custom", "everything", "minimal", ""]
-onready var k_setup
+var array_keyboard_preset = ["custom", "everything", "minimal", ""]
+onready var keyboard_preset
 
 var array_keyboard_device = ["kb1", "kb2"]
 onready var keyboard_device 
