@@ -30,9 +30,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -342.5
+margin_left = -442.0
 margin_top = -250.0
-margin_right = 342.5
+margin_right = 442.0
 margin_bottom = 250.0
 size_flags_vertical = 3
 script = ExtResource( 4 )
@@ -51,7 +51,7 @@ element_path = "joypad_device"
 label_description = "device"
 elem_type = 2
 
-[node name="Setup" parent="Content/VBoxContainer" instance=ExtResource( 7 )]
+[node name="Preset" parent="Content/VBoxContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 margin_top = 54.0
 margin_right = 884.0
@@ -176,6 +176,6 @@ theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 5 )
 text = "DEFAULT"
 
-[connection signal="value_changed" from="Content/VBoxContainer/Device" to="Content" method="_on_Element_value_changed"]
-[connection signal="value_changed" from="Content/VBoxContainer/Setup" to="Content" method="_on_Element_value_changed"]
+[connection signal="value_changed" from="Content/VBoxContainer/Device" to="Content" method="_on_Device_value_changed"]
+[connection signal="value_changed" from="Content/VBoxContainer/Preset" to="Content" method="_on_Preset_value_changed"]
 [connection signal="pressed" from="Content/VBoxContainer/Default" to="Content" method="_on_Default_pressed"]

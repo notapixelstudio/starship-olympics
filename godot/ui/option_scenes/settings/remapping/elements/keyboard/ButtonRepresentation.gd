@@ -12,6 +12,7 @@ var ps_path = "Others/PS3/PS3_"
 var xbox_path = "Xbox One/XboxOne_"
 var default_joy_device = ps_path
 var connected_event: InputEvent
+onready var label = $Label
 
 func _ready():
 	if not show_device_id:
@@ -37,10 +38,10 @@ func set_button(event: InputEvent):
 	if "kb" in device_type:
 		button_path = keyboard_path + button + keyboard_suffix + extension
 		$Label.text = ""
-	elif "ps" in device_type:
+	elif "ps" in device_type.to_lower():
 		button_path = ps_path + button + extension
 		$Label.text = str(event.device + 1)
-	elif "xbox" in device_type:
+	elif "xbox" in device_type.to_lower():
 		button_path = xbox_path + button + extension
 		$Label.text = str(event.device + 1)
 	elif "not recognised" in device_type :

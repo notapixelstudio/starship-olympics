@@ -20,7 +20,7 @@ func _ready():
 		child.connect("remap", self, "control_remapped")
 			
 	
-func _on_Element_value_changed(value):
+func _on_Device_value_changed(value):
 	device = value
 	if device == null:
 		return
@@ -34,8 +34,8 @@ func _on_Element_value_changed(value):
 			child.setup()
 			
 func _on_Default_pressed():
-	var mapping = global.set_default_mapping(device)
-	_on_Element_value_changed(device)
+	var mapping = global.set_presets(device, device.substr(0, len(device)-1) +"_default")
+	_on_Device_value_changed(device)
 
 func control_remapped(action: String, event: InputEvent, substitute: bool):
 	for child in get_children():
@@ -47,3 +47,13 @@ func control_remapped(action: String, event: InputEvent, substitute: bool):
 func clear_mapping(action: String):
 	if not "joy" in action:
 		return
+
+
+func _on_Preset_value_changed(value):
+	if value == null:
+		return
+	var device_name = device
+	if "joy" in device:
+		device_name = "joy"
+	var mapping = global.set_presets(device_name, device.substr(0, len(device)-1) +"_" + value)
+	_on_Device_value_changed(device)

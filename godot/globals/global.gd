@@ -23,7 +23,7 @@ func _set_analytics(new_value):
 ############# Controls ################
 #######################################
 
-var array_joypad_preset = ["custom", "everything", "minimal", ""]
+var array_joypad_preset = ["default", "minimal", ""]
 onready var joypad_preset
 
 var array_keyboard_preset = ["custom", "everything", "minimal", ""]
@@ -510,6 +510,13 @@ var default_input_joy := {
 	"up":["Dpad_Up", "Left_Stick_Up"]
 }
 
+var presets_path := {
+	"kb_default": "res://assets/config/mapping_presets/keyboard_default.json",
+	"kb_minimal": "res://assets/config/mapping_presets/keyboard_minimal.json",
+	"joy_default": "res://assets/config/mapping_presets/joypad_default.json",
+	"joy_minimal": "res://assets/config/mapping_presets/joypad_minimal.json"
+}
+
 var default_input :=  {
 	"kb1": {
 		"fire":["M"], "down":["Down"], "left":["Left"], "right":["Right"], "up":["Up"]
@@ -538,20 +545,27 @@ func _set_joylayout(value):
 
 func _get_joylayout():
 	return joylayout
-	
-func set_default_mapping(device:String) -> Dictionary:
+
+
+func set_presets(action_device: String, preset: String) -> Dictionary:
 	var ret_mapping = {}
-	var this_mapping = default_input[device]
-	var device_id: int = int(device.right(len(device)-1))-1
-	for action in this_mapping:
-		
-		var complete_action = device + "_" + action
+	var file = presets_path[preset]
+	var preset_dictionary = read_file(file)
+	var this_mapping = preset_dictionary[action_device]
+	for action_name in this_mapping:
+		var complete_action = action_device + "_" + action_name
 		var events = []
-		for command in this_mapping[action]:
-			var event = event_from_text(device, command, device_id)
+		for command_object in this_mapping[action_name]:
+			var button = command_object["button"]
+			var device = command_object["device"]
+			var device_id = command_object["id"]
+			if device_id < 0:
+				device_id = int(action_device.right(len(action_device)-1))-1
+			
+			var event = event_from_text(device, button, device_id)
 			events.append(event)
 		remap_multiple_actions_to(complete_action, events)
-		ret_mapping[complete_action] = this_mapping[action]
+		ret_mapping[complete_action] = this_mapping[action_name]
 	persistance.save_game()
 	return ret_mapping
 	
