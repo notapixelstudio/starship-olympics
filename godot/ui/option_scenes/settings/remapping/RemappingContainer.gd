@@ -29,6 +29,7 @@ func _on_Device_value_changed(value):
 	# we need to wait a frame in order to wait that everything will be available
 	yield(get_tree(), "idle_frame")
 	for child in get_tree().get_nodes_in_group("remapping_actions"):
+		if child.device != 'ui':
 			child.visible = true
 			child.device = value
 			child.setup()

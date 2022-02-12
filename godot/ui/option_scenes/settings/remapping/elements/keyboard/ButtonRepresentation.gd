@@ -12,7 +12,6 @@ var ps_path = "Others/PS3/PS3_"
 var xbox_path = "Xbox One/XboxOne_"
 var default_joy_device = ps_path
 var connected_event: InputEvent
-onready var label = $Label
 
 func _ready():
 	if not show_device_id:
