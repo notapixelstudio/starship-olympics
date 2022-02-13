@@ -19,7 +19,8 @@ __meta__ = {
 [node name="BannerInfo" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_right = 1278.0
+margin_left = -640.0
+margin_right = 638.0
 margin_bottom = 92.0
 
 [node name="Content" type="MarginContainer" parent="."]
@@ -174,6 +175,16 @@ theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 5 )
 text = "DEFAULT"
 
+[node name="Label" type="Label" parent="Content"]
+visible = false
+margin_top = 243.0
+margin_right = 888.0
+margin_bottom = 257.0
+text = "Connect a JOYPAD"
+align = 1
+valign = 1
+
+[connection signal="value_changed" from="Content/VBoxContainer/Device" to="." method="_on_Device_value_changed"]
 [connection signal="value_changed" from="Content/VBoxContainer/Device" to="Content" method="_on_Device_value_changed"]
 [connection signal="value_changed" from="Content/VBoxContainer/Preset" to="Content" method="_on_Preset_value_changed"]
 [connection signal="pressed" from="Content/VBoxContainer/Default" to="Content" method="_on_Default_pressed"]

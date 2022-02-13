@@ -426,7 +426,8 @@ var keyboard_input_map = {
 	"Right": "Arrow_Right",
 	"BackSpace": "Backspace_Alt",
 	"*": "Asterisk",
-	
+	"Escape": "Esc",
+	"Kp Enter": "Enter_Tall"
 }
 
 

@@ -25,8 +25,8 @@ func get_elements() -> Array:
 	
 func add_event(new_event: InputEvent):
 	var button: ButtonRepresentation = button_scene.instance()
-	button.set_button(new_event)
-	buttons.add_child(button)
+	if button.set_button(new_event):
+		buttons.add_child(button)
 	
 	yield(get_tree(), "idle_frame")
 	

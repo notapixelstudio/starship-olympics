@@ -1,9 +1,11 @@
 extends UIOptionPanel
 
+class_name PanelRemapping
+
 export var what_to_remap_scene: PackedScene
  
-func setup_device(args: String):
-	content.setup_device(args)
+func setup_device(device_category: String):
+	content.setup_device(device_category)
 
 func _ready():
 	Events.connect("ask_mapping_action", self, "show_remap_scene")

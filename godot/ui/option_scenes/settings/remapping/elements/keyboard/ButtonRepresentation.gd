@@ -32,6 +32,8 @@ func get_metadata_from_event(event:InputEvent) -> String:
 func set_button(event: InputEvent):
 	connected_event = event
 	var device_type = get_metadata_from_event(event)
+	if not device_type:
+		return 
 	var button = global.event_to_text(event)["key"]
 	var button_path = keyboard_path
 	if "kb" in device_type:
@@ -48,5 +50,6 @@ func set_button(event: InputEvent):
 		$Label.text = str(event.device + 1)
 	
 	texture = load(path_buttons + button_path)
+	return path_buttons + button_path
 	
 	
