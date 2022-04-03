@@ -42,10 +42,10 @@ func set_button(event: InputEvent):
 	elif "ps" in device_type.to_lower():
 		button_path = ps_path + button + extension
 		$Label.text = str(event.device + 1)
-	elif "xbox" in device_type.to_lower():
+	elif "x" in device_type.to_lower():
 		button_path = xbox_path + button + extension
 		$Label.text = str(event.device + 1)
-	elif "not recognised" in device_type :
+	else :
 		button_path = default_joy_device + button + extension
 		$Label.text = str(event.device + 1)
 	

@@ -23,10 +23,10 @@ func _set_analytics(new_value):
 ############# Controls ################
 #######################################
 
-var array_joypad_preset = ["default", "minimal", ""]
+var array_joypad_preset = ["default", "minimal"]
 onready var joypad_preset
 
-var array_keyboard_preset = ["custom", "everything", "minimal", ""]
+var array_keyboard_preset = ["custom", "everything", "minimal"]
 onready var keyboard_preset
 
 var array_keyboard_device = ["kb1", "kb2"]
@@ -401,18 +401,18 @@ var joy_input_map = {
 	"analog_2_-1" : "Right_Stick_Left",
 	"analog_3_1"  : "Right_Stick_Down",
 	"analog_3_-1" : "Right_Stick_Up",
-	"0": "Cross",
-	"1": "Circle",
-	"2": "Square",
-	"3": "Triangle",
-	"4": "L1",
-	"5": "R1",
-	"6": "L2",
-	"7": "R2",
+	"0": ["Cross", "A"],
+	"1": ["Circle", "B"],
+	"2": ["Square", "X"],
+	"3": ["Triangle", "Y"],
+	"4": ["L1", "LB"],
+	"5": ["R1", "RB"],
+	"6": ["L2", "LT"],
+	"7": ["R2", "RT"],
 	"8": "Left_Stick_Click",
 	"9": "Right_Stick_Click",
-	"10": "Select",
-	"11": "Start",
+	"10": ["Select", "Windows"],
+	"11": ["Start", "Menu"],
 	"12": "Dpad_Up",
 	"13": "Dpad_Down",
 	"14": "Dpad_Left",
@@ -442,19 +442,20 @@ func event_to_text(event: InputEvent):
 			key = keyboard_input_map[key]
 		return {"key": key, "device_id": event.device, "device": "kb"}
 	elif event is InputEventJoypadButton:
-		return {"key": joy_input_map[str(event.button_index)], "device_id": event.device, "device": "joy"}
+		return {"key": str(event.button_index), "device_id": event.device, "device": "joy"}
 	elif event is InputEventJoypadMotion:
 		if event.axis_value > 0:
 			event.axis_value = 1
 		else:
 			event.axis_value = -1
-		var command = joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
+		var command = "analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)
 		return {"key": command, "device_id": event.device, "device": "joy"}
 
-func event_from_text(device: String, command: String, device_id = 0) -> InputEvent:
+func event_from_text(device: String, command: String, device_id: int = 0) -> InputEvent:
 	"""
 	device: e.g. kb1, kb2, joy1, joy2
 	command: e.g. 0, 1, 2 , analog_1_-1, M, N 
+	device_id: device_id (for keyboard it's only 0)
 	"""
 	var e : InputEvent
 	if "kb" in device:
@@ -548,11 +549,23 @@ func _get_joylayout():
 	return joylayout
 
 
-func set_presets(action_device: String, preset: String) -> Dictionary:
+func set_presets(action_device: String, preset_value: String) -> Dictionary:
+	"""
+	params:
+	 action_device: String - the device we want to use the presets of. (e.g.: kb1|kb2|joy1|joy2|etc.)
+	 preset: String - preset value we want to change to (e.g.: minimal|complete|etc.) - same content of the files you can find in presets_path
+	return:
+	 will set the 'presets' mapping and return its dictionary
+	"""
 	var ret_mapping = {}
-	var file = presets_path[preset]
+	var device_name = action_device
+	if "joy" in action_device:
+		device_name = "joy"
+	
+	var file = presets_path["{device}_{preset_value}".format({"device":device_name, "preset_value": preset_value})]
 	var preset_dictionary = read_file(file)
-	var this_mapping = preset_dictionary[action_device]
+	
+	var this_mapping = preset_dictionary[device_name]
 	for action_name in this_mapping:
 		var complete_action = action_device + "_" + action_name
 		var events = []
@@ -743,7 +756,11 @@ func invert_map(map:Dictionary):
 	"""
 	var ret = {}
 	for k in map:
-		ret[map[k]] = k
+		if typeof(map[k]) == TYPE_ARRAY:
+			for element in map[k]:
+				ret[element] = k
+		else:
+			ret[map[k]] = k
 	return ret
 
 

@@ -53,8 +53,5 @@ func clear_mapping(action: String):
 func _on_Preset_value_changed(value):
 	if value == null:
 		return
-	var device_name = device
-	if "joy" in device:
-		device_name = "joy"
-	var mapping = global.set_presets(device_name, device.substr(0, len(device)-1) +"_" + value)
+	var mapping = global.set_presets(device, value)
 	_on_Device_value_changed(device)
