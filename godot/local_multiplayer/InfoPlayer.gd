@@ -50,3 +50,9 @@ func get_session_score_total():
 
 func get_species_name() -> String:
 	return species.name
+
+func has_proper_team() -> bool:
+	return self.team != self.id
+	
+func get_team_color() -> Color:
+	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')

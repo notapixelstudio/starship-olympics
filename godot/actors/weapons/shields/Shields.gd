@@ -34,6 +34,7 @@ func _ready():
 		
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
 	if body is Bomb and body.get_owner_ship() != owner_ship or body is Bullet:
+		body.dissolve()
 		body.queue_free()
 		
 		var local_shape_owner_id = layer.shape_find_owner(local_shape)

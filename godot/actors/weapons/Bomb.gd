@@ -3,9 +3,10 @@ extends RigidBody2D
 
 class_name Bomb
 
-var Explosion = load('res://actors/weapons/Explosion.tscn')
-var Ripple = load('res://actors/weapons/Ripple.tscn')
-var BubbleScene = load('res://actors/environments/Bubble.tscn')
+export var Explosion : PackedScene
+export var Ripple : PackedScene
+export var BubbleScene : PackedScene
+export var PfftScene : PackedScene
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
@@ -16,8 +17,9 @@ var symbol = null
 
 var entity : Entity
 onready var life_time = $LifeTime
-onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
+
+var species : Species
 
 func _ready():
 	if type == GameMode.BOMB_TYPE.classic:
@@ -40,6 +42,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if impulse:
 		apply_impulse(Vector2(0,0), impulse)
 	if ship:
+		species = ship.species
+		
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
 		if type == GameMode.BOMB_TYPE.ice:
@@ -115,7 +119,6 @@ func _integrate_forces(state):
 	
 	# teleport
 	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
-		trail.erase_trail()
 		xform.origin = entity.get('Teleportable').get_destination()
 		entity.get('Teleportable').teleport_done()
 		
@@ -159,9 +162,17 @@ func _on_LifeTime_timeout():
 			var owner = entity.get('Owned').get_owned_by()
 			if is_instance_valid(owner):
 				owner._on_bomb_freed()
+				
+		dissolve()
+		
 		yield(get_tree().create_timer(1), "timeout")
 		call_deferred("queue_free")
 
+func dissolve() -> void:
+	var pfft = PfftScene.instance()
+	pfft.species = species
+	get_parent().add_child(pfft)
+	pfft.global_position = global_position
 
 func process_life_time():
 	# pause lifetime if we are pursuing a target

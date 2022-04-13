@@ -215,6 +215,12 @@ func _ready():
 	$DashParticles.process_material = dash_process_material
 	$Graphics/ChargeBar/Crosshair.modulate = species.color
 	
+	# if we are on a proper team, switch on the outline
+	if info_player.has_proper_team():
+		$Graphics/Sprite.material.set_shader_param('active', true)
+		var color = info_player.get_team_color()
+		$Graphics/Sprite.material.set_shader_param('color', color)
+	
 func change_engine(value: bool):
 	responsive = value
 	set_physics_process(responsive)
@@ -849,3 +855,7 @@ func get_target_destination():
 const CAMERA_RECT_SIZE := 800.0
 func get_camera_rect() -> Rect2:
 	return Rect2(global_position - Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE)/2, Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE))
+
+func get_team() -> String:
+	return info_player.team
+	

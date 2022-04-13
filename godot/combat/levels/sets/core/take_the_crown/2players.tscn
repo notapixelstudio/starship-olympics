@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -13,9 +13,9 @@
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -60,6 +60,96 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NoCrownZone/GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 500 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NoCrownZone2/GBeveledRect:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 500 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Rotate"
+length = 20.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("NoCrownZone/GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8, 12, 16 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 500, 500, 2000, 2000, 500 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NoCrownZone2/GBeveledRect:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8, 12, 16 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 500, 500, 2000, 2000 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+
+[sub_resource type="Animation" id=6]
+resource_name = "Rotate"
+length = 16.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("NoCrownZone/GBeveledRect:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8, 12 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 500, 500, 1400, 1400 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NoCrownZone2/GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 8, 12 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 500, 1400, 1400, 500 ]
 }
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -145,46 +235,230 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
 opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=["animation_in_battle"]]
+[node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
+
+[node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Variants/A" index="0" groups=["animation_in_battle"]]
+playback_process_mode = 0
 playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
-[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
+[node name="Wall" parent="Battlefield/Middleground/Variants/A" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, -900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/A/Wall" index="4"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Variants/A/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
 show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+[node name="Wall2" parent="Battlefield/Middleground/Variants/A" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, 900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/A/Wall2" index="4"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
+[node name="NoCrownZone" parent="Battlefield/Middleground/Variants/A" index="3" instance=ExtResource( 12 )]
 position = Vector2( -800, 0 )
 
-[node name="NoCrownZone2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/A/NoCrownZone" index="12"]
+script = ExtResource( 1 )
+radius = 400
+sides = 4.0
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground/Variants/A" index="4" instance=ExtResource( 12 )]
 position = Vector2( 800, 0 )
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 18 )]
-position = Vector2( -400, -400 )
-type = "rocket_gun"
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/A/NoCrownZone2" index="12"]
+script = ExtResource( 1 )
+radius = 400
+sides = 4.0
 
-[node name="PowerUp2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
-position = Vector2( 400, 400 )
-type = "rocket_gun"
+[node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Variants/B" index="0" groups=["animation_in_battle"]]
+playback_process_mode = 0
+anims/RESET = SubResource( 3 )
+anims/Rotate = SubResource( 4 )
+
+[node name="NoCrownZone" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 12 )]
+position = Vector2( 0, 400 )
+visible_decorations = false
+symbol_scale = 1.4
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/NoCrownZone" index="12"]
+script = ExtResource( 2 )
+width = 500
+height = 200
+bevel = 99
+bevel_nw = 99
+bevel_ne = 99
+bevel_sw = 99
+bevel_se = 99
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 12 )]
+position = Vector2( 0, -400 )
+visible_decorations = false
+symbol_scale = 1.4
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/B/NoCrownZone2" index="12"]
+script = ExtResource( 2 )
+width = 500
+height = 200
+bevel = 99
+bevel_nw = 99
+bevel_ne = 99
+bevel_sw = 99
+bevel_se = 99
+
+[node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
+visible = false
+
+[node name="NoCrownZone" parent="Battlefield/Middleground/Variants/C" index="0" instance=ExtResource( 12 )]
+position = Vector2( -1050, 0 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground/Variants/C" index="1" instance=ExtResource( 12 )]
+position = Vector2( -700, -350 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone2" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone4" parent="Battlefield/Middleground/Variants/C" index="2" instance=ExtResource( 12 )]
+position = Vector2( -700, 350 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone4" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone5" parent="Battlefield/Middleground/Variants/C" index="3" instance=ExtResource( 12 )]
+position = Vector2( -350, 0 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone5" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone6" parent="Battlefield/Middleground/Variants/C" index="4" instance=ExtResource( 12 )]
+position = Vector2( 0, -350 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone6" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone7" parent="Battlefield/Middleground/Variants/C" index="5" instance=ExtResource( 12 )]
+position = Vector2( 0, 350 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone7" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone8" parent="Battlefield/Middleground/Variants/C" index="6" instance=ExtResource( 12 )]
+position = Vector2( 350, 0 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone8" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone9" parent="Battlefield/Middleground/Variants/C" index="7" instance=ExtResource( 12 )]
+position = Vector2( 700, -350 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone9" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone10" parent="Battlefield/Middleground/Variants/C" index="8" instance=ExtResource( 12 )]
+position = Vector2( 1050, 0 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone10" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="NoCrownZone11" parent="Battlefield/Middleground/Variants/C" index="9" instance=ExtResource( 12 )]
+position = Vector2( 700, 350 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Variants/C/NoCrownZone11" index="12"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+
+[node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Variants/D" index="0" groups=["animation_in_battle"]]
+playback_process_mode = 0
+anims/RESET = SubResource( 5 )
+anims/Rotate = SubResource( 6 )
+
+[node name="NoCrownZone" parent="Battlefield/Middleground/Variants/D" index="1" instance=ExtResource( 12 )]
+position = Vector2( -600, 0 )
+visible_decorations = false
+symbol_scale = 1.2
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/NoCrownZone" index="12"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground/Variants/D" index="2" instance=ExtResource( 12 )]
+position = Vector2( 600, 0 )
+visible_decorations = false
+symbol_scale = 1.2
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Variants/D/NoCrownZone2" index="12"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "crown"

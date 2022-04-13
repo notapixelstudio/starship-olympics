@@ -157,6 +157,10 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 	emit_signal('updated', player, broadcasted) # author
 	
 func add_score(id_player : String, amount : float, broadcasted = false):
+	self._silent_add_score(id_player, amount, broadcasted)
+	compute_game_status()
+	
+func _silent_add_score(id_player : String, amount : float, broadcasted = false):
 	if game_over:
 		return
 		
@@ -166,9 +170,8 @@ func add_score(id_player : String, amount : float, broadcasted = false):
 	if cumulative_points >= 0:
 		cumulative_points += amount
 		
-	compute_game_status()
 	emit_signal('updated', player, broadcasted) # author
-
+	
 func broadcast_score(id_player : String, amount : float):
 	if game_over:
 		return
@@ -209,3 +212,15 @@ func get_leader_players() -> Array:
 func get_game_mode() -> GameMode:
 	return game_mode
 	
+func get_players_in_team(team : String) -> Array: # of InfoPlayer
+	var result := []
+	for player in player_scores:
+		if player.team == team:
+			result.append(player)
+	return result
+	
+func add_score_to_team(team : String, amount : float):
+	for player in get_players_in_team(team):
+		_silent_add_score(player.id, amount)
+		
+	compute_game_status()
