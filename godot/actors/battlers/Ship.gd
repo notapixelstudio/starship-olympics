@@ -70,7 +70,7 @@ var stunned = false
 var stun_countdown = 0
 var outside_countup = 0
 
-var max_health := 3
+var max_health := 1
 var health := max_health
 
 var screen_size = Vector2()
@@ -164,6 +164,14 @@ func set_reload_time(value):
 	
 func set_lives(value: int):
 	info_player.lives = value
+	
+func set_max_health(value: int):
+	max_health = value
+	reset_health()
+	
+func reset_health():
+	$PlayerInfo.reset_health(max_health)
+	self.set_health(max_health)
 
 func _enter_tree():
 	charging = false
@@ -172,8 +180,7 @@ func _enter_tree():
 	alive = true
 	outside_countup = 0
 	
-	$PlayerInfo.reset_health(max_health)
-	self.set_health(max_health)
+	reset_health()
 	
 	update_weapon_indicator()
 	

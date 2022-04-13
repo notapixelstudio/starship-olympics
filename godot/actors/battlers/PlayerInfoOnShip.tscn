@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/signs/minimoon.png" type="Texture" id=2]
@@ -52,29 +52,26 @@ scale = Vector2( 0.8, 0.8 )
 [node name="PlayerIDTeamOutline" type="Label" parent="Wrapper/Scaled"]
 visible = false
 margin_left = -46.0833
-margin_top = -111.25
+margin_top = -126.25
 margin_right = 46.9167
-margin_bottom = -62.25
+margin_bottom = -77.25
 custom_fonts/font = SubResource( 2 )
 text = "P1"
 align = 1
 valign = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Minisun" type="Sprite" parent="Wrapper/Scaled"]
 visible = false
 material = SubResource( 4 )
-position = Vector2( -49.75, -86 )
+position = Vector2( -49.75, -102 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 6 )
 
 [node name="Minimoon" type="Sprite" parent="Wrapper/Scaled"]
 visible = false
 material = SubResource( 3 )
-position = Vector2( 49.75, -86 )
+position = Vector2( 49.75, -102 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 
@@ -84,13 +81,13 @@ z_as_relative = false
 
 [node name="Minisun" type="Sprite" parent="Wrapper/Scaled/Colored"]
 visible = false
-position = Vector2( -50, -86 )
+position = Vector2( -50, -102.25 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 6 )
 
 [node name="Minimoon" type="Sprite" parent="Wrapper/Scaled/Colored"]
 visible = false
-position = Vector2( 50, -86 )
+position = Vector2( 50, -102.25 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 
