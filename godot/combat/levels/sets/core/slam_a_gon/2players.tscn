@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -17,7 +17,15 @@
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=15]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=18]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=19]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 18 )
+shader_param/time_left = null
+shader_param/max_time = 0
+shader_param/active = false
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
@@ -43,6 +51,7 @@ radius = 1600
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
+material = SubResource( 1 )
 texture = ExtResource( 15 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
@@ -56,7 +65,7 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O" index="0"]
-points = PoolVector2Array( -480.833, -480.833, -120, -120 )
+points = PoolVector2Array( -433.315, -433.315, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -64,7 +73,7 @@ end_cap_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background/O" index="1"]
 position = Vector2( 880, 880 )
-points = PoolVector2Array( -760, -760, -399.167, -399.167 )
+points = PoolVector2Array( -760, -760, -464.787, -464.787 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -119,7 +128,7 @@ size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
-modulate = Color( 0.848, 0.288, 0.96, 1 )
+modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( -850, 0 )
 size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")

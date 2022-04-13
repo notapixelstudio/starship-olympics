@@ -1,10 +1,37 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/signs/minimoon.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://special_scenes/on_canvas_ui/FloatingMessage.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/signs/minisun.png" type="Texture" id=6]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=7]
 [ext_resource path="res://actors/battlers/AmmoIndicator.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=2]
+resource_local_to_scene = true
+size = 42
+outline_size = 10
+font_data = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/color = Color( 1, 1, 1, 0 )
+shader_param/width = 12.0
+shader_param/pattern = 1
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/color = Color( 1, 1, 1, 0 )
+shader_param/width = 12.0
+shader_param/pattern = 1
+shader_param/inside = false
+shader_param/add_margins = true
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
@@ -21,9 +48,50 @@ scale = Vector2( 0.8, 0.8 )
 
 [node name="Scaled" type="Node2D" parent="Wrapper"]
 
+[node name="PlayerIDTeamOutline" type="Label" parent="Wrapper/Scaled"]
+visible = false
+margin_left = -46.0833
+margin_top = -111.25
+margin_right = 46.9167
+margin_bottom = -62.25
+custom_fonts/font = SubResource( 2 )
+text = "P1"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Minisun" type="Sprite" parent="Wrapper/Scaled"]
+visible = false
+material = SubResource( 4 )
+position = Vector2( -49.75, -86 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+
+[node name="Minimoon" type="Sprite" parent="Wrapper/Scaled"]
+visible = false
+material = SubResource( 3 )
+position = Vector2( 49.75, -86 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+
 [node name="Colored" type="Node2D" parent="Wrapper/Scaled"]
 z_index = 20
 z_as_relative = false
+
+[node name="Minisun" type="Sprite" parent="Wrapper/Scaled/Colored"]
+visible = false
+position = Vector2( -50, -86 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+
+[node name="Minimoon" type="Sprite" parent="Wrapper/Scaled/Colored"]
+visible = false
+position = Vector2( 50, -86 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
 
 [node name="PlayerID" type="Label" parent="Wrapper/Scaled/Colored"]
 margin_left = -46.0833

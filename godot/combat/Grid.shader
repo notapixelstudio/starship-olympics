@@ -8,6 +8,7 @@ uniform sampler2D wells_texture;
 uniform bool triangular = false;
 uniform vec4 fg_color;
 uniform vec4 bg_color;
+uniform float saturation = 1.0;
 
 vec3 get_well(int index){
 	return texelFetch(wells_texture, ivec2(index, 0), 0).xyz;
@@ -120,5 +121,7 @@ void fragment(){
 	//float d = smoothstep(-50.0-50.0*w,32.0,dot(UV,UV));
 	//COLOR = texture(TEXTURE, UV*d);
 	float value = 1.0 - texture(TEXTURE, UV).a;
-	COLOR = vec4(mix(fg_color.rgb, bg_color.rgb, value), 1.0);
+	vec3 color = mix(fg_color.rgb, bg_color.rgb, value);
+	COLOR.rgb = mix(vec3(dot(color.rgb, vec3(0.299, 0.587, 0.114))), color.rgb, saturation);
+	COLOR.a = 1.0;
 }
