@@ -38,10 +38,10 @@ tracks/0/keys = {
 "values": [ 1285, 50 ]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
 
 [sub_resource type="ParticlesMaterial" id=4]
@@ -278,10 +278,10 @@ polygon = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900,
 points = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Area2D" index="2"]
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/CrownCollider" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 
 [node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone" index="5"]
 process_material = SubResource( 4 )
