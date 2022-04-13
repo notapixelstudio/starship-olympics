@@ -75,7 +75,7 @@ func show_holdable():
 	if held != null:
 		sprite.texture = held.get_texture()
 		if held.show_on_top():
-			sprite.z_index = 20
+			sprite.z_index = 100
 			sprite.z_as_relative = false
 			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5)
 			$RoyalGlow.position.x = 0

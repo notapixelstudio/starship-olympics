@@ -100,3 +100,11 @@ func _on_Royal_disabled():
 	# point_score.hide()
 	return
 	
+func reset_health(amount):
+	$Wrapper/Scaled/Colored/HealthBar.set_total(amount)
+	
+	# do not show the health bar if the ship has just one hp
+	$Wrapper/Scaled/Colored/HealthBar.visible = amount > 1
+
+func update_health(amount):
+	$Wrapper/Scaled/Colored/HealthBar.set_amount(amount)
