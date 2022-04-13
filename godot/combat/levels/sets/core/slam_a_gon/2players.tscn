@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=18]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -160,14 +159,6 @@ sides = 4.0
 [node name="Laser2" parent="Battlefield/Middleground/Wall2" index="8" groups=["additional_lasers"] instance=ExtResource( 9 )]
 position = Vector2( 0, -51 )
 rotation = -1.5708
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 19 )]
-position = Vector2( -1400, 0 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 19 )]
-position = Vector2( 1400, 0 )
-type = "rocket_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 

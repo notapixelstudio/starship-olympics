@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=3]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=4]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=9]
@@ -72,7 +71,7 @@ scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 23 )]
-modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
+modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( 1400, -700 )
 rotation = 2.35619
 scale = Vector2( 0.75, 0.75 )
@@ -181,19 +180,7 @@ script = ExtResource( 20 )
 radius = 450
 sides = 4.0
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 6 )]
-position = Vector2( -1400, 700 )
-type = "rocket_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="11" instance=ExtResource( 6 )]
-position = Vector2( -1400, -700 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="12" instance=ExtResource( 6 )]
-position = Vector2( 1400, -700 )
-type = "rocket_gun"
-
-[node name="SkullVariants" parent="Battlefield/Middleground" index="13" instance=ExtResource( 10 )]
+[node name="SkullVariants" parent="Battlefield/Middleground" index="10" instance=ExtResource( 10 )]
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -1800, 500 )
@@ -301,10 +288,8 @@ rotation = 0.785398
 controls = "kb2"
 species = ExtResource( 3 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]
