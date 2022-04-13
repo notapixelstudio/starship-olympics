@@ -22,7 +22,11 @@ func _ready():
 	global.arena.connect("all_ships_spawned", self, '_on_all_ships_spawned')
 	
 func appears():
-	var device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+	var device_controller_id
+	if ("rm" in controls):
+		device_controller_id = 0
+	else:
+		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
 	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)

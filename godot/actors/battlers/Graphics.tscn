@@ -11,11 +11,13 @@
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 7 )
-shader_param/active = false
-shader_param/strength = 8.0
-shader_param/width = 4
-shader_param/outline_color = null
+shader_param/color = Color( 1, 1, 1, 0 )
+shader_param/width = 12.0
+shader_param/pattern = 1
+shader_param/inside = false
+shader_param/add_margins = true
 
 [node name="Graphics" type="Position2D"]
 script = ExtResource( 1 )

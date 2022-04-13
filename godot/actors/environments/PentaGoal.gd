@@ -79,6 +79,9 @@ func get_score():
 	return 1
 	
 func do_goal(player, pos):
+	if current_ring < 0:
+		return
+		
 	# depleted rings should be moved onto the battlefield surface
 	$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
 	
