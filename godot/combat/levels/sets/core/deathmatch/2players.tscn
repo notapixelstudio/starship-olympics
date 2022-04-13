@@ -474,7 +474,7 @@ match_progress_trigger = 0.25
 jitter = 2.0
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner" index="0" instance=ExtResource( 18 )]
-type = "plate"
+type = "shields"
 tease = true
 random_types = [ "plate", "shields" ]
 
@@ -495,14 +495,6 @@ chance = 0.4
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/E/DramaticSpawner3" index="0" instance=ExtResource( 18 )]
 type = "shields"
 tease = true
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="9" instance=ExtResource( 18 )]
-position = Vector2( -1300, 900 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="10" instance=ExtResource( 18 )]
-position = Vector2( 1300, -900 )
-type = "rocket_gun"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1300, 900 )
