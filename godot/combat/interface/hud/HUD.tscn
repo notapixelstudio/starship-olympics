@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/HUD/bars_bottom.png" type="Texture" id=2]
@@ -13,8 +13,14 @@ outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 28
+[sub_resource type="DynamicFont" id=7]
+size = 48
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 26
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -41,11 +47,9 @@ font_data = ExtResource( 6 )
 anchor_right = 1.0
 margin_bottom = 151.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BarsBackground" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 margin_left = 50.0
 margin_right = -30.0
@@ -65,12 +69,14 @@ rect_clip_content = true
 size_flags_horizontal = 3
 
 [node name="BarsBottom" type="TextureRect" parent="."]
+visible = false
 margin_right = 1280.0
 margin_bottom = 50.0
 texture = ExtResource( 2 )
 stretch_mode = 3
 
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 margin_right = 1280.0
 margin_bottom = 150.0
 texture = ExtResource( 3 )
@@ -83,58 +89,66 @@ rect_min_size = Vector2( 0, 100 )
 [node name="ModePanel" type="Control" parent="Content"]
 margin_right = 150.0
 margin_bottom = 150.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Shadow" type="Sprite" parent="Content/ModePanel"]
-self_modulate = Color( 0, 0, 0, 0.156863 )
-position = Vector2( 74.857, 57.873 )
+self_modulate = Color( 0, 0, 0, 0.235294 )
+position = Vector2( 74.857, 51.873 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="Icon" type="Sprite" parent="Content/ModePanel"]
-position = Vector2( 74.8569, 49.8733 )
+position = Vector2( 74.8569, 43.8733 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="PlanetName" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -71.0
-margin_top = 50.0
+margin_top = 52.0
 margin_right = 71.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 6 )
+margin_bottom = 102.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
 align = 1
 valign = 2
 autowrap = true
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TimeLeft" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -47.0
-margin_right = 50.0
-margin_bottom = -16.0
-custom_fonts/font = SubResource( 2 )
+margin_left = 998.0
+margin_top = -164.0
+margin_right = 1142.0
+margin_bottom = -91.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 7 )
 text = "230"
-align = 1
-valign = 1
+align = 2
+valign = 2
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="TimeLeftCents" type="Label" parent="Content/ModePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 1047.0
+margin_top = -167.0
+margin_right = 1191.0
+margin_bottom = -94.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = ".00"
+align = 2
+valign = 2
+uppercase = true
 
 [node name="Tween" type="Tween" parent="Content"]
 
 [node name="LeaderPanel" type="Control" parent="Content"]
+visible = false
 margin_left = 1129.0
 margin_right = 1279.0
 margin_bottom = 150.0

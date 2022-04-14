@@ -373,10 +373,10 @@ func _ready():
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
-	if show_intro:
-		yield(mode_description, "ready_to_fight")
 	if show_hud:
 		hud.set_planet("", game_mode)
+	if show_intro:
+		yield(mode_description, "ready_to_fight")
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
