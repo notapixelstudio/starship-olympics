@@ -8,6 +8,7 @@ const ministar_width = 20
 const margin_left = 50
 const margin_top = 10
 const streak_arrow_width = 8
+const black_border = 3
 var max_score
 
 const Star = preload('res://special_scenes/combat_UI/session_points/Star.tscn')
@@ -37,6 +38,9 @@ func post_ready(p: InfoPlayer):
 	$Background.rect_position = Vector2(margin_left, margin_top)
 	$Background.rect_size = Vector2(max_bar_width - ministar_margin, bar_height)
 	$Background.color = species.color
+	
+	$BlackBackground.rect_position = Vector2(margin_left-black_border, margin_top-black_border)
+	$BlackBackground.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, bar_height + 2*black_border)
 	
 	# megabar
 	$MegaBar.color = species.color

@@ -18,13 +18,15 @@ z_index = 500
 z_as_relative = false
 script = ExtResource( 1 )
 
+[node name="BlackBackground" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Background" type="ColorRect" parent="."]
 modulate = Color( 0.109804, 0.109804, 0.109804, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MegaBar" type="Polygon2D" parent="."]
 modulate = Color( 0.3, 0.3, 0.3, 1 )
