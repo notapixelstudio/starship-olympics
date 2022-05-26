@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 885, 50 ]
+"values": [ 935, 50 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -176,8 +176,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
-height = 1800
+width = 3500
+height = 1900
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
@@ -195,8 +195,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
-height = 1800
+width = 3500
+height = 1900
 bevel = 900
 bevel_nw = 900
 bevel_ne = 900
@@ -214,13 +214,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
-height = 1800
-bevel = 885
-bevel_nw = 885
-bevel_ne = 885
-bevel_sw = 885
-bevel_se = 885
+width = 3500
+height = 1900
+bevel = 935
+bevel_nw = 935
+bevel_ne = 935
+bevel_sw = 935
+bevel_se = 935
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
 playback_speed = 0.5
@@ -245,7 +245,7 @@ playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
 [node name="Wall" parent="Battlefield/Middleground/Variants/A" index="1" instance=ExtResource( 5 )]
-position = Vector2( 0, -900 )
+position = Vector2( 0, -950 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/A/Wall" index="4"]
@@ -259,7 +259,7 @@ position = Vector2( 0, 151 )
 rotation = 1.5708
 
 [node name="Wall2" parent="Battlefield/Middleground/Variants/A" index="2" instance=ExtResource( 5 )]
-position = Vector2( 0, 900 )
+position = Vector2( 0, 950 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/A/Wall2" index="4"]
