@@ -83,9 +83,9 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
-width = 3400
-height = 1700
-radius = 850
+width = 3500
+height = 1800
+radius = 900
 precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -528,7 +528,7 @@ position = Vector2( 300, 600 )
 position = Vector2( -300, 0 )
 
 [node name="Wall5" parent="Battlefield/Middleground" index="42" instance=ExtResource( 8 )]
-position = Vector2( -900, 850 )
+position = Vector2( -900, 900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
@@ -537,7 +537,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
-position = Vector2( -1700, 0 )
+position = Vector2( -1750, 0 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
@@ -546,7 +546,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
-position = Vector2( 1700, 0 )
+position = Vector2( 1750, 0 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
@@ -555,7 +555,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall6" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
-position = Vector2( 900, -850 )
+position = Vector2( 900, -900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall6" index="4"]
@@ -564,7 +564,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall" parent="Battlefield/Middleground" index="46" instance=ExtResource( 8 )]
-position = Vector2( -900, -850 )
+position = Vector2( -900, -900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
@@ -581,7 +581,7 @@ rotation = 1.5708
 anims/Default = SubResource( 1 )
 
 [node name="Wall4" parent="Battlefield/Middleground" index="47" instance=ExtResource( 8 )]
-position = Vector2( 900, 850 )
+position = Vector2( 900, 900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]

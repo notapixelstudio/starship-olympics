@@ -83,7 +83,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3800
+width = 4000
 height = 2800
 bevel = 450
 bevel_nw = 450
@@ -109,7 +109,7 @@ scale = Vector2( 5, 5 )
 texture = ExtResource( 16 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1900, -1400 )
+position = Vector2( -2000, -1400 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -139,7 +139,7 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
-position = Vector2( -1900, -100 )
+position = Vector2( -2000, -100 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -149,7 +149,7 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
-position = Vector2( 1900, 1400 )
+position = Vector2( 2000, 1400 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -159,7 +159,7 @@ script = ExtResource( 1 )
 sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 1900, 100 )
+position = Vector2( 2000, 100 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -431,7 +431,7 @@ jitter = 4.0
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/B/DramaticSpawner6" index="0" instance=ExtResource( 17 )]
-type = "plate"
+type = "shields"
 tease = true
 random_types = [ "shields", "plate" ]
 

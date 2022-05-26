@@ -47,7 +47,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-radius = 2200
+radius = 2300
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -93,7 +93,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="GoalP1" type="Node2D" parent="Battlefield/Middleground" index="0"]
-position = Vector2( 50, 0 )
+position = Vector2( 200, 0 )
 rotation = -3.14159
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalP1" index="0" instance=ExtResource( 19 )]
@@ -121,7 +121,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="GoalP2" type="Node2D" parent="Battlefield/Middleground" index="1"]
-position = Vector2( -50, 0 )
+position = Vector2( -200, 0 )
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalP2" index="0" instance=ExtResource( 19 )]
 position = Vector2( -900, 0 )
@@ -148,7 +148,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="GoalP3" type="Node2D" parent="Battlefield/Middleground" index="2"]
-position = Vector2( 0, -50 )
+position = Vector2( 0, -200 )
 rotation = 1.5708
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalP3" index="0" instance=ExtResource( 19 )]
@@ -176,7 +176,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
 [node name="GoalP4" type="Node2D" parent="Battlefield/Middleground" index="3"]
-position = Vector2( 0, 50 )
+position = Vector2( 0, 200 )
 rotation = 4.71239
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalP4" index="0" instance=ExtResource( 19 )]
@@ -208,7 +208,7 @@ position = Vector2( 0, 650 )
 rotation = -0.785398
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2333.46, -1555.64 )
+position = Vector2( 2404.17, -1626.35 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -226,7 +226,7 @@ position = Vector2( 650, 0 )
 rotation = -2.35619
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2333.45, -1555.65 )
+position = Vector2( 2439.52, -1591.01 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -244,7 +244,7 @@ position = Vector2( 0, -650 )
 rotation = 2.35619
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2333.46, -1555.63 )
+position = Vector2( 2439.53, -1590.98 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -262,7 +262,7 @@ position = Vector2( -650, 0 )
 rotation = 0.785398
 
 [node name="Wall" parent="Battlefield/Middleground/Node2D4" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2333.46, -1555.64 )
+position = Vector2( 2404.17, -1626.35 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 

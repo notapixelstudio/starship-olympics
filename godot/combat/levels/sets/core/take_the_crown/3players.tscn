@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 1085, 50 ]
+"values": [ 1185, 50 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -87,8 +87,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3600
-height = 2200
+width = 3800
+height = 2400
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
@@ -106,13 +106,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3600
-height = 2200
-bevel = 1085
-bevel_nw = 1085
-bevel_ne = 1085
-bevel_sw = 1085
-bevel_se = 1085
+width = 3800
+height = 2400
+bevel = 1185
+bevel_nw = 1185
+bevel_ne = 1185
+bevel_sw = 1185
+bevel_se = 1185
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
 hollow = true
@@ -125,13 +125,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3600
-height = 2200
-bevel = 1085
-bevel_nw = 1085
-bevel_ne = 1085
-bevel_sw = 1085
-bevel_se = 1085
+width = 3800
+height = 2400
+bevel = 1185
+bevel_nw = 1185
+bevel_ne = 1185
+bevel_sw = 1185
+bevel_se = 1185
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
 playback_speed = 0.5
@@ -167,7 +167,7 @@ playback_speed = 0.2
 anims/Rotate = SubResource( 8 )
 
 [node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( 0, -1100 )
+position = Vector2( 0, -1200 )
 offset = 400
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -183,7 +183,7 @@ rotation = 1.5708
 collision_mask = 140304
 
 [node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 0, 1100 )
+position = Vector2( 0, 1200 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
