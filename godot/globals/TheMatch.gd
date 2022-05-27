@@ -15,6 +15,7 @@ var players = {} # Dictionary of InfoPlayers
 
 var draw : bool = true
 var game_over : bool = false
+var perfect_end : bool = false
 var cumulative_points = 0
 
 var leaders = []
@@ -108,7 +109,7 @@ func compute_game_status():
 		if player.get_score() >= leader.get_score():
 			leaders.append(player)
 	
-	var perfect_end : bool = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
+	perfect_end = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
 	
 	if perfect_end or time_left <= 0 or no_players:
 		winners = []
@@ -196,7 +197,8 @@ func to_dict()->Dictionary:
 	"""
 	return {
 		"uuid": get_uuid(),
-		"winners": winners
+		"winners": winners,
+		"perfect_end": perfect_end
 	}
 
 func get_number_of_players():
