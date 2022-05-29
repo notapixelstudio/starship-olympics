@@ -58,13 +58,11 @@ All the game assets (art, audio, texture, .svg files) under the folder assets, i
 
 ## License
 
-All the code used in this project is opensource and under the MIT License so you can use any part of it on your games developped in GodotEngine (that is also under the [MIT License](https://godotengine.org/license)).
+All the code used in this project is opensource and under the MIT License so you can use any part of it on your games developped in GodotEngine (that is also under the [MIT License](https://godotengine.org/license)). The software and official releases/binaries are distributed under our [End-User License Agreement (EULA)](LICENSE).
 
-This program is distributed under two different licenses:
+It can be basically summarized into two different licenses:
 
-1. Source code and official releases/binaries are distributed under
-   our [End-User License Agreement (EULA)](LICENSE). Please check
-   that there are [modules/libraries/assets in the source code](README.md) that
-   are distributed under the MIT license.
-2. All the game assets (art, audio, texture, .svg files) under the folder assets, if not explicitly stated otherwise are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community or contributors. Some of them are from third-party, credited below or explicitly stated under the respective folder.     
+1. Source code (everything EXCPET game assets, under the folder _assets_ ) is distributed under MIT License. 
+2. All the game assets (art, audio, texture, .svg files) under the folder _assets_, if not explicitly stated otherwise are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community or contributors. Some of them are from third-party, credited below or explicitly stated under the respective folder.     
 
+In case you have any questions don't hesitate to contact us
