@@ -70,6 +70,8 @@ var stunned = false
 var stun_countdown = 0
 var outside_countup = 0
 
+var max_health := 1
+var health := max_health
 
 var screen_size = Vector2()
 var width = 0
@@ -162,6 +164,14 @@ func set_reload_time(value):
 	
 func set_lives(value: int):
 	info_player.lives = value
+	
+func set_max_health(value: int):
+	max_health = value
+	reset_health()
+	
+func reset_health():
+	$PlayerInfo.reset_health(max_health)
+	self.set_health(max_health)
 
 func _enter_tree():
 	charging = false
@@ -169,6 +179,8 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	outside_countup = 0
+	
+	reset_health()
 	
 	update_weapon_indicator()
 	
@@ -209,6 +221,12 @@ func _ready():
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
 	$Graphics/ChargeBar/Crosshair.modulate = species.color
+	
+	# if we are on a proper team, switch on the outline
+	if info_player.has_proper_team():
+		$Graphics/Sprite.material.set_shader_param('active', true)
+		var color = info_player.get_team_color()
+		$Graphics/Sprite.material.set_shader_param('color', color)
 	
 func change_engine(value: bool):
 	responsive = value
@@ -442,6 +460,30 @@ func fire(override_charge = -1, dash_only = false):
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
+func set_health(amount : int) -> void:
+	health = amount
+	$PlayerInfo.update_health(amount)
+	
+func damage(hazard, damager : Ship):
+	if invincible or not alive:
+		return
+		
+	self.set_health(health - 1)
+	if health <= 0:
+		die(damager)
+	else:
+		rebound((global_position-hazard.global_position).normalized(), 2500.0)
+		
+		if has_method('vibration_feedback'):
+			call('vibration_feedback', false)
+		
+		Events.emit_signal("ship_damaged", self, hazard, damager)
+		
+		# slight, invisible invincibility
+		invincible = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		invincible = false
+	
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		alive = false
