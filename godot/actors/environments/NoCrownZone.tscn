@@ -25,6 +25,7 @@ radial_accel = -200.0
 scale = 6.0
 
 [sub_resource type="Animation" id=4]
+resource_local_to_scene = true
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("FeedbackLine:width")
@@ -75,7 +76,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Decoration/Line2D:modulate")
+tracks/4/path = NodePath("Decoration:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -152,36 +153,32 @@ texture = ExtResource( 4 )
 stream = ExtResource( 7 )
 
 [node name="Decoration" type="Node2D" parent="." index="11"]
+modulate = Color( 0.235294, 0, 0.109804, 1 )
 z_index = 10
 z_as_relative = false
 
 [node name="rhombus" type="Sprite" parent="Decoration" index="0"]
-modulate = Color( 0.235294, 0, 0.109804, 1 )
 position = Vector2( 0, 350 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="rhombus2" type="Sprite" parent="Decoration" index="1"]
-modulate = Color( 0.235294, 0, 0.109804, 1 )
 position = Vector2( 0, -350 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="rhombus3" type="Sprite" parent="Decoration" index="2"]
-modulate = Color( 0.235294, 0, 0.109804, 1 )
 position = Vector2( 350, 0 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="rhombus4" type="Sprite" parent="Decoration" index="3"]
-modulate = Color( 0.235294, 0, 0.109804, 1 )
 position = Vector2( -350, 0 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="Line2D" type="Line2D" parent="Decoration" index="4"]
-modulate = Color( 0.235294, 0, 0.109804, 1 )
-points = PoolVector2Array( 290, 0, 300.321, 9.67888, 340, -30, 30, -340, -10, -300, 0, -290, 10, -300, -30, -340, -340, -30, -300, 10, -290, 0, -300, -10, -340, 30, -30, 340, 10, 300, 0, 290, -10, 300, 30, 340, 340, 30, 300, -10, 290, 0 )
-width = 4.0
+points = PoolVector2Array( 250, 0, 275, 25, 325, -25, 25, -325, -25, -275, 0, -250, 25, -275, -25, -325, -325, -25, -275, 25, -250, 0, -275, -25, -325, 25, -25, 325, 25, 275, 0, 250, -25, 275, 25, 325, 325, 25, 275, -25, 250, 0 )
+width = 5.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 50

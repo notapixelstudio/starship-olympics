@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
@@ -71,7 +70,7 @@ scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 21 )]
-modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
+modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( 1200, -700 )
 rotation = 2.35619
 scale = Vector2( 0.75, 0.75 )
@@ -173,15 +172,7 @@ script = ExtResource( 1 )
 radius = 450
 sides = 4.0
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 4 )]
-position = Vector2( -1200, 700 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="11" instance=ExtResource( 4 )]
-position = Vector2( 1200, -700 )
-type = "rocket_gun"
-
-[node name="SkullVariants" parent="Battlefield/Middleground" index="12" instance=ExtResource( 12 )]
+[node name="SkullVariants" parent="Battlefield/Middleground" index="10" instance=ExtResource( 12 )]
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( -1600, 500 )

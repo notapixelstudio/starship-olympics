@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=13]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
@@ -849,18 +848,6 @@ visible_decorations = false
 script = ExtResource( 2 )
 radius = 400
 rotation_degrees = 30.0
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 14 )]
-position = Vector2( -1665, 0 )
-type = "spike_gun"
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="3" instance=ExtResource( 14 )]
-position = Vector2( 832.5, -1441.94 )
-type = "spike_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 14 )]
-position = Vector2( 832.5, 1441.94 )
-type = "spike_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = "bee_crown"

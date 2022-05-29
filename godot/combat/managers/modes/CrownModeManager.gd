@@ -22,12 +22,3 @@ func _on_sth_stolen(thief, mugged):
 		ECM.E(thief).get('Cargo').load(stuff)
 		ECM.E(thief).get("Royal").enable()
 		sound_action.play()
-
-func _process(delta):
-	if not enabled:
-		return
-		
-	for royal in ECM.entities_with('Royal'):
-		var royal_host = royal.get_host()
-		.score(royal_host.get_id(), delta)
-		emit_signal('show_msg', royal_host.species, delta, royal_host.position)

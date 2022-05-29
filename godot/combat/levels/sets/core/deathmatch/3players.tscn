@@ -203,19 +203,7 @@ rotation = 1.5708
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall16" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 2 )
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="8" instance=ExtResource( 16 )]
-position = Vector2( -1400, 900 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 16 )]
-position = Vector2( 1400, 900 )
-type = "rocket_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="10" instance=ExtResource( 16 )]
-position = Vector2( 1400, -900 )
-type = "rocket_gun"
-
-[node name="Variants" parent="Battlefield/Middleground" index="11" instance=ExtResource( 18 )]
+[node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 18 )]
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
 
@@ -303,7 +291,7 @@ match_progress_trigger = 0.4
 chance = 0.8
 
 [node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner7" index="0" instance=ExtResource( 16 )]
-type = "plate"
+type = "shields"
 tease = true
 random_types = [ "plate", "shields" ]
 

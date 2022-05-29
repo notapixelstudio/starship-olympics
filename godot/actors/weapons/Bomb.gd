@@ -16,7 +16,6 @@ var type
 var symbol = null
 
 var entity : Entity
-onready var life_time = $LifeTime
 onready var explosion = Explosion.instance()
 
 var species : Species
@@ -99,6 +98,10 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*22
 		$Sprite.scale = Vector2(size*0.6, size*0.6)
 		
+		# rockets need to be charged at least a little to pursue
+		if impulse and impulse.length() < 2500:
+			entity.get('Pursuer').disable()
+		
 	$Core/CollisionShape2D.shape.radius = size*8
 	
 func _process(delta):
@@ -177,10 +180,10 @@ func dissolve() -> void:
 func process_life_time():
 	# pause lifetime if we are pursuing a target
 	if entity.has('Pursuer') and entity.get('Pursuer').get_target() != null:
-		life_time.paused = true
+		$LifeTime.paused = true
 		return
 	
-	life_time.paused = false
+	$LifeTime.paused = false
 	
 var hit_count = 0
 # FIXME ? is this heavy? each bomb needs contact monitoring
@@ -192,7 +195,7 @@ func _on_Bomb_body_entered(body):
 		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
 		hit_count = min(hit_count+1, 1000)
 		$RicochetAudio.play()
-		life_time.start() # enable ricochet combos
+		$LifeTime.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
 		
 		# ripple effect
