@@ -1,10 +1,10 @@
-# SuperStarfighter
+# SuperStarfighter (Starship Olympics)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://gitHub.com/notapixelstudio/superstarfighter/tags/)
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/notapixelstudio)
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
-<a href="https://notapixel.itch.io/superstarfighter"><img src="img/mocklogo.png"/></a>
+<a href="https://notapixel.itch.io/superstarfighter"><img src="img/logo1.jpg"/></a>
 
 - 1 to 4 players fast-paced arcade combat party game
 - Intuitive and expressive single-button controls: everyone can pick up a controller and play!
@@ -15,7 +15,7 @@
 
 ## Follow the development
 
-This game is being developed on **`Godot v3.4.0`** 
+This game is being developed on **`Godot v3.4.3`** 
 
 Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or on [Instagram](https://instagram.com/notapixelstudio) 
 
@@ -27,9 +27,6 @@ Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or
 
 All the resources hereby cited are free and royalty-free. Made by the community or contributors.
 
-## LICENSE
-
-All the code used in this project is opensource and under the MIT License so you can use any part of it on your games developped in GodotEngine (that is also under the [MIT License](https://godotengine.org/license)).
 
 ### Game Assets and Third party
 
@@ -57,3 +54,28 @@ All the game assets (art, audio, texture, .svg files) under the folder assets, i
 - icons from the excellent https://game-icons.net project!
 - [Lorc](http://lorcblog.blogspot.com)
 - [Darkzaitzev](https://www.deviantart.com/darkzaitzev)
+
+## License
+
+All the code used in this project is opensource and under the MIT License so you can use any part of it on your games developped in GodotEngine (that is also under the [MIT License](https://godotengine.org/license)).
+
+This program is distributed under three different licenses:
+
+1. Source code and official releases/binaries are distributed under
+   our [End-User License Agreement for Aseprite (EULA)](EULA.txt). Please check
+   that there are [modules/libraries in the source code](src/README.md) that
+   are distributed under the MIT license
+   (e.g. [laf](https://github.com/aseprite/laf),
+   [clip](https://github.com/aseprite/clip),
+   [undo](https://github.com/aseprite/undo),
+   [observable](https://github.com/aseprite/observable),
+   [ui](src/ui), etc.).
+2. You can request a special
+   [educational license](https://www.aseprite.org/faq/#is-there-an-educational-license)
+   in case you are a teacher in an educational institution and want to
+   use Aseprite in your classroom (in-situ).
+3. Steam releases are distributed under the terms of the
+   [Steam Subscriber Agreement](http://store.steampowered.com/subscriber_agreement/).
+
+You can get more information about Aseprite license in the
+[FAQ](https://www.aseprite.org/faq/#licensing-&-commercial).
