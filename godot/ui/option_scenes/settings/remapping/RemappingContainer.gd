@@ -35,7 +35,7 @@ func _on_Device_value_changed(value):
 			child.setup()
 			
 func _on_Default_pressed():
-	var mapping = global.set_presets(device, device.substr(0, len(device)-1) +"_default")
+	var mapping = global.set_presets(device, "default")
 	_on_Device_value_changed(device)
 
 func control_remapped(action: String, event: InputEvent, substitute: bool):

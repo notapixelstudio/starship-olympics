@@ -558,11 +558,12 @@ func set_presets(action_device: String, preset_value: String) -> Dictionary:
 	 will set the 'presets' mapping and return its dictionary
 	"""
 	var ret_mapping = {}
+	var device_category = action_device.substr(0, len(action_device)-1)
 	var device_name = action_device
 	if "joy" in action_device:
 		device_name = "joy"
 	
-	var file = presets_path["{device}_{preset_value}".format({"device":device_name, "preset_value": preset_value})]
+	var file = presets_path["{device}_{preset_value}".format({"device":device_category, "preset_value": preset_value})]
 	var preset_dictionary = read_file(file)
 	
 	var this_mapping = preset_dictionary[device_name]
@@ -651,7 +652,6 @@ func get_state():
 		demo=demo,
 		full_screen=full_screen,
 		rumbling=rumbling,
-		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
 		enable_camera=enable_camera,
 		flood=flood,
