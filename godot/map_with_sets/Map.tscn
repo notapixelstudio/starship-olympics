@@ -1,0 +1,344 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
+[ext_resource path="res://map_with_sets/Map.gd" type="Script" id=2]
+[ext_resource path="res://map_with_sets/PlaylistItem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://map_with_sets/Cursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://map_with_sets/MapPlanet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://map_with_sets/mapPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://map_with_sets/OptionCell.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=15]
+[ext_resource path="res://assets/map/cards/option_3_victories.png" type="Texture" id=16]
+[ext_resource path="res://assets/map/cards/option_5_victories.png" type="Texture" id=17]
+[ext_resource path="res://map_with_sets/DynamicOptionCell.gd" type="Script" id=18]
+[ext_resource path="res://assets/map/cards/option_0_cpus.png" type="Texture" id=19]
+[ext_resource path="res://assets/map/cards/option_1_cpus.png" type="Texture" id=20]
+[ext_resource path="res://assets/map/cards/option_2_cpus.png" type="Texture" id=21]
+[ext_resource path="res://assets/map/cards/option_3_cpus.png" type="Texture" id=22]
+[ext_resource path="res://assets/map/cards/moon_off.png" type="Texture" id=23]
+[ext_resource path="res://assets/map/cards/moon_on.png" type="Texture" id=24]
+[ext_resource path="res://combat/levels/background/robolords_background.png" type="Texture" id=25]
+[ext_resource path="res://assets/map/cards/moon_random.png" type="Texture" id=26]
+[ext_resource path="res://assets/map/cards/laser_moon_off.png" type="Texture" id=27]
+[ext_resource path="res://assets/map/cards/laser_moon_on.png" type="Texture" id=28]
+[ext_resource path="res://assets/map/cards/laser_moon_random.png" type="Texture" id=29]
+[ext_resource path="res://map_with_sets/FollowPath.tscn" type="PackedScene" id=30]
+[ext_resource path="res://utils/Camera.tscn" type="PackedScene" id=33]
+[ext_resource path="res://map_with_sets/Path.tscn" type="PackedScene" id=38]
+
+[sub_resource type="Animation" id=1]
+resource_name = "wigglewiggle"
+length = 10.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
+"transitions": PoolRealArray( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "wigglewiggle"
+length = 10.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
+"transitions": PoolRealArray( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
+}
+
+[node name="Map" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+playlist_item = ExtResource( 3 )
+cursor_scene = ExtResource( 4 )
+focus_path_scene = ExtResource( 30 )
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Content" type="Node2D" parent="."]
+pause_mode = 2
+
+[node name="Waypoints" type="Node2D" parent="Content"]
+
+[node name="Path" parent="Content/Waypoints" instance=ExtResource( 38 )]
+position = Vector2( -400, 500 )
+points = PoolVector2Array( 500, -250, 650, -200, 950, -250 )
+
+[node name="Path2" parent="Content/Waypoints" instance=ExtResource( 38 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( 600, -550, 550, -700, 800, -750, 1050, -900 )
+
+[node name="Path3" parent="Content/Waypoints" instance=ExtResource( 38 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( 450, -800, 200, -750, 150, -850 )
+
+[node name="Path4" parent="Content/Waypoints" instance=ExtResource( 38 )]
+position = Vector2( -600, 650 )
+points = PoolVector2Array( 550, -700, 450, -800, 500, -950 )
+
+[node name="Planets" type="Node2D" parent="Content"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Set1" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, -1900 )
+status = "hidden"
+set = null
+
+[node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 0, 250 )
+status = "hidden"
+set = null
+
+[node name="Set7" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, -2300 )
+status = "hidden"
+set = null
+
+[node name="Set8" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 0, -2300 )
+status = "hidden"
+set = null
+
+[node name="Set13" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 0, -2700 )
+status = "hidden"
+set = null
+
+[node name="Set14" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -400, -2700 )
+status = "hidden"
+set = null
+
+[node name="Set15" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 400, -2700 )
+status = "hidden"
+set = null
+
+[node name="Set16" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -450, -300 )
+status = "hidden"
+set = null
+
+[node name="Set9" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( -100, -400 )
+status = "hidden"
+set = null
+
+[node name="Set10" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 450, -350 )
+status = "hidden"
+set = null
+
+[node name="Set11" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 800, -1900 )
+status = "hidden"
+set = null
+
+[node name="Set12" parent="Content/Planets" instance=ExtResource( 6 )]
+position = Vector2( 1200, -1900 )
+status = "hidden"
+set = null
+
+[node name="Controls" type="Node2D" parent="Content"]
+
+[node name="Victories" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 600, 300 )
+value_name = "custom_win"
+selection = [ 1, 3, 5 ]
+description = "set the number of victories"
+
+[node name="1" type="Sprite" parent="Content/Controls/Victories/Sprite" index="0"]
+visible = false
+texture = ExtResource( 15 )
+
+[node name="3" type="Sprite" parent="Content/Controls/Victories/Sprite" index="1"]
+visible = false
+texture = ExtResource( 16 )
+
+[node name="5" type="Sprite" parent="Content/Controls/Victories/Sprite" index="2"]
+visible = false
+texture = ExtResource( 17 )
+
+[node name="Flood Moon" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 1200, -400 )
+value_name = "flood"
+selection = [ "off", "on", "random" ]
+description = "add water to levels"
+
+[node name="1" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="0"]
+visible = false
+texture = ExtResource( 23 )
+
+[node name="3" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="1"]
+visible = false
+texture = ExtResource( 24 )
+
+[node name="5" type="Sprite" parent="Content/Controls/Flood Moon/Sprite" index="2"]
+visible = false
+texture = ExtResource( 26 )
+
+[node name="AnimationPlayer" parent="Content/Controls/Flood Moon" index="2"]
+anims/wigglewiggle = SubResource( 1 )
+
+[node name="Laser Moon" parent="Content/Controls" instance=ExtResource( 14 )]
+position = Vector2( 400, -1000 )
+value_name = "laser"
+selection = [ "off", "on", "random" ]
+node_owner_path = NodePath("../Flood2")
+description = "add deadly lasers to levels"
+
+[node name="1" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="0"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="3" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="1"]
+visible = false
+texture = ExtResource( 28 )
+
+[node name="5" type="Sprite" parent="Content/Controls/Laser Moon/Sprite" index="2"]
+visible = false
+texture = ExtResource( 29 )
+
+[node name="AnimationPlayer" parent="Content/Controls/Laser Moon" index="2"]
+anims/wigglewiggle = SubResource( 2 )
+
+[node name="CPUs" parent="Content/Controls" instance=ExtResource( 14 )]
+visible = false
+position = Vector2( 1000, -400 )
+script = ExtResource( 18 )
+value_name = "win"
+selection = [  ]
+global_option = false
+node_owner_path = NodePath("../../..")
+single_texture = null
+description = "{_} CPUS"
+var_name = "cpu"
+
+[node name="0" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="0"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 19 )
+
+[node name="1" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="1"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 20 )
+
+[node name="2" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="2"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 21 )
+
+[node name="3" type="Sprite" parent="Content/Controls/CPUs/Sprite" index="3"]
+visible = false
+position = Vector2( 0, 200 )
+texture = ExtResource( 22 )
+
+[node name="CursorMoveTween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 25 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera" parent="." instance=ExtResource( 33 )]
+current = false
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+zoomMin = 0.3
+zoomMax = 5.0
+marginY = -150.0
+zoom_offset = 1.597
+
+[node name="FirstTimeCamera" type="Camera2D" parent="."]
+position = Vector2( 0, 240 )
+zoom = Vector2( 1.2, 1.2 )
+
+[node name="CanvasLayerTop" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -200.0
+margin_bottom = -20.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer"]
+margin_right = 10.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+
+[node name="p1" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_right = 320.0
+margin_bottom = 180.0
+
+[node name="p2" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 340.0
+margin_right = 630.0
+margin_bottom = 180.0
+
+[node name="p3" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 650.0
+margin_right = 940.0
+margin_bottom = 180.0
+
+[node name="p4" parent="CanvasLayerTop/PanelContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 960.0
+margin_right = 1250.0
+margin_bottom = 180.0
+
+[node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer"]
+margin_left = 1270.0
+margin_right = 1280.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+
+[node name="Tween" type="Tween" parent="."]
+
+[editable path="Content/Controls/Victories"]
+[editable path="Content/Controls/Flood Moon"]
+[editable path="Content/Controls/Laser Moon"]
+[editable path="Content/Controls/CPUs"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://map_with_sets/planets/rules/Minicard.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon/minicards/sets/question_mark.png" type="Texture" id=2]
+[ext_resource path="res://assets/map/selector.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon/minicards/card_minigame.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "unlock"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.28, 0.28 ), Vector2( 1e-05, 0.28 ), Vector2( 0.28, 0.28 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "unlocked" ],
+"method": "set_status"
+} ]
+}
+
+[node name="Minicard" type="Sprite" groups=["minicard"]]
+scale = Vector2( 0.28, 0.28 )
+z_as_relative = false
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+
+[node name="QuestionMark" type="Sprite" parent="."]
+modulate = Color( 0.44, 0.38148, 0.3784, 1 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.235294 )
+show_behind_parent = true
+position = Vector2( 0, 24 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/unlock = SubResource( 1 )
+
+[node name="Select" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -125 )
+z_index = 2000
+z_as_relative = false
+texture = ExtResource( 3 )
