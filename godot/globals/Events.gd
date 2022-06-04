@@ -2,6 +2,7 @@ extends Node
 
 signal bumper_created(bumper)
 
+signal ship_damaged(ship, hazard, damager)
 signal ship_died(ship, killer, for_good)
 
 signal sths_bumped(sth1, sth2) # just one for pair

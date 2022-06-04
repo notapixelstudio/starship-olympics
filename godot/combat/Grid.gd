@@ -5,6 +5,8 @@ export var fg_color = Color(1,1,1,1) setget set_fg_color
 export var bg_color = Color(0,0,0,1) setget set_bg_color
 export var clock : bool = false setget set_clock
 
+export var saturation : float = 1.0 setget set_saturation
+
 onready var poly = $Polygon
 
 onready var wells = []
@@ -38,6 +40,12 @@ func set_t(t):
 	
 func set_max_timeout(t):
 	material.set_shader_param('max_time', t)
+	
+func set_saturation(v):
+	saturation = v
+	if not is_inside_tree():
+		yield(self, 'ready')
+	poly.material.set_shader_param('saturation', saturation)
 
 func add_well(well):
 	self.wells.append(Vector3(

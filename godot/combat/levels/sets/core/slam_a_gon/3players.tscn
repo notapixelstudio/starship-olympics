@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=16]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=19]
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
@@ -140,7 +139,7 @@ core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP2" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0.848, 0.288, 0.96, 1 )
+modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( -875, 0 )
 size = 9.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
@@ -222,18 +221,6 @@ sides = 4.0
 [node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
 position = Vector2( -50, 1 )
 rotation = 3.14159
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="6" instance=ExtResource( 19 )]
-position = Vector2( 0, 1400 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 19 )]
-position = Vector2( -1212.44, -700 )
-type = "rocket_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 19 )]
-position = Vector2( 1212.44, -700 )
-type = "rocket_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 

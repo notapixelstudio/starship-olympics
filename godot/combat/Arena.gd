@@ -711,6 +711,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
+	ship.set_max_health(game_mode.starting_health)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
@@ -911,7 +912,7 @@ func _on_sth_just_froze(sth):
 	rock.call_deferred('start')
 
 func _on_goal_done(player, goal, pos):
-	global.the_match.add_score(player.id, goal.get_score())
+	global.the_match.add_score_to_team(player.team, goal.get_score())
 	show_msg(player.species, goal.get_score(), pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
