@@ -102,7 +102,6 @@ linked_to = NodePath("../Core")
 
 [node name="Core" parent="Battlefield/Middleground/Content/Planets" index="1" instance=ExtResource( 15 )]
 position = Vector2( 0, 250 )
-status = "hidden"
 set = ExtResource( 17 )
 
 [node name="LumiraIV" parent="Battlefield/Middleground/Content/Planets" index="2" instance=ExtResource( 23 )]
@@ -112,7 +111,6 @@ linked_to = NodePath("../Casual")
 
 [node name="Casual" parent="Battlefield/Middleground/Content/Planets" index="3" instance=ExtResource( 15 )]
 position = Vector2( -801.5, 503.5 )
-status = "hidden"
 set = ExtResource( 43 )
 
 [node name="Mantharn" parent="Battlefield/Middleground/Content/Planets" index="4" instance=ExtResource( 23 )]
@@ -122,7 +120,6 @@ linked_to = NodePath("../Combat")
 
 [node name="Combat" parent="Battlefield/Middleground/Content/Planets" index="5" instance=ExtResource( 15 )]
 position = Vector2( 425, -275 )
-status = "hidden"
 set = ExtResource( 18 )
 
 [node name="QueenMotherboard" parent="Battlefield/Middleground/Content/Planets" index="6" instance=ExtResource( 23 )]
@@ -132,17 +129,14 @@ linked_to = NodePath("../Crown")
 
 [node name="Crown" parent="Battlefield/Middleground/Content/Planets" index="7" instance=ExtResource( 15 )]
 position = Vector2( -450, -275 )
-status = "hidden"
 set = ExtResource( 13 )
 
 [node name="Snake" parent="Battlefield/Middleground/Content/Planets" index="8" instance=ExtResource( 15 )]
 position = Vector2( 1625, 450 )
-status = "hidden"
 set = ExtResource( 14 )
 
 [node name="Combat2" parent="Battlefield/Middleground/Content/Planets" index="9" instance=ExtResource( 15 )]
 position = Vector2( 1625, -350 )
-status = "hidden"
 set = ExtResource( 16 )
 
 [node name="Paths" type="Node2D" parent="Battlefield/Middleground/Content" index="1"]
@@ -185,28 +179,24 @@ position = Vector2( -1275, 375 )
 
 [node name="1star" parent="Battlefield/Middleground/Content/Options" index="0" instance=ExtResource( 25 )]
 position = Vector2( 500, 475 )
-value_name = "custom_win"
 value = [ 1 ]
 texture = ExtResource( 27 )
 label = "One-shot Game"
 
 [node name="3stars" parent="Battlefield/Middleground/Content/Options" index="1" instance=ExtResource( 25 )]
 position = Vector2( 625, 350 )
-value_name = "custom_win"
 value = [ 3 ]
 texture = ExtResource( 28 )
 label = "Pro Game"
 
 [node name="5stars" parent="Battlefield/Middleground/Content/Options" index="2" instance=ExtResource( 25 )]
 position = Vector2( 750, 475 )
-value_name = "custom_win"
 value = [ 5 ]
 texture = ExtResource( 26 )
 label = "Standard Game"
 
 [node name="10stars" parent="Battlefield/Middleground/Content/Options" index="3" instance=ExtResource( 25 )]
 position = Vector2( 875, 350 )
-value_name = "custom_win"
 value = [ 10 ]
 texture = ExtResource( 29 )
 label = "Epic Game"
@@ -215,7 +205,6 @@ label = "Epic Game"
 
 [node name="FloodMoon" parent="Battlefield/Middleground/Content/Moons" index="0" instance=ExtResource( 30 )]
 position = Vector2( -1350, 125 )
-value_name = "flood"
 label = "Flood Moon"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
@@ -253,7 +242,7 @@ zoom = Vector2( 6, 6 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 9.18356e+31, 9.18356e+31 )
+zoom = Vector2( 2.29589e+32, 2.29589e+32 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0

@@ -101,63 +101,39 @@ __meta__ = {
 
 [node name="Set1" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -1900 )
-status = "hidden"
-set = null
 
 [node name="Set6" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, 250 )
-status = "hidden"
-set = null
 
 [node name="Set7" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -2300 )
-status = "hidden"
-set = null
 
 [node name="Set8" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -2300 )
-status = "hidden"
-set = null
 
 [node name="Set13" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 0, -2700 )
-status = "hidden"
-set = null
 
 [node name="Set14" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -400, -2700 )
-status = "hidden"
-set = null
 
 [node name="Set15" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 400, -2700 )
-status = "hidden"
-set = null
 
 [node name="Set16" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -450, -300 )
-status = "hidden"
-set = null
 
 [node name="Set9" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( -100, -400 )
-status = "hidden"
-set = null
 
 [node name="Set10" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 450, -350 )
-status = "hidden"
-set = null
 
 [node name="Set11" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 800, -1900 )
-status = "hidden"
-set = null
 
 [node name="Set12" parent="Content/Planets" instance=ExtResource( 6 )]
 position = Vector2( 1200, -1900 )
-status = "hidden"
-set = null
 
 [node name="Controls" type="Node2D" parent="Content"]
 
@@ -226,6 +202,7 @@ anims/wigglewiggle = SubResource( 2 )
 visible = false
 position = Vector2( 1000, -400 )
 script = ExtResource( 18 )
+status = "hidden"
 value_name = "win"
 selection = [  ]
 global_option = false
