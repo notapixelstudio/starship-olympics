@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=7]
 [ext_resource path="res://map_with_sets/DescriptionMode.gd" type="Script" id=8]
+[ext_resource path="res://ui/common_elements/CircularProgressBar/CircularProgressBar/CircularProgressBar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -62,6 +63,71 @@ outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
+[sub_resource type="Shader" id=8]
+code = "// from https://gist.github.com/andrew-wilkes/44dea35c27517b0d8b7798f46a97b5b1
+shader_type canvas_item;
+
+uniform float value: hint_range(0, 100); // %
+uniform float thickness: hint_range(0, 100) = 30.; // % thickness
+uniform sampler2D fg: hint_albedo;
+uniform sampler2D bg: hint_black_albedo;
+uniform float offset: hint_range(0, 100); // %
+uniform float smoothing: hint_range(0, 100) = 5.;
+
+void fragment() {
+	vec2 point = UV - vec2(0.5);
+	float PI = 3.14159265358979323846;
+	float ang = (1. - atan(point.x, point.y) / PI) * 50. - offset;
+	if (ang < 0.)
+		ang += 100.;
+	float s = smoothing / 1000.;
+	float k = PI / 2. / s;
+	float r1 = .5 - thickness / 200.;
+	float r2 = .5;
+	float r = length(point);
+	float uy = (r2 - r) / (r2 - r1);
+	if (r > r2 || r < r1)
+		COLOR.a = 0.;
+	else {
+		if (ang <= value) 
+			COLOR = texture(fg, vec2(ang / 100., uy));
+		else
+			COLOR = texture(bg, vec2(ang / 100., uy));
+		if ((r2 - r) < s)
+			COLOR.a = sin((r2 - r) * k);
+		if ((r - r1) < s)
+			COLOR.a = sin((r - r1) * k);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/value = 0.0
+shader_param/thickness = 44.286
+shader_param/offset = 0.0
+shader_param/smoothing = 43.095
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 8 )
+shader_param/value = 0.0
+shader_param/thickness = 44.286
+shader_param/offset = 0.0
+shader_param/smoothing = 43.095
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 8 )
+shader_param/value = 0.0
+shader_param/thickness = 44.286
+shader_param/offset = 0.0
+shader_param/smoothing = 43.095
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 8 )
+shader_param/value = 0.0
+shader_param/thickness = 44.286
+shader_param/offset = 0.0
+shader_param/smoothing = 43.095
+
 [node name="DescriptionMode" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
@@ -70,9 +136,6 @@ margin_bottom = -80.0
 rect_rotation = -0.00219995
 theme = ExtResource( 2 )
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 gamemode = ExtResource( 1 )
 
 [node name="LabelShadow" type="Label" parent="."]
@@ -187,5 +250,47 @@ points = PoolVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
+
+[node name="PlayersReady" type="Node2D" parent="."]
+position = Vector2( 0.00645059, 582 )
+
+[node name="p1" parent="PlayersReady" instance=ExtResource( 9 )]
+material = SubResource( 9 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 140.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="p2" parent="PlayersReady" instance=ExtResource( 9 )]
+material = SubResource( 10 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 320.0
+margin_right = 460.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="p3" parent="PlayersReady" instance=ExtResource( 9 )]
+material = SubResource( 11 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_right = 780.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="p4" parent="PlayersReady" instance=ExtResource( 9 )]
+material = SubResource( 12 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 960.0
+margin_right = 1100.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [connection signal="done" from="Description" to="." method="_on_Description_done"]

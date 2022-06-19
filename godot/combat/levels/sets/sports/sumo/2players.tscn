@@ -61,10 +61,8 @@ rotation = 0.0
 controls = "joy2"
 species = ExtResource( 2 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]
