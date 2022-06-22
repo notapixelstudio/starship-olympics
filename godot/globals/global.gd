@@ -815,6 +815,9 @@ onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
 func get_species(species_id: String):
 	return species_resources[species_id]
 
+func get_actual_resource(resource_list: Dictionary, resource_id: String):
+	return resource_list[resource_id]
+	
 func get_ordered_species() -> Array:
 	var ordered_species = []
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")

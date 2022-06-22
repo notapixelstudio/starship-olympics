@@ -2,11 +2,16 @@ extends Node
 
 class_name Deck
 
-var cards : Array = ['crown','diamond','slam','deathmatch']
+var cards : Array = ['res://combat/minigames/crown','diamond','slam','deathmatch']
+var card_resources: Array = []
 
 func _init():
 	randomize()
 	self.shuffle()
+	global.get_resources("res://combat/minigames/")
+	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
+	#for resource_id in unlocked_decks:
+	#	card_resources.append(global.get_actual_resource(unlocked_minigames, resource_id))
 	
 func draw(how_many : int) -> Array:
 	var result = []

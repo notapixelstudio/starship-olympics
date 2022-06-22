@@ -11,7 +11,7 @@
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=11]
-[ext_resource path="res://map/DraftMapManager.gd" type="Script" id=12]
+[ext_resource path="res://map/DraftManager.gd" type="Script" id=12]
 [ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture" id=13]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=15]
@@ -154,7 +154,7 @@ show_intro = false
 random_starting_position = false
 standalone = false
 
-[node name="MapManager" parent="Managers" index="0" instance=ExtResource( 7 )]
+[node name="DraftManager" parent="Managers" index="0" instance=ExtResource( 7 )]
 script = ExtResource( 12 )
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -229,7 +229,7 @@ zoom = Vector2( 6, 6 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 3.58732e+33, 3.58732e+33 )
+zoom = Vector2( 8.9683e+33, 8.9683e+33 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0

@@ -2,6 +2,7 @@ extends Resource
 
 class_name Minigame
 
+export var id: String
 export var game_mode : Resource
 
 export var level_1players : PackedScene

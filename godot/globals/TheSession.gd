@@ -111,6 +111,12 @@ func choose_next_level(demo = false) -> Dictionary : #{String: Minigame}
 	last_minigame = next_minigame
 	return {"player": player, "level": next_minigame}
 
+func choose_next_card(demo = false) -> String : # {String: Minigame}
+	var next_minigame = hand[0]
+	global.the_game.deck.put_back_cards([next_minigame])
+	return next_minigame
+
+
 func add_match(last_match: Dictionary):
 	matches.insert(0, last_match)
 	
