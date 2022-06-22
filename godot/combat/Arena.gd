@@ -100,8 +100,7 @@ func set_style(v : ArenaStyle):
 		grid.poly.texture_scale = style.battlefield_texture_scale
 		grid.poly.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
 		
-func get_time_scale():
-	return time_scale
+func get_time_scale():	return time_scale
 	
 func update_time_scale():
 	Engine.time_scale = self.time_scale

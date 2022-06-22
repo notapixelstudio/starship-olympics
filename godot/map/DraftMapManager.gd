@@ -1,4 +1,6 @@
 extends Node
 
-# reference res://map_with_sets/MapManager.gd 
-
+func _ready():
+	global.new_session()
+	var hand = global.session.get_hand()
+	print(hand)

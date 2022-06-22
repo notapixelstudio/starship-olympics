@@ -3,6 +3,8 @@ extends Node
 class_name TheSession
 var uuid : String
 
+var hand : Array
+
 func _init():
 	uuid = UUID.v4()
 	
@@ -117,6 +119,12 @@ func get_last_match() -> Dictionary:
 		return matches[0]
 	else:
 		return {}
+
+func set_hand(cards : Array) -> void:
+	hand = cards
+
+func get_hand() -> Array:
+	return hand
 
 func to_dict() -> Dictionary:
 	"""

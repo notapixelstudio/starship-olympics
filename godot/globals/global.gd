@@ -756,6 +756,10 @@ func new_session() -> TheSession:
 	# whenever a new session is created, InfoPlayer stats should be cleared
 	the_game.reset_players()
 	
+	var deck = the_game.get_deck()
+	var hand = deck.draw(4)
+	session.set_hand(hand)
+	
 	Events.emit_signal('session_started')
 	return session
 	
