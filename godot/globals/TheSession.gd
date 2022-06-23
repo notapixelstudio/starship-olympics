@@ -11,11 +11,6 @@ func _init():
 func get_uuid() -> String:
 	return uuid
 
-class PlayerArena:
-	# This class will store an Arena and the player who chose it
-	var player_id: String
-	var minigame: PackedScene
-
 # The matches played, with scores and stats
 var matches : Array # of TheMatchSummary (a dictionary)
 
@@ -59,11 +54,6 @@ func setup_selected_sets(sets: Array):
 	self.selected_sets = sets
 	
 func setup_players_selection(players_selection: Dictionary) -> void:
-	# var num_CPUs = 0 if len(players) > 1 else 1
-	# add_cpu(num_CPUs)
-	
-	# global.session.setup_selected_sets(sets)
-	
 	players_sequence = []
 	minigame_pools = {}
 	selected_sets_by_player = {}
@@ -78,11 +68,6 @@ func setup_players_selection(players_selection: Dictionary) -> void:
 		minigame_pools[set.name].shuffle()
 	
 	players_sequence.shuffle()
-	
-	# first_time = true
-	
-	# global.new_session(players)
-	# next_level(global.demo)
 	
 	return
 	

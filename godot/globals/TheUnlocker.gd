@@ -18,13 +18,15 @@ var unlocked_elements = {
 		"3stars": "unlocked",
 		"5stars": "unlocked"
 	},
+	"starting_decks":{
+		"classic": UNLOCKED
+	},
 	"minigames": {
 		"crown": UNLOCKED,
 		"deathmatch": UNLOCKED,
 		"slam": UNLOCKED,
 		"diamond": UNLOCKED
 	},
-	"map_paths": {},
 	"sets": {
 		"core": UNLOCKED
 	},
