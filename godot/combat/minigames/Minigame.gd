@@ -19,3 +19,5 @@ func get_icon():
 func get_level(num_players) -> PackedScene:
 	return get("level_" + str(num_players) + "players")
 	
+func get_name():
+	return game_mode.name

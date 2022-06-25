@@ -13,10 +13,6 @@ func _init():
 	cards.append_array(starting_deck.minigames)
 	
 	self.shuffle()
-	var starting_minigame_ids = []
-	for card in cards:
-		starting_minigame_ids.append((card as Minigame).id)
-	print("We are going to show this starting hand: {arr}".format({"arr":starting_minigame_ids}))
 	
 func draw(how_many : int) -> Array:
 	var result = []
