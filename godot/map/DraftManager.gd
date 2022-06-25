@@ -15,6 +15,9 @@ func _ready():
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	
 	self.populate_hand()
+	
+	yield(get_tree().create_timer(3), "timeout")
+	global.arena.spawn_all_ships(true)
 
 func _on_continue_after_game_over(session_ended):
 	if not session_ended:

@@ -26,6 +26,7 @@ export var match_duration_override : float = 0
 export var show_hud : bool = true
 export var show_intro : bool = true
 export var random_starting_position : bool = true
+export var place_ships_at_start : bool = true
 
 var debug = false
 # analytics
@@ -68,6 +69,8 @@ signal unslomo
 signal battle_start
 signal skip
 signal all_ships_spawned
+
+signal salvo
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -333,8 +336,6 @@ func _ready():
 	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
 		well.enabled = true
-
-	var ships = []
 	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
@@ -382,24 +383,11 @@ func _ready():
 	else:
 		Soundtrack.stop()
 	
-	var j = 0
-	var player_spawners = $SpawnPositions/Players.get_children()
-
-	for s in player_spawners:
-		var spawner = s as PlayerSpawner
-		spawner.appears()
-		# waiting for the ship to be entered
-		yield(get_tree().create_timer(0.5), "timeout")
-		ships.append(spawn_ship(spawner))
-		j += 1
-		# wait for the last ship
-		if j >= len(player_spawners):
-			yield(spawner, "entered_battlefield")
+	if place_ships_at_start:
+		spawn_all_ships()
+		yield(self, 'all_ships_spawned')
 	
 	camera.activate_camera()
-	
-	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
-	emit_signal("all_ships_spawned", player_spawners)
 	
 	# group by order for trait intro
 	var intro_nodes = {}
@@ -437,6 +425,29 @@ func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
 
 const COUNTDOWN_LIMIT = 5.0
+
+func spawn_all_ships(do_intro = false):
+	var j = 0
+	var player_spawners = $SpawnPositions/Players.get_children()
+	
+	for s in player_spawners:
+		var spawner = s as PlayerSpawner
+		spawner.appears()
+		# waiting for the ship to be entered
+		yield(get_tree().create_timer(0.5), "timeout")
+		spawn_ship(spawner)
+		j += 1
+		# wait for the last ship
+		if j >= len(player_spawners):
+			yield(spawner, "entered_battlefield")
+			
+	yield(get_tree(), "idle_frame")
+	
+	if do_intro:
+		for ship in self.get_all_valid_ships():
+			ship.intro()
+			
+	emit_signal("all_ships_spawned", player_spawners)
 
 func update_grid():
 	# TODO: maybe you can put directly inside grid
@@ -649,10 +660,6 @@ const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
 onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
-
-func spawn_ships():
-	for player in SpawnPlayers.get_children():
-		spawn_ship(player)
 
 func create_trail(ship):
 	# create and link trail
