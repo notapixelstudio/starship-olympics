@@ -26,6 +26,7 @@ standalone = false
 
 [node name="DraftManager" parent="Managers" index="0" instance=ExtResource( 7 )]
 script = ExtResource( 12 )
+this_arena_path = NodePath("../..")
 hand_node_path = NodePath("../../Battlefield/Middleground/Hand")
 draft_card_scene = ExtResource( 9 )
 
@@ -101,7 +102,7 @@ zoom = Vector2( 3, 3 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 5.47382e+36, 5.47382e+36 )
+zoom = Vector2( 1.36845e+37, 1.36845e+37 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0
