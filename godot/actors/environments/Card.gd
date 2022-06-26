@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Card
+
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
