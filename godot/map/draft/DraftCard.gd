@@ -5,9 +5,16 @@ class_name DraftCard
 
 func set_minigame_label(name):
 	$Ground/Front/MinigameLabel.text = name
+	$Ground/Front/MinigameLabelShadow.text = name
+	
+func set_minigame_icon(texture):
+	$Ground/Front/MinigameIcon.texture = texture
+	$Ground/Front/MinigameIconShadow.texture = texture
 
 func set_content_card(card: Minigame):
 	card_content = card
+	self.set_minigame_label(card.get_name())
+	self.set_minigame_icon(card.get_icon())
 	
 # @override
 func tap(author):

@@ -56,7 +56,6 @@ func populate_hand(hand: Array):
 	var i = 0
 	for card in hand:
 		var draft_card = draft_card_scene.instance()
-		draft_card.set_minigame_label(card.get_name())
 		draft_card.set_content_card(card)
 		draft_card.position.x = 700*i - 1050
 		hand_node.add_child(draft_card)
