@@ -6,6 +6,7 @@ export var draft_card_scene : PackedScene
 
 var this_arena
 var hand_node : Node
+var ship_already_spawned := false
 
 func _ready():
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
@@ -29,17 +30,24 @@ func _on_continue_after_game_over(session_ended):
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
 		ships_have_to_choose=true
-		# TODO: duplicate of global.gd, might need some love
+		
+		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
+		
+		# fetch a new card
+		deck.add_new_card()
+		
 		hand = deck.draw(4)
+		hand.shuffle()
 		global.session.set_hand(hand)
 		self.populate_hand(hand)
 		
 	yield(get_tree().create_timer(1.5), "timeout") 
 	
 	if not session_ended:
-		if ships_have_to_choose:
+		if ships_have_to_choose and not ship_already_spawned:
 			this_arena.spawn_all_ships(true)
+			ship_already_spawned = true
 		self.pick_next_card()
 	else:
 		pass # end of session -> new card etc

@@ -1,0 +1,122 @@
+extends Resource
+
+class_name CardPool
+
+export var id : String
+export var cards : Array = [
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object(),
+	Object()
+] setget set_cards # MiniGame
+
+var valid_cards = []
+
+func set_cards(v):
+	cards = v
+	for card in cards:
+		if card is Minigame:
+			valid_cards.append(card)
+			
+	randomize()
+	valid_cards.shuffle()
+
+func get_new_card() -> Minigame:
+	var new_card = valid_cards.pop_front()
+	return new_card
