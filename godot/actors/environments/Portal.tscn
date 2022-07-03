@@ -9,10 +9,10 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 450, 30 )
+extents = Vector2( 1300, 30 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 450, 30 )
+extents = Vector2( 1300, 30 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.338889, 1 )
@@ -30,7 +30,7 @@ curve = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
-emission_box_extents = Vector3( 50, 300, 1 )
+emission_box_extents = Vector3( 50, 1300, 1 )
 flag_disable_z = true
 gravity = Vector3( 40, 0, 0 )
 orbit_velocity = 0.0
@@ -41,7 +41,7 @@ color_ramp = SubResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 2
-emission_box_extents = Vector3( 100, 300, 1 )
+emission_box_extents = Vector3( 100, 1300, 1 )
 flag_disable_z = true
 gravity = Vector3( 100, 0, 0 )
 angular_velocity = 100.0
@@ -54,9 +54,7 @@ scale_random = 1.0
 scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 
-[node name="Portal" type="Node2D" groups=[
-"in_camera",
-]]
+[node name="Portal" type="Node2D" groups=["in_camera"]]
 material = SubResource( 1 )
 script = ExtResource( 2 )
 offset = 250.0
