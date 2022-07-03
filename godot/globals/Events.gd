@@ -48,3 +48,6 @@ signal ui_nav_to(title, scene)
 
 # players ready
 signal player_ready(player_info)
+
+# draftcard 
+signal card_tapped(author, card)
