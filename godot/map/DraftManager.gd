@@ -6,7 +6,6 @@ export var draft_card_scene : PackedScene
 
 var this_arena
 var hand_node : Node
-var ship_already_spawned := false
 
 var chosen_players := [] # InfoPlayer(s)
 
@@ -50,9 +49,8 @@ func _on_continue_after_game_over(session_ended):
 	yield(get_tree().create_timer(1.5), "timeout") 
 	
 	if not session_ended:
-		if ships_have_to_choose and not ship_already_spawned:
+		if ships_have_to_choose:
 			this_arena.spawn_all_ships(true)
-			ship_already_spawned = true
 		else:
 			# same hand, not yet emptied
 			self.pick_next_card()
