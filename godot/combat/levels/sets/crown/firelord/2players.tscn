@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -9,12 +9,171 @@
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=11]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=14]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=15]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/environments/NoCrownZone.gd" type="Script" id=17]
+[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=19]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 300 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 300 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GBeveledRect:bevel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 150 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 64.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 300, 2600, 2600, 300, 300, 2600, 2600, 300, 300, 300, 2600, 2600, 300, 300 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 300, 1400, 1400, 300, 300, 1400, 1400, 300, 300, 300, 1400, 1400, 300, 300 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GBeveledRect:bevel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 150, 700, 700, 150, 150, 700, 700, 150, 150, 150, 700, 700, 150, 150 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 300 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 300 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GBeveledRect:bevel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 150 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Rotate"
+length = 64.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 300, 300, 2600, 2600, 300, 300, 2600, 2600, 300, 300, 2600, 2600, 300, 300 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 300, 300, 1400, 1400, 300, 300, 1400, 1400, 300, 300, 1400, 1400, 300, 300 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GBeveledRect:bevel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 150, 150, 700, 700, 150, 150, 700, 700, 150, 150, 700, 700, 150, 150 ]
+}
 
 [node name="Arena" instance=ExtResource( 16 )]
 size_multiplier = 2.5
@@ -28,17 +187,17 @@ texture = ExtResource( 15 )
 centered = false
 
 [node name="RightPortal" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
-position = Vector2( 3246, 0 )
+position = Vector2( 2746, 0 )
 linked_to_path = NodePath("../LeftPortal")
-width = 1300.0
+width = 1100.0
 color = Color( 0, 0.180392, 1, 1 )
 show_hole = false
 
 [node name="LeftPortal" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-position = Vector2( -3246, 0 )
+position = Vector2( -2746, 0 )
 rotation = -3.14159
 linked_to_path = NodePath("../RightPortal")
-width = 1300.0
+width = 1100.0
 color = Color( 0, 0.180392, 1, 1 )
 show_hole = false
 
@@ -56,8 +215,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-width = 6000
-height = 2600
+width = 5100
+height = 2200
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -76,8 +235,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-width = 7000
-height = 2600
+width = 6000
+height = 2200
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -91,54 +250,8 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="Wall5" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1800, 0 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
-script = ExtResource( 1 )
-radius = 450
-sides = 4.0
-
-[node name="Wall10" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
-position = Vector2( -800, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 1 )
-sides = 4.0
-
-[node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
-position = Vector2( 800, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 1 )
-sides = 4.0
-
-[node name="Wall12" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
-position = Vector2( 800, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
-script = ExtResource( 1 )
-sides = 4.0
-
-[node name="Wall13" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
-position = Vector2( -800, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
-script = ExtResource( 1 )
-sides = 4.0
-
-[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 1800, 0 )
+[node name="Wall2" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
+position = Vector2( -1550, -1100 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
 
@@ -147,28 +260,91 @@ script = ExtResource( 1 )
 radius = 450
 sides = 4.0
 
+[node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1550, 1100 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
+script = ExtResource( 1 )
+radius = 450
+sides = 4.0
+
+[node name="NoCrownZone" type="Node2D" parent="Battlefield/Middleground" index="2" instance=ExtResource( 18 )]
+position = Vector2( -800, 1100 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 1.4
+
+[node name="Wall6" parent="Battlefield/Middleground/NoCrownZone" index="12" instance=ExtResource( 8 )]
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/NoCrownZone/Wall6" index="4"]
+script = ExtResource( 1 )
+radius = 150
+sides = 4.0
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="13"]
+script = ExtResource( 3 )
+width = 300
+height = 300
+bevel = 150
+bevel_nw = 150
+bevel_ne = 150
+bevel_sw = 150
+bevel_se = 150
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone" index="14" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 2 )
+anims/Rotate = SubResource( 1 )
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 18 )]
+position = Vector2( 800, -1100 )
+visible_decorations = false
+symbol_scale = 1.4
+
+[node name="Wall6" parent="Battlefield/Middleground/NoCrownZone2" index="12" instance=ExtResource( 8 )]
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/NoCrownZone2/Wall6" index="4"]
+script = ExtResource( 1 )
+radius = 150
+sides = 4.0
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoCrownZone2" index="13"]
+script = ExtResource( 3 )
+width = 300
+height = 300
+bevel = 150
+bevel_nw = 150
+bevel_ne = 150
+bevel_sw = 150
+bevel_se = 150
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone2" index="14" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 3 )
+anims/Rotate = SubResource( 4 )
+
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
+type = "crown"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 19 )]
-position = Vector2( -1200, 700 )
-rotation = -0.785398
+position = Vector2( -1550, 0 )
+rotation = 0.0
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 19 )]
-position = Vector2( 1200, -700 )
-rotation = 2.35619
+position = Vector2( 1550, 0 )
+rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 9 )
-
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 19 )]
-position = Vector2( -1200, -700 )
-rotation = -0.785398
-controls = "kb2"
-species = ExtResource( 11 )
-
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 19 )]
-position = Vector2( 1200, 700 )
-rotation = 2.35619
-controls = "kb2"
-species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
