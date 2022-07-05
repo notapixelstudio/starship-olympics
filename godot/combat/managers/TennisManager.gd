@@ -4,6 +4,8 @@ var ball
 
 export var sample_player_bricks_path : NodePath
 
+var hit_count := 0
+
 func start():
 	# a random players gets the ball at start
 	ball = get_tree().get_nodes_in_group('Ball')[0]
@@ -16,6 +18,11 @@ func start():
 func _on_ball_body_entered(body):
 	if body is Brick:
 		body.break(ball)
+		$AudioStreamPlayer.pitch_scale = 0.6 + hit_count*0.05
+		$AudioStreamPlayer.play()
+		hit_count = min(hit_count+1, 1000)
+		$Timer.stop()
+		$Timer.start(1.5)
 	return
 	if body is WallGoal and ball.owner_ship:
 		var player = ball.owner_ship.get_player()
@@ -31,3 +38,6 @@ func _ready():
 		score += 1
 	
 	global.arena.score_to_win_override = score
+
+func _on_Timer_timeout():
+	hit_count = 0
