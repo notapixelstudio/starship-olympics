@@ -96,6 +96,7 @@ func player_just_chose_a_card(author, card):
 		hand.shuffle()
 		global.session.set_hand(hand)
 		self.pick_next_card()
+		self.players_choices = {}
 	
 func pick_next_card():
 	# TBD animation
