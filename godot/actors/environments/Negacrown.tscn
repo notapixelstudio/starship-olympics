@@ -127,15 +127,15 @@ type = "negacrown"
 
 [node name="Waiter" parent="." index="0" instance=ExtResource( 4 )]
 
-[node name="Sprite" parent="." index="6"]
-texture = ExtResource( 3 )
-
 [node name="ChargeTimer" type="Timer" parent="." index="7"]
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
 anims/Charge = SubResource( 1 )
 anims/Dash = SubResource( 2 )
+
+[node name="Sprite" parent="." index="9"]
+texture = ExtResource( 3 )
 
 [connection signal="timeout" from="ChargeTimer" to="." method="_on_ChargeTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

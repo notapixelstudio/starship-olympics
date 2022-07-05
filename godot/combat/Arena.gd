@@ -298,6 +298,9 @@ func _ready():
 			
 	if not game_mode.shared_targets:
 		score_to_win_override /= global.the_game.get_number_of_players()
+		
+	if game_mode.fill_starting_score:
+		game_mode.starting_score = score_to_win_override
 	
 	if global.is_match_running():
 		global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)

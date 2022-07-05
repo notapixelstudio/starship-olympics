@@ -8,6 +8,8 @@ var points = 1
 enum TYPE { solid, diamond, gold, respawner, harmful, super }
 export(TYPE) var type = TYPE.diamond setget set_type
 
+export var colorize := true
+
 signal killed
 
 func set_type(v):
@@ -41,6 +43,10 @@ func set_type(v):
 		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
 		points = 10
 	# orange Color('#c18a2a')
+	
+	if not colorize:
+		$Under.modulate = Color.white
+		$Sprite.modulate = Color.white
 	
 func break(breaker):
 	if type != TYPE.solid:
