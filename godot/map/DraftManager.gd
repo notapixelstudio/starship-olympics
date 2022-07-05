@@ -2,12 +2,14 @@ extends Node
 
 export var this_arena_path : NodePath
 export var hand_node_path : NodePath
+export var hand_position_node_path : NodePath
 export var draft_card_scene : PackedScene
 
 var this_arena
 var hand_node : Node
+var hand_position : Node
 
-var chosen_players := [] # InfoPlayer(s)
+var players_choices := {} # {InfoPlayer : card}
 
 onready var tween = $Tween
 
@@ -21,14 +23,18 @@ func _ready():
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	
-	self.populate_hand(hand)
+	hand.shuffle()
+	
+	self.populate_hand(hand.duplicate())
 	self.pick_next_card()
 	
 func _on_continue_after_game_over(session_ended):
 	yield(get_tree().create_timer(1.5), "timeout") # this is also needed to wait for entering the tree
 	
-	var last_card_played = hand_node.get_child(0)
-	hand_node.remove_child(last_card_played)
+	var last_match_info = global.session.get_last_match()
+	var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
+	last_played_card.queue_free()
+	
 	var ships_have_to_choose = false
 	 
 	var hand = global.session.get_hand()
@@ -44,7 +50,8 @@ func _on_continue_after_game_over(session_ended):
 		hand = deck.draw(4)
 		hand.shuffle()
 		global.session.set_hand(hand)
-		self.populate_hand(hand)
+		yield(get_tree().create_timer(1.0), "timeout")
+		self.populate_hand(hand.duplicate())
 		
 	yield(get_tree().create_timer(1.5), "timeout") 
 	
@@ -58,9 +65,36 @@ func _on_continue_after_game_over(session_ended):
 		pass # end of session -> new card etc
 
 func player_just_chose_a_card(author, card):
-	chosen_players.append(author)
+	self.players_choices[author] = card
 	author.get_parent().remove_child(author)
-	if len(chosen_players) == len(global.the_game.players):
+	
+	if len(players_choices.keys()) == len(global.the_game.players):
+		var cards_to_be_replaced = []
+		var hand = global.session.get_hand()
+		# everyone chose. Let's remove cards that have not been chosen and 
+		# replace them with new one
+		for draft_card in hand_node.get_all_cards():
+			if draft_card in self.players_choices.values():
+				print("well, actually {card_min} has been chosen ".format({"card_min": draft_card.card_content.id}))
+			else:
+				cards_to_be_replaced.append(draft_card.card_content)
+				var index = hand.find(draft_card.card_content)
+				hand.pop_at(index)
+				
+				draft_card.queue_free()
+				yield(get_tree().create_timer(0.5), "timeout")
+		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
+		global.the_game.deck.put_back_cards(cards_to_be_replaced)
+		var deck = global.the_game.get_deck()
+		
+		var missing = deck.draw(4-len(hand))
+		print(missing)
+		print(hand)
+		for card in missing:
+			self.add_card(card)
+		hand.append_array(missing)
+		hand.shuffle()
+		global.session.set_hand(hand)
 		self.pick_next_card()
 	
 func pick_next_card():
@@ -68,20 +102,29 @@ func pick_next_card():
 	yield(get_tree().create_timer(3), "timeout")
 	
 	var picked_card : Minigame = global.session.choose_next_card()
-	print(picked_card.id) # TBD could be null
+	
+	print("Card chosen is {picked}".format({"picked":picked_card.id})) # TBD could be null
 	Events.emit_signal("minigame_selected", picked_card)
+
+func add_card(card):
+	# will put the card in first empty position
+	var draft_card = draft_card_scene.instance()
+	draft_card.set_content_card(card)
+	for pos_card in hand_node.get_children():
+		if pos_card.get_child_count() == 0:
+			pos_card.add_child(draft_card)
+			break
+	yield(get_tree().create_timer(0.5), "timeout")
+	draft_card.reveal()
+	
 	
 func populate_hand(hand: Array):
-	var i = 0
+	# shake things up
+	hand.shuffle()
+	
 	for card in hand:
-		var draft_card = draft_card_scene.instance()
-		draft_card.set_content_card(card)
-		draft_card.position.x = 700*i - 1050
-		hand_node.add_child(draft_card)
-		yield(get_tree().create_timer(0.2), "timeout")
-		draft_card.reveal()
-		i += 1
-
+		self.add_card(card)
+		
 func choose_level(player_id: String, minigame: Minigame):
 	# This will choose randonly one minigame. And animate afterwards
 	print(minigame.get_id())

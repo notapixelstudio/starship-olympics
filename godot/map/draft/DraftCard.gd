@@ -1,6 +1,7 @@
 extends Card
 
 var card_content: Minigame
+export var order_id : int
 class_name DraftCard
 
 func set_minigame_label(name):

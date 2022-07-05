@@ -197,7 +197,8 @@ func to_dict()->Dictionary:
 	"""
 	return {
 		"uuid": get_uuid(),
-		"winners": winners
+		"winners": winners,
+		"minigame_id": game_mode.id
 	}
 
 func get_number_of_players():
