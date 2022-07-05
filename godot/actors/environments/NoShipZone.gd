@@ -22,7 +22,11 @@ func _process(delta):
 
 func _on_Field_entered(field, body):
 	if body is Ship:
-		body.rebound()
+		if body.last_contact_normal != null:
+			body.rebound(body.last_contact_normal)
+		else:
+			body.rebound()
+			
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
