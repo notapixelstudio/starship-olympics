@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=14]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=15]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=16]
-[ext_resource path="res://actors/environments/NoCrownZone.gd" type="Script" id=17]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=19]
 
@@ -270,14 +269,8 @@ script = ExtResource( 1 )
 radius = 450
 sides = 4.0
 
-[node name="NoCrownZone" type="Node2D" parent="Battlefield/Middleground" index="2" instance=ExtResource( 18 )]
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 18 )]
 position = Vector2( -800, 1100 )
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
 visible_decorations = false
 symbol_scale = 1.4
 
