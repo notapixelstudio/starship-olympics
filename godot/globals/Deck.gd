@@ -33,7 +33,6 @@ func shuffle():
 	
 func put_back_cards(cards_to_put_back : Array) -> void:
 	cards.append_array(cards_to_put_back)
-	self.shuffle()
 	
 func add_new_card() -> void:
 	self.shuffle()
