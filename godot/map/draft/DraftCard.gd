@@ -4,6 +4,15 @@ var card_content: Minigame
 export var order_id : int
 class_name DraftCard
 
+onready var chosen : bool = false setget set_chosen
+
+func set_chosen(v):
+	chosen = v
+	if not is_inside_tree():
+		yield(self, "ready")
+	$Ground/Select.visible = chosen
+	
+
 func set_minigame_label(name):
 	$Ground/Front/MinigameLabel.text = name
 	$Ground/Front/MinigameLabelShadow.text = name
