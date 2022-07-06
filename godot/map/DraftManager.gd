@@ -9,6 +9,8 @@ var this_arena
 var hand_node : Node
 var hand_position : Node
 
+const HAND_SIZE = 4
+
 var players_choices := {} # {InfoPlayer : card}
 
 onready var tween = $Tween
@@ -47,7 +49,7 @@ func _on_continue_after_game_over(session_ended):
 		# fetch a new card
 		deck.add_new_card()
 		
-		hand = deck.draw(4)
+		hand = deck.draw(HAND_SIZE)
 		hand.shuffle()
 		global.session.set_hand(hand)
 		yield(get_tree().create_timer(1.0), "timeout")
@@ -84,18 +86,22 @@ func player_just_chose_a_card(author, card):
 				draft_card.queue_free()
 				yield(get_tree().create_timer(0.5), "timeout")
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
+		cards_to_be_replaced.shuffle()
 		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 		var deck = global.the_game.get_deck()
 		
-		var missing = deck.draw(4-len(hand))
+		var missing = deck.draw(HAND_SIZE-len(hand))
 		print(missing)
 		print(hand)
+		
 		for card in missing:
+			yield(get_tree().create_timer(0.5), "timeout")
 			self.add_card(card)
 		hand.append_array(missing)
 		hand.shuffle()
 		global.session.set_hand(hand)
 		self.pick_next_card()
+		# empty players_choices for the next round
 		self.players_choices = {}
 	
 func pick_next_card():
@@ -124,6 +130,7 @@ func populate_hand(hand: Array):
 	hand.shuffle()
 	
 	for card in hand:
+		yield(get_tree().create_timer(0.1), "timeout")
 		self.add_card(card)
 		
 func choose_level(player_id: String, minigame: Minigame):
