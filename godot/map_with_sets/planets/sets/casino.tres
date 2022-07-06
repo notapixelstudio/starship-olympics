@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=1]
+[ext_resource path="res://combat/minigames/Diamondsnatch.tres" type="Resource" id=2]
+[ext_resource path="res://combat/minigames/Foundlings.tres" type="Resource" id=3]
+[ext_resource path="res://combat/minigames/AlchemicalBombing.tres" type="Resource" id=4]
+[ext_resource path="res://combat/minigames/ArkOfMemory.tres" type="Resource" id=5]
+[ext_resource path="res://assets/map/cards/diamonds.png" type="Texture" id=6]
+
+[resource]
+script = ExtResource( 1 )
+id = "casual"
+name = "Lumira IV"
+tagline1 = "the Diamond Rings of"
+tagline2 = ""
+description = ""
+minigames = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ]
+planet_sprite = ExtResource( 6 )
+mutators = [  ]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://map/draft/DraftCard.gd" type="Script" id=3]
+[ext_resource path="res://assets/map/selector.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="DraftCard" instance=ExtResource( 2 )]
+scale = Vector2( 2, 2 )
+script = ExtResource( 3 )
+
+[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="7"]
+modulate = Color( 0, 0, 0, 0.313726 )
+position = Vector2( 0, -28 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="8"]
+position = Vector2( 0, -34 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="MinigameLabelShadow" type="Label" parent="Ground/Front" index="9"]
+modulate = Color( 0, 0, 0, 0.313726 )
+margin_left = -200.0
+margin_top = 6.0
+margin_right = 200.0
+margin_bottom = 226.0
+custom_fonts/font = SubResource( 2 )
+text = "MINIGAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MinigameLabel" type="Label" parent="Ground/Front" index="10"]
+modulate = Color( 1, 0.870588, 0.372549, 1 )
+self_modulate = Color( 0.92, 0.92, 0.92, 1 )
+margin_left = -200.0
+margin_right = 200.0
+margin_bottom = 220.0
+custom_fonts/font = SubResource( 1 )
+text = "MINIGAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Select" type="Sprite" parent="Ground" index="3"]
+visible = false
+position = Vector2( 0, 275 )
+rotation = 3.14159
+z_index = 2000
+z_as_relative = false
+texture = ExtResource( 4 )

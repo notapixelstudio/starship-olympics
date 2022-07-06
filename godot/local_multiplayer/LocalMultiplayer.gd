@@ -5,6 +5,7 @@ onready var selection_screen = $SelectionScreen
 const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
+export var tutorial_scene: PackedScene
 
 var games = {}  # {sport.name : Resource}
 
@@ -79,7 +80,17 @@ func start_fight(selected_players: Array, fight_mode: String):
 	add_cpu(num_CPUs)
 	
 	global.new_game(players.values())
+	navigate_to_tutorial()
 
+func navigate_to_tutorial():
+	safe_destroy_combat()
+	# map initialization
+	remove_child(selection_screen)
+	remove_child(parallax)
+	var tutorial = tutorial_scene.instance()
+	add_child(tutorial)
+	yield(tutorial, 'over')
+	
 	navigate_to_map()
 	
 var players_sequence : Array = []

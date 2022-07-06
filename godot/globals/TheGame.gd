@@ -5,6 +5,8 @@ class_name TheGame
 var uuid : String
 var players : Array
 
+var deck := Deck.new()
+
 func _init():
 	uuid = UUID.v4()
 	
@@ -56,3 +58,7 @@ func to_log_dict() -> Dictionary:
 		'players_count': get_number_of_players(),
 		'human_players_count': get_number_of_human_players()
 	}
+
+func get_deck() -> Deck:
+	return deck
+	

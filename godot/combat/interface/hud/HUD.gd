@@ -10,6 +10,9 @@ onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
 
+const std_bar_height := 28
+const team_bar_height := 20
+
 func set_planet(planet: String, mode: GameMode):
 	$Content/ModePanel/PlanetName.text = (mode as GameMode).name
 	$Content/ModePanel/Icon.texture = (mode as GameMode).icon
@@ -41,9 +44,9 @@ func post_ready():
 	var y = sort_bars(true)
 	
 	# adjust background
-	height = 10 + y
-	$BarsBackground.rect_size.y = height
-	$BarsBottom.rect_position.y = height
+	height = y
+	$BarsBackground.rect_size.x = height + 50
+	$BarsBottom.rect_position.x = height
 	set_process(true)
 
 func _on_match_tick(t):
@@ -75,7 +78,7 @@ func sort_bars(instantaneous):
 	var i = 0
 	for bar in bars:
 		var pos = Vector2(0, y)
-		y += 32 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 20
+		y += std_bar_height if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else team_bar_height
 		if instantaneous:
 			bar.position = pos
 		else:

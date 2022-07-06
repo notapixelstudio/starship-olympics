@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/common_elements/CircularProgressBar/CircularProgressBar/CircularProgressBar.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="Shader" id=8]
+code = "// from https://gist.github.com/andrew-wilkes/44dea35c27517b0d8b7798f46a97b5b1
+shader_type canvas_item;
+
+uniform float value: hint_range(0, 100); // %
+uniform float thickness: hint_range(0, 100) = 30.; // % thickness
+uniform sampler2D fg: hint_albedo;
+uniform sampler2D bg: hint_black_albedo;
+uniform float offset: hint_range(0, 100); // %
+uniform float smoothing: hint_range(0, 100) = 5.;
+
+void fragment() {
+	vec2 point = UV - vec2(0.5);
+	float PI = 3.14159265358979323846;
+	float ang = (1. - atan(point.x, point.y) / PI) * 50. - offset;
+	if (ang < 0.)
+		ang += 100.;
+	float s = smoothing / 1000.;
+	float k = PI / 2. / s;
+	float r1 = .5 - thickness / 200.;
+	float r2 = .5;
+	float r = length(point);
+	float uy = (r2 - r) / (r2 - r1);
+	if (r > r2 || r < r1)
+		COLOR.a = 0.;
+	else {
+		if (ang <= value) 
+			COLOR = texture(fg, vec2(ang / 100., uy));
+		else
+			COLOR = texture(bg, vec2(ang / 100., uy));
+		if ((r2 - r) < s)
+			COLOR.a = sin((r2 - r) * k);
+		if ((r - r1) < s)
+			COLOR.a = sin((r - r1) * k);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 8 )
+shader_param/value = 0.0
+shader_param/thickness = 44.286
+shader_param/offset = 0.0
+shader_param/smoothing = 43.095
+
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 42
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Control" type="ColorRect"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1140.0
+margin_bottom = -580.0
+script = ExtResource( 1 )
+player_str = "kb1"
+
+[node name="controls" type="Label" parent="."]
+margin_left = 26.0
+margin_top = 4.0
+margin_right = 119.0
+margin_bottom = 53.0
+custom_fonts/font = SubResource( 3 )
+text = "what"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="PlayerID" type="Label" parent="."]
+margin_left = 26.0
+margin_top = 44.0
+margin_right = 119.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 3 )
+text = "P1"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Ready" type="Label" parent="."]
+visible = false
+margin_left = 2.0
+margin_top = 84.0
+margin_right = 152.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 3 )
+text = "READY"
+align = 1
+valign = 1
+uppercase = true
