@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/fonts/score_font.TTF" type="DynamicFontData" id=8]
 
 [sub_resource type="Gradient" id=9]
 colors = PoolColorArray( 0, 0, 0, 0.643137, 0, 0, 0, 0 )
@@ -23,18 +24,13 @@ font_data = ExtResource( 7 )
 size = 64
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=13]
 size = 32
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=14]
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 5 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 14
@@ -104,11 +100,11 @@ margin_bottom = 152.0
 
 [node name="Shadow" type="Sprite" parent="Content/ModePanel"]
 self_modulate = Color( 0, 0, 0, 0.235294 )
-position = Vector2( 74.857, 51.873 )
+position = Vector2( 74.857, 50.873 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="Icon" type="Sprite" parent="Content/ModePanel"]
-position = Vector2( 74.8569, 43.8733 )
+position = Vector2( 74.8569, 42.8733 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="PlanetName" type="Label" parent="Content/ModePanel"]
@@ -131,9 +127,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 996.0
+margin_left = 994.0
 margin_top = -150.0
-margin_right = 1140.0
+margin_right = 1138.0
 margin_bottom = -77.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 12 )
@@ -147,24 +143,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 1036.0
-margin_top = -156.0
-margin_right = 1180.0
-margin_bottom = -83.0
+margin_left = 1038.0
+margin_top = -155.0
+margin_right = 1182.0
+margin_bottom = -82.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
 text = ".00"
 align = 2
 valign = 2
 uppercase = true
-
-[node name="Label" type="Label" parent="Content/ModePanel"]
-margin_left = 1212.0
-margin_top = 47.0
-margin_right = 1252.0
-margin_bottom = 96.0
-custom_fonts/font = SubResource( 14 )
-text = "."
 
 [node name="Tween" type="Tween" parent="Content"]
 
