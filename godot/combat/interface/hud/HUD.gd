@@ -32,6 +32,8 @@ func post_ready():
 		TimeLeft.text = str(the_match.time_left)
 	else:
 		TimeLeft.text = ''
+	$Content/ModePanel/TimeLeftShadow.text = TimeLeft.text
+	
 	var i = 0
 
 	for player in the_match.players.values():
@@ -54,6 +56,7 @@ func _on_match_tick(t):
 	
 func update_time_left(t):
 	TimeLeft.text = str(int(ceil(t)))
+	$Content/ModePanel/TimeLeftShadow.text = TimeLeft.text
 
 func _on_matchscore_updated(author, broadcasted):
 	# update scores

@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://assets/fonts/score_font.TTF" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/fonts/04b_19_monospaced_one.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="Gradient" id=9]
 colors = PoolColorArray( 0, 0, 0, 0.643137, 0, 0, 0, 0 )
@@ -20,14 +20,12 @@ outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=14]
 size = 64
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=13]
-size = 32
+[sub_resource type="DynamicFont" id=12]
+size = 64
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 8 )
@@ -66,11 +64,11 @@ texture = SubResource( 10 )
 expand = true
 
 [node name="Bars" type="Container" parent="."]
-margin_left = 150.0
+margin_left = 130.0
 margin_top = 2.0
-margin_right = 1130.0
+margin_right = 1150.0
 margin_bottom = 158.0
-rect_min_size = Vector2( 980, 0 )
+rect_min_size = Vector2( 1020, 0 )
 rect_clip_content = true
 size_flags_horizontal = 3
 
@@ -93,9 +91,9 @@ anchor_right = 1.0
 rect_min_size = Vector2( 0, 100 )
 
 [node name="ModePanel" type="Control" parent="Content"]
-margin_left = 10.0
+margin_left = 4.0
 margin_top = 2.0
-margin_right = 160.0
+margin_right = 154.0
 margin_bottom = 152.0
 
 [node name="Shadow" type="Sprite" parent="Content/ModePanel"]
@@ -112,9 +110,9 @@ modulate = Color( 1, 0.870588, 0.372549, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -71.0
-margin_top = 52.0
+margin_top = 23.0
 margin_right = 71.0
-margin_bottom = 102.0
+margin_bottom = 73.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 11 )
 align = 1
@@ -122,34 +120,35 @@ valign = 2
 autowrap = true
 uppercase = true
 
+[node name="TimeLeftShadow" type="Label" parent="Content/ModePanel"]
+modulate = Color( 0, 0, 0, 0.235294 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 1045.0
+margin_top = -142.0
+margin_right = 1189.0
+margin_bottom = -69.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "231"
+align = 2
+valign = 2
+uppercase = true
+
 [node name="TimeLeft" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 994.0
+margin_left = 1045.0
 margin_top = -150.0
-margin_right = 1138.0
+margin_right = 1189.0
 margin_bottom = -77.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 12 )
-text = "230"
-align = 2
-valign = 2
-uppercase = true
-
-[node name="TimeLeftCents" type="Label" parent="Content/ModePanel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 1038.0
-margin_top = -155.0
-margin_right = 1182.0
-margin_bottom = -82.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 13 )
-text = ".00"
+text = "231"
 align = 2
 valign = 2
 uppercase = true

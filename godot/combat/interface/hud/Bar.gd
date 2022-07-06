@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Bar
 
-const max_bar_width = 910
+const max_bar_width = 950
 const bar_height = 20
 const ministar_width = 20
 const margin_left = 50
