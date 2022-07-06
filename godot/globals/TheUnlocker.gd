@@ -11,13 +11,25 @@ const PERSIST_GROUP = "persist_unlocking"
 func _ready():
 	add_to_group(PERSIST_GROUP)
 
+
 var unlocked_elements = {
 	"map_locations": {
 		"1star": "unlocked",
 		"3stars": "unlocked",
 		"5stars": "unlocked"
 	},
-	"map_paths": {},
+	"starting_decks":{
+		"classic": UNLOCKED
+	},
+	"card_pools":{
+		"the_card_pool": UNLOCKED
+	},
+	"minigames": {
+		"crown": UNLOCKED,
+		"deathmatch": UNLOCKED,
+		"slam": UNLOCKED,
+		"diamond": UNLOCKED
+	},
 	"sets": {
 		"core": UNLOCKED
 	},

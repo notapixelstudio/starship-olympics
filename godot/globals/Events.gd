@@ -45,3 +45,9 @@ signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
 # Option menu UI
 signal ui_back_menu
 signal ui_nav_to(title, scene)
+
+# players ready
+signal player_ready(player_info)
+
+# draftcard 
+signal card_tapped(author, card)

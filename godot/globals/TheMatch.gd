@@ -99,7 +99,8 @@ func update(delta: float):
 	
 func compute_game_status():
 	if game_over:
-		print("Don't need to calculate winners again. Winners are: ")
+		# print("Don't need to calculate winners again. Winners are: ")
+		return
 	player_scores.sort_custom(self, "sort_by_score")
 	
 	leaders = []
@@ -196,7 +197,8 @@ func to_dict()->Dictionary:
 	"""
 	return {
 		"uuid": get_uuid(),
-		"winners": winners
+		"winners": winners,
+		"minigame_id": game_mode.id
 	}
 
 func get_number_of_players():

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://combat/minigames/Negacrown.tres" type="Resource" id=1]
+[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=2]
+[ext_resource path="res://assets/map/cards/nega_set.png" type="Texture" id=3]
+[ext_resource path="res://combat/minigames/Sumo.tres" type="Resource" id=4]
+[ext_resource path="res://combat/minigames/NineLives.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 2 )
+id = "negative"
+name = "Negative Space"
+tagline1 = ""
+tagline2 = ""
+description = ""
+minigames = [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ) ]
+planet_sprite = ExtResource( 3 )
+mutators = [  ]

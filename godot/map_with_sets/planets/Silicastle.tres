@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=11 format=2]
+
+[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=1]
+[ext_resource path="res://combat/levels/old/2players/silicastle_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/old/2players/silicastle_2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/old/2players/silicastle_3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/old/2players/silicastle_4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/old/2players/silicastle_5.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/levels/old/2players/silicastle_6.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/map/silicastle.png" type="Texture" id=8]
+[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=9]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
+
+
+
+
+
+[resource]
+script = ExtResource( 9 )
+name = "Silicastle"
+tagline1 = "Future robolords"
+tagline2 = "levels"
+species = ExtResource( 10 )
+levels_1players = null
+levels_2players = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+levels_3players = null
+levels_4players = null
+planet_sprite = ExtResource( 8 )
+game_mode = ExtResource( 1 )
+
