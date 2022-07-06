@@ -7,6 +7,7 @@ export var offset : float = 80
 export var color : Color = Color(1, 0, 1, 1) setget set_color
 export var inverted : bool = false setget set_inverted
 export var show_hole : bool = true setget set_show_hole
+export var wobbliness := 20.0
 export var is_goal : bool = false
 export var goal_owner : NodePath
 var player
@@ -139,7 +140,7 @@ func wobble():
 	var step := 30.0
 	var current := -width
 	while current < width:
-		points.append(Vector2(current, -randf()*20))
+		points.append(Vector2(current, -randf()*wobbliness))
 		current += step
 		
 	$Line2D.points = PoolVector2Array(points)
