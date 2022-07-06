@@ -34,7 +34,7 @@
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/HoldablesManager.tscn" type="PackedScene" id=34]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=35]
+[ext_resource path="res://assets/fonts/04b_19_monospaced_one.ttf" type="DynamicFontData" id=35]
 [ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=36]
 [ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=37]
 
@@ -57,7 +57,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
 size = 512
 font_data = ExtResource( 35 )
 
@@ -354,13 +354,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 align = 1
 valign = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
 stream = ExtResource( 30 )
