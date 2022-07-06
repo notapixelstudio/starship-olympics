@@ -15,6 +15,9 @@ var players_choices := {} # {InfoPlayer : card}
 
 onready var tween = $Tween
 
+signal selection_finished
+signal card_chosen
+
 func _ready():
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	Events.connect("card_tapped", self, "player_just_chose_a_card")
@@ -87,12 +90,31 @@ func player_just_chose_a_card(author, card):
 				yield(get_tree().create_timer(0.5), "timeout")
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
 		cards_to_be_replaced.shuffle()
-		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 		var deck = global.the_game.get_deck()
+		var cards_in_deck = []
+		for card in deck.cards:
+			cards_in_deck.append(card.id)
+		print("Discarded phase: cards in deck {missing}".format({"missing": cards_in_deck}))
+		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 		
+		var deck_after_discard = []
+		for card in deck.cards:
+			deck_after_discard.append(card.id)
+		print("Discarded phase: cards in deck {missing}".format({"missing": deck_after_discard}))
 		var missing = deck.draw(HAND_SIZE-len(hand))
-		print(missing)
-		print(hand)
+		# debug mode
+		var cards_missing = []
+		var cards_hand = []
+		var cards_replaced = []
+		for card in missing:
+			cards_missing.append(card.id)
+		for card in hand:
+			cards_hand.append(card.id)
+		for card in cards_to_be_replaced:
+			cards_replaced.append(card.id)
+		print("cards to be refilled {missing}".format({"missing": cards_missing}))
+		print("cards to be still in hande {hand}".format({"hand": cards_hand}))
+		print("cards replaced are {hand}".format({"hand": cards_replaced}))
 		
 		for card in missing:
 			yield(get_tree().create_timer(0.5), "timeout")
@@ -111,6 +133,8 @@ func pick_next_card():
 	var picked_card : Minigame = global.session.choose_next_card()
 	
 	print("Card chosen is {picked}".format({"picked":picked_card.id})) # TBD could be null
+	animate_selection(picked_card)
+	yield(self, "card_chosen")
 	Events.emit_signal("minigame_selected", picked_card)
 
 func add_card(card):
@@ -133,68 +157,46 @@ func populate_hand(hand: Array):
 		yield(get_tree().create_timer(0.1), "timeout")
 		self.add_card(card)
 		
-func choose_level(player_id: String, minigame: Minigame):
-	# This will choose randonly one minigame. And animate afterwards
-	print(minigame.get_id())
-	var this_gamemode = minigame.game_mode
-	var back_pos = Vector2(0,0)
-	var back_scale = Vector2(1,1)
-	var chosen_minicard
-	
+func animate_selection(picked_card: Minigame):
+	# This will animate the selection of the chosen card
 	var index_selection = 0
 	var index = 0
-	
-	# Let's get che chosen minicard, in order to show the transition before the 
-	# match starts
-	var found = false
+	var chosen_card = null
 	var screen_width = ProjectSettings.get_setting('display/window/size/width')
 	var screen_height = ProjectSettings.get_setting('display/window/size/height')
+	var back_pos = Vector2(0,0)
+	var back_size = Vector2(1,1)
 
-	for panel in get_children():
-		if not panel is MapPanel:
-			continue 
-		if found:
+	for card in hand_node.get_all_cards():
+		if card.card_content == picked_card:
+			index_selection = index
+			back_pos = card.position
+			back_size = card.scale
+			card.z_index = 1000
+			chosen_card = card
+			tween.interpolate_property(chosen_card, "global_position", chosen_card.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(chosen_card, "scale", chosen_card.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			
 			break
-		for minicard in panel.get_minicards():
-			if minicard.content.get_id() == this_gamemode.get_id() and panel.get_id() == player_id:
-				index_selection = index
-				back_pos = minicard.position
-				back_scale = minicard.scale
-				chosen_minicard = minicard
-				minicard.z_index = 1000
-				
-				tween.interpolate_property(minicard, "global_position", minicard.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-				tween.interpolate_property(minicard, "scale", minicard.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-				found = true
-				break
 		index+=1
 	
-	# animation pseudo random for choosing minicard
-	var minicards = get_tree().get_nodes_in_group("minicard")
-	random_selection(minicards, index_selection)
+	random_selection(hand_node.get_all_cards(), index_selection)
 	yield(self, "selection_finished")
-	chosen_minicard.selected = true
+	chosen_card.chosen = true
 	var wait_time = 0.5
 	yield(get_tree().create_timer(wait_time), "timeout")
-	chosen_minicard.selected = false
-	if chosen_minicard.status == "locked":
-		chosen_minicard.unlock()
-		yield(chosen_minicard, "unlocked")
-		# unlock and SAVE
-		TheUnlocker.unlock_element("minigames", this_gamemode.id)
-		persistance.save_game()
-	
+	chosen_card.chosen = false
 	tween.start()
 	yield(tween, "tween_all_completed")
 	# TODO: danger of lock
-	Events.emit_signal("minigame_selected", minigame)
+	emit_signal("card_chosen")
 	yield(get_tree().create_timer(2), "timeout")
 	# everything back to position
-	chosen_minicard.position = back_pos
-	chosen_minicard.scale = back_scale
-	chosen_minicard.z_index = 0
+	chosen_card.position = back_pos
+	chosen_card.scale = back_size
+	chosen_card.z_index = 0
 	
-func random_selection(list: Array, sel_index, loops=2, max_duration=5):
+func random_selection(list: Array, sel_index, loops=3, max_duration=5):
 	list.shuffle()
 	list.resize(min(5, len(list)))
 	var total_wait: float = 0
@@ -208,9 +210,9 @@ func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 	for i in range(num_iterations-1):
 		# print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
 		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(4, 1 + num_iterations-i)))
-		list[i%len(list)].selected = true
+		list[i%len(list)].chosen = true
 		yield(get_tree().create_timer(wait_time), "timeout")
 		total_wait+= wait_time
-		list[i%len(list)].selected = false
+		list[i%len(list)].chosen = false
 	print("Waited for "+ str(total_wait))
 	emit_signal("selection_finished")
