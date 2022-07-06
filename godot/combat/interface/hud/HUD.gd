@@ -47,7 +47,7 @@ func post_ready():
 	
 	# adjust background
 	height = y
-	$BarsBackground.rect_size.x = height + 50
+	$BarsBackground.rect_size.x = height + 36
 	$BarsBottom.rect_position.x = height
 	set_process(true)
 
