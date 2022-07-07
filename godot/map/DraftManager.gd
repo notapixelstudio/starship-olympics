@@ -162,20 +162,18 @@ func animate_selection(picked_card: Minigame):
 	var index_selection = 0
 	var index = 0
 	var chosen_card = null
-	var screen_width = ProjectSettings.get_setting('display/window/size/width')
-	var screen_height = ProjectSettings.get_setting('display/window/size/height')
 	var back_pos = Vector2(0,0)
 	var back_size = Vector2(1,1)
 
 	for card in hand_node.get_all_cards():
 		if card.card_content == picked_card:
 			index_selection = index
-			back_pos = card.position
+			back_pos = card.global_position
 			back_size = card.scale
 			card.z_index = 1000
 			chosen_card = card
-			tween.interpolate_property(chosen_card, "global_position", chosen_card.global_position, Vector2(screen_width,screen_height)/2, 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-			tween.interpolate_property(chosen_card, "scale", chosen_card.scale, Vector2(3,3), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(chosen_card, "global_position", chosen_card.global_position, Vector2(0,0), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(chosen_card, "scale", chosen_card.scale, Vector2(4,4), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 			
 			break
 		index+=1
@@ -192,7 +190,7 @@ func animate_selection(picked_card: Minigame):
 	emit_signal("card_chosen")
 	yield(get_tree().create_timer(2), "timeout")
 	# everything back to position
-	chosen_card.position = back_pos
+	chosen_card.global_position = back_pos
 	chosen_card.scale = back_size
 	chosen_card.z_index = 0
 	
