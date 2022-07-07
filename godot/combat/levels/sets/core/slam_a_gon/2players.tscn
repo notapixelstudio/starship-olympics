@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=13]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=14]
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=15]
-[ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=18]
 
@@ -119,20 +118,7 @@ ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
-[node name="SpeciesDecalP1" parent="Battlefield/Middleground" index="6" instance=ExtResource( 16 )]
-modulate = Color( 0.32549, 1, 0.32549, 1 )
-position = Vector2( 850, 0 )
-rotation = -3.14159
-size = 9.0
-goal_owner = NodePath("../../../SpawnPositions/Players/p1")
-
-[node name="SpeciesDecalP2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
-modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
-position = Vector2( -850, 0 )
-size = 9.0
-goal_owner = NodePath("../../../SpawnPositions/Players/p2")
-
-[node name="Wall" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
+[node name="Wall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
 position = Vector2( -1617, -450 )
 rotation = -1.5708
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
@@ -146,7 +132,7 @@ sides = 4.0
 position = Vector2( 0, 51 )
 rotation = 1.5708
 
-[node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 6 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 6 )]
 position = Vector2( 1618, 450 )
 rotation = -1.5708
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
