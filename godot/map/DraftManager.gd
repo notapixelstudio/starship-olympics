@@ -28,8 +28,6 @@ func _ready():
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	
-	hand.shuffle()
-	
 	self.populate_hand(hand.duplicate())
 	self.pick_next_card()
 	

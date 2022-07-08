@@ -20,8 +20,6 @@ func _init():
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
 	
-	self.shuffle()
-	
 func draw(how_many : int) -> Array:
 	var result = []
 	for i in range(how_many):

@@ -736,8 +736,11 @@ var the_match: TheMatch = null
 var session: TheSession = null
 var arena
 
+var game_number := 0
+
 func new_game(players) -> TheGame:
 	safe_destroy_game()
+	game_number += 1
 	the_game = TheGame.new()
 	the_game.set_players(players)
 	Events.emit_signal("game_started")
