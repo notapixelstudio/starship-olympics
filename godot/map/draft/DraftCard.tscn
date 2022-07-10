@@ -6,18 +6,21 @@
 [ext_resource path="res://assets/map/selector.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=2]
-size = 48
+size = 96
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
-size = 48
-outline_size = 3
+size = 96
+outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [node name="DraftCard" instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
+
+[node name="Front" parent="Ground" index="1"]
+scale = Vector2( 0.22223, 1 )
 
 [node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="7"]
 modulate = Color( 0, 0, 0, 0.313726 )
@@ -28,12 +31,15 @@ scale = Vector2( 0.9, 0.9 )
 position = Vector2( 0, -34 )
 scale = Vector2( 0.9, 0.9 )
 
-[node name="MinigameLabelShadow" type="Label" parent="Ground/Front" index="9"]
+[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="9"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="MinigameLabelShadow" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]
 modulate = Color( 0, 0, 0, 0.313726 )
-margin_left = -200.0
-margin_top = 6.0
-margin_right = 200.0
-margin_bottom = 226.0
+margin_left = -900.0
+margin_top = 14.0
+margin_right = 900.0
+margin_bottom = 344.0
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
 align = 1
@@ -42,12 +48,12 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="MinigameLabel" type="Label" parent="Ground/Front" index="10"]
+[node name="MinigameLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="1"]
 modulate = Color( 1, 0.870588, 0.372549, 1 )
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
-margin_left = -200.0
-margin_right = 200.0
-margin_bottom = 220.0
+margin_left = -900.0
+margin_right = 900.0
+margin_bottom = 330.0
 custom_fonts/font = SubResource( 1 )
 text = "MINIGAME"
 align = 1
