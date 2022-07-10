@@ -14,8 +14,8 @@ func set_chosen(v):
 	
 
 func set_minigame_label(name):
-	$Ground/Front/MinigameLabel.text = name
-	$Ground/Front/MinigameLabelShadow.text = name
+	$Ground/Front/MinigameLabelWrapper/MinigameLabel.text = name
+	$Ground/Front/MinigameLabelWrapper/MinigameLabelShadow.text = name
 	
 func set_minigame_icon(texture):
 	$Ground/Front/MinigameIcon.texture = texture
