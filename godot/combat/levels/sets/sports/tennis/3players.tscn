@@ -1,0 +1,1153 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=7]
+[ext_resource path="res://actors/environments/PlayerBricks.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/environments/Brick.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/modes/Tennis.tres" type="Resource" id=10]
+[ext_resource path="res://assets/sprites/environments/no_ship.png" type="Texture" id=11]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=12]
+[ext_resource path="res://combat/managers/TennisManager.tscn" type="PackedScene" id=13]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=15]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=17]
+[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=18]
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=4]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=19]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="Animation" id=9]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=21]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="Animation" id=12]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=22]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=23]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[sub_resource type="Animation" id=15]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[node name="Arena" instance=ExtResource( 4 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 10 )
+
+[node name="TennisManager" parent="Managers" index="0" instance=ExtResource( 13 )]
+sample_player_bricks_path = NodePath("../../Battlefield/Middleground/LeftBricks")
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 12 )
+centered = false
+
+[node name="NoShipZone" parent="Battlefield/Background" index="1" instance=ExtResource( 15 )]
+position = Vector2( -900, 0 )
+symbol_scale = 1.5
+
+[node name="IsoPolygon" parent="Battlefield/Background/NoShipZone" index="0"]
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
+
+
+[node name="Polygon2D" parent="Battlefield/Background/NoShipZone" index="1"]
+polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
+
+[node name="Line2D" parent="Battlefield/Background/NoShipZone" index="2"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/Area2D" index="2"]
+shape = SubResource( 16 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/CrownCollider" index="0"]
+shape = SubResource( 17 )
+
+[node name="Particles2D" parent="Battlefield/Background/NoShipZone" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Background/NoShipZone" index="7"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="AnimationPlayer" parent="Battlefield/Background/NoShipZone" index="8"]
+anims/Feedback = SubResource( 4 )
+
+[node name="NoShipSign" parent="Battlefield/Background/NoShipZone" index="9"]
+position = Vector2( -12, -566 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Background/NoShipZone/NoShipSign" index="0"]
+position = Vector2( 0, 791.667 )
+texture = ExtResource( 11 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoShipZone" index="11"]
+script = ExtResource( 2 )
+width = 300
+height = 7000
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="NoShipZone2" parent="Battlefield/Background" index="2" instance=ExtResource( 15 )]
+position = Vector2( 900, 0 )
+symbol_scale = 1.5
+
+[node name="IsoPolygon" parent="Battlefield/Background/NoShipZone2" index="0"]
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
+
+
+[node name="Polygon2D" parent="Battlefield/Background/NoShipZone2" index="1"]
+polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
+
+[node name="Line2D" parent="Battlefield/Background/NoShipZone2" index="2"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone2/Area2D" index="2"]
+shape = SubResource( 18 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone2/CrownCollider" index="0"]
+shape = SubResource( 19 )
+
+[node name="Particles2D" parent="Battlefield/Background/NoShipZone2" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Background/NoShipZone2" index="7"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="AnimationPlayer" parent="Battlefield/Background/NoShipZone2" index="8"]
+anims/Feedback = SubResource( 9 )
+
+[node name="NoShipSign" parent="Battlefield/Background/NoShipZone2" index="9"]
+position = Vector2( -12, -566 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Background/NoShipZone2/NoShipSign" index="0"]
+position = Vector2( 0, 791.667 )
+texture = ExtResource( 11 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoShipZone2" index="11"]
+script = ExtResource( 2 )
+width = 300
+height = 7000
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="NoShipZone3" parent="Battlefield/Background" index="3" instance=ExtResource( 15 )]
+position = Vector2( 2700, 0 )
+symbol_scale = 1.5
+
+[node name="IsoPolygon" parent="Battlefield/Background/NoShipZone3" index="0"]
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
+
+
+[node name="Polygon2D" parent="Battlefield/Background/NoShipZone3" index="1"]
+polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
+
+[node name="Line2D" parent="Battlefield/Background/NoShipZone3" index="2"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone3/Area2D" index="2"]
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone3/CrownCollider" index="0"]
+shape = SubResource( 21 )
+
+[node name="Particles2D" parent="Battlefield/Background/NoShipZone3" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Background/NoShipZone3" index="7"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="AnimationPlayer" parent="Battlefield/Background/NoShipZone3" index="8"]
+anims/Feedback = SubResource( 12 )
+
+[node name="NoShipSign" parent="Battlefield/Background/NoShipZone3" index="9"]
+position = Vector2( -12, -566 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Background/NoShipZone3/NoShipSign" index="0"]
+position = Vector2( 0, 791.667 )
+texture = ExtResource( 11 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoShipZone3" index="11"]
+script = ExtResource( 2 )
+width = 300
+height = 7000
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="NoShipZone4" parent="Battlefield/Background" index="4" instance=ExtResource( 15 )]
+position = Vector2( -2700, 0 )
+symbol_scale = 1.5
+
+[node name="IsoPolygon" parent="Battlefield/Background/NoShipZone4" index="0"]
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
+
+
+[node name="Polygon2D" parent="Battlefield/Background/NoShipZone4" index="1"]
+polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
+
+[node name="Line2D" parent="Battlefield/Background/NoShipZone4" index="2"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone4/Area2D" index="2"]
+shape = SubResource( 22 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone4/CrownCollider" index="0"]
+shape = SubResource( 23 )
+
+[node name="Particles2D" parent="Battlefield/Background/NoShipZone4" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Background/NoShipZone4" index="7"]
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+
+[node name="AnimationPlayer" parent="Battlefield/Background/NoShipZone4" index="8"]
+anims/Feedback = SubResource( 15 )
+
+[node name="NoShipSign" parent="Battlefield/Background/NoShipZone4" index="9"]
+position = Vector2( -12, -566 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Background/NoShipZone4/NoShipSign" index="0"]
+position = Vector2( 0, 791.667 )
+texture = ExtResource( 11 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoShipZone4" index="11"]
+script = ExtResource( 2 )
+width = 300
+height = 7000
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="OutsideWall" parent="Battlefield/Background" index="5" instance=ExtResource( 5 )]
+hollow = true
+offset = 1500
+elongation = 0
+type = 2
+hide_line = true
+hide_line_below = true
+hide_grid = true
+solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="9"]
+script = ExtResource( 2 )
+width = 5120
+height = 2200
+bevel = 0
+
+[node name="SolidOutsideWall" parent="Battlefield/Background" index="6" instance=ExtResource( 5 )]
+hollow = true
+offset = 1500
+elongation = 0
+hide_grid = true
+solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/SolidOutsideWall" index="9"]
+script = ExtResource( 2 )
+width = 5800
+height = 2200
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="LeftBricks" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
+position = Vector2( -1800, 0 )
+goal_owner = NodePath("../../../SpawnPositions/Players/p1")
+
+[node name="Brick9" parent="Battlefield/Middleground/LeftBricks" index="0" instance=ExtResource( 9 )]
+position = Vector2( -100, -600 )
+colorize = false
+
+[node name="Brick10" parent="Battlefield/Middleground/LeftBricks" index="1" instance=ExtResource( 9 )]
+position = Vector2( -100, -700 )
+colorize = false
+
+[node name="Brick11" parent="Battlefield/Middleground/LeftBricks" index="2" instance=ExtResource( 9 )]
+position = Vector2( 100, -600 )
+colorize = false
+
+[node name="Brick12" parent="Battlefield/Middleground/LeftBricks" index="3" instance=ExtResource( 9 )]
+position = Vector2( 100, -700 )
+colorize = false
+
+[node name="Brick25" parent="Battlefield/Middleground/LeftBricks" index="4" instance=ExtResource( 9 )]
+position = Vector2( -100, -900 )
+colorize = false
+
+[node name="Brick27" parent="Battlefield/Middleground/LeftBricks" index="5" instance=ExtResource( 9 )]
+position = Vector2( 100, -900 )
+colorize = false
+
+[node name="Brick29" parent="Battlefield/Middleground/LeftBricks" index="6" instance=ExtResource( 9 )]
+position = Vector2( -100, -800 )
+colorize = false
+
+[node name="Brick30" parent="Battlefield/Middleground/LeftBricks" index="7" instance=ExtResource( 9 )]
+position = Vector2( 100, -800 )
+colorize = false
+
+[node name="Brick47" parent="Battlefield/Middleground/LeftBricks" index="8" instance=ExtResource( 9 )]
+position = Vector2( 300, -600 )
+colorize = false
+
+[node name="Brick48" parent="Battlefield/Middleground/LeftBricks" index="9" instance=ExtResource( 9 )]
+position = Vector2( 300, -700 )
+colorize = false
+
+[node name="Brick51" parent="Battlefield/Middleground/LeftBricks" index="10" instance=ExtResource( 9 )]
+position = Vector2( 300, -900 )
+colorize = false
+
+[node name="Brick53" parent="Battlefield/Middleground/LeftBricks" index="11" instance=ExtResource( 9 )]
+position = Vector2( 300, -800 )
+colorize = false
+
+[node name="Brick57" parent="Battlefield/Middleground/LeftBricks" index="12" instance=ExtResource( 9 )]
+position = Vector2( -300, -600 )
+colorize = false
+
+[node name="Brick58" parent="Battlefield/Middleground/LeftBricks" index="13" instance=ExtResource( 9 )]
+position = Vector2( -300, -700 )
+colorize = false
+
+[node name="Brick60" parent="Battlefield/Middleground/LeftBricks" index="14" instance=ExtResource( 9 )]
+position = Vector2( -300, -900 )
+colorize = false
+
+[node name="Brick62" parent="Battlefield/Middleground/LeftBricks" index="15" instance=ExtResource( 9 )]
+position = Vector2( -300, -800 )
+colorize = false
+
+[node name="Brick17" parent="Battlefield/Middleground/LeftBricks" index="16" instance=ExtResource( 9 )]
+position = Vector2( -100, 600 )
+colorize = false
+
+[node name="Brick19" parent="Battlefield/Middleground/LeftBricks" index="17" instance=ExtResource( 9 )]
+position = Vector2( 100, 600 )
+colorize = false
+
+[node name="Brick21" parent="Battlefield/Middleground/LeftBricks" index="18" instance=ExtResource( 9 )]
+position = Vector2( -100, 800 )
+colorize = false
+
+[node name="Brick22" parent="Battlefield/Middleground/LeftBricks" index="19" instance=ExtResource( 9 )]
+position = Vector2( -100, 700 )
+colorize = false
+
+[node name="Brick23" parent="Battlefield/Middleground/LeftBricks" index="20" instance=ExtResource( 9 )]
+position = Vector2( 100, 800 )
+colorize = false
+
+[node name="Brick24" parent="Battlefield/Middleground/LeftBricks" index="21" instance=ExtResource( 9 )]
+position = Vector2( 100, 700 )
+colorize = false
+
+[node name="Brick31" parent="Battlefield/Middleground/LeftBricks" index="22" instance=ExtResource( 9 )]
+position = Vector2( -100, 900 )
+colorize = false
+
+[node name="Brick32" parent="Battlefield/Middleground/LeftBricks" index="23" instance=ExtResource( 9 )]
+position = Vector2( 100, 900 )
+colorize = false
+
+[node name="Brick26" parent="Battlefield/Middleground/LeftBricks" index="24" instance=ExtResource( 9 )]
+position = Vector2( 300, 600 )
+colorize = false
+
+[node name="Brick33" parent="Battlefield/Middleground/LeftBricks" index="25" instance=ExtResource( 9 )]
+position = Vector2( 300, 800 )
+colorize = false
+
+[node name="Brick34" parent="Battlefield/Middleground/LeftBricks" index="26" instance=ExtResource( 9 )]
+position = Vector2( 300, 700 )
+colorize = false
+
+[node name="Brick37" parent="Battlefield/Middleground/LeftBricks" index="27" instance=ExtResource( 9 )]
+position = Vector2( 300, 900 )
+colorize = false
+
+[node name="Brick40" parent="Battlefield/Middleground/LeftBricks" index="28" instance=ExtResource( 9 )]
+position = Vector2( -300, 600 )
+colorize = false
+
+[node name="Brick18" parent="Battlefield/Middleground/LeftBricks" index="29" instance=ExtResource( 9 )]
+position = Vector2( -100, 500 )
+colorize = false
+
+[node name="Brick20" parent="Battlefield/Middleground/LeftBricks" index="30" instance=ExtResource( 9 )]
+position = Vector2( 100, 500 )
+colorize = false
+
+[node name="Brick28" parent="Battlefield/Middleground/LeftBricks" index="31" instance=ExtResource( 9 )]
+position = Vector2( 300, 500 )
+colorize = false
+
+[node name="Brick41" parent="Battlefield/Middleground/LeftBricks" index="32" instance=ExtResource( 9 )]
+position = Vector2( -300, 500 )
+colorize = false
+
+[node name="Brick35" parent="Battlefield/Middleground/LeftBricks" index="33" instance=ExtResource( 9 )]
+position = Vector2( -100, -500 )
+colorize = false
+
+[node name="Brick36" parent="Battlefield/Middleground/LeftBricks" index="34" instance=ExtResource( 9 )]
+position = Vector2( 100, -500 )
+colorize = false
+
+[node name="Brick38" parent="Battlefield/Middleground/LeftBricks" index="35" instance=ExtResource( 9 )]
+position = Vector2( 300, -500 )
+colorize = false
+
+[node name="Brick42" parent="Battlefield/Middleground/LeftBricks" index="36" instance=ExtResource( 9 )]
+position = Vector2( -300, -500 )
+colorize = false
+
+[node name="Brick43" parent="Battlefield/Middleground/LeftBricks" index="37" instance=ExtResource( 9 )]
+position = Vector2( -300, 800 )
+colorize = false
+
+[node name="Brick44" parent="Battlefield/Middleground/LeftBricks" index="38" instance=ExtResource( 9 )]
+position = Vector2( -300, 700 )
+colorize = false
+
+[node name="Brick46" parent="Battlefield/Middleground/LeftBricks" index="39" instance=ExtResource( 9 )]
+position = Vector2( -300, 900 )
+colorize = false
+
+[node name="MiddleBricks" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
+position = Vector2( 0, 0 )
+goal_owner = NodePath("../../../SpawnPositions/Players/p2")
+
+[node name="Brick9" parent="Battlefield/Middleground/MiddleBricks" index="0" instance=ExtResource( 9 )]
+position = Vector2( -100, -600 )
+colorize = false
+
+[node name="Brick10" parent="Battlefield/Middleground/MiddleBricks" index="1" instance=ExtResource( 9 )]
+position = Vector2( -100, -700 )
+colorize = false
+
+[node name="Brick11" parent="Battlefield/Middleground/MiddleBricks" index="2" instance=ExtResource( 9 )]
+position = Vector2( 100, -600 )
+colorize = false
+
+[node name="Brick12" parent="Battlefield/Middleground/MiddleBricks" index="3" instance=ExtResource( 9 )]
+position = Vector2( 100, -700 )
+colorize = false
+
+[node name="Brick25" parent="Battlefield/Middleground/MiddleBricks" index="4" instance=ExtResource( 9 )]
+position = Vector2( -100, -900 )
+colorize = false
+
+[node name="Brick27" parent="Battlefield/Middleground/MiddleBricks" index="5" instance=ExtResource( 9 )]
+position = Vector2( 100, -900 )
+colorize = false
+
+[node name="Brick29" parent="Battlefield/Middleground/MiddleBricks" index="6" instance=ExtResource( 9 )]
+position = Vector2( -100, -800 )
+colorize = false
+
+[node name="Brick30" parent="Battlefield/Middleground/MiddleBricks" index="7" instance=ExtResource( 9 )]
+position = Vector2( 100, -800 )
+colorize = false
+
+[node name="Brick47" parent="Battlefield/Middleground/MiddleBricks" index="8" instance=ExtResource( 9 )]
+position = Vector2( 300, -600 )
+colorize = false
+
+[node name="Brick48" parent="Battlefield/Middleground/MiddleBricks" index="9" instance=ExtResource( 9 )]
+position = Vector2( 300, -700 )
+colorize = false
+
+[node name="Brick51" parent="Battlefield/Middleground/MiddleBricks" index="10" instance=ExtResource( 9 )]
+position = Vector2( 300, -900 )
+colorize = false
+
+[node name="Brick53" parent="Battlefield/Middleground/MiddleBricks" index="11" instance=ExtResource( 9 )]
+position = Vector2( 300, -800 )
+colorize = false
+
+[node name="Brick57" parent="Battlefield/Middleground/MiddleBricks" index="12" instance=ExtResource( 9 )]
+position = Vector2( -300, -600 )
+colorize = false
+
+[node name="Brick58" parent="Battlefield/Middleground/MiddleBricks" index="13" instance=ExtResource( 9 )]
+position = Vector2( -300, -700 )
+colorize = false
+
+[node name="Brick60" parent="Battlefield/Middleground/MiddleBricks" index="14" instance=ExtResource( 9 )]
+position = Vector2( -300, -900 )
+colorize = false
+
+[node name="Brick62" parent="Battlefield/Middleground/MiddleBricks" index="15" instance=ExtResource( 9 )]
+position = Vector2( -300, -800 )
+colorize = false
+
+[node name="Brick17" parent="Battlefield/Middleground/MiddleBricks" index="16" instance=ExtResource( 9 )]
+position = Vector2( -100, 600 )
+colorize = false
+
+[node name="Brick19" parent="Battlefield/Middleground/MiddleBricks" index="17" instance=ExtResource( 9 )]
+position = Vector2( 100, 600 )
+colorize = false
+
+[node name="Brick21" parent="Battlefield/Middleground/MiddleBricks" index="18" instance=ExtResource( 9 )]
+position = Vector2( -100, 800 )
+colorize = false
+
+[node name="Brick22" parent="Battlefield/Middleground/MiddleBricks" index="19" instance=ExtResource( 9 )]
+position = Vector2( -100, 700 )
+colorize = false
+
+[node name="Brick23" parent="Battlefield/Middleground/MiddleBricks" index="20" instance=ExtResource( 9 )]
+position = Vector2( 100, 800 )
+colorize = false
+
+[node name="Brick24" parent="Battlefield/Middleground/MiddleBricks" index="21" instance=ExtResource( 9 )]
+position = Vector2( 100, 700 )
+colorize = false
+
+[node name="Brick31" parent="Battlefield/Middleground/MiddleBricks" index="22" instance=ExtResource( 9 )]
+position = Vector2( -100, 900 )
+colorize = false
+
+[node name="Brick32" parent="Battlefield/Middleground/MiddleBricks" index="23" instance=ExtResource( 9 )]
+position = Vector2( 100, 900 )
+colorize = false
+
+[node name="Brick26" parent="Battlefield/Middleground/MiddleBricks" index="24" instance=ExtResource( 9 )]
+position = Vector2( 300, 600 )
+colorize = false
+
+[node name="Brick33" parent="Battlefield/Middleground/MiddleBricks" index="25" instance=ExtResource( 9 )]
+position = Vector2( 300, 800 )
+colorize = false
+
+[node name="Brick34" parent="Battlefield/Middleground/MiddleBricks" index="26" instance=ExtResource( 9 )]
+position = Vector2( 300, 700 )
+colorize = false
+
+[node name="Brick37" parent="Battlefield/Middleground/MiddleBricks" index="27" instance=ExtResource( 9 )]
+position = Vector2( 300, 900 )
+colorize = false
+
+[node name="Brick40" parent="Battlefield/Middleground/MiddleBricks" index="28" instance=ExtResource( 9 )]
+position = Vector2( -300, 600 )
+colorize = false
+
+[node name="Brick18" parent="Battlefield/Middleground/MiddleBricks" index="29" instance=ExtResource( 9 )]
+position = Vector2( -100, 500 )
+colorize = false
+
+[node name="Brick20" parent="Battlefield/Middleground/MiddleBricks" index="30" instance=ExtResource( 9 )]
+position = Vector2( 100, 500 )
+colorize = false
+
+[node name="Brick28" parent="Battlefield/Middleground/MiddleBricks" index="31" instance=ExtResource( 9 )]
+position = Vector2( 300, 500 )
+colorize = false
+
+[node name="Brick41" parent="Battlefield/Middleground/MiddleBricks" index="32" instance=ExtResource( 9 )]
+position = Vector2( -300, 500 )
+colorize = false
+
+[node name="Brick35" parent="Battlefield/Middleground/MiddleBricks" index="33" instance=ExtResource( 9 )]
+position = Vector2( -100, -500 )
+colorize = false
+
+[node name="Brick36" parent="Battlefield/Middleground/MiddleBricks" index="34" instance=ExtResource( 9 )]
+position = Vector2( 100, -500 )
+colorize = false
+
+[node name="Brick38" parent="Battlefield/Middleground/MiddleBricks" index="35" instance=ExtResource( 9 )]
+position = Vector2( 300, -500 )
+colorize = false
+
+[node name="Brick42" parent="Battlefield/Middleground/MiddleBricks" index="36" instance=ExtResource( 9 )]
+position = Vector2( -300, -500 )
+colorize = false
+
+[node name="Brick43" parent="Battlefield/Middleground/MiddleBricks" index="37" instance=ExtResource( 9 )]
+position = Vector2( -300, 800 )
+colorize = false
+
+[node name="Brick44" parent="Battlefield/Middleground/MiddleBricks" index="38" instance=ExtResource( 9 )]
+position = Vector2( -300, 700 )
+colorize = false
+
+[node name="Brick46" parent="Battlefield/Middleground/MiddleBricks" index="39" instance=ExtResource( 9 )]
+position = Vector2( -300, 900 )
+colorize = false
+
+[node name="RightBricks" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
+position = Vector2( 1800, 0 )
+goal_owner = NodePath("../../../SpawnPositions/Players/p3")
+
+[node name="Brick9" parent="Battlefield/Middleground/RightBricks" index="0" instance=ExtResource( 9 )]
+position = Vector2( -100, -600 )
+colorize = false
+
+[node name="Brick10" parent="Battlefield/Middleground/RightBricks" index="1" instance=ExtResource( 9 )]
+position = Vector2( -100, -700 )
+colorize = false
+
+[node name="Brick11" parent="Battlefield/Middleground/RightBricks" index="2" instance=ExtResource( 9 )]
+position = Vector2( 100, -600 )
+colorize = false
+
+[node name="Brick12" parent="Battlefield/Middleground/RightBricks" index="3" instance=ExtResource( 9 )]
+position = Vector2( 100, -700 )
+colorize = false
+
+[node name="Brick25" parent="Battlefield/Middleground/RightBricks" index="4" instance=ExtResource( 9 )]
+position = Vector2( -100, -900 )
+colorize = false
+
+[node name="Brick27" parent="Battlefield/Middleground/RightBricks" index="5" instance=ExtResource( 9 )]
+position = Vector2( 100, -900 )
+colorize = false
+
+[node name="Brick29" parent="Battlefield/Middleground/RightBricks" index="6" instance=ExtResource( 9 )]
+position = Vector2( -100, -800 )
+colorize = false
+
+[node name="Brick30" parent="Battlefield/Middleground/RightBricks" index="7" instance=ExtResource( 9 )]
+position = Vector2( 100, -800 )
+colorize = false
+
+[node name="Brick47" parent="Battlefield/Middleground/RightBricks" index="8" instance=ExtResource( 9 )]
+position = Vector2( 300, -600 )
+colorize = false
+
+[node name="Brick48" parent="Battlefield/Middleground/RightBricks" index="9" instance=ExtResource( 9 )]
+position = Vector2( 300, -700 )
+colorize = false
+
+[node name="Brick51" parent="Battlefield/Middleground/RightBricks" index="10" instance=ExtResource( 9 )]
+position = Vector2( 300, -900 )
+colorize = false
+
+[node name="Brick53" parent="Battlefield/Middleground/RightBricks" index="11" instance=ExtResource( 9 )]
+position = Vector2( 300, -800 )
+colorize = false
+
+[node name="Brick57" parent="Battlefield/Middleground/RightBricks" index="12" instance=ExtResource( 9 )]
+position = Vector2( -300, -600 )
+colorize = false
+
+[node name="Brick58" parent="Battlefield/Middleground/RightBricks" index="13" instance=ExtResource( 9 )]
+position = Vector2( -300, -700 )
+colorize = false
+
+[node name="Brick60" parent="Battlefield/Middleground/RightBricks" index="14" instance=ExtResource( 9 )]
+position = Vector2( -300, -900 )
+colorize = false
+
+[node name="Brick62" parent="Battlefield/Middleground/RightBricks" index="15" instance=ExtResource( 9 )]
+position = Vector2( -300, -800 )
+colorize = false
+
+[node name="Brick17" parent="Battlefield/Middleground/RightBricks" index="16" instance=ExtResource( 9 )]
+position = Vector2( -100, 600 )
+colorize = false
+
+[node name="Brick19" parent="Battlefield/Middleground/RightBricks" index="17" instance=ExtResource( 9 )]
+position = Vector2( 100, 600 )
+colorize = false
+
+[node name="Brick21" parent="Battlefield/Middleground/RightBricks" index="18" instance=ExtResource( 9 )]
+position = Vector2( -100, 800 )
+colorize = false
+
+[node name="Brick22" parent="Battlefield/Middleground/RightBricks" index="19" instance=ExtResource( 9 )]
+position = Vector2( -100, 700 )
+colorize = false
+
+[node name="Brick23" parent="Battlefield/Middleground/RightBricks" index="20" instance=ExtResource( 9 )]
+position = Vector2( 100, 800 )
+colorize = false
+
+[node name="Brick24" parent="Battlefield/Middleground/RightBricks" index="21" instance=ExtResource( 9 )]
+position = Vector2( 100, 700 )
+colorize = false
+
+[node name="Brick31" parent="Battlefield/Middleground/RightBricks" index="22" instance=ExtResource( 9 )]
+position = Vector2( -100, 900 )
+colorize = false
+
+[node name="Brick32" parent="Battlefield/Middleground/RightBricks" index="23" instance=ExtResource( 9 )]
+position = Vector2( 100, 900 )
+colorize = false
+
+[node name="Brick26" parent="Battlefield/Middleground/RightBricks" index="24" instance=ExtResource( 9 )]
+position = Vector2( 300, 600 )
+colorize = false
+
+[node name="Brick33" parent="Battlefield/Middleground/RightBricks" index="25" instance=ExtResource( 9 )]
+position = Vector2( 300, 800 )
+colorize = false
+
+[node name="Brick34" parent="Battlefield/Middleground/RightBricks" index="26" instance=ExtResource( 9 )]
+position = Vector2( 300, 700 )
+colorize = false
+
+[node name="Brick37" parent="Battlefield/Middleground/RightBricks" index="27" instance=ExtResource( 9 )]
+position = Vector2( 300, 900 )
+colorize = false
+
+[node name="Brick40" parent="Battlefield/Middleground/RightBricks" index="28" instance=ExtResource( 9 )]
+position = Vector2( -300, 600 )
+colorize = false
+
+[node name="Brick18" parent="Battlefield/Middleground/RightBricks" index="29" instance=ExtResource( 9 )]
+position = Vector2( -100, 500 )
+colorize = false
+
+[node name="Brick20" parent="Battlefield/Middleground/RightBricks" index="30" instance=ExtResource( 9 )]
+position = Vector2( 100, 500 )
+colorize = false
+
+[node name="Brick28" parent="Battlefield/Middleground/RightBricks" index="31" instance=ExtResource( 9 )]
+position = Vector2( 300, 500 )
+colorize = false
+
+[node name="Brick41" parent="Battlefield/Middleground/RightBricks" index="32" instance=ExtResource( 9 )]
+position = Vector2( -300, 500 )
+colorize = false
+
+[node name="Brick35" parent="Battlefield/Middleground/RightBricks" index="33" instance=ExtResource( 9 )]
+position = Vector2( -100, -500 )
+colorize = false
+
+[node name="Brick36" parent="Battlefield/Middleground/RightBricks" index="34" instance=ExtResource( 9 )]
+position = Vector2( 100, -500 )
+colorize = false
+
+[node name="Brick38" parent="Battlefield/Middleground/RightBricks" index="35" instance=ExtResource( 9 )]
+position = Vector2( 300, -500 )
+colorize = false
+
+[node name="Brick42" parent="Battlefield/Middleground/RightBricks" index="36" instance=ExtResource( 9 )]
+position = Vector2( -300, -500 )
+colorize = false
+
+[node name="Brick43" parent="Battlefield/Middleground/RightBricks" index="37" instance=ExtResource( 9 )]
+position = Vector2( -300, 800 )
+colorize = false
+
+[node name="Brick44" parent="Battlefield/Middleground/RightBricks" index="38" instance=ExtResource( 9 )]
+position = Vector2( -300, 700 )
+colorize = false
+
+[node name="Brick46" parent="Battlefield/Middleground/RightBricks" index="39" instance=ExtResource( 9 )]
+position = Vector2( -300, 900 )
+colorize = false
+
+[node name="Wall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+position = Vector2( -900, -1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall3" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
+position = Vector2( -2700, -1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
+position = Vector2( -2700, 1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
+position = Vector2( -900, 1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall5" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
+position = Vector2( 900, 1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall5" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall6" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
+position = Vector2( 2700, 1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall6" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall7" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
+position = Vector2( 2700, -1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall7" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="Wall8" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
+position = Vector2( 900, -1100 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall8" index="9"]
+script = ExtResource( 1 )
+sides = 4.0
+
+[node name="RightPortal" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
+material = SubResource( 1 )
+position = Vector2( 2746, 0 )
+z_index = 10
+linked_to_path = NodePath("../LeftPortal")
+width = 2000.0
+color = Color( 0.243137, 0, 1, 1 )
+show_hole = false
+
+[node name="LeftPortal" parent="Battlefield/Foreground" index="1" instance=ExtResource( 17 )]
+material = SubResource( 1 )
+position = Vector2( -2746, 0 )
+rotation = -3.14159
+z_index = 10
+linked_to_path = NodePath("../RightPortal")
+width = 2000.0
+color = Color( 0.243137, 0, 1, 1 )
+show_hole = false
+
+[node name="Variants" parent="Battlefield/Foreground" index="2" instance=ExtResource( 16 )]
+
+[node name="A" type="Node2D" parent="Battlefield/Foreground/Variants" index="0"]
+
+[node name="Ball" parent="Battlefield/Foreground/Variants/A" index="0" instance=ExtResource( 14 )]
+position = Vector2( -900, 0 )
+type = "tennis"
+
+[node name="B" type="Node2D" parent="Battlefield/Foreground/Variants" index="1"]
+visible = false
+
+[node name="Ball" parent="Battlefield/Foreground/Variants/B" index="0" instance=ExtResource( 14 )]
+position = Vector2( 900, 0 )
+type = "tennis"
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
+position = Vector2( -1800, 0 )
+rotation = -1.5708
+species = ExtResource( 3 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
+position = Vector2( 0, 0 )
+rotation = -1.5708
+controls = "kb2"
+species = ExtResource( 7 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
+position = Vector2( 1800, 0 )
+rotation = -1.5708
+controls = "kb2"
+species = ExtResource( 18 )
+
+[node name="Camera" parent="." index="7"]
+smoothing_speed = 0.3
+disabled_override = true
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="Battlefield/Background/NoShipZone"]
+[editable path="Battlefield/Background/NoShipZone2"]
+[editable path="Battlefield/Background/NoShipZone3"]
+[editable path="Battlefield/Background/NoShipZone4"]

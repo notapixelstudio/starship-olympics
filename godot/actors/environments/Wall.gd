@@ -141,7 +141,7 @@ func get_rect_extents():
 
 func remove_old_shapes():
 	for child in get_children():
-		if child is CollisionShape2D:
+		if child is CollisionShape2D or child is CollisionPolygon2D:
 			remove_child(child)
 			child.queue_free()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://combat/interface/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/HUD/bars_bottom.png" type="Texture" id=2]
@@ -6,18 +6,29 @@
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/fonts/04b_19_monospaced_one.ttf" type="DynamicFontData" id=8]
 
-[sub_resource type="DynamicFont" id=6]
-size = 14
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0, 0, 0, 0.643137, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=11]
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 28
+[sub_resource type="DynamicFont" id=14]
+size = 64
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 64
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 14
@@ -41,36 +52,35 @@ font_data = ExtResource( 6 )
 anchor_right = 1.0
 margin_bottom = 151.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="BarsBackground" type="ColorRect" parent="."]
+[node name="BarsBackground" type="TextureRect" parent="."]
 anchor_right = 1.0
-margin_left = 50.0
-margin_right = -30.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 980, 0 )
-color = Color( 0, 0, 0, 0.862745 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = -1240.0
+margin_bottom = 1280.0
+rect_min_size = Vector2( 0, 980 )
+rect_rotation = 90.0
+rect_scale = Vector2( 1, -1 )
+texture = SubResource( 10 )
+expand = true
 
 [node name="Bars" type="Container" parent="."]
-margin_left = 150.0
-margin_right = 1130.0
-margin_bottom = 156.0
-rect_min_size = Vector2( 980, 0 )
+margin_left = 130.0
+margin_top = 2.0
+margin_right = 1150.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 1020, 0 )
 rect_clip_content = true
 size_flags_horizontal = 3
 
 [node name="BarsBottom" type="TextureRect" parent="."]
+visible = false
 margin_right = 1280.0
 margin_bottom = 50.0
 texture = ExtResource( 2 )
 stretch_mode = 3
 
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 margin_right = 1280.0
 margin_bottom = 150.0
 texture = ExtResource( 3 )
@@ -81,60 +91,72 @@ anchor_right = 1.0
 rect_min_size = Vector2( 0, 100 )
 
 [node name="ModePanel" type="Control" parent="Content"]
-margin_right = 150.0
-margin_bottom = 150.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 154.0
+margin_bottom = 152.0
 
 [node name="Shadow" type="Sprite" parent="Content/ModePanel"]
-self_modulate = Color( 0, 0, 0, 0.156863 )
-position = Vector2( 74.857, 57.873 )
+self_modulate = Color( 0, 0, 0, 0.235294 )
+position = Vector2( 74.857, 50.873 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="Icon" type="Sprite" parent="Content/ModePanel"]
-position = Vector2( 74.8569, 49.8733 )
+position = Vector2( 74.8569, 42.8733 )
 scale = Vector2( 0.35, 0.35 )
 
 [node name="PlanetName" type="Label" parent="Content/ModePanel"]
+modulate = Color( 1, 0.870588, 0.372549, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -71.0
-margin_top = 50.0
+margin_top = 23.0
 margin_right = 71.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 6 )
+margin_bottom = 73.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 11 )
 align = 1
 valign = 2
 autowrap = true
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="TimeLeftShadow" type="Label" parent="Content/ModePanel"]
+modulate = Color( 0, 0, 0, 0.235294 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 1045.0
+margin_top = -142.0
+margin_right = 1189.0
+margin_bottom = -69.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "231"
+align = 2
+valign = 2
+uppercase = true
 
 [node name="TimeLeft" type="Label" parent="Content/ModePanel"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -47.0
-margin_right = 50.0
-margin_bottom = -16.0
-custom_fonts/font = SubResource( 2 )
+margin_left = 1045.0
+margin_top = -150.0
+margin_right = 1189.0
+margin_bottom = -77.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "230"
-align = 1
-valign = 1
+custom_fonts/font = SubResource( 12 )
+text = "231"
+align = 2
+valign = 2
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="Content"]
 
 [node name="LeaderPanel" type="Control" parent="Content"]
+visible = false
 margin_left = 1129.0
 margin_right = 1279.0
 margin_bottom = 150.0

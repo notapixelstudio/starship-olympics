@@ -46,7 +46,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-radius = 1600
+radius = 1700
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -133,7 +133,7 @@ size = 9.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Wall" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
-position = Vector2( -1517, -450 )
+position = Vector2( -1617, -450 )
 rotation = -1.5708
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 
@@ -147,7 +147,7 @@ position = Vector2( 0, 51 )
 rotation = 1.5708
 
 [node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 6 )]
-position = Vector2( 1518, 450 )
+position = Vector2( 1618, 450 )
 rotation = -1.5708
 solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
 

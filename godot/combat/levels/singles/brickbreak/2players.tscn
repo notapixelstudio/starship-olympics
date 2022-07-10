@@ -17,7 +17,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 
-[node name="KillModeManager" parent="Managers" index="7"]
+[node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -1037,10 +1037,8 @@ rotation = 0.785398
 controls = "joy2"
 species = ExtResource( 6 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 400000, 400000 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

@@ -119,7 +119,7 @@ rotation = 0.0
 controls = "joy2"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 5.73972e+32, 5.73972e+32 )
 smoothing_speed = 0.3
 
@@ -129,5 +129,3 @@ smoothing_speed = 0.3
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock9" to="." method="_on_Rock_request_spawn"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock3" to="." method="_on_Rock_request_spawn"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock5" to="." method="_on_Rock_request_spawn"]
-
-[editable path="CanvasLayer/Pause"]

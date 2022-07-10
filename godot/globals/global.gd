@@ -796,6 +796,10 @@ func new_session() -> TheSession:
 	# whenever a new session is created, InfoPlayer stats should be cleared
 	the_game.reset_players()
 	
+	var deck = the_game.get_deck()
+	var hand = deck.draw(4)
+	session.set_hand(hand)
+	
 	Events.emit_signal('session_started')
 	return session
 	
@@ -851,6 +855,9 @@ onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
 func get_species(species_id: String):
 	return species_resources[species_id]
 
+func get_actual_resource(resource_list: Dictionary, resource_id: String):
+	return resource_list[resource_id]
+	
 func get_ordered_species() -> Array:
 	var ordered_species = []
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")

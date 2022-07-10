@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture" id=2]
+[ext_resource path="res://map_with_sets/planets/rules/Minicard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=4]
+[ext_resource path="res://map_with_sets/mapPanel.gd" type="Script" id=5]
+[ext_resource path="res://assets/map/ui/set_card.png" type="Texture" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+outline_size = 3
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
+
+[node name="Panel" type="Control" groups=["map_panel"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -990.0
+margin_bottom = -540.0
+rect_min_size = Vector2( 290, 180 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 290.0 ]
+}
+Minicard = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="PortraitBackdrop" type="Polygon2D" parent="."]
+visible = false
+position = Vector2( 0, 2 )
+color = Color( 0.0470588, 0.113725, 0.0509804, 1 )
+texture_offset = Vector2( -110, 10 )
+texture_scale = Vector2( -3, 3 )
+polygon = PoolVector2Array( 88, 0, 88, 168, 24, 168, 3.54924, 147.228, 3.68939, 20.2523, 24, 0 )
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.05
+margin_top = -20.0
+margin_bottom = 5.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 60.0
+margin_bottom = 113.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "
+"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 145, 175 )
+rotation = -1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Minicards" type="Node2D" parent="."]
+position = Vector2( 145, 85 )
+
+[node name="Portrait" type="Polygon2D" parent="."]
+visible = false
+position = Vector2( 0, 2 )
+texture = ExtResource( 2 )
+texture_offset = Vector2( -110, 10 )
+texture_scale = Vector2( -3, 3 )
+polygon = PoolVector2Array( 88, 0, 88, 168, 24, 168, 0, 144, 0, 24, 24, 0 )
+
+[node name="Dialog" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_left = 96.0
+margin_top = 24.0
+margin_right = -10.0
+margin_bottom = 152.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Hey! What if I challenge you to beat me at one minigame from the future?"
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

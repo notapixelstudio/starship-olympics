@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Card
+
 onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
@@ -154,7 +156,7 @@ func _on_Timer_timeout():
 func set_auto_flip_back(v):
 	auto_flip_back = v
 	if not auto_flip_back:
-		timer.stop()
+		$Timer.stop()
 		
 func show_mark(v):
 	$Ground/Front/Wrapper/Monogram.visible = true

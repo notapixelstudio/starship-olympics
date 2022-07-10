@@ -110,7 +110,7 @@ offset = 200
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="2"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -129,7 +129,7 @@ offset = 200
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="2"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -148,7 +148,7 @@ hide_grid = true
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="2"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -161,7 +161,7 @@ bevel_ne = 885
 bevel_sw = 885
 bevel_se = 885
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="4" groups=["animation_in_battle"]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
 
@@ -178,12 +178,12 @@ opaque_tint = Color( 0, 0, 0, 1 )
 position = Vector2( 3150, -900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="3"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall" index="5" groups=["additional_lasers"] instance=ExtResource( 10 )]
 show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
@@ -194,12 +194,12 @@ rotation = 0.785398
 collision_layer = 2147483648
 type = 4
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="7"]
 script = ExtResource( 12 )
 width = 450
 height = 450
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="8" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 2 )
 
 [node name="GlassWall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
@@ -208,12 +208,12 @@ rotation = 0.785398
 collision_layer = 2147483648
 type = 4
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall2" index="8"]
+[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall2" index="7"]
 script = ExtResource( 12 )
 width = 450
 height = 450
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="8" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 3 )
 
 [node name="Negacrown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]

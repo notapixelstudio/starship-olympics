@@ -51,3 +51,9 @@ signal show_info(what_to_show)
 signal hide_info
 signal ask_mapping_action(remap_action_node, complete_action)
 signal remap_event(event, complete_action)
+
+# players ready
+signal player_ready(player_info)
+
+# draftcard 
+signal card_tapped(author, card)

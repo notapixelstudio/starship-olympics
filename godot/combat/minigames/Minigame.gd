@@ -2,6 +2,7 @@ extends Resource
 
 class_name Minigame
 
+export var id: String
 export var game_mode : Resource
 
 export var level_1players : PackedScene
@@ -18,3 +19,5 @@ func get_icon():
 func get_level(num_players) -> PackedScene:
 	return get("level_" + str(num_players) + "players")
 	
+func get_name():
+	return game_mode.name

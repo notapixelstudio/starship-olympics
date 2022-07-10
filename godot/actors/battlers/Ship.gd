@@ -20,6 +20,7 @@ var trail
 var cpu = false
 var velocity = Vector2(0,0)
 var previous_velocity = Vector2(0,0)
+var last_contact_normal = null
 var target_velocity = Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
@@ -287,6 +288,11 @@ func _integrate_forces(state):
 	# store velocity as a readable var
 	previous_velocity = velocity
 	velocity = state.linear_velocity
+	
+	# store last contact normal as a readable var
+	if state.get_contact_count() > 0:
+		last_contact_normal = state.get_contact_local_normal(0)
+	
 	state.set_transform(xform)
 
 func control(_delta):
