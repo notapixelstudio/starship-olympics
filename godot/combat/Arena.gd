@@ -721,6 +721,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
 	ship.set_max_health(game_mode.starting_health)
+	ship.set_auto_thrust(game_mode.auto_thrust)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
