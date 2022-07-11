@@ -91,15 +91,17 @@ func _ready():
 	
 func _on_Area2D_body_entered(body):
 	if body is Bomb:
+		if conquerable:
+			conquered_by(body.get_owner_ship())
 		try_break()
 		return
 		
-	if body is Ship and conquerable:
-		conquered_by(body)
-		if body.is_piercing():
-			try_break()
-			body.rebound()
-		return
+	#if body is Ship and conquerable:
+	#	conquered_by(body)
+	#	if body.is_piercing():
+	#		try_break()
+	#		body.rebound()
+	#	return
 		
 	if ice and body.has_method('freeze'):
 		body.freeze()
@@ -238,7 +240,7 @@ func recolor():
 	$NoRotate/CountdownWrapper.scale = Vector2(order, order)
 	
 	if species:
-		$NoRotate/Monogram/Label.text = species.get_monogram()
+		$NoRotate/Monogram/Label.text = self.get_owner_ship().get_id()
 		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
 		
 	if breakable:
@@ -328,3 +330,7 @@ func decrease_lifetime():
 func freeze():
 	ice = true
 	recolor()
+
+func get_owner_ship() -> Ship:
+	return owner_ship
+	
