@@ -2,12 +2,14 @@ extends Node
 
 export var this_arena_path : NodePath
 export var hand_node_path : NodePath
+export var pass_path : NodePath
 export var hand_position_node_path : NodePath
 export var draft_card_scene : PackedScene
 
 var this_arena
 var hand_node : Node
 var hand_position : Node
+var pass_node : Node
 var ships_have_to_choose := false
 
 const HAND_SIZE = 4
@@ -28,6 +30,9 @@ func _ready():
 	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
+	pass_node = get_node(pass_path)
+	
+	pass_node.connect("tapped", self, '_on_pass_tapped')
 	
 	self.populate_hand(hand.duplicate())
 	self.pick_next_card()
@@ -43,7 +48,7 @@ func _on_continue_after_game_over(session_ended):
 	 
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
-		ships_have_to_choose=true
+		ships_have_to_choose = true
 		
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
@@ -62,6 +67,7 @@ func _on_continue_after_game_over(session_ended):
 	if not session_ended:
 		if ships_have_to_choose:
 			this_arena.spawn_all_ships(true)
+			pass_node.visible = true
 		else:
 			# same hand, not yet emptied
 			self.pick_next_card()
@@ -74,6 +80,9 @@ func player_just_chose_a_card(author, card):
 	self.players_choices[author] = card
 	author.get_parent().remove_child(author)
 	
+	self.selections_maybe_all_done()
+	
+func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
 		var cards_to_be_replaced = []
 		var hand = global.session.get_hand()
@@ -217,3 +226,9 @@ func random_selection(list: Array, sel_index, loops=3, max_duration=5):
 		list[i%len(list)].chosen = false
 	print("Waited for "+ str(total_wait))
 	emit_signal("selection_finished")
+
+func _on_pass_tapped(author):
+	if author is Ship:
+		self.players_choices[author] = null
+		author.get_parent().remove_child(author)
+		self.selections_maybe_all_done()
