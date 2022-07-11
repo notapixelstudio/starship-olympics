@@ -787,6 +787,9 @@ func safe_destroy_session() -> void:
 		# also delete the match
 		safe_destroy_match()
 		
+		# put back cards into the deck
+		session.discard_hand()
+		
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null

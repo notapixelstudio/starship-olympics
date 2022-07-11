@@ -2,7 +2,6 @@ extends Area2D
 
 class_name Card
 
-onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
 onready var background = $Ground/Front/Background
@@ -121,12 +120,12 @@ func reveal():
 	face_down = false
 	if content == null:
 		emit_signal('revealing_while_undetermined', self)
-	anim.play("Reveal")
-	yield(anim, "animation_finished")
+	$AnimationPlayer.play("Reveal")
+	yield($AnimationPlayer, "animation_finished")
 	flipping = false
 	emit_signal("revealed")
 	if not selected or float_when_selected:
-		anim.play("Float")
+		$AnimationPlayer.play("Float")
 	
 	if auto_flip_back:
 		# reflip after 6 seconds
@@ -137,11 +136,11 @@ func select():
 	border.modulate = Color(1.3,1.1,1.0)
 	border.visible = true
 	if not float_when_selected:
-		anim.play("Stand")
+		$AnimationPlayer.play("Stand")
 	
 func deselect():
 	selected = false
-	anim.play("Float")
+	$AnimationPlayer.play("Float")
 	
 func blur():
 	border.visible = false
@@ -157,8 +156,8 @@ func hide():
 	self.set_player(null)
 	self.players = []
 	selected = false
-	anim.play_backwards("Reveal")
-	yield(anim, "animation_finished")
+	$AnimationPlayer.play_backwards("Reveal")
+	yield($AnimationPlayer, "animation_finished")
 	flipping = false
 
 func equals(other_card):

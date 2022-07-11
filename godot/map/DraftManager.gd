@@ -25,24 +25,33 @@ func _ready():
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	Events.connect("card_tapped", self, "player_just_chose_a_card")
 	
-	global.new_session()
-	var hand = global.session.get_hand()
-	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
 	
 	pass_node.connect("tapped", self, '_on_pass_tapped')
 	
+	global.new_session()
+	var hand = global.session.get_hand()
 	self.populate_hand(hand.duplicate())
 	self.pick_next_card()
 	
 func _on_continue_after_game_over(session_ended):
+	if not is_inside_tree():
+		# this happens when the map is momentarily removed at the end of a session
+		yield(self, "tree_entered")
+		
+	if session_ended:
+		self.draw_anew()
+		
 	yield(get_tree().create_timer(1.5), "timeout") # this is also needed to wait for entering the tree
 	
 	var last_match_info = global.session.get_last_match()
-	var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
-	last_played_card.queue_free()
+	
+	if not session_ended:
+		# cleanup if session continues
+		var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
+		last_played_card.queue_free()
 	
 	ships_have_to_choose = false
 	 
@@ -64,16 +73,18 @@ func _on_continue_after_game_over(session_ended):
 		
 	yield(get_tree().create_timer(1.5), "timeout") 
 	
-	if not session_ended:
-		if ships_have_to_choose:
-			this_arena.spawn_all_ships(true)
-			pass_node.visible = true
-		else:
-			# same hand, not yet emptied
-			self.pick_next_card()
+	if ships_have_to_choose:
+		this_arena.spawn_all_ships(true)
+		pass_node.visible = true
 	else:
-		pass # end of session -> new card etc
+		self.pick_next_card()
 
+func draw_anew():
+	global.new_session()
+	global.session.discard_hand() # we don't want a normal hand, we need to add a new game first
+	for c in hand_node.get_all_cards():
+		c.queue_free()
+		
 func player_just_chose_a_card(author, card):
 	card.set_player(author.get_player())
 	
