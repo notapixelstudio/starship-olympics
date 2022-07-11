@@ -19,7 +19,7 @@ extents = Vector2( 120, 170 )
 extents = Vector2( 180, 230 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 32
+size = 42
 outline_size = 1
 font_data = ExtResource( 9 )
 
@@ -190,22 +190,22 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 6.01, 35, 352.27, 446.325 )
 
-[node name="Circle" type="Sprite" parent="Ground/Front"]
-visible = false
-self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
-position = Vector2( 83.5367, -131.729 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 11 )
-
 [node name="Border" type="Sprite" parent="Ground/Front"]
 visible = false
 self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
+[node name="Circle" type="Sprite" parent="Ground/Front"]
+visible = false
+self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
+position = Vector2( 80, -132 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 11 )
+
 [node name="TopLeft" type="Node2D" parent="Ground/Front"]
 visible = false
-position = Vector2( 86.6667, -135 )
+position = Vector2( 80, -134 )
 
 [node name="Monogram" type="Label" parent="Ground/Front/TopLeft"]
 modulate = Color( 0.0588235, 0.470588, 0.113725, 1 )
