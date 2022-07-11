@@ -19,14 +19,13 @@ font_data = ExtResource( 1 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 take_ownership = true
-
-[node name="Front" parent="Ground" index="1"]
-scale = Vector2( 0.22223, 1 )
+multiple_owners = true
+float_when_selected = false
 
 [node name="Background" parent="Ground/Front" index="0"]
 modulate = Color( 0.9, 0.9, 0.9, 1 )
 
-[node name="Border" parent="Ground/Front" index="4"]
+[node name="Border" parent="Ground/Front" index="3"]
 visible = true
 
 [node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="7"]
@@ -37,6 +36,7 @@ position = Vector2( 0, -28 )
 position = Vector2( 0, -36 )
 
 [node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="9"]
+position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="MinigameLabelShadow" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]

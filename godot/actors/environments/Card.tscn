@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sprites/cards/card_outline.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=11]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 170 )
@@ -23,11 +24,11 @@ size = 42
 outline_size = 1
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 64
-outline_size = 8
+[sub_resource type="DynamicFont" id=11]
+size = 48
+outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 12 )
 
 [sub_resource type="Animation" id=10]
 length = 1.6
@@ -133,6 +134,95 @@ tracks/6/keys = {
 "values": [ Vector2( 2, 2 ), Vector2( 1e-05, 2 ), Vector2( 2, 2 ) ]
 }
 
+[sub_resource type="Animation" id=12]
+resource_name = "Stand"
+length = 0.001
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ground/Back:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ground/Front:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ground/Back:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Ground/Front:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Ground/Back:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2 ),
+"update": 0,
+"values": [ Vector2( 0, -64 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Ground/Front:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2 ),
+"update": 0,
+"values": [ Vector2( 0, -64 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Shadow:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ) ]
+}
+
 [node name="Card" type="Area2D" groups=["card", "in_camera"]]
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 0
@@ -225,19 +315,15 @@ __meta__ = {
 [node name="Wrapper" type="Node2D" parent="Ground/Front"]
 position = Vector2( 0, 170 )
 
-[node name="Monogram" type="Label" parent="Ground/Front/Wrapper"]
+[node name="Monogram" type="RichTextLabel" parent="Ground/Front/Wrapper"]
 visible = false
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
 margin_left = -202.0
-margin_top = -100.0
-margin_right = 200.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 9 )
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_top = -24.0
+margin_right = 202.0
+margin_bottom = 176.0
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
 
 [node name="Back" type="Node2D" parent="Ground"]
 
@@ -254,6 +340,7 @@ texture = ExtResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Float = SubResource( 10 )
 anims/Reveal = SubResource( 6 )
+anims/Stand = SubResource( 12 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0

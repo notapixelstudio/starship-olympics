@@ -8,6 +8,7 @@ export var draft_card_scene : PackedScene
 var this_arena
 var hand_node : Node
 var hand_position : Node
+var ships_have_to_choose := false
 
 const HAND_SIZE = 4
 
@@ -38,7 +39,7 @@ func _on_continue_after_game_over(session_ended):
 	var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
 	last_played_card.queue_free()
 	
-	var ships_have_to_choose = false
+	ships_have_to_choose = false
 	 
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
@@ -118,7 +119,7 @@ func player_just_chose_a_card(author, card):
 		
 		for card in missing:
 			yield(get_tree().create_timer(0.5), "timeout")
-			self.add_card(card)
+			self.add_card(card, true) # these cards are already selected
 		hand.append_array(missing)
 		hand.shuffle()
 		global.session.set_hand(hand)
@@ -137,7 +138,7 @@ func pick_next_card():
 	yield(self, "card_chosen")
 	Events.emit_signal("minigame_selected", picked_card)
 
-func add_card(card):
+func add_card(card, selected=false):
 	# will put the card in first empty position
 	var draft_card = draft_card_scene.instance()
 	draft_card.set_content_card(card)
@@ -146,6 +147,8 @@ func add_card(card):
 			pos_card.add_child(draft_card)
 			break
 	yield(get_tree().create_timer(0.5), "timeout")
+	if selected:
+		draft_card.select()
 	draft_card.reveal()
 	
 	
@@ -155,7 +158,7 @@ func populate_hand(hand: Array):
 	
 	for card in hand:
 		yield(get_tree().create_timer(0.1), "timeout")
-		self.add_card(card)
+		self.add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
 		
 func animate_selection(picked_card: Minigame):
 	# This will animate the selection of the chosen card
