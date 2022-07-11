@@ -68,6 +68,8 @@ func _on_continue_after_game_over(session_ended):
 		pass # end of session -> new card etc
 
 func player_just_chose_a_card(author, card):
+	card.set_player(author.get_player())
+	
 	self.players_choices[author] = card
 	author.get_parent().remove_child(author)
 	

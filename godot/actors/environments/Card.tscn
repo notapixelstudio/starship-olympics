@@ -19,12 +19,12 @@ extents = Vector2( 120, 170 )
 extents = Vector2( 180, 230 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 52
+size = 32
 outline_size = 1
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=9]
-size = 86
+size = 64
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 9 )
@@ -228,9 +228,9 @@ position = Vector2( 0, 170 )
 [node name="Monogram" type="Label" parent="Ground/Front/Wrapper"]
 visible = false
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
-margin_left = -101.0
+margin_left = -202.0
 margin_top = -100.0
-margin_right = 100.0
+margin_right = 200.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 9 )
 align = 1

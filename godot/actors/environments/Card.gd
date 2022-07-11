@@ -22,7 +22,7 @@ var selected = false
 var flipping = false
 var face_down = true
 
-var player setget set_player, get_player
+var player = null setget set_player, get_player
 var ship
 var character_player
 
@@ -33,7 +33,7 @@ func set_player(v):
 	if take_ownership:
 		if player != null:
 			border.modulate = player.species.color
-			monogram.text = player.species.get_monogram()
+			monogram.text = player.get_id()
 			monogram.modulate = player.species.color
 			border.visible = true
 			monogram.visible = true
@@ -70,7 +70,7 @@ func set_character_player(v):
 		$Ground/Front/TopLeft/Monogram.modulate = character_player.species.color
 		
 		$Ground/Front/Character.texture = character_player.species.character_ok
-		$Ground/Front/TopLeft/Monogram.text = character_player.species.get_monogram()
+		$Ground/Front/TopLeft/Monogram.text = character_player.get_id()
 		
 func get_character_player():
 	return character_player
