@@ -9,6 +9,9 @@ export var options_scene: PackedScene
 export var local_multi_scene: PackedScene
 
 func _ready():
+	for button in $Buttons.get_children():
+		button.connect("focus_entered", self, '_on_button_focus_entered', [button])
+		button.connect("focus_exited", self, '_on_button_focus_exited', [button])
 	self.appear()
 
 func appear():
@@ -40,3 +43,9 @@ func disable_buttons():
 		
 func enable_buttons():
 	buttons.visible = true
+
+func _on_button_focus_entered(button):
+	$Tooltips.get_node(button.name).modulate = Color(1,1,1,1)
+	
+func _on_button_focus_exited(button):
+	$Tooltips.get_node(button.name).modulate = Color(1,1,1,0)

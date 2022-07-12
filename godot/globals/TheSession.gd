@@ -85,6 +85,9 @@ func choose_next_card() -> Minigame:
 	global.the_game.deck.put_back_cards([next_card])
 	return next_card
 
+func discard_hand():
+	global.the_game.deck.put_back_cards(hand)
+	hand = []
 
 func add_match(last_match: Dictionary):
 	matches.insert(0, last_match)

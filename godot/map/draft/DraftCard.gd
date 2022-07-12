@@ -28,8 +28,7 @@ func set_content_card(card: Minigame):
 	
 # @override
 func tap(author):
+	.tap(author)
 	if author is Ship:
-		ship = author
-		set_player(author.get_player())
-	Events.emit_signal("card_tapped", author, self)
-	print("{minigame} tapped by {author_name}".format({"minigame": card_content.id, "author_name":author.info_player.id}))
+		Events.emit_signal("card_tapped", author, self)
+		print("{minigame} tapped by {author_name}".format({"minigame": card_content.id, "author_name":author.info_player.id}))

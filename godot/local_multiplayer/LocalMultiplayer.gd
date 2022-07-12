@@ -91,6 +91,7 @@ func navigate_to_tutorial():
 	add_child(tutorial)
 	yield(tutorial, 'over')
 	
+	create_map()
 	navigate_to_map()
 	
 var players_sequence : Array = []
@@ -107,14 +108,9 @@ func start_match(minigame: Minigame) -> void:
 	
 func continue_fight() -> void:
 	"""
-	After a session has ended, start a new one.
+	After a session has ended, return to the map.
 	"""
-	# we get rid of the current map and initialize a new one.
-	remove_child(map)
-	map.queue_free()
 	navigate_to_map()
-	#global.new_session(players)
-	global.safe_destroy_session()
 	
 func next_level(minigame):
 	"""
@@ -194,14 +190,17 @@ func _on_nav_to_character_selection():
 func _on_nav_to_map():
 	global.safe_destroy_session()
 	map.queue_free()
+	create_map()
 	navigate_to_map()
+	
+func create_map():
+	map = map_scene.instance()
 	
 func navigate_to_map():
 	safe_destroy_combat()
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
-	map = map_scene.instance()
 	add_child(map)
 
 func start_demo():

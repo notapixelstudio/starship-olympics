@@ -18,6 +18,8 @@ var team: String
 func new_match():
 	self.stats = PlayerStats.new()
 	
+func get_id() -> String:
+	return id
 	
 func set_id(name: String) -> void:
 	self.id = name
@@ -51,6 +53,9 @@ func get_session_score_total():
 func get_species_name() -> String:
 	return species.name
 
+func get_color() -> Color:
+	return species.color
+	
 func has_proper_team() -> bool:
 	return self.team != self.id
 	

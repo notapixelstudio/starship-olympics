@@ -69,6 +69,7 @@ func _on_game_ended() -> void:
 	log_event({
 		'event_name': 'game_ended',
 		'game_uuid': global.the_game.get_uuid(),
+		'game_number': global.game_number,
 		'duration_ms': OS.get_ticks_msec() - game_started_ms
 	}, true)
 	

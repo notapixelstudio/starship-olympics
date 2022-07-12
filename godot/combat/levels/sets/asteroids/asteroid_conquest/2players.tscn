@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/AsteroidConquest.tres" type="Resource" id=10]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
@@ -99,24 +98,15 @@ deadly = false
 smallest_break = false
 conquerable = true
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 11 )]
-position = Vector2( -2200, 0 )
-type = "sword"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
-position = Vector2( 2200, 0 )
-type = "sword"
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 2200, 0 )
 rotation = 3.14159
-controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( -2200, 0 )
 rotation = 0.0
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 9 )
 
 [node name="Camera" parent="." index="7"]

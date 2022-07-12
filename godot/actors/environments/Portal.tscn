@@ -9,10 +9,10 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 2000, 30 )
+extents = Vector2( 300, 30 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 2000, 30 )
+extents = Vector2( 300, 30 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.338889, 1 )
@@ -30,7 +30,7 @@ curve = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
-emission_box_extents = Vector3( 25, 2000, 1 )
+emission_box_extents = Vector3( 25, 300, 1 )
 flag_disable_z = true
 gravity = Vector3( 40, 0, 0 )
 orbit_velocity = 0.0
@@ -42,7 +42,7 @@ color_ramp = SubResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 2
-emission_box_extents = Vector3( 100, 2000, 1 )
+emission_box_extents = Vector3( 100, 300, 1 )
 flag_disable_z = true
 gravity = Vector3( 100, 0, 0 )
 angular_velocity = 100.0
@@ -90,7 +90,7 @@ modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -28, 0 )
 rotation = 1.5708
-points = PoolVector2Array( -300, -12.7408, -270, -8.98153, -240, -1.11162, -210, -19.6866, -180, -15.1656, -150, -11.1557, -120, -13.4893, -90, -1.42297, -60, -2.72388, -30, -8.03339, 0, -5.75039, 30, -9.4897, 60, -2.60464, 90, -5.09678, 120, -9.98546, 150, -9.55621, 180, -9.54621, 210, -8.69489, 240, -12.4708, 270, -12.0754 )
+points = PoolVector2Array( -300, -17.3363, -270, -9.98929, -240, -15.806, -210, -4.56008, -180, -15.4154, -150, -10.2381, -120, -15.2375, -90, -3.02842, -60, -8.93151, -30, -18.1331, 0, -11.4834, 30, -3.69105, 60, -19.0551, 90, -19.7689, 120, -7.7793, 150, -19.3748, 180, -4.47524, 210, -9.26483, 240, -0.274467, 270, -13.107 )
 width = 300.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 1 )

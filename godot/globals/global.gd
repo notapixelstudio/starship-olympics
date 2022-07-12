@@ -112,7 +112,7 @@ func set_version(value):
 
 # OPTIONS need a min and a MAX
 const min_win = 1
-var win = 5
+var win = 3
 const max_win = 10
 
 var campaign_win = win
@@ -776,8 +776,11 @@ var the_match: TheMatch = null
 var session: TheSession = null
 var arena
 
+var game_number := 0
+
 func new_game(players) -> TheGame:
 	safe_destroy_game()
+	game_number += 1
 	the_game = TheGame.new()
 	the_game.set_players(players)
 	Events.emit_signal("game_started")
@@ -823,6 +826,9 @@ func safe_destroy_session() -> void:
 	if is_session_running():
 		# also delete the match
 		safe_destroy_match()
+		
+		# put back cards into the deck
+		session.discard_hand()
 		
 		Events.emit_signal("session_ended")
 		session.free()
