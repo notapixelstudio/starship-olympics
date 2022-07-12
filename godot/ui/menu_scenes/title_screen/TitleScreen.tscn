@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://logo.png" type="Texture" id=4]
 [ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/lock_generic.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -108,6 +109,12 @@ action_mode = 0
 text = "Team Fight"
 flat = true
 
+[node name="Lock" type="Sprite" parent="Buttons/TeamVersus"]
+visible = false
+position = Vector2( 290, 40 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 7 )
+
 [node name="Campaign" type="Button" parent="Buttons"]
 margin_top = 130.0
 margin_right = 290.0
@@ -117,6 +124,12 @@ disabled = true
 action_mode = 0
 text = "Campaign"
 flat = true
+
+[node name="Lock" type="Sprite" parent="Buttons/Campaign"]
+visible = false
+position = Vector2( 290, 40 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 7 )
 
 [node name="Options" type="Button" parent="Buttons"]
 margin_top = 189.0

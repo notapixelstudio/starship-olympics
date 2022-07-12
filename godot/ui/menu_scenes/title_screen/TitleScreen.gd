@@ -37,6 +37,7 @@ func _on_Fight_pressed():
 
 func _on_QuitButton_pressed():
 	global.end_execution()
+	Button
 
 func disable_buttons():
 	buttons.visible = false
@@ -45,7 +46,11 @@ func enable_buttons():
 	buttons.visible = true
 
 func _on_button_focus_entered(button):
+	if button.disabled:
+		button.get_node('Lock').visible = true
 	$Tooltips.get_node(button.name).modulate = Color(1,1,1,1)
 	
 func _on_button_focus_exited(button):
+	if button.disabled:
+		button.get_node('Lock').visible = false
 	$Tooltips.get_node(button.name).modulate = Color(1,1,1,0)
