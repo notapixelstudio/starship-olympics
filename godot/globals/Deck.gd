@@ -20,10 +20,13 @@ func _init():
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
 	
+# could return less than the number of requested cards if the deck is emptied
 func draw(how_many : int) -> Array:
 	var result = []
 	for i in range(how_many):
-		result.append(cards.pop_front())
+		var card = cards.pop_front()
+		if card != null:
+			result.append()
 	return result
 	
 func shuffle():
