@@ -10,6 +10,8 @@ export var level_2players : PackedScene
 export var level_3players : PackedScene
 export var level_4players : PackedScene
 
+var new := false
+
 func get_id(): # FIXME? this resource should have its own ID
 	return game_mode.get_id()
 	

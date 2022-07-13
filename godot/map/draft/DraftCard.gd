@@ -12,7 +12,6 @@ func set_chosen(v):
 		yield(self, "ready")
 	$Ground/Select.visible = chosen
 	
-
 func set_minigame_label(name):
 	$Ground/Front/MinigameLabelWrapper/MinigameLabel.text = name
 	$Ground/Front/MinigameLabelWrapper/MinigameLabelShadow.text = name
@@ -25,6 +24,7 @@ func set_content_card(card: Minigame):
 	card_content = card
 	self.set_minigame_label(card.get_name())
 	self.set_minigame_icon(card.get_icon())
+	$Ground/Front/MinigameLabelWrapper/NewLabel.visible = card_content.new
 	
 # @override
 func tap(author):

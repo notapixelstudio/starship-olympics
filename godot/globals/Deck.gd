@@ -31,6 +31,8 @@ func draw(how_many : int) -> Array:
 	
 func shuffle():
 	cards.shuffle()
+	for card in cards:
+		card.new = false
 	
 func put_back_cards(cards_to_put_back : Array) -> void:
 	cards.append_array(cards_to_put_back)
@@ -40,6 +42,7 @@ func add_new_cards(amount := 1) -> void:
 	for i in range(amount):
 		var new_card = card_pool.get_new_card()
 		if new_card != null:
+			new_card.new = true
 			new_cards.append(new_card)
 			
 	new_cards.shuffle()
