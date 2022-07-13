@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=5]
-[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=8]
 
 [node name="SkullVariants" instance=ExtResource( 5 )]
@@ -11,118 +10,103 @@
 [node name="A" type="Node2D" parent="." index="0"]
 visible = false
 
-[node name="Wall6" parent="A" index="0" instance=ExtResource( 3 )]
-position = Vector2( 50, -550 )
-rotation = 0.785398
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone5" parent="A" index="0" instance=ExtResource( 1 )]
+position = Vector2( 450, 450 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="A/Wall6" index="8"]
+[node name="GBeveledRect" type="Node" parent="A/NoShipZone5" index="11"]
 script = ExtResource( 8 )
-width = 300
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+width = 600
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall8" parent="A" index="1" instance=ExtResource( 3 )]
-position = Vector2( -50, 500 )
-rotation = 0.785398
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone6" parent="A" index="1" instance=ExtResource( 1 )]
+position = Vector2( -450, -450 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="A/Wall8" index="8"]
+[node name="GBeveledRect" type="Node" parent="A/NoShipZone6" index="11"]
 script = ExtResource( 8 )
-width = 300
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+width = 600
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall7" parent="A" index="2" instance=ExtResource( 3 )]
-position = Vector2( 500, 50 )
-rotation = 2.35619
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone7" parent="A" index="2" instance=ExtResource( 1 )]
+position = Vector2( -451, 450 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="A/Wall7" index="8"]
+[node name="GBeveledRect" type="Node" parent="A/NoShipZone7" index="11"]
 script = ExtResource( 8 )
-width = 300
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+height = 600
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall9" parent="A" index="3" instance=ExtResource( 3 )]
-position = Vector2( -500, -50 )
-rotation = 2.35619
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone8" parent="A" index="3" instance=ExtResource( 1 )]
+position = Vector2( 450, -450 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="A/Wall9" index="8"]
+[node name="GBeveledRect" type="Node" parent="A/NoShipZone8" index="11"]
 script = ExtResource( 8 )
-width = 300
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+height = 600
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
 [node name="B" type="Node2D" parent="." index="1"]
 visible = false
 
-[node name="Wall4" parent="B" index="0" instance=ExtResource( 3 )]
-position = Vector2( 500, 0 )
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone5" parent="B" index="0" instance=ExtResource( 1 )]
+position = Vector2( 500, 3.8147e-06 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="B/Wall4" index="8"]
+[node name="GBeveledRect" type="Node" parent="B/NoShipZone5" index="11"]
 script = ExtResource( 8 )
-width = 150
-height = 600
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+height = 700
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall3" parent="B" index="1" instance=ExtResource( 3 )]
-position = Vector2( -500, 0 )
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone6" parent="B" index="1" instance=ExtResource( 1 )]
+position = Vector2( -500, 3.8147e-06 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="B/Wall3" index="8"]
+[node name="GBeveledRect" type="Node" parent="B/NoShipZone6" index="11"]
 script = ExtResource( 8 )
-width = 150
-height = 600
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="DramaticSpawner" parent="B" index="2" instance=ExtResource( 6 )]
-match_progress_trigger = 0.1
-
-[node name="PowerUp" parent="B/DramaticSpawner" index="0" instance=ExtResource( 7 )]
-type = "wave_gun"
+height = 700
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
 [node name="C" type="Node2D" parent="." index="2"]
 visible = false
 
 [node name="Wall" parent="C" index="0" instance=ExtResource( 3 )]
-position = Vector2( 0, 400 )
+position = Vector2( 0, 350 )
 
 [node name="GBeveledRect" type="Node" parent="C/Wall" index="8"]
 script = ExtResource( 8 )
-width = 300
 height = 150
 bevel = 1
 bevel_nw = 1
@@ -130,72 +114,11 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall3" parent="C" index="1" instance=ExtResource( 3 )]
-position = Vector2( -500, 900 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="C/Wall3" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall4" parent="C" index="2" instance=ExtResource( 3 )]
-position = Vector2( 500, 900 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="C/Wall4" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall5" parent="C" index="3" instance=ExtResource( 3 )]
-position = Vector2( 500, -900 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="C/Wall5" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall6" parent="C" index="4" instance=ExtResource( 3 )]
-position = Vector2( -500, -900 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="C/Wall6" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall2" parent="C" index="5" instance=ExtResource( 3 )]
-position = Vector2( 0, -400 )
+[node name="Wall2" parent="C" index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, -350 )
 
 [node name="GBeveledRect" type="Node" parent="C/Wall2" index="8"]
 script = ExtResource( 8 )
-width = 300
 height = 150
 bevel = 1
 bevel_nw = 1
@@ -203,153 +126,208 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="DramaticSpawner" parent="C" index="6" instance=ExtResource( 6 )]
-position = Vector2( 0, 900 )
-match_progress_trigger = 0.1
-chance = 0.9
+[node name="NoShipZone7" parent="C" index="2" instance=ExtResource( 1 )]
+position = Vector2( 500, -800 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="PowerUp" parent="C/DramaticSpawner" index="0" instance=ExtResource( 7 )]
-type = "wave_gun"
+[node name="GBeveledRect" type="Node" parent="C/NoShipZone7" index="11"]
+script = ExtResource( 8 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="DramaticSpawner2" parent="C" index="7" instance=ExtResource( 6 )]
-position = Vector2( 0, -850 )
-match_progress_trigger = 0.1
-chance = 0.9
+[node name="NoShipZone8" parent="C" index="3" instance=ExtResource( 1 )]
+position = Vector2( -500, -800 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="PowerUp" parent="C/DramaticSpawner2" index="0" instance=ExtResource( 7 )]
-type = "wave_gun"
+[node name="GBeveledRect" type="Node" parent="C/NoShipZone8" index="11"]
+script = ExtResource( 8 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="DramaticSpawner3" parent="C" index="8" instance=ExtResource( 6 )]
-match_progress_trigger = 0.4
-chance = 0.9
+[node name="NoShipZone9" parent="C" index="4" instance=ExtResource( 1 )]
+position = Vector2( -500, 800 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="PowerUp" parent="C/DramaticSpawner3" index="0" instance=ExtResource( 7 )]
-type = "shields"
+[node name="GBeveledRect" type="Node" parent="C/NoShipZone9" index="11"]
+script = ExtResource( 8 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone10" parent="C" index="5" instance=ExtResource( 1 )]
+position = Vector2( 500, 800 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="C/NoShipZone10" index="11"]
+script = ExtResource( 8 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
 [node name="D" type="Node2D" parent="." index="3"]
 visible = false
 
-[node name="Wall" parent="D" index="0" instance=ExtResource( 3 )]
-position = Vector2( -500, -700 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="D/Wall" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 200
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall2" parent="D" index="1" instance=ExtResource( 3 )]
-position = Vector2( 500, -700 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="D/Wall2" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 200
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall3" parent="D" index="2" instance=ExtResource( 3 )]
-position = Vector2( -500, 700 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="D/Wall3" index="8"]
-script = ExtResource( 8 )
-width = 150
-height = 200
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
-
-[node name="Wall4" parent="D" index="3" instance=ExtResource( 3 )]
+[node name="NoShipZone11" parent="D" index="0" instance=ExtResource( 1 )]
 position = Vector2( 500, 700 )
-collision_layer = 2147483648
-type = 4
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="D/Wall4" index="8"]
+[node name="GBeveledRect" type="Node" parent="D/NoShipZone11" index="11"]
 script = ExtResource( 8 )
-width = 150
-height = 200
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+height = 250
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone12" parent="D" index="1" instance=ExtResource( 1 )]
+position = Vector2( -500, 700 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="D/NoShipZone12" index="11"]
+script = ExtResource( 8 )
+height = 250
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone13" parent="D" index="2" instance=ExtResource( 1 )]
+position = Vector2( -500, -700 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="D/NoShipZone13" index="11"]
+script = ExtResource( 8 )
+height = 250
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone14" parent="D" index="3" instance=ExtResource( 1 )]
+position = Vector2( 500, -700 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="D/NoShipZone14" index="11"]
+script = ExtResource( 8 )
+height = 250
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone15" parent="D" index="4" instance=ExtResource( 1 )]
+position = Vector2( 0.000217438, -700 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="D/NoShipZone15" index="11"]
+script = ExtResource( 8 )
+height = 250
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone16" parent="D" index="5" instance=ExtResource( 1 )]
+position = Vector2( 0.000217438, 700 )
+scale = Vector2( 1, 1 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="D/NoShipZone16" index="11"]
+script = ExtResource( 8 )
+height = 250
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
 [node name="E" type="Node2D" parent="." index="4"]
 visible = false
 
-[node name="Wall6" parent="E" index="0" instance=ExtResource( 3 )]
-position = Vector2( -432.843, -424.264 )
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone" parent="E" index="0" instance=ExtResource( 1 )]
+position = Vector2( 550, 50 )
+rotation = -0.785398
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="E/Wall6" index="8"]
+[node name="GBeveledRect" type="Node" parent="E/NoShipZone" index="11"]
 script = ExtResource( 8 )
-width = 600
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+width = 350
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall8" parent="E" index="1" instance=ExtResource( 3 )]
-position = Vector2( 432.843, 424.264 )
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone4" parent="E" index="1" instance=ExtResource( 1 )]
+position = Vector2( -550, -50 )
+rotation = -0.785398
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="E/Wall8" index="8"]
+[node name="GBeveledRect" type="Node" parent="E/NoShipZone4" index="11"]
 script = ExtResource( 8 )
-width = 600
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+width = 350
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall7" parent="E" index="2" instance=ExtResource( 3 )]
-position = Vector2( 424.264, -432.843 )
-rotation = 1.5708
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone2" parent="E" index="2" instance=ExtResource( 1 )]
+position = Vector2( 50, -550 )
+rotation = 0.785398
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="E/Wall7" index="8"]
+[node name="GBeveledRect" type="Node" parent="E/NoShipZone2" index="11"]
 script = ExtResource( 8 )
-width = 600
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+width = 350
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="Wall9" parent="E" index="3" instance=ExtResource( 3 )]
-position = Vector2( -424.264, 432.843 )
-rotation = 1.5708
-collision_layer = 2147483648
-type = 4
+[node name="NoShipZone3" parent="E" index="3" instance=ExtResource( 1 )]
+position = Vector2( -50, 550 )
+rotation = 0.785398
+symbol_scale = 1.0
 
-[node name="GBeveledRect" type="Node" parent="E/Wall9" index="8"]
+[node name="GBeveledRect" type="Node" parent="E/NoShipZone3" index="11"]
 script = ExtResource( 8 )
-width = 600
-height = 150
-bevel = 1
-bevel_nw = 1
-bevel_ne = 1
-bevel_sw = 1
-bevel_se = 1
+width = 350
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42

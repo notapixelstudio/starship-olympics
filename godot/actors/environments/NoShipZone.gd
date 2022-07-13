@@ -19,6 +19,7 @@ func _ready():
 func _process(delta):
 	# keep the symbols up
 	$NoShipSign.rotation = -rotation
+	$Polygon2D.texture_rotation = -rotation
 
 func _on_Field_entered(field, body):
 	if body is Ship:
