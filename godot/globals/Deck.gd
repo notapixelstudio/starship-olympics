@@ -26,7 +26,7 @@ func draw(how_many : int) -> Array:
 	for i in range(how_many):
 		var card = cards.pop_front()
 		if card != null:
-			result.append()
+			result.append(card)
 	return result
 	
 func shuffle():
