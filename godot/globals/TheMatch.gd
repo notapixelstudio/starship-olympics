@@ -200,7 +200,7 @@ func to_dict()->Dictionary:
 		"uuid": get_uuid(),
 		"winners": winners,
 		"minigame_id": game_mode.id,
-		"perfect_end": perfect_end
+		"winners_did_perfect": self.winners_did_perfect()
 	}
 
 func get_number_of_players():
@@ -228,3 +228,9 @@ func add_score_to_team(team : String, amount : float):
 		_silent_add_score(player.id, amount)
 		
 	compute_game_status()
+
+func winners_did_perfect() -> bool:
+	for p in self.get_leader_players():
+		if p.get_score() >= target_score or cumulative_points >= target_score:
+			return true
+	return false
