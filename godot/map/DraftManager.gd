@@ -122,7 +122,6 @@ func selections_maybe_all_done():
 		for card in deck.cards:
 			cards_in_deck.append(card.id)
 		print("Discarded phase: cards in deck {missing}".format({"missing": cards_in_deck}))
-		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 		
 		var deck_after_discard = []
 		for card in deck.cards:
@@ -152,6 +151,9 @@ func selections_maybe_all_done():
 		self.pick_next_card()
 		# empty players_choices for the next round
 		self.players_choices = {}
+		
+		# put cards back
+		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 	
 func pick_next_card():
 	# TBD animation
