@@ -1,11 +1,14 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://map/draft/pool/CardPool.gd" type="Script" id=1]
 [ext_resource path="res://combat/minigames/SkullCollectors.tres" type="Resource" id=2]
 [ext_resource path="res://combat/minigames/BoardConquest.tres" type="Resource" id=3]
 [ext_resource path="res://combat/minigames/Tennis.tres" type="Resource" id=4]
+[ext_resource path="res://combat/minigames/ArkOfMemory.tres" type="Resource" id=5]
+[ext_resource path="res://combat/minigames/FirstBlood.tres" type="Resource" id=6]
+[ext_resource path="res://combat/minigames/Negacrown.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
 id = "the_card_pool"
-cards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
+cards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ]
