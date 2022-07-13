@@ -11,6 +11,7 @@ var hand_node : Node
 var hand_position : Node
 var pass_node : Node
 var ships_have_to_choose := false
+var hand_refills := 0
 
 const HAND_SIZE = 4
 
@@ -62,8 +63,13 @@ func _on_continue_after_game_over(session_ended):
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
 		
-		# fetch a new card
-		deck.add_new_card()
+		# fetch a new card (or two if this is the first refill)
+		if hand_refills == 0:
+			deck.add_new_cards(2)
+		else:
+			deck.add_new_cards(1)
+			
+		hand_refills += 1
 		
 		hand = deck.draw(HAND_SIZE)
 		hand.shuffle()

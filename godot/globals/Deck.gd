@@ -32,8 +32,13 @@ func shuffle():
 func put_back_cards(cards_to_put_back : Array) -> void:
 	cards.append_array(cards_to_put_back)
 	
-func add_new_card() -> void:
+func add_new_cards(amount := 1) -> void:
+	var new_cards = []
+	for i in range(amount):
+		var new_card = card_pool.get_new_card()
+		if new_card != null:
+			new_cards.append(new_card)
+			
+	new_cards.shuffle()
 	self.shuffle()
-	var new_card = card_pool.get_new_card()
-	if new_card != null:
-		cards.push_front(new_card) # the new card is drawn as soon as possible
+	cards = new_cards + cards # new cards are placed on top
