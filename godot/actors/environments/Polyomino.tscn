@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/environments/Polyomino.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=3]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -21,8 +23,12 @@ __meta__ = {
 
 [node name="Owned" parent="." instance=ExtResource( 4 )]
 
+[node name="Tappable" parent="." instance=ExtResource( 5 )]
+
+[node name="Goal" parent="." instance=ExtResource( 6 )]
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -150, -150, 150, -150, 150, 150, -150, 150 )
+polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -30,11 +36,10 @@ __meta__ = {
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 1, 1, 1, 0.117647 )
 texture = ExtResource( 3 )
-polygon = PoolVector2Array( -150, -150, 150, -150, 150, 150, -150, 150 )
+polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( -150, -150, 150, -150, 150, 150, -150, 150, -150, -150 )
-width = 20.0
+points = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50, -50, -50 )
 default_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 joint_mode = 2
 begin_cap_mode = 2
@@ -62,3 +67,6 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_Polyomino_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Polyomino_body_exited"]
