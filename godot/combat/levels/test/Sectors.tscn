@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+export var side := 36.0
+export var show_pip := true
+export var debug := false
+export var size := Vector2(24, 12)
+export var num_cells := 60
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	generate_voronoi_diagram()
+
+func generate_voronoi_diagram():
+	var points = []
+	var colors = []
+	var polygons := {} # point-indexed dictionary of polygon lists
+	var tiles := []
+	
+	for i in range(num_cells):
+		points.push_back(Vector2(int(randf()*size.x), int(randf()*size.y)))
+		
+		randomize()
+		var colorPossibilities = [ Color.blue, Color.red, Color.green, Color.cyan, Color.yellow, Color.magenta, Color.purple, Color.orange]
+		colors.push_back(colorPossibilities[randi()%colorPossibilities.size()])
+		
+	for y in range(size.y):
+		for x in range(size.x):
+			var dmin = size.length()
+			var j = -1
+			for i in range(num_cells):
+				var dx = points[i].x - x
+				var dy = points[i].y - y
+				var d = abs(dx) + abs(dy)
+				if d < dmin:
+					dmin = d
+					j = i
+					
+			# create a polygon
+			var poly = PoolVector2Array([
+				Vector2(x, y),
+				Vector2(x+1, y),
+				Vector2(x+1, y+1),
+				Vector2(x, y+1)
+			])
+			
+			if debug:
+				tiles.append({\"poly\": poly, \"index\": j})
+			
+			# append this polygon to the list in the dict
+			if not polygons.has(j):
+				polygons[j] = []
+			polygons[j].append({\"poly\": poly, \"cells\": [poly[0]]})
+			
+			
+	# merge polygons
+	for polylist in polygons.values():
+		while len(polylist) > 1:
+			var bail := false
+			for i in polylist.size():
+				for j in polylist.size():
+					if i == j:
+						continue
+						
+					var result = Geometry.merge_polygons_2d(polylist[i][\"poly\"], polylist[j][\"poly\"])
+					if len(result) == 1:
+						polylist[i][\"poly\"] = result[0]
+						polylist[i][\"cells\"].append_array(polylist[j][\"cells\"])
+						polylist.remove(j)
+						bail = true
+						break
+				if bail:
+					break
+					
+	
+	for i in polygons.keys():
+		var polygon = []
+		for p in polygons[i][0][\"poly\"]:
+			polygon.append(p*side)
+		polygon = PoolVector2Array(polygon)
+		
+		var poly2d = Polygon2D.new()
+		poly2d.polygon = polygon
+		#poly2d.modulate = colors[i]
+		poly2d.self_modulate = Color(0,0,0,0.1)
+		add_child(poly2d)
+	
+		var line2d = Line2D.new()
+		line2d.points = PoolVector2Array(Array(polygon) + [polygon[0]])
+		line2d.width = 2
+		line2d.default_color = Color(0.4,0.4,0.4,1)
+		add_child(line2d)
+		
+		var centroid = Vector2(0,0)
+		for p in polygons[i][0][\"cells\"]:
+			centroid += p
+		centroid /= polygons[i][0][\"cells\"].size()
+		centroid.x = round(centroid.x)
+		centroid.y = round(centroid.y)
+		centroid += Vector2(0.5,0.5)
+		centroid *= side
+		
+		if show_pip:
+			var point2d = Line2D.new()
+			point2d.points = PoolVector2Array([centroid, centroid+Vector2(0.1,0.1)])
+			point2d.width = side/2
+			point2d.default_color = Color(0.4,0.4,0.4,0.2)
+			point2d.begin_cap_mode = Line2D.LINE_CAP_ROUND
+			point2d.end_cap_mode = Line2D.LINE_CAP_ROUND
+			add_child(point2d)
+		
+	if debug:
+		for tile in tiles:
+			var label = Label.new()
+			label.text = str(tile[\"index\"])
+			label.rect_position = tile[\"poly\"][0]*side + Vector2(0.25, 0.25)*side
+			label.rect_scale = Vector2(0.5, 0.5)
+			add_child(label)
+	
+"
+
+[node name="Sectors" type="Node2D"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 200, 100 )
+script = SubResource( 3 )

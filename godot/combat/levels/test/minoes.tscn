@@ -67,6 +67,7 @@ var max_size = 100
 var step = 5
 
 func _ready():
+	return
 	var points = []
 	for child in get_children():
 		if child is Polyomino:
