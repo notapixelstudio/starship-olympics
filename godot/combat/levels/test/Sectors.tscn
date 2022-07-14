@@ -107,7 +107,7 @@ func generate_voronoi_diagram():
 			var point2d = Line2D.new()
 			point2d.points = PoolVector2Array([centroid, centroid+Vector2(0.1,0.1)])
 			point2d.width = side/3
-			point2d.default_color = Color(0.4,0.4,0.4,0.1)
+			point2d.default_color = Color(0.4,0.4,0.4,0.2)
 			point2d.begin_cap_mode = Line2D.LINE_CAP_ROUND
 			point2d.end_cap_mode = Line2D.LINE_CAP_ROUND
 			add_child(point2d)
