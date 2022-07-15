@@ -23,6 +23,7 @@ var winners = [] # Array of winning InfoPlayer
 var no_players = false
 var end_on_perfect := true
 
+var minigame : Minigame
 var game_mode : GameMode
 
 const DEADZONE = 0.1
@@ -234,3 +235,10 @@ func winners_did_perfect() -> bool:
 		if p.get_score() >= target_score or cumulative_points >= target_score:
 			return true
 	return false
+
+func set_minigame(m: Minigame):
+	minigame = m
+	
+func get_minigame() -> Minigame:
+	return minigame
+	
