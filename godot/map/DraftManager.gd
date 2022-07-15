@@ -11,6 +11,7 @@ var hand_node : Node
 var hand_position : Node
 var pass_node : Node
 var ships_have_to_choose := false
+var hand_refills := 0
 
 const HAND_SIZE = 4
 
@@ -62,8 +63,13 @@ func _on_continue_after_game_over(session_ended):
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
 		
-		# fetch a new card
-		deck.add_new_card()
+		# fetch a new card (or two if this is the first refill)
+		if hand_refills == 0:
+			deck.add_new_cards(2)
+		else:
+			deck.add_new_cards(1)
+			
+		hand_refills += 1
 		
 		hand = deck.draw(HAND_SIZE)
 		hand.shuffle()
@@ -71,6 +77,7 @@ func _on_continue_after_game_over(session_ended):
 		yield(get_tree().create_timer(1.0), "timeout")
 		self.populate_hand(hand.duplicate())
 		
+	
 	yield(get_tree().create_timer(1.5), "timeout") 
 	
 	if ships_have_to_choose:
@@ -95,6 +102,8 @@ func player_just_chose_a_card(author, card):
 	
 func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
+		pass_node.visible = false
+		
 		var cards_to_be_replaced = []
 		var hand = global.session.get_hand()
 		# everyone chose. Let's remove cards that have not been chosen and 
@@ -116,7 +125,6 @@ func selections_maybe_all_done():
 		for card in deck.cards:
 			cards_in_deck.append(card.id)
 		print("Discarded phase: cards in deck {missing}".format({"missing": cards_in_deck}))
-		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 		
 		var deck_after_discard = []
 		for card in deck.cards:
@@ -146,6 +154,9 @@ func selections_maybe_all_done():
 		self.pick_next_card()
 		# empty players_choices for the next round
 		self.players_choices = {}
+		
+		# put cards back
+		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 	
 func pick_next_card():
 	# TBD animation

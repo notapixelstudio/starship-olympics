@@ -23,7 +23,7 @@ func _ready():
 	for winner in winners:
 		print("%s won" % [winner.id])
 		assert(winner is InfoPlayer)
-		winner.add_victory(last_match.get("perfect_end"))
+		winner.add_victory(last_match.get("winners_did_perfect"))
 		
 	var max_points = global.win # Points of the session
 	# sorted before and sorted after

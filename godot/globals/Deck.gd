@@ -20,20 +20,31 @@ func _init():
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
 	
+# could return less than the number of requested cards if the deck is emptied
 func draw(how_many : int) -> Array:
 	var result = []
 	for i in range(how_many):
-		result.append(cards.pop_front())
+		var card = cards.pop_front()
+		if card != null:
+			result.append(card)
 	return result
 	
 func shuffle():
 	cards.shuffle()
+	for card in cards:
+		card.new = false
 	
 func put_back_cards(cards_to_put_back : Array) -> void:
 	cards.append_array(cards_to_put_back)
 	
-func add_new_card() -> void:
+func add_new_cards(amount := 1) -> void:
+	var new_cards = []
+	for i in range(amount):
+		var new_card = card_pool.get_new_card()
+		if new_card != null:
+			new_card.new = true
+			new_cards.append(new_card)
+			
+	new_cards.shuffle()
 	self.shuffle()
-	var new_card = card_pool.get_new_card()
-	if new_card != null:
-		cards.push_front(new_card) # the new card is drawn as soon as possible
+	cards = new_cards + cards # new cards are placed on top
