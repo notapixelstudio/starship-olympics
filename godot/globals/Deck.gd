@@ -25,11 +25,14 @@ func _init():
 func draw(how_many : int) -> Array:
 	# reshuffe the played pile into the deck if the deck is emptied
 	if how_many > len(cards):
-		print('deck is about to be emptied (' + str(len(cards)) + ') left.')
+		print('deck is about to be emptied (' + str(len(cards)) + ' left, ' + str(how_many) + ' requested).')
 		print('reshuffling ' + str(len(played_pile)) + ' cards from the played pile.')
+		print(played_pile)
 		self.put_back_cards(played_pile)
 		played_pile = []
 		self.shuffle()
+		print('deck now contains ' + str(len(cards)) + ' cards')
+		print(cards)
 		
 	var result = []
 	for i in range(how_many):

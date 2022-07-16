@@ -63,17 +63,14 @@ func _on_continue_after_game_over(session_ended):
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
 		
-		# fetch a new card (or two if this is the first refill)
-		#if hand_refills == 0:
-		#	deck.add_new_cards(2)
-		#else:
+		hand = deck.draw(HAND_SIZE-1)
+		# add a new card and draw it right now
 		deck.add_new_cards(1)
-		
-		hand_refills += 1
-		
-		hand = deck.draw(HAND_SIZE)
+		hand.append(deck.draw(1)[0])
 		hand.shuffle()
 		global.session.set_hand(hand)
+		hand_refills += 1
+		
 		yield(get_tree().create_timer(1.0), "timeout")
 		self.populate_hand(hand.duplicate())
 		

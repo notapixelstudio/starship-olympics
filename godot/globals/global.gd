@@ -760,7 +760,7 @@ func new_session() -> TheSession:
 	the_game.reset_players()
 	
 	var deck = the_game.get_deck()
-	var hand = deck.draw(1)
+	var hand = deck.draw(4)
 	session.set_hand(hand)
 	
 	Events.emit_signal('session_started')
