@@ -10,6 +10,11 @@ var deck := Deck.new()
 func _init():
 	uuid = UUID.v4()
 	
+	# scripted first-time execeution
+	# do not shuffle the deck if this is the first game of this execution
+	if global.game_number > 1:
+		deck.shuffle()
+	
 func get_uuid() -> String:
 	return uuid
 

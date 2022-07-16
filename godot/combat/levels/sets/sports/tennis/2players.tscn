@@ -161,7 +161,7 @@ hide_grid = true
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="9"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 2 )
 width = 4400
 height = 2000
@@ -422,14 +422,14 @@ colorize = false
 [node name="Wall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, -1000 )
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="9"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
 script = ExtResource( 13 )
 sides = 4.0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
 position = Vector2( 0, 1000 )
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="9"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
 script = ExtResource( 13 )
 sides = 4.0
 

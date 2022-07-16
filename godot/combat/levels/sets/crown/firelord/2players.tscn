@@ -185,22 +185,7 @@ enabled = true
 texture = ExtResource( 15 )
 centered = false
 
-[node name="RightPortal" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
-position = Vector2( 2746, 0 )
-linked_to_path = NodePath("../LeftPortal")
-width = 1100.0
-color = Color( 0, 0.180392, 1, 1 )
-show_hole = false
-
-[node name="LeftPortal" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
-position = Vector2( -2746, 0 )
-rotation = -3.14159
-linked_to_path = NodePath("../RightPortal")
-width = 1100.0
-color = Color( 0, 0.180392, 1, 1 )
-show_hole = false
-
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 8 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 8 )]
 hollow = true
 type = 2
 hide_line_below = true
@@ -222,7 +207,7 @@ bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
 
-[node name="SolidOutsideWall" parent="Battlefield/Background" index="4" instance=ExtResource( 8 )]
+[node name="SolidOutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 8 )]
 hollow = true
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -327,6 +312,19 @@ anims/Rotate = SubResource( 4 )
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 type = "crown"
+
+[node name="RightPortal" parent="Battlefield/Foreground" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2736, 0 )
+linked_to_path = NodePath("../LeftPortal")
+width = 2000.0
+show_hole = false
+
+[node name="LeftPortal" parent="Battlefield/Foreground" index="2" instance=ExtResource( 5 )]
+position = Vector2( -2736, 0 )
+rotation = -3.14159
+linked_to_path = NodePath("../RightPortal")
+width = 2000.0
+show_hole = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 19 )]
 position = Vector2( -1550, 0 )

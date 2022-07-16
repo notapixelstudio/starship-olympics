@@ -178,29 +178,23 @@ species = ExtResource( 2 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
 position = Vector2( 2400, 500 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 4 )]
 position = Vector2( 2400, -500 )
 rotation = 3.14159
-controls = "joy3"
+controls = "kb2"
 species = ExtResource( 8 )
-cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 4 )]
 position = Vector2( -2400, 500 )
 rotation = 0.0
-controls = "joy4"
+controls = "kb2"
 species = ExtResource( 13 )
-cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
-enabled = false
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

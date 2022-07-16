@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=16]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -229,7 +228,6 @@ anims/Rotate = SubResource( 1 )
 [node name="Turret" parent="Battlefield/Middleground" index="0" instance=ExtResource( 16 )]
 weapon = ExtResource( 14 )
 rate = 0.25
-rotation_speed = 0.4
 
 [node name="Routine" type="AnimationPlayer" parent="Battlefield/Middleground/Turret" index="0"]
 root_node = NodePath("../..")
@@ -240,24 +238,24 @@ script = SubResource( 3 )
 
 [node name="Laser" parent="Battlefield/Middleground/Turret/Lasers" index="0" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 100, 0 )
+position = Vector2( 158, 0 )
 on = false
 
 [node name="Laser2" parent="Battlefield/Middleground/Turret/Lasers" index="1" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 0, 100 )
+position = Vector2( 0, 158 )
 rotation = 1.5708
 on = false
 
 [node name="Laser3" parent="Battlefield/Middleground/Turret/Lasers" index="2" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( -100, 0 )
+position = Vector2( -158, 0 )
 rotation = 3.14159
 on = false
 
 [node name="Laser4" parent="Battlefield/Middleground/Turret/Lasers" index="3" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 0, -100 )
+position = Vector2( 0, -158 )
 rotation = 4.71239
 on = false
 
@@ -267,40 +265,25 @@ position = Vector2( 1300, 1300 )
 [node name="CameraEye2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
 position = Vector2( -1300, -1300 )
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="3" instance=ExtResource( 18 )]
-position = Vector2( -700, 700 )
-type = "snake"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 18 )]
-position = Vector2( -256.218, -956.218 )
-type = "snake"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 18 )]
-position = Vector2( 956.218, 256.218 )
-type = "snake"
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
 position = Vector2( -700, 700 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 12 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
 position = Vector2( -256.218, -956.218 )
 rotation = 2.0944
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 17 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 4 )]
 position = Vector2( 956.218, 256.218 )
 rotation = -2.0944
-controls = "joy3"
+controls = "kb2"
 species = ExtResource( 8 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

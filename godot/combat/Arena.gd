@@ -138,7 +138,8 @@ func _enter_tree():
 	# this happens before descendants _ready() calls
 	# but after export vars are set for this node
 	# it is needed to actually take the "standalone" export var
-	# into consideration 
+	# into consideration
+	global.arena = self
 	
 	if global.is_match_running():
 		standalone = false
@@ -721,6 +722,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
 	ship.set_max_health(game_mode.starting_health)
+	ship.set_auto_thrust(game_mode.auto_thrust)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")

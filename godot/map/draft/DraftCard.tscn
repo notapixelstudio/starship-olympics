@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://map/draft/DraftCard.gd" type="Script" id=3]
 [ext_resource path="res://assets/map/selector.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=2]
 size = 96
@@ -11,35 +13,44 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
-outline_size = 6
+outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 72
+font_data = ExtResource( 5 )
 
 [node name="DraftCard" instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
+take_ownership = true
+multiple_owners = true
+float_when_selected = false
 
-[node name="Front" parent="Ground" index="1"]
-scale = Vector2( 0.22223, 1 )
+[node name="Background" parent="Ground/Front" index="0"]
+modulate = Color( 0.9, 0.9, 0.9, 1 )
+
+[node name="Border" parent="Ground/Front" index="3"]
+visible = true
 
 [node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="7"]
 modulate = Color( 0, 0, 0, 0.313726 )
 position = Vector2( 0, -28 )
-scale = Vector2( 0.9, 0.9 )
 
 [node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="8"]
-position = Vector2( 0, -34 )
-scale = Vector2( 0.9, 0.9 )
+position = Vector2( 0, -36 )
 
 [node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="9"]
+position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="MinigameLabelShadow" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]
 modulate = Color( 0, 0, 0, 0.313726 )
 margin_left = -900.0
-margin_top = 14.0
+margin_top = 36.0
 margin_right = 900.0
-margin_bottom = 344.0
+margin_bottom = 348.0
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
 align = 1
@@ -52,8 +63,9 @@ __meta__ = {
 modulate = Color( 1, 0.870588, 0.372549, 1 )
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
 margin_left = -900.0
+margin_top = 20.0
 margin_right = 900.0
-margin_bottom = 330.0
+margin_bottom = 334.0
 custom_fonts/font = SubResource( 1 )
 text = "MINIGAME"
 align = 1
@@ -61,6 +73,30 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="NewLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="2"]
+visible = false
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+self_modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_left = -900.0
+margin_top = -580.0
+margin_right = 900.0
+margin_bottom = -266.0
+custom_fonts/font = SubResource( 3 )
+text = "NEW!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="0"]
+position = Vector2( 776, 157 )
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="1"]
+position = Vector2( 1024, 157 )
+texture = ExtResource( 6 )
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false

@@ -2,7 +2,6 @@ extends Area2D
 
 class_name Card
 
-onready var anim = $AnimationPlayer
 onready var outline = $Ground/Outline
 onready var border = $Ground/Front/Border
 onready var background = $Ground/Front/Background
@@ -13,6 +12,8 @@ export (String) var content = null setget set_content, get_content
 
 export var auto_flip_back = false setget set_auto_flip_back
 export var take_ownership = false
+export var multiple_owners := false
+export var float_when_selected := true
 
 signal revealing_while_undetermined
 signal taken
@@ -22,7 +23,8 @@ var selected = false
 var flipping = false
 var face_down = true
 
-var player setget set_player, get_player
+var player = null setget set_player, get_player
+var players := []
 var ship
 var character_player
 
@@ -30,16 +32,33 @@ func set_player(v):
 	var previous_player = player
 	player = v
 	
+	if multiple_owners:
+		if player != null and not players.has(player):
+			players.append(player)
+	
 	if take_ownership:
-		if player != null:
-			border.modulate = player.species.color
-			monogram.text = player.species.get_monogram()
-			monogram.modulate = player.species.color
-			border.visible = true
-			monogram.visible = true
-			selected = true
+		if multiple_owners:
+			if len(players) == 0:
+				blur()
+			else:
+				var ids = ''
+				for p in players:
+					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_id() + '[/color]  '
+				ids = ids.strip_edges()
+				monogram.bbcode_text = "[center]" + ids + "[/center]"
+				monogram.visible = true
+				
+				self.select()
 		else:
-			blur()
+			if player == null:
+				blur()
+			else:
+				monogram.bbcode_text = "[center]" + player.get_id() + "[/center]"
+				monogram.modulate = player.species.color
+				monogram.visible = true
+				
+				self.select()
+				border.modulate = player.species.color # override color
 	
 	# this should be emitted here, after the value is updated correctly
 	if player != previous_player and player != null:
@@ -70,7 +89,7 @@ func set_character_player(v):
 		$Ground/Front/TopLeft/Monogram.modulate = character_player.species.color
 		
 		$Ground/Front/Character.texture = character_player.species.character_ok
-		$Ground/Front/TopLeft/Monogram.text = character_player.species.get_monogram()
+		$Ground/Front/TopLeft/Monogram.text = character_player.get_id()
 		
 func get_character_player():
 	return character_player
@@ -85,32 +104,43 @@ func refresh_texture():
 		$Ground/Front/Figure.texture = null
 
 func tap(author):
-	# no retaking
-	if not face_down or flipping:
+	# no retaking if single owner
+	if (not face_down or flipping) and not multiple_owners:
 		return
 		
 	flipping = true
 	if author is Ship:
 		ship = author
 		set_player(author.get_player())
-	reveal()
+	
+	if face_down:
+		reveal()
 
 func reveal():
 	face_down = false
 	if content == null:
 		emit_signal('revealing_while_undetermined', self)
-	anim.play("Reveal")
-	yield(anim, "animation_finished")
+	$AnimationPlayer.play("Reveal")
+	yield($AnimationPlayer, "animation_finished")
 	flipping = false
 	emit_signal("revealed")
-	anim.play("Float")
+	if not selected or float_when_selected:
+		$AnimationPlayer.play("Float")
 	
 	if auto_flip_back:
 		# reflip after 6 seconds
 		timer.start(6)
 	
+func select():
+	selected = true
+	border.modulate = Color(1.3,1.1,1.0)
+	border.visible = true
+	if not float_when_selected:
+		$AnimationPlayer.play("Stand")
+	
 func deselect():
 	selected = false
+	$AnimationPlayer.play("Float")
 	
 func blur():
 	border.visible = false
@@ -124,9 +154,10 @@ func hide():
 	flipping = true
 	face_down = true
 	self.set_player(null)
+	self.players = []
 	selected = false
-	anim.play_backwards("Reveal")
-	yield(anim, "animation_finished")
+	$AnimationPlayer.play_backwards("Reveal")
+	yield($AnimationPlayer, "animation_finished")
 	flipping = false
 
 func equals(other_card):
@@ -160,5 +191,5 @@ func set_auto_flip_back(v):
 		
 func show_mark(v):
 	$Ground/Front/Wrapper/Monogram.visible = true
-	$Ground/Front/Wrapper/Monogram.text = str(v)
+	$Ground/Front/Wrapper/Monogram.bbcode_text = "[center]" + str(v) + "[/center]"
 	

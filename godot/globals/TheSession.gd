@@ -82,9 +82,12 @@ func get_next_minigame(set: Set):
 
 func choose_next_card() -> Minigame:
 	var next_card = hand.pop_front()
-	global.the_game.deck.put_back_cards([next_card])
+	global.the_game.deck.put_card_into_played_pile(next_card)
 	return next_card
 
+func discard_hand():
+	global.the_game.deck.put_back_cards(hand)
+	hand = []
 
 func add_match(last_match: Dictionary):
 	matches.insert(0, last_match)

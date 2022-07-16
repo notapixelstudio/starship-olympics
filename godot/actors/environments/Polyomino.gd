@@ -7,6 +7,8 @@ var order = 1
 var player
 var inner_polygon_global
 
+signal goal_done
+
 func _ready():
 	refresh()
 	set_order(order)
@@ -88,3 +90,32 @@ func _process(delta):
 	if not found and get_player() != null:
 		set_player(null)
 		
+# these are done in a different way here
+func show_tap_preview(author):
+	pass
+func hide_tap_preview():
+	pass
+	
+	
+func _on_Polyomino_body_entered(body):
+	if body is Ship:
+		Events.emit_signal("tappable_entered", self, body)
+		
+func _on_Polyomino_body_exited(body):
+	if body is Ship:
+		Events.emit_signal("tappable_exited", self, body)
+		
+func tap(author: Ship):
+	if author.get_player() != self.get_player():
+		return
+		
+	set_process(false)
+	author.get_parent().remove_child(author)
+	do_goal(author.get_player(), author.position)
+
+func get_score():
+	return order
+	
+func do_goal(player, pos):
+	emit_signal('goal_done', player, self, pos)
+	

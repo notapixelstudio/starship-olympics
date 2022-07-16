@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map_with_sets/MapGameMode.tres" type="Resource" id=2]
@@ -10,9 +10,40 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://map/draft/DraftCard.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+[ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=11]
 [ext_resource path="res://map/DraftManager.gd" type="Script" id=12]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=13]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=14]
 [ext_resource path="res://combat/styles/lightpurple.tres" type="Resource" id=20]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=21]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+signal tapped
+
+func tap(author):
+	if self.visible:
+		self.emit_signal(\"tapped\", author)
+	
+func show_tap_preview(ship : Ship):
+	$Sprite.modulate = Color(1,1,1,1)
+	
+func hide_tap_preview():
+	$Sprite.modulate = Color(0.7,0.7,0.7,1)
+
+func _on_PASS_body_entered(body):
+	if body is Ship:
+		Events.emit_signal(\"tappable_entered\", self, body)
+
+func _on_PASS_body_exited(body):
+	if body is Ship:
+		Events.emit_signal(\"tappable_exited\", self, body)
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 14 )
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -28,6 +59,7 @@ standalone = false
 script = ExtResource( 12 )
 this_arena_path = NodePath("../..")
 hand_node_path = NodePath("../../Battlefield/Middleground/Hand")
+pass_path = NodePath("../../Battlefield/Middleground/PASS")
 draft_card_scene = ExtResource( 9 )
 
 [node name="Tween" type="Tween" parent="Managers/DraftManager" index="0"]
@@ -72,16 +104,56 @@ texture = ExtResource( 3 )
 script = ExtResource( 7 )
 
 [node name="Card1" type="Position2D" parent="Battlefield/Middleground/Hand" index="0"]
-position = Vector2( -1050, 0 )
+position = Vector2( -1400, 0 )
 
 [node name="Card2" type="Position2D" parent="Battlefield/Middleground/Hand" index="1"]
-position = Vector2( -350, 0 )
+position = Vector2( -700, 0 )
 
 [node name="Card3" type="Position2D" parent="Battlefield/Middleground/Hand" index="2"]
-position = Vector2( 350, 0 )
 
 [node name="Card4" type="Position2D" parent="Battlefield/Middleground/Hand" index="3"]
-position = Vector2( 1050, 0 )
+position = Vector2( 700, 0 )
+
+[node name="Card5" type="Position2D" parent="Battlefield/Middleground/Hand" index="4"]
+position = Vector2( 1400, 0 )
+
+[node name="PASS" type="Area2D" parent="Battlefield/Middleground" index="1"]
+visible = false
+position = Vector2( 1400, 800 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tappable" parent="Battlefield/Middleground/PASS" index="0" instance=ExtResource( 11 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/PASS" index="1"]
+position = Vector2( -1400, -800 )
+polygon = PoolVector2Array( 1050, 600, 1750, 600, 1750, 1000, 1050, 1000 )
+
+[node name="Shadow" type="Sprite" parent="Battlefield/Middleground/PASS" index="2"]
+modulate = Color( 0, 0, 0, 0.235294 )
+position = Vector2( 0, 32 )
+rotation = 1.5708
+scale = Vector2( 2, 3 )
+texture = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/PASS" index="3"]
+modulate = Color( 0.7, 0.7, 0.7, 1 )
+rotation = 1.5708
+scale = Vector2( 2, 3 )
+texture = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="Battlefield/Middleground/PASS" index="4"]
+margin_left = -250.0
+margin_top = -100.0
+margin_right = 250.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "PASS"
+align = 1
+valign = 1
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -600, 804 )
@@ -127,3 +199,5 @@ subtractHeight = 450
 disabled_override = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+[connection signal="body_entered" from="Battlefield/Middleground/PASS" to="Battlefield/Middleground/PASS" method="_on_PASS_body_entered"]
+[connection signal="body_exited" from="Battlefield/Middleground/PASS" to="Battlefield/Middleground/PASS" method="_on_PASS_body_exited"]
