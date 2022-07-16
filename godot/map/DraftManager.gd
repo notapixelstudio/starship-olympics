@@ -63,10 +63,14 @@ func _on_continue_after_game_over(session_ended):
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
 		
-		hand = deck.draw(HAND_SIZE-1)
+		var how_many_new_cards := 1
+		if hand_refills == 0:
+			how_many_new_cards = 2
+		
+		hand = deck.draw(HAND_SIZE-how_many_new_cards)
 		# add a new card and draw it right now
-		deck.add_new_cards(1)
-		hand.append(deck.draw(1)[0])
+		deck.add_new_cards(how_many_new_cards)
+		hand.append_array(deck.draw(how_many_new_cards))
 		hand.shuffle()
 		global.session.set_hand(hand)
 		hand_refills += 1
@@ -116,9 +120,20 @@ func selections_maybe_all_done():
 				yield(get_tree().create_timer(0.5), "timeout")
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
 		
-		# shuffle discarded cards right back into the deck
-		global.the_game.get_deck().put_back_cards(discarded)
-		global.the_game.get_deck().shuffle()
+		var deck = global.the_game.get_deck()
+		
+		# all discarded cards get a strike
+		var to_be_put_back = []
+		for card in discarded:
+			card.take_strike()
+			if card.has_enough_strikes():
+				print(card.get_id() + ' has enough strikes and will be removed.')
+			else:
+				to_be_put_back.append(card)
+		
+		# shuffle the remaining cards right back into the deck
+		deck.put_back_cards(to_be_put_back)
+		deck.shuffle()
 		
 		self.pick_next_card()
 		# empty players_choices for the next round
@@ -157,7 +172,7 @@ func populate_hand(hand: Array):
 	hand.shuffle()
 	
 	# keep the new cards at the rightmost place
-	hand.sort_custom(self, "sort_hand")
+	#hand.sort_custom(self, "sort_hand")
 	
 	for card in hand:
 		yield(get_tree().create_timer(0.1), "timeout")

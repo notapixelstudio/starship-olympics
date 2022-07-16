@@ -13,6 +13,7 @@ export var level_4players : PackedScene
 var new := false
 
 var times_started := 0
+var strikes := 0
 
 func get_id(): # FIXME? this resource should have its own ID
 	return game_mode.get_id()
@@ -31,4 +32,10 @@ func increase_times_started():
 	
 func is_first_time_started():
 	return times_started == 1
+	
+func take_strike():
+	strikes += 1
+	
+func has_enough_strikes() -> bool:
+	return strikes >= 3
 	
