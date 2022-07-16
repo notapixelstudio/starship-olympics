@@ -149,10 +149,15 @@ func add_card(card, selected=false):
 		draft_card.select()
 	draft_card.reveal()
 	
+func sort_hand(a, b):
+	return b.new
 	
 func populate_hand(hand: Array):
 	# shake things up
 	hand.shuffle()
+	
+	# keep the new cards at the rightmost place
+	hand.sort_custom(self, "sort_hand")
 	
 	for card in hand:
 		yield(get_tree().create_timer(0.1), "timeout")
