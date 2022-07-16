@@ -13,7 +13,7 @@ var pass_node : Node
 var ships_have_to_choose := false
 var hand_refills := 0
 
-const HAND_SIZE = 4
+const HAND_SIZE = 5
 
 var players_choices := {} # {InfoPlayer : card}
 
