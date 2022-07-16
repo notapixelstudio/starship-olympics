@@ -103,6 +103,7 @@ func _on_minigame_selected(minigame: Minigame):
 	start_match(minigame)
 
 func start_match(minigame: Minigame) -> void:
+	minigame.increase_times_started()
 	next_level(minigame)
 	
 	
@@ -133,6 +134,7 @@ func get_next_minigame(set):
 
 func start_minigame(minigame: Minigame, demo = false):
 	global.new_match()
+	global.the_match.set_minigame(minigame)
 	combat = minigame.get_level(global.the_game.get_number_of_players()).instance()
 	last_minigame = minigame
 	

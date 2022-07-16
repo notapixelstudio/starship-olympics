@@ -13,7 +13,7 @@ var pass_node : Node
 var ships_have_to_choose := false
 var hand_refills := 0
 
-const HAND_SIZE = 4
+const HAND_SIZE = 5
 
 var players_choices := {} # {InfoPlayer : card}
 
@@ -30,7 +30,7 @@ func _ready():
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
 	
-	pass_node.connect("tapped", self, '_on_pass_tapped')
+	#pass_node.connect("tapped", self, '_on_pass_tapped')
 	
 	global.new_session()
 	var hand = global.session.get_hand()
@@ -63,17 +63,18 @@ func _on_continue_after_game_over(session_ended):
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
 		
-		# fetch a new card (or two if this is the first refill)
+		var how_many_new_cards := 1
 		if hand_refills == 0:
-			deck.add_new_cards(2)
-		else:
-			deck.add_new_cards(1)
-			
-		hand_refills += 1
+			how_many_new_cards = 2
 		
-		hand = deck.draw(HAND_SIZE)
+		hand = deck.draw(HAND_SIZE-how_many_new_cards)
+		# add a new card and draw it right now
+		deck.add_new_cards(how_many_new_cards)
+		hand.append_array(deck.draw(how_many_new_cards))
 		hand.shuffle()
 		global.session.set_hand(hand)
+		hand_refills += 1
+		
 		yield(get_tree().create_timer(1.0), "timeout")
 		self.populate_hand(hand.duplicate())
 		
@@ -82,7 +83,7 @@ func _on_continue_after_game_over(session_ended):
 	
 	if ships_have_to_choose:
 		this_arena.spawn_all_ships(true)
-		pass_node.visible = true
+		#pass_node.visible = true
 	else:
 		self.pick_next_card()
 
@@ -96,6 +97,7 @@ func player_just_chose_a_card(author, card):
 	card.set_player(author.get_player())
 	
 	self.players_choices[author] = card
+	card.card_content.reset_strikes()
 	author.get_parent().remove_child(author)
 	
 	self.selections_maybe_all_done()
@@ -104,59 +106,40 @@ func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
 		pass_node.visible = false
 		
-		var cards_to_be_replaced = []
+		var discarded = []
 		var hand = global.session.get_hand()
-		# everyone chose. Let's remove cards that have not been chosen and 
-		# replace them with new one
+		# everyone chose. let's discard cards that have not been chosen
 		for draft_card in hand_node.get_all_cards():
 			if draft_card in self.players_choices.values():
 				print("well, actually {card_min} has been chosen ".format({"card_min": draft_card.card_content.id}))
 			else:
-				cards_to_be_replaced.append(draft_card.card_content)
+				discarded.append(draft_card.card_content)
 				var index = hand.find(draft_card.card_content)
 				hand.pop_at(index)
 				
 				draft_card.queue_free()
 				yield(get_tree().create_timer(0.5), "timeout")
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
-		cards_to_be_replaced.shuffle()
+		
 		var deck = global.the_game.get_deck()
-		var cards_in_deck = []
-		for card in deck.cards:
-			cards_in_deck.append(card.id)
-		print("Discarded phase: cards in deck {missing}".format({"missing": cards_in_deck}))
 		
-		var deck_after_discard = []
-		for card in deck.cards:
-			deck_after_discard.append(card.id)
-		print("Discarded phase: cards in deck {missing}".format({"missing": deck_after_discard}))
-		var missing = deck.draw(HAND_SIZE-len(hand))
-		# debug mode
-		var cards_missing = []
-		var cards_hand = []
-		var cards_replaced = []
-		for card in missing:
-			cards_missing.append(card.id)
-		for card in hand:
-			cards_hand.append(card.id)
-		for card in cards_to_be_replaced:
-			cards_replaced.append(card.id)
-		print("cards to be refilled {missing}".format({"missing": cards_missing}))
-		print("cards to be still in hande {hand}".format({"hand": cards_hand}))
-		print("cards replaced are {hand}".format({"hand": cards_replaced}))
+		# all discarded cards get a strike
+		var to_be_put_back = []
+		for card in discarded:
+			card.take_strike()
+			if card.has_enough_strikes():
+				print(card.get_id() + ' has enough strikes and will be removed.')
+			else:
+				to_be_put_back.append(card)
 		
-		for card in missing:
-			yield(get_tree().create_timer(0.5), "timeout")
-			self.add_card(card, true) # these cards are already selected
-		hand.append_array(missing)
-		hand.shuffle()
-		global.session.set_hand(hand)
+		# shuffle the remaining cards right back into the deck
+		deck.put_back_cards(to_be_put_back)
+		deck.shuffle()
+		
 		self.pick_next_card()
 		# empty players_choices for the next round
 		self.players_choices = {}
 		
-		# put cards back
-		global.the_game.deck.put_back_cards(cards_to_be_replaced)
 	
 func pick_next_card():
 	# TBD animation
@@ -182,10 +165,15 @@ func add_card(card, selected=false):
 		draft_card.select()
 	draft_card.reveal()
 	
+func sort_hand(a, b):
+	return b.new
 	
 func populate_hand(hand: Array):
 	# shake things up
 	hand.shuffle()
+	
+	# keep the new cards at the rightmost place
+	#hand.sort_custom(self, "sort_hand")
 	
 	for card in hand:
 		yield(get_tree().create_timer(0.1), "timeout")

@@ -3,6 +3,7 @@ extends Node
 class_name Deck
 
 var cards: Array = []
+var played_pile: Array = []
 var card_pool : CardPool
 
 const DECK_PATH = "res://map/draft/"
@@ -20,8 +21,19 @@ func _init():
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
 	
-# could return less than the number of requested cards if the deck is emptied
+# could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
+	# reshuffe the played pile into the deck if the deck is emptied
+	if how_many > len(cards):
+		print('deck is about to be emptied (' + str(len(cards)) + ' left, ' + str(how_many) + ' requested).')
+		print('reshuffling ' + str(len(played_pile)) + ' cards from the played pile.')
+		print(played_pile)
+		self.put_back_cards(played_pile)
+		played_pile = []
+		self.shuffle()
+		print('deck now contains ' + str(len(cards)) + ' cards')
+		print(cards)
+		
 	var result = []
 	for i in range(how_many):
 		var card = cards.pop_front()
@@ -46,5 +58,8 @@ func add_new_cards(amount := 1) -> void:
 			new_cards.append(new_card)
 			
 	new_cards.shuffle()
-	self.shuffle()
 	cards = new_cards + cards # new cards are placed on top
+
+func put_card_into_played_pile(card) -> void:
+	played_pile.append(card)
+	

@@ -4,7 +4,13 @@ export var debug = false
 
 func _ready():
 	var children = get_children()
-	var index = randi() % len(children)
+	
+	var index : int
+	if global.the_match.get_minigame().is_first_time_started():
+		index = 0
+	else:
+		index = randi() % len(children)
+		
 	var i = 0
 	for child in children:
 		if debug:
