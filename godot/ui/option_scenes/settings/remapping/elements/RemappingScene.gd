@@ -1,20 +1,22 @@
-extends ColorRect
+extends Panel
 
-class_name AddingBindingControls
+class_name RemappingScene
 
 export var action: String
+export var device_category: String
+
+signal remap_event
 
 func _ready():
+	grab_focus()
 	set_process_input(false)
 	yield(get_tree().create_timer(1), "timeout")
 	set_process_input(true)
 	
 func check_input_event(event:InputEvent):
-	if "kb" in self.action:
+	if "keyboard" in self.device_category:
 		return event is InputEventKey
-	elif "joy" in self.action:
-		var device = int(self.action.split("_")[0].replace("joy", ""))-1
-		# event.axis equal to 6 and 7 are the anaolog axis. from Godot 3.2.4
+	elif "joypad" in self.device_category:
 		return (event is InputEventJoypadButton or (event is InputEventJoypadMotion and event.axis != 7 and event.axis != 6))
 
 
@@ -26,6 +28,11 @@ func _input(event):
 		if event is InputEventJoypadMotion:
 			if abs(event.axis_value) < 0.5:
 				return
-		Events.emit_signal("remap_event", event, action)
+		print("Asking to remap: {action} with event {event}".format({"action": action, 
+			"event": event}))
 		set_process_input(false)
+		$ButtonRepresentation.set_button(event)
+		$ButtonRepresentation.visible = true
+		yield(get_tree().create_timer(1), "timeout")
+		emit_signal("remap_event", event, action)
 		queue_free()

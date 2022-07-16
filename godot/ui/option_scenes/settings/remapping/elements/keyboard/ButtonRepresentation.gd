@@ -34,7 +34,7 @@ func set_button(event: InputEvent):
 	var device_type = get_metadata_from_event(event)
 	if not device_type:
 		return 
-	var button = global.event_to_text(event)["key"]
+	var button = Controls.event_to_text(event)["key"]
 	var button_path = keyboard_path
 	if "kb" in device_type:
 		button_path = keyboard_path + button + keyboard_suffix + extension

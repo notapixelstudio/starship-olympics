@@ -11,6 +11,10 @@ var extra_args
 func setup_device(args: String):
 	content.setup_device(args)
 	
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		_on_Back_pressed()
+	
 func _ready():
 	add_to_group("UIOptionPanel")
 	assert(content)

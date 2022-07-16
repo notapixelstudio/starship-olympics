@@ -5,6 +5,12 @@ export var action: String setget _set_action
 export var device: String 
 export  (String, "custom", "keyboard", "joypad") var device_category 
 
+
+
+func _ready():
+	Events.connect("remap_event", self, "on_remap")
+	set_process_input(false)
+	
 func _set_action(value_):
 	action = value_
 	if not is_inside_tree():

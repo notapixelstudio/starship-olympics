@@ -18,8 +18,6 @@ func _ready():
 	var instanced_scene = start_scene.instance()
 	self.set_content(instanced_scene, true, null)
 	
-
-
 var separator = " > "
 onready var navbar = [title] # Navbar of title string screen
 onready var navbar_scene = []

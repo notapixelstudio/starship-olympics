@@ -14,7 +14,7 @@ export var button_scene : PackedScene
 signal clear_mapping
 
 func _ready():
-	Events.connect("remap_event", self, "on_remap")
+	# Events.connect("remap_event", self, "on_remap")
 	set_process_input(false)
 	
 func _process(delta):
@@ -25,7 +25,7 @@ func clear():
 	
 func fill_mapping():
 	for event in InputMap.get_action_list(self.device + "_" + self.action):
-		var event_text = global.event_to_text(event)
+		var event_text = Controls.event_to_text(event)
 		var event_device = event_text["device"]
 		var event_device_id = event_text["device_id"]
 		if event_device in device or device == "ui":
@@ -41,42 +41,41 @@ func _set_device(value_):
 		yield(self, "ready")
 	setup()
 	
-
 func on_remap(event: InputEvent, complete_action: String):
-	if complete_action != self.device + "_" + self.action:
-		return
-	for action in global.input_mapping:
+	# self.check_if_already_exist(Controls.event_to_text(), Controls.input_mapping)
+	for action in Controls.input_mapping:
 		if not self.device in action:
 			continue
-		for command in global.input_mapping[action]:
-			if global.event_to_text(event) == command:
+		for command_dict in Controls.input_mapping[action]:
+			if Controls.event_to_text(event).hash() == command_dict.hash():
 				print("This exists already in " + action)
-	var new_control_key = global.remap_action_to(complete_action, event)
-	add_mapping_to_screen(event)
+	var new_control_key = Controls.remap_action_to(complete_action, event)
+	# just to be sure, will refill everything
+	self.setup()
 	# save
 	persistance.save_game()
+	Events.emit_signal("remap_done", self)
+	grab_focus()
 	
-
-
 func add_mapping_to_screen(new_event: InputEvent):
 	scroll_container.add_event(new_event)
 	
 func remove_mapping(event):
 	for button in scroll_container.get_elements():
-		var event_text = global.event_to_text(event)
-		var this_event_text = global.event_to_text(button.get_event())
+		var event_text = Controls.event_to_text(event)
+		var this_event_text = Controls.event_to_text(button.get_event())
 		if this_event_text["key"] == event_text["key"] and this_event_text["device_id"] == event_text["device_id"]:
-			global.clear_mapping(self.device + "_" + self.action, event)
+			Controls.clear_mapping(self.device + "_" + self.action, event)
 			button.queue_free()
 	
 
 func _on_RemoveMapping_pressed():
-	global.clear_all_mapping(self.device + "_" + self.action)
+	Controls.clear_all_mapping(self.device + "_" + self.action)
 	scroll_container.clear()
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		Events.emit_signal("ask_mapping_action", self.device + "_" + self.action)
+		Events.emit_signal("ask_mapping_action", self.device + "_" + self.action, self)
 		_on_focus_exited()
 
 

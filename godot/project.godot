@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "ColorRect",
-"class": "AddingBindingControls",
-"language": "GDScript",
-"path": "res://ui/option_scenes/settings/remapping/elements/AddBinding.gd"
-}, {
 "base": "Ball",
 "class": "Alien",
 "language": "GDScript",
@@ -128,11 +123,6 @@ _global_script_classes=[ {
 "class": "CollectableSpawner",
 "language": "GDScript",
 "path": "res://actors/environments/DiamondSpawner.gd"
-}, {
-"base": "Control",
-"class": "CommandRemap",
-"language": "GDScript",
-"path": "res://ui/option_scenes/settings/remapping/elements/RemapAction.gd"
 }, {
 "base": "Node",
 "class": "Component",
@@ -454,6 +444,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
+"base": "Control",
+"class": "RemapAction",
+"language": "GDScript",
+"path": "res://ui/option_scenes/settings/remapping/elements/RemapAction.gd"
+}, {
+"base": "Panel",
+"class": "RemappingScene",
+"language": "GDScript",
+"path": "res://ui/option_scenes/settings/remapping/elements/RemappingScene.gd"
+}, {
 "base": "RigidBody2D",
 "class": "RemoteBomb",
 "language": "GDScript",
@@ -580,7 +580,6 @@ _global_script_classes=[ {
 "path": "res://actors/weapons/arsenal/Weapon.gd"
 } ]
 _global_script_class_icons={
-"AddingBindingControls": "",
 "Alien": "",
 "Arena": "",
 "ArenaStyle": "",
@@ -604,7 +603,6 @@ _global_script_class_icons={
 "CardPool": "",
 "Cell": "",
 "CollectableSpawner": "",
-"CommandRemap": "",
 "Component": "",
 "Conquerable": "",
 "Controller": "",
@@ -669,6 +667,8 @@ _global_script_class_icons={
 "Polyomino": "",
 "Portalz": "",
 "PowerUp": "",
+"RemapAction": "",
+"RemappingScene": "",
 "RemoteBomb": "",
 "Ripple": "",
 "Rock": "",
@@ -717,6 +717,7 @@ config/icon="res://logo.png"
 persistance="*res://globals/persistance.gd"
 Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
+Controls="*res://globals/Controls.gd"
 TheUnlocker="*res://globals/TheUnlocker.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
