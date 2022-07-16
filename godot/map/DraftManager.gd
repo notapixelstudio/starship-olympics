@@ -97,6 +97,7 @@ func player_just_chose_a_card(author, card):
 	card.set_player(author.get_player())
 	
 	self.players_choices[author] = card
+	card.card_content.reset_strikes()
 	author.get_parent().remove_child(author)
 	
 	self.selections_maybe_all_done()

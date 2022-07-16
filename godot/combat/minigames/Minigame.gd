@@ -36,6 +36,11 @@ func is_first_time_started():
 func take_strike():
 	strikes += 1
 	
+func reset_strikes():
+	if strikes > 0:
+		print("strikes reset for " + self.get_id())
+	strikes = 0
+	
 func has_enough_strikes() -> bool:
 	return strikes >= 3
 	
