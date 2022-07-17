@@ -26,6 +26,9 @@ func get_level(num_players) -> PackedScene:
 	
 func get_name():
 	return game_mode.name
+	
+func get_description():
+	return game_mode.description
 
 func increase_times_started():
 	times_started += 1
