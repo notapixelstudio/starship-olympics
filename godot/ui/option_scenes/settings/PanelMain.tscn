@@ -76,6 +76,8 @@ margin_bottom = 320.0
 text = "AUDIO"
 option_menu = ExtResource( 5 )
 title = "Audio"
+extra_args = {
+}
 
 [node name="Controls" parent="Content/UIButtonsContainer" instance=ExtResource( 4 )]
 margin_top = 324.0
@@ -84,6 +86,8 @@ margin_bottom = 374.0
 text = "REMAP CONTROLS"
 option_menu = ExtResource( 6 )
 title = "Remap controls"
+extra_args = {
+}
 
 [node name="UnlockMode" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0

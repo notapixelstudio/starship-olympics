@@ -39,6 +39,6 @@ func _on_ElementCheckbox_focus_entered():
 	value_node.set("custom_colors/font_color_pressed",Color(0,0,0))
 	
 
-
 func _on_ElementCheckbox_focus_exited():
 	value_node.set("custom_colors/font_color_pressed", null)
+
