@@ -8,17 +8,20 @@ onready var scroll_container = $Container/ScrollContainer
 onready var panel = $Panel
 onready var description_node = $Container/Description
 
+export var label_text: String
 export var action: String
 export var device: String setget _set_device
 export var button_scene : PackedScene
 signal clear_mapping
 
 func _ready():
+	if label_text == "":
+		label_text = action
 	# Events.connect("remap_event", self, "on_remap")
 	set_process_input(false)
 	
 func _process(delta):
-	$Container/Description.text = tr(action.to_upper())
+	$Container/Description.text = tr(label_text.to_upper())
 
 func clear():
 	scroll_container.clear()

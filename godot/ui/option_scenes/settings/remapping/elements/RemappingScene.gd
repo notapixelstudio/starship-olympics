@@ -9,6 +9,7 @@ signal remap_event
 
 func _ready():
 	grab_focus()
+	$Action.text = tr(action)
 	set_process_input(false)
 	yield(get_tree().create_timer(1), "timeout")
 	set_process_input(true)
