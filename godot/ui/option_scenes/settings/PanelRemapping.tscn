@@ -17,7 +17,8 @@ what_to_remap_scene = ExtResource( 4 )
 [node name="BannerInfo" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_right = 1278.0
+margin_left = -640.0
+margin_right = 638.0
 margin_bottom = 92.0
 
 [node name="Content" type="MarginContainer" parent="."]
@@ -44,6 +45,7 @@ label_description = "device"
 elem_type = 2
 
 [node name="Preset" parent="Content/VBoxContainer" instance=ExtResource( 7 )]
+visible = false
 anchor_right = 0.0
 margin_top = 54.0
 margin_right = 888.0
@@ -53,9 +55,9 @@ label_description = "preset"
 elem_type = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Content/VBoxContainer"]
-margin_top = 108.0
+margin_top = 54.0
 margin_right = 888.0
-margin_bottom = 446.0
+margin_bottom = 392.0
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content/VBoxContainer/HBoxContainer"]
 margin_right = 432.0
@@ -160,9 +162,9 @@ action = "right"
 device = "ui"
 
 [node name="Default" type="Button" parent="Content/VBoxContainer"]
-margin_top = 450.0
+margin_top = 396.0
 margin_right = 888.0
-margin_bottom = 500.0
+margin_bottom = 446.0
 rect_min_size = Vector2( 0, 50 )
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 5 )
@@ -187,4 +189,4 @@ layer = 99
 
 [connection signal="value_changed" from="Content/VBoxContainer/Device" to="." method="_on_Device_value_changed"]
 [connection signal="value_changed" from="Content/VBoxContainer/Preset" to="." method="_on_Preset_value_changed"]
-[connection signal="pressed" from="Content/VBoxContainer/Default" to="Content" method="_on_Default_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/Default" to="." method="_on_Default_pressed"]

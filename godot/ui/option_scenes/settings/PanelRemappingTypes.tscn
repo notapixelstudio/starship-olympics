@@ -11,9 +11,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Content" type="MarginContainer" parent="."]
 anchor_left = 0.5
@@ -53,6 +50,9 @@ margin_right = 378.0
 text = "CONFIGURE KEYBOARD"
 option_menu = ExtResource( 2 )
 title = "Configure keyboard"
+extra_args = {
+"device_category": "keyboard"
+}
 
 [node name="Joypad" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 3 )]
 margin_top = 54.0
@@ -61,6 +61,9 @@ margin_bottom = 104.0
 text = "CONFIGURE JOYPADS"
 option_menu = ExtResource( 2 )
 title = "configure joypads"
+extra_args = {
+"device_category": "joypad"
+}
 
 [node name="Custom" type="HBoxContainer" parent="Content/UIButtonsContainer/Dynamic"]
 margin_left = 382.0
@@ -74,6 +77,9 @@ disabled = true
 text = "CUSTOM CONFIGURATION"
 option_menu = ExtResource( 2 )
 title = "custom configuration"
+extra_args = {
+"device_category": "custom"
+}
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.5

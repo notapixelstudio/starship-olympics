@@ -9,14 +9,14 @@ const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4","rm1","rm2",
 var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
 
 var joy_input_map = {
-	"analog_0_1"  : "Left_Stick_Right",
-	"analog_0_-1" : "Left_Stick_Left",
-	"analog_1_1"  : "Left_Stick_Down",
-	"analog_1_-1" : "Left_Stick_Up",
-	"analog_2_1"  : "Right_Stick_Right",
-	"analog_2_-1" : "Right_Stick_Left",
-	"analog_3_1"  : "Right_Stick_Down",
-	"analog_3_-1" : "Right_Stick_Up",
+	"analog_0_1"  : ["Left_Stick_Right"],
+	"analog_0_-1" : ["Left_Stick_Left"],
+	"analog_1_1"  : ["Left_Stick_Down"],
+	"analog_1_-1" : ["Left_Stick_Up"],
+	"analog_2_1"  : ["Right_Stick_Right"],
+	"analog_2_-1" : ["Right_Stick_Left"],
+	"analog_3_1"  : ["Right_Stick_Down"],
+	"analog_3_-1" : ["Right_Stick_Up"],
 	"0": ["Cross", "A"],
 	"1": ["Circle", "B"],
 	"2": ["Square", "X"],
@@ -25,16 +25,44 @@ var joy_input_map = {
 	"5": ["R1", "RB"],
 	"6": ["L2", "LT"],
 	"7": ["R2", "RT"],
-	"8": "Left_Stick_Click",
-	"9": "Right_Stick_Click",
+	"8": ["Left_Stick_Click"],
+	"9": ["Right_Stick_Click"],
 	"10": ["Select", "Windows"],
 	"11": ["Start", "Menu"],
-	"12": "Dpad_Up",
-	"13": "Dpad_Down",
-	"14": "Dpad_Left",
-	"15": "Dpad_Right"
+	"12": ["Dpad_Up"],
+	"13": ["Dpad_Down"],
+	"14": ["Dpad_Left"],
+	"15": ["Dpad_Right"]
 }
 
+var map_input_joy := {
+	"ps": {
+		"Cross": "0",
+		"Square": "1",
+		"Circle": "2",
+		"Triangle": "3",
+		"L1": "4",
+		"R1": "5",
+		"L2": "6",
+		"R2": "7",
+		"Dpad_Right": "15",
+		"Left_Stick_Right": "analog_0_1",
+		"Dpad_Left": "14",
+		"Left_Stick_Left": "analog_0_-1",
+		"Dpad_Down": "13",
+		"Left_Stick_Down": "analog_1_1",
+		"Dpad_Up": "12",
+		"Left_Stick_Up": "analog_1_-1"
+	}
+}
+
+func human_readable_button(joypad_type: String, button_key: String) -> String:
+	var button_can_be:Array = Controls.joy_input_map[button_key]
+	for button in button_can_be:
+		if button in Controls.map_input_joy[joypad_type].keys():
+			return button
+	return ""
+	
 var keyboard_input_map = {
 	"Up": "Arrow_Up",
 	"Down": "Arrow_Down",
@@ -187,7 +215,7 @@ func set_presets(action_device: String, preset_value: String) -> Dictionary:
 		var complete_action = action_device + "_" + action_name
 		var events = []
 		for command_object in this_mapping[action_name]:
-			var button = command_object["button"]
+			var button = command_object["key"]
 			var device = command_object["device"]
 			var device_id = command_object["id"]
 			if device_id < 0:

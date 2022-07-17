@@ -8,7 +8,6 @@ export (String, "keyboard", "joypad", "custom") var device_category = "keyboard"
 var device
 onready var device_node = $Content/VBoxContainer/Device
 
- 
 func setup_device(path: String):
 	device_node.element_path = path
 	device_node.setup()

@@ -40,7 +40,7 @@ func set_button(event: InputEvent):
 		button_path = keyboard_path + button + keyboard_suffix + extension
 		$Label.text = ""
 	elif "ps" in device_type.to_lower():
-		button_path = ps_path + button + extension
+		button_path = ps_path + Controls.human_readable_button("ps", button) + extension
 		$Label.text = str(event.device + 1)
 	elif "x" in device_type.to_lower():
 		button_path = xbox_path + button + extension
