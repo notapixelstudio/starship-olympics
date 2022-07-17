@@ -85,15 +85,13 @@ func event_from_text(device: String, command: String, device_id: int = 0) -> Inp
 		e = InputEventKey.new()
 		e.scancode = command_text
 	elif "joy" in device:
-		var inverted_input_map = global.invert_map(joy_input_map)
-		var command_text = inverted_input_map[command]
-		if "analog" in command_text:
+		if "analog" in command:
 			e = InputEventJoypadMotion.new()
-			e.axis = int(command_text.split("_")[1])
-			e.axis_value = int(command_text.split("_")[2])
+			e.axis = int(command.split("_")[1])
+			e.axis_value = int(command.split("_")[2])
 		else:
 			e = InputEventJoypadButton.new()
-			e.button_index = int(command_text)
+			e.button_index = int(command)
 		e.device = device_id
 	return e
 
