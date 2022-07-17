@@ -1,9 +1,10 @@
 extends Control
 
 var operator = 50
-onready var buttons = $Buttons
+onready var buttons = $MarginContainer/Buttons
 onready var destination = rect_size.x - buttons.rect_size.x
 
+export var button_scene: PackedScene
 func calculate_dist(x, y):
 	if x > y:
 		return 0
@@ -22,9 +23,13 @@ func _ready():
 func get_elements() -> Array:
 	return buttons.get_children()
 	
-func add_element(element: Control):
-	buttons.add_child(element)
+func add_event(new_event: InputEvent):
+	var button: ButtonRepresentation = button_scene.instance()
+	if button.set_button(new_event):
+		buttons.add_child(button)
+	
 	yield(get_tree(), "idle_frame")
+	
 	var anim = $AnimationPlayer.get_animation('Scroll')
 	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
 	anim.track_set_key_value(0, 0, dest)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/common_elements/ElementOption.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=2]
@@ -7,21 +7,23 @@
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowLeftWhite.png" type="Texture" id=5]
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowRightWhite.png" type="Texture" id=6]
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowTransparent.png" type="Texture" id=7]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=8]
 
 [node name="Element" type="Panel"]
 anchor_right = 1.0
-margin_right = -880.0
-margin_bottom = 36.0
+margin_right = -778.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 focus_mode = 2
+theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Container" type="HBoxContainer" parent="."]
-margin_right = 400.0
-margin_bottom = 50.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,9 +40,8 @@ __meta__ = {
 }
 
 [node name="Padding" type="Label" parent="Container"]
-margin_left = 4.0
 margin_top = 9.0
-margin_right = 196.0
+margin_right = 302.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -52,8 +53,8 @@ __meta__ = {
 }
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 200.0
-margin_right = 400.0
+margin_left = 302.0
+margin_right = 502.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 0

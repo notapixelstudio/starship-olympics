@@ -109,13 +109,16 @@ func _on_Element_focus_entered():
 	self.add_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
 	description_node.modulate = focus_color.darkened(0.1)
 	value_node.modulate = focus_color.darkened(0.1)
-	
+	value_node.set("custom_colors/font_color",Color(0,0,0))
+	description_node.set("custom_colors/font_color",Color(0,0,0))
 
 func _on_Element_focus_exited():
 	self.add_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
 	for node in container.get_children():
 		node.modulate = Color(1,1,1)
 	value_node.modulate = Color(1,1,1)
+	value_node.set("custom_colors/font_color", null)
+	description_node.set("custom_colors/font_color", null)
 	set_process_input(false)
 
 

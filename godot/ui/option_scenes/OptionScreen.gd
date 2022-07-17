@@ -16,10 +16,8 @@ func _ready():
 	Events.connect("ui_nav_to", self, "nav_to")
 	assert( start_scene is PackedScene)
 	var instanced_scene = start_scene.instance()
-	self.set_content(instanced_scene, true, null)
+	self.set_content(instanced_scene, true, {})
 	
-
-
 var separator = " > "
 onready var navbar = [title] # Navbar of title string screen
 onready var navbar_scene = []
@@ -32,7 +30,7 @@ func _exit_tree():
 	# Let's save the changes
 	persistance.save_game()
 
-func nav_to(title, menu_scene: UIOptionPanel, extra_args = null):
+func nav_to(title: String, menu_scene: UIOptionPanel, extra_args: Dictionary):
 	"""
 	will update the navbar and instance the new scene inside the tree
 	"""
@@ -44,15 +42,16 @@ func back():
 	var current = navbar_scene.pop_back()
 	current.queue_free()
 	if len(navbar_scene) >= 1:
-		self.set_content(navbar_scene[len(navbar_scene)-1], false)
+		self.set_content(navbar_scene[len(navbar_scene)-1], false, {})
 	else:
 		back_to_menu()
 
-func set_content(instanced_scene: UIOptionPanel, nav_forward: bool, extra_args =  null):
+func set_content(instanced_scene: UIOptionPanel, nav_forward: bool, extra_args: Dictionary):
 	# extra_args need to be setup before _ready()
-	add_child(instanced_scene)
 	if extra_args:
-		instanced_scene.setup_device(extra_args)
+		for key in extra_args:
+			instanced_scene.set(key, extra_args[key])
+	add_child(instanced_scene)
 	instanced_scene.get_focus()
 	if nav_forward:
 		navbar_scene.append(instanced_scene)
