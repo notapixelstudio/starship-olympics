@@ -34,14 +34,20 @@ func _ready():
 	
 	global.new_session()
 	var hand = global.session.get_hand()
-	self.populate_hand(hand.duplicate())
-	self.pick_next_card()
+	if len(hand) > 0:
+		self.populate_hand(hand.duplicate())
+		self.pick_next_card()
+	else:
+		self.continue_draft(true)
 	
 func _on_continue_after_game_over(session_ended):
 	if not is_inside_tree():
 		# this happens when the map is momentarily removed at the end of a session
 		yield(self, "tree_entered")
 		
+	continue_draft(session_ended)
+	
+func continue_draft(session_ended):
 	if session_ended:
 		self.draw_anew()
 		

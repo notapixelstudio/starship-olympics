@@ -737,11 +737,12 @@ var session: TheSession = null
 var arena
 
 var game_number := 0
+var session_number := 0
 
 func new_game(players) -> TheGame:
 	safe_destroy_game()
-	game_number += 1
 	the_game = TheGame.new()
+	game_number += 1
 	the_game.set_players(players)
 	Events.emit_signal("game_started")
 	return the_game
@@ -755,12 +756,16 @@ func new_match() -> TheMatch:
 func new_session() -> TheSession:
 	safe_destroy_session()
 	session = TheSession.new()
+	session_number += 1
 	
 	# whenever a new session is created, InfoPlayer stats should be cleared
 	the_game.reset_players()
 	
 	var deck = the_game.get_deck()
-	var hand = deck.draw(4)
+	var hand = []
+	if session_number == 1:
+		hand = deck.draw(4)
+	# else: start with no hand, the draft manager will take care of that
 	session.set_hand(hand)
 	
 	Events.emit_signal('session_started')
@@ -774,6 +779,7 @@ func safe_destroy_game() -> void:
 		Events.emit_signal("game_ended")
 		the_game.free()
 	the_game = null
+	session_number = 0
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
