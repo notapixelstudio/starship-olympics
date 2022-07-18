@@ -17,7 +17,8 @@ what_to_remap_scene = ExtResource( 4 )
 [node name="BannerInfo" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_right = 1278.0
+margin_left = -640.0
+margin_right = 638.0
 margin_bottom = 92.0
 
 [node name="Content" type="MarginContainer" parent="."]
@@ -80,12 +81,14 @@ margin_top = 72.0
 margin_right = 884.0
 margin_bottom = 122.0
 rect_min_size = Vector2( 0, 50 )
+label_text = "up"
 
 [node name="RemapAction2" parent="Content/VBoxContainer/HBoxContainer/UIButtonsContainer" instance=ExtResource( 6 )]
 margin_top = 126.0
 margin_right = 884.0
 margin_bottom = 176.0
 rect_min_size = Vector2( 0, 50 )
+label_text = "down"
 action = "down"
 
 [node name="RemapAction3" parent="Content/VBoxContainer/HBoxContainer/UIButtonsContainer" instance=ExtResource( 6 )]
@@ -93,6 +96,7 @@ margin_top = 180.0
 margin_right = 884.0
 margin_bottom = 230.0
 rect_min_size = Vector2( 0, 50 )
+label_text = "left"
 action = "left"
 
 [node name="RemapAction4" parent="Content/VBoxContainer/HBoxContainer/UIButtonsContainer" instance=ExtResource( 6 )]
@@ -100,6 +104,7 @@ margin_top = 234.0
 margin_right = 884.0
 margin_bottom = 284.0
 rect_min_size = Vector2( 0, 50 )
+label_text = "right"
 action = "right"
 
 [node name="CategoryDirections2" type="Label" parent="Content/VBoxContainer/HBoxContainer/UIButtonsContainer"]
@@ -113,6 +118,7 @@ margin_top = 306.0
 margin_right = 884.0
 margin_bottom = 356.0
 rect_min_size = Vector2( 0, 50 )
+label_text = "cancel"
 action = "cancel"
 device = "ui"
 
