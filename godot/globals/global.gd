@@ -19,6 +19,16 @@ func _set_analytics(new_value):
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "add_event")
 
+#######################################
+############# Controls ################
+#######################################
+
+var array_joypad_preset = ["default", "minimal"]
+onready var joypad_preset
+
+var array_keyboard_preset = ["custom", "everything", "minimal"]
+onready var keyboard_preset
+
 var array_keyboard_device = ["kb1", "kb2"]
 onready var keyboard_device 
 var array_joypad_device = ["joy1", "joy2", "joy3", "joy4"]
@@ -377,227 +387,6 @@ func _notification(what):
 			yield(GameAnalytics, "message_sent")
 		Events.emit_signal('execution_ended')
 		get_tree().quit() # default behavior
-	
-# INPUT MAPPING
-const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4","rm1","rm2","rm3","rm4"]
-var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
-
-var joy_input_map = {
-	"analog_0_1"  : "Left_Stick_Right",
-	"analog_0_-1" : "Left_Stick_Left",
-	"analog_1_1"  : "Left_Stick_Down",
-	"analog_1_-1" : "Left_Stick_Up",
-	"analog_2_1"  : "Right_Stick_Right",
-	"analog_2_-1" : "Right_Stick_Left",
-	"analog_3_1"  : "Right_Stick_Down",
-	"analog_3_-1" : "Right_Stick_Up",
-	"0": "Cross",
-	"1": "Circle",
-	"2": "Square",
-	"3": "Triangle",
-	"4": "L1",
-	"5": "R1",
-	"6": "L2",
-	"7": "R2",
-	"8": "Left_Stick_Click",
-	"9": "Right_Stick_Click",
-	"10": "Select",
-	"11": "Start",
-	"12": "Dpad_Up",
-	"13": "Dpad_Down",
-	"14": "Dpad_Left",
-	"15": "Dpad_Right"
-}
-
-var keyboard_input_map = {
-	"Up": "Arrow_Up",
-	"Down": "Arrow_Down",
-	"Left": "Arrow_Left",
-	"Right": "Arrow_Right",
-	"BackSpace": "Backspace_Alt",
-	"*": "Asterisk",
-	
-}
-
-
-func event_to_text(event: InputEvent):
-	"""
-	event: @type InputEvent
-	return the event in a human readable form. For reference `joy_input_map`
-	"""
-	if event is InputEventKey:
-		var key = event.as_text()
-		if key in keyboard_input_map:
-			key = keyboard_input_map[key]
-		return {"key": key, "device_id": event.device, "device": "kb"}
-	elif event is InputEventJoypadButton:
-		return {"key": joy_input_map[str(event.button_index)], "device_id": event.device, "device": "joy"}
-	elif event is InputEventJoypadMotion:
-		if event.axis_value > 0:
-			event.axis_value = 1
-		else:
-			event.axis_value = -1
-		var command = joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
-		return {"key": command, "device_id": event.device, "device": "joy"}
-
-func event_from_text(device: String, command: String, device_id = 0) -> InputEvent:
-	"""
-	device: e.g. kb1, kb2, joy1, joy2
-	command: e.g. 0, 1, 2 , analog_1_-1, M, N 
-	"""
-	var e : InputEvent
-	if "kb" in device:
-		var inverted_input_map = global.invert_map(keyboard_input_map)
-		var command_text = command
-		if command_text in inverted_input_map:
-			command_text = inverted_input_map[command_text]
-		command_text = OS.find_scancode_from_string(command_text)
-		e = InputEventKey.new()
-		e.scancode = command_text
-	elif "joy" in device:
-		var inverted_input_map = global.invert_map(joy_input_map)
-		var command_text = inverted_input_map[command]
-		if "analog" in command_text:
-			e = InputEventJoypadMotion.new()
-			e.axis = int(command_text.split("_")[1])
-			e.axis_value = int(command_text.split("_")[2])
-		else:
-			e = InputEventJoypadButton.new()
-			e.button_index = int(command_text)
-		e.device = device_id
-	return e
-
-func _set_input_mapping(value_):
-	"""
-	will add the entire input dictionary to the game
-	"""
-	input_mapping=value_
-	for device in INPUT_ACTIONS:
-		for action in input_mapping:
-			if device in action:
-				var commands = input_mapping[action]
-				var events = []
-				for command in commands:
-					var event = event_from_text(device, command["key"], command["device_id"])
-					events.append(event)
-				remap_multiple_actions_to(action, events)
-	
-func _get_input_mapping():
-	var ret = {}
-	for device in INPUT_ACTIONS:
-		for action in InputMap.get_actions():
-			if device in action:
-				ret[action] = []
-				for event in InputMap.get_action_list(action):
-					ret[action].append(event_to_text(event))
-	return ret
-
-var default_input_joy := {
-	"fire": ["Cross", "Square", "Circle", "Triangle", "L1", "R1", "L2", "R2"], 
-	"right": ["Dpad_Right", "Left_Stick_Right"],
-	"left": ["Dpad_Left", "Left_Stick_Left"], 
-	"down": ["Dpad_Down", "Left_Stick_Down"],
-	"up":["Dpad_Up", "Left_Stick_Up"]
-}
-
-var default_input :=  {
-	"kb1": {
-		"fire":["M"], "down":["Down"], "left":["Left"], "right":["Right"], "up":["Up"]
-	},
-	"kb2": { 
-		"down":["S"], "fire":["1"], "left":["A"], "right":["D"], "up":["W"]
-	},
-	"joy1": default_input_joy,
-	"joy2": default_input_joy,
-	"joy3": default_input_joy,
-	"joy4": default_input_joy
-}
-
-var input_mapping_joy := {
-	"joy1": default_input_joy,
-	"joy2": default_input_joy,
-	"joy3": default_input_joy,
-	"joy4": default_input_joy
-}
-
-var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
-onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
-
-func _set_joylayout(value):
-	joylayout = value
-
-func _get_joylayout():
-	return joylayout
-	
-func set_default_mapping(device:String) -> Dictionary:
-	var ret_mapping = {}
-	var this_mapping = default_input[device]
-	var device_id: int = int(device.right(len(device)-1))-1
-	for action in this_mapping:
-		
-		var complete_action = device + "_" + action
-		var events = []
-		for command in this_mapping[action]:
-			var event = event_from_text(device, command, device_id)
-			events.append(event)
-		remap_multiple_actions_to(complete_action, events)
-		ret_mapping[complete_action] = this_mapping[action]
-	persistance.save_game()
-	return ret_mapping
-	
-func check_input_event(action_: String, event:InputEvent):
-	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
-
-func clear_mapping(action:String, event: InputEvent):
-	InputMap.action_erase_event(action, event)
-	var alert_scene = load("res://interface/OverlayMessage.tscn").instance()
-	alert_scene.message = "ACTION BINDING FOR [color=red]{action}[/color] OVERRIDDEN".format({"action": action.to_upper()})
-	add_child(alert_scene)
-	alert_scene.raise()
-	
-func clear_all_mapping(action: String):
-	InputMap.action_erase_events(action)
-	
-func remap_multiple_actions_to(action: String, new_events: Array, ui_flag=true) -> String:
-	"""
-	new_events: Array[InputEvent]
-	Will delete the events from the actions in order to put the new ones
-	"""
-	var current_key = ""
-	
-	if ui_flag:
-		var acts = action.split("_")
-		var id = acts[len(acts)-1]
-		if id == "fire":
-			id = "accept"
-		var ui_action = "ui_"+id
-		#TODO: remove only the existing control for that player
-		for event in InputMap.get_action_list(action):
-			InputMap.action_erase_event(ui_action, event)
-		for new_event in new_events:
-			InputMap.action_add_event("ui_"+id, new_event)
-	InputMap.action_erase_events(action)
-	for new_event in new_events:
-		InputMap.action_add_event(action, new_event)
-	return action
-
-func remap_action_to(action: String, new_event: InputEvent) -> String:
-	"""
-	Given an action, and an InputEvent will set an event.
-	You might pass the previous event if it's a substitution
-	return event to text
-	"""
-	var current_key = ""
-	var acts = action.split("_")
-	var id = acts[len(acts)-1]
-	if id == "fire":
-		id = "accept"
-	var ui_action = "ui_"+id
-	
-	InputMap.action_add_event(ui_action, new_event)
-	InputMap.action_add_event(action, new_event)
-	return global.event_to_text(new_event)
-	
 
 # utils
 func get_state():
@@ -615,7 +404,6 @@ func get_state():
 		demo=demo,
 		full_screen=full_screen,
 		rumbling=rumbling,
-		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
 		enable_camera=enable_camera,
 		flood=flood,
@@ -720,7 +508,11 @@ func invert_map(map:Dictionary):
 	"""
 	var ret = {}
 	for k in map:
-		ret[map[k]] = k
+		if typeof(map[k]) == TYPE_ARRAY:
+			for element in map[k]:
+				ret[element] = k
+		else:
+			ret[map[k]] = k
 	return ret
 
 
