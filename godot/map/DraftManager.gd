@@ -2,6 +2,7 @@ extends Node
 
 export var this_arena_path : NodePath
 export var hand_node_path : NodePath
+export var message_node_path : NodePath
 export var pass_path : NodePath
 export var hand_position_node_path : NodePath
 export var draft_card_scene : PackedScene
@@ -10,6 +11,7 @@ var this_arena
 var hand_node : Node
 var hand_position : Node
 var pass_node : Node
+var message_node : Typewriter
 var ships_have_to_choose := false
 var hand_refills := 0
 
@@ -29,6 +31,7 @@ func _ready():
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
+	message_node = get_node(message_node_path)
 	
 	#pass_node.connect("tapped", self, '_on_pass_tapped')
 	
@@ -85,12 +88,17 @@ func continue_draft(session_ended):
 		self.populate_hand(hand.duplicate())
 		
 	
-	yield(get_tree().create_timer(1.5), "timeout") 
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	if ships_have_to_choose:
+		message_node.type("Choose which minigames to play")
+		yield(message_node, "done")
+		yield(get_tree().create_timer(0.5), "timeout")
+		
 		this_arena.spawn_all_ships(true)
 		#pass_node.visible = true
 	else:
+		yield(get_tree().create_timer(0.5), "timeout")
 		self.pick_next_card()
 
 func draw_anew():
@@ -111,6 +119,7 @@ func player_just_chose_a_card(author, card):
 func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
 		pass_node.visible = false
+		message_node.text = ''
 		
 		var discarded = []
 		var hand = global.session.get_hand()

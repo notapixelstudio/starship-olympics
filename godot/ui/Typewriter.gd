@@ -1,6 +1,5 @@
 extends Label
-
-export var duration := 0.06
+class_name Typewriter
 
 signal done
 
