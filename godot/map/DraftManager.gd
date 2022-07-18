@@ -119,7 +119,7 @@ func player_just_chose_a_card(author, card):
 func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
 		pass_node.visible = false
-		message_node.text = ''
+		message_node.visible_characters = 0
 		
 		var discarded = []
 		var hand = global.session.get_hand()
