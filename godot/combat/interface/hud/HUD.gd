@@ -66,7 +66,7 @@ func _on_matchscore_updated(author, broadcasted):
 		var player : InfoPlayer = global.the_match.get_player(bar.player.id)
 		bar.set_value(player.get_score(), player if broadcasted else author)
 		
-	sort_bars(false)
+	# sort_bars(false)
 	
 	update_leaders()
 	
