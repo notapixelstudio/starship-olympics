@@ -64,7 +64,7 @@ func continue_draft(session_ended):
 		last_played_card.queue_free()
 	
 	ships_have_to_choose = false
-	 
+	
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
 		ships_have_to_choose = true
@@ -158,7 +158,8 @@ func selections_maybe_all_done():
 	
 func pick_next_card():
 	# TBD animation
-	yield(get_tree().create_timer(3), "timeout")
+	var hand = global.session.get_hand()
+	yield(get_tree().create_timer(len(hand)*0.33+0.33), "timeout")
 	
 	var picked_card : Minigame = global.session.choose_next_card()
 	
