@@ -31,8 +31,7 @@ func fill_mapping():
 		var event_text = Controls.event_to_text(event)
 		var event_device = event_text["device"]
 		var event_device_id = event_text["device_id"]
-		if event_device in device or device == "ui":
-			add_mapping_to_screen(event)
+		add_mapping_to_screen(event)
 		
 func setup():
 	clear()

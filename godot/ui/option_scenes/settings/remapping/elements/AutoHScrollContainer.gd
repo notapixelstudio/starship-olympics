@@ -53,4 +53,3 @@ func clear():
 	anim.track_set_key_value(0, 0, 0)
 	anim.track_set_key_value(0, 2, 0)
 	
-		

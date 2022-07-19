@@ -15,6 +15,8 @@ func _ready():
 	set_process_input(true)
 	
 func check_input_event(event:InputEvent):
+	return event is InputEventKey or  (event is InputEventJoypadButton or 
+		(event is InputEventJoypadMotion and event.axis != 7 and event.axis != 6))
 	if "keyboard" in self.device_category:
 		return event is InputEventKey
 	elif "joypad" in self.device_category:
