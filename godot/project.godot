@@ -359,10 +359,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/minigames/Minigame.gd"
 }, {
-"base": "HBoxContainer",
+"base": "ColorRect",
 "class": "MinigameListItem",
 "language": "GDScript",
 "path": "res://ui/minigame_list/MinigameListItem.gd"
+}, {
+"base": "Control",
+"class": "MinigameMinilogo",
+"language": "GDScript",
+"path": "res://ui/minigame_list/MinigameMinilogo.gd"
 }, {
 "base": "StaticBody2D",
 "class": "Mirror",
@@ -661,6 +666,7 @@ _global_script_class_icons={
 "Mine": "",
 "Minigame": "",
 "MinigameListItem": "",
+"MinigameMinilogo": "",
 "Mirror": "",
 "ModeManager": "",
 "Mutator": "",

@@ -148,7 +148,7 @@ func selections_maybe_all_done():
 				to_be_put_back.append(card)
 		
 		# shuffle the remaining cards right back into the deck
-		deck.put_back_cards(to_be_put_back)
+		deck.append_cards(to_be_put_back)
 		deck.shuffle()
 		
 		self.pick_next_card()

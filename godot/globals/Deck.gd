@@ -2,9 +2,10 @@ extends Node
 
 class_name Deck
 
-var cards: Array = []
-var played_pile: Array = []
+var cards : Array = []
+var played_pile : Array = []
 var card_pool : CardPool
+var seen_cards : Dictionary
 
 const DECK_PATH = "res://map/draft/"
 const CARD_POOL_PATH = "res://map/draft/pool"
@@ -15,7 +16,7 @@ func _init():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	cards.append_array(starting_deck.minigames)
+	append_cards(starting_deck.minigames)
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
@@ -28,9 +29,9 @@ func draw(how_many : int) -> Array:
 		print('deck is about to be emptied (' + str(len(cards)) + ' left, ' + str(how_many) + ' requested).')
 		print('reshuffling ' + str(len(played_pile)) + ' cards from the played pile.')
 		print(played_pile)
-		self.put_back_cards(played_pile)
+		append_cards(played_pile)
 		played_pile = []
-		self.shuffle()
+		shuffle()
 		print('deck now contains ' + str(len(cards)) + ' cards')
 		print(cards)
 		
@@ -46,8 +47,17 @@ func shuffle():
 	for card in cards:
 		card.new = false
 	
-func put_back_cards(cards_to_put_back : Array) -> void:
-	cards.append_array(cards_to_put_back)
+# add cards to the deck
+# rejects duplicates with a warning
+func append_cards(cards_to_be_appended : Array) -> void:
+	var non_duplicates = []
+	for card in cards_to_be_appended:
+		if seen_cards.has(card):
+			print("WARNING duplicate card rejected from deck: " + card.get_id())
+		else:
+			non_duplicates.append(card)
+	cards.append_array(non_duplicates)
+	
 	
 func add_new_cards(amount := 1) -> void:
 	var new_cards = []
