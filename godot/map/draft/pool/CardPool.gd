@@ -28,3 +28,7 @@ func retrieve_card(id) -> Minigame:
 
 func get_card(id) -> Minigame:
 	return index[id]
+
+func remove_card(card) -> void:
+	index.erase(card.get_id())
+	cards.erase(card)

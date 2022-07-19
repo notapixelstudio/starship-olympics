@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/minigame_list/MinigameListItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=2]
@@ -12,6 +12,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -79,10 +83,21 @@ margin_right = 938.0
 margin_bottom = 720.0
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/Unlocks"]
+[node name="Id" type="Label" parent="HBoxContainer/Unlocks"]
+modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
 margin_right = 60.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 0, 55 )
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 36 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 4 )
+valign = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Unlocks"]
+margin_top = 40.0
+margin_right = 60.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 0, 22 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
 custom_constants/shadow_offset_y = 4
 custom_fonts/font = SubResource( 3 )
@@ -90,7 +105,7 @@ text = "Unlocks"
 valign = 2
 
 [node name="List" type="HBoxContainer" parent="HBoxContainer/Unlocks"]
-margin_top = 59.0
+margin_top = 66.0
 margin_right = 60.0
-margin_bottom = 119.0
-rect_min_size = Vector2( 0, 60 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 54 )

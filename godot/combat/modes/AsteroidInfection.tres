@@ -1,16 +1,14 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/asteroid_survival_logo.png" type="Texture" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/asteroid_infection.png" type="Texture" id=4]
 
 [resource]
 script = ExtResource( 1 )
-id = "asteroid_survival"
+id = "asteroid_infection"
 is_mutator = false
 name = "Asteroid Infection"
 icon = ExtResource( 4 )
-logo = ExtResource( 2 )
 description = "survive the deadly asteroids"
 tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
 tagline_cons = "Getting killed will make you lose most of the coins"

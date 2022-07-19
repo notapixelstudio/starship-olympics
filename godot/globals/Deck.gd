@@ -21,8 +21,10 @@ func _init():
 	var pools = global.get_resources(CARD_POOL_PATH)
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
+	for starting_minigame in starting_deck.minigames:
+		card_pool.remove_card(starting_minigame)
 	
-	prepare_next_cards(['board_conquest', 'ark_of_memory'])
+	prepare_next_cards(['board_conquest', 'homesick_invaders', 'skull_collector', 'nine_lives'])
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
