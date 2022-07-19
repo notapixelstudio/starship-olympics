@@ -1,12 +1,10 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/sets/core/slam_a_gon/4players.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=3]
 [ext_resource path="res://combat/levels/sets/core/slam_a_gon/3players.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/levels/sets/core/slam_a_gon/2players.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/minigames/GoalPortal.tres" type="Resource" id=6]
-[ext_resource path="res://combat/minigames/Tennis.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
@@ -16,4 +14,4 @@ level_1players = ExtResource( 5 )
 level_2players = ExtResource( 5 )
 level_3players = ExtResource( 4 )
 level_4players = ExtResource( 2 )
-unlocks = [ ExtResource( 7 ), ExtResource( 6 ) ]
+unlocks = [ "goal_portal", "tennis" ]

@@ -10,7 +10,7 @@ export var level_2players : PackedScene
 export var level_3players : PackedScene
 export var level_4players : PackedScene
 
-export var unlocks : Array # of Minigames/cards
+export var unlocks : Array = [] # of minigame IDs
 
 var new := false
 

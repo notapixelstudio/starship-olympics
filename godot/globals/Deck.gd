@@ -5,7 +5,7 @@ class_name Deck
 var cards : Array = []
 var played_pile : Array = []
 var card_pool : CardPool
-var seen_cards : Dictionary
+var next : Array = []
 
 const DECK_PATH = "res://map/draft/"
 const CARD_POOL_PATH = "res://map/draft/pool"
@@ -21,6 +21,8 @@ func _init():
 	var pools = global.get_resources(CARD_POOL_PATH)
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
+	
+	prepare_next_cards(['board_conquest', 'ark_of_memory'])
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
@@ -48,21 +50,14 @@ func shuffle():
 		card.new = false
 	
 # add cards to the deck
-# rejects duplicates with a warning
 func append_cards(cards_to_be_appended : Array) -> void:
-	var non_duplicates = []
-	for card in cards_to_be_appended:
-		if seen_cards.has(card):
-			print("WARNING duplicate card rejected from deck: " + card.get_id())
-		else:
-			non_duplicates.append(card)
-	cards.append_array(non_duplicates)
-	
+	cards.append_array(cards_to_be_appended)
 	
 func add_new_cards(amount := 1) -> void:
+	next.shuffle()
 	var new_cards = []
 	for i in range(amount):
-		var new_card = card_pool.get_new_card()
+		var new_card = next.pop_front()
 		if new_card != null:
 			new_card.new = true
 			new_cards.append(new_card)
@@ -72,4 +67,22 @@ func add_new_cards(amount := 1) -> void:
 
 func put_card_into_played_pile(card) -> void:
 	played_pile.append(card)
+	
+func prepare_next_cards(next_card_ids) -> void:
+	if len(next_card_ids) <= 0:
+		return
+		
+	next_card_ids.shuffle()
+	
+	var next_cards = []
+	for id in next_card_ids:
+		if not card_pool.has(id):
+			print("Skipping duplicate: " + id)
+			continue
+		
+		var card = card_pool.retrieve_card(id)
+		if card == null:
+			continue
+		
+		next.append(card)
 	
