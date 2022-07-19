@@ -1,21 +1,21 @@
 extends Node2D
 
-class_name CollectableSpawner
-export var diamond_scene: PackedScene
+tool
+
+class_name SpawnerElement
+export var element_scene: PackedScene
 export var wave: int
 
 var children_ = []
 
 func _ready():
-	for element in get_children():
-		children_.append(element)
-		remove_child(element)
-
+	if Engine.is_editor_hint():
+		var element = element_scene.instance()
+		$Sprite.texture = element.get_node("Sprite").texture
+	
 func spawn():
-	var collectables = []
-	for element in children_:
-		add_child(element.duplicate())
-		
+	var element = element_scene.instance()
+	add_child(element)
 		#var diamond = diamond_scene.instance()
 		# offset of the spawner
 		#diamond.position = element.position + position

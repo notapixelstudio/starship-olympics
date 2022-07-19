@@ -119,11 +119,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/Cell.gd"
 }, {
-"base": "Node2D",
-"class": "CollectableSpawner",
-"language": "GDScript",
-"path": "res://actors/environments/DiamondSpawner.gd"
-}, {
 "base": "Node",
 "class": "Component",
 "language": "GDScript",
@@ -484,6 +479,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/battlers/Ship.gd"
 }, {
+"base": "Node2D",
+"class": "SpawnerElement",
+"language": "GDScript",
+"path": "res://actors/environments/DiamondSpawner.gd"
+}, {
 "base": "Resource",
 "class": "Species",
 "language": "GDScript",
@@ -602,7 +602,6 @@ _global_script_class_icons={
 "Card": "",
 "CardPool": "",
 "Cell": "",
-"CollectableSpawner": "",
 "Component": "",
 "Conquerable": "",
 "Controller": "",
@@ -675,6 +674,7 @@ _global_script_class_icons={
 "Rule": "",
 "Set": "",
 "Ship": "",
+"SpawnerElement": "",
 "Species": "",
 "Star": "",
 "StarIcon": "",

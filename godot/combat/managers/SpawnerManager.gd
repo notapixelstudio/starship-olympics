@@ -15,6 +15,7 @@ var current_spawners = 0
 export var min_elements_per_wave = 3
 var elements_spawned := 0
 onready var wave_timer = $Timer
+signal done
 
 func initialize(_spawners, wait_time = 0, wave = 0):
 	current_wave = wave
@@ -23,7 +24,6 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	spawners_per_wave = {}
 	var waves = 0
 	for s in spawners:
-		assert(s is CollectableSpawner)
 		if not s.wave in spawners_per_wave:
 			spawners_per_wave[s.wave] = [s]
 			waves += 1
@@ -38,7 +38,6 @@ func initialize(_spawners, wait_time = 0, wave = 0):
 	elements_spawned += 1
 	global.arena.on_next_wave(next_spawner, wait_time)
 	
-signal done
 func intro():
 	global.arena.connect('wave_ready', self, 'on_wave_ready')
 	self.initialize(get_tree().get_nodes_in_group("spawner_group"))
