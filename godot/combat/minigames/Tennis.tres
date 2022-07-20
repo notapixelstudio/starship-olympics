@@ -1,9 +1,8 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/sets/sports/tennis/2players.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/modes/Tennis.tres" type="Resource" id=3]
-[ext_resource path="res://combat/levels/sets/sports/tennis/3players.tscn" type="PackedScene" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,5 +10,4 @@ id = "ponganoid"
 game_mode = ExtResource( 3 )
 level_1players = ExtResource( 2 )
 level_2players = ExtResource( 2 )
-level_3players = ExtResource( 4 )
 unlocks = [ "slam", "goalportal", "alchemical_bombing", "flowsnake" ]
