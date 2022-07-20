@@ -4,12 +4,12 @@ var charging := false
 var speed := 25
 var patience := 7
 
-func _ready():
+func start():
 	set_physics_process(true)
 	# move the crown slightly to purse a different player each time
-	apply_central_impulse(Vector2(1,0).rotated(randf()*2*PI))
+	randomize()
+	apply_central_impulse(Vector2(100,0).rotated(randf()*2*PI))
 	
-func start():
 	wait_for_charge(patience)
 	
 func _enter_tree():
