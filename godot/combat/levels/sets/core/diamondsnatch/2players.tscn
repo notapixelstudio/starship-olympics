@@ -509,26 +509,8 @@ position = Vector2( 300, -600 )
 [node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner28" index="4" instance=ExtResource( 16 )]
 position = Vector2( -300, 0 )
 
-[node name="DiamondSpawner29" parent="Battlefield/Middleground" index="39" instance=ExtResource( 13 )]
-position = Vector2( 600, 0 )
-wave = 3
-
-[node name="Coin" parent="Battlefield/Middleground/DiamondSpawner29" index="0" instance=ExtResource( 16 )]
-position = Vector2( 0, -300 )
-
-[node name="Coin2" parent="Battlefield/Middleground/DiamondSpawner29" index="1" instance=ExtResource( 16 )]
-position = Vector2( -150, -150 )
-
-[node name="Coin3" parent="Battlefield/Middleground/DiamondSpawner29" index="2" instance=ExtResource( 16 )]
-position = Vector2( 150, -450 )
-
-[node name="Coin4" parent="Battlefield/Middleground/DiamondSpawner29" index="3" instance=ExtResource( 16 )]
-position = Vector2( 300, -600 )
-
-[node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner29" index="4" instance=ExtResource( 16 )]
-position = Vector2( -300, 0 )
-
-[node name="DiamondSpawner31" parent="Battlefield/Middleground" index="40" instance=ExtResource( 13 )]
+[node name="DiamondSpawner31" parent="Battlefield/Middleground" index="39" instance=ExtResource( 13 )]
+visible = false
 position = Vector2( -600, -600 )
 wave = 3
 
@@ -546,7 +528,7 @@ position = Vector2( 300, 600 )
 [node name="Coin5" parent="Battlefield/Middleground/DiamondSpawner31" index="4" instance=ExtResource( 16 )]
 position = Vector2( -300, 0 )
 
-[node name="Wall5" parent="Battlefield/Middleground" index="41" instance=ExtResource( 8 )]
+[node name="Wall5" parent="Battlefield/Middleground" index="40" instance=ExtResource( 8 )]
 position = Vector2( -900, 900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -555,7 +537,7 @@ script = ExtResource( 2 )
 radius = 50
 sides = 4.0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="42" instance=ExtResource( 8 )]
+[node name="Wall7" parent="Battlefield/Middleground" index="41" instance=ExtResource( 8 )]
 position = Vector2( -1750, 0 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -564,7 +546,7 @@ script = ExtResource( 2 )
 radius = 50
 sides = 4.0
 
-[node name="Wall8" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
+[node name="Wall8" parent="Battlefield/Middleground" index="42" instance=ExtResource( 8 )]
 position = Vector2( 1750, 0 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -573,7 +555,7 @@ script = ExtResource( 2 )
 radius = 50
 sides = 4.0
 
-[node name="Wall6" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
+[node name="Wall6" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
 position = Vector2( 900, -900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -582,7 +564,7 @@ script = ExtResource( 2 )
 radius = 50
 sides = 4.0
 
-[node name="Wall" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
+[node name="Wall" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
 position = Vector2( -900, -900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -599,7 +581,7 @@ rotation = 1.5708
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 1 )
 
-[node name="Wall4" parent="Battlefield/Middleground" index="46" instance=ExtResource( 8 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
 position = Vector2( 900, 900 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -616,52 +598,24 @@ rotation = -1.5708
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall4" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 2 )
 
-[node name="GroupSpawner2" parent="Battlefield/Middleground" index="47" instance=ExtResource( 11 )]
+[node name="Wave1" type="Node" parent="Battlefield/Middleground" index="46"]
 
-[node name="Wave1" type="Node" parent="Battlefield/Middleground" index="48"]
+[node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="47"]
 
-[node name="GroupSpawner" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 11 )]
+[node name="Backslash" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 11 )]
+position = Vector2( -720, 292 )
+pattern = "slash"
+spawner_scene = ExtResource( 13 )
+element_scene = ExtResource( 16 )
+guest_star_scene = ExtResource( 17 )
 
-[node name="ElementSpawner" parent="Battlefield/Middleground/Wave1/GroupSpawner" index="0" instance=ExtResource( 13 )]
+[node name="Wave3" type="Node2D" parent="Battlefield/Middleground" index="48"]
 
-[node name="Wave2" type="Node" parent="Battlefield/Middleground" index="49"]
-
-[node name="DiamondSpawner30" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 13 )]
-position = Vector2( 600, 0 )
-wave = 3
-
-[node name="Coin" parent="Battlefield/Middleground/Wave2/DiamondSpawner30" index="0" instance=ExtResource( 16 )]
-position = Vector2( 0, 300 )
-
-[node name="Coin2" parent="Battlefield/Middleground/Wave2/DiamondSpawner30" index="1" instance=ExtResource( 16 )]
-position = Vector2( -150, 150 )
-
-[node name="Coin3" parent="Battlefield/Middleground/Wave2/DiamondSpawner30" index="2" instance=ExtResource( 16 )]
-position = Vector2( 150, 450 )
-
-[node name="Coin4" parent="Battlefield/Middleground/Wave2/DiamondSpawner30" index="3" instance=ExtResource( 16 )]
-position = Vector2( 300, 600 )
-
-[node name="Coin5" parent="Battlefield/Middleground/Wave2/DiamondSpawner30" index="4" instance=ExtResource( 16 )]
-position = Vector2( -300, 0 )
-
-[node name="Backslash" parent="Battlefield/Middleground/Wave2" index="1" instance=ExtResource( 11 )]
+[node name="GropSpawner" parent="Battlefield/Middleground/Wave3" index="0" instance=ExtResource( 11 )]
 position = Vector2( 600, 300 )
-pattern = "backslash\\"
-
-[node name="ElementSpawner" parent="Battlefield/Middleground/Wave2/Backslash" index="0" instance=ExtResource( 13 )]
-
-[node name="ElementSpawner2" parent="Battlefield/Middleground/Wave2/Backslash" index="1" instance=ExtResource( 13 )]
-position = Vector2( -150, -150 )
-
-[node name="ElementSpawner3" parent="Battlefield/Middleground/Wave2/Backslash" index="2" instance=ExtResource( 13 )]
-position = Vector2( -300, -300 )
-
-[node name="ElementSpawner4" parent="Battlefield/Middleground/Wave2/Backslash" index="3" instance=ExtResource( 13 )]
-position = Vector2( 150, 150 )
-
-[node name="ElementSpawner5" parent="Battlefield/Middleground/Wave2/Backslash" index="4" instance=ExtResource( 13 )]
-position = Vector2( 300, 300 )
+pattern = "single"
+spawner_scene = ExtResource( 13 )
+element_scene = ExtResource( 16 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )

@@ -9,9 +9,13 @@ export var wave: int
 var children_ = []
 
 func _ready():
+	var element = element_scene.instance()
 	if Engine.is_editor_hint():
-		var element = element_scene.instance()
 		$Sprite.texture = element.get_node("Sprite").texture
+	else:
+		$Sprite.queue_free()
+		
+		
 	
 func spawn():
 	var element = element_scene.instance()
