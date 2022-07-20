@@ -11,7 +11,7 @@ func _ready():
 	minigames.sort_custom(self, 'sort_minigames')
 	
 	for i in minigames.size():
-		var minigame =minigames[i]
+		var minigame = minigames[i]
 		var item = MinigameListItemScene.instance()
 		item.set_minigame(minigame, pool)
 		if i % 2:
