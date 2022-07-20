@@ -2,7 +2,6 @@ extends ScrollContainer
 
 export var MinigameListItemScene : PackedScene
 
-const DECK_PATH = "res://map/draft/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
 func _ready():
