@@ -7,7 +7,7 @@ var played_pile : Array = []
 var card_pool : CardPool
 var next : Array = []
 
-const DECK_PATH = "res://map/draft/"
+const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
 func _init():
@@ -17,7 +17,7 @@ func _init():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	#var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	var starting_deck = load(DECK_PATH+'/survival.tres')
+	var starting_deck = load(DECK_PATH+'/conquest.tres')
 	append_cards(starting_deck.minigames)
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
