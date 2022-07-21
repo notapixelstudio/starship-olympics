@@ -1,5 +1,6 @@
 extends Position2D
 
+class_name GroupSpawner
 tool
 
 export (String, 'slash', 'backslash', 'line', "single", "custom") var pattern = "line" setget _set_pattern
@@ -18,9 +19,11 @@ var map_pattern_distance = {
 	
 func _set_pattern(v: String):
 	pattern = v
-	self.set_spawner()
+	if not is_inside_tree():
+		yield(self, "ready")
+	self.set_spawners()
 	
-func set_spawner():
+func set_spawners():
 	for n in get_children():
 		remove_child(n)
 		n.queue_free()
@@ -44,9 +47,8 @@ func set_spawner():
 			
 func _ready():
 	# ignore instance if custom
-	set_spawner()
+	set_spawners()
 
 func spawn():
-	for spawner in get_children():
-		spawner.spawn()
-
+	for n in get_children():
+		n.spawn()
