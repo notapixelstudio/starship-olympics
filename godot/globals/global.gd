@@ -536,6 +536,8 @@ func new_game(players) -> TheGame:
 	the_game = TheGame.new()
 	game_number += 1
 	the_game.set_players(players)
+	var deck := Deck.new()
+	the_game.set_deck(deck)
 	Events.emit_signal("game_started")
 	return the_game
 

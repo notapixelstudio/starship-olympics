@@ -12,7 +12,8 @@ const CARD_POOL_PATH = "res://map/draft/pool"
 
 func _init():
 	randomize()
-	# we might decide to put this in a 
+	
+	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
@@ -25,6 +26,8 @@ func _init():
 	for starting_minigame in starting_deck.minigames:
 		card_pool.remove_card(starting_minigame)
 	
+	# WARNING these are fixed at the moment
+	# they also have to provide levels for each player count
 	prepare_next_cards(['board_conquest', 'homesick_invaders', 'skull_collector', 'nine_lives'])
 	
 # could return less than the number of requested cards in corner cases
@@ -85,6 +88,9 @@ func prepare_next_cards(next_card_ids) -> void:
 		
 		var card = card_pool.retrieve_card(id)
 		if card == null:
+			continue
+			
+		if not card.has_level_for_player_count(global.the_game.get_number_of_players()):
 			continue
 		
 		next.append(card)

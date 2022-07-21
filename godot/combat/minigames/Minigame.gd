@@ -49,3 +49,6 @@ func reset_strikes():
 func has_enough_strikes() -> bool:
 	return strikes >= 3
 	
+func has_level_for_player_count(player_count: int) -> bool:
+	return get("level_"+str(player_count)+"players") != null
+	

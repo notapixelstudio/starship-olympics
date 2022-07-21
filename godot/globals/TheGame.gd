@@ -5,7 +5,7 @@ class_name TheGame
 var uuid : String
 var players : Array
 
-var deck := Deck.new()
+var deck : Deck
 
 func _init():
 	uuid = UUID.v4()
@@ -66,4 +66,7 @@ func to_log_dict() -> Dictionary:
 
 func get_deck() -> Deck:
 	return deck
+	
+func set_deck(v : Deck) -> void:
+	deck = v
 	
