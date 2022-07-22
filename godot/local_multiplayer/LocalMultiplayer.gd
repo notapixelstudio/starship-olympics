@@ -9,7 +9,6 @@ export var tutorial_scene: PackedScene
 
 var games = {}  # {sport.name : Resource}
 
-var first_time = true # In order to show the TUTORIAL
 var all_species = []
 onready var parallax = $ParallaxBackground
 var map # MapArena
@@ -80,16 +79,11 @@ func start_fight(selected_players: Array, fight_mode: String):
 	add_cpu(num_CPUs)
 	
 	global.new_game(players.values())
-	navigate_to_tutorial()
-
-func navigate_to_tutorial():
+	
 	safe_destroy_combat()
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
-	var tutorial = tutorial_scene.instance()
-	add_child(tutorial)
-	yield(tutorial, 'over')
 	
 	create_map()
 	navigate_to_map()
@@ -121,6 +115,16 @@ func next_level(minigame):
 	$TransitionScreen.transition()
 	yield($TransitionScreen, "transitioned")
 	remove_child(map)
+	
+	# show tutorial if this is the first match of the game
+	if global.is_before_first_match_of_the_game():
+		var tutorial = tutorial_scene.instance()
+		add_child(tutorial)
+		yield(tutorial, 'over')
+		
+		$TransitionScreen.transition()
+		yield($TransitionScreen, "transitioned")
+		tutorial.queue_free()
 	
 	start_minigame(minigame)
 
