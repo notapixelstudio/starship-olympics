@@ -230,33 +230,6 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="DramaticSpawner4" parent="Battlefield/Middleground/Variants/A" index="2" instance=ExtResource( 19 )]
-match_progress_trigger = 0.4
-chance = 0.8
-
-[node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner4" index="0" instance=ExtResource( 18 )]
-type = "shields"
-tease = true
-random_types = [ "plate", "shields" ]
-
-[node name="DramaticSpawner5" parent="Battlefield/Middleground/Variants/A" index="3" instance=ExtResource( 19 )]
-position = Vector2( -1000, 0 )
-match_progress_trigger = 0.6
-chance = 0.6
-
-[node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
-type = "shields"
-tease = true
-
-[node name="DramaticSpawner6" parent="Battlefield/Middleground/Variants/A" index="4" instance=ExtResource( 19 )]
-position = Vector2( 1000, 0 )
-match_progress_trigger = 0.6
-chance = 0.6
-
-[node name="PowerUp" parent="Battlefield/Middleground/Variants/A/DramaticSpawner6" index="0" instance=ExtResource( 18 )]
-type = "shields"
-tease = true
-
 [node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
 visible = false
 
@@ -346,6 +319,24 @@ line_texture = ExtResource( 7 )
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Variants/C/Wall8" index="4"]
 script = ExtResource( 1 )
 sides = 4.0
+
+[node name="DramaticSpawner5" parent="Battlefield/Middleground/Variants/C" index="3" instance=ExtResource( 19 )]
+position = Vector2( -1000, 0 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner5" index="0" instance=ExtResource( 18 )]
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner6" parent="Battlefield/Middleground/Variants/C" index="4" instance=ExtResource( 19 )]
+position = Vector2( 1000, 0 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" parent="Battlefield/Middleground/Variants/C/DramaticSpawner6" index="0" instance=ExtResource( 18 )]
+type = "shields"
+tease = true
 
 [node name="D" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
 visible = false
