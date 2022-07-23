@@ -803,10 +803,8 @@ func _on_sth_collected(collector, collectee):
 	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
 		
-	if collectee.get_parent().is_in_group("spawner_group"):
-		collectee.get_parent().call_deferred('remove', collectee)
-	else:
-		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+	collectee.get_parent().call_deferred('remove_child', collectee)
+	# collisions do not work as expected without defer
 		
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)

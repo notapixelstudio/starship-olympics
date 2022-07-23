@@ -26,7 +26,6 @@ func spawn():
 		#collectables.append(diamond)
 	#return collectables
 	
-func remove(element):
-	remove_child(element)
-	yield(get_tree().create_timer(1), "timeout")
+func remove_child(element):
+	.remove_child(element)
 	element.queue_free()

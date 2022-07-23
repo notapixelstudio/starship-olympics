@@ -67,38 +67,34 @@ __meta__ = {
 sprite = NodePath("../Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 0, 3 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
+visible = false
 position = Vector2( 0, 3 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect2" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
-scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect3" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
-scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Glow" type="Node2D" parent="."]
-visible = false
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0 )
-scale = Vector2( 0.964227, 0.964227 )
+modulate = Color( 0.305882, 1, 0.968627, 0.275313 )
+scale = Vector2( 0.910176, 0.910176 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
