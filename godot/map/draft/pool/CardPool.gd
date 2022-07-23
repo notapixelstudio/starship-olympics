@@ -3,120 +3,32 @@ extends Resource
 class_name CardPool
 
 export var id : String
-export var cards : Array = [
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object()
-] setget set_cards # MiniGame
+export var cards : Array = [] setget set_cards # MiniGame
 
-var valid_cards = []
+var index : Dictionary = {}
 
 func set_cards(v):
 	cards = v
 	for card in cards:
 		if card is Minigame:
-			valid_cards.append(card)
+			index[card.get_id()] = card
 			
 	randomize()
-	valid_cards.shuffle()
+	cards.shuffle()
 
-func get_new_card() -> Minigame:
-	var new_card = valid_cards.pop_front()
-	return new_card
+func has(card) -> bool:
+	return index.has(card)
+	
+func retrieve_card(id) -> Minigame:
+	if not has(id):
+		return null
+	var card = index[id]
+	index.erase(id)
+	return card
+
+func get_card(id) -> Minigame:
+	return index[id]
+
+func remove_card(card) -> void:
+	index.erase(card.get_id())
+	cards.erase(card)

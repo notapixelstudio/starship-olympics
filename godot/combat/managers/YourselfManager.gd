@@ -26,7 +26,8 @@ func _ready():
 	for card in cards:
 		card.set_content(BAD)
 		
-	# place player cards
+func place_player_cards():
+	var cards = get_all_cards()
 	var spawners = get_tree().get_nodes_in_group('player_spawner')
 	var indices = range(len(cards))
 	indices.shuffle()
@@ -47,6 +48,8 @@ func _ready():
 			card.set_content(null)
 		
 func intro():
+	place_player_cards()
+	
 	Events.connect('match_ended', self, '_on_match_ended')
 	
 	for card in get_all_cards():

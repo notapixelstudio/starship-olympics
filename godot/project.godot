@@ -359,6 +359,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/minigames/Minigame.gd"
 }, {
+"base": "ColorRect",
+"class": "MinigameListItem",
+"language": "GDScript",
+"path": "res://ui/minigame_list/MinigameListItem.gd"
+}, {
+"base": "Control",
+"class": "MinigameMinilogo",
+"language": "GDScript",
+"path": "res://ui/minigame_list/MinigameMinilogo.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Mirror",
 "language": "GDScript",
@@ -549,6 +559,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/traits/Trait.gd"
 }, {
+"base": "Label",
+"class": "Typewriter",
+"language": "GDScript",
+"path": "res://ui/Typewriter.gd"
+}, {
 "base": "Control",
 "class": "UIOptionPanel",
 "language": "GDScript",
@@ -660,6 +675,8 @@ _global_script_class_icons={
 "Marble": "",
 "Mine": "",
 "Minigame": "",
+"MinigameListItem": "",
+"MinigameMinilogo": "",
 "Mirror": "",
 "ModeManager": "",
 "Mutator": "",
@@ -698,6 +715,7 @@ _global_script_class_icons={
 "Trail": "",
 "Trail2D": "",
 "Trait": "",
+"Typewriter": "",
 "UIOptionPanel": "",
 "UIOptions": "",
 "UUID": "",

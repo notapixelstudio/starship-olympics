@@ -10,6 +10,8 @@ export var level_2players : PackedScene
 export var level_3players : PackedScene
 export var level_4players : PackedScene
 
+export var unlocks : Array = [] # of minigame IDs
+
 var new := false
 
 var times_started := 0
@@ -26,6 +28,9 @@ func get_level(num_players) -> PackedScene:
 	
 func get_name():
 	return game_mode.name
+	
+func get_description():
+	return game_mode.description
 
 func increase_times_started():
 	times_started += 1
@@ -43,4 +48,7 @@ func reset_strikes():
 	
 func has_enough_strikes() -> bool:
 	return strikes >= 3
+	
+func has_level_for_player_count(player_count: int) -> bool:
+	return get("level_"+str(player_count)+"players") != null
 	
