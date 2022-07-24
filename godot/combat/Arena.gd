@@ -110,7 +110,7 @@ func update_time_scale():
 
 signal update_stats
 
-func setup_level(mode : Resource):
+func setup_level(mode : GameMode):
 	assert(mode is GameMode)
 	# mode managers
 	crown_mode.enabled = mode.crown
@@ -122,17 +122,6 @@ func setup_level(mode : Resource):
 	
 	# managers
 	pursue_manager.enabled = mode.pursuing_bombs
-	
-	#FIX
-	if global.is_session_running() and mode.name in global.session.get_settings() and not global.campaign_mode:
-		for key in global.session.get_settings(mode.name):
-			var val = global.session.get_settings(mode.name)[key]
-			mode.set(key, val)
-			# send stats for settings
-			global.send_stats("design", {"event_id": "settings:{what}:{sport}".format({"what": key, "sport": mode.name}), "value": int(val)})
-	
-func _init():
-	global.arena = self
 	
 func _enter_tree():
 	# this happens before descendants _ready() calls
@@ -187,7 +176,7 @@ func _ready():
 	
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
 	
-	
+	# TODO: refactor this with Events signals
 	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
 	collect_manager.connect('collected', self, "_on_sth_collected")
 	collect_manager.connect('dropped', crown_mode, "_on_sth_dropped")
@@ -320,16 +309,6 @@ func _ready():
 		game_mode.max_score = score_to_win_override
 	if match_duration_override > 0:
 		game_mode.max_timeout = match_duration_override
-		
-	if show_intro:
-		mode_description.gamemode = game_mode
-		mode_description.appears()
-		if demo:
-			# demo will wait 1 second and create a CPU match
-			mode_description.demomode(demo)
-			mode_description.set_process_input(false)
-			yield(get_tree().create_timer(3), "timeout")
-			mode_description.disappears()
 	
 	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
@@ -376,12 +355,32 @@ func _ready():
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
-		
+	
+	
+	# SETUP COMPLETED
+	
+	if show_intro:
+		mode_description.gamemode = game_mode
+		mode_description.appears()
+		if demo:
+			# demo will wait 1 second and create a CPU match
+			mode_description.demomode(demo)
+			mode_description.set_process_input(false)
+			yield(get_tree().create_timer(3), "timeout")
+			mode_description.disappears()
+	
 	if show_hud:
 		hud.set_planet("", game_mode)
 	if show_intro:
+		var player_spawners = $SpawnPositions/Players.get_children()
+		var starting_positions = mode_description.get_starting_position()
+		for spawner in player_spawners:
+			for s_pos in starting_positions:
+				if spawner.info_player == s_pos.player_info:
+					var ship_sprite = s_pos.get_node("Ship")
+					spawner.starting_position = camera.screen_to_world(ship_sprite.global_position)
 		yield(mode_description, "ready_to_fight")
-	
+
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
 	else:

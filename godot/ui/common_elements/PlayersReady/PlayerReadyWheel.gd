@@ -1,5 +1,7 @@
 extends Control
 
+class_name PlayerReadyWheel
+
 const SPEED = 100
 const SPEED_DECREASE = 700
 var time = 0
@@ -42,3 +44,4 @@ func _process(delta):
 		ready_label.visible = true
 		Events.emit_signal("player_ready", player_info)
 		modulate = Color(1.16,1.16,1.16,1)
+

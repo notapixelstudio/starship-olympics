@@ -7,6 +7,7 @@ export (Resource) var species
 export (String) var team = ''
 # temporary for cpu
 export (bool) var cpu = false
+export var starting_position: Vector2
 
 signal player_assigned(info_player)
 signal entered_battlefield
@@ -18,7 +19,6 @@ onready var sprite = $Sprite
 onready var animation = $AnimationPlayer
 
 func _ready():
-	visible = false
 	global.arena.connect("all_ships_spawned", self, '_on_all_ships_spawned')
 	
 func appears():
@@ -32,7 +32,13 @@ func appears():
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)
 	
 	sprite.texture = species.ship
+	print("We should go from {pos} to {end_pos}".format({"pos": starting_position, "end_pos": self.position}))
+	var spawner_position = self.position
+	if starting_position != Vector2(0,0):
+		$Tween.interpolate_property($Sprite, "global_position", starting_position, spawner_position, 10, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	visible = true
+	$Tween.start()
+	yield($Tween, "tween_all_completed")
 	animation.play("Appearing")
 	yield(animation, "animation_finished")
 	emit_signal("entered_battlefield")

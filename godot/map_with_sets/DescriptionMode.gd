@@ -55,7 +55,7 @@ func disappears():
 	animator.play("getout")
 	$Continue.queue_free()
 	yield(animator, "animation_finished")
-	emit_signal("ready_to_fight")
+	emit_signal("ready_to_fight", $PlayersReady.get_children())
 	queue_free()
 
 func demomode(demo = false):
@@ -74,4 +74,9 @@ func a_player_is_ready(player_info: InfoPlayer):
 			return false
 	disappears()
 
-	
+func get_starting_position() -> Array:
+	var wheels := []
+	for p in $PlayersReady.get_children():
+		var ready_wheel: PlayerReadyWheel = p
+		wheels.append(ready_wheel)
+	return wheels

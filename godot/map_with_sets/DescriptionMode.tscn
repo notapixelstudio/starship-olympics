@@ -183,9 +183,7 @@ default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
 
 [node name="PlayersReady" parent="." instance=ExtResource( 9 )]
-margin_left = -0.00138228
 margin_top = -134.0
-margin_right = -0.00134277
 margin_bottom = 26.0
 
 [connection signal="done" from="Description" to="." method="_on_Description_done"]
