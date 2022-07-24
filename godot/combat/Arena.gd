@@ -922,9 +922,9 @@ func _on_sth_just_froze(sth):
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
 	rock.call_deferred('start')
 
-func _on_goal_done(player, goal, pos):
-	global.the_match.add_score_to_team(player.team, goal.get_score())
-	show_msg(player.species, goal.get_score(), pos)
+func _on_goal_done(player, goal, pos, points=1):
+	global.the_match.add_score_to_team(player.team, points)
+	show_msg(player.species, points, pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):

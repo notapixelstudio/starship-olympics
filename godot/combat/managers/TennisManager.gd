@@ -35,7 +35,7 @@ func _ready():
 	for brick in player_bricks.get_children():
 		if not brick is Brick:
 			continue
-		score += 1
+		score += brick.get_points()
 	
 	global.arena.score_to_win_override = score
 

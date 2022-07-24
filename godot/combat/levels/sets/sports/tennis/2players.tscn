@@ -184,11 +184,11 @@ position = Vector2( -100, -100 )
 colorize = false
 
 [node name="Brick3" parent="Battlefield/Middleground/LeftBricks" index="2" instance=ExtResource( 11 )]
-position = Vector2( 100, 0 )
+position = Vector2( 109, 0 )
 colorize = false
 
 [node name="Brick4" parent="Battlefield/Middleground/LeftBricks" index="3" instance=ExtResource( 11 )]
-position = Vector2( 100, -100 )
+position = Vector2( 109, -100 )
 colorize = false
 
 [node name="Brick5" parent="Battlefield/Middleground/LeftBricks" index="4" instance=ExtResource( 11 )]
@@ -200,11 +200,11 @@ position = Vector2( -100, 100 )
 colorize = false
 
 [node name="Brick7" parent="Battlefield/Middleground/LeftBricks" index="6" instance=ExtResource( 11 )]
-position = Vector2( 100, 200 )
+position = Vector2( 109, 200 )
 colorize = false
 
 [node name="Brick8" parent="Battlefield/Middleground/LeftBricks" index="7" instance=ExtResource( 11 )]
-position = Vector2( 100, 100 )
+position = Vector2( 109, 100 )
 colorize = false
 
 [node name="Brick9" parent="Battlefield/Middleground/LeftBricks" index="8" instance=ExtResource( 11 )]
@@ -216,11 +216,11 @@ position = Vector2( -100, -500 )
 colorize = false
 
 [node name="Brick11" parent="Battlefield/Middleground/LeftBricks" index="10" instance=ExtResource( 11 )]
-position = Vector2( 100, -400 )
+position = Vector2( 109, -400 )
 colorize = false
 
 [node name="Brick12" parent="Battlefield/Middleground/LeftBricks" index="11" instance=ExtResource( 11 )]
-position = Vector2( 100, -500 )
+position = Vector2( 109, -500 )
 colorize = false
 
 [node name="Brick13" parent="Battlefield/Middleground/LeftBricks" index="12" instance=ExtResource( 11 )]
@@ -232,27 +232,29 @@ position = Vector2( -100, -300 )
 colorize = false
 
 [node name="Brick15" parent="Battlefield/Middleground/LeftBricks" index="14" instance=ExtResource( 11 )]
-position = Vector2( 100, -200 )
+position = Vector2( 109, -200 )
 colorize = false
 
 [node name="Brick16" parent="Battlefield/Middleground/LeftBricks" index="15" instance=ExtResource( 11 )]
-position = Vector2( 100, -300 )
+position = Vector2( 109, -300 )
 colorize = false
 
 [node name="Brick25" parent="Battlefield/Middleground/LeftBricks" index="16" instance=ExtResource( 11 )]
-position = Vector2( -100, -700 )
+position = Vector2( -100, -650 )
+type = 6
 colorize = false
 
-[node name="Brick27" parent="Battlefield/Middleground/LeftBricks" index="17" instance=ExtResource( 11 )]
-position = Vector2( 100, -700 )
+[node name="Brick26" parent="Battlefield/Middleground/LeftBricks" index="17" instance=ExtResource( 11 )]
+position = Vector2( -100, 650 )
+type = 6
 colorize = false
 
-[node name="Brick29" parent="Battlefield/Middleground/LeftBricks" index="18" instance=ExtResource( 11 )]
-position = Vector2( -100, -600 )
+[node name="Brick27" parent="Battlefield/Middleground/LeftBricks" index="18" instance=ExtResource( 11 )]
+position = Vector2( 109, -700 )
 colorize = false
 
 [node name="Brick30" parent="Battlefield/Middleground/LeftBricks" index="19" instance=ExtResource( 11 )]
-position = Vector2( 100, -600 )
+position = Vector2( 109, -600 )
 colorize = false
 
 [node name="Brick17" parent="Battlefield/Middleground/LeftBricks" index="20" instance=ExtResource( 11 )]
@@ -264,35 +266,27 @@ position = Vector2( -100, 300 )
 colorize = false
 
 [node name="Brick19" parent="Battlefield/Middleground/LeftBricks" index="22" instance=ExtResource( 11 )]
-position = Vector2( 100, 400 )
+position = Vector2( 109, 400 )
 colorize = false
 
 [node name="Brick20" parent="Battlefield/Middleground/LeftBricks" index="23" instance=ExtResource( 11 )]
-position = Vector2( 100, 300 )
+position = Vector2( 109, 300 )
 colorize = false
 
-[node name="Brick21" parent="Battlefield/Middleground/LeftBricks" index="24" instance=ExtResource( 11 )]
-position = Vector2( -100, 600 )
-colorize = false
-
-[node name="Brick22" parent="Battlefield/Middleground/LeftBricks" index="25" instance=ExtResource( 11 )]
+[node name="Brick22" parent="Battlefield/Middleground/LeftBricks" index="24" instance=ExtResource( 11 )]
 position = Vector2( -100, 500 )
 colorize = false
 
-[node name="Brick23" parent="Battlefield/Middleground/LeftBricks" index="26" instance=ExtResource( 11 )]
-position = Vector2( 100, 600 )
+[node name="Brick23" parent="Battlefield/Middleground/LeftBricks" index="25" instance=ExtResource( 11 )]
+position = Vector2( 109, 600 )
 colorize = false
 
-[node name="Brick24" parent="Battlefield/Middleground/LeftBricks" index="27" instance=ExtResource( 11 )]
-position = Vector2( 100, 500 )
+[node name="Brick24" parent="Battlefield/Middleground/LeftBricks" index="26" instance=ExtResource( 11 )]
+position = Vector2( 109, 500 )
 colorize = false
 
-[node name="Brick31" parent="Battlefield/Middleground/LeftBricks" index="28" instance=ExtResource( 11 )]
-position = Vector2( -100, 700 )
-colorize = false
-
-[node name="Brick32" parent="Battlefield/Middleground/LeftBricks" index="29" instance=ExtResource( 11 )]
-position = Vector2( 100, 700 )
+[node name="Brick32" parent="Battlefield/Middleground/LeftBricks" index="27" instance=ExtResource( 11 )]
+position = Vector2( 109, 700 )
 colorize = false
 
 [node name="RightBricks" parent="Battlefield/Middleground" index="1" instance=ExtResource( 14 )]
@@ -300,55 +294,55 @@ position = Vector2( 1750, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Brick" parent="Battlefield/Middleground/RightBricks" index="0" instance=ExtResource( 11 )]
-position = Vector2( -100, 0 )
+position = Vector2( -109, 0 )
 colorize = false
 
 [node name="Brick5" parent="Battlefield/Middleground/RightBricks" index="1" instance=ExtResource( 11 )]
-position = Vector2( -100, 100 )
+position = Vector2( -109, 100 )
 colorize = false
 
 [node name="Brick6" parent="Battlefield/Middleground/RightBricks" index="2" instance=ExtResource( 11 )]
-position = Vector2( -100, 200 )
+position = Vector2( -109, 200 )
 colorize = false
 
 [node name="Brick7" parent="Battlefield/Middleground/RightBricks" index="3" instance=ExtResource( 11 )]
-position = Vector2( -100, 300 )
+position = Vector2( -109, 300 )
 colorize = false
 
 [node name="Brick11" parent="Battlefield/Middleground/RightBricks" index="4" instance=ExtResource( 11 )]
-position = Vector2( -100, 400 )
+position = Vector2( -109, 400 )
 colorize = false
 
 [node name="Brick12" parent="Battlefield/Middleground/RightBricks" index="5" instance=ExtResource( 11 )]
-position = Vector2( -100, 500 )
+position = Vector2( -109, 500 )
 colorize = false
 
 [node name="Brick13" parent="Battlefield/Middleground/RightBricks" index="6" instance=ExtResource( 11 )]
-position = Vector2( -100, 600 )
+position = Vector2( -109, 600 )
 colorize = false
 
 [node name="Brick2" parent="Battlefield/Middleground/RightBricks" index="7" instance=ExtResource( 11 )]
-position = Vector2( -100, -100 )
+position = Vector2( -109, -100 )
 colorize = false
 
 [node name="Brick3" parent="Battlefield/Middleground/RightBricks" index="8" instance=ExtResource( 11 )]
-position = Vector2( -100, -200 )
+position = Vector2( -109, -200 )
 colorize = false
 
 [node name="Brick4" parent="Battlefield/Middleground/RightBricks" index="9" instance=ExtResource( 11 )]
-position = Vector2( -100, -300 )
+position = Vector2( -109, -300 )
 colorize = false
 
 [node name="Brick8" parent="Battlefield/Middleground/RightBricks" index="10" instance=ExtResource( 11 )]
-position = Vector2( -100, -400 )
+position = Vector2( -109, -400 )
 colorize = false
 
 [node name="Brick9" parent="Battlefield/Middleground/RightBricks" index="11" instance=ExtResource( 11 )]
-position = Vector2( -100, -500 )
+position = Vector2( -109, -500 )
 colorize = false
 
 [node name="Brick10" parent="Battlefield/Middleground/RightBricks" index="12" instance=ExtResource( 11 )]
-position = Vector2( -100, -600 )
+position = Vector2( -109, -600 )
 colorize = false
 
 [node name="Brick14" parent="Battlefield/Middleground/RightBricks" index="13" instance=ExtResource( 11 )]
@@ -375,48 +369,42 @@ colorize = false
 position = Vector2( 100, 500 )
 colorize = false
 
-[node name="Brick20" parent="Battlefield/Middleground/RightBricks" index="19" instance=ExtResource( 11 )]
-position = Vector2( 100, 600 )
+[node name="Brick31" parent="Battlefield/Middleground/RightBricks" index="19" instance=ExtResource( 11 )]
+position = Vector2( -109, 700 )
 colorize = false
 
-[node name="Brick31" parent="Battlefield/Middleground/RightBricks" index="20" instance=ExtResource( 11 )]
-position = Vector2( -100, 700 )
-colorize = false
-
-[node name="Brick33" parent="Battlefield/Middleground/RightBricks" index="21" instance=ExtResource( 11 )]
-position = Vector2( 100, 700 )
-colorize = false
-
-[node name="Brick21" parent="Battlefield/Middleground/RightBricks" index="22" instance=ExtResource( 11 )]
+[node name="Brick21" parent="Battlefield/Middleground/RightBricks" index="20" instance=ExtResource( 11 )]
 position = Vector2( 100, -100 )
 colorize = false
 
-[node name="Brick22" parent="Battlefield/Middleground/RightBricks" index="23" instance=ExtResource( 11 )]
+[node name="Brick22" parent="Battlefield/Middleground/RightBricks" index="21" instance=ExtResource( 11 )]
 position = Vector2( 100, -200 )
 colorize = false
 
-[node name="Brick23" parent="Battlefield/Middleground/RightBricks" index="24" instance=ExtResource( 11 )]
+[node name="Brick23" parent="Battlefield/Middleground/RightBricks" index="22" instance=ExtResource( 11 )]
 position = Vector2( 100, -300 )
 colorize = false
 
-[node name="Brick24" parent="Battlefield/Middleground/RightBricks" index="25" instance=ExtResource( 11 )]
+[node name="Brick24" parent="Battlefield/Middleground/RightBricks" index="23" instance=ExtResource( 11 )]
 position = Vector2( 100, -400 )
 colorize = false
 
-[node name="Brick25" parent="Battlefield/Middleground/RightBricks" index="26" instance=ExtResource( 11 )]
+[node name="Brick25" parent="Battlefield/Middleground/RightBricks" index="24" instance=ExtResource( 11 )]
 position = Vector2( 100, -500 )
 colorize = false
 
-[node name="Brick26" parent="Battlefield/Middleground/RightBricks" index="27" instance=ExtResource( 11 )]
-position = Vector2( 100, -600 )
+[node name="Brick27" parent="Battlefield/Middleground/RightBricks" index="25" instance=ExtResource( 11 )]
+position = Vector2( -109, -700 )
 colorize = false
 
-[node name="Brick27" parent="Battlefield/Middleground/RightBricks" index="28" instance=ExtResource( 11 )]
-position = Vector2( -100, -700 )
+[node name="Brick28" parent="Battlefield/Middleground/RightBricks" index="28" instance=ExtResource( 11 )]
+position = Vector2( 100, 650 )
+type = 6
 colorize = false
 
 [node name="Brick29" parent="Battlefield/Middleground/RightBricks" index="29" instance=ExtResource( 11 )]
-position = Vector2( 100, -700 )
+position = Vector2( 100, -650 )
+type = 6
 colorize = false
 
 [node name="Wall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
