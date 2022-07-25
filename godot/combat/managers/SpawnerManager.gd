@@ -43,7 +43,7 @@ func start():
 	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
-	waves[current_wave].times_spawned += 1
+	
 	
 func _handle_waves():
 	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
@@ -57,6 +57,7 @@ func _handle_waves():
 		
 	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
 	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY)
+	waves[current_wave].times_spawned += 1
 	self.reset_wave_timer()
 	
 func reset_wave_timer():
