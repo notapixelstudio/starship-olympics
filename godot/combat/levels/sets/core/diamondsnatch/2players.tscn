@@ -206,8 +206,10 @@ element_scene = ExtResource( 16 )
 [node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="10" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 wave_number = 1
+max_repeats = 2
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 11 )]
+position = Vector2( 0, -350 )
 element_scene = ExtResource( 16 )
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave1" index="1" instance=ExtResource( 11 )]
@@ -216,7 +218,15 @@ element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 13 )
 
 [node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Wave1" index="2" instance=ExtResource( 11 )]
-pattern = "single"
+position = Vector2( 0, -200 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Wave1" index="3" instance=ExtResource( 11 )]
+position = Vector2( 0, -650 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Wave1" index="4" instance=ExtResource( 11 )]
+position = Vector2( 0, -800 )
 element_scene = ExtResource( 16 )
 
 [node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="11" groups=["spawn_waves"]]

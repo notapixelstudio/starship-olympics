@@ -6,13 +6,13 @@ const WAVE_DELAY = 2
 var to_next_wave = 2
 var current_wave = 0
 
+var waves : Dictionary = {}
+
 signal spawn_next
 var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
-export var min_elements_per_wave = 3
-var elements_spawned := 0
 onready var wave_timer = $Timer
 signal done
 
@@ -27,27 +27,32 @@ func get_spawner(spawners: Array) -> ElementSpawnerGroup:
 	var next_spawner = spawners.pop_back()
 	return next_spawner
 	
-func setup(spawners, starting_wave = 0):
+func setup(wave_nodes, starting_wave = 0):
 	current_wave = starting_wave
 	spawners_per_wave = {}
-	for s in spawners:
-		if s.wave_number >= current_wave:
-			spawners_per_wave[s.wave_number] = s.get_spawners()
-			spawners_per_wave[s.wave_number].shuffle()
+	for wave_node in wave_nodes:
+		var number = wave_node.wave_number
+		if number >= current_wave:
+			spawners_per_wave[number] = wave_node.get_spawners()
+			spawners_per_wave[number].shuffle()
+		
+		waves[number] = wave_node
 	
 func start():
 	wave_timer.start()
 	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
-	elements_spawned += element_spawned.get_child_count()
+	waves[current_wave].times_spawned += 1
 	
 func _handle_waves():
-	if not len(spawners_per_wave[current_wave]): # or elements_spawned>=min_elements_per_wave: @ TODO: check this condition, if it is still valid
+	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
+	var max_repeats_reached : bool = waves[current_wave].max_repeats != -1 and waves[current_wave].times_spawned >= waves[current_wave].max_repeats
+	if no_spawners_left or max_repeats_reached:
 		current_wave += 1
-		elements_spawned = 0
-	if current_wave >= len(spawners_per_wave):
-		current_wave -= 1
+	var last_wave : bool = current_wave >= len(spawners_per_wave)
+	if last_wave:
+		current_wave -= 1 # keep spawning the last wave
 		setup(get_tree().get_nodes_in_group(WAVES_GROUP), current_wave)
 		
 	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
@@ -55,8 +60,8 @@ func _handle_waves():
 	self.reset_wave_timer()
 	
 func reset_wave_timer():
+	wave_timer.stop()
 	wave_timer.start()
-	
 	
 func _on_Timer_timeout():
 	print("asking to spawn because timer of {timer_wait_time} has expired".format({"timer_wait_time": wave_timer.wait_time}))
