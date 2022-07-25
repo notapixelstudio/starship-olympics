@@ -12,6 +12,7 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=12]
+[ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=14]
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=15]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=16]
@@ -19,7 +20,6 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=18]
 [ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=19]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=20]
-[ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -211,8 +211,8 @@ element_scene = ExtResource( 16 )
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave1" index="1" instance=ExtResource( 11 )]
 position = Vector2( 0, -500 )
-pattern = "single"
-element_scene = ExtResource( 21 )
+element_scene = ExtResource( 16 )
+guest_star_scene = ExtResource( 13 )
 
 [node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="11" groups=["spawn_waves"]]
 script = ExtResource( 19 )

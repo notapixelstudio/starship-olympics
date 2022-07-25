@@ -37,12 +37,9 @@ func setup(spawners, starting_wave = 0):
 			spawners_per_wave[s.wave_number] = s.get_spawners()
 			spawners_per_wave[s.wave_number].shuffle()
 	
-
-func intro():
-	yield(get_tree().create_timer(1), "timeout")
+func start():
 	wave_timer.start()
-	emit_signal("done")
-
+	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
 	elements_spawned += element_spawned.get_child_count()

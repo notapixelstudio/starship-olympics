@@ -7,8 +7,8 @@ class_name ElementSpawnerGroup
 export (String, 'slash', 'backslash', 'line', "single", "custom") var pattern = "line" setget _set_pattern
 
 export var spawner_scene: PackedScene
-export var element_scene: PackedScene
-export var guest_star_scene: PackedScene
+export var element_scene: PackedScene setget _set_element_scene
+export var guest_star_scene: PackedScene setget _set_guest_star_scene
 export (String, "center", "random") var guest_star_positioning = "center"
 
 var map_pattern_distance = {
@@ -20,6 +20,18 @@ var map_pattern_distance = {
 	
 func _set_pattern(v: String):
 	pattern = v
+	if not is_inside_tree():
+		yield(self, "ready")
+	self.set_spawners()
+	
+func _set_element_scene(v: PackedScene):
+	element_scene = v
+	if not is_inside_tree():
+		yield(self, "ready")
+	self.set_spawners()
+	
+func _set_guest_star_scene(v: PackedScene):
+	guest_star_scene = v
 	if not is_inside_tree():
 		yield(self, "ready")
 	self.set_spawners()
