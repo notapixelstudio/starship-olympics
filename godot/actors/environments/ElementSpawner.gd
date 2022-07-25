@@ -1,7 +1,7 @@
 tool
 
 extends Node2D
-class_name SpawnerElement
+class_name ElementSpawner
 
 export var element_scene: PackedScene
 export var preview_sprite_name := "Sprite"

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://actors/environments/SpawnerElement.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/ElementSpawner.gd" type="Script" id=1]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=3]
 
-[node name="SpawnerElement" type="Position2D"]
+[node name="ElementSpawner" type="Position2D"]
 script = ExtResource( 1 )
 element_scene = ExtResource( 2 )
 

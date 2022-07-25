@@ -10,9 +10,9 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
-[ext_resource path="res://actors/environments/GroupSpawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=12]
-[ext_resource path="res://actors/environments/SpawnerElement.tscn" type="PackedScene" id=13]
+[ext_resource path="res://actors/environments/ElementSpawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=14]
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=15]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=16]
@@ -198,7 +198,7 @@ anims/Default = SubResource( 2 )
 [node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="9" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 
-[node name="GroupSpawner" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 11 )]
 pattern = "single"
 spawner_scene = ExtResource( 13 )
 element_scene = ExtResource( 16 )
@@ -207,7 +207,7 @@ element_scene = ExtResource( 16 )
 script = ExtResource( 19 )
 wave_number = 1
 
-[node name="GroupSpawner" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 11 )]
 spawner_scene = ExtResource( 13 )
 element_scene = ExtResource( 16 )
 
@@ -215,8 +215,8 @@ element_scene = ExtResource( 16 )
 script = ExtResource( 19 )
 wave_number = 2
 
-[node name="Backslash" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 11 )]
-position = Vector2( -720, 292 )
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 11 )]
+position = Vector2( -750, 300 )
 pattern = "slash"
 spawner_scene = ExtResource( 13 )
 element_scene = ExtResource( 16 )
@@ -226,7 +226,7 @@ guest_star_scene = ExtResource( 17 )
 script = ExtResource( 19 )
 wave_number = 3
 
-[node name="GroupSpawner" parent="Battlefield/Middleground/Wave3" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave3" index="0" instance=ExtResource( 11 )]
 position = Vector2( 600, 300 )
 spawner_scene = ExtResource( 13 )
 element_scene = ExtResource( 16 )
