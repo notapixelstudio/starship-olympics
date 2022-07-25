@@ -16,6 +16,6 @@ func detonate():
 	var explosion = explosion_scene.instance()
 	explosion.scale = Vector2(4,4)
 	explosion.kilotons = 400
-	explosion.global_position = global_position
 	get_parent().add_child(explosion)
+	explosion.global_position = global_position
 	queue_free()

@@ -22,10 +22,10 @@ func _ready():
 	Events.connect("sth_collected", self, "_on_sth_collected")
 	# First spawner should already be in the field
 	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
-	var spawner: GroupSpawner = self.get_spawner(spawners_per_wave[current_wave])
+	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
 	Events.emit_signal("ask_to_spawn", spawner, 0)
 	
-func get_spawner(spawners: Array) -> GroupSpawner:
+func get_spawner(spawners: Array) -> ElementSpawnerGroup:
 	var next_spawner = spawners.pop_back()
 	return next_spawner
 	
@@ -43,7 +43,7 @@ func intro():
 	wave_timer.start()
 	emit_signal("done")
 
-func spawned(element_spawned: GroupSpawner):
+func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
 	elements_spawned += element_spawned.get_child_count()
 	
@@ -55,7 +55,7 @@ func _handle_waves():
 		current_wave -= 1
 		setup(get_tree().get_nodes_in_group(WAVES_GROUP), current_wave)
 		
-	var spawner: GroupSpawner = self.get_spawner(spawners_per_wave[current_wave])
+	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
 	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY)
 	self.reset_wave_timer()
 	

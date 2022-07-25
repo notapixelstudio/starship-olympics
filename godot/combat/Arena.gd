@@ -843,7 +843,7 @@ func _on_sth_stolen(thief, mugged):
 
 signal wave_ready
 
-func dramatic_spawn(to_be_spawned: GroupSpawner , wait_time=1):
+func dramatic_spawn(to_be_spawned: ElementSpawnerGroup , wait_time=1):
 	if wait_time:
 		focus_in_camera.move(to_be_spawned.position, wait_time)
 		yield(focus_in_camera, "completed")
