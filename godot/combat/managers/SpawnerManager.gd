@@ -22,8 +22,6 @@ func _ready():
 	Events.connect("sth_collected", self, "_on_sth_collected")
 	# First spawner should already be in the field
 	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
-	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
-	Events.emit_signal("ask_to_spawn", spawner, 0)
 	
 func get_spawner(spawners: Array) -> ElementSpawnerGroup:
 	var next_spawner = spawners.pop_back()

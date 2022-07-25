@@ -199,7 +199,8 @@ anims/Default = SubResource( 2 )
 script = ExtResource( 19 )
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 11 )]
-pattern = "single"
+position = Vector2( 600, 300 )
+pattern = "backslash"
 element_scene = ExtResource( 16 )
 
 [node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="10" groups=["spawn_waves"]]
@@ -213,6 +214,10 @@ element_scene = ExtResource( 16 )
 position = Vector2( 0, -500 )
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 13 )
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Wave1" index="2" instance=ExtResource( 11 )]
+pattern = "single"
+element_scene = ExtResource( 16 )
 
 [node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="11" groups=["spawn_waves"]]
 script = ExtResource( 19 )
