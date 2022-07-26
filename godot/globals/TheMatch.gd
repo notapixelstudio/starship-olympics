@@ -151,7 +151,7 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 		return
 		
 	var player = get_player(id_player)
-	player.score = amount
+	player.set_score(amount)
 	
 	if cumulative_points >= 0:
 		cumulative_points = amount
