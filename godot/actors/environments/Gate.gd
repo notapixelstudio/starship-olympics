@@ -13,4 +13,5 @@ func _physics_process(delta):
 			
 			if will_cross and abs(relative_angle_of_incidence) > PI/2 + (PI-aperture)/2:
 				emit_signal("goal_done", body.get_player(), self, body.global_position)
+				$AnimationPlayer.stop()
 				$AnimationPlayer.play("Blink")
