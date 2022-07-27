@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -11,6 +11,38 @@
 [ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 50, -1300 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Wooo"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 50, -1300 ), Vector2( 50, -850 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -133,13 +165,18 @@ rotation = 3.14159
 position = Vector2( 50, -1300 )
 rotation = 3.14159
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate6" index="6"]
+autoplay = "Wooo"
+anims/RESET = SubResource( 7 )
+anims/Wooo = SubResource( 8 )
+
 [node name="Gate7" parent="Battlefield/Middleground" index="2" instance=ExtResource( 9 )]
 position = Vector2( -400, -1100 )
 rotation = 3.14159
 
 [node name="Gate10" parent="Battlefield/Middleground" index="3" instance=ExtResource( 9 )]
 position = Vector2( 0, 1000 )
-rotation = -1.5708
+rotation = -1.58476
 
 [node name="Gate5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
 position = Vector2( -650, 0 )
