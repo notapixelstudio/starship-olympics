@@ -103,7 +103,8 @@ rotation = -2.35619
 position = Vector2( -400, 800 )
 rotation = -2.35619
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Gate5" index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="7"]
+root_node = NodePath("../Gate5")
 autoplay = "Wheee"
 anims/RESET = SubResource( 1 )
 anims/Wheee = SubResource( 2 )
