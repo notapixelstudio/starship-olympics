@@ -18,10 +18,10 @@ var spawner
 var trail
 
 var cpu = false
-var velocity = Vector2(0,0)
-var previous_velocity = Vector2(0,0)
+var velocity := Vector2(0,0)
+var previous_velocity := Vector2(0,0)
 var last_contact_normal = null
-var target_velocity = Vector2(0,0)
+var target_velocity := Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
 
