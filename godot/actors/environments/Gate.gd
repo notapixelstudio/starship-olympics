@@ -1,6 +1,7 @@
 extends Area2D
 
-export var aperture := PI*0.9
+export var width := 500.0
+export var aperture := PI*0.95
 signal goal_done
 
 func _physics_process(delta):
@@ -8,8 +9,10 @@ func _physics_process(delta):
 		if body is Ship:
 			var relative_position : Vector2 = body.global_position - global_position
 			var relative_future_position : Vector2 = relative_position + body.velocity*delta
-			var gate_top_end
-			var will_cross : bool = abs(relative_position.rotated(-global_rotation).angle()) <= PI/2 and abs(relative_future_position.rotated(-global_rotation).angle()) >= PI/2
+			var top_end := Vector2(0, -width/2).rotated(global_rotation)
+			var bottom_end := Vector2(0, width/2).rotated(global_rotation)
+			var crossing_point = Geometry.segment_intersects_segment_2d(relative_position, relative_future_position, top_end, bottom_end)
+			var will_cross : bool = crossing_point is Vector2
 			var relative_angle_of_incidence : float = body.velocity.rotated(-global_rotation).angle()
 			
 			if will_cross and abs(relative_angle_of_incidence) > PI/2 + (PI-aperture)/2:
