@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://actors/weapons/arsenal/WaveGun.tscn" type="PackedScene" id=33]
 [ext_resource path="res://actors/weapons/arsenal/RocketGun.tscn" type="PackedScene" id=34]
 [ext_resource path="res://actors/weapons/arsenal/NoWeapon.tscn" type="PackedScene" id=35]
+[ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -93,6 +94,8 @@ order = 1
 [node name="Bumper" parent="." instance=ExtResource( 23 )]
 
 [node name="Collector" parent="." instance=ExtResource( 24 )]
+
+[node name="Tracked" parent="." instance=ExtResource( 36 )]
 
 [node name="Cargo" parent="." instance=ExtResource( 28 )]
 

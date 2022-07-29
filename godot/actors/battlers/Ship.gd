@@ -20,6 +20,7 @@ var trail
 var cpu = false
 var velocity := Vector2(0,0)
 var previous_velocity := Vector2(0,0)
+var previous_global_positions : Array
 var last_contact_normal = null
 var target_velocity := Vector2(0,0)
 var steer_force = 0
@@ -180,6 +181,7 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	outside_countup = 0
+	previous_global_positions = [global_position]
 	
 	reset_health()
 	
@@ -288,6 +290,11 @@ func _integrate_forces(state):
 	# store velocity as a readable var
 	previous_velocity = velocity
 	velocity = state.linear_velocity
+	
+	# remember our previous global positions
+	previous_global_positions.push_back(global_position)
+	if len(previous_global_positions) > 2:
+		previous_global_positions.pop_front()
 	
 	# store last contact normal as a readable var
 	if state.get_contact_count() > 0:
@@ -571,7 +578,7 @@ func dash_fat_appearance():
 	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
 		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()
-	
+
 func dash_thin_appearance():
 	$DashFxTimer.stop()
 	$Graphics/Sprite.scale = DASH_THIN
@@ -875,3 +882,7 @@ func get_camera_rect() -> Rect2:
 func get_team() -> String:
 	return info_player.team
 	
+func get_previous_global_position(): # Vector2 or null
+	if len(previous_global_positions) <= 1:
+		return null
+	return previous_global_positions[0]
