@@ -1,6 +1,7 @@
+tool
 extends Area2D
 
-export var width := 550.0
+export var width := 550.0 setget set_width
 export var aperture := PI*0.9
 #export var crossing_while_still_tolerance := 0.3
 
@@ -11,6 +12,13 @@ var bottom_end := Vector2(0, width/2)
 
 var overlapping_trackeds := {}
 var previous_global_transforms : Array
+
+func set_width(v: float) -> void:
+	width = v
+	top_end = Vector2(0, -width/2)
+	bottom_end = Vector2(0, width/2)
+	$RingPart.scale.y = width/550.0
+	$BottomRingPart.scale.y = width/550.0
 
 func _physics_process(delta):
 	previous_global_transforms.push_back(global_transform)
