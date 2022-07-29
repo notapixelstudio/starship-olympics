@@ -55,3 +55,12 @@ func _physics_process(delta):
 		if not overlapping_trackeds[tracked]['good']:
 			overlapping_trackeds.erase(tracked)
 		
+
+#func _draw():
+	#if relative_position:
+	#	draw_circle(relative_position, 6, Color(0, 1, 0))
+	#if relative_past_position:
+	#	draw_circle(relative_past_position, 2, Color(1, 1, 1))
+	#if relative_past_position != null and relative_position != null:
+	#	draw_line(relative_past_position, relative_position, Color(1, 0, 0), 4)
+	#draw_line(top_end, bottom_end, Color(1, 0, 1), 2)
