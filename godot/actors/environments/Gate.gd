@@ -49,7 +49,6 @@ func _physics_process(delta):
 				emit_signal("goal_done", body.get_player(), self, body.global_position)
 				$AnimationPlayer.stop()
 				$AnimationPlayer.play("Blink")
-				print(overlapping_trackeds.keys())
 				
 	# delete trackeds that are still not good
 	for tracked in overlapping_trackeds.keys():
