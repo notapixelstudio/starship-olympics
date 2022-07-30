@@ -1,29 +1,29 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=2]
-[ext_resource path="res://map/draft/DraftCard.gd" type="Script" id=3]
-[ext_resource path="res://assets/map/selector.png" type="Texture" id=4]
+[ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
+[ext_resource path="res://assets/map/selector.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=2]
 size = 96
-font_data = ExtResource( 1 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 72
 font_data = ExtResource( 5 )
 
-[node name="DraftCard" instance=ExtResource( 2 )]
+[node name="DraftCard" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 take_ownership = true
 multiple_owners = true
 float_when_selected = false
@@ -92,11 +92,11 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="0"]
 position = Vector2( 776, 157 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
 [node name="Sprite2" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false
@@ -104,4 +104,4 @@ position = Vector2( 0, 275 )
 rotation = 3.14159
 z_index = 2000
 z_as_relative = false
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )

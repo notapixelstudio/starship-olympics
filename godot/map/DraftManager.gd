@@ -60,7 +60,7 @@ func continue_draft(session_ended):
 	
 	if not session_ended:
 		# cleanup if session continues
-		var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
+		var last_played_card = hand_node.get_card(last_match_info["card_id"])
 		last_played_card.queue_free()
 	
 	ships_have_to_choose = false
@@ -163,12 +163,13 @@ func pick_next_card():
 	var hand = global.session.get_hand()
 	yield(get_tree().create_timer(len(hand)*0.33+0.33), "timeout")
 	
-	var picked_card : Minigame = global.session.choose_next_card()
+	var picked_card : DraftCard = global.session.choose_next_card()
 	
 	print("Card chosen is {picked}".format({"picked":picked_card.id})) # TBD could be null
 	animate_selection(picked_card)
 	yield(self, "card_chosen")
-	Events.emit_signal("minigame_selected", picked_card)
+	var minigame: Minigame = picked_card.get_minigame()
+	Events.emit_signal("minigame_selected", picked_card, minigame )
 
 func add_card(card, selected=false):
 	# will put the card in first empty position
@@ -197,7 +198,7 @@ func populate_hand(hand: Array):
 		yield(get_tree().create_timer(0.1), "timeout")
 		self.add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
 		
-func animate_selection(picked_card: Minigame):
+func animate_selection(picked_card: DraftCard):
 	# This will animate the selection of the chosen card
 	var index_selection = 0
 	var index = 0

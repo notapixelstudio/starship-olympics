@@ -1,8 +1,8 @@
 extends Card
 
-var card_content: Minigame
+var card_content: DraftCard
 export var order_id : int
-class_name DraftCard
+class_name DraftCardGraphicNode
 
 onready var chosen : bool = false setget set_chosen
 
@@ -20,10 +20,11 @@ func set_minigame_icon(texture):
 	$Ground/Front/MinigameIcon.texture = texture
 	$Ground/Front/MinigameIconShadow.texture = texture
 
-func set_content_card(card: Minigame):
+func set_content_card(card: DraftCard):
 	card_content = card
-	self.set_minigame_label(card.get_name())
-	self.set_minigame_icon(card.get_icon())
+	var minigame: Minigame = card.get_minigame()
+	self.set_minigame_label(minigame.get_name())
+	self.set_minigame_icon(minigame.get_icon())
 	$Ground/Front/MinigameLabelWrapper/NewLabel.visible = card_content.new
 	
 # @override

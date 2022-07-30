@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://map/draft/cards/DraftCard.gd" type="Script" id=1]
+[ext_resource path="res://combat/minigames/FreezingDeath.tres" type="Script" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "asteroid_deathmatch"
+minigame = ExtResource( 2 )
+unlocks = [  ]
