@@ -21,3 +21,10 @@ func is_winter() -> bool:
 	
 func get_cover() -> Texture:
 	return mystery_cover
+
+func has_level_for_player_count(player_count: int) -> bool:
+	# a mystery card is good for this player count iff all its subcards are good for this player count
+	for subcard in subcards:
+		if not subcard.has_level_for_player_count(player_count):
+			return false
+	return true

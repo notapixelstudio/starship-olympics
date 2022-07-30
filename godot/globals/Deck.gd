@@ -91,7 +91,7 @@ func prepare_next_cards(next_card_ids) -> void:
 		if card == null:
 			continue
 			
-		if not card.get_minigame().has_level_for_player_count(global.the_game.get_number_of_players()):
+		if not card.has_level_for_player_count(global.the_game.get_number_of_players()):
 			continue
 		
 		next.append(card)
