@@ -108,11 +108,6 @@ func setup_session():
 	print(players_selection)
 	global.session.setup_players_selection(players_selection)
 
-func pick_next_minigame():
-	var player_and_minigame = global.session.choose_next_level()
-	yield(get_tree().create_timer(1), "timeout")
-	panels.choose_level(player_and_minigame["player"], player_and_minigame["level"])
-	
 func _on_continue_after_game_over(session_ended):
 	if not session_ended:
 		pick_next_minigame()

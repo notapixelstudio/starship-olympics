@@ -3,14 +3,14 @@ extends Resource
 class_name CardPool
 
 export var id : String
-export var cards : Array = [] setget set_cards # MiniGame
+export var cards : Array = [] setget set_cards # DraftCard
 
 var index : Dictionary = {}
 
-func set_cards(v):
+func set_cards(v: Array):
 	cards = v
 	for card in cards:
-		if card is Minigame:
+		if card is DraftCard:
 			index[card.get_id()] = card
 			
 	randomize()
@@ -26,7 +26,7 @@ func retrieve_card(id) -> Minigame:
 	index.erase(id)
 	return card
 
-func get_card(id) -> Minigame:
+func get_card(id) -> DraftCard:
 	return index[id]
 
 func remove_card(card) -> void:

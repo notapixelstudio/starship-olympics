@@ -24,6 +24,7 @@ var no_players = false
 var end_on_perfect := true
 
 var minigame : Minigame
+var draft_card: DraftCard
 var game_mode : GameMode
 
 const DEADZONE = 0.1
@@ -201,6 +202,7 @@ func to_dict()->Dictionary:
 		"uuid": get_uuid(),
 		"winners": winners,
 		"minigame_id": minigame.get_id(),
+		"card_id": draft_card.get_id(),
 		"winners_did_perfect": self.winners_did_perfect()
 	}
 
@@ -242,3 +244,8 @@ func set_minigame(m: Minigame):
 func get_minigame() -> Minigame:
 	return minigame
 	
+func set_draft_card(c: DraftCard):
+	draft_card = c
+	
+func get_draft_card() -> DraftCard:
+	return draft_card

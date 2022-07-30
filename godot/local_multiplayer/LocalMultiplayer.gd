@@ -20,11 +20,6 @@ var players: Dictionary  # of InfoPlayer
 signal updated
 
 
-class ChosenArena:
-	# This class will store an Arena and the player who chose it
-	var player_id: String
-	var this_game: Arena
-
 func _ready():
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
 	for species_id in unlocked_species:
@@ -91,14 +86,13 @@ func start_fight(selected_players: Array, fight_mode: String):
 var players_sequence : Array = []
 var selected_sets_by_player : Dictionary = {}
 var minigame_pools : Dictionary = {}
-var last_minigame = null
+var last_card: DraftCard
+var last_minigame: Minigame
 
-func _on_minigame_selected(minigame: Minigame):
-	start_match(minigame)
-
-func start_match(minigame: Minigame) -> void:
+func _on_minigame_selected(picked_card:DraftCard, minigame: Minigame):
+	# start match
 	minigame.increase_times_started()
-	next_level(minigame)
+	start_new_match(picked_card, minigame)
 	
 	
 func continue_fight() -> void:
@@ -107,9 +101,9 @@ func continue_fight() -> void:
 	"""
 	navigate_to_map()
 	
-func next_level(minigame):
+func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
-	This function will select the next minigame, passing from the map
+	This function given a card and its minigame, will start a match
 	"""
 
 	$TransitionScreen.transition()
@@ -126,7 +120,7 @@ func next_level(minigame):
 		yield($TransitionScreen, "transitioned")
 		tutorial.queue_free()
 	
-	start_minigame(minigame)
+	start_match(picked_card, minigame)
 
 func get_next_minigame(set):
 	# replenish pool if empty
@@ -136,10 +130,12 @@ func get_next_minigame(set):
 		
 	return minigame_pools[set.name].pop_back()
 
-func start_minigame(minigame: Minigame, demo = false):
+func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 	global.new_match()
 	global.the_match.set_minigame(minigame)
+	global.the_match.set_draft_card(picked_card)
 	combat = minigame.get_level(global.the_game.get_number_of_players()).instance()
+	last_card = picked_card
 	last_minigame = minigame
 	
 	combat.connect("restart", self, "_on_Pause_restart")
@@ -175,7 +171,7 @@ func _on_continue_after_game_over(session_over = false):
 	
 func _on_Pause_restart():
 	safe_destroy_combat()
-	start_minigame(last_minigame)
+	start_match(last_card, last_minigame)
 
 
 func _on_nav_to_menu():
@@ -208,21 +204,6 @@ func navigate_to_map():
 	remove_child(selection_screen)
 	remove_child(parallax)
 	add_child(map)
-
-func start_demo():
-	var demo_players = []
-	var player_rand = max(2, (randi() % len(all_species)) + 1)
-	players = {}
-	for i in range(player_rand):
-		var other_species = all_species[i]
-		var info_player = InfoPlayer.new()
-		info_player.id = 'cpu'
-		info_player.species = other_species
-		info_player.cpu = true
-		info_player.species_template = other_species
-		players["cpu{id}".format({"id": i})] = info_player
-	remove_child(selection_screen)
-	next_level(true)
 
 
 func add_cpu(how_many: int):

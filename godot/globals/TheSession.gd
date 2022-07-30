@@ -3,7 +3,7 @@ extends Node
 class_name TheSession
 var uuid : String
 
-var hand : Array
+var hand : Array # Array of DraftCard
 
 func _init():
 	uuid = UUID.v4()
@@ -80,7 +80,7 @@ func get_next_minigame(set: Set):
 	return minigame_pools[set.name].pop_back()
 
 
-func choose_next_card() -> Minigame:
+func choose_next_card() -> DraftCard:
 	var next_card = hand.pop_front()
 	global.the_game.deck.put_card_into_played_pile(next_card)
 	return next_card
