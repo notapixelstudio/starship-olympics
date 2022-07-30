@@ -12,6 +12,8 @@ export var level_4players : PackedScene
 
 export var unlocks : Array = [] # of minigame IDs
 
+export var winter : bool = false
+
 var new := false
 
 var times_started := 0
@@ -51,4 +53,7 @@ func has_enough_strikes() -> bool:
 	
 func has_level_for_player_count(player_count: int) -> bool:
 	return get("level_"+str(player_count)+"players") != null
+	
+func is_winter() -> bool:
+	return winter
 	

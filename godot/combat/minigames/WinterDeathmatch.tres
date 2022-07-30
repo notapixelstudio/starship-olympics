@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
+[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=2]
+[ext_resource path="res://combat/levels/sets/core/deathmatch/3players.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/sets/core/deathmatch/2players.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/sets/core/deathmatch/4players.tscn" type="PackedScene" id=5]
+
+[resource]
+script = ExtResource( 1 )
+id = "winter_death"
+game_mode = ExtResource( 2 )
+level_1players = ExtResource( 4 )
+level_2players = ExtResource( 4 )
+level_3players = ExtResource( 3 )
+level_4players = ExtResource( 5 )
+unlocks = [ "skull_collector", "nine_lives" ]
+winter = true
