@@ -560,7 +560,7 @@ func new_session() -> TheSession:
 	var deck = the_game.get_deck()
 	var hand = []
 	if session_number_of_game == 1:
-		hand = deck.draw(4)
+		hand = deck.draw(3)
 	# else: start with no hand, the draft manager will take care of that
 	session.set_hand(hand)
 	
