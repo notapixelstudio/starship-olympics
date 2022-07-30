@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://map/draft/cards/DraftCard.gd" type="Script" id=1]
 [ext_resource path="res://combat/minigames/SnakeAGon.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
-id = "slam_snake"
 minigame = ExtResource( 2 )
+unlocks = [  ]
+winter = false

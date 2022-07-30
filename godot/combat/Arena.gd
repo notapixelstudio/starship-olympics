@@ -376,8 +376,8 @@ func _ready():
 			
 	if global.is_match_running():
 		# manage the coming of winter
-		var minigame = global.the_match.get_minigame()
-		if minigame != null and minigame.is_winter():
+		var draft_card = global.the_match.get_draft_card()
+		if draft_card != null and draft_card.is_winter():
 			var ice = IceScene.instance()
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
 			$Battlefield/Background.add_child(ice)

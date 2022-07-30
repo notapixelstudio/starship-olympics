@@ -28,7 +28,7 @@ func _init():
 	
 	# WARNING these are fixed at the moment
 	# they also have to provide levels for each player count
-	prepare_next_cards(['board_conquest', 'homesick_invaders', 'slam'])
+	prepare_next_cards(['BoardConquest', 'HomesickInvaders', 'SlamAGon'])
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
@@ -91,7 +91,7 @@ func prepare_next_cards(next_card_ids) -> void:
 		if card == null:
 			continue
 			
-		if not card.has_level_for_player_count(global.the_game.get_number_of_players()):
+		if not card.get_minigame().has_level_for_player_count(global.the_game.get_number_of_players()):
 			continue
 		
 		next.append(card)

@@ -32,4 +32,4 @@ func tap(author):
 	.tap(author)
 	if author is Ship:
 		Events.emit_signal("card_tapped", author, self)
-		print("{minigame} tapped by {author_name}".format({"minigame": card_content.id, "author_name":author.info_player.id}))
+		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))

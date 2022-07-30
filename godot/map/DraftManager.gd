@@ -128,7 +128,7 @@ func selections_maybe_all_done():
 		# everyone chose. let's discard cards that have not been chosen
 		for draft_card in hand_node.get_all_cards():
 			if draft_card in self.players_choices.values():
-				print("well, actually {card_min} has been chosen ".format({"card_min": draft_card.card_content.id}))
+				print("well, actually {card_min} has been chosen ".format({"card_min": draft_card.card_content.get_id()}))
 			else:
 				discarded.append(draft_card.card_content)
 				var index = hand.find(draft_card.card_content)
@@ -165,7 +165,7 @@ func pick_next_card():
 	
 	var picked_card : DraftCard = global.session.choose_next_card()
 	
-	print("Card chosen is {picked}".format({"picked":picked_card.id})) # TBD could be null
+	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
 	yield(self, "card_chosen")
 	var minigame: Minigame = picked_card.get_minigame()

@@ -13,8 +13,6 @@ export var level_4players : PackedScene
 export var unlocks : Array = [] # of minigame IDs
 var times_started := 0
 
-export var winter : bool = false
-
 
 func get_id() -> String:
 	return str(get_rid().get_id())
@@ -36,11 +34,7 @@ func increase_times_started():
 	
 func is_first_time_started():
 	return times_started == 1
-
 	
 func has_level_for_player_count(player_count: int) -> bool:
 	return get("level_"+str(player_count)+"players") != null
-	
-func is_winter() -> bool:
-	return winter
 	

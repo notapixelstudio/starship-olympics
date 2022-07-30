@@ -3,15 +3,17 @@ extends Resource
 class_name DraftCard
 
 export var minigame: Resource # Minigame
-export var id : String = ""
 export var unlocks : Array = [] # of minigame IDs
+
+export var winter : bool = false
+
 var new := false
 var strikes := 0
 
 func get_id() -> String:
 	return self.resource_path.get_basename().get_file()
 
-func get_minigame()-> Minigame:
+func get_minigame() -> Minigame:
 	return (minigame as Minigame)
 
 func take_strike():
@@ -24,4 +26,6 @@ func reset_strikes():
 	
 func has_enough_strikes() -> bool:
 	return strikes >= 3
-
+	
+func is_winter() -> bool:
+	return winter
