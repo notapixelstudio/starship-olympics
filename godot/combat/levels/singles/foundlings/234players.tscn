@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -70,6 +71,9 @@ visible = false
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.42, 0.189, 0.189, 1 )
 bg_color = Color( 0.4, 0.124, 0.1286, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="4"]
+visible = false
 
 [node name="Variants" parent="Battlefield/Background" index="5" instance=ExtResource( 11 )]
 
@@ -254,392 +258,400 @@ kind = "animals/a04"
 modulate = Color( 1, 1, 1, 0.0784314 )
 polygon = PoolVector2Array( -1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300 )
 
-[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( -1200, 0 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 300
-bevel = 60
-bevel_nw = 1
-bevel_ne = 60
-bevel_sw = 1
-bevel_se = 60
-
-[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( 1200, 0 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 300
-bevel = 60
-bevel_nw = 60
-bevel_ne = 1
-bevel_sw = 60
-bevel_se = 1
-
-[node name="Wall6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( -1200, 1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall6" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 1
-bevel_ne = 60
-bevel_sw = 1
-bevel_se = 60
-
-[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 1200, 1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall7" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 60
-bevel_ne = 1
-bevel_sw = 60
-bevel_se = 1
-
-[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
-position = Vector2( -1200, -1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 1
-bevel_ne = 60
-bevel_sw = 1
-bevel_se = 60
-
-[node name="Wall5" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
-position = Vector2( 1200, -1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall5" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 60
-bevel_ne = 1
-bevel_sw = 60
-bevel_se = 1
-
-[node name="Alien41" parent="Battlefield/Middleground" index="7" instance=ExtResource( 15 )]
+[node name="Alien41" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 position = Vector2( 200, 5250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien2" parent="Battlefield/Middleground" index="8" instance=ExtResource( 15 )]
+[node name="Alien2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
 position = Vector2( -200, 950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien35" parent="Battlefield/Middleground" index="9" instance=ExtResource( 15 )]
+[node name="Alien35" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
 position = Vector2( -200, 1350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien36" parent="Battlefield/Middleground" index="10" instance=ExtResource( 15 )]
+[node name="Alien36" parent="Battlefield/Middleground" index="4" instance=ExtResource( 15 )]
 position = Vector2( 200, 1350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien3" parent="Battlefield/Middleground" index="11" instance=ExtResource( 15 )]
+[node name="Alien3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 15 )]
 position = Vector2( -600, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien5" parent="Battlefield/Middleground" index="12" instance=ExtResource( 15 )]
+[node name="Alien5" parent="Battlefield/Middleground" index="6" instance=ExtResource( 15 )]
 position = Vector2( 200, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 15 )]
+[node name="Alien4" parent="Battlefield/Middleground" index="7" instance=ExtResource( 15 )]
 position = Vector2( -200, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien6" parent="Battlefield/Middleground" index="14" instance=ExtResource( 15 )]
+[node name="Alien6" parent="Battlefield/Middleground" index="8" instance=ExtResource( 15 )]
 position = Vector2( -200, 2550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien7" parent="Battlefield/Middleground" index="15" instance=ExtResource( 15 )]
+[node name="Alien7" parent="Battlefield/Middleground" index="9" instance=ExtResource( 15 )]
 position = Vector2( 600, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien32" parent="Battlefield/Middleground" index="16" instance=ExtResource( 15 )]
+[node name="Alien32" parent="Battlefield/Middleground" index="10" instance=ExtResource( 15 )]
 position = Vector2( -600, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien33" parent="Battlefield/Middleground" index="17" instance=ExtResource( 15 )]
+[node name="Alien33" parent="Battlefield/Middleground" index="11" instance=ExtResource( 15 )]
 position = Vector2( 600, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien8" parent="Battlefield/Middleground" index="18" instance=ExtResource( 15 )]
+[node name="Alien8" parent="Battlefield/Middleground" index="12" instance=ExtResource( 15 )]
 position = Vector2( 200, 950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien38" parent="Battlefield/Middleground" index="19" instance=ExtResource( 15 )]
+[node name="Alien38" parent="Battlefield/Middleground" index="13" instance=ExtResource( 15 )]
 position = Vector2( 200, 2550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien22" parent="Battlefield/Middleground" index="20" instance=ExtResource( 15 )]
+[node name="Alien22" parent="Battlefield/Middleground" index="14" instance=ExtResource( 15 )]
 position = Vector2( 200, 6850 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien23" parent="Battlefield/Middleground" index="21" instance=ExtResource( 15 )]
+[node name="Alien23" parent="Battlefield/Middleground" index="15" instance=ExtResource( 15 )]
 position = Vector2( -200, 6850 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien42" parent="Battlefield/Middleground" index="22" instance=ExtResource( 15 )]
+[node name="Alien42" parent="Battlefield/Middleground" index="16" instance=ExtResource( 15 )]
 position = Vector2( -600, 7250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien26" parent="Battlefield/Middleground" index="23" instance=ExtResource( 15 )]
+[node name="Alien26" parent="Battlefield/Middleground" index="17" instance=ExtResource( 15 )]
 position = Vector2( 600, 7250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien27" parent="Battlefield/Middleground" index="24" instance=ExtResource( 15 )]
+[node name="Alien27" parent="Battlefield/Middleground" index="18" instance=ExtResource( 15 )]
 position = Vector2( -200, 8550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien28" parent="Battlefield/Middleground" index="25" instance=ExtResource( 15 )]
+[node name="Alien28" parent="Battlefield/Middleground" index="19" instance=ExtResource( 15 )]
 position = Vector2( 200, 7650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien29" parent="Battlefield/Middleground" index="26" instance=ExtResource( 15 )]
+[node name="Alien29" parent="Battlefield/Middleground" index="20" instance=ExtResource( 15 )]
 position = Vector2( -200, 7650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien31" parent="Battlefield/Middleground" index="27" instance=ExtResource( 15 )]
+[node name="Alien31" parent="Battlefield/Middleground" index="21" instance=ExtResource( 15 )]
 position = Vector2( 200, 8550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien9" parent="Battlefield/Middleground" index="28" instance=ExtResource( 15 )]
+[node name="Alien9" parent="Battlefield/Middleground" index="22" instance=ExtResource( 15 )]
 position = Vector2( 600, 4150 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien10" parent="Battlefield/Middleground" index="29" instance=ExtResource( 15 )]
+[node name="Alien10" parent="Battlefield/Middleground" index="23" instance=ExtResource( 15 )]
 position = Vector2( -600, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien11" parent="Battlefield/Middleground" index="30" instance=ExtResource( 15 )]
+[node name="Alien11" parent="Battlefield/Middleground" index="24" instance=ExtResource( 15 )]
 position = Vector2( 200, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien12" parent="Battlefield/Middleground" index="31" instance=ExtResource( 15 )]
+[node name="Alien12" parent="Battlefield/Middleground" index="25" instance=ExtResource( 15 )]
 position = Vector2( -200, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien13" parent="Battlefield/Middleground" index="32" instance=ExtResource( 15 )]
+[node name="Alien13" parent="Battlefield/Middleground" index="26" instance=ExtResource( 15 )]
 position = Vector2( -200, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien14" parent="Battlefield/Middleground" index="33" instance=ExtResource( 15 )]
+[node name="Alien14" parent="Battlefield/Middleground" index="27" instance=ExtResource( 15 )]
 position = Vector2( 600, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien39" parent="Battlefield/Middleground" index="34" instance=ExtResource( 15 )]
+[node name="Alien39" parent="Battlefield/Middleground" index="28" instance=ExtResource( 15 )]
 position = Vector2( -600, 4150 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien40" parent="Battlefield/Middleground" index="35" instance=ExtResource( 15 )]
+[node name="Alien40" parent="Battlefield/Middleground" index="29" instance=ExtResource( 15 )]
 position = Vector2( 200, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien17" parent="Battlefield/Middleground" index="36" instance=ExtResource( 15 )]
+[node name="Alien17" parent="Battlefield/Middleground" index="30" instance=ExtResource( 15 )]
 position = Vector2( 200, 5650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien18" parent="Battlefield/Middleground" index="37" instance=ExtResource( 15 )]
+[node name="Alien18" parent="Battlefield/Middleground" index="31" instance=ExtResource( 15 )]
 position = Vector2( -200, 5650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien19" parent="Battlefield/Middleground" index="38" instance=ExtResource( 15 )]
+[node name="Alien19" parent="Battlefield/Middleground" index="32" instance=ExtResource( 15 )]
 position = Vector2( -200, 5250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien43" parent="Battlefield/Middleground" index="39" instance=ExtResource( 15 )]
+[node name="Alien43" parent="Battlefield/Middleground" index="33" instance=ExtResource( 15 )]
 position = Vector2( 200, 11700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien15" parent="Battlefield/Middleground" index="40" instance=ExtResource( 15 )]
+[node name="Alien15" parent="Battlefield/Middleground" index="34" instance=ExtResource( 15 )]
 position = Vector2( -600, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien16" parent="Battlefield/Middleground" index="41" instance=ExtResource( 15 )]
+[node name="Alien16" parent="Battlefield/Middleground" index="35" instance=ExtResource( 15 )]
 position = Vector2( 200, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien20" parent="Battlefield/Middleground" index="42" instance=ExtResource( 15 )]
+[node name="Alien20" parent="Battlefield/Middleground" index="36" instance=ExtResource( 15 )]
 position = Vector2( -200, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien21" parent="Battlefield/Middleground" index="43" instance=ExtResource( 15 )]
+[node name="Alien21" parent="Battlefield/Middleground" index="37" instance=ExtResource( 15 )]
 position = Vector2( -200, 9000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien24" parent="Battlefield/Middleground" index="44" instance=ExtResource( 15 )]
+[node name="Alien24" parent="Battlefield/Middleground" index="38" instance=ExtResource( 15 )]
 position = Vector2( 600, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien34" parent="Battlefield/Middleground" index="45" instance=ExtResource( 15 )]
+[node name="Alien34" parent="Battlefield/Middleground" index="39" instance=ExtResource( 15 )]
 position = Vector2( -600, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien37" parent="Battlefield/Middleground" index="46" instance=ExtResource( 15 )]
+[node name="Alien37" parent="Battlefield/Middleground" index="40" instance=ExtResource( 15 )]
 position = Vector2( 600, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien44" parent="Battlefield/Middleground" index="47" instance=ExtResource( 15 )]
+[node name="Alien44" parent="Battlefield/Middleground" index="41" instance=ExtResource( 15 )]
 position = Vector2( 200, 9000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien25" parent="Battlefield/Middleground" index="48" instance=ExtResource( 15 )]
+[node name="Alien25" parent="Battlefield/Middleground" index="42" instance=ExtResource( 15 )]
 position = Vector2( 200, 13300 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien30" parent="Battlefield/Middleground" index="49" instance=ExtResource( 15 )]
+[node name="Alien30" parent="Battlefield/Middleground" index="43" instance=ExtResource( 15 )]
 position = Vector2( -200, 13300 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien45" parent="Battlefield/Middleground" index="50" instance=ExtResource( 15 )]
+[node name="Alien45" parent="Battlefield/Middleground" index="44" instance=ExtResource( 15 )]
 position = Vector2( -600, 13700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien46" parent="Battlefield/Middleground" index="51" instance=ExtResource( 15 )]
+[node name="Alien46" parent="Battlefield/Middleground" index="45" instance=ExtResource( 15 )]
 position = Vector2( 600, 13700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien47" parent="Battlefield/Middleground" index="52" instance=ExtResource( 15 )]
+[node name="Alien47" parent="Battlefield/Middleground" index="46" instance=ExtResource( 15 )]
 position = Vector2( -200, 15000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien48" parent="Battlefield/Middleground" index="53" instance=ExtResource( 15 )]
+[node name="Alien48" parent="Battlefield/Middleground" index="47" instance=ExtResource( 15 )]
 position = Vector2( 200, 14100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien49" parent="Battlefield/Middleground" index="54" instance=ExtResource( 15 )]
+[node name="Alien49" parent="Battlefield/Middleground" index="48" instance=ExtResource( 15 )]
 position = Vector2( -200, 14100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien50" parent="Battlefield/Middleground" index="55" instance=ExtResource( 15 )]
+[node name="Alien50" parent="Battlefield/Middleground" index="49" instance=ExtResource( 15 )]
 position = Vector2( 200, 15000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien51" parent="Battlefield/Middleground" index="56" instance=ExtResource( 15 )]
+[node name="Alien51" parent="Battlefield/Middleground" index="50" instance=ExtResource( 15 )]
 position = Vector2( 600, 10600 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien52" parent="Battlefield/Middleground" index="57" instance=ExtResource( 15 )]
+[node name="Alien52" parent="Battlefield/Middleground" index="51" instance=ExtResource( 15 )]
 position = Vector2( -600, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien53" parent="Battlefield/Middleground" index="58" instance=ExtResource( 15 )]
+[node name="Alien53" parent="Battlefield/Middleground" index="52" instance=ExtResource( 15 )]
 position = Vector2( 200, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien54" parent="Battlefield/Middleground" index="59" instance=ExtResource( 15 )]
+[node name="Alien54" parent="Battlefield/Middleground" index="53" instance=ExtResource( 15 )]
 position = Vector2( -200, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien55" parent="Battlefield/Middleground" index="60" instance=ExtResource( 15 )]
+[node name="Alien55" parent="Battlefield/Middleground" index="54" instance=ExtResource( 15 )]
 position = Vector2( -200, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien56" parent="Battlefield/Middleground" index="61" instance=ExtResource( 15 )]
+[node name="Alien56" parent="Battlefield/Middleground" index="55" instance=ExtResource( 15 )]
 position = Vector2( 600, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien57" parent="Battlefield/Middleground" index="62" instance=ExtResource( 15 )]
+[node name="Alien57" parent="Battlefield/Middleground" index="56" instance=ExtResource( 15 )]
 position = Vector2( -600, 10600 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien58" parent="Battlefield/Middleground" index="63" instance=ExtResource( 15 )]
+[node name="Alien58" parent="Battlefield/Middleground" index="57" instance=ExtResource( 15 )]
 position = Vector2( 200, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien59" parent="Battlefield/Middleground" index="64" instance=ExtResource( 15 )]
+[node name="Alien59" parent="Battlefield/Middleground" index="58" instance=ExtResource( 15 )]
 position = Vector2( 200, 12100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien60" parent="Battlefield/Middleground" index="65" instance=ExtResource( 15 )]
+[node name="Alien60" parent="Battlefield/Middleground" index="59" instance=ExtResource( 15 )]
 position = Vector2( -200, 12100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien61" parent="Battlefield/Middleground" index="66" instance=ExtResource( 15 )]
+[node name="Alien61" parent="Battlefield/Middleground" index="60" instance=ExtResource( 15 )]
 position = Vector2( -200, 11700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Mine" parent="Battlefield/Middleground" index="67" instance=ExtResource( 16 )]
+[node name="Mine" parent="Battlefield/Middleground" index="61" instance=ExtResource( 16 )]
 position = Vector2( 0, 5450 )
 
-[node name="Mine2" parent="Battlefield/Middleground" index="68" instance=ExtResource( 16 )]
+[node name="Mine2" parent="Battlefield/Middleground" index="62" instance=ExtResource( 16 )]
 position = Vector2( -200, 7250 )
 
-[node name="Mine3" parent="Battlefield/Middleground" index="69" instance=ExtResource( 16 )]
+[node name="Mine3" parent="Battlefield/Middleground" index="63" instance=ExtResource( 16 )]
 position = Vector2( 201, 7250 )
 
-[node name="Mine4" parent="Battlefield/Middleground" index="70" instance=ExtResource( 16 )]
+[node name="Mine4" parent="Battlefield/Middleground" index="64" instance=ExtResource( 16 )]
 position = Vector2( 601, 9000 )
 
-[node name="Mine5" parent="Battlefield/Middleground" index="71" instance=ExtResource( 16 )]
+[node name="Mine5" parent="Battlefield/Middleground" index="65" instance=ExtResource( 16 )]
 position = Vector2( -599, 9000 )
 
-[node name="Mine6" parent="Battlefield/Middleground" index="72" instance=ExtResource( 16 )]
+[node name="Mine6" parent="Battlefield/Middleground" index="66" instance=ExtResource( 16 )]
 position = Vector2( 1, 8250 )
 
-[node name="Mine7" parent="Battlefield/Middleground" index="73" instance=ExtResource( 16 )]
+[node name="Mine7" parent="Battlefield/Middleground" index="67" instance=ExtResource( 16 )]
 position = Vector2( 1, 10600 )
 
-[node name="Mine8" parent="Battlefield/Middleground" index="74" instance=ExtResource( 16 )]
+[node name="Mine8" parent="Battlefield/Middleground" index="68" instance=ExtResource( 16 )]
 position = Vector2( 1, 11900 )
 
-[node name="Mine9" parent="Battlefield/Middleground" index="75" instance=ExtResource( 16 )]
+[node name="Mine9" parent="Battlefield/Middleground" index="69" instance=ExtResource( 16 )]
 position = Vector2( 1, 11500 )
 
-[node name="Mine10" parent="Battlefield/Middleground" index="76" instance=ExtResource( 16 )]
+[node name="Mine10" parent="Battlefield/Middleground" index="70" instance=ExtResource( 16 )]
 position = Vector2( 1, 12300 )
 
-[node name="Mine17" parent="Battlefield/Middleground" index="77" instance=ExtResource( 16 )]
+[node name="Mine17" parent="Battlefield/Middleground" index="71" instance=ExtResource( 16 )]
 position = Vector2( 0, 15000 )
 
-[node name="Mine18" parent="Battlefield/Middleground" index="78" instance=ExtResource( 16 )]
+[node name="Mine18" parent="Battlefield/Middleground" index="72" instance=ExtResource( 16 )]
 position = Vector2( 0, 14600 )
 
-[node name="Mine19" parent="Battlefield/Middleground" index="79" instance=ExtResource( 16 )]
+[node name="Mine19" parent="Battlefield/Middleground" index="73" instance=ExtResource( 16 )]
 position = Vector2( 0, 15400 )
 
-[node name="Mine11" parent="Battlefield/Middleground" index="80" instance=ExtResource( 16 )]
+[node name="Mine11" parent="Battlefield/Middleground" index="74" instance=ExtResource( 16 )]
 position = Vector2( -399, 11900 )
 
-[node name="Mine13" parent="Battlefield/Middleground" index="81" instance=ExtResource( 16 )]
+[node name="Mine13" parent="Battlefield/Middleground" index="75" instance=ExtResource( 16 )]
 position = Vector2( 200, 13700 )
 
-[node name="Mine14" parent="Battlefield/Middleground" index="82" instance=ExtResource( 16 )]
+[node name="Mine14" parent="Battlefield/Middleground" index="76" instance=ExtResource( 16 )]
 position = Vector2( -200, 13700 )
 
-[node name="Mine15" parent="Battlefield/Middleground" index="83" instance=ExtResource( 16 )]
+[node name="Mine15" parent="Battlefield/Middleground" index="77" instance=ExtResource( 16 )]
 position = Vector2( -600, 13300 )
 
-[node name="Mine16" parent="Battlefield/Middleground" index="84" instance=ExtResource( 16 )]
+[node name="Mine16" parent="Battlefield/Middleground" index="78" instance=ExtResource( 16 )]
 position = Vector2( 600, 13300 )
 
-[node name="Mine12" parent="Battlefield/Middleground" index="85" instance=ExtResource( 16 )]
+[node name="Mine12" parent="Battlefield/Middleground" index="79" instance=ExtResource( 16 )]
 position = Vector2( 401, 11900 )
+
+[node name="Alien62" parent="Battlefield/Middleground" index="80" instance=ExtResource( 15 )]
+position = Vector2( 200, 16400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien63" parent="Battlefield/Middleground" index="81" instance=ExtResource( 15 )]
+position = Vector2( 200, 16800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien64" parent="Battlefield/Middleground" index="82" instance=ExtResource( 15 )]
+position = Vector2( -200, 16800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien65" parent="Battlefield/Middleground" index="83" instance=ExtResource( 15 )]
+position = Vector2( -200, 16400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien66" parent="Battlefield/Middleground" index="84" instance=ExtResource( 15 )]
+position = Vector2( 0, 17800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien67" parent="Battlefield/Middleground" index="85" instance=ExtResource( 15 )]
+position = Vector2( 0, 18600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine20" parent="Battlefield/Middleground" index="86" instance=ExtResource( 16 )]
+position = Vector2( 1, 16600 )
+
+[node name="Mine21" parent="Battlefield/Middleground" index="87" instance=ExtResource( 16 )]
+position = Vector2( 1, 16200 )
+
+[node name="Mine22" parent="Battlefield/Middleground" index="88" instance=ExtResource( 16 )]
+position = Vector2( 1, 17000 )
+
+[node name="Mine23" parent="Battlefield/Middleground" index="89" instance=ExtResource( 16 )]
+position = Vector2( -399, 16600 )
+
+[node name="Mine24" parent="Battlefield/Middleground" index="90" instance=ExtResource( 16 )]
+position = Vector2( 401, 16600 )
+
+[node name="GlassVariants" parent="Battlefield/Middleground" index="91" instance=ExtResource( 11 )]
+
+[node name="A" type="Node2D" parent="Battlefield/Middleground/GlassVariants" index="0"]
+
+[node name="NoShipZone" parent="Battlefield/Middleground/GlassVariants/A" index="0" instance=ExtResource( 17 )]
+position = Vector2( -1050, -400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/A/NoShipZone" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 200
+bevel_sw = 50
+bevel_se = 200
+
+[node name="NoShipZone2" parent="Battlefield/Middleground/GlassVariants/A" index="1" instance=ExtResource( 17 )]
+position = Vector2( 1050, 400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/A/NoShipZone2" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 200
+bevel_ne = 50
+bevel_sw = 200
+bevel_se = 50
+
+[node name="B" type="Node2D" parent="Battlefield/Middleground/GlassVariants" index="1"]
+visible = false
+
+[node name="NoShipZone" parent="Battlefield/Middleground/GlassVariants/B" index="0" instance=ExtResource( 17 )]
+position = Vector2( -1050, 400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/B/NoShipZone" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 200
+bevel_sw = 50
+bevel_se = 200
+
+[node name="NoShipZone2" parent="Battlefield/Middleground/GlassVariants/B" index="1" instance=ExtResource( 17 )]
+position = Vector2( 1050, -400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/B/NoShipZone2" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 200
+bevel_ne = 50
+bevel_sw = 200
+bevel_se = 50
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( -600, -1100 )
