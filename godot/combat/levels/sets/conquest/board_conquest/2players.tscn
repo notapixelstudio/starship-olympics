@@ -30,8 +30,8 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
-width = 3400
-height = 3400
+width = 4100
+height = 2700
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -69,1273 +69,1329 @@ rotation = 0.785398
 position = Vector2( -7.62939e-05, -424.264 )
 rotation = 0.785398
 
-[node name="Tile31" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 10 )]
-position = Vector2( -282.843, -565.685 )
-rotation = 0.785398
-
-[node name="Tile32" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 10 )]
-position = Vector2( -141.421, -565.685 )
-rotation = 0.785398
-
-[node name="Tile36" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 10 )]
+[node name="Tile36" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 10 )]
 position = Vector2( 424.264, 141.421 )
 rotation = 0.785398
 
-[node name="Tile37" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 10 )]
+[node name="Tile37" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 10 )]
 position = Vector2( 424.264, -7.62939e-05 )
 rotation = 0.785398
 
-[node name="Tile38" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 10 )]
-position = Vector2( 565.685, 282.843 )
+[node name="Tile38" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, 282.843 )
 rotation = 0.785398
 
-[node name="Tile39" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 10 )]
-position = Vector2( 565.685, 141.421 )
+[node name="Tile39" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, 141.421 )
 rotation = 0.785398
 
-[node name="Tile41" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 10 )]
+[node name="Tile41" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 10 )]
 position = Vector2( 141.421, -424.264 )
 rotation = 0.785398
 
-[node name="Tile42" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 10 )]
+[node name="Tile42" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 10 )]
 position = Vector2( 282.843, -424.264 )
 rotation = 0.785398
 
-[node name="Tile43" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 10 )]
-position = Vector2( -9.15527e-05, -565.685 )
-rotation = 0.785398
-
-[node name="Tile44" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 10 )]
-position = Vector2( 141.421, -565.685 )
-rotation = 0.785398
-
-[node name="Tile48" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 10 )]
+[node name="Tile48" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 10 )]
 position = Vector2( 424.264, -141.421 )
 rotation = 0.785398
 
-[node name="Tile49" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 10 )]
+[node name="Tile49" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 10 )]
 position = Vector2( 424.264, -282.843 )
 rotation = 0.785398
 
-[node name="Tile50" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -9.15527e-05 )
+[node name="Tile50" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile51" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -141.421 )
+[node name="Tile51" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -141.421 )
 rotation = 0.785398
 
-[node name="Tile33" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 141.421 )
+[node name="Tile33" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 141.421 )
 rotation = 0.785398
 
-[node name="Tile45" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 9.15527e-05 )
+[node name="Tile45" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile46" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 10 )]
+[node name="Tile46" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 10 )]
 position = Vector2( -424.264, 141.421 )
 rotation = 0.785398
 
-[node name="Tile47" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 10 )]
+[node name="Tile47" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 10 )]
 position = Vector2( -424.264, 7.62939e-05 )
 rotation = 0.785398
 
-[node name="Tile52" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 10 )]
-position = Vector2( -565.685, -141.421 )
+[node name="Tile52" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, -141.421 )
 rotation = 0.785398
 
-[node name="Tile53" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 10 )]
+[node name="Tile53" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 10 )]
 position = Vector2( -424.264, -141.421 )
 rotation = 0.785398
 
-[node name="Tile57" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 10 )]
-position = Vector2( -565.685, -282.843 )
+[node name="Tile57" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, -282.843 )
 rotation = 0.785398
 
-[node name="Tile65" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 10 )]
+[node name="Tile65" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 10 )]
 position = Vector2( -141.421, 424.264 )
 rotation = 0.785398
 
-[node name="Tile77" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 282.843 )
+[node name="Tile77" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 282.843 )
 rotation = 0.785398
 
-[node name="Tile78" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 10 )]
+[node name="Tile78" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 10 )]
 position = Vector2( -424.264, 282.843 )
 rotation = 0.785398
 
-[node name="Tile79" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 10 )]
-position = Vector2( -282.843, 565.685 )
-rotation = 0.785398
-
-[node name="Tile80" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 10 )]
+[node name="Tile80" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 10 )]
 position = Vector2( -282.843, 424.264 )
 rotation = 0.785398
 
-[node name="Tile82" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 10 )]
-position = Vector2( -707.107, -282.843 )
+[node name="Tile82" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, -282.843 )
 rotation = 0.785398
 
-[node name="Tile83" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 10 )]
-position = Vector2( -707.107, -141.421 )
+[node name="Tile83" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, -141.421 )
 rotation = 0.785398
 
-[node name="Tile84" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -424.264 )
+[node name="Tile85" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, -282.843 )
 rotation = 0.785398
 
-[node name="Tile85" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -282.843 )
+[node name="Tile91" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 141.422 )
 rotation = 0.785398
 
-[node name="Tile86" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 10 )]
-position = Vector2( -707.107, -424.264 )
+[node name="Tile92" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 0.000183105 )
 rotation = 0.785398
 
-[node name="Tile87" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 10 )]
-position = Vector2( -989.95, -565.685 )
+[node name="Tile93" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 141.422 )
 rotation = 0.785398
 
-[node name="Tile88" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 10 )]
-position = Vector2( -989.95, -424.264 )
+[node name="Tile94" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 0.000183105 )
 rotation = 0.785398
 
-[node name="Tile89" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -565.685 )
+[node name="Tile95" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, -141.421 )
 rotation = 0.785398
 
-[node name="Tile90" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 10 )]
-position = Vector2( -707.107, -565.685 )
+[node name="Tile96" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, -141.421 )
 rotation = 0.785398
 
-[node name="Tile91" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 141.422 )
+[node name="Tile97" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, -282.843 )
 rotation = 0.785398
 
-[node name="Tile92" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 0.000183105 )
+[node name="Tile98" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 141.421 )
 rotation = 0.785398
 
-[node name="Tile93" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 141.422 )
+[node name="Tile99" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 0.00012207 )
 rotation = 0.785398
 
-[node name="Tile94" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 0.000152588 )
+[node name="Tile100" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 282.843 )
 rotation = 0.785398
 
-[node name="Tile95" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 10 )]
-position = Vector2( -989.949, -141.421 )
+[node name="Tile102" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 424.264 )
 rotation = 0.785398
 
-[node name="Tile96" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -141.421 )
+[node name="Tile104" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 424.264 )
 rotation = 0.785398
 
-[node name="Tile97" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 10 )]
-position = Vector2( -989.949, -282.843 )
+[node name="Tile105" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 282.843 )
 rotation = 0.785398
 
-[node name="Tile98" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 141.421 )
+[node name="Tile106" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 282.843 )
 rotation = 0.785398
 
-[node name="Tile99" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 0.00012207 )
+[node name="Tile108" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 424.264 )
 rotation = 0.785398
 
-[node name="Tile100" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 282.843 )
+[node name="Tile109" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -282.843 )
 rotation = 0.785398
 
-[node name="Tile101" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 565.686 )
+[node name="Tile110" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -141.422 )
 rotation = 0.785398
 
-[node name="Tile102" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 424.264 )
+[node name="Tile111" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -424.264 )
 rotation = 0.785398
 
-[node name="Tile103" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 565.686 )
+[node name="Tile112" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -282.843 )
 rotation = 0.785398
 
-[node name="Tile104" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 424.264 )
+[node name="Tile113" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -424.264 )
 rotation = 0.785398
 
-[node name="Tile105" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 282.843 )
+[node name="Tile115" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -424.264 )
 rotation = 0.785398
 
-[node name="Tile106" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 282.843 )
+[node name="Tile118" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, 141.421 )
 rotation = 0.785398
 
-[node name="Tile107" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 565.686 )
+[node name="Tile119" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -0.00012207 )
 rotation = 0.785398
 
-[node name="Tile108" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 424.264 )
+[node name="Tile120" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, 141.421 )
 rotation = 0.785398
 
-[node name="Tile109" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -282.843 )
+[node name="Tile121" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -0.000183105 )
 rotation = 0.785398
 
-[node name="Tile110" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -141.422 )
+[node name="Tile122" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -141.421 )
 rotation = 0.785398
 
-[node name="Tile111" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -424.264 )
+[node name="Tile123" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -141.422 )
 rotation = 0.785398
 
-[node name="Tile112" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -282.843 )
+[node name="Tile124" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -282.843 )
 rotation = 0.785398
 
-[node name="Tile113" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -424.264 )
+[node name="Tile125" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, 141.421 )
 rotation = 0.785398
 
-[node name="Tile114" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -565.686 )
+[node name="Tile126" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -0.000183105 )
 rotation = 0.785398
 
-[node name="Tile115" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -424.264 )
+[node name="Tile127" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, 282.843 )
 rotation = 0.785398
 
-[node name="Tile116" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -565.686 )
+[node name="Tile132" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, 282.843 )
 rotation = 0.785398
 
-[node name="Tile117" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -565.686 )
+[node name="Tile133" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, 282.843 )
 rotation = 0.785398
 
-[node name="Tile118" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 10 )]
-position = Vector2( 707.107, 141.421 )
-rotation = 0.785398
-
-[node name="Tile119" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -0.00012207 )
-rotation = 0.785398
-
-[node name="Tile120" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 141.421 )
-rotation = 0.785398
-
-[node name="Tile121" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -0.000152588 )
-rotation = 0.785398
-
-[node name="Tile122" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -141.421 )
-rotation = 0.785398
-
-[node name="Tile123" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -141.422 )
-rotation = 0.785398
-
-[node name="Tile124" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -282.843 )
-rotation = 0.785398
-
-[node name="Tile125" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 10 )]
-position = Vector2( 989.949, 141.421 )
-rotation = 0.785398
-
-[node name="Tile126" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -0.000183105 )
-rotation = 0.785398
-
-[node name="Tile127" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 10 )]
-position = Vector2( 989.949, 282.843 )
-rotation = 0.785398
-
-[node name="Tile128" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 10 )]
-position = Vector2( 707.107, 565.685 )
-rotation = 0.785398
-
-[node name="Tile129" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 10 )]
-position = Vector2( 707.107, 424.264 )
-rotation = 0.785398
-
-[node name="Tile130" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 565.685 )
-rotation = 0.785398
-
-[node name="Tile131" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 424.264 )
-rotation = 0.785398
-
-[node name="Tile132" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 10 )]
-position = Vector2( 707.107, 282.843 )
-rotation = 0.785398
-
-[node name="Tile133" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 282.843 )
-rotation = 0.785398
-
-[node name="Tile134" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 10 )]
-position = Vector2( 989.95, 565.685 )
-rotation = 0.785398
-
-[node name="Tile135" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 10 )]
-position = Vector2( 989.95, 424.264 )
-rotation = 0.785398
-
-[node name="Tile81" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 10 )]
-position = Vector2( -141.421, 565.685 )
-rotation = 0.785398
-
-[node name="Tile64" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 10 )]
-position = Vector2( 9.15527e-05, 565.685 )
-rotation = 0.785398
-
-[node name="Tile66" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 10 )]
-position = Vector2( 141.421, 565.685 )
-rotation = 0.785398
-
-[node name="Tile67" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 10 )]
+[node name="Tile67" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 10 )]
 position = Vector2( 7.62939e-05, 424.264 )
 rotation = 0.785398
 
-[node name="Tile69" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 10 )]
+[node name="Tile69" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 10 )]
 position = Vector2( 141.421, 424.264 )
 rotation = 0.785398
 
-[node name="Tile72" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 10 )]
-position = Vector2( 282.843, 565.685 )
+[node name="Tile62" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -282.843 )
 rotation = 0.785398
 
-[node name="Tile55" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 10 )]
-position = Vector2( 282.843, -565.685 )
+[node name="Tile137" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 10 )]
+position = Vector2( -424.264, -566.107 )
 rotation = 0.785398
 
-[node name="Tile62" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -282.843 )
+[node name="Tile138" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 10 )]
+position = Vector2( -282.843, -566.107 )
 rotation = 0.785398
 
-[node name="Tile136" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 10 )]
-position = Vector2( -565.686, -707.107 )
+[node name="Tile139" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 10 )]
+position = Vector2( -141.421, -566.107 )
 rotation = 0.785398
 
-[node name="Tile137" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 10 )]
-position = Vector2( -424.264, -707.107 )
+[node name="Tile140" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 10 )]
+position = Vector2( -0.00012207, -566.107 )
 rotation = 0.785398
 
-[node name="Tile138" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 10 )]
-position = Vector2( -282.843, -707.107 )
+[node name="Tile141" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 10 )]
+position = Vector2( 141.421, -566.107 )
 rotation = 0.785398
 
-[node name="Tile139" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 10 )]
-position = Vector2( -141.421, -707.107 )
-rotation = 0.785398
-
-[node name="Tile140" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 10 )]
-position = Vector2( -0.00012207, -707.107 )
-rotation = 0.785398
-
-[node name="Tile141" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 10 )]
-position = Vector2( 141.421, -707.107 )
-rotation = 0.785398
-
-[node name="Tile143" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 10 )]
-position = Vector2( -565.685, -424.264 )
-rotation = 0.785398
-
-[node name="Tile144" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 10 )]
+[node name="Tile144" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 10 )]
 position = Vector2( -424.264, -424.264 )
 rotation = 0.785398
 
-[node name="Tile145" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 10 )]
+[node name="Tile145" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 10 )]
 position = Vector2( 424.264, -424.264 )
 rotation = 0.785398
 
-[node name="Tile291" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 848.528 )
+[node name="Tile291" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 10 )]
+position = Vector2( 1277.53, 566.528 )
 rotation = 0.785398
 size = 3
 points = 30
 
-[node name="Tile293" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -848.528 )
+[node name="Tile293" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 10 )]
+position = Vector2( -1278.53, -564.528 )
 rotation = 0.785398
 size = 3
 points = 30
 
-[node name="Tile146" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -424.264 )
+[node name="Tile146" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -424.264 )
 rotation = 0.785398
 
-[node name="Tile147" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -707.107 )
+[node name="Tile147" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -566.107 )
 rotation = 0.785398
 
-[node name="Tile148" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 10 )]
-position = Vector2( 282.843, -707.107 )
+[node name="Tile148" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 10 )]
+position = Vector2( 282.843, -566.107 )
 rotation = 0.785398
 
-[node name="Tile149" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 10 )]
-position = Vector2( 424.264, -707.107 )
+[node name="Tile149" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 10 )]
+position = Vector2( 424.264, -566.107 )
 rotation = 0.785398
 
-[node name="Tile150" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -707.107 )
+[node name="Tile150" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -566.107 )
 rotation = 0.785398
 
-[node name="Tile151" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 10 )]
-position = Vector2( -565.686, -848.528 )
+[node name="Tile152" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 10 )]
+position = Vector2( -424.264, -707.528 )
 rotation = 0.785398
 
-[node name="Tile152" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 10 )]
-position = Vector2( -424.264, -848.528 )
+[node name="Tile153" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 10 )]
+position = Vector2( -282.843, -707.528 )
 rotation = 0.785398
 
-[node name="Tile153" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 10 )]
-position = Vector2( -282.843, -848.528 )
+[node name="Tile154" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 10 )]
+position = Vector2( -141.422, -707.528 )
 rotation = 0.785398
 
-[node name="Tile154" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 10 )]
-position = Vector2( -141.422, -848.528 )
+[node name="Tile155" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 10 )]
+position = Vector2( -0.00012207, -707.528 )
 rotation = 0.785398
 
-[node name="Tile155" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 10 )]
-position = Vector2( -0.000152588, -848.528 )
+[node name="Tile156" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 10 )]
+position = Vector2( 141.421, -707.528 )
 rotation = 0.785398
 
-[node name="Tile156" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 10 )]
-position = Vector2( 141.421, -848.528 )
+[node name="Tile162" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -707.528 )
 rotation = 0.785398
 
-[node name="Tile158" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 10 )]
-position = Vector2( -565.685, -565.685 )
+[node name="Tile163" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 10 )]
+position = Vector2( 282.843, -707.528 )
 rotation = 0.785398
 
-[node name="Tile159" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 10 )]
-position = Vector2( -424.264, -565.685 )
+[node name="Tile164" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 10 )]
+position = Vector2( 424.264, -707.528 )
 rotation = 0.785398
 
-[node name="Tile160" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 10 )]
-position = Vector2( 424.264, -565.685 )
+[node name="Tile165" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -707.528 )
 rotation = 0.785398
 
-[node name="Tile161" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -565.685 )
+[node name="Tile167" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 10 )]
+position = Vector2( -424.264, -848.949 )
 rotation = 0.785398
 
-[node name="Tile162" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -848.528 )
+[node name="Tile168" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 10 )]
+position = Vector2( -282.843, -848.949 )
 rotation = 0.785398
 
-[node name="Tile163" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 10 )]
-position = Vector2( 282.843, -848.528 )
+[node name="Tile169" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 10 )]
+position = Vector2( -141.422, -848.949 )
 rotation = 0.785398
 
-[node name="Tile164" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 10 )]
-position = Vector2( 424.264, -848.528 )
+[node name="Tile170" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 10 )]
+position = Vector2( -0.00012207, -848.949 )
 rotation = 0.785398
 
-[node name="Tile165" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -848.528 )
+[node name="Tile171" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 10 )]
+position = Vector2( 141.421, -848.949 )
 rotation = 0.785398
 
-[node name="Tile166" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 10 )]
-position = Vector2( -565.686, -989.949 )
+[node name="Tile175" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -848.95 )
 rotation = 0.785398
 
-[node name="Tile167" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 10 )]
-position = Vector2( -424.264, -989.949 )
+[node name="Tile176" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -848.95 )
 rotation = 0.785398
 
-[node name="Tile168" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 10 )]
-position = Vector2( -282.843, -989.949 )
+[node name="Tile177" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -848.95 )
 rotation = 0.785398
 
-[node name="Tile169" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 10 )]
-position = Vector2( -141.422, -989.949 )
+[node name="Tile178" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 10 )]
+position = Vector2( 282.843, -848.949 )
 rotation = 0.785398
 
-[node name="Tile170" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 10 )]
-position = Vector2( -0.000183105, -989.949 )
+[node name="Tile179" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 10 )]
+position = Vector2( 424.264, -848.95 )
 rotation = 0.785398
 
-[node name="Tile171" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 10 )]
-position = Vector2( 141.421, -989.949 )
+[node name="Tile180" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -848.95 )
 rotation = 0.785398
 
-[node name="Tile175" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -989.95 )
+[node name="Tile182" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 10 )]
+position = Vector2( -424.264, -990.37 )
 rotation = 0.785398
 
-[node name="Tile176" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -989.95 )
+[node name="Tile183" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 10 )]
+position = Vector2( -282.843, -990.37 )
 rotation = 0.785398
 
-[node name="Tile177" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -989.95 )
+[node name="Tile184" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 10 )]
+position = Vector2( -141.422, -990.37 )
 rotation = 0.785398
 
-[node name="Tile178" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 10 )]
-position = Vector2( 282.843, -989.949 )
+[node name="Tile185" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 10 )]
+position = Vector2( -0.00012207, -990.37 )
 rotation = 0.785398
 
-[node name="Tile179" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 10 )]
-position = Vector2( 424.264, -989.95 )
+[node name="Tile186" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 10 )]
+position = Vector2( 141.421, -990.37 )
 rotation = 0.785398
 
-[node name="Tile180" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -989.95 )
+[node name="Tile189" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 10 )]
+position = Vector2( -1137.11, -847.37 )
 rotation = 0.785398
 
-[node name="Tile181" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 10 )]
-position = Vector2( -565.686, -1131.37 )
+[node name="Tile190" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -990.37 )
 rotation = 0.785398
 
-[node name="Tile182" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 10 )]
-position = Vector2( -424.264, -1131.37 )
+[node name="Tile191" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -990.37 )
 rotation = 0.785398
 
-[node name="Tile183" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 10 )]
-position = Vector2( -282.843, -1131.37 )
+[node name="Tile192" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, -990.37 )
 rotation = 0.785398
 
-[node name="Tile184" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 10 )]
-position = Vector2( -141.422, -1131.37 )
+[node name="Tile193" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 10 )]
+position = Vector2( 282.842, -990.37 )
 rotation = 0.785398
 
-[node name="Tile185" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 10 )]
-position = Vector2( -0.000183105, -1131.37 )
+[node name="Tile194" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 10 )]
+position = Vector2( 424.264, -990.37 )
 rotation = 0.785398
 
-[node name="Tile186" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 10 )]
-position = Vector2( 141.421, -1131.37 )
+[node name="Tile195" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 10 )]
+position = Vector2( 1135.68, -990.37 )
 rotation = 0.785398
 
-[node name="Tile189" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 10 )]
-position = Vector2( -707.107, -1131.37 )
+[node name="Tile196" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 566.107 )
 rotation = 0.785398
 
-[node name="Tile190" parent="Battlefield/Middleground/Board" index="144" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -1131.37 )
+[node name="Tile197" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 10 )]
+position = Vector2( -424.264, 566.107 )
 rotation = 0.785398
 
-[node name="Tile191" parent="Battlefield/Middleground/Board" index="145" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -1131.37 )
+[node name="Tile198" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 10 )]
+position = Vector2( -282.843, 566.107 )
 rotation = 0.785398
 
-[node name="Tile192" parent="Battlefield/Middleground/Board" index="146" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -1131.37 )
+[node name="Tile199" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 10 )]
+position = Vector2( -141.421, 566.107 )
 rotation = 0.785398
 
-[node name="Tile193" parent="Battlefield/Middleground/Board" index="147" instance=ExtResource( 10 )]
-position = Vector2( 282.842, -1131.37 )
+[node name="Tile200" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 10 )]
+position = Vector2( 0.00012207, 566.107 )
 rotation = 0.785398
 
-[node name="Tile194" parent="Battlefield/Middleground/Board" index="148" instance=ExtResource( 10 )]
-position = Vector2( 424.264, -1131.37 )
+[node name="Tile201" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 10 )]
+position = Vector2( 141.421, 566.107 )
 rotation = 0.785398
 
-[node name="Tile195" parent="Battlefield/Middleground/Board" index="149" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -1131.37 )
+[node name="Tile202" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 566.107 )
 rotation = 0.785398
 
-[node name="Tile196" parent="Battlefield/Middleground/Board" index="150" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 707.107 )
+[node name="Tile203" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 424.264 )
 rotation = 0.785398
 
-[node name="Tile197" parent="Battlefield/Middleground/Board" index="151" instance=ExtResource( 10 )]
-position = Vector2( -424.264, 707.107 )
-rotation = 0.785398
-
-[node name="Tile198" parent="Battlefield/Middleground/Board" index="152" instance=ExtResource( 10 )]
-position = Vector2( -282.843, 707.107 )
-rotation = 0.785398
-
-[node name="Tile199" parent="Battlefield/Middleground/Board" index="153" instance=ExtResource( 10 )]
-position = Vector2( -141.421, 707.107 )
-rotation = 0.785398
-
-[node name="Tile200" parent="Battlefield/Middleground/Board" index="154" instance=ExtResource( 10 )]
-position = Vector2( 0.00012207, 707.107 )
-rotation = 0.785398
-
-[node name="Tile201" parent="Battlefield/Middleground/Board" index="155" instance=ExtResource( 10 )]
-position = Vector2( 141.421, 707.107 )
-rotation = 0.785398
-
-[node name="Tile202" parent="Battlefield/Middleground/Board" index="156" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 707.107 )
-rotation = 0.785398
-
-[node name="Tile203" parent="Battlefield/Middleground/Board" index="157" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 424.264 )
-rotation = 0.785398
-
-[node name="Tile204" parent="Battlefield/Middleground/Board" index="158" instance=ExtResource( 10 )]
+[node name="Tile204" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 10 )]
 position = Vector2( -424.264, 424.264 )
 rotation = 0.785398
 
-[node name="Tile205" parent="Battlefield/Middleground/Board" index="159" instance=ExtResource( 10 )]
+[node name="Tile205" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 10 )]
 position = Vector2( 424.264, 424.264 )
 rotation = 0.785398
 
-[node name="Tile206" parent="Battlefield/Middleground/Board" index="160" instance=ExtResource( 10 )]
-position = Vector2( 565.685, 424.264 )
+[node name="Tile208" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 10 )]
+position = Vector2( 282.843, 566.107 )
 rotation = 0.785398
 
-[node name="Tile208" parent="Battlefield/Middleground/Board" index="161" instance=ExtResource( 10 )]
-position = Vector2( 282.843, 707.107 )
+[node name="Tile209" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 10 )]
+position = Vector2( 424.264, 566.107 )
 rotation = 0.785398
 
-[node name="Tile209" parent="Battlefield/Middleground/Board" index="162" instance=ExtResource( 10 )]
-position = Vector2( 424.264, 707.107 )
+[node name="Tile211" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 707.528 )
 rotation = 0.785398
 
-[node name="Tile210" parent="Battlefield/Middleground/Board" index="163" instance=ExtResource( 10 )]
-position = Vector2( 565.686, 707.107 )
+[node name="Tile212" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 10 )]
+position = Vector2( -424.264, 707.528 )
 rotation = 0.785398
 
-[node name="Tile211" parent="Battlefield/Middleground/Board" index="164" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 848.528 )
+[node name="Tile213" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 10 )]
+position = Vector2( -282.843, 707.528 )
 rotation = 0.785398
 
-[node name="Tile212" parent="Battlefield/Middleground/Board" index="165" instance=ExtResource( 10 )]
-position = Vector2( -424.264, 848.528 )
+[node name="Tile214" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 10 )]
+position = Vector2( -141.421, 707.528 )
 rotation = 0.785398
 
-[node name="Tile213" parent="Battlefield/Middleground/Board" index="166" instance=ExtResource( 10 )]
-position = Vector2( -282.843, 848.528 )
+[node name="Tile215" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 10 )]
+position = Vector2( 0.00012207, 707.528 )
 rotation = 0.785398
 
-[node name="Tile214" parent="Battlefield/Middleground/Board" index="167" instance=ExtResource( 10 )]
-position = Vector2( -141.421, 848.528 )
+[node name="Tile216" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 10 )]
+position = Vector2( 141.422, 707.528 )
 rotation = 0.785398
 
-[node name="Tile215" parent="Battlefield/Middleground/Board" index="168" instance=ExtResource( 10 )]
-position = Vector2( 0.000152588, 848.528 )
+[node name="Tile217" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 707.528 )
 rotation = 0.785398
 
-[node name="Tile216" parent="Battlefield/Middleground/Board" index="169" instance=ExtResource( 10 )]
-position = Vector2( 141.422, 848.528 )
+[node name="Tile222" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 848.949 )
 rotation = 0.785398
 
-[node name="Tile217" parent="Battlefield/Middleground/Board" index="170" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 848.528 )
+[node name="Tile223" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 10 )]
+position = Vector2( 282.843, 707.528 )
 rotation = 0.785398
 
-[node name="Tile218" parent="Battlefield/Middleground/Board" index="171" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 565.685 )
+[node name="Tile224" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 10 )]
+position = Vector2( 424.264, 707.528 )
 rotation = 0.785398
 
-[node name="Tile219" parent="Battlefield/Middleground/Board" index="172" instance=ExtResource( 10 )]
-position = Vector2( -424.264, 565.685 )
+[node name="Tile226" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 848.95 )
 rotation = 0.785398
 
-[node name="Tile220" parent="Battlefield/Middleground/Board" index="173" instance=ExtResource( 10 )]
-position = Vector2( 424.264, 565.685 )
+[node name="Tile227" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 10 )]
+position = Vector2( -424.264, 848.95 )
 rotation = 0.785398
 
-[node name="Tile221" parent="Battlefield/Middleground/Board" index="174" instance=ExtResource( 10 )]
-position = Vector2( 565.685, 565.685 )
+[node name="Tile228" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 10 )]
+position = Vector2( -282.843, 848.949 )
 rotation = 0.785398
 
-[node name="Tile222" parent="Battlefield/Middleground/Board" index="175" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 989.949 )
+[node name="Tile229" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 10 )]
+position = Vector2( -141.421, 848.949 )
 rotation = 0.785398
 
-[node name="Tile223" parent="Battlefield/Middleground/Board" index="176" instance=ExtResource( 10 )]
-position = Vector2( 282.843, 848.528 )
+[node name="Tile230" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 10 )]
+position = Vector2( 0.00012207, 848.949 )
 rotation = 0.785398
 
-[node name="Tile224" parent="Battlefield/Middleground/Board" index="177" instance=ExtResource( 10 )]
-position = Vector2( 424.264, 848.528 )
+[node name="Tile231" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 10 )]
+position = Vector2( 141.422, 848.949 )
 rotation = 0.785398
 
-[node name="Tile225" parent="Battlefield/Middleground/Board" index="178" instance=ExtResource( 10 )]
-position = Vector2( 565.686, 848.528 )
+[node name="Tile232" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 848.95 )
 rotation = 0.785398
 
-[node name="Tile226" parent="Battlefield/Middleground/Board" index="179" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 989.95 )
+[node name="Tile233" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 848.95 )
 rotation = 0.785398
 
-[node name="Tile227" parent="Battlefield/Middleground/Board" index="180" instance=ExtResource( 10 )]
-position = Vector2( -424.264, 989.95 )
+[node name="Tile234" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 848.95 )
 rotation = 0.785398
 
-[node name="Tile228" parent="Battlefield/Middleground/Board" index="181" instance=ExtResource( 10 )]
-position = Vector2( -282.843, 989.949 )
+[node name="Tile236" parent="Battlefield/Middleground/Board" index="144" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, 990.37 )
 rotation = 0.785398
 
-[node name="Tile229" parent="Battlefield/Middleground/Board" index="182" instance=ExtResource( 10 )]
-position = Vector2( -141.421, 989.949 )
+[node name="Tile238" parent="Battlefield/Middleground/Board" index="145" instance=ExtResource( 10 )]
+position = Vector2( 282.843, 848.949 )
 rotation = 0.785398
 
-[node name="Tile230" parent="Battlefield/Middleground/Board" index="183" instance=ExtResource( 10 )]
-position = Vector2( 0.000183105, 989.949 )
+[node name="Tile239" parent="Battlefield/Middleground/Board" index="146" instance=ExtResource( 10 )]
+position = Vector2( 424.264, 848.949 )
 rotation = 0.785398
 
-[node name="Tile231" parent="Battlefield/Middleground/Board" index="184" instance=ExtResource( 10 )]
-position = Vector2( 141.422, 989.949 )
+[node name="Tile241" parent="Battlefield/Middleground/Board" index="147" instance=ExtResource( 10 )]
+position = Vector2( -1138.69, 990.37 )
 rotation = 0.785398
 
-[node name="Tile232" parent="Battlefield/Middleground/Board" index="185" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 989.95 )
+[node name="Tile34" parent="Battlefield/Middleground/Board" index="148" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 141.421 )
 rotation = 0.785398
 
-[node name="Tile233" parent="Battlefield/Middleground/Board" index="186" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 989.95 )
+[node name="Tile54" parent="Battlefield/Middleground/Board" index="149" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile234" parent="Battlefield/Middleground/Board" index="187" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 989.95 )
+[node name="Tile55" parent="Battlefield/Middleground/Board" index="150" instance=ExtResource( 10 )]
+position = Vector2( -996.685, -141.421 )
 rotation = 0.785398
 
-[node name="Tile236" parent="Battlefield/Middleground/Board" index="188" instance=ExtResource( 10 )]
-position = Vector2( 989.95, 1131.37 )
+[node name="Tile58" parent="Battlefield/Middleground/Board" index="151" instance=ExtResource( 10 )]
+position = Vector2( -996.685, -282.843 )
 rotation = 0.785398
 
-[node name="Tile238" parent="Battlefield/Middleground/Board" index="189" instance=ExtResource( 10 )]
-position = Vector2( 282.843, 989.949 )
+[node name="Tile79" parent="Battlefield/Middleground/Board" index="152" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 282.843 )
 rotation = 0.785398
 
-[node name="Tile239" parent="Battlefield/Middleground/Board" index="190" instance=ExtResource( 10 )]
-position = Vector2( 424.264, 989.949 )
+[node name="Tile142" parent="Battlefield/Middleground/Board" index="153" instance=ExtResource( 10 )]
+position = Vector2( -996.686, -566.107 )
 rotation = 0.785398
 
-[node name="Tile240" parent="Battlefield/Middleground/Board" index="191" instance=ExtResource( 10 )]
-position = Vector2( 565.686, 989.949 )
+[node name="Tile157" parent="Battlefield/Middleground/Board" index="154" instance=ExtResource( 10 )]
+position = Vector2( -996.685, -424.264 )
 rotation = 0.785398
 
-[node name="Tile241" parent="Battlefield/Middleground/Board" index="192" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 1131.37 )
+[node name="Tile158" parent="Battlefield/Middleground/Board" index="155" instance=ExtResource( 10 )]
+position = Vector2( -996.686, -707.528 )
 rotation = 0.785398
 
-[node name="Tile242" parent="Battlefield/Middleground/Board" index="193" instance=ExtResource( 10 )]
-position = Vector2( -424.264, 1131.37 )
+[node name="Tile172" parent="Battlefield/Middleground/Board" index="156" instance=ExtResource( 10 )]
+position = Vector2( -996.686, -848.949 )
 rotation = 0.785398
 
-[node name="Tile243" parent="Battlefield/Middleground/Board" index="194" instance=ExtResource( 10 )]
-position = Vector2( -282.842, 1131.37 )
+[node name="Tile187" parent="Battlefield/Middleground/Board" index="157" instance=ExtResource( 10 )]
+position = Vector2( -996.686, -990.37 )
 rotation = 0.785398
 
-[node name="Tile244" parent="Battlefield/Middleground/Board" index="195" instance=ExtResource( 10 )]
-position = Vector2( -141.421, 1131.37 )
+[node name="Tile207" parent="Battlefield/Middleground/Board" index="158" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 566.107 )
 rotation = 0.785398
 
-[node name="Tile245" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 10 )]
-position = Vector2( 0.000183105, 1131.37 )
+[node name="Tile218" parent="Battlefield/Middleground/Board" index="159" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 424.264 )
 rotation = 0.785398
 
-[node name="Tile246" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 10 )]
-position = Vector2( 141.422, 1131.37 )
+[node name="Tile219" parent="Battlefield/Middleground/Board" index="160" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 707.528 )
 rotation = 0.785398
 
-[node name="Tile247" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 1131.37 )
+[node name="Tile235" parent="Battlefield/Middleground/Board" index="161" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 848.95 )
 rotation = 0.785398
 
-[node name="Tile256" parent="Battlefield/Middleground/Board" index="199" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -565.685 )
+[node name="Tile252" parent="Battlefield/Middleground/Board" index="162" instance=ExtResource( 10 )]
+position = Vector2( -996.685, 990.37 )
 rotation = 0.785398
 
-[node name="Tile257" parent="Battlefield/Middleground/Board" index="200" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -424.264 )
+[node name="Tile70" parent="Battlefield/Middleground/Board" index="163" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 141.421 )
 rotation = 0.785398
 
-[node name="Tile258" parent="Battlefield/Middleground/Board" index="201" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 141.422 )
+[node name="Tile71" parent="Battlefield/Middleground/Board" index="164" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile259" parent="Battlefield/Middleground/Board" index="202" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 0.000183105 )
+[node name="Tile72" parent="Battlefield/Middleground/Board" index="165" instance=ExtResource( 10 )]
+position = Vector2( -852.685, -141.421 )
 rotation = 0.785398
 
-[node name="Tile260" parent="Battlefield/Middleground/Board" index="203" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -141.421 )
+[node name="Tile73" parent="Battlefield/Middleground/Board" index="166" instance=ExtResource( 10 )]
+position = Vector2( -852.685, -282.843 )
 rotation = 0.785398
 
-[node name="Tile261" parent="Battlefield/Middleground/Board" index="204" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -282.842 )
+[node name="Tile84" parent="Battlefield/Middleground/Board" index="167" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 282.843 )
 rotation = 0.785398
 
-[node name="Tile262" parent="Battlefield/Middleground/Board" index="205" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 565.686 )
+[node name="Tile143" parent="Battlefield/Middleground/Board" index="168" instance=ExtResource( 10 )]
+position = Vector2( -852.686, -566.107 )
 rotation = 0.785398
 
-[node name="Tile263" parent="Battlefield/Middleground/Board" index="206" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 424.264 )
+[node name="Tile166" parent="Battlefield/Middleground/Board" index="169" instance=ExtResource( 10 )]
+position = Vector2( -852.685, -424.264 )
 rotation = 0.785398
 
-[node name="Tile264" parent="Battlefield/Middleground/Board" index="207" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 282.843 )
+[node name="Tile181" parent="Battlefield/Middleground/Board" index="170" instance=ExtResource( 10 )]
+position = Vector2( -852.686, -707.528 )
 rotation = 0.785398
 
-[node name="Tile265" parent="Battlefield/Middleground/Board" index="208" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -707.107 )
+[node name="Tile206" parent="Battlefield/Middleground/Board" index="171" instance=ExtResource( 10 )]
+position = Vector2( -852.686, -848.949 )
 rotation = 0.785398
 
-[node name="Tile269" parent="Battlefield/Middleground/Board" index="209" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 707.107 )
+[node name="Tile210" parent="Battlefield/Middleground/Board" index="172" instance=ExtResource( 10 )]
+position = Vector2( -852.686, -990.37 )
 rotation = 0.785398
 
-[node name="Tile270" parent="Battlefield/Middleground/Board" index="210" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 848.528 )
+[node name="Tile225" parent="Battlefield/Middleground/Board" index="173" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 566.107 )
 rotation = 0.785398
 
-[node name="Tile271" parent="Battlefield/Middleground/Board" index="211" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 989.95 )
+[node name="Tile257" parent="Battlefield/Middleground/Board" index="174" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 424.264 )
 rotation = 0.785398
 
-[node name="Tile272" parent="Battlefield/Middleground/Board" index="212" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 1131.37 )
+[node name="Tile313" parent="Battlefield/Middleground/Board" index="175" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 707.528 )
 rotation = 0.785398
 
-[node name="Tile273" parent="Battlefield/Middleground/Board" index="213" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -565.686 )
+[node name="Tile314" parent="Battlefield/Middleground/Board" index="176" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 848.95 )
 rotation = 0.785398
 
-[node name="Tile274" parent="Battlefield/Middleground/Board" index="214" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -424.264 )
+[node name="Tile315" parent="Battlefield/Middleground/Board" index="177" instance=ExtResource( 10 )]
+position = Vector2( -852.685, 990.37 )
 rotation = 0.785398
 
-[node name="Tile275" parent="Battlefield/Middleground/Board" index="215" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 141.421 )
+[node name="Tile74" parent="Battlefield/Middleground/Board" index="178" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 141.421 )
 rotation = 0.785398
 
-[node name="Tile276" parent="Battlefield/Middleground/Board" index="216" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -0.000183105 )
+[node name="Tile75" parent="Battlefield/Middleground/Board" index="179" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile277" parent="Battlefield/Middleground/Board" index="217" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -141.422 )
+[node name="Tile76" parent="Battlefield/Middleground/Board" index="180" instance=ExtResource( 10 )]
+position = Vector2( -708.685, -141.421 )
 rotation = 0.785398
 
-[node name="Tile278" parent="Battlefield/Middleground/Board" index="218" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -282.843 )
+[node name="Tile86" parent="Battlefield/Middleground/Board" index="181" instance=ExtResource( 10 )]
+position = Vector2( -708.685, -282.843 )
 rotation = 0.785398
 
-[node name="Tile279" parent="Battlefield/Middleground/Board" index="219" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 565.685 )
+[node name="Tile87" parent="Battlefield/Middleground/Board" index="182" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 282.843 )
 rotation = 0.785398
 
-[node name="Tile280" parent="Battlefield/Middleground/Board" index="220" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 424.264 )
+[node name="Tile151" parent="Battlefield/Middleground/Board" index="183" instance=ExtResource( 10 )]
+position = Vector2( -708.686, -566.107 )
 rotation = 0.785398
 
-[node name="Tile281" parent="Battlefield/Middleground/Board" index="221" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 282.842 )
+[node name="Tile316" parent="Battlefield/Middleground/Board" index="184" instance=ExtResource( 10 )]
+position = Vector2( -708.685, -424.264 )
 rotation = 0.785398
 
-[node name="Tile282" parent="Battlefield/Middleground/Board" index="222" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -707.107 )
+[node name="Tile317" parent="Battlefield/Middleground/Board" index="185" instance=ExtResource( 10 )]
+position = Vector2( -708.686, -707.528 )
 rotation = 0.785398
 
-[node name="Tile283" parent="Battlefield/Middleground/Board" index="223" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -848.528 )
+[node name="Tile318" parent="Battlefield/Middleground/Board" index="186" instance=ExtResource( 10 )]
+position = Vector2( -708.686, -848.949 )
 rotation = 0.785398
 
-[node name="Tile284" parent="Battlefield/Middleground/Board" index="224" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -989.95 )
+[node name="Tile319" parent="Battlefield/Middleground/Board" index="187" instance=ExtResource( 10 )]
+position = Vector2( -708.686, -990.37 )
 rotation = 0.785398
 
-[node name="Tile285" parent="Battlefield/Middleground/Board" index="225" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -1131.37 )
+[node name="Tile320" parent="Battlefield/Middleground/Board" index="188" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 566.107 )
 rotation = 0.785398
 
-[node name="Tile294" parent="Battlefield/Middleground/Board" index="226" instance=ExtResource( 10 )]
-position = Vector2( -565.686, -1272.79 )
+[node name="Tile321" parent="Battlefield/Middleground/Board" index="189" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 424.264 )
 rotation = 0.785398
 
-[node name="Tile295" parent="Battlefield/Middleground/Board" index="227" instance=ExtResource( 10 )]
-position = Vector2( -424.264, -1272.79 )
+[node name="Tile322" parent="Battlefield/Middleground/Board" index="190" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 707.528 )
 rotation = 0.785398
 
-[node name="Tile296" parent="Battlefield/Middleground/Board" index="228" instance=ExtResource( 10 )]
-position = Vector2( -282.843, -1272.79 )
+[node name="Tile323" parent="Battlefield/Middleground/Board" index="191" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 848.95 )
 rotation = 0.785398
 
-[node name="Tile297" parent="Battlefield/Middleground/Board" index="229" instance=ExtResource( 10 )]
-position = Vector2( -141.422, -1272.79 )
+[node name="Tile324" parent="Battlefield/Middleground/Board" index="192" instance=ExtResource( 10 )]
+position = Vector2( -708.685, 990.37 )
 rotation = 0.785398
 
-[node name="Tile298" parent="Battlefield/Middleground/Board" index="230" instance=ExtResource( 10 )]
-position = Vector2( -0.000183105, -1272.79 )
+[node name="Tile35" parent="Battlefield/Middleground/Board" index="193" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 141.421 )
 rotation = 0.785398
 
-[node name="Tile299" parent="Battlefield/Middleground/Board" index="231" instance=ExtResource( 10 )]
-position = Vector2( 141.421, -1272.79 )
+[node name="Tile56" parent="Battlefield/Middleground/Board" index="194" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile300" parent="Battlefield/Middleground/Board" index="232" instance=ExtResource( 10 )]
-position = Vector2( -989.95, -1272.79 )
+[node name="Tile59" parent="Battlefield/Middleground/Board" index="195" instance=ExtResource( 10 )]
+position = Vector2( -565.685, -141.421 )
 rotation = 0.785398
 
-[node name="Tile301" parent="Battlefield/Middleground/Board" index="233" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -1272.79 )
+[node name="Tile60" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 10 )]
+position = Vector2( -565.685, -282.843 )
 rotation = 0.785398
 
-[node name="Tile302" parent="Battlefield/Middleground/Board" index="234" instance=ExtResource( 10 )]
-position = Vector2( -707.107, -1272.79 )
+[node name="Tile81" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 282.843 )
 rotation = 0.785398
 
-[node name="Tile303" parent="Battlefield/Middleground/Board" index="235" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -1272.79 )
+[node name="Tile159" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 10 )]
+position = Vector2( -565.686, -566.107 )
 rotation = 0.785398
 
-[node name="Tile304" parent="Battlefield/Middleground/Board" index="236" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -1272.79 )
+[node name="Tile160" parent="Battlefield/Middleground/Board" index="199" instance=ExtResource( 10 )]
+position = Vector2( -565.685, -424.264 )
 rotation = 0.785398
 
-[node name="Tile305" parent="Battlefield/Middleground/Board" index="237" instance=ExtResource( 10 )]
-position = Vector2( 989.949, -1272.79 )
+[node name="Tile161" parent="Battlefield/Middleground/Board" index="200" instance=ExtResource( 10 )]
+position = Vector2( -565.686, -707.528 )
 rotation = 0.785398
 
-[node name="Tile306" parent="Battlefield/Middleground/Board" index="238" instance=ExtResource( 10 )]
-position = Vector2( 282.842, -1272.79 )
+[node name="Tile173" parent="Battlefield/Middleground/Board" index="201" instance=ExtResource( 10 )]
+position = Vector2( -565.686, -848.949 )
 rotation = 0.785398
 
-[node name="Tile307" parent="Battlefield/Middleground/Board" index="239" instance=ExtResource( 10 )]
-position = Vector2( 424.264, -1272.79 )
+[node name="Tile188" parent="Battlefield/Middleground/Board" index="202" instance=ExtResource( 10 )]
+position = Vector2( -565.686, -990.37 )
 rotation = 0.785398
 
-[node name="Tile308" parent="Battlefield/Middleground/Board" index="240" instance=ExtResource( 10 )]
-position = Vector2( 565.685, -1272.79 )
+[node name="Tile220" parent="Battlefield/Middleground/Board" index="203" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 566.107 )
 rotation = 0.785398
 
-[node name="Tile309" parent="Battlefield/Middleground/Board" index="241" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -1272.79 )
+[node name="Tile221" parent="Battlefield/Middleground/Board" index="204" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 424.264 )
 rotation = 0.785398
 
-[node name="Tile452" parent="Battlefield/Middleground/Board" index="242" instance=ExtResource( 10 )]
-position = Vector2( -989.95, -1131.37 )
+[node name="Tile237" parent="Battlefield/Middleground/Board" index="205" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 707.528 )
 rotation = 0.785398
 
-[node name="Tile453" parent="Battlefield/Middleground/Board" index="243" instance=ExtResource( 10 )]
-position = Vector2( -848.528, -1131.37 )
+[node name="Tile256" parent="Battlefield/Middleground/Board" index="206" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 848.95 )
 rotation = 0.785398
 
-[node name="Tile454" parent="Battlefield/Middleground/Board" index="244" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -1131.37 )
+[node name="Tile262" parent="Battlefield/Middleground/Board" index="207" instance=ExtResource( 10 )]
+position = Vector2( -565.685, 990.37 )
 rotation = 0.785398
 
-[node name="Tile310" parent="Battlefield/Middleground/Board" index="245" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, -1272.79 )
+[node name="Tile242" parent="Battlefield/Middleground/Board" index="208" instance=ExtResource( 10 )]
+position = Vector2( -424.264, 990.37 )
 rotation = 0.785398
 
-[node name="Tile311" parent="Battlefield/Middleground/Board" index="246" instance=ExtResource( 10 )]
-position = Vector2( -565.685, 1272.79 )
+[node name="Tile243" parent="Battlefield/Middleground/Board" index="209" instance=ExtResource( 10 )]
+position = Vector2( -282.842, 990.37 )
 rotation = 0.785398
 
-[node name="Tile312" parent="Battlefield/Middleground/Board" index="247" instance=ExtResource( 10 )]
-position = Vector2( -424.264, 1272.79 )
+[node name="Tile244" parent="Battlefield/Middleground/Board" index="210" instance=ExtResource( 10 )]
+position = Vector2( -141.421, 990.37 )
 rotation = 0.785398
 
-[node name="Tile313" parent="Battlefield/Middleground/Board" index="248" instance=ExtResource( 10 )]
-position = Vector2( -282.842, 1272.79 )
+[node name="Tile245" parent="Battlefield/Middleground/Board" index="211" instance=ExtResource( 10 )]
+position = Vector2( 0.00012207, 990.37 )
 rotation = 0.785398
 
-[node name="Tile314" parent="Battlefield/Middleground/Board" index="249" instance=ExtResource( 10 )]
-position = Vector2( -141.421, 1272.79 )
+[node name="Tile246" parent="Battlefield/Middleground/Board" index="212" instance=ExtResource( 10 )]
+position = Vector2( 141.422, 990.37 )
 rotation = 0.785398
 
-[node name="Tile315" parent="Battlefield/Middleground/Board" index="250" instance=ExtResource( 10 )]
-position = Vector2( 0.000183105, 1272.79 )
+[node name="Tile247" parent="Battlefield/Middleground/Board" index="213" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, 990.37 )
 rotation = 0.785398
 
-[node name="Tile316" parent="Battlefield/Middleground/Board" index="251" instance=ExtResource( 10 )]
-position = Vector2( 141.422, 1272.79 )
+[node name="Tile258" parent="Battlefield/Middleground/Board" index="214" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 141.422 )
 rotation = 0.785398
 
-[node name="Tile317" parent="Battlefield/Middleground/Board" index="252" instance=ExtResource( 10 )]
-position = Vector2( -989.949, 1272.79 )
+[node name="Tile259" parent="Battlefield/Middleground/Board" index="215" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 0.000183105 )
 rotation = 0.785398
 
-[node name="Tile318" parent="Battlefield/Middleground/Board" index="253" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 1272.79 )
+[node name="Tile260" parent="Battlefield/Middleground/Board" index="216" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -141.421 )
 rotation = 0.785398
 
-[node name="Tile319" parent="Battlefield/Middleground/Board" index="254" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 1272.79 )
+[node name="Tile261" parent="Battlefield/Middleground/Board" index="217" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -282.842 )
 rotation = 0.785398
 
-[node name="Tile320" parent="Battlefield/Middleground/Board" index="255" instance=ExtResource( 10 )]
-position = Vector2( 707.107, 1272.79 )
+[node name="Tile263" parent="Battlefield/Middleground/Board" index="218" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 424.264 )
 rotation = 0.785398
 
-[node name="Tile321" parent="Battlefield/Middleground/Board" index="256" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 1272.79 )
+[node name="Tile264" parent="Battlefield/Middleground/Board" index="219" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 282.843 )
 rotation = 0.785398
 
-[node name="Tile322" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 10 )]
-position = Vector2( 989.95, 1272.79 )
+[node name="Tile265" parent="Battlefield/Middleground/Board" index="220" instance=ExtResource( 10 )]
+position = Vector2( -1561.37, -423.107 )
 rotation = 0.785398
 
-[node name="Tile323" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 10 )]
-position = Vector2( 282.843, 1272.79 )
+[node name="Tile269" parent="Battlefield/Middleground/Board" index="221" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 566.107 )
 rotation = 0.785398
 
-[node name="Tile324" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 10 )]
-position = Vector2( 424.264, 1272.79 )
+[node name="Tile270" parent="Battlefield/Middleground/Board" index="222" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 707.528 )
 rotation = 0.785398
 
-[node name="Tile325" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 10 )]
-position = Vector2( 565.686, 1272.79 )
+[node name="Tile271" parent="Battlefield/Middleground/Board" index="223" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 848.95 )
 rotation = 0.785398
 
-[node name="Tile326" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, 1272.79 )
+[node name="Tile272" parent="Battlefield/Middleground/Board" index="224" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, 990.37 )
 rotation = 0.785398
 
-[node name="Tile328" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -565.685 )
+[node name="Tile274" parent="Battlefield/Middleground/Board" index="225" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -424.264 )
 rotation = 0.785398
 
-[node name="Tile329" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -424.264 )
+[node name="Tile275" parent="Battlefield/Middleground/Board" index="226" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 141.421 )
 rotation = 0.785398
 
-[node name="Tile330" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 141.422 )
+[node name="Tile276" parent="Battlefield/Middleground/Board" index="227" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -0.000183105 )
 rotation = 0.785398
 
-[node name="Tile331" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 0.000183105 )
+[node name="Tile277" parent="Battlefield/Middleground/Board" index="228" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -141.422 )
 rotation = 0.785398
 
-[node name="Tile332" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -141.421 )
+[node name="Tile278" parent="Battlefield/Middleground/Board" index="229" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -282.843 )
 rotation = 0.785398
 
-[node name="Tile333" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -282.842 )
+[node name="Tile280" parent="Battlefield/Middleground/Board" index="230" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 424.264 )
 rotation = 0.785398
 
-[node name="Tile334" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 565.686 )
+[node name="Tile281" parent="Battlefield/Middleground/Board" index="231" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 282.842 )
 rotation = 0.785398
 
-[node name="Tile335" parent="Battlefield/Middleground/Board" index="269" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 424.264 )
+[node name="Tile282" parent="Battlefield/Middleground/Board" index="232" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -566.107 )
 rotation = 0.785398
 
-[node name="Tile336" parent="Battlefield/Middleground/Board" index="270" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 282.843 )
+[node name="Tile283" parent="Battlefield/Middleground/Board" index="233" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -707.528 )
 rotation = 0.785398
 
-[node name="Tile337" parent="Battlefield/Middleground/Board" index="271" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -707.107 )
+[node name="Tile284" parent="Battlefield/Middleground/Board" index="234" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -848.95 )
 rotation = 0.785398
 
-[node name="Tile338" parent="Battlefield/Middleground/Board" index="272" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -848.528 )
+[node name="Tile285" parent="Battlefield/Middleground/Board" index="235" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, -990.37 )
 rotation = 0.785398
 
-[node name="Tile339" parent="Battlefield/Middleground/Board" index="273" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -989.949 )
+[node name="Tile452" parent="Battlefield/Middleground/Board" index="236" instance=ExtResource( 10 )]
+position = Vector2( -1562.95, -990.37 )
 rotation = 0.785398
 
-[node name="Tile455" parent="Battlefield/Middleground/Board" index="274" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -848.528 )
+[node name="Tile453" parent="Battlefield/Middleground/Board" index="237" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, -990.37 )
 rotation = 0.785398
 
-[node name="Tile456" parent="Battlefield/Middleground/Board" index="275" instance=ExtResource( 10 )]
-position = Vector2( -1131.37, -989.949 )
+[node name="Tile462" parent="Battlefield/Middleground/Board" index="238" instance=ExtResource( 10 )]
+position = Vector2( -1279.53, -990.37 )
 rotation = 0.785398
 
-[node name="Tile340" parent="Battlefield/Middleground/Board" index="276" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -1131.37 )
+[node name="Tile464" parent="Battlefield/Middleground/Board" index="239" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, -848.37 )
 rotation = 0.785398
 
-[node name="Tile341" parent="Battlefield/Middleground/Board" index="277" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 707.107 )
+[node name="Tile465" parent="Battlefield/Middleground/Board" index="240" instance=ExtResource( 10 )]
+position = Vector2( -1279.53, -848.37 )
 rotation = 0.785398
 
-[node name="Tile342" parent="Battlefield/Middleground/Board" index="278" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 848.528 )
+[node name="Tile463" parent="Battlefield/Middleground/Board" index="241" instance=ExtResource( 10 )]
+position = Vector2( -1137.53, -990.37 )
 rotation = 0.785398
 
-[node name="Tile343" parent="Battlefield/Middleground/Board" index="279" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 989.95 )
+[node name="Tile454" parent="Battlefield/Middleground/Board" index="242" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -990.37 )
 rotation = 0.785398
 
-[node name="Tile344" parent="Battlefield/Middleground/Board" index="280" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 1131.37 )
+[node name="Tile455" parent="Battlefield/Middleground/Board" index="243" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -707.528 )
 rotation = 0.785398
 
-[node name="Tile345" parent="Battlefield/Middleground/Board" index="281" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, -1272.79 )
+[node name="Tile456" parent="Battlefield/Middleground/Board" index="244" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -848.949 )
 rotation = 0.785398
 
-[node name="Tile346" parent="Battlefield/Middleground/Board" index="282" instance=ExtResource( 10 )]
-position = Vector2( -1272.79, 1272.79 )
+[node name="Tile457" parent="Battlefield/Middleground/Board" index="245" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -422.528 )
 rotation = 0.785398
 
-[node name="Tile347" parent="Battlefield/Middleground/Board" index="283" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -565.686 )
+[node name="Tile458" parent="Battlefield/Middleground/Board" index="246" instance=ExtResource( 10 )]
+position = Vector2( -1704.37, -563.949 )
 rotation = 0.785398
 
-[node name="Tile348" parent="Battlefield/Middleground/Board" index="284" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -424.264 )
+[node name="Tile459" parent="Battlefield/Middleground/Board" index="247" instance=ExtResource( 10 )]
+position = Vector2( -1563.37, -707.528 )
 rotation = 0.785398
 
-[node name="Tile349" parent="Battlefield/Middleground/Board" index="285" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 141.421 )
+[node name="Tile460" parent="Battlefield/Middleground/Board" index="248" instance=ExtResource( 10 )]
+position = Vector2( -1563.37, -848.949 )
 rotation = 0.785398
 
-[node name="Tile350" parent="Battlefield/Middleground/Board" index="286" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -0.000183105 )
+[node name="Tile461" parent="Battlefield/Middleground/Board" index="249" instance=ExtResource( 10 )]
+position = Vector2( -1563.37, -563.949 )
 rotation = 0.785398
 
-[node name="Tile351" parent="Battlefield/Middleground/Board" index="287" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -141.422 )
+[node name="Tile286" parent="Battlefield/Middleground/Board" index="250" instance=ExtResource( 10 )]
+position = Vector2( 1560.37, 425.107 )
 rotation = 0.785398
 
-[node name="Tile352" parent="Battlefield/Middleground/Board" index="288" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -282.843 )
+[node name="Tile287" parent="Battlefield/Middleground/Board" index="251" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 707.528 )
 rotation = 0.785398
 
-[node name="Tile353" parent="Battlefield/Middleground/Board" index="289" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 565.685 )
+[node name="Tile310" parent="Battlefield/Middleground/Board" index="252" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 564.528 )
 rotation = 0.785398
 
-[node name="Tile354" parent="Battlefield/Middleground/Board" index="290" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 424.264 )
+[node name="Tile311" parent="Battlefield/Middleground/Board" index="253" instance=ExtResource( 10 )]
+position = Vector2( 1560.37, 707.528 )
 rotation = 0.785398
 
-[node name="Tile355" parent="Battlefield/Middleground/Board" index="291" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 282.842 )
+[node name="Tile312" parent="Battlefield/Middleground/Board" index="254" instance=ExtResource( 10 )]
+position = Vector2( 1560.37, 564.528 )
 rotation = 0.785398
 
-[node name="Tile356" parent="Battlefield/Middleground/Board" index="292" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -707.107 )
+[node name="Tile289" parent="Battlefield/Middleground/Board" index="255" instance=ExtResource( 10 )]
+position = Vector2( 1701.37, 990.37 )
 rotation = 0.785398
 
-[node name="Tile357" parent="Battlefield/Middleground/Board" index="293" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -848.528 )
+[node name="Tile248" parent="Battlefield/Middleground/Board" index="256" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 990.37 )
 rotation = 0.785398
 
-[node name="Tile358" parent="Battlefield/Middleground/Board" index="294" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -989.95 )
+[node name="Tile249" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 990.37 )
 rotation = 0.785398
 
-[node name="Tile359" parent="Battlefield/Middleground/Board" index="295" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -1131.37 )
+[node name="Tile250" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 10 )]
+position = Vector2( 1136.11, 849.37 )
 rotation = 0.785398
 
-[node name="Tile360" parent="Battlefield/Middleground/Board" index="296" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 707.107 )
+[node name="Tile251" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, 990.37 )
 rotation = 0.785398
 
-[node name="Tile361" parent="Battlefield/Middleground/Board" index="297" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 848.528 )
+[node name="Tile240" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 10 )]
+position = Vector2( 1559.95, 847.37 )
 rotation = 0.785398
 
-[node name="Tile362" parent="Battlefield/Middleground/Board" index="298" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 989.949 )
+[node name="Tile309" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, 847.37 )
 rotation = 0.785398
 
-[node name="Tile363" parent="Battlefield/Middleground/Board" index="299" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 1131.37 )
+[node name="Tile290" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -707.528 )
 rotation = 0.785398
 
-[node name="Tile364" parent="Battlefield/Middleground/Board" index="300" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, -1272.79 )
+[node name="Tile292" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -707.528 )
 rotation = 0.785398
 
-[node name="Tile365" parent="Battlefield/Middleground/Board" index="301" instance=ExtResource( 10 )]
-position = Vector2( 1272.79, 1272.79 )
+[node name="Tile446" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 10 )]
+position = Vector2( 1418.53, -566.107 )
 rotation = 0.785398
 
-[node name="Tile327" parent="Battlefield/Middleground/Board" index="302" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 1272.79 )
+[node name="Tile447" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 10 )]
+position = Vector2( 1277.11, -566.107 )
 rotation = 0.785398
 
-[node name="Tile286" parent="Battlefield/Middleground/Board" index="303" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 707.107 )
+[node name="Tile448" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 566.107 )
 rotation = 0.785398
 
-[node name="Tile287" parent="Battlefield/Middleground/Board" index="304" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 848.528 )
+[node name="Tile449" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 566.107 )
 rotation = 0.785398
 
-[node name="Tile289" parent="Battlefield/Middleground/Board" index="305" instance=ExtResource( 10 )]
-position = Vector2( 1131.37, 1131.37 )
+[node name="Tile450" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 10 )]
+position = Vector2( -1280.11, 707.528 )
 rotation = 0.785398
 
-[node name="Tile248" parent="Battlefield/Middleground/Board" index="306" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 1131.37 )
+[node name="Tile451" parent="Battlefield/Middleground/Board" index="269" instance=ExtResource( 10 )]
+position = Vector2( -1421.53, 707.528 )
 rotation = 0.785398
 
-[node name="Tile249" parent="Battlefield/Middleground/Board" index="307" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 1131.37 )
+[node name="Tile253" parent="Battlefield/Middleground/Board" index="270" instance=ExtResource( 10 )]
+position = Vector2( 282.843, 990.37 )
 rotation = 0.785398
 
-[node name="Tile250" parent="Battlefield/Middleground/Board" index="308" instance=ExtResource( 10 )]
-position = Vector2( 707.107, 1131.37 )
+[node name="Tile254" parent="Battlefield/Middleground/Board" index="271" instance=ExtResource( 10 )]
+position = Vector2( 424.264, 990.37 )
 rotation = 0.785398
 
-[node name="Tile251" parent="Battlefield/Middleground/Board" index="309" instance=ExtResource( 10 )]
-position = Vector2( 848.528, 1131.37 )
+[node name="Tile14" parent="Battlefield/Middleground/Board" index="272" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 282.843 )
 rotation = 0.785398
 
-[node name="Tile290" parent="Battlefield/Middleground/Board" index="310" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -848.528 )
+[node name="Tile40" parent="Battlefield/Middleground/Board" index="273" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 141.421 )
 rotation = 0.785398
 
-[node name="Tile292" parent="Battlefield/Middleground/Board" index="311" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -848.528 )
+[node name="Tile43" parent="Battlefield/Middleground/Board" index="274" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -6.10352e-05 )
 rotation = 0.785398
 
-[node name="Tile446" parent="Battlefield/Middleground/Board" index="312" instance=ExtResource( 10 )]
-position = Vector2( 848.528, -707.107 )
+[node name="Tile61" parent="Battlefield/Middleground/Board" index="275" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -141.421 )
 rotation = 0.785398
 
-[node name="Tile447" parent="Battlefield/Middleground/Board" index="313" instance=ExtResource( 10 )]
-position = Vector2( 707.107, -707.107 )
+[node name="Tile63" parent="Battlefield/Middleground/Board" index="276" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -282.843 )
 rotation = 0.785398
 
-[node name="Tile448" parent="Battlefield/Middleground/Board" index="314" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 707.107 )
+[node name="Tile174" parent="Battlefield/Middleground/Board" index="277" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -424.264 )
 rotation = 0.785398
 
-[node name="Tile449" parent="Battlefield/Middleground/Board" index="315" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 707.107 )
+[node name="Tile266" parent="Battlefield/Middleground/Board" index="278" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -566.107 )
 rotation = 0.785398
 
-[node name="Tile450" parent="Battlefield/Middleground/Board" index="316" instance=ExtResource( 10 )]
-position = Vector2( -707.107, 848.528 )
+[node name="Tile267" parent="Battlefield/Middleground/Board" index="279" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -707.528 )
 rotation = 0.785398
 
-[node name="Tile451" parent="Battlefield/Middleground/Board" index="317" instance=ExtResource( 10 )]
-position = Vector2( -848.528, 848.528 )
+[node name="Tile268" parent="Battlefield/Middleground/Board" index="280" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -848.95 )
 rotation = 0.785398
 
-[node name="Tile253" parent="Battlefield/Middleground/Board" index="318" instance=ExtResource( 10 )]
-position = Vector2( 282.843, 1131.37 )
+[node name="Tile273" parent="Battlefield/Middleground/Board" index="281" instance=ExtResource( 10 )]
+position = Vector2( 566.264, -990.37 )
 rotation = 0.785398
 
-[node name="Tile254" parent="Battlefield/Middleground/Board" index="319" instance=ExtResource( 10 )]
-position = Vector2( 424.264, 1131.37 )
+[node name="Tile279" parent="Battlefield/Middleground/Board" index="282" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 424.264 )
 rotation = 0.785398
 
-[node name="Tile255" parent="Battlefield/Middleground/Board" index="320" instance=ExtResource( 10 )]
-position = Vector2( 565.686, 1131.37 )
+[node name="Tile288" parent="Battlefield/Middleground/Board" index="283" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 566.107 )
+rotation = 0.785398
+
+[node name="Tile294" parent="Battlefield/Middleground/Board" index="284" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 707.528 )
+rotation = 0.785398
+
+[node name="Tile295" parent="Battlefield/Middleground/Board" index="285" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 848.949 )
+rotation = 0.785398
+
+[node name="Tile296" parent="Battlefield/Middleground/Board" index="286" instance=ExtResource( 10 )]
+position = Vector2( 566.264, 990.37 )
+rotation = 0.785398
+
+[node name="Tile15" parent="Battlefield/Middleground/Board" index="287" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 282.843 )
+rotation = 0.785398
+
+[node name="Tile44" parent="Battlefield/Middleground/Board" index="288" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 141.421 )
+rotation = 0.785398
+
+[node name="Tile64" parent="Battlefield/Middleground/Board" index="289" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -6.10352e-05 )
+rotation = 0.785398
+
+[node name="Tile66" parent="Battlefield/Middleground/Board" index="290" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -141.421 )
+rotation = 0.785398
+
+[node name="Tile68" parent="Battlefield/Middleground/Board" index="291" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -282.843 )
+rotation = 0.785398
+
+[node name="Tile297" parent="Battlefield/Middleground/Board" index="292" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -424.264 )
+rotation = 0.785398
+
+[node name="Tile298" parent="Battlefield/Middleground/Board" index="293" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -566.107 )
+rotation = 0.785398
+
+[node name="Tile299" parent="Battlefield/Middleground/Board" index="294" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -707.528 )
+rotation = 0.785398
+
+[node name="Tile300" parent="Battlefield/Middleground/Board" index="295" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -848.95 )
+rotation = 0.785398
+
+[node name="Tile301" parent="Battlefield/Middleground/Board" index="296" instance=ExtResource( 10 )]
+position = Vector2( 993.264, -990.37 )
+rotation = 0.785398
+
+[node name="Tile302" parent="Battlefield/Middleground/Board" index="297" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 424.264 )
+rotation = 0.785398
+
+[node name="Tile303" parent="Battlefield/Middleground/Board" index="298" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 566.107 )
+rotation = 0.785398
+
+[node name="Tile304" parent="Battlefield/Middleground/Board" index="299" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 707.528 )
+rotation = 0.785398
+
+[node name="Tile305" parent="Battlefield/Middleground/Board" index="300" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 848.949 )
+rotation = 0.785398
+
+[node name="Tile306" parent="Battlefield/Middleground/Board" index="301" instance=ExtResource( 10 )]
+position = Vector2( 993.264, 990.37 )
+rotation = 0.785398
+
+[node name="Tile16" parent="Battlefield/Middleground/Board" index="302" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 282.843 )
+rotation = 0.785398
+
+[node name="Tile88" parent="Battlefield/Middleground/Board" index="303" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 141.421 )
+rotation = 0.785398
+
+[node name="Tile89" parent="Battlefield/Middleground/Board" index="304" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -6.10352e-05 )
+rotation = 0.785398
+
+[node name="Tile90" parent="Battlefield/Middleground/Board" index="305" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -141.421 )
+rotation = 0.785398
+
+[node name="Tile101" parent="Battlefield/Middleground/Board" index="306" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -282.843 )
+rotation = 0.785398
+
+[node name="Tile325" parent="Battlefield/Middleground/Board" index="307" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -424.264 )
+rotation = 0.785398
+
+[node name="Tile326" parent="Battlefield/Middleground/Board" index="308" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -566.107 )
+rotation = 0.785398
+
+[node name="Tile327" parent="Battlefield/Middleground/Board" index="309" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -707.528 )
+rotation = 0.785398
+
+[node name="Tile328" parent="Battlefield/Middleground/Board" index="310" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -848.95 )
+rotation = 0.785398
+
+[node name="Tile329" parent="Battlefield/Middleground/Board" index="311" instance=ExtResource( 10 )]
+position = Vector2( 851.264, -990.37 )
+rotation = 0.785398
+
+[node name="Tile330" parent="Battlefield/Middleground/Board" index="312" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 424.264 )
+rotation = 0.785398
+
+[node name="Tile331" parent="Battlefield/Middleground/Board" index="313" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 566.107 )
+rotation = 0.785398
+
+[node name="Tile332" parent="Battlefield/Middleground/Board" index="314" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 707.528 )
+rotation = 0.785398
+
+[node name="Tile333" parent="Battlefield/Middleground/Board" index="315" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 848.949 )
+rotation = 0.785398
+
+[node name="Tile334" parent="Battlefield/Middleground/Board" index="316" instance=ExtResource( 10 )]
+position = Vector2( 851.264, 990.37 )
+rotation = 0.785398
+
+[node name="Tile17" parent="Battlefield/Middleground/Board" index="317" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 282.843 )
+rotation = 0.785398
+
+[node name="Tile103" parent="Battlefield/Middleground/Board" index="318" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 141.421 )
+rotation = 0.785398
+
+[node name="Tile107" parent="Battlefield/Middleground/Board" index="319" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -6.10352e-05 )
+rotation = 0.785398
+
+[node name="Tile114" parent="Battlefield/Middleground/Board" index="320" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -141.421 )
+rotation = 0.785398
+
+[node name="Tile116" parent="Battlefield/Middleground/Board" index="321" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -282.843 )
+rotation = 0.785398
+
+[node name="Tile335" parent="Battlefield/Middleground/Board" index="322" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -424.264 )
+rotation = 0.785398
+
+[node name="Tile336" parent="Battlefield/Middleground/Board" index="323" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -566.107 )
+rotation = 0.785398
+
+[node name="Tile337" parent="Battlefield/Middleground/Board" index="324" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -707.528 )
+rotation = 0.785398
+
+[node name="Tile338" parent="Battlefield/Middleground/Board" index="325" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -848.95 )
+rotation = 0.785398
+
+[node name="Tile339" parent="Battlefield/Middleground/Board" index="326" instance=ExtResource( 10 )]
+position = Vector2( 709.264, -990.37 )
+rotation = 0.785398
+
+[node name="Tile340" parent="Battlefield/Middleground/Board" index="327" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 424.264 )
+rotation = 0.785398
+
+[node name="Tile341" parent="Battlefield/Middleground/Board" index="328" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 566.107 )
+rotation = 0.785398
+
+[node name="Tile342" parent="Battlefield/Middleground/Board" index="329" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 707.528 )
+rotation = 0.785398
+
+[node name="Tile343" parent="Battlefield/Middleground/Board" index="330" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 848.949 )
+rotation = 0.785398
+
+[node name="Tile344" parent="Battlefield/Middleground/Board" index="331" instance=ExtResource( 10 )]
+position = Vector2( 709.264, 990.37 )
+rotation = 0.785398
+
+[node name="Tile255" parent="Battlefield/Middleground/Board" index="332" instance=ExtResource( 10 )]
+position = Vector2( 1135.69, 990.37 )
+rotation = 0.785398
+
+[node name="Tile307" parent="Battlefield/Middleground/Board" index="333" instance=ExtResource( 10 )]
+position = Vector2( 1279.11, 849.37 )
+rotation = 0.785398
+
+[node name="Tile308" parent="Battlefield/Middleground/Board" index="334" instance=ExtResource( 10 )]
+position = Vector2( 1278.69, 990.37 )
 rotation = 0.785398
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1500, 1500 )
+position = Vector2( -1900, 1200 )
 rotation = -0.785402
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 1500, -1500 )
+position = Vector2( 1900, -1200 )
 rotation = 2.3562
 controls = "kb2"
 species = ExtResource( 4 )
