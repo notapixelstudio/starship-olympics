@@ -35,9 +35,6 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 834, 635 )
 theme = ExtResource( 4 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 map_texture = ExtResource( 8 )
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
@@ -161,7 +158,7 @@ text = "RESTART"
 margin_top = 94.0
 margin_right = 678.0
 margin_bottom = 137.0
-text = "SKIP CURRENT MATCH"
+text = "SKIP THIS MATCH"
 
 [node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false
@@ -180,13 +177,13 @@ rect_min_size = Vector2( 0, 20 )
 margin_top = 165.0
 margin_right = 678.0
 margin_bottom = 208.0
-text = "QUIT TO MINIGAME SELECTION"
+text = "QUIT TO CARDS"
 
 [node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 margin_top = 212.0
 margin_right = 678.0
 margin_bottom = 255.0
-text = "QUIT TO CHARACTER SELECTION"
+text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 margin_top = 259.0
