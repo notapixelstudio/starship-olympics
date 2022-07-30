@@ -379,8 +379,7 @@ func _ready():
 		var minigame = global.the_match.get_minigame()
 		if minigame != null and minigame.is_winter():
 			var ice = IceScene.instance()
-			var gshape = $Battlefield/Background/OutsideWall.get_gshape().duplicate()
-			ice.add_child(gshape)
+			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
 			$Battlefield/Background.add_child(ice)
 	
 	# load style from gamemode, if specified

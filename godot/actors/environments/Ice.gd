@@ -3,6 +3,8 @@ extends Area2D
 
 class_name Ice
 
+var gshape_override = null
+
 func _ready():
 	refresh()
 	
@@ -24,7 +26,16 @@ func refresh():
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
 	
 func get_gshape():
+	if gshape_override is GShape:
+		return gshape_override
+		
 	for child in get_children():
 		if child is GShape:
 			return child
+			
 	return null
+
+func override_gshape(v : GShape) -> void:
+	gshape_override = v
+	refresh()
+	
