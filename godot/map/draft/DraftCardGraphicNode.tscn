@@ -35,14 +35,19 @@ modulate = Color( 0.9, 0.9, 0.9, 1 )
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true
 
-[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="7"]
+[node name="Mystery" type="Sprite" parent="Ground/Front" index="5"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="8"]
 modulate = Color( 0, 0, 0, 0.313726 )
 position = Vector2( 0, -28 )
 
-[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="8"]
+[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="9"]
 position = Vector2( 0, -36 )
 
-[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="9"]
+[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="10"]
 position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -98,11 +103,6 @@ texture = ExtResource( 4 )
 [node name="Sprite2" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
-
-[node name="Mystery" type="Sprite" parent="Ground/Front" index="10"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false
