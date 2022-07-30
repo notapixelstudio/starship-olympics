@@ -43,6 +43,9 @@ func reset():
 
 func add_score(amount):
 	self.stats.score += amount
+	
+func set_score(amount):
+	self.stats.score = amount
 
 func get_score() -> float:
 	return self.stats.score
@@ -61,3 +64,7 @@ func has_proper_team() -> bool:
 	
 func get_team_color() -> Color:
 	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')
+
+func get_ship() -> Texture:
+	return species.get_ship()
+	

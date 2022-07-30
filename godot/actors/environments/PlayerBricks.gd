@@ -22,14 +22,8 @@ func _ready():
 		for brick in bricks:
 			brick.set_color(player.species.color)
 		
-func get_score():
-	return -1
-	
-func do_goal(player, pos):
-	emit_signal("goal_done", player, self, pos)
-	
 func _on_brick_destroyed(brick, breaker):
-	do_goal(get_player(), brick.global_position)
+	emit_signal("goal_done", get_player(), self, brick.global_position, -brick.get_points())
 
 func set_player(v : InfoPlayer):
 	player = v

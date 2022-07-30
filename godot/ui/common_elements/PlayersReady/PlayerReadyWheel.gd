@@ -1,4 +1,5 @@
-extends ColorRect
+extends Control
+
 const SPEED = 100
 const SPEED_DECREASE = 700
 var time = 0
@@ -25,16 +26,19 @@ func set_player_info(new_value: InfoPlayer):
 		yield(self, "ready")
 	$PlayerID.text = player_info.id
 	$controls.text = player_info.controls
-	
+	$Wheel.modulate = player_info.get_color()
+	$PlayerID.modulate = player_info.get_color()
+	$Ship.texture = player_info.get_ship()
 	
 func _process(delta):
 	if Input.is_action_pressed(player_info.controls+"_fire"):
 		time += (delta*SPEED)
 	else:
 		time = max(0, time - delta*SPEED_DECREASE)
-	self.material.set_shader_param("value", time)
+	$Wheel.material.set_shader_param("value", time)
 	if time >= 100.0:
 		set_process_input(false)
 		set_process(false)
 		ready_label.visible = true
 		Events.emit_signal("player_ready", player_info)
+		modulate = Color(1.16,1.16,1.16,1)

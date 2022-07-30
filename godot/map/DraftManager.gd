@@ -2,6 +2,7 @@ extends Node
 
 export var this_arena_path : NodePath
 export var hand_node_path : NodePath
+export var message_node_path : NodePath
 export var pass_path : NodePath
 export var hand_position_node_path : NodePath
 export var draft_card_scene : PackedScene
@@ -10,6 +11,7 @@ var this_arena
 var hand_node : Node
 var hand_position : Node
 var pass_node : Node
+var message_node : Typewriter
 var ships_have_to_choose := false
 var hand_refills := 0
 
@@ -29,19 +31,26 @@ func _ready():
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
+	message_node = get_node(message_node_path)
 	
 	#pass_node.connect("tapped", self, '_on_pass_tapped')
 	
 	global.new_session()
 	var hand = global.session.get_hand()
-	self.populate_hand(hand.duplicate())
-	self.pick_next_card()
+	if len(hand) > 0:
+		self.populate_hand(hand.duplicate())
+		self.pick_next_card()
+	else:
+		self.continue_draft(true)
 	
 func _on_continue_after_game_over(session_ended):
 	if not is_inside_tree():
 		# this happens when the map is momentarily removed at the end of a session
 		yield(self, "tree_entered")
 		
+	continue_draft(session_ended)
+	
+func continue_draft(session_ended):
 	if session_ended:
 		self.draw_anew()
 		
@@ -51,11 +60,11 @@ func _on_continue_after_game_over(session_ended):
 	
 	if not session_ended:
 		# cleanup if session continues
-		var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
+		var last_played_card = hand_node.get_card(last_match_info["card_id"])
 		last_played_card.queue_free()
 	
 	ships_have_to_choose = false
-	 
+	
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
 		ships_have_to_choose = true
@@ -79,12 +88,17 @@ func _on_continue_after_game_over(session_ended):
 		self.populate_hand(hand.duplicate())
 		
 	
-	yield(get_tree().create_timer(1.5), "timeout") 
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	if ships_have_to_choose:
+		message_node.type("Choose which minigames to play")
+		yield(message_node, "done")
+		yield(get_tree().create_timer(0.5), "timeout")
+		
 		this_arena.spawn_all_ships(true)
 		#pass_node.visible = true
 	else:
+		yield(get_tree().create_timer(0.5), "timeout")
 		self.pick_next_card()
 
 func draw_anew():
@@ -97,21 +111,24 @@ func player_just_chose_a_card(author, card):
 	card.set_player(author.get_player())
 	
 	self.players_choices[author] = card
-	card.card_content.reset_strikes()
 	author.get_parent().remove_child(author)
+	
+	card.card_content.reset_strikes()
+	global.the_game.get_deck().prepare_next_cards(card.card_content.unlocks)
 	
 	self.selections_maybe_all_done()
 	
 func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
 		pass_node.visible = false
+		message_node.visible_characters = 0
 		
 		var discarded = []
 		var hand = global.session.get_hand()
 		# everyone chose. let's discard cards that have not been chosen
 		for draft_card in hand_node.get_all_cards():
 			if draft_card in self.players_choices.values():
-				print("well, actually {card_min} has been chosen ".format({"card_min": draft_card.card_content.id}))
+				print("well, actually {card_min} has been chosen ".format({"card_min": draft_card.card_content.get_id()}))
 			else:
 				discarded.append(draft_card.card_content)
 				var index = hand.find(draft_card.card_content)
@@ -133,7 +150,7 @@ func selections_maybe_all_done():
 				to_be_put_back.append(card)
 		
 		# shuffle the remaining cards right back into the deck
-		deck.put_back_cards(to_be_put_back)
+		deck.append_cards(to_be_put_back)
 		deck.shuffle()
 		
 		self.pick_next_card()
@@ -143,14 +160,16 @@ func selections_maybe_all_done():
 	
 func pick_next_card():
 	# TBD animation
-	yield(get_tree().create_timer(3), "timeout")
+	var hand = global.session.get_hand()
+	yield(get_tree().create_timer(len(hand)*0.33+0.33), "timeout")
 	
-	var picked_card : Minigame = global.session.choose_next_card()
+	var picked_card : DraftCard = global.session.choose_next_card()
 	
-	print("Card chosen is {picked}".format({"picked":picked_card.id})) # TBD could be null
+	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
 	yield(self, "card_chosen")
-	Events.emit_signal("minigame_selected", picked_card)
+	var minigame: Minigame = picked_card.get_minigame()
+	Events.emit_signal("minigame_selected", picked_card, minigame )
 
 func add_card(card, selected=false):
 	# will put the card in first empty position
@@ -179,7 +198,7 @@ func populate_hand(hand: Array):
 		yield(get_tree().create_timer(0.1), "timeout")
 		self.add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
 		
-func animate_selection(picked_card: Minigame):
+func animate_selection(picked_card: DraftCard):
 	# This will animate the selection of the chosen card
 	var index_selection = 0
 	var index = 0

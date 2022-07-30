@@ -18,10 +18,11 @@ var spawner
 var trail
 
 var cpu = false
-var velocity = Vector2(0,0)
-var previous_velocity = Vector2(0,0)
+var velocity := Vector2(0,0)
+var previous_velocity := Vector2(0,0)
+var previous_global_positions : Array
 var last_contact_normal = null
-var target_velocity = Vector2(0,0)
+var target_velocity := Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
 
@@ -41,7 +42,7 @@ const MIN_CHARGE = 0.2
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
-const DASH_MULTIPLIER = 2.5 # was 2.7, decreased to lessen the chanche of tunneling
+const DASH_MULTIPLIER = 2.6 # was 2.7, decreased to lessen the chance of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1600
 const BALL_BOOST = 2300
@@ -54,6 +55,9 @@ const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 const ARKABALL_OFFSET = 250
 const ARKABALL_MULTIPLIER = 3
+const ON_ICE_MAX_THRUST = 2200
+const ON_ICE_MAX_DASH = 2500
+const ON_ICE_CHARGE_BRAKE = 0.99
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
@@ -180,6 +184,7 @@ func _enter_tree():
 	charge = 0
 	alive = true
 	outside_countup = 0
+	previous_global_positions = [global_position]
 	
 	reset_health()
 	
@@ -249,13 +254,18 @@ func _integrate_forces(state):
 	
 	var thrusers_on = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
+	# check if we need to limit thrust
+	var thrust = THRUST
+	if is_on_ice():
+		thrust = min(thrust, ON_ICE_MAX_THRUST)
+		
 	if not absolute_controls:
-		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
+		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusers_on))
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
-		#apply_impulse(Vector2(),target_velocity*THRUST)
-		add_central_force(target_velocity*THRUST*int(thrusers_on))
+		#apply_impulse(Vector2(),target_velocity*thrust)
+		add_central_force(target_velocity*thrust*int(thrusers_on))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -285,9 +295,18 @@ func _integrate_forces(state):
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
+	# brake if on ice
+	if charging and is_on_ice():
+		state.linear_velocity *= ON_ICE_CHARGE_BRAKE
+	
 	# store velocity as a readable var
 	previous_velocity = velocity
 	velocity = state.linear_velocity
+	
+	# remember our previous global positions
+	previous_global_positions.push_back(global_position)
+	if len(previous_global_positions) > 2:
+		previous_global_positions.pop_front()
 	
 	# store last contact normal as a readable var
 	if state.get_contact_count() > 0:
@@ -401,7 +420,11 @@ func fire(override_charge = -1, dash_only = false):
 	var will_dash = charging_enough and is_aiming_away_gel()
 	
 	if will_dash:
-		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
+		var recoil = max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER)
+		# check if we need to limit dash
+		if is_on_ice():
+			recoil = min(recoil, ON_ICE_MAX_DASH)
+		apply_impulse(Vector2(0,0), Vector2(recoil, 0).rotated(rotation)) # recoil only if dashing
 	
 	if golf:
 		var impulse = charge_impulse*ARKABALL_MULTIPLIER
@@ -571,7 +594,7 @@ func dash_fat_appearance():
 	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
 		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()
-	
+
 func dash_thin_appearance():
 	$DashFxTimer.stop()
 	$Graphics/Sprite.scale = DASH_THIN
@@ -820,6 +843,12 @@ func is_in_gel():
 			return true
 	return false
 	
+func is_on_ice():
+	for area in $NearArea.get_overlapping_areas():
+		if area is Ice:
+			return true
+	return false
+	
 func is_aiming_away_gel():
 	for area in $NearArea.get_overlapping_areas():
 		if traits.has_trait(area, 'Gel'):
@@ -875,3 +904,7 @@ func get_camera_rect() -> Rect2:
 func get_team() -> String:
 	return info_player.team
 	
+func get_previous_global_position(): # Vector2 or null
+	if len(previous_global_positions) <= 1:
+		return null
+	return previous_global_positions[0]

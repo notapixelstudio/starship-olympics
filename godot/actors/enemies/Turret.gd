@@ -57,8 +57,6 @@ func _on_Timer_timeout():
 	fire()
 	
 func _ready():
-	Events.connect("sth_collided_with_ship", self, '_on_sth_collided_with_ship')
-	
 	if autoplay:
 		ccw = +1 if randf() > 0.5 else -1
 		var random_angle = randf()*2*PI

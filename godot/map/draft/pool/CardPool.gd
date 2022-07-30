@@ -3,120 +3,32 @@ extends Resource
 class_name CardPool
 
 export var id : String
-export var cards : Array = [
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object(),
-	Object()
-] setget set_cards # MiniGame
+export var cards : Array = [] setget set_cards # DraftCard
 
-var valid_cards = []
+var index : Dictionary = {}
 
-func set_cards(v):
+func set_cards(v: Array):
 	cards = v
 	for card in cards:
-		if card is Minigame:
-			valid_cards.append(card)
-			
+		assert(card is DraftCard)
+		index[card.get_id()] = card
+		
 	randomize()
-	valid_cards.shuffle()
+	cards.shuffle()
 
-func get_new_card() -> Minigame:
-	var new_card = valid_cards.pop_front()
-	return new_card
+func has(card_id: String) -> bool:
+	return index.has(card_id)
+	
+func retrieve_card(id) -> DraftCard:
+	if not has(id):
+		return null
+	var card = index[id]
+	index.erase(id)
+	return card
+
+func get_card(id) -> DraftCard:
+	return index[id]
+
+func remove_card(card) -> void:
+	index.erase(card.get_id())
+	cards.erase(card)

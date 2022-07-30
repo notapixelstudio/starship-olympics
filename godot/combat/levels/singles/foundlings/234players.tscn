@@ -1,7 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/stripes.png" type="Texture" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
@@ -16,6 +15,7 @@
 [ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -33,49 +33,39 @@ enabled = true
 texture = ExtResource( 9 )
 centered = false
 
-[node name="OuterGlass" type="Polygon2D" parent="Battlefield/Background" index="0"]
-visible = false
-modulate = Color( 0.4, 0.7, 1.2, 1 )
-self_modulate = Color( 1, 1, 1, 0.2 )
-texture = ExtResource( 2 )
-texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -3350, -1450, -3350, 1450, -3300, 1500, 3300, 1500, 3350, 1450, 3350, -1450, 3300, -1500, -3300, -1500, -3350, -1450, -4100, -1300, -4100, -1900, 3600, -1900, 3600, 2100, -4100, 2100, -4100, -1300 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 6 )]
-visible = false
-position = Vector2( 3.05176e-05, 0 )
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+position = Vector2( 3.05176e-05, -350 )
+collision_layer = 2147483648
 hollow = true
-offset = 800
-type = 2
+type = 4
 hide_grid = true
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
-width = 6700
-height = 3000
+width = 6800
+height = 3900
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="GridWrapper" parent="Battlefield/Background" index="3"]
-visible = false
+[node name="GridWrapper" parent="Battlefield/Background" index="2"]
+modulate = Color( 1, 1, 1, 0.392157 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.42, 0.189, 0.189, 1 )
 bg_color = Color( 0.4, 0.124, 0.1286, 1 )
 
-[node name="Variants" parent="Battlefield/Background" index="5" instance=ExtResource( 11 )]
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+visible = false
+
+[node name="Variants" parent="Battlefield/Background" index="4" instance=ExtResource( 11 )]
 
 [node name="A" type="Node2D" parent="Battlefield/Background/Variants" index="0"]
-visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/A" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2100, -950 )
@@ -131,7 +121,7 @@ atmosphere_radius = 800
 kind = "animals/a01"
 
 [node name="Homeworld3" parent="Battlefield/Background/Variants/B" index="2" instance=ExtResource( 13 )]
-position = Vector2( 1500, -500 )
+position = Vector2( 1600, -450 )
 ground_radius = 110
 atmosphere_radius = 260
 kind = "animals/a04"
@@ -221,6 +211,7 @@ atmosphere_radius = 450
 kind = "animals/a04"
 
 [node name="E" type="Node2D" parent="Battlefield/Background/Variants" index="4"]
+visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/E" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2900, -900 )
@@ -255,419 +246,1079 @@ kind = "animals/a04"
 modulate = Color( 1, 1, 1, 0.0784314 )
 polygon = PoolVector2Array( -1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300 )
 
-[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( -1200, 0 )
-collision_layer = 2147483648
-type = 4
+[node name="ParadeVariants" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 300
-bevel = 60
-bevel_nw = 1
-bevel_ne = 60
-bevel_sw = 1
-bevel_se = 60
+[node name="A" type="Node2D" parent="Battlefield/Middleground/ParadeVariants" index="0"]
 
-[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( 1200, 0 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 300
-bevel = 60
-bevel_nw = 60
-bevel_ne = 1
-bevel_sw = 60
-bevel_se = 1
-
-[node name="Wall6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( -1200, 1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall6" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 1
-bevel_ne = 60
-bevel_sw = 1
-bevel_se = 60
-
-[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 1200, 1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall7" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 60
-bevel_ne = 1
-bevel_sw = 60
-bevel_se = 1
-
-[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
-position = Vector2( -1200, -1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 1
-bevel_ne = 60
-bevel_sw = 1
-bevel_se = 60
-
-[node name="Wall5" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
-position = Vector2( 1200, -1050 )
-collision_layer = 2147483648
-type = 4
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall5" index="8"]
-script = ExtResource( 1 )
-width = 150
-height = 200
-bevel = 60
-bevel_nw = 60
-bevel_ne = 1
-bevel_sw = 60
-bevel_se = 1
-
-[node name="Alien41" parent="Battlefield/Middleground" index="7" instance=ExtResource( 15 )]
+[node name="Alien41" parent="Battlefield/Middleground/ParadeVariants/A" index="0" instance=ExtResource( 15 )]
 position = Vector2( 200, 5250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien2" parent="Battlefield/Middleground" index="8" instance=ExtResource( 15 )]
+[node name="Alien2" parent="Battlefield/Middleground/ParadeVariants/A" index="1" instance=ExtResource( 15 )]
 position = Vector2( -200, 950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien35" parent="Battlefield/Middleground" index="9" instance=ExtResource( 15 )]
+[node name="Alien35" parent="Battlefield/Middleground/ParadeVariants/A" index="2" instance=ExtResource( 15 )]
 position = Vector2( -200, 1350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien36" parent="Battlefield/Middleground" index="10" instance=ExtResource( 15 )]
+[node name="Alien36" parent="Battlefield/Middleground/ParadeVariants/A" index="3" instance=ExtResource( 15 )]
 position = Vector2( 200, 1350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien3" parent="Battlefield/Middleground" index="11" instance=ExtResource( 15 )]
+[node name="Alien3" parent="Battlefield/Middleground/ParadeVariants/A" index="4" instance=ExtResource( 15 )]
 position = Vector2( -600, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien5" parent="Battlefield/Middleground" index="12" instance=ExtResource( 15 )]
+[node name="Alien5" parent="Battlefield/Middleground/ParadeVariants/A" index="5" instance=ExtResource( 15 )]
 position = Vector2( 200, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 15 )]
+[node name="Alien4" parent="Battlefield/Middleground/ParadeVariants/A" index="6" instance=ExtResource( 15 )]
 position = Vector2( -200, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien6" parent="Battlefield/Middleground" index="14" instance=ExtResource( 15 )]
+[node name="Alien6" parent="Battlefield/Middleground/ParadeVariants/A" index="7" instance=ExtResource( 15 )]
 position = Vector2( -200, 2550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien7" parent="Battlefield/Middleground" index="15" instance=ExtResource( 15 )]
+[node name="Alien7" parent="Battlefield/Middleground/ParadeVariants/A" index="8" instance=ExtResource( 15 )]
 position = Vector2( 600, 2950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien32" parent="Battlefield/Middleground" index="16" instance=ExtResource( 15 )]
+[node name="Alien32" parent="Battlefield/Middleground/ParadeVariants/A" index="9" instance=ExtResource( 15 )]
 position = Vector2( -600, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien33" parent="Battlefield/Middleground" index="17" instance=ExtResource( 15 )]
+[node name="Alien33" parent="Battlefield/Middleground/ParadeVariants/A" index="10" instance=ExtResource( 15 )]
 position = Vector2( 600, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien8" parent="Battlefield/Middleground" index="18" instance=ExtResource( 15 )]
+[node name="Alien8" parent="Battlefield/Middleground/ParadeVariants/A" index="11" instance=ExtResource( 15 )]
 position = Vector2( 200, 950 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien38" parent="Battlefield/Middleground" index="19" instance=ExtResource( 15 )]
+[node name="Alien38" parent="Battlefield/Middleground/ParadeVariants/A" index="12" instance=ExtResource( 15 )]
 position = Vector2( 200, 2550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien22" parent="Battlefield/Middleground" index="20" instance=ExtResource( 15 )]
+[node name="Alien22" parent="Battlefield/Middleground/ParadeVariants/A" index="13" instance=ExtResource( 15 )]
 position = Vector2( 200, 6850 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien23" parent="Battlefield/Middleground" index="21" instance=ExtResource( 15 )]
+[node name="Alien23" parent="Battlefield/Middleground/ParadeVariants/A" index="14" instance=ExtResource( 15 )]
 position = Vector2( -200, 6850 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien42" parent="Battlefield/Middleground" index="22" instance=ExtResource( 15 )]
+[node name="Alien42" parent="Battlefield/Middleground/ParadeVariants/A" index="15" instance=ExtResource( 15 )]
 position = Vector2( -600, 7250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien26" parent="Battlefield/Middleground" index="23" instance=ExtResource( 15 )]
+[node name="Alien26" parent="Battlefield/Middleground/ParadeVariants/A" index="16" instance=ExtResource( 15 )]
 position = Vector2( 600, 7250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien27" parent="Battlefield/Middleground" index="24" instance=ExtResource( 15 )]
+[node name="Alien27" parent="Battlefield/Middleground/ParadeVariants/A" index="17" instance=ExtResource( 15 )]
 position = Vector2( -200, 8550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien28" parent="Battlefield/Middleground" index="25" instance=ExtResource( 15 )]
+[node name="Alien28" parent="Battlefield/Middleground/ParadeVariants/A" index="18" instance=ExtResource( 15 )]
 position = Vector2( 200, 7650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien29" parent="Battlefield/Middleground" index="26" instance=ExtResource( 15 )]
+[node name="Alien29" parent="Battlefield/Middleground/ParadeVariants/A" index="19" instance=ExtResource( 15 )]
 position = Vector2( -200, 7650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien31" parent="Battlefield/Middleground" index="27" instance=ExtResource( 15 )]
+[node name="Alien31" parent="Battlefield/Middleground/ParadeVariants/A" index="20" instance=ExtResource( 15 )]
 position = Vector2( 200, 8550 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien9" parent="Battlefield/Middleground" index="28" instance=ExtResource( 15 )]
+[node name="Alien9" parent="Battlefield/Middleground/ParadeVariants/A" index="21" instance=ExtResource( 15 )]
 position = Vector2( 600, 4150 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien10" parent="Battlefield/Middleground" index="29" instance=ExtResource( 15 )]
+[node name="Alien10" parent="Battlefield/Middleground/ParadeVariants/A" index="22" instance=ExtResource( 15 )]
 position = Vector2( -600, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien11" parent="Battlefield/Middleground" index="30" instance=ExtResource( 15 )]
+[node name="Alien11" parent="Battlefield/Middleground/ParadeVariants/A" index="23" instance=ExtResource( 15 )]
 position = Vector2( 200, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien12" parent="Battlefield/Middleground" index="31" instance=ExtResource( 15 )]
+[node name="Alien12" parent="Battlefield/Middleground/ParadeVariants/A" index="24" instance=ExtResource( 15 )]
 position = Vector2( -200, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien13" parent="Battlefield/Middleground" index="32" instance=ExtResource( 15 )]
+[node name="Alien13" parent="Battlefield/Middleground/ParadeVariants/A" index="25" instance=ExtResource( 15 )]
 position = Vector2( -200, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien14" parent="Battlefield/Middleground" index="33" instance=ExtResource( 15 )]
+[node name="Alien14" parent="Battlefield/Middleground/ParadeVariants/A" index="26" instance=ExtResource( 15 )]
 position = Vector2( 600, 3750 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien39" parent="Battlefield/Middleground" index="34" instance=ExtResource( 15 )]
+[node name="Alien39" parent="Battlefield/Middleground/ParadeVariants/A" index="27" instance=ExtResource( 15 )]
 position = Vector2( -600, 4150 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien40" parent="Battlefield/Middleground" index="35" instance=ExtResource( 15 )]
+[node name="Alien40" parent="Battlefield/Middleground/ParadeVariants/A" index="28" instance=ExtResource( 15 )]
 position = Vector2( 200, 3350 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien17" parent="Battlefield/Middleground" index="36" instance=ExtResource( 15 )]
+[node name="Alien17" parent="Battlefield/Middleground/ParadeVariants/A" index="29" instance=ExtResource( 15 )]
 position = Vector2( 200, 5650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien18" parent="Battlefield/Middleground" index="37" instance=ExtResource( 15 )]
+[node name="Alien18" parent="Battlefield/Middleground/ParadeVariants/A" index="30" instance=ExtResource( 15 )]
 position = Vector2( -200, 5650 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien19" parent="Battlefield/Middleground" index="38" instance=ExtResource( 15 )]
+[node name="Alien19" parent="Battlefield/Middleground/ParadeVariants/A" index="31" instance=ExtResource( 15 )]
 position = Vector2( -200, 5250 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien43" parent="Battlefield/Middleground" index="39" instance=ExtResource( 15 )]
+[node name="Alien43" parent="Battlefield/Middleground/ParadeVariants/A" index="32" instance=ExtResource( 15 )]
 position = Vector2( 200, 11700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien15" parent="Battlefield/Middleground" index="40" instance=ExtResource( 15 )]
+[node name="Alien15" parent="Battlefield/Middleground/ParadeVariants/A" index="33" instance=ExtResource( 15 )]
 position = Vector2( -600, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien16" parent="Battlefield/Middleground" index="41" instance=ExtResource( 15 )]
+[node name="Alien16" parent="Battlefield/Middleground/ParadeVariants/A" index="34" instance=ExtResource( 15 )]
 position = Vector2( 200, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien20" parent="Battlefield/Middleground" index="42" instance=ExtResource( 15 )]
+[node name="Alien20" parent="Battlefield/Middleground/ParadeVariants/A" index="35" instance=ExtResource( 15 )]
 position = Vector2( -200, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien21" parent="Battlefield/Middleground" index="43" instance=ExtResource( 15 )]
+[node name="Alien21" parent="Battlefield/Middleground/ParadeVariants/A" index="36" instance=ExtResource( 15 )]
 position = Vector2( -200, 9000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien24" parent="Battlefield/Middleground" index="44" instance=ExtResource( 15 )]
+[node name="Alien24" parent="Battlefield/Middleground/ParadeVariants/A" index="37" instance=ExtResource( 15 )]
 position = Vector2( 600, 9400 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien34" parent="Battlefield/Middleground" index="45" instance=ExtResource( 15 )]
+[node name="Alien34" parent="Battlefield/Middleground/ParadeVariants/A" index="38" instance=ExtResource( 15 )]
 position = Vector2( -600, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien37" parent="Battlefield/Middleground" index="46" instance=ExtResource( 15 )]
+[node name="Alien37" parent="Battlefield/Middleground/ParadeVariants/A" index="39" instance=ExtResource( 15 )]
 position = Vector2( 600, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien44" parent="Battlefield/Middleground" index="47" instance=ExtResource( 15 )]
+[node name="Alien44" parent="Battlefield/Middleground/ParadeVariants/A" index="40" instance=ExtResource( 15 )]
 position = Vector2( 200, 9000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien25" parent="Battlefield/Middleground" index="48" instance=ExtResource( 15 )]
+[node name="Alien25" parent="Battlefield/Middleground/ParadeVariants/A" index="41" instance=ExtResource( 15 )]
 position = Vector2( 200, 13300 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien30" parent="Battlefield/Middleground" index="49" instance=ExtResource( 15 )]
+[node name="Alien30" parent="Battlefield/Middleground/ParadeVariants/A" index="42" instance=ExtResource( 15 )]
 position = Vector2( -200, 13300 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien45" parent="Battlefield/Middleground" index="50" instance=ExtResource( 15 )]
+[node name="Alien45" parent="Battlefield/Middleground/ParadeVariants/A" index="43" instance=ExtResource( 15 )]
 position = Vector2( -600, 13700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien46" parent="Battlefield/Middleground" index="51" instance=ExtResource( 15 )]
+[node name="Alien46" parent="Battlefield/Middleground/ParadeVariants/A" index="44" instance=ExtResource( 15 )]
 position = Vector2( 600, 13700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien47" parent="Battlefield/Middleground" index="52" instance=ExtResource( 15 )]
+[node name="Alien47" parent="Battlefield/Middleground/ParadeVariants/A" index="45" instance=ExtResource( 15 )]
 position = Vector2( -200, 15000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien48" parent="Battlefield/Middleground" index="53" instance=ExtResource( 15 )]
+[node name="Alien48" parent="Battlefield/Middleground/ParadeVariants/A" index="46" instance=ExtResource( 15 )]
 position = Vector2( 200, 14100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien49" parent="Battlefield/Middleground" index="54" instance=ExtResource( 15 )]
+[node name="Alien49" parent="Battlefield/Middleground/ParadeVariants/A" index="47" instance=ExtResource( 15 )]
 position = Vector2( -200, 14100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien50" parent="Battlefield/Middleground" index="55" instance=ExtResource( 15 )]
+[node name="Alien50" parent="Battlefield/Middleground/ParadeVariants/A" index="48" instance=ExtResource( 15 )]
 position = Vector2( 200, 15000 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien51" parent="Battlefield/Middleground" index="56" instance=ExtResource( 15 )]
+[node name="Alien51" parent="Battlefield/Middleground/ParadeVariants/A" index="49" instance=ExtResource( 15 )]
 position = Vector2( 600, 10600 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien52" parent="Battlefield/Middleground" index="57" instance=ExtResource( 15 )]
+[node name="Alien52" parent="Battlefield/Middleground/ParadeVariants/A" index="50" instance=ExtResource( 15 )]
 position = Vector2( -600, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien53" parent="Battlefield/Middleground" index="58" instance=ExtResource( 15 )]
+[node name="Alien53" parent="Battlefield/Middleground/ParadeVariants/A" index="51" instance=ExtResource( 15 )]
 position = Vector2( 200, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien54" parent="Battlefield/Middleground" index="59" instance=ExtResource( 15 )]
+[node name="Alien54" parent="Battlefield/Middleground/ParadeVariants/A" index="52" instance=ExtResource( 15 )]
 position = Vector2( -200, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien55" parent="Battlefield/Middleground" index="60" instance=ExtResource( 15 )]
+[node name="Alien55" parent="Battlefield/Middleground/ParadeVariants/A" index="53" instance=ExtResource( 15 )]
 position = Vector2( -200, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien56" parent="Battlefield/Middleground" index="61" instance=ExtResource( 15 )]
+[node name="Alien56" parent="Battlefield/Middleground/ParadeVariants/A" index="54" instance=ExtResource( 15 )]
 position = Vector2( 600, 10200 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien57" parent="Battlefield/Middleground" index="62" instance=ExtResource( 15 )]
+[node name="Alien57" parent="Battlefield/Middleground/ParadeVariants/A" index="55" instance=ExtResource( 15 )]
 position = Vector2( -600, 10600 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien58" parent="Battlefield/Middleground" index="63" instance=ExtResource( 15 )]
+[node name="Alien58" parent="Battlefield/Middleground/ParadeVariants/A" index="56" instance=ExtResource( 15 )]
 position = Vector2( 200, 9800 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien59" parent="Battlefield/Middleground" index="64" instance=ExtResource( 15 )]
+[node name="Alien59" parent="Battlefield/Middleground/ParadeVariants/A" index="57" instance=ExtResource( 15 )]
 position = Vector2( 200, 12100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien60" parent="Battlefield/Middleground" index="65" instance=ExtResource( 15 )]
+[node name="Alien60" parent="Battlefield/Middleground/ParadeVariants/A" index="58" instance=ExtResource( 15 )]
 position = Vector2( -200, 12100 )
 physics_material_override = SubResource( 1 )
 
-[node name="Alien61" parent="Battlefield/Middleground" index="66" instance=ExtResource( 15 )]
+[node name="Alien61" parent="Battlefield/Middleground/ParadeVariants/A" index="59" instance=ExtResource( 15 )]
 position = Vector2( -200, 11700 )
 physics_material_override = SubResource( 1 )
 
-[node name="Mine" parent="Battlefield/Middleground" index="67" instance=ExtResource( 16 )]
+[node name="Mine" parent="Battlefield/Middleground/ParadeVariants/A" index="60" instance=ExtResource( 16 )]
 position = Vector2( 0, 5450 )
 
-[node name="Mine2" parent="Battlefield/Middleground" index="68" instance=ExtResource( 16 )]
+[node name="Mine2" parent="Battlefield/Middleground/ParadeVariants/A" index="61" instance=ExtResource( 16 )]
 position = Vector2( -200, 7250 )
 
-[node name="Mine3" parent="Battlefield/Middleground" index="69" instance=ExtResource( 16 )]
+[node name="Mine3" parent="Battlefield/Middleground/ParadeVariants/A" index="62" instance=ExtResource( 16 )]
 position = Vector2( 201, 7250 )
 
-[node name="Mine4" parent="Battlefield/Middleground" index="70" instance=ExtResource( 16 )]
+[node name="Mine4" parent="Battlefield/Middleground/ParadeVariants/A" index="63" instance=ExtResource( 16 )]
 position = Vector2( 601, 9000 )
 
-[node name="Mine5" parent="Battlefield/Middleground" index="71" instance=ExtResource( 16 )]
+[node name="Mine5" parent="Battlefield/Middleground/ParadeVariants/A" index="64" instance=ExtResource( 16 )]
 position = Vector2( -599, 9000 )
 
-[node name="Mine6" parent="Battlefield/Middleground" index="72" instance=ExtResource( 16 )]
+[node name="Mine6" parent="Battlefield/Middleground/ParadeVariants/A" index="65" instance=ExtResource( 16 )]
 position = Vector2( 1, 8250 )
 
-[node name="Mine7" parent="Battlefield/Middleground" index="73" instance=ExtResource( 16 )]
+[node name="Mine7" parent="Battlefield/Middleground/ParadeVariants/A" index="66" instance=ExtResource( 16 )]
 position = Vector2( 1, 10600 )
 
-[node name="Mine8" parent="Battlefield/Middleground" index="74" instance=ExtResource( 16 )]
+[node name="Mine8" parent="Battlefield/Middleground/ParadeVariants/A" index="67" instance=ExtResource( 16 )]
 position = Vector2( 1, 11900 )
 
-[node name="Mine9" parent="Battlefield/Middleground" index="75" instance=ExtResource( 16 )]
+[node name="Mine9" parent="Battlefield/Middleground/ParadeVariants/A" index="68" instance=ExtResource( 16 )]
 position = Vector2( 1, 11500 )
 
-[node name="Mine10" parent="Battlefield/Middleground" index="76" instance=ExtResource( 16 )]
+[node name="Mine10" parent="Battlefield/Middleground/ParadeVariants/A" index="69" instance=ExtResource( 16 )]
 position = Vector2( 1, 12300 )
 
-[node name="Mine17" parent="Battlefield/Middleground" index="77" instance=ExtResource( 16 )]
+[node name="Mine17" parent="Battlefield/Middleground/ParadeVariants/A" index="70" instance=ExtResource( 16 )]
 position = Vector2( 0, 15000 )
 
-[node name="Mine18" parent="Battlefield/Middleground" index="78" instance=ExtResource( 16 )]
+[node name="Mine18" parent="Battlefield/Middleground/ParadeVariants/A" index="71" instance=ExtResource( 16 )]
 position = Vector2( 0, 14600 )
 
-[node name="Mine19" parent="Battlefield/Middleground" index="79" instance=ExtResource( 16 )]
+[node name="Mine19" parent="Battlefield/Middleground/ParadeVariants/A" index="72" instance=ExtResource( 16 )]
 position = Vector2( 0, 15400 )
 
-[node name="Mine11" parent="Battlefield/Middleground" index="80" instance=ExtResource( 16 )]
+[node name="Mine11" parent="Battlefield/Middleground/ParadeVariants/A" index="73" instance=ExtResource( 16 )]
 position = Vector2( -399, 11900 )
 
-[node name="Mine13" parent="Battlefield/Middleground" index="81" instance=ExtResource( 16 )]
+[node name="Mine13" parent="Battlefield/Middleground/ParadeVariants/A" index="74" instance=ExtResource( 16 )]
 position = Vector2( 200, 13700 )
 
-[node name="Mine14" parent="Battlefield/Middleground" index="82" instance=ExtResource( 16 )]
+[node name="Mine14" parent="Battlefield/Middleground/ParadeVariants/A" index="75" instance=ExtResource( 16 )]
 position = Vector2( -200, 13700 )
 
-[node name="Mine15" parent="Battlefield/Middleground" index="83" instance=ExtResource( 16 )]
+[node name="Mine15" parent="Battlefield/Middleground/ParadeVariants/A" index="76" instance=ExtResource( 16 )]
 position = Vector2( -600, 13300 )
 
-[node name="Mine16" parent="Battlefield/Middleground" index="84" instance=ExtResource( 16 )]
+[node name="Mine16" parent="Battlefield/Middleground/ParadeVariants/A" index="77" instance=ExtResource( 16 )]
 position = Vector2( 600, 13300 )
 
-[node name="Mine12" parent="Battlefield/Middleground" index="85" instance=ExtResource( 16 )]
+[node name="Mine12" parent="Battlefield/Middleground/ParadeVariants/A" index="78" instance=ExtResource( 16 )]
 position = Vector2( 401, 11900 )
 
+[node name="Alien62" parent="Battlefield/Middleground/ParadeVariants/A" index="79" instance=ExtResource( 15 )]
+position = Vector2( 200, 16400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien63" parent="Battlefield/Middleground/ParadeVariants/A" index="80" instance=ExtResource( 15 )]
+position = Vector2( 200, 16800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien64" parent="Battlefield/Middleground/ParadeVariants/A" index="81" instance=ExtResource( 15 )]
+position = Vector2( -200, 16800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien65" parent="Battlefield/Middleground/ParadeVariants/A" index="82" instance=ExtResource( 15 )]
+position = Vector2( -200, 16400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien66" parent="Battlefield/Middleground/ParadeVariants/A" index="83" instance=ExtResource( 15 )]
+position = Vector2( 0, 17800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien67" parent="Battlefield/Middleground/ParadeVariants/A" index="84" instance=ExtResource( 15 )]
+position = Vector2( 0, 18600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine20" parent="Battlefield/Middleground/ParadeVariants/A" index="85" instance=ExtResource( 16 )]
+position = Vector2( 1, 16600 )
+
+[node name="Mine21" parent="Battlefield/Middleground/ParadeVariants/A" index="86" instance=ExtResource( 16 )]
+position = Vector2( 1, 16200 )
+
+[node name="Mine22" parent="Battlefield/Middleground/ParadeVariants/A" index="87" instance=ExtResource( 16 )]
+position = Vector2( 1, 17000 )
+
+[node name="Mine23" parent="Battlefield/Middleground/ParadeVariants/A" index="88" instance=ExtResource( 16 )]
+position = Vector2( -399, 16600 )
+
+[node name="Mine24" parent="Battlefield/Middleground/ParadeVariants/A" index="89" instance=ExtResource( 16 )]
+position = Vector2( 401, 16600 )
+
+[node name="B" type="Node2D" parent="Battlefield/Middleground/ParadeVariants" index="1"]
+visible = false
+
+[node name="Alien41" parent="Battlefield/Middleground/ParadeVariants/B" index="0" instance=ExtResource( 15 )]
+position = Vector2( 600, 6200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien2" parent="Battlefield/Middleground/ParadeVariants/B" index="1" instance=ExtResource( 15 )]
+position = Vector2( -200, 950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien35" parent="Battlefield/Middleground/ParadeVariants/B" index="2" instance=ExtResource( 15 )]
+position = Vector2( -200, 1350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien36" parent="Battlefield/Middleground/ParadeVariants/B" index="3" instance=ExtResource( 15 )]
+position = Vector2( 200, 1350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien3" parent="Battlefield/Middleground/ParadeVariants/B" index="4" instance=ExtResource( 15 )]
+position = Vector2( -600, 4550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien5" parent="Battlefield/Middleground/ParadeVariants/B" index="5" instance=ExtResource( 15 )]
+position = Vector2( 200, 2950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien4" parent="Battlefield/Middleground/ParadeVariants/B" index="6" instance=ExtResource( 15 )]
+position = Vector2( -200, 2950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien6" parent="Battlefield/Middleground/ParadeVariants/B" index="7" instance=ExtResource( 15 )]
+position = Vector2( 200, 4150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien7" parent="Battlefield/Middleground/ParadeVariants/B" index="8" instance=ExtResource( 15 )]
+position = Vector2( 0, 4500 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien32" parent="Battlefield/Middleground/ParadeVariants/B" index="9" instance=ExtResource( 15 )]
+position = Vector2( -600, 3350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien33" parent="Battlefield/Middleground/ParadeVariants/B" index="10" instance=ExtResource( 15 )]
+position = Vector2( 600, 3350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien8" parent="Battlefield/Middleground/ParadeVariants/B" index="11" instance=ExtResource( 15 )]
+position = Vector2( 200, 950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien38" parent="Battlefield/Middleground/ParadeVariants/B" index="12" instance=ExtResource( 15 )]
+position = Vector2( 0, 2550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien22" parent="Battlefield/Middleground/ParadeVariants/B" index="13" instance=ExtResource( 15 )]
+position = Vector2( 0, 7250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien23" parent="Battlefield/Middleground/ParadeVariants/B" index="14" instance=ExtResource( 15 )]
+position = Vector2( 0, 6850 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien42" parent="Battlefield/Middleground/ParadeVariants/B" index="15" instance=ExtResource( 15 )]
+position = Vector2( -600, 7250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien26" parent="Battlefield/Middleground/ParadeVariants/B" index="16" instance=ExtResource( 15 )]
+position = Vector2( 600, 7250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien27" parent="Battlefield/Middleground/ParadeVariants/B" index="17" instance=ExtResource( 15 )]
+position = Vector2( -200, 8550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien28" parent="Battlefield/Middleground/ParadeVariants/B" index="18" instance=ExtResource( 15 )]
+position = Vector2( 200, 7650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien29" parent="Battlefield/Middleground/ParadeVariants/B" index="19" instance=ExtResource( 15 )]
+position = Vector2( -200, 7650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien31" parent="Battlefield/Middleground/ParadeVariants/B" index="20" instance=ExtResource( 15 )]
+position = Vector2( 200, 8550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien9" parent="Battlefield/Middleground/ParadeVariants/B" index="21" instance=ExtResource( 15 )]
+position = Vector2( 600, 4150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien10" parent="Battlefield/Middleground/ParadeVariants/B" index="22" instance=ExtResource( 15 )]
+position = Vector2( -200, 4150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien11" parent="Battlefield/Middleground/ParadeVariants/B" index="23" instance=ExtResource( 15 )]
+position = Vector2( 200, 3750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien12" parent="Battlefield/Middleground/ParadeVariants/B" index="24" instance=ExtResource( 15 )]
+position = Vector2( -200, 3750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien13" parent="Battlefield/Middleground/ParadeVariants/B" index="25" instance=ExtResource( 15 )]
+position = Vector2( -200, 4850 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien14" parent="Battlefield/Middleground/ParadeVariants/B" index="26" instance=ExtResource( 15 )]
+position = Vector2( 600, 4550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien39" parent="Battlefield/Middleground/ParadeVariants/B" index="27" instance=ExtResource( 15 )]
+position = Vector2( -600, 4150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien40" parent="Battlefield/Middleground/ParadeVariants/B" index="28" instance=ExtResource( 15 )]
+position = Vector2( 200, 4850 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien17" parent="Battlefield/Middleground/ParadeVariants/B" index="29" instance=ExtResource( 15 )]
+position = Vector2( 200, 5650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien18" parent="Battlefield/Middleground/ParadeVariants/B" index="30" instance=ExtResource( 15 )]
+position = Vector2( -200, 5650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien19" parent="Battlefield/Middleground/ParadeVariants/B" index="31" instance=ExtResource( 15 )]
+position = Vector2( -600, 6200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien15" parent="Battlefield/Middleground/ParadeVariants/B" index="32" instance=ExtResource( 15 )]
+position = Vector2( -600, 9400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien16" parent="Battlefield/Middleground/ParadeVariants/B" index="33" instance=ExtResource( 15 )]
+position = Vector2( 200, 9400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien20" parent="Battlefield/Middleground/ParadeVariants/B" index="34" instance=ExtResource( 15 )]
+position = Vector2( -200, 9400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien21" parent="Battlefield/Middleground/ParadeVariants/B" index="35" instance=ExtResource( 15 )]
+position = Vector2( -200, 9000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien24" parent="Battlefield/Middleground/ParadeVariants/B" index="36" instance=ExtResource( 15 )]
+position = Vector2( 600, 9400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien34" parent="Battlefield/Middleground/ParadeVariants/B" index="37" instance=ExtResource( 15 )]
+position = Vector2( -600, 11050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien37" parent="Battlefield/Middleground/ParadeVariants/B" index="38" instance=ExtResource( 15 )]
+position = Vector2( 600, 11050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien44" parent="Battlefield/Middleground/ParadeVariants/B" index="39" instance=ExtResource( 15 )]
+position = Vector2( 200, 9000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien25" parent="Battlefield/Middleground/ParadeVariants/B" index="40" instance=ExtResource( 15 )]
+position = Vector2( 200, 13300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien30" parent="Battlefield/Middleground/ParadeVariants/B" index="41" instance=ExtResource( 15 )]
+position = Vector2( -200, 13300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien45" parent="Battlefield/Middleground/ParadeVariants/B" index="42" instance=ExtResource( 15 )]
+position = Vector2( -600, 13700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien46" parent="Battlefield/Middleground/ParadeVariants/B" index="43" instance=ExtResource( 15 )]
+position = Vector2( 600, 13700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien59" parent="Battlefield/Middleground/ParadeVariants/B" index="44" instance=ExtResource( 15 )]
+position = Vector2( -600, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien60" parent="Battlefield/Middleground/ParadeVariants/B" index="45" instance=ExtResource( 15 )]
+position = Vector2( 600, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien47" parent="Battlefield/Middleground/ParadeVariants/B" index="46" instance=ExtResource( 15 )]
+position = Vector2( -200, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien48" parent="Battlefield/Middleground/ParadeVariants/B" index="47" instance=ExtResource( 15 )]
+position = Vector2( 200, 13700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien49" parent="Battlefield/Middleground/ParadeVariants/B" index="48" instance=ExtResource( 15 )]
+position = Vector2( -200, 13700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien50" parent="Battlefield/Middleground/ParadeVariants/B" index="49" instance=ExtResource( 15 )]
+position = Vector2( 200, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien51" parent="Battlefield/Middleground/ParadeVariants/B" index="50" instance=ExtResource( 15 )]
+position = Vector2( 600, 10600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien52" parent="Battlefield/Middleground/ParadeVariants/B" index="51" instance=ExtResource( 15 )]
+position = Vector2( -600, 10200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien53" parent="Battlefield/Middleground/ParadeVariants/B" index="52" instance=ExtResource( 15 )]
+position = Vector2( 200, 10200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien54" parent="Battlefield/Middleground/ParadeVariants/B" index="53" instance=ExtResource( 15 )]
+position = Vector2( -200, 10200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien55" parent="Battlefield/Middleground/ParadeVariants/B" index="54" instance=ExtResource( 15 )]
+position = Vector2( -200, 11050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien56" parent="Battlefield/Middleground/ParadeVariants/B" index="55" instance=ExtResource( 15 )]
+position = Vector2( 600, 10200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien57" parent="Battlefield/Middleground/ParadeVariants/B" index="56" instance=ExtResource( 15 )]
+position = Vector2( -600, 10600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien58" parent="Battlefield/Middleground/ParadeVariants/B" index="57" instance=ExtResource( 15 )]
+position = Vector2( 200, 11050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien61" parent="Battlefield/Middleground/ParadeVariants/B" index="58" instance=ExtResource( 15 )]
+position = Vector2( 0, 12150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine" parent="Battlefield/Middleground/ParadeVariants/B" index="59" instance=ExtResource( 16 )]
+position = Vector2( 0, 6200 )
+
+[node name="Mine2" parent="Battlefield/Middleground/ParadeVariants/B" index="60" instance=ExtResource( 16 )]
+position = Vector2( -600, 7650 )
+
+[node name="Mine3" parent="Battlefield/Middleground/ParadeVariants/B" index="61" instance=ExtResource( 16 )]
+position = Vector2( 601, 7650 )
+
+[node name="Mine4" parent="Battlefield/Middleground/ParadeVariants/B" index="62" instance=ExtResource( 16 )]
+position = Vector2( 601, 9000 )
+
+[node name="Mine5" parent="Battlefield/Middleground/ParadeVariants/B" index="63" instance=ExtResource( 16 )]
+position = Vector2( -599, 9000 )
+
+[node name="Mine7" parent="Battlefield/Middleground/ParadeVariants/B" index="64" instance=ExtResource( 16 )]
+position = Vector2( 1, 10600 )
+
+[node name="Mine9" parent="Battlefield/Middleground/ParadeVariants/B" index="65" instance=ExtResource( 16 )]
+position = Vector2( 1, 11750 )
+
+[node name="Mine10" parent="Battlefield/Middleground/ParadeVariants/B" index="66" instance=ExtResource( 16 )]
+position = Vector2( 1, 12550 )
+
+[node name="Mine18" parent="Battlefield/Middleground/ParadeVariants/B" index="67" instance=ExtResource( 16 )]
+position = Vector2( 0, 14600 )
+
+[node name="Mine19" parent="Battlefield/Middleground/ParadeVariants/B" index="68" instance=ExtResource( 16 )]
+position = Vector2( 0, 15400 )
+
+[node name="Mine11" parent="Battlefield/Middleground/ParadeVariants/B" index="69" instance=ExtResource( 16 )]
+position = Vector2( -399, 12150 )
+
+[node name="Mine12" parent="Battlefield/Middleground/ParadeVariants/B" index="70" instance=ExtResource( 16 )]
+position = Vector2( 401, 12150 )
+
+[node name="Alien66" parent="Battlefield/Middleground/ParadeVariants/B" index="71" instance=ExtResource( 15 )]
+position = Vector2( 0, 17400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien68" parent="Battlefield/Middleground/ParadeVariants/B" index="72" instance=ExtResource( 15 )]
+position = Vector2( 0, 16600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine21" parent="Battlefield/Middleground/ParadeVariants/B" index="73" instance=ExtResource( 16 )]
+position = Vector2( 1, 16200 )
+
+[node name="Mine22" parent="Battlefield/Middleground/ParadeVariants/B" index="74" instance=ExtResource( 16 )]
+position = Vector2( 1, 17000 )
+
+[node name="Mine23" parent="Battlefield/Middleground/ParadeVariants/B" index="75" instance=ExtResource( 16 )]
+position = Vector2( -399, 16600 )
+
+[node name="Mine24" parent="Battlefield/Middleground/ParadeVariants/B" index="76" instance=ExtResource( 16 )]
+position = Vector2( 401, 16600 )
+
+[node name="Mine25" parent="Battlefield/Middleground/ParadeVariants/B" index="77" instance=ExtResource( 16 )]
+position = Vector2( 1, 17800 )
+
+[node name="Mine26" parent="Battlefield/Middleground/ParadeVariants/B" index="78" instance=ExtResource( 16 )]
+position = Vector2( -399, 17400 )
+
+[node name="Mine27" parent="Battlefield/Middleground/ParadeVariants/B" index="79" instance=ExtResource( 16 )]
+position = Vector2( 401, 17400 )
+
+[node name="Alien67" parent="Battlefield/Middleground/ParadeVariants/B" index="80" instance=ExtResource( 15 )]
+position = Vector2( 0, 18200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine28" parent="Battlefield/Middleground/ParadeVariants/B" index="81" instance=ExtResource( 16 )]
+position = Vector2( 1, 18600 )
+
+[node name="Mine29" parent="Battlefield/Middleground/ParadeVariants/B" index="82" instance=ExtResource( 16 )]
+position = Vector2( -399, 18200 )
+
+[node name="Mine30" parent="Battlefield/Middleground/ParadeVariants/B" index="83" instance=ExtResource( 16 )]
+position = Vector2( 401, 18200 )
+
+[node name="C" type="Node2D" parent="Battlefield/Middleground/ParadeVariants" index="2"]
+visible = false
+
+[node name="Alien41" parent="Battlefield/Middleground/ParadeVariants/C" index="0" instance=ExtResource( 15 )]
+position = Vector2( 600, 6200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien2" parent="Battlefield/Middleground/ParadeVariants/C" index="1" instance=ExtResource( 15 )]
+position = Vector2( -200, 950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien35" parent="Battlefield/Middleground/ParadeVariants/C" index="2" instance=ExtResource( 15 )]
+position = Vector2( -200, 1350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien36" parent="Battlefield/Middleground/ParadeVariants/C" index="3" instance=ExtResource( 15 )]
+position = Vector2( 200, 1350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien3" parent="Battlefield/Middleground/ParadeVariants/C" index="4" instance=ExtResource( 15 )]
+position = Vector2( -600, 4550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien5" parent="Battlefield/Middleground/ParadeVariants/C" index="5" instance=ExtResource( 15 )]
+position = Vector2( 600, 2950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien4" parent="Battlefield/Middleground/ParadeVariants/C" index="6" instance=ExtResource( 15 )]
+position = Vector2( -600, 2950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien38" parent="Battlefield/Middleground/ParadeVariants/C" index="7" instance=ExtResource( 15 )]
+position = Vector2( 600, 2550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien43" parent="Battlefield/Middleground/ParadeVariants/C" index="8" instance=ExtResource( 15 )]
+position = Vector2( -600, 2550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien32" parent="Battlefield/Middleground/ParadeVariants/C" index="9" instance=ExtResource( 15 )]
+position = Vector2( -600, 3350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien33" parent="Battlefield/Middleground/ParadeVariants/C" index="10" instance=ExtResource( 15 )]
+position = Vector2( 600, 3350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien8" parent="Battlefield/Middleground/ParadeVariants/C" index="11" instance=ExtResource( 15 )]
+position = Vector2( 200, 950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien42" parent="Battlefield/Middleground/ParadeVariants/C" index="12" instance=ExtResource( 15 )]
+position = Vector2( -600, 7250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien26" parent="Battlefield/Middleground/ParadeVariants/C" index="13" instance=ExtResource( 15 )]
+position = Vector2( 600, 7250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien64" parent="Battlefield/Middleground/ParadeVariants/C" index="14" instance=ExtResource( 15 )]
+position = Vector2( -600, 8050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien65" parent="Battlefield/Middleground/ParadeVariants/C" index="15" instance=ExtResource( 15 )]
+position = Vector2( 600, 8050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien27" parent="Battlefield/Middleground/ParadeVariants/C" index="16" instance=ExtResource( 15 )]
+position = Vector2( -600, 8550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien28" parent="Battlefield/Middleground/ParadeVariants/C" index="17" instance=ExtResource( 15 )]
+position = Vector2( 200, 7650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien29" parent="Battlefield/Middleground/ParadeVariants/C" index="18" instance=ExtResource( 15 )]
+position = Vector2( -200, 7650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien31" parent="Battlefield/Middleground/ParadeVariants/C" index="19" instance=ExtResource( 15 )]
+position = Vector2( 600, 8550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien9" parent="Battlefield/Middleground/ParadeVariants/C" index="20" instance=ExtResource( 15 )]
+position = Vector2( 600, 4150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien11" parent="Battlefield/Middleground/ParadeVariants/C" index="21" instance=ExtResource( 15 )]
+position = Vector2( 200, 3750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien12" parent="Battlefield/Middleground/ParadeVariants/C" index="22" instance=ExtResource( 15 )]
+position = Vector2( -200, 3750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien13" parent="Battlefield/Middleground/ParadeVariants/C" index="23" instance=ExtResource( 15 )]
+position = Vector2( -200, 4850 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien14" parent="Battlefield/Middleground/ParadeVariants/C" index="24" instance=ExtResource( 15 )]
+position = Vector2( 600, 4550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien39" parent="Battlefield/Middleground/ParadeVariants/C" index="25" instance=ExtResource( 15 )]
+position = Vector2( -600, 4150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien6" parent="Battlefield/Middleground/ParadeVariants/C" index="26" instance=ExtResource( 15 )]
+position = Vector2( -600, 5650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien10" parent="Battlefield/Middleground/ParadeVariants/C" index="27" instance=ExtResource( 15 )]
+position = Vector2( 600, 5250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien62" parent="Battlefield/Middleground/ParadeVariants/C" index="28" instance=ExtResource( 15 )]
+position = Vector2( 600, 5650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien63" parent="Battlefield/Middleground/ParadeVariants/C" index="29" instance=ExtResource( 15 )]
+position = Vector2( -600, 5250 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien40" parent="Battlefield/Middleground/ParadeVariants/C" index="30" instance=ExtResource( 15 )]
+position = Vector2( 200, 4850 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien17" parent="Battlefield/Middleground/ParadeVariants/C" index="31" instance=ExtResource( 15 )]
+position = Vector2( 200, 5650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien18" parent="Battlefield/Middleground/ParadeVariants/C" index="32" instance=ExtResource( 15 )]
+position = Vector2( -200, 5650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien19" parent="Battlefield/Middleground/ParadeVariants/C" index="33" instance=ExtResource( 15 )]
+position = Vector2( -600, 6200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien15" parent="Battlefield/Middleground/ParadeVariants/C" index="34" instance=ExtResource( 15 )]
+position = Vector2( -600, 9400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien21" parent="Battlefield/Middleground/ParadeVariants/C" index="35" instance=ExtResource( 15 )]
+position = Vector2( -200, 9000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien24" parent="Battlefield/Middleground/ParadeVariants/C" index="36" instance=ExtResource( 15 )]
+position = Vector2( 600, 9400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien44" parent="Battlefield/Middleground/ParadeVariants/C" index="37" instance=ExtResource( 15 )]
+position = Vector2( 200, 9000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien25" parent="Battlefield/Middleground/ParadeVariants/C" index="38" instance=ExtResource( 15 )]
+position = Vector2( 200, 13300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien30" parent="Battlefield/Middleground/ParadeVariants/C" index="39" instance=ExtResource( 15 )]
+position = Vector2( -200, 13300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien34" parent="Battlefield/Middleground/ParadeVariants/C" index="40" instance=ExtResource( 15 )]
+position = Vector2( 200, 12900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien37" parent="Battlefield/Middleground/ParadeVariants/C" index="41" instance=ExtResource( 15 )]
+position = Vector2( -200, 12900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien45" parent="Battlefield/Middleground/ParadeVariants/C" index="42" instance=ExtResource( 15 )]
+position = Vector2( -600, 13700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien46" parent="Battlefield/Middleground/ParadeVariants/C" index="43" instance=ExtResource( 15 )]
+position = Vector2( 600, 13700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien48" parent="Battlefield/Middleground/ParadeVariants/C" index="44" instance=ExtResource( 15 )]
+position = Vector2( -600, 14150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien49" parent="Battlefield/Middleground/ParadeVariants/C" index="45" instance=ExtResource( 15 )]
+position = Vector2( 600, 14150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien52" parent="Battlefield/Middleground/ParadeVariants/C" index="46" instance=ExtResource( 15 )]
+position = Vector2( -600, 14600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien56" parent="Battlefield/Middleground/ParadeVariants/C" index="47" instance=ExtResource( 15 )]
+position = Vector2( 600, 14600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien59" parent="Battlefield/Middleground/ParadeVariants/C" index="48" instance=ExtResource( 15 )]
+position = Vector2( -600, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien60" parent="Battlefield/Middleground/ParadeVariants/C" index="49" instance=ExtResource( 15 )]
+position = Vector2( 600, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien47" parent="Battlefield/Middleground/ParadeVariants/C" index="50" instance=ExtResource( 15 )]
+position = Vector2( -200, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien50" parent="Battlefield/Middleground/ParadeVariants/C" index="51" instance=ExtResource( 15 )]
+position = Vector2( 200, 15000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien51" parent="Battlefield/Middleground/ParadeVariants/C" index="52" instance=ExtResource( 15 )]
+position = Vector2( 600, 10600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien53" parent="Battlefield/Middleground/ParadeVariants/C" index="53" instance=ExtResource( 15 )]
+position = Vector2( 200, 10200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien54" parent="Battlefield/Middleground/ParadeVariants/C" index="54" instance=ExtResource( 15 )]
+position = Vector2( -200, 10200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien55" parent="Battlefield/Middleground/ParadeVariants/C" index="55" instance=ExtResource( 15 )]
+position = Vector2( -200, 11050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien57" parent="Battlefield/Middleground/ParadeVariants/C" index="56" instance=ExtResource( 15 )]
+position = Vector2( -600, 10600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien58" parent="Battlefield/Middleground/ParadeVariants/C" index="57" instance=ExtResource( 15 )]
+position = Vector2( 200, 11050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien61" parent="Battlefield/Middleground/ParadeVariants/C" index="58" instance=ExtResource( 15 )]
+position = Vector2( 200, 12150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien69" parent="Battlefield/Middleground/ParadeVariants/C" index="59" instance=ExtResource( 15 )]
+position = Vector2( -200, 12150 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine2" parent="Battlefield/Middleground/ParadeVariants/C" index="60" instance=ExtResource( 16 )]
+position = Vector2( -600, 7650 )
+
+[node name="Mine3" parent="Battlefield/Middleground/ParadeVariants/C" index="61" instance=ExtResource( 16 )]
+position = Vector2( 601, 7650 )
+
+[node name="Mine4" parent="Battlefield/Middleground/ParadeVariants/C" index="62" instance=ExtResource( 16 )]
+position = Vector2( 601, 9000 )
+
+[node name="Mine5" parent="Battlefield/Middleground/ParadeVariants/C" index="63" instance=ExtResource( 16 )]
+position = Vector2( -599, 9000 )
+
+[node name="Mine7" parent="Battlefield/Middleground/ParadeVariants/C" index="64" instance=ExtResource( 16 )]
+position = Vector2( 1, 10600 )
+
+[node name="Mine8" parent="Battlefield/Middleground/ParadeVariants/C" index="65" instance=ExtResource( 16 )]
+position = Vector2( -599, 10200 )
+
+[node name="Mine13" parent="Battlefield/Middleground/ParadeVariants/C" index="66" instance=ExtResource( 16 )]
+position = Vector2( -599, 11050 )
+
+[node name="Mine14" parent="Battlefield/Middleground/ParadeVariants/C" index="67" instance=ExtResource( 16 )]
+position = Vector2( 601, 11050 )
+
+[node name="Mine15" parent="Battlefield/Middleground/ParadeVariants/C" index="68" instance=ExtResource( 16 )]
+position = Vector2( 601, 10200 )
+
+[node name="Mine10" parent="Battlefield/Middleground/ParadeVariants/C" index="69" instance=ExtResource( 16 )]
+position = Vector2( 1, 12550 )
+
+[node name="Mine19" parent="Battlefield/Middleground/ParadeVariants/C" index="70" instance=ExtResource( 16 )]
+position = Vector2( -600, 15400 )
+
+[node name="Mine20" parent="Battlefield/Middleground/ParadeVariants/C" index="71" instance=ExtResource( 16 )]
+position = Vector2( 600, 15400 )
+
+[node name="Alien66" parent="Battlefield/Middleground/ParadeVariants/C" index="72" instance=ExtResource( 15 )]
+position = Vector2( 0, 17400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien72" parent="Battlefield/Middleground/ParadeVariants/C" index="73" instance=ExtResource( 15 )]
+position = Vector2( -400, 17400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien73" parent="Battlefield/Middleground/ParadeVariants/C" index="74" instance=ExtResource( 15 )]
+position = Vector2( 400, 17400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien70" parent="Battlefield/Middleground/ParadeVariants/C" index="75" instance=ExtResource( 15 )]
+position = Vector2( 0, 17000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien71" parent="Battlefield/Middleground/ParadeVariants/C" index="76" instance=ExtResource( 15 )]
+position = Vector2( 0, 17800 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien68" parent="Battlefield/Middleground/ParadeVariants/C" index="77" instance=ExtResource( 15 )]
+position = Vector2( 0, 16600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine21" parent="Battlefield/Middleground/ParadeVariants/C" index="78" instance=ExtResource( 16 )]
+position = Vector2( 1, 16200 )
+
+[node name="Mine23" parent="Battlefield/Middleground/ParadeVariants/C" index="79" instance=ExtResource( 16 )]
+position = Vector2( -399, 16600 )
+
+[node name="Mine24" parent="Battlefield/Middleground/ParadeVariants/C" index="80" instance=ExtResource( 16 )]
+position = Vector2( 401, 16600 )
+
+[node name="Alien67" parent="Battlefield/Middleground/ParadeVariants/C" index="81" instance=ExtResource( 15 )]
+position = Vector2( 0, 18200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine28" parent="Battlefield/Middleground/ParadeVariants/C" index="82" instance=ExtResource( 16 )]
+position = Vector2( 1, 18600 )
+
+[node name="Mine29" parent="Battlefield/Middleground/ParadeVariants/C" index="83" instance=ExtResource( 16 )]
+position = Vector2( -399, 18200 )
+
+[node name="Mine30" parent="Battlefield/Middleground/ParadeVariants/C" index="84" instance=ExtResource( 16 )]
+position = Vector2( 401, 18200 )
+
+[node name="GlassVariants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+
+[node name="A" type="Node2D" parent="Battlefield/Middleground/GlassVariants" index="0"]
+
+[node name="NoShipZone" parent="Battlefield/Middleground/GlassVariants/A" index="0" instance=ExtResource( 17 )]
+position = Vector2( -1050, -400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/A/NoShipZone" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 200
+bevel_sw = 50
+bevel_se = 200
+
+[node name="NoShipZone2" parent="Battlefield/Middleground/GlassVariants/A" index="1" instance=ExtResource( 17 )]
+position = Vector2( 1050, 400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/A/NoShipZone2" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 200
+bevel_ne = 50
+bevel_sw = 200
+bevel_se = 50
+
+[node name="B" type="Node2D" parent="Battlefield/Middleground/GlassVariants" index="1"]
+visible = false
+
+[node name="NoShipZone" parent="Battlefield/Middleground/GlassVariants/B" index="0" instance=ExtResource( 17 )]
+position = Vector2( -1050, 400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/B/NoShipZone" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 200
+bevel_sw = 50
+bevel_se = 200
+
+[node name="NoShipZone2" parent="Battlefield/Middleground/GlassVariants/B" index="1" instance=ExtResource( 17 )]
+position = Vector2( 1050, -400 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/GlassVariants/B/NoShipZone2" index="11"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 200
+bevel_ne = 50
+bevel_sw = 200
+bevel_se = 50
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( -600, -1100 )
+position = Vector2( -600, -800 )
 rotation = 1.5708
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( -200, -1100 )
+position = Vector2( -200, -800 )
 rotation = 1.5708
 controls = "joy2"
 species = ExtResource( 7 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( 200, -1100 )
+position = Vector2( 200, -800 )
 rotation = 1.5708
 controls = "joy1"
 species = ExtResource( 10 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 5 )]
-position = Vector2( 600, -1100 )
+position = Vector2( 600, -800 )
 rotation = 1.5708
 controls = "kb2"
 species = ExtResource( 3 )
 
 [node name="Camera" parent="." index="7"]
+current = false
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 disabled_override = true
+
+[node name="Camera2D" type="Camera2D" parent="." index="10"]
+position = Vector2( 0, -350 )
+current = true
+zoom = Vector2( 5.2, 5.2 )
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

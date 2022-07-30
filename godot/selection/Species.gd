@@ -21,3 +21,5 @@ export var color_2 : Color
 func get_monogram():
 	return name.left(1).to_upper()
 	
+func get_ship() -> Texture:
+	return ship

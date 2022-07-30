@@ -19,6 +19,7 @@ export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
+export var IceScene : PackedScene
 
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
@@ -254,7 +255,7 @@ func _ready():
 			if i >= len(array_players):
 				break
 				
-			info_player = array_players[i] 
+			info_player = array_players[i]
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
@@ -372,7 +373,15 @@ func _ready():
 	else:
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
-		
+			
+	if global.is_match_running():
+		# manage the coming of winter
+		var draft_card = global.the_match.get_draft_card()
+		if draft_card != null and draft_card.is_winter():
+			var ice = IceScene.instance()
+			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
+			$Battlefield/Background.add_child(ice)
+	
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
@@ -897,7 +906,7 @@ func respawn_from_home(ship, spawner):
 	
 func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')
-	killable.connect('killed', combat_manager, '_on_sth_killed')
+	#killable.connect('killed', combat_manager, '_on_sth_killed')
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)
@@ -922,9 +931,9 @@ func _on_sth_just_froze(sth):
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
 	rock.call_deferred('start')
 
-func _on_goal_done(player, goal, pos):
-	global.the_match.add_score_to_team(player.team, goal.get_score())
-	show_msg(player.species, goal.get_score(), pos)
+func _on_goal_done(player, goal, pos, points=1):
+	global.the_match.add_score_to_team(player.team, points)
+	show_msg(player.species, points, pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):

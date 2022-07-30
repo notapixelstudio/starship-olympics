@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://assets/icon/minicards/sets/flowsnake.png" type="Texture" id=1]
-[ext_resource path="res://assets/icon/asteroid_survival_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
 
 [resource]
@@ -10,8 +9,7 @@ id = "flowsnake"
 is_mutator = false
 name = "Flowsnake"
 icon = ExtResource( 1 )
-logo = ExtResource( 2 )
-description = "survive as long as you can"
+description = "survive the deadly tails"
 tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
 tagline_cons = "Getting killed will make you lose most of the coins"
 max_timeout = 30
@@ -23,6 +21,7 @@ starting_lives = 1
 starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
+fill_starting_score = false
 death = false
 last_man = false
 crown = false
@@ -32,12 +31,13 @@ goal = false
 survival = true
 race = false
 pursuing_bombs = true
-shoot_bombs = true
-deadly_trails = false
+shoot_bombs = false
+deadly_trails = true
 deadly_trails_duration = 30.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
+auto_thrust = true
 floodable = false
 flood = false
 laserable = false
