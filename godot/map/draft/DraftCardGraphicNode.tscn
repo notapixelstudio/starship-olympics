@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 size = 96
@@ -97,6 +98,11 @@ texture = ExtResource( 4 )
 [node name="Sprite2" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
+
+[node name="Mystery" type="Sprite" parent="Ground/Front" index="10"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false

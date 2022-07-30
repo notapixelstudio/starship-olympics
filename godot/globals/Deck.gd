@@ -16,7 +16,7 @@ func _init():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	#var starting_deck = load(DECK_PATH+'/test.tres')
+	#var starting_deck = load(DECK_PATH+'/classic.tres')
 	append_cards(starting_deck.minigames)
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
@@ -44,11 +44,11 @@ func draw(how_many : int) -> Array:
 		print(cards)
 		
 	var result = []
-	for i in range(how_many):
+	for i in range(min(how_many, len(cards))):
 		var card = cards.pop_front()
 		assert(card is DraftCard)
-		if card != null:
-			result.append(card)
+		card.on_card_drawn()
+		result.append(card)
 	return result
 	
 func shuffle():

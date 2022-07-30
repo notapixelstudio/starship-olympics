@@ -29,3 +29,7 @@ func has_enough_strikes() -> bool:
 	
 func is_winter() -> bool:
 	return winter
+
+func on_card_drawn() -> void:
+	pass
+	
