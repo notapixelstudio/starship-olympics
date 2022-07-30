@@ -907,7 +907,7 @@ func respawn_from_home(ship, spawner):
 	
 func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')
-	killable.connect('killed', combat_manager, '_on_sth_killed')
+	#killable.connect('killed', combat_manager, '_on_sth_killed')
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)

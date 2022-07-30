@@ -19,8 +19,8 @@ var new := false
 var times_started := 0
 var strikes := 0
 
-func get_id(): # FIXME? this resource should have its own ID
-	return game_mode.get_id()
+func get_id():
+	return id
 	
 func get_icon():
 	return game_mode.get_icon()
