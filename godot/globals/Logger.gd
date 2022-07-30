@@ -27,8 +27,6 @@ func _init():
 	file.open(LOG_PATH, File.WRITE)
 	file.seek_end()
 	
-	#Events.connect('minigame_selected', self, '_on_minigame_selected')
-	
 	Events.connect('execution_started', self, '_on_execution_started')
 	Events.connect('game_started', self, '_on_game_started')
 	Events.connect('session_started', self, '_on_session_started')
@@ -38,7 +36,7 @@ func _init():
 	Events.connect('game_ended', self, '_on_game_ended')
 	Events.connect('execution_ended', self, '_on_execution_ended')
 	
-func _on_minigame_selected(picked_card:DraftCard, minigame: Minigame) -> void:
+func _on_minigame_selected(picked_card: DraftCard, minigame: Minigame) -> void:
 	log_event({
 		'event_name': 'minigame_selected',
 		'card': picked_card.get_id(),

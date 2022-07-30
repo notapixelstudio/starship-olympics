@@ -60,7 +60,7 @@ func continue_draft(session_ended):
 	
 	if not session_ended:
 		# cleanup if session continues
-		var last_played_card = hand_node.get_card(last_match_info["minigame_id"])
+		var last_played_card = hand_node.get_card(last_match_info["card_id"])
 		last_played_card.queue_free()
 	
 	ships_have_to_choose = false

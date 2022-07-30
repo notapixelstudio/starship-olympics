@@ -16,8 +16,8 @@ var times_started := 0
 export var winter : bool = false
 
 
-func get_id():
-	return get_rid()
+func get_id() -> String:
+	return str(get_rid().get_id())
 	
 func get_icon():
 	return game_mode.get_icon()
