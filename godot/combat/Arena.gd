@@ -19,6 +19,7 @@ export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
+export var IceScene : PackedScene
 
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
@@ -254,7 +255,7 @@ func _ready():
 			if i >= len(array_players):
 				break
 				
-			info_player = array_players[i] 
+			info_player = array_players[i]
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
@@ -372,7 +373,16 @@ func _ready():
 	else:
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
-		
+			
+	if global.is_match_running():
+		# manage the coming of winter
+		var minigame = global.the_match.get_minigame()
+		if minigame != null and minigame.is_winter():
+			var ice = IceScene.instance()
+			var gshape = $Battlefield/Background/OutsideWall.get_gshape().duplicate()
+			ice.add_child(gshape)
+			$Battlefield/Background.add_child(ice)
+	
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
@@ -897,7 +907,7 @@ func respawn_from_home(ship, spawner):
 	
 func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')
-	killable.connect('killed', combat_manager, '_on_sth_killed')
+	#killable.connect('killed', combat_manager, '_on_sth_killed')
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)

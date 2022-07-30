@@ -200,7 +200,7 @@ func to_dict()->Dictionary:
 	return {
 		"uuid": get_uuid(),
 		"winners": winners,
-		"minigame_id": game_mode.id,
+		"minigame_id": minigame.get_id(),
 		"winners_did_perfect": self.winners_did_perfect()
 	}
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=13]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=14]
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=15]
-[ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=18]
 
@@ -77,15 +76,6 @@ width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
 end_cap_mode = 2
-
-[node name="Ice" parent="Battlefield/Background" index="5" instance=ExtResource( 16 )]
-
-[node name="GCircle" type="Node" parent="Battlefield/Background/Ice" index="4"]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-radius = 1700
 
 [node name="PentaGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 17 )]
 position = Vector2( -850, 0 )
