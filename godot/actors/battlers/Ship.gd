@@ -55,8 +55,9 @@ const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 const ARKABALL_OFFSET = 250
 const ARKABALL_MULTIPLIER = 3
-const ON_ICE_MAX_THRUST = 1800
-const ON_ICE_MAX_DASH = 3400
+const ON_ICE_MAX_THRUST = 2200
+const ON_ICE_MAX_DASH = 2500
+const ON_ICE_CHARGE_BRAKE = 0.99
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
@@ -296,7 +297,7 @@ func _integrate_forces(state):
 	
 	# brake if on ice
 	if charging and is_on_ice():
-		state.linear_velocity *= 0.99
+		state.linear_velocity *= ON_ICE_CHARGE_BRAKE
 	
 	# store velocity as a readable var
 	previous_velocity = velocity
