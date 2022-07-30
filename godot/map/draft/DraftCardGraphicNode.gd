@@ -30,6 +30,8 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/MinigameLabelWrapper.visible = not card is MysteryCard
 	$Ground/Front/MinigameIcon.visible = not card is MysteryCard
 	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard
+	if card is MysteryCard:
+		$Ground/Front/Mystery.texture = card.get_cover()
 	
 # @override
 func tap(author):

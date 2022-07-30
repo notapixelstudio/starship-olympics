@@ -16,7 +16,7 @@ func _init():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	#var starting_deck = load(DECK_PATH+'/test.tres')
+	#var starting_deck = load(DECK_PATH+'/classic.tres')
 	append_cards(starting_deck.minigames)
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
