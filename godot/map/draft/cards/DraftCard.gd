@@ -33,3 +33,6 @@ func is_winter() -> bool:
 func on_card_drawn() -> void:
 	pass
 	
+func has_level_for_player_count(player_count: int) -> bool:
+	return minigame.has_level_for_player_count(player_count)
+	
