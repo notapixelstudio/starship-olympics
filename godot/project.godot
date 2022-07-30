@@ -169,10 +169,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/Diamond.gd"
 }, {
-"base": "Card",
+"base": "Resource",
 "class": "DraftCard",
 "language": "GDScript",
 "path": "res://map/draft/DraftCard.gd"
+}, {
+"base": "Card",
+"class": "DraftCardGraphicNode",
+"language": "GDScript",
+"path": "res://map/draft/DraftCardGraphicNode.gd"
 }, {
 "base": "Node",
 "class": "Entity",
@@ -633,6 +638,7 @@ _global_script_class_icons={
 "DeepGel": "",
 "Diamond": "",
 "DraftCard": "",
+"DraftCardGraphicNode": "",
 "Entity": "",
 "Explosion": "",
 "Field": "",
