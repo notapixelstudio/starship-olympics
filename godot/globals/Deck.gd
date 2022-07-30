@@ -22,7 +22,6 @@ func _init():
 	var pools = global.get_resources(CARD_POOL_PATH)
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
-	print("RISORSA: {pool}".format({"pool":card_pool.resource_path.get_basename().get_file()}))
 	
 	for starting_minigame in starting_deck.minigames:
 		card_pool.remove_card(starting_minigame)
@@ -47,6 +46,7 @@ func draw(how_many : int) -> Array:
 	var result = []
 	for i in range(how_many):
 		var card = cards.pop_front()
+		assert(card is DraftCard)
 		if card != null:
 			result.append(card)
 	return result

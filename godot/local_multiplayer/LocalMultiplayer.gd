@@ -93,10 +93,8 @@ var selected_sets_by_player : Dictionary = {}
 var minigame_pools : Dictionary = {}
 var last_minigame = null
 
-func _on_minigame_selected(minigame: Minigame):
-	start_match(minigame)
-
-func start_match(minigame: Minigame) -> void:
+func _on_minigame_selected(picked_card:DraftCard, minigame: Minigame):
+	# start match
 	minigame.increase_times_started()
 	next_level(minigame)
 	

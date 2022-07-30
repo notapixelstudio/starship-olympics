@@ -38,9 +38,10 @@ func _init():
 	Events.connect('game_ended', self, '_on_game_ended')
 	Events.connect('execution_ended', self, '_on_execution_ended')
 	
-func _on_minigame_selected(minigame: Minigame) -> void:
+func _on_minigame_selected(picked_card:DraftCard, minigame: Minigame) -> void:
 	log_event({
 		'event_name': 'minigame_selected',
+		'card': picked_card.get_id(),
 		'minigame': minigame.get_id()
 	}, true)
 

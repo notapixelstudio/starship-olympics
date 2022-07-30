@@ -22,8 +22,9 @@ func set_minigame_icon(texture):
 
 func set_content_card(card: DraftCard):
 	card_content = card
-	self.set_minigame_label(card.get_name())
-	self.set_minigame_icon(card.get_icon())
+	var minigame: Minigame = card.get_minigame()
+	self.set_minigame_label(minigame.get_name())
+	self.set_minigame_icon(minigame.get_icon())
 	$Ground/Front/MinigameLabelWrapper/NewLabel.visible = card_content.new
 	
 # @override
