@@ -26,6 +26,7 @@ func set_content_card(card: DraftCard):
 	self.set_minigame_label(minigame.get_name())
 	self.set_minigame_icon(minigame.get_icon())
 	$Ground/Front/MinigameLabelWrapper/NewLabel.visible = card_content.new
+	$Ground/Front/Mystery.visible = card is MysteryCard
 	
 # @override
 func tap(author):

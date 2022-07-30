@@ -44,11 +44,11 @@ func draw(how_many : int) -> Array:
 		print(cards)
 		
 	var result = []
-	for i in range(how_many):
+	for i in range(min(how_many, len(cards))):
 		var card = cards.pop_front()
 		assert(card is DraftCard)
-		if card != null:
-			result.append(card)
+		card.on_card_drawn()
+		result.append(card)
 	return result
 	
 func shuffle():
