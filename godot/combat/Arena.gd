@@ -323,8 +323,12 @@ func _ready():
 		game_mode.max_timeout = match_duration_override
 		
 	if show_intro:
-		mode_description.gamemode = game_mode
+		mode_description.set_gamemode(game_mode)
 		mode_description.appears()
+
+		if global.is_match_running():
+			mode_description.set_draft_card(global.the_match.get_draft_card())
+
 		if demo:
 			# demo will wait 1 second and create a CPU match
 			mode_description.demomode(demo)

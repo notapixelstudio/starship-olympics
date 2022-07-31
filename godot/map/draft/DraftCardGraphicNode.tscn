@@ -8,12 +8,14 @@
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=7]
 
-[sub_resource type="DynamicFont" id=2]
-size = 96
-font_data = ExtResource( 6 )
-
 [sub_resource type="DynamicFont" id=1]
 size = 96
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 72
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -30,7 +32,7 @@ multiple_owners = true
 float_when_selected = false
 
 [node name="Background" parent="Ground/Front" index="0"]
-modulate = Color( 0.9, 0.9, 0.9, 1 )
+modulate = Color( 0.901961, 0.901961, 0.901961, 1 )
 
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true
@@ -51,13 +53,17 @@ position = Vector2( 0, -36 )
 position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="MinigameLabelShadow" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]
-modulate = Color( 0, 0, 0, 0.313726 )
+[node name="MinigameLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]
+modulate = Color( 1, 0.870588, 0.372549, 1 )
+self_modulate = Color( 0.92, 0.92, 0.92, 1 )
 margin_left = -900.0
-margin_top = 36.0
+margin_top = 20.0
 margin_right = 900.0
-margin_bottom = 348.0
-custom_fonts/font = SubResource( 2 )
+margin_bottom = 334.0
+custom_colors/font_color_shadow = Color( 1, 0.533333, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 1 )
 text = "MINIGAME"
 align = 1
 valign = 1
@@ -65,15 +71,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="MinigameLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="1"]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
+[node name="WinterLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="1"]
+modulate = Color( 0.615686, 0.921569, 1, 1 )
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
 margin_left = -900.0
-margin_top = 20.0
+margin_top = -55.0
 margin_right = 900.0
-margin_bottom = 334.0
-custom_fonts/font = SubResource( 1 )
-text = "MINIGAME"
+margin_bottom = 259.0
+custom_colors/font_color_shadow = Color( 0, 0.533333, 0.964706, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+custom_constants/shadow_as_outline = 0
+custom_fonts/font = SubResource( 4 )
+text = "WINTER"
 align = 1
 valign = 1
 __meta__ = {

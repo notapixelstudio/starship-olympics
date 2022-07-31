@@ -16,15 +16,15 @@ func _init():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	#var starting_deck = load(DECK_PATH+'/classic.tres')
-	append_cards(starting_deck.minigames)
+	#var starting_deck = load(DECK_PATH+'/winter.tres')
+	append_cards(starting_deck.cards)
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
 	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
 	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
 	
-	for starting_minigame in starting_deck.minigames:
-		card_pool.remove_card(starting_minigame)
+	for starting_card in starting_deck.cards:
+		card_pool.remove_card(starting_card)
 	
 	# WARNING these are fixed at the moment
 	# they also have to provide levels for each player count
