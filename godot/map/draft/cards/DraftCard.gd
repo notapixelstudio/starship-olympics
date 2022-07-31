@@ -36,3 +36,14 @@ func on_card_drawn() -> void:
 func has_level_for_player_count(player_count: int) -> bool:
 	return minigame.has_level_for_player_count(player_count)
 	
+func get_available_player_counts() -> Array:
+	return minigame.get_available_player_counts()
+	
+func get_name() -> String:
+	return minigame.get_name()
+	
+func get_description() -> String:
+	return minigame.get_description()
+	
+func get_icon() -> Texture:
+	return minigame.get_icon()

@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://ui/minigame_list/MinigameListItem.gd" type="Script" id=1]
+[ext_resource path="res://ui/minigame_list/CollectionItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=4]
@@ -14,19 +14,15 @@ font_data = ExtResource( 2 )
 size = 28
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 22
+font_data = ExtResource( 2 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 22
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 12
-font_data = ExtResource( 3 )
-
-[node name="MinigameListItem" type="ColorRect"]
+[node name="CollectionItem" type="ColorRect"]
 margin_left = 942.0
 margin_right = 942.0
 margin_bottom = 720.0
@@ -88,6 +84,20 @@ bbcode_enabled = true
 bbcode_text = "[center]1234[/center]"
 text = "1234"
 
+[node name="Wrapper" type="Node2D" parent="HBoxContainer/Texts/HBoxContainer"]
+position = Vector2( 8, -23 )
+
+[node name="Winter" type="Label" parent="HBoxContainer/Texts/HBoxContainer/Wrapper"]
+modulate = Color( 0.615686, 0.921569, 1, 1 )
+margin_left = -8.0
+margin_top = 1.0
+margin_right = 66.0
+margin_bottom = 44.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 6 )
+text = "Winter"
+
 [node name="Description" type="Label" parent="HBoxContainer/Texts"]
 margin_top = 371.0
 margin_right = 640.0
@@ -95,36 +105,3 @@ margin_bottom = 396.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
 custom_constants/shadow_offset_y = 4
 custom_fonts/font = SubResource( 2 )
-
-[node name="Unlocks" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 818.0
-margin_right = 878.0
-margin_bottom = 720.0
-size_flags_vertical = 3
-
-[node name="Id" type="Label" parent="HBoxContainer/Unlocks"]
-modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
-margin_right = 60.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
-custom_constants/shadow_offset_y = 4
-custom_fonts/font = SubResource( 4 )
-valign = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Unlocks"]
-margin_top = 40.0
-margin_right = 60.0
-margin_bottom = 62.0
-rect_min_size = Vector2( 0, 22 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
-custom_constants/shadow_offset_y = 4
-custom_fonts/font = SubResource( 3 )
-text = "Unlocks"
-valign = 2
-
-[node name="List" type="HBoxContainer" parent="HBoxContainer/Unlocks"]
-margin_top = 66.0
-margin_right = 60.0
-margin_bottom = 120.0
-rect_min_size = Vector2( 0, 54 )

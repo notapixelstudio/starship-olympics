@@ -1,6 +1,8 @@
 extends DraftCard
 class_name MysteryCard
 
+export var name : String
+export var description : String
 export var mystery_cover : Texture
 export var subcards : Array = []
 var current_subcard : DraftCard = null
@@ -28,3 +30,21 @@ func has_level_for_player_count(player_count: int) -> bool:
 		if not subcard.has_level_for_player_count(player_count):
 			return false
 	return true
+	
+# this has to call MysteryCard.has_level_for_player_count()
+func get_available_player_counts() -> Array:
+	var possible_player_counts := [1,2,3,4]
+	var player_counts := []
+	for player_count in possible_player_counts:
+		if self.has_level_for_player_count(player_count):
+			player_counts.append(player_count)
+	return player_counts
+	
+func get_name() -> String:
+	return name
+	
+func get_description() -> String:
+	return description
+	
+func get_icon() -> Texture:
+	return get_cover()
