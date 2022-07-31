@@ -25,6 +25,7 @@ var last_contact_normal = null
 var target_velocity := Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
+var drift := Vector2(0,0)
 
 var THRUST = 6500
 var auto_thrust := false
@@ -295,9 +296,13 @@ func _integrate_forces(state):
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
-	# brake if on ice
-	if charging and is_on_ice():
-		state.linear_velocity *= ON_ICE_CHARGE_BRAKE
+	if is_on_ice():
+		# brake if charging on ice
+		if charging:
+			state.linear_velocity *= ON_ICE_CHARGE_BRAKE
+			
+		# compute drift velocity
+		drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
 	
 	# store velocity as a readable var
 	previous_velocity = velocity
