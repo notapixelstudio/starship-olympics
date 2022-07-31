@@ -60,7 +60,7 @@ const ARKABALL_MULTIPLIER = 3
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
-const MIN_DRIFT := 500.0
+const MIN_DRIFT := 400.0
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
@@ -249,10 +249,6 @@ func _process(_delta):
 		$Graphics/ChargeBar/BombPreview.rotation = -global_rotation
 	continuous_collision_check()
 	
-	if is_on_ice() and drifting:
-		$SnowParticles.global_rotation = drift.angle()
-		$SnowParticles.process_material.initial_velocity = min(drift.length()*6, 6000)
-	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
@@ -319,8 +315,8 @@ func _integrate_forces(state):
 		if not drifting and drift.length() > MIN_DRIFT:
 			start_drift()
 			
-		if drifting and drift.length() <= MIN_DRIFT:
-			end_drift()
+	if drifting and drift.length() <= MIN_DRIFT or not is_on_ice():
+		end_drift()
 	
 	# store velocity as a readable var
 	previous_velocity = velocity
@@ -934,12 +930,10 @@ func get_previous_global_position(): # Vector2 or null
 
 func start_drift():
 	drifting = true
-	$SnowParticles.emitting = true
 	$IceAutoTrail.create_trail()
 	emit_signal("drift_started")
 	
 func end_drift():
 	drifting = false
-	$SnowParticles.emitting = false
 	$IceAutoTrail.drop_trail()
 	emit_signal("drift_ended")

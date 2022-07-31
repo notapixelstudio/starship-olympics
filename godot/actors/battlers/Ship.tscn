@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -41,34 +41,6 @@
 friction = 0.0
 bounce = 0.5
 
-[sub_resource type="CanvasItemMaterial" id=6]
-
-[sub_resource type="Curve" id=11]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0271084, 0.4287 ), 10.4357, 10.4357, 0, 0, Vector2( 0.506626, 0.269856 ), -0.956294, -0.956294, 0, 0, Vector2( 1, 0 ), 0.125131, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=12]
-curve = SubResource( 11 )
-
-[sub_resource type="ParticlesMaterial" id=10]
-resource_local_to_scene = true
-emission_shape = 2
-emission_box_extents = Vector3( 120, 1, 1 )
-flag_disable_z = true
-spread = 5.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 400.0
-initial_velocity_random = 0.5
-angular_velocity = 10.0
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 5000.0
-angle = 360.0
-angle_random = 1.0
-scale = 12.0
-scale_random = 0.5
-scale_curve = SubResource( 12 )
-
 [sub_resource type="CircleShape2D" id=2]
 radius = 48.0
 
@@ -80,6 +52,8 @@ radius = 700.0
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 300.0
+
+[sub_resource type="CanvasItemMaterial" id=6]
 
 [sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
@@ -124,23 +98,15 @@ order = 1
 [node name="Tracked" parent="." instance=ExtResource( 36 )]
 
 [node name="IceAutoTrail" parent="." instance=ExtResource( 29 )]
-starting_color = Color( 1, 1, 1, 1 )
-ending_color = Color( 1, 1, 1, 0.235294 )
+z_index = -16
+z_as_relative = false
+starting_color = Color( 0, 0.835294, 1, 0.392157 )
+ending_color = Color( 0, 0.811765, 1, 0.156863 )
 length = 120
-width = 12
+width = 10
 persistence = 2
 auto_create_on_enter = false
-disappear_speed = 10.0
-
-[node name="SnowParticles" type="Particles2D" parent="."]
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-material = SubResource( 6 )
-scale = Vector2( 0.35, 0.35 )
-emitting = false
-amount = 90
-lifetime = 1.5
-local_coords = false
-process_material = SubResource( 10 )
+disappear_speed = 1.0
 
 [node name="Cargo" parent="." instance=ExtResource( 28 )]
 
