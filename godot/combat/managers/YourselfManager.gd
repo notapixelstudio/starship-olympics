@@ -71,6 +71,9 @@ func _on_card_taken(card, player, ship):
 	if card.get_character_player() == player:
 		card.show_mark(cards_left[player])
 		cards_left[player] -= 1
+	elif card.get_character_player() != null: # enemy character
+		card.show_mark(cards_left[card.get_character_player()])
+		cards_left[card.get_character_player()] -= 1
 		
 	# wait a bit after animations
 	yield(card, 'revealed')
@@ -82,17 +85,21 @@ func _on_card_taken(card, player, ship):
 		return
 	
 	var score
+	var affected_player = player
+	var position = card.global_position
 	if card.get_character_player() == player:
 		score = 10
 	else:
-		score = -1
 		if card.get_character_player() == null:
+			score = -1
 			card.queue_free()
-		else:
-			card.hide()
+		else: # enemy character
+			score = 10
+			affected_player = card.get_character_player()
+			position = global.arena.get_ship_from_player_id(affected_player.id).global_position
 			
-	global.the_match.add_score(player.id, score)
-	global.arena.show_msg(player.species, score, card.global_position)
+	global.the_match.add_score(affected_player.id, score)
+	global.arena.show_msg(affected_player.species, score, position)
 	
 # reveal cards at the end of the match
 func _on_match_ended():
