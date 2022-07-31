@@ -26,6 +26,7 @@ var target_velocity := Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
 var drift := Vector2(0,0)
+var drifting := false
 
 var THRUST = 6500
 var auto_thrust := false
@@ -59,6 +60,7 @@ const ARKABALL_MULTIPLIER = 3
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
+const MIN_DRIFT := 500.0
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
@@ -115,6 +117,9 @@ signal spawn_bomb
 
 signal dash_started
 signal dash_ended
+
+signal drift_started
+signal drift_ended
 
 signal bump
 signal collect
@@ -244,6 +249,10 @@ func _process(_delta):
 		$Graphics/ChargeBar/BombPreview.rotation = -global_rotation
 	continuous_collision_check()
 	
+	if is_on_ice() and drifting:
+		$SnowParticles.global_rotation = drift.angle()
+		$SnowParticles.process_material.initial_velocity = min(drift.length()*6, 6000)
+	
 static func magnitude(a:Vector2):
 	return sqrt(a.x*a.x+a.y*a.y)
 	
@@ -253,7 +262,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusers_on = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
+	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
 	# check if we need to limit thrust
 	var thrust = THRUST
@@ -261,12 +270,12 @@ func _integrate_forces(state):
 		thrust = min(thrust, ON_ICE_MAX_THRUST)
 		
 	if not absolute_controls:
-		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusers_on))
+		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusting))
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)
-		add_central_force(target_velocity*thrust*int(thrusers_on))
+		add_central_force(target_velocity*thrust*int(thrusting))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -301,8 +310,17 @@ func _integrate_forces(state):
 		if charging:
 			state.linear_velocity *= ON_ICE_CHARGE_BRAKE
 			
-		# compute drift velocity
-		drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
+		# compute drift velocity (only when piloting)
+		if target_velocity.length() > 1.0:
+			drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
+		else:
+			drift = Vector2(0,0)
+			
+		if not drifting and drift.length() > MIN_DRIFT:
+			start_drift()
+			
+		if drifting and drift.length() <= MIN_DRIFT:
+			end_drift()
 	
 	# store velocity as a readable var
 	previous_velocity = velocity
@@ -913,3 +931,15 @@ func get_previous_global_position(): # Vector2 or null
 	if len(previous_global_positions) <= 1:
 		return null
 	return previous_global_positions[0]
+
+func start_drift():
+	drifting = true
+	$SnowParticles.emitting = true
+	$IceAutoTrail.create_trail()
+	emit_signal("drift_started")
+	
+func end_drift():
+	drifting = false
+	$SnowParticles.emitting = false
+	$IceAutoTrail.drop_trail()
+	emit_signal("drift_ended")
