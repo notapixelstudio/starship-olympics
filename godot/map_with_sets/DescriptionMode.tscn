@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
@@ -20,6 +20,12 @@ font_data = ExtResource( 3 )
 size = 125
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 74
 extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
@@ -102,9 +108,6 @@ __meta__ = {
 modulate = Color( 1, 0.870588, 0.372549, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 9.06067e-06
-margin_top = -0.235977
-margin_bottom = -0.235962
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 1, 0.533333, 0, 1 )
 custom_constants/shadow_offset_x = 0
@@ -115,14 +118,27 @@ align = 1
 valign = 1
 uppercase = true
 
+[node name="WinterShadow" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0.196078 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -79.0
+margin_bottom = -79.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 9 )
+text = "WINTER"
+align = 1
+valign = 1
+uppercase = true
+
 [node name="Winter" type="Label" parent="."]
 modulate = Color( 0.615686, 0.921569, 1, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.00350313
-margin_top = -91.236
-margin_right = 0.00354004
-margin_bottom = -91.236
+margin_left = 0.004
+margin_top = -91.0
+margin_right = 0.00402832
+margin_bottom = -91.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0, 0.533333, 0.964706, 1 )
 custom_constants/shadow_offset_x = 0
