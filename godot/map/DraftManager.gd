@@ -168,8 +168,7 @@ func pick_next_card():
 	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
 	yield(self, "card_chosen")
-	var minigame: Minigame = picked_card.get_minigame()
-	Events.emit_signal("minigame_selected", picked_card, minigame )
+	Events.emit_signal("minigame_selected", picked_card)
 
 func add_card(card, selected=false):
 	# will put the card in first empty position

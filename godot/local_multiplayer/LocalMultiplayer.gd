@@ -89,8 +89,9 @@ var minigame_pools : Dictionary = {}
 var last_card: DraftCard
 var last_minigame: Minigame
 
-func _on_minigame_selected(picked_card:DraftCard, minigame: Minigame):
+func _on_minigame_selected(picked_card:DraftCard):
 	# start match
+	var minigame = picked_card.get_minigame()
 	minigame.increase_times_started()
 	start_new_match(picked_card, minigame)
 	
