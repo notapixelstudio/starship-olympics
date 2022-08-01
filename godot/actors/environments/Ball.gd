@@ -33,7 +33,7 @@ func place_and_push(dropper, velocity, direction:='forward') -> void:
 	global_position = dropper.global_position
 	global_position = dropper.global_position + dir*Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
 	
-	linear_velocity = velocity if direction == 'forward' else -300.0*velocity.normalized()
+	linear_velocity = velocity if direction == 'forward' else -velocity
 	if type == 'soccer':
 		linear_velocity *= 1.5
 		

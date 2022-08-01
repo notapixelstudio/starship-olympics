@@ -12,9 +12,9 @@ func _ready():
 	Events.connect("planet_reached", self, '_on_planet_reached')
 	
 	# set speed according to player count
-	var dive_speed = 300 #200 + 50*global.the_game.get_number_of_players()
-	for alien in get_tree().get_nodes_in_group('Alien'):
-		alien.dive_speed = dive_speed
+	var dive_speed = 200 + 50*global.the_game.get_number_of_players()
+	for diver in traits.get_all_with('Diver'):
+		diver.set_dive_speed(dive_speed)
 	
 func _on_planet_reached(planet, sth):
 	if not(planet is Homeworld):

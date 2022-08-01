@@ -43,6 +43,9 @@ func reset():
 
 func add_score(amount):
 	self.stats.score += amount
+	
+func set_score(amount):
+	self.stats.score = amount
 
 func get_score() -> float:
 	return self.stats.score

@@ -127,11 +127,13 @@ func get_last_point():
 	return points[len(points)-1]
 	
 var disappearing := false
+var disappear_speed : float
+
 #warning-ignore:unused_argument
 func _process(delta: float):
 	if disappearing:
 		if width > 0:
-			width = max(0, width-delta*100.0)
+			width = max(0, width-delta*disappear_speed)
 		else:
 			queue_free()
 	elif target:
@@ -207,6 +209,6 @@ func set_target_path(p_value: NodePath):
 	target_path = p_value
 	target = get_node(p_value) as Node2D if has_node(p_value) else null
 	
-func disappear():
+func disappear(speed=100.0):
 	disappearing = true
-	
+	disappear_speed = speed

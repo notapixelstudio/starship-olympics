@@ -18,7 +18,7 @@ func start():
 func _on_ball_body_entered(body):
 	if body is Brick:
 		body.break(ball)
-		$AudioStreamPlayer.pitch_scale = 0.6 + hit_count*0.05
+		$AudioStreamPlayer.pitch_scale = 0.55 + hit_count*0.05
 		$AudioStreamPlayer.play()
 		hit_count = min(hit_count+1, 1000)
 		$Timer.stop()
@@ -35,7 +35,7 @@ func _ready():
 	for brick in player_bricks.get_children():
 		if not brick is Brick:
 			continue
-		score += 1
+		score += brick.get_points()
 	
 	global.arena.score_to_win_override = score
 
