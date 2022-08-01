@@ -5,6 +5,7 @@ export var gamemode : Resource setget set_gamemode
 onready var animator = $AnimationPlayer
 
 var array_players = [] # Array of InfoPlayers
+var draft_card = null
 
 ##  signal to emit when we are ready to fight
 signal ready_to_fight
@@ -24,8 +25,14 @@ func refresh():
 	$LineLeft.position.x = -62 - label_width/2 - 35
 	$LineRight.position.x = 998 + label_width/2 + 35
 	
+	$Winter.visible = draft_card and draft_card.is_winter()
+	
 func set_gamemode(value: GameMode):
 	gamemode = value
+	refresh()
+	
+func set_draft_card(v: DraftCard):
+	draft_card = v
 	refresh()
 
 signal letsfight

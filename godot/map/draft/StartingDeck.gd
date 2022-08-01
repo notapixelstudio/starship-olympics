@@ -3,4 +3,4 @@ extends Resource
 class_name StartingDeck
 
 export var id : String
-export var minigames : Array = [Object(), Object(), Object(), Object()] # MiniGame
+export var cards : Array = [Object(), Object(), Object(), Object()] # DraftCard

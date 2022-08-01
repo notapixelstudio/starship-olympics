@@ -107,7 +107,7 @@ func fortify():
 	$Foreground.self_modulate = Color(0.5,0.5,0.5)
 	$Graphics/Background.modulate = owner_ship.species.color
 	$Graphics/Background.self_modulate = Color(0.3,0.3,0.3)
-	$Graphics/Background.scale = Vector2(1,1)
+	$Graphics/Background.scale = Vector2(1.05,1.05)
 	$Graphics/Wrapper/Label.modulate = Color(0.3,0.3,0.3)
 
 func get_strategy(ship, distance, game_mode):

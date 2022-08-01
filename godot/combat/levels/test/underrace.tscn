@@ -18,12 +18,6 @@ _data = {
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
 
-[node name="RaceModeManager" parent="Managers" index="7"]
-enabled = true
-
-[node name="GoalModeManager" parent="Managers" index="9"]
-enabled = false
-
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
@@ -31,15 +25,11 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 7600
 height = 4400
 radius = 1200
@@ -47,7 +37,6 @@ precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.670588 )
-position = Vector2( 0, 0 )
 
 [node name="Wall19" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 modulate = Color( 0.5, 0.5, 1, 1 )
@@ -61,9 +50,6 @@ under = "below"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall19" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -84,9 +70,6 @@ under = "below"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall23" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -105,9 +88,6 @@ under = "above"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall28" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -126,9 +106,6 @@ under = "above"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall33" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -149,9 +126,6 @@ under = "below"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall29" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -165,78 +139,60 @@ position = Vector2( 800, 1200 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall13" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -1400, -1002, 2400, 20000 )
 width = 2800
 height = 400
 radius = 200
-precision = 10.0
 
 [node name="Wall14" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
 position = Vector2( 400, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall14" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -1000, -10000, 2400, 20000 )
 width = 2800
 height = 400
 radius = 200
-precision = 10.0
 
 [node name="Wall11" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
 position = Vector2( 2600, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall11" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -1, -10000, 20000, 20000 )
 width = 800
 height = 2800
 radius = 400
-precision = 10.0
 
 [node name="Wall20" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
 position = Vector2( -2600, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall20" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -800, -200, 801, 20000 )
 width = 800
 height = 2800
 radius = 400
-precision = 10.0
 
 [node name="Wall21" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
 position = Vector2( -1400, 800 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall21" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -800, -1400, 800, 2000 )
 width = 800
 height = 2000
 radius = 400
-precision = 10.0
 
 [node name="Wall" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
 position = Vector2( 0, -1000 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/Wall" index="7"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
 clip = Rect2( -10000, -400, 20000, 400 )
 width = 6000
 height = 800
 radius = 400
-precision = 10.0
 
 [node name="Wall22" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
 modulate = Color( 1, 0.5, 0.5, 1 )
@@ -247,9 +203,6 @@ under = "above"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall22" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -267,9 +220,6 @@ under = "above"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall31" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -287,9 +237,6 @@ under = "above"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall32" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -309,9 +256,6 @@ under = "below"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall30" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -325,9 +269,6 @@ position = Vector2( 2200, 1200 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall24" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -341,9 +282,6 @@ position = Vector2( -1000, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall25" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -358,9 +296,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall26" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -375,9 +310,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall27" index="7"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 199
@@ -395,10 +327,9 @@ rotation = 0.0
 controls = "joy1"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 156.25, 156.25 )
 smoothing_speed = 0.3
 zoomMin = 5.0
-[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="CanvasLayer/Pause"]
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

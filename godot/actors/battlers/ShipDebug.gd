@@ -13,9 +13,9 @@ var colors = {
 	PINK = Color(.914, .118, .388)
 }
 
-const WIDTH = 2
+const WIDTH = 8
 
-const MUL = 20
+const MUL = 0.5
 
 var parent = null
 
@@ -28,15 +28,22 @@ func _draw():
 	if not enabled:
 		return
 	
-	#draw_vector(parent.front * 5, Vector2(), colors['PINK'])
-	draw_vector(parent.target_pos*0.5, Vector2(), colors['PINK'])
+	# draw direction vector
+	draw_vector(Vector2.RIGHT.rotated(parent.global_rotation)*400, Vector2(), colors['PINK'])
+	
+	# draw linear velocity
+	draw_vector(parent.linear_velocity, Vector2(), colors['YELLOW'])
+	
+	# draw drift vector
+	draw_vector(parent.drift, Vector2(), colors['WHITE'] if parent.drift.length() > 400 else colors['BLUE'])
+	
+	#draw_vector(parent.target_pos*0.5, Vector2(), colors['PINK'])
 	
 	# draw_vector(parent.last_target_pos, Vector2(), colors['WHITE'])
-	var i = 0
-	for r in parent.hit_pos:
-		
-		draw_vector(r, Vector2(), colors['WHITE'].darkened(0.3))
-		i += 1
+	#var i = 0
+	#for r in parent.hit_pos:
+	#	draw_vector(r, Vector2(), colors['WHITE'].darkened(0.3))
+	#	i += 1
 	#draw_vector(parent.velocity.normalized()*5, Vector2(), colors['YELLOW'])
 
 
@@ -45,7 +52,7 @@ func draw_vector(vector, offset, _color):
 		return
 	draw_line(offset * MUL, vector * MUL, _color, WIDTH)
 	var dir = vector.normalized()
-	draw_triangle_equilateral(vector * MUL, dir, 10, _color)
+	draw_triangle_equilateral(vector * MUL, dir, 30, _color)
 	draw_circle(offset, 6, _color)
 
 

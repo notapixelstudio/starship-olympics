@@ -7,7 +7,8 @@
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 110, 60 )
+resource_local_to_scene = true
+extents = Vector2( 110, 55 )
 
 [sub_resource type="Animation" id=2]
 length = 0.4
@@ -72,10 +73,12 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Under" type="Sprite" parent="."]
+modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
 position = Vector2( 0, 32 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 208, 108 )
 

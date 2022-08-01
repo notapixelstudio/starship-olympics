@@ -3,9 +3,9 @@ extends StaticBody2D
 
 class_name Brick
 
-var points = 1
+var points := 1
 
-enum TYPE { solid, diamond, gold, respawner, harmful, super }
+enum TYPE { solid, diamond, gold, respawner, harmful, super, five }
 export(TYPE) var type = TYPE.diamond setget set_type
 
 export var colorize := true
@@ -15,6 +15,7 @@ signal killed
 func set_type(v):
 	type = v
 	points = 1
+	$CollisionShape2D.shape.extents.y = 55
 	if type == TYPE.solid:
 		self.set_color(Color(0.8,0.8,0.8,1))
 		$Under.texture = load('res://assets/sprites/bricks/solid_under.png')
@@ -37,6 +38,12 @@ func set_type(v):
 		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
 		points = 10
+	elif type == TYPE.five:
+		self.set_color(Color('#fff700'))
+		$Under.texture = load('res://assets/sprites/bricks/five_under.png')
+		$Sprite.texture = load('res://assets/sprites/bricks/five.png')
+		points = 5
+		$CollisionShape2D.shape.extents.y = 110
 	# orange Color('#c18a2a')
 	
 	if not colorize:
@@ -77,4 +84,7 @@ func get_strategy(ship, distance, game_mode):
 func set_color(color):
 	$Under.modulate = color
 	$Sprite.modulate = color
+	
+func get_points() -> int:
+	return points
 	

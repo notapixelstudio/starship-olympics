@@ -133,7 +133,7 @@ func reveal():
 	
 func select():
 	selected = true
-	border.modulate = Color(1.3,1.1,1.0)
+	border.modulate = Color(1.2,1.2,1.2)
 	border.visible = true
 	if not float_when_selected:
 		$AnimationPlayer.play("Stand")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/WinterSlamAGon.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/WinterDiamondsnatch.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/WinterTakeTheCrown.tres" type="Resource" id=4]
+[ext_resource path="res://map/draft/cards/WinterDeathmatch.tres" type="Resource" id=5]
+[ext_resource path="res://assets/sprites/cards/card_winter.png" type="Texture" id=6]
+[ext_resource path="res://map/draft/cards/WinterHomesickInvaders.tres" type="Resource" id=7]
+[ext_resource path="res://map/draft/cards/WinterBoardConquest.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 1 )
+unlocks = [  ]
+winter = false
+name = "Winter Mystery Game"
+description = "A random winter minigame"
+mystery_cover = ExtResource( 6 )
+subcards = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 7 ) ]

@@ -10,6 +10,11 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Wrapper"]
 
+[node name="Shadow" type="Sprite" parent="Wrapper"]
+self_modulate = Color( 0, 0, 0, 0.501961 )
+z_index = -3
+z_as_relative = false
+
 [node name="RoyalGlow" parent="." instance=ExtResource( 2 )]
 visible = false
 scale = Vector2( 2.75, 2.75 )
