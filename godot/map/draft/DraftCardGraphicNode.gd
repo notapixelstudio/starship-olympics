@@ -23,8 +23,10 @@ func set_content_card(card: DraftCard):
 	# default
 	card_content = card
 	var minigame: Minigame = card.get_minigame()
-	self.set_minigame_label(minigame.get_name())
-	self.set_minigame_icon(minigame.get_icon())
+	if minigame:
+		self.set_minigame_label(minigame.get_name())
+		self.set_minigame_icon(minigame.get_icon())
+		
 	#$Ground/Front/Background.modulate = Color('#e6e6e6')
 	$Ground/Front/Border.self_modulate = Color('#efd2a0')
 	

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
+
+[node name="DeckListItem" type="ColorRect"]
+margin_left = 942.0
+margin_right = 942.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 0, 155 )
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 1 )
+CardScene = ExtResource( 4 )
+card_texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_right = 49.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 0, 42 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_y = 6
+custom_fonts/font = SubResource( 1 )
+text = "Deck"
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 49.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

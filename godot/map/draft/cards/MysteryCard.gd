@@ -16,10 +16,10 @@ func on_card_drawn() -> void:
 	randomize_minigame()
 	
 func get_minigame() -> Minigame:
-	return current_subcard.get_minigame()
+	return current_subcard.get_minigame() if current_subcard else null
 	
 func is_winter() -> bool:
-	return current_subcard.is_winter()
+	return current_subcard.is_winter() if current_subcard else winter
 	
 func get_cover() -> Texture:
 	return mystery_cover

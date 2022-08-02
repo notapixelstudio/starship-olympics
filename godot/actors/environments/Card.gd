@@ -14,6 +14,7 @@ export var auto_flip_back = false setget set_auto_flip_back
 export var take_ownership = false
 export var multiple_owners := false
 export var float_when_selected := true
+export var instant_reveal := false
 
 signal revealing_while_undetermined
 signal taken
@@ -121,6 +122,8 @@ func reveal():
 	if content == null:
 		emit_signal('revealing_while_undetermined', self)
 	$AnimationPlayer.play("Reveal")
+	if instant_reveal:
+		$AnimationPlayer.seek(0.3)
 	yield($AnimationPlayer, "animation_finished")
 	flipping = false
 	emit_signal("revealed")
