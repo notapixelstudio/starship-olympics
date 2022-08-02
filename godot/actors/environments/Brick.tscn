@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/environments/Brick.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/bricks/diamond.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/bricks/diamond_under.png" type="Texture" id=4]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/fonts/04b_19_monospaced_one.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
 extents = Vector2( 110, 55 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 150
+font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=2]
 length = 0.4
@@ -81,6 +86,18 @@ texture = ExtResource( 4 )
 modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 208, 108 )
+
+[node name="Label" type="Label" parent="Sprite"]
+visible = false
+self_modulate = Color( 0.439216, 0.439216, 0.439216, 1 )
+margin_left = -95.0
+margin_top = -95.0
+margin_right = 105.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 3 )
+text = "5"
+align = 1
+valign = 1
 
 [node name="BreakGlow" type="Line2D" parent="."]
 visible = false
