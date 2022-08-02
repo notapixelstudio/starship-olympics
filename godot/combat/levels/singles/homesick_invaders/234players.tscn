@@ -12,7 +12,7 @@
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/Homeworld.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/levels/singles/foundlings/FoundlingsManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/FoundlingsManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=17]
@@ -69,8 +69,8 @@ visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/A" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2100, -950 )
-ground_radius = 350
-atmosphere_radius = 700
+ground_radius = 350.0
+atmosphere_radius = 700.0
 
 [node name="Homeworld2" parent="Battlefield/Background/Variants/A" index="1" instance=ExtResource( 13 )]
 position = Vector2( -2800, 850 )
@@ -78,32 +78,32 @@ kind = "animals/a01"
 
 [node name="Homeworld3" parent="Battlefield/Background/Variants/A" index="2" instance=ExtResource( 13 )]
 position = Vector2( -1800, 1250 )
-ground_radius = 150
-atmosphere_radius = 400
+ground_radius = 150.0
+atmosphere_radius = 400.0
 kind = "animals/a04"
 
 [node name="Homeworld4" parent="Battlefield/Background/Variants/A" index="3" instance=ExtResource( 13 )]
 position = Vector2( -3000, -150 )
-ground_radius = 125
-atmosphere_radius = 300
+ground_radius = 125.0
+atmosphere_radius = 300.0
 kind = "animals/a03"
 
 [node name="Homeworld5" parent="Battlefield/Background/Variants/A" index="4" instance=ExtResource( 13 )]
 position = Vector2( 3000, -300 )
-ground_radius = 225
-atmosphere_radius = 450
+ground_radius = 225.0
+atmosphere_radius = 450.0
 kind = "animals/a04"
 
 [node name="Homeworld6" parent="Battlefield/Background/Variants/A" index="5" instance=ExtResource( 13 )]
 position = Vector2( 2300, 850 )
-ground_radius = 500
-atmosphere_radius = 800
+ground_radius = 500.0
+atmosphere_radius = 800.0
 kind = "animals/a02"
 
 [node name="Homeworld7" parent="Battlefield/Background/Variants/A" index="6" instance=ExtResource( 13 )]
 position = Vector2( 2100, -1200 )
-ground_radius = 250
-atmosphere_radius = 700
+ground_radius = 250.0
+atmosphere_radius = 700.0
 kind = "animals/a03"
 
 [node name="B" type="Node2D" parent="Battlefield/Background/Variants" index="1"]
@@ -111,43 +111,43 @@ visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/B" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2700, 950 )
-ground_radius = 250
-atmosphere_radius = 700
+ground_radius = 250.0
+atmosphere_radius = 700.0
 
 [node name="Homeworld2" parent="Battlefield/Background/Variants/B" index="1" instance=ExtResource( 13 )]
 position = Vector2( -2650, -750 )
-ground_radius = 300
-atmosphere_radius = 800
+ground_radius = 300.0
+atmosphere_radius = 800.0
 kind = "animals/a01"
 
 [node name="Homeworld3" parent="Battlefield/Background/Variants/B" index="2" instance=ExtResource( 13 )]
 position = Vector2( 1600, -450 )
-ground_radius = 110
-atmosphere_radius = 260
+ground_radius = 110.0
+atmosphere_radius = 260.0
 kind = "animals/a04"
 
 [node name="Homeworld4" parent="Battlefield/Background/Variants/B" index="3" instance=ExtResource( 13 )]
 position = Vector2( -1650, 400 )
-ground_radius = 120
-atmosphere_radius = 350
+ground_radius = 120.0
+atmosphere_radius = 350.0
 kind = "animals/a03"
 
 [node name="Homeworld5" parent="Battlefield/Background/Variants/B" index="4" instance=ExtResource( 13 )]
 position = Vector2( 2150, -1100 )
-ground_radius = 225
-atmosphere_radius = 500
+ground_radius = 225.0
+atmosphere_radius = 500.0
 kind = "animals/a04"
 
 [node name="Homeworld6" parent="Battlefield/Background/Variants/B" index="5" instance=ExtResource( 13 )]
 position = Vector2( 1900, 1100 )
-ground_radius = 300
-atmosphere_radius = 500
+ground_radius = 300.0
+atmosphere_radius = 500.0
 kind = "animals/a02"
 
 [node name="Homeworld7" parent="Battlefield/Background/Variants/B" index="6" instance=ExtResource( 13 )]
 position = Vector2( 2750, 100 )
-ground_radius = 250
-atmosphere_radius = 700
+ground_radius = 250.0
+atmosphere_radius = 700.0
 kind = "animals/a03"
 
 [node name="C" type="Node2D" parent="Battlefield/Background/Variants" index="2"]
@@ -155,29 +155,29 @@ visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/C" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2850, 1000 )
-ground_radius = 300
-atmosphere_radius = 650
+ground_radius = 300.0
+atmosphere_radius = 650.0
 
 [node name="Homeworld2" parent="Battlefield/Background/Variants/C" index="1" instance=ExtResource( 13 )]
 position = Vector2( -2800, -950 )
-ground_radius = 280
-atmosphere_radius = 550
+ground_radius = 280.0
+atmosphere_radius = 550.0
 kind = "animals/a01"
 
 [node name="Homeworld3" parent="Battlefield/Background/Variants/C" index="2" instance=ExtResource( 13 )]
 position = Vector2( 2450, 950 )
-atmosphere_radius = 550
+atmosphere_radius = 550.0
 kind = "animals/a02"
 
 [node name="Homeworld4" parent="Battlefield/Background/Variants/C" index="3" instance=ExtResource( 13 )]
 position = Vector2( -1950, 0 )
-ground_radius = 250
+ground_radius = 250.0
 kind = "animals/a03"
 
 [node name="Homeworld5" parent="Battlefield/Background/Variants/C" index="4" instance=ExtResource( 13 )]
 position = Vector2( 2450, -700 )
-ground_radius = 400
-atmosphere_radius = 800
+ground_radius = 400.0
+atmosphere_radius = 800.0
 kind = "animals/a04"
 
 [node name="D" type="Node2D" parent="Battlefield/Background/Variants" index="3"]
@@ -185,8 +185,8 @@ visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/D" index="0" instance=ExtResource( 13 )]
 position = Vector2( -1950, 800 )
-ground_radius = 150
-atmosphere_radius = 400
+ground_radius = 150.0
+atmosphere_radius = 400.0
 
 [node name="Homeworld2" parent="Battlefield/Background/Variants/D" index="1" instance=ExtResource( 13 )]
 position = Vector2( -2750, -650 )
@@ -194,20 +194,20 @@ kind = "animals/a01"
 
 [node name="Homeworld3" parent="Battlefield/Background/Variants/D" index="2" instance=ExtResource( 13 )]
 position = Vector2( 2050, 1150 )
-ground_radius = 150
-atmosphere_radius = 400
+ground_radius = 150.0
+atmosphere_radius = 400.0
 kind = "animals/a02"
 
 [node name="Homeworld4" parent="Battlefield/Background/Variants/D" index="3" instance=ExtResource( 13 )]
 position = Vector2( 2900, 50 )
-ground_radius = 150
-atmosphere_radius = 500
+ground_radius = 150.0
+atmosphere_radius = 500.0
 kind = "animals/a03"
 
 [node name="Homeworld5" parent="Battlefield/Background/Variants/D" index="4" instance=ExtResource( 13 )]
 position = Vector2( 2350, -1050 )
-ground_radius = 150
-atmosphere_radius = 450
+ground_radius = 150.0
+atmosphere_radius = 450.0
 kind = "animals/a04"
 
 [node name="E" type="Node2D" parent="Battlefield/Background/Variants" index="4"]
@@ -215,31 +215,31 @@ visible = false
 
 [node name="Homeworld" parent="Battlefield/Background/Variants/E" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2900, -900 )
-ground_radius = 150
-atmosphere_radius = 400
+ground_radius = 150.0
+atmosphere_radius = 400.0
 
 [node name="Homeworld2" parent="Battlefield/Background/Variants/E" index="1" instance=ExtResource( 13 )]
 position = Vector2( -2250, 600 )
-ground_radius = 400
-atmosphere_radius = 900
+ground_radius = 400.0
+atmosphere_radius = 900.0
 kind = "animals/a01"
 
 [node name="Homeworld3" parent="Battlefield/Background/Variants/E" index="2" instance=ExtResource( 13 )]
 position = Vector2( 1700, 1300 )
-ground_radius = 150
-atmosphere_radius = 300
+ground_radius = 150.0
+atmosphere_radius = 300.0
 kind = "animals/a02"
 
 [node name="Homeworld4" parent="Battlefield/Background/Variants/E" index="3" instance=ExtResource( 13 )]
 position = Vector2( 2450, 150 )
-ground_radius = 450
-atmosphere_radius = 950
+ground_radius = 450.0
+atmosphere_radius = 950.0
 kind = "animals/a03"
 
 [node name="Homeworld5" parent="Battlefield/Background/Variants/E" index="4" instance=ExtResource( 13 )]
 position = Vector2( 1950, -1200 )
-ground_radius = 150
-atmosphere_radius = 350
+ground_radius = 150.0
+atmosphere_radius = 350.0
 kind = "animals/a04"
 
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Middleground" index="0"]
@@ -1295,13 +1295,13 @@ species = ExtResource( 8 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( -200, -800 )
 rotation = 1.5708
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 7 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
 position = Vector2( 200, -800 )
 rotation = 1.5708
-controls = "joy1"
+controls = "kb2"
 species = ExtResource( 10 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 5 )]
