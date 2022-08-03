@@ -1,17 +1,15 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/styles/underspace.tres" type="Resource" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/managers/RingRaceManager.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/modes/RingRace.tres" type="Resource" id=12]
+[ext_resource path="res://combat/modes/RingRacing.tres" type="Resource" id=12]
 
 [sub_resource type="Animation" id=7]
 length = 0.001
@@ -40,7 +38,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
 "update": 0,
 "values": [ 700.0, 250.0 ]
 }
@@ -106,7 +104,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ Vector2( -1300, 1050 ), Vector2( -1300, 750 ) ]
+"values": [ Vector2( -1300, 1250 ), Vector2( -1300, 550 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -176,7 +174,6 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 5 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 12 )
-style = ExtResource( 7 )
 
 [node name="RingRaceManager" parent="Managers" index="0" instance=ExtResource( 11 )]
 
@@ -187,23 +184,16 @@ centered = false
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
 offset = 200
-type = 2
 hide_grid = true
 solid_line_color = Color( 0.858824, 0.929412, 1, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
-__meta__ = {
-"_editor_icon": ExtResource( 2 )
-}
-width = 5400
-height = 2800
-bevel = 600
-bevel_nw = 600
-bevel_ne = 600
-bevel_sw = 600
-bevel_se = 600
+width = 5600
+height = 3100
+radius = 1200
+precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.7 )

@@ -1,15 +1,17 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/sets/freeze_race.png" type="Texture" id=2]
+[ext_resource path="res://combat/styles/asphalt.tres" type="Resource" id=3]
 
 [resource]
 script = ExtResource( 1 )
-id = "ring_race"
+id = "ring_racing"
 is_mutator = false
-name = "Ring Race"
+name = "Ring Racing"
 icon = ExtResource( 2 )
-description = "run through the rings"
+arena_style = ExtResource( 3 )
+description = "drive through the rings"
 tagline_pro = "A kill for the honour, a kill for the species"
 tagline_cons = "A self kill, apart from being embarassing, make you lose point"
 max_timeout = 60
