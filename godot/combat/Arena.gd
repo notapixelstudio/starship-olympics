@@ -28,6 +28,7 @@ export var show_hud : bool = true
 export var show_intro : bool = true
 export var random_starting_position : bool = true
 export var place_ships_at_start : bool = true
+export var dark_winter : bool = false
 
 var debug = false
 # analytics
@@ -385,6 +386,8 @@ func _ready():
 			var ice = IceScene.instance()
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
 			$Battlefield/Background.add_child(ice)
+			if dark_winter:
+				ice.modulate = Color(0.6,0.6,0.6)
 	
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
