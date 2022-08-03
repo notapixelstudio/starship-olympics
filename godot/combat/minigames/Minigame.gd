@@ -2,7 +2,6 @@ extends Resource
 
 class_name Minigame
 
-export var id: String
 export var game_mode : Resource
 
 export var level_1players : PackedScene
@@ -10,7 +9,6 @@ export var level_2players : PackedScene
 export var level_3players : PackedScene
 export var level_4players : PackedScene
 
-export var unlocks : Array = [] # of minigame IDs
 var times_started := 0
 
 

@@ -3,7 +3,7 @@ extends Resource
 class_name DraftCard
 
 export var minigame: Resource # Minigame
-export var unlocks : Array = [] # of minigame IDs
+export var unlocks : Array = [] # of DraftCard IDs
 
 export var winter : bool = false
 
