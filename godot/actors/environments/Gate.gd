@@ -21,6 +21,7 @@ func set_width(v: float) -> void:
 	bottom_end = Vector2(0, width/2)
 	$RingPart.scale.y = width/550.0
 	$BottomRingPart.scale.y = width/550.0
+	$Shadow.scale.y = width/550.0
 	
 func set_show_arrow(v: bool) -> void:
 	show_arrow = v

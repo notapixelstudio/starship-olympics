@@ -12,7 +12,8 @@ func _ready():
 	redraw()
 	
 func redraw():
-	texture = get_node(sprite).texture
+	if sprite:
+		texture = get_node(sprite).texture
 	
 func _process(_delta):
 	if auto_rotate:
