@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/environments/Gate.gd" type="Script" id=1]
-[ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/environments/ring_part.png" type="Texture" id=4]
 
@@ -40,13 +39,12 @@ tracks/0/keys = {
 "values": [ Color( 1.2, 1.2, 1.2, 1 ) ]
 }
 
-[node name="Gate" type="Area2D"]
+[node name="Gate" type="Area2D" groups=["gates"]]
 collision_layer = 0
 script = ExtResource( 1 )
 
-[node name="Goal" parent="." instance=ExtResource( 2 )]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="BottomRingPart" type="Sprite" parent="."]
