@@ -15,8 +15,8 @@ func _init():
 	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
-	#var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	var starting_deck = load(DECK_PATH+'/winter.tres')
+	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
+	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
@@ -26,9 +26,7 @@ func _init():
 	for starting_card in starting_deck.cards:
 		card_pool.remove_card(starting_card)
 	
-	# WARNING these are fixed at the moment
-	# they also have to provide levels for each player count
-	#prepare_next_cards(['BoardConquest', 'HomesickInvaders', 'SlamAGon'])
+	next.append_array(starting_deck.get_nexts())
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:

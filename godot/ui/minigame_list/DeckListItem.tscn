@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
+[ext_resource path="res://assets/arrow.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -19,6 +21,8 @@ color = Color( 0, 0, 0, 0 )
 script = ExtResource( 1 )
 CardScene = ExtResource( 4 )
 card_texture = ExtResource( 2 )
+arrow_texture = ExtResource( 6 )
+shuffle_texture = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 10.0
