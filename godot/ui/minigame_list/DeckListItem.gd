@@ -12,7 +12,7 @@ const CARD_SIZE := Vector2(96, 96)
 
 func set_deck(v: StartingDeck, unlocked: bool) -> void:
 	deck = v
-	$VBoxContainer/Title.text = deck.get_name()
+	get_node("%Title").text = deck.get_name()
 	if not unlocked:
 		$VBoxContainer/Title.modulate = Color(0.5,0.5,0.5)
 		
