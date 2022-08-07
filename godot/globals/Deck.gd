@@ -2,10 +2,11 @@ extends Node
 
 class_name Deck
 
-var cards : Array = [] # Array of DraftCard
-var played_pile : Array = [] # Array of DraftCard
+var cards : Array = [] # of DraftCard
+var played_pile : Array = [] # of DraftCard
 var card_pool : CardPool
 var next : Array = []
+var remembered_card_ids : Dictionary = {} # String -> bool
 
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
@@ -57,6 +58,8 @@ func shuffle():
 # add cards to the deck
 func append_cards(cards_to_be_appended : Array) -> void:
 	cards.append_array(cards_to_be_appended)
+	for new_card in cards_to_be_appended:
+		remember_card_id(new_card.get_id())
 	
 func add_new_cards(amount := 1) -> void:
 	next.shuffle()
@@ -66,6 +69,7 @@ func add_new_cards(amount := 1) -> void:
 		if new_card != null:
 			new_card.set_new(true)
 			new_cards.append(new_card)
+			remember_card_id(new_card.get_id())
 			
 	new_cards.shuffle()
 	cards = new_cards + cards # new cards are placed on top
@@ -81,7 +85,7 @@ func prepare_next_cards(next_card_ids) -> void:
 	
 	var next_cards = []
 	for id in next_card_ids:
-		if not card_pool.has(id):
+		if do_you_remember_card_id(id):
 			print("Skipping duplicate: " + id)
 			continue
 		
@@ -94,3 +98,11 @@ func prepare_next_cards(next_card_ids) -> void:
 		
 		next.append(card)
 	
+func remember_card_id(id: String) -> void:
+	remembered_card_ids[id] = true
+	
+func forget_card_id(id: String) -> void:
+	remembered_card_ids.erase(id)
+	
+func do_you_remember_card_id(id: String) -> bool:
+	return remembered_card_ids.has(id)

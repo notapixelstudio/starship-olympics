@@ -146,6 +146,7 @@ func selections_maybe_all_done():
 			card.take_strike()
 			if card.has_enough_strikes():
 				print(card.get_id() + ' has enough strikes and will be removed.')
+				deck.forget_card_id(card.get_id()) # could be reinserted later
 			else:
 				to_be_put_back.append(card)
 		
