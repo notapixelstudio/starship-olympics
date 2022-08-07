@@ -30,6 +30,11 @@ script = ExtResource( 2 )
 take_ownership = true
 multiple_owners = true
 float_when_selected = false
+order_id = 0
+
+[node name="Front" parent="Ground" index="1"]
+position = Vector2( 0, -64 )
+scale = Vector2( 1e-05, 1 )
 
 [node name="Background" parent="Ground/Front" index="0"]
 modulate = Color( 0.901961, 0.901961, 0.901961, 1 )
@@ -90,7 +95,12 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="NewLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="2"]
+[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
+position = Vector2( 0, 14 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="NewLabel" type="Label" parent="Ground/Front/NewLabelWrapper" index="0"]
+unique_name_in_owner = true
 visible = false
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 self_modulate = Color( 1, 0.870588, 0.372549, 1 )
@@ -106,11 +116,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="0"]
+[node name="Sprite" type="Sprite" parent="Ground/Front/NewLabelWrapper/NewLabel" index="0"]
 position = Vector2( 776, 157 )
 texture = ExtResource( 4 )
 
-[node name="Sprite2" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/NewLabel" index="1"]
+[node name="Sprite2" type="Sprite" parent="Ground/Front/NewLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
 

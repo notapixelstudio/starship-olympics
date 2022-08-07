@@ -47,3 +47,9 @@ func get_description() -> String:
 	
 func get_icon() -> Texture:
 	return minigame.get_icon()
+
+func set_new(v: bool) -> void:
+	new = v
+	
+func is_new() -> bool:
+	return new

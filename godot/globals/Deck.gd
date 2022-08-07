@@ -15,8 +15,8 @@ func _init():
 	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
-	#var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	var starting_deck = load(DECK_PATH+'/winter.tres')
+	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
+	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
@@ -52,7 +52,7 @@ func draw(how_many : int) -> Array:
 func shuffle():
 	cards.shuffle()
 	for card in cards:
-		card.new = false
+		card.set_new(false)
 	
 # add cards to the deck
 func append_cards(cards_to_be_appended : Array) -> void:
@@ -64,7 +64,7 @@ func add_new_cards(amount := 1) -> void:
 	for i in range(amount):
 		var new_card = next.pop_front()
 		if new_card != null:
-			new_card.new = true
+			new_card.set_new(true)
 			new_cards.append(new_card)
 			
 	new_cards.shuffle()

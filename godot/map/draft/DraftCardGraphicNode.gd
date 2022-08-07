@@ -31,7 +31,7 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/Border.self_modulate = Color('#efd2a0')
 	
 	# new
-	$Ground/Front/MinigameLabelWrapper/NewLabel.visible = card_content.new
+	get_node('%NewLabel').visible = card_content.is_new()
 	
 	# mystery
 	$Ground/Front/Mystery.visible = card is MysteryCard
