@@ -387,7 +387,7 @@ func _ready():
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
 			$Battlefield/Background.add_child(ice)
 			if dark_winter:
-				ice.modulate = Color(0.5,0.5,0.5)
+				ice.modulate = Color(0.55,0.55,0.55)
 	
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
