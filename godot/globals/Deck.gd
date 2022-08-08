@@ -17,7 +17,7 @@ func _init():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	#var starting_deck = load(DECK_PATH+'/winter.tres')
+	#var starting_deck = load(DECK_PATH+'/test.tres')
 	append_cards(starting_deck.deal_cards())
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
@@ -106,3 +106,7 @@ func forget_card_id(id: String) -> void:
 	
 func do_you_remember_card_id(id: String) -> bool:
 	return remembered_card_ids.has(id)
+
+func get_remembered_card_ids() -> Dictionary:
+	return remembered_card_ids
+	

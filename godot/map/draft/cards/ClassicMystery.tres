@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=9 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
 [ext_resource path="res://map/draft/cards/TakeTheCrown.tres" type="Resource" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=6]
 [ext_resource path="res://map/draft/cards/BoardConquest.tres" type="Resource" id=7]
 [ext_resource path="res://map/draft/cards/HomesickInvaders.tres" type="Resource" id=8]
+[ext_resource path="res://map/draft/cards/FindingYourself.tres" type="Resource" id=9]
 
 [resource]
 script = ExtResource( 1 )
@@ -16,4 +17,4 @@ winter = false
 name = "Mystery Game"
 description = "A random classic minigame"
 mystery_cover = ExtResource( 6 )
-subcards = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ) ]
+subcards = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]

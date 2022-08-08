@@ -5,12 +5,24 @@ export var name : String
 export var description : String
 export var mystery_cover : Texture
 export var subcards : Array = []
+
+var _subcards_copy : Array = []
 var current_subcard : DraftCard = null
+
 
 func randomize_minigame() -> void:
 	randomize()
-	subcards.shuffle()
-	current_subcard = subcards[0]
+	if len(_subcards_copy) <= 0:
+		_subcards_copy = subcards.duplicate()
+		_subcards_copy.shuffle()
+		
+		# prefer subcards not already seen, if possible
+		_subcards_copy.sort_custom(self, "sort_new_subcards_first")
+		
+	current_subcard = _subcards_copy.pop_front()
+
+func sort_new_subcards_first(a, b):
+	return not (global.the_game.get_deck().get_remembered_card_ids().has(a.get_id()))
 
 func on_card_drawn() -> void:
 	randomize_minigame()
