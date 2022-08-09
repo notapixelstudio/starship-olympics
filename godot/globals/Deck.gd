@@ -73,6 +73,9 @@ func add_new_cards(amount := 1) -> void:
 			
 	new_cards.shuffle()
 	cards = new_cards + cards # new cards are placed on top
+	
+	# wipe the next array at each refill
+	next = []
 
 func put_card_into_played_pile(card) -> void:
 	played_pile.append(card)
