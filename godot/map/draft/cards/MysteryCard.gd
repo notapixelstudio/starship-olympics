@@ -33,6 +33,9 @@ func get_minigame() -> Minigame:
 func is_winter() -> bool:
 	return current_subcard.is_winter() if current_subcard else winter
 	
+func is_perfectionist() -> bool:
+	return current_subcard.is_perfectionist() if current_subcard else perfectionist
+	
 func get_cover() -> Texture:
 	return mystery_cover
 

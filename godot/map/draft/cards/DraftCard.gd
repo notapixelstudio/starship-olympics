@@ -6,6 +6,7 @@ export var minigame: Resource # Minigame
 export var unlocks : Array = [] # of DraftCard IDs
 
 export var winter : bool = false
+export var perfectionist : bool = false
 
 var new := false
 var strikes := 0
@@ -29,6 +30,9 @@ func has_enough_strikes() -> bool:
 	
 func is_winter() -> bool:
 	return winter
+	
+func is_perfectionist() -> bool:
+	return perfectionist
 
 func on_card_drawn() -> void:
 	pass

@@ -127,6 +127,11 @@ func compute_game_status():
 				winners.append(info_player)
 			else:
 				draw = false
+				
+		# no winners if perfectionist mode is active and the end was not perfect
+		if draft_card.is_perfectionist() and not perfect_end:
+			winners = []
+		
 		if draw:
 			winners = []
 		
