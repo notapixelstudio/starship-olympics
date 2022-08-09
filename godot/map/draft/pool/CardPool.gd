@@ -23,7 +23,6 @@ func retrieve_card(id) -> DraftCard:
 	if not has(id):
 		return null
 	var card = index[id]
-	index.erase(id)
 	return card
 
 func get_card(id) -> DraftCard:
