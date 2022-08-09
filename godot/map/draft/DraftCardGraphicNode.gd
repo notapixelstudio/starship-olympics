@@ -44,8 +44,13 @@ func set_content_card(card: DraftCard):
 	# winter
 	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()
 	if card.is_winter():
-		#$Ground/Front/Background.modulate = Color('#9debff')
 		$Ground/Front/Border.self_modulate = Color('#9be9ff')
+	
+	# perfectionist
+	get_node('%PerfectionistStar').visible = not card is MysteryCard and card.is_perfectionist()
+	if card.is_perfectionist():
+		$Ground/Front/Border.self_modulate = Color('#ff1199') # takes priority over winter
+		
 		
 # @override
 func tap(author):

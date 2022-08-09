@@ -2,12 +2,12 @@
 
 [ext_resource path="res://map/draft/StartingDeck.gd" type="Script" id=1]
 [ext_resource path="res://map/draft/cards/PerfectMystery.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/WinterMystery.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/ClassicMystery.tres" type="Resource" id=5]
+[ext_resource path="res://map/draft/cards/PerfectionistWinterRingRacing.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/PerfectionistMarbleConquest.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
 id = "test"
-cards = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ) ]
+cards = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
 nexts = [  ]
 shuffle_before_dealing = true
