@@ -8,6 +8,8 @@ export var unlocks : Array = [] # of DraftCard IDs
 export var winter : bool = false
 export var perfectionist : bool = false
 
+export var tint : Color # Color
+
 var new := false
 var strikes := 0
 
@@ -57,3 +59,7 @@ func set_new(v: bool) -> void:
 	
 func is_new() -> bool:
 	return new
+
+func get_tint() -> Color:
+	return tint
+	

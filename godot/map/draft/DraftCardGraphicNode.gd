@@ -27,8 +27,12 @@ func set_content_card(card: DraftCard):
 		self.set_minigame_label(minigame.get_name())
 		self.set_minigame_icon(minigame.get_icon())
 		
-	#$Ground/Front/Background.modulate = Color('#e6e6e6')
-	$Ground/Front/Border.self_modulate = Color('#efd2a0')
+	#$Ground/Front/Background.modulate = Color('#e0e0e0')
+	var tint = card.get_tint()
+	if tint:
+		get_node('%Border').self_modulate = tint
+	else:
+		get_node('%Border').self_modulate = Color('#efd2a0')
 	
 	# new
 	get_node('%NewLabel').visible = card_content.is_new()
