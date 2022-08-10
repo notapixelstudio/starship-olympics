@@ -16,8 +16,8 @@ func _init():
 	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
-	#var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
-	var starting_deck = load(DECK_PATH+'/test.tres')
+	var starting_deck: StartingDeck = global.get_actual_resource(decks, unlocked_decks[0])
+	#var starting_deck = load(DECK_PATH+'/test.tres')
 	append_cards(starting_deck.deal_cards())
 	
 	var pools = global.get_resources(CARD_POOL_PATH)
@@ -74,9 +74,7 @@ func add_new_cards(amount := 1) -> void:
 	new_cards.shuffle()
 	cards = new_cards + cards # new cards are placed on top
 	
-	# wipe the next array at each refill, forgetting all cards in it
-	for next_card in next:
-		forget_card_id(next_card.get_id())
+	# wipe the next array at each refill
 	next = []
 
 func put_card_into_played_pile(card) -> void:

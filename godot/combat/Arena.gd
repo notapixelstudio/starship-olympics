@@ -394,7 +394,7 @@ func _ready():
 		set_style(game_mode.arena_style)
 		
 	if show_hud:
-		hud.set_planet("", game_mode)
+		hud.set_draft_card(global.the_match.get_draft_card())
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
 	

@@ -13,12 +13,18 @@ onready var TimeLeft = $Content/ModePanel/TimeLeft
 const std_bar_height := 28
 const team_bar_height := 20
 
-func set_planet(planet: String, mode: GameMode):
-	$Content/ModePanel/PlanetName.text = (mode as GameMode).name
-	$Content/ModePanel/Icon.texture = (mode as GameMode).icon
+func set_draft_card(draft_card : DraftCard):
+	if draft_card == null:
+		return
+		
+	get_node('%MinigameName').text = draft_card.get_minigame().get_name()
+	$Content/ModePanel/Icon.texture = draft_card.get_minigame().get_icon()
 	$Content/ModePanel/Icon.visible = true
-	$Content/ModePanel/Shadow.texture = (mode as GameMode).icon
+	$Content/ModePanel/Shadow.texture = draft_card.get_minigame().get_icon()
 	$Content/ModePanel/Shadow.visible = true
+	get_node('%WinterLabel').visible = draft_card.is_winter()
+	get_node('%PerfectionistStar').visible = draft_card.is_perfectionist()
+	get_node('%PerfectionistLabel').visible = draft_card.is_perfectionist()
 
 func _ready():
 	set_process(false)
