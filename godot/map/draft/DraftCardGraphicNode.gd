@@ -68,14 +68,15 @@ func set_content_card(card: DraftCard):
 		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
-	var suit_top = card.get_suit_top()
-	var suit_bottom = card.get_suit_bottom()
-	if suit_top:
-		$"%SuitTopLeft".texture = load("res://assets/sprites/signs/suits/"+suit_top+".png")
-		$"%SuitTopLeft".modulate = SUIT_COLORS[suit_top]
-	if suit_bottom:
-		$"%SuitBottomRight".texture = load("res://assets/sprites/signs/suits/"+suit_bottom+".png")
-		$"%SuitBottomRight".modulate = SUIT_COLORS[suit_bottom]
+	if not card is MysteryCard:
+		var suit_top = card.get_suit_top()
+		var suit_bottom = card.get_suit_bottom()
+		if suit_top:
+			$"%SuitTopLeft".texture = load("res://assets/sprites/signs/suits/"+suit_top+".png")
+			$"%SuitTopLeft".modulate = SUIT_COLORS[suit_top]
+		if suit_bottom:
+			$"%SuitBottomRight".texture = load("res://assets/sprites/signs/suits/"+suit_bottom+".png")
+			$"%SuitBottomRight".modulate = SUIT_COLORS[suit_bottom]
 	
 # @override
 func tap(author):

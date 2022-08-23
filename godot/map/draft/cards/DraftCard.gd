@@ -10,9 +10,6 @@ export var perfectionist : bool = false
 
 export var tint : Color
 
-export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_top = ''
-export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_bottom = ''
-
 var new := false
 var strikes := 0
 
@@ -67,7 +64,7 @@ func get_tint() -> Color:
 	return tint
 	
 func get_suit_top() -> Array:
-	return suit_top
+	return minigame.get_suit_top()
 
 func get_suit_bottom() -> Array:
-	return suit_bottom
+	return  minigame.get_suit_bottom()
