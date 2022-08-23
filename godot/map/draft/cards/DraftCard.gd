@@ -8,7 +8,10 @@ export var unlocks : Array = [] # of DraftCard IDs
 export var winter : bool = false
 export var perfectionist : bool = false
 
-export var tint : Color # Color
+export var tint : Color
+
+export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_top = ''
+export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_bottom = ''
 
 var new := false
 var strikes := 0
@@ -63,3 +66,8 @@ func is_new() -> bool:
 func get_tint() -> Color:
 	return tint
 	
+func get_suit_top() -> Array:
+	return suit_top
+
+func get_suit_bottom() -> Array:
+	return suit_bottom
