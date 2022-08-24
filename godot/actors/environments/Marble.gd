@@ -49,3 +49,5 @@ func recolor():
 func _on_Marble_body_entered(body):
 	if body is Ship:
 		conquered_by(body)
+	if body is ArkaBall:
+		conquered_by(body.get_ship())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://combat/modes/StarFishing.tres" type="Resource" id=9]
 [ext_resource path="res://combat/collectables/Star.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=11]
-[ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=12]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=13]
 
 [node name="Arena" instance=ExtResource( 4 )]
@@ -19,28 +18,21 @@ size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 underwater = true
 
-[node name="CrownModeManager" parent="Managers" index="5"]
+[node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 7 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0.992157, 1, 0, 0.156863 )
-
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
 offset = 200
-elongation = 100
 hide_grid = true
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 2 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 4000
 height = 4000
 radius = 1500
@@ -51,9 +43,6 @@ position = Vector2( 300, -700 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1000
 height = 200
 bevel = 50
@@ -67,9 +56,6 @@ position = Vector2( -300, 700 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1000
 height = 200
 bevel = 50
@@ -84,9 +70,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall3" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1000
 height = 200
 bevel = 50
@@ -101,9 +84,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall5" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -118,9 +98,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall11" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -135,9 +112,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall12" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -152,9 +126,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall6" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -168,9 +139,6 @@ position = Vector2( -400, -1400 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall7" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -184,9 +152,6 @@ position = Vector2( 400, 1400 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall8" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -200,9 +165,6 @@ position = Vector2( -800, 1400 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall9" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -216,9 +178,6 @@ position = Vector2( 800, -1400 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall10" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 800
 height = 400
 bevel = 50
@@ -233,9 +192,6 @@ rotation = 1.5708
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall4" index="5"]
 script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 1000
 height = 200
 bevel = 50
@@ -250,9 +206,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall13" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -262,9 +215,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall18" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -274,9 +224,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall19" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -286,9 +233,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall21" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -298,9 +242,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall22" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -310,9 +251,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall23" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -322,9 +260,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall24" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -334,9 +269,6 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall20" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 width = 50
 height = 50
 
@@ -346,22 +278,12 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall14" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
-[node name="Laser" type="RayCast2D" parent="Battlefield/Middleground/Wall14" index="7" groups=[
-"additional_lasers",
-] instance=ExtResource( 13 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall14" index="7" groups=["additional_lasers"] instance=ExtResource( 13 )]
 show_behind_parent = true
 position = Vector2( -70.7109, -61.132 )
 rotation = -2.35619
-enabled = true
-cast_to = Vector2( 20000, 0 )
 collision_mask = 132112
-script = ExtResource( 12 )
 
 [node name="Wall15" parent="Battlefield/Middleground" index="21" instance=ExtResource( 5 )]
 position = Vector2( 900, -400 )
@@ -369,19 +291,11 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall15" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
-[node name="Laser2" parent="Battlefield/Middleground/Wall15" index="7" groups=[
-"additional_lasers",
-] instance=ExtResource( 13 )]
+[node name="Laser2" parent="Battlefield/Middleground/Wall15" index="7" groups=["additional_lasers"] instance=ExtResource( 13 )]
 show_behind_parent = true
 position = Vector2( -70.7107, 80.2895 )
 rotation = 2.35619
-scale = Vector2( 1, 1 )
 
 [node name="Wall16" parent="Battlefield/Middleground" index="22" instance=ExtResource( 5 )]
 position = Vector2( -400, -900 )
@@ -389,19 +303,11 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall16" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
-[node name="Laser" parent="Battlefield/Middleground/Wall16" index="7" groups=[
-"additional_lasers",
-] instance=ExtResource( 13 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall16" index="7" groups=["additional_lasers"] instance=ExtResource( 13 )]
 show_behind_parent = true
 position = Vector2( 70.7108, 80.2894 )
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 
 [node name="Wall17" parent="Battlefield/Middleground" index="23" instance=ExtResource( 5 )]
 position = Vector2( -900, 400 )
@@ -409,36 +315,26 @@ rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall17" index="5"]
 script = ExtResource( 11 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 100
-height = 100
 
-[node name="Laser" parent="Battlefield/Middleground/Wall17" index="7" groups=[
-"additional_lasers",
-] instance=ExtResource( 13 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall17" index="7" groups=["additional_lasers"] instance=ExtResource( 13 )]
 show_behind_parent = true
 position = Vector2( 70.7108, -61.132 )
 rotation = -0.785398
-scale = Vector2( 1, 1 )
 
 [node name="Star" parent="Battlefield/Foreground" index="0" instance=ExtResource( 10 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( 1800, 600 )
 rotation = -1.5708
-controls = "joy1"
 species = ExtResource( 3 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( -1800, -600 )
 rotation = 1.5708
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 8 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 smoothing_speed = 0.3
-[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="CanvasLayer/Pause"]
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

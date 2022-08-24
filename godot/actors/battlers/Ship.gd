@@ -55,8 +55,8 @@ const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
-const ARKABALL_OFFSET = 250
-const ARKABALL_MULTIPLIER = 3
+const ARKABALL_OFFSET = 350
+const ARKABALL_MULTIPLIER = 2
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
@@ -451,7 +451,7 @@ func fire(override_charge = -1, dash_only = false):
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
-		arkaball.set_player(get_player())
+		arkaball.set_ship(self)
 		arkaball.start()
 		golf = false
 	elif get_bombs_enabled() and not dash_only:
@@ -922,6 +922,12 @@ func get_camera_rect() -> Rect2:
 
 func get_team() -> String:
 	return info_player.team
+	
+func get_species():
+	return info_player.species
+	
+func get_color():
+	return get_species().color
 	
 func get_previous_global_position(): # Vector2 or null
 	if len(previous_global_positions) <= 1:
