@@ -55,8 +55,8 @@ const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
-const ARKABALL_OFFSET = 350
-const ARKABALL_MULTIPLIER = 2
+const ARKABALL_OFFSET = 200
+const ARKABALL_MULTIPLIER = 2.5
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
@@ -365,6 +365,8 @@ func update_charge_bar():
 		if not overcharging:
 			overcharging = true
 			emit_signal("overcharging_started")
+			if golf: # golf does not wait
+				fire()
 
 signal detection
 func _physics_process(delta):

@@ -32,7 +32,7 @@ func _process(delta):
 "
 
 [sub_resource type="DynamicFont" id=11]
-size = 250
+size = 180
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=6]
@@ -158,14 +158,9 @@ margin_bottom = 150.0
 custom_fonts/font = SubResource( 11 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Conquered = SubResource( 6 )
 anims/RESET = SubResource( 13 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
-[connection signal="body_entered" from="." to="." method="_on_Marble_body_entered"]

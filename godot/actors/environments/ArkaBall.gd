@@ -3,7 +3,7 @@ class_name ArkaBall
 
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 
-export var impulse : float = 100
+export var impulse : float = 80
 var active : bool = false
 
 var ship # Ship
@@ -19,7 +19,7 @@ func _physics_process(delta):
 func _on_ArkaBall_body_entered(body):
 	$AudioStreamPlayer.play()
 	
-	apply_central_impulse(linear_velocity.normalized()*100)
+	apply_central_impulse(linear_velocity.normalized()*2000)
 	
 	var ripple = Ripple.instance()
 	ripple.position = position
@@ -34,6 +34,8 @@ func _on_ArkaBall_body_entered(body):
 		body.do_goal(ship.get_player(), position)
 	elif body is Brick:
 		body.break(null)
+	elif body is Marble:
+		body.conquered_by(ship)
 	
 func get_strategy(ship, distance, game_mode):
 	return {"seek": 10}

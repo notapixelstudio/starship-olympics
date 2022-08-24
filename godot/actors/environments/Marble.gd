@@ -43,11 +43,6 @@ func conquered_by(ship):
 		
 func recolor():
 	modulate = species.color
-	$Monogram/Label.text = species.get_monogram()
+	$Monogram/Label.text = owner_ship.get_player().get_id()
 	$AnimationPlayer.play("Conquered")
 	
-func _on_Marble_body_entered(body):
-	if body is Ship:
-		conquered_by(body)
-	if body is ArkaBall:
-		conquered_by(body.get_ship())
