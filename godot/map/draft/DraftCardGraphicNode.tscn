@@ -47,24 +47,24 @@ order_id = 0
 scale = Vector2( 1e-05, 1 )
 
 [node name="Background" parent="Ground/Front" index="0"]
-modulate = Color( 0.807843, 0.741176, 0.627451, 1 )
+modulate = Color( 0.8, 0.752941, 0.670588, 1 )
 
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true
 self_modulate = Color( 1, 1, 1, 1 )
 
 [node name="Suits" type="Node2D" parent="Ground/Front" index="5"]
-modulate = Color( 1, 1, 1, 0.54902 )
+modulate = Color( 1, 1, 1, 0.392157 )
 
 [node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
 unique_name_in_owner = true
 position = Vector2( -94, -143 )
-scale = Vector2( 0.4, 0.4 )
+scale = Vector2( 0.35, 0.35 )
 
 [node name="SuitBottomRight" type="Sprite" parent="Ground/Front/Suits" index="1"]
 unique_name_in_owner = true
 position = Vector2( 94, 144 )
-scale = Vector2( 0.4, 0.4 )
+scale = Vector2( 0.35, 0.35 )
 flip_v = true
 
 [node name="Mystery" type="Sprite" parent="Ground/Front" index="6"]

@@ -4,6 +4,8 @@ class_name DraftCard
 
 export var minigame: Resource # Minigame
 export var unlocks : Array = [] # of DraftCard IDs
+var _unlocks_copy : Array = []
+export var unlock_strength := 1
 
 export var winter : bool = false
 export var perfectionist : bool = false
@@ -12,6 +14,14 @@ export var tint : Color
 
 var new := false
 var strikes := 0
+
+func _init():
+	_refill_unlocks()
+	
+func _refill_unlocks() -> void:
+	randomize()
+	_unlocks_copy = unlocks.duplicate()
+	_unlocks_copy.shuffle()
 
 func get_id() -> String:
 	return self.resource_path.get_basename().get_file()
@@ -68,3 +78,16 @@ func get_suit_top() -> Array:
 
 func get_suit_bottom() -> Array:
 	return  minigame.get_suit_bottom()
+
+func has_unlocks() -> bool:
+	return len(unlocks) > 0
+	
+func get_unlock() -> String:
+	if len(_unlocks_copy) <= 0:
+		# we need to cycle unlocks again because there's a chance they have been discarded as duplicates
+		# WARNING this implies that sometimes it fails to produce a new minigame (could be good, to be less predictable)
+		_refill_unlocks()
+	return _unlocks_copy.pop_front()
+
+func get_unlock_strength() -> int:
+	return unlock_strength
