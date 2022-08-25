@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/sprites/environments/no_ship.png" type="Texture" id=3]
 [ext_resource path="res://combat/traits/Dropper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/NoShipZone.gd" type="Script" id=5]
-[ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/FX/87044__runnerpack__weapcollect.wav" type="AudioStream" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
@@ -91,10 +91,11 @@ tracks/4/keys = {
 [node name="NoShipZone" instance=ExtResource( 2 )]
 script = ExtResource( 5 )
 type = 4
+symbol_scale = 2.0
 
 [node name="IsoPolygon" parent="." index="0"]
 modulate = Color( 0.17, 0.57, 1.2, 1 )
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":Resource( "res://addons/geometry/GRegularPolygon.gd" ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"radius":400,"sides":4.0,"alternating_angle":0.0,"rotation_degrees":0.0)
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":Resource( "res://addons/geometry/GRegularPolygon.gd" ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"radius":400,"sides":4.0,"alternating_angle":0.0,"rotation_degrees":0.0)
 
 opaque_tint = Color( 0, 0, 0, 0.8 )
 
