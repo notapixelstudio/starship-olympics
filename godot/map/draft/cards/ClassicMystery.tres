@@ -1,24 +1,27 @@
-[gd_resource type="Resource" load_steps=12 format=2]
+[gd_resource type="Resource" load_steps=14 format=2]
 
 [ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/Ponganoid.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/Diamondsnatch.tres" type="Resource" id=2]
 [ext_resource path="res://map/draft/cards/SkullCollectors.tres" type="Resource" id=3]
 [ext_resource path="res://map/draft/cards/RingRacing.tres" type="Resource" id=4]
 [ext_resource path="res://map/draft/cards/DiamondMinefield.tres" type="Resource" id=5]
 [ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=6]
 [ext_resource path="res://map/draft/cards/ArkOfMemory.tres" type="Resource" id=7]
-[ext_resource path="res://map/draft/cards/MarbleConquest.tres" type="Resource" id=8]
+[ext_resource path="res://map/draft/cards/Deathmatch.tres" type="Resource" id=8]
 [ext_resource path="res://map/draft/cards/FindingYourself.tres" type="Resource" id=9]
-[ext_resource path="res://map/draft/cards/Negacrown.tres" type="Resource" id=10]
+[ext_resource path="res://map/draft/cards/HomesickInvaders.tres" type="Resource" id=10]
 [ext_resource path="res://map/draft/cards/QueenOfTheHive.tres" type="Resource" id=11]
+[ext_resource path="res://map/draft/cards/SlamAGon.tres" type="Resource" id=12]
+[ext_resource path="res://map/draft/cards/TakeTheCrown.tres" type="Resource" id=13]
 
 [resource]
 script = ExtResource( 1 )
-unlocks = [ "WinterMystery", "PerfectMystery", "PeacefulMystery" ]
+unlocks = [  ]
+unlock_strength = 1
 winter = false
 perfectionist = false
 tint = Color( 0, 0, 0, 1 )
 name = "Mystery Game"
 description = "A random classic minigame"
 mystery_cover = ExtResource( 6 )
-subcards = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 2 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ) ]
+subcards = [ ExtResource( 13 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ) ]

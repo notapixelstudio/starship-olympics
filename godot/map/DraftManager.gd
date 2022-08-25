@@ -72,9 +72,7 @@ func continue_draft(session_ended):
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
 		
-		var how_many_new_cards := 2
-		if hand_refills == 0:
-			how_many_new_cards = 1 # start slowly
+		var how_many_new_cards := 1
 		
 		hand = deck.draw(HAND_SIZE-how_many_new_cards)
 		# add a new card and draw it right now
