@@ -16,10 +16,10 @@
 [ext_resource path="res://assets/sprites/environments/no_ship.png" type="Texture" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( -400, -3400, -300, -3500, 300, -3500, 400, -3400, 400, 3400, 300, 3500, -300, 3500, -400, 3400, -400, -3400 )
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( -400, -3400, -300, -3500, 300, -3500, 400, -3400, 400, 3400, 300, 3500, -300, 3500, -400, 3400, -400, -3400 )
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 resource_local_to_scene = true
@@ -110,14 +110,14 @@ centered = false
 [node name="NoShipZone" parent="Battlefield/Background" index="1" instance=ExtResource( 12 )]
 
 [node name="IsoPolygon" parent="Battlefield/Background/NoShipZone" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
 
 
 [node name="Polygon2D" parent="Battlefield/Background/NoShipZone" index="1"]
-polygon = PoolVector2Array( -400, -3400, -300, -3500, 300, -3500, 400, -3400, 400, 3400, 300, 3500, -300, 3500, -400, 3400 )
+polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
 
 [node name="Line2D" parent="Battlefield/Background/NoShipZone" index="2"]
-points = PoolVector2Array( -400, -3400, -300, -3500, 300, -3500, 400, -3400, 400, 3400, 300, 3500, -300, 3500, -400, 3400, -400, -3400 )
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/Area2D" index="2"]
 shape = SubResource( 5 )
@@ -129,7 +129,7 @@ shape = SubResource( 6 )
 process_material = SubResource( 3 )
 
 [node name="FeedbackLine" parent="Battlefield/Background/NoShipZone" index="7"]
-points = PoolVector2Array( -400, -3400, -300, -3500, 300, -3500, 400, -3400, 400, 3400, 300, 3500, -300, 3500, -400, 3400, -400, -3400 )
+points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [node name="AnimationPlayer" parent="Battlefield/Background/NoShipZone" index="8"]
 anims/Feedback = SubResource( 4 )
@@ -144,7 +144,7 @@ texture = ExtResource( 15 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoShipZone" index="11"]
 script = ExtResource( 2 )
-width = 800
+width = 300
 height = 7000
 bevel = 100
 bevel_nw = 100

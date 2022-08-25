@@ -902,7 +902,7 @@ func _on_ship_fallen(ship, spawner):
 func respawn_from_home(ship, spawner):
 	var respawn_timeout = 1.0
 	if game_mode.id == 'skull_collector':
-		respawn_timeout = 2.5
+		respawn_timeout = 2.0
 	
 	ship.trail.destroy()
 	if ship.alive:

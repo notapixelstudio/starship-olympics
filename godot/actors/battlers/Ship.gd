@@ -319,6 +319,11 @@ func _integrate_forces(state):
 			
 	if drifting and drift.length() <= MIN_DRIFT or not is_on_ice():
 		end_drift()
+		
+#	if charging:
+#		set_size(min(1.0+2.0*charge, 5.0))
+#	else:
+#		set_size(1.0)
 	
 	# store velocity as a readable var
 	previous_velocity = velocity
@@ -958,3 +963,7 @@ func end_drift():
 	drifting = false
 	$IceAutoTrail.drop_trail()
 	emit_signal("drift_ended")
+
+#func set_size(size):
+#	scale = Vector2(size, size)
+#	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
