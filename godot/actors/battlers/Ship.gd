@@ -12,6 +12,8 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+export var forward_bullet_scene : PackedScene
+
 var controls_enabled = false
 
 var spawner
@@ -811,6 +813,17 @@ func tap():
 	Events.emit_signal('tap', self)
 	#switch_emersion_state()
 	trigger_all_my_stuff()
+	
+	# forward weapon: bullet
+	var aperture = PI/4
+	var amount = 1
+	for i in range(amount):
+		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
+		var bullet = forward_bullet_scene.instance()
+		get_parent().add_child(bullet)
+		bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
+		bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
+		bullet.set_ship(self)
 	
 var under = false
 
