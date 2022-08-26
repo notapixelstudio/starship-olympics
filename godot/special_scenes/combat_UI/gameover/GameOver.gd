@@ -26,17 +26,11 @@ func initialize():
 	
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
-	session_over = false
-	for player in global.the_game.get_players():
-		assert(player is InfoPlayer)
-		session_over = player.get_session_score_total() >= global.win
-		
-		#TODO: what do we do in case of DRAW of session? Will ignore it for now
-		if session_over:
-			Soundtrack.play('SessionOver', true)
-			back_to_menu_button.visible=false
-			$LeaderBoard.celebrate()
-			break
+	
+	#TODO: what do we do in case of DRAW of session? Will ignore it for now
+	if global.session.is_over():
+		Soundtrack.play('SessionOver', true)
+		back_to_menu_button.visible=false
 	
 	for button in buttons.get_children():
 		if button.visible:

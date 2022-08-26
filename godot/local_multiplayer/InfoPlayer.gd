@@ -32,7 +32,8 @@ func to_dict():
 		"id": id,
 		"controls": controls,
 		"species_name" : species.name,
-		"cpu": cpu
+		"cpu": cpu,
+		"session_score": len(session_score)
 	}
 
 func to_stats():

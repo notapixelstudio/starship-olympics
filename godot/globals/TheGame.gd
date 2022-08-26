@@ -24,6 +24,12 @@ func set_players(_players : Array) -> void:
 func get_players() -> Array: # of InfoPlayer
 	return players
 	
+func get_player_index() -> Dictionary:
+	var index := {}
+	for player in players:
+		index[player.get_id()] = player
+	return index
+	
 func get_number_of_players() -> int:
 	return len(players)
 	
