@@ -35,6 +35,7 @@ func initialize():
 		if session_over:
 			Soundtrack.play('SessionOver', true)
 			back_to_menu_button.visible=false
+			$LeaderBoard.celebrate()
 			break
 	
 	for button in buttons.get_children():

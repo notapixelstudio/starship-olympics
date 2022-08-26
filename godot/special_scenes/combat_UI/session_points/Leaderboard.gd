@@ -1,6 +1,6 @@
 extends MarginContainer
 
-const pad = Vector2(0, 130)
+const pad = Vector2(0, 140)
 
 export var pilot_stats_scene : PackedScene 
 
@@ -40,3 +40,11 @@ func _ready():
 		i+=1
 		
 	animator.play("entrance")
+	
+func celebrate():
+	var session_winners = global.the_game.get_last_winners()
+	
+	for pilot in container.get_children():
+		if pilot.info in session_winners:
+			# this is a session winner
+			pilot.celebrate()
