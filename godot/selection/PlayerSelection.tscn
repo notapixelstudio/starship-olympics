@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/audio/UI_effects/PM_BlurryDreams_33.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture" id=8]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=11]
@@ -125,30 +125,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ -90.0, 270.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 87.174, 473 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 0.8 ) ]
 }
 
 [sub_resource type="DynamicFont" id=6]
@@ -276,19 +252,13 @@ begin_cap_mode = 1
 
 [node name="LeftArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 9.0
-margin_top = 475.0
+margin_top = 454.0
 margin_right = 9.0
-margin_bottom = 475.0
+margin_bottom = 454.0
 rect_scale = Vector2( -1.2, 1.2 )
 
-[node name="Shadow" type="Sprite" parent="Wrapper/SpeciesSelection"]
-visible = false
-position = Vector2( 87.174, 472 )
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 8 )
-
 [node name="Ship" type="Sprite" parent="Wrapper/SpeciesSelection"]
-position = Vector2( 87.174, 473 )
+position = Vector2( 87.174, 452 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 10 )
@@ -297,11 +267,20 @@ texture = ExtResource( 10 )
 autoplay = "standby"
 anims/standby = SubResource( 5 )
 
+[node name="ShipShadow" parent="Wrapper/SpeciesSelection/Ship" instance=ExtResource( 8 )]
+unique_name_in_owner = true
+self_modulate = Color( 0, 0, 0, 0.627451 )
+show_behind_parent = true
+z_index = 0
+z_as_relative = true
+sprite = NodePath("..")
+dy = 22
+
 [node name="RightArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 159.0
-margin_top = 475.0
+margin_top = 454.0
 margin_right = 159.0
-margin_bottom = 475.0
+margin_bottom = 454.0
 rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="SpeciesName" type="VBoxContainer" parent="Wrapper/SpeciesSelection"]
