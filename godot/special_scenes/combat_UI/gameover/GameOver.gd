@@ -9,7 +9,6 @@ signal pressed_continue
 signal show_arena
 signal hide_arena
 
-var session_over = false
 export var sure_scene: PackedScene
 
 func _ready():
@@ -39,7 +38,7 @@ func initialize():
 	
 func _on_Continue_pressed():
 	get_tree().paused = false
-	Events.emit_signal("continue_after_game_over", session_over)
+	Events.emit_signal("continue_after_game_over", global.session.is_over())
 
 func _on_Quit_pressed():
 	global.end_execution()
