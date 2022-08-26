@@ -9,6 +9,8 @@ export var level_2players : PackedScene
 export var level_3players : PackedScene
 export var level_4players : PackedScene
 
+export var tutorial_scene : PackedScene
+
 var times_started := 0
 
 export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_top = ''
@@ -52,3 +54,10 @@ func get_suit_top() -> Array:
 
 func get_suit_bottom() -> Array:
 	return suit_bottom
+
+func has_tutorial() -> bool:
+	return tutorial_scene != null
+	
+func get_tutorial_scene() -> PackedScene:
+	return tutorial_scene
+	

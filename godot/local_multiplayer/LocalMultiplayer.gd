@@ -5,7 +5,6 @@ onready var selection_screen = $SelectionScreen
 const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
-export var tutorial_scene: PackedScene
 
 var games = {}  # {sport.name : Resource}
 
@@ -111,9 +110,9 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	yield($TransitionScreen, "transitioned")
 	remove_child(map)
 	
-	# show tutorial if this is the first match of the game
-	if global.is_before_first_match_of_the_game():
-		var tutorial = tutorial_scene.instance()
+	# show tutorial if this minigame has one, and the minigame has not been already played
+	if minigame.has_tutorial() and minigame.is_first_time_started():
+		var tutorial = minigame.get_tutorial_scene().instance()
 		add_child(tutorial)
 		yield(tutorial, 'over')
 		
