@@ -58,6 +58,12 @@ func post_ready(p: InfoPlayer):
 	$MaxScoreLabel.modulate = species.color
 	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+1)
 	
+	# magenta max score if perfectionist mode enabled
+	var current_draft_card := global.the_match.get_draft_card()
+	if current_draft_card != null and current_draft_card.is_perfectionist():
+		$MaxScoreLabel.modulate = Color('#ff40d4')
+		$MaxScoreLabel.self_modulate = Color(1,1,1,1)
+	
 	# ticks
 	for i in range(1, int(max_score)):
 		# skip some ticks according to max score's order of magnitude

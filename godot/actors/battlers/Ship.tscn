@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -32,9 +32,7 @@
 [ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
-[ext_resource path="res://actors/weapons/arsenal/WaveGun.tscn" type="PackedScene" id=33]
-[ext_resource path="res://actors/weapons/arsenal/RocketGun.tscn" type="PackedScene" id=34]
-[ext_resource path="res://actors/weapons/arsenal/NoWeapon.tscn" type="PackedScene" id=35]
+[ext_resource path="res://actors/weapons/ForwardBullet.tscn" type="PackedScene" id=33]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -42,6 +40,7 @@ friction = 0.0
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
+resource_local_to_scene = true
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id=3]
@@ -87,6 +86,7 @@ angular_damp = 80.0
 script = ExtResource( 1 )
 debug_enabled = true
 species = ExtResource( 2 )
+forward_bullet_scene = ExtResource( 33 )
 
 [node name="Intro" parent="." instance=ExtResource( 22 )]
 order = 1
@@ -112,11 +112,6 @@ disappear_speed = 1.0
 
 [node name="WeaponSlot" parent="." instance=ExtResource( 32 )]
 visible = false
-arsenal = {
-"none": ExtResource( 35 ),
-"rocket_gun": ExtResource( 34 ),
-"wave_gun": ExtResource( 33 )
-}
 
 [node name="Magnet" parent="." instance=ExtResource( 27 )]
 

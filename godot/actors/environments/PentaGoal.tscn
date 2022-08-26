@@ -88,9 +88,9 @@ script = ExtResource( 1 )
 type = 4
 
 [node name="IsoPolygon" parent="Field" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 3 ),"__meta__":{
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 3 ),"__meta__":{
 "_editor_icon": ExtResource( 4 )
-},"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"radius":100,"sides":5.0,"alternating_angle":0.0,"rotation_degrees":0.0)
+},"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"radius":100,"sides":5.0,"alternating_angle":0,"rotation_degrees":0)
 
 
 [node name="Polygon2D" parent="Field" index="1"]
@@ -116,6 +116,8 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 sides = 5.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="LabelWrapper" type="Node2D" parent="."]
 z_index = 10

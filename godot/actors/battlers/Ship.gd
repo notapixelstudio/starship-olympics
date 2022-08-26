@@ -12,6 +12,8 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+export var forward_bullet_scene : PackedScene
+
 var controls_enabled = false
 
 var spawner
@@ -55,8 +57,8 @@ const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
-const ARKABALL_OFFSET = 250
-const ARKABALL_MULTIPLIER = 3
+const ARKABALL_OFFSET = 200
+const ARKABALL_MULTIPLIER = 2.5
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
@@ -317,6 +319,11 @@ func _integrate_forces(state):
 			
 	if drifting and drift.length() <= MIN_DRIFT or not is_on_ice():
 		end_drift()
+		
+#	if charging:
+#		set_size(min(1.0+2.0*charge, 5.0))
+#	else:
+#		set_size(1.0)
 	
 	# store velocity as a readable var
 	previous_velocity = velocity
@@ -365,6 +372,8 @@ func update_charge_bar():
 		if not overcharging:
 			overcharging = true
 			emit_signal("overcharging_started")
+			if golf: # golf does not wait
+				fire()
 
 signal detection
 func _physics_process(delta):
@@ -451,7 +460,7 @@ func fire(override_charge = -1, dash_only = false):
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
-		arkaball.set_player(get_player())
+		arkaball.set_ship(self)
 		arkaball.start()
 		golf = false
 	elif get_bombs_enabled() and not dash_only:
@@ -810,6 +819,17 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
+	# forward weapon: bullet
+#	var aperture = PI/4
+#	var amount = 1
+#	for i in range(amount):
+#		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
+#		var bullet = forward_bullet_scene.instance()
+#		get_parent().add_child(bullet)
+#		bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
+#		bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
+#		bullet.set_ship(self)
+	
 var under = false
 
 func switch_emersion_state():
@@ -923,6 +943,12 @@ func get_camera_rect() -> Rect2:
 func get_team() -> String:
 	return info_player.team
 	
+func get_species():
+	return info_player.species
+	
+func get_color():
+	return get_species().color
+	
 func get_previous_global_position(): # Vector2 or null
 	if len(previous_global_positions) <= 1:
 		return null
@@ -937,3 +963,7 @@ func end_drift():
 	drifting = false
 	$IceAutoTrail.drop_trail()
 	emit_signal("drift_ended")
+
+#func set_size(size):
+#	scale = Vector2(size, size)
+#	$CollisionShape2D.shape.radius = 48*size*sqrt(size)

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/cards/card_perfectionist.png" type="Texture" id=2]
+[ext_resource path="res://map/draft/cards/PerfectionitsFlowsnake.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/PerfectionistMarbleConquest.tres" type="Resource" id=4]
+[ext_resource path="res://map/draft/cards/PerfectionistWinterRingRacing.tres" type="Resource" id=5]
+[ext_resource path="res://map/draft/cards/PerfectionistSlamAGon.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+unlocks = [ "ClassicMystery", "WinterMystery" ]
+winter = false
+perfectionist = true
+tint = Color( 0, 0, 0, 1 )
+name = "Perfectionist Game"
+description = "A random perfectionist minigame"
+mystery_cover = ExtResource( 2 )
+subcards = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]

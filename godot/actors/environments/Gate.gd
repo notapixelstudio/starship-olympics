@@ -1,11 +1,11 @@
 tool
 extends Area2D
+class_name Gate
 
 export var width := 550.0 setget set_width
 export var aperture := PI*0.9
 #export var crossing_while_still_tolerance := 0.3
-
-signal goal_done
+export var show_arrow := true setget set_show_arrow
 
 var top_end := Vector2(0, -width/2)
 var bottom_end := Vector2(0, width/2)
@@ -13,12 +13,19 @@ var bottom_end := Vector2(0, width/2)
 var overlapping_trackeds := {}
 var previous_global_transforms : Array
 
+signal crossed
+
 func set_width(v: float) -> void:
 	width = v
 	top_end = Vector2(0, -width/2)
 	bottom_end = Vector2(0, width/2)
 	$RingPart.scale.y = width/550.0
 	$BottomRingPart.scale.y = width/550.0
+	$Shadow.scale.y = width/550.0
+	
+func set_show_arrow(v: bool) -> void:
+	show_arrow = v
+	$Arrow.visible = show_arrow
 
 func _physics_process(delta):
 	previous_global_transforms.push_back(global_transform)
@@ -54,16 +61,18 @@ func _physics_process(delta):
 			var relative_angle_of_incidence : float = (relative_position - relative_past_position).angle()
 			
 			if will_cross and abs(relative_angle_of_incidence) > PI/2 + (PI-aperture)/2:
-				emit_signal("goal_done", body.get_player(), self, body.global_position)
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("Blink")
+				_crossed_by(body)
 				
 	# delete trackeds that are still not good
 	for tracked in overlapping_trackeds.keys():
 		if not overlapping_trackeds[tracked]['good']:
 			overlapping_trackeds.erase(tracked)
 		
-
+func _crossed_by(sth):
+	emit_signal("crossed", sth, self)
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("Blink")
+	
 #func _draw():
 	#if relative_position:
 	#	draw_circle(relative_position, 6, Color(0, 1, 0))

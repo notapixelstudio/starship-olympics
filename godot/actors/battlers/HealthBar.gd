@@ -17,5 +17,5 @@ func set_amount(amount):
 	var i = 0
 	for child in get_children():
 		if i >= amount:
-			child.modulate = Color(0.1,0.1,0.1,1)
+			child.modulate = Color(0.2,0.2,0.2,1)
 		i += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
@@ -32,6 +32,21 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 74
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 54
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 54
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = 1
@@ -145,6 +160,42 @@ custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 8 )
 text = "WINTER"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="PerfectionistShadow" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0.196078 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.00291135
+margin_top = 89.0
+margin_right = -0.00292969
+margin_bottom = 89.0
+size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 10 )
+text = "PERFECTIONIST"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Perfectionist" type="Label" parent="."]
+modulate = Color( 1, 0.25098, 0.831373, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.00260417
+margin_top = 81.0
+margin_right = -0.00256348
+margin_bottom = 81.0
+size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 11 )
+text = "PERFECTIONIST"
 align = 1
 valign = 1
 uppercase = true

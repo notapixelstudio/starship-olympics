@@ -32,12 +32,12 @@ func create_trail():
 	trail.connect('point_added', self, '_on_trail_point_added')
 	
 func drop_trail():
-	if not trail or not is_instance_valid(trail):
+	if not trail or not is_instance_valid(trail) or not is_a_parent_of(trail):
 		return
 		
 	remove_child(trail)
-	get_parent().get_parent().add_child(trail)
-	trail.disappear(disappear_speed)
+	get_parent().get_parent().call_deferred('add_child', trail)
+	trail.call_deferred('disappear', disappear_speed)
 
 func _on_trail_point_added(point: Vector2, last_point):
 	if last_point == null:

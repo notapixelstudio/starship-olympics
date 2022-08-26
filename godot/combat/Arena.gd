@@ -28,6 +28,7 @@ export var show_hud : bool = true
 export var show_intro : bool = true
 export var random_starting_position : bool = true
 export var place_ships_at_start : bool = true
+export var dark_winter : bool = false
 
 var debug = false
 # analytics
@@ -385,13 +386,15 @@ func _ready():
 			var ice = IceScene.instance()
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
 			$Battlefield/Background.add_child(ice)
+			if dark_winter:
+				ice.modulate = Color(0.55,0.55,0.55)
 	
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
 	if show_hud:
-		hud.set_planet("", game_mode)
+		hud.set_draft_card(global.the_match.get_draft_card())
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
 	
@@ -899,7 +902,7 @@ func _on_ship_fallen(ship, spawner):
 func respawn_from_home(ship, spawner):
 	var respawn_timeout = 1.0
 	if game_mode.id == 'skull_collector':
-		respawn_timeout = 2.5
+		respawn_timeout = 2.0
 	
 	ship.trail.destroy()
 	if ship.alive:
