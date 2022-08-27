@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://special_scenes/tutorials/Tutorial.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=2]
@@ -47,7 +47,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.4 ),
+"times": PoolRealArray( 0, 1.2, 1.6 ),
 "transitions": PoolRealArray( -2, -2, -2 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -59,11 +59,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7 ),
+"times": PoolRealArray( 0, 0.5, 0.9 ),
 "transitions": PoolRealArray( -2, -2, -2 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=4]
+size = 56
+font_data = ExtResource( 2 )
 
 [node name="FireTutorial" instance=ExtResource( 1 )]
 
@@ -104,7 +108,7 @@ autowrap = true
 position = Vector2( 549, 465 )
 
 [node name="Sprite" type="Sprite" parent="Aim/Stick" index="0"]
-modulate = Color( 0.415686, 0.686275, 0.917647, 1 )
+modulate = Color( 1, 0.611765, 0.152941, 1 )
 texture = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="Aim" index="2"]
@@ -139,3 +143,28 @@ autowrap = true
 autoplay = "Show"
 anims/RESET = SubResource( 2 )
 anims/Show = SubResource( 3 )
+
+[node name="MoveLabel" type="Label" parent="." index="6"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_left = 43.0
+margin_top = 306.0
+margin_right = 343.0
+margin_bottom = 456.0
+custom_fonts/font = SubResource( 4 )
+text = "MOVE
++"
+align = 1
+valign = 1
+
+[node name="DashLabel" type="Label" parent="." index="7"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
+margin_left = 934.0
+margin_top = 239.0
+margin_right = 1284.0
+margin_bottom = 416.0
+custom_fonts/font = SubResource( 4 )
+text = "CHARGE AND DASH
++"
+align = 1
+valign = 1
+autowrap = true
