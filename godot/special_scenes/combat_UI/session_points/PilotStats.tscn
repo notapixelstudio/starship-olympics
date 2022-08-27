@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/PilotStats.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture" id=6]
 [ext_resource path="res://assets/map/winner.png" type="Texture" id=7]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -141,13 +140,11 @@ scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
 
 [node name="Background" type="Polygon2D" parent="."]
-scale = Vector2( 1, 1 )
 color = Color( 0.219608, 0.219608, 0.219608, 0.901961 )
 texture = ExtResource( 6 )
 polygon = PoolVector2Array( 12.5, 162.5, 12.5, 12.5, 1062.5, 12.5, 1012.5, 162.5 )
 
 [node name="Shadow" type="Polygon2D" parent="."]
-scale = Vector2( 1, 1 )
 color = Color( 0, 0, 0, 0.313726 )
 polygon = PoolVector2Array( 6.25, 156.25, 6.25, 6.25, 125, 6.25, 150, 156.25 )
 
@@ -159,7 +156,6 @@ rect_min_size = Vector2( 0, 100 )
 
 [node name="Headshot" parent="Container" instance=ExtResource( 2 )]
 unique_name_in_owner = true
-species = ExtResource( 8 )
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
 unique_name_in_owner = true
