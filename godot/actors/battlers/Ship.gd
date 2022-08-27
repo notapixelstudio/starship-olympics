@@ -154,6 +154,8 @@ var default_bomb_type
 
 func set_bombs_enabled(value: bool):
 	bombs_enabled = value
+	$"%BombPreview".visible = bombs_enabled
+	$"%ArrowTip".flip_v = not bombs_enabled
 	
 func set_default_bomb_type(value):
 	default_bomb_type = value
@@ -162,9 +164,9 @@ func set_default_bomb_type(value):
 func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
-	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
+	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type]
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
-		$Graphics/ChargeBar/BombPreview.modulate = species.color
+		$Graphics/ChargeBar/BombPreview/BombType.modulate = species.color
 	else:
 		next_symbol()
 	
@@ -348,8 +350,8 @@ signal overcharging_started
 func update_charge_bar():
 	if not charging:
 		$Graphics/ChargeBar/Charge.visible = false
-		$Graphics/ChargeBar/ShootingLine.visible = false
-		$Graphics/ChargeBar/ShootingLine.enabled = false
+		$"%ShootingLine".visible = false
+		$"%ShootingLine".enabled = false
 		overcharging = false
 		return
 		
@@ -358,17 +360,20 @@ func update_charge_bar():
 	# charge feedback
 	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
 	$Graphics/ChargeBar/Charge.set_point_position(1, v)
-	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, v)
-	$Graphics/ChargeBar/Charge/ArrowTip.position.x = v.x+26
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(v.x+4, v.y))
+	if bombs_enabled:
+		$"%ArrowTip".position.x = v.x+26
+	else:
+		$"%ArrowTip".position.x = $Graphics/ChargeBar/ChargeAxis.points[0].x+50
 	
 	# shooting line visible only when charging enough enough
-	$Graphics/ChargeBar/ShootingLine.visible = charge > MIN_CHARGE*2
-	$Graphics/ChargeBar/ShootingLine.enabled = charge > MIN_CHARGE*2
+	$"%ShootingLine".visible = charge > MIN_CHARGE*2
+	$"%ShootingLine".enabled = charge > MIN_CHARGE*2
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE:
 		var visible = int(floor(charge * 15)) % 2
-		$Graphics/ChargeBar/Charge.visible = visible
+		$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1) if visible else Color(0,0,0,1)
 		if not overcharging:
 			overcharging = true
 			emit_signal("overcharging_started")
@@ -428,13 +433,9 @@ func charge():
 	
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
-		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
-		$Graphics/ChargeBar/ShootingLine.modulate = Color(1, 0.376471, 0)
-		if bomb_type != GameMode.BOMB_TYPE.bubble:
-			$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
-		$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,1)
-	else:
-		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
+		$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,1)
+		
+	$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1)
 	
 signal charging_ended
 func fire(override_charge = -1, dash_only = false):
@@ -497,9 +498,7 @@ func fire(override_charge = -1, dash_only = false):
 	$Graphics/ChargeBar/ChargeAxis.visible = false
 	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
-	if bomb_type != GameMode.BOMB_TYPE.bubble:
-		$Graphics/ChargeBar/BombPreview.modulate = species.color
-	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
+	$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,0.5)
 	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
@@ -967,3 +966,4 @@ func end_drift():
 #func set_size(size):
 #	scale = Vector2(size, size)
 #	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
+	

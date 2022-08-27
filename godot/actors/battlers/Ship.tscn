@@ -1,8 +1,8 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=3]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=5]
 [ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
@@ -33,7 +33,13 @@
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
 [ext_resource path="res://actors/weapons/ForwardBullet.tscn" type="PackedScene" id=33]
+[ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
+[ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=39]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=40]
+[ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=41]
+[ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=42]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -42,6 +48,51 @@ bounce = 0.5
 [sub_resource type="CircleShape2D" id=2]
 resource_local_to_scene = true
 radius = 48.0
+
+[sub_resource type="GDScript" id=11]
+script/source = "extends Position2D
+tool
+
+export var ship_texture : Texture setget change_texture
+const TWEEN_DURATION = 0.3
+
+var position_start = Vector2()
+
+signal stop_invincible
+signal completed
+
+onready var tween = $Tween
+onready var anim = $AnimationPlayer
+
+func change_texture(new_value):
+	ship_texture = new_value
+	if not is_inside_tree():
+		yield(self, \"ready\")
+	$Sprite.texture = ship_texture
+		
+func play_disappear():
+	anim.play(\"disappear\")
+	yield(anim, \"animation_finished\")
+
+func play_idle():
+	anim.play(\"idle\")
+	yield(anim, \"animation_finished\")
+
+func invincible(offset = 0):
+	anim.play(\"invincible\")
+	anim.seek(offset)
+	yield(anim, \"animation_finished\")
+	emit_signal(\"stop_invincible\")
+"
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 38 )
+shader_param/color = Color( 1, 1, 1, 0 )
+shader_param/width = 12.0
+shader_param/pattern = 1
+shader_param/inside = false
+shader_param/add_margins = true
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 48.0
@@ -134,8 +185,90 @@ shape = SubResource( 2 )
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
-[node name="Graphics" parent="." instance=ExtResource( 3 )]
+[node name="Graphics" type="Position2D" parent="."]
 scale = Vector2( 1.25, 1.25 )
+script = SubResource( 11 )
+ship_texture = ExtResource( 41 )
+
+[node name="ChargeBar" type="Node2D" parent="Graphics"]
+position = Vector2( -92, 0 )
+scale = Vector2( 2, 2 )
+z_index = 100
+z_as_relative = false
+
+[node name="Crosshair" type="Line2D" parent="Graphics/ChargeBar"]
+position = Vector2( -68, 0 )
+points = PoolVector2Array( 0, 0, -32, 0 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="ChargeBackground" type="Line2D" parent="Graphics/ChargeBar"]
+position = Vector2( -22, 0 )
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 20.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 221806672
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="ChargeAxis" type="Line2D" parent="Graphics/ChargeBar"]
+visible = false
+position = Vector2( -22, 0 )
+points = PoolVector2Array( 0, 0, -78.4, 0 )
+width = 2.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+
+[node name="Charge" type="Line2D" parent="Graphics/ChargeBar"]
+visible = false
+self_modulate = Color( 1, 1, 0, 1 )
+position = Vector2( -22, 0 )
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+
+[node name="ArrowTip" type="Sprite" parent="Graphics/ChargeBar/Charge"]
+unique_name_in_owner = true
+self_modulate = Color( 1, 1, 0, 1 )
+show_behind_parent = true
+position = Vector2( 22, 0 )
+rotation = -1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 34 )
+offset = Vector2( 0, -64 )
+
+[node name="BombPreview" type="Node2D" parent="Graphics/ChargeBar"]
+unique_name_in_owner = true
+visible = false
+
+[node name="BombType" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
+self_modulate = Color( 1, 1, 1, 0.501961 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="Symbol" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
+self_modulate = Color( 1, 1, 1, 0.843137 )
+scale = Vector2( 0.35, 0.35 )
+
+[node name="ShootingLine" parent="Graphics/ChargeBar/BombPreview" instance=ExtResource( 42 )]
+unique_name_in_owner = true
+visible = false
+modulate = Color( 1, 0.494118, 0, 1 )
+position = Vector2( -130.4, 0 )
+enabled = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+anims/appearing = ExtResource( 39 )
+anims/invincible = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Graphics"]
+
+[node name="Sprite" type="Sprite" parent="Graphics"]
+material = SubResource( 10 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 41 )
+
+[node name="Shadow" parent="Graphics" instance=ExtResource( 40 )]
+sprite = NodePath("../Sprite")
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2
