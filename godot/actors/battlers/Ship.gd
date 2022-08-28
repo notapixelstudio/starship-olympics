@@ -42,6 +42,7 @@ var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
+const MAX_OVERCHARGE = 1.8
 const MIN_CHARGE = 0.2
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
@@ -154,8 +155,7 @@ var default_bomb_type
 
 func set_bombs_enabled(value: bool):
 	bombs_enabled = value
-	$"%BombPreview".visible = bombs_enabled
-	$"%ArrowTip".flip_v = not bombs_enabled
+	update_weapon_indicator()
 	
 func set_default_bomb_type(value):
 	default_bomb_type = value
@@ -164,7 +164,7 @@ func set_default_bomb_type(value):
 func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
-	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type]
+	update_weapon_indicator()
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview/BombType.modulate = species.color
 	else:
@@ -361,7 +361,7 @@ func update_charge_bar():
 	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
 	$Graphics/ChargeBar/Charge.set_point_position(1, v)
 	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(v.x+4, v.y))
-	if bombs_enabled:
+	if bombs_enabled or golf:
 		$"%ArrowTip".position.x = v.x+26
 	else:
 		$"%ArrowTip".position.x = $Graphics/ChargeBar/ChargeAxis.points[0].x+50
@@ -372,13 +372,16 @@ func update_charge_bar():
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE:
-		var visible = int(floor(charge * 15)) % 2
-		$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1) if visible else Color(0,0,0,1)
+		if golf:
+			var visible = int(floor(charge * 15)) % 2
+			$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1) if visible else Color(0,0,0,1)
 		if not overcharging:
 			overcharging = true
 			emit_signal("overcharging_started")
-			if golf: # golf does not wait
-				fire()
+			
+	if charge > MAX_OVERCHARGE and golf:
+		# golf wait in overcharge for a bit, then fires
+		fire()
 
 signal detection
 func _physics_process(delta):
@@ -464,6 +467,7 @@ func fire(override_charge = -1, dash_only = false):
 		arkaball.set_ship(self)
 		arkaball.start()
 		golf = false
+		update_weapon_indicator()
 	elif get_bombs_enabled() and not dash_only:
 		bomb_count += 1
 		will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0) # FIXME this is repeated twice, should also be reflected by visual feedback
@@ -810,8 +814,10 @@ func get_bombs_enabled():
 	return bombs_enabled and not get_deadly_trail()
 	
 func update_weapon_indicator():
-	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
-	
+	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type] if bomb_type != null else null
+	$"%BombPreview".visible = get_bombs_enabled() or golf
+	$"%BombPreview/BombType".visible = get_bombs_enabled()
+	$"%ArrowTip".flip_v = not (get_bombs_enabled() or golf) 
 	
 func tap():
 	Events.emit_signal('tap', self)
@@ -869,6 +875,7 @@ func _on_Ship_near_area_entered(sth, this):
 
 func start_golf():
 	golf = true
+	update_weapon_indicator()
 	yield(get_tree().create_timer(0.5), "timeout")
 	charge()
 
