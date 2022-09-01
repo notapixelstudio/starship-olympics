@@ -7,6 +7,6 @@ func _ready():
 	yield(get_tree(), 'idle_frame')
 	
 	var player = get_node(goal_owner).get_player()
-	$Label.text = player.get_id()
+	$Label.text = player.get_id().to_upper()
 	$Label.modulate = player.get_color()
 	

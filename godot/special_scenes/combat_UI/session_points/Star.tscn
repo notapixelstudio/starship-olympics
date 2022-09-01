@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=2]
@@ -27,7 +27,8 @@
 [ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=25]
 [ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=26]
 [ext_resource path="res://assets/icon/star_full.png" type="Texture" id=27]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=28]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=28]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -60,7 +61,7 @@ font_data = ExtResource( 28 )
 size = 24
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 28 )
+font_data = ExtResource( 29 )
 
 [sub_resource type="Animation" id=2]
 length = 2.0
@@ -147,7 +148,7 @@ modulate = Color( 1.1, 1.1, 1.1, 1 )
 position = Vector2( 0, 5 )
 frames = SubResource( 1 )
 animation = "shine"
-frame = 9
+frame = 17
 playing = true
 
 [node name="P" type="Label" parent="Wrapper"]

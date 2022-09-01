@@ -44,7 +44,7 @@ func set_player(v):
 			else:
 				var ids = ''
 				for p in players:
-					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_id() + '[/color]  '
+					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_id().to_upper() + '[/color]  '
 				ids = ids.strip_edges()
 				monogram.bbcode_text = "[center]" + ids + "[/center]"
 				monogram.visible = true
@@ -54,7 +54,7 @@ func set_player(v):
 			if player == null:
 				blur()
 			else:
-				monogram.bbcode_text = "[center]" + player.get_id() + "[/center]"
+				monogram.bbcode_text = "[center]" + player.get_id().to_upper() + "[/center]"
 				monogram.modulate = player.species.color
 				monogram.visible = true
 				
@@ -90,7 +90,7 @@ func set_character_player(v):
 		$Ground/Front/TopLeft/Monogram.modulate = character_player.species.color
 		
 		$Ground/Front/Character.texture = character_player.species.character_ok
-		$Ground/Front/TopLeft/Monogram.text = character_player.get_id()
+		$Ground/Front/TopLeft/Monogram.text = character_player.get_id().to_upper()
 		
 func get_character_player():
 	return character_player
@@ -194,5 +194,5 @@ func set_auto_flip_back(v):
 		
 func show_mark(v):
 	$Ground/Front/Wrapper/Monogram.visible = true
-	$Ground/Front/Wrapper/Monogram.bbcode_text = "[center]" + str(v) + "[/center]"
+	$Ground/Front/Wrapper/Monogram.bbcode_text = "[center]" + str(v).to_upper() + "[/center]"
 	

@@ -8,7 +8,7 @@ func initialize(points, max_points: int, just_won: bool = false):
 		var point = star_scene.instance()
 		add_child(point)
 		point.position.x = 100 + i*OFFSET
-		point.position.y = 72
+		point.position.y = 68
 		point.floating_star(i)
 		if i < len(points):
 			point.won = true

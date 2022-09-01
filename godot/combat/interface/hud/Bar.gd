@@ -56,7 +56,7 @@ func post_ready(p: InfoPlayer):
 	# max score
 	$MaxScoreLabel.text = str(max_score)
 	$MaxScoreLabel.modulate = species.color
-	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+1)
+	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+2)
 	
 	# magenta max score if perfectionist mode enabled
 	var current_draft_card := global.the_match.get_draft_card()
