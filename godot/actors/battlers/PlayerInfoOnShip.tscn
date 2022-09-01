@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/signs/minimoon.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=7]
 [ext_resource path="res://actors/battlers/AmmoIndicator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/battlers/HealthBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=2]
 resource_local_to_scene = true
@@ -39,7 +40,7 @@ resource_local_to_scene = true
 size = 42
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
+font_data = ExtResource( 10 )
 
 [node name="PlayerInfo" type="Position2D"]
 script = ExtResource( 1 )

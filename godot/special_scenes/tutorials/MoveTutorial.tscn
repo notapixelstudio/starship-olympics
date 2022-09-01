@@ -2,7 +2,7 @@
 
 [ext_resource path="res://special_scenes/tutorials/Tutorial.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/UI/controller.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/UI/buttons/stick.png" type="Texture" id=4]
 [ext_resource path="res://assets/UI/buttons/button.png" type="Texture" id=5]
 
@@ -90,9 +90,9 @@ modulate = Color( 1, 1, 1, 0 )
 
 [node name="Label" type="Label" parent="Move" index="0"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 50.0
+margin_left = 17.0
 margin_top = 400.0
-margin_right = 300.0
+margin_right = 267.0
 margin_bottom = 550.0
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
@@ -107,7 +107,7 @@ modulate = Color( 0.388235, 0.756863, 0.937255, 1 )
 texture = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Move" index="2"]
-points = PoolVector2Array( 275, 475, 475, 475 )
+points = PoolVector2Array( 250, 475, 475, 475 )
 default_color = Color( 0, 0, 0, 1 )
 
 [node name="Dash" type="Node2D" parent="." index="4"]
@@ -125,9 +125,9 @@ default_color = Color( 0, 0, 0, 1 )
 [node name="Label2" type="Label" parent="Dash" index="2"]
 modulate = Color( 0, 0, 0, 1 )
 margin_left = 934.0
-margin_top = 400.0
+margin_top = 411.0
 margin_right = 1284.0
-margin_bottom = 550.0
+margin_bottom = 561.0
 custom_fonts/font = SubResource( 1 )
 text = "CHARGE AND DASH"
 align = 1
