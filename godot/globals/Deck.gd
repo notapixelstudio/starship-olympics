@@ -67,6 +67,7 @@ func add_new_cards(amount := 1) -> void:
 	for i in range(amount):
 		var new_card = next.pop_front()
 		if new_card != null:
+			print("New card extracted from next: " + new_card.get_id())
 			new_card.set_new(true)
 			new_cards.append(new_card)
 			remember_card_id(new_card.get_id())
@@ -82,6 +83,7 @@ func put_card_into_played_pile(card) -> void:
 	
 func prepare_next_cards(next_card_ids) -> void:
 	if len(next_card_ids) <= 0:
+		print("No cards given to prepare as next!")
 		return
 		
 	next_card_ids.shuffle()
@@ -89,17 +91,20 @@ func prepare_next_cards(next_card_ids) -> void:
 	var next_cards = []
 	for id in next_card_ids:
 		if do_you_remember_card_id(id):
-			print("Skipping duplicate: " + id)
+			print("Skipping card I already remember: " + id)
 			continue
 		
 		var card = card_pool.retrieve_card(id)
 		if card == null:
+			print("Skipping null card: " + id)
 			continue
 			
 		if not card.has_level_for_player_count(global.the_game.get_number_of_players()):
+			print("Skipping card because of player count = " + str(global.the_game.get_number_of_players()) + ": " + id)
 			continue
 		
 		next.append(card)
+		print("Card added to next: " + card.get_id())
 	
 func remember_card_id(id: String) -> void:
 	remembered_card_ids[id] = true

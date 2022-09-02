@@ -87,7 +87,9 @@ func get_unlock() -> String:
 		# we need to cycle unlocks again because there's a chance they have been discarded as duplicates
 		# WARNING this implies that sometimes it fails to produce a new minigame (could be good, to be less predictable)
 		_refill_unlocks()
-	return _unlocks_copy.pop_front()
+	var unlock = _unlocks_copy.pop_front()
+	print(get_id() + ' proposes to unlock ' + unlock)
+	return unlock
 
 func get_unlock_strength() -> int:
 	return unlock_strength

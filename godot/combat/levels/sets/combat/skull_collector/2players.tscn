@@ -63,13 +63,11 @@ fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
 [node name="SpeciesDecal" parent="Battlefield/Background" index="4" instance=ExtResource( 21 )]
-modulate = Color( 0.32549, 1, 0.32549, 1 )
 position = Vector2( -1000, 700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 21 )]
-modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( 1000, -700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
