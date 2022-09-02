@@ -44,6 +44,7 @@ const max_steer_force = 2500
 const MAX_CHARGE = 0.6
 const MAX_OVERCHARGE = 1.8
 const MIN_CHARGE = 0.2
+const MAX_TAP_CHARGE = 0.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
@@ -90,6 +91,7 @@ var height = 0
 
 var charging = false
 var charging_enough = false
+var charging_too_much_for_tap = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 var phasing_cooldown = 0
@@ -428,6 +430,9 @@ func _physics_process(delta):
 		charging_sfx.play()
 		dash_fat_appearance()
 		
+	if charging and not charging_too_much_for_tap and charge > MAX_TAP_CHARGE:
+		charging_too_much_for_tap = true
+		
 var will_fire
 signal charging_started
 func charge():
@@ -493,6 +498,9 @@ func fire(override_charge = -1, dash_only = false):
 	#$GravitonField.repeal(charge_impulse)
 	#$GravitonField.enabled = false
 	
+	if not charging_too_much_for_tap:
+		tap()
+	
 	reset_charge()
 	emit_signal("charging_ended")
 	
@@ -505,8 +513,6 @@ func fire(override_charge = -1, dash_only = false):
 		entity.get('Dashing').enable()
 		dash_cooldown = (min(actual_charge, MAX_CHARGE) - MIN_CHARGE)*0.6
 		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
-	else:
-		tap()
 		
 	if should_reload and reload_time > 0: # negative == no automatic reload
 		yield(get_tree().create_timer(reload_time), "timeout")
@@ -516,6 +522,7 @@ func reset_charge():
 	charge = 0
 	charging = false
 	charging_enough = false
+	charging_too_much_for_tap = false
 	
 	$Graphics/ChargeBar/Charge.visible = false
 	$Graphics/ChargeBar/ChargeAxis.visible = false
