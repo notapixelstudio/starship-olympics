@@ -189,9 +189,6 @@ func reset_health():
 	self.set_health(max_health)
 
 func _enter_tree():
-	charging = false
-	charging_enough = false
-	charge = 0
 	alive = true
 	outside_countup = 0
 	previous_global_positions = [global_position]
@@ -237,6 +234,8 @@ func _ready():
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
 	$Graphics/ChargeBar/Crosshair.modulate = species.color
+	
+	reset_charge()
 	
 	# if we are on a proper team, switch on the outline
 	if info_player.has_proper_team():
@@ -348,7 +347,7 @@ func control(_delta):
 var overcharging := false
 signal overcharging_started
 func update_charge_bar():
-	if not charging:
+	if not charging_enough:
 		$Graphics/ChargeBar/Charge.visible = false
 		$"%ShootingLine".visible = false
 		$"%ShootingLine".enabled = false
@@ -356,6 +355,7 @@ func update_charge_bar():
 		return
 		
 	$Graphics/ChargeBar/Charge.visible = true
+	$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1)
 	
 	# charge feedback
 	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
@@ -437,8 +437,6 @@ func charge():
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
 		$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,1)
-		
-	$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1)
 	
 signal charging_ended
 func fire(override_charge = -1, dash_only = false):
@@ -495,14 +493,8 @@ func fire(override_charge = -1, dash_only = false):
 	#$GravitonField.repeal(charge_impulse)
 	#$GravitonField.enabled = false
 	
-	charging = false
-	charging_enough = false
+	reset_charge()
 	emit_signal("charging_ended")
-	
-	$Graphics/ChargeBar/ChargeAxis.visible = false
-	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
-	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
-	$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,0.5)
 	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
@@ -520,6 +512,19 @@ func fire(override_charge = -1, dash_only = false):
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
+func reset_charge():
+	charge = 0
+	charging = false
+	charging_enough = false
+	
+	$Graphics/ChargeBar/Charge.visible = false
+	$Graphics/ChargeBar/ChargeAxis.visible = false
+	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,0.5)
+	$"%ShootingLine".visible = false
+	$"%ShootingLine".enabled = false
+	
 func set_health(amount : int) -> void:
 	health = amount
 	$PlayerInfo.update_health(amount)
@@ -547,6 +552,8 @@ func damage(hazard, damager : Ship):
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		alive = false
+		
+		reset_charge()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
