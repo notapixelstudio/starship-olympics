@@ -31,13 +31,13 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 8 )
-width = 2800
-height = 2800
-bevel = 500
-bevel_nw = 500
-bevel_ne = 500
-bevel_sw = 500
-bevel_se = 500
+width = 3000
+height = 3000
+bevel = 400
+bevel_nw = 400
+bevel_ne = 400
+bevel_sw = 400
+bevel_se = 400
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -45,27 +45,28 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="Marble2" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
-position = Vector2( -600, 600 )
+position = Vector2( -650, 650 )
 
 [node name="Marble3" parent="Battlefield/Foreground" index="1" instance=ExtResource( 12 )]
-position = Vector2( 600, -600 )
+position = Vector2( 650, -650 )
 
 [node name="Marble4" parent="Battlefield/Foreground" index="2" instance=ExtResource( 12 )]
-position = Vector2( -600, -600 )
+position = Vector2( -650, -650 )
 
 [node name="Marble5" parent="Battlefield/Foreground" index="3" instance=ExtResource( 12 )]
-position = Vector2( 600, 600 )
+position = Vector2( 650, 650 )
 
 [node name="ArkaBall" parent="Battlefield/Foreground" index="4" instance=ExtResource( 9 )]
 impulse = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
-position = Vector2( -1200, 0 )
+position = Vector2( -1250, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 2 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( 1200, 0 )
+position = Vector2( 1250, 0 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 1 )

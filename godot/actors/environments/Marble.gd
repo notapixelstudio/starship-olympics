@@ -43,6 +43,6 @@ func conquered_by(ship):
 		
 func recolor():
 	modulate = species.color
-	$Monogram/Label.text = owner_ship.get_player().get_id()
+	$Monogram/Label.text = owner_ship.get_player().get_id().to_upper()
 	$AnimationPlayer.play("Conquered")
 	
