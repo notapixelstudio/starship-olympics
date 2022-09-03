@@ -32,7 +32,7 @@ __meta__ = {
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 778.0
-margin_bottom = 482.0
+margin_bottom = 536.0
 
 [node name="Language" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -76,8 +76,6 @@ margin_bottom = 320.0
 text = "AUDIO"
 option_menu = ExtResource( 5 )
 title = "Audio"
-extra_args = {
-}
 
 [node name="Controls" parent="Content/UIButtonsContainer" instance=ExtResource( 4 )]
 margin_top = 324.0
@@ -86,8 +84,6 @@ margin_bottom = 374.0
 text = "REMAP CONTROLS"
 option_menu = ExtResource( 6 )
 title = "Remap controls"
-extra_args = {
-}
 
 [node name="UnlockMode" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -98,11 +94,20 @@ element_path = "unlock_mode"
 label_description = "Unlock mode"
 elem_type = 2
 
-[node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+[node name="Resolution" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 margin_top = 432.0
 margin_right = 778.0
 margin_bottom = 482.0
+element_path = "graphics_quality"
+label_description = "Resolution"
+elem_type = 2
+
+[node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 486.0
+margin_right = 778.0
+margin_bottom = 536.0
 element_path = "time_scale"
 label_description = "Game Speed"
 elem_type = 2
