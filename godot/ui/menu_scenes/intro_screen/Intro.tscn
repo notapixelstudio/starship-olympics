@@ -2,18 +2,18 @@
 
 [ext_resource path="res://ui/menu_scenes/intro_screen/Intro.gd" type="Script" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://ui/menu_scenes/intro_screen/Disclaimer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/audio/UI_effects/426759__magmi-soundtracks__scary-tension-buildup-02.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/soundtracks/lewislancaster-0013shed.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
-font_data = ExtResource( 3 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 54
-font_data = ExtResource( 3 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Appear"
@@ -85,10 +85,11 @@ tracks/4/keys = {
 }
 
 [node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 main_screen = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -108,6 +109,9 @@ modulate = Color( 1, 1, 1, 0 )
 margin_top = 196.0
 margin_right = 1277.0
 margin_bottom = 294.0
+custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
@@ -121,6 +125,9 @@ modulate = Color( 1, 1, 1, 0 )
 margin_top = 293.0
 margin_right = 1277.0
 margin_bottom = 391.0
+custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
@@ -131,6 +138,9 @@ modulate = Color( 1, 1, 1, 0 )
 margin_top = 380.0
 margin_right = 1277.0
 margin_bottom = 478.0
+custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
 custom_fonts/italics_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true

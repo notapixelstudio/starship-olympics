@@ -79,6 +79,9 @@ func get_score():
 	return 1
 	
 func do_goal(player, pos):
+	if current_ring < 0:
+		return
+		
 	# depleted rings should be moved onto the battlefield surface
 	$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
 	
@@ -105,7 +108,7 @@ func set_player(v : InfoPlayer):
 	field.modulate = player.species.color
 	$Rings.modulate = player.species.color
 	$LabelWrapper/Label.modulate = player.species.color
-	$LabelWrapper/Label.text = player.id
+	$LabelWrapper/Label.text = player.get_id().to_upper()
 	
 func get_player():
 	return player

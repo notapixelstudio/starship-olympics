@@ -8,7 +8,7 @@
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 50
+size = 48
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=2]
@@ -72,6 +72,7 @@ sides = 4
 modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
 position = Vector2( -6.99382e-07, 16 )
+scale = Vector2( 1.05, 1.05 )
 polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="Graphics" type="Node2D" parent="."]
@@ -102,9 +103,6 @@ margin_bottom = 100.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Neighbourhood" type="Area2D" parent="."]
 scale = Vector2( 1.1, 1.1 )

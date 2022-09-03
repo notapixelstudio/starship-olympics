@@ -11,9 +11,9 @@
 [ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=9]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=12]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
@@ -38,7 +38,7 @@ resource_name = "Rotate"
 length = 8.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("GRect:width")
+tracks/0/path = NodePath("GBeveledRect:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,10 +47,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 100, 800 ]
+"values": [ 200, 800 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("GRect:height")
+tracks/1/path = NodePath("GBeveledRect:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 100 ]
+"values": [ 800, 200 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -67,7 +67,7 @@ resource_name = "Rotate"
 length = 8.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("GRect:width")
+tracks/0/path = NodePath("GBeveledRect:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -76,10 +76,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 100, 800 ]
+"values": [ 200, 800 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("GRect:height")
+tracks/1/path = NodePath("GBeveledRect:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -88,7 +88,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 100 ]
+"values": [ 800, 200 ]
 }
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -110,7 +110,7 @@ offset = 200
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="2"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -129,7 +129,7 @@ offset = 200
 type = 2
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="2"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -148,7 +148,7 @@ hide_grid = true
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="2"]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -161,7 +161,7 @@ bevel_ne = 885
 bevel_sw = 885
 bevel_se = 885
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="4" groups=["animation_in_battle"]]
 playback_speed = 0.5
 anims/Rotate = SubResource( 1 )
 
@@ -178,42 +178,52 @@ opaque_tint = Color( 0, 0, 0, 1 )
 position = Vector2( 3150, -900 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="3"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
+[node name="Laser" parent="Battlefield/Middleground/Wall" index="5" groups=["additional_lasers"] instance=ExtResource( 10 )]
 show_behind_parent = true
 position = Vector2( 0, 151 )
 rotation = 1.5708
 
-[node name="GlassWall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
+[node name="NoShipZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 position = Vector2( -800, 0 )
 rotation = 0.785398
-collision_layer = 2147483648
-type = 4
+symbol_scale = 1.0
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
-script = ExtResource( 12 )
-width = 450
-height = 450
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoShipZone" index="11"]
+script = ExtResource( 2 )
+width = 500
+height = 500
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=["animation_in_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/NoShipZone" index="12" groups=["animation_in_battle"]]
+playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 
-[node name="GlassWall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+[node name="NoShipZone2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
 position = Vector2( 800, 0 )
 rotation = 0.785398
-collision_layer = 2147483648
-type = 4
+symbol_scale = 1.0
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall2" index="8"]
-script = ExtResource( 12 )
-width = 450
-height = 450
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoShipZone2" index="11"]
+script = ExtResource( 2 )
+width = 500
+height = 500
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=["animation_in_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/NoShipZone2" index="12" groups=["animation_in_battle"]]
+playback_process_mode = 0
 anims/Rotate = SubResource( 3 )
 
 [node name="Negacrown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
@@ -226,7 +236,7 @@ species = ExtResource( 4 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = -2.35619
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 7 )
 
 [node name="Camera" parent="." index="7"]

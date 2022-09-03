@@ -39,4 +39,3 @@ func _on_RepealField_body_entered(body):
 
 func get_strategy(ship, distance, game_mode):
 	return {"avoid": 1}
-	

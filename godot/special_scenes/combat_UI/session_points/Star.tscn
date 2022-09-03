@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=2]
@@ -27,7 +27,8 @@
 [ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=25]
 [ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=26]
 [ext_resource path="res://assets/icon/star_full.png" type="Texture" id=27]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=28]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=28]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,15 +37,15 @@ animations = [ {
 "name": "empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
-"loop": false,
-"name": "outline",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 27 ) ],
 "loop": true,
 "name": "full",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": false,
+"name": "outline",
+"speed": 60.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ) ],
 "loop": true,
@@ -52,11 +53,15 @@ animations = [ {
 "speed": 60.0
 } ]
 
+[sub_resource type="DynamicFont" id=5]
+size = 56
+font_data = ExtResource( 28 )
+
 [sub_resource type="DynamicFont" id=4]
 size = 24
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 28 )
+font_data = ExtResource( 29 )
 
 [sub_resource type="Animation" id=2]
 length = 2.0
@@ -70,7 +75,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4, 0.8, 2 ),
 "transitions": PoolRealArray( -2, -2, -2, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1.5, 1.5 ), Vector2( 1.2, 1.2 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 2.2, 2.2 ), Vector2( 2.2, 2.2 ), Vector2( 1.3, 1.3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:animation")
@@ -128,8 +133,12 @@ tracks/0/keys = {
 
 [node name="Star" type="Node2D"]
 position = Vector2( 0, 5 )
-z_as_relative = false
 script = ExtResource( 1 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.470588 )
+position = Vector2( 0, 20 )
+texture = ExtResource( 21 )
 
 [node name="Wrapper" type="Node2D" parent="."]
 position = Vector2( 0, 5 )
@@ -139,20 +148,29 @@ modulate = Color( 1.1, 1.1, 1.1, 1 )
 position = Vector2( 0, 5 )
 frames = SubResource( 1 )
 animation = "shine"
-frame = 82
+frame = 17
 playing = true
+
+[node name="P" type="Label" parent="Wrapper"]
+visible = false
+margin_left = -124.0
+margin_top = -27.0
+margin_right = 126.0
+margin_bottom = 49.0
+rect_pivot_offset = Vector2( 125, 20 )
+custom_fonts/font = SubResource( 5 )
+text = "P"
+align = 1
+valign = 1
 
 [node name="Label" type="Label" parent="Wrapper"]
 margin_left = -125.0
-margin_top = -27.0
+margin_top = 35.0
 margin_right = 125.0
-margin_bottom = 38.0
+margin_bottom = 98.0
 rect_pivot_offset = Vector2( 125, 20 )
 custom_fonts/font = SubResource( 4 )
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WonAnimationPlayer" type="AnimationPlayer" parent="Wrapper"]
 anims/won = SubResource( 2 )

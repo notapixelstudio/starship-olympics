@@ -20,11 +20,11 @@
 [ext_resource path="res://interface/themes/olympic/tab_fg.tres" type="StyleBox" id=18]
 [ext_resource path="res://interface/themes/olympic/scroll_focus.tres" type="StyleBox" id=19]
 [ext_resource path="res://interface/themes/olympic/hover.tres" type="StyleBox" id=20]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=21]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=21]
 [ext_resource path="res://interface/themes/olympic/hover_pressed.tres" type="StyleBox" id=22]
 
 [sub_resource type="DynamicFont" id=17]
-size = 28
+size = 26
 use_mipmaps = true
 extra_spacing_top = 4
 extra_spacing_bottom = 4
@@ -71,6 +71,7 @@ corner_detail = 1
 [resource]
 BoxContainer/constants/separation = 4
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.490196, 0.490196, 0.490196, 0.470588 )
 Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
 Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )

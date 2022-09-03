@@ -3,16 +3,16 @@ extends Node
 class_name TheSession
 var uuid : String
 
+var hand : Array # Array of DraftCard
+
+var leaderboards : Array = []
+
 func _init():
 	uuid = UUID.v4()
+	snapshot_leaderboard()
 	
 func get_uuid() -> String:
 	return uuid
-
-class PlayerArena:
-	# This class will store an Arena and the player who chose it
-	var player_id: String
-	var minigame: PackedScene
 
 # The matches played, with scores and stats
 var matches : Array # of TheMatchSummary (a dictionary)
@@ -57,11 +57,6 @@ func setup_selected_sets(sets: Array):
 	self.selected_sets = sets
 	
 func setup_players_selection(players_selection: Dictionary) -> void:
-	# var num_CPUs = 0 if len(players) > 1 else 1
-	# add_cpu(num_CPUs)
-	
-	# global.session.setup_selected_sets(sets)
-	
 	players_sequence = []
 	minigame_pools = {}
 	selected_sets_by_player = {}
@@ -77,11 +72,6 @@ func setup_players_selection(players_selection: Dictionary) -> void:
 	
 	players_sequence.shuffle()
 	
-	# first_time = true
-	
-	# global.new_session(players)
-	# next_level(global.demo)
-	
 	return
 	
 func get_next_minigame(set: Set):
@@ -92,22 +82,15 @@ func get_next_minigame(set: Set):
 		
 	return minigame_pools[set.name].pop_back()
 
-func choose_next_level(demo = false) -> Dictionary : #{String: Minigame}
-	""" Choose next level rotating sets and avoiding back to back duplicates minigames. """
-	var player = players_sequence.pop_back()
-	players_sequence.push_front(player)
-	print(selected_sets_by_player)
-	var next_set = selected_sets_by_player[player]
-	
-	var next_minigame : Minigame = get_next_minigame(next_set)
-	
-	# WARNING this is not a while because it's better to repeat a level than to
-	# hang the game (in case a set contains all copies of the same levels)
-	if next_minigame == last_minigame: # best effort deduplication
-		next_minigame = get_next_minigame(next_set)
-	
-	last_minigame = next_minigame
-	return {"player": player, "level": next_minigame}
+
+func choose_next_card() -> DraftCard:
+	var next_card = hand.pop_front()
+	global.the_game.deck.put_card_into_played_pile(next_card)
+	return next_card
+
+func discard_hand():
+	global.the_game.deck.append_cards(hand)
+	hand = []
 
 func add_match(last_match: Dictionary):
 	matches.insert(0, last_match)
@@ -118,6 +101,12 @@ func get_last_match() -> Dictionary:
 	else:
 		return {}
 
+func set_hand(cards : Array) -> void:
+	hand = cards
+
+func get_hand() -> Array:
+	return hand
+
 func to_dict() -> Dictionary:
 	"""
 	"""
@@ -125,3 +114,41 @@ func to_dict() -> Dictionary:
 		"uuid": get_uuid(),
 		"matches": self.matches
 	}
+
+func update_stars() -> void:
+	var winners = get_last_winners()
+	
+	for winner in winners:
+		print("%s won" % [winner.id])
+		assert(winner is InfoPlayer)
+		winner.add_victory(get_last_match().get("winners_did_perfect"))
+		
+	# store leaderboard status after changing it
+	snapshot_leaderboard()
+	
+func get_last_winners() -> Array:
+	return get_last_match().get("winners")
+
+func snapshot_leaderboard() -> void:
+	var new_leaderboard = []
+	for player in global.the_game.get_players():
+		new_leaderboard.append(player.to_dict())
+	new_leaderboard.sort_custom(self, '_sort_by_session_score')
+	leaderboards.push_front(new_leaderboard)
+
+func _sort_by_session_score(a, b) -> bool:
+	return a["session_score"] > b["session_score"]
+
+func get_current_leaderboard() -> Array:
+	return leaderboards[0]
+	
+func get_previous_leaderboard() -> Array:
+	return leaderboards[1]
+
+func is_over() -> bool:
+	for player in global.the_game.get_players():
+		assert(player is InfoPlayer)
+		if player.get_session_score_total() >= global.win:
+			return true
+	return false
+	

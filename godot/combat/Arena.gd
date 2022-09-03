@@ -19,6 +19,7 @@ export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
+export var IceScene : PackedScene
 
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
@@ -26,6 +27,8 @@ export var match_duration_override : float = 0
 export var show_hud : bool = true
 export var show_intro : bool = true
 export var random_starting_position : bool = true
+export var place_ships_at_start : bool = true
+export var dark_winter : bool = false
 
 var debug = false
 # analytics
@@ -69,6 +72,8 @@ signal battle_start
 signal skip
 signal all_ships_spawned
 
+signal salvo
+
 var array_players = [] # Dictionary of InfoPlayers
 
 func compute_arena_size():
@@ -100,8 +105,7 @@ func set_style(v : ArenaStyle):
 		grid.poly.texture_scale = style.battlefield_texture_scale
 		grid.poly.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
 		
-func get_time_scale():
-	return time_scale
+func get_time_scale():	return time_scale
 	
 func update_time_scale():
 	Engine.time_scale = self.time_scale
@@ -136,7 +140,8 @@ func _enter_tree():
 	# this happens before descendants _ready() calls
 	# but after export vars are set for this node
 	# it is needed to actually take the "standalone" export var
-	# into consideration 
+	# into consideration
+	global.arena = self
 	
 	if global.is_match_running():
 		standalone = false
@@ -251,7 +256,7 @@ func _ready():
 			if i >= len(array_players):
 				break
 				
-			info_player = array_players[i] 
+			info_player = array_players[i]
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
@@ -296,6 +301,9 @@ func _ready():
 			
 	if not game_mode.shared_targets:
 		score_to_win_override /= global.the_game.get_number_of_players()
+		
+	if game_mode.fill_starting_score:
+		game_mode.starting_score = score_to_win_override
 	
 	if global.is_match_running():
 		global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
@@ -316,8 +324,12 @@ func _ready():
 		game_mode.max_timeout = match_duration_override
 		
 	if show_intro:
-		mode_description.gamemode = game_mode
+		mode_description.set_gamemode(game_mode)
 		mode_description.appears()
+
+		if global.is_match_running():
+			mode_description.set_draft_card(global.the_match.get_draft_card())
+
 		if demo:
 			# demo will wait 1 second and create a CPU match
 			mode_description.demomode(demo)
@@ -334,8 +346,6 @@ func _ready():
 	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
 		well.enabled = true
-
-	var ships = []
 	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
@@ -368,39 +378,36 @@ func _ready():
 	else:
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
-		
+			
+	if global.is_match_running():
+		# manage the coming of winter
+		var draft_card = global.the_match.get_draft_card()
+		if draft_card != null and draft_card.is_winter():
+			var ice = IceScene.instance()
+			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
+			$Battlefield/Background.add_child(ice)
+			if dark_winter:
+				ice.modulate = Color(0.55,0.55,0.55)
+	
 	# load style from gamemode, if specified
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
+	if show_hud:
+		hud.set_draft_card(global.the_match.get_draft_card())
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
-	if show_hud:
-		hud.set_planet("", game_mode)
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
 	else:
 		Soundtrack.stop()
 	
-	var j = 0
-	var player_spawners = $SpawnPositions/Players.get_children()
-
-	for s in player_spawners:
-		var spawner = s as PlayerSpawner
-		spawner.appears()
-		# waiting for the ship to be entered
-		yield(get_tree().create_timer(0.5), "timeout")
-		ships.append(spawn_ship(spawner))
-		j += 1
-		# wait for the last ship
-		if j >= len(player_spawners):
-			yield(spawner, "entered_battlefield")
+	if place_ships_at_start:
+		spawn_all_ships()
+		yield(self, 'all_ships_spawned')
 	
 	camera.activate_camera()
-	
-	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
-	emit_signal("all_ships_spawned", player_spawners)
 	
 	# group by order for trait intro
 	var intro_nodes = {}
@@ -438,6 +445,29 @@ func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
 
 const COUNTDOWN_LIMIT = 5.0
+
+func spawn_all_ships(do_intro = false):
+	var j = 0
+	var player_spawners = $SpawnPositions/Players.get_children()
+	
+	for s in player_spawners:
+		var spawner = s as PlayerSpawner
+		spawner.appears()
+		# waiting for the ship to be entered
+		yield(get_tree().create_timer(0.5), "timeout")
+		spawn_ship(spawner)
+		j += 1
+		# wait for the last ship
+		if j >= len(player_spawners):
+			yield(spawner, "entered_battlefield")
+			
+	yield(get_tree(), "idle_frame")
+	
+	if do_intro:
+		for ship in self.get_all_valid_ships():
+			ship.intro()
+			
+	emit_signal("all_ships_spawned", player_spawners)
 
 func update_grid():
 	# TODO: maybe you can put directly inside grid
@@ -651,10 +681,6 @@ const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
 onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
 
-func spawn_ships():
-	for player in SpawnPlayers.get_children():
-		spawn_ship(player)
-
 func create_trail(ship):
 	# create and link trail
 	var trail = trail_scene.instance()
@@ -711,6 +737,8 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
+	ship.set_max_health(game_mode.starting_health)
+	ship.set_auto_thrust(game_mode.auto_thrust)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
@@ -874,7 +902,7 @@ func _on_ship_fallen(ship, spawner):
 func respawn_from_home(ship, spawner):
 	var respawn_timeout = 1.0
 	if game_mode.id == 'skull_collector':
-		respawn_timeout = 2.5
+		respawn_timeout = 2.0
 	
 	ship.trail.destroy()
 	if ship.alive:
@@ -885,7 +913,7 @@ func respawn_from_home(ship, spawner):
 	
 func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')
-	killable.connect('killed', combat_manager, '_on_sth_killed')
+	#killable.connect('killed', combat_manager, '_on_sth_killed')
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)
@@ -910,9 +938,9 @@ func _on_sth_just_froze(sth):
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
 	rock.call_deferred('start')
 
-func _on_goal_done(player, goal, pos):
-	global.the_match.add_score(player.id, goal.get_score())
-	show_msg(player.species, goal.get_score(), pos)
+func _on_goal_done(player, goal, pos, points=1):
+	global.the_match.add_score_to_team(player.team, points)
+	show_msg(player.species, points, pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):

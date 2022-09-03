@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=18]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=20]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -84,9 +83,9 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
-width = 3600
-height = 1800
-radius = 900
+width = 3800
+height = 2000
+radius = 1000
 precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -529,7 +528,7 @@ position = Vector2( 300, 600 )
 position = Vector2( -300, 0 )
 
 [node name="Wall6" parent="Battlefield/Middleground" index="42" instance=ExtResource( 8 )]
-position = Vector2( 900, -900 )
+position = Vector2( 900, -1000 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -539,7 +538,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
-position = Vector2( -900, 900 )
+position = Vector2( -900, 1000 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -549,7 +548,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
-position = Vector2( -1800, 0 )
+position = Vector2( -1900, 0 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -559,7 +558,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
-position = Vector2( 1800, 0 )
+position = Vector2( 1900, 0 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -569,7 +568,7 @@ radius = 50
 sides = 4.0
 
 [node name="Wall" parent="Battlefield/Middleground" index="46" instance=ExtResource( 8 )]
-position = Vector2( -900, -900 )
+position = Vector2( -900, -1000 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -587,7 +586,7 @@ rotation = 1.5708
 anims/Default = SubResource( 1 )
 
 [node name="Wall4" parent="Battlefield/Middleground" index="47" instance=ExtResource( 8 )]
-position = Vector2( 900, 900 )
+position = Vector2( 900, 1000 )
 line_width = 28
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
@@ -603,18 +602,6 @@ rotation = -1.5708
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall4" index="7" groups=["animation_if_additional_lasers"]]
 anims/Default = SubResource( 2 )
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="48" instance=ExtResource( 21 )]
-position = Vector2( -600, 600 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="49" instance=ExtResource( 21 )]
-position = Vector2( 600, 600 )
-type = "rocket_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="50" instance=ExtResource( 21 )]
-position = Vector2( 600, -600 )
-type = "rocket_gun"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )

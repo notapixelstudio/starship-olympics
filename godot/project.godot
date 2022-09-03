@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "ColorRect",
-"class": "AddingBindingControls",
-"language": "GDScript",
-"path": "res://ui/option_scenes/settings/remapping/elements/AddBinding.gd"
-}, {
 "base": "Ball",
 "class": "Alien",
 "language": "GDScript",
@@ -110,6 +105,16 @@ _global_script_classes=[ {
 "path": "res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.gd"
 }, {
 "base": "Area2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://actors/environments/Card.gd"
+}, {
+"base": "Resource",
+"class": "CardPool",
+"language": "GDScript",
+"path": "res://map/draft/pool/CardPool.gd"
+}, {
+"base": "Area2D",
 "class": "Cell",
 "language": "GDScript",
 "path": "res://actors/environments/Cell.gd"
@@ -119,10 +124,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/DiamondSpawner.gd"
 }, {
-"base": "Control",
-"class": "CommandRemap",
+"base": "ColorRect",
+"class": "CollectionItem",
 "language": "GDScript",
-"path": "res://ui/option_scenes/settings/remapping/elements/RemapAction.gd"
+"path": "res://ui/minigame_list/CollectionItem.gd"
 }, {
 "base": "Node",
 "class": "Component",
@@ -154,6 +159,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/battlers/DeadShip.gd"
 }, {
+"base": "Node",
+"class": "Deck",
+"language": "GDScript",
+"path": "res://globals/Deck.gd"
+}, {
+"base": "ColorRect",
+"class": "DeckListItem",
+"language": "GDScript",
+"path": "res://ui/minigame_list/DeckListItem.gd"
+}, {
 "base": "Area2D",
 "class": "DeepGel",
 "language": "GDScript",
@@ -163,6 +178,16 @@ _global_script_classes=[ {
 "class": "Diamond",
 "language": "GDScript",
 "path": "res://combat/collectables/Diamond.gd"
+}, {
+"base": "Resource",
+"class": "DraftCard",
+"language": "GDScript",
+"path": "res://map/draft/cards/DraftCard.gd"
+}, {
+"base": "Card",
+"class": "DraftCardGraphicNode",
+"language": "GDScript",
+"path": "res://map/draft/DraftCardGraphicNode.gd"
 }, {
 "base": "Node",
 "class": "Entity",
@@ -235,6 +260,11 @@ _global_script_classes=[ {
 "path": "res://combat/modes/GameMode.gd"
 }, {
 "base": "Area2D",
+"class": "Gate",
+"language": "GDScript",
+"path": "res://actors/environments/Gate.gd"
+}, {
+"base": "Area2D",
 "class": "Gel",
 "language": "GDScript",
 "path": "res://actors/environments/Gel.gd"
@@ -252,12 +282,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Graph",
 "language": "GDScript",
-"path": "res://map/Graph.gd"
+"path": "res://map_with_sets/Graph.gd"
+}, {
+"base": "Node2D",
+"class": "Hand",
+"language": "GDScript",
+"path": "res://map/Hand.gd"
 }, {
 "base": "Node2D",
 "class": "Homeworld",
 "language": "GDScript",
 "path": "res://actors/environments/Homeworld.gd"
+}, {
+"base": "Area2D",
+"class": "Ice",
+"language": "GDScript",
+"path": "res://actors/environments/Ice.gd"
 }, {
 "base": "Node",
 "class": "InfoPlayer",
@@ -277,57 +317,57 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Map",
 "language": "GDScript",
-"path": "res://map/Map.gd"
+"path": "res://map_with_sets/Map.gd"
 }, {
 "base": "MapLocation",
 "class": "MapCheckpoint",
 "language": "GDScript",
-"path": "res://map/MapCheckpoint.gd"
+"path": "res://map_with_sets/MapCheckpoint.gd"
 }, {
 "base": "Node2D",
 "class": "MapCursor",
 "language": "GDScript",
-"path": "res://map/Cursor.gd"
+"path": "res://map_with_sets/Cursor.gd"
 }, {
 "base": "Area2D",
 "class": "MapLocation",
 "language": "GDScript",
-"path": "res://map/MapLocation.gd"
+"path": "res://map_with_sets/MapLocation.gd"
 }, {
 "base": "MapLocation",
 "class": "MapMoon",
 "language": "GDScript",
-"path": "res://map/MapMoon.gd"
+"path": "res://map_with_sets/MapMoon.gd"
 }, {
 "base": "MapLocation",
 "class": "MapOption",
 "language": "GDScript",
-"path": "res://map/MapOption.gd"
+"path": "res://map_with_sets/MapOption.gd"
 }, {
 "base": "Control",
 "class": "MapPanel",
 "language": "GDScript",
-"path": "res://map/mapPanel.gd"
+"path": "res://map_with_sets/mapPanel.gd"
 }, {
 "base": "Node2D",
 "class": "MapPanelContainer",
 "language": "GDScript",
-"path": "res://map/MapPanelContainer.gd"
+"path": "res://map_with_sets/MapPanelContainer.gd"
 }, {
 "base": "Line2D",
 "class": "MapPath",
 "language": "GDScript",
-"path": "res://map/MapPath.gd"
+"path": "res://map_with_sets/MapPath.gd"
 }, {
 "base": "MapLocation",
 "class": "MapPlanet",
 "language": "GDScript",
-"path": "res://map/MapPlanet.gd"
+"path": "res://map_with_sets/MapPlanet.gd"
 }, {
 "base": "MapLocation",
 "class": "MapRadio",
 "language": "GDScript",
-"path": "res://map/MapRadio.gd"
+"path": "res://map_with_sets/MapRadio.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Marble",
@@ -344,6 +384,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/minigames/Minigame.gd"
 }, {
+"base": "Control",
+"class": "MinigameMinilogo",
+"language": "GDScript",
+"path": "res://ui/minigame_list/MinigameMinilogo.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Mirror",
 "language": "GDScript",
@@ -357,7 +402,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Mutator",
 "language": "GDScript",
-"path": "res://map/planets/mutators/Mutator.gd"
+"path": "res://map_with_sets/planets/mutators/Mutator.gd"
+}, {
+"base": "DraftCard",
+"class": "MysteryCard",
+"language": "GDScript",
+"path": "res://map/draft/cards/MysteryCard.gd"
 }, {
 "base": "Button",
 "class": "NavigatorButton",
@@ -367,7 +417,7 @@ _global_script_classes=[ {
 "base": "MapLocation",
 "class": "OptionCell",
 "language": "GDScript",
-"path": "res://map/OptionCell.gd"
+"path": "res://map_with_sets/OptionCell.gd"
 }, {
 "base": "Component",
 "class": "Owned",
@@ -379,10 +429,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/weapons/mechs/Paddle.gd"
 }, {
+"base": "UIOptionPanel",
+"class": "PanelRemapping",
+"language": "GDScript",
+"path": "res://ui/option_scenes/settings/PanelRemapping.gd"
+}, {
 "base": "Sprite",
 "class": "PathStar",
 "language": "GDScript",
-"path": "res://map/PathStar.gd"
+"path": "res://map_with_sets/PathStar.gd"
 }, {
 "base": "Node2D",
 "class": "Pentagoal",
@@ -424,6 +479,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
+"base": "Control",
+"class": "RemapAction",
+"language": "GDScript",
+"path": "res://ui/option_scenes/settings/remapping/elements/RemapAction.gd"
+}, {
+"base": "Panel",
+"class": "RemappingScene",
+"language": "GDScript",
+"path": "res://ui/option_scenes/settings/remapping/elements/RemappingScene.gd"
+}, {
 "base": "RigidBody2D",
 "class": "RemoteBomb",
 "language": "GDScript",
@@ -442,12 +507,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Rule",
 "language": "GDScript",
-"path": "res://map/planets/rules/Rule.gd"
+"path": "res://map_with_sets/planets/rules/Rule.gd"
 }, {
 "base": "Resource",
 "class": "Set",
 "language": "GDScript",
-"path": "res://map/planets/Set.gd"
+"path": "res://map_with_sets/planets/Set.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Ship",
@@ -468,6 +533,11 @@ _global_script_classes=[ {
 "class": "StarIcon",
 "language": "GDScript",
 "path": "res://special_scenes/combat_UI/session_points/Star.gd"
+}, {
+"base": "Resource",
+"class": "StartingDeck",
+"language": "GDScript",
+"path": "res://map/draft/StartingDeck.gd"
 }, {
 "base": "Position2D",
 "class": "TargetDest",
@@ -509,6 +579,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/traits/Trait.gd"
 }, {
+"base": "Label",
+"class": "Typewriter",
+"language": "GDScript",
+"path": "res://ui/Typewriter.gd"
+}, {
 "base": "Control",
 "class": "UIOptionPanel",
 "language": "GDScript",
@@ -537,7 +612,7 @@ _global_script_classes=[ {
 "base": "MapLocation",
 "class": "Waypoint",
 "language": "GDScript",
-"path": "res://map/Waypoint.gd"
+"path": "res://map_with_sets/Waypoint.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
@@ -545,7 +620,6 @@ _global_script_classes=[ {
 "path": "res://actors/weapons/arsenal/Weapon.gd"
 } ]
 _global_script_class_icons={
-"AddingBindingControls": "",
 "Alien": "",
 "Arena": "",
 "ArenaStyle": "",
@@ -565,17 +639,23 @@ _global_script_class_icons={
 "Bull": "",
 "Bullet": "",
 "ButtonRepresentation": "",
+"Card": "",
+"CardPool": "",
 "Cell": "",
 "CollectableSpawner": "",
-"CommandRemap": "",
+"CollectionItem": "",
 "Component": "",
 "Conquerable": "",
 "Controller": "",
 "Crown": "",
 "Dasher": "",
 "DeadShip": "",
+"Deck": "",
+"DeckListItem": "",
 "DeepGel": "",
 "Diamond": "",
+"DraftCard": "",
+"DraftCardGraphicNode": "",
 "Entity": "",
 "Explosion": "",
 "Field": "",
@@ -590,11 +670,14 @@ _global_script_class_icons={
 "GSegment": "",
 "GShape": "",
 "GameMode": "",
+"Gate": "",
 "Gel": "",
 "GenericOption": "",
 "GlowColor": "",
 "Graph": "",
+"Hand": "",
 "Homeworld": "",
+"Ice": "",
 "InfoPlayer": "",
 "Laser": "",
 "Manager": "",
@@ -612,13 +695,16 @@ _global_script_class_icons={
 "Marble": "",
 "Mine": "",
 "Minigame": "",
+"MinigameMinilogo": "",
 "Mirror": "",
 "ModeManager": "",
 "Mutator": "",
+"MysteryCard": "",
 "NavigatorButton": "",
 "OptionCell": "",
 "Owned": "",
 "Paddle": "",
+"PanelRemapping": "",
 "PathStar": "",
 "Pentagoal": "",
 "PilotStats": "",
@@ -628,6 +714,8 @@ _global_script_class_icons={
 "Polyomino": "",
 "Portalz": "",
 "PowerUp": "",
+"RemapAction": "",
+"RemappingScene": "",
 "RemoteBomb": "",
 "Ripple": "",
 "Rock": "",
@@ -637,6 +725,7 @@ _global_script_class_icons={
 "Species": "",
 "Star": "",
 "StarIcon": "",
+"StartingDeck": "",
 "TargetDest": "",
 "TeamStats": "",
 "TheGame": "",
@@ -645,6 +734,7 @@ _global_script_class_icons={
 "Trail": "",
 "Trail2D": "",
 "Trait": "",
+"Typewriter": "",
 "UIOptionPanel": "",
 "UIOptions": "",
 "UUID": "",
@@ -675,6 +765,7 @@ config/icon="res://logo.png"
 persistance="*res://globals/persistance.gd"
 Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
+Controls="*res://globals/Controls.gd"
 TheUnlocker="*res://globals/TheUnlocker.gd"
 analytics="*res://globals/analytics.gd"
 GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
@@ -1172,5 +1263,6 @@ common/physics_fps=120
 
 quality/intended_usage/framebuffer_allocation.mobile=2
 quality/filters/use_nearest_mipmap_filter=true
+gles3/shaders/shader_compilation_mode=2
 environment/default_clear_color=Color( 0.145098, 0.172549, 0.231373, 1 )
 quality/dynamic_fonts/use_oversampling=false

@@ -1,6 +1,5 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
@@ -9,6 +8,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
@@ -37,7 +37,7 @@ resource_name = "Rotate"
 length = 8.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("GRect:width")
+tracks/0/path = NodePath("GBeveledRect:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -46,10 +46,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 100, 800 ]
+"values": [ 200, 800 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("GRect:height")
+tracks/1/path = NodePath("GBeveledRect:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -58,7 +58,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 100 ]
+"values": [ 800, 200 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -66,7 +66,7 @@ resource_name = "Rotate"
 length = 8.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("GRect:width")
+tracks/0/path = NodePath("GBeveledRect:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -75,10 +75,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 100, 800 ]
+"values": [ 200, 800 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("GRect:height")
+tracks/1/path = NodePath("GBeveledRect:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -87,7 +87,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2, 6 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 800, 100 ]
+"values": [ 800, 200 ]
 }
 
 [node name="Arena" instance=ExtResource( 9 )]
@@ -172,32 +172,42 @@ texture_scale = Vector2( 0.125, 0.125 )
 fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
 bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
-[node name="GlassWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
+[node name="NoShipZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( -800, 0 )
 rotation = 0.785398
-collision_layer = 2147483648
-type = 4
+symbol_scale = 1.0
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall" index="8"]
-script = ExtResource( 1 )
-width = 450
-height = 450
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoShipZone" index="11"]
+script = ExtResource( 2 )
+width = 500
+height = 500
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall" index="9" groups=["animation_in_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/NoShipZone" index="12" groups=["animation_in_battle"]]
+playback_process_mode = 0
 anims/Rotate = SubResource( 2 )
 
-[node name="GlassWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
+[node name="NoShipZone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
 position = Vector2( 800, 0 )
 rotation = 0.785398
-collision_layer = 2147483648
-type = 4
+symbol_scale = 1.0
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/GlassWall2" index="8"]
-script = ExtResource( 1 )
-width = 425
-height = 425
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoShipZone2" index="11"]
+script = ExtResource( 2 )
+width = 500
+height = 500
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/GlassWall2" index="9" groups=["animation_in_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/NoShipZone2" index="12" groups=["animation_in_battle"]]
+playback_process_mode = 0
 anims/Rotate = SubResource( 3 )
 
 [node name="Negacrown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
@@ -205,19 +215,18 @@ anims/Rotate = SubResource( 3 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -450, -450 )
 rotation = 0.785398
-controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 450, 450 )
 rotation = -2.3562
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 8 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
 position = Vector2( 450, -450 )
 rotation = 2.3562
-controls = "joy3"
+controls = "kb2"
 species = ExtResource( 4 )
 
 [node name="Camera" parent="." index="7"]

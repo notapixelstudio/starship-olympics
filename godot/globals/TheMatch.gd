@@ -15,6 +15,7 @@ var players = {} # Dictionary of InfoPlayers
 
 var draw : bool = true
 var game_over : bool = false
+var perfect_end : bool = false
 var cumulative_points = 0
 
 var leaders = []
@@ -22,6 +23,8 @@ var winners = [] # Array of winning InfoPlayer
 var no_players = false
 var end_on_perfect := true
 
+var minigame : Minigame
+var draft_card: DraftCard
 var game_mode : GameMode
 
 const DEADZONE = 0.1
@@ -99,7 +102,8 @@ func update(delta: float):
 	
 func compute_game_status():
 	if game_over:
-		print("Don't need to calculate winners again. Winners are: ")
+		# print("Don't need to calculate winners again. Winners are: ")
+		return
 	player_scores.sort_custom(self, "sort_by_score")
 	
 	leaders = []
@@ -108,7 +112,7 @@ func compute_game_status():
 		if player.get_score() >= leader.get_score():
 			leaders.append(player)
 	
-	var perfect_end : bool = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
+	perfect_end = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
 	
 	if perfect_end or time_left <= 0 or no_players:
 		winners = []
@@ -123,6 +127,11 @@ func compute_game_status():
 				winners.append(info_player)
 			else:
 				draw = false
+				
+		# no winners if perfectionist mode is active and the end was not perfect
+		if draft_card and draft_card.is_perfectionist() and not perfect_end:
+			winners = []
+		
 		if draw:
 			winners = []
 		
@@ -148,7 +157,7 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 		return
 		
 	var player = get_player(id_player)
-	player.score = amount
+	player.set_score(amount)
 	
 	if cumulative_points >= 0:
 		cumulative_points = amount
@@ -157,6 +166,10 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 	emit_signal('updated', player, broadcasted) # author
 	
 func add_score(id_player : String, amount : float, broadcasted = false):
+	self._silent_add_score(id_player, amount, broadcasted)
+	compute_game_status()
+	
+func _silent_add_score(id_player : String, amount : float, broadcasted = false):
 	if game_over:
 		return
 		
@@ -166,9 +179,8 @@ func add_score(id_player : String, amount : float, broadcasted = false):
 	if cumulative_points >= 0:
 		cumulative_points += amount
 		
-	compute_game_status()
 	emit_signal('updated', player, broadcasted) # author
-
+	
 func broadcast_score(id_player : String, amount : float):
 	if game_over:
 		return
@@ -193,7 +205,10 @@ func to_dict()->Dictionary:
 	"""
 	return {
 		"uuid": get_uuid(),
-		"winners": winners
+		"winners": winners,
+		"minigame_id": minigame.get_id(),
+		"card_id": draft_card.get_id(),
+		"winners_did_perfect": self.winners_did_perfect()
 	}
 
 func get_number_of_players():
@@ -209,3 +224,33 @@ func get_leader_players() -> Array:
 func get_game_mode() -> GameMode:
 	return game_mode
 	
+func get_players_in_team(team : String) -> Array: # of InfoPlayer
+	var result := []
+	for player in player_scores:
+		if player.team == team:
+			result.append(player)
+	return result
+	
+func add_score_to_team(team : String, amount : float):
+	for player in get_players_in_team(team):
+		_silent_add_score(player.id, amount)
+		
+	compute_game_status()
+
+func winners_did_perfect() -> bool:
+	for p in self.get_leader_players():
+		if p.get_score() >= target_score or cumulative_points >= target_score:
+			return true
+	return false
+
+func set_minigame(m: Minigame):
+	minigame = m
+	
+func get_minigame() -> Minigame:
+	return minigame
+	
+func set_draft_card(c: DraftCard):
+	draft_card = c
+	
+func get_draft_card() -> DraftCard:
+	return draft_card

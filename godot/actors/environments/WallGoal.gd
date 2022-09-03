@@ -29,7 +29,7 @@ func do_goal(author, position):
 	emit_signal('goal_done', author, self, position)
 	
 func get_strategy(ship, distance, game_mode):
-	if game_mode.get_id() == 'tennis':
+	if game_mode.get_id() == 'ponganoid':
 		if get_player().team != ship.get_player().team:
 			return {'seek': 1}
 	

@@ -6,6 +6,9 @@ export var width : float = 300 setget set_width
 export var offset : float = 80
 export var color : Color = Color(1, 0, 1, 1) setget set_color
 export var inverted : bool = false setget set_inverted
+export var show_hole : bool = true setget set_show_hole
+export var wobbliness := 20.0
+export var is_goal : bool = false
 export var goal_owner : NodePath
 var player
 
@@ -24,6 +27,10 @@ func set_color(v):
 func set_inverted(v):
 	inverted = v
 	refresh()
+	
+func set_show_hole(v):
+	show_hole = v
+	refresh()
 
 func _ready():
 	var player_spawner = get_node(goal_owner)
@@ -37,24 +44,31 @@ func refresh():
 		$Area2D/CollisionShape2D.shape.extents.x = width
 		$StaticBody2D/CollisionShape2D.shape.extents.x = width
 		
-		$Line2D.points[0].x = -width
-		$Line2D.points[1].x = width
+		self.wobble()
+		
 		$WallLine.points[0].x = -width
 		$WallLine.points[1].x = width
 		$Hole.points[0].x = -width*0.66
 		$Hole.points[1].x = width*0.66
 		
-		$Line2D.modulate = color
 		$Particles2D.modulate = color
 		$SpikeParticles2D.modulate = color
 		$Particles2D.scale.x = -1 if inverted else 1
 		$Particles2D2.scale.x = -1 if inverted else 1
+		$Particles2D.process_material.emission_box_extents.y = width
+		$Particles2D2.process_material.emission_box_extents.y = width
+		$SpikeParticles2D.process_material.emission_box_extents.y = width
+		$Particles2D.amount = width / 300 * 8
+		$Particles2D2.amount = width / 300 * 8
+		$SpikeParticles2D.amount = width / 300 * 8
 		
 		if player:
 			$Line2D.modulate = player.species.color
 			$Particles2D.modulate = player.species.color
 			$SpikeParticles2D.modulate = player.species.color
 			$Line2D.self_modulate = Color(1.2,1.2,1.2,1) # ship colors are already vibrant
+			
+		$Hole.visible = show_hole
 		
 func enable():
 	$Area2D/CollisionShape2D.disabled = false
@@ -112,10 +126,25 @@ func get_score():
 	return -1 if inverted else 1
 	
 func do_goal(player, pos):
-	emit_signal("goal_done", player, self, pos)
+	if is_goal:
+		emit_signal("goal_done", player, self, pos)
 	
 func set_player(v : InfoPlayer):
 	player = v
 	
 func get_player():
 	return player
+
+func wobble():
+	var points := []
+	var step := 30.0
+	var current := -width
+	while current < width:
+		points.append(Vector2(current, -randf()*wobbliness))
+		current += step
+		
+	$Line2D.points = PoolVector2Array(points)
+
+func _on_Timer_timeout():
+	self.wobble()
+	

@@ -199,7 +199,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 54
+frame = 45
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
@@ -311,9 +311,6 @@ margin_bottom = 100.0
 custom_fonts/font = SubResource( 9 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 bus = "SFX"

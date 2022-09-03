@@ -2,8 +2,6 @@ extends Node2D
 
 var owner_ship: Ship
 
-onready var sprite = $Wrapper/Sprite
-
 func _ready():
 	owner_ship = get_parent() # WARNING
 	
@@ -62,7 +60,10 @@ func drop_holdable(cause):
 		
 	var holdable = held
 	held = null
-	holdable.place_and_push(owner_ship, owner_ship.previous_velocity, direction) # previous is needed for glass
+	var previous_velocity = owner_ship.previous_velocity
+	if previous_velocity.length() < 0.1: # push if the ship was still
+		previous_velocity = Vector2(200.0, 0).rotated(owner_ship.global_rotation)
+	holdable.place_and_push(owner_ship, previous_velocity, direction) # previous is needed for glass
 	hide_holdable()
 	Events.emit_signal("holdable_dropped", holdable, owner_ship, cause)
 	
@@ -73,10 +74,11 @@ func drop_holdable(cause):
 	
 func show_holdable():
 	if held != null:
-		sprite.texture = held.get_texture()
+		$Wrapper/Sprite.texture = held.get_texture()
+		$Wrapper/Shadow.texture = held.get_texture()
 		if held.show_on_top():
-			sprite.z_index = 20
-			sprite.z_as_relative = false
+			$Wrapper/Sprite.z_index = 100
+			$Wrapper/Sprite.z_as_relative = false
 			$Wrapper.position = Vector2(0, -Ball.GRAB_DISTANCE*1.5)
 			$RoyalGlow.position.x = 0
 		else:
@@ -86,17 +88,25 @@ func show_holdable():
 			
 		if held.is_glowing():
 			$RoyalGlow.visible = true
+			
+		if held is Alien:
+			$Wrapper.position = Vector2(Ball.GRAB_DISTANCE * 1.7, 0)
+		
+		$Wrapper/Sprite.scale = Vector2(1.3, 1.3) if held is Alien else Vector2(1,1)
+		$Wrapper/Shadow.scale = Vector2(1.3, 1.3) if held is Alien else Vector2(1,1)
 
 func hide_holdable():
-	sprite.texture = null
+	$Wrapper/Sprite.texture = null
 	$Wrapper.position = Vector2(0,0)
-	sprite.z_index = 0
-	sprite.z_as_relative = true
+	$Wrapper/Sprite.z_index = 0
+	$Wrapper/Sprite.z_as_relative = true
 	$RoyalGlow.visible = false
 
 func _process(delta):
 	if held != null and not held.is_rotatable():
-		sprite.rotation = -global_rotation
+		$Wrapper/Sprite.rotation = -global_rotation
+		$Wrapper/Shadow.rotation = -global_rotation
+		$Wrapper/Shadow.position = Vector2(0, 32).rotated(-global_rotation)
 		if held.show_on_top():
 			var grab_distance = Ball.GRAB_DISTANCE * (2.0 if held.has_type('bee_crown') else 1.5)
 			$Wrapper.position = Vector2(0, -grab_distance).rotated(-global_rotation)

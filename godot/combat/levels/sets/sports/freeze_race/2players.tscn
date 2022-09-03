@@ -318,7 +318,6 @@ in_camera = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="11" instance=ExtResource( 5 )]
 hollow = true
-offset = 800
 hide_grid = true
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
@@ -333,34 +332,34 @@ precision = 100.0
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.670588 )
 
-[node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="15"]
+[node name="FinishLine" type="Polygon2D" parent="Battlefield/Background" index="14"]
 modulate = Color( 1, 1, 1, 0.305882 )
 position = Vector2( -200, 0 )
 texture = ExtResource( 13 )
 polygon = PoolVector2Array( 0, -2250, 200, -2250, 200, -1400, 0, -1400 )
 
-[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="16"]
+[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="15"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 2200, 0 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="17"]
+[node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="16"]
 modulate = Color( 0.2, 0.705882, 1, 0.254902 )
 position = Vector2( -3450, -600 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Arrow2" type="Sprite" parent="Battlefield/Background" index="18"]
+[node name="Arrow2" type="Sprite" parent="Battlefield/Background" index="17"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( -987.802, -600 )
 rotation = -3.14159
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="Arrow4" type="Sprite" parent="Battlefield/Background" index="19"]
+[node name="Arrow4" type="Sprite" parent="Battlefield/Background" index="18"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 712.198, -1850 )
 scale = Vector2( 2, 2 )
@@ -447,9 +446,7 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall24" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall24" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 1 )
 
 [node name="Wall25" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
@@ -467,9 +464,7 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall25" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall25" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 2 )
 
 [node name="Wall27" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
@@ -488,9 +483,7 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall27" index="9" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall27" index="9" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 3 )
 
 [node name="LaserWall3" parent="Battlefield/Middleground" index="9" instance=ExtResource( 5 )]
@@ -508,9 +501,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall3" index="10" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall3" index="10" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 4 )
 
 [node name="LaserWall6" parent="Battlefield/Middleground" index="10" instance=ExtResource( 5 )]
@@ -528,9 +519,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall6" index="10" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall6" index="10" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 5 )
 
 [node name="LaserWall4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 5 )]
@@ -548,9 +537,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall4" index="10" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall4" index="10" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 6 )
 
 [node name="LaserWall5" parent="Battlefield/Middleground" index="12" instance=ExtResource( 5 )]
@@ -568,14 +555,10 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall5" index="10" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/LaserWall5" index="10" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 7 )
 
-[node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="13" groups=[
-"race_path",
-]]
+[node name="Path2D" type="Path2D" parent="Battlefield/Middleground" index="13" groups=["race_path"]]
 curve = SubResource( 8 )
 
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="14"]
@@ -596,9 +579,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D" index="1" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D" index="1" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 9 )
 
 [node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="15"]
@@ -620,9 +601,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3" index="1" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D3" index="1" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 10 )
 
 [node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="16"]
@@ -644,9 +623,7 @@ position = Vector2( 36.0625, -36.0625 )
 rotation = -0.785395
 type = "freeze"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2" index="1" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Node2D2" index="1" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 11 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
@@ -657,15 +634,12 @@ species = ExtResource( 9 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 0, -1650 )
 rotation = 0.0
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 14 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 156.25, 156.25 )
 smoothing_speed = 0.3
 zoomMin = 5.0
-enabled = false
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

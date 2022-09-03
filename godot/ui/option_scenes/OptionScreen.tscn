@@ -11,15 +11,9 @@ mouse_filter = 2
 theme = ExtResource( 1 )
 color = Color( 0, 0, 0, 0.745098 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 start_scene = ExtResource( 3 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="Options" type="Label" parent="CanvasLayer"]
+[node name="Options" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 5.96063
 margin_bottom = 69.9606

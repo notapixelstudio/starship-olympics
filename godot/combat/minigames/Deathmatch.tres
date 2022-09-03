@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=2]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/3players.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/2players.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/4players.tscn" type="PackedScene" id=5]
+[ext_resource path="res://special_scenes/tutorials/FireTutorial.tscn" type="PackedScene" id=6]
 
 [resource]
 script = ExtResource( 1 )
@@ -13,3 +14,6 @@ level_1players = ExtResource( 4 )
 level_2players = ExtResource( 4 )
 level_3players = ExtResource( 3 )
 level_4players = ExtResource( 5 )
+tutorial_scene = ExtResource( 6 )
+suit_top = "arrow"
+suit_bottom = "arrow"

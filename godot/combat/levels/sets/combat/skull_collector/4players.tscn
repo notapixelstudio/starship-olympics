@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=4]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=8]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=10]
@@ -66,30 +65,22 @@ fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
 [node name="SpeciesDecal" parent="Battlefield/Background" index="4" instance=ExtResource( 24 )]
-modulate = Color( 0.32549, 1, 0.32549, 1 )
 position = Vector2( -1600, 700 )
-rotation = -0.785398
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 24 )]
-modulate = Color( 0.956863, 0.584314, 0.898039, 1 )
 position = Vector2( 1600, -700 )
-rotation = 2.35619
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="SpeciesDecal4" parent="Battlefield/Background" index="6" instance=ExtResource( 24 )]
-modulate = Color( 0.35, 0.566667, 1, 1 )
 position = Vector2( 1600, 700 )
-rotation = 3.92699
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 
 [node name="SpeciesDecal3" parent="Battlefield/Background" index="7" instance=ExtResource( 24 )]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
 position = Vector2( -1600, -700 )
-rotation = 0.785398
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
@@ -102,6 +93,8 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 450
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall6" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
 position = Vector2( -2500, -600 )
@@ -112,6 +105,8 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
 position = Vector2( -2500, 600 )
@@ -122,44 +117,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="Wall10" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
-position = Vector2( -1200, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall11" parent="Battlefield/Middleground" index="4" instance=ExtResource( 16 )]
-position = Vector2( 1200, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
-position = Vector2( 1200, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall13" parent="Battlefield/Middleground" index="6" instance=ExtResource( 16 )]
-position = Vector2( -1200, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall8" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
+[node name="Wall8" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
 position = Vector2( 2500, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -168,8 +129,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="8" instance=ExtResource( 16 )]
+[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 16 )]
 position = Vector2( 2500, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -178,8 +141,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 16 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
 position = Vector2( 2200, 0 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -188,24 +153,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 450
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="PowerUp" parent="Battlefield/Middleground" index="10" instance=ExtResource( 7 )]
-position = Vector2( -1600, 700 )
-type = "rocket_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="11" instance=ExtResource( 7 )]
-position = Vector2( -1600, -700 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="12" instance=ExtResource( 7 )]
-position = Vector2( 1600, -700 )
-type = "rocket_gun"
-
-[node name="PowerUp4" parent="Battlefield/Middleground" index="13" instance=ExtResource( 7 )]
-position = Vector2( 1600, 700 )
-type = "rocket_gun"
-
-[node name="SkullVariants" parent="Battlefield/Middleground" index="14" instance=ExtResource( 11 )]
+[node name="SkullVariants" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2000, 500 )
@@ -342,11 +293,9 @@ rotation = 3.92699
 controls = "kb2"
 species = ExtResource( 3 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 current = false
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

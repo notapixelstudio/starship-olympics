@@ -17,8 +17,10 @@ export var starting_score : int = 0
 export var cumulative: bool = false
 export var shared_targets := true
 export var starting_lives : int = -1
+export var starting_health : int = 1
 export var respawn_from_home := false
 export var end_on_perfect := true
+export var fill_starting_score := false
 
 # goal manager
 export var death : bool = false
@@ -39,6 +41,7 @@ enum BOMB_TYPE { classic, ball, bullet, bubble, mine, ice, wave }
 export(BOMB_TYPE) var bomb_type = BOMB_TYPE.classic
 export var starting_ammo : int = -1
 export var reload_time : float = 3.0
+export var auto_thrust : bool = false
 
 func set_bombs(value):
 	shoot_bombs = value

@@ -56,6 +56,7 @@ func change_species(new_species: Species):
 	shadow.texture = species.character_ok
 	select_rect.modulate = species.color
 	background.color = species.color
+	$"%ShipShadow".redraw()
 
 func select():
 	select_rect.visible = true

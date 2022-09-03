@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://map/planets/rules/AsteroidColoring.tres" type="Resource" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/asteroid_coloring.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/star_mining_logo.png" type="Texture" id=5]
 [ext_resource path="res://combat/styles/flags.tres" type="Resource" id=6]
@@ -14,14 +13,19 @@ name = "Asteroid Conquest"
 icon = ExtResource( 3 )
 logo = ExtResource( 5 )
 arena_style = ExtResource( 6 )
-description = "touch the asteroids"
+description = "shoot the asteroids"
 tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
 tagline_cons = "Getting killed will make you lose most of the coins"
 max_timeout = 35
 max_score = 100
 starting_score = 0
 cumulative = false
+shared_targets = true
 starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
 death = false
 last_man = false
 crown = false
@@ -31,13 +35,13 @@ goal = false
 survival = false
 race = false
 pursuing_bombs = false
-shoot_bombs = false
+shoot_bombs = true
 deadly_trails = false
 deadly_trails_duration = 2.0
-bomb_type = 0
+bomb_type = 2
 starting_ammo = -1
 reload_time = 3.0
-rules = [ ExtResource( 2 ) ]
+auto_thrust = false
 floodable = true
 flood = false
 laserable = false

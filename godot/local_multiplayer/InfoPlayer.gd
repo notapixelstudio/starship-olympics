@@ -18,6 +18,8 @@ var team: String
 func new_match():
 	self.stats = PlayerStats.new()
 	
+func get_id() -> String:
+	return id
 	
 func set_id(name: String) -> void:
 	self.id = name
@@ -30,7 +32,8 @@ func to_dict():
 		"id": id,
 		"controls": controls,
 		"species_name" : species.name,
-		"cpu": cpu
+		"cpu": cpu,
+		"session_score": len(session_score)
 	}
 
 func to_stats():
@@ -41,6 +44,9 @@ func reset():
 
 func add_score(amount):
 	self.stats.score += amount
+	
+func set_score(amount):
+	self.stats.score = amount
 
 func get_score() -> float:
 	return self.stats.score
@@ -50,3 +56,16 @@ func get_session_score_total():
 
 func get_species_name() -> String:
 	return species.name
+
+func get_color() -> Color:
+	return species.color
+	
+func has_proper_team() -> bool:
+	return self.team != self.id
+	
+func get_team_color() -> Color:
+	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')
+
+func get_ship() -> Texture:
+	return species.get_ship()
+	

@@ -12,17 +12,23 @@ export (String) var controls = "kb1"
 export var absolute_controls : bool= true
 export (Resource) var species
 
+export var forward_bullet_scene : PackedScene
+
 var controls_enabled = false
 
 var spawner
 var trail
 
 var cpu = false
-var velocity = Vector2(0,0)
-var previous_velocity = Vector2(0,0)
-var target_velocity = Vector2(0,0)
+var velocity := Vector2(0,0)
+var previous_velocity := Vector2(0,0)
+var previous_global_positions : Array
+var last_contact_normal = null
+var target_velocity := Vector2(0,0)
 var steer_force = 0
 var rotation_request = 0
+var drift := Vector2(0,0)
+var drifting := false
 
 var THRUST = 6500
 var auto_thrust := false
@@ -36,11 +42,13 @@ var charge = 0
 var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
+const MAX_OVERCHARGE = 1.8
 const MIN_CHARGE = 0.2
+const MAX_TAP_CHARGE = 0.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_BASE = -400
-const DASH_MULTIPLIER = 2.5 # was 2.7, decreased to lessen the chanche of tunneling
+const DASH_MULTIPLIER = 2.6 # was 2.7, decreased to lessen the chance of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1600
 const BALL_BOOST = 2300
@@ -51,8 +59,12 @@ const BULLET_CHARGE_MULTIPLIER = 1.3
 const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
-const ARKABALL_OFFSET = 250
-const ARKABALL_MULTIPLIER = 3
+const ARKABALL_OFFSET = 200
+const ARKABALL_MULTIPLIER = 1.5
+const ON_ICE_MAX_THRUST = 2200
+const ON_ICE_MAX_DASH = 2500
+const ON_ICE_CHARGE_BRAKE = 0.99
+const MIN_DRIFT := 400.0
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
@@ -70,6 +82,8 @@ var stunned = false
 var stun_countdown = 0
 var outside_countup = 0
 
+var max_health := 1
+var health := max_health
 
 var screen_size = Vector2()
 var width = 0
@@ -77,6 +91,7 @@ var height = 0
 
 var charging = false
 var charging_enough = false
+var charging_too_much_for_tap = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 var phasing_cooldown = 0
@@ -107,6 +122,9 @@ signal spawn_bomb
 
 signal dash_started
 signal dash_ended
+
+signal drift_started
+signal drift_ended
 
 signal bump
 signal collect
@@ -139,6 +157,7 @@ var default_bomb_type
 
 func set_bombs_enabled(value: bool):
 	bombs_enabled = value
+	update_weapon_indicator()
 	
 func set_default_bomb_type(value):
 	default_bomb_type = value
@@ -147,9 +166,9 @@ func set_default_bomb_type(value):
 func set_bomb_type(value):
 	bomb_type = value
 	ammo.type = bomb_type
-	$Graphics/ChargeBar/BombPreview.texture = weapon_textures[bomb_type]
+	update_weapon_indicator()
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
-		$Graphics/ChargeBar/BombPreview.modulate = species.color
+		$Graphics/ChargeBar/BombPreview/BombType.modulate = species.color
 	else:
 		next_symbol()
 	
@@ -162,13 +181,21 @@ func set_reload_time(value):
 	
 func set_lives(value: int):
 	info_player.lives = value
+	
+func set_max_health(value: int):
+	max_health = value
+	reset_health()
+	
+func reset_health():
+	$PlayerInfo.reset_health(max_health)
+	self.set_health(max_health)
 
 func _enter_tree():
-	charging = false
-	charging_enough = false
-	charge = 0
 	alive = true
 	outside_countup = 0
+	previous_global_positions = [global_position]
+	
+	reset_health()
 	
 	update_weapon_indicator()
 	
@@ -210,6 +237,14 @@ func _ready():
 	$DashParticles.process_material = dash_process_material
 	$Graphics/ChargeBar/Crosshair.modulate = species.color
 	
+	reset_charge()
+	
+	# if we are on a proper team, switch on the outline
+	if info_player.has_proper_team():
+		$Graphics/Sprite.material.set_shader_param('active', true)
+		var color = info_player.get_team_color()
+		$Graphics/Sprite.material.set_shader_param('color', color)
+	
 func change_engine(value: bool):
 	responsive = value
 	set_physics_process(responsive)
@@ -228,15 +263,20 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusers_on = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
+	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
+	# check if we need to limit thrust
+	var thrust = THRUST
+	if is_on_ice():
+		thrust = min(thrust, ON_ICE_MAX_THRUST)
+		
 	if not absolute_controls:
-		add_central_force(Vector2(THRUST, steer_force).rotated(rotation)*int(thrusers_on))
+		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusting))
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
-		#apply_impulse(Vector2(),target_velocity*THRUST)
-		add_central_force(target_velocity*THRUST*int(thrusers_on))
+		#apply_impulse(Vector2(),target_velocity*thrust)
+		add_central_force(target_velocity*thrust*int(thrusting))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
@@ -266,9 +306,41 @@ func _integrate_forces(state):
 	# clamp velocity
 	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
 	
+	if is_on_ice():
+		# brake if charging on ice
+		if charging:
+			state.linear_velocity *= ON_ICE_CHARGE_BRAKE
+			
+		# compute drift velocity (only when piloting)
+		if target_velocity.length() > 1.0:
+			drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
+		else:
+			drift = Vector2(0,0)
+			
+		if not drifting and drift.length() > MIN_DRIFT:
+			start_drift()
+			
+	if drifting and drift.length() <= MIN_DRIFT or not is_on_ice():
+		end_drift()
+		
+#	if charging:
+#		set_size(min(1.0+2.0*charge, 5.0))
+#	else:
+#		set_size(1.0)
+	
 	# store velocity as a readable var
 	previous_velocity = velocity
 	velocity = state.linear_velocity
+	
+	# remember our previous global positions
+	previous_global_positions.push_back(global_position)
+	if len(previous_global_positions) > 2:
+		previous_global_positions.pop_front()
+	
+	# store last contact normal as a readable var
+	if state.get_contact_count() > 0:
+		last_contact_normal = state.get_contact_local_normal(0)
+	
 	state.set_transform(xform)
 
 func control(_delta):
@@ -277,32 +349,41 @@ func control(_delta):
 var overcharging := false
 signal overcharging_started
 func update_charge_bar():
-	if not charging:
+	if not charging_enough:
 		$Graphics/ChargeBar/Charge.visible = false
-		$Graphics/ChargeBar/ShootingLine.visible = false
-		$Graphics/ChargeBar/ShootingLine.enabled = false
+		$"%ShootingLine".visible = false
+		$"%ShootingLine".enabled = false
 		overcharging = false
 		return
 		
 	$Graphics/ChargeBar/Charge.visible = true
+	$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1)
 	
 	# charge feedback
 	var v = $Graphics/ChargeBar/ChargeAxis.points[1] * min(charge,MAX_CHARGE)/MAX_CHARGE
 	$Graphics/ChargeBar/Charge.set_point_position(1, v)
-	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, v)
-	$Graphics/ChargeBar/Charge/ArrowTip.position.x = v.x+26
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(v.x+4, v.y))
+	if bombs_enabled or golf:
+		$"%ArrowTip".position.x = v.x+26
+	else:
+		$"%ArrowTip".position.x = $Graphics/ChargeBar/ChargeAxis.points[0].x+50
 	
 	# shooting line visible only when charging enough enough
-	$Graphics/ChargeBar/ShootingLine.visible = charge > MIN_CHARGE*2
-	$Graphics/ChargeBar/ShootingLine.enabled = charge > MIN_CHARGE*2
+	$"%ShootingLine".visible = charge > MIN_CHARGE*2
+	$"%ShootingLine".enabled = charge > MIN_CHARGE*2
 	
 	# overcharge feedback
 	if charge > MAX_CHARGE:
-		var visible = int(floor(charge * 15)) % 2
-		$Graphics/ChargeBar/Charge.visible = visible
+		if golf:
+			var visible = int(floor(charge * 15)) % 2
+			$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1) if visible else Color(0,0,0,1)
 		if not overcharging:
 			overcharging = true
 			emit_signal("overcharging_started")
+			
+	if charge > MAX_OVERCHARGE and golf:
+		# golf wait in overcharge for a bit, then fires
+		fire()
 
 signal detection
 func _physics_process(delta):
@@ -349,6 +430,9 @@ func _physics_process(delta):
 		charging_sfx.play()
 		dash_fat_appearance()
 		
+	if charging and not charging_too_much_for_tap and charge > MAX_TAP_CHARGE:
+		charging_too_much_for_tap = true
+		
 var will_fire
 signal charging_started
 func charge():
@@ -357,13 +441,7 @@ func charge():
 	
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
-		$Graphics/ChargeBar/Charge.modulate = Color(1, 0.376471, 0)
-		$Graphics/ChargeBar/ShootingLine.modulate = Color(1, 0.376471, 0)
-		if bomb_type != GameMode.BOMB_TYPE.bubble:
-			$Graphics/ChargeBar/BombPreview.modulate = Color(1, 0.376471, 0)
-		$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,1)
-	else:
-		$Graphics/ChargeBar/Charge.modulate = Color(1,1,0)
+		$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,1)
 	
 signal charging_ended
 func fire(override_charge = -1, dash_only = false):
@@ -377,7 +455,11 @@ func fire(override_charge = -1, dash_only = false):
 	var will_dash = charging_enough and is_aiming_away_gel()
 	
 	if will_dash:
-		apply_impulse(Vector2(0,0), Vector2(max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER), 0).rotated(rotation)) # recoil only if dashing
+		var recoil = max(0,DASH_BASE+charge_impulse*DASH_MULTIPLIER)
+		# check if we need to limit dash
+		if is_on_ice():
+			recoil = min(recoil, ON_ICE_MAX_DASH)
+		apply_impulse(Vector2(0,0), Vector2(recoil, 0).rotated(rotation)) # recoil only if dashing
 	
 	if golf:
 		var impulse = charge_impulse*ARKABALL_MULTIPLIER
@@ -385,9 +467,10 @@ func fire(override_charge = -1, dash_only = false):
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
-		arkaball.set_player(get_player())
+		arkaball.set_ship(self)
 		arkaball.start()
 		golf = false
+		update_weapon_indicator()
 	elif get_bombs_enabled() and not dash_only:
 		bomb_count += 1
 		will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0) # FIXME this is repeated twice, should also be reflected by visual feedback
@@ -415,16 +498,11 @@ func fire(override_charge = -1, dash_only = false):
 	#$GravitonField.repeal(charge_impulse)
 	#$GravitonField.enabled = false
 	
-	charging = false
-	charging_enough = false
-	emit_signal("charging_ended")
+	if not charging_too_much_for_tap:
+		tap()
 	
-	$Graphics/ChargeBar/ChargeAxis.visible = false
-	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
-	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
-	if bomb_type != GameMode.BOMB_TYPE.bubble:
-		$Graphics/ChargeBar/BombPreview.modulate = species.color
-	$Graphics/ChargeBar/BombPreview.self_modulate = Color(1,1,1,0.5)
+	reset_charge()
+	emit_signal("charging_ended")
 	
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
@@ -435,16 +513,54 @@ func fire(override_charge = -1, dash_only = false):
 		entity.get('Dashing').enable()
 		dash_cooldown = (min(actual_charge, MAX_CHARGE) - MIN_CHARGE)*0.6
 		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
-	else:
-		tap()
 		
 	if should_reload and reload_time > 0: # negative == no automatic reload
 		yield(get_tree().create_timer(reload_time), "timeout")
 		ammo.reload()
 		
+func reset_charge():
+	charge = 0
+	charging = false
+	charging_enough = false
+	charging_too_much_for_tap = false
+	
+	$Graphics/ChargeBar/Charge.visible = false
+	$Graphics/ChargeBar/ChargeAxis.visible = false
+	$Graphics/ChargeBar/Charge.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(0,0))
+	$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,0.5)
+	$"%ShootingLine".visible = false
+	$"%ShootingLine".enabled = false
+	
+func set_health(amount : int) -> void:
+	health = amount
+	$PlayerInfo.update_health(amount)
+	
+func damage(hazard, damager : Ship):
+	if invincible or not alive:
+		return
+		
+	self.set_health(health - 1)
+	if health <= 0:
+		die(damager)
+	else:
+		rebound((global_position-hazard.global_position).normalized(), 2500.0)
+		
+		if has_method('vibration_feedback'):
+			call('vibration_feedback', false)
+		
+		Events.emit_signal("ship_damaged", self, hazard, damager)
+		
+		# slight, invisible invincibility
+		invincible = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		invincible = false
+	
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
 		alive = false
+		
+		reset_charge()
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
@@ -523,7 +639,7 @@ func dash_fat_appearance():
 	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
 		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()
-	
+
 func dash_thin_appearance():
 	$DashFxTimer.stop()
 	$Graphics/Sprite.scale = DASH_THIN
@@ -712,13 +828,26 @@ func get_bombs_enabled():
 	return bombs_enabled and not get_deadly_trail()
 	
 func update_weapon_indicator():
-	$Graphics/ChargeBar/BombPreview.visible = get_bombs_enabled()
-	
+	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type] if bomb_type != null else null
+	$"%BombPreview".visible = get_bombs_enabled() or golf
+	$"%BombPreview/BombType".visible = get_bombs_enabled()
+	$"%ArrowTip".flip_v = not (get_bombs_enabled() or golf) 
 	
 func tap():
 	Events.emit_signal('tap', self)
 	#switch_emersion_state()
 	trigger_all_my_stuff()
+	
+	# forward weapon: bullet
+#	var aperture = PI/4
+#	var amount = 1
+#	for i in range(amount):
+#		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
+#		var bullet = forward_bullet_scene.instance()
+#		get_parent().add_child(bullet)
+#		bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
+#		bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
+#		bullet.set_ship(self)
 	
 var under = false
 
@@ -760,6 +889,7 @@ func _on_Ship_near_area_entered(sth, this):
 
 func start_golf():
 	golf = true
+	update_weapon_indicator()
 	yield(get_tree().create_timer(0.5), "timeout")
 	charge()
 
@@ -769,6 +899,12 @@ func get_player():
 func is_in_gel():
 	for area in $NearArea.get_overlapping_areas():
 		if traits.has_trait(area, 'Gel'):
+			return true
+	return false
+	
+func is_on_ice():
+	for area in $NearArea.get_overlapping_areas():
+		if area is Ice:
 			return true
 	return false
 	
@@ -794,7 +930,10 @@ func enable_controls():
 	controls_enabled = true
 	
 func is_auto_thrust() -> bool:
-	return auto_thrust or deadly_trail_powerup
+	return auto_thrust
+	
+func set_auto_thrust(v: bool) -> void:
+	auto_thrust = v
 
 func is_piercing() -> bool:
 	return $Sword.get_active()
@@ -820,3 +959,32 @@ func get_target_destination():
 const CAMERA_RECT_SIZE := 800.0
 func get_camera_rect() -> Rect2:
 	return Rect2(global_position - Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE)/2, Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE))
+
+func get_team() -> String:
+	return info_player.team
+	
+func get_species():
+	return info_player.species
+	
+func get_color():
+	return get_species().color
+	
+func get_previous_global_position(): # Vector2 or null
+	if len(previous_global_positions) <= 1:
+		return null
+	return previous_global_positions[0]
+
+func start_drift():
+	drifting = true
+	$IceAutoTrail.create_trail()
+	emit_signal("drift_started")
+	
+func end_drift():
+	drifting = false
+	$IceAutoTrail.drop_trail()
+	emit_signal("drift_ended")
+
+#func set_size(size):
+#	scale = Vector2(size, size)
+#	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
+	

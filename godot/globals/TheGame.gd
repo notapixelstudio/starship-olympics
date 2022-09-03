@@ -5,8 +5,15 @@ class_name TheGame
 var uuid : String
 var players : Array
 
+var deck : Deck
+
 func _init():
 	uuid = UUID.v4()
+	
+	# scripted first-time execeution
+	# do not shuffle the deck if this is the first game of this execution
+	if global.game_number > 1:
+		deck.shuffle()
 	
 func get_uuid() -> String:
 	return uuid
@@ -16,6 +23,12 @@ func set_players(_players : Array) -> void:
 	
 func get_players() -> Array: # of InfoPlayer
 	return players
+	
+func get_player_index() -> Dictionary:
+	var index := {}
+	for player in players:
+		index[player.get_id()] = player
+	return index
 	
 func get_number_of_players() -> int:
 	return len(players)
@@ -27,7 +40,7 @@ func get_number_of_human_players() -> int:
 			count += 1
 	return count
 	
-func get_last_winner() -> InfoPlayer:
+func get_last_winners() -> Array: # of InfoPlayers TBD handle more than one best player
 	var best_player = null
 	var best_score = 0
 	for player in players:
@@ -37,9 +50,9 @@ func get_last_winner() -> InfoPlayer:
 			best_score = new_score
 			
 	if best_score < global.win:
-		return null
+		return []
 		
-	return best_player
+	return [best_player]
 	
 func reset_players():
 	for player in players:
@@ -56,3 +69,10 @@ func to_log_dict() -> Dictionary:
 		'players_count': get_number_of_players(),
 		'human_players_count': get_number_of_human_players()
 	}
+
+func get_deck() -> Deck:
+	return deck
+	
+func set_deck(v : Deck) -> void:
+	deck = v
+	
