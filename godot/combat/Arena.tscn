@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -57,6 +57,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends CanvasLayer
+
+func _ready():
+	scale = global.get_graphics_scale()
+"
 
 [sub_resource type="DynamicFont" id=6]
 size = 512
@@ -343,6 +350,7 @@ height = 20000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
+script = SubResource( 7 )
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 27 )]
 pause_mode = 2
