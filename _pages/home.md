@@ -26,7 +26,7 @@ Follow and support us
 [![Support us on Paypal](assets/icons/paypal.png)](https://paypal.me/notapixelstudio) &emsp;
 
 
-New MAJOR UPDATE incoming! Read <a href="https://notapixel.itch.io/superstarfighter/devlog/409000/new-major-version-upcoming-starship-olympics">our devlog</a> to know more.
+New MAJOR UPDATE incoming! Read more in <a href="https://notapixel.itch.io/superstarfighter/devlog/409000/new-major-version-upcoming-starship-olympics">our devlog</a>.
 Currently under active development! <a href="https://github.com/notapixelstudio/superstarfighter">Latest release v0.6</a>'
 intro:
   - excerpt: ''
