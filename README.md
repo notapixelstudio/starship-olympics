@@ -24,7 +24,7 @@ You will play as one pilot from a diverse rooster of aliens, and fight to become
 
 ## Follow the development
 
-This game is being developed on **`Godot v3.4.4`** 
+This game is being developed on **`Godot v3.5`** 
 
 Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or on [Instagram](https://instagram.com/notapixelstudio) 
 
