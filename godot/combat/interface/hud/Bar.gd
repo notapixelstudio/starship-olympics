@@ -53,10 +53,25 @@ func post_ready(p: InfoPlayer):
 	$Ship.position.x = margin_left
 	$Ship/ScoreLabel.modulate = species.color
 	
+	# max score
+	$MaxScoreLabel.text = str(max_score)
+	$MaxScoreLabel.modulate = species.color
+	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+2)
+	
+	# magenta max score if perfectionist mode enabled
+	var current_draft_card := global.the_match.get_draft_card()
+	if current_draft_card != null and current_draft_card.is_perfectionist():
+		$MaxScoreLabel.modulate = Color('#ff40d4')
+		$MaxScoreLabel.self_modulate = Color(1,1,1,1)
+	
 	# ticks
 	for i in range(1, int(max_score)):
+		# skip some ticks according to max score's order of magnitude
+		if max_score > 100 and i%10 != 0:
+			continue
+		
 		var tick = Line2D.new()
-		var opacity = 0.8 if max_score <= 10 or i%10 == 0 else (0.2 if max_score < 100 else 0)
+		var opacity = 0.8 if max_score <= 10 or (i%10 == 0 and max_score < 100) or i%100 == 0 else 0.2
 		tick.default_color = Color(0,0,0,opacity)
 		tick.width = 3
 		var x = round((max_bar_width - ministar_margin) / max_score * i)

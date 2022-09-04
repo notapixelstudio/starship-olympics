@@ -1,14 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=5]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=7]
 [ext_resource path="res://map_with_sets/DescriptionMode.gd" type="Script" id=8]
 [ext_resource path="res://ui/common_elements/PlayersReady/PlayersReady.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -24,8 +24,29 @@ extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=9]
+size = 74
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=8]
 size = 74
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 54
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 54
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = 1
@@ -68,7 +89,14 @@ tracks/0/keys = {
 size = 26
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 4 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 38
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 1
+font_data = ExtResource( 10 )
 
 [node name="DescriptionMode" type="Control"]
 pause_mode = 2
@@ -102,9 +130,6 @@ __meta__ = {
 modulate = Color( 1, 0.870588, 0.372549, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 9.06067e-06
-margin_top = -0.235977
-margin_bottom = -0.235962
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 1, 0.533333, 0, 1 )
 custom_constants/shadow_offset_x = 0
@@ -115,20 +140,69 @@ align = 1
 valign = 1
 uppercase = true
 
+[node name="WinterShadow" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0.196078 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -79.0
+margin_bottom = -79.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 9 )
+text = "WINTER"
+align = 1
+valign = 1
+uppercase = true
+
 [node name="Winter" type="Label" parent="."]
 modulate = Color( 0.615686, 0.921569, 1, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.00350313
-margin_top = -91.236
-margin_right = 0.00354004
-margin_bottom = -91.236
+margin_left = 0.004
+margin_top = -91.0
+margin_right = 0.00402832
+margin_bottom = -91.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0, 0.533333, 0.964706, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 8 )
 text = "WINTER"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="PerfectionistShadow" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0.196078 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.00291135
+margin_top = 89.0
+margin_right = -0.00292969
+margin_bottom = 89.0
+size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 10 )
+text = "PERFECTIONIST"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Perfectionist" type="Label" parent="."]
+modulate = Color( 1, 0.25098, 0.831373, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.00260417
+margin_top = 81.0
+margin_right = -0.00256348
+margin_bottom = 81.0
+size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 11 )
+text = "PERFECTIONIST"
 align = 1
 valign = 1
 uppercase = true
@@ -156,8 +230,10 @@ margin_left = -640.002
 margin_top = 343.522
 margin_right = 639.998
 margin_bottom = 393.522
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
 custom_fonts/font = SubResource( 7 )
-text = "hold FIRE to continue"
+text = "hold the BUTTON to continue"
 align = 1
 valign = 1
 uppercase = true
@@ -173,6 +249,10 @@ autostart = true
 [node name="Description" parent="." instance=ExtResource( 6 )]
 margin_top = 84.0
 margin_bottom = 227.0
+custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 12 )
 
 [node name="LineLeft" type="Polygon2D" parent="."]
 position = Vector2( -61.8767, 12.5112 )

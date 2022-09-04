@@ -540,6 +540,8 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 script = ExtResource( 2 )
 radius = 50
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="43" instance=ExtResource( 8 )]
 position = Vector2( -2050, 0 )
@@ -550,6 +552,8 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 script = ExtResource( 2 )
 radius = 50
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="44" instance=ExtResource( 8 )]
 position = Vector2( -900, 1100 )
@@ -560,6 +564,8 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 script = ExtResource( 2 )
 radius = 50
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="45" instance=ExtResource( 8 )]
 position = Vector2( 2050, 0 )
@@ -570,6 +576,8 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 script = ExtResource( 2 )
 radius = 50
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall" parent="Battlefield/Middleground" index="46" instance=ExtResource( 8 )]
 position = Vector2( -900, -1100 )
@@ -580,6 +588,8 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 script = ExtResource( 2 )
 radius = 50
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 17 )]
 show_behind_parent = true
@@ -598,6 +608,8 @@ solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 script = ExtResource( 2 )
 radius = 50
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Laser" parent="Battlefield/Middleground/Wall4" index="6" groups=["additional_lasers"] instance=ExtResource( 17 )]
 show_behind_parent = true

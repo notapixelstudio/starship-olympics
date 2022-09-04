@@ -173,7 +173,7 @@ func _on_LifeTime_timeout():
 
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
-	pfft.species = species
+	pfft.set_color(species.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
 

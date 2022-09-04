@@ -197,7 +197,7 @@ rotation = 3.14159
 position = Vector2( 50, -1300 )
 rotation = 3.14159
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate6" index="6"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate6" index="5"]
 autoplay = "Wooo"
 anims/RESET = SubResource( 7 )
 anims/Wooo = SubResource( 8 )
@@ -224,7 +224,7 @@ position = Vector2( -250, 1600 )
 rotation = -3.14159
 width = 400.0
 
-[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Middleground/Gate12" index="6"]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Middleground/Gate12" index="5"]
 autoplay = "Wooooeee (copy)"
 reset_on_save = false
 "anims/Wooooeee (copy)" = SubResource( 12 )
@@ -242,7 +242,7 @@ width = 300.0
 position = Vector2( -650, 0 )
 rotation = -2.35619
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate5" index="6"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate5" index="5"]
 autoplay = "Wheee"
 playback_process_mode = 0
 anims/RESET = SubResource( 1 )
@@ -252,7 +252,7 @@ anims/Wheee = SubResource( 2 )
 position = Vector2( 3.05176e-05, 0.00012207 )
 rotation = 2.35619
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate8" index="6"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate8" index="5"]
 autoplay = "Wheee"
 playback_process_mode = 0
 anims/RESET = SubResource( 3 )
@@ -262,7 +262,7 @@ anims/Wheee = SubResource( 4 )
 position = Vector2( 650, 0.000244141 )
 rotation = 2.35619
 
-[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Middleground/Gate9" index="6"]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="Battlefield/Middleground/Gate9" index="5"]
 autoplay = "Wheee"
 playback_process_mode = 0
 anims/RESET = SubResource( 9 )
@@ -271,13 +271,12 @@ anims/Wheee = SubResource( 10 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1200, 1000 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 11 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 818, 1043 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 13 )
 
 [node name="Camera" parent="." index="7"]

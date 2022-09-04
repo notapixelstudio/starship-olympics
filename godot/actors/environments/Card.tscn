@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/sprites/cards/card_outline.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
@@ -8,10 +8,9 @@
 [ext_resource path="res://actors/environments/Card.gd" type="Script" id=6]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/cards/card_border.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=11]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 170 )
@@ -28,7 +27,7 @@ font_data = ExtResource( 9 )
 size = 48
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 12 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="Animation" id=10]
 length = 1.6
@@ -263,7 +262,7 @@ texture = ExtResource( 1 )
 
 [node name="Front" type="Node2D" parent="Ground"]
 visible = false
-scale = Vector2( 1e-05, 1 )
+scale = Vector2( 0.22223, 1 )
 
 [node name="Background" type="Sprite" parent="Ground/Front"]
 scale = Vector2( 2, 2 )
@@ -281,6 +280,7 @@ region_enabled = true
 region_rect = Rect2( 6.01, 35, 352.27, 446.325 )
 
 [node name="Border" type="Sprite" parent="Ground/Front"]
+unique_name_in_owner = true
 visible = false
 self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
 scale = Vector2( 2, 2 )

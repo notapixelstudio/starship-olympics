@@ -10,7 +10,7 @@ func start():
 	# a random players gets the ball at start
 	ball = get_tree().get_nodes_in_group('Ball')[0]
 	ball.linear_velocity = Vector2(10,0) if randf() > 0.5 else Vector2(-10,0)
-	ball.impulse = 10
+	ball.impulse = 5
 	ball.activate()
 	
 	ball.connect('body_entered', self, '_on_ball_body_entered')

@@ -16,14 +16,14 @@ func set_ground_radius(v):
 	.set_ground_radius(v)
 	if not is_inside_tree():
 		yield(self, 'ready')
-	$Alien.scale = Vector2(1.2,1.2)*v/200.0
+	$Alien.scale = Vector2(1.4,1.4)*v/200.0
 
 func set_kind(v):
 	kind = v
 	if not is_inside_tree():
 		yield(self, 'ready')
 	$Alien.texture = load('res://assets/sprites/' + kind + '.png')
-	$Ground.modulate = COLORS[kind]
+	$Sprite.modulate = COLORS[kind]
 
 func get_kind():
 	return kind

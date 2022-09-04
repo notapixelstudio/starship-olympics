@@ -17,7 +17,7 @@ func floating_star(wait_time):
 func score():
 	won_anim.play("won")
 	z_index = 100
-	label.text = 'PERFECT\nSCORE!' if perfect else ''
+	label.text = 'PERFECT!' if perfect else ''
 
 func set_won(value):
 	won = value
@@ -41,4 +41,4 @@ func _ready():
 	
 func refresh():
 	sprite.play('full' if won else 'empty')
-	
+	sprite.visible = won

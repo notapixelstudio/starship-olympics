@@ -27,7 +27,7 @@ signal sth_collected(collector, collectee)
 signal ask_to_spawn
 signal spawned
 
-signal minigame_selected(picked_card, minigame)
+signal minigame_selected(picked_card)
 
 signal execution_started
 signal game_started

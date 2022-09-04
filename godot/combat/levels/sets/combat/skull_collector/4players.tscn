@@ -65,25 +65,21 @@ fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
 [node name="SpeciesDecal" parent="Battlefield/Background" index="4" instance=ExtResource( 24 )]
-modulate = Color( 0.32549, 1, 0.32549, 1 )
 position = Vector2( -1600, 700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 24 )]
-modulate = Color( 0.847059, 0.286275, 0.960784, 1 )
 position = Vector2( 1600, -700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="SpeciesDecal4" parent="Battlefield/Background" index="6" instance=ExtResource( 24 )]
-modulate = Color( 0, 0.466667, 1, 1 )
 position = Vector2( 1600, 700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 
 [node name="SpeciesDecal3" parent="Battlefield/Background" index="7" instance=ExtResource( 24 )]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
 position = Vector2( -1600, -700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
@@ -97,6 +93,8 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 450
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall6" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
 position = Vector2( -2500, -600 )
@@ -107,6 +105,8 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
 position = Vector2( -2500, 600 )
@@ -117,44 +117,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="Wall10" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
-position = Vector2( -1200, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall11" parent="Battlefield/Middleground" index="4" instance=ExtResource( 16 )]
-position = Vector2( 1200, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
-position = Vector2( 1200, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall13" parent="Battlefield/Middleground" index="6" instance=ExtResource( 16 )]
-position = Vector2( -1200, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
-script = ExtResource( 21 )
-sides = 4.0
-
-[node name="Wall8" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
+[node name="Wall8" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
 position = Vector2( 2500, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -163,8 +129,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="8" instance=ExtResource( 16 )]
+[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 16 )]
 position = Vector2( 2500, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -173,8 +141,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 150
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 16 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
 position = Vector2( 2200, 0 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -183,8 +153,10 @@ line_texture = ExtResource( 19 )
 script = ExtResource( 21 )
 radius = 450
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="SkullVariants" parent="Battlefield/Middleground" index="10" instance=ExtResource( 11 )]
+[node name="SkullVariants" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2000, 500 )

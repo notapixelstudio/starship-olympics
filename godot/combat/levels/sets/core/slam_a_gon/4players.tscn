@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=4]
@@ -11,7 +10,6 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=15]
@@ -47,6 +45,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 radius = 2300
+precision = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -201,78 +200,6 @@ rings = 3
 ring_width = 60.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p4")
-
-[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="4"]
-position = Vector2( 0, 650 )
-rotation = -0.785398
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2404.17, -1626.35 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 12 )]
-position = Vector2( -49.9998, 1.00012 )
-rotation = 3.14159
-
-[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="5"]
-position = Vector2( 650, 0 )
-rotation = -2.35619
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2439.52, -1591.01 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D2/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 12 )]
-position = Vector2( -50, 0.999878 )
-rotation = 3.14159
-
-[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="6"]
-position = Vector2( 0, -650 )
-rotation = 2.35619
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2439.53, -1590.98 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 12 )]
-position = Vector2( -50, 1.00012 )
-rotation = 3.14159
-
-[node name="Node2D4" type="Node2D" parent="Battlefield/Middleground" index="7"]
-position = Vector2( -650, 0 )
-rotation = 0.785398
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D4" index="0" instance=ExtResource( 7 )]
-position = Vector2( 2404.17, -1626.35 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D4/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D4/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 12 )]
-position = Vector2( -50, 1.00012 )
-rotation = 3.14159
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 

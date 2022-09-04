@@ -23,3 +23,7 @@ func get_monogram():
 	
 func get_ship() -> Texture:
 	return ship
+
+func get_color() -> Color:
+	return color
+	

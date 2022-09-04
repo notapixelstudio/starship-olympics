@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://combat/interface/hud/Bar.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/shadow.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 17
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -27,6 +33,16 @@ color = Color( 0, 0, 0, 1 )
 modulate = Color( 0.2, 0.2, 0.2, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="MaxScoreLabel" type="Label" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = -58.0
+margin_top = 5.0
+margin_right = -14.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 2 )
+text = "100"
+align = 2
 
 [node name="MegaBar" type="Polygon2D" parent="."]
 modulate = Color( 0.3, 0.3, 0.3, 1 )
@@ -65,9 +81,6 @@ margin_bottom = 51.0
 custom_fonts/font = SubResource( 1 )
 text = "100"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StreakTimer" type="Timer" parent="."]
 wait_time = 0.5

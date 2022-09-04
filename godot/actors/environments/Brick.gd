@@ -3,9 +3,9 @@ extends StaticBody2D
 
 class_name Brick
 
-var points := 1
+export var points := 1 setget set_points, get_points
 
-enum TYPE { solid, diamond, gold, respawner, harmful, super, five }
+enum TYPE { solid, diamond, gold, respawner, harmful, super, huge }
 export(TYPE) var type = TYPE.diamond setget set_type
 
 export var colorize := true
@@ -14,8 +14,8 @@ signal killed
 
 func set_type(v):
 	type = v
-	points = 1
 	$CollisionShape2D.shape.extents.y = 55
+	$Sprite/Label.visible = false
 	if type == TYPE.solid:
 		self.set_color(Color(0.8,0.8,0.8,1))
 		$Under.texture = load('res://assets/sprites/bricks/solid_under.png')
@@ -28,7 +28,6 @@ func set_type(v):
 		self.set_color(Color('#ffa700'))
 		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
-		points = 3
 	elif type == TYPE.respawner:
 		self.set_color(Color(0.1,0.9,0.2,1))
 		$Under.texture = load('res://assets/sprites/bricks/respawner_under.png')
@@ -37,12 +36,11 @@ func set_type(v):
 		self.set_color(Color('#fff700'))
 		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
-		points = 10
-	elif type == TYPE.five:
+	elif type == TYPE.huge:
 		self.set_color(Color('#fff700'))
-		$Under.texture = load('res://assets/sprites/bricks/five_under.png')
-		$Sprite.texture = load('res://assets/sprites/bricks/five.png')
-		points = 5
+		$Under.texture = load('res://assets/sprites/bricks/huge_under.png')
+		$Sprite.texture = load('res://assets/sprites/bricks/huge.png')
+		$Sprite/Label.visible = true
 		$CollisionShape2D.shape.extents.y = 110
 	# orange Color('#c18a2a')
 	
@@ -88,3 +86,6 @@ func set_color(color):
 func get_points() -> int:
 	return points
 	
+func set_points(v: int) -> void:
+	points = v
+	$Sprite/Label.text = str(points)

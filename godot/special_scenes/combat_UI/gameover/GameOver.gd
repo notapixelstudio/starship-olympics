@@ -9,7 +9,6 @@ signal pressed_continue
 signal show_arena
 signal hide_arena
 
-var session_over = false
 export var sure_scene: PackedScene
 
 func _ready():
@@ -26,16 +25,11 @@ func initialize():
 	
 	yield(get_tree().create_timer(1), "timeout")
 	buttons.visible = true
-	session_over = false
-	for player in global.the_game.get_players():
-		assert(player is InfoPlayer)
-		session_over = player.get_session_score_total() >= global.win
-		
-		#TODO: what do we do in case of DRAW of session? Will ignore it for now
-		if session_over:
-			Soundtrack.play('SessionOver', true)
-			back_to_menu_button.visible=false
-			break
+	
+	#TODO: what do we do in case of DRAW of session? Will ignore it for now
+	if global.session.is_over():
+		Soundtrack.play('SessionOver', true)
+		back_to_menu_button.visible=false
 	
 	for button in buttons.get_children():
 		if button.visible:
@@ -44,7 +38,7 @@ func initialize():
 	
 func _on_Continue_pressed():
 	get_tree().paused = false
-	Events.emit_signal("continue_after_game_over", session_over)
+	Events.emit_signal("continue_after_game_over", global.session.is_over())
 
 func _on_Quit_pressed():
 	global.end_execution()

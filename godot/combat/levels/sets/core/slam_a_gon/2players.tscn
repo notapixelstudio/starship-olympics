@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=4]
@@ -8,7 +7,6 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=12]
@@ -46,6 +44,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 radius = 1700
+precision = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -117,34 +116,6 @@ rings = 4
 ring_width = 80.0
 core_radius = 150.0
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
-
-[node name="Wall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
-position = Vector2( -1617, -450 )
-rotation = -1.5708
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 9 )]
-position = Vector2( 0, 51 )
-rotation = 1.5708
-
-[node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 6 )]
-position = Vector2( 1618, 450 )
-rotation = -1.5708
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser2" parent="Battlefield/Middleground/Wall2" index="8" groups=["additional_lasers"] instance=ExtResource( 9 )]
-position = Vector2( 0, -51 )
-rotation = -1.5708
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 

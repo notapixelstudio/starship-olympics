@@ -2,7 +2,6 @@ extends Resource
 
 class_name Minigame
 
-export var id: String
 export var game_mode : Resource
 
 export var level_1players : PackedScene
@@ -10,8 +9,12 @@ export var level_2players : PackedScene
 export var level_3players : PackedScene
 export var level_4players : PackedScene
 
-export var unlocks : Array = [] # of minigame IDs
+export var tutorial_scene : PackedScene
+
 var times_started := 0
+
+export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_top = ''
+export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_bottom = ''
 
 
 func get_id() -> String:
@@ -45,3 +48,16 @@ func get_available_player_counts() -> Array:
 		if has_level_for_player_count(player_count):
 			player_counts.append(player_count)
 	return player_counts
+
+func get_suit_top() -> Array:
+	return suit_top
+
+func get_suit_bottom() -> Array:
+	return suit_bottom
+
+func has_tutorial() -> bool:
+	return tutorial_scene != null
+	
+func get_tutorial_scene() -> PackedScene:
+	return tutorial_scene
+	

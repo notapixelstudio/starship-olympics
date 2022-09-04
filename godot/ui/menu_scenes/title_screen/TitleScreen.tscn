@@ -2,7 +2,7 @@
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://logo.png" type="Texture" id=4]
 [ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
@@ -96,7 +96,7 @@ margin_right = 290.0
 margin_bottom = 67.0
 rect_min_size = Vector2( 210, 55 )
 action_mode = 0
-text = "Fight"
+text = "FIGHT"
 flat = true
 
 [node name="TeamVersus" type="Button" parent="Buttons"]
@@ -106,7 +106,7 @@ margin_bottom = 126.0
 rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
-text = "Team Fight"
+text = "TEAM FIGHT"
 flat = true
 
 [node name="Lock" type="Sprite" parent="Buttons/TeamVersus"]
@@ -122,7 +122,7 @@ margin_bottom = 185.0
 rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
-text = "Campaign"
+text = "CAMPAIGN"
 flat = true
 
 [node name="Lock" type="Sprite" parent="Buttons/Campaign"]
@@ -148,7 +148,7 @@ margin_bottom = 218.0
 rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
-text = "Help"
+text = "HELP"
 flat = true
 
 [node name="Credits" type="Button" parent="Buttons"]
@@ -159,7 +159,7 @@ margin_bottom = 198.0
 rect_min_size = Vector2( 0, 55 )
 disabled = true
 action_mode = 0
-text = "Credits"
+text = "CREDITS"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
@@ -195,8 +195,8 @@ rect_min_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "2 to 4 players free for all"
-text = "2 to 4 players free for all"
+bbcode_text = "2 TO 4 PLAYERS FREE FOR ALL"
+text = "2 TO 4 PLAYERS FREE FOR ALL"
 scroll_active = false
 
 [node name="TeamVersus" type="RichTextLabel" parent="Tooltips"]
@@ -208,10 +208,10 @@ rect_min_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "team vs team
-[color=#ffde5f][wave]currently under development![/wave][/color]"
-text = "team vs team
-currently under development!"
+bbcode_text = "TEAM VS TEAM
+[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
+text = "TEAM VS TEAM
+CURRENTLY UNDER DEVELOPMENT!"
 scroll_active = false
 
 [node name="Campaign" type="RichTextLabel" parent="Tooltips"]
@@ -223,10 +223,10 @@ rect_min_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "1 to 4 players single/cooperative
-[color=#ffde5f][wave]currently under development![/wave][/color]"
-text = "1 to 4 players single/cooperative
-currently under development!"
+bbcode_text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
+[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
+text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
+CURRENTLY UNDER DEVELOPMENT!"
 scroll_active = false
 
 [node name="Options" type="RichTextLabel" parent="Tooltips"]

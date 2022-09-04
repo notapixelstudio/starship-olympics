@@ -2,14 +2,14 @@
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/singles/foundlings/234players.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/234players.tscn" type="PackedScene" id=3]
 
 [resource]
 script = ExtResource( 1 )
-id = "homesick_invaders"
 game_mode = ExtResource( 2 )
 level_1players = ExtResource( 3 )
 level_2players = ExtResource( 3 )
 level_3players = ExtResource( 3 )
 level_4players = ExtResource( 3 )
-unlocks = [  ]
+suit_top = "heart"
+suit_bottom = "heart"

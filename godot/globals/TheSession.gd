@@ -5,8 +5,11 @@ var uuid : String
 
 var hand : Array # Array of DraftCard
 
+var leaderboards : Array = []
+
 func _init():
 	uuid = UUID.v4()
+	snapshot_leaderboard()
 	
 func get_uuid() -> String:
 	return uuid
@@ -111,3 +114,41 @@ func to_dict() -> Dictionary:
 		"uuid": get_uuid(),
 		"matches": self.matches
 	}
+
+func update_stars() -> void:
+	var winners = get_last_winners()
+	
+	for winner in winners:
+		print("%s won" % [winner.id])
+		assert(winner is InfoPlayer)
+		winner.add_victory(get_last_match().get("winners_did_perfect"))
+		
+	# store leaderboard status after changing it
+	snapshot_leaderboard()
+	
+func get_last_winners() -> Array:
+	return get_last_match().get("winners")
+
+func snapshot_leaderboard() -> void:
+	var new_leaderboard = []
+	for player in global.the_game.get_players():
+		new_leaderboard.append(player.to_dict())
+	new_leaderboard.sort_custom(self, '_sort_by_session_score')
+	leaderboards.push_front(new_leaderboard)
+
+func _sort_by_session_score(a, b) -> bool:
+	return a["session_score"] > b["session_score"]
+
+func get_current_leaderboard() -> Array:
+	return leaderboards[0]
+	
+func get_previous_leaderboard() -> Array:
+	return leaderboards[1]
+
+func is_over() -> bool:
+	for player in global.the_game.get_players():
+		assert(player is InfoPlayer)
+		if player.get_session_score_total() >= global.win:
+			return true
+	return false
+	

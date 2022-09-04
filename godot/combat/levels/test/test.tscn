@@ -42,6 +42,9 @@ __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
 radius = 2000
+sides = 6
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -50,11 +53,16 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
 position = Vector2( 0, -1100 )
+visible_decorations = true
+symbol_scale = 2.0
+decoration_scale = 1.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
 script = ExtResource( 5 )
 radius = 400
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="NoShipZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
 position = Vector2( -1200, 0 )
@@ -92,7 +100,6 @@ species = ExtResource( 11 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( 818, 1043 )
 rotation = 3.14159
-controls = "kb2"
 species = ExtResource( 13 )
 
 [node name="Camera" parent="." index="7"]

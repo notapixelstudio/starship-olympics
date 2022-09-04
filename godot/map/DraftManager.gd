@@ -73,8 +73,6 @@ func continue_draft(session_ended):
 		var deck = global.the_game.get_deck()
 		
 		var how_many_new_cards := 1
-		if hand_refills == 0:
-			how_many_new_cards = 2
 		
 		hand = deck.draw(HAND_SIZE-how_many_new_cards)
 		# add a new card and draw it right now
@@ -114,7 +112,11 @@ func player_just_chose_a_card(author, card):
 	author.get_parent().remove_child(author)
 	
 	card.card_content.reset_strikes()
-	global.the_game.get_deck().prepare_next_cards(card.card_content.unlocks)
+	if card.card_content.has_unlocks():
+		var unlocks = []
+		for i in range(card.card_content.get_unlock_strength()):
+			unlocks.append(card.card_content.get_unlock())
+		global.the_game.get_deck().prepare_next_cards(unlocks)
 	
 	self.selections_maybe_all_done()
 	
@@ -146,6 +148,7 @@ func selections_maybe_all_done():
 			card.take_strike()
 			if card.has_enough_strikes():
 				print(card.get_id() + ' has enough strikes and will be removed.')
+				deck.forget_card_id(card.get_id()) # could be reinserted later WARNING it does not seem to work
 			else:
 				to_be_put_back.append(card)
 		
@@ -168,8 +171,7 @@ func pick_next_card():
 	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
 	yield(self, "card_chosen")
-	var minigame: Minigame = picked_card.get_minigame()
-	Events.emit_signal("minigame_selected", picked_card, minigame )
+	Events.emit_signal("minigame_selected", picked_card)
 
 func add_card(card, selected=false):
 	# will put the card in first empty position

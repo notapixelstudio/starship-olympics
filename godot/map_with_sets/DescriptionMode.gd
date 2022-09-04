@@ -26,6 +26,10 @@ func refresh():
 	$LineRight.position.x = 998 + label_width/2 + 35
 	
 	$Winter.visible = draft_card and draft_card.is_winter()
+	$WinterShadow.visible = draft_card and draft_card.is_winter()
+	
+	$Perfectionist.visible = draft_card and draft_card.is_perfectionist()
+	$PerfectionistShadow.visible = draft_card and draft_card.is_perfectionist()
 	
 func set_gamemode(value: GameMode):
 	gamemode = value
