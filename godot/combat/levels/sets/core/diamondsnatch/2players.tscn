@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=1]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 [ext_resource path="res://addons/geometry/icons/GRoundedRect.svg" type="Texture" id=4]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=5]
@@ -16,45 +15,8 @@
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=15]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=17]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=18]
 [ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=19]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=20]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Default"
-length = 40.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 20, 40 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
-"update": 0,
-"values": [ -900.0, 900.0, -900.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Default"
-length = 40.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 20, 40 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
-"update": 0,
-"values": [ 900.0, -900.0, 900.0 ]
-}
 
 [node name="Arena" instance=ExtResource( 10 )]
 size_multiplier = 2.5
@@ -122,81 +84,11 @@ __meta__ = {
 width = 200
 height = 200
 
-[node name="Wall5" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
-position = Vector2( -900, 900 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+[node name="Diamond" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
-script = ExtResource( 2 )
-radius = 50
-sides = 4.0
-
-[node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
-position = Vector2( -1750, 0 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
-script = ExtResource( 2 )
-radius = 50
-sides = 4.0
-
-[node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
-position = Vector2( 1750, 0 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
-script = ExtResource( 2 )
-radius = 50
-sides = 4.0
-
-[node name="Wall6" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 900, -900 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall6" index="4"]
-script = ExtResource( 2 )
-radius = 50
-sides = 4.0
-
-[node name="Wall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
-position = Vector2( -900, -900 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 2 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 18 )]
-show_behind_parent = true
-position = Vector2( 0, 52 )
-rotation = 1.5708
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall" index="7" groups=["animation_if_additional_lasers"]]
-anims/Default = SubResource( 1 )
-
-[node name="Wall4" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
-position = Vector2( 900, 900 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
-script = ExtResource( 2 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Wall4" index="6" groups=["additional_lasers"] instance=ExtResource( 18 )]
-show_behind_parent = true
-position = Vector2( 0, -50 )
-rotation = -1.5708
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall4" index="7" groups=["animation_if_additional_lasers"]]
-anims/Default = SubResource( 2 )
-
-[node name="Diamond" parent="Battlefield/Middleground" index="8" instance=ExtResource( 16 )]
-
-[node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="9" groups=["spawn_waves"]]
+[node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="3" groups=["spawn_waves"]]
 script = ExtResource( 19 )
-max_repeats = 2
+max_repeats = 1
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 11 )]
 position = Vector2( 450, 450 )
@@ -218,35 +110,190 @@ position = Vector2( -450, 450 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="10" groups=["spawn_waves"]]
-visible = false
+[node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="4" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 wave_number = 1
 max_repeats = 2
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 11 )]
-position = Vector2( 0, -650 )
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 11 )]
+position = Vector2( 750, 150 )
+pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="11" groups=["spawn_waves"]]
-visible = false
+[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Wave1" index="1" instance=ExtResource( 11 )]
+position = Vector2( 750, -150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Wave1" index="2" instance=ExtResource( 11 )]
+position = Vector2( -750, -150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Wave1" index="3" instance=ExtResource( 11 )]
+position = Vector2( -750, 150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Wave1" index="4" instance=ExtResource( 11 )]
+position = Vector2( -1050, 150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Wave1" index="5" instance=ExtResource( 11 )]
+position = Vector2( -1050, -150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Wave1" index="6" instance=ExtResource( 11 )]
+position = Vector2( 1050, -150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Wave1" index="7" instance=ExtResource( 11 )]
+position = Vector2( 1050, 150 )
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="5" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 wave_number = 2
+max_repeats = 0
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 11 )]
+position = Vector2( 0, -450 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Wave2" index="1" instance=ExtResource( 11 )]
+position = Vector2( 0, 450 )
+element_scene = ExtResource( 16 )
+
+[node name="Wave3" type="Node2D" parent="Battlefield/Middleground" index="6" groups=["spawn_waves"]]
+script = ExtResource( 19 )
+wave_number = 3
+max_repeats = 1
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave3" index="0" instance=ExtResource( 11 )]
+position = Vector2( 900, 0 )
+pattern = "rhombus"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave3" index="1" instance=ExtResource( 11 )]
+position = Vector2( -900, 0 )
+pattern = "rhombus"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Wave3" index="2" instance=ExtResource( 11 )]
+pattern = "rhombus"
+element_scene = ExtResource( 16 )
+
+[node name="Wave4" type="Node2D" parent="Battlefield/Middleground" index="7" groups=["spawn_waves"]]
+script = ExtResource( 19 )
+wave_number = 4
+max_repeats = 1
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave4" index="0" instance=ExtResource( 11 )]
 position = Vector2( -750, 300 )
 pattern = "slash"
 element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
 
-[node name="Wave3" type="Node2D" parent="Battlefield/Middleground" index="12" groups=["spawn_waves"]]
-visible = false
-script = ExtResource( 19 )
-wave_number = 3
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave3" index="0" instance=ExtResource( 11 )]
-position = Vector2( 600, 300 )
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Wave4" index="1" instance=ExtResource( 11 )]
+position = Vector2( 750, -300 )
+pattern = "slash"
 element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave4" index="2" instance=ExtResource( 11 )]
+position = Vector2( 750, 300 )
+pattern = "backslash"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Wave4" index="3" instance=ExtResource( 11 )]
+position = Vector2( -750, -300 )
+pattern = "backslash"
+element_scene = ExtResource( 16 )
+
+[node name="Wave5" type="Node2D" parent="Battlefield/Middleground" index="8" groups=["spawn_waves"]]
+script = ExtResource( 19 )
+wave_number = 5
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave5" index="0" instance=ExtResource( 11 )]
+position = Vector2( 0, 600 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave5" index="1" instance=ExtResource( 11 )]
+position = Vector2( 0, -600 )
+element_scene = ExtResource( 16 )
+
+[node name="Wave6" type="Node2D" parent="Battlefield/Middleground" index="9" groups=["spawn_waves"]]
+script = ExtResource( 19 )
+wave_number = 6
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave6" index="0" instance=ExtResource( 11 )]
+pattern = "single"
+element_scene = ExtResource( 17 )
+
+[node name="Wave7" type="Node2D" parent="Battlefield/Middleground" index="10" groups=["spawn_waves"]]
+script = ExtResource( 19 )
+wave_number = 7
+max_repeats = 3
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave7" index="0" instance=ExtResource( 11 )]
+position = Vector2( -1350, 0 )
+pattern = "vline"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave7" index="1" instance=ExtResource( 11 )]
+position = Vector2( 1350, 0 )
+pattern = "vline"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Wave7" index="2" instance=ExtResource( 11 )]
+pattern = "gigarhombus"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Wave7" index="3" instance=ExtResource( 11 )]
+position = Vector2( -750, 600 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Wave7" index="4" instance=ExtResource( 11 )]
+position = Vector2( 600, 600 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Wave7" index="5" instance=ExtResource( 11 )]
+position = Vector2( 600, -600 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Wave7" index="6" instance=ExtResource( 11 )]
+position = Vector2( -750, -600 )
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Wave7" index="7" instance=ExtResource( 11 )]
+position = Vector2( -1200, 300 )
+pattern = "backslash"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Wave7" index="8" instance=ExtResource( 11 )]
+position = Vector2( 1200, -300 )
+pattern = "backslash"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Wave7" index="9" instance=ExtResource( 11 )]
+position = Vector2( 1200, 300 )
+pattern = "slash"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Wave7" index="10" instance=ExtResource( 11 )]
+position = Vector2( -1200, -300 )
+pattern = "slash"
+element_scene = ExtResource( 16 )
+
+[node name="Wave8" type="Node2D" parent="Battlefield/Middleground" index="11" groups=["spawn_waves"]]
+script = ExtResource( 19 )
+wave_number = 8
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave8" index="0" instance=ExtResource( 11 )]
+pattern = "farapart"
+element_scene = ExtResource( 17 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )

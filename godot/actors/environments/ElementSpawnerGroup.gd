@@ -4,7 +4,7 @@ extends Position2D
 class_name ElementSpawnerGroup
 
 
-export (String, 'slash', 'backslash', 'line', "single", "custom") var pattern = "line" setget _set_pattern
+export (String, 'slash', 'backslash', 'line', "vline", "single", "rhombus", "gigarhombus", "farapart", "custom") var pattern = "line" setget _set_pattern
 
 export var spawner_scene: PackedScene
 export var element_scene: PackedScene setget _set_element_scene
@@ -13,8 +13,12 @@ export (String, "center", "random") var guest_star_positioning = "center"
 
 var map_pattern_distance = {
 	"line": [Vector2(-300,0), Vector2(-150,0), Vector2(0,0), Vector2(150,0), Vector2(300,0)],
+	"vline": [Vector2(0,-150), Vector2(0,0), Vector2(0,150)],
 	"backslash": [Vector2(-300,-300),Vector2(-150, -150),Vector2(0,0), Vector2(150,150), Vector2(300,300)],
 	"slash": [Vector2(-300, 300), Vector2(-150, 150), Vector2(0,0), Vector2(150, -150), Vector2(300, -300)],
+	"rhombus": [Vector2(-150, -150), Vector2(-150, 150), Vector2(150, 150), Vector2(150, -150)],
+	"gigarhombus": [Vector2(-450, -450), Vector2(-450, 450), Vector2(450, 450), Vector2(450, -450)],
+	"farapart": [Vector2(-1350, 0), Vector2(1350, 0)],
 	"single": [Vector2(0,0)]
 	}
 	
