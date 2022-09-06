@@ -2,7 +2,7 @@ extends Node
 
 const WAVES_GROUP = "spawn_waves"
 const COLLECTABLE = "coin"
-const WAVE_DELAY = 2
+const WAVE_DELAY = 3
 var to_next_wave = 2
 var current_wave = 0
 
