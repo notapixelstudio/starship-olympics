@@ -21,6 +21,8 @@ func _ready():
 	
 	Events.connect("sth_collected", self, "_on_sth_collected")
 	# First spawner should already be in the field
+	# WARNING wait for variants to settle
+	yield(get_tree(), "idle_frame")
 	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
 	
 func get_spawner(spawners: Array) -> ElementSpawnerGroup:
