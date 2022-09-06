@@ -61,7 +61,6 @@ fg_color = Color( 0.192157, 0.109804, 0.380392, 1 )
 bg_color = Color( 0.168627, 0.109804, 0.34902, 1 )
 
 [node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource( 2 )]
-debug = true
 
 [node name="A" type="Node2D" parent="Battlefield/Middleground/Variants" index="0"]
 
@@ -421,1063 +420,338 @@ element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 17 )
 guest_star_positioning = "random"
 
-[node name="Bright" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
+[node name="B" type="Node2D" parent="Battlefield/Middleground/Variants" index="1"]
 visible = false
 
-[node name="Diamond" parent="Battlefield/Middleground/Variants/Bright" index="0" instance=ExtResource( 16 )]
+[node name="Diamond" parent="Battlefield/Middleground/Variants/B" index="0" instance=ExtResource( 16 )]
 position = Vector2( -600, 0 )
 
-[node name="Diamond2" parent="Battlefield/Middleground/Variants/Bright" index="1" instance=ExtResource( 16 )]
+[node name="Diamond2" parent="Battlefield/Middleground/Variants/B" index="1" instance=ExtResource( 16 )]
 position = Vector2( 600, 0 )
 
-[node name="Wall3" parent="Battlefield/Middleground/Variants/Bright" index="2" instance=ExtResource( 8 )]
+[node name="Wall3" parent="Battlefield/Middleground/Variants/B" index="2" instance=ExtResource( 8 )]
 position = Vector2( 0, -3.05176e-05 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Variants/Bright/Wall3" index="8"]
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Variants/B/Wall3" index="8"]
 visible = false
 polygon = PoolVector2Array( 0, -350, 200, -150, 200, -100, -200, -100, -200, -150 )
 
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Variants/Bright/Wall3" index="9"]
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall3" index="9"]
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_description_": ""
 }
 polygon = PoolVector2Array( 0, -350, 200, -150, 200, -100, -200, -100, -200, -150 )
 
-[node name="Wall4" parent="Battlefield/Middleground/Variants/Bright" index="3" instance=ExtResource( 8 )]
-position = Vector2( 0, -3.05176e-05 )
-rotation = 3.14159
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Variants/Bright/Wall4" index="8"]
-script = ExtResource( 13 )
-__meta__ = {
-"_editor_description_": ""
-}
-polygon = PoolVector2Array( 0, -350, 200, -150, 200, -100, -200, -100, -200, -150 )
-
-[node name="Wave0" type="Node2D" parent="Battlefield/Middleground/Variants/Bright" index="4" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-max_repeats = 3
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="0" instance=ExtResource( 11 )]
-position = Vector2( 300, -300 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="1" instance=ExtResource( 11 )]
-position = Vector2( -300, -300 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="2" instance=ExtResource( 11 )]
-position = Vector2( -300, 300 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="3" instance=ExtResource( 11 )]
-position = Vector2( 300, 300 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="4" instance=ExtResource( 11 )]
-position = Vector2( 150, 450 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="5" instance=ExtResource( 11 )]
-position = Vector2( 0, 600 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="6" instance=ExtResource( 11 )]
-position = Vector2( -150, 450 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="7" instance=ExtResource( 11 )]
-position = Vector2( -450, 150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="8" instance=ExtResource( 11 )]
-position = Vector2( -600, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="9" instance=ExtResource( 11 )]
-position = Vector2( -450, -150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="10" instance=ExtResource( 11 )]
-position = Vector2( -150, -450 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="11" instance=ExtResource( 11 )]
-position = Vector2( 0, -600 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="12" instance=ExtResource( 11 )]
-position = Vector2( 150, -450 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="13" instance=ExtResource( 11 )]
-position = Vector2( 450, -150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="14" instance=ExtResource( 11 )]
-position = Vector2( 600, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/Bright/Wave0" index="15" instance=ExtResource( 11 )]
-position = Vector2( 450, 150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="Wave1R" type="Node2D" parent="Battlefield/Middleground/Variants/Bright" index="5" groups=["spawn_waves"]]
-position = Vector2( 1200, 0 )
-script = ExtResource( 19 )
-wave_number = 1
-max_repeats = 3
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bright/Wave1R" index="0" instance=ExtResource( 11 )]
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bright/Wave1R" index="1" instance=ExtResource( 11 )]
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bright/Wave1R" index="2" instance=ExtResource( 11 )]
-pattern = "plus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bright/Wave1R" index="3" instance=ExtResource( 11 )]
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bright/Wave1R" index="4" instance=ExtResource( 11 )]
-position = Vector2( -300, -300 )
-pattern = "backslash"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bright/Wave1R" index="5" instance=ExtResource( 11 )]
-position = Vector2( -300, 300 )
-pattern = "slash"
-element_scene = ExtResource( 16 )
-
-[node name="Wave2L" type="Node2D" parent="Battlefield/Middleground/Variants/Bright" index="6" groups=["spawn_waves"]]
-position = Vector2( -1200, 0 )
-script = ExtResource( 19 )
-wave_number = 2
-max_repeats = 3
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bright/Wave2L" index="0" instance=ExtResource( 11 )]
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bright/Wave2L" index="1" instance=ExtResource( 11 )]
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bright/Wave2L" index="2" instance=ExtResource( 11 )]
-pattern = "plus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bright/Wave2L" index="3" instance=ExtResource( 11 )]
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bright/Wave2L" index="4" instance=ExtResource( 11 )]
-position = Vector2( 300, 300 )
-pattern = "backslash"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bright/Wave2L" index="5" instance=ExtResource( 11 )]
-position = Vector2( 300, -300 )
-pattern = "slash"
-element_scene = ExtResource( 16 )
-
-[node name="Wave3" type="Node2D" parent="Battlefield/Middleground/Variants/Bright" index="7" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 3
-max_repeats = 0
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bright/Wave3" index="0" instance=ExtResource( 11 )]
-position = Vector2( 0, -600 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bright/Wave3" index="1" instance=ExtResource( 11 )]
-position = Vector2( 0, 600 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bright/Wave3" index="2" instance=ExtResource( 11 )]
-position = Vector2( 0, -600 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bright/Wave3" index="3" instance=ExtResource( 11 )]
-position = Vector2( 0, 600 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bright/Wave3" index="4" instance=ExtResource( 11 )]
-pattern = "single"
-element_scene = ExtResource( 17 )
-
-[node name="Wave4" type="Node2D" parent="Battlefield/Middleground/Variants/Bright" index="8" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 4
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="0" instance=ExtResource( 11 )]
-position = Vector2( -1200, 0 )
-pattern = "single"
-element_scene = ExtResource( 17 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="1" instance=ExtResource( 11 )]
-position = Vector2( 1200, 0 )
-pattern = "single"
-element_scene = ExtResource( 17 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="2" instance=ExtResource( 11 )]
-position = Vector2( 900, 0 )
-pattern = "gigarhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="3" instance=ExtResource( 11 )]
-pattern = "gigarhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="4" instance=ExtResource( 11 )]
-position = Vector2( -900, 0 )
-pattern = "gigarhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="5" instance=ExtResource( 11 )]
-position = Vector2( -900, 0 )
-pattern = "gigarhombus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-guest_star_positioning = "random"
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="6" instance=ExtResource( 11 )]
-position = Vector2( 900, 0 )
-pattern = "gigarhombus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-guest_star_positioning = "random"
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="7" instance=ExtResource( 11 )]
-position = Vector2( 0, 600 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="8" instance=ExtResource( 11 )]
-position = Vector2( 0, -600 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="9" instance=ExtResource( 11 )]
-position = Vector2( 750, -600 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="10" instance=ExtResource( 11 )]
-position = Vector2( -750, -600 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="11" instance=ExtResource( 11 )]
-position = Vector2( -750, 600 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="12" instance=ExtResource( 11 )]
-position = Vector2( 750, 600 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="13" instance=ExtResource( 11 )]
-position = Vector2( -1200, 0 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-guest_star_positioning = "random"
-
-[node name="ElementSpawnerGroup17" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="14" instance=ExtResource( 11 )]
-position = Vector2( 1200, 0 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-guest_star_positioning = "random"
-
-[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="15" instance=ExtResource( 11 )]
-position = Vector2( 0, -600 )
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="16" instance=ExtResource( 11 )]
-position = Vector2( 0, 600 )
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup18" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="17" instance=ExtResource( 11 )]
-position = Vector2( 1200, 0 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup19" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="18" instance=ExtResource( 11 )]
-position = Vector2( -1200, 0 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup20" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="19" instance=ExtResource( 11 )]
-position = Vector2( -1200, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-guest_star_positioning = "random"
-
-[node name="ElementSpawnerGroup21" parent="Battlefield/Middleground/Variants/Bright/Wave4" index="20" instance=ExtResource( 11 )]
-position = Vector2( 1200, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-guest_star_positioning = "random"
-
-[node name="Bleft" type="Node2D" parent="Battlefield/Middleground/Variants" index="2"]
-visible = false
-
-[node name="Diamond" parent="Battlefield/Middleground/Variants/Bleft" index="0" instance=ExtResource( 16 )]
-position = Vector2( -600, 0 )
-
-[node name="Diamond2" parent="Battlefield/Middleground/Variants/Bleft" index="1" instance=ExtResource( 16 )]
-position = Vector2( 600, 0 )
-
-[node name="Wall3" parent="Battlefield/Middleground/Variants/Bleft" index="2" instance=ExtResource( 8 )]
-position = Vector2( 0, -3.05176e-05 )
-solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Variants/Bleft/Wall3" index="8"]
-visible = false
-polygon = PoolVector2Array( 0, -350, 200, -150, 200, -100, -200, -100, -200, -150 )
-
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Variants/Bleft/Wall3" index="9"]
-script = ExtResource( 13 )
-__meta__ = {
-"_editor_description_": ""
-}
-polygon = PoolVector2Array( 0, -350, 200, -150, 200, -100, -200, -100, -200, -150 )
-
-[node name="Wall4" parent="Battlefield/Middleground/Variants/Bleft" index="3" instance=ExtResource( 8 )]
+[node name="Wall4" parent="Battlefield/Middleground/Variants/B" index="3" instance=ExtResource( 8 )]
 position = Vector2( 0, -3.05176e-05 )
 rotation = 3.14159
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
 
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Variants/Bleft/Wall4" index="8"]
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Variants/B/Wall4" index="8"]
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_description_": ""
 }
 polygon = PoolVector2Array( 0, -350, 200, -150, 200, -100, -200, -100, -200, -150 )
 
-[node name="Wave0" type="Node2D" parent="Battlefield/Middleground/Variants/Bleft" index="4" groups=["spawn_waves"]]
+[node name="Wave0" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="4" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 max_repeats = 3
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/B/Wave0" index="0" instance=ExtResource( 11 )]
 position = Vector2( 300, -300 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="1" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/B/Wave0" index="1" instance=ExtResource( 11 )]
 position = Vector2( -300, -300 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="2" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/B/Wave0" index="2" instance=ExtResource( 11 )]
 position = Vector2( -300, 300 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="3" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/B/Wave0" index="3" instance=ExtResource( 11 )]
 position = Vector2( 300, 300 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="4" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/B/Wave0" index="4" instance=ExtResource( 11 )]
 position = Vector2( 150, 450 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="5" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/B/Wave0" index="5" instance=ExtResource( 11 )]
 position = Vector2( 0, 600 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="6" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/B/Wave0" index="6" instance=ExtResource( 11 )]
 position = Vector2( -150, 450 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="7" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/B/Wave0" index="7" instance=ExtResource( 11 )]
 position = Vector2( -450, 150 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="8" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/B/Wave0" index="8" instance=ExtResource( 11 )]
 position = Vector2( -600, 0 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="9" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/B/Wave0" index="9" instance=ExtResource( 11 )]
 position = Vector2( -450, -150 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="10" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/B/Wave0" index="10" instance=ExtResource( 11 )]
 position = Vector2( -150, -450 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="11" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/B/Wave0" index="11" instance=ExtResource( 11 )]
 position = Vector2( 0, -600 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="12" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/B/Wave0" index="12" instance=ExtResource( 11 )]
 position = Vector2( 150, -450 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="13" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/B/Wave0" index="13" instance=ExtResource( 11 )]
 position = Vector2( 450, -150 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="14" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/B/Wave0" index="14" instance=ExtResource( 11 )]
 position = Vector2( 600, 0 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/Bleft/Wave0" index="15" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/B/Wave0" index="15" instance=ExtResource( 11 )]
 position = Vector2( 450, 150 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="Wave1L" type="Node2D" parent="Battlefield/Middleground/Variants/Bleft" index="5" groups=["spawn_waves"]]
-position = Vector2( -1200, 0 )
+[node name="Wave1R" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="5" groups=["spawn_waves"]]
+position = Vector2( 1200, 0 )
 script = ExtResource( 19 )
 wave_number = 1
 max_repeats = 3
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bleft/Wave1L" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/B/Wave1R" index="0" instance=ExtResource( 11 )]
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bleft/Wave1L" index="1" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/B/Wave1R" index="1" instance=ExtResource( 11 )]
 pattern = "rhombus"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bleft/Wave1L" index="2" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/B/Wave1R" index="2" instance=ExtResource( 11 )]
 pattern = "plus"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bleft/Wave1L" index="3" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/B/Wave1R" index="3" instance=ExtResource( 11 )]
 pattern = "vline"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bleft/Wave1L" index="4" instance=ExtResource( 11 )]
-position = Vector2( 300, 300 )
-pattern = "backslash"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bleft/Wave1L" index="5" instance=ExtResource( 11 )]
-position = Vector2( 300, -300 )
-pattern = "slash"
-element_scene = ExtResource( 16 )
-
-[node name="Wave2R" type="Node2D" parent="Battlefield/Middleground/Variants/Bleft" index="6" groups=["spawn_waves"]]
-position = Vector2( 1200, 0 )
-script = ExtResource( 19 )
-wave_number = 2
-max_repeats = 3
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bleft/Wave2R" index="0" instance=ExtResource( 11 )]
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bleft/Wave2R" index="1" instance=ExtResource( 11 )]
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bleft/Wave2R" index="2" instance=ExtResource( 11 )]
-pattern = "plus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bleft/Wave2R" index="3" instance=ExtResource( 11 )]
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bleft/Wave2R" index="4" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/B/Wave1R" index="4" instance=ExtResource( 11 )]
 position = Vector2( -300, -300 )
 pattern = "backslash"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bleft/Wave2R" index="5" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/B/Wave1R" index="5" instance=ExtResource( 11 )]
 position = Vector2( -300, 300 )
 pattern = "slash"
 element_scene = ExtResource( 16 )
 
-[node name="Wave3" type="Node2D" parent="Battlefield/Middleground/Variants/Bleft" index="7" groups=["spawn_waves"]]
+[node name="Wave2L" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="6" groups=["spawn_waves"]]
+position = Vector2( -1200, 0 )
+script = ExtResource( 19 )
+wave_number = 2
+max_repeats = 3
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/B/Wave2L" index="0" instance=ExtResource( 11 )]
+pattern = "single"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/B/Wave2L" index="1" instance=ExtResource( 11 )]
+pattern = "rhombus"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/B/Wave2L" index="2" instance=ExtResource( 11 )]
+pattern = "plus"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/B/Wave2L" index="3" instance=ExtResource( 11 )]
+pattern = "vline"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/B/Wave2L" index="4" instance=ExtResource( 11 )]
+position = Vector2( 300, 300 )
+pattern = "backslash"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/B/Wave2L" index="5" instance=ExtResource( 11 )]
+position = Vector2( 300, -300 )
+pattern = "slash"
+element_scene = ExtResource( 16 )
+
+[node name="Wave3" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="7" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 wave_number = 3
 max_repeats = 0
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bleft/Wave3" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/B/Wave3" index="0" instance=ExtResource( 11 )]
 position = Vector2( 0, -600 )
 pattern = "single"
 element_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bleft/Wave3" index="1" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/B/Wave3" index="1" instance=ExtResource( 11 )]
 position = Vector2( 0, 600 )
 pattern = "single"
 element_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bleft/Wave3" index="2" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/B/Wave3" index="2" instance=ExtResource( 11 )]
 position = Vector2( 0, -600 )
 pattern = "single"
 element_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bleft/Wave3" index="3" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/B/Wave3" index="3" instance=ExtResource( 11 )]
 position = Vector2( 0, 600 )
 pattern = "single"
 element_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bleft/Wave3" index="4" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/B/Wave3" index="4" instance=ExtResource( 11 )]
 pattern = "single"
 element_scene = ExtResource( 17 )
 
-[node name="Wave4" type="Node2D" parent="Battlefield/Middleground/Variants/Bleft" index="8" groups=["spawn_waves"]]
+[node name="Wave4" type="Node2D" parent="Battlefield/Middleground/Variants/B" index="8" groups=["spawn_waves"]]
 script = ExtResource( 19 )
 wave_number = 4
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="0" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/B/Wave4" index="0" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
 pattern = "single"
 element_scene = ExtResource( 17 )
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="1" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/B/Wave4" index="1" instance=ExtResource( 11 )]
 position = Vector2( 1200, 0 )
 pattern = "single"
 element_scene = ExtResource( 17 )
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="2" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/B/Wave4" index="2" instance=ExtResource( 11 )]
 position = Vector2( 900, 0 )
 pattern = "gigarhombus"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="3" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/B/Wave4" index="3" instance=ExtResource( 11 )]
 pattern = "gigarhombus"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="4" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/B/Wave4" index="4" instance=ExtResource( 11 )]
 position = Vector2( -900, 0 )
 pattern = "gigarhombus"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="5" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/B/Wave4" index="5" instance=ExtResource( 11 )]
 position = Vector2( -900, 0 )
 pattern = "gigarhombus"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 17 )
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="6" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/B/Wave4" index="6" instance=ExtResource( 11 )]
 position = Vector2( 900, 0 )
 pattern = "gigarhombus"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 17 )
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="7" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/B/Wave4" index="7" instance=ExtResource( 11 )]
 position = Vector2( 0, 600 )
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="8" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/B/Wave4" index="8" instance=ExtResource( 11 )]
 position = Vector2( 0, -600 )
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="9" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/B/Wave4" index="9" instance=ExtResource( 11 )]
 position = Vector2( 750, -600 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="10" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/B/Wave4" index="10" instance=ExtResource( 11 )]
 position = Vector2( -750, -600 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="11" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/B/Wave4" index="11" instance=ExtResource( 11 )]
 position = Vector2( -750, 600 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="12" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/B/Wave4" index="12" instance=ExtResource( 11 )]
 position = Vector2( 750, 600 )
 pattern = "single"
 element_scene = ExtResource( 16 )
 
-[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="13" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/B/Wave4" index="13" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
 pattern = "vline"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 17 )
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup17" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="14" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup17" parent="Battlefield/Middleground/Variants/B/Wave4" index="14" instance=ExtResource( 11 )]
 position = Vector2( 1200, 0 )
 pattern = "vline"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 17 )
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="15" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/B/Wave4" index="15" instance=ExtResource( 11 )]
 position = Vector2( 0, -600 )
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="16" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/B/Wave4" index="16" instance=ExtResource( 11 )]
 position = Vector2( 0, 600 )
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup18" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="17" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup18" parent="Battlefield/Middleground/Variants/B/Wave4" index="17" instance=ExtResource( 11 )]
 position = Vector2( 1200, 0 )
 pattern = "plus"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup19" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="18" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup19" parent="Battlefield/Middleground/Variants/B/Wave4" index="18" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
 pattern = "plus"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 3 )
 
-[node name="ElementSpawnerGroup20" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="19" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup20" parent="Battlefield/Middleground/Variants/B/Wave4" index="19" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
 pattern = "rhombus"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 3 )
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup21" parent="Battlefield/Middleground/Variants/Bleft/Wave4" index="20" instance=ExtResource( 11 )]
+[node name="ElementSpawnerGroup21" parent="Battlefield/Middleground/Variants/B/Wave4" index="20" instance=ExtResource( 11 )]
 position = Vector2( 1200, 0 )
 pattern = "rhombus"
 element_scene = ExtResource( 16 )
 guest_star_scene = ExtResource( 3 )
 guest_star_positioning = "random"
-
-[node name="C" type="Node2D" parent="Battlefield/Middleground/Variants" index="3"]
-visible = false
-
-[node name="Diamond" parent="Battlefield/Middleground/Variants/C" index="0" instance=ExtResource( 16 )]
-position = Vector2( -300, 0 )
-
-[node name="Diamond2" parent="Battlefield/Middleground/Variants/C" index="1" instance=ExtResource( 16 )]
-position = Vector2( 150, 0 )
-
-[node name="Diamond3" parent="Battlefield/Middleground/Variants/C" index="2" instance=ExtResource( 16 )]
-position = Vector2( -150, 0 )
-
-[node name="Diamond4" parent="Battlefield/Middleground/Variants/C" index="3" instance=ExtResource( 16 )]
-position = Vector2( 300, 0 )
-
-[node name="SmolMine" parent="Battlefield/Middleground/Variants/C" index="4" instance=ExtResource( 3 )]
-
-[node name="SmolMine2" parent="Battlefield/Middleground/Variants/C" index="5" instance=ExtResource( 3 )]
-position = Vector2( -900, 0 )
-
-[node name="SmolMine3" parent="Battlefield/Middleground/Variants/C" index="6" instance=ExtResource( 3 )]
-position = Vector2( 900, 0 )
-
-[node name="Wave0" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="7" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-max_repeats = 2
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/C/Wave0" index="0" instance=ExtResource( 11 )]
-position = Vector2( 900, 150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/C/Wave0" index="1" instance=ExtResource( 11 )]
-position = Vector2( 750, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/C/Wave0" index="2" instance=ExtResource( 11 )]
-position = Vector2( 900, -150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/C/Wave0" index="3" instance=ExtResource( 11 )]
-position = Vector2( 1050, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/C/Wave0" index="4" instance=ExtResource( 11 )]
-position = Vector2( -150, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/C/Wave0" index="5" instance=ExtResource( 11 )]
-position = Vector2( 0, -150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/C/Wave0" index="6" instance=ExtResource( 11 )]
-position = Vector2( 0, 150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/C/Wave0" index="7" instance=ExtResource( 11 )]
-position = Vector2( 150, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/C/Wave0" index="8" instance=ExtResource( 11 )]
-position = Vector2( -900, 150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/C/Wave0" index="9" instance=ExtResource( 11 )]
-position = Vector2( -1050, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/C/Wave0" index="10" instance=ExtResource( 11 )]
-position = Vector2( -900, -150 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/C/Wave0" index="11" instance=ExtResource( 11 )]
-position = Vector2( -750, 0 )
-pattern = "single"
-element_scene = ExtResource( 16 )
-
-[node name="Wave1" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="8" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 1
-max_repeats = 1
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/C/Wave1" index="0" instance=ExtResource( 11 )]
-position = Vector2( 900, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/C/Wave1" index="1" instance=ExtResource( 11 )]
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/C/Wave1" index="2" instance=ExtResource( 11 )]
-position = Vector2( -900, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="Wave2" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="9" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 2
-max_repeats = 0
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/C/Wave2" index="0" instance=ExtResource( 11 )]
-position = Vector2( 450, 0 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/C/Wave2" index="1" instance=ExtResource( 11 )]
-position = Vector2( -450, 0 )
-element_scene = ExtResource( 16 )
-
-[node name="Wave3" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="10" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 3
-max_repeats = 2
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/C/Wave3" index="0" instance=ExtResource( 11 )]
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/C/Wave3" index="1" instance=ExtResource( 11 )]
-position = Vector2( -900, 0 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/C/Wave3" index="2" instance=ExtResource( 11 )]
-position = Vector2( -450, 0 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/C/Wave3" index="3" instance=ExtResource( 11 )]
-position = Vector2( 450, 0 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/C/Wave3" index="4" instance=ExtResource( 11 )]
-position = Vector2( 900, 0 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/C/Wave3" index="5" instance=ExtResource( 11 )]
-position = Vector2( 1350, 0 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/C/Wave3" index="6" instance=ExtResource( 11 )]
-position = Vector2( -1350, 0 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/C/Wave3" index="7" instance=ExtResource( 11 )]
-position = Vector2( 0, 450 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/C/Wave3" index="8" instance=ExtResource( 11 )]
-position = Vector2( 0, -450 )
-pattern = "single"
-element_scene = ExtResource( 3 )
-
-[node name="Wave4" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="11" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 4
-max_repeats = 2
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/C/Wave4" index="0" instance=ExtResource( 11 )]
-position = Vector2( 450, 300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/C/Wave4" index="1" instance=ExtResource( 11 )]
-position = Vector2( 450, -300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/C/Wave4" index="2" instance=ExtResource( 11 )]
-position = Vector2( 900, -300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/C/Wave4" index="3" instance=ExtResource( 11 )]
-position = Vector2( 900, 300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/C/Wave4" index="4" instance=ExtResource( 11 )]
-position = Vector2( -450, 300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/C/Wave4" index="5" instance=ExtResource( 11 )]
-position = Vector2( -450, -300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/C/Wave4" index="6" instance=ExtResource( 11 )]
-position = Vector2( -900, -300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/C/Wave4" index="7" instance=ExtResource( 11 )]
-position = Vector2( -900, 300 )
-pattern = "vline"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/C/Wave4" index="8" instance=ExtResource( 11 )]
-position = Vector2( -450, 450 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/C/Wave4" index="9" instance=ExtResource( 11 )]
-position = Vector2( 450, 450 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/C/Wave4" index="10" instance=ExtResource( 11 )]
-position = Vector2( 450, -450 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/C/Wave4" index="11" instance=ExtResource( 11 )]
-position = Vector2( -450, -450 )
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/C/Wave4" index="12" instance=ExtResource( 11 )]
-position = Vector2( 0, -450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/C/Wave4" index="13" instance=ExtResource( 11 )]
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/C/Wave4" index="14" instance=ExtResource( 11 )]
-position = Vector2( 0, 450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/C/Wave4" index="15" instance=ExtResource( 11 )]
-position = Vector2( -450, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup17" parent="Battlefield/Middleground/Variants/C/Wave4" index="16" instance=ExtResource( 11 )]
-position = Vector2( -900, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup18" parent="Battlefield/Middleground/Variants/C/Wave4" index="17" instance=ExtResource( 11 )]
-position = Vector2( -1350, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup19" parent="Battlefield/Middleground/Variants/C/Wave4" index="18" instance=ExtResource( 11 )]
-position = Vector2( 450, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup20" parent="Battlefield/Middleground/Variants/C/Wave4" index="19" instance=ExtResource( 11 )]
-position = Vector2( 900, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup21" parent="Battlefield/Middleground/Variants/C/Wave4" index="20" instance=ExtResource( 11 )]
-position = Vector2( 1350, 0 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="Wave5" type="Node2D" parent="Battlefield/Middleground/Variants/C" index="12" groups=["spawn_waves"]]
-script = ExtResource( 19 )
-wave_number = 5
-
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Variants/C/Wave5" index="0" instance=ExtResource( 11 )]
-position = Vector2( -900, 450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Variants/C/Wave5" index="1" instance=ExtResource( 11 )]
-position = Vector2( -450, 450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Variants/C/Wave5" index="2" instance=ExtResource( 11 )]
-position = Vector2( -450, -450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Variants/C/Wave5" index="3" instance=ExtResource( 11 )]
-position = Vector2( -900, -450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Variants/C/Wave5" index="4" instance=ExtResource( 11 )]
-position = Vector2( 450, -450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup6" parent="Battlefield/Middleground/Variants/C/Wave5" index="5" instance=ExtResource( 11 )]
-position = Vector2( 900, -450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup7" parent="Battlefield/Middleground/Variants/C/Wave5" index="6" instance=ExtResource( 11 )]
-position = Vector2( 900, 450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Middleground/Variants/C/Wave5" index="7" instance=ExtResource( 11 )]
-position = Vector2( 450, 450 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 3 )
-
-[node name="ElementSpawnerGroup9" parent="Battlefield/Middleground/Variants/C/Wave5" index="8" instance=ExtResource( 11 )]
-position = Vector2( 450, 450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup10" parent="Battlefield/Middleground/Variants/C/Wave5" index="9" instance=ExtResource( 11 )]
-position = Vector2( 900, 450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup11" parent="Battlefield/Middleground/Variants/C/Wave5" index="10" instance=ExtResource( 11 )]
-position = Vector2( 900, -450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup12" parent="Battlefield/Middleground/Variants/C/Wave5" index="11" instance=ExtResource( 11 )]
-position = Vector2( 450, -450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup13" parent="Battlefield/Middleground/Variants/C/Wave5" index="12" instance=ExtResource( 11 )]
-position = Vector2( -450, -450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup14" parent="Battlefield/Middleground/Variants/C/Wave5" index="13" instance=ExtResource( 11 )]
-position = Vector2( -900, -450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup15" parent="Battlefield/Middleground/Variants/C/Wave5" index="14" instance=ExtResource( 11 )]
-position = Vector2( -900, 450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup16" parent="Battlefield/Middleground/Variants/C/Wave5" index="15" instance=ExtResource( 11 )]
-position = Vector2( -450, 450 )
-pattern = "rhombus"
-element_scene = ExtResource( 16 )
-
-[node name="ElementSpawnerGroup17" parent="Battlefield/Middleground/Variants/C/Wave5" index="16" instance=ExtResource( 11 )]
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-
-[node name="ElementSpawnerGroup18" parent="Battlefield/Middleground/Variants/C/Wave5" index="17" instance=ExtResource( 11 )]
-position = Vector2( -900, 0 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-
-[node name="ElementSpawnerGroup19" parent="Battlefield/Middleground/Variants/C/Wave5" index="18" instance=ExtResource( 11 )]
-position = Vector2( 900, 0 )
-pattern = "plus"
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-
-[node name="ElementSpawnerGroup20" parent="Battlefield/Middleground/Variants/C/Wave5" index="19" instance=ExtResource( 11 )]
-position = Vector2( 0, 450 )
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
-
-[node name="ElementSpawnerGroup21" parent="Battlefield/Middleground/Variants/C/Wave5" index="20" instance=ExtResource( 11 )]
-position = Vector2( 0, -450 )
-element_scene = ExtResource( 16 )
-guest_star_scene = ExtResource( 17 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -600, 600 )
