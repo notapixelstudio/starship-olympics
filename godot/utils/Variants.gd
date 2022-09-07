@@ -2,6 +2,7 @@ extends Node2D
 
 export (Array, PackedScene) var variant_scenes = []
 export var debug_variant_index := -1
+export var automirror := false
 
 func _ready():
 	if len(variant_scenes) <= 0:
@@ -15,5 +16,10 @@ func _ready():
 	if debug_variant_index >= 0:
 		index = debug_variant_index
 		
-	add_child(variant_scenes[index].instance())
+	var variant = variant_scenes[index].instance()
+	if automirror and randi()%2:
+		# mirror all content horizontally
+		for child in variant.get_children():
+			child.position.x = -child.position.x
+	add_child(variant)
 	
