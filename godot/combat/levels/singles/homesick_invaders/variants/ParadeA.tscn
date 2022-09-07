@@ -1,1201 +1,369 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/environments/Mine.gd" type="Script" id=2]
 [ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=4]
-[ext_resource path="res://actors/environments/Alien.gd" type="Script" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
 
 [node name="ParadeA" type="Node2D"]
 
-[node name="Alien41" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien41" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 5600 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien2" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 1300 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien35" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien35" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 1700 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien36" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien36" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 1700 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien3" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 3300 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien5" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien5" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 3300 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien4" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien4" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 3300 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien6" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien6" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 2900 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien7" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 3300 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien32" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien32" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 3700 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien33" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien33" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 3700 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien8" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien8" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 1300 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien38" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien38" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 2900 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien22" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien22" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 7200 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien23" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien23" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 7200 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien42" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien42" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 7600 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien26" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien26" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 7600 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien27" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien27" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 8900 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien28" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien28" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 8000 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien29" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien29" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 8000 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien31" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien31" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 8900 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien9" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien9" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 4500 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien10" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien10" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 4100 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien11" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien11" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 4100 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien12" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien12" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 4100 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien13" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien13" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 3700 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien14" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien14" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 4100 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien39" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien39" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 4500 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien40" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien40" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 3700 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien17" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien17" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 6000 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien18" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien18" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 6000 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien19" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien19" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 5600 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien43" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien43" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 12050 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien15" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien15" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 9750 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien16" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien16" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 9750 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien20" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien20" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 9750 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien21" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien21" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 9350 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien24" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien24" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 9750 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien34" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien34" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 10150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien37" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien37" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 10150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien44" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien44" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 9350 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien25" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien25" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 13650 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien30" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien30" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 13650 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien45" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien45" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 14050 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien46" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien46" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 14050 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien47" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien47" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 15350 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien48" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien48" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 14450 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien49" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien49" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 14450 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien50" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien50" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 15350 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien51" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien51" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 10950 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien52" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien52" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 10550 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien53" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien53" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 10550 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien54" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien54" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 10550 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien55" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien55" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 10150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien56" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien56" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 10550 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien57" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien57" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, 10950 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien58" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien58" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 10150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien59" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien59" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 12450 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien60" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien60" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 12450 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien61" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien61" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 12050 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Mine" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 5800 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine2" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -200, 7600 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine3" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 201, 7600 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine4" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 601, 9350 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine5" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine5" parent="." instance=ExtResource( 4 )]
 position = Vector2( -599, 9350 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine6" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 8600 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine7" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine7" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 10950 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine8" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine8" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 12250 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine9" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine9" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 11850 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine10" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine10" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 12650 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine17" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine17" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 15350 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine18" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine18" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 14950 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine19" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine19" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 15750 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine11" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine11" parent="." instance=ExtResource( 4 )]
 position = Vector2( -399, 12250 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine13" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine13" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, 14050 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine14" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine14" parent="." instance=ExtResource( 4 )]
 position = Vector2( -200, 14050 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine15" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine15" parent="." instance=ExtResource( 4 )]
 position = Vector2( -600, 13650 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine16" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine16" parent="." instance=ExtResource( 4 )]
 position = Vector2( 600, 13650 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine12" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine12" parent="." instance=ExtResource( 4 )]
 position = Vector2( 401, 12250 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Alien62" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien62" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 16750 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien63" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien63" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 17150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien64" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien64" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 17150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien65" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien65" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, 16750 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien66" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien66" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 18150 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Alien67" type="RigidBody2D" parent="." groups=["Alien", "Ball", "in_camera"] instance=ExtResource( 3 )]
+[node name="Alien67" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 18950 )
-collision_layer = 512
-collision_mask = 50706
-mode = 2
 physics_material_override = SubResource( 1 )
-gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
-linear_damp = 1.0
-script = ExtResource( 5 )
-type = "heart"
 
-[node name="Mine20" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine20" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 16950 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine21" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine21" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 16550 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine22" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine22" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 17350 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine23" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine23" parent="." instance=ExtResource( 4 )]
 position = Vector2( -399, 16950 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
+diving = true
 
-[node name="Mine24" type="RigidBody2D" parent="." instance=ExtResource( 4 )]
+[node name="Mine24" parent="." instance=ExtResource( 4 )]
 position = Vector2( 401, 16950 )
-collision_layer = 4
-collision_mask = 11799
-contacts_reported = 3
-contact_monitor = true
-linear_damp = 1.0
-script = ExtResource( 2 )
-explosion_scene = ExtResource( 1 )
-
-[connection signal="body_entered" from="Mine" to="Mine" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine2" to="Mine2" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine3" to="Mine3" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine4" to="Mine4" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine5" to="Mine5" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine6" to="Mine6" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine7" to="Mine7" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine8" to="Mine8" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine9" to="Mine9" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine10" to="Mine10" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine17" to="Mine17" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine18" to="Mine18" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine19" to="Mine19" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine11" to="Mine11" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine13" to="Mine13" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine14" to="Mine14" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine15" to="Mine15" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine16" to="Mine16" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine12" to="Mine12" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine20" to="Mine20" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine21" to="Mine21" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine22" to="Mine22" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine23" to="Mine23" method="_on_Mine_body_entered"]
-[connection signal="body_entered" from="Mine24" to="Mine24" method="_on_Mine_body_entered"]
+diving = true
