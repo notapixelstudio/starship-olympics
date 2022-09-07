@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/Homeworld.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/Homeworld.gd" type="Script" id=2]
+
+[node name="PlanetsB" type="Node2D"]
+
+[node name="Homeworld" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( -2700, 1250 )
+script = ExtResource( 2 )
+ground_radius = 250.0
+atmosphere_radius = 700.0
+
+[node name="Homeworld2" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( -2650, -450 )
+script = ExtResource( 2 )
+ground_radius = 300.0
+atmosphere_radius = 800.0
+kind = "animals/a01"
+
+[node name="Homeworld3" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( 1600, -150 )
+script = ExtResource( 2 )
+ground_radius = 110.0
+atmosphere_radius = 260.0
+kind = "animals/a04"
+
+[node name="Homeworld4" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( -1650, 700 )
+script = ExtResource( 2 )
+ground_radius = 120.0
+atmosphere_radius = 350.0
+kind = "animals/a03"
+
+[node name="Homeworld5" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( 2150, -800 )
+script = ExtResource( 2 )
+ground_radius = 225.0
+atmosphere_radius = 500.0
+kind = "animals/a04"
+
+[node name="Homeworld6" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( 1900, 1400 )
+script = ExtResource( 2 )
+ground_radius = 300.0
+atmosphere_radius = 500.0
+kind = "animals/a02"
+
+[node name="Homeworld7" type="Node2D" parent="." groups=["homeworld", "in_camera"] instance=ExtResource( 1 )]
+position = Vector2( 2750, 400 )
+script = ExtResource( 2 )
+ground_radius = 250.0
+atmosphere_radius = 700.0
+kind = "animals/a03"
