@@ -1,0 +1,626 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://actors/enemies/Turret.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/enemies/Turret.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=7]
+[ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Default"
+length = 68.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 11, 23, 27, 31, 43 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.25, 0.5, 1.0, 4.0, 0.5, 0.25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 17, 31 ),
+"transitions": PoolRealArray( 1, -2, -2 ),
+"update": 0,
+"values": [ 0.0, -1.0, 0.2 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Lasers")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 39, 47 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+}, {
+"args": [  ],
+"method": "deactivate"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 400 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rays")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:spread")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 90 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 68.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret:rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20, 32, 36, 40, 52 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.25, 0.5, 1.0, 4.0, 0.5, 0.25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret:rotation_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 9, 26, 40 ),
+"transitions": PoolRealArray( -2, 1, -2, -2 ),
+"update": 0,
+"values": [ 0.0, 0.0, -1.0, 0.2 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Turret/Lasers")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 48, 56 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+}, {
+"args": [  ],
+"method": "deactivate"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Turret:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 400 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Turret:rays")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 4 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Turret:spread")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 90 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Turret")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+} ]
+}
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+func activate():
+	switch(true)
+	
+func deactivate():
+	switch(false)
+	
+func switch(on):
+	for laser in get_children():
+		laser.set_on(on)
+		if on:
+			laser.visible = true
+			yield(get_tree().create_timer(1), \"timeout\")
+		else:
+			yield(get_tree().create_timer(0.5), \"timeout\")
+			laser.visible = false
+			yield(get_tree().create_timer(0.5), \"timeout\")
+		
+func show():
+	visible = true
+	
+"
+
+[sub_resource type="Animation" id=6]
+resource_name = "Default"
+length = 68.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 11, 23, 27, 31, 43 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.25, 0.5, 1.0, 4.0, 0.5, 0.25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 17, 31 ),
+"transitions": PoolRealArray( 1, -2, -2 ),
+"update": 0,
+"values": [ 0.0, -1.0, 0.2 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Lasers")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 39, 47 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+}, {
+"args": [  ],
+"method": "deactivate"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 400 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rays")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:spread")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 90 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 68.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret:rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20, 32, 36, 40, 52 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.25, 0.5, 1.0, 4.0, 0.5, 0.25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret:rotation_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 9, 26, 40 ),
+"transitions": PoolRealArray( -2, 1, -2, -2 ),
+"update": 0,
+"values": [ 0.0, 0.0, -1.0, 0.2 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Turret/Lasers")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 48, 56 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+}, {
+"args": [  ],
+"method": "deactivate"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Turret:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 400 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Turret:rays")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 4 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Turret:spread")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 90 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Turret")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+} ]
+}
+
+[node name="A" type="Node2D"]
+
+[node name="Wall9" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -1100, -400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall9"]
+script = ExtResource( 1 )
+radius = 115
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall11" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 1100, -400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall11"]
+script = ExtResource( 1 )
+radius = 115
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall10" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -1100, 400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall10"]
+script = ExtResource( 1 )
+radius = 115
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall15" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 1100, 400 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall15"]
+script = ExtResource( 1 )
+radius = 115
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Turret" type="RigidBody2D" parent="." groups=["in_camera"] instance=ExtResource( 6 )]
+position = Vector2( -700, 0 )
+collision_layer = 1048576
+collision_mask = 10757
+mass = 5000.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+weapon = ExtResource( 5 )
+rate = 0.25
+rotation_speed = 0.0
+radius = 150
+active = false
+sleeping_modulate = Color( 0.94902, 0.313726, 1, 1 )
+autoplay = false
+
+[node name="Routine" type="AnimationPlayer" parent="Turret"]
+anims/Default = SubResource( 5 )
+anims/Rotate = SubResource( 4 )
+
+[node name="Lasers" type="Node2D" parent="Turret"]
+script = SubResource( 3 )
+
+[node name="Laser" type="RayCast2D" parent="Turret/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 160, 0 )
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Laser2" type="RayCast2D" parent="Turret/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, 160 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Laser3" type="RayCast2D" parent="Turret/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( -160, 0 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Laser4" type="RayCast2D" parent="Turret/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, -160 )
+rotation = 4.71239
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Turret2" type="RigidBody2D" parent="." groups=["in_camera"] instance=ExtResource( 6 )]
+position = Vector2( 700, 0 )
+collision_layer = 1048576
+collision_mask = 10757
+mass = 5000.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+weapon = ExtResource( 5 )
+rate = 0.25
+rotation_speed = 0.0
+radius = 150
+active = false
+sleeping_modulate = Color( 0.94902, 0.313726, 1, 1 )
+autoplay = false
+
+[node name="Routine" type="AnimationPlayer" parent="Turret2"]
+anims/Default = SubResource( 6 )
+anims/Rotate = SubResource( 7 )
+
+[node name="Lasers" type="Node2D" parent="Turret2"]
+script = SubResource( 3 )
+
+[node name="Laser" type="RayCast2D" parent="Turret2/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 160, 0 )
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Laser2" type="RayCast2D" parent="Turret2/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, 160 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Laser3" type="RayCast2D" parent="Turret2/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( -160, 0 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[node name="Laser4" type="RayCast2D" parent="Turret2/Lasers" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, -160 )
+rotation = 4.71239
+enabled = true
+cast_to = Vector2( 20000, 0 )
+collision_mask = 1188880
+collide_with_areas = true
+script = ExtResource( 8 )
+on = false
+
+[connection signal="body_entered" from="Turret" to="Turret" method="_on_Turret_body_entered"]
+[connection signal="body_entered" from="Turret2" to="Turret2" method="_on_Turret_body_entered"]

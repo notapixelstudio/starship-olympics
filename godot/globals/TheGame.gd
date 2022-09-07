@@ -24,6 +24,13 @@ func set_players(_players : Array) -> void:
 func get_players() -> Array: # of InfoPlayer
 	return players
 	
+func get_human_players() -> Array: # of InfoPlayer
+	var humans := []
+	for player in players:
+		if not player.cpu:
+			humans.append(player)
+	return humans
+	
 func get_player_index() -> Dictionary:
 	var index := {}
 	for player in players:

@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=2]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=4]
+
+[node name="4A" type="Node2D"]
+
+[node name="Wall12" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 600, 600 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Wall12"]
+script = ExtResource( 1 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall14" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( 200, 200 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Wall14"]
+script = ExtResource( 1 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall15" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -200, -200 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Wall15"]
+script = ExtResource( 1 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall16" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 3 )]
+position = Vector2( -600, -600 )
+rotation = -0.785398
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 2 )
+
+[node name="GBeveledRect" type="Node" parent="Wall16"]
+script = ExtResource( 1 )
+width = 700
+height = 200
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50

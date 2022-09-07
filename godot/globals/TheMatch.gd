@@ -203,13 +203,17 @@ func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
-	return {
+	var dict = {
 		"uuid": get_uuid(),
 		"winners": winners,
-		"minigame_id": minigame.get_id(),
-		"card_id": draft_card.get_id(),
 		"winners_did_perfect": self.winners_did_perfect()
 	}
+	if minigame:
+		dict["minigame_id"] = minigame.get_id()
+	if draft_card:
+		dict["card_id"] = draft_card.get_id()
+		
+	return dict
 
 func get_number_of_players():
 	return len(players)

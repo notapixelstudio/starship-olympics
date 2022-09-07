@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 80.0
+
+[node name="SmolMine" instance=ExtResource( 1 )]
+scale = Vector2( 0.75, 0.75 )
+explosion_kilotons = 300
+
+[node name="Sprite" parent="." index="1"]
+scale = Vector2( 0.75, 0.75 )
+
+[node name="Shadow" parent="." index="2"]
+scale = Vector2( 0.6, 0.6 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource( 1 )

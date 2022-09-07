@@ -1,0 +1,345 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/Mine.tscn" type="PackedScene" id=4]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 100.0
+
+[node name="ParadeB" type="Node2D"]
+
+[node name="Alien41" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 6550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 1300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien35" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 1700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien36" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 1700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 4900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 3300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien4" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 3300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 4500 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 4850 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien32" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 3700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien33" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 3700 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 1300 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien38" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 2900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien22" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 7600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien23" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 7200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien42" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 7600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien26" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 7600 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien27" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 8900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien28" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 8000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien29" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 8000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien31" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 8900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 4500 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien10" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 4500 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 4100 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien12" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 4100 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien13" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 5200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien14" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 4900 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien39" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 4500 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien40" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 5200 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien17" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 6000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien18" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 6000 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien19" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 6550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien15" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 9750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien16" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 9750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien20" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 9750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien21" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 9350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien24" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 9750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien34" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 11400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien37" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 11400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien44" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 9350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien25" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 13650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien30" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 13650 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien45" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 14050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien46" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 14050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien59" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 15350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien60" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 15350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien47" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 15350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien48" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 14050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien49" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 14050 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien50" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 15350 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien51" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 10950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien52" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 10550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien53" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 10550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien54" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 10550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien55" parent="." instance=ExtResource( 3 )]
+position = Vector2( -200, 11400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien56" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 10550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien57" parent="." instance=ExtResource( 3 )]
+position = Vector2( -600, 10950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien58" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 11400 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien61" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 12500 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 6550 )
+diving = true
+
+[node name="Mine2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -600, 8000 )
+diving = true
+
+[node name="Mine3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 601, 8000 )
+diving = true
+
+[node name="Mine4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 601, 9350 )
+diving = true
+
+[node name="Mine5" parent="." instance=ExtResource( 4 )]
+position = Vector2( -599, 9350 )
+diving = true
+
+[node name="Mine7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 10950 )
+diving = true
+
+[node name="Mine9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 12100 )
+diving = true
+
+[node name="Mine10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 12900 )
+diving = true
+
+[node name="Mine18" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 14950 )
+diving = true
+
+[node name="Mine19" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 15750 )
+diving = true
+
+[node name="Mine11" parent="." instance=ExtResource( 4 )]
+position = Vector2( -399, 12500 )
+diving = true
+
+[node name="Mine12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 401, 12500 )
+diving = true
+
+[node name="Alien66" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 17750 )
+physics_material_override = SubResource( 1 )
+
+[node name="Alien68" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 16950 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine21" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 16550 )
+diving = true
+
+[node name="Mine22" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 17350 )
+diving = true
+
+[node name="Mine23" parent="." instance=ExtResource( 4 )]
+position = Vector2( -399, 16950 )
+diving = true
+
+[node name="Mine24" parent="." instance=ExtResource( 4 )]
+position = Vector2( 401, 16950 )
+diving = true
+
+[node name="Mine25" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 18150 )
+diving = true
+
+[node name="Mine26" parent="." instance=ExtResource( 4 )]
+position = Vector2( -399, 17750 )
+diving = true
+
+[node name="Mine27" parent="." instance=ExtResource( 4 )]
+position = Vector2( 401, 17750 )
+diving = true
+
+[node name="Alien67" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 18550 )
+physics_material_override = SubResource( 1 )
+
+[node name="Mine28" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 18950 )
+diving = true
+
+[node name="Mine29" parent="." instance=ExtResource( 4 )]
+position = Vector2( -399, 18550 )
+diving = true
+
+[node name="Mine30" parent="." instance=ExtResource( 4 )]
+position = Vector2( 401, 18550 )
+diving = true
