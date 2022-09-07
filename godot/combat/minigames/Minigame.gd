@@ -4,10 +4,7 @@ class_name Minigame
 
 export var game_mode : Resource
 
-export var level_1players : PackedScene
-export var level_2players : PackedScene
-export var level_3players : PackedScene
-export var level_4players : PackedScene
+export var arenas_dir: String
 
 export var tutorial_scene : PackedScene
 
@@ -16,15 +13,18 @@ var times_started := 0
 export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_top = ''
 export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_bottom = ''
 
-
 func get_id() -> String:
 	return str(get_rid().get_id())
 	
 func get_icon():
 	return game_mode.get_icon()
 	
-func get_level(num_players) -> PackedScene:
-	return get("level_" + str(num_players) + "players")
+func get_level(num_players) -> Resource:
+	var dir := Directory.new()
+	var file_path = arenas_dir + str(num_players) + "players.tscn"
+	if not dir.file_exists(file_path):
+		file_path = arenas_dir + "234players.tscn"
+	return load(file_path)
 	
 func get_name():
 	return game_mode.name
