@@ -155,6 +155,7 @@ func _enter_tree():
 		connect("update_stats", global.the_match, "update_stats")
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+		Events.connect("ask_to_spawn", self, "dramatic_spawn") # e.g. SpawnerManager
 	
 func _ready():
 	set_process(false)
@@ -818,10 +819,8 @@ func _on_sth_collected(collector, collectee):
 	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
 		
-	if collectee.get_parent().is_in_group("spawner_group"):
-		collectee.get_parent().call_deferred('remove', collectee)
-	else:
-		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+	collectee.get_parent().call_deferred('remove_child', collectee)
+	# collisions do not work as expected without defer
 		
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
@@ -860,12 +859,12 @@ func _on_sth_stolen(thief, mugged):
 
 signal wave_ready
 
-func on_next_wave(diamonds, wait_time=1):
+func dramatic_spawn(to_be_spawned: ElementSpawnerGroup , wait_time=1):
 	if wait_time:
-		focus_in_camera.move(diamonds.position, wait_time)
+		focus_in_camera.move(to_be_spawned.position, wait_time)
 		yield(focus_in_camera, "completed")
-	diamonds.spawn()
-	emit_signal('wave_ready')
+	to_be_spawned.spawn()
+	Events.emit_signal("spawned", to_be_spawned)
 	
 
 func _on_Pause_restart():

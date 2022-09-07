@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=2]
+[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=3]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=7]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=8]
+
+[node name="2C" type="Node2D"]
+
+[node name="Wall6" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 6 )]
+scale = Vector2( 1.1, 1.1 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall6"]
+script = ExtResource( 1 )
+radius = 250
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall7" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 6 )]
+position = Vector2( -1000, 600 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall7"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall8" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 6 )]
+position = Vector2( 1000, -600 )
+collision_layer = 2147483664
+collision_mask = 270337
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+elongation = 100
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall8"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="DramaticSpawner5" type="Node2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1000, 0 )
+script = ExtResource( 7 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner5" groups=["in_camera"] instance=ExtResource( 4 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 3 )
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner6" type="Node2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1000, 0 )
+script = ExtResource( 7 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner6" groups=["in_camera"] instance=ExtResource( 4 )]
+collision_layer = 2048
+collision_mask = 3090
+mode = 2
+linear_damp = 1.0
+script = ExtResource( 3 )
+type = "shields"
+tease = true

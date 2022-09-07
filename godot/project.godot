@@ -119,11 +119,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/Cell.gd"
 }, {
-"base": "Node2D",
-"class": "CollectableSpawner",
-"language": "GDScript",
-"path": "res://actors/environments/DiamondSpawner.gd"
-}, {
 "base": "ColorRect",
 "class": "CollectionItem",
 "language": "GDScript",
@@ -188,6 +183,16 @@ _global_script_classes=[ {
 "class": "DraftCardGraphicNode",
 "language": "GDScript",
 "path": "res://map/draft/DraftCardGraphicNode.gd"
+}, {
+"base": "Node2D",
+"class": "ElementSpawner",
+"language": "GDScript",
+"path": "res://actors/environments/ElementSpawner.gd"
+}, {
+"base": "Position2D",
+"class": "ElementSpawnerGroup",
+"language": "GDScript",
+"path": "res://actors/environments/ElementSpawnerGroup.gd"
 }, {
 "base": "Node",
 "class": "Entity",
@@ -609,6 +614,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/WallGoal.gd"
 }, {
+"base": "Node2D",
+"class": "WaveGroupSpawner",
+"language": "GDScript",
+"path": "res://actors/environments/WaveGroupSpawner.gd"
+}, {
 "base": "MapLocation",
 "class": "Waypoint",
 "language": "GDScript",
@@ -642,7 +652,6 @@ _global_script_class_icons={
 "Card": "",
 "CardPool": "",
 "Cell": "",
-"CollectableSpawner": "",
 "CollectionItem": "",
 "Component": "",
 "Conquerable": "",
@@ -656,6 +665,8 @@ _global_script_class_icons={
 "Diamond": "",
 "DraftCard": "",
 "DraftCardGraphicNode": "",
+"ElementSpawner": "",
+"ElementSpawnerGroup": "",
 "Entity": "",
 "Explosion": "",
 "Field": "",
@@ -740,6 +751,7 @@ _global_script_class_icons={
 "UUID": "",
 "Wall": "",
 "WallGoal": "",
+"WaveGroupSpawner": "",
 "Waypoint": "",
 "Weapon": ""
 }

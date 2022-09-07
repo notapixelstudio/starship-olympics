@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/NoShipZone.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=3]
+
+[node name="GlassB" type="Node2D"]
+
+[node name="NoShipZone" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1050, 750 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="NoShipZone"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 200
+bevel_sw = 50
+bevel_se = 200
+
+[node name="NoShipZone2" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1050, -50 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+
+[node name="GBeveledRect" type="Node" parent="NoShipZone2"]
+script = ExtResource( 1 )
+width = 350
+height = 700
+bevel = 50
+bevel_nw = 200
+bevel_ne = 50
+bevel_sw = 200
+bevel_se = 50
