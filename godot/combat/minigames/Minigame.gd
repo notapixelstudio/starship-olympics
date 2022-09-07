@@ -21,9 +21,9 @@ func get_icon():
 	
 func get_level(num_players) -> Resource:
 	var dir := Directory.new()
-	var file_path = arenas_dir + str(num_players) + "players.tscn"
+	var file_path = arenas_dir.plus_file(str(num_players) + "players.tscn")
 	if not dir.file_exists(file_path):
-		file_path = arenas_dir + "234players.tscn"
+		file_path = arenas_dir.plus_file("234players.tscn")
 	return load(file_path)
 	
 func get_name():
