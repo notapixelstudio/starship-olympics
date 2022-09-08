@@ -13,7 +13,7 @@ func set_card(v: DraftCard, pool: CardPool) -> void:
 	
 	var text = ''
 	var possible_player_counts := [1,2,3,4]
-	var actual_player_counts := card.get_available_player_counts()
+	var actual_player_counts := card.get_available_player_counts(possible_player_counts)
 	print(actual_player_counts)
 	for player_count in possible_player_counts:
 		if actual_player_counts.has(player_count):

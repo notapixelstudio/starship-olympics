@@ -115,6 +115,7 @@ func player_just_chose_a_card(author, card):
 	if card.card_content.has_unlocks():
 		var unlocks = []
 		for i in range(card.card_content.get_unlock_strength()):
+			print("this should unlock "+ card.card_content.get_unlock())
 			unlocks.append(card.card_content.get_unlock())
 		global.the_game.get_deck().prepare_next_cards(unlocks)
 	
