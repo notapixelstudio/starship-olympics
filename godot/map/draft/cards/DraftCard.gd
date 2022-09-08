@@ -50,10 +50,14 @@ func on_card_drawn() -> void:
 	pass
 	
 func has_level_for_player_count(player_count: int) -> bool:
-	return minigame.has_level_for_player_count(player_count)
-	
-func get_available_player_counts() -> Array:
-	return minigame.get_available_player_counts()
+	return (minigame as Minigame).get_arena_filepath(player_count) != ""
+
+func get_available_player_counts(possible_players: Array) -> Array:
+	var ret = []
+	for num_players in possible_players:
+		if (minigame as Minigame).get_arena_filepath(num_players) != "":
+			ret.append(num_players)
+	return ret
 	
 func get_name() -> String:
 	return minigame.get_name()

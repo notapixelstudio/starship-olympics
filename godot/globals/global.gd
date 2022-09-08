@@ -615,11 +615,11 @@ func is_before_first_match_of_the_game() -> bool:
 const SPECIES_PATH = "res://selection/characters"
 
 func get_resources(base_path: String) -> Dictionary:
-	var ret = {}
+	var ret := {}
 	var resources = global.dir_contents(base_path, "", ".tres")
 	for filename in resources:
 		var this_res = load(base_path.plus_file(filename))
-		var res_id = this_res.id
+		var res_id = this_res.get_id()
 		ret[res_id] = this_res
 	return ret
 
