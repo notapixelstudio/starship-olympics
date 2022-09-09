@@ -25,11 +25,18 @@ func refresh():
 	$LineLeft.position.x = -62 - label_width/2 - 35
 	$LineRight.position.x = 998 + label_width/2 + 35
 	
-	$Winter.visible = draft_card and draft_card.is_winter()
-	$WinterShadow.visible = draft_card and draft_card.is_winter()
-	
-	$Perfectionist.visible = draft_card and draft_card.is_perfectionist()
-	$PerfectionistShadow.visible = draft_card and draft_card.is_perfectionist()
+	if draft_card:
+		var suit = draft_card.get_suit_top()
+		if suit: # TBD double suit
+			$Label.modulate = global.SUIT_COLORS[suit]
+			$LineLeft.modulate = global.SUIT_COLORS[suit]
+			$LineRight.modulate = global.SUIT_COLORS[suit]
+		
+		$Winter.visible = draft_card.is_winter()
+		$WinterShadow.visible = draft_card.is_winter()
+		
+		$Perfectionist.visible = draft_card.is_perfectionist()
+		$PerfectionistShadow.visible = draft_card.is_perfectionist()
 	
 func set_gamemode(value: GameMode):
 	gamemode = value

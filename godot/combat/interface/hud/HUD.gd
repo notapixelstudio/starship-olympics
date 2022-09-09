@@ -25,6 +25,9 @@ func set_draft_card(draft_card : DraftCard):
 	get_node('%WinterLabel').visible = draft_card.is_winter()
 	get_node('%PerfectionistStar').visible = draft_card.is_perfectionist()
 	get_node('%PerfectionistLabel').visible = draft_card.is_perfectionist()
+	var suit = draft_card.get_suit_top()
+	if suit: # TBD double suit
+		get_node('%MinigameName').modulate = global.SUIT_COLORS[suit]
 
 func _ready():
 	set_process(false)

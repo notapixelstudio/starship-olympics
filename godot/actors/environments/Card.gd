@@ -137,6 +137,7 @@ func reveal():
 func select():
 	selected = true
 	border.modulate = Color(1.2,1.2,1.2)
+	$'%Background'.modulate = Color(1.07,1.07,1.07)
 	border.visible = true
 	if not float_when_selected:
 		$AnimationPlayer.play("Stand")
@@ -167,7 +168,7 @@ func equals(other_card):
 	return content == other_card.content
 	
 func set_tint(color):
-	$Ground/Front/Background.modulate = color
+	$Ground/Front/Background.self_modulate = color
 	
 func _on_Card_body_entered(body):
 	if body is Ship:

@@ -48,50 +48,36 @@ order_id = 0
 scale = Vector2( 1e-05, 1 )
 
 [node name="Background" parent="Ground/Front" index="0"]
-modulate = Color( 0.8, 0.752941, 0.670588, 1 )
+modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
 
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true
 self_modulate = Color( 1, 1, 1, 1 )
 
-[node name="Suits" type="Node2D" parent="Ground/Front" index="5"]
-modulate = Color( 1, 1, 1, 0.392157 )
-
-[node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
-unique_name_in_owner = true
-position = Vector2( -94, -143 )
-scale = Vector2( 0.35, 0.35 )
-
-[node name="SuitBottomRight" type="Sprite" parent="Ground/Front/Suits" index="1"]
-unique_name_in_owner = true
-position = Vector2( 94, 144 )
-scale = Vector2( 0.35, 0.35 )
-flip_v = true
-
-[node name="Mystery" type="Sprite" parent="Ground/Front" index="6"]
+[node name="Mystery" type="Sprite" parent="Ground/Front" index="5"]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="9"]
+[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="8"]
 modulate = Color( 0, 0, 0, 0.392157 )
 position = Vector2( 0, -24 )
 
-[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="10"]
+[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="9"]
 position = Vector2( 0, -33 )
 
-[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
+[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="10"]
 position = Vector2( 0, 9 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="MinigameLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
-self_modulate = Color( 0.92, 0.92, 0.92, 1 )
+unique_name_in_owner = true
+modulate = Color( 1.12, 1.12, 1.12, 1 )
 margin_left = -900.0
 margin_top = 20.0
 margin_right = 900.0
 margin_bottom = 334.0
-custom_colors/font_color_shadow = Color( 1, 0.533333, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.247059, 0.247059, 0.247059, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
 custom_fonts/font = SubResource( 1 )
@@ -141,7 +127,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="12"]
+[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
 position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -169,6 +155,19 @@ texture = ExtResource( 4 )
 [node name="Sprite2" type="Sprite" parent="Ground/Front/NewLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
+
+[node name="Suits" type="Node2D" parent="Ground/Front" index="12"]
+
+[node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
+unique_name_in_owner = true
+position = Vector2( -94, -143 )
+scale = Vector2( 0.35, 0.35 )
+
+[node name="SuitBottomRight" type="Sprite" parent="Ground/Front/Suits" index="1"]
+unique_name_in_owner = true
+position = Vector2( 94, 144 )
+scale = Vector2( 0.35, 0.35 )
+flip_v = true
 
 [node name="PerfectionistStar" type="Sprite" parent="Ground/Front" index="13"]
 unique_name_in_owner = true

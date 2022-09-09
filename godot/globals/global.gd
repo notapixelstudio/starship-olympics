@@ -10,6 +10,16 @@ const isometric_offset = Vector2(0,32)
 
 var enable_camera := true 
 
+const SUIT_COLORS = {
+	'diamond': Color('#0080ff'),
+	'crown': Color('#ff3333'),
+	'block': Color('#ffde5f'),
+	'heart': Color('#ffffff'),
+	'snake': Color('#00fff3'),
+	'arrow': Color('#53ff53'),
+	'circle': Color('#d849f5')
+}
+
 var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 

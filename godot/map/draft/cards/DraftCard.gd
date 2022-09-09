@@ -81,7 +81,7 @@ func get_suit_top() -> Array:
 	return minigame.get_suit_top()
 
 func get_suit_bottom() -> Array:
-	return  minigame.get_suit_bottom()
+	return minigame.get_suit_bottom()
 
 func has_unlocks() -> bool:
 	return len(unlocks) > 0
