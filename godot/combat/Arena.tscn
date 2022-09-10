@@ -39,23 +39,12 @@
 [ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=37]
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
-[ext_resource path="res://assets/shaders/crt.shader" type="Shader" id=40]
+[ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 40 )
-shader_param/boost = 1.0
-shader_param/grille_opacity = 0.85
-shader_param/scanlines_opacity = 0.85
-shader_param/vignette_opacity = 0.2
-shader_param/scanlines_speed = 0.0
-shader_param/show_grille = false
-shader_param/show_scanlines = true
-shader_param/show_vignette = false
-shader_param/show_curvature = false
-shader_param/screen_size = Vector2( 640, 360 )
-shader_param/aberration_amount = 1.0
-shader_param/move_aberration = false
-shader_param/aberration_speed = 1.0
+shader_param/apply = true
+shader_param/amount = 0.2
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10000 )
@@ -295,10 +284,6 @@ __meta__ = {
 layer = -1
 
 [node name="BackgroundImage" type="Sprite" parent="BackgroundLayer"]
-texture = ExtResource( 39 )
-centered = false
-
-[node name="BackgroundOverlay" type="Sprite" parent="BackgroundLayer"]
 material = SubResource( 7 )
 texture = ExtResource( 39 )
 centered = false
