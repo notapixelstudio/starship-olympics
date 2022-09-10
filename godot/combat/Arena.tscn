@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -38,6 +38,24 @@
 [ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=36]
 [ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=37]
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
+[ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
+[ext_resource path="res://assets/shaders/crt.shader" type="Shader" id=40]
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 40 )
+shader_param/boost = 1.0
+shader_param/grille_opacity = 0.85
+shader_param/scanlines_opacity = 0.85
+shader_param/vignette_opacity = 0.2
+shader_param/scanlines_speed = 0.0
+shader_param/show_grille = false
+shader_param/show_scanlines = true
+shader_param/show_vignette = false
+shader_param/show_curvature = false
+shader_param/screen_size = Vector2( 640, 360 )
+shader_param/aberration_amount = 1.0
+shader_param/move_aberration = false
+shader_param/aberration_speed = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10000 )
@@ -148,18 +166,6 @@ tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
@@ -287,6 +293,15 @@ __meta__ = {
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
+
+[node name="BackgroundImage" type="Sprite" parent="BackgroundLayer"]
+texture = ExtResource( 39 )
+centered = false
+
+[node name="BackgroundOverlay" type="Sprite" parent="BackgroundLayer"]
+material = SubResource( 7 )
+texture = ExtResource( 39 )
+centered = false
 
 [node name="Battlefield" type="Node2D" parent="."]
 script = ExtResource( 22 )
