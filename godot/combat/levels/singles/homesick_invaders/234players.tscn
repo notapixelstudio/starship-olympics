@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsA.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=9]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=10]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=12]
@@ -32,10 +31,6 @@ dark_winter = true
 
 [node name="ConquestModeManager" parent="Managers" index="12"]
 enabled = true
-
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 9 )
-centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 collision_layer = 2147483648
@@ -111,5 +106,3 @@ disabled_override = true
 [node name="Camera2D" type="Camera2D" parent="." index="10"]
 current = true
 zoom = Vector2( 5.2, 5.2 )
-
-[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
 [ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
+[ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=41]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 40 )
@@ -287,6 +288,12 @@ layer = -1
 material = SubResource( 7 )
 texture = ExtResource( 39 )
 centered = false
+
+[node name="Polygon2D" type="Polygon2D" parent="BackgroundLayer"]
+modulate = Color( 0, 0, 0, 0.0588235 )
+texture = ExtResource( 41 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -50, -50, 1300, -50, 1300, 750, -50, 750 )
 
 [node name="Battlefield" type="Node2D" parent="."]
 script = ExtResource( 22 )
