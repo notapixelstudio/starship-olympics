@@ -76,7 +76,7 @@ signal salvo
 
 var array_players = [] # Dictionary of InfoPlayers
 
-func compute_arena_size():
+func compute_arena_size() -> Rect2:
 	"""
 	compute the battlefield size
 	"""
@@ -316,7 +316,9 @@ func _ready():
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
-	camera.initialize(compute_arena_size())
+	camera.initialize(compute_arena_size().grow(100*20))
+	
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
