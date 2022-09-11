@@ -320,7 +320,8 @@ func _ready():
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
-	camera.initialize(compute_arena_size().grow(100*50))
+	camera.initialize(compute_arena_size().grow(100*30))
+	update_grid()
 	
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -344,7 +345,7 @@ func _ready():
 			yield(get_tree().create_timer(3), "timeout")
 			mode_description.disappears()
 	
-	update_grid()
+	
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
