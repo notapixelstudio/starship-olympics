@@ -21,7 +21,7 @@ noise = SubResource( 2 )
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
-shader_param/boost = 1.0
+shader_param/boost = 1.1
 shader_param/grille_opacity = 1.0
 shader_param/scanlines_opacity = 1.0
 shader_param/vignette_opacity = 0.2
@@ -69,9 +69,6 @@ layer = 120
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TransitionScreen" parent="." instance=ExtResource( 8 )]
 
