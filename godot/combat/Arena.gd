@@ -320,8 +320,12 @@ func _ready():
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
+		
 	camera.initialize(compute_arena_size().grow(100*30))
 	update_grid()
+	
+	if show_hud:
+		hud.set_draft_card(global.the_match.get_draft_card())
 	
 	yield(get_tree().create_timer(3), "timeout")
 	
@@ -397,8 +401,6 @@ func _ready():
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
 				
-	if show_hud:
-		hud.set_draft_card(global.the_match.get_draft_card())
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
 	
