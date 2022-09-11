@@ -372,7 +372,7 @@ _global_script_classes=[ {
 "base": "MapLocation",
 "class": "MapRadio",
 "language": "GDScript",
-"path": "res://map_with_sets/MapRadio.gd"
+"path": "res://ui/common_elements/RadioOption.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Marble",
@@ -483,6 +483,11 @@ _global_script_classes=[ {
 "class": "PowerUp",
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
+}, {
+"base": "CheckBox",
+"class": "RadioOption",
+"language": "GDScript",
+"path": "res://map_with_sets/MapRadio.gd"
 }, {
 "base": "Control",
 "class": "RemapAction",
@@ -725,6 +730,7 @@ _global_script_class_icons={
 "Polyomino": "",
 "Portalz": "",
 "PowerUp": "",
+"RadioOption": "",
 "RemapAction": "",
 "RemappingScene": "",
 "RemoteBomb": "",

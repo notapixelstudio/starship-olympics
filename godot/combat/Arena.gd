@@ -313,6 +313,10 @@ func _ready():
 		# initialize HUD
 		hud.post_ready()
 	
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
+		
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
@@ -391,11 +395,7 @@ func _ready():
 			$Battlefield/Background.add_child(ice)
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
-	
-	# load style from gamemode, if specified
-	if game_mode.arena_style:
-		set_style(game_mode.arena_style)
-		
+				
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
 	if show_intro:
