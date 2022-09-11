@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -10,53 +10,20 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=14]
-[ext_resource path="res://assets/icon/skull.png" type="Texture" id=15]
+[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=14]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2E.tscn" type="PackedScene" id=16]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2D.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2C.tscn" type="PackedScene" id=19]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2A.tscn" type="PackedScene" id=20]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2B.tscn" type="PackedScene" id=21]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Default"
-length = 40.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 40 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Default"
-length = 40.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 40 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
+[ext_resource path="res://combat/levels/background/green/pylon.png" type="Texture" id=22]
+[ext_resource path="res://combat/levels/background/green/pylon_mini2.png" type="Texture" id=23]
+[ext_resource path="res://combat/levels/background/green/pylon2.png" type="Texture" id=24]
+[ext_resource path="res://combat/levels/background/green/pylon_mini.png" type="Texture" id=25]
 
 [node name="Arena" instance=ExtResource( 10 )]
 size_multiplier = 2.5
@@ -66,11 +33,87 @@ style = ExtResource( 6 )
 [node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="BackgroundImage" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 14 )
-centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 8 )]
+[node name="Decoration" type="Node2D" parent="Battlefield/Background" index="0"]
+z_index = -100
+z_as_relative = false
+
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background/Decoration" index="0"]
+modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
+color = Color( 0.627451, 0.564706, 0.47451, 1 )
+polygon = PoolVector2Array( -1600, 1000, -1600, 850, -1250, 1200, -1250, 1350 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/Decoration" index="1"]
+modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
+color = Color( 0.435294, 0.396078, 0.313726, 1 )
+polygon = PoolVector2Array( -1250, 1200, -1250, 1350, 1250, 1350, 1250, 1200 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="Battlefield/Background/Decoration" index="2"]
+modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
+color = Color( 0.262745, 0.239216, 0.196078, 1 )
+polygon = PoolVector2Array( 1250, 1200, 1250, 1350, 1600, 1000, 1600, 850 )
+
+[node name="Sprite2" type="Sprite" parent="Battlefield/Background/Decoration" index="3"]
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
+position = Vector2( 1600, 1289 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 24 )
+
+[node name="Sprite4" type="Sprite" parent="Battlefield/Background/Decoration" index="4"]
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
+position = Vector2( 400, 1289 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 23 )
+
+[node name="Sprite5" type="Sprite" parent="Battlefield/Background/Decoration" index="5"]
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
+position = Vector2( -1600, 89 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 25 )
+
+[node name="Sprite6" type="Sprite" parent="Battlefield/Background/Decoration" index="6"]
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
+position = Vector2( 1600, 89 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 23 )
+
+[node name="Sprite3" type="Sprite" parent="Battlefield/Background/Decoration" index="7"]
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
+position = Vector2( -1600, -1111 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 24 )
+
+[node name="DecorationOverlay" type="Node2D" parent="Battlefield/Background" index="1"]
+z_index = 18
+z_as_relative = false
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="0"]
+position = Vector2( -400, -1226 )
+texture = ExtResource( 23 )
+
+[node name="Sprite2" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="1"]
+position = Vector2( -1600, -1262 )
+texture = ExtResource( 24 )
+
+[node name="Sprite3" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="2"]
+position = Vector2( -1600, -26 )
+texture = ExtResource( 25 )
+
+[node name="Sprite4" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="3"]
+position = Vector2( 1600, -26 )
+texture = ExtResource( 23 )
+
+[node name="Sprite5" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="4"]
+position = Vector2( 1600, 1140 )
+texture = ExtResource( 22 )
+
+[node name="Sprite6" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="5"]
+position = Vector2( 400, 1174 )
+texture = ExtResource( 25 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 8 )]
 hollow = true
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -91,23 +134,16 @@ bevel_sw = 360
 bevel_se = 360
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 5 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="skull" type="Sprite" parent="Battlefield/Background" index="4"]
+[node name="Bones" type="Sprite" parent="Battlefield/Background" index="6"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( -1000, -100 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 15 )
-
-[node name="skull2" type="Sprite" parent="Battlefield/Background" index="5"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( 1000, 3.8147e-06 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 15 )
+position = Vector2( 0, 32 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 11 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1000, -600 )
@@ -120,14 +156,6 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Laser" parent="Battlefield/Middleground/Wall10" index="6" groups=["additional_lasers"] instance=ExtResource( 11 )]
-show_behind_parent = true
-position = Vector2( 0, -100 )
-rotation = -1.5708
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall10" index="7" groups=["animation_if_additional_lasers"]]
-anims/Default = SubResource( 1 )
-
 [node name="Wall15" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( 1000, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -138,14 +166,6 @@ script = ExtResource( 1 )
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
-
-[node name="Laser" parent="Battlefield/Middleground/Wall15" index="6" groups=["additional_lasers"] instance=ExtResource( 11 )]
-show_behind_parent = true
-position = Vector2( 0, 100 )
-rotation = 1.5708
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Wall15" index="7" groups=["animation_if_additional_lasers"]]
-anims/Default = SubResource( 2 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
 position = Vector2( -1600, -1200 )
@@ -230,5 +250,3 @@ species = ExtResource( 13 )
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
-
-[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
