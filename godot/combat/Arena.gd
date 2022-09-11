@@ -316,9 +316,9 @@ func _ready():
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
-	camera.initialize(compute_arena_size().grow(100*20))
+	camera.initialize(compute_arena_size().grow(100*50))
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(3), "timeout")
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
