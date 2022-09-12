@@ -54,12 +54,12 @@ var in_transition: bool = false
 
 func to(new_rect: Rect2):
 	in_transition = true
-	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, 'camera_rect', new_rect, 4)
 	yield(tween, "finished")
 	emit_signal("transition_over")
-	set_process(false)
-	in_transition = false
+	# set_process(false)
+	
 	
 func initialize(rect_extent:Rect2):
 	camera_rect = rect_extent
@@ -162,6 +162,7 @@ func _draw() -> void:
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
+	in_transition = false
 	set_process(not disabled_override and enabled)
 	
 func world_to_screen(p : Vector2) -> Vector2:
