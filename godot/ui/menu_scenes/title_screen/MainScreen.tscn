@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://WorldEnvironment.tres" type="Environment" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.gd" type="Script" id=8]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/resources/DescriptionModeMinigameTitleShadow.tres" type="DynamicFont" id=10]
+[ext_resource path="res://assets/fonts/resources/DescriptionModeMinigameTitle.tres" type="DynamicFont" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -75,6 +77,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Label
+
+func _ready():
+	text = get(\"custom_fonts/font\").get_available_chars()
+"
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Label
+
+func _ready():
+	text = get(\"custom_fonts/font\").get_available_chars()
+"
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
@@ -150,3 +166,38 @@ environment = ExtResource( 2 )
 [node name="TitleScreen" parent="ScreenCanvas" instance=ExtResource( 7 )]
 margin_left = 2.0
 margin_right = 2.0
+
+[node name="LabelShadow" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 0.196078 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.000457764
+margin_top = 796.0
+margin_right = 0.000488281
+margin_bottom = 796.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 10 )
+text = "Diamondsnatch"
+align = 1
+valign = 1
+uppercase = true
+script = SubResource( 7 )
+
+[node name="Label3" type="Label" parent="."]
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.000915527
+margin_top = 784.0
+margin_right = 0.000976563
+margin_bottom = 784.0
+size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 0.247059, 0.247059, 0.247059, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = ExtResource( 11 )
+text = "diamondsnatch"
+align = 1
+valign = 1
+uppercase = true
+script = SubResource( 8 )
