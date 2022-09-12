@@ -1,11 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=2]
+[ext_resource path="res://special_scenes/tutorials/MoveTutorial.tscn" type="PackedScene" id=3]
 
 [resource]
 script = ExtResource( 1 )
 game_mode = ExtResource( 2 )
 arenas_dir = "res://combat/levels/sets/core/diamondsnatch/"
+tutorial_scene = ExtResource( 3 )
 suit_top = "diamond"
 suit_bottom = "diamond"
