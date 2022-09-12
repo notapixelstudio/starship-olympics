@@ -216,8 +216,8 @@ func animate_selection(picked_card: DraftCard):
 			back_size = card.scale
 			card.z_index = 1000
 			chosen_card = card
-			tween.interpolate_property(chosen_card, "global_position", chosen_card.global_position, Vector2(0,0), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-			tween.interpolate_property(chosen_card, "scale", chosen_card.scale, Vector2(4,4), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(chosen_card, "global_position", chosen_card.global_position, Vector2(0,100), 1.5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+			tween.interpolate_property(chosen_card, "scale", chosen_card.scale, Vector2(10,10), 5, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 			
 			break
 		index+=1
@@ -229,7 +229,7 @@ func animate_selection(picked_card: DraftCard):
 	yield(get_tree().create_timer(wait_time), "timeout")
 	chosen_card.chosen = false
 	tween.start()
-	yield(tween, "tween_all_completed")
+	yield(tween, "tween_completed")
 	# TODO: danger of lock
 	emit_signal("card_chosen")
 	yield(get_tree().create_timer(2), "timeout")

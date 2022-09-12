@@ -76,7 +76,7 @@ signal salvo
 
 var array_players = [] # Dictionary of InfoPlayers
 
-func compute_arena_size():
+func compute_arena_size() -> Rect2:
 	"""
 	compute the battlefield size
 	"""
@@ -313,10 +313,21 @@ func _ready():
 		# initialize HUD
 		hud.post_ready()
 	
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
+		
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
-	camera.initialize(compute_arena_size())
+		
+	camera.initialize(compute_arena_size().grow(100*30))
+	update_grid()
+	
+	if show_hud:
+		hud.set_draft_card(global.the_match.get_draft_card())
+	
+	yield(get_tree().create_timer(3), "timeout")
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
@@ -338,7 +349,7 @@ func _ready():
 			yield(get_tree().create_timer(3), "timeout")
 			mode_description.disappears()
 	
-	update_grid()
+	
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
@@ -389,13 +400,7 @@ func _ready():
 			$Battlefield/Background.add_child(ice)
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
-	
-	# load style from gamemode, if specified
-	if game_mode.arena_style:
-		set_style(game_mode.arena_style)
-		
-	if show_hud:
-		hud.set_draft_card(global.the_match.get_draft_card())
+				
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
 	

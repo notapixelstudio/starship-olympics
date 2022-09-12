@@ -127,7 +127,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.000915527
@@ -135,9 +135,9 @@ margin_top = -24.0
 margin_right = 0.000976562
 margin_bottom = -24.0
 size_flags_horizontal = 3
-custom_colors/font_color_shadow = Color( 1, 0.533333, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.247059, 0.247059, 0.247059, 1 )
 custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 3
+custom_constants/shadow_offset_y = 4
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
 align = 1
@@ -261,8 +261,8 @@ custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 12 )
 
 [node name="LineLeft" type="Polygon2D" parent="."]
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 position = Vector2( -61.8758, -11.4888 )
-color = Color( 1, 0.870588, 0.372549, 1 )
 polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Shadow" type="Polygon2D" parent="LineLeft"]
@@ -278,8 +278,8 @@ default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
 
 [node name="LineRight" type="Polygon2D" parent="."]
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 position = Vector2( 995.124, -11.489 )
-color = Color( 1, 0.870588, 0.372549, 1 )
 polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Shadow" type="Polygon2D" parent="LineRight"]

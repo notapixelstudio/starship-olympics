@@ -49,8 +49,9 @@ func _ready():
 var initial_arena_size : Rect2 
 var arena_center : Vector2
 
+signal transition_over
+
 func initialize(rect_extent:Rect2):
-	elements_in_camera = get_tree().get_nodes_in_group("players")
 	camera_rect = rect_extent
 	initial_arena_size = rect_extent
 	arena_center = calculate_center(initial_arena_size)
@@ -59,7 +60,7 @@ func initialize(rect_extent:Rect2):
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
 	offset.x -= marginX/2*zoom.x
 	offset.y -= marginY/2*zoom.y # offset moves the camera center, which has to be corrected by half the margin
-	set_process(false)
+	#set_process(false)
 
 const MAX_DIST_OFFSET = 10
 

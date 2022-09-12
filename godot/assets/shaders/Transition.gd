@@ -1,10 +1,11 @@
 extends Node
-
+export var color: Color = Color.black 
 signal transitioned 
 onready var anim_player = $AnimationPlayer
 
 func _ready():
-	anim_player.play("fade_to_normal")
+	$"%ColorRect".color = color
+	anim_player.play("black_to_normal")
 	
 func transition():
 	anim_player.play("fade_to_color")
