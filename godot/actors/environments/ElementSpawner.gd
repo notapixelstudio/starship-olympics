@@ -20,6 +20,7 @@ func refresh_preview():
 		$PreviewSprite.scale = element.get_node(preview_sprite_name).scale
 	else:
 		$PreviewSprite.queue_free()
+	element.queue_free()
 		
 func spawn():
 	var element = element_scene.instance()
