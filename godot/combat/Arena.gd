@@ -322,12 +322,13 @@ func _ready():
 		camera.marginY = hud.get_height()
 		
 	camera.initialize(compute_arena_size().grow(100*30))
+	camera.to(compute_arena_size())
 	update_grid()
 	
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
 	
-	yield(get_tree().create_timer(3), "timeout")
+	yield(camera, "transition_over")
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
