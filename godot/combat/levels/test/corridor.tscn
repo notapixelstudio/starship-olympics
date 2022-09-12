@@ -1,21 +1,67 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=7]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=8]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=9]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=11]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=12]
+[ext_resource path="res://combat/styles/palace.tres" type="Resource" id=12]
+[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=13]
+[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=14]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=22]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=24]
 
+[sub_resource type="Resource" id=1]
+script = ExtResource( 7 )
+id = "warden"
+is_mutator = false
+name = "Warden"
+icon = ExtResource( 14 )
+logo = ExtResource( 13 )
+arena_style = ExtResource( 12 )
+description = "kill the other players"
+tagline_pro = "A kill for the honour, a kill for the species"
+tagline_cons = "A self kill, apart from being embarassing, make you lose point"
+max_timeout = 60
+max_score = 8
+starting_score = 0
+cumulative = false
+shared_targets = true
+starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
+death = true
+last_man = false
+crown = false
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+auto_thrust = false
+floodable = true
+flood = false
+laserable = true
+additional_lasers = false
+
 [node name="Arena" instance=ExtResource( 3 )]
 size_multiplier = 2.5
-game_mode = ExtResource( 12 )
+game_mode = SubResource( 1 )
 style = ExtResource( 11 )
 
 [node name="KillModeManager" parent="Managers" index="9"]
@@ -31,18 +77,15 @@ solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 2 )
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 1 )
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_description_": ""
 }
-width = 5000
-height = 1800
-bevel = 360
-bevel_nw = 360
-bevel_ne = 360
-bevel_sw = 360
-bevel_se = 360
+width = 3500
+height = 1000
+radius = 250
+precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 texture = ExtResource( 9 )
@@ -50,13 +93,33 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="4"]
+position = Vector2( -205.882, 0 )
+scale = Vector2( 0.882353, 1 )
+color = Color( 0, 1, 0.203922, 0.156863 )
+polygon = PoolVector2Array( -900, -450, -900, -450, -900, 500, -1550, 500, -1700, 400, -1750, 200, -1750, -250, -1650, -450, -1450, -500, -900, -500 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background" index="5"]
+scale = Vector2( -1, 1 )
+color = Color( 0, 1, 0.203922, 0.156863 )
+polygon = PoolVector2Array( -1000, -450, -1000, 500, -1550, 500, -1700, 400, -1750, 200, -1750, -250, -1650, -450, -1450, -500, -1000, -500 )
+
+[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
+position = Vector2( 1750, 0 )
+
+[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
+position = Vector2( -1750, 0 )
+
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 2 )]
+type = "crown"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1300, 0 )
 rotation = 0.0
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 1300, 0 )
+position = Vector2( 0, 0 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 22 )
