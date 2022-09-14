@@ -12,7 +12,7 @@ func _on_ForwardBullet_body_entered(body):
 		dissolve()
 		queue_free()
 		
-	if body is Ship:
+	if body.has_method('damage'):
 		body.damage(self, ship)
 
 func set_ship(v : Ship):

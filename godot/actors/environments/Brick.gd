@@ -4,6 +4,7 @@ extends StaticBody2D
 class_name Brick
 
 export var points := 1 setget set_points, get_points
+export var strength := 1
 
 enum TYPE { solid, diamond, gold, respawner, harmful, super, huge }
 export(TYPE) var type = TYPE.diamond setget set_type
@@ -37,10 +38,10 @@ func set_type(v):
 		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
 	elif type == TYPE.huge:
-		self.set_color(Color('#fff700'))
+		self.set_color(Color('#75462f'))
 		$Under.texture = load('res://assets/sprites/bricks/huge_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/huge.png')
-		$Sprite/Label.visible = true
+		$Sprite/Label.visible = points > 0
 		$CollisionShape2D.shape.extents.y = 110
 	# orange Color('#c18a2a')
 	
@@ -89,3 +90,9 @@ func get_points() -> int:
 func set_points(v: int) -> void:
 	points = v
 	$Sprite/Label.text = str(points)
+
+func damage(hazard, damager):
+	strength -= 1
+	if strength <= 0:
+		strength = 0
+		self.break(damager)
