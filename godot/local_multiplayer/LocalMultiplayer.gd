@@ -72,12 +72,18 @@ func start_fight(selected_players: Array, fight_mode: String):
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
 	
-	global.new_game(players.values())
-	
-	safe_destroy_combat()
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
+	
+	# add startdeck choosing
+	var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
+	add_child(choose_deck_scene)
+	yield(Events, "selection_starting_deck_over")
+	choose_deck_scene.queue_free()
+	
+	global.new_game(players.values())
+	safe_destroy_combat()
 	
 	create_map()
 	navigate_to_map()

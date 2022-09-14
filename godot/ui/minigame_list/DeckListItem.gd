@@ -67,3 +67,12 @@ func set_deck(v: StartingDeck, unlocked: bool) -> void:
 		container.add_child(card_node)
 		card_node.instant_reveal = true
 		card_node.reveal()
+
+
+func _on_MapRadio_toggled(button_pressed):
+	if button_pressed:
+		print("{name} has been chosen".format({"name":deck.get_id()}))
+		Events.emit_signal("starting_deck_selected", self.deck)
+		
+func grab_focus():
+	$"%MapRadio".grab_focus()
