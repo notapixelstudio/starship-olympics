@@ -130,8 +130,10 @@ func _ready():
 		if randf() < content_probability:
 			content = content_scene.instance()
 			$Content.texture = content.get_texture()
+			$Content.position = content.get_sprite_position()
 			
 	if rare_content_scene:
 		if randf() < rare_content_probability:
 			content = rare_content_scene.instance()
 			$Content.texture = content.get_texture()
+			$Content.position = content.get_sprite_position()

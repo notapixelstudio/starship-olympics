@@ -32,3 +32,6 @@ func set_appear(v : bool) -> void:
 	
 func get_texture() -> Texture:
 	return $Sprite.texture
+
+func get_sprite_position() -> Vector2:
+	return $Sprite.position
