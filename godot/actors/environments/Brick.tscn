@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/environments/Brick.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/bricks/diamond_under.png" type="Texture" id=4]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -112,6 +113,9 @@ shape = SubResource( 1 )
 modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
 position = Vector2( 0, 25 )
 texture = ExtResource( 4 )
+
+[node name="Content" type="Sprite" parent="."]
+texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
