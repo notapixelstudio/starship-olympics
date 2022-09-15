@@ -9,7 +9,7 @@ export var strength := 1
 enum TYPE { solid, diamond, gold, respawner, harmful, super, huge }
 export(TYPE) var type = TYPE.diamond setget set_type
 
-export var colorize := true
+export var colorize := false
 
 signal killed
 
@@ -38,7 +38,6 @@ func set_type(v):
 		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/gold.png')
 	elif type == TYPE.huge:
-		self.set_color(Color('#75462f'))
 		$Under.texture = load('res://assets/sprites/bricks/huge_under.png')
 		$Sprite.texture = load('res://assets/sprites/bricks/huge.png')
 		$Sprite/Label.visible = points > 0
@@ -46,7 +45,7 @@ func set_type(v):
 	# orange Color('#c18a2a')
 	
 	if not colorize:
-		self.set_color(Color.white)
+		self.set_color(Color('#683b15'))
 	
 func break(breaker):
 	if type != TYPE.solid:

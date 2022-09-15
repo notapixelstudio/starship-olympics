@@ -71,6 +71,7 @@ tracks/3/keys = {
 collision_layer = 16
 collision_mask = 5
 script = ExtResource( 1 )
+colorize = true
 
 [node name="Strategic" parent="." instance=ExtResource( 5 )]
 
@@ -78,12 +79,12 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Under" type="Sprite" parent="."]
-modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
+modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
 position = Vector2( 0, 32 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
+modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 208, 108 )
 
