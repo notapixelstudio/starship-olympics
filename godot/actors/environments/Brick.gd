@@ -95,3 +95,12 @@ func damage(hazard, damager):
 	if strength <= 0:
 		strength = 0
 		self.break(damager)
+	else:
+		if strength == 2:
+			$Under.texture = load('res://assets/sprites/bricks/huge_under_1_dmg.png')
+			$Sprite.texture = load('res://assets/sprites/bricks/huge_1_dmg.png')
+		elif strength == 1:
+			$Under.texture = load('res://assets/sprites/bricks/huge_under_2_dmg.png')
+			$Sprite.texture = load('res://assets/sprites/bricks/huge_2_dmg.png')
+		
+		$AnimationPlayer.play("Damage")

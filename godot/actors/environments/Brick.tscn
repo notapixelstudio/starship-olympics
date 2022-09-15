@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/environments/Brick.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
@@ -67,11 +67,41 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 6, 6, 6, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Brick" type="StaticBody2D" groups=["in_camera", "killables"]]
 collision_layer = 16
 collision_mask = 5
 script = ExtResource( 1 )
-colorize = true
 
 [node name="Strategic" parent="." instance=ExtResource( 5 )]
 
@@ -80,13 +110,12 @@ shape = SubResource( 1 )
 
 [node name="Under" type="Sprite" parent="."]
 modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
-position = Vector2( 0, 32 )
+position = Vector2( 0, 25 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
 texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 208, 108 )
 
 [node name="Label" type="Label" parent="Sprite"]
 visible = false
@@ -114,3 +143,5 @@ joint_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Break = SubResource( 2 )
+anims/Damage = SubResource( 4 )
+anims/RESET = SubResource( 5 )
