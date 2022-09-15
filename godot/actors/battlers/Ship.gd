@@ -840,7 +840,7 @@ func tap():
 	
 	# forward weapon: bullet
 	var aperture = PI/4
-	var amount = 3
+	var amount = 1
 	for i in range(amount):
 		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 		var bullet = forward_bullet_scene.instance()

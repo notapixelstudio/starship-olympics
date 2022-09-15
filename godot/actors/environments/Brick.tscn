@@ -112,9 +112,13 @@ shape = SubResource( 1 )
 [node name="Under" type="Sprite" parent="."]
 modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
 position = Vector2( 0, 25 )
+z_index = -15
+z_as_relative = false
 texture = ExtResource( 4 )
 
 [node name="Content" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 2 )
 texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -128,6 +132,7 @@ margin_left = -95.0
 margin_top = -95.0
 margin_right = 105.0
 margin_bottom = 105.0
+rect_scale = Vector2( -1, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "1"
 align = 1

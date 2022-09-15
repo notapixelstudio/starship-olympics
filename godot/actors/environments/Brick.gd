@@ -5,6 +5,10 @@ class_name Brick
 
 export var points := 1 setget set_points, get_points
 export var strength := 1
+export var content_scene : PackedScene
+export var rare_content_scene : PackedScene
+export var content_probability := 0.25
+export var rare_content_probability := 0.05
 
 enum TYPE { solid, diamond, gold, respawner, harmful, super, huge }
 export(TYPE) var type = TYPE.diamond setget set_type
@@ -12,6 +16,8 @@ export(TYPE) var type = TYPE.diamond setget set_type
 export var colorize := false
 
 signal killed
+
+var content = null
 
 func set_type(v):
 	type = v
@@ -61,6 +67,11 @@ func break(breaker):
 	
 	if type != TYPE.respawner and type != TYPE.solid:
 		queue_free()
+		if content:
+			content.global_position = global_position
+			if content.has_method('set_appear'):
+				content.set_appear(false)
+			get_parent().add_child(content)
 		return
 	
 	yield(get_tree().create_timer(2), "timeout")
@@ -104,3 +115,23 @@ func damage(hazard, damager):
 			$Sprite.texture = load('res://assets/sprites/bricks/huge_2_dmg.png')
 		
 		$AnimationPlayer.play("Damage")
+		
+		if content:
+			$Content.visible = true
+
+func _ready():
+	var flip := randf() > 0.5
+	if flip and not Engine.editor_hint:
+		$Sprite.scale.x = -1
+		$Sprite/Label.rect_scale.x = -1
+		$Under.scale.x = -1
+		
+	if content_scene:
+		if randf() < content_probability:
+			content = content_scene.instance()
+			$Content.texture = content.get_texture()
+			
+	if rare_content_scene:
+		if randf() < rare_content_probability:
+			content = rare_content_scene.instance()
+			$Content.texture = content.get_texture()
