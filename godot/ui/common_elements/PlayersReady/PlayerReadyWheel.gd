@@ -4,10 +4,14 @@ const SPEED = 100
 const SPEED_DECREASE = 700
 var time = 0
 signal completed
-var player_info : InfoPlayer setget set_player_info
-export var player_str: String 
+var player_info : InfoPlayer :
+	get:
+		return player_info # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_player_info
+@export var player_str: String 
 
-onready var ready_label = $Ready
+@onready var ready_label = $Ready
 
 func _ready():
 	set_process(false)
@@ -23,7 +27,7 @@ func set_player_info(new_value: InfoPlayer):
 	player_info = new_value
 	set_process(true)
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	$PlayerID.text = player_info.id
 	$controls.text = player_info.controls
 	$Wheel.modulate = player_info.get_color()
@@ -35,7 +39,7 @@ func _process(delta):
 		time += (delta*SPEED)
 	else:
 		time = max(0, time - delta*SPEED_DECREASE)
-	$Wheel.material.set_shader_param("value", time)
+	$Wheel.material.set_shader_parameter("value", time)
 	if time >= 100.0:
 		set_process_input(false)
 		set_process(false)

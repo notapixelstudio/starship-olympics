@@ -1,7 +1,7 @@
 extends Control
 
 var sure_of := {"map": "go back to map?", "quit": "quit?"}
-export var where_to: PackedScene
+@export var where_to: PackedScene
 
 var choice := false
 

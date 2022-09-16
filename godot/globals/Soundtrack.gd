@@ -1,11 +1,19 @@
 extends AudioLibrary
 
 func _ready():
-	print_debug("I'll be handling everything from now on. I am the master")
+	print_debug("I'll be handling everything from now checked. I am the master")
 	
-var array_songs setget , _get_songs
+var array_songs :
+	get:
+		return array_songs # TODOConverter40 Copy here content of _get_songs 
+	set(mod_value):
+		mod_value  # TODOConverter40  Non existent set function
 var current_album
-var current_song setget change_song
+var current_song :
+	get:
+		return current_song # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of change_song
 
 
 func change_song(new_song):

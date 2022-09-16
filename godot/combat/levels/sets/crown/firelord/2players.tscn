@@ -1,17 +1,17 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=2]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
 [ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=6]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=7]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=14]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=15]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=15]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=19]
@@ -25,8 +25,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 300 ]
 }
@@ -37,8 +37,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 300 ]
 }
@@ -49,8 +49,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 150 ]
 }
@@ -65,8 +65,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ 300, 2600, 2600, 300, 300, 2600, 2600, 300, 300, 300, 2600, 2600, 300, 300 ]
 }
@@ -77,8 +77,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ 300, 1400, 1400, 300, 300, 1400, 1400, 300, 300, 300, 1400, 1400, 300, 300 ]
 }
@@ -89,8 +89,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 4, 8, 12, 16, 20, 24, 28, 32, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ 150, 700, 700, 150, 150, 700, 700, 150, 150, 150, 700, 700, 150, 150 ]
 }
@@ -104,8 +104,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 300 ]
 }
@@ -116,8 +116,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 300 ]
 }
@@ -128,8 +128,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 150 ]
 }
@@ -144,8 +144,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ 300, 300, 2600, 2600, 300, 300, 2600, 2600, 300, 300, 2600, 2600, 300, 300 ]
 }
@@ -156,8 +156,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ 300, 300, 1400, 1400, 300, 300, 1400, 1400, 300, 300, 1400, 1400, 300, 300 ]
 }
@@ -168,8 +168,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 8, 12, 16, 20, 24, 28, 32, 36, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ 150, 150, 700, 700, 150, 150, 700, 700, 150, 150, 700, 700, 150, 150 ]
 }
@@ -181,7 +181,7 @@ game_mode = ExtResource( 14 )
 [node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 15 )
 centered = false
 
@@ -337,7 +337,7 @@ rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
 disabled_override = true

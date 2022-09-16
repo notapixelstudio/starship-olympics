@@ -2,11 +2,11 @@
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://logo.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=3]
+[ext_resource path="res://logo.png" type="Texture2D" id=4]
 [ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/lock_generic.png" type="Texture" id=7]
+[ext_resource path="res://assets/lock_generic.png" type="Texture2D" id=7]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -31,8 +31,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 0.615572, 1 ),
+"times": PackedFloat32Array( 0, 0.6, 1 ),
+"transitions": PackedFloat32Array( 1, 0.615572, 1 ),
 "update": 0,
 "values": [ Vector2( 640, 295 ), Vector2( 640, 295 ), Vector2( 640, 206 ) ]
 }
@@ -45,15 +45,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5, 0.9 ),
-"transitions": PoolRealArray( 1, 0.63728, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.3, 0.5, 0.9 ),
+"transitions": PackedFloat32Array( 1, 0.63728, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 font_data = ExtResource( 3 )
 
 [node name="TitleScreen" type="Control"]
@@ -71,7 +71,7 @@ anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 anims/option_selected = SubResource( 3 )
 
-[node name="logo_ssf_olympic" type="Sprite" parent="."]
+[node name="logo_ssf_olympic" type="Sprite2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 640, 295 )
 scale = Vector2( 0.5, 0.5 )
@@ -82,71 +82,71 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -145.0
-margin_top = 37.0
-margin_right = 145.0
-margin_bottom = 353.0
+offset_left = -145.0
+offset_top = 37.0
+offset_right = 145.0
+offset_bottom = 353.0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Fight" type="Button" parent="Buttons"]
-margin_top = 12.0
-margin_right = 290.0
-margin_bottom = 67.0
-rect_min_size = Vector2( 210, 55 )
+offset_top = 12.0
+offset_right = 290.0
+offset_bottom = 67.0
+minimum_size = Vector2( 210, 55 )
 action_mode = 0
 text = "FIGHT"
 flat = true
 
 [node name="TeamVersus" type="Button" parent="Buttons"]
-margin_top = 71.0
-margin_right = 290.0
-margin_bottom = 126.0
-rect_min_size = Vector2( 210, 55 )
+offset_top = 71.0
+offset_right = 290.0
+offset_bottom = 126.0
+minimum_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
 text = "TEAM FIGHT"
 flat = true
 
-[node name="Lock" type="Sprite" parent="Buttons/TeamVersus"]
+[node name="Lock" type="Sprite2D" parent="Buttons/TeamVersus"]
 visible = false
 position = Vector2( 290, 40 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Campaign" type="Button" parent="Buttons"]
-margin_top = 130.0
-margin_right = 290.0
-margin_bottom = 185.0
-rect_min_size = Vector2( 210, 55 )
+offset_top = 130.0
+offset_right = 290.0
+offset_bottom = 185.0
+minimum_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
 text = "CAMPAIGN"
 flat = true
 
-[node name="Lock" type="Sprite" parent="Buttons/Campaign"]
+[node name="Lock" type="Sprite2D" parent="Buttons/Campaign"]
 visible = false
 position = Vector2( 290, 40 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Options" type="Button" parent="Buttons"]
-margin_top = 189.0
-margin_right = 290.0
-margin_bottom = 244.0
-rect_min_size = Vector2( 210, 55 )
+offset_top = 189.0
+offset_right = 290.0
+offset_bottom = 244.0
+minimum_size = Vector2( 210, 55 )
 action_mode = 0
 text = "OPTIONS"
 flat = true
 
 [node name="Help" type="Button" parent="Buttons"]
 visible = false
-margin_top = 148.0
-margin_right = 290.0
-margin_bottom = 218.0
-rect_min_size = Vector2( 210, 55 )
+offset_top = 148.0
+offset_right = 290.0
+offset_bottom = 218.0
+minimum_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
 text = "HELP"
@@ -154,20 +154,20 @@ flat = true
 
 [node name="Credits" type="Button" parent="Buttons"]
 visible = false
-margin_top = 148.0
-margin_right = 290.0
-margin_bottom = 198.0
-rect_min_size = Vector2( 0, 55 )
+offset_top = 148.0
+offset_right = 290.0
+offset_bottom = 198.0
+minimum_size = Vector2( 0, 55 )
 disabled = true
 action_mode = 0
 text = "CREDITS"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
-margin_top = 248.0
-margin_right = 290.0
-margin_bottom = 303.0
-rect_min_size = Vector2( 0, 55 )
+offset_top = 248.0
+offset_right = 290.0
+offset_bottom = 303.0
+minimum_size = Vector2( 0, 55 )
 action_mode = 0
 text = "QUIT"
 flat = true
@@ -177,11 +177,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 181.0
-margin_top = 53.0
-margin_right = 631.0
-margin_bottom = 369.0
-rect_min_size = Vector2( 450, 0 )
+offset_left = 181.0
+offset_top = 53.0
+offset_right = 631.0
+offset_bottom = 369.0
+minimum_size = Vector2( 450, 0 )
 alignment = 1
 __meta__ = {
 "_editor_description_": ""
@@ -189,27 +189,27 @@ __meta__ = {
 
 [node name="Fight" type="RichTextLabel" parent="Tooltips"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 12.0
-margin_right = 450.0
-margin_bottom = 67.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 12.0
+offset_right = 450.0
+offset_bottom = 67.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "2 TO 4 PLAYERS FREE FOR ALL"
+text = "2 TO 4 PLAYERS FREE FOR ALL"
 text = "2 TO 4 PLAYERS FREE FOR ALL"
 scroll_active = false
 
 [node name="TeamVersus" type="RichTextLabel" parent="Tooltips"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 71.0
-margin_right = 450.0
-margin_bottom = 126.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 71.0
+offset_right = 450.0
+offset_bottom = 126.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "TEAM VS TEAM
+text = "TEAM VS TEAM
 [color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
 text = "TEAM VS TEAM
 CURRENTLY UNDER DEVELOPMENT!"
@@ -217,14 +217,14 @@ scroll_active = false
 
 [node name="Campaign" type="RichTextLabel" parent="Tooltips"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 130.0
-margin_right = 450.0
-margin_bottom = 185.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 130.0
+offset_right = 450.0
+offset_bottom = 185.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
+text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
 [color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
 text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
 CURRENTLY UNDER DEVELOPMENT!"
@@ -232,10 +232,10 @@ scroll_active = false
 
 [node name="Options" type="RichTextLabel" parent="Tooltips"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 189.0
-margin_right = 450.0
-margin_bottom = 244.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 189.0
+offset_right = 450.0
+offset_bottom = 244.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
@@ -244,10 +244,10 @@ scroll_active = false
 [node name="Help" type="RichTextLabel" parent="Tooltips"]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 148.0
-margin_right = 450.0
-margin_bottom = 208.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 148.0
+offset_right = 450.0
+offset_bottom = 208.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
@@ -256,10 +256,10 @@ scroll_active = false
 [node name="Credits" type="RichTextLabel" parent="Tooltips"]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 222.0
-margin_right = 450.0
-margin_bottom = 282.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 222.0
+offset_right = 450.0
+offset_bottom = 282.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
@@ -267,10 +267,10 @@ scroll_active = false
 
 [node name="QuitButton" type="RichTextLabel" parent="Tooltips"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 248.0
-margin_right = 450.0
-margin_bottom = 303.0
-rect_min_size = Vector2( 450, 55 )
+offset_top = 248.0
+offset_right = 450.0
+offset_bottom = 303.0
+minimum_size = Vector2( 450, 55 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true

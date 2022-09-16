@@ -1,8 +1,8 @@
 extends MarginContainer
 
 func _ready():
-	Events.connect("show_info", self, "show_banner")
-	Events.connect("hide_info", self, "hide_banner")
+	Events.connect("show_info",Callable(self,"show_banner"))
+	Events.connect("hide_info",Callable(self,"hide_banner"))
 	
 
 func show_banner(what_to_show: String):

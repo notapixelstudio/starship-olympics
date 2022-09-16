@@ -1,4 +1,4 @@
-tool
+@tool
 extends Area2D
 
 class_name Polyomino
@@ -14,15 +14,15 @@ func _ready():
 	set_order(order)
 	
 func set_polygon_global(new_polygon_global):
-	var new_polygon = transform.xform_inv(new_polygon_global)
+	var new_polygon = new_polygon_global * transform
 	$CollisionPolygon2D.polygon = new_polygon
 	refresh()
 	
 func refresh():
 	var poly = $CollisionPolygon2D.polygon
-	inner_polygon_global = transform.xform(Geometry.offset_polygon_2d(poly, -20)[0])
+	inner_polygon_global = transform * Geometry2D.offset_polygon(poly, -20)[0]
 	$Polygon2D.polygon = fix(poly) # polygons are not drawn correctly if two points are the same
-	$Line2D.points = PoolVector2Array(Array(poly) + [poly[0]])
+	$Line2D.points = PackedVector2Array(Array(poly) + [poly[0]])
 	
 func fix(poly):
 	var mutable_poly = Array(poly)
@@ -35,13 +35,13 @@ func fix(poly):
 				mutable_poly[i] = Vector2(p1.x+1, p1.y)
 		i += 1
 		
-	return PoolVector2Array(mutable_poly)
+	return PackedVector2Array(mutable_poly)
 	
 func get_polygon_global():
-	return transform.xform($CollisionPolygon2D.polygon)
+	return transform * $CollisionPolygon2D.polygon
 	
 func merge(other : Polyomino):
-	var result = Geometry.merge_polygons_2d(get_polygon_global(), other.get_polygon_global())
+	var result = Geometry2D.merge_polygons(get_polygon_global(), other.get_polygon_global())
 	if len(result) != 1:
 		return false # merge only adjacent minoes
 		
@@ -78,7 +78,7 @@ func set_player(v):
 func _process(delta):
 	var found = false
 	for body in get_overlapping_bodies():
-		if body is Ship and Geometry.is_point_in_polygon(body.global_position, inner_polygon_global):
+		if body is Ship and Geometry2D.is_point_in_polygon(body.global_position, inner_polygon_global):
 			# two ships inside = no one takes it
 			if found:
 				set_player(null)

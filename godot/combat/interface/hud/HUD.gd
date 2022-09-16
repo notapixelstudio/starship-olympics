@@ -1,14 +1,14 @@
 extends Control
 
-export var Bar = preload('res://combat/interface/hud/Bar.tscn')
+@export var Bar = preload('res://combat/interface/hud/Bar.tscn')
 
 var the_match: TheMatch
 var draw: bool = true
 var height
-onready var Bars = $Bars
-onready var Leading = $Content/LeaderPanel/Headshot
-onready var LeadingLabel = $Content/LeaderPanel/Label
-onready var TimeLeft = $Content/ModePanel/TimeLeft
+@onready var Bars = $Bars
+@onready var Leading = $Content/LeaderPanel/Headshot
+@onready var LeadingLabel = $Content/LeaderPanel/Label
+@onready var TimeLeft = $Content/ModePanel/TimeLeft
 
 const std_bar_height := 28
 const team_bar_height := 20
@@ -34,8 +34,8 @@ func _ready():
 
 func post_ready():
 	the_match = global.the_match
-	the_match.connect('updated', self, '_on_matchscore_updated')
-	the_match.connect('tick', self, '_on_match_tick')
+	the_match.connect('updated',Callable(self,'_on_matchscore_updated'))
+	the_match.connect('tick',Callable(self,'_on_match_tick'))
 	
 	if the_match.time_left != -1:
 		TimeLeft.text = str(the_match.time_left)
@@ -46,7 +46,7 @@ func post_ready():
 	var i = 0
 
 	for player in the_match.players.values():
-		var bar = Bar.instance()
+		var bar = Bar.instantiate()
 		Bars.add_child(bar)
 		bar.post_ready(player)
 		bar.player = player
@@ -56,8 +56,8 @@ func post_ready():
 	
 	# adjust background
 	height = y
-	$BarsBackground.rect_size.x = height + 36
-	$BarsBottom.rect_position.x = height
+	$BarsBackground.size.x = height + 36
+	$BarsBottom.position.x = height
 	set_process(true)
 
 func _on_match_tick(t):
@@ -85,7 +85,7 @@ func _on_matchscore_updated(author, broadcasted):
 	
 func sort_bars(instantaneous):
 	var bars = Bars.get_children()
-	bars.sort_custom(self, "compare_by_score_team_and_id")
+	bars.sort_custom(Callable(self,"compare_by_score_team_and_id"))
 	var y = 0
 	var i = 0
 	for bar in bars:

@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=2]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=5]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=6]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=7]
+[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=7]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
@@ -31,8 +31,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 4, 8 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ 400, 1100, 400 ]
 }
@@ -43,8 +43,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 4, 8 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( -1050, 0 ), Vector2( -700, 0 ), Vector2( -1050, 0 ) ]
 }
@@ -55,8 +55,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 4, 8 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ 400, 1100, 400 ]
 }
@@ -67,8 +67,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 4, 8 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 4, 8 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 1050, 0 ), Vector2( 700, 0 ), Vector2( 1050, 0 ) ]
 }
@@ -76,7 +76,7 @@ tracks/3/keys = {
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
@@ -134,7 +134,7 @@ rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 11 )
 
-[node name="Camera" parent="." index="15"]
+[node name="Camera3D" parent="." index="15"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

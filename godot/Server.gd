@@ -4,7 +4,7 @@ extends Node
 var server := UDPServer.new()
 var peers = []
 var clients := {} 
-onready var pingTime = OS.get_ticks_msec() 
+@onready var pingTime = Time.get_ticks_msec() 
 
 signal remote_disconnected()
 signal new_remote_connected()
@@ -37,7 +37,7 @@ func checkForNewMessages():
 		var stringArray = peers[i].get_packet_ip().split(':')
 		var ipKey = stringArray[0]
 		clients.erase(ipKey)
-		peers.remove(i)
+		peers.remove_at(i)
 		emit_signal("remote_disconnected",i+1)
 		pass
 
@@ -53,21 +53,21 @@ func checkForNewConnections():
 			print("already connected")
 		else:
 			# Reply so it knows we received the message.
-			peer.put_packet("OK".to_utf8())
+			peer.put_packet("OK".to_utf8_buffer())
 			# Keep a reference so we can keep contacting the remote peer.
 			peers.append(peer)
 			clients[ipKey] = len(clients) +1
 			emit_signal("new_remote_connected",clients[ipKey])
 
 func sendPing():
-	var timeNow = OS.get_ticks_msec() 
+	var timeNow = Time.get_ticks_msec() 
 	if (timeNow - pingTime> 4500):
 		for i in range(0, peers.size()):
-			peers[i].put_packet("ping".to_utf8())
+			peers[i].put_packet("ping".to_utf8_buffer())
 		pingTime = timeNow
 
 func sendVibration(id):
-	peers[id].put_packet("vibrate".to_utf8())
+	peers[id].put_packet("vibrate".to_utf8_buffer())
 
 func get_connected_remotes():
 	return len(clients)

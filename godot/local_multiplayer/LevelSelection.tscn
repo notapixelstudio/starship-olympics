@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/pause-window.png" type="Texture2D" id=3]
 [ext_resource path="res://ui/common_elements/ElementOption.tscn" type="PackedScene" id=4]
 
 [sub_resource type="GDScript" id=1]
@@ -13,7 +13,7 @@ var current_level : String
 
 const LEVEL_PATH = \"res://combat/levels/\"
 var scene_in_viewport : Node
-onready var level_scene = $panel/ViewportContainer/Viewport
+@onready var level_scene = $panel/SubViewportContainer/SubViewport
 signal arena_selected
 var back = false
 var can_choose = false
@@ -23,7 +23,7 @@ func _ready():
 	get_tree().paused = true
 	#_initialize()
 	# let's wait a bit to avoid the immediate selection of the arena
-	yield(get_tree().create_timer(1.0), \"timeout\")
+	await get_tree().create_timer(1.0).timeout
 	can_choose = true
 	$panel/Element.grab_focus()
 
@@ -39,15 +39,15 @@ func initialize(players_scene:String=\"\", species={}):
 	these_players = species
 	array_levels = global.dir_contents(LEVEL_PATH, players_scene)
 	current_level = players_scene + \"players_toriels_1.tscn\"
-	scene_in_viewport = load(LEVEL_PATH+current_level).instance()
+	scene_in_viewport = load(LEVEL_PATH+current_level).instantiate()
 	scene_in_viewport.mockup = true
-	yield(self, \"ready\")
+	await self.ready
 	level_scene.add_child(scene_in_viewport)
 	
 
 func _on_Element_value_changed(what):
 	level_scene.remove_child(scene_in_viewport)
-	scene_in_viewport = load(LEVEL_PATH+what).instance()
+	scene_in_viewport = load(LEVEL_PATH+what).instantiate()
 	scene_in_viewport.mockup = true
 	scene_in_viewport.initialize(these_players)
 	level_scene.add_child(scene_in_viewport)
@@ -57,73 +57,73 @@ func _exit_tree():
 "
 
 [node name="LevelSelection" type="ColorRect"]
-pause_mode = 2
+process_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 color = Color( 0, 0, 0, 0.313726 )
 script = SubResource( 1 )
 
-[node name="pause-window" type="Sprite" parent="."]
+[node name="pause-window" type="Sprite2D" parent="."]
 position = Vector2( 612.724, 320.736 )
 scale = Vector2( 0.797916, 0.797916 )
 texture = ExtResource( 3 )
 
 [node name="panel" type="Control" parent="."]
-pause_mode = 2
+process_mode = 2
 modulate = Color( 1, 1, 1, 0.988235 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -455.203
-margin_top = -308.327
-margin_right = 415.797
-margin_bottom = 351.673
+offset_left = -455.203
+offset_top = -308.327
+offset_right = 415.797
+offset_bottom = 351.673
 
 [node name="label" type="Label" parent="panel"]
-pause_mode = 2
+process_mode = 2
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -224.0
-margin_right = 224.0
-margin_bottom = 38.0
+offset_left = -224.0
+offset_right = 224.0
+offset_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Select the arena"
 align = 1
 valign = 1
 
-[node name="ViewportContainer" type="ViewportContainer" parent="panel"]
-pause_mode = 2
+[node name="SubViewportContainer" type="SubViewportContainer" parent="panel"]
+process_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -328.584
-margin_top = -216.705
-margin_right = 951.416
-margin_bottom = 503.295
-rect_scale = Vector2( 0.5, 0.5 )
+offset_left = -328.584
+offset_top = -216.705
+offset_right = 951.416
+offset_bottom = 503.295
+scale = Vector2( 0.5, 0.5 )
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="panel/ViewportContainer"]
-pause_mode = 1
+[node name="SubViewport" type="SubViewport" parent="panel/SubViewportContainer"]
+process_mode = 1
 size = Vector2( 1280, 720 )
 handle_input_locally = false
 render_target_update_mode = 3
 gui_disable_input = true
 
 [node name="Element" parent="panel" instance=ExtResource( 4 )]
-pause_mode = 2
+process_mode = 2
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -224.0
-margin_top = -155.0
-margin_right = 224.0
-margin_bottom = -130.0
+offset_left = -224.0
+offset_top = -155.0
+offset_right = 224.0
+offset_bottom = -130.0
 elem_type = 2
 label_description = "Level"
 node_owner_path = NodePath("../../../LevelSelection")

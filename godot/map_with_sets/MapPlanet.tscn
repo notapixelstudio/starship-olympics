@@ -1,15 +1,15 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
 [ext_resource path="res://map_with_sets/MapPlanet.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture" id=5]
-[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=6]
-[ext_resource path="res://assets/map/lock.png" type="Texture" id=7]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=8]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture" id=9]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=10]
+[ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/map/lock.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/map/the_hive.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture2D" id=10]
 [ext_resource path="res://map_with_sets/Cursor.tscn" type="PackedScene" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
 [ext_resource path="res://map_with_sets/MapLocation.tscn" type="PackedScene" id=13]
@@ -32,27 +32,27 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 72
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="FontFile" id=7]
 size = 72
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 42
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 42
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 30
 font_data = ExtResource( 1 )
 
@@ -63,14 +63,14 @@ length = 0.1
 [sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0.5 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -81,8 +81,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -91,16 +91,16 @@ tracks/1/keys = {
 script = ExtResource( 3 )
 cursor_scene = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="." index="3"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
 texture = ExtResource( 9 )
 
-[node name="NA" type="Sprite" parent="." index="4"]
+[node name="NA" type="Sprite2D" parent="." index="4"]
 visible = false
 position = Vector2( -4.27081, -2.55557 )
 scale = Vector2( 0.886355, 0.868757 )
 texture = ExtResource( 5 )
 
-[node name="CheckBox" type="AnimatedSprite" parent="." index="5"]
+[node name="CheckBox" type="AnimatedSprite2D" parent="." index="5"]
 visible = false
 position = Vector2( 84, -84 )
 frames = SubResource( 1 )
@@ -117,10 +117,10 @@ attenuation = 0.0412346
 
 [node name="Label" type="Label" parent="." index="8"]
 visible = false
-margin_left = -500.0
-margin_top = 166.0
-margin_right = 500.0
-margin_bottom = 266.0
+offset_left = -500.0
+offset_top = 166.0
+offset_right = 500.0
+offset_bottom = 266.0
 custom_colors/font_color = Color( 0.419608, 0.27451, 0.113725, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "The Hive"
@@ -133,10 +133,10 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="." index="9"]
 visible = false
-margin_left = -500.0
-margin_top = 159.0
-margin_right = 500.0
-margin_bottom = 259.0
+offset_left = -500.0
+offset_top = 159.0
+offset_right = 500.0
+offset_bottom = 259.0
 custom_colors/font_color = Color( 1, 0.870588, 0.372549, 1 )
 custom_fonts/font = SubResource( 7 )
 text = "The Hive"
@@ -149,10 +149,10 @@ __meta__ = {
 
 [node name="Tagline" type="Label" parent="." index="10"]
 visible = false
-margin_left = -500.0
-margin_top = 101.0
-margin_right = 500.0
-margin_bottom = 201.0
+offset_left = -500.0
+offset_top = 101.0
+offset_right = 500.0
+offset_bottom = 201.0
 custom_colors/font_color = Color( 0.4, 0.305882, 0.305882, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "The Hive"
@@ -165,10 +165,10 @@ __meta__ = {
 
 [node name="Tagline2" type="Label" parent="." index="11"]
 visible = false
-margin_left = -500.0
-margin_top = 95.0
-margin_right = 500.0
-margin_bottom = 195.0
+offset_left = -500.0
+offset_top = 95.0
+offset_right = 500.0
+offset_bottom = 195.0
 custom_fonts/font = SubResource( 8 )
 text = "The Hive"
 align = 1
@@ -180,10 +180,10 @@ __meta__ = {
 
 [node name="DebugLabel" type="Label" parent="." index="12"]
 visible = false
-margin_left = -243.066
-margin_top = 52.31
-margin_right = 259.934
-margin_bottom = 127.31
+offset_left = -243.066
+offset_top = 52.31
+offset_right = 259.934
+offset_bottom = 127.31
 custom_fonts/font = SubResource( 3 )
 text = "hidden"
 align = 1
@@ -197,7 +197,7 @@ __meta__ = {
 anims/Unhide = SubResource( 9 )
 anims/Unlock = SubResource( 5 )
 
-[node name="Lock" type="Sprite" parent="." index="14"]
+[node name="Lock" type="Sprite2D" parent="." index="14"]
 visible = false
 position = Vector2( 0, -27 )
 texture = ExtResource( 7 )

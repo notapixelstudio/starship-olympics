@@ -3,7 +3,7 @@
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/WallGoal.gd" type="Script" id=2]
 [ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture2D" id=4]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
 
 [node name="WallGoal" type="StaticBody2D"]
@@ -22,13 +22,13 @@ __meta__ = {
 [node name="Strategic" parent="." instance=ExtResource( 5 )]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -50, -900, 50, -900, 50, 900, -50, 900 )
+polygon = PackedVector2Array( -50, -900, 50, -900, 50, 900, -50, 900 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 0, -900, 0, 900 )
+points = PackedVector2Array( 0, -900, 0, 900 )
 width = 300.0
 default_color = Color( 0.94902, 0.956863, 1, 1 )
 texture = ExtResource( 4 )

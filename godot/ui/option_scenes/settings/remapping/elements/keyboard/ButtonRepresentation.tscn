@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.gd" type="Script" id=1]
-[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/M_Key_Dark.png" type="Texture" id=2]
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/buttonrepr.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/M_Key_Dark.png" type="Texture2D" id=2]
+[ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/buttonrepr.tres" type="FontFile" id=3]
 
 [node name="ButtonRepresentation" type="TextureRect"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 50 )
+offset_right = 40.0
+offset_bottom = 40.0
+minimum_size = Vector2( 50, 50 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 1
@@ -16,8 +16,8 @@ show_device_id = true
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_right = -34.0
-margin_bottom = 21.0
+offset_right = -34.0
+offset_bottom = 21.0
 custom_fonts/font = ExtResource( 3 )
 text = "1"
 valign = 1

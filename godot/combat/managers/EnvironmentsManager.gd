@@ -77,12 +77,12 @@ func _physics_process(delta):
 
 
 func activate_slomo(arena):
-	arena.connect("unslomo", self, "deactivate_slomo", [arena], CONNECT_ONESHOT)
+	arena.connect("unslomo",Callable(self,"deactivate_slomo").bind(arena),CONNECT_ONE_SHOT)
 	$SlomoEffect.play()
-	yield($SlomoEffect, "finished")
-	arena.connect("slomo", self, "activate_slomo", [arena], CONNECT_ONESHOT)
+	await $SlomoEffect.finished
+	arena.connect("slomo",Callable(self,"activate_slomo").bind(arena),CONNECT_ONE_SHOT)
 	
 func deactivate_slomo(arena):
 	$UnSlomoEffect.play()
-	yield($SlomoEffect, "finished")
+	await $SlomoEffect.finished
 	

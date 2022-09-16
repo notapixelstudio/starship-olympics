@@ -1,6 +1,10 @@
 extends Area2D
 
-export var active = false setget set_active
+@export var active = false :
+	get:
+		return active # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_active
 var owner_ship : Ship
 const ATTRACTION = 150
 const REPULSION = 220
@@ -10,7 +14,7 @@ func _ready():
 
 func set_active(v):
 	active = v
-	$Sprite.visible = active
+	$Sprite2D.visible = active
 	$Zone.visible = active
 	$CollisionShape2D.set_disabled(not active)
 	
@@ -29,7 +33,7 @@ func _process(delta):
 				
 func is_good(body : RigidBody2D):
 	# crown and coins
-	return body.get_collision_layer_bit(9) or body.get_collision_layer_bit(11)
+	return body.get_collision_layer_value(9) or body.get_collision_layer_value(11)
 	
 func is_bad(body : RigidBody2D):
 	if not(body is Bomb):

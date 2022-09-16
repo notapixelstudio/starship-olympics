@@ -1,12 +1,24 @@
-tool
+@tool
 
 extends GShape
 
 class_name GEllipse
 
-export (int) var rx = 100 setget set_rx
-export (int) var ry = 200 setget set_ry
-export (float) var precision = 100 setget set_precision
+@export (int) var rx = 100 :
+	get:
+		return rx # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_rx
+@export (int) var ry = 200 :
+	get:
+		return ry # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_ry
+@export (float) var precision = 100 :
+	get:
+		return precision # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_precision
 
 func set_rx(value):
 	rx = value
@@ -27,7 +39,7 @@ func to_PoolVector2Array():
 	for i in range(sides):
 		points.append(Vector2(rx*cos(i*angle),ry*sin(i*angle)))
 		
-	return .clip(points) # clockwise!
+	return super.clip(points) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

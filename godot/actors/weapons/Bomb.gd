@@ -3,10 +3,10 @@ extends RigidBody2D
 
 class_name Bomb
 
-export var Explosion : PackedScene
-export var Ripple : PackedScene
-export var BubbleScene : PackedScene
-export var PfftScene : PackedScene
+@export var Explosion : PackedScene
+@export var Ripple : PackedScene
+@export var BubbleScene : PackedScene
+@export var PfftScene : PackedScene
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
@@ -16,22 +16,22 @@ var type
 var symbol = null
 
 var entity : Entity
-onready var explosion = Explosion.instance()
+@onready var explosion = Explosion.instantiate()
 
 var species : Species
 
 func _ready():
 	if type == GameMode.BOMB_TYPE.classic:
-		$Sprite/AnimationPlayer.play('rotate')
+		$Sprite2D/AnimationPlayer.play('rotate')
 	elif type == GameMode.BOMB_TYPE.bubble:
-		$Sprite/AnimationPlayer.play("wobble")
+		$Sprite2D/AnimationPlayer.play("wobble")
 	else:
-		$Sprite/AnimationPlayer.stop()
+		$Sprite2D/AnimationPlayer.stop()
 		
 	if symbol:
 		$Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 		$Symbol.modulate = Bubble.symbol_colors[symbol]
-		$Sprite.modulate = Bubble.symbol_colors[symbol]
+		$Sprite2D.modulate = Bubble.symbol_colors[symbol]
 	
 func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	type = bomb_type
@@ -39,16 +39,16 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	
 	position = pos
 	if impulse:
-		apply_impulse(Vector2(0,0), impulse)
+		apply_impulse(impulse, Vector2(0,0))
 	if ship:
 		species = ship.species
 		
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
 		if type == GameMode.BOMB_TYPE.ice:
-			$Sprite.modulate = Color(0.9,1,1,1)
+			$Sprite2D.modulate = Color(0.9,1,1,1)
 		else:
-			$Sprite.modulate = ship.species.color
+			$Sprite2D.modulate = ship.species.color
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
@@ -56,21 +56,21 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if type == GameMode.BOMB_TYPE.ball:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		#set_collision_mask_bit(2, true) # bombs colliding with bombs
-		$Sprite.scale = Vector2(1,1)
+		#set_collision_mask_value(2, true) # bombs colliding with bombs
+		$Sprite2D.scale = Vector2(1,1)
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
-		$Sprite.texture = ball_texture
-		$Sprite.scale = Vector2(size*1.1, size*1.1)
+		$Sprite2D.texture = ball_texture
+		$Sprite2D.scale = Vector2(size*1.1, size*1.1)
 		
 	elif type == GameMode.BOMB_TYPE.bullet:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		#set_collision_mask_bit(2, true) # bombs colliding with bombs
+		#set_collision_mask_value(2, true) # bombs colliding with bombs
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
-		$Sprite.texture = bullet_texture
-		$Sprite.scale = Vector2(size*0.6, size*0.6)
+		$Sprite2D.texture = bullet_texture
+		$Sprite2D.scale = Vector2(size*0.6, size*0.6)
 		mode = MODE_CHARACTER
 		
 	elif type == GameMode.BOMB_TYPE.bubble:
@@ -78,8 +78,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		entity.get('Deadly').disable()
 		$CollisionShape2D.shape.radius = size*90
 		$NearArea/CollisionShape2D.shape.radius = size*90
-		$Sprite.texture = bubble_texture
-		$Sprite.scale = Vector2(size*1.4, size*1.4)
+		$Sprite2D.texture = bubble_texture
+		$Sprite2D.scale = Vector2(size*1.4, size*1.4)
 		mode = MODE_CHARACTER
 		linear_damp = 0
 		ECM.E($Core).get('Deadly').disable()
@@ -89,14 +89,14 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		entity.get('Deadly').disable()
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
-		$Sprite.texture = ice_texture
-		$Sprite.scale = Vector2(size*1.1, size*1.1)
+		$Sprite2D.texture = ice_texture
+		$Sprite2D.scale = Vector2(size*1.1, size*1.1)
 		mode = MODE_CHARACTER
 		
 	else:
 		$CollisionShape2D.shape.radius = size*22
 		$NearArea/CollisionShape2D.shape.radius = size*22
-		$Sprite.scale = Vector2(size*0.6, size*0.6)
+		$Sprite2D.scale = Vector2(size*0.6, size*0.6)
 		
 		# rockets need to be charged at least a little to pursue
 		if impulse and impulse.length() < 2500:
@@ -106,14 +106,14 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	
 func _process(delta):
 	if type == GameMode.BOMB_TYPE.ice:
-		$Sprite.rotation += delta
+		$Sprite2D.rotation += delta
 	elif type != GameMode.BOMB_TYPE.bubble:
-		$Sprite.rotation = linear_velocity.angle()
+		$Sprite2D.rotation = linear_velocity.angle()
 	
 func _physics_process(_delta):
 	process_life_time()
 	if entity.has('Flowing'):
-		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
+		apply_impulse(entity.get_node('Flowing').get_flow().get_flow_vector(position), Vector2())
 
 
 func _integrate_forces(state):
@@ -143,7 +143,7 @@ func detonate():
 	if get_parent():
 		get_parent().call_deferred("add_child", explosion)
 		get_parent().call_deferred("remove_child", self)
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 	call_deferred("queue_free")
 
 
@@ -168,11 +168,11 @@ func _on_LifeTime_timeout():
 				
 		dissolve()
 		
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		call_deferred("queue_free")
 
 func dissolve() -> void:
-	var pfft = PfftScene.instance()
+	var pfft = PfftScene.instantiate()
 	pfft.set_color(species.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
@@ -200,7 +200,7 @@ func _on_Bomb_body_entered(body):
 		
 		# ripple effect
 		
-		var ripple = Ripple.instance()
+		var ripple = Ripple.instantiate()
 		ripple.position = position
 		get_parent().call_deferred("add_child", ripple)
 	
@@ -212,7 +212,7 @@ func create_bubble():
 	if bubble_already_spawned:
 		return
 		
-	var bubble = BubbleScene.instance()
+	var bubble = BubbleScene.instantiate()
 	#bubble.set_species(entity.get('Owned').get_owned_by().species)
 	bubble.symbol = symbol
 	bubble.position = position

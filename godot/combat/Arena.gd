@@ -1,4 +1,4 @@
-tool
+@tool
 """
 Arena Node that will handle all the combat logic
 """
@@ -11,56 +11,64 @@ var width
 var height
 var someone_died = 0
 
-export (PackedScene) var gameover_scene
-export (bool) var demo = false
-export (float) var size_multiplier = 2.0
-export var game_mode : Resource # Gamemode - might be useful
-export var style : Resource setget set_style
-export var planet_name : String
+@export (PackedScene) var gameover_scene
+@export (bool) var demo = false
+@export (float) var size_multiplier = 2.0
+@export var game_mode : Resource # Gamemode - might be useful
+@export var style : Resource :
+	get:
+		return style # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_style
+@export var planet_name : String
 
-export var underwater : bool = false
-export var IceScene : PackedScene
+@export var underwater : bool = false
+@export var IceScene : PackedScene
 
-export var score_to_win_override : int = 0
-export var match_duration_override : float = 0
+@export var score_to_win_override : int = 0
+@export var match_duration_override : float = 0
 
-export var show_hud : bool = true
-export var show_intro : bool = true
-export var random_starting_position : bool = true
-export var place_ships_at_start : bool = true
-export var dark_winter : bool = false
+@export var show_hud : bool = true
+@export var show_intro : bool = true
+@export var random_starting_position : bool = true
+@export var place_ships_at_start : bool = true
+@export var dark_winter : bool = false
 
 var debug = false
 # analytics
 var run_time = 0
-var time_scale : float = 1.0 setget set_time_scale, get_time_scale
+var time_scale : float = 1.0 :
+	get:
+		return time_scale # TODOConverter40 Copy here content of get_time_scale
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_time_scale
 
-onready var crown_mode = $Managers/CrownModeManager
-onready var kill_mode = $Managers/KillModeManager
-onready var last_man_mode = $Managers/LastManModeManager
-onready var conquest_mode = $Managers/ConquestModeManager
-onready var collect_mode = $Managers/CollectModeManager
-onready var survival_mode = $Managers/SurvivalModeManager
+@onready var crown_mode = $Managers/CrownModeManager
+@onready var kill_mode = $Managers/KillModeManager
+@onready var last_man_mode = $Managers/LastManModeManager
+@onready var conquest_mode = $Managers/ConquestModeManager
+@onready var collect_mode = $Managers/CollectModeManager
+@onready var survival_mode = $Managers/SurvivalModeManager
 
-onready var combat_manager = $Managers/CombatManager
-onready var stun_manager = $Managers/StunManager
-onready var collect_manager = $Managers/CollectManager
-onready var environments_manager = $Managers/EnvironmentsManager
-onready var conquest_manager = $Managers/ConquestManager
-onready var pursue_manager = $Managers/PursueManager
-onready var snake_trail_manager = $Managers/TrailManager
+@onready var combat_manager = $Managers/CombatManager
+@onready var stun_manager = $Managers/StunManager
+@onready var collect_manager = $Managers/CollectManager
+@onready var environments_manager = $Managers/EnvironmentsManager
+@onready var conquest_manager = $Managers/ConquestManager
+@onready var pursue_manager = $Managers/PursueManager
+@onready var snake_trail_manager = $Managers/TrailManager
 
-onready var SpawnPlayers = $SpawnPositions/Players
-onready var camera = $Camera
-onready var canvas = $CanvasLayer
-onready var hud = $CanvasLayer/HUD
-onready var pause = $CanvasLayer2/Pause
-onready var mode_description = $CanvasLayer/DescriptionMode
-onready var grid = $Battlefield/Background/GridWrapper/Grid
-onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
+@onready var SpawnPlayers = $SpawnPositions/Players
+@onready var camera = $Camera3D
+@onready var canvas = $CanvasLayer
+@onready var hud = $CanvasLayer/HUD
+@onready var pause = $CanvasLayer2/Pause
+@onready var mode_description = $CanvasLayer/DescriptionMode
+@onready var grid = $Battlefield/Background/GridWrapper/Grid
+@onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
-export var standalone : bool = true
-onready var battlefield = $Battlefield
+@export var standalone : bool = true
+@onready var battlefield = $Battlefield
 
 signal screensize_changed(screensize)
 signal gameover
@@ -90,7 +98,7 @@ func set_style(v : ArenaStyle):
 	style = v
 	
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	
 	for wall in get_tree().get_nodes_in_group('wall'):
 		wall.solid_line_color = style.wall_color
@@ -151,16 +159,16 @@ func _enter_tree():
 		global.new_match()
 	
 	if global.is_match_running():
-		global.the_match.connect("game_over", self, "on_gameover", [], CONNECT_ONESHOT)
-		connect("update_stats", global.the_match, "update_stats")
+		global.the_match.connect("game_over",Callable(self,"on_gameover").bind(),CONNECT_ONE_SHOT)
+		connect("update_stats",Callable(global.the_match,"update_stats"))
 		
-		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
-		Events.connect("ask_to_spawn", self, "dramatic_spawn") # e.g. SpawnerManager
+		Events.connect('continue_after_game_over',Callable(self,'_on_continue_after_game_over'))
+		Events.connect("ask_to_spawn",Callable(self,"dramatic_spawn")) # e.g. SpawnerManager
 	
 func _ready():
 	set_process(false)
 	
-	# remove HUD if not needed (e.g., map)
+	# remove_at HUD if not needed (e.g., map)
 	if not show_hud:
 		$CanvasLayer/HUD.queue_free()
 	else:
@@ -178,8 +186,8 @@ func _ready():
 	
 	# Engine.time_scale = 0.2
 	# in order to get the size
-	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
-	run_time = OS.get_ticks_msec()
+	get_tree().get_root().connect("size_changed",Callable(self,"compute_arena_size"))
+	run_time = Time.get_ticks_msec()
 	
 	# get number of players
 	# n_players = get_num_players()
@@ -188,44 +196,44 @@ func _ready():
 	analytics.start_elapsed_time()
 
 	
-	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
+	connect("slomo",Callable(environments_manager,"activate_slomo").bind(self),CONNECT_ONE_SHOT)
 	
 	
-	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
-	collect_manager.connect('collected', self, "_on_sth_collected")
-	collect_manager.connect('dropped', crown_mode, "_on_sth_dropped")
-	collect_manager.connect('dropped', self, "_on_sth_dropped")
-	collect_manager.connect("stolen", crown_mode, "_on_sth_stolen")
-	collect_manager.connect("stolen", self, "_on_sth_stolen")
-	environments_manager.connect('repel_cargo', collect_manager, "_on_cargo_repelled")
-	collect_manager.connect('collected', collect_mode, "_on_sth_collected")
-	collect_manager.connect('coins_dropped', collect_mode, "_on_coins_dropped")
-	collect_manager.connect('coins_dropped', self, "_on_coins_dropped")
-	conquest_manager.connect('conquered', conquest_mode, "_on_sth_conquered")
-	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
+	collect_manager.connect('collected',Callable(crown_mode,"_on_sth_collected"))
+	collect_manager.connect('collected',Callable(self,"_on_sth_collected"))
+	collect_manager.connect('dropped',Callable(crown_mode,"_on_sth_dropped"))
+	collect_manager.connect('dropped',Callable(self,"_on_sth_dropped"))
+	collect_manager.connect("stolen",Callable(crown_mode,"_on_sth_stolen"))
+	collect_manager.connect("stolen",Callable(self,"_on_sth_stolen"))
+	environments_manager.connect('repel_cargo',Callable(collect_manager,"_on_cargo_repelled"))
+	collect_manager.connect('collected',Callable(collect_mode,"_on_sth_collected"))
+	collect_manager.connect('coins_dropped',Callable(collect_mode,"_on_coins_dropped"))
+	collect_manager.connect('coins_dropped',Callable(self,"_on_coins_dropped"))
+	conquest_manager.connect('conquered',Callable(conquest_mode,"_on_sth_conquered"))
+	conquest_manager.connect('lost',Callable(conquest_mode,"_on_sth_lost"))
 	
-	combat_manager.connect('show_msg', self, "show_msg")
+	combat_manager.connect('show_msg',Callable(self,"show_msg"))
 	
 	# This won't be needed anymore, since the_match will be global
 	"""
-	crown_mode.connect('score', scores, "add_score")
-	kill_mode.connect('score', scores, "add_score")
-	kill_mode.connect('broadcast_score', scores, "broadcast_score")
-	kill_mode.connect('show_msg', self, "show_msg")
-	last_man_mode.connect('broadcast_score', scores, "broadcast_score")
-	race_mode.connect('score', scores, "add_score")
-	conquest_mode.connect('score', scores, "add_score")
-	collect_mode.connect('score', scores, "add_score")
-	goal_mode.connect('score', scores, "add_score")
-	survival_mode.connect('score', scores, "add_score")
+	crown_mode.connect('score',Callable(scores,"add_score"))
+	kill_mode.connect('score',Callable(scores,"add_score"))
+	kill_mode.connect('broadcast_score',Callable(scores,"broadcast_score"))
+	kill_mode.connect('show_msg',Callable(self,"show_msg"))
+	last_man_mode.connect('broadcast_score',Callable(scores,"broadcast_score"))
+	race_mode.connect('score',Callable(scores,"add_score"))
+	conquest_mode.connect('score',Callable(scores,"add_score"))
+	collect_mode.connect('score',Callable(scores,"add_score"))
+	goal_mode.connect('score',Callable(scores,"add_score"))
+	survival_mode.connect('score',Callable(scores,"add_score"))
 	"""
 	
-	kill_mode.connect('show_msg', self, "show_msg")
-	conquest_mode.connect('show_msg', self, "show_msg")
-	collect_mode.connect('show_msg', self, "show_msg")
+	kill_mode.connect('show_msg',Callable(self,"show_msg"))
+	conquest_mode.connect('show_msg',Callable(self,"show_msg"))
+	collect_mode.connect('show_msg',Callable(self,"show_msg"))
 	
 	for goal in traits.get_all_with('Goal'):
-		goal.connect('goal_done', self, '_on_goal_done')
+		goal.connect('goal_done',Callable(self,'_on_goal_done'))
 		
 	
 	var players = {}
@@ -290,8 +298,8 @@ func _ready():
 			for conquerable in conquerables:
 				score_to_win_override += conquerable.get_score()
 				# connect to manager
-				conquerable.connect('conquered', conquest_mode, "_on_sth_conquered")
-				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
+				conquerable.connect('conquered',Callable(conquest_mode,"_on_sth_conquered"))
+				conquerable.connect('lost',Callable(conquest_mode,"_on_sth_lost"))
 				
 	# FIXME this should eventually replace the system above
 	var score_definers = traits.get_all_with('ScoreDefiner')
@@ -328,7 +336,7 @@ func _ready():
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
 	
-	yield(camera, "transition_over")
+	await camera.transition_over
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
@@ -347,7 +355,7 @@ func _ready():
 			# demo will wait 1 second and create a CPU match
 			mode_description.demomode(demo)
 			mode_description.set_process_input(false)
-			yield(get_tree().create_timer(3), "timeout")
+			await get_tree().create_timer(3).timeout
 			mode_description.disappears()
 	
 	
@@ -369,7 +377,7 @@ func _ready():
 		connect_killable(sth)
 		
 	# manage level flooding
-	if (global.flood == "on" and game_mode.floodable) or (global.flood == "random" and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
+	if (global.flood == "checked" and game_mode.floodable) or (global.flood == "random" and game_mode.floodable and randf() < 0.33) or game_mode.flood or underwater:
 		if not underwater:
 			var level_height = compute_arena_size().size.y
 			var water_rect_height = $Battlefield/Background/FloodWater/GRect.height
@@ -385,7 +393,7 @@ func _ready():
 		$Battlefield/Background/FloodWater.queue_free()
 		
 	# manage level lasering
-	if (global.laser== "on" and game_mode.laserable) or (global.laser == "random" and game_mode.laserable and randf() < 0.33) or game_mode.additional_lasers:
+	if (global.laser== "checked" and game_mode.laserable) or (global.laser == "random" and game_mode.laserable and randf() < 0.33) or game_mode.additional_lasers:
 		for laser_anim in get_tree().get_nodes_in_group('animation_if_additional_lasers'):
 			laser_anim.play('Default')
 	else:
@@ -396,14 +404,14 @@ func _ready():
 		# manage the coming of winter
 		var draft_card = global.the_match.get_draft_card()
 		if draft_card != null and draft_card.is_winter():
-			var ice = IceScene.instance()
+			var ice = IceScene.instantiate()
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
 			$Battlefield/Background.add_child(ice)
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
 				
 	if show_intro:
-		yield(mode_description, "ready_to_fight")
+		await mode_description.ready_to_fight
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
@@ -412,7 +420,7 @@ func _ready():
 	
 	if place_ships_at_start:
 		spawn_all_ships()
-		yield(self, 'all_ships_spawned')
+		await self.all_ships_spawned
 	
 	camera.activate_camera()
 	
@@ -427,7 +435,7 @@ func _ready():
 		for node in intro_nodes[group]:
 			node.intro()
 		for node in intro_nodes[group]:
-			yield(node, 'done')
+			await node.done
 	
 	for bomb_spawner in get_tree().get_nodes_in_group("spawner"):
 		bomb_spawner.initialize(self)
@@ -461,14 +469,14 @@ func spawn_all_ships(do_intro = false):
 		var spawner = s as PlayerSpawner
 		spawner.appears()
 		# waiting for the ship to be entered
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		spawn_ship(spawner)
 		j += 1
 		# wait for the last ship
 		if j >= len(player_spawners):
-			yield(spawner, "entered_battlefield")
+			await spawner.entered_battlefield
 			
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	
 	if do_intro:
 		for ship in self.get_all_valid_ships():
@@ -512,7 +520,7 @@ func _unhandled_input(event):
 	var debug_pressed = event.is_action_pressed("debug")
 	if debug_pressed:
 		debug = not debug
-		OS.window_fullscreen = !OS.window_fullscreen
+		ProjectSettings.set("display/window/size/fullscreen", !OS.window_fullscreen)
 		# DebugNode.visible = debug
 		
 	# reset by command only through debug
@@ -521,11 +529,11 @@ func _unhandled_input(event):
 	
 func reset(level):
 	someone_died = false
-	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+level))
+	get_tree().change_scene_to_packed(load("res://screens/game_screen/levels/"+level))
 
 func get_num_players()->int:
 	"""
-	Depending on the arena we are in.
+	Depending checked the arena we are in.
 	Works after ready
 	"""
 	return SpawnPlayers.get_child_count()
@@ -565,7 +573,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	$Battlefield.call_deferred("remove_child", ship)
 	
-	var deathflash = deathflash_scene.instance()
+	var deathflash = deathflash_scene.instantiate()
 	deathflash.species = ship.species
 	deathflash.position = ship.position
 	$Battlefield.call_deferred("add_child", deathflash)
@@ -581,10 +589,10 @@ func ship_just_died(ship, killer, for_good):
 	if ship.info_player.lives == 0:
 		var alive_players = []
 		if not for_good:
-			focus = load("res://actors/environments/ElementInCamera.tscn").instance()
+			focus = load("res://actors/environments/ElementInCamera.tscn").instantiate()
 			ship.dead_ship_instance.remove_from_group("in_camera")
 			$Battlefield.add_child(focus)
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		
 		for s in get_tree().get_nodes_in_group('players'):
 			if s.alive:
@@ -595,13 +603,13 @@ func ship_just_died(ship, killer, for_good):
 		
 		if len(alive_players) == 1:
 			# notify scores if there is only one player left
-			yield(get_tree().create_timer(1), 'timeout')
+			await get_tree().create_timer(1).timeout
 			# Used with old survival rules
 			# scores.one_player_left(alive_players[0].info_player)
 			
 		elif len(alive_players) == 0:
 			# notify scores if there are no players left
-			yield(get_tree().create_timer(0.3), 'timeout')
+			await get_tree().create_timer(0.3).timeout
 			global.the_match.no_players_left()
 			
 		# shrink the battlefield in last man standing
@@ -609,7 +617,7 @@ func ship_just_died(ship, killer, for_good):
 			if len(alive_players) == 3:
 				$LastManAnimationPlayer.play('Shrink')
 			elif len(alive_players) == 2:
-				yield($LastManAnimationPlayer, 'animation_finished')
+				await $LastManAnimationPlayer.animation_finished
 				$LastManAnimationPlayer.play('Shrink2')
 		
 		# skip respawn if there are no lives left
@@ -632,7 +640,7 @@ func ship_just_died(ship, killer, for_good):
 	#elif game_mode.name == "GoalPortal":
 	#	respawn_timeout = 0.75
 	
-	yield(get_tree().create_timer(respawn_timeout), "timeout")
+	await get_tree().create_timer(respawn_timeout).timeout
 	
 	if not global.is_match_running():
 		return
@@ -657,13 +665,13 @@ func on_gameover():
 			child.enabled = false
 	camera.stop_and_zoomout(compute_arena_size())
 	$GameOverAnim.play('Game Over')
-	yield($GameOverAnim, "animation_finished") # wait for animation and UI redraw (esp. bars)
+	await $GameOverAnim.animation_finished # wait for animation and UI redraw (esp. bars)
 	set_time_scale(1)
 	get_tree().paused = true
-	var game_over = gameover_scene.instance()
-	#game_over.connect("pressed_continue", self, "_on_Continue_session")
-	game_over.connect("show_arena", self, "_on_Show_Arena")
-	game_over.connect("hide_arena", self, "_on_hide_Arena")
+	var game_over = gameover_scene.instantiate()
+	#game_over.connect("pressed_continue",Callable(self,"_on_Continue_session"))
+	game_over.connect("show_arena",Callable(self,"_on_Show_Arena"))
+	game_over.connect("hide_arena",Callable(self,"_on_hide_Arena"))
 	canvas.add_child(game_over)
 	
 	game_over.initialize()
@@ -686,13 +694,13 @@ const ship_scene = preload("res://actors/battlers/Ship.tscn")
 const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
-onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
+@onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
 
 func create_trail(ship):
 	# create and link trail
-	var trail = trail_scene.instance()
+	var trail = trail_scene.instantiate()
 	$Battlefield.add_child(trail)
-	yield(trail, "ready")
+	await trail.ready
 	trail.initialize(ship)
 	trail.configure(ship.get_deadly_trail(), game_mode.deadly_trails_duration)
 	ship.trail = trail
@@ -702,9 +710,9 @@ signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
 	if player.is_cpu():
-		ship = cpu_ship_scene.instance()
+		ship = cpu_ship_scene.instantiate()
 	else:
-		ship = ship_scene.instance()
+		ship = ship_scene.instantiate()
 	
 	ship.camera = camera
 	ship.controls = player.controls
@@ -718,18 +726,18 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
 	ship.game_mode = self.game_mode
-	yield(player, "entered_battlefield")
+	await player.entered_battlefield
 	
 	$Battlefield.add_child(ship)
 	
 	create_trail(ship)
-	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
+	await get_tree().idle_frame # FIXME this is needed for set_bomb_type
 	register_ship(ship)
 	
 	# connect collect signals to enable powerup collection at start
-	ship.connect("body_entered", collect_manager, "ship_sth_entered", [ship])
-	ship.connect("near_area_entered", collect_manager, "ship_sth_entered")
-	ship.connect('thrusters_on', self, '_on_ship_thrusters_on', [ship]) # this is for snake powerup to work
+	ship.connect("body_entered",Callable(collect_manager,"ship_sth_entered").bind(ship))
+	ship.connect("near_area_entered",Callable(collect_manager,"ship_sth_entered"))
+	ship.connect('thrusters_on',Callable(self,'_on_ship_thrusters_on').bind(ship)) # this is for snake powerup to work
 	
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
@@ -737,7 +745,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	if force_intro:
 		ship.intro()
 	
-	# Check on gears
+	# Check checked gears
 	ship.set_bombs_enabled(game_mode.shoot_bombs)
 	ship.set_default_bomb_type(game_mode.bomb_type)
 	ship.set_default_bomb_type(game_mode.bomb_type)
@@ -748,24 +756,24 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_auto_thrust(game_mode.auto_thrust)
 	
 	# connect signals
-	ship.connect("dead", self, "ship_just_died")
-	ship.connect("frozen", self, "_on_sth_just_froze")
-	ship.connect("spawn_bomb", self, "spawn_bomb", [ship])
-	ship.connect("near_area_entered", combat_manager, "_on_ship_collided")
-	ship.connect("body_entered", combat_manager, "_on_ship_collided", [ship])
-	ship.connect("body_entered", environments_manager, "_on_sth_entered", [ship])
-	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
-	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
-	ship.connect("detection", pursue_manager, "_on_ship_detected")
-	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
-	ship.connect("dead", kill_mode, "_on_sth_killed")
-	ship.connect("dead", last_man_mode, "_on_sth_killed")
-	#ship.connect("dead", combat_manager, "_on_sth_killed")
-	ship.connect("dead", collect_manager, "_on_ship_killed")
-	ship.connect("near_area_entered", conquest_manager, "_on_ship_collided")
-	ship.connect("fallen", self, "_on_ship_fallen")
+	ship.connect("dead",Callable(self,"ship_just_died"))
+	ship.connect("frozen",Callable(self,"_on_sth_just_froze"))
+	ship.connect("spawn_bomb",Callable(self,"spawn_bomb").bind(ship))
+	ship.connect("near_area_entered",Callable(combat_manager,"_on_ship_collided"))
+	ship.connect("body_entered",Callable(combat_manager,"_on_ship_collided").bind(ship))
+	ship.connect("body_entered",Callable(environments_manager,"_on_sth_entered").bind(ship))
+	ship.connect("near_area_entered",Callable(environments_manager,"_on_sth_entered"))
+	ship.connect("near_area_exited",Callable(environments_manager,"_on_sth_exited"))
+	ship.connect("detection",Callable(pursue_manager,"_on_ship_detected"))
+	ship.connect("body_entered",Callable(stun_manager,"ship_collided").bind(ship))
+	ship.connect("dead",Callable(kill_mode,"_on_sth_killed"))
+	ship.connect("dead",Callable(last_man_mode,"_on_sth_killed"))
+	#ship.connect("dead",Callable(combat_manager,"_on_sth_killed"))
+	ship.connect("dead",Callable(collect_manager,"_on_ship_killed"))
+	ship.connect("near_area_entered",Callable(conquest_manager,"_on_ship_collided"))
+	ship.connect("fallen",Callable(self,"_on_ship_fallen"))
 	
-	crown_mode.connect('show_msg', ship, "update_score")
+	crown_mode.connect('show_msg',Callable(ship,"update_score"))
 	return ship
 	
 const bomb_scene = preload('res://actors/weapons/Bomb.tscn')
@@ -774,14 +782,14 @@ const wave_scene = preload('res://actors/weapons/ShockWave.tscn')
 func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 	var bomb
 	if type == GameMode.BOMB_TYPE.mine:
-		bomb = mine_scene.instance()
+		bomb = mine_scene.instantiate()
 		bomb.set_owner_ship(ship)
 		bomb.position = ship.global_position
 		bomb.set_lifetime(max(1.0, impulse.length()/4000))
 		bomb.set_radius(max(600.0, impulse.length()/7))
 		bomb.apply_central_impulse(impulse*1.2)
 	elif type == GameMode.BOMB_TYPE.wave:
-		bomb = wave_scene.instance()
+		bomb = wave_scene.instantiate()
 		bomb.set_owner_ship(ship)
 		bomb.position = ship.global_position
 		bomb.rotation = ship.global_rotation+PI
@@ -790,16 +798,16 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.lifetime = max(0.6, impulse.length()/4000)
 		bomb.angle = 2*PI/3 + impulse.length()/3000
 	else:
-		bomb = bomb_scene.instance()
+		bomb = bomb_scene.instantiate()
 		bomb.initialize(type, pos, impulse, ship, size)
 		if symbol:
 			bomb.symbol = symbol
 		
-		bomb.connect("near_area_entered", combat_manager, "bomb_near_area_entered")
-		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
-		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
-		bomb.connect("detonate", self, "bomb_detonated", [bomb])
-		bomb.connect("expired", ship, "_on_bomb_expired")
+		bomb.connect("near_area_entered",Callable(combat_manager,"bomb_near_area_entered"))
+		bomb.connect("near_area_entered",Callable(environments_manager,"_on_sth_entered"))
+		bomb.connect("near_area_exited",Callable(environments_manager,"_on_sth_exited"))
+		bomb.connect("detonate",Callable(self,"bomb_detonated").bind(bomb))
+		bomb.connect("expired",Callable(ship,"_on_bomb_expired"))
 	
 	$Battlefield.add_child(bomb)
 	
@@ -814,7 +822,7 @@ func bomb_detonated(bomb):
 const message_scene = preload('res://special_scenes/on_canvas_ui/FloatingMessage.tscn')
 
 func show_msg(species: Species, msg, pos):
-	var msg_node = message_scene.instance()
+	var msg_node = message_scene.instantiate()
 	msg_node.set_msg(msg)
 	msg_node.scale = camera.zoom
 	msg_node.position = pos
@@ -845,10 +853,10 @@ func _on_sth_dropped(dropper, droppee):
 		droppee.linear_velocity *= 1.5
 		
 	# wait a bit, then make the item collectable again
-	yield(get_tree().create_timer(0.2), "timeout")
+	await get_tree().create_timer(0.2).timeout
 	ECM.E(droppee).get('Collectable').enable()
 	# retrigger bodies already entered
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	dropper.recheck_colliding()
 	
 func _on_sth_stolen(thief, mugged):
@@ -858,7 +866,7 @@ func _on_sth_stolen(thief, mugged):
 		
 #func _on_coins_dropped(dropper, amount):
 #	for i in range(amount):
-#		var coin = coin_scene.instance()
+#		var coin = coin_scene.instantiate()
 #		$Battlefield.add_child(coin)
 #		coin.position = dropper.position
 #		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
@@ -868,7 +876,7 @@ signal wave_ready
 func dramatic_spawn(to_be_spawned: ElementSpawnerGroup , wait_time=1):
 	if wait_time:
 		focus_in_camera.move(to_be_spawned.position, wait_time)
-		yield(focus_in_camera, "completed")
+		await focus_in_camera.completed
 	to_be_spawned.spawn()
 	Events.emit_signal("spawned", to_be_spawned)
 	
@@ -892,9 +900,9 @@ func slomo():
 		
 func _on_Rock_request_spawn(child):
 	if child is Rock:
-		child.connect('request_spawn', self, '_on_Rock_request_spawn')
-		child.connect('conquered', conquest_mode, '_on_sth_conquered')
-		child.connect('lost', conquest_mode, '_on_sth_lost')
+		child.connect('request_spawn',Callable(self,'_on_Rock_request_spawn'))
+		child.connect('conquered',Callable(conquest_mode,'_on_sth_conquered'))
+		child.connect('lost',Callable(conquest_mode,'_on_sth_lost'))
 	$Battlefield.add_child(child)
 
 func _on_EndlessArea_body_exited(body):
@@ -912,13 +920,13 @@ func respawn_from_home(ship, spawner):
 	ship.trail.destroy()
 	if ship.alive:
 		ship.die(null, true) # die for good
-	yield(get_tree().create_timer(respawn_timeout), "timeout")
+	await get_tree().create_timer(respawn_timeout).timeout
 	spawner.appears()
 	spawn_ship(spawner, true) # force intro
 	
 func connect_killable(killable):
-	killable.connect('killed', kill_mode, '_on_sth_killed')
-	#killable.connect('killed', combat_manager, '_on_sth_killed')
+	killable.connect('killed',Callable(kill_mode,'_on_sth_killed'))
+	#killable.connect('killed',Callable(combat_manager,'_on_sth_killed'))
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)
@@ -926,7 +934,7 @@ func _on_ship_thrusters_on(ship):
 const RockScene = preload('res://actors/environments/Rock.tscn')
 func _on_sth_just_froze(sth):
 	$Battlefield.call_deferred("remove_child", sth)
-	var rock = RockScene.instance()
+	var rock = RockScene.instantiate()
 	rock.position = sth.position
 	rock.order = 1
 	if sth is Ship:
@@ -940,7 +948,7 @@ func _on_sth_just_froze(sth):
 	rock.lifetime = 6
 	rock.angular_velocity = 0
 	$Battlefield.call_deferred("add_child", rock)
-	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
+	rock.connect('request_spawn',Callable(self,'_on_Rock_request_spawn'))
 	rock.call_deferred('start')
 
 func _on_goal_done(player, goal, pos, points=1):
@@ -949,7 +957,7 @@ func _on_goal_done(player, goal, pos, points=1):
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):
-	var ripple = Ripple.instance()
+	var ripple = Ripple.instantiate()
 	ripple.position = pos
 	ripple.scale = Vector2(size, size)
 	$Battlefield.call_deferred("add_child", ripple)

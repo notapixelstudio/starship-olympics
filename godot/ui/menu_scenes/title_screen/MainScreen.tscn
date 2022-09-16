@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
 [ext_resource path="res://WorldEnvironment.tres" type="Environment" id=2]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/audio/UI_effects/StarWarsSwoosh.ogg" type="AudioStream" id=4]
@@ -8,13 +8,13 @@
 [ext_resource path="res://assets/shaders/TransitionColor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.gd" type="Script" id=8]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 12
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 32
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
@@ -28,20 +28,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_position")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, -2 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, -2 ),
 "update": 0,
 "values": [ Vector2( 0, 800 ), Vector2( 0, 450 ) ]
 }
@@ -56,8 +56,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.7 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.7 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "fade_to_color"
@@ -70,8 +70,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -105,9 +105,9 @@ modulate = Color( 1, 1, 1, 0.478431 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -25.0
-margin_right = -35.0
-margin_bottom = -4.0
+offset_top = -25.0
+offset_right = -35.0
+offset_bottom = -4.0
 custom_fonts/font = SubResource( 1 )
 text = "Demo build - 0.6.1"
 align = 2
@@ -121,10 +121,10 @@ modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 4.0
-margin_top = 440.0
-margin_right = 4.0
-margin_bottom = 480.0
+offset_left = 4.0
+offset_top = 440.0
+offset_right = 4.0
+offset_bottom = 480.0
 custom_fonts/font = SubResource( 2 )
 text = "THANK YOU FOR PLAYING"
 align = 1
@@ -148,5 +148,5 @@ environment = ExtResource( 2 )
 [node name="ScreenCanvas" type="CanvasLayer" parent="."]
 
 [node name="TitleScreen" parent="ScreenCanvas" instance=ExtResource( 7 )]
-margin_left = 2.0
-margin_right = 2.0
+offset_left = 2.0
+offset_right = 2.0

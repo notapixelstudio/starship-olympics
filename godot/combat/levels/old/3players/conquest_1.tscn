@@ -2,13 +2,13 @@
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=3]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=6]
 [ext_resource path="res://actors/environments/Asteroid.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=8]
-[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=9]
+[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture2D" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=12]
@@ -31,7 +31,7 @@ enabled = false
 [node name="ConquestModeManager" parent="." index="8"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 3 )
 centered = false
 
@@ -126,7 +126,7 @@ position = Vector2( -8, -750 )
 rotation = 1.5708
 species = ExtResource( 12 )
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera3D" parent="." index="16"]
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

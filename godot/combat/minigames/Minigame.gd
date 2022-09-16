@@ -2,16 +2,17 @@ extends Resource
 
 class_name Minigame
 
-export var game_mode : Resource
+@export var game_mode : Resource
 
-export var arenas_dir: String
+@export_dir var arenas_dir
 
-export var tutorial_scene : PackedScene
+@export var tutorial_scene : PackedScene
 
 var times_started := 0
-
-export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_top = ''
-export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_bottom = ''
+# @export_enum('', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') 
+@export var suit_top : String = ''
+@export var suit_bottom: String = ''
+# @export_enum('', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'circle') var suit_bottom := 0
 
 func get_id() -> String:
 	return str(get_rid().get_id())
@@ -48,10 +49,10 @@ func get_arena_filepath(num_players: int) -> String:
 	else:
 		return ""
 
-func get_suit_top() -> Array:
+func get_suit_top() -> String:
 	return suit_top
 
-func get_suit_bottom() -> Array:
+func get_suit_bottom() -> String:
 	return suit_bottom
 
 func has_tutorial() -> bool:

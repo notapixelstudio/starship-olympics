@@ -1,10 +1,10 @@
 extends CollisionPolygon2D
 
-export var inner_radius := 100.0
-export var outer_radius := 200.0
-export var angle := PI/2
-export var padding := 8.0
-export (String, 'shield', 'plate', 'skin') var type ='normal'
+@export var inner_radius := 100.0
+@export var outer_radius := 200.0
+@export var angle := PI/2
+@export var padding := 8.0
+@export (String, 'shield', 'plate', 'skin') var type ='normal'
 
 const COLLISION_POLYGON_PRECISION := PI/8
 const DRAW_PRECISION := PI/32
@@ -16,7 +16,7 @@ func _ready():
 
 func _draw():
 	var polygon = create_polygon(draw_precision, padding)
-	draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
+	draw_colored_polygon(polygon, Color.WHITE, polygon, null, null, true)
 	$Shadow.polygon = polygon
 	$Shadow.update()
 	
@@ -27,10 +27,10 @@ func up(new_type):
 		'shield':
 			self_modulate = Color('#008bff')
 		'plate':
-			self_modulate = Color.white
+			self_modulate = Color.WHITE
 			draw_precision = PI/6 # more rough appearance
 		'skin':
-			self_modulate = Color.green
+			self_modulate = Color.GREEN
 	update()
 	enable_collisions()
 	$AnimationPlayer.play("reset")
@@ -49,8 +49,8 @@ func enable_collisions():
 func disable_collisions():
 	self.call_deferred('set_disabled', true)
 	if type == 'skin':
-		yield(get_tree().create_timer(5), "timeout")
-		if type == 'skin': # shield type could have changed (e.g., if switched off)
+		await get_tree().create_timer(5).timeout
+		if type == 'skin': # shield type could have changed (e.g., if switched unchecked)
 			up('skin')
 	
 func is_up():
@@ -64,7 +64,7 @@ func switch_off():
 	disable_collisions()
 	modulate = Color(1.0,1.0,1.0,0.0)
 
-func create_polygon(precision : float, padding := 0.0) -> PoolVector2Array:
+func create_polygon(precision : float, padding := 0.0) -> PackedVector2Array:
 	var steps := ceil(angle / precision)
 	var angle_delta := angle / steps
 	var points := []
@@ -78,5 +78,5 @@ func create_polygon(precision : float, padding := 0.0) -> PoolVector2Array:
 		var y := inner_radius*sin(theta)
 		points.append(Vector2(inner_radius*cos(theta), max(padding, y) ))
 		
-	return PoolVector2Array(points)
+	return PackedVector2Array(points)
 	

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://actors/weapons/FlailBall.gd" type="Script" id=1]
 [ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/weapons/flail_ball.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/weapons/flail_ball.png" type="Texture2D" id=3]
 [ext_resource path="res://actors/weapons/Flail.gd" type="Script" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -23,14 +23,14 @@ script = ExtResource( 5 )
 position = Vector2( -150, 0 )
 mass = 0.1
 physics_material_override = SubResource( 1 )
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 1.0
 script = ExtResource( 1 )
 
 [node name="Bumper" parent="Ball" instance=ExtResource( 2 )]
 
-[node name="Sprite" type="Sprite" parent="Ball"]
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 3 )
 

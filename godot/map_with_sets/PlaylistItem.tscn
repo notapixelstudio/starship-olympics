@@ -3,36 +3,36 @@
 [ext_resource path="res://map_with_sets/PlaylistItem.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/drones.tres" type="Resource" id=2]
 [ext_resource path="res://map_with_sets/planets/TheBloodMoon.tres" type="Resource" id=3]
-[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=4]
-[ext_resource path="res://assets/modes/deathmatch.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/modes/deathmatch.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=6]
 
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 24
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [node name="PlaylistItem" type="Control"]
-margin_right = 2000.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 0, 78 )
+offset_right = 2000.0
+offset_bottom = 78.0
+minimum_size = Vector2( 0, 78 )
 script = ExtResource( 1 )
 species = ExtResource( 2 )
 planet = ExtResource( 3 )
 
-[node name="Ship" type="Sprite" parent="."]
+[node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 centered = false
 
 [node name="IconMode" type="TextureRect" parent="."]
-margin_left = 177.0
-margin_top = 1.0
-margin_right = 207.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 0, 30 )
+offset_left = 177.0
+offset_top = 1.0
+offset_right = 207.0
+offset_bottom = 31.0
+minimum_size = Vector2( 0, 30 )
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
@@ -40,9 +40,9 @@ stretch_mode = 6
 [node name="PlanetName" type="Label" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 75.0
-margin_top = -15.5
-margin_right = 225.0
-margin_bottom = 15.5
+offset_left = 75.0
+offset_top = -15.5
+offset_right = 225.0
+offset_bottom = 15.5
 custom_fonts/font = SubResource( 1 )
 text = "The Blood Moon"

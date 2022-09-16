@@ -5,11 +5,11 @@ const MIN_PLAYERS = 1
 const NUM_KEYBOARDS = 2
 
 enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
-onready var container = $Container
-onready var fight_node = $BottomHUD/Fight
-onready var ready_to_fight = $CanvasLayer/ReadyToFight
-onready var top_hud = $TopHUD
-onready var smoke_screen = $SmokeScreen
+@onready var container = $Container
+@onready var fight_node = $BottomHUD/Fight
+@onready var ready_to_fight = $CanvasLayer/ReadyToFight
+@onready var top_hud = $TopHUD
+@onready var smoke_screen = $SmokeScreen
 var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
@@ -22,11 +22,11 @@ var num_players : int = 0
 func _ready():
 	# Soundtrack.play("Lobby", true)
 	fight_node.visible = false
-	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+	Input.connect("joy_connection_changed",Callable(self,"_on_joy_connection_changed"))
 	post_ready()
 
-	global.remotesServer.connect("new_remote_connected", self, "_onNewRemote")
-	global.remotesServer.connect("remote_disconnected", self, "_onRemoteDisconnected")
+	global.remotesServer.connect("new_remote_connected",Callable(self,"_onNewRemote"))
+	global.remotesServer.connect("remote_disconnected",Callable(self,"_onRemoteDisconnected"))
 	
 func _onNewRemote(id):
 	print("new Remote")
@@ -47,11 +47,11 @@ func post_ready():
 		#set all to no
 		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
 		child.change_species(ordered_species[i])
-		child.connect("prev", self, "get_adjacent", [-1, child])
-		child.connect("next", self, "get_adjacent", [+1, child])
-		child.connect("selected", self, "selected")
-		child.connect("deselected", self, "deselected")
-		child.connect("ready_to_fight", self, "ready_to_fight")
+		child.connect("prev",Callable(self,"get_adjacent").bind(-1, child))
+		child.connect("next",Callable(self,"get_adjacent").bind(+1, child))
+		child.connect("selected",Callable(self,"selected"))
+		child.connect("deselected",Callable(self,"deselected"))
+		child.connect("ready_to_fight",Callable(self,"ready_to_fight"))
 		i +=1
 		# it gives the name of the player
 		child.uid = i
@@ -114,7 +114,7 @@ func change_controls(key:String, new_key:String) -> bool:
 
 func assign_controls(num_keyboards : int) -> Array:
 	"""
-	Depending on how many keyboard want to play
+	Depending checked how many keyboard want to play
 	it puts keyboard control first then eventually disable the rest
 	"""
 	players_controls = []
@@ -125,21 +125,21 @@ func assign_controls(num_keyboards : int) -> Array:
 		num_players +=1
 		players_controls.append("kb"+str(num_keyboards-i))
 
-	# check on joypad
+	# check checked joypad
 	var joypads = Input.get_connected_joypads()
 	for i in range(len(joypads)):
 		num_players+=1
 		players_controls.append("joy"+str(i+1))
 		if len(players_controls) >= MAX_PLAYERS:
 			break
-	# check on remotes
+	# check checked remotes
 	var numRemotes = global.remotesServer.get_connected_remotes()
 	for i in range(numRemotes):
 		players_controls.append("rm"+str(i+1))
 		if len(players_controls) >= MAX_PLAYERS:
 			break
 			
-	# now put NO on the rest of players
+	# now put NO checked the rest of players
 	return players_controls
 
 # utils
@@ -168,7 +168,7 @@ func _on_joy_connection_changed(device_id, connected):
 func ready_to_fight():
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
-		ready_to_fight.start(players, global.win)
+		ready_to_fight.start(Callable(players,global.win))
 		smoke_screen.visible = true
 	else:
 		print_debug("not enough players")
@@ -199,7 +199,7 @@ func deselected(species: Species):
 	restart_timer()
 	var current_index = ordered_species.find(species)
 	if selected_index.find(current_index) >= 0:
-		selected_index.remove(selected_index.find(current_index))
+		selected_index.remove_at(selected_index.find(current_index))
 	var players = get_players()
 	if len(players) < MIN_PLAYERS:
 		deselected = true

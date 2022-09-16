@@ -2,8 +2,8 @@ extends Area2D
 
 class_name Explosion
 
-export var kilotons := 30
-onready var repeal_field_width = $RepealField/CollisionShape2D.get_shape().radius
+@export var kilotons := 30
+@onready var repeal_field_width = $RepealField/CollisionShape2D.get_shape().radius
 
 signal end_explosion
 var explosions = [preload("res://assets/audio/gameplay/explosions//SFX_Explosion_05.wav"), preload("res://assets/audio/gameplay/explosions//SFX_Explosion_08.wav")]
@@ -21,7 +21,7 @@ func _ready():
 func _on_animation_ended(name):
 	emit_signal("end_explosion")
 	get_parent().call_deferred("remove_child", self)
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	call_deferred("queue_free")
 
 func _physics_process(delta):

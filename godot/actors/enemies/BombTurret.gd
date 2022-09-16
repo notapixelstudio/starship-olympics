@@ -3,11 +3,11 @@ extends CollisionObject2D
 class_name BombTurret
 
 var arena
-export (Resource) var owned_by_species 
-export (String) var owned_by_player
-export (PackedScene) var bomb_scene
+@export (Resource) var owned_by_species 
+@export (String) var owned_by_player
+@export (PackedScene) var bomb_scene
 var owner_ship: Ship
-onready var sprite = $Turret
+@onready var sprite = $Turret
 
 const laser_color = Color(1.0, .329, .298)
 var target_pos = []
@@ -80,7 +80,7 @@ func shoot():
 		return
 	is_shooting = true
 	var target_impulse = target - position
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	target_impulse = target - position
 
 		

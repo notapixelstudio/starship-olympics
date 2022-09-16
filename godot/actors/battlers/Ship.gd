@@ -1,18 +1,18 @@
-tool
+@tool
 extends RigidBody2D
 """
-Node for the RigidBody and Ship physics
+Node for the RigidBody3D and Ship physics
 it will get as export variable the battle template (containing the species values)
 and its keyboard control
 """
 class_name Ship
 
-export var debug_enabled = false
-export (String) var controls = "kb1"
-export var absolute_controls : bool= true
-export (Resource) var species
+@export var debug_enabled = false
+@export (String) var controls = "kb1"
+@export var absolute_controls : bool= true
+@export (Resource) var species
 
-export var forward_bullet_scene : PackedScene
+@export var forward_bullet_scene : PackedScene
 
 var controls_enabled = false
 
@@ -68,8 +68,16 @@ const MIN_DRIFT := 400.0
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
-var responsive = false setget change_engine
-var info_player setget set_info_player
+var responsive = false :
+	get:
+		return responsive # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of change_engine
+var info_player :
+	get:
+		return info_player # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_info_player
 
 func set_info_player(value):
 	info_player = value
@@ -103,11 +111,11 @@ var bomb_count = 0
 
 var teleport_to = null
 
-onready var player = name
-onready var skin = $Graphics
-onready var charging_sfx = $charging
-onready var ammo = $PlayerInfo.ammo
-onready var target_dest = $TargetDest
+@onready var player = name
+@onready var skin = $Graphics
+@onready var charging_sfx = $charging
+@onready var ammo = $PlayerInfo.ammo
+@onready var target_dest = $TargetDest
 
 
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
@@ -151,7 +159,11 @@ func initialize():
 
 signal spawned
 
-var bombs_enabled : bool = true setget set_bombs_enabled
+var bombs_enabled : bool = true :
+	get:
+		return bombs_enabled # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_bombs_enabled
 var bomb_type
 var default_bomb_type
 
@@ -199,7 +211,7 @@ func _enter_tree():
 	
 	update_weapon_indicator()
 	
-	# shields always start off
+	# shields always start unchecked
 	$Shields.switch_off()
 	
 	emit_signal('spawned', self)
@@ -214,13 +226,13 @@ func make_invincible():
 	invincible = true
 	if skin:
 		skin.invincible()
-	yield(get_tree().create_timer(0.1), "timeout")
-	yield(skin, "stop_invincible")
+	await get_tree().create_timer(0.1).timeout
+	await skin.stop_invincible
 	invincible = false
 	
 func _ready():
 	disable_controls()
-	dead_ship_instance = dead_ship_scene.instance()
+	dead_ship_instance = dead_ship_scene.instantiate()
 	dead_ship_instance.ship = self
 	skin.ship_texture = species.ship
 	# skin.invincible(1.0)
@@ -239,11 +251,11 @@ func _ready():
 	
 	reset_charge()
 	
-	# if we are on a proper team, switch on the outline
+	# if we are checked a proper team, switch checked the outline
 	if info_player.has_proper_team():
-		$Graphics/Sprite.material.set_shader_param('active', true)
+		$Graphics/Sprite2D.material.set_shader_parameter('active', true)
 		var color = info_player.get_team_color()
-		$Graphics/Sprite.material.set_shader_param('color', color)
+		$Graphics/Sprite2D.material.set_shader_parameter('color', color)
 	
 func change_engine(value: bool):
 	responsive = value
@@ -263,7 +275,7 @@ func _integrate_forces(state):
 	set_applied_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
-	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
+	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch unchecked when charging enough (and during dashes)
 	
 	# check if we need to limit thrust
 	var thrust = THRUST
@@ -271,15 +283,15 @@ func _integrate_forces(state):
 		thrust = min(thrust, ON_ICE_MAX_THRUST)
 		
 	if not absolute_controls:
-		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusting))
+		apply_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusting))
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
-		#apply_impulse(Vector2(),target_velocity*thrust)
-		add_central_force(target_velocity*thrust*int(thrusting))
+		#apply_impulse(target_velocity*thrust, Vector2())
+		apply_central_force(target_velocity*thrust*int(thrusting))
 		
 	if entity.has('Flowing'):
-		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
+		apply_impulse(entity.get_node('Flowing').get_flow().get_flow_vector(position), Vector2())
 		
 	# setting a maximum torque should prevent ship oscillation
 	set_applied_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
@@ -304,10 +316,10 @@ func _integrate_forces(state):
 	#	xform.origin.y = height
 
 	# clamp velocity
-	#state.linear_velocity = state.linear_velocity.clamped(max_velocity)
+	#state.linear_velocity = state.linear_velocity.clamp(max_velocity)
 	
 	if is_on_ice():
-		# brake if charging on ice
+		# brake if charging checked ice
 		if charging:
 			state.linear_velocity *= ON_ICE_CHARGE_BRAKE
 			
@@ -417,7 +429,7 @@ func _physics_process(delta):
 	phasing_cooldown -= delta
 	
 	if phasing_cooldown <= 0 and entity.get('Phasing').enabled:
-		#yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with phase-through checks
+		#await get_tree().create_timer(0.2).timeout # wait a bit to be lenient with phase-through checks
 		entity.get('Phasing').disable()
 	
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
@@ -459,11 +471,11 @@ func fire(override_charge = -1, dash_only = false):
 		# check if we need to limit dash
 		if is_on_ice():
 			recoil = min(recoil, ON_ICE_MAX_DASH)
-		apply_impulse(Vector2(0,0), Vector2(recoil, 0).rotated(rotation)) # recoil only if dashing
+		apply_impulse(Vector2(recoil, 0).rotated(rotation), Vector2(0,0)) # recoil only if dashing
 	
 	if golf:
 		var impulse = charge_impulse*ARKABALL_MULTIPLIER
-		var arkaball = arkaball_scene.instance()
+		var arkaball = arkaball_scene.instantiate()
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
@@ -507,7 +519,7 @@ func fire(override_charge = -1, dash_only = false):
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	$Tween.remove_all()
-	$Graphics/Sprite.scale = DASH_RESTORED
+	$Graphics/Sprite2D.scale = DASH_RESTORED
 	
 	if will_dash:
 		entity.get('Dashing').enable()
@@ -515,7 +527,7 @@ func fire(override_charge = -1, dash_only = false):
 		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
 		
 	if should_reload and reload_time > 0: # negative == no automatic reload
-		yield(get_tree().create_timer(reload_time), "timeout")
+		await get_tree().create_timer(reload_time).timeout
 		ammo.reload()
 		
 func reset_charge():
@@ -553,7 +565,7 @@ func damage(hazard, damager : Ship):
 		
 		# slight, invisible invincibility
 		invincible = true
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		invincible = false
 	
 func die(killer : Ship, for_good = false):
@@ -564,7 +576,7 @@ func die(killer : Ship, for_good = false):
 		
 		# skin.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		if info_player.lives >= 0:
 			info_player.lives -= 1
 		emit_signal("dead", self, killer, for_good)
@@ -620,29 +632,29 @@ const DASH_FAT = Vector2(0.8,1.2)
 
 func dash_init_appearance():
 	$Tween.remove_all()
-	$Graphics/Sprite.scale = DASH_RESTORED
+	$Graphics/Sprite2D.scale = DASH_RESTORED
 	$DashParticles.restart()
 	$DashParticles.emitting = false
 	$DashParticles.visible = false
 	
 func dash_restore_appearance():
 	$Tween.remove_all()
-	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_RESTORED, 0.5,
+	$Tween.interpolate_property($Graphics/Sprite2D, "scale", $Graphics/Sprite2D.scale, DASH_RESTORED, 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
 	$Tween.start()
 	$DashFxTimer.start(0.1)
-	yield($DashFxTimer, 'timeout')
+	await $DashFxTimer.timeout
 	$DashParticles.emitting = false
 	
 func dash_fat_appearance():
 	$Tween.remove_all()
-	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
+	$Tween.interpolate_property($Graphics/Sprite2D, "scale", $Graphics/Sprite2D.scale, DASH_FAT, MAX_CHARGE,
 		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()
 
 func dash_thin_appearance():
 	$DashFxTimer.stop()
-	$Graphics/Sprite.scale = DASH_THIN
+	$Graphics/Sprite2D.scale = DASH_THIN
 	$DashParticles.emitting = true
 	$DashParticles.visible = true
 	
@@ -721,7 +733,7 @@ func unwield_scythe():
 const Flail = preload('res://actors/weapons/Flail.tscn')
 var the_flail = null
 func wield_flail():
-	the_flail = Flail.instance()
+	the_flail = Flail.instantiate()
 	the_flail.position = global_position
 	the_flail.rotation = global_rotation
 	get_parent().add_child(the_flail)
@@ -743,7 +755,7 @@ func unwield_drill():
 const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
 
 func drop_powerup(type):
-	var powerup = PowerupScene.instance()
+	var powerup = PowerupScene.instantiate()
 	powerup.type = type
 	powerup.appear = false
 	var behind = Vector2(-1,0).rotated(global_rotation)
@@ -843,7 +855,7 @@ func tap():
 #	var amount = 1
 #	for i in range(amount):
 #		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
-#		var bullet = forward_bullet_scene.instance()
+#		var bullet = forward_bullet_scene.instantiate()
 #		get_parent().add_child(bullet)
 #		bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
 #		bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
@@ -861,15 +873,15 @@ func submerge():
 	under = true
 	z_as_relative = false
 	z_index = -50
-	set_collision_layer_bit(0, false)
-	set_collision_layer_bit(18, true)
+	set_collision_layer_value(0, false)
+	set_collision_layer_value(18, true)
 	
 func emerge():
 	under = false
 	z_as_relative = true
 	z_index = 0
-	set_collision_layer_bit(0, true)
-	set_collision_layer_bit(18, false)
+	set_collision_layer_value(0, true)
+	set_collision_layer_value(18, false)
 	
 signal frozen
 func freeze():
@@ -890,7 +902,7 @@ func _on_Ship_near_area_entered(sth, this):
 func start_golf():
 	golf = true
 	update_weapon_indicator()
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	charge()
 
 func get_player():
@@ -920,7 +932,7 @@ signal done
 func intro():
 	enable_controls()
 	make_invincible()
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	emit_signal('done')
 
 func disable_controls():

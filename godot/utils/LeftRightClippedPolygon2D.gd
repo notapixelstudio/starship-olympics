@@ -1,7 +1,7 @@
 extends Polygon2D
 
-export var shape_path : NodePath
-export (String, 'left', 'right') var side = 'left'
+@export var shape_path : NodePath
+@export (String, 'left', 'right') var side = 'left'
 
 var shape : GShape = null
 
@@ -20,4 +20,4 @@ func _process(delta):
 		elif side == 'right':
 			result.append(Vector2(max(0, p.x), p.y))
 			
-	self.polygon = PoolVector2Array(result)
+	self.polygon = PackedVector2Array(result)

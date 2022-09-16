@@ -1,19 +1,19 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://actors/environments/Field.gd" type="Script" id=1]
-[ext_resource path="res://assets/shaders/textures/base_texture.png" type="Texture" id=2]
+[ext_resource path="res://assets/shaders/textures/base_texture.png" type="Texture2D" id=2]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
-[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=4]
+[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture2D" id=4]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=6]
 [ext_resource path="res://actors/environments/components/Flow.gd" type="Script" id=7]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/components/Hill.gd" type="Script" id=9]
-[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/environments/crown_symbol.png" type="Texture" id=11]
+[ext_resource path="res://addons/ECM/icons/Component2D.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/sprites/environments/crown_symbol.png" type="Texture2D" id=11]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=12]
 [ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=13]
-[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture2D" id=14]
 [ext_resource path="res://actors/environments/IsoPolygon.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -32,7 +32,7 @@ func get_strategy(ship, distance, game_mode):
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 50, 50 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -60,7 +60,7 @@ z_index = 10
 z_as_relative = false
 color = Color( 0.3, 0.3, 0.3, 0.3 )
 texture = ExtResource( 2 )
-polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
+polygon = PackedVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 
 [node name="Line2D" type="Line2D" parent="."]
 self_modulate = Color( 1.24, 1.24, 1.24, 1 )
@@ -73,7 +73,7 @@ texture_mode = 50
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 10757
-gravity_vec = Vector2( 0, -0.5 )
+gravity_direction = Vector2( 0, -0.5 )
 linear_damp = 1.0
 angular_damp = 10.0
 script = SubResource( 2 )
@@ -131,7 +131,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 10 )
 }
 
-[node name="Crown" type="Sprite" parent="Area2D/Entity/Hill"]
+[node name="Crown" type="Sprite2D" parent="Area2D/Entity/Hill"]
 texture = ExtResource( 11 )
 
 [node name="Basket" type="Node" parent="Area2D/Entity"]
@@ -163,14 +163,14 @@ collision_mask = 512
 shape = SubResource( 4 )
 disabled = true
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 100
 lifetime = 2.0
 fract_delta = false
 process_material = SubResource( 5 )
 
-[node name="Flag" type="Sprite" parent="."]
+[node name="Flag" type="Sprite2D" parent="."]
 texture = ExtResource( 14 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

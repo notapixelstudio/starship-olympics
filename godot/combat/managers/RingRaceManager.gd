@@ -6,7 +6,7 @@ func start():
 	gates = get_tree().get_nodes_in_group('gates')
 	
 	for gate in gates:
-		gate.connect('crossed', self, '_on_gate_crossed')
+		gate.connect('crossed',Callable(self,'_on_gate_crossed'))
 		
 func _on_gate_crossed(by_what, gate):
 	if by_what is Ship:

@@ -2,11 +2,11 @@
 
 [ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture" id=6]
-[ext_resource path="res://assets/patterns/wall/clear.png" type="Texture" id=7]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/patterns/wall/clear.png" type="Texture2D" id=7]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=8]
 
 [node name="Wall" type="StaticBody2D" groups=["wall"]]
@@ -53,23 +53,23 @@ enabled = false
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.309804, 0.247059, 0.235294, 1 )
 texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+polygon = PackedVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="InnerPolygon2D" type="Polygon2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0.1 )
 scale = Vector2( 0.995648, 1.05232 )
 texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+polygon = PackedVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="Grid" type="Polygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0.368627 )
 color = Color( 0.847656, 0.847656, 0.847656, 1 )
 texture = ExtResource( 6 )
-polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+polygon = PackedVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="line" type="Line2D" parent="."]
 z_as_relative = false
-points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -99.9999, -100, 0, -100 )
+points = PackedVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -99.9999, -100, 0, -100 )
 width = 48.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1
@@ -81,7 +81,7 @@ self_modulate = Color( 0.596078, 0.596078, 0.596078, 1 )
 position = Vector2( -1.39876e-06, 32 )
 z_index = -10
 z_as_relative = false
-points = PoolVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
+points = PackedVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
 width = 48.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 7 )

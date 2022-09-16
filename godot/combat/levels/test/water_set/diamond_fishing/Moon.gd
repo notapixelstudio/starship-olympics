@@ -1,8 +1,8 @@
 extends Node2D
 
-export var radius = 1700.0
-export var phase = -PI/2
-export var speed = 0.1
+@export var radius = 1700.0
+@export var phase = -PI/2
+@export var speed = 0.1
 var t = 0.0
 
 func _ready():

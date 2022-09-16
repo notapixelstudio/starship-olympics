@@ -17,7 +17,7 @@ func start():
 		laps[ship] = 0
 		
 		# add a camera eye to anticipate each ship
-		#var eye = CameraEye.instance()
+		#var eye = CameraEye.instantiate()
 		#eyes[ship] = eye
 		#eye.position = ship.position
 		#global.arena.battlefield.add_child(eye)

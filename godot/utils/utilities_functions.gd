@@ -6,8 +6,8 @@ signal random_choice
 signal all_ready
 
 var ready = false
-onready var players = get_node("players_containers")
-onready var ready_screen = get_node("CanvasLayer/ReadyScreen")
+@onready var players = get_node("players_containers")
+@onready var ready_screen = get_node("CanvasLayer/ReadyScreen")
 
 var p2
 var fire_buttons = []
@@ -23,10 +23,10 @@ func _ready():
 	var joypads  = Input.get_connected_joypads()
 	for player in players.get_children() :
 		#connect the ready for fight signal
-		player.connect("selected", self, "_on_player_select", [player.name])
-		player.connect("deselected", self, "_on_player_deselect", [player.name])
-		player.connect("leave", self, "_on_player_leaves", [player.name])
-		player.connect("ready_to_fight", self, "ready_to_fight")
+		player.connect("selected",Callable(self,"_on_player_select").bind(player.name))
+		player.connect("deselected",Callable(self,"_on_player_deselect").bind(player.name))
+		player.connect("leave",Callable(self,"_on_player_leaves").bind(player.name))
+		player.connect("ready_to_fight",Callable(self,"ready_to_fight"))
 		player.disable_choice()
 		
 func ready_to_fight():
@@ -43,7 +43,7 @@ func _gui_input(event):
 		if event.is_action_pressed(button):
 			for player in players.get_children():
 				if not player.joined:
-					fire_buttons.remove(fire_buttons.find(button))
+					fire_buttons.remove_at(fire_buttons.find(button))
 					player.set_commands(button)
 					break
 					
@@ -54,7 +54,7 @@ func _gui_input(event):
 				can_change = false
 				break
 		if can_change:
-			get_tree().change_scene(global.from_scene)					
+			get_tree().change_scene_to_file(global.from_scene)					
 					
 		
 func _on_player_leaves(player):
@@ -94,10 +94,10 @@ func simulate_choice(final_choice):
 	var n_characters = int(len(global.unlocked_species))
 	for times in range(0,how_many_times):
 		var wait_time = 0.1 + 0.01*times
-		yield(get_tree().create_timer(wait_time), "timeout")
+		await get_tree().create_timer(wait_time).timeout
 		# you should cycle around the unlocked_species
 		p2.change_species(global.unlocked_species[(times+final_choice)%n_characters])
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	p2.change_species(global.unlocked_species[final_choice])
 	emit_signal("all_ready")
 

@@ -1,10 +1,10 @@
-tool
+@tool
 extends Ball
 
 var active := false
 
 func _ready():
-	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
+	Events.connect('holdable_loaded',Callable(self,'_on_holdable_loaded'))
 	
 func _on_holdable_loaded(holdable, ship):
 	if holdable == self:

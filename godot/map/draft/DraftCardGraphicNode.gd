@@ -1,15 +1,19 @@
 extends Card
 
 var card_content: DraftCard
-export var order_id : int
+@export var order_id : int
 class_name DraftCardGraphicNode
 
-onready var chosen : bool = false setget set_chosen
+@onready var chosen : bool = false :
+	get:
+		return chosen # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_chosen
 
 func set_chosen(v):
 	chosen = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	$Ground/Select.visible = chosen
 	
 func set_minigame_label(name):
@@ -73,13 +77,13 @@ func set_content_card(card: DraftCard):
 	
 # @override
 func select():
-	.select()
-	$"%SuitTopLeft".self_modulate = Color.white
-	$"%SuitBottomRight".self_modulate = Color.white
+	super.select()
+	$"%SuitTopLeft".self_modulate = Color.WHITE
+	$"%SuitBottomRight".self_modulate = Color.WHITE
 	
 # @override
 func tap(author):
-	.tap(author)
+	super.tap(author)
 	if author is Ship:
 		Events.emit_signal("card_tapped", author, self)
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))

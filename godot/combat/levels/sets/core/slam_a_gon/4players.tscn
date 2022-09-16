@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=4]
+[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture2D" id=3]
+[ext_resource path="res://assets/sprites/signs/O.png" type="Texture2D" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
@@ -12,9 +12,9 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=15]
+[ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture2D" id=15]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=16]
-[ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=17]
+[ext_resource path="res://assets/patterns/stripes.png" type="Texture2D" id=17]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=19]
 
 [node name="Arena" instance=ExtResource( 10 )]
@@ -28,7 +28,7 @@ volume_db = 10.0
 pitch_scale = 1.2
 bus = "SFX_effect"
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 15 )
 centered = false
 
@@ -53,14 +53,14 @@ texture = ExtResource( 17 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
 bg_color = Color( 0.28, 0.19082, 0.1428, 1 )
 
-[node name="O" type="Sprite" parent="Battlefield/Background" index="3"]
+[node name="O" type="Sprite2D" parent="Battlefield/Background" index="3"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O" index="0"]
-points = PoolVector2Array( -600, -612.8, -120, -120 )
+points = PackedVector2Array( -600, -612.8, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -68,7 +68,7 @@ end_cap_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background/O" index="1"]
 position = Vector2( 880, 880 )
-points = PoolVector2Array( -760, -760, -300, -292.8 )
+points = PackedVector2Array( -760, -760, -300, -292.8 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -76,7 +76,7 @@ end_cap_mode = 2
 
 [node name="Line2D3" type="Line2D" parent="Battlefield/Background/O" index="2"]
 position = Vector2( 880, 880 )
-points = PoolVector2Array( -1000, -760, -1460, -292.8 )
+points = PackedVector2Array( -1000, -760, -1460, -292.8 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -84,7 +84,7 @@ end_cap_mode = 2
 
 [node name="Line2D4" type="Line2D" parent="Battlefield/Background/O" index="3"]
 position = Vector2( 880, 880 )
-points = PoolVector2Array( -760, -1000, -280, -1492.8 )
+points = PackedVector2Array( -760, -1000, -280, -1492.8 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -226,7 +226,7 @@ rotation = -1.5708
 controls = "joy1"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 5.29395e+15, 5.29395e+15 )
 smoothing_speed = 0.3
 

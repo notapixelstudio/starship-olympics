@@ -5,7 +5,7 @@
 # - Use CanvasItem.show_behind_parent or Node2D.z_index (Inspector) to control its layer visibility
 # - 'target' and 'target_path' (the 'target vars') will update each other as they are modified
 # - If you assign an empty 'target var', the value will automatically update to grab the parent.
-#     - To completely turn off the Trail2D, set its `trail_length` to 0
+#     - To completely turn unchecked the Trail2D, set its `trail_length` to 0
 # - The node will automatically update its target vars when it is moved around in the tree
 # - You can set the "persistance" mode to have it...
 #     - vanish the trail over time (Off)
@@ -33,37 +33,45 @@ signal point_added
 enum Persistence {
 	FRAME_RATE_INDIPENDENT,
 	OFF,         # Do not persist. Remove all points after the trail_length.
-	ALWAYS,      # Always persist. Do not remove any points.
-	CONDITIONAL, # Sometimes persist. Choose an algorithm for when to add and remove points.
+	ALWAYS,      # Always persist. Do not remove_at any points.
+	CONDITIONAL, # Sometimes persist. Choose an algorithm for when to add and remove_at points.
 }
 
 enum PersistWhen {
-	ON_MOVEMENT, # Add points during movement and remove points when not moving.
-	CUSTOM,      # Override _should_grow() and _should_shrink() to define when to add/remove points.
+	ON_MOVEMENT, # Add points during movement and remove_at points when not moving.
+	CUSTOM,      # Override _should_grow() and _should_shrink() to define when to add/remove_at points.
 }
 
 ##### PROPERTIES #####
 
 # The target node to track
-var target: Node2D setget set_target
+var target: Node2D :
+	get:
+		return target # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_target
 
 	
 # The NodePath to the target
-export var target_path: NodePath = @".." setget set_target_path
+@export var target_path: NodePath = @".." :
+	get:
+		return target_path # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_target_path
 # If not persisting, the number of points that should be allowed in the trail
-export var trail_length: int = 10
+@export var trail_length: int = 10
 # To what degree the trail should remain in existence before automatically removing points.
-export(int, "FrameRateIndependent", "Off", "Always", "Conditional") var persistence: int = Persistence.FRAME_RATE_INDIPENDENT
+@export var persistence: int = Persistence.FRAME_RATE_INDIPENDENT # (int, "FrameRateIndependent", "Off", "Always", "Conditional")
 # During conditional persistance, which persistance algorithm to use
-export(int, "On Movement", "Custom") var persistence_condition: int = PersistWhen.ON_MOVEMENT
-# During conditional persistance, how many points to remove per frame
-export var degen_rate: int = 1
+@export var persistence_condition: int = PersistWhen.ON_MOVEMENT # (int, "On Movement", "Custom")
+# During conditional persistance, how many points to remove_at per frame
+@export var degen_rate: int = 1
 # If true, automatically set z_index to be one less than the 'target'
-export var auto_z_index: bool = true
+@export var auto_z_index: bool = true
 # If true, will automatically setup a gradient for a gradually transparent trail
-export var auto_alpha_gradient: bool = true
-export var min_dist : float = 4.0
-export var time_alive_per_point : float = 1.0
+@export var auto_alpha_gradient: bool = true
+@export var min_dist : float = 4.0
+@export var time_alive_per_point : float = 1.0
 
 var monitor = []
 
@@ -73,7 +81,7 @@ var actual_length = 0.0
 ##### NOTIFICATIONS #####
 
 func _init():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 	global_position = Vector2()
 	global_rotation = 0
 	if auto_alpha_gradient and not gradient:
@@ -148,7 +156,7 @@ func _process(delta: float):
 						to_be_deleted_count += 1
 						remove_custom_point(0)
 				for d in to_be_deleted_count:
-					monitor.remove(0)
+					monitor.remove_at(0)
 			Persistence.OFF:
 				add_custom_point(target.global_position)
 				while get_point_count() > trail_length :
@@ -191,7 +199,7 @@ func erase_trail():
 	monitor = []
 	for _i in range(get_point_count()):
 		remove_custom_point(0)
-	yield(get_tree().create_timer(0.01), "timeout")
+	await get_tree().create_timer(0.01).timeout
 	set_process(true)
 
 ##### PRIVATE METHODS #####

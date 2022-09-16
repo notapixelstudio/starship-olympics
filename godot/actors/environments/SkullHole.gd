@@ -1,13 +1,13 @@
 extends Area2D
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player: InfoPlayer
 var full := false
 
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 
 func set_player(p: InfoPlayer) -> void:
@@ -24,9 +24,9 @@ func _on_SkullHole_body_entered(body):
 		
 	var done := false
 	if body is Ship and body.get_cargo().check_type('skull') and body.get_player() == player:
-		body.get_cargo().empty()
+		body.get_cargo().is_empty()
 		done = true
-	elif body is Ball and body.has_type('skull') and body.active: # active is needed to score points on newly created skulls
+	elif body is Ball and body.has_type('skull') and body.active: # active is needed to score points checked newly created skulls
 		body.queue_free()
 		done = true
 		

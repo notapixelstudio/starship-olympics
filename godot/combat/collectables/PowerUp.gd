@@ -1,13 +1,17 @@
-tool
+@tool
 
 extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' setget set_type
-export var appear = true
-export var tease = false
-export var random_types = []
+@export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' :
+	get:
+		return type # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_type
+@export var appear = true
+@export var tease = false
+@export var random_types = []
 
 signal collected
 
@@ -50,7 +54,7 @@ const COLOR = {
 
 func _ready():
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 		
 	if len(random_types) > 0:
 		self.set_type(random_types[randi() % len(random_types)])
@@ -59,10 +63,10 @@ func _ready():
 	
 	if tease:
 		$AnimationPlayer.play('tease')
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 	if appear:
 		$AnimationPlayer.play('AppearFhuFhuFhu')
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play('idle')
 	activate()
 	
@@ -71,7 +75,7 @@ func set_type(v):
 	refresh_type()
 	
 func refresh_type():
-	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')
+	$Sprite2D.texture = load('res://assets/sprites/powerups/'+type+'.png')
 	$TeleportBeam.modulate = self.get_color(type)
 	
 func activate():

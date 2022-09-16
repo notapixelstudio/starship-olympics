@@ -7,7 +7,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=7]
-[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=8]
+[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture2D" id=8]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Flowsnake.tres" type="Resource" id=10]
 
@@ -19,7 +19,7 @@ style = ExtResource( 9 )
 [node name="SurvivalModeManager" parent="Managers" index="15"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
 
@@ -62,7 +62,7 @@ controls = "joy1"
 species = ExtResource( 7 )
 cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 390.625, 390.625 )
 smoothing_speed = 0.3
 

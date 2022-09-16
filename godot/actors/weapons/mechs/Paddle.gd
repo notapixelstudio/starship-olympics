@@ -2,7 +2,7 @@ extends RigidBody2D
 
 class_name Paddle
 
-export var follow_rotation : bool = true
+@export var follow_rotation : bool = true
 
 var linked_to : Node2D = null
 
@@ -15,11 +15,11 @@ func _physics_process(delta):
 func _on_DockArea_body_entered(body):
 	if not linked_to and body is Ship:
 		link(body)
-		body.connect('dead', self, '_on_ship_dead', [], CONNECT_ONESHOT)
+		body.connect('dead',Callable(self,'_on_ship_dead').bind(),CONNECT_ONE_SHOT)
 		
 func link(to_what):
 	linked_to = to_what
-	mode = MODE_KINEMATIC
+	mode = FREEZE_MODE_KINEMATIC
 	
 	if linked_to is Ship:
 		modulate = linked_to.species.color
@@ -30,8 +30,8 @@ func unlink():
 		modulate = Color(1,1,1,1)
 		linked_to.supercharge = 0
 		
-	if linked_to.is_connected('dead', self, '_on_ship_dead'):
-		linked_to.disconnect('dead', self, '_on_ship_dead')
+	if linked_to.is_connected('dead',Callable(self,'_on_ship_dead')):
+		linked_to.disconnect('dead',Callable(self,'_on_ship_dead'))
 	linked_to = null
 	mode = MODE_RIGID
 

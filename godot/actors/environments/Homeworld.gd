@@ -1,8 +1,12 @@
-tool
+@tool
 extends "res://actors/environments/Planet.gd"
 class_name Homeworld
 
-export (String, 'animals/a00', 'animals/a01', 'animals/a02', 'animals/a03', 'animals/a04') var kind := 'animals/a00' setget set_kind, get_kind
+@export (String, 'animals/a00', 'animals/a01', 'animals/a02', 'animals/a03', 'animals/a04') var kind := 'animals/a00' :
+	get:
+		return kind # TODOConverter40 Copy here content of get_kind
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_kind
 
 const COLORS := {
 	'animals/a00': Color('#ec7505'),
@@ -13,17 +17,17 @@ const COLORS := {
 }
 
 func set_ground_radius(v):
-	.set_ground_radius(v)
+	super.set_ground_radius(v)
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	$Alien.scale = Vector2(1.4,1.4)*v/200.0
 
 func set_kind(v):
 	kind = v
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	$Alien.texture = load('res://assets/sprites/' + kind + '.png')
-	$Sprite.modulate = COLORS[kind]
+	$Sprite2D.modulate = COLORS[kind]
 
 func get_kind():
 	return kind

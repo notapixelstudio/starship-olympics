@@ -1,17 +1,17 @@
-extends Position2D
+extends Marker2D
 
-export var target_path: NodePath = @".."
+@export var target_path: NodePath = @".."
 
-onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
-onready var player_id = $Wrapper/Scaled/Colored/PlayerID
-onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
-onready var target_entity = ECM.E(target)
-onready var point_score = $Wrapper/Scaled/Colored/PointsScored
-onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
-onready var minisun = $Wrapper/Scaled/Colored/Minisun
-onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
-onready var minisun_outline = $Wrapper/Scaled/Minisun
-onready var minimoon_outline = $Wrapper/Scaled/Minimoon
+@onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
+@onready var player_id = $Wrapper/Scaled/Colored/PlayerID
+@onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
+@onready var target_entity = ECM.E(target)
+@onready var point_score = $Wrapper/Scaled/Colored/PointsScored
+@onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
+@onready var minisun = $Wrapper/Scaled/Colored/Minisun
+@onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
+@onready var minisun_outline = $Wrapper/Scaled/Minisun
+@onready var minimoon_outline = $Wrapper/Scaled/Minimoon
 
 func _ready():
 	if target.info_player:
@@ -30,8 +30,8 @@ func _ready():
 			
 			var team_color = target.info_player.get_team_color()
 			player_team_outline.modulate = team_color
-			minisun_outline.material.set_shader_param('color', team_color)
-			minimoon_outline.material.set_shader_param('color', team_color)
+			minisun_outline.material.set_shader_parameter('color', team_color)
+			minimoon_outline.material.set_shader_parameter('color', team_color)
 			
 	$Wrapper/Scaled/Colored.modulate = target.species.color
 	
@@ -66,7 +66,7 @@ func update_score_ring():
 
 func _on_Royal_enabled():
 	$Wrapper/RoyalGlow.visible = true
-	yield(get_tree(), "idle_frame") # wait for cargo to load
+	await get_tree().idle_frame # wait for cargo to load
 	if target_entity.has('Cargo'):
 		var what = target_entity.get('Cargo').what
 		$Wrapper/Crown.visible = what.type == Crown.types.CROWN
@@ -96,7 +96,7 @@ func _on_Royal_disabled():
 	$Wrapper/TennisBall.visible = false
 	
 	# point_score.appear()
-	# yield(point_score, "end")
+	# await point_score.end
 	# point_score.hide()
 	return
 	

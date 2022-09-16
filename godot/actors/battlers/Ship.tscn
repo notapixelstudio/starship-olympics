@@ -4,10 +4,10 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
 [ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=3]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=5]
-[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=5]
+[ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture2D" id=6]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=8]
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
 [ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
 [ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=11]
@@ -18,9 +18,9 @@
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/battlers/TargetDest.gd" type="Script" id=17]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
-[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=20]
-[ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=21]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture2D" id=20]
+[ext_resource path="res://assets/sprites/signs/O.png" type="Texture2D" id=21]
 [ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=22]
 [ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=23]
 [ext_resource path="res://combat/traits/Collector.tscn" type="PackedScene" id=24]
@@ -33,12 +33,12 @@
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
 [ext_resource path="res://actors/weapons/ForwardBullet.tscn" type="PackedScene" id=33]
-[ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
+[ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture2D" id=34]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
-[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
+[ext_resource path="res://assets/shaders/outline.gdshader" type="Shader" id=38]
 [ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=39]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=40]
-[ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=41]
+[ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture2D" id=41]
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=42]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -50,10 +50,14 @@ resource_local_to_scene = true
 radius = 48.0
 
 [sub_resource type="GDScript" id=11]
-script/source = "extends Position2D
-tool
+script/source = "extends Marker2D
+@tool
 
-export var ship_texture : Texture setget change_texture
+@export var ship_texture : Texture2D :
+	get:
+		return ship_texture # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of change_texture
 const TWEEN_DURATION = 0.3
 
 var position_start = Vector2()
@@ -61,27 +65,27 @@ var position_start = Vector2()
 signal stop_invincible
 signal completed
 
-onready var tween = $Tween
-onready var anim = $AnimationPlayer
+@onready var tween = $Tween
+@onready var anim = $AnimationPlayer
 
 func change_texture(new_value):
 	ship_texture = new_value
 	if not is_inside_tree():
-		yield(self, \"ready\")
-	$Sprite.texture = ship_texture
+		await self.ready
+	$Sprite2D.texture = ship_texture
 		
 func play_disappear():
 	anim.play(\"disappear\")
-	yield(anim, \"animation_finished\")
+	await anim.animation_finished
 
 func play_idle():
 	anim.play(\"idle\")
-	yield(anim, \"animation_finished\")
+	await anim.animation_finished
 
 func invincible(offset = 0):
 	anim.play(\"invincible\")
 	anim.seek(offset)
-	yield(anim, \"animation_finished\")
+	await anim.animation_finished
 	emit_signal(\"stop_invincible\")
 "
 
@@ -106,12 +110,12 @@ radius = 300.0
 [sub_resource type="CanvasItemMaterial" id=6]
 
 [sub_resource type="Gradient" id=7]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 0.199219, 0, 0 )
 
-[sub_resource type="GradientTexture" id=8]
+[sub_resource type="GradientTexture2D" id=8]
 gradient = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 30.0
 flag_disable_z = true
@@ -131,7 +135,7 @@ color_ramp = SubResource( 8 )
 collision_mask = 1169
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
-contacts_reported = 10
+max_contacts_reported = 10
 contact_monitor = true
 angular_damp = 80.0
 script = ExtResource( 1 )
@@ -185,7 +189,7 @@ shape = SubResource( 2 )
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
-[node name="Graphics" type="Position2D" parent="."]
+[node name="Graphics" type="Marker2D" parent="."]
 scale = Vector2( 1.25, 1.25 )
 script = SubResource( 11 )
 ship_texture = ExtResource( 41 )
@@ -198,13 +202,13 @@ z_as_relative = false
 
 [node name="Crosshair" type="Line2D" parent="Graphics/ChargeBar"]
 position = Vector2( -68, 0 )
-points = PoolVector2Array( 0, 0, -32, 0 )
+points = PackedVector2Array( 0, 0, -32, 0 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="ChargeBackground" type="Line2D" parent="Graphics/ChargeBar"]
 position = Vector2( -22, 0 )
-points = PoolVector2Array( 0, 0, 0, 0 )
+points = PackedVector2Array( 0, 0, 0, 0 )
 width = 20.0
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 221806672
@@ -214,7 +218,7 @@ end_cap_mode = 1
 [node name="ChargeAxis" type="Line2D" parent="Graphics/ChargeBar"]
 visible = false
 position = Vector2( -22, 0 )
-points = PoolVector2Array( 0, 0, -78.4, 0 )
+points = PackedVector2Array( 0, 0, -78.4, 0 )
 width = 2.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 221806672
@@ -223,11 +227,11 @@ texture_mode = 221806672
 visible = false
 self_modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -22, 0 )
-points = PoolVector2Array( 0, 0, 0, 0 )
+points = PackedVector2Array( 0, 0, 0, 0 )
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 221806672
 
-[node name="ArrowTip" type="Sprite" parent="Graphics/ChargeBar/Charge"]
+[node name="ArrowTip" type="Sprite2D" parent="Graphics/ChargeBar/Charge"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 0, 1 )
 show_behind_parent = true
@@ -241,11 +245,11 @@ offset = Vector2( 0, -64 )
 unique_name_in_owner = true
 visible = false
 
-[node name="BombType" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
+[node name="BombType" type="Sprite2D" parent="Graphics/ChargeBar/BombPreview"]
 self_modulate = Color( 1, 1, 1, 0.501961 )
 scale = Vector2( 0.7, 0.7 )
 
-[node name="Symbol" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
+[node name="Symbol" type="Sprite2D" parent="Graphics/ChargeBar/BombPreview"]
 self_modulate = Color( 1, 1, 1, 0.843137 )
 scale = Vector2( 0.35, 0.35 )
 
@@ -262,13 +266,13 @@ anims/invincible = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="Graphics"]
 
-[node name="Sprite" type="Sprite" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 material = SubResource( 10 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 41 )
 
 [node name="Shadow" parent="Graphics" instance=ExtResource( 40 )]
-sprite = NodePath("../Sprite")
+sprite = NodePath("../Sprite2D")
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -301,7 +305,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagField/Area2D"]
 shape = SubResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="MagField"]
+[node name="Sprite2D" type="Sprite2D" parent="MagField"]
 modulate = Color( 0.337255, 0, 1, 0.317647 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 21 )
@@ -385,12 +389,12 @@ enabled = false
 
 [node name="Debug" parent="." instance=ExtResource( 15 )]
 
-[node name="TargetDest" type="Position2D" parent="."]
+[node name="TargetDest" type="Marker2D" parent="."]
 script = ExtResource( 17 )
 
 [node name="Strategic" parent="TargetDest" instance=ExtResource( 18 )]
 
-[node name="DebugSprite" type="Sprite" parent="TargetDest"]
+[node name="DebugSprite" type="Sprite2D" parent="TargetDest"]
 visible = false
 modulate = Color( 1, 1, 1, 0.309804 )
 texture = ExtResource( 20 )
@@ -402,7 +406,7 @@ process_mode = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="DashParticles" type="Particles2D" parent="."]
+[node name="DashParticles" type="GPUParticles2D" parent="."]
 modulate = Color( 3, 3, 3, 1 )
 material = SubResource( 6 )
 position = Vector2( -56, 0 )

@@ -1,6 +1,6 @@
 extends Trait
 
 func validate():
-	.validate()
+	super.validate()
 	assert(host.has_method('start'))
 	

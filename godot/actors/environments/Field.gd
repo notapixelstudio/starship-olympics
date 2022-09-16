@@ -1,19 +1,31 @@
-tool
+@tool
 
 extends Node2D
 
 class_name Field
 
 enum TYPE { trigger, water, hostile, flow, castle, hill, basket, ghost, conquerable }
-export(TYPE) var type = TYPE.water setget set_type
+@export var type: TYPE = TYPE.water :
+	get:
+		return type # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_type
 
-export var flag_offset : int = 0 setget set_flag_offset
-export var isometric_effect = true
-export var opaque_tint : Color = Color(0,0,0,0.8) setget set_opaque_tint
+@export var flag_offset : int = 0 :
+	get:
+		return flag_offset # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_flag_offset
+@export var isometric_effect = true
+@export var opaque_tint : Color = Color(0,0,0,0.8) :
+	get:
+		return opaque_tint # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_opaque_tint
 
 func set_opaque_tint(v):
 	opaque_tint = v
-	yield(self, 'ready')
+	await self.ready
 	$IsoPolygon.opaque_tint = opaque_tint
 
 func set_type(value):
@@ -36,8 +48,8 @@ func refresh():
 	if not gshape:
 		return
 		
-	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
-		gshape.connect('changed', self, '_on_GShape_changed')
+	if not gshape.is_connected('changed',Callable(self,'_on_GShape_changed')):
+		gshape.connect('changed',Callable(self,'_on_GShape_changed'))
 		
 	$Polygon2D.polygon = gshape.to_PoolVector2Array()
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
@@ -57,7 +69,7 @@ func refresh():
 	($Area2D/Entity/CrownDropper as Component).set_enabled(type == TYPE.castle)
 	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
 	$CrownCollider.visible = type == TYPE.castle
-	$Particles2D.emitting = type == TYPE.flow
+	$GPUParticles2D.emitting = type == TYPE.flow
 	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
 	($Area2D/Entity/Basket as Component).set_enabled(type == TYPE.basket)
 	
@@ -95,12 +107,12 @@ func refresh():
 	elif type == TYPE.ghost:
 		$Line2D.default_color = Color(0.2,0.7,1,0.2)
 	
-	# hill symbol on top
+	# hill symbol checked top
 	$Area2D/Entity/Hill.position.y = -gshape.get_extents().y/2 - 60
 	
 	# configure particles
 	if type == TYPE.flow:
-		var material = $Particles2D.process_material
+		var material = $GPUParticles2D.process_material
 		
 		if $Area2D/Entity/Flow.type == $Area2D/Entity/Flow.TYPE.center:
 			material.radial_accel = $Area2D/Entity/Flow.charge * 6
@@ -110,14 +122,14 @@ func refresh():
 		# TODO direction flows
 		
 		if gshape is GCircle:
-			material.emission_shape = ParticlesMaterial.EMISSION_SHAPE_SPHERE
+			material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_SPHERE
 			material.emission_sphere_radius = gshape.radius
 		elif gshape is GRect:
-			material.emission_shape = ParticlesMaterial.EMISSION_SHAPE_BOX
+			material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
 			material.emission_box_extents = Vector3(gshape.width/2, gshape.height/2, 0)
 		else:
 			# other shapes are unupported
-			$Particles2D.emitting = false
+			$GPUParticles2D.emitting = false
 			
 	# configure buoyancy
 	if type == TYPE.water:
@@ -125,11 +137,11 @@ func refresh():
 		
 		if gshape is GCircle:
 			$Area2D.gravity_point = true
-			$Area2D.gravity_vec = Vector2(0,0) # center
+			$Area2D.gravity_direction = Vector2(0,0) # center
 			$Area2D.gravity = -98 # repulsive
 		elif gshape is GRect:
 			$Area2D.gravity_point = false
-			$Area2D.gravity_vec = Vector2(0,1)
+			$Area2D.gravity_direction = Vector2(0,1)
 			$Area2D.gravity = -49 # repulsive
 		else:
 			# other shapes are unupported
@@ -169,7 +181,7 @@ func get_gshape():
 			return child
 	return null
 	
-func _get_configuration_warning():
+func _get_configuration_warnings():
 	if not get_gshape():
 		return 'Please provide a GShape as child node to define the geometry.\n'
 	return ''

@@ -66,6 +66,6 @@ func has_proper_team() -> bool:
 func get_team_color() -> Color:
 	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')
 
-func get_ship() -> Texture:
+func get_ship() -> Texture2D:
 	return species.get_ship()
 	

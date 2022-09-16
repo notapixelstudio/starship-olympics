@@ -1,14 +1,14 @@
 extends Node
 
-export var set1 : Resource # Planet
-export var set2 : Resource # Planet
-export var set3 : Resource # Planet
-export var set4 : Resource # Planet
-export var set5 : Resource # Planet
+@export var set1 : Resource # Planet
+@export var set2 : Resource # Planet
+@export var set3 : Resource # Planet
+@export var set4 : Resource # Planet
+@export var set5 : Resource # Planet
 
-export var num_players = 2
+@export var num_players = 2
 
-onready var all_sets = [set1, set2, set3, set4, set5]
+@onready var all_sets = [set1, set2, set3, set4, set5]
 var played_levels = []
 var levels = []
 func _ready():
@@ -27,19 +27,19 @@ func next_level():
 		levels = played_levels.duplicate()
 	var last_played = levels.pop_back()
 	played_levels.append(last_played)
-	var combat = last_played.instance()
-	combat.connect("continue_session", self, "_on_continue_session", [combat])
-	combat.connect("skip", self, "_on_continue_session", [combat])
-	combat.connect("restart", self, "_on_restart", [combat])
+	var combat = last_played.instantiate()
+	combat.connect("continue_session",Callable(self,"_on_continue_session").bind(combat))
+	combat.connect("skip",Callable(self,"_on_continue_session").bind(combat))
+	combat.connect("restart",Callable(self,"_on_restart").bind(combat))
 	add_child(combat)
-	yield(combat, "battle_start")
+	await combat.battle_start
 	combat.standalone = false
 
 func _on_restart(combat):
 	var same_level = played_levels.back()
 	combat.queue_free()
 	get_tree().paused = false
-	yield(combat, 'tree_exited')
+	await combat.tree_exited
 	levels.append(same_level)
 	next_level()
 	
@@ -51,7 +51,7 @@ func _on_continue_session(combat, session_over = false):
 	"""
 	combat.queue_free()
 	get_tree().paused = false
-	yield(combat, 'tree_exited')
+	await combat.tree_exited
 	if session_over:
 		print("OVER and BOOM")
 	else:

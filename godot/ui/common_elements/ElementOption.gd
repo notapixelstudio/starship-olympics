@@ -1,14 +1,14 @@
-tool
+@tool
 extends GenericOption
 
-export (OPTION_TYPE) var elem_type = OPTION_TYPE.NUMBER
-export var suffix := ''
-onready var value_node = $Container/ValueContainer/Value
-onready var suffix_node = $Container/ValueContainer/Suffix
-onready var left = $Container/ValueContainer/left
-onready var right = $Container/ValueContainer/right
-onready var container = $Container
-onready var description_node = $Container/Description
+@export (OPTION_TYPE) var elem_type = OPTION_TYPE.NUMBER
+@export var suffix := ''
+@onready var value_node = $Container/ValueContainer/Value
+@onready var suffix_node = $Container/ValueContainer/Suffix
+@onready var left = $Container/ValueContainer/left
+@onready var right = $Container/ValueContainer/right
+@onready var container = $Container
+@onready var description_node = $Container/Description
 
 const focus_color = Color(1,1,1)
 
@@ -106,14 +106,14 @@ func _input(event):
 
 func _on_Element_focus_entered():
 	set_process_input(true)
-	self.add_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
+	self.add_theme_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
 	description_node.modulate = focus_color.darkened(0.1)
 	value_node.modulate = focus_color.darkened(0.1)
 	value_node.set("custom_colors/font_color",Color(0,0,0))
 	description_node.set("custom_colors/font_color",Color(0,0,0))
 
 func _on_Element_focus_exited():
-	self.add_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
+	self.add_theme_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
 	for node in container.get_children():
 		node.modulate = Color(1,1,1)
 	value_node.modulate = Color(1,1,1)

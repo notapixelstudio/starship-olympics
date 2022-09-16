@@ -4,7 +4,7 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=5]
+[ext_resource path="res://combat/levels/background/robolords.png" type="Texture2D" id=5]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=6]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
@@ -23,8 +23,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
@@ -35,8 +35,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
@@ -47,8 +47,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
@@ -59,8 +59,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
@@ -72,7 +72,7 @@ game_mode = ExtResource( 6 )
 [node name="CrownModeManager" parent="Managers" index="5"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 5 )
 centered = false
 
@@ -144,7 +144,7 @@ controls = "joy2"
 species = ExtResource( 11 )
 cpu = true
 
-[node name="Camera" parent="." index="5"]
+[node name="Camera3D" parent="." index="5"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://actors/environments/Ice.gd" type="Script" id=1]
-[ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture" id=3]
+[ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture2D" id=3]
 
 [node name="Ice" type="Area2D"]
 z_index = -15
@@ -19,7 +19,7 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000 )
+polygon = PackedVector2Array( -1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 0, 32 )
@@ -28,9 +28,9 @@ z_as_relative = false
 color = Color( 0, 0.454902, 0.572549, 1 )
 texture = ExtResource( 2 )
 texture_scale = Vector2( 0.2, 0.2 )
-polygon = PoolVector2Array( -1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000 )
+polygon = PackedVector2Array( -1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color( 1, 1, 1, 0.192157 )
 position = Vector2( 0, 32 )
 scale = Vector2( 5, 5 )
@@ -40,7 +40,7 @@ texture = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2( 0, 32 )
-points = PoolVector2Array( -1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000, -1500, -1000 )
+points = PackedVector2Array( -1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000, -1500, -1000 )
 width = 16.0
 default_color = Color( 0.372549, 0.678431, 1, 1 )
 joint_mode = 2

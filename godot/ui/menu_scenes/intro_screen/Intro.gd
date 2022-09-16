@@ -1,29 +1,29 @@
 extends Control
 
-onready var disclaimer = $Disclaimer
-onready var anim = $AnimationPlayer
+@onready var disclaimer = $Disclaimer
+@onready var anim = $AnimationPlayer
 
-onready var line1 = $Line1
-onready var line2 = $Line2
-onready var line3 = $Line3
+@onready var line1 = $Line1
+@onready var line2 = $Line2
+@onready var line3 = $Line3
 
 
-export var main_screen : PackedScene
+@export var main_screen : PackedScene
 
 func _ready():
 	global.start_execution()
 	
-	line1.bbcode_text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")
-	line2.bbcode_text = tr("[center]FINALLY CAME TO AN END[/center]")
-	line3.bbcode_text = tr("[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]")
+	line1.text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")
+	line2.text = tr("[center]FINALLY CAME TO AN END[/center]")
+	line3.text = tr("[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]")
 	set_process_input(false)
 	if global.first_time:
 		disclaimer.start()
-		yield(disclaimer, "okay")
+		await disclaimer.okay
 	anim.play("Appear")
 
 func go_ahead():
-	get_tree().change_scene_to(main_screen)
+	get_tree().change_scene_to_packed(main_screen)
 	
 	
 func _input(event):

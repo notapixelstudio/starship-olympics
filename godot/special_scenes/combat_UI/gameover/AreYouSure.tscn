@@ -8,10 +8,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -216.5
-margin_top = -122.0
-margin_right = 216.5
-margin_bottom = 122.0
+offset_left = -216.5
+offset_top = -122.0
+offset_right = 216.5
+offset_bottom = 122.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -27,16 +27,16 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 8.0
-margin_bottom = 51.0
+offset_top = 8.0
+offset_bottom = 51.0
 text = "Are you sure to "
 align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 48.0
-margin_bottom = 91.0
+offset_top = 48.0
+offset_bottom = 91.0
 text = "go back to menu?"
 align = 1
 valign = 1
@@ -45,9 +45,9 @@ __meta__ = {
 }
 
 [node name="YES" type="Button" parent="."]
-margin_top = 152.0
-margin_right = 150.0
-margin_bottom = 203.0
+offset_top = 152.0
+offset_right = 150.0
+offset_bottom = 203.0
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 text = "YES"
@@ -56,10 +56,10 @@ __meta__ = {
 }
 
 [node name="NO" type="Button" parent="."]
-margin_left = 282.951
-margin_top = 152.587
-margin_right = 432.951
-margin_bottom = 203.587
+offset_left = 282.951
+offset_top = 152.587
+offset_right = 432.951
+offset_bottom = 203.587
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 text = "NO"

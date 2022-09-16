@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=7]
+[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture2D" id=7]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/modes/AsteroidConquest.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=10]
@@ -23,7 +23,7 @@ enabled = false
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 7 )
 centered = false
 
@@ -116,7 +116,7 @@ rotation = 0.0
 controls = "kb2"
 species = ExtResource( 11 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 5.73972e+32, 5.73972e+32 )
 smoothing_speed = 0.3
 

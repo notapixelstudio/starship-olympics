@@ -1,6 +1,10 @@
 extends Node2D
 
-export (float, 1.0) var fraction = 0.0 setget set_fraction
+@export (float, 1.0) var fraction = 0.0 :
+	get:
+		return fraction # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_fraction
 
 func _ready():
 	refresh()
@@ -12,5 +16,5 @@ func set_fraction(value):
 		refresh()
 	
 func refresh():
-	$ScoreLine.points = PoolVector2Array([Vector2(0,0),Vector2(130*fraction,0)])
+	$ScoreLine.points = PackedVector2Array([Vector2(0,0),Vector2(130*fraction,0)])
 	

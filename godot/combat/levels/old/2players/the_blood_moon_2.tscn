@@ -1,18 +1,18 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
-[ext_resource path="res://addons/geometry/icons/GSegment.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=2]
+[ext_resource path="res://addons/geometry/icons/GSegment.svg" type="Texture2D" id=3]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
 [ext_resource path="res://addons/geometry/GSegment.gd" type="Script" id=5]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=6]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/enemies/Bomb_spawner.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=13]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=13]
 [ext_resource path="res://actors/environments/PortalOld.tscn" type="PackedScene" id=14]
 
 
@@ -25,7 +25,7 @@ enabled = false
 [node name="DeathmatchModeManager" parent="." index="6"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 13 )
 centered = false
 
@@ -140,7 +140,7 @@ position = Vector2( 1000, 0 )
 rotation = 3.14159
 species = ExtResource( 10 )
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera3D" parent="." index="16"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

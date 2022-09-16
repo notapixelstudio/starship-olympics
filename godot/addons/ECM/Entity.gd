@@ -9,7 +9,7 @@ func get_host():
 func has(component_name : String) -> bool:
 	return could_have(component_name) and get_node(component_name).is_enabled()
 	
-func get(component_name : String) -> Component:
+func get_component(component_name : String) -> Component:
 	var result : Component = get_node(component_name)
 	return result
 	

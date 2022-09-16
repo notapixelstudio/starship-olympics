@@ -2,19 +2,19 @@
 
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/BannerInfo.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Esc_Key_Dark.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Esc_Key_Dark.png" type="Texture2D" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 40 ) ]
 }
@@ -25,8 +25,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ false ]
 }
@@ -37,8 +37,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
@@ -47,14 +47,14 @@ tracks/2/keys = {
 resource_name = "appear"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 2 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 2 ),
 "update": 0,
 "values": [ Vector2( 0, -80 ), Vector2( 0, 40 ) ]
 }
@@ -65,8 +65,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -77,8 +77,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
@@ -92,8 +92,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.9 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -104,8 +104,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.7 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -113,86 +113,86 @@ tracks/1/keys = {
 [node name="BannerInfo" type="MarginContainer"]
 visible = false
 anchor_right = 1.0
-margin_top = 40.0
-margin_bottom = 90.0
+offset_top = 40.0
+offset_bottom = 90.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1280.0
-margin_bottom = 50.0
+offset_right = 1280.0
+offset_bottom = 50.0
 color = Color( 0.160784, 0.0823529, 0.101961, 0.682353 )
 
 [node name="BannerInfoBinding" type="HBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 50.0
+offset_right = 1280.0
+offset_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PaddingBegin" type="Control" parent="BannerInfoBinding"]
-margin_right = 319.0
-margin_bottom = 50.0
-rect_pivot_offset = Vector2( -581.991, -77.759 )
+offset_right = 319.0
+offset_bottom = 50.0
+pivot_offset = Vector2( -581.991, -77.759 )
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="BannerInfoBinding"]
-margin_left = 323.0
-margin_top = 18.0
-margin_right = 362.0
-margin_bottom = 32.0
+offset_left = 323.0
+offset_top = 18.0
+offset_right = 362.0
+offset_bottom = 32.0
 text = "Press "
 
 [node name="ShowedButton" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 366.0
-margin_right = 416.0
-margin_bottom = 50.0
+offset_left = 366.0
+offset_right = 416.0
+offset_bottom = 50.0
 show_device_id = false
 
 [node name="Label2" type="Label" parent="BannerInfoBinding"]
-margin_left = 420.0
-margin_top = 18.0
-margin_right = 560.0
-margin_bottom = 32.0
+offset_left = 420.0
+offset_top = 18.0
+offset_right = 560.0
+offset_bottom = 32.0
 text = "to add a button. Press"
 
 [node name="ShowedButton2" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 564.0
-margin_right = 614.0
-margin_bottom = 50.0
+offset_left = 564.0
+offset_right = 614.0
+offset_bottom = 50.0
 texture = ExtResource( 3 )
 show_device_id = false
 
 [node name="Label4" type="Label" parent="BannerInfoBinding"]
-margin_left = 618.0
-margin_top = 18.0
-margin_right = 728.0
-margin_bottom = 32.0
+offset_left = 618.0
+offset_top = 18.0
+offset_right = 728.0
+offset_bottom = 32.0
 text = "(Or keep pressed"
 
 [node name="ShowedButton3" parent="BannerInfoBinding" instance=ExtResource( 1 )]
-margin_left = 732.0
-margin_right = 782.0
-margin_bottom = 50.0
+offset_left = 732.0
+offset_right = 782.0
+offset_bottom = 50.0
 show_device_id = false
 
 [node name="Label3" type="Label" parent="BannerInfoBinding"]
-margin_left = 786.0
-margin_top = 18.0
-margin_right = 957.0
-margin_bottom = 32.0
+offset_left = 786.0
+offset_top = 18.0
+offset_right = 957.0
+offset_bottom = 32.0
 text = ") in orderd to clear buttons"
 
 [node name="PaddingEnd" type="Control" parent="BannerInfoBinding"]
-margin_left = 961.0
-margin_right = 1280.0
-margin_bottom = 50.0
-rect_pivot_offset = Vector2( -581.991, -77.759 )
+offset_left = 961.0
+offset_right = 1280.0
+offset_bottom = 50.0
+pivot_offset = Vector2( -581.991, -77.759 )
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false

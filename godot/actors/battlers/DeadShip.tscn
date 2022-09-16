@@ -2,9 +2,9 @@
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=7]
 
@@ -18,7 +18,7 @@ radius = 40.0
 collision_layer = 8192
 collision_mask = 16021
 physics_material_override = SubResource( 1 )
-contacts_reported = 10
+max_contacts_reported = 10
 contact_monitor = true
 linear_damp = 1.0
 script = ExtResource( 1 )
@@ -35,7 +35,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2( 1.25, 1.25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

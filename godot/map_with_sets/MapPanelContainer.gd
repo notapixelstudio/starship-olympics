@@ -4,7 +4,7 @@ class_name MapPanelContainer
 
 signal selection_finished
 
-onready var tween = $Tween
+@onready var tween = $Tween
 
 func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 	list.shuffle()
@@ -21,7 +21,7 @@ func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 		# print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
 		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(4, 1 + num_iterations-i)))
 		list[i%len(list)].selected = true
-		yield(get_tree().create_timer(wait_time), "timeout")
+		await get_tree().create_timer(wait_time).timeout
 		total_wait+= wait_time
 		list[i%len(list)].selected = false
 	print("Waited for "+ str(total_wait))
@@ -66,23 +66,23 @@ func choose_level(player_id: String, minigame: Minigame):
 	# animation pseudo random for choosing minicard
 	var minicards = get_tree().get_nodes_in_group("minicard")
 	random_selection(minicards, index_selection)
-	yield(self, "selection_finished")
+	await self.selection_finished
 	chosen_minicard.selected = true
 	var wait_time = 0.5
-	yield(get_tree().create_timer(wait_time), "timeout")
+	await get_tree().create_timer(wait_time).timeout
 	chosen_minicard.selected = false
 	if chosen_minicard.status == "locked":
-		chosen_minicard.unlock()
-		yield(chosen_minicard, "unlocked")
+		false # chosen_minicard.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
+		await chosen_minicard.unlocked
 		# unlock and SAVE
 		TheUnlocker.unlock_element("minigames", this_gamemode.id)
 		persistance.save_game()
 	
 	tween.start()
-	yield(tween, "tween_all_completed")
+	await tween.tween_all_completed
 	# TODO: danger of lock
 	Events.emit_signal("minigame_selected", minigame)
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	# everything back to position
 	chosen_minicard.position = back_pos
 	chosen_minicard.scale = back_scale

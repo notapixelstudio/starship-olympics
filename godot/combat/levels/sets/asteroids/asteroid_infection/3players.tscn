@@ -5,7 +5,7 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=6]
+[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture2D" id=6]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/modes/AsteroidInfection.tres" type="Resource" id=8]
 [ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=9]
@@ -23,8 +23,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 20, 35 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 20, 35 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ 2200, 2200, 1000 ]
 }
@@ -40,7 +40,7 @@ enabled = false
 [node name="SurvivalModeManager" parent="Managers" index="15"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 6 )
 centered = false
 
@@ -115,7 +115,7 @@ rotation = -0.523599
 controls = "kb2"
 species = ExtResource( 12 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.35526e+14, 1.35526e+14 )
 smoothing_speed = 0.3
 

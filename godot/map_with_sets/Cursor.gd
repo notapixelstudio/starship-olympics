@@ -4,18 +4,22 @@ var enabled
 
 class_name MapCursor
 
-export var player_i : int
-export var cell_size : int
-export var grid_position : Vector2 setget set_grid_position
+@export var player_i : int
+@export var cell_size : int
+@export var grid_position : Vector2 :
+	get:
+		return grid_position # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_grid_position
 
 var player 
-onready var move_tween = $MoveTween
-onready var animation_player = $Wrapper/Graphics/AnimationPlayer
+@onready var move_tween = $MoveTween
+@onready var animation_player = $Wrapper/Graphics/AnimationPlayer
 
-onready var ship = $Wrapper/Graphics/Ship
-onready var placemark = $Wrapper/Graphics/Placemark
-onready var label = $Wrapper/Graphics/LabelContainer/Label
-onready var winner = $Wrapper/Graphics/Ship/Winner
+@onready var ship = $Wrapper/Graphics/Ship
+@onready var placemark = $Wrapper/Graphics/Placemark
+@onready var label = $Wrapper/Graphics/LabelContainer/Label
+@onready var winner = $Wrapper/Graphics/Ship/Winner
 
 var winner_status = false
 

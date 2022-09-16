@@ -1,9 +1,13 @@
-extends Sprite
+extends Sprite2D
 
 class_name Controller
 
-export var device: String setget _set_device
-onready var device_id: int = int(device.replace("joy", ""))
+@export var device: String :
+	get:
+		return device # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_device
+@onready var device_id: int = int(device.replace("joy", ""))
 
 func _set_device(value):
 	if not "joy" in value:
@@ -16,7 +20,7 @@ func _set_device(value):
 			mapping[key] = global.input_mapping[key]
 	setup_controls({device:mapping})
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	$Label.text = device
 
 var command_list = ["up", "down", "left", "right", "fire"]
@@ -27,19 +31,19 @@ func toggle(value):
 		
 	
 func clear_controls(action: String):
-	for input_event in InputMap.get_action_list(action):
+	for input_event in InputMap.action_get_events(action):
 		var btn = global.event_to_text(input_event).to_upper()
 		clear_button(get_node(str(btn)))
 		
 			
 			
 func clear_button(button:Node2D):
-		button.get_node("Sprite").modulate.a = 0
+		button.get_node("Sprite2D").modulate.a = 0
 		button.get_node("Line2D").visible =false
 
 func empty_controls():
 	for button in get_children():
-		if button is Sprite:
+		if button is Sprite2D:
 			clear_button(button)
 
 func _ready():
@@ -76,13 +80,13 @@ func _input(event):
 	#	get_node(str(event.button_index)).visible = event.pressed
 	if event is InputEventJoypadMotion:
 		if event.axis==0:
-			$AnalogLeft/Sprite.position.x = event.axis_value*10
+			$AnalogLeft/Sprite2D.position.x = event.axis_value*10
 		if event.axis==1:
-			$AnalogLeft/Sprite.position.y = event.axis_value*10
+			$AnalogLeft/Sprite2D.position.y = event.axis_value*10
 		if event.axis==2:
-			$AnalogRight/Sprite.position.x = event.axis_value*10
+			$AnalogRight/Sprite2D.position.x = event.axis_value*10
 		if event.axis==3:
-			$AnalogRight/Sprite.position.y = event.axis_value*10
+			$AnalogRight/Sprite2D.position.y = event.axis_value*10
 		
 	if event is InputEventJoypadButton:
 		handle_button(event)

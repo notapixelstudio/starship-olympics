@@ -4,10 +4,10 @@ var start_time = 0
 var this_elapsed_time = 0
 
 func _process(_delta):
-	this_elapsed_time = format_time(OS.get_ticks_msec() - start_time)
+	this_elapsed_time = format_time(Time.get_ticks_msec() - start_time)
 
 func start_elapsed_time():
-	start_time = OS.get_ticks_msec()
+	start_time = Time.get_ticks_msec()
 
 func format_time(elapsed):
 	var seconds = float(elapsed) / 1000

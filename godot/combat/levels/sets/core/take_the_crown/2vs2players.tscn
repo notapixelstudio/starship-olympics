@@ -1,25 +1,25 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=2]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
-[ext_resource path="res://assets/sprites/environments/rhombus.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/environments/rhombus.png" type="Texture2D" id=5]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=11]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=14]
+[ext_resource path="res://combat/levels/background/robolords.png" type="Texture2D" id=14]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=16]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=17]
 [ext_resource path="res://utils/LeftRightClippedPolygon2D.gd" type="Script" id=18]
-[ext_resource path="res://assets/sprites/signs/sun.png" type="Texture" id=19]
-[ext_resource path="res://assets/sprites/signs/moon.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/signs/sun.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/sprites/signs/moon.png" type="Texture2D" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -32,19 +32,19 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 1285, 50 ]
 }
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
+points = PackedVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
+points = PackedVector2Array( -400, -900, 0, -1300, 400, -900, 400, 900, 0, 1300, -400, 900, -400, -900 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticleProcessMaterial" id=4]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -65,8 +65,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 20.0, 0.0 ]
 }
@@ -77,8 +77,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
 }
@@ -89,8 +89,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -101,8 +101,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ) ]
 }
@@ -113,8 +113,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.235294, 0, 0.109804, 1 ) ]
 }
@@ -125,8 +125,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.15, 0.78, 0.54, 1 ), Color( 0.94902, 0.509804, 0.458824, 1 ) ]
 }
@@ -141,7 +141,7 @@ match_duration_override = 120.0
 [node name="CrownModeManager" parent="Managers" index="9"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 14 )
 centered = false
 
@@ -209,14 +209,14 @@ anims/Rotate = SubResource( 1 )
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="4"]
 modulate = Color( 1, 1, 1, 0.137255 )
 color = Color( 1, 0.290196, 0.180392, 1 )
-polygon = PoolVector2Array( -250, -1300, -600, -1300, -1900, 0, -600, 1300, -250, 1300, 0, 1050, 0, -1050 )
+polygon = PackedVector2Array( -250, -1300, -600, -1300, -1900, 0, -600, 1300, -250, 1300, 0, 1050, 0, -1050 )
 script = ExtResource( 18 )
 shape_path = NodePath("../OutsideWall/GBeveledRect")
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background" index="5"]
 modulate = Color( 1, 1, 1, 0.137255 )
 color = Color( 0.101961, 0.34902, 1, 1 )
-polygon = PoolVector2Array( 250, -1300, 600, -1300, 1900, 0, 600, 1300, -250, 1300, 0, 1050, 0, -1050 )
+polygon = PackedVector2Array( 250, -1300, 600, -1300, 1900, 0, 600, 1300, -250, 1300, 0, 1050, 0, -1050 )
 script = ExtResource( 18 )
 shape_path = NodePath("../OutsideWall/GBeveledRect")
 side = "right"
@@ -232,13 +232,13 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
 bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
-[node name="Sun" type="Sprite" parent="Battlefield/Background" index="8"]
+[node name="Sun" type="Sprite2D" parent="Battlefield/Background" index="8"]
 modulate = Color( 1, 1, 1, 0.0588235 )
 position = Vector2( -1000, 32 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 19 )
 
-[node name="Moon" type="Sprite" parent="Battlefield/Background" index="9"]
+[node name="Moon" type="Sprite2D" parent="Battlefield/Background" index="9"]
 modulate = Color( 1, 1, 1, 0.0588235 )
 position = Vector2( 1000, 32 )
 scale = Vector2( 2.5, 2.5 )
@@ -268,14 +268,14 @@ z_index = -1
 z_as_relative = false
 
 [node name="IsoPolygon" parent="Battlefield/Middleground/NoCrownZone" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 3 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":2600,"bevel":400,"bevel_nw":400,"bevel_ne":400,"bevel_sw":400,"bevel_se":400)
+shape = Object(Node,"_import_path":NodePath(""),"process_mode":0,"process_priority":0,"script":ExtResource( 3 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":2600,"bevel":400,"bevel_nw":400,"bevel_ne":400,"bevel_sw":400,"bevel_se":400)
 
 
 [node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone" index="1"]
-polygon = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900 )
+polygon = PackedVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900 )
 
 [node name="Line2D" parent="Battlefield/Middleground/NoCrownZone" index="2"]
-points = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
+points = PackedVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/Area2D" index="2"]
 shape = SubResource( 8 )
@@ -283,11 +283,11 @@ shape = SubResource( 8 )
 [node name="CollisionShape2D" parent="Battlefield/Middleground/NoCrownZone/CrownCollider" index="0"]
 shape = SubResource( 9 )
 
-[node name="Particles2D" parent="Battlefield/Middleground/NoCrownZone" index="5"]
+[node name="GPUParticles2D" parent="Battlefield/Middleground/NoCrownZone" index="5"]
 process_material = SubResource( 4 )
 
 [node name="FeedbackLine" parent="Battlefield/Middleground/NoCrownZone" index="7"]
-points = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
+points = PackedVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900, -400, -900 )
 
 [node name="AnimationPlayer" parent="Battlefield/Middleground/NoCrownZone" index="8"]
 anims/Feedback = SubResource( 7 )
@@ -302,15 +302,15 @@ position = Vector2( -150, 1025 )
 position = Vector2( -150, -1025 )
 
 [node name="Line2D" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="4"]
-points = PoolVector2Array( 250, 0, 275, 25, 350, -50, 350, -875, 200, -1025, 150, -975, 100, -1025, -50, -875, 0, -825, 50, -875, -100, -1025, -150, -975, -200, -1025, -350, -875, -350, -50, -275, 25, -250, 0, -275, -25, -350, 50, -350, 875, -200, 1025, -150, 975, -100, 1025, 50, 875, 0, 825, -50, 875, 100, 1025, 150, 975, 200, 1025, 350, 875, 350, 50, 275, -25, 250, 0 )
+points = PackedVector2Array( 250, 0, 275, 25, 350, -50, 350, -875, 200, -1025, 150, -975, 100, -1025, -50, -875, 0, -825, 50, -875, -100, -1025, -150, -975, -200, -1025, -350, -875, -350, -50, -275, 25, -250, 0, -275, -25, -350, 50, -350, 875, -200, 1025, -150, 975, -100, 1025, 50, 875, 0, 825, -50, 875, 100, 1025, 150, 975, 200, 1025, 350, 875, 350, 50, 275, -25, 250, 0 )
 width = 8.0
 
-[node name="rhombus5" type="Sprite" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="5"]
+[node name="rhombus5" type="Sprite2D" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="5"]
 position = Vector2( 150, 1025 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
-[node name="rhombus6" type="Sprite" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="6"]
+[node name="rhombus6" type="Sprite2D" parent="Battlefield/Middleground/NoCrownZone/Decoration" index="6"]
 position = Vector2( 150, -1025 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
@@ -360,7 +360,7 @@ controls = "joy4"
 species = ExtResource( 17 )
 team = "B"
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 6103.52, 6103.52 )
 smoothing_speed = 0.3
 

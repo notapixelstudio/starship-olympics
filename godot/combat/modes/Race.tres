@@ -1,15 +1,15 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=2]
-[ext_resource path="res://assets/modes/deathmatch.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/modes/deathmatch.png" type="Texture2D" id=3]
 [ext_resource path="res://map_with_sets/planets/rules/Race.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
 id = "race"
 is_mutator = false
-name = "Portal Race"
+name = "Node3D Race"
 icon = ExtResource( 3 )
 logo = ExtResource( 2 )
 description = "kill the other players"

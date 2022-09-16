@@ -3,7 +3,7 @@ extends Node
 # Cross-platform. Should work in every platform supported by Godot
 # Adapted from REST_v2_example.py by Cristiano Reis Monteiro <cristianomonteiro@gmail.com> Abr/2018
 
-""" 
+"""
 https://restapidocs.gameanalytics.com
 Procedure:
 	1. make an init call
@@ -29,7 +29,11 @@ var returned
 var uuid = UUID.v4()
 
 # if analytics are enabled
-var enabled = false setget _set_analytics
+var enabled = false :
+	get:
+		return enabled # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_analytics
 
 func _set_analytics(value: bool):
 	enabled = value
@@ -152,7 +156,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 			print("Connected to ", base_url)
 			break
 		# let's wait one second before retrying
-		yield(get_tree().create_timer(WAIT_TIME), "timeout")
+		await get_tree().create_timer(WAIT_TIME).timeout
 		
 	
 	var response_code = requests.request(HTTPClient.METHOD_POST, url_endpoint, headers, data_json)
@@ -165,7 +169,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 		if requests.get_status() == HTTPClient.STATUS_BODY:
 			break
 		# let's wait one second before retrying
-		yield(get_tree().create_timer(WAIT_TIME), "timeout")
+		await get_tree().create_timer(WAIT_TIME).timeout
 		count = i
 		
 	print("Waited {wait_time}s".format({"wait_time": float(WAIT_TIME * count)}))
@@ -188,7 +192,7 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 			# print_debug("Response Length: ", bl)
 
 		# This method works for both anyway
-		var rb = PoolByteArray() # Array that will hold the data
+		var rb = PackedByteArray() # Array that will hold the data
 		
 		while requests.get_status() == HTTPClient.STATUS_BODY:
 			# While there is body left to be read
@@ -225,7 +229,9 @@ func send_data(endpoint:String, data_json:String, port:int = 80)-> Dictionary:
 	
 	if endpoint == "init":
 		if response_string:
-			response_dict = parse_json(response_string)
+			var test_json_conv = JSON.new()
+			test_json_conv.parse(response_string)
+			response_dict = test_json_conv.get_data()
 	
 		if 'enabled' in response_dict and response_dict['enabled']:
 			state_config['enabled'] = true
@@ -249,7 +255,7 @@ func request_init():
 	}
 	
 	# Refreshing url_init since game key might have been changed externally
-	send_data("init", to_json(init_payload))
+	send_data("init", JSON.new().stringify(init_payload))
 	
 	return 
 	
@@ -260,7 +266,7 @@ func submit_events():
 	if not enabled :
 		return
 	
-	var event_list_json = to_json(state_config['event_queue'])
+	var event_list_json = JSON.new().stringify(state_config['event_queue'])
 	send_data("events", event_list_json)
 
 
@@ -298,7 +304,7 @@ func generate_new_session_id():
 
 func update_client_ts_offset(server_ts):
 	# calculate client_ts using offset from server time
-	var now_ts = OS.get_unix_time_from_datetime(OS.get_datetime())
+	var now_ts = Time.get_unix_time_from_system_from_datetime(OS.get_datetime())
 	var client_ts = now_ts
 	var offset = client_ts - server_ts
 
@@ -356,7 +362,7 @@ func end_session():
 	submit_events()
 
 func get_session_end_event():
-	var length_in_seconds = min(OS.get_ticks_msec()/1000, 172800)
+	var length_in_seconds = min(Time.get_ticks_msec()/1000, 172800)
 	var event_dict = {
 		'category': 'session_end',
 		'length': length_in_seconds
@@ -379,7 +385,7 @@ func annotate_event_with_default_values():
 	var now_ts = OS.get_datetime()
 	
 	# calculate client_ts using offset from server time
-	var client_ts = OS.get_unix_time_from_datetime(OS.get_datetime())
+	var client_ts = Time.get_unix_time_from_system_from_datetime(OS.get_datetime())
 
 	# TEST IDFA / IDFV
 	var idfa = OS.get_unique_id()
@@ -388,9 +394,9 @@ func annotate_event_with_default_values():
 	var default_annotations = {
 		'v': 2,										# (required: Yes)
 		'user_id': idfa,                            # (required: Yes)
-		# 'ios_idfa': idfa,                         # (required: No - required on iOS)
+		# 'ios_idfa': idfa,                         # (required: No - required checked iOS)
 		# 'ios_idfv': idfv,                         # (required: No - send if found)
-		# 'google_aid'                              # (required: No - required on Android)
+		# 'google_aid'                              # (required: No - required checked Android)
 		# 'android_id',                             # (required: No - send if set)
 		# 'googleplus_id',                          # (required: No - send if set)
 		# 'facebook_id',                            # (required: No - send if set)
@@ -423,7 +429,7 @@ func hmac_sha256(message, key):
 	var k
 	
 	if key.length() <= 64:
-		k = key.to_utf8()
+		k = key.to_utf8_buffer()
 
 	# Hash key if length > 64
 	if key.length() > 64:
@@ -433,9 +439,9 @@ func hmac_sha256(message, key):
 	while k.size() < 64:
 		k.append(convert_hex_to_dec("00"))
 
-	var i = "".to_utf8()
-	var o = "".to_utf8()
-	var m = message.to_utf8()
+	var i = "".to_utf8_buffer()
+	var o = "".to_utf8_buffer()
+	var m = message.to_utf8_buffer()
 	var s = File.new()
 			
 	while x < 64:
@@ -450,7 +456,7 @@ func hmac_sha256(message, key):
 	s.close()
 	var z = s.get_sha256("user://temp")
 	
-	var outer = "".to_utf8()
+	var outer = "".to_utf8_buffer()
 	
 	x = 0
 	while x < 64:
@@ -465,7 +471,7 @@ func hmac_sha256(message, key):
 	
 	z = s.get_sha256("user://temp")
 	
-	outer = "".to_utf8()
+	outer = "".to_utf8_buffer()
 	
 	x = 0
 	while x < 64:

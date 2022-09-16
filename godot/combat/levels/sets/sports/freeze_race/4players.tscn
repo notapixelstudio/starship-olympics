@@ -10,12 +10,12 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=11]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=11]
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=13]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=13]
 [ext_resource path="res://combat/modes/FreezeRace.tres" type="Resource" id=14]
 [ext_resource path="res://combat/managers/RaceManager.tscn" type="PackedScene" id=15]
-[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture2D" id=16]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
 
 [sub_resource type="Animation" id=1]
@@ -29,8 +29,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 2 ]
 }
@@ -41,8 +41,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 7.5, 7.9, 8, 8.2, 11.6, 12 ),
-"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2, 7.5, 7.9, 8, 8.2, 11.6, 12 ),
+"transitions": PackedFloat32Array( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
 }
@@ -58,8 +58,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 2 ]
 }
@@ -70,8 +70,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 9.5, 9.9, 10, 10.2, 13.6, 14 ),
-"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2, 9.5, 9.9, 10, 10.2, 13.6, 14 ),
+"transitions": PackedFloat32Array( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
 }
@@ -87,8 +87,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 15 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 2 ]
 }
@@ -99,8 +99,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 14.5, 14.9, 15, 15.2, 18.6, 19 ),
-"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2, 14.5, 14.9, 15, 15.2, 18.6, 19 ),
+"transitions": PackedFloat32Array( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
 }
@@ -115,8 +115,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( -400, 1400 ), Vector2( 1500, 1400 ) ]
 }
@@ -131,8 +131,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( 2600, -150 ), Vector2( 2600, 850 ) ]
 }
@@ -147,8 +147,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( -400, -1000 ), Vector2( 1500, -1000 ) ]
 }
@@ -163,15 +163,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( 1550, -200 ), Vector2( -500, -200 ) ]
 }
 
 [sub_resource type="Curve2D" id=8]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, -1850, 0, 0, 0, 0, 2650, -1850, 0, 0, 0, 0, 3450, -1050, 0, 0, 0, 0, 3450, 1100, 0, 0, 0, 0, 2750, 1850, 0, 0, 0, 0, -600, 1850, 0, 0, 0, 0, -1000, 1450, 0, 0, 0, 0, -1000, 1000, 0, 0, 0, 0, -600, 600, 0, 0, 0, 0, 1800, 600, 0, 0, 0, 0, 2200, 200, 0, 0, 0, 0, 2200, -200, 0, 0, 0, 0, 1800, -600, 0, 0, 0, 0, -1800, -600, 0, 0, 0, 0, -2200, -200, 0, 0, 0, 0, -2200, 1450, 0, 0, 0, 0, -2600, 1850, 0, 0, 0, 0, -3450, 950, 0, 0, 0, 0, -3450, -1100, 0, 0, 0, 0, -2650, -1850, 0, 0, 0, 0, 0, -1850 )
+"points": PackedVector2Array( 0, 0, 0, 0, 0, -1850, 0, 0, 0, 0, 2650, -1850, 0, 0, 0, 0, 3450, -1050, 0, 0, 0, 0, 3450, 1100, 0, 0, 0, 0, 2750, 1850, 0, 0, 0, 0, -600, 1850, 0, 0, 0, 0, -1000, 1450, 0, 0, 0, 0, -1000, 1000, 0, 0, 0, 0, -600, 600, 0, 0, 0, 0, 1800, 600, 0, 0, 0, 0, 2200, 200, 0, 0, 0, 0, 2200, -200, 0, 0, 0, 0, 1800, -600, 0, 0, 0, 0, -1800, -600, 0, 0, 0, 0, -2200, -200, 0, 0, 0, 0, -2200, 1450, 0, 0, 0, 0, -2600, 1850, 0, 0, 0, 0, -3450, 950, 0, 0, 0, 0, -3450, -1100, 0, 0, 0, 0, -2650, -1850, 0, 0, 0, 0, 0, -1850 )
 }
 
 [sub_resource type="Animation" id=9]
@@ -184,8 +184,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 0.0, -90.0 ]
 }
@@ -200,8 +200,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3, 9 ),
-"transitions": PoolRealArray( 1, -2, -2 ),
+"times": PackedFloat32Array( 0, 3, 9 ),
+"transitions": PackedFloat32Array( 1, -2, -2 ),
 "update": 0,
 "values": [ -45.0, -90.0, 0.0 ]
 }
@@ -216,8 +216,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3, 9.1 ),
-"transitions": PoolRealArray( 1, -2, -2 ),
+"times": PackedFloat32Array( 0, 3, 9.1 ),
+"transitions": PackedFloat32Array( 1, -2, -2 ),
 "update": 0,
 "values": [ 225.0, 270.0, 180.0 ]
 }
@@ -228,7 +228,7 @@ game_mode = ExtResource( 14 )
 
 [node name="RaceManager" parent="Managers" index="0" instance=ExtResource( 15 )]
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 11 )
 centered = false
 
@@ -339,30 +339,30 @@ modulate = Color( 1, 1, 1, 0.670588 )
 modulate = Color( 1, 1, 1, 0.305882 )
 position = Vector2( -200, 0 )
 texture = ExtResource( 13 )
-polygon = PoolVector2Array( 0, -2250, 200, -2250, 200, -1400, 0, -1400 )
+polygon = PackedVector2Array( 0, -2250, 200, -2250, 200, -1400, 0, -1400 )
 
-[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="16"]
+[node name="Arrow" type="Sprite2D" parent="Battlefield/Background" index="16"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 2200, 0 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Arrow3" type="Sprite" parent="Battlefield/Background" index="17"]
+[node name="Arrow3" type="Sprite2D" parent="Battlefield/Background" index="17"]
 modulate = Color( 0.2, 0.705882, 1, 0.254902 )
 position = Vector2( -3450, -600 )
 rotation = -1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Arrow2" type="Sprite" parent="Battlefield/Background" index="18"]
+[node name="Arrow2" type="Sprite2D" parent="Battlefield/Background" index="18"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( -987.802, -600 )
 rotation = -3.14159
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Arrow4" type="Sprite" parent="Battlefield/Background" index="19"]
+[node name="Arrow4" type="Sprite2D" parent="Battlefield/Background" index="19"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 712.198, -1850 )
 scale = Vector2( 2, 2 )
@@ -675,7 +675,7 @@ rotation = 0.0
 controls = "joy4"
 species = ExtResource( 17 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 zoom = Vector2( 156.25, 156.25 )
 smoothing_speed = 0.3
 zoomMin = 5.0

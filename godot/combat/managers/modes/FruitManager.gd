@@ -2,17 +2,17 @@ extends Node
 
 func _ready():
 	# listen for score updates
-	global.the_match.connect('updated', self, '_on_score_updated')
+	global.the_match.connect('updated',Callable(self,'_on_score_updated'))
 	
 	# listen for ship entering as a new object
-	global.arena.connect('ship_spawned', self, '_on_ship_spawned')
+	global.arena.connect('ship_spawned',Callable(self,'_on_ship_spawned'))
 	
 func _on_ship_spawned(ship):
 	update_trail(ship)
 	
-	ship.connect('collect', self, '_on_ship_collect', [ship])
-	ship.connect('dead', self, '_on_ship_died')
-	ship.connect('spawned', self, '_on_ship_respawned')
+	ship.connect('collect',Callable(self,'_on_ship_collect').bind(ship))
+	ship.connect('dead',Callable(self,'_on_ship_died'))
+	ship.connect('spawned',Callable(self,'_on_ship_respawned'))
 	
 func _on_ship_collect(what, ship):
 	if what is Fruit:

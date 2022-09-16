@@ -5,8 +5,8 @@ class_name Bar
 const max_bar_width = 950
 const bar_height = 20
 const ministar_width = 20
-const margin_left = 50
-const margin_top = 10
+const offset_left = 50
+const offset_top = 10
 const streak_arrow_width = 8
 const black_border = 1
 const fake_3d = 3
@@ -14,12 +14,16 @@ var max_score
 
 const Star = preload('res://special_scenes/combat_UI/session_points/Star.tscn')
 
-onready var sprite = $Ship/Sprite
+@onready var sprite = $Ship/Sprite2D
 
-onready var ministar_margin = ministar_width * global.win
+@onready var ministar_margin = ministar_width * global.win
 
 var player
-var new_position setget change_position
+var new_position :
+	get:
+		return new_position # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of change_position
 var current_value = 0
 var previous_value = 0
 var author: InfoPlayer
@@ -36,27 +40,27 @@ func post_ready(p: InfoPlayer):
 	sprite.texture = species.ship
 	
 	# background
-	$Background.rect_position = Vector2(margin_left, margin_top)
-	$Background.rect_size = Vector2(max_bar_width - ministar_margin, bar_height)
+	$Background.position = Vector2(offset_left, offset_top)
+	$Background.size = Vector2(max_bar_width - ministar_margin, bar_height)
 	$Background.color = species.color
 	
-	$BlackBackground.rect_position = Vector2(margin_left-black_border, margin_top-black_border)
-	$BlackBackground.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, bar_height + 2*black_border)
+	$BlackBackground.position = Vector2(offset_left-black_border, offset_top-black_border)
+	$BlackBackground.size = Vector2(max_bar_width - ministar_margin + 2*black_border, bar_height + 2*black_border)
 	
-	$Background25D.rect_position = Vector2(margin_left-black_border, margin_top+bar_height-fake_3d)
-	$Background25D.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, fake_3d)
+	$Background25D.position = Vector2(offset_left-black_border, offset_top+bar_height-fake_3d)
+	$Background25D.size = Vector2(max_bar_width - ministar_margin + 2*black_border, fake_3d)
 	
 	# megabar
 	$MegaBar.color = species.color
 	
 	# ship and score
-	$Ship.position.x = margin_left
+	$Ship.position.x = offset_left
 	$Ship/ScoreLabel.modulate = species.color
 	
 	# max score
 	$MaxScoreLabel.text = str(max_score)
 	$MaxScoreLabel.modulate = species.color
-	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+2)
+	$MaxScoreLabel.position = Vector2(offset_left + max_bar_width - ministar_margin + black_border - 48, offset_top-black_border+2)
 	
 	# magenta max score if perfectionist mode enabled
 	var current_draft_card := global.the_match.get_draft_card()
@@ -75,14 +79,14 @@ func post_ready(p: InfoPlayer):
 		tick.default_color = Color(0,0,0,opacity)
 		tick.width = 3
 		var x = round((max_bar_width - ministar_margin) / max_score * i)
-		tick.points = PoolVector2Array([Vector2(margin_left+x, margin_top), Vector2(margin_left+x, margin_top+bar_height)])
+		tick.points = PackedVector2Array([Vector2(offset_left+x, offset_top), Vector2(offset_left+x, offset_top+bar_height)])
 		$Ticks.add_child(tick)
 	
 	# mini stars
 	for i in range(global.win):
-		var star = Star.instance()
+		var star = Star.instantiate()
 		star.scale = Vector2(0.18,0.18)
-		star.position.x = margin_left + max_bar_width - ministar_margin + i*ministar_width + 18
+		star.position.x = offset_left + max_bar_width - ministar_margin + i*ministar_width + 18
 		star.position.y = 18
 		add_child(star)
 		
@@ -111,7 +115,7 @@ func set_value(value: float, new_author: InfoPlayer):
 	previous_value = current_value
 	current_value = clamp(value, 0, max_score)
 	
-	$Ship.position.x = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
+	$Ship.position.x = offset_left + (max_bar_width - ministar_margin) / max_score * current_value
 	
 	if current_value != previous_value:
 		streak_on()
@@ -155,27 +159,27 @@ func add_streak_bar():
 	$Streaks.add_child(current_streak_bar)
 	
 func update_current_streak_bar():
-	var left = margin_left + (max_bar_width - ministar_margin) / max_score * streak_start
-	var right = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
+	var left = offset_left + (max_bar_width - ministar_margin) / max_score * streak_start
+	var right = offset_left + (max_bar_width - ministar_margin) / max_score * current_value
 	var actual_arrow_width = max(0,min(right-left, streak_arrow_width)) # negative streaks have no arrow
-	current_streak_bar.polygon = PoolVector2Array([
-		Vector2(left, margin_top+bar_height),
-		Vector2(left, margin_top),
-		Vector2(right-actual_arrow_width, margin_top),
-		Vector2(right, margin_top+bar_height/2),
-		Vector2(right-actual_arrow_width, margin_top+bar_height)
+	current_streak_bar.polygon = PackedVector2Array([
+		Vector2(left, offset_top+bar_height),
+		Vector2(left, offset_top),
+		Vector2(right-actual_arrow_width, offset_top),
+		Vector2(right, offset_top+bar_height/2),
+		Vector2(right-actual_arrow_width, offset_top+bar_height)
 	])
 	# darken the streak if it's negative
 	if right < left:
 		current_streak_bar.modulate = Color(0,0,0,0.8)
 	
 func update_megabar():
-	var right = margin_left + (max_bar_width - ministar_margin) / max_score * current_value
-	$MegaBar.polygon = PoolVector2Array([
-		Vector2(margin_left, margin_top+bar_height),
-		Vector2(margin_left, margin_top),
-		Vector2(max(margin_left,right-streak_arrow_width), margin_top),
-		Vector2(right, margin_top+bar_height/2),
-		Vector2(max(margin_left,right-streak_arrow_width), margin_top+bar_height)
+	var right = offset_left + (max_bar_width - ministar_margin) / max_score * current_value
+	$MegaBar.polygon = PackedVector2Array([
+		Vector2(offset_left, offset_top+bar_height),
+		Vector2(offset_left, offset_top),
+		Vector2(max(offset_left,right-streak_arrow_width), offset_top),
+		Vector2(right, offset_top+bar_height/2),
+		Vector2(max(offset_left,right-streak_arrow_width), offset_top+bar_height)
 	])
 	

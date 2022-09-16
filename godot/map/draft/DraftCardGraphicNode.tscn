@@ -2,37 +2,37 @@
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
-[ext_resource path="res://assets/map/selector.png" type="Texture" id=3]
-[ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=7]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
-[ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=9]
+[ext_resource path="res://assets/map/selector.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/icon/minicards/star.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="FontFile" id=5]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="FontFile" id=6]
+[ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=8]
+[ext_resource path="res://assets/icon/star_full06.png" type="Texture2D" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 96
 outline_size = 7
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 64
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 54
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 72
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 48
 font_data = ExtResource( 5 )
 
@@ -54,16 +54,16 @@ modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
 visible = true
 self_modulate = Color( 1, 1, 1, 1 )
 
-[node name="Mystery" type="Sprite" parent="Ground/Front" index="5"]
+[node name="Mystery" type="Sprite2D" parent="Ground/Front" index="5"]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="8"]
+[node name="MinigameIconShadow" type="Sprite2D" parent="Ground/Front" index="8"]
 modulate = Color( 0, 0, 0, 0.392157 )
 position = Vector2( 0, -24 )
 
-[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="9"]
+[node name="MinigameIcon" type="Sprite2D" parent="Ground/Front" index="9"]
 position = Vector2( 0, -33 )
 
 [node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="10"]
@@ -73,10 +73,10 @@ scale = Vector2( 0.5, 0.5 )
 [node name="MinigameLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="0"]
 unique_name_in_owner = true
 modulate = Color( 1.12, 1.12, 1.12, 1 )
-margin_left = -900.0
-margin_top = 20.0
-margin_right = 900.0
-margin_bottom = 334.0
+offset_left = -900.0
+offset_top = 20.0
+offset_right = 900.0
+offset_bottom = 334.0
 custom_colors/font_color_shadow = Color( 0.247059, 0.247059, 0.247059, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -91,10 +91,10 @@ __meta__ = {
 [node name="WinterLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="1"]
 modulate = Color( 0.615686, 0.921569, 1, 1 )
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
-margin_left = -900.0
-margin_top = -63.0
-margin_right = 900.0
-margin_bottom = 251.0
+offset_left = -900.0
+offset_top = -63.0
+offset_right = 900.0
+offset_bottom = 251.0
 custom_colors/font_color_shadow = Color( 0, 0.533333, 0.964706, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -111,10 +111,10 @@ __meta__ = {
 unique_name_in_owner = true
 modulate = Color( 1, 0.25098, 0.831373, 1 )
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
-margin_left = -900.0
-margin_top = 97.0
-margin_right = 900.0
-margin_bottom = 411.0
+offset_left = -900.0
+offset_top = 97.0
+offset_right = 900.0
+offset_bottom = 411.0
 custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -136,10 +136,10 @@ unique_name_in_owner = true
 visible = false
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 self_modulate = Color( 1, 0.870588, 0.372549, 1 )
-margin_left = -900.0
-margin_top = -580.0
-margin_right = 900.0
-margin_bottom = -266.0
+offset_left = -900.0
+offset_top = -580.0
+offset_right = 900.0
+offset_bottom = -266.0
 custom_fonts/font = SubResource( 3 )
 text = "NEW!"
 align = 1
@@ -148,28 +148,28 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Ground/Front/NewLabelWrapper/NewLabel" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Front/NewLabelWrapper/NewLabel" index="0"]
 position = Vector2( 776, 157 )
 texture = ExtResource( 4 )
 
-[node name="Sprite2" type="Sprite" parent="Ground/Front/NewLabelWrapper/NewLabel" index="1"]
+[node name="Sprite2" type="Sprite2D" parent="Ground/Front/NewLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
 
 [node name="Suits" type="Node2D" parent="Ground/Front" index="12"]
 
-[node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
+[node name="SuitTopLeft" type="Sprite2D" parent="Ground/Front/Suits" index="0"]
 unique_name_in_owner = true
 position = Vector2( -94, -143 )
 scale = Vector2( 0.35, 0.35 )
 
-[node name="SuitBottomRight" type="Sprite" parent="Ground/Front/Suits" index="1"]
+[node name="SuitBottomRight" type="Sprite2D" parent="Ground/Front/Suits" index="1"]
 unique_name_in_owner = true
 position = Vector2( 94, 144 )
 scale = Vector2( 0.35, 0.35 )
 flip_v = true
 
-[node name="PerfectionistStar" type="Sprite" parent="Ground/Front" index="13"]
+[node name="PerfectionistStar" type="Sprite2D" parent="Ground/Front" index="13"]
 unique_name_in_owner = true
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 self_modulate = Color( 1, 0, 0.498039, 1 )
@@ -177,30 +177,30 @@ position = Vector2( 75, -150 )
 texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="Ground/Front/PerfectionistStar" index="0"]
-margin_left = -50.0
-margin_top = -43.0
-margin_right = 50.0
-margin_bottom = 57.0
+offset_left = -50.0
+offset_top = -43.0
+offset_right = 50.0
+offset_bottom = 57.0
 custom_fonts/font = SubResource( 5 )
 text = "P"
 align = 1
 valign = 1
 
-[node name="Sprite" type="Sprite" parent="Ground/Front/PerfectionistStar" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Front/PerfectionistStar" index="1"]
 modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 position = Vector2( 0, -1 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 9 )
 
-[node name="Shadow" type="Sprite" parent="Ground/Front/PerfectionistStar" index="2"]
+[node name="Shadow" type="Sprite2D" parent="Ground/Front/PerfectionistStar" index="2"]
 modulate = Color( 0, 0, 0, 0.235294 )
 show_behind_parent = true
 position = Vector2( 0, 5 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 9 )
 
-[node name="Select" type="Sprite" parent="Ground" index="3"]
+[node name="Select" type="Sprite2D" parent="Ground" index="3"]
 visible = false
 position = Vector2( 0, 275 )
 rotation = 3.14159

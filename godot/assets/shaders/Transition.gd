@@ -1,7 +1,7 @@
 extends Node
-export var color: Color = Color.black 
+@export var color: Color = Color.BLACK 
 signal transitioned 
-onready var anim_player = $AnimationPlayer
+@onready var anim_player = $AnimationPlayer
 
 func _ready():
 	$"%ColorRect".color = color

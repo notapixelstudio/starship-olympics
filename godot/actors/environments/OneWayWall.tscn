@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://actors/environments/OneWayWall.gd" type="Script" id=1]
-[ext_resource path="res://assets/patterns/oneway2.png" type="Texture" id=2]
+[ext_resource path="res://assets/patterns/oneway2.png" type="Texture2D" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 450, 100 )
@@ -19,7 +19,7 @@ z_as_relative = false
 texture = ExtResource( 2 )
 texture_offset = Vector2( 0, 99 )
 texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -300, -100, 300, -100, 100, 100, -100, 100 )
+polygon = PackedVector2Array( -300, -100, 300, -100, 100, 100, -100, 100 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 visible = false
@@ -28,7 +28,7 @@ self_modulate = Color( 1, 1, 1, 0.705882 )
 texture = ExtResource( 2 )
 texture_offset = Vector2( 100, 99 )
 texture_scale = Vector2( 0.99, 0.99 )
-polygon = PoolVector2Array( -300, -100, 300, -100, 100, 100, -100, 100 )
+polygon = PackedVector2Array( -300, -100, 300, -100, 100, 100, -100, 100 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

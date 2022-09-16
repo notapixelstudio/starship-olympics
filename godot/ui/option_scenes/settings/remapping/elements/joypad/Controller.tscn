@@ -1,36 +1,36 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/joypad/Analog.gd" type="Script" id=2]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/joypad/Controller.gd" type="Script" id=3]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/joypad/ControllerElement.gd" type="Script" id=4]
-[ext_resource path="res://assets/UI/buttons/trigger_bottom.png" type="Texture" id=5]
-[ext_resource path="res://assets/UI/buttons/trigger_top.png" type="Texture" id=6]
-[ext_resource path="res://assets/UI/buttons/button.png" type="Texture" id=7]
-[ext_resource path="res://assets/UI/controller.png" type="Texture" id=8]
-[ext_resource path="res://assets/UI/buttons/dpad.png" type="Texture" id=9]
-[ext_resource path="res://assets/UI/buttons/special_button.png" type="Texture" id=10]
+[ext_resource path="res://assets/UI/buttons/trigger_bottom.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/UI/buttons/trigger_top.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/UI/buttons/button.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/UI/controller.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/UI/buttons/dpad.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/UI/buttons/special_button.png" type="Texture2D" id=10]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
-[node name="Controller" type="Sprite"]
+[node name="Controller" type="Sprite2D"]
 position = Vector2( 496.558, 323.221 )
 texture = ExtResource( 8 )
 script = ExtResource( 3 )
 
-[node name="0" type="Sprite" parent="."]
+[node name="0" type="Sprite2D" parent="."]
 position = Vector2( 170.51, 47.1591 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="0"]
+[node name="Sprite2D" type="Sprite2D" parent="0"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="0"]
 position = Vector2( 2.32707, 0 )
 scale = Vector2( 0.916028, 1 )
-points = PoolVector2Array( 45, 0, 160, 0 )
+points = PackedVector2Array( 45, 0, 160, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -39,11 +39,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="0/Line2D"]
-margin_left = 186.441
-margin_top = -18.0
-margin_right = 264.441
-margin_bottom = 22.0
-rect_min_size = Vector2( 150, 0 )
+offset_left = 186.441
+offset_top = -18.0
+offset_right = 264.441
+offset_bottom = 22.0
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -53,15 +53,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="1" type="Sprite" parent="."]
+[node name="1" type="Sprite2D" parent="."]
 position = Vector2( 220.51, -0.840912 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="1"]
+[node name="Sprite2D" type="Sprite2D" parent="1"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="1"]
-points = PoolVector2Array( 50, 0, 100, 0 )
+points = PackedVector2Array( 50, 0, 100, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -70,11 +70,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="1/Line2D"]
-margin_left = 123.112
-margin_top = -23.6377
-margin_right = 201.112
-margin_bottom = 16.3623
-rect_min_size = Vector2( 150, 0 )
+offset_left = 123.112
+offset_top = -23.6377
+offset_right = 201.112
+offset_bottom = 16.3623
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -84,16 +84,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="2" type="Sprite" parent="."]
+[node name="2" type="Sprite2D" parent="."]
 position = Vector2( 121.51, -0.840912 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="2"]
+[node name="Sprite2D" type="Sprite2D" parent="2"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="2"]
 position = Vector2( -0.590607, 22.9178 )
-points = PoolVector2Array( 0, 20, 0, 45, 76.541, 70.4618, 197.98, 70.4618 )
+points = PackedVector2Array( 0, 20, 0, 45, 76.541, 70.4618, 197.98, 70.4618 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -102,11 +102,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="2/Line2D"]
-margin_left = 222.703
-margin_top = 55.0822
-margin_right = 300.703
-margin_bottom = 95.0823
-rect_min_size = Vector2( 150, 0 )
+offset_left = 222.703
+offset_top = 55.0822
+offset_right = 300.703
+offset_bottom = 95.0823
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -116,15 +116,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="3" type="Sprite" parent="."]
+[node name="3" type="Sprite2D" parent="."]
 position = Vector2( 170.51, -50.8409 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="3"]
+[node name="Sprite2D" type="Sprite2D" parent="3"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="3"]
-points = PoolVector2Array( 33.5052, -25.1374, 61.669, -40, 150, -40 )
+points = PackedVector2Array( 33.5052, -25.1374, 61.669, -40, 150, -40 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -133,11 +133,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="3/Line2D"]
-margin_left = 173.112
-margin_top = -56.4531
-margin_right = 251.112
-margin_bottom = -16.4531
-rect_min_size = Vector2( 150, 0 )
+offset_left = 173.112
+offset_top = -56.4531
+offset_right = 251.112
+offset_bottom = -16.4531
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -147,15 +147,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="4" type="Sprite" parent="."]
+[node name="4" type="Sprite2D" parent="."]
 position = Vector2( -178.137, -150.149 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="4"]
+[node name="Sprite2D" type="Sprite2D" parent="4"]
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="4"]
-points = PoolVector2Array( -60, 0, -130, 0 )
+points = PackedVector2Array( -60, 0, -130, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -164,11 +164,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="4/Line2D"]
-margin_left = -257.578
-margin_top = -17.0
-margin_right = -107.578
-margin_bottom = 23.0
-rect_min_size = Vector2( 150, 0 )
+offset_left = -257.578
+offset_top = -17.0
+offset_right = -107.578
+offset_bottom = 23.0
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -179,15 +179,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="5" type="Sprite" parent="."]
+[node name="5" type="Sprite2D" parent="."]
 position = Vector2( 177.863, -150.149 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="5"]
+[node name="Sprite2D" type="Sprite2D" parent="5"]
 texture = ExtResource( 6 )
 
 [node name="Line2D" type="Line2D" parent="5"]
-points = PoolVector2Array( 60, 0, 130, 0 )
+points = PackedVector2Array( 60, 0, 130, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -196,11 +196,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="5/Line2D"]
-margin_left = 122.734
-margin_top = -19.7227
-margin_right = 238.734
-margin_bottom = 20.2773
-rect_min_size = Vector2( 150, 0 )
+offset_left = 122.734
+offset_top = -19.7227
+offset_right = 238.734
+offset_bottom = 20.2773
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -211,15 +211,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="6" type="Sprite" parent="."]
+[node name="6" type="Sprite2D" parent="."]
 position = Vector2( -171.403, -218.619 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="6"]
+[node name="Sprite2D" type="Sprite2D" parent="6"]
 texture = ExtResource( 5 )
 
 [node name="Line2D" type="Line2D" parent="6"]
-points = PoolVector2Array( -60, 0, -130, 0 )
+points = PackedVector2Array( -60, 0, -130, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -228,11 +228,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="6/Line2D"]
-margin_left = -264.312
-margin_top = -16.2881
-margin_right = -114.312
-margin_bottom = 23.7119
-rect_min_size = Vector2( 150, 0 )
+offset_left = -264.312
+offset_top = -16.2881
+offset_right = -114.312
+offset_bottom = 23.7119
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -243,15 +243,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="7" type="Sprite" parent="."]
+[node name="7" type="Sprite2D" parent="."]
 position = Vector2( 167.597, -218.619 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="7"]
+[node name="Sprite2D" type="Sprite2D" parent="7"]
 texture = ExtResource( 5 )
 
 [node name="Line2D" type="Line2D" parent="7"]
-points = PoolVector2Array( 60, 0, 130, 0 )
+points = PackedVector2Array( 60, 0, 130, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -260,11 +260,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="7/Line2D"]
-margin_left = 132.403
-margin_top = -19.2881
-margin_right = 248.403
-margin_bottom = 20.7119
-rect_min_size = Vector2( 150, 0 )
+offset_left = 132.403
+offset_top = -19.2881
+offset_right = 248.403
+offset_bottom = 20.7119
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -275,15 +275,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="8" type="Sprite" parent="."]
+[node name="8" type="Sprite2D" parent="."]
 position = Vector2( -92.0806, 121.437 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="8"]
+[node name="Sprite2D" type="Sprite2D" parent="8"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="8"]
-points = PoolVector2Array( 0, 40, 0, 90 )
+points = PackedVector2Array( 0, 40, 0, 90 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -292,11 +292,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="8/Line2D"]
-margin_left = -70.0
-margin_top = 108.757
-margin_right = 80.0
-margin_bottom = 148.757
-rect_min_size = Vector2( 150, 0 )
+offset_left = -70.0
+offset_top = 108.757
+offset_right = 80.0
+offset_bottom = 148.757
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -306,15 +306,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="9" type="Sprite" parent="."]
+[node name="9" type="Sprite2D" parent="."]
 position = Vector2( 90.9194, 121.437 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="9"]
+[node name="Sprite2D" type="Sprite2D" parent="9"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="9"]
-points = PoolVector2Array( -0.610779, 72.5387, -2.03949, 129.686 )
+points = PackedVector2Array( -0.610779, 72.5387, -2.03949, 129.686 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -323,11 +323,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="9/Line2D"]
-margin_left = -80.9194
-margin_top = 144.063
-margin_right = 69.0806
-margin_bottom = 184.063
-rect_min_size = Vector2( 150, 0 )
+offset_left = -80.9194
+offset_top = 144.063
+offset_right = 69.0806
+offset_bottom = 184.063
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -337,15 +337,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="10" type="Sprite" parent="."]
+[node name="10" type="Sprite2D" parent="."]
 position = Vector2( -32.0949, 33.1283 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="10"]
+[node name="Sprite2D" type="Sprite2D" parent="10"]
 texture = ExtResource( 10 )
 
 [node name="Line2D" type="Line2D" parent="10"]
-points = PoolVector2Array( 0, -50, 0, -150 )
+points = PackedVector2Array( 0, -50, 0, -150 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -354,11 +354,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="10/Line2D"]
-margin_left = -79.9857
-margin_top = -200.277
-margin_right = 70.0143
-margin_bottom = -160.277
-rect_min_size = Vector2( 150, 0 )
+offset_left = -79.9857
+offset_top = -200.277
+offset_right = 70.0143
+offset_bottom = -160.277
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -368,15 +368,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="11" type="Sprite" parent="."]
+[node name="11" type="Sprite2D" parent="."]
 position = Vector2( 30.9051, 33.1283 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="11"]
+[node name="Sprite2D" type="Sprite2D" parent="11"]
 texture = ExtResource( 10 )
 
 [node name="Line2D" type="Line2D" parent="11"]
-points = PoolVector2Array( 0, -50, 0, -200 )
+points = PackedVector2Array( 0, -50, 0, -200 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -385,11 +385,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="11/Line2D"]
-margin_left = -67.5
-margin_top = -245.747
-margin_right = 82.5
-margin_bottom = -205.747
-rect_min_size = Vector2( 150, 0 )
+offset_left = -67.5
+offset_top = -245.747
+offset_right = 82.5
+offset_bottom = -205.747
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "FIRE"
 align = 1
@@ -399,15 +399,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="12" type="Sprite" parent="."]
+[node name="12" type="Sprite2D" parent="."]
 position = Vector2( -160.413, -40.4231 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="12"]
+[node name="Sprite2D" type="Sprite2D" parent="12"]
 texture = ExtResource( 9 )
 
 [node name="Line2D" type="Line2D" parent="12"]
-points = PoolVector2Array( -50, 0, -100, 0 )
+points = PackedVector2Array( -50, 0, -100, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -416,11 +416,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="12/Line2D"]
-margin_left = -240.302
-margin_top = -19.5
-margin_right = -90.302
-margin_bottom = 20.5
-rect_min_size = Vector2( 150, 0 )
+offset_left = -240.302
+offset_top = -19.5
+offset_right = -90.302
+offset_bottom = 20.5
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -431,15 +431,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="13" type="Sprite" parent="."]
+[node name="13" type="Sprite2D" parent="."]
 position = Vector2( -160.413, 33.5769 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="13"]
+[node name="Sprite2D" type="Sprite2D" parent="13"]
 texture = ExtResource( 9 )
 
 [node name="Line2D" type="Line2D" parent="13"]
-points = PoolVector2Array( -50, 0, -100, 0 )
+points = PackedVector2Array( -50, 0, -100, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -448,11 +448,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="13/Line2D"]
-margin_left = -240.302
-margin_top = -19.5
-margin_right = -90.302
-margin_bottom = 20.5
-rect_min_size = Vector2( 150, 0 )
+offset_left = -240.302
+offset_top = -19.5
+offset_right = -90.302
+offset_bottom = 20.5
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -463,15 +463,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="14" type="Sprite" parent="."]
+[node name="14" type="Sprite2D" parent="."]
 position = Vector2( -195.413, -0.423065 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="14"]
+[node name="Sprite2D" type="Sprite2D" parent="14"]
 texture = ExtResource( 9 )
 
 [node name="Line2D" type="Line2D" parent="14"]
-points = PoolVector2Array( -50, 0, -100, 0 )
+points = PackedVector2Array( -50, 0, -100, 0 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -480,11 +480,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="14/Line2D"]
-margin_left = -240.302
-margin_top = -19.5
-margin_right = -90.302
-margin_bottom = 20.5
-rect_min_size = Vector2( 150, 0 )
+offset_left = -240.302
+offset_top = -19.5
+offset_right = -90.302
+offset_bottom = 20.5
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -495,15 +495,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="15" type="Sprite" parent="."]
+[node name="15" type="Sprite2D" parent="."]
 position = Vector2( -125.413, -0.423065 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="15"]
+[node name="Sprite2D" type="Sprite2D" parent="15"]
 texture = ExtResource( 9 )
 
 [node name="Line2D" type="Line2D" parent="15"]
-points = PoolVector2Array( 4.46829, 33.3693, -4.34119, 77.935, -58.2346, 92.963, -186.231, 93.4812 )
+points = PackedVector2Array( 4.46829, 33.3693, -4.34119, 77.935, -58.2346, 92.963, -186.231, 93.4812 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -512,11 +512,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="15/Line2D"]
-margin_left = -330.302
-margin_top = 70.5
-margin_right = -180.302
-margin_bottom = 110.5
-rect_min_size = Vector2( 150, 0 )
+offset_left = -330.302
+offset_top = 70.5
+offset_right = -180.302
+offset_bottom = 110.5
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -527,16 +527,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_1_-1" type="Sprite" parent="."]
+[node name="ANALOG_1_-1" type="Sprite2D" parent="."]
 position = Vector2( -91.956, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_1_-1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_1_-1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_1_-1"]
-points = PoolVector2Array( -21.3658, -35.6951, -100.999, 2.1308, -220.449, 2.1308 )
+points = PackedVector2Array( -21.3658, -35.6951, -100.999, 2.1308, -220.449, 2.1308 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -545,11 +545,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_1_-1/Line2D"]
-margin_left = -359.836
-margin_top = -9.9231
-margin_right = -209.836
-margin_bottom = 30.0769
-rect_min_size = Vector2( 150, 0 )
+offset_left = -359.836
+offset_top = -9.9231
+offset_right = -209.836
+offset_bottom = 30.0769
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -560,16 +560,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_1_1" type="Sprite" parent="."]
+[node name="ANALOG_1_1" type="Sprite2D" parent="."]
 position = Vector2( -91.956, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_1_1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_1_1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_1_1"]
-points = PoolVector2Array( -15.3933, 39.9567, -87.0634, 107.645, -214.477, 109.636 )
+points = PackedVector2Array( -15.3933, 39.9567, -87.0634, 107.645, -214.477, 109.636 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -578,11 +578,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_1_1/Line2D"]
-margin_left = -359.836
-margin_top = 93.7923
-margin_right = -209.836
-margin_bottom = 133.792
-rect_min_size = Vector2( 150, 0 )
+offset_left = -359.836
+offset_top = 93.7923
+offset_right = -209.836
+offset_bottom = 133.792
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -593,16 +593,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_0_1" type="Sprite" parent="."]
+[node name="ANALOG_0_1" type="Sprite2D" parent="."]
 position = Vector2( -91.956, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_0_1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_0_1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_0_1"]
-points = PoolVector2Array( 42.3409, 8.10327, 84.1484, 53.8925, 84.1484, 173.343 )
+points = PackedVector2Array( 42.3409, 8.10327, 84.1484, 53.8925, 84.1484, 173.343 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -611,11 +611,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_0_1/Line2D"]
-margin_left = 9.8754
-margin_top = 203.288
-margin_right = 159.875
-margin_bottom = 243.288
-rect_min_size = Vector2( 150, 0 )
+offset_left = 9.8754
+offset_top = 203.288
+offset_right = 159.875
+offset_bottom = 243.288
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -626,33 +626,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnalogLeft" type="Sprite" parent="."]
+[node name="AnalogLeft" type="Sprite2D" parent="."]
 position = Vector2( -91.956, 120 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="AnalogLeft"]
+[node name="Sprite2D" type="Sprite2D" parent="AnalogLeft"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="AnalogLeft"]
 
-[node name="AnalogRight2" type="Sprite" parent="."]
+[node name="AnalogRight2" type="Sprite2D" parent="."]
 position = Vector2( -91.956, 120 )
 
-[node name="Sprite" type="Sprite" parent="AnalogRight2"]
+[node name="Sprite2D" type="Sprite2D" parent="AnalogRight2"]
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="AnalogRight2"]
 
-[node name="ANALOG_0_-1" type="Sprite" parent="."]
+[node name="ANALOG_0_-1" type="Sprite2D" parent="."]
 position = Vector2( -91.956, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_0_-1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_0_-1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_0_-1"]
-points = PoolVector2Array( -35.3016, 8.10327, -106.972, 43.9383, -222.44, 45.9291 )
+points = PackedVector2Array( -35.3016, 8.10327, -106.972, 43.9383, -222.44, 45.9291 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -661,11 +661,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_0_-1/Line2D"]
-margin_left = -359.836
-margin_top = 23.7923
-margin_right = -209.836
-margin_bottom = 63.7923
-rect_min_size = Vector2( 150, 0 )
+offset_left = -359.836
+offset_top = 23.7923
+offset_right = -209.836
+offset_bottom = 63.7923
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -676,16 +676,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_2_1" type="Sprite" parent="."]
+[node name="ANALOG_2_1" type="Sprite2D" parent="."]
 position = Vector2( 90, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_2_1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_2_1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_2_1"]
-points = PoolVector2Array( 48.8841, -0.316193, 111.746, 38.2585, 257.473, 39.6871 )
+points = PackedVector2Array( 48.8841, -0.316193, 111.746, 38.2585, 257.473, 39.6871 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -694,11 +694,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_2_1/Line2D"]
-margin_left = 260.0
-margin_top = 17.0
-margin_right = 376.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 150, 0 )
+offset_left = 260.0
+offset_top = 17.0
+offset_right = 376.0
+offset_bottom = 57.0
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -709,16 +709,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_2_-1" type="Sprite" parent="."]
+[node name="ANALOG_2_-1" type="Sprite2D" parent="."]
 position = Vector2( 90, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_2_-1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_2_-1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_2_-1"]
-points = PoolVector2Array( -35.3016, 8.10327, 74.6005, 159.697, 228.899, 158.269 )
+points = PackedVector2Array( -35.3016, 8.10327, 74.6005, 159.697, 228.899, 158.269 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -727,11 +727,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_2_-1/Line2D"]
-margin_left = 252.112
-margin_top = 147.194
-margin_right = 368.112
-margin_bottom = 187.194
-rect_min_size = Vector2( 150, 0 )
+offset_left = 252.112
+offset_top = 147.194
+offset_right = 368.112
+offset_bottom = 187.194
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -742,16 +742,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_3_1" type="Sprite" parent="."]
+[node name="ANALOG_3_1" type="Sprite2D" parent="."]
 position = Vector2( 90, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_3_1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_3_1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_3_1"]
-points = PoolVector2Array( 0.308594, 42.5445, 81.744, 112.55, 237.471, 113.979 )
+points = PackedVector2Array( 0.308594, 42.5445, 81.744, 112.55, 237.471, 113.979 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -760,11 +760,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_3_1/Line2D"]
-margin_left = 231.435
-margin_top = 94.437
-margin_right = 371.435
-margin_bottom = 134.437
-rect_min_size = Vector2( 150, 0 )
+offset_left = 231.435
+offset_top = 94.437
+offset_right = 371.435
+offset_bottom = 134.437
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -775,16 +775,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ANALOG_3_-1" type="Sprite" parent="."]
+[node name="ANALOG_3_-1" type="Sprite2D" parent="."]
 position = Vector2( 90, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="ANALOG_3_-1"]
+[node name="Sprite2D" type="Sprite2D" parent="ANALOG_3_-1"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="ANALOG_3_-1"]
-points = PoolVector2Array( 4.59467, -43.1769, 124.605, 5.39856, 258.902, 8.25595 )
+points = PackedVector2Array( 4.59467, -43.1769, 124.605, 5.39856, 258.902, 8.25595 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -793,11 +793,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="ANALOG_3_-1/Line2D"]
-margin_left = 261.902
-margin_top = -12.9231
-margin_right = 377.902
-margin_bottom = 27.0769
-rect_min_size = Vector2( 150, 0 )
+offset_left = 261.902
+offset_top = -12.9231
+offset_right = 377.902
+offset_bottom = 27.0769
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -808,17 +808,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnalogRight" type="Sprite" parent="."]
+[node name="AnalogRight" type="Sprite2D" parent="."]
 position = Vector2( 90, 120 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="AnalogRight"]
+[node name="Sprite2D" type="Sprite2D" parent="AnalogRight"]
 visible = false
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="AnalogRight"]
 scale = Vector2( 0.914764, 1 )
-points = PoolVector2Array( 50, 20, 100, 70, 250, 70 )
+points = PackedVector2Array( 50, 20, 100, 70, 250, 70 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -827,11 +827,11 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Label" type="Label" parent="AnalogRight/Line2D"]
-margin_left = 275.603
-margin_top = 50.7923
-margin_right = 391.603
-margin_bottom = 90.7923
-rect_min_size = Vector2( 150, 0 )
+offset_left = 275.603
+offset_top = 50.7923
+offset_right = 391.603
+offset_bottom = 90.7923
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "MOVE"
 align = 1
@@ -843,11 +843,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = -82.0949
-margin_top = -329.493
-margin_right = 67.9051
-margin_bottom = -289.493
-rect_min_size = Vector2( 150, 0 )
+offset_left = -82.0949
+offset_top = -329.493
+offset_right = 67.9051
+offset_bottom = -289.493
+minimum_size = Vector2( 150, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 1

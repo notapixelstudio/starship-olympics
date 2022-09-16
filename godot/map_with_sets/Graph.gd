@@ -6,7 +6,7 @@ class_name Graph
 ## value: the MapLocation's neighbours (as a Dictionary with neighbours as keys)
 var neighbours := {}
 
-## register the connection between two given MapLocations, also storing the Path
+## register the connection between two given MapLocations, also storing the Path3D
 func add_path(path, from: MapLocation, to: MapLocation) -> void:
 	# can't check path with a type hint, caller couldn't assign the correct type
 	
@@ -19,8 +19,8 @@ func add_path(path, from: MapLocation, to: MapLocation) -> void:
 	neighbours[from][to] = path
 	neighbours[to][from] = path
 	
-## return the MapLocation neighbours of the given MapLocation, along with their connecting Path
-func get_neighbourhood(loc: MapLocation) -> Dictionary: # {MapLocation: Path}
+## return the MapLocation neighbours of the given MapLocation, along with their connecting Path3D
+func get_neighbourhood(loc: MapLocation) -> Dictionary: # {MapLocation: Path3D}
 	if not neighbours.has(loc):
 		return {}
 	return neighbours[loc]

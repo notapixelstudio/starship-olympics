@@ -74,7 +74,7 @@ func add_new_cards(amount := 1) -> void:
 			remember_card_id(new_card.get_id())
 			
 	new_cards.shuffle()
-	cards = new_cards + cards # new cards are placed on top
+	cards = new_cards + cards # new cards are placed checked top
 	
 	# wipe the next array at each refill
 	next = []

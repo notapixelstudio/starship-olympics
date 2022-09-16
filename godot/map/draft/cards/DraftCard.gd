@@ -2,15 +2,17 @@ extends Resource
 
 class_name DraftCard
 
-export var minigame: Resource setget , get_minigame # Minigame
-export var unlocks : Array = [] # of DraftCard IDs
+@export var minigame: Resource:
+	get: 
+		return (minigame as Minigame)
+@export var unlocks : Array = [] # of DraftCard IDs
 var _unlocks_copy : Array = []
-export var unlock_strength := 1
+@export var unlock_strength := 1
 
-export var winter : bool = false
-export var perfectionist : bool = false
+@export var winter : bool = false
+@export var perfectionist : bool = false
 
-export var tint : Color
+@export var tint : Color
 
 var new := false
 var strikes := 0
@@ -26,8 +28,7 @@ func _refill_unlocks() -> void:
 func get_id() -> String:
 	return self.resource_path.get_basename().get_file()
 
-func get_minigame() -> Minigame:
-	return (minigame as Minigame)
+
 
 func take_strike():
 	strikes += 1
@@ -65,7 +66,7 @@ func get_name() -> String:
 func get_description() -> String:
 	return self.minigame.get_description()
 	
-func get_icon() -> Texture:
+func get_icon() -> Texture2D:
 	return self.minigame.get_icon()
 
 func set_new(v: bool) -> void:

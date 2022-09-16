@@ -1,4 +1,4 @@
-tool
+@tool
 extends Area2D
 class_name DeepGel
 
@@ -9,17 +9,17 @@ func _ready():
 		if node is GShape:
 			gshape = node
 			break
-	gshape.connect('changed', self, '_on_gshape_changed')
+	gshape.connect('changed',Callable(self,'_on_gshape_changed'))
 	refresh_shape()
 	
 func _on_gshape_changed():
 	refresh_shape()
 	
 func add_child(node, legible_unique_name=false):
-	.add_child(node, legible_unique_name)
+	super.add_child(node, legible_unique_name)
 	if node is GShape:
 		gshape = node
-		gshape.connect('changed', self, '_on_gshape_changed')
+		gshape.connect('changed',Callable(self,'_on_gshape_changed'))
 		refresh_shape()
 	
 func refresh_shape():

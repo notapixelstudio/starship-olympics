@@ -6,15 +6,19 @@ var ship
 var ship_e : Entity
 
 
-onready var trail = $Trail
-onready var inner_trail = $InnerTrail
-onready var collision_shape = $Trail/NearArea/CollisionShape2D
-onready var near_area = $Trail/NearArea
-onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
-onready var far_area = $Trail/FarArea
+@onready var trail = $Trail
+@onready var inner_trail = $InnerTrail
+@onready var collision_shape = $Trail/NearArea/CollisionShape2D
+@onready var near_area = $Trail/NearArea
+@onready var farcollision_shape = $Trail/FarArea/CollisionShape2D
+@onready var far_area = $Trail/FarArea
 
-export var trail_length: int setget set_trail_length
-export var trail_texture : Texture
+@export var trail_length: int :
+	get:
+		return trail_length # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_trail_length
+@export var trail_texture : Texture2D
 
 const laser_texture = preload('res://assets/sprites/weapons/laser.png')
 
@@ -43,10 +47,10 @@ func initialize(_ship):
 	if ECM.E(ship):
 		ECM.E(near_area).get('Owned').set_owned_by(ship)
 		ECM.E(far_area).get('Owned').set_owned_by(ship)
-	ship.connect('spawned', self, '_on_sth_spawned')
-	ship.connect('dead', self, '_on_sth_dead')
-	ship.connect('thrusters_off', self, '_on_thrusters_off')
-	ship.connect('thrusters_on', self, '_on_thrusters_on')
+	ship.connect('spawned',Callable(self,'_on_sth_spawned'))
+	ship.connect('dead',Callable(self,'_on_sth_dead'))
+	ship.connect('thrusters_off',Callable(self,'_on_thrusters_off'))
+	ship.connect('thrusters_on',Callable(self,'_on_thrusters_on'))
 	
 	self.configure()
 
@@ -68,7 +72,7 @@ func configure(deadly : bool = false, duration : float = 0.0):
 		c1.a = 1.0
 		cm.a = 0.65
 		c2.a = 0.35
-		trail.gradient.colors = PoolColorArray([c2,cm,c1])
+		trail.gradient.colors = PackedColorArray([c2,cm,c1])
 		inner_trail.modulate = Color(1,1,1,1)
 	else:
 		if is_in_group("Trails"):
@@ -81,7 +85,7 @@ func configure(deadly : bool = false, duration : float = 0.0):
 		c1.a = 0.5
 		cm.a = 0.2
 		c2.a = 0
-		trail.gradient.colors = PoolColorArray([c2,cm,c1])
+		trail.gradient.colors = PackedColorArray([c2,cm,c1])
 		inner_trail.modulate = Color(1,1,1,0.5)
 	
 func _ready():
@@ -125,7 +129,7 @@ func destroy():
 		trail.stop_adding_points = true
 	if inner_trail:
 		inner_trail.stop_adding_points = true
-	yield(trail, "no_points")
+	await trail.no_points
 	queue_free()
 	#change_visibility(false)
 
@@ -141,7 +145,7 @@ func add_point_to_segment(point):
 	segments.append(points[len(points)-1])
 	segments.append(point)
 	collision_shape.shape = ConcavePolygonShape2D.new()
-	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
+	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PackedVector2Array(segments))
 	# FarArea
 	if len(points) < GRACE_POINTS:
 		return
@@ -149,7 +153,7 @@ func add_point_to_segment(point):
 	farsegments.append(points[len(points)-GRACE_POINTS+1])
 	
 	farcollision_shape.shape = ConcavePolygonShape2D.new()
-	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
+	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PackedVector2Array(farsegments))
 
 func remove_point_to_segment(point):
 	if collision_shape.disabled:
@@ -165,8 +169,8 @@ func remove_point_to_segment(point):
 	
 	collision_shape.shape = ConcavePolygonShape2D.new()
 	farcollision_shape.shape = ConcavePolygonShape2D.new()
-	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(segments))
-	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PoolVector2Array(farsegments))
+	(collision_shape.shape as ConcavePolygonShape2D).set_segments(PackedVector2Array(segments))
+	(farcollision_shape.shape as ConcavePolygonShape2D).set_segments(PackedVector2Array(farsegments))
 
 func set_duration(value):
 	trail.time_alive_per_point = value

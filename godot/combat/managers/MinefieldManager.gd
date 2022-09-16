@@ -19,7 +19,7 @@ func get_all_cards():
 func _ready():
 	var cards = get_all_cards()
 	for card in cards:
-		card.connect('taken', self, '_on_card_taken')
+		card.connect('taken',Callable(self,'_on_card_taken'))
 		
 		displacement[card.position] = card
 		
@@ -61,30 +61,30 @@ func _ready():
 				total_score += 2 # 1+2 = 3, value of big diamond
 				
 func intro():
-	Events.connect('match_ended', self, '_on_match_ended')
+	Events.connect('match_ended',Callable(self,'_on_match_ended'))
 	
 	for card in get_all_cards():
 		card.reveal()
 		
-	yield(get_tree().create_timer(3), "timeout")
+	await get_tree().create_timer(3).timeout
 	
 	for card in get_all_cards():
 		card.hide()
 		
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	emit_signal("done")
 	
 	
 func _on_card_taken(card, player, ship):
 	# wait a bit after animations
-	yield(card, 'revealed')
+	await card.revealed
 	
 	if card.content == MINE:
 		ship.die(null)
 		return
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	# do nothing if the game has already ended
 	if not global.is_match_running():
@@ -107,9 +107,9 @@ func _on_card_taken(card, player, ship):
 func _on_match_ended():
 	for card in get_all_cards():
 		card.set_auto_flip_back(false)
-		card.set_pause_mode(PAUSE_MODE_PROCESS)
+		card.set_process_mode(PROCESS_MODE_ALWAYS)
 		
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	for card in get_all_cards():
 		card.reveal()

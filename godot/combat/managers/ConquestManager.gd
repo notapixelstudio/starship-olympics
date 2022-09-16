@@ -17,7 +17,7 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 		#if entity.get('Conquerable').get_species() != null and entity.get('Conquerable').get_species() != species:
 		#	var lost_species = entity.get('Conquerable').get_species()
 			# clearing a cell is delayed
-			#yield(get_tree().create_timer(0.5),'timeout')
+			#await get_tree().create_timer(0.5).timeout
 			#emit_signal('lost', lost_species, entity.get_host())
 			#entity.get('Conquerable').set_species(null)
 			

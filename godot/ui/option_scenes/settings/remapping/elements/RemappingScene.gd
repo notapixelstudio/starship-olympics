@@ -2,8 +2,8 @@ extends Panel
 
 class_name RemappingScene
 
-export var action: String
-export var device_category: String
+@export var action: String
+@export var device_category: String
 
 signal remap_event
 
@@ -11,7 +11,7 @@ func _ready():
 	grab_focus()
 	$Action.text = tr(action)
 	set_process_input(false)
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	set_process_input(true)
 	
 func check_input_event(event:InputEvent):
@@ -36,6 +36,6 @@ func _input(event):
 		set_process_input(false)
 		$ButtonRepresentation.set_button(event)
 		$ButtonRepresentation.visible = true
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		emit_signal("remap_event", event, action)
 		queue_free()

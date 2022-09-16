@@ -2,7 +2,7 @@
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/option_scenes/settings/remapping/RemappingContainer.gd" type="Script" id=2]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="FontFile" id=3]
 [ext_resource path="res://ui/option_scenes/settings/remapping/elements/RemapAction.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/common_elements/ElementOption.tscn" type="PackedScene" id=5]
 
@@ -14,62 +14,62 @@ script = ExtResource( 2 )
 device_type = "joypad"
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_right = 1280.0
+offset_bottom = 720.0
 custom_constants/separation = 20
 
 [node name="Device" parent="UIButtonsContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_right = 1280.0
+offset_right = 1280.0
 element_path = "joypad_device"
 label_description = "device"
 elem_type = 2
 
 [node name="action1" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 70.0
-margin_right = 1280.0
-margin_bottom = 120.0
-rect_min_size = Vector2( 1049.6, 0 )
+offset_top = 70.0
+offset_right = 1280.0
+offset_bottom = 120.0
+minimum_size = Vector2( 1049.6, 0 )
 
 [node name="action" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 140.0
-margin_right = 1280.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 1049.6, 0 )
+offset_top = 140.0
+offset_right = 1280.0
+offset_bottom = 190.0
+minimum_size = Vector2( 1049.6, 0 )
 action = "down"
 
 [node name="action2" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 210.0
-margin_right = 1280.0
-margin_bottom = 260.0
-rect_min_size = Vector2( 1049.6, 0 )
+offset_top = 210.0
+offset_right = 1280.0
+offset_bottom = 260.0
+minimum_size = Vector2( 1049.6, 0 )
 action = "left"
 
 [node name="action3" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 280.0
-margin_right = 1280.0
-margin_bottom = 330.0
-rect_min_size = Vector2( 1049.6, 0 )
+offset_top = 280.0
+offset_right = 1280.0
+offset_bottom = 330.0
+minimum_size = Vector2( 1049.6, 0 )
 action = "right"
 
 [node name="action4" parent="UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 350.0
-margin_right = 1280.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 1049.6, 0 )
+offset_top = 350.0
+offset_right = 1280.0
+offset_bottom = 400.0
+minimum_size = Vector2( 1049.6, 0 )
 action = "fire"
 
 [node name="Control" type="Control" parent="UIButtonsContainer"]
-margin_top = 420.0
-margin_right = 1280.0
-margin_bottom = 650.0
+offset_top = 420.0
+offset_right = 1280.0
+offset_bottom = 650.0
 size_flags_vertical = 3
 
 [node name="Default" type="Button" parent="UIButtonsContainer"]
-margin_top = 670.0
-margin_right = 1280.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 0, 50 )
+offset_top = 670.0
+offset_right = 1280.0
+offset_bottom = 720.0
+minimum_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "DEFAULT"

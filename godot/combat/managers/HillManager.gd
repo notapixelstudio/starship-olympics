@@ -8,7 +8,7 @@ func get_all_hills():
 func _ready():
 	hills = get_all_hills()
 	for hill in hills:
-		hill.connect('disappeared', self, '_on_hill_disappeared')
+		hill.connect('disappeared',Callable(self,'_on_hill_disappeared'))
 	
 func next_hill(previous_hill):
 	# only one hill is active at a given time
@@ -24,7 +24,7 @@ func next_hill(previous_hill):
 	next_hill.set_active(true)
 	
 func _on_hill_disappeared(hill):
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	next_hill(hill)
 	
 func _process(delta):

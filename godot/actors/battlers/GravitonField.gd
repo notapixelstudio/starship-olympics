@@ -1,13 +1,17 @@
 extends Node2D
 
-export var multiplier : float = 1.0
-export var timeout : float = 0.0
-export var enabled : bool = false setget set_enabled
-export var gravity : float = 1024.0
-export var influence_radius : float = 500.0
+@export var multiplier : float = 1.0
+@export var timeout : float = 0.0
+@export var enabled : bool = false :
+	get:
+		return enabled # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_enabled
+@export var gravity : float = 1024.0
+@export var influence_radius : float = 500.0
 
 func _enter_tree():
-	yield(get_tree().create_timer(timeout), "timeout")
+	await get_tree().create_timer(timeout).timeout
 	if timeout:
 		enabled = false
 		

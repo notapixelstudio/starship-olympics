@@ -3,7 +3,7 @@
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
-[ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
+[ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture2D" id=4]
 [ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
 [ext_resource path="res://combat/managers/PursueManager.gd" type="Script" id=6]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
@@ -31,15 +31,15 @@
 [ext_resource path="res://default_env.tres" type="Environment" id=29]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
-[ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
+[ext_resource path="res://combat/interface/pause/ProcessMode.tscn" type="PackedScene" id=32]
 [ext_resource path="res://utils/Camera.gd" type="Script" id=33]
 [ext_resource path="res://combat/managers/HoldablesManager.tscn" type="PackedScene" id=34]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=35]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=35]
 [ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=36]
 [ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=37]
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
-[ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
-[ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
+[ext_resource path="res://combat/levels/background/red.png" type="Texture2D" id=39]
+[ext_resource path="res://assets/shaders/chromatic_aberration_texture.gdshader" type="Shader" id=40]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 40 )
@@ -59,13 +59,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 80 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 80 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 512
 font_data = ExtResource( 35 )
 
@@ -78,8 +78,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ 1.0, 0.01 ]
 }
@@ -90,8 +90,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = false
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
@@ -102,8 +102,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
@@ -114,8 +114,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
@@ -129,8 +129,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ 1.0, 0.1 ]
 }
@@ -141,8 +141,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = false
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
@@ -153,8 +153,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 0.5 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
 }
@@ -283,7 +283,7 @@ __meta__ = {
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="BackgroundImage" type="Sprite" parent="BackgroundLayer"]
+[node name="BackgroundImage" type="Sprite2D" parent="BackgroundLayer"]
 material = SubResource( 7 )
 texture = ExtResource( 39 )
 centered = false
@@ -345,7 +345,7 @@ height = 20000
 layer = 50
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 27 )]
-pause_mode = 2
+process_mode = 2
 
 [node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 28 )]
 visible = false
@@ -354,7 +354,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.156863 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 50.0
+offset_top = 50.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 6 )
 align = 1
@@ -373,15 +373,15 @@ layer = 100
 [node name="Pause" parent="CanvasLayer2" instance=ExtResource( 32 )]
 visible = false
 
-[node name="Camera" type="Camera2D" parent="."]
-pause_mode = 2
+[node name="Camera3D" type="Camera2D" parent="."]
+process_mode = 2
 current = true
 zoom = Vector2( 8192, 8192 )
 script = ExtResource( 33 )
 zoomMin = 3.0
 debug_mode = false
 
-[node name="CenterCamera" type="Position2D" parent="."]
+[node name="CenterCamera" type="Marker2D" parent="."]
 script = SubResource( 4 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]

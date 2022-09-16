@@ -1,18 +1,34 @@
-tool
+@tool
 extends Node2D
 
-export var linked_to_path : NodePath
-export var width : float = 300 setget set_width
-export var offset : float = 80
-export var color : Color = Color(1, 0, 1, 1) setget set_color
-export var inverted : bool = false setget set_inverted
-export var show_hole : bool = true setget set_show_hole
-export var wobbliness := 20.0
-export var is_goal : bool = false
-export var goal_owner : NodePath
+@export var linked_to_path : NodePath
+@export var width : float = 300 :
+	get:
+		return width # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_width
+@export var offset : float = 80
+@export var color : Color = Color(1, 0, 1, 1) :
+	get:
+		return color # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_color
+@export var inverted : bool = false :
+	get:
+		return inverted # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_inverted
+@export var show_hole : bool = true :
+	get:
+		return show_hole # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_show_hole
+@export var wobbliness := 20.0
+@export var is_goal : bool = false
+@export var goal_owner : NodePath
 var player
 
-onready var wall = $StaticBody2D
+@onready var wall = $StaticBody2D
 
 signal goal_done
 
@@ -35,7 +51,7 @@ func set_show_hole(v):
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 	refresh()
 	
@@ -51,20 +67,20 @@ func refresh():
 		$Hole.points[0].x = -width*0.66
 		$Hole.points[1].x = width*0.66
 		
-		$Particles2D.modulate = color
+		$GPUParticles2D.modulate = color
 		$SpikeParticles2D.modulate = color
-		$Particles2D.scale.x = -1 if inverted else 1
+		$GPUParticles2D.scale.x = -1 if inverted else 1
 		$Particles2D2.scale.x = -1 if inverted else 1
-		$Particles2D.process_material.emission_box_extents.y = width
+		$GPUParticles2D.process_material.emission_box_extents.y = width
 		$Particles2D2.process_material.emission_box_extents.y = width
 		$SpikeParticles2D.process_material.emission_box_extents.y = width
-		$Particles2D.amount = width / 300 * 8
+		$GPUParticles2D.amount = width / 300 * 8
 		$Particles2D2.amount = width / 300 * 8
 		$SpikeParticles2D.amount = width / 300 * 8
 		
 		if player:
 			$Line2D.modulate = player.species.color
-			$Particles2D.modulate = player.species.color
+			$GPUParticles2D.modulate = player.species.color
 			$SpikeParticles2D.modulate = player.species.color
 			$Line2D.self_modulate = Color(1.2,1.2,1.2,1) # ship colors are already vibrant
 			
@@ -103,7 +119,7 @@ func _on_Area2D_body_entered(body : PhysicsBody2D):
 			had_thrusters = true
 			entity.get('Thrusters').disable()
 			
-		yield(get_tree().create_timer(0.1), 'timeout')
+		await get_tree().create_timer(0.1).timeout
 		
 		if had_thrusters:
 			entity.get('Thrusters').enable()
@@ -143,7 +159,7 @@ func wobble():
 		points.append(Vector2(current, -randf()*wobbliness))
 		current += step
 		
-	$Line2D.points = PoolVector2Array(points)
+	$Line2D.points = PackedVector2Array(points)
 
 func _on_Timer_timeout():
 	self.wobble()

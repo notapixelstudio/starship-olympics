@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://map_with_sets/OnOffOption.gd" type="Script" id=1]
-[ext_resource path="res://assets/map/cards/bomb.png" type="Texture" id=2]
-[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture" id=3]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/map/cards/bomb.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=6]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=8]
 
@@ -28,7 +28,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 32
 font_data = ExtResource( 6 )
 
@@ -42,21 +42,21 @@ value_name = "hive_bombs"
 global_option = false
 node_owner_path = NodePath("../../..")
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 0, -30 )
 texture = ExtResource( 2 )
 
-[node name="CheckBox" type="AnimatedSprite" parent="."]
+[node name="CheckBox" type="AnimatedSprite2D" parent="."]
 position = Vector2( 84, -84 )
 frames = SubResource( 1 )
 animation = "true"
 playing = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = -90.0
-margin_top = 25.0
-margin_right = 86.0
-margin_bottom = 78.0
+offset_left = -90.0
+offset_top = 25.0
+offset_right = 86.0
+offset_bottom = 78.0
 custom_fonts/font = SubResource( 2 )
 text = "{_} VICTORIES"
 align = 1

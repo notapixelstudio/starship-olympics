@@ -1,37 +1,37 @@
 [gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=2]
-[ext_resource path="res://assets/icon/star_empty00.png" type="Texture" id=3]
-[ext_resource path="res://assets/icon/star_empty01.png" type="Texture" id=4]
-[ext_resource path="res://assets/icon/star_empty02.png" type="Texture" id=5]
-[ext_resource path="res://assets/icon/star_empty03.png" type="Texture" id=6]
-[ext_resource path="res://assets/icon/star_empty04.png" type="Texture" id=7]
-[ext_resource path="res://assets/icon/star_empty05.png" type="Texture" id=8]
-[ext_resource path="res://assets/icon/star_empty06.png" type="Texture" id=9]
-[ext_resource path="res://assets/icon/star_empty07.png" type="Texture" id=10]
-[ext_resource path="res://assets/icon/star_empty08.png" type="Texture" id=11]
-[ext_resource path="res://assets/icon/star_empty09.png" type="Texture" id=12]
-[ext_resource path="res://assets/icon/star_empty10.png" type="Texture" id=13]
-[ext_resource path="res://assets/icon/star_empty11.png" type="Texture" id=14]
-[ext_resource path="res://assets/icon/star_full00.png" type="Texture" id=15]
-[ext_resource path="res://assets/icon/star_full01.png" type="Texture" id=16]
-[ext_resource path="res://assets/icon/star_full02.png" type="Texture" id=17]
-[ext_resource path="res://assets/icon/star_full03.png" type="Texture" id=18]
-[ext_resource path="res://assets/icon/star_full04.png" type="Texture" id=19]
-[ext_resource path="res://assets/icon/star_full05.png" type="Texture" id=20]
-[ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=21]
-[ext_resource path="res://assets/icon/star_full07.png" type="Texture" id=22]
-[ext_resource path="res://assets/icon/star_full08.png" type="Texture" id=23]
-[ext_resource path="res://assets/icon/star_full09.png" type="Texture" id=24]
-[ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=25]
-[ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=26]
-[ext_resource path="res://assets/icon/star_full.png" type="Texture" id=27]
+[ext_resource path="res://assets/icon/star_empty.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/icon/star_empty00.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/icon/star_empty01.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/icon/star_empty02.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/icon/star_empty03.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/icon/star_empty04.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/icon/star_empty05.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/icon/star_empty06.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/icon/star_empty07.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/icon/star_empty08.png" type="Texture2D" id=11]
+[ext_resource path="res://assets/icon/star_empty09.png" type="Texture2D" id=12]
+[ext_resource path="res://assets/icon/star_empty10.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/icon/star_empty11.png" type="Texture2D" id=14]
+[ext_resource path="res://assets/icon/star_full00.png" type="Texture2D" id=15]
+[ext_resource path="res://assets/icon/star_full01.png" type="Texture2D" id=16]
+[ext_resource path="res://assets/icon/star_full02.png" type="Texture2D" id=17]
+[ext_resource path="res://assets/icon/star_full03.png" type="Texture2D" id=18]
+[ext_resource path="res://assets/icon/star_full04.png" type="Texture2D" id=19]
+[ext_resource path="res://assets/icon/star_full05.png" type="Texture2D" id=20]
+[ext_resource path="res://assets/icon/star_full06.png" type="Texture2D" id=21]
+[ext_resource path="res://assets/icon/star_full07.png" type="Texture2D" id=22]
+[ext_resource path="res://assets/icon/star_full08.png" type="Texture2D" id=23]
+[ext_resource path="res://assets/icon/star_full09.png" type="Texture2D" id=24]
+[ext_resource path="res://assets/icon/star_full10.png" type="Texture2D" id=25]
+[ext_resource path="res://assets/icon/star_full11.png" type="Texture2D" id=26]
+[ext_resource path="res://assets/icon/star_full.png" type="Texture2D" id=27]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=28]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=29]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=30]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=29]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=30]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=31]
-[ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture2D" id=32]
 [ext_resource path="res://combat/collectables/Star.gd" type="Script" id=33]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -65,26 +65,26 @@ resource_name = "Blink"
 length = 2.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5, 2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( -0.1, 0.5, 1.3, 2 ),
-"transitions": PoolRealArray( 0.5, 2, 1, 0.5 ),
+"times": PackedFloat32Array( -0.1, 0.5, 1.3, 2 ),
+"transitions": PackedFloat32Array( 0.5, 2, 1, 0.5 ),
 "update": 0,
 "values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0 ), Color( 1, 0.988235, 0.305882, 0.388235 ), Color( 0.305882, 1, 0.968627, 0 ) ]
 }
@@ -109,7 +109,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 29 )
 }
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource( 1 )
 animation = "shine"
 frame = 33
@@ -120,7 +120,7 @@ shape = SubResource( 2 )
 
 [node name="Glow" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Glow"]
+[node name="Sprite2D" type="Sprite2D" parent="Glow"]
 modulate = Color( 0.922658, 0.989546, 0.379728, 0.344976 )
 scale = Vector2( 0.899451, 0.899451 )
 texture = ExtResource( 32 )

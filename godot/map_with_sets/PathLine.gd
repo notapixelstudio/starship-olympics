@@ -1,9 +1,13 @@
-tool
+@tool
 extends Line2D
 
 var start: Vector2
 var end: Vector2
-var current: Vector2 setget set_current
+var current: Vector2 :
+	get:
+		return current # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_current
 
 signal appeared
 
@@ -34,7 +38,7 @@ func appear(force: bool = false) -> void:
 		$Tween.start()
 	
 func refresh() -> void:
-	set_points(PoolVector2Array([start, current]))
+	set_points(PackedVector2Array([start, current]))
 	
 func _on_Tween_tween_all_completed():
 	emit_signal('appeared')

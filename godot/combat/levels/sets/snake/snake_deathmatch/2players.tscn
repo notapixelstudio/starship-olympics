@@ -3,16 +3,16 @@
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=4]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=4]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=6]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://assets/icon/skull.png" type="Texture" id=11]
+[ext_resource path="res://assets/icon/skull.png" type="Texture2D" id=11]
 [ext_resource path="res://combat/modes/SnakeDeathmatch.tres" type="Resource" id=12]
-[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=13]
+[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture2D" id=13]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=14]
 
 [node name="Arena" instance=ExtResource( 9 )]
@@ -23,7 +23,7 @@ style = ExtResource( 5 )
 [node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 13 )
 centered = false
 
@@ -52,13 +52,13 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="skull" type="Sprite" parent="Battlefield/Background" index="4"]
+[node name="skull" type="Sprite2D" parent="Battlefield/Background" index="4"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
 position = Vector2( -800, -1.14441e-05 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 11 )
 
-[node name="skull2" type="Sprite" parent="Battlefield/Background" index="5"]
+[node name="skull2" type="Sprite2D" parent="Battlefield/Background" index="5"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
 position = Vector2( 800, 3.8147e-06 )
 scale = Vector2( 4, 4 )
@@ -143,7 +143,7 @@ controls = "joy1"
 species = ExtResource( 3 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 zoom = Vector2( 6103.52, 6103.52 )
 smoothing_speed = 0.3
 

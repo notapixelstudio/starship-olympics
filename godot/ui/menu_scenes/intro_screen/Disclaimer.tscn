@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/UI/futureui-panel.png" type="Texture" id=1]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/UI/futureui-panel.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=2]
 [ext_resource path="res://ui/common_elements/ElementOptionCheckbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
-onready var anim = $Disclaimer/AnimationPlayer
+@onready var anim = $Disclaimer/AnimationPlayer
 signal okay
 func _ready():
 	visible = false
@@ -16,19 +16,19 @@ func _ready():
 func start():
 	visible = true
 	anim.play(\"Appear\")
-	yield(anim, \"animation_finished\")
+	await anim.animation_finished
 	$Disclaimer/Analytics.focus()
 	
 func _on_Button_pressed():
 	anim.play_backwards(\"Appear\")
-	yield(anim, \"animation_finished\")
+	await anim.animation_finished
 	persistance.save_game()
 	print(\"Statistics are now : \", global.enable_analytics)
 	emit_signal(\"okay\")
 	queue_free()
 "
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=3]
@@ -39,8 +39,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.843752, -0.26, -0.861676, 0.14, 0.34318, 1, -0.3, 0.286751, 0.249942, -0.238904 ),
-"times": PoolRealArray( 0, 0.4, 1 )
+"points": PackedFloat32Array( 0, -0.25, 0, 0.25, 0, 0.843752, -0.26, -0.861676, 0.14, 0.34318, 1, -0.3, 0.286751, 0.249942, -0.238904 ),
+"times": PackedFloat32Array( 0, 0.4, 1 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath(".:scale:y")
@@ -49,8 +49,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 1 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 1 )
 }
 
 [node name="Disclaimer" type="Control"]
@@ -64,10 +64,10 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 6.55493
-margin_top = -0.815063
-margin_right = 6.55493
-margin_bottom = -0.815063
+offset_left = 6.55493
+offset_top = -0.815063
+offset_right = 6.55493
+offset_bottom = -0.815063
 color = Color( 0, 0, 0, 0.396078 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -76,7 +76,7 @@ __meta__ = {
 [node name="Disclaimer" type="Node2D" parent="."]
 position = Vector2( 640, 360 )
 
-[node name="futureui-panel" type="Sprite" parent="Disclaimer"]
+[node name="futureui-panel" type="Sprite2D" parent="Disclaimer"]
 scale = Vector2( 1.31379, 1 )
 texture = ExtResource( 1 )
 
@@ -84,10 +84,10 @@ texture = ExtResource( 1 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -473.0
-margin_top = -87.0
-margin_right = 430.0
-margin_bottom = 6.0
+offset_left = -473.0
+offset_top = -87.0
+offset_right = 430.0
+offset_bottom = 6.0
 custom_fonts/font = SubResource( 2 )
 text = "Superstarfighter is a game in development by notapixelstudio. We need your feedback! head over our webpage or enable the statistics (we use GameAnalytics). You can change your preference whenever you like in the option menu."
 align = 1
@@ -98,18 +98,18 @@ __meta__ = {
 }
 
 [node name="Analytics" parent="Disclaimer" instance=ExtResource( 3 )]
-margin_left = -421.907
-margin_top = 11.494
-margin_right = -246.907
-margin_bottom = 61.494
+offset_left = -421.907
+offset_top = 11.494
+offset_right = -246.907
+offset_bottom = 61.494
 element_path = "enable_analytics"
 label_description = "ENABLE ANALYTICS"
 
 [node name="Button" type="Button" parent="Disclaimer"]
-margin_left = 145.0
-margin_top = 55.0
-margin_right = 275.0
-margin_bottom = 84.0
+offset_left = 145.0
+offset_top = 55.0
+offset_right = 275.0
+offset_bottom = 84.0
 theme = ExtResource( 4 )
 text = "CONTINUE"
 __meta__ = {

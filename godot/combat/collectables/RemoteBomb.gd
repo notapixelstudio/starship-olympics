@@ -24,7 +24,7 @@ func _ready():
 	Events.emit_signal('bumper_created', self)
 
 func make_solid():
-	set_collision_mask_bit(0, true)
+	set_collision_mask_value(0, true)
 
 func detonate():
 	if $AnimationPlayer.current_animation != 'Detonate':

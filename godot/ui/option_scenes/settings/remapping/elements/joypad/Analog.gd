@@ -1,7 +1,7 @@
-extends Sprite
+extends Sprite2D
 
 const DEADZONE = 0.2
-onready var sprite = $Sprite
+@onready var sprite = $Sprite2D
 
 func _process(delta):
 	if abs(sprite.position.x) < DEADZONE:

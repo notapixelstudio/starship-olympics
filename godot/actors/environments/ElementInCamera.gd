@@ -1,7 +1,7 @@
-extends Position2D
+extends Marker2D
 
 signal completed
-export var speed =  4
+@export var speed =  4
 
 var target
 func _ready():
@@ -13,7 +13,7 @@ func manual_activate(follow, start: Vector2, wait):
 	self.target = follow
 	set_process(true)
 	activate()
-	yield(get_tree().create_timer(wait), "timeout")
+	await get_tree().create_timer(wait).timeout
 	manual_deactivate()
 	emit_signal("completed")
 
@@ -28,7 +28,7 @@ func move(new_position: Vector2, duration: float):
 	# Move from its position to new_position
 	$Tween.interpolate_property(self, "position", position, new_position, duration, Tween.TRANS_QUAD,Tween.EASE_IN_OUT)
 	$Tween.start()
-	yield($Tween, "tween_completed")
+	await $Tween.finished
 	emit_signal("completed")
 	
 

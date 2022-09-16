@@ -3,20 +3,20 @@
 [ext_resource path="res://actors/environments/PentaGoal.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=3]
-[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=4]
+[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture2D" id=4]
 [ext_resource path="res://assets/audio/gameplay/nocrown.ogg" type="AudioStream" id=5]
 [ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/traits/Dropper.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
+points = PackedVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
+points = PackedVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id=3]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -34,7 +34,7 @@ func _process(delta):
 	rotation = -get_parent().global_rotation
 "
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="FontFile" id=7]
 size = 84
 font_data = ExtResource( 9 )
 
@@ -47,8 +47,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 20.0, 0.0 ]
 }
@@ -59,8 +59,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
 }
@@ -71,8 +71,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -88,10 +88,10 @@ script = ExtResource( 1 )
 type = 4
 
 [node name="Polygon2D" parent="Field" index="1"]
-polygon = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14 )
+polygon = PackedVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14 )
 
 [node name="Line2D" parent="Field" index="2"]
-points = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057 )
+points = PackedVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057 )
 
 [node name="Dropper" parent="Field/Area2D" index="0" instance=ExtResource( 8 )]
 
@@ -101,7 +101,7 @@ shape = SubResource( 9 )
 [node name="CollisionShape2D" parent="Field/CrownCollider" index="0"]
 shape = SubResource( 10 )
 
-[node name="Particles2D" parent="Field" index="5"]
+[node name="GPUParticles2D" parent="Field" index="5"]
 process_material = SubResource( 3 )
 
 [node name="GRegularPolygon" type="Node" parent="Field"]
@@ -119,10 +119,10 @@ script = SubResource( 8 )
 
 [node name="Label" type="Label" parent="LabelWrapper"]
 self_modulate = Color( 1, 1, 1, 0.196078 )
-margin_left = -192.0
-margin_top = -64.0
-margin_right = 192.0
-margin_bottom = 64.0
+offset_left = -192.0
+offset_top = -64.0
+offset_right = 192.0
+offset_bottom = 64.0
 custom_fonts/font = SubResource( 7 )
 text = "X"
 align = 1
@@ -135,7 +135,7 @@ z_as_relative = false
 [node name="FeedbackLine" type="Line2D" parent="."]
 visible = false
 scale = Vector2( 1.4, 1.4 )
-points = PoolVector2Array( 100, 0, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, 0 )
+points = PackedVector2Array( 100, 0, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, 0 )
 width = 0.0
 default_color = Color( 1.5, 1.5, 1.5, 1 )
 texture_mode = -488090432

@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
 [ext_resource path="res://map_with_sets/MapLocation.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map_with_sets/MapRadio.gd" type="Script" id=4]
-[ext_resource path="res://assets/map/cards/option.png" type="Texture" id=5]
+[ext_resource path="res://assets/map/cards/option.png" type="Texture2D" id=5]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 36
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -17,17 +17,17 @@ script = ExtResource( 4 )
 
 [node name="CollisionPolygon2D" parent="." index="0"]
 visible = true
-polygon = PoolVector2Array( 0, -150, 125, -25, 0, 100, -125, -25 )
+polygon = PackedVector2Array( 0, -150, 125, -25, 0, 100, -125, -25 )
 
 [node name="CollisionPolygon2D" parent="ExitArea" index="0"]
 visible = true
-polygon = PoolVector2Array( 0, -200, 175, -25, 0, 150, -175, -25 )
+polygon = PackedVector2Array( 0, -200, 175, -25, 0, 150, -175, -25 )
 
-[node name="Frame" type="Sprite" parent="." index="4"]
+[node name="Frame" type="Sprite2D" parent="." index="4"]
 position = Vector2( 0, -28 )
 texture = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="." index="5"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
 position = Vector2( 0, -28 )
 
 [node name="Wrapper" type="Node2D" parent="." index="6"]
@@ -36,10 +36,10 @@ z_as_relative = false
 
 [node name="Label" type="Label" parent="Wrapper" index="0"]
 visible = false
-margin_left = -150.0
-margin_top = 50.0
-margin_right = 150.0
-margin_bottom = 200.0
+offset_left = -150.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 200.0
 custom_fonts/font = SubResource( 3 )
 text = "victories"
 align = 1

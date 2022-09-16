@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture2D" id=3]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
@@ -11,9 +11,9 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=11]
-[ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=12]
+[ext_resource path="res://assets/patterns/stripes.png" type="Texture2D" id=12]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=14]
+[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture2D" id=14]
 [ext_resource path="res://combat/modes/SnakeAGon.tres" type="Resource" id=15]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=16]
 
@@ -26,7 +26,7 @@ game_mode = ExtResource( 15 )
 style = ExtResource( 11 )
 match_duration_override = 80.0
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 14 )
 centered = false
 
@@ -131,7 +131,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Middleground/LaserStop" index="0"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/LaserStop" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Middleground/LaserStop" index="1"]
 modulate = Color( 1, 0, 0.45098, 1 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
@@ -225,7 +225,7 @@ rotation = 0.523604
 controls = "joy3"
 species = ExtResource( 8 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 zoom = Vector2( 25, 25 )
 smoothing_speed = 0.3
 

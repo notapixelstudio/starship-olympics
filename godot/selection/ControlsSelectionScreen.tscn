@@ -1,23 +1,23 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/icon/kb1_old.png" type="Texture" id=1]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/icon/kb1_old.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=2]
 [ext_resource path="res://selection/ControlsSelectionScreen.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 14
 font_data = ExtResource( 2 )
 
-[node name="Keyboard" type="Sprite"]
+[node name="Keyboard" type="Sprite2D"]
 position = Vector2( 82, 645 )
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="right" type="Label" parent="."]
-margin_left = 23.0
-margin_top = 1.0
-margin_right = 39.0
-margin_bottom = 19.0
+offset_left = 23.0
+offset_top = 1.0
+offset_right = 39.0
+offset_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "→"
@@ -29,10 +29,10 @@ __meta__ = {
 }
 
 [node name="down" type="Label" parent="."]
-margin_left = 5.0
-margin_top = 1.0
-margin_right = 21.0
-margin_bottom = 19.0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "→"
@@ -44,10 +44,10 @@ __meta__ = {
 }
 
 [node name="up" type="Label" parent="."]
-margin_left = 5.0
-margin_top = -17.0
-margin_right = 21.0
-margin_bottom = 1.0
+offset_left = 5.0
+offset_top = -17.0
+offset_right = 21.0
+offset_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "→"
@@ -59,10 +59,10 @@ __meta__ = {
 }
 
 [node name="fire" type="Label" parent="."]
-margin_left = -21.0
-margin_top = -19.0
-margin_right = -5.0
-margin_bottom = -1.0
+offset_left = -21.0
+offset_top = -19.0
+offset_right = -5.0
+offset_bottom = -1.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "M"
@@ -74,10 +74,10 @@ __meta__ = {
 }
 
 [node name="left" type="Label" parent="."]
-margin_left = -13.0
-margin_top = 1.0
-margin_right = 3.0
-margin_bottom = 19.0
+offset_left = -13.0
+offset_top = 1.0
+offset_right = 3.0
+offset_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "→"

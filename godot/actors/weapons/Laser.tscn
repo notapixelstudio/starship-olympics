@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/weapons/Laser.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=2]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture2D" id=4]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=6]
 
@@ -22,7 +22,7 @@ _data = [ Vector2( 0, 3 ), 0.0, -0.029752, 0, 0, Vector2( 1, 0 ), -7.06612, 0.0,
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 400.0
@@ -31,7 +31,7 @@ orbit_velocity_random = 0.0
 scale = 2.0
 scale_curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 10.0
 flag_disable_z = true
@@ -64,7 +64,7 @@ script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource( 1 )
-points = PoolVector2Array( 0, 0, 0, 0 )
+points = PackedVector2Array( 0, 0, 0, 0 )
 width = 40.0
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -79,7 +79,7 @@ collision_mask = 3083
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RayArea"]
 shape = SubResource( 2 )
 
-[node name="CastingParticles2D" type="Particles2D" parent="."]
+[node name="CastingParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color( 1.4, 1.4, 1.4, 1 )
 material = SubResource( 3 )
 amount = 4
@@ -87,7 +87,7 @@ lifetime = 0.3
 process_material = SubResource( 6 )
 texture = ExtResource( 4 )
 
-[node name="CollisionParticles2D" type="Particles2D" parent="."]
+[node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource( 3 )
 amount = 16
 lifetime = 0.5

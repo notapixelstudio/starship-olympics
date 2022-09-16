@@ -1,17 +1,29 @@
-tool
+@tool
 extends Area2D
 
 func get_klass():
 	return 'Tile'
 
-export var size = 1 setget set_size
-export var sides = 4 setget set_sides
-export var points = 1
-export var fortifiable = true
-export var need_royal = false
+@export var size = 1 :
+	get:
+		return size # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_size
+@export var sides = 4 :
+	get:
+		return sides # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_sides
+@export var points = 1
+@export var fortifiable = true
+@export var need_royal = false
 
 var conquering_ship : Ship
-var owner_ship : Ship setget set_owner_ship
+var owner_ship : Ship :
+	get:
+		return owner_ship # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_owner_ship
 
 var neighbours
 var fortified = false
@@ -59,7 +71,7 @@ func _ready():
 	$Graphics.position = Vector2(0,32).rotated(-global_rotation)
 	$Graphics/Wrapper.rotation = -global_rotation
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
-	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
+	await get_tree().idle_frame # wait for all tiles to be ready
 	
 	# tiles don't change neighbours over time
 	neighbours = []

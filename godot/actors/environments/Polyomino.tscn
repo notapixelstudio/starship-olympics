@@ -1,13 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/environments/Polyomino.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=2]
+[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture2D" id=3]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 200
 font_data = ExtResource( 2 )
 
@@ -28,7 +28,7 @@ __meta__ = {
 [node name="Goal" parent="." instance=ExtResource( 6 )]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
+polygon = PackedVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -36,10 +36,10 @@ __meta__ = {
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 1, 1, 1, 0.117647 )
 texture = ExtResource( 3 )
-polygon = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
+polygon = PackedVector2Array( -50, -50, 50, -50, 50, 50, -50, 50 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( -50, -50, 50, -50, 50, 50, -50, 50, -50, -50 )
+points = PackedVector2Array( -50, -50, 50, -50, 50, 50, -50, 50, -50, -50 )
 default_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 joint_mode = 2
 begin_cap_mode = 2
@@ -54,10 +54,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -150.0
-margin_right = 150.0
-margin_bottom = 150.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
 custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 1

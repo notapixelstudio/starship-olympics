@@ -1,6 +1,10 @@
 extends Node2D
 
-export var hook_to : NodePath setget set_hook_to
+@export var hook_to : NodePath :
+	get:
+		return hook_to # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_hook_to
 
 func set_hook_to(v):
 	hook_to = v
@@ -18,4 +22,4 @@ func _draw():
 		if child is RigidBody2D:
 			points.append(to_local(child.global_position))
 			
-	draw_polyline(PoolVector2Array(points), Color(1.2,1.2,1.2), 8.0, true)
+	draw_polyline(PackedVector2Array(points), Color(1.2,1.2,1.2), 8.0, true)

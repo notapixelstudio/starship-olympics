@@ -1,16 +1,20 @@
 extends Area2D
 
-export var active := false setget set_active, get_active
+@export var active := false :
+	get:
+		return active # TODOConverter40 Copy here content of get_active
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_active
 var owner_ship : Ship
 
 func _ready():
 	owner_ship = get_parent() # WARNING
-	owner_ship.connect('overcharging_started', self, '_on_overcharging_started')
-	owner_ship.connect('charging_ended', self, '_on_charging_ended')
+	owner_ship.connect('overcharging_started',Callable(self,'_on_overcharging_started'))
+	owner_ship.connect('charging_ended',Callable(self,'_on_charging_ended'))
 
 func set_active(v):
 	active = v
-	$Sprite.visible = active
+	$Sprite2D.visible = active
 	$CollisionPolygon2D.call_deferred('set_disabled', not active)
 	
 func get_active() -> bool:

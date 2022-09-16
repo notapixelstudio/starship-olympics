@@ -9,10 +9,10 @@ var current_audio
 signal play_song
 
 func _ready():
-	pause_mode = Node.PAUSE_MODE_PROCESS
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	for audio_lib in get_children():
-		if not is_connected("play_song", self, "song_is_playing"):
-			connect("play_song", self, "song_is_playing")
+		if not is_connected("play_song",Callable(self,"song_is_playing")):
+			connect("play_song",Callable(self,"song_is_playing"))
 	
 func play(sound : String = "", force_stop = false):
 	var song = Soundtrack.current_audio
@@ -58,7 +58,7 @@ func fade_out(duration=3.0):
 	var tween = Tween.new()
 	var song = Soundtrack.current_audio
 	song.add_child(tween)
-	tween.connect("tween_all_completed", self, "comeback")
+	tween.connect("tween_all_completed",Callable(self,"comeback"))
 	tween.interpolate_property(song, "volume_db",
 		0, -80, duration,
 		Tween.TRANS_SINE, Tween.EASE_IN)

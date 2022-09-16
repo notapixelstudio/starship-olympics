@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/sprites/balls/basket.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/balls/basket.png" type="Texture2D" id=2]
 [ext_resource path="res://actors/environments/Ball.gd" type="Script" id=3]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/traits/Holdable.tscn" type="PackedScene" id=5]
@@ -20,7 +20,7 @@ collision_layer = 512
 collision_mask = 50706
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 can_sleep = false
 linear_damp = 1.0
@@ -41,8 +41,8 @@ shape = SubResource( 2 )
 [node name="Glow" parent="." instance=ExtResource( 1 )]
 scale = Vector2( 2.5, 2.5 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource( 2 )
 
 [node name="Shadow" parent="." instance=ExtResource( 4 )]
-sprite = NodePath("../Sprite")
+sprite = NodePath("../Sprite2D")

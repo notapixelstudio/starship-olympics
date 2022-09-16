@@ -2,29 +2,29 @@
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=4]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=6]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
-[ext_resource path="res://combat/levels/background/green/pylon_mini2.png" type="Texture" id=12]
+[ext_resource path="res://combat/levels/background/green/pylon_mini2.png" type="Texture2D" id=12]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=13]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=14]
-[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=15]
-[ext_resource path="res://combat/levels/background/green/pylon.png" type="Texture" id=16]
+[ext_resource path="res://combat/levels/background/green.png" type="Texture2D" id=15]
+[ext_resource path="res://combat/levels/background/green/pylon.png" type="Texture2D" id=16]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/4E.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/4B.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/4D.tscn" type="PackedScene" id=19]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/4A.tscn" type="PackedScene" id=20]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=21]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/4C.tscn" type="PackedScene" id=22]
-[ext_resource path="res://combat/levels/background/green/pylon2.png" type="Texture" id=23]
-[ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture" id=24]
-[ext_resource path="res://combat/levels/background/green/pylon_mini.png" type="Texture" id=25]
+[ext_resource path="res://combat/levels/background/green/pylon2.png" type="Texture2D" id=23]
+[ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture2D" id=24]
+[ext_resource path="res://combat/levels/background/green/pylon_mini.png" type="Texture2D" id=25]
 
 [node name="Arena" instance=ExtResource( 10 )]
 size_multiplier = 2.5
@@ -46,43 +46,43 @@ z_as_relative = false
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background/Decoration" index="0"]
 modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
 color = Color( 0.627451, 0.564706, 0.47451, 1 )
-polygon = PoolVector2Array( -2000, 1100, -2000, 950, -1550, 1400, -1550, 1550 )
+polygon = PackedVector2Array( -2000, 1100, -2000, 950, -1550, 1400, -1550, 1550 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/Decoration" index="1"]
 modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
 color = Color( 0.435294, 0.396078, 0.313726, 1 )
-polygon = PoolVector2Array( -1550, 1400, -1550, 1550, 1550, 1550, 1550, 1400 )
+polygon = PackedVector2Array( -1550, 1400, -1550, 1550, 1550, 1550, 1550, 1400 )
 
 [node name="Polygon2D6" type="Polygon2D" parent="Battlefield/Background/Decoration" index="2"]
 modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
 color = Color( 0.262745, 0.239216, 0.196078, 1 )
-polygon = PoolVector2Array( 1550, 1400, 1550, 1550, 2000, 1100, 2000, 950 )
+polygon = PackedVector2Array( 1550, 1400, 1550, 1550, 2000, 1100, 2000, 950 )
 
-[node name="Sprite2" type="Sprite" parent="Battlefield/Background/Decoration" index="3"]
+[node name="Sprite2" type="Sprite2D" parent="Battlefield/Background/Decoration" index="3"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
 position = Vector2( 2000, 1489 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 23 )
 
-[node name="Sprite4" type="Sprite" parent="Battlefield/Background/Decoration" index="4"]
+[node name="Sprite4" type="Sprite2D" parent="Battlefield/Background/Decoration" index="4"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
 position = Vector2( 600, 1489 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 12 )
 
-[node name="Sprite5" type="Sprite" parent="Battlefield/Background/Decoration" index="5"]
+[node name="Sprite5" type="Sprite2D" parent="Battlefield/Background/Decoration" index="5"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
 position = Vector2( -2000, -11 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 25 )
 
-[node name="Sprite6" type="Sprite" parent="Battlefield/Background/Decoration" index="6"]
+[node name="Sprite6" type="Sprite2D" parent="Battlefield/Background/Decoration" index="6"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
 position = Vector2( 2000, 189 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 12 )
 
-[node name="Sprite3" type="Sprite" parent="Battlefield/Background/Decoration" index="7"]
+[node name="Sprite3" type="Sprite2D" parent="Battlefield/Background/Decoration" index="7"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
 position = Vector2( -2000, -1311 )
 scale = Vector2( 1, -1 )
@@ -92,27 +92,27 @@ texture = ExtResource( 23 )
 z_index = 18
 z_as_relative = false
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="0"]
 position = Vector2( -600, -1426 )
 texture = ExtResource( 12 )
 
-[node name="Sprite2" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="1"]
+[node name="Sprite2" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="1"]
 position = Vector2( -2000, -1462 )
 texture = ExtResource( 23 )
 
-[node name="Sprite3" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="2"]
+[node name="Sprite3" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="2"]
 position = Vector2( -2000, -126 )
 texture = ExtResource( 25 )
 
-[node name="Sprite4" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="3"]
+[node name="Sprite4" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="3"]
 position = Vector2( 2000, 74 )
 texture = ExtResource( 12 )
 
-[node name="Sprite5" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="4"]
+[node name="Sprite5" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="4"]
 position = Vector2( 2000, 1340 )
 texture = ExtResource( 16 )
 
-[node name="Sprite6" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="5"]
+[node name="Sprite6" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="5"]
 position = Vector2( 600, 1374 )
 texture = ExtResource( 25 )
 
@@ -141,7 +141,7 @@ bevel_se = 450
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="Bones" type="Sprite" parent="Battlefield/Background" index="6"]
+[node name="Bones" type="Sprite2D" parent="Battlefield/Background" index="6"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
 position = Vector2( 0, 32 )
 scale = Vector2( 6, 6 )
@@ -274,6 +274,6 @@ controls = "joy2"
 species = ExtResource( 7 )
 cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 156.25, 156.25 )
 smoothing_speed = 0.3

@@ -1,7 +1,7 @@
 extends Manager
 
-export var max_trail_length: int = 300
-export var growth: int = 2
+@export var max_trail_length: int = 300
+@export var growth: int = 2
 
 
 func _process(delta):

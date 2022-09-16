@@ -3,15 +3,15 @@
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=4]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=6]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=6]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=7]
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=8]
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=9]
 [ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=10]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=11]
-[ext_resource path="res://assets/sprites/weapons/rocket.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/weapons/rocket.png" type="Texture2D" id=12]
 [ext_resource path="res://actors/weapons/BombCore.gd" type="Script" id=13]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
@@ -41,8 +41,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 2, 3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 120.0, 240.0, 360.0 ]
 }
@@ -58,8 +58,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 1.2, 1.6 ), Vector2( 1.6, 1.2 ), Vector2( 1.2, 1.6 ) ]
 }
@@ -75,7 +75,7 @@ collision_layer = 4
 collision_mask = 154
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 2.0
 script = ExtResource( 1 )
@@ -143,18 +143,18 @@ enabled = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color( 1.3, 1.3, 1.3, 1 )
 material = SubResource( 7 )
 scale = Vector2( 1.3, 1.5 )
 texture = ExtResource( 12 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 playback_speed = 0.5
 anims/rotate = SubResource( 3 )
 anims/wobble = SubResource( 4 )
 
-[node name="Symbol" type="Sprite" parent="."]
+[node name="Symbol" type="Sprite2D" parent="."]
 scale = Vector2( 0.6, 0.6 )
 
 [node name="NearArea" type="Area2D" parent="."]

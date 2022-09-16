@@ -1,13 +1,29 @@
-tool
+@tool
 
 extends GShape
 
 class_name GRoundedRect
 
-export (int) var width = 200 setget set_width
-export (int) var height = 100 setget set_height
-export (int) var radius = 20 setget set_radius
-export (float) var precision = 10 setget set_precision
+@export (int) var width = 200 :
+	get:
+		return width # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_width
+@export (int) var height = 100 :
+	get:
+		return height # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_height
+@export (int) var radius = 20 :
+	get:
+		return radius # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_radius
+@export (float) var precision = 10 :
+	get:
+		return precision # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_precision
 
 func set_width(value):
 	width = value
@@ -50,7 +66,7 @@ func to_PoolVector2Array():
 	points = points + __generate_corner(PI/2, Vector2(-width/2+radius,height/2-radius))
 	points.append(Vector2(-width/2,height/2-radius))
 	
-	return .clip(points) # clockwise!
+	return super.clip(points) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

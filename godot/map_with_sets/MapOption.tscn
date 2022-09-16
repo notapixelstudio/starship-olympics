@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
 [ext_resource path="res://map_with_sets/MapLocation.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture" id=4]
+[ext_resource path="res://assets/map/cards/option_1_victory.png" type="Texture2D" id=4]
 [ext_resource path="res://map_with_sets/MapOption.gd" type="Script" id=5]
-[ext_resource path="res://assets/map/cards/option.png" type="Texture" id=6]
+[ext_resource path="res://assets/map/cards/option.png" type="Texture2D" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 36
 font_data = ExtResource( 1 )
 
@@ -17,14 +17,14 @@ length = 10.0
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
-"transitions": PoolRealArray( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
+"times": PackedFloat32Array( 0, 4, 4.25, 4.5, 4.75, 5, 5.2, 5.45, 7.85 ),
+"transitions": PackedFloat32Array( 1, 0.5, -2, 0.5, -2, 0.5, -2, 2, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -28 ), Vector2( 0, -28 ), Vector2( 0, -45 ), Vector2( 0, -28 ), Vector2( 0, -40 ), Vector2( 0, -28 ), Vector2( 0, -34 ), Vector2( 0, -28 ), Vector2( 0, -28 ) ]
 }
@@ -32,20 +32,20 @@ tracks/0/keys = {
 [node name="MapOption" instance=ExtResource( 3 )]
 script = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="." index="4"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
 position = Vector2( 0, -28 )
 texture = ExtResource( 4 )
 
-[node name="Frame" type="Sprite" parent="." index="5"]
+[node name="Frame" type="Sprite2D" parent="." index="5"]
 position = Vector2( 0, -28 )
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="." index="6"]
 visible = false
-margin_left = -200.0
-margin_top = 50.0
-margin_right = 200.0
-margin_bottom = 200.0
+offset_left = -200.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 200.0
 custom_fonts/font = SubResource( 1 )
 text = "VICTORIES"
 align = 1

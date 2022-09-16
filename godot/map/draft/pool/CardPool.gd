@@ -2,21 +2,21 @@ extends Resource
 
 class_name CardPool
 
-export var id : String
-export var cards : Array = [] setget set_cards # DraftCard
-
+@export var id : String
+@export var cards : Array[Resource] :
+	set(value):
+		cards = value
+		for card in cards:
+			
+			index[(card as DraftCard).get_id()] = card
+				
+		randomize()
+		cards.shuffle()
+	
 var index : Dictionary = {}
 
 func get_id() -> String:
 	return id
-func set_cards(v: Array):
-	cards = v
-	for card in cards:
-		assert(card is DraftCard)
-		index[card.get_id()] = card
-		
-	randomize()
-	cards.shuffle()
 
 func has(card_id: String) -> bool:
 	return index.has(card_id)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/UI/label_bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/UI/label_bg.png" type="Texture2D" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/Counter.gd" type="Script" id=2]
-[ext_resource path="res://assets/theme/montserrat_eb_32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/montserrat_eb_32.tres" type="FontFile" id=3]
 
 
 
@@ -11,18 +11,18 @@
 
 [node name="Counter" type="NinePatchRect"]
 modulate = Color( 1, 1, 1, 0.580118 )
-margin_right = 80.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 50 )
+offset_right = 80.0
+offset_bottom = 80.0
+minimum_size = Vector2( 80, 50 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Number" type="Label" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -20.0
-margin_right = 40.0
-margin_bottom = 20.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 text = "0"
@@ -31,6 +31,6 @@ valign = 1
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 61, 40 )
 

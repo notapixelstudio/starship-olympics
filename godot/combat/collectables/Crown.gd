@@ -4,11 +4,15 @@ class_name Crown
 var entity
 
 enum types {CROWN, BALL, SOCCERBALL, TENNISBALL}
-export (types) var type = types.CROWN
-export var impulse : float = 0
+@export (types) var type = types.CROWN
+@export var impulse : float = 0
 var active : bool = false
 
-var owner_ship = null setget set_owner_ship
+var owner_ship = null :
+	get:
+		return owner_ship # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_owner_ship
 
 const GRAB_DISTANCE = 72
 

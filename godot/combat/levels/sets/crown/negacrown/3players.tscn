@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
@@ -9,10 +9,10 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=11]
 [ext_resource path="res://combat/modes/Negacrown.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Negacrown.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=15]
+[ext_resource path="res://combat/levels/background/robolords.png" type="Texture2D" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
@@ -26,8 +26,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 1085, 50 ]
 }
@@ -43,8 +43,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 2, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 200, 800 ]
 }
@@ -55,8 +55,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 2, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 800, 200 ]
 }
@@ -72,8 +72,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 2, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 200, 800 ]
 }
@@ -84,8 +84,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 2, 6 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 800, 200 ]
 }
@@ -100,7 +100,7 @@ match_duration_override = 90.0
 [node name="CrownModeManager" parent="Managers" index="9"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 15 )
 centered = false
 
@@ -229,7 +229,7 @@ rotation = 2.3562
 controls = "kb2"
 species = ExtResource( 4 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 2441.41, 2441.41 )
 smoothing_speed = 0.3
 

@@ -7,21 +7,21 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=8]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/managers/TennisManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/Brick.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/PlayerBricks.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/sprites/environments/no_ship.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/environments/no_ship.png" type="Texture2D" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+points = PackedVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+points = PackedVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id=3]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -42,8 +42,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 20.0, 0.0 ]
 }
@@ -54,8 +54,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
 }
@@ -66,8 +66,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -78,8 +78,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
 }
@@ -90,8 +90,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
 }
@@ -103,21 +103,21 @@ game_mode = ExtResource( 1 )
 [node name="TennisManager" parent="Managers" index="0" instance=ExtResource( 10 )]
 sample_player_bricks_path = NodePath("../../Battlefield/Middleground/LeftBricks")
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
 
 [node name="NoShipZone" parent="Battlefield/Background" index="1" instance=ExtResource( 12 )]
 
 [node name="IsoPolygon" parent="Battlefield/Background/NoShipZone" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
+shape = Object(Node,"_import_path":NodePath(""),"process_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
 
 
 [node name="Polygon2D" parent="Battlefield/Background/NoShipZone" index="1"]
-polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
+polygon = PackedVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
 
 [node name="Line2D" parent="Battlefield/Background/NoShipZone" index="2"]
-points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+points = PackedVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/Area2D" index="2"]
 shape = SubResource( 5 )
@@ -125,11 +125,11 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/CrownCollider" index="0"]
 shape = SubResource( 6 )
 
-[node name="Particles2D" parent="Battlefield/Background/NoShipZone" index="5"]
+[node name="GPUParticles2D" parent="Battlefield/Background/NoShipZone" index="5"]
 process_material = SubResource( 3 )
 
 [node name="FeedbackLine" parent="Battlefield/Background/NoShipZone" index="7"]
-points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
+points = PackedVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [node name="AnimationPlayer" parent="Battlefield/Background/NoShipZone" index="8"]
 anims/Feedback = SubResource( 4 )
@@ -138,7 +138,7 @@ anims/Feedback = SubResource( 4 )
 position = Vector2( -16, -616 )
 scale = Vector2( 2, 2 )
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Background/NoShipZone/NoShipSign" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Background/NoShipZone/NoShipSign" index="0"]
 position = Vector2( 0, 641.667 )
 texture = ExtResource( 15 )
 
@@ -436,7 +436,7 @@ rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 6 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 smoothing_speed = 0.3
 disabled_override = true
 

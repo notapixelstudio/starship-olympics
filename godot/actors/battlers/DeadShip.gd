@@ -2,7 +2,11 @@ extends RigidBody2D
 
 class_name DeadShip
 
-var ship setget set_ship
+var ship :
+	get:
+		return ship # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_ship
 var info_player
 var species
 var camera
@@ -17,16 +21,16 @@ func set_ship(new_value):
 	camera = ship.camera
 	info_player = ship.info_player
 	species = ship.species
-	$Sprite.modulate = species.color
-	# $Sprite.modulate = $Sprite.modulate.darkened(0.2)
-	$Sprite.texture = species.ship
+	$Sprite2D.modulate = species.color
+	# $Sprite2D.modulate = $Sprite2D.modulate.darkened(0.2)
+	$Sprite2D.texture = species.ship
 	
 func _enter_tree():
 	#linear_velocity = ship.linear_velocity
 	position = ship.position
 	rotation = ship.rotation
 	if not $Trail2D.is_inside_tree():
-		yield($Trail2D, "tree_entered")
+		await $Trail2D.tree_entered
 	$Trail2D.erase_trail()
 	
 func _integrate_forces(state):

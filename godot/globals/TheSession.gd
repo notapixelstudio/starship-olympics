@@ -104,7 +104,7 @@ func get_last_match() -> Dictionary:
 func set_hand(cards : Array) -> void:
 	hand = cards
 
-func get_hand() -> Array:
+func get_tracker_hand() -> Array:
 	return hand
 
 func to_dict() -> Dictionary:
@@ -133,7 +133,7 @@ func snapshot_leaderboard() -> void:
 	var new_leaderboard = []
 	for player in global.the_game.get_players():
 		new_leaderboard.append(player.to_dict())
-	new_leaderboard.sort_custom(self, '_sort_by_session_score')
+	new_leaderboard.sort_custom(Callable(self,'_sort_by_session_score'))
 	leaderboards.push_front(new_leaderboard)
 
 func _sort_by_session_score(a, b) -> bool:

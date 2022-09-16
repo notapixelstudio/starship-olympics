@@ -5,7 +5,7 @@ const HIDDEN = "hidden"
 const LOCKED = "locked"
 const UNLOCKED = "unlocked"
 
-export (String, "hidden", "locked", "unlocked") var status 
+@export (String, "hidden", "locked", "unlocked") var status 
 
 const PERSIST_GROUP = "persist_unlocking"
 func _ready():

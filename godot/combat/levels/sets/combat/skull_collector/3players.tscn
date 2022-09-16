@@ -3,11 +3,11 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=3]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=4]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=4]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=7]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=9]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture2D" id=9]
 [ext_resource path="res://combat/levels/sets/combat/skull_collector/SkullVariants.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/levels/sets/combat/skull_collector/SkullManager.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/SkullHole.tscn" type="PackedScene" id=12]
@@ -15,8 +15,8 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=18]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=19]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=18]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=19]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=20]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=21]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=23]
@@ -32,7 +32,7 @@ future_spawners_path = NodePath("../../Battlefield/Foreground/FutureSpawners")
 [node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
 
@@ -218,13 +218,13 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 [node name="CameraEye2" parent="Battlefield/Foreground" index="16" instance=ExtResource( 5 )]
 position = Vector2( 1750.5, -1037 )
 
-[node name="SkullDecoration" type="Sprite" parent="Battlefield/Foreground" index="17"]
+[node name="SkullDecoration" type="Sprite2D" parent="Battlefield/Foreground" index="17"]
 modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( -2000, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
 
-[node name="SkullDecoration2" type="Sprite" parent="Battlefield/Foreground" index="18"]
+[node name="SkullDecoration2" type="Sprite2D" parent="Battlefield/Foreground" index="18"]
 modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 2000, 0 )
 scale = Vector2( 3, 3 )
@@ -232,13 +232,13 @@ texture = ExtResource( 9 )
 
 [node name="FutureSpawners" type="Node2D" parent="Battlefield/Foreground" index="19"]
 
-[node name="p1" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="0"]
+[node name="p1" type="Marker2D" parent="Battlefield/Foreground/FutureSpawners" index="0"]
 position = Vector2( -100, 100 )
 
-[node name="p2" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="1"]
+[node name="p2" type="Marker2D" parent="Battlefield/Foreground/FutureSpawners" index="1"]
 position = Vector2( 100, -100 )
 
-[node name="p3" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="2"]
+[node name="p3" type="Marker2D" parent="Battlefield/Foreground/FutureSpawners" index="2"]
 position = Vector2( -100, -100 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 17 )]
@@ -258,7 +258,7 @@ rotation = 0.785398
 controls = "kb2"
 species = ExtResource( 3 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
 

@@ -1,9 +1,9 @@
-tool
+@tool
 extends Field
 
-export var visible_decorations := true
-export var symbol_scale := 2.0
-export var decoration_scale := 1.0
+@export var visible_decorations := true
+@export var symbol_scale := 2.0
+@export var decoration_scale := 1.0
 
 var gshape : GShape
 
@@ -11,9 +11,9 @@ func _ready():
 	gshape = self.get_gshape()
 	
 	# connect feedback signal
-	self.connect("entered", self, "_on_Field_entered")
+	self.connect("entered",Callable(self,"_on_Field_entered"))
 	
-	gshape.connect("changed", self, "_on_gshape_changed")
+	gshape.connect("changed",Callable(self,"_on_gshape_changed"))
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	
 	$Decoration.visible = visible_decorations

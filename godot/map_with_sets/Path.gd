@@ -1,10 +1,10 @@
-tool
+@tool
 extends Line2D
 
-export var path_star_scene: PackedScene
-export var path_line_scene: PackedScene
+@export var path_star_scene: PackedScene
+@export var path_line_scene: PackedScene
 
-onready var unlocked_status := TheUnlocker.get_status("map_paths", self.name, TheUnlocker.UNLOCKED if Engine.editor_hint else TheUnlocker.HIDDEN)
+@onready var unlocked_status := TheUnlocker.get_status("map_paths", self.name, TheUnlocker.UNLOCKED if Engine.editor_hint else TheUnlocker.HIDDEN)
 
 const D = 25
 
@@ -29,14 +29,14 @@ func refresh():
 		
 		# add a star to each internal corner
 		if i < len(points)-2:
-			var star = path_star_scene.instance()
+			var star = path_star_scene.instantiate()
 			star.position = points[i+1]
 			$Content.add_child(star)
 
 func add_line(p1, p2):
 	var dir = (p2-p1).normalized()
 	
-	var line = path_line_scene.instance()
+	var line = path_line_scene.instantiate()
 	line.set_endpoints(p1+dir*D, p2-dir*D)
 	$Content.add_child(line)
 
@@ -50,6 +50,6 @@ func appear(force: bool = false) -> void:
 	for child in $Content.get_children():
 		child.appear(force)
 		if not force:
-			yield(child, 'appeared')
+			await child.appeared
 		
 	emit_signal('appeared')

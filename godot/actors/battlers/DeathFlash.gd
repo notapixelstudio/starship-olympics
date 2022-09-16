@@ -1,12 +1,12 @@
 extends Node2D
 
-export var species : Resource
-export var timeout : float = 2.0
+@export var species : Resource
+@export var timeout : float = 2.0
 
 func _ready():
-	$Particles2D.modulate = species.color
-	$Particles2D.lifetime = timeout
-	$Particles2D.emitting = true
-	yield(get_tree().create_timer(timeout), "timeout")
+	$GPUParticles2D.modulate = species.color
+	$GPUParticles2D.lifetime = timeout
+	$GPUParticles2D.emitting = true
+	await get_tree().create_timer(timeout).timeout
 	queue_free()
 	

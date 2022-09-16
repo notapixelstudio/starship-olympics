@@ -3,19 +3,31 @@ extends Node2D
 class_name Pentagoal
 
 
-onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
+@onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
 
-export var rings : int = 5 setget set_rings
-export var ring_width : float = 50 setget set_ring_width
-export var core_radius : float = 100 setget set_core_radius
+@export var rings : int = 5 :
+	get:
+		return rings # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_rings
+@export var ring_width : float = 50 :
+	get:
+		return ring_width # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_ring_width
+@export var core_radius : float = 100 :
+	get:
+		return core_radius # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_core_radius
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player
 
-onready var current_ring : int = rings-1
+@onready var current_ring : int = rings-1
 
-onready var field = $Field
-onready var gshape = $Field/GRegularPolygon
+@onready var field = $Field
+@onready var gshape = $Field/GRegularPolygon
 
 func set_rings(value):
 	rings = value
@@ -31,8 +43,8 @@ func update_label_size():
 
 func _ready():
 	# connect feedback signal 
-	field.connect("entered", self, "_on_Field_entered")
-	Events.connect("holdable_dropped", self, "_on_holdable_dropped")
+	field.connect("entered",Callable(self,"_on_Field_entered"))
+	Events.connect("holdable_dropped",Callable(self,"_on_holdable_dropped"))
 	
 	for i in range(rings):
 		var shape = GRegularPolygon.new()
@@ -51,7 +63,7 @@ func _ready():
 	
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 		update_label_size()
 		
@@ -62,7 +74,7 @@ func _on_Field_entered(field, body):
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
 		$AudioStreamPlayer2D.play()
-		yield($AudioStreamPlayer2D, "finished")
+		await $AudioStreamPlayer2D.finished
 		$AudioStreamPlayer2D.pitch_scale = 1
 		
 func _on_holdable_dropped(holdable, ship, cause):
@@ -100,7 +112,7 @@ func do_goal(player, pos):
 	emit_signal("goal_done", player, self, pos)
 	
 	if current_ring < 0:
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		field.queue_free()
 		
 func set_player(v : InfoPlayer):

@@ -1,7 +1,7 @@
 extends ColorRect
 class_name CollectionItem
 
-export var MinigameMinilogoScene : PackedScene
+@export var MinigameMinilogoScene : PackedScene
 
 var card: DraftCard
 
@@ -21,7 +21,7 @@ func set_card(v: DraftCard, pool: CardPool) -> void:
 		else:
 			text += '[color=#555555]'+str(player_count)+'[/color]'
 	
-	$HBoxContainer/Texts/HBoxContainer/PlayerCount.bbcode_text = '[center]'+text+'[/center]'
+	$HBoxContainer/Texts/HBoxContainer/PlayerCount.text = '[center]'+text+'[/center]'
 	
 	$HBoxContainer/Texts/HBoxContainer/Wrapper/Winter.visible = not card is MysteryCard and card.is_winter()
 	if not card is MysteryCard and card.is_winter():

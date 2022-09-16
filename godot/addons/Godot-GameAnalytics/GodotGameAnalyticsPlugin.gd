@@ -1,5 +1,5 @@
 extends EditorPlugin
-tool
+@tool
 
 func _enter_tree():
 	add_autoload_singleton("GameAnalytics", "res://addons/Godot-GameAnalytics/GameAnalytics.gd")

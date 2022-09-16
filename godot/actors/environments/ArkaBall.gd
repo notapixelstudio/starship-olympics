@@ -3,7 +3,7 @@ class_name ArkaBall
 
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 
-export var impulse : float = 80
+@export var impulse : float = 80
 var active : bool = false
 
 var ship # Ship
@@ -21,7 +21,7 @@ func _on_ArkaBall_body_entered(body):
 	
 	apply_central_impulse(linear_velocity.normalized()*2000)
 	
-	var ripple = Ripple.instance()
+	var ripple = Ripple.instantiate()
 	ripple.position = position
 	ripple.scale = Vector2(2,2)
 	get_parent().call_deferred("add_child", ripple)

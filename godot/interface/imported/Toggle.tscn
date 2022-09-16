@@ -1,12 +1,12 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://interface/imported/Scripts/ToggleTree.gd" type="Script" id=1]
-[ext_resource path="res://interface/imported/Images/Knob.png" type="Texture" id=2]
-[ext_resource path="res://interface/imported/Images/Blur.png" type="Texture" id=3]
-[ext_resource path="res://interface/imported/Images/Sad.png" type="Texture" id=4]
-[ext_resource path="res://interface/imported/Images/Smile.png" type="Texture" id=5]
-[ext_resource path="res://interface/imported/Images/GradientBase.png" type="Texture" id=6]
-[ext_resource path="res://interface/imported/Images/Base.png" type="Texture" id=7]
+[ext_resource path="res://interface/imported/Images/Knob.png" type="Texture2D" id=2]
+[ext_resource path="res://interface/imported/Images/Blur.png" type="Texture2D" id=3]
+[ext_resource path="res://interface/imported/Images/Sad.png" type="Texture2D" id=4]
+[ext_resource path="res://interface/imported/Images/Smile.png" type="Texture2D" id=5]
+[ext_resource path="res://interface/imported/Images/GradientBase.png" type="Texture2D" id=6]
+[ext_resource path="res://interface/imported/Images/Base.png" type="Texture2D" id=7]
 
 [sub_resource type="VisualShader" id=1]
 code = "shader_type canvas_item;
@@ -40,14 +40,14 @@ shader = SubResource( 1 )
 [sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knob:rect_position")
+tracks/0/path = NodePath("Knob:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 210, 10 ), Vector2( 10, 10 ) ]
 }
@@ -58,8 +58,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 120, 0 ), Vector2( 0, 0 ) ]
 }
@@ -70,8 +70,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -120, 0 ) ]
 }
@@ -82,8 +82,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -94,8 +94,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 255.001, 55.001 ), Vector2( 55.0007, 55.0007 ) ]
 }
@@ -103,14 +103,14 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knob:rect_position")
+tracks/0/path = NodePath("Knob:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.501 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5, 0.501 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 10, 10 ), Vector2( 210, 10 ), Vector2( 210, 10 ) ]
 }
@@ -121,8 +121,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 120, 0 ) ]
 }
@@ -133,8 +133,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( -120, 0 ), Vector2( 0, 0 ) ]
 }
@@ -145,8 +145,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -157,8 +157,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 55.0007, 55.0007 ), Vector2( 255.001, 55.001 ) ]
 }
@@ -185,44 +185,44 @@ transitions = [ "ToggleOn", "ToggleOff", SubResource( 7 ), "ToggleOff", "ToggleO
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [node name="Toggle" type="CheckButton"]
-margin_left = 362.0
-margin_top = 250.0
-margin_right = 662.0
-margin_bottom = 350.0
-rect_min_size = Vector2( 300, 100 )
+offset_left = 362.0
+offset_top = 250.0
+offset_right = 662.0
+offset_bottom = 350.0
+minimum_size = Vector2( 300, 100 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Base" type="NinePatchRect" parent="."]
-margin_right = 300.0
-margin_bottom = 100.0
+offset_right = 300.0
+offset_bottom = 100.0
 texture = ExtResource( 7 )
 
 [node name="Gradient" type="NinePatchRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_right = 300.0
-margin_bottom = 100.0
+offset_right = 300.0
+offset_bottom = 100.0
 texture = ExtResource( 6 )
 
-[node name="Blur" type="Sprite" parent="."]
+[node name="Blur" type="Sprite2D" parent="."]
 position = Vector2( 55.0007, 55.0007 )
 texture = ExtResource( 3 )
 
 [node name="Knob" type="NinePatchRect" parent="."]
 material = SubResource( 2 )
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 90.0004
-margin_bottom = 90.0
-rect_clip_content = true
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0004
+offset_bottom = 90.0
+clip_contents = true
 texture = ExtResource( 2 )
 
-[node name="Sad" type="Sprite" parent="Knob"]
+[node name="Sad" type="Sprite2D" parent="Knob"]
 position = Vector2( 40, 40 )
 texture = ExtResource( 4 )
 
-[node name="Smile" type="Sprite" parent="Knob"]
+[node name="Smile" type="Sprite2D" parent="Knob"]
 position = Vector2( 40, 40 )
 texture = ExtResource( 5 )
 offset = Vector2( -120, 0 )

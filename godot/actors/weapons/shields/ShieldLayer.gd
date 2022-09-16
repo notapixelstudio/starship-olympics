@@ -1,18 +1,18 @@
 extends Area2D
 
-export var sector_scene : PackedScene
-export var inner_radius := 100.0
-export var outer_radius := 200.0
-export var sectors := 2
-export var padding := 8.0
-export var angle_speed := PI/5
+@export var sector_scene : PackedScene
+@export var inner_radius := 100.0
+@export var outer_radius := 200.0
+@export var sectors := 2
+@export var padding := 8.0
+@export var angle_speed := PI/5
 
 var sector_children := []
 
 func _ready():
 	var angle = TAU/sectors
 	for i in range(sectors):
-		var sector = sector_scene.instance()
+		var sector = sector_scene.instantiate()
 		sector.inner_radius = inner_radius
 		sector.outer_radius = outer_radius
 		sector.angle = angle

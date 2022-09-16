@@ -1,15 +1,15 @@
 extends Node
 
-onready var selection_screen = $SelectionScreen
+@onready var selection_screen = $SelectionScreen
 
 const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
-export var map_scene: PackedScene
+@export var map_scene: PackedScene
 
 var games = {}  # {sport.name : Resource}
 
 var all_species = []
-onready var parallax = $ParallaxBackground
+@onready var parallax = $ParallaxBackground
 var map # MapArena
 var combat = null
 
@@ -25,16 +25,16 @@ func _ready():
 		all_species.append(global.get_species(species_id))
 		
 	players = {}
-	selection_screen.connect("fight", self, "start_fight")
-	selection_screen.connect("back", self, "back")
+	selection_screen.connect("fight",Callable(self,"start_fight"))
+	selection_screen.connect("back",Callable(self,"back"))
 	global.local_multiplayer = self
 	
-	Events.connect("minigame_selected", self, "_on_minigame_selected")
-	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+	Events.connect("minigame_selected",Callable(self,"_on_minigame_selected"))
+	Events.connect('continue_after_game_over',Callable(self,'_on_continue_after_game_over'))
 	
-	Events.connect('nav_to_menu', self, '_on_nav_to_menu')
-	Events.connect('nav_to_map', self, '_on_nav_to_map')
-	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
+	Events.connect('nav_to_menu',Callable(self,'_on_nav_to_menu'))
+	Events.connect('nav_to_map',Callable(self,'_on_nav_to_map'))
+	Events.connect('nav_to_character_selection',Callable(self,'_on_nav_to_character_selection'))
 	
 	# will save the game before starting a new game 
 	# So all the options will be saved
@@ -77,9 +77,9 @@ func start_fight(selected_players: Array, fight_mode: String):
 	remove_child(parallax)
 	
 	# add startdeck choosing
-	var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
+	var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instantiate()
 	add_child(choose_deck_scene)
-	yield(Events, "selection_starting_deck_over")
+	await Events.selection_starting_deck_over
 	choose_deck_scene.queue_free()
 	
 	global.new_game(players.values())
@@ -113,17 +113,17 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
 
 	$TransitionScreen.transition()
-	yield($TransitionScreen, "transitioned")
+	await $TransitionScreen.transitioned
 	remove_child(map)
 	
 	# show tutorial if this minigame has one, and the minigame has not been already played
 	if minigame.has_tutorial() and minigame.is_first_time_started():
-		var tutorial = minigame.get_tutorial_scene().instance()
+		var tutorial = minigame.get_tutorial_scene().instantiate()
 		add_child(tutorial)
-		yield(tutorial, 'over')
+		await tutorial.over
 		
 		$TransitionScreen.transition()
-		yield($TransitionScreen, "transitioned")
+		await $TransitionScreen.transitioned
 		tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
@@ -140,18 +140,18 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 	global.new_match()
 	global.the_match.set_minigame(minigame)
 	global.the_match.set_draft_card(picked_card)
-	combat = minigame.get_level(global.the_game.get_number_of_players()).instance()
+	combat = minigame.get_level(global.the_game.get_number_of_players()).instantiate()
 	last_card = picked_card
 	last_minigame = minigame
 	
-	combat.connect("restart", self, "_on_Pause_restart")
-	#combat.connect("continue_session", self, "_on_continue_session", [combat])
-	connect("updated", combat, "hud_update")
+	combat.connect("restart",Callable(self,"_on_Pause_restart"))
+	#combat.connect("continue_session",Callable(self,"_on_continue_session").bind(combat))
+	connect("updated",Callable(combat,"hud_update"))
 
 	for child in get_children():
 		if child is Arena:
 			child.queue_free()
-			yield(child, 'tree_exited')
+			await child.tree_exited
 	combat.demo = demo
 	add_child(combat)
 	
@@ -182,7 +182,7 @@ func _on_Pause_restart():
 
 func _on_nav_to_menu():
 	global.safe_destroy_game()
-	get_tree().change_scene(menu_scene)
+	get_tree().change_scene_to_file(menu_scene)
 	
 func _on_nav_to_character_selection():
 	global.safe_destroy_game()
@@ -202,7 +202,7 @@ func _on_nav_to_map():
 	navigate_to_map()
 	
 func create_map():
-	map = map_scene.instance()
+	map = map_scene.instantiate()
 	
 func navigate_to_map():
 	safe_destroy_combat()
@@ -225,7 +225,7 @@ func add_cpu(how_many: int):
 			if this_species_name == species.name:
 				break
 			i += 1
-		missing_species.remove(i)
+		missing_species.remove_at(i)
 
 	var max_cpu = min(how_many, len(missing_species))
 	max_cpu = min(max_cpu, global.MAX_PLAYERS)

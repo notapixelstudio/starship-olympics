@@ -1,23 +1,23 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://combat/styles/underspace.tres" type="Resource" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=2]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=9]
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture2D" id=13]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 11 )
 style = ExtResource( 1 )
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 9 )
 centered = false
 
@@ -46,14 +46,14 @@ bevel_se = 600
 modulate = Color( 1, 1, 1, 0.7 )
 fg_color = Color( 0.04, 0.04, 0.04, 1 )
 
-[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="3"]
+[node name="Arrow" type="Sprite2D" parent="Battlefield/Background" index="3"]
 modulate = Color( 0.2, 0.706667, 1, 0.254902 )
 position = Vector2( 12.1979, 0 )
 rotation = 0.785398
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
-[node name="Portal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 12 )]
+[node name="Node3D" parent="Battlefield/Middleground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -323, 323 )
 rotation = -0.785398
 linked_to_path = NodePath("../Portal2")
@@ -65,7 +65,7 @@ inverted = true
 [node name="Portal2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 12 )]
 position = Vector2( 323, -323 )
 rotation = 2.35619
-linked_to_path = NodePath("../Portal")
+linked_to_path = NodePath("../Node3D")
 width = 450.0
 offset = 200.0
 color = Color( 0, 0.486275, 1, 1 )
@@ -135,7 +135,7 @@ position = Vector2( -800, -1000 )
 rotation = 0.785398
 species = ExtResource( 8 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.01958e+38, 1.01958e+38 )
 smoothing_speed = 0.3
 

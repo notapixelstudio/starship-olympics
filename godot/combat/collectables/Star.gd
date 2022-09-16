@@ -1,4 +1,4 @@
-tool
+@tool
 
 extends RigidBody2D
 

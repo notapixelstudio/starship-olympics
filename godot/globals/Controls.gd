@@ -6,7 +6,11 @@ func _ready():
 
 # INPUT MAPPING
 const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4","rm1","rm2","rm3","rm4"]
-var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
+var input_mapping : Dictionary :
+	get:
+		return input_mapping # TODOConverter40 Copy here content of _get_input_mapping
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_input_mapping
 
 var joy_input_map = {
 	"analog_0_1"  : ["Left_Stick_Right"],
@@ -109,7 +113,7 @@ func event_from_text(device: String, command: String, device_id: int = 0) -> Inp
 		var command_text = command
 		if command_text in inverted_input_map:
 			command_text = inverted_input_map[command_text]
-		command_text = OS.find_scancode_from_string(command_text)
+		command_text = OS.find_keycode_from_string(command_text)
 		e = InputEventKey.new()
 		e.scancode = command_text
 	elif "joy" in device:
@@ -144,7 +148,7 @@ func _get_input_mapping():
 		for action in InputMap.get_actions():
 			if device in action:
 				ret[action] = []
-				for event in InputMap.get_action_list(action):
+				for event in InputMap.action_get_events(action):
 					ret[action].append(event_to_text(event))
 	return ret
 
@@ -184,7 +188,11 @@ var input_mapping_joy := {
 }
 
 var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
-onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
+@onready var joylayout: String = array_joylayout[0] :
+	get:
+		return joylayout # TODOConverter40 Copy here content of _get_joylayout
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_joylayout
 
 func _set_joylayout(value):
 	joylayout = value
@@ -233,7 +241,7 @@ func check_input_event(action_: String, event:InputEvent):
 
 func clear_mapping(action:String, event: InputEvent):
 	InputMap.action_erase_event(action, event)
-	var alert_scene = load("res://interface/OverlayMessage.tscn").instance()
+	var alert_scene = load("res://interface/OverlayMessage.tscn").instantiate()
 	alert_scene.message = "ACTION BINDING FOR [color=red]{action}[/color] OVERRIDDEN".format({"action": action.to_upper()})
 	add_child(alert_scene)
 	alert_scene.raise()
@@ -254,8 +262,8 @@ func remap_multiple_actions_to(action: String, new_events: Array, ui_flag=true) 
 		if id == "fire":
 			id = "accept"
 		var ui_action = "ui_"+id
-		#TODO: remove only the existing control for that player
-		for event in InputMap.get_action_list(action):
+		#TODO: remove_at only the existing control for that player
+		for event in InputMap.action_get_events(action):
 			InputMap.action_erase_event(ui_action, event)
 		for new_event in new_events:
 			InputMap.action_add_event("ui_"+id, new_event)

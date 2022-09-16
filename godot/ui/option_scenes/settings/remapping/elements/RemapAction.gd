@@ -1,23 +1,27 @@
-tool
+@tool
 extends Control
 
 class_name RemapAction
 
-onready var scroll_container = $Container/ScrollContainer
-# this needs always to be on screen
-onready var panel = $Panel
-onready var description_node = $Container/Description
+@onready var scroll_container = $Container/ScrollContainer
+# this needs always to be checked screen
+@onready var panel = $Panel
+@onready var description_node = $Container/Description
 
-export var label_text: String
-export var action: String
-export var device: String setget _set_device
-export var button_scene : PackedScene
+@export var label_text: String
+@export var action: String
+@export var device: String :
+	get:
+		return device # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_device
+@export var button_scene : PackedScene
 signal clear_mapping
 
 func _ready():
 	if label_text == "":
 		label_text = action
-	# Events.connect("remap_event", self, "on_remap")
+	# Events.connect("remap_event",Callable(self,"on_remap"))
 	set_process_input(false)
 	
 func _process(delta):
@@ -27,7 +31,7 @@ func clear():
 	scroll_container.clear()
 	
 func fill_mapping():
-	for event in InputMap.get_action_list(self.device + "_" + self.action):
+	for event in InputMap.action_get_events(self.device + "_" + self.action):
 		var event_text = Controls.event_to_text(event)
 		var event_device = event_text["device"]
 		var event_device_id = event_text["device_id"]
@@ -40,7 +44,7 @@ func setup():
 func _set_device(value_):
 	device = value_
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	setup()
 	
 func on_remap(event: InputEvent, complete_action: String):
@@ -86,7 +90,7 @@ func _on_focus_entered():
 	# order to this to work
 	# will ask the event bus to show the info
 	Events.emit_signal("show_info", "controls")
-	panel.add_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
+	panel.add_theme_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
 	description_node.set("custom_colors/font_color",Color(0,0,0))
 	set_process_input(true)
 
@@ -95,6 +99,6 @@ func _on_focus_exited():
 	# order to this to work
 	# will ask the event bus to hide the info
 	Events.emit_signal("hide_info") 
-	panel.add_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
+	panel.add_theme_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
 	description_node.set("custom_colors/font_color", null)
 	set_process_input(false)

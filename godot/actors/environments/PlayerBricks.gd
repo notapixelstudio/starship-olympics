@@ -1,6 +1,6 @@
-extends YSort
+extends Node2D
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player
 
 signal goal_done
@@ -13,11 +13,11 @@ func _ready():
 			continue
 			
 		bricks.append(brick)
-		brick.connect('killed', self, '_on_brick_destroyed')
+		brick.connect('killed',Callable(self,'_on_brick_destroyed'))
 		
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 		for brick in bricks:
 			brick.set_color(player.species.color)

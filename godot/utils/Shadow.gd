@@ -1,14 +1,18 @@
-extends Sprite
+extends Sprite2D
 
-export var sprite : NodePath setget set_sprite
-export var dy = 32
-export var auto_rotate := true
+@export var sprite : NodePath :
+	get:
+		return sprite # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_sprite
+@export var dy = 32
+@export var auto_rotate := true
 
 func set_sprite(v):
 	sprite = v
 	
 func _ready():
-	yield(get_tree(), "idle_frame") # wait for e.g., ships to prepare
+	await get_tree().idle_frame # wait for e.g., ships to prepare
 	redraw()
 	
 func redraw():

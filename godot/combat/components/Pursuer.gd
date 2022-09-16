@@ -1,9 +1,13 @@
 extends Component
 
-var target : Ship setget set_target, get_target
+var target : Ship :
+	get:
+		return target # TODOConverter40 Copy here content of get_target
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_target
 
-export var keep_target_timeout : float = 1.0
-export var detection_insensitive_timeout : float = 0.5
+@export var keep_target_timeout : float = 1.0
+@export var detection_insensitive_timeout : float = 0.5
 var keep_target_t : float = 0
 var detection_insensitive_t : float = 0
 var last_valid_target = null
@@ -39,7 +43,7 @@ func has_detection_insensitive_timed_out():
 	return detection_insensitive_t <= 0
 	
 func enable_with_timeout(wait_time):
-	yield(get_tree().create_timer(wait_time), "timeout")
+	await get_tree().create_timer(wait_time).timeout
 	enable()
 
 func get_last_valid_target():

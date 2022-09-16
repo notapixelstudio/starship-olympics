@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=2]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=4]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=8]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=11]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Flash"
@@ -23,8 +23,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 2 ]
 }
@@ -35,8 +35,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 1.5, 1.9, 2, 2.2, 3.5, 3.9 ),
-"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2, 1.5, 1.9, 2, 2.2, 3.5, 3.9 ),
+"transitions": PackedFloat32Array( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
 }
@@ -52,8 +52,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 0 ]
 }
@@ -64,8 +64,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 1.5, 1.9, 2, 2.2, 3.5, 3.9 ),
-"transitions": PoolRealArray( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.2, 1.5, 1.9, 2, 2.2, 3.5, 3.9 ),
+"transitions": PackedFloat32Array( 1, 0.5, 1, 1, 1, 1, 1, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
 }
@@ -80,7 +80,7 @@ enabled = false
 [node name="DeathmatchModeManager" parent="." index="6"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 11 )
 centered = false
 
@@ -169,7 +169,7 @@ rotation = 3.14159
 controls = "joy1"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="16"]
+[node name="Camera3D" parent="." index="16"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

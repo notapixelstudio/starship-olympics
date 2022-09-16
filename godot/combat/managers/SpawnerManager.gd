@@ -13,16 +13,16 @@ var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
-onready var wave_timer = $Timer
+@onready var wave_timer = $Timer
 signal done
 
 func _ready():
-	Events.connect("spawned", self, "spawned")
+	Events.connect("spawned",Callable(self,"spawned"))
 	
-	Events.connect("sth_collected", self, "_on_sth_collected")
+	Events.connect("sth_collected",Callable(self,"_on_sth_collected"))
 	# First spawner should already be in the field
 	# WARNING wait for variants to settle
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
 	
 func get_spawner(spawners: Array) -> ElementSpawnerGroup:
@@ -71,7 +71,7 @@ func _on_Timer_timeout():
 	_handle_waves()
 
 func _on_sth_collected(_collector, collectee):
-	# if there are no collectables to be collected anymore. We can move on with spawning
+	# if there are no collectables to be collected anymore. We can move checked with spawning
 	var all = len(get_tree().get_nodes_in_group(COLLECTABLE))
 	if all == 1:
 		print("asking to spawn because there are no collectable anymore")

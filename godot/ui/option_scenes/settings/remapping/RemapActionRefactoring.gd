@@ -1,20 +1,24 @@
 extends MarginContainer
 
-onready var scroll_container = $Container/AutoHScrollContainer
-export var action: String setget _set_action
-export var device: String 
-export  (String, "custom", "keyboard", "joypad") var device_category 
+@onready var scroll_container = $Container/AutoHScrollContainer
+@export var action: String :
+	get:
+		return action # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_action
+@export var device: String 
+@export  (String, "custom", "keyboard", "joypad") var device_category 
 
 
 
 func _ready():
-	Events.connect("remap_event", self, "on_remap")
+	Events.connect("remap_event",Callable(self,"on_remap"))
 	set_process_input(false)
 	
 func _set_action(value_):
 	action = value_
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	setup()
 
 func setup():
@@ -25,7 +29,7 @@ func clear():
 	scroll_container.clear()
 	
 func fill_mapping():
-	for event in InputMap.get_action_list(self.action):
+	for event in InputMap.action_get_events(self.action):
 		add_mapping_to_screen(event)
 
 func add_mapping_to_screen(new_event: InputEvent):

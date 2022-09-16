@@ -3,9 +3,13 @@ extends StaticBody2D
 class_name WallGoal
 
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 
-var player setget set_player, get_player
+var player :
+	get:
+		return player # TODOConverter40 Copy here content of get_player
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_player
 
 signal goal_done(ship, goal)
 
@@ -19,7 +23,7 @@ func get_player():
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 	
 func get_score():

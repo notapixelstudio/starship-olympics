@@ -4,14 +4,14 @@ signal hit(by)
 
 var owner_ship : Ship
 
-export var layers := 3
-export var sectors := [2, 2, 4]
-export var internal_radius := 90.0
-export var radii := [80.0, 60.0, 30.0]
-export var angles := [0.0, PI/2, 0.0]
-export var angle_speeds := [-PI/5, PI/5, -PI/3]
-export var padding := 16.0
-export var layer_scene : PackedScene
+@export var layers := 3
+@export var sectors := [2, 2, 4]
+@export var internal_radius := 90.0
+@export var radii := [80.0, 60.0, 30.0]
+@export var angles := [0.0, PI/2, 0.0]
+@export var angle_speeds := [-PI/5, PI/5, -PI/3]
+@export var padding := 16.0
+@export var layer_scene : PackedScene
 
 var layer_children := []
 
@@ -20,7 +20,7 @@ func _ready():
 	
 	var r := internal_radius
 	for i in range(layers):
-		var layer = layer_scene.instance()
+		var layer = layer_scene.instantiate()
 		layer.rotation = angles[i]
 		layer.angle_speed = angle_speeds[i]
 		layer.sectors = sectors[i]
@@ -30,7 +30,7 @@ func _ready():
 		r += padding
 		add_child(layer)
 		layer_children.append(layer)
-		layer.connect('body_shape_entered', self, '_on_Area2D_body_shape_entered', [layer])
+		layer.connect('body_shape_entered',Callable(self,'_on_Area2D_body_shape_entered').bind(layer))
 		
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
 	if body is Bomb and body.get_owner_ship() != owner_ship or body is Bullet:

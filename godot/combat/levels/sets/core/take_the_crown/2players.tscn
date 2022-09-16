@@ -2,14 +2,14 @@
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/C.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=11]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/D.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=14]
@@ -29,8 +29,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ 935, 50 ]
 }
@@ -153,6 +153,6 @@ rotation = -2.35619
 controls = "kb2"
 species = ExtResource( 7 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
 smoothing_speed = 0.3

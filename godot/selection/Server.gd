@@ -44,7 +44,7 @@ func _process(delta):
 		print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()])
 		print("Received data: %s" % [pkt.get_string_from_utf8()])
 		# Reply so it knows we received the message.
-		peer.put_packet("OK".to_utf8())
+		peer.put_packet("OK".to_utf8_buffer())
 		# Keep a reference so we can keep contacting the remote peer.
 		peers.append(peer)
 		var stringArray = peer.get_packet_ip().split(':')

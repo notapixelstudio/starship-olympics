@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="FontFile" id=2]
 [ext_resource path="res://ui/common_elements/ElemSlider.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=4]
 
 [node name="Music" type="Panel"]
-margin_top = 175.0
-margin_right = 448.0
-margin_bottom = 220.0
-rect_min_size = Vector2( 0, 50 )
+offset_top = 175.0
+offset_right = 448.0
+offset_bottom = 220.0
+minimum_size = Vector2( 0, 50 )
 focus_mode = 2
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
@@ -26,17 +26,17 @@ __meta__ = {
 }
 
 [node name="Volume" type="Label" parent="VBoxContainer"]
-margin_right = 448.0
-margin_bottom = 31.0
+offset_right = 448.0
+offset_bottom = 31.0
 custom_fonts/font = ExtResource( 2 )
 text = "Volume"
 align = 1
 uppercase = true
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 36.0
-margin_right = 448.0
-margin_bottom = 52.0
+offset_top = 36.0
+offset_right = 448.0
+offset_bottom = 52.0
 step = 5.0
 value = 50.0
 tick_count = 1

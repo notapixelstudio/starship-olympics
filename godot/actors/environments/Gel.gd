@@ -1,11 +1,19 @@
-tool
+@tool
 
 extends Area2D
 class_name Gel
 
-export var width = 200 setget set_width
-export var depth = 100 setget set_depth
-export var half_angle = PI*0.6
+@export var width = 200 :
+	get:
+		return width # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_width
+@export var depth = 100 :
+	get:
+		return depth # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_depth
+@export var half_angle = PI*0.6
 
 func set_width(v):
 	width = v
@@ -27,9 +35,9 @@ func refresh_size():
 		Vector2(50,width/2),
 		Vector2(-depth,width/2)
 	]
-	$Polygon2D.polygon = PoolVector2Array(points)
-	$CollisionPolygon2D.polygon = PoolVector2Array(points)
-	$Line2D.points = PoolVector2Array(points)
+	$Polygon2D.polygon = PackedVector2Array(points)
+	$CollisionPolygon2D.polygon = PackedVector2Array(points)
+	$Line2D.points = PackedVector2Array(points)
 
 func is_escapable():
 	return true

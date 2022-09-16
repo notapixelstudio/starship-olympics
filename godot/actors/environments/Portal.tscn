@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture2D" id=1]
 [ext_resource path="res://actors/environments/Portal.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/environments/portal_spike.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/environments/portal_spike.png" type="Texture2D" id=3]
 [ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=5]
 
@@ -15,10 +15,10 @@ extents = Vector2( 2000, 30 )
 extents = Vector2( 2000, 30 )
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0, 0.338889, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.338889, 1 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=5]
+[sub_resource type="GradientTexture2D" id=5]
 gradient = SubResource( 4 )
 
 [sub_resource type="Curve" id=6]
@@ -28,7 +28,7 @@ _data = [ Vector2( 0, 0.703988 ), 0.0, -0.0509122, 0, 0, Vector2( 0.373239, 1.5 
 [sub_resource type="CurveTexture" id=7]
 curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticleProcessMaterial" id=8]
 emission_shape = 2
 emission_box_extents = Vector3( 25, 2000, 1 )
 flag_disable_z = true
@@ -40,7 +40,7 @@ scale_random = 1.0
 scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id=9]
 emission_shape = 2
 emission_box_extents = Vector3( 100, 2000, 1 )
 flag_disable_z = true
@@ -55,7 +55,7 @@ scale_random = 1.0
 scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 
-[node name="Portal" type="Node2D" groups=["in_camera"]]
+[node name="Node3D" type="Node2D" groups=["in_camera"]]
 material = SubResource( 1 )
 script = ExtResource( 2 )
 color = Color( 0.243137, 0, 1, 1 )
@@ -90,7 +90,7 @@ modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -28, 0 )
 rotation = 1.5708
-points = PoolVector2Array( -300, -4.82989, -270, -2.08474, -240, -3.83228, -210, -18.2125, -180, -2.68282, -150, -6.45867, -120, -5.02583, -90, -6.10787, -60, -9.64062, -30, -4.33565, 0, -2.13029, 30, -16.1027, 60, -11.3518, 90, -13.5977, 120, -1.71095, 150, -10.3951, 180, -17.2141, 210, -2.5921, 240, -8.42292, 270, -9.39972 )
+points = PackedVector2Array( -300, -4.82989, -270, -2.08474, -240, -3.83228, -210, -18.2125, -180, -2.68282, -150, -6.45867, -120, -5.02583, -90, -6.10787, -60, -9.64062, -30, -4.33565, 0, -2.13029, 30, -16.1027, 60, -11.3518, 90, -13.5977, 120, -1.71095, 150, -10.3951, 180, -17.2141, 210, -2.5921, 240, -8.42292, 270, -9.39972 )
 width = 300.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 1 )
@@ -99,28 +99,28 @@ texture_mode = 1
 [node name="Hole" type="Line2D" parent="."]
 position = Vector2( -27, 0 )
 rotation = 1.5708
-points = PoolVector2Array( -198, 0, 198, 0 )
+points = PackedVector2Array( -198, 0, 198, 0 )
 width = 30.0
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="SpikeParticles2D" type="Particles2D" parent="."]
+[node name="SpikeParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color( 0.243137, 0, 1, 1 )
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -50, 0 )
 process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color( 0.243137, 0, 1, 1 )
 self_modulate = Color( 2, 2, 2, 1 )
 position = Vector2( -150, 0 )
 lifetime = 2.0
 process_material = SubResource( 9 )
 
-[node name="Particles2D2" type="Particles2D" parent="."]
+[node name="Particles2D2" type="GPUParticles2D" parent="."]
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -150, 0 )
 lifetime = 2.0
@@ -129,7 +129,7 @@ process_material = SubResource( 9 )
 [node name="WallLine" type="Line2D" parent="."]
 position = Vector2( 26, 0 )
 rotation = 1.5708
-points = PoolVector2Array( -300, 0, 300, 0 )
+points = PackedVector2Array( -300, 0, 300, 0 )
 width = 40.0
 default_color = Color( 0.8, 0.8, 1.09, 1 )
 

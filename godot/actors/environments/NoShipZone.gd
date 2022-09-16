@@ -1,7 +1,7 @@
-tool
+@tool
 extends Field
 
-export var symbol_scale := 2.0
+@export var symbol_scale := 2.0
 
 var gshape : GShape
 
@@ -9,9 +9,9 @@ func _ready():
 	gshape = self.get_gshape()
 	
 	# connect feedback signal
-	self.connect("entered", self, "_on_Field_entered")
+	self.connect("entered",Callable(self,"_on_Field_entered"))
 	
-	gshape.connect("changed", self, "_on_gshape_changed")
+	gshape.connect("changed",Callable(self,"_on_gshape_changed"))
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	
 	$NoShipSign.scale = Vector2(symbol_scale, symbol_scale)

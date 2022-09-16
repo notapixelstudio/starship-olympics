@@ -1,13 +1,13 @@
 extends Node2D
 
-export var starting_color := Color(1,1,1,0.1)
-export var ending_color := Color(1,1,1,0)
-export var length := 30
-export var width := 90
-export var max_segment_length := 1000
-export (Trail2D.Persistence) var persistence := Trail2D.Persistence.FRAME_RATE_INDIPENDENT
-export var auto_create_on_enter := true
-export var disappear_speed := 100.0
+@export var starting_color := Color(1,1,1,0.1)
+@export var ending_color := Color(1,1,1,0)
+@export var length := 30
+@export var width := 90
+@export var max_segment_length := 1000
+@export (Trail2D.Persistence) var persistence := Trail2D.Persistence.FRAME_RATE_INDIPENDENT
+@export var auto_create_on_enter := true
+@export var disappear_speed := 100.0
 
 var trail
 
@@ -16,7 +16,7 @@ func _enter_tree():
 	if auto_create_on_enter:
 		self.create_trail()
 	
-# drop the trail onto the parent's parent on exiting the tree
+# drop the trail onto the parent's parent checked exiting the tree
 func _exit_tree():
 	self.drop_trail()
 	
@@ -29,10 +29,10 @@ func create_trail():
 	trail.trail_length = length
 	trail.width = width
 	add_child(trail)
-	trail.connect('point_added', self, '_on_trail_point_added')
+	trail.connect('point_added',Callable(self,'_on_trail_point_added'))
 	
 func drop_trail():
-	if not trail or not is_instance_valid(trail) or not is_a_parent_of(trail):
+	if not trail or not is_instance_valid(trail) or not is_ancestor_of(trail):
 		return
 		
 	remove_child(trail)

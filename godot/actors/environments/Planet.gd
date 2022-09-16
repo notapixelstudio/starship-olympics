@@ -1,8 +1,16 @@
-tool
+@tool
 extends Node2D
 
-export var ground_radius := 200.0 setget set_ground_radius
-export var atmosphere_radius := 600.0 setget set_atmosphere_radius
+@export var ground_radius := 200.0 :
+	get:
+		return ground_radius # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_ground_radius
+@export var atmosphere_radius := 600.0 :
+	get:
+		return atmosphere_radius # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_atmosphere_radius
 const NEAR_AREA_ALTITUDE := 20.0
 
 func set_ground_radius(v):
@@ -11,7 +19,7 @@ func set_ground_radius(v):
 	var gcircle = GCircle.new()
 	gcircle.precision = 30
 	gcircle.set_radius(ground_radius)
-	$Sprite.scale = Vector2(ground_radius/200.0, ground_radius/200.0)
+	$Sprite2D.scale = Vector2(ground_radius/200.0, ground_radius/200.0)
 	$Shadow.scale = Vector2(ground_radius/200.0, ground_radius/200.0)
 	$Solid/CollisionPolygon2D.polygon = gcircle.to_PoolVector2Array()
 	

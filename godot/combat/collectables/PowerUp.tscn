@@ -2,14 +2,14 @@
 
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=3]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/powerups/shield.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/sprites/powerups/shield.png" type="Texture2D" id=5]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/traits/Collectable.tscn" type="PackedScene" id=7]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=9]
-[ext_resource path="res://assets/sprites/powerups/question.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/powerups/question.png" type="Texture2D" id=10]
 
 [sub_resource type="Curve" id=1]
 bake_resolution = 400
@@ -23,26 +23,26 @@ resource_name = "AppearFhuFhuFhu"
 length = 1.1
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 0.96, 1.1 ),
-"transitions": PoolRealArray( 1, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.8, 0.96, 1.1 ),
+"transitions": PackedFloat32Array( 1, -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, -4000 ), Vector2( 0, 40 ), Vector2( 0, -40 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
+tracks/1/path = NodePath("Sprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.61, 0.8, 0.96, 1.1 ),
-"transitions": PoolRealArray( 0.5, 0.5, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.61, 0.8, 0.96, 1.1 ),
+"transitions": PackedFloat32Array( 0.5, 0.5, -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 0.1, 1 ), Vector2( 1.2, 0.8 ), Vector2( 0.9, 1.1 ), Vector2( 1, 1 ) ]
 }
@@ -53,8 +53,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.76 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.76 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "activate"
@@ -67,20 +67,20 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1.1 ),
-"transitions": PoolRealArray( 0.353553, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.7, 1.1 ),
+"transitions": PackedFloat32Array( 0.353553, -2, -2 ),
 "update": 0,
 "values": [ 0.0, 30.0, 0.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:visible")
+tracks/4/path = NodePath("Sprite2D:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.02 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.02 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -91,8 +91,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.81 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.81 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -101,38 +101,38 @@ tracks/5/keys = {
 length = 3.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1.15, 1.15, 1.15, 1 ), Color( 1, 1, 1, 1 ), Color( 1.15, 1.15, 1.15, 1 ), Color( 1, 1, 1, 1 ), Color( 1.25, 1.25, 1.25, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ), Vector2( 0, 0 ), Vector2( 0, -16 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:scale")
+tracks/2/path = NodePath("Sprite2D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -142,14 +142,14 @@ resource_name = "reset"
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
@@ -158,14 +158,14 @@ tracks/0/keys = {
 resource_name = "tease"
 length = 1.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:visible")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ false ]
 }
@@ -176,8 +176,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, -2, -2, -2, -2, -2 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.5 ), Color( 1, 1, 1, 0.1 ), Color( 1, 1, 1, 0.5 ), Color( 1, 1, 1, 0.101961 ), Color( 1, 1, 1, 0.5 ), Color( 1, 1, 1, 0.101961 ), Color( 1, 1, 1, 0.5 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -188,8 +188,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ false ]
 }
@@ -217,7 +217,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
-[node name="QuestionSprite" type="Sprite" parent="."]
+[node name="QuestionSprite" type="Sprite2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 32 )
 texture = ExtResource( 10 )
@@ -225,14 +225,14 @@ texture = ExtResource( 10 )
 [node name="TeleportBeam" type="Line2D" parent="."]
 modulate = Color( 0, 1, 1, 1 )
 self_modulate = Color( 1.50196, 1.50196, 1.50196, 1 )
-points = PoolVector2Array( 0, 0, 0, -10000 )
+points = PackedVector2Array( 0, 0, 0, -10000 )
 width = 0.0
 width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color( 1.12164, 1.12164, 1.12164, 1 )
 position = Vector2( 0, -12.9753 )
 texture = ExtResource( 5 )
@@ -250,4 +250,4 @@ anims/reset = SubResource( 5 )
 anims/tease = SubResource( 6 )
 
 [node name="Shadow" parent="." instance=ExtResource( 8 )]
-sprite = NodePath("../Sprite")
+sprite = NodePath("../Sprite2D")

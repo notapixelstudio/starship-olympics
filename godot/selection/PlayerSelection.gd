@@ -22,25 +22,25 @@ var disabled = true
 var selected = false 
 var joined = true
 
-onready var wrapper = $Wrapper
-onready var speciesSelection = $Wrapper/SpeciesSelection
-onready var sfx = $SFX
+@onready var wrapper = $Wrapper
+@onready var speciesSelection = $Wrapper/SpeciesSelection
+@onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
 
-export (CONTROLS) var key_controls = CONTROLS.KB1
-export (String, "", "kb1", "kb2") var force_to
-export (Resource) var species # : SpeciesTemplate
+@export (CONTROLS) var key_controls = CONTROLS.KB1
+@export (String, "", "kb1", "kb2") var force_to
+@export (Resource) var species # : SpeciesTemplate
 
 # this will be the String of controls
 var controls : String
 var is_team : bool = false
 signal ready_takeoff
 
-onready var info: InfoPlayer = InfoPlayer.new()
+@onready var info: InfoPlayer = InfoPlayer.new()
 
 func get_ship_position():
-	return rect_position
+	return position
 
 func get_info_player() -> InfoPlayer:
 	return self.info

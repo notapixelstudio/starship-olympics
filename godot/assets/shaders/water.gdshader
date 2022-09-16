@@ -3,7 +3,7 @@ shader_type canvas_item;
 // Gonkee's water shader for Godot 3 - full tutorial https://youtu.be/uhMAHpV_cDg
 // If you use this shader, I would prefer if you gave credit to me and my channel
 
-uniform vec4 blue_tint : hint_color;
+uniform vec4 blue_tint : source_color;
 
 uniform vec2 sprite_scale = vec2(1.0);
 uniform float scale_x = 0.67;

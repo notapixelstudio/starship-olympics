@@ -1,6 +1,6 @@
 extends Area2D
 
-export (String, 'shield', 'plate', 'skin') var type = 'plate'
+@export (String, 'shield', 'plate', 'skin') var type = 'plate'
 
 func _ready():
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
@@ -13,9 +13,9 @@ func up(new_type):
 		'shield':
 			$Polygon2D.modulate = Color('#008bff')
 		'plate':
-			$Polygon2D.modulate = Color.white
+			$Polygon2D.modulate = Color.WHITE
 		'skin':
-			$Polygon2D.modulate = Color.green
+			$Polygon2D.modulate = Color.GREEN
 	enable_collisions()
 	$AnimationPlayer.play("reset")
 
@@ -33,8 +33,8 @@ func enable_collisions():
 func disable_collisions():
 	$CollisionPolygon2D.call_deferred('set_disabled', true)
 	if type == 'skin':
-		yield(get_tree().create_timer(5), "timeout")
-		if type == 'skin': # shield type could have changed (e.g., if switched off)
+		await get_tree().create_timer(5).timeout
+		if type == 'skin': # shield type could have changed (e.g., if switched unchecked)
 			up('skin')
 
 func _on_ShieldWall_body_entered(body):

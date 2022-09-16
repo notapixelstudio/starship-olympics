@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export var PfftScene : PackedScene
+@export var PfftScene : PackedScene
 
 var ship : Ship
 
@@ -20,7 +20,7 @@ func set_ship(v : Ship):
 	$Halo.modulate = ship.get_color()
 
 func dissolve() -> void:
-	var pfft = PfftScene.instance()
+	var pfft = PfftScene.instantiate()
 	pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position

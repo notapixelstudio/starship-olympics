@@ -2,11 +2,11 @@ extends Node2D
 
 class_name PlayerSpawner
 
-export (String) var controls = "kb1"
-export (Resource) var species
-export (String) var team = ''
+@export (String) var controls = "kb1"
+@export (Resource) var species
+@export (String) var team = ''
 # temporary for cpu
-export (bool) var cpu = false
+@export (bool) var cpu = false
 
 signal player_assigned(info_player)
 signal entered_battlefield
@@ -14,19 +14,19 @@ signal entered_battlefield
 var id : String
 var uid : int
 var info_player = null
-onready var sprite = $Sprite
-onready var animation = $AnimationPlayer
+@onready var sprite = $Sprite2D
+@onready var animation = $AnimationPlayer
 
 func _ready():
 	visible = false
-	global.arena.connect("all_ships_spawned", self, '_on_all_ships_spawned')
+	global.arena.connect("all_ships_spawned",Callable(self,'_on_all_ships_spawned'))
 	
 func appears():
 	var device_controller_id
 	if ("rm" in controls):
 		device_controller_id = 0
 	else:
-		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
+		device_controller_id = InputMap.action_get_events(controls+"_right")[0].device
 	if "joy" in controls and global.rumbling:
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)
@@ -34,7 +34,7 @@ func appears():
 	sprite.texture = species.ship
 	visible = true
 	animation.play("Appearing")
-	yield(animation, "animation_finished")
+	await animation.animation_finished
 	emit_signal("entered_battlefield")
 	visible = false
 	

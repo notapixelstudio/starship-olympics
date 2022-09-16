@@ -1,11 +1,15 @@
 extends MapCell
 
-export var active : bool = false setget set_active
-export var value_name : String = "win"
-export var inverted : bool = false
-export var global_option : bool = true
-export var node_owner_path : NodePath
-export var text : String = ''
+@export var active : bool = false :
+	get:
+		return active # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_active
+@export var value_name : String = "win"
+@export var inverted : bool = false
+@export var global_option : bool = true
+@export var node_owner_path : NodePath
+@export var text : String = ''
 
 var node_owner
 var enabled = true
@@ -16,7 +20,7 @@ func initialize(value):
 func set_active(value):
 	active = value
 	if not is_inside_tree():
-		yield(self, "ready") 
+		await self.ready 
 	node_owner.set(value_name, active)
 	refresh()
 	
@@ -50,7 +54,7 @@ func act(cursor):
 		return
 		
 	toggle_active()
-	.act(cursor)
+	super.act(cursor)
 	cursor.on_sth_pressed()
 	if active and not inverted or not active and inverted:
 		$switch_on.play()

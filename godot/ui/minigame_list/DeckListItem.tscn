@@ -1,23 +1,23 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="FontFile" id=3]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
-[ext_resource path="res://assets/arrow.png" type="Texture" id=6]
+[ext_resource path="res://assets/shuffle.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/arrow.png" type="Texture2D" id=6]
 [ext_resource path="res://ui/common_elements/RadioOption.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/minigame_list/StartingDeck.tres" type="ButtonGroup" id=8]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 24
 font_data = ExtResource( 3 )
 
 [node name="DeckListItem" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 155 )
+minimum_size = Vector2( 0, 155 )
 size_flags_horizontal = 3
 color = Color( 0, 0, 0, 0 )
 script = ExtResource( 1 )
@@ -27,14 +27,14 @@ arrow_texture = ExtResource( 6 )
 shuffle_texture = ExtResource( 5 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 custom_constants/separation = 10
 
 [node name="MapRadio" parent="HBoxContainer" instance=ExtResource( 7 )]
 unique_name_in_owner = true
-margin_right = 38.0
-margin_bottom = 46.0
+offset_right = 38.0
+offset_bottom = 46.0
 theme = ExtResource( 9 )
 group = ExtResource( 8 )
 icon = null
@@ -43,15 +43,15 @@ icon_align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 48.0
-margin_right = 48.0
-margin_bottom = 46.0
+offset_left = 48.0
+offset_right = 48.0
+offset_bottom = 46.0
 
 [node name="Title" type="Label" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 modulate = Color( 1, 0.870588, 0.372549, 1 )
-margin_bottom = 42.0
-rect_min_size = Vector2( 0, 42 )
+offset_bottom = 42.0
+minimum_size = Vector2( 0, 42 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
 custom_constants/shadow_offset_y = 6
 custom_fonts/font = SubResource( 1 )
@@ -59,8 +59,8 @@ valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 46.0
-margin_bottom = 46.0
+offset_top = 46.0
+offset_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

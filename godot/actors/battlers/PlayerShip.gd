@@ -12,8 +12,8 @@ func _ready():
 	if ("rm" in controls):
 		device_controller_id = 0
 	else:
-		device_controller_id = InputMap.get_action_list(controls+"_right")[0].device
-	connect('dead', self, '_on_dead')
+		device_controller_id = InputMap.action_get_events(controls+"_right")[0].device
+	connect('dead',Callable(self,'_on_dead'))
 	
 func _on_dead(me, killer, for_good=false):
 	vibration_feedback()
@@ -93,5 +93,5 @@ func control(delta):
 	# cooldown
 	fire_cooldown -= delta * Engine.time_scale
 
-	.control(delta)
+	super.control(delta)
 	

@@ -8,16 +8,16 @@
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
-[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=11]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=9]
+[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/sprites/species/trixens.png" type="Texture2D" id=11]
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=12]
-[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=13]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture2D" id=13]
+[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture2D" id=14]
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
-[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="FontFile" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -28,8 +28,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
@@ -45,8 +45,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
@@ -62,7 +62,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 6 )
 } ],
-"times": PoolRealArray( 0.05 )
+"times": PackedFloat32Array( 0.05 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -76,8 +76,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
@@ -93,7 +93,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0.1 )
+"times": PackedFloat32Array( 0.1 )
 }
 
 [sub_resource type="Animation" id=4]
@@ -106,8 +106,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -50, 0 ) ]
 }
@@ -122,23 +122,23 @@ tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ -90.0, 270.0 ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 10
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="FontFile" id=7]
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 18 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 24
 outline_size = 4
 font_data = ExtResource( 9 )
@@ -146,10 +146,10 @@ font_data = ExtResource( 9 )
 [node name="PlayerSelection" type="Control"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -360.0
-margin_right = 200.0
-margin_bottom = 213.0
-rect_min_size = Vector2( 200, 430 )
+offset_top = -360.0
+offset_right = 200.0
+offset_bottom = 213.0
+minimum_size = Vector2( 200, 430 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -159,12 +159,12 @@ __meta__ = {
 z_as_relative = false
 
 [node name="SpeciesSelection" type="Control" parent="Wrapper"]
-margin_top = -14.0
-margin_right = 200.0
-margin_bottom = 386.0
+offset_top = -14.0
+offset_right = 200.0
+offset_bottom = 386.0
 grow_horizontal = 0
 grow_vertical = 0
-rect_min_size = Vector2( 200, 400 )
+minimum_size = Vector2( 200, 400 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -184,7 +184,7 @@ anims/appear = SubResource( 1 )
 anims/deselect = SubResource( 2 )
 anims/select = SubResource( 3 )
 
-[node name="SelectRect" type="Sprite" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
+[node name="SelectRect" type="Sprite2D" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
 visible = false
 self_modulate = Color( 1.15, 1.15, 1.15, 1 )
 position = Vector2( -94.0661, -256.106 )
@@ -193,11 +193,11 @@ texture = ExtResource( 13 )
 centered = false
 
 [node name="Character" type="Control" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
-margin_left = -84.0
-margin_top = -272.0
-margin_right = 126.0
-margin_bottom = 278.0
-rect_clip_content = true
+offset_left = -84.0
+offset_top = -272.0
+offset_right = 126.0
+offset_bottom = 278.0
+clip_contents = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -205,14 +205,14 @@ __meta__ = {
 [node name="Background" type="Polygon2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 position = Vector2( 0, -3.05176e-05 )
 texture_rotation_degrees = 90.0
-polygon = PoolVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
+polygon = PackedVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Background"]
 autoplay = "barber"
 anims/barber = SubResource( 4 )
 
 [node name="Border" type="Line2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
-points = PoolVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
+points = PackedVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
 width = 3.5
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 91
@@ -220,22 +220,22 @@ begin_cap_mode = 1
 
 [node name="Clip" type="Control" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 anchor_right = 0.19
-margin_left = 23.0
-margin_top = 37.0
-margin_right = 104.1
-margin_bottom = 549.0
-rect_clip_content = true
+offset_left = 23.0
+offset_top = 37.0
+offset_right = 104.1
+offset_bottom = 549.0
+clip_contents = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shadow" type="Sprite" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Clip"]
+[node name="Shadow" type="Sprite2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Clip"]
 modulate = Color( 0, 0, 0, 0.196078 )
 position = Vector2( 67, 265 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 11 )
 
-[node name="Character" type="Sprite" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
+[node name="Character" type="Sprite2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 modulate = Color( 0.8, 0.8, 0.8, 1 )
 position = Vector2( 90, 290 )
 scale = Vector2( 0.6, 0.6 )
@@ -243,7 +243,7 @@ texture = ExtResource( 11 )
 
 [node name="OverBorder" type="Line2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 visible = false
-points = PoolVector2Array( 23, 35, 23, 548, 144, 548 )
+points = PackedVector2Array( 23, 35, 23, 548, 144, 548 )
 width = 3.5
 default_color = Color( 0, 0, 0, 1 )
 texture_mode = 91
@@ -252,13 +252,13 @@ begin_cap_mode = 1
 [node name="Controls" parent="Wrapper/SpeciesSelection" instance=ExtResource( 7 )]
 
 [node name="LeftArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
-margin_left = 9.0
-margin_top = 454.0
-margin_right = 9.0
-margin_bottom = 454.0
-rect_scale = Vector2( -1.2, 1.2 )
+offset_left = 9.0
+offset_top = 454.0
+offset_right = 9.0
+offset_bottom = 454.0
+scale = Vector2( -1.2, 1.2 )
 
-[node name="Ship" type="Sprite" parent="Wrapper/SpeciesSelection"]
+[node name="Ship" type="Sprite2D" parent="Wrapper/SpeciesSelection"]
 position = Vector2( 87.174, 452 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
@@ -278,21 +278,21 @@ sprite = NodePath("..")
 dy = 22
 
 [node name="RightArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
-margin_left = 159.0
-margin_top = 454.0
-margin_right = 159.0
-margin_bottom = 454.0
-rect_scale = Vector2( 1.2, 1.2 )
+offset_left = 159.0
+offset_top = 454.0
+offset_right = 159.0
+offset_bottom = 454.0
+scale = Vector2( 1.2, 1.2 )
 
 [node name="SpeciesName" type="VBoxContainer" parent="Wrapper/SpeciesSelection"]
-margin_left = -2.0
-margin_top = 558.0
-margin_right = 168.0
-margin_bottom = 627.0
+offset_left = -2.0
+offset_top = 558.0
+offset_right = 168.0
+offset_bottom = 627.0
 
 [node name="Label" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_right = 170.0
-margin_bottom = 22.0
+offset_right = 170.0
+offset_bottom = 22.0
 custom_fonts/font = ExtResource( 16 )
 text = "pentagonions"
 align = 1
@@ -300,15 +300,15 @@ valign = 1
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_top = 26.0
-margin_right = 170.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 0, 2 )
+offset_top = 26.0
+offset_right = 170.0
+offset_bottom = 28.0
+minimum_size = Vector2( 0, 2 )
 
 [node name="Tagline1" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_top = 32.0
-margin_right = 170.0
-margin_bottom = 44.0
+offset_top = 32.0
+offset_right = 170.0
+offset_bottom = 44.0
 custom_fonts/font = SubResource( 6 )
 text = "tagline"
 align = 1
@@ -316,9 +316,9 @@ valign = 1
 uppercase = true
 
 [node name="Tagline2" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_top = 48.0
-margin_right = 170.0
-margin_bottom = 60.0
+offset_top = 48.0
+offset_right = 170.0
+offset_bottom = 60.0
 custom_fonts/font = SubResource( 6 )
 text = "tagline"
 align = 1
@@ -327,24 +327,24 @@ uppercase = true
 
 [node name="Tween" type="Tween" parent="Wrapper/SpeciesSelection"]
 
-[node name="PlayerInfo" type="Position2D" parent="Wrapper/SpeciesSelection"]
+[node name="PlayerInfo" type="Marker2D" parent="Wrapper/SpeciesSelection"]
 position = Vector2( 86, 33.5228 )
 
-[node name="Sprite" type="Sprite" parent="Wrapper/SpeciesSelection/PlayerInfo"]
+[node name="Sprite2D" type="Sprite2D" parent="Wrapper/SpeciesSelection/PlayerInfo"]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, 9 )
 scale = Vector2( 1.7, 1.8 )
 texture = ExtResource( 14 )
 
-[node name="Sprite2" type="Sprite" parent="Wrapper/SpeciesSelection/PlayerInfo"]
+[node name="Sprite2" type="Sprite2D" parent="Wrapper/SpeciesSelection/PlayerInfo"]
 position = Vector2( 0, 8 )
 texture = ExtResource( 14 )
 
 [node name="PlayerID" type="Label" parent="Wrapper/SpeciesSelection/PlayerInfo"]
-margin_left = -20.0
-margin_top = -30.0
-margin_right = 20.0
-margin_bottom = 3.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 3.0
 custom_fonts/font = SubResource( 7 )
 text = "P1"
 align = 1
@@ -359,15 +359,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -108.0
-margin_top = 158.0
-margin_right = 75.0
-margin_bottom = 231.0
+offset_left = -108.0
+offset_top = 158.0
+offset_right = 75.0
+offset_bottom = 231.0
 
 [node name="Label" type="Label" parent="Wrapper/SpeciesSelection/TeamMode"]
 anchor_right = 1.0
-margin_top = -28.0
-margin_bottom = 37.0
+offset_top = -28.0
+offset_bottom = 37.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 8 )
 text = "TEAM

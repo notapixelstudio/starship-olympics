@@ -19,7 +19,7 @@ func save_group_to_file(group_name: String):
 		# The key to access each data dictionary is the node's path, so we can retrieve the node in load_game below
 		# For this to work, the node path must not change! You can move the nodes up/down the hierarchy,
 		# But if you give them a new parent, you'll have to update the save
-		# E.g. if /root/Game/Player becomes /root/Game/Characters/YSort/Player
+		# E.g. if /root/Game/Player becomes /root/Game/Characters/Node2D/Player
 		save_dict[node.get_path()] = node.get_state()
 	
 	# Create a file
@@ -27,7 +27,7 @@ func save_group_to_file(group_name: String):
 	save_file.open(filename, File.WRITE)
 	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
 	# Serialize the data dictionary to JSON
-	save_file.store_line(to_json(save_dict))
+	save_file.store_line(JSON.new().stringify(save_dict))
 	
 	# Write the JSON to the file and save to disk
 	save_file.close()
@@ -48,7 +48,9 @@ func get_saved_data(filepath: String = SAVE_FILEPATH) -> Dictionary:
 		print("We are going to load from this JSON: ", save_file.get_path_absolute())
 		# parse file data - convert the JSON back to a dictionary
 		var data = {}
-		data = parse_json(save_file.get_as_text())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(save_file.get_as_text())
+		data = test_json_conv.get_data()
 		save_file.close()
 		return data
 	
@@ -63,7 +65,7 @@ func load_game() -> bool:
 			print("Not found any data for", group_name, " in ", filepath)
 			continue
 
-		# The dict keys on the first level are paths to the nodes
+		# The dict keys checked the first level are paths to the nodes
 		for node_path in data.keys():
 			# We get the node's path from the for loop, so we can use it to retrieve
 			# Both the node to load (e.g. Player, Player2) and the node's data with data[node_path]

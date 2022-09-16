@@ -2,21 +2,21 @@
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="FontFile" id=3]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=5]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=7]
 [ext_resource path="res://map_with_sets/DescriptionMode.gd" type="Script" id=8]
 [ext_resource path="res://ui/common_elements/PlayersReady/PlayersReady.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=10]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 125
 extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 125
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -24,13 +24,13 @@ extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="FontFile" id=9]
 size = 74
 extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 74
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -38,14 +38,14 @@ extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="FontFile" id=10]
 size = 54
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="FontFile" id=11]
 size = 54
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -62,8 +62,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"clips": PoolStringArray( "blink" ),
-"times": PoolRealArray( 1 )
+"clips": PackedStringArray( "blink" ),
+"times": PackedFloat32Array( 1 )
 }
 
 [sub_resource type="Animation" id=4]
@@ -79,19 +79,19 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="FontFile" id=7]
 size = 26
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="FontFile" id=12]
 size = 38
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -99,11 +99,11 @@ extra_spacing_char = 1
 font_data = ExtResource( 10 )
 
 [node name="DescriptionMode" type="Control"]
-pause_mode = 2
+process_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -80.0
-rect_rotation = -0.00219995
+offset_bottom = -80.0
+rotation = -0.00219995
 theme = ExtResource( 2 )
 script = ExtResource( 8 )
 gamemode = ExtResource( 1 )
@@ -112,10 +112,10 @@ gamemode = ExtResource( 1 )
 modulate = Color( 0, 0, 0, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.000457764
-margin_top = -12.0
-margin_right = 0.000488281
-margin_bottom = -12.0
+offset_left = 0.000457764
+offset_top = -12.0
+offset_right = 0.000488281
+offset_bottom = -12.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "MINIGAME"
@@ -130,10 +130,10 @@ __meta__ = {
 self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.000915527
-margin_top = -24.0
-margin_right = 0.000976562
-margin_bottom = -24.0
+offset_left = 0.000915527
+offset_top = -24.0
+offset_right = 0.000976562
+offset_bottom = -24.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0.247059, 0.247059, 0.247059, 1 )
 custom_constants/shadow_offset_x = 0
@@ -148,10 +148,10 @@ uppercase = true
 modulate = Color( 0, 0, 0, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.000915527
-margin_top = -103.0
-margin_right = 0.000976562
-margin_bottom = -103.0
+offset_left = 0.000915527
+offset_top = -103.0
+offset_right = 0.000976562
+offset_bottom = -103.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 9 )
 text = "WINTER"
@@ -163,10 +163,10 @@ uppercase = true
 modulate = Color( 0.615686, 0.921569, 1, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.00491333
-margin_top = -115.0
-margin_right = 0.00488281
-margin_bottom = -115.0
+offset_left = 0.00491333
+offset_top = -115.0
+offset_right = 0.00488281
+offset_bottom = -115.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0, 0.533333, 0.964706, 1 )
 custom_constants/shadow_offset_x = 0
@@ -181,10 +181,10 @@ uppercase = true
 modulate = Color( 0, 0, 0, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.00198364
-margin_top = 65.0
-margin_right = -0.00195312
-margin_bottom = 65.0
+offset_left = -0.00198364
+offset_top = 65.0
+offset_right = -0.00195312
+offset_bottom = 65.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -199,10 +199,10 @@ uppercase = true
 modulate = Color( 1, 0.25098, 0.831373, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.00167847
-margin_top = 57.0
-margin_right = -0.00170898
-margin_bottom = 57.0
+offset_left = -0.00167847
+offset_top = 57.0
+offset_right = -0.00170898
+offset_bottom = 57.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -232,10 +232,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -640.002
-margin_top = 343.522
-margin_right = 639.998
-margin_bottom = 393.522
+offset_left = -640.002
+offset_top = 343.522
+offset_right = 639.998
+offset_bottom = 393.522
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 0
 custom_fonts/font = SubResource( 7 )
@@ -253,8 +253,8 @@ one_shot = true
 autostart = true
 
 [node name="Description" parent="." instance=ExtResource( 6 )]
-margin_top = 76.0
-margin_bottom = 219.0
+offset_top = 76.0
+offset_bottom = 219.0
 custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -263,16 +263,16 @@ custom_fonts/font = SubResource( 12 )
 [node name="LineLeft" type="Polygon2D" parent="."]
 self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 position = Vector2( -61.8758, -11.4888 )
-polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+polygon = PackedVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Shadow" type="Polygon2D" parent="LineLeft"]
 show_behind_parent = true
 position = Vector2( 0, 7 )
 color = Color( 0, 0, 0, 0.196078 )
-polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+polygon = PackedVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Line2D" type="Line2D" parent="LineLeft"]
-points = PoolVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 288 )
+points = PackedVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 288 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
@@ -280,24 +280,24 @@ joint_mode = 2
 [node name="LineRight" type="Polygon2D" parent="."]
 self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 position = Vector2( 995.124, -11.489 )
-polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+polygon = PackedVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Shadow" type="Polygon2D" parent="LineRight"]
 show_behind_parent = true
 position = Vector2( 0, 7 )
 color = Color( 0, 0, 0, 0.196078 )
-polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
+polygon = PackedVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Line2D" type="Line2D" parent="LineRight"]
-points = PoolVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 288 )
+points = PackedVector2Array( 0, 288, 703, 288, 698, 309, -358, 309, -353, 288, 0, 288 )
 width = 3.0
 default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
 
 [node name="PlayersReady" parent="." instance=ExtResource( 9 )]
-margin_left = -0.00138228
-margin_top = -134.0
-margin_right = -0.00134277
-margin_bottom = 26.0
+offset_left = -0.00138228
+offset_top = -134.0
+offset_right = -0.00134277
+offset_bottom = 26.0
 
 [connection signal="done" from="Description" to="." method="_on_Description_done"]

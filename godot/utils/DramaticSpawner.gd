@@ -1,16 +1,16 @@
 extends Node2D
 
-export (float, 0, 1, 0.01) var match_progress_trigger = 0.5
-export (float, 0, 10, 0.01) var jitter = 0.5
-export (float, 0, 1, 0.01) var chance = 1.0
+@export (float, 0, 1, 0.01) var match_progress_trigger = 0.5
+@export (float, 0, 10, 0.01) var jitter = 0.5
+@export (float, 0, 1, 0.01) var chance = 1.0
 
 var total_time : float
 var content = []
 
 func _ready():
 	store()
-	global.the_match.connect('setup', self, '_on_match_setup')
-	global.the_match.connect('tick', self, '_on_match_tick')
+	global.the_match.connect('setup',Callable(self,'_on_match_setup'))
+	global.the_match.connect('tick',Callable(self,'_on_match_tick'))
 	
 func _on_match_setup():
 	total_time = global.the_match.time_left
@@ -21,7 +21,7 @@ func _on_match_tick(time_left):
 			abort()
 			return
 			
-		yield(get_tree().create_timer(jitter*randf()), "timeout")
+		await get_tree().create_timer(jitter*randf()).timeout
 		unstore()
 	
 func store():

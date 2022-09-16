@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=1]
+[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture2D" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
@@ -10,7 +10,7 @@
 [ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=10]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=11]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture2D" id=11]
 [ext_resource path="res://actors/environments/Mirror.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/enemies/Bullet.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/modes/DiscoBullet.tres" type="Resource" id=14]
@@ -30,8 +30,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 60 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 60 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, -360.0 ]
 }
@@ -42,8 +42,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 60 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 60 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, -360.0 ]
 }
@@ -59,8 +59,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8, 16, 20, 24, 36, 48, 52, 56, 60, 64 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 8, 16, 20, 24, 36, 48, 52, 56, 60, 64 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0.25, 0.5, 1.0, 4.0, 0.5, 0.25, 0.5, 4.0, 1.0, 4.0, 2.0 ]
 }
@@ -71,8 +71,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 12, 24, 48, 68 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 12, 24, 48, 68 ),
+"transitions": PackedFloat32Array( -2, -2, -2, -2, 1 ),
 "update": 0,
 "values": [ 0.4, -2.4, 0.4, -0.4, 1.0 ]
 }
@@ -83,8 +83,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 32, 40, 56 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 32, 40, 56 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "activate"
@@ -103,8 +103,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 48 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 48 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 400, 600 ]
 }
@@ -115,8 +115,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 48 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 48 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 6 ]
 }
@@ -127,8 +127,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 48 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 48 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 90, 60 ]
 }
@@ -142,16 +142,16 @@ func activate():
 func deactivate():
 	switch(false)
 	
-func switch(on):
+func switch(checked):
 	for laser in get_children():
-		laser.set_on(on)
-		if on:
+		laser.set_on(checked)
+		if checked:
 			laser.visible = true
-			yield(get_tree().create_timer(1), \"timeout\")
+			await get_tree().create_timer(1).timeout
 		else:
-			yield(get_tree().create_timer(0.5), \"timeout\")
+			await get_tree().create_timer(0.5).timeout
 			laser.visible = false
-			yield(get_tree().create_timer(0.5), \"timeout\")
+			await get_tree().create_timer(0.5).timeout
 		
 func show():
 	visible = true
@@ -166,7 +166,7 @@ style = ExtResource( 10 )
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 11 )
 centered = false
 
@@ -240,25 +240,25 @@ script = SubResource( 3 )
 [node name="Laser" parent="Battlefield/Middleground/Turret/Lasers" index="0" instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 158, 0 )
-on = false
+checked = false
 
 [node name="Laser2" parent="Battlefield/Middleground/Turret/Lasers" index="1" instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 0, 158 )
 rotation = 1.5708
-on = false
+checked = false
 
 [node name="Laser3" parent="Battlefield/Middleground/Turret/Lasers" index="2" instance=ExtResource( 8 )]
 visible = false
 position = Vector2( -158, 0 )
 rotation = 3.14159
-on = false
+checked = false
 
 [node name="Laser4" parent="Battlefield/Middleground/Turret/Lasers" index="3" instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 0, -158 )
 rotation = 4.71239
-on = false
+checked = false
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
 position = Vector2( 1500, 1500 )
@@ -289,7 +289,7 @@ rotation = -1.5708
 controls = "kb2"
 species = ExtResource( 18 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 

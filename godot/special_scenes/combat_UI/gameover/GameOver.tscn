@@ -11,7 +11,7 @@ resource_name = "idle"
 [sub_resource type="Animation" id=2]
 
 [node name="GameOverScreen" type="Control"]
-pause_mode = 2
+process_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -38,10 +38,10 @@ __meta__ = {
 }
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-margin_left = 942.0
-margin_top = 480.0
-margin_right = 1238.0
-margin_bottom = 659.0
+offset_left = 942.0
+offset_top = 480.0
+offset_right = 1238.0
+offset_bottom = 659.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 __meta__ = {
@@ -50,38 +50,38 @@ __meta__ = {
 }
 
 [node name="Continue" type="Button" parent="Buttons"]
-margin_right = 296.0
-margin_bottom = 43.0
+offset_right = 296.0
+offset_bottom = 43.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
 [node name="Map" type="Button" parent="Buttons"]
-margin_top = 47.0
-margin_right = 296.0
-margin_bottom = 90.0
+offset_top = 47.0
+offset_right = 296.0
+offset_bottom = 90.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "QUIT TO MAP"
 
 [node name="Quit" type="Button" parent="Buttons"]
 visible = false
-margin_top = 122.0
-margin_right = 222.0
-margin_bottom = 179.0
+offset_top = 122.0
+offset_right = 222.0
+offset_bottom = 179.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "QUIT"
 
 [node name="Control" type="Control" parent="Buttons"]
-margin_top = 94.0
-margin_right = 296.0
-margin_bottom = 132.0
+offset_top = 94.0
+offset_right = 296.0
+offset_bottom = 132.0
 size_flags_vertical = 3
 
 [node name="ShowArena" type="Button" parent="Buttons"]
-margin_top = 136.0
-margin_right = 296.0
-margin_bottom = 179.0
+offset_top = 136.0
+offset_right = 296.0
+offset_bottom = 179.0
 size_flags_vertical = 3
 text = "SHOW ARENA"
 
@@ -90,10 +90,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -615.0
-margin_top = -210.0
-margin_right = 238.0
-margin_bottom = 251.0
+offset_left = -615.0
+offset_top = -210.0
+offset_right = 238.0
+offset_bottom = 251.0
 
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Buttons/Map" to="." method="_on_Map_pressed"]

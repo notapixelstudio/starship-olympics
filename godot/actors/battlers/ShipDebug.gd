@@ -2,7 +2,7 @@ extends Node2D
 """
 Debug node for movement and vectors
 """
-export var enabled :bool = false
+@export var enabled :bool = false
 
 # GDquest colors
 var colors = {

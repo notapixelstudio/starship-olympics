@@ -1,11 +1,19 @@
-tool
+@tool
 
 extends GShape
 
 class_name GSegment
 
-export (Vector2) var a setget set_a
-export (Vector2) var b setget set_b
+@export (Vector2) var a :
+	get:
+		return a # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_a
+@export (Vector2) var b :
+	get:
+		return b # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_b
 
 func set_a(value):
 	a = value
@@ -15,8 +23,8 @@ func set_b(value):
 	b = value
 	emit_signal('changed')
 	
-func to_PoolVector2Array() -> PoolVector2Array:
-	return PoolVector2Array([a, b])
+func to_PoolVector2Array() -> PackedVector2Array:
+	return PackedVector2Array([a, b])
 	
 func to_Shape2D():
 	var shape = SegmentShape2D.new()

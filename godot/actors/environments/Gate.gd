@@ -1,11 +1,19 @@
-tool
+@tool
 extends Area2D
 class_name Gate
 
-export var width := 550.0 setget set_width
-export var aperture := PI*0.9
+@export var width := 550.0 :
+	get:
+		return width # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_width
+@export var aperture := PI*0.9
 #export var crossing_while_still_tolerance := 0.3
-export var show_arrow := true setget set_show_arrow
+@export var show_arrow := true :
+	get:
+		return show_arrow # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_show_arrow
 
 var top_end := Vector2(0, -width/2)
 var bottom_end := Vector2(0, width/2)
@@ -46,7 +54,7 @@ func _physics_process(delta):
 				
 			var relative_position = to_local(body.global_position)
 			
-			var past = previous_global_transforms[0].xform_inv(global_past_position)
+			var past = previous_global_transforms[0]global_past_position * 
 			# save a new past for this tracked if it's new or it has moved enough
 			if not overlapping_trackeds.has(body) or relative_position.distance_squared_to(overlapping_trackeds[body]["past"]) > 0.1:
 				overlapping_trackeds[body] = {
@@ -56,7 +64,7 @@ func _physics_process(delta):
 			
 			var relative_past_position = overlapping_trackeds[body]["past"] # could be different form the "past" var
 			
-			var crossing_point = Geometry.segment_intersects_segment_2d(relative_past_position, relative_position, top_end, bottom_end)
+			var crossing_point = Geometry2D.segment_intersects_segment(relative_past_position, relative_position, top_end, bottom_end)
 			var will_cross : bool = crossing_point is Vector2
 			var relative_angle_of_incidence : float = (relative_position - relative_past_position).angle()
 			

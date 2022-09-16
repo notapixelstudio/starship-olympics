@@ -3,7 +3,7 @@ extends Trait
 var host_parent = null
 
 func validate():
-	.validate()
+	super.validate()
 	assert(host.has_method('place_and_push')) # needed to conserve position and linear velocity of its dropper
 	assert(host.has_method('get_texture'))
 	assert(host.has_method('show_on_top'))
@@ -16,11 +16,11 @@ func validate():
 func _ready():
 	host_parent = host.get_parent()
 	
-func remove():
-	if host_parent.is_a_parent_of(host):
+func remove_at():
+	if host_parent.is_ancestor_of(host):
 		host_parent.remove_child(host)
 	
 func restore():
-	if not host_parent.is_a_parent_of(host):
+	if not host_parent.is_ancestor_of(host):
 		host_parent.call_deferred('add_child', host) # defer to avoid considering the holdable again for loading during this frame
 	

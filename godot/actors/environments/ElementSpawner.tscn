@@ -2,11 +2,11 @@
 
 [ext_resource path="res://actors/environments/ElementSpawner.gd" type="Script" id=1]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture2D" id=3]
 
-[node name="ElementSpawner" type="Position2D"]
+[node name="ElementSpawner" type="Marker2D"]
 script = ExtResource( 1 )
 element_scene = ExtResource( 2 )
 
-[node name="PreviewSprite" type="Sprite" parent="."]
+[node name="PreviewSprite" type="Sprite2D" parent="."]
 texture = ExtResource( 3 )

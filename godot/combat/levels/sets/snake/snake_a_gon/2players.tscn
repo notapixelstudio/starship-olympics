@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture2D" id=2]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=5]
@@ -10,12 +10,12 @@
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=10]
-[ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=11]
+[ext_resource path="res://assets/patterns/stripes.png" type="Texture2D" id=11]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=14]
+[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture2D" id=14]
 [ext_resource path="res://combat/modes/SnakeAGon.tres" type="Resource" id=15]
-[ext_resource path="res://assets/sprites/signs/Osquare.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/signs/Osquare.png" type="Texture2D" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -26,7 +26,7 @@ size_multiplier = 2.5
 game_mode = ExtResource( 15 )
 style = ExtResource( 10 )
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 14 )
 centered = false
 
@@ -49,7 +49,7 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
 bg_color = Color( 0.28, 0.19082, 0.1428, 1 )
 
-[node name="O" type="Sprite" parent="Battlefield/Background" index="3"]
+[node name="O" type="Sprite2D" parent="Battlefield/Background" index="3"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
 rotation = 0.785398
@@ -58,7 +58,7 @@ texture = ExtResource( 16 )
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O" index="0"]
 rotation = 0.785398
-points = PoolVector2Array( -480.833, -480.833, -120, -120 )
+points = PackedVector2Array( -480.833, -480.833, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -67,7 +67,7 @@ end_cap_mode = 2
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background/O" index="1"]
 position = Vector2( 0, 1244.51 )
 rotation = 0.785398
-points = PoolVector2Array( -760, -760, -399.167, -399.167 )
+points = PackedVector2Array( -760, -760, -399.167, -399.167 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -119,7 +119,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Middleground/LaserStop" index="0"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/LaserStop" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Middleground/LaserStop" index="1"]
 modulate = Color( 1, 0, 0.45098, 1 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
@@ -179,7 +179,7 @@ controls = "joy1"
 species = ExtResource( 5 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 zoom = Vector2( 2441.41, 2441.41 )
 smoothing_speed = 0.3
 

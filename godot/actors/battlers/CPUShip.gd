@@ -1,6 +1,6 @@
 extends Ship
 
-onready var debug_ship = $Debug
+@onready var debug_ship = $Debug
 
 
 const MAX_DIR_WAIT = 900
@@ -109,7 +109,7 @@ func wander():
 	# https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-wander--gamedev-1624
 	var circle_center = front * CIRCLE_DIST
 	# let's use front
-	var displacement = (front * CIRCLE_RADIUS).rotated(deg2rad(rand_range(-30,30)))
+	var displacement = (front * CIRCLE_RADIUS).rotated(deg_to_rad(randf_range(-30,30)))
 	# Change wanderAngle just a bit, so it
 	# won't have the same value in the
 	# next game frame.
@@ -119,10 +119,10 @@ func wander():
 	
 
 
-func get_ahead()-> PoolVector2Array:
-	var pool = PoolVector2Array()
+func get_ahead()-> PackedVector2Array:
+	var pool = PackedVector2Array()
 	for pixels in [-45, -20, 0, 20, 45]:
-		pool.append(front.rotated(deg2rad(pixels)) * MAX_SEE_AHEAD)
+		pool.append(front.rotated(deg_to_rad(pixels)) * MAX_SEE_AHEAD)
 	return pool
 
 
@@ -232,7 +232,7 @@ func control(delta):
 	#	else:
 	#		wander_time = MIN_WAIT_FOR_WANDER + (randi() % WAIT_FOR_WANDER)
 			
-	.control(delta)
+	super.control(delta)
 var wander_time = MIN_WAIT_FOR_WANDER + WAIT_FOR_WANDER
 const MIN_WAIT_FOR_WANDER = 4 #  seconds
 const WAIT_FOR_WANDER = 4 # seconds

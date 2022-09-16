@@ -27,13 +27,13 @@ func get_all_cards():
 
 func _ready():
 	var cards = get_all_cards()
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	print(len(cards))
 	print(8 + global.the_match.get_number_of_players()*12)
 	assert(len(cards) == 8 + global.the_match.get_number_of_players()*12)
 	for card in cards:
-		card.connect('revealing_while_undetermined', self, '_on_card_revealing_while_undetermined')
-		card.connect('taken', self, '_on_card_taken')
+		card.connect('revealing_while_undetermined',Callable(self,'_on_card_revealing_while_undetermined'))
+		card.connect('taken',Callable(self,'_on_card_taken'))
 	
 	# ---
 	# assign figures to cards
@@ -104,8 +104,8 @@ func _on_card_taken(card, player, ship):
 	card.deselect()
 	
 	# wait a bit after animations
-	yield(card, 'revealed')
-	yield(get_tree().create_timer(1), "timeout")
+	await card.revealed
+	await get_tree().create_timer(1).timeout
 	
 	# do nothing if the game has already ended
 	if not global.is_match_running():
@@ -124,15 +124,15 @@ func _on_card_taken(card, player, ship):
 		card.hide()
 		
 func start():
-	Events.connect('match_ended', self, '_on_match_ended')
+	Events.connect('match_ended',Callable(self,'_on_match_ended'))
 	
 # reveal cards at the end of the match
 func _on_match_ended():
 	for card in get_all_cards():
 		card.set_auto_flip_back(false)
-		card.set_pause_mode(PAUSE_MODE_PROCESS)
+		card.set_process_mode(PROCESS_MODE_ALWAYS)
 		
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	for card in get_all_cards():
 		card.reveal()

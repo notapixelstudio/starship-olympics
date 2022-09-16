@@ -1,10 +1,10 @@
 extends Control
 
 var operator = 50
-onready var buttons = $MarginContainer/Buttons
-onready var destination = rect_size.x - buttons.rect_size.x
+@onready var buttons = $MarginContainer/Buttons
+@onready var destination = size.x - buttons.size.x
 
-export var button_scene: PackedScene
+@export var button_scene: PackedScene
 func calculate_dist(x, y):
 	if x > y:
 		return 0
@@ -12,10 +12,10 @@ func calculate_dist(x, y):
 		return x-y
 		
 func _ready():
-	yield(get_tree().create_timer(0.3), "timeout")
+	await get_tree().create_timer(0.3).timeout
 	var anim = $AnimationPlayer.get_animation('Scroll')
 	anim.resource_local_to_scene = true
-	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
+	var dest = calculate_dist(size.x, buttons.size.x)
 	anim.track_set_key_value(0, 0, dest)
 	anim.track_set_key_value(0, 2, dest)
 	$AnimationPlayer.play("Scroll")
@@ -24,14 +24,14 @@ func get_elements() -> Array:
 	return buttons.get_children()
 	
 func add_event(new_event: InputEvent):
-	var button: ButtonRepresentation = button_scene.instance()
+	var button: ButtonRepresentation = button_scene.instantiate()
 	if button.set_button(new_event):
 		buttons.add_child(button)
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	
 	var anim = $AnimationPlayer.get_animation('Scroll')
-	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
+	var dest = calculate_dist(size.x, buttons.size.x)
 	anim.track_set_key_value(0, 0, dest)
 	anim.track_set_key_value(0, 2, dest)
 	$AnimationPlayer.stop()
@@ -46,9 +46,9 @@ func clear():
 	for b in buttons.get_children():
 		b.hide()
 		b.queue_free()
-	yield(get_tree(), "idle_frame")
-	buttons.rect_size = rect_size
-	var dest = calculate_dist(rect_size.x, buttons.rect_size.x)
+	await get_tree().idle_frame
+	buttons.size = size
+	var dest = calculate_dist(size.x, buttons.size.x)
 	var anim = $AnimationPlayer.get_animation('Scroll')
 	anim.track_set_key_value(0, 0, 0)
 	anim.track_set_key_value(0, 2, 0)

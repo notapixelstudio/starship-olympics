@@ -1,11 +1,11 @@
 extends Control
 
-export var in_match = true
-export var map_texture : Texture
+@export var in_match = true
+@export var map_texture : Texture2D
 
-onready var buttons = $GuiElements/VBoxContainer/Buttons
-onready var pause_window = $Window
-onready var gui = $GuiElements
+@onready var buttons = $GuiElements/VBoxContainer/Buttons
+@onready var pause_window = $Window
+@onready var gui = $GuiElements
 var unpause_ready = false
 
 signal restart
@@ -24,7 +24,7 @@ func _ready():
 		$GuiElements/VBoxContainer/Description.queue_free()
 		$Window.texture = map_texture
 	else:
-		yield(get_tree(), "idle_frame") # wait for match to be set up
+		await get_tree().idle_frame # wait for match to be set up
 		$GuiElements/VBoxContainer/Minigame.text = global.the_match.get_game_mode().name
 		$GuiElements/VBoxContainer/Description.text = global.the_match.get_game_mode().description
 	
@@ -33,7 +33,7 @@ func start():
 	$Tween.start()
 	visible = true
 	get_tree().paused = true
-	yield($Tween, "tween_completed")
+	await $Tween.finished
 	gui.visible = true
 	buttons.enable()
 	unpause_ready = true
@@ -52,7 +52,7 @@ func unpause():
 	$Tween.start()
 	buttons.disable()
 	gui.visible = false
-	yield($Tween, "tween_completed")
+	await $Tween.finished
 	visible = false
 	unpause_ready = false
 	get_tree().paused = false

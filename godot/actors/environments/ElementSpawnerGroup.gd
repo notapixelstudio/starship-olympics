@@ -1,15 +1,27 @@
-tool
+@tool
 
-extends Position2D
+extends Marker2D
 class_name ElementSpawnerGroup
 
 
-export (String, 'slash', 'backslash', 'line', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "farapart", "custom") var pattern = "line" setget _set_pattern
+@export (String, 'slash', 'backslash', 'line', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "farapart", "custom") var pattern = "line" :
+	get:
+		return pattern # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_pattern
 
-export var spawner_scene: PackedScene
-export var element_scene: PackedScene setget _set_element_scene
-export var guest_star_scene: PackedScene setget _set_guest_star_scene
-export (String, "center", "random") var guest_star_positioning = "center"
+@export var spawner_scene: PackedScene
+@export var element_scene: PackedScene :
+	get:
+		return element_scene # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_element_scene
+@export var guest_star_scene: PackedScene :
+	get:
+		return guest_star_scene # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_guest_star_scene
+@export (String, "center", "random") var guest_star_positioning = "center"
 
 var map_pattern_distance = {
 	"line": [Vector2(-300,0), Vector2(-150,0), Vector2(0,0), Vector2(150,0), Vector2(300,0)],
@@ -28,19 +40,19 @@ var map_pattern_distance = {
 func _set_pattern(v: String):
 	pattern = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	self.set_spawners()
 	
 func _set_element_scene(v: PackedScene):
 	element_scene = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	self.set_spawners()
 	
 func _set_guest_star_scene(v: PackedScene):
 	guest_star_scene = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	self.set_spawners()
 	
 func set_spawners():
@@ -56,7 +68,7 @@ func set_spawners():
 				index_guest_star = randi()%len(map_pattern_distance[pattern])
 		var i = 0
 		for pos in map_pattern_distance[pattern]:
-			var spawner: ElementSpawner = spawner_scene.instance()
+			var spawner: ElementSpawner = spawner_scene.instantiate()
 			if i == index_guest_star:
 				spawner.element_scene = guest_star_scene
 			else:

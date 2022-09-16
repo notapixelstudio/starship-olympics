@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.gd" type="Script" id=1]
-[ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=2]
-[ext_resource path="res://combat/levels/background/stars2.png" type="Texture" id=3]
-[ext_resource path="res://assets/shaders/chromatic_aberration.shader" type="Shader" id=8]
+[ext_resource path="res://combat/levels/background/menus.png" type="Texture2D" id=2]
+[ext_resource path="res://combat/levels/background/stars2.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/shaders/chromatic_aberration.gdshader" type="Shader" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
@@ -27,7 +27,7 @@ motion_scale = Vector2( 0.1, 1 )
 motion_offset = Vector2( 1, 1 )
 motion_mirroring = Vector2( 1280, 720 )
 
-[node name="parallax-space-stars" type="Sprite" parent="Stars"]
+[node name="parallax-space-stars" type="Sprite2D" parent="Stars"]
 scale = Vector2( 1.1, 1.1 )
 texture = ExtResource( 3 )
 centered = false

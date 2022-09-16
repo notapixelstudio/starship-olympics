@@ -13,7 +13,11 @@ var textures = {
 const SEPARATION = 20
 
 var type = GameMode.BOMB_TYPE.classic
-var max_ammo = -1 setget set_max_ammo
+var max_ammo = -1 :
+	get:
+		return max_ammo # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_max_ammo
 var current_ammo = max_ammo
 
 func set_max_ammo(v):
@@ -24,14 +28,14 @@ func set_max_ammo(v):
 	
 	if max_ammo <= -1: # infinite
 		# UGLY let's keep it for reference
-		#var ammo = Sprite.new()
+		#var ammo = Sprite2D.new()
 		#ammo.scale = Vector2(0.3, 0.3)
 		#ammo.texture = textures[type]['infinite']
 		#add_child(ammo)
 		return
 	
 	for i in max_ammo:
-		var ammo = Sprite.new()
+		var ammo = Sprite2D.new()
 		ammo.scale = Vector2(0.3, 0.3)
 		ammo.position.x = (i-(max_ammo-1)/2.0)*SEPARATION
 		add_child(ammo)

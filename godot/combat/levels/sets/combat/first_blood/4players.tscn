@@ -10,9 +10,9 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=11]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=12]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=12]
 [ext_resource path="res://combat/modes/FirstBlood.tres" type="Resource" id=13]
-[ext_resource path="res://assets/sprites/signs/first_blood.svg" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/signs/first_blood.svg" type="Texture2D" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shrink"
@@ -24,10 +24,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
-"values": [ PoolVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -3000, -1000, -1000 ), PoolVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 ) ]
+"values": [ PackedVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -3000, -1000, -1000 ), PackedVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -40,10 +40,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
-"values": [ PoolVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 ), PoolVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 ) ]
+"values": [ PackedVector2Array( -3000, 1000, -1000, 3000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 ), PackedVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 ) ]
 }
 
 [node name="Arena" instance=ExtResource( 9 )]
@@ -53,7 +53,7 @@ game_mode = ExtResource( 13 )
 [node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 12 )
 centered = false
 
@@ -69,21 +69,21 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -2800, 1400, 2800, 1400, 2800, -1400, -2800, -1400 )
+polygon = PackedVector2Array( -2800, 1400, 2800, 1400, 2800, -1400, -2800, -1400 )
 
 [node name="Polygon2players" type="Polygon2D" parent="Battlefield/Background" index="4"]
 visible = false
-polygon = PoolVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 )
+polygon = PackedVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1000, -1000, -1000, -1000 )
 
 [node name="Polygon3players" type="Polygon2D" parent="Battlefield/Background" index="5"]
 visible = false
-polygon = PoolVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1000, -3000, -1000, -1000 )
+polygon = PackedVector2Array( -3000, 1000, -1000, 1000, 1000, 1000, 3000, -1000, 1000, -3000, -1000, -1000 )
 
 [node name="Polygon4players" type="Polygon2D" parent="Battlefield/Background" index="6"]
 visible = false
-polygon = PoolVector2Array( 0, 1400, 2800, 1400, 2800, -1400, -2800, -1400 )
+polygon = PackedVector2Array( 0, 1400, 2800, 1400, 2800, -1400, -2800, -1400 )
 
-[node name="first_blood" type="Sprite" parent="Battlefield/Background" index="7"]
+[node name="first_blood" type="Sprite2D" parent="Battlefield/Background" index="7"]
 self_modulate = Color( 0.85, 0, 0.325833, 0.117647 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
@@ -258,7 +258,7 @@ controls = "joy2"
 species = ExtResource( 11 )
 cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 10, 10 )
 smoothing_speed = 0.3
 

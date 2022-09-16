@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-onready var anim = $Sprite/AnimationPlayer
+@onready var anim = $Sprite2D/AnimationPlayer
 
 func wiggle():
 	anim.play("wiggle")

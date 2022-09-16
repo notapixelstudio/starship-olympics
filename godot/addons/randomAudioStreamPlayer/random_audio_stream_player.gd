@@ -1,16 +1,16 @@
-tool
+@tool
 extends AudioStreamPlayer
 
-export(Array, AudioStream) var streams 
-export(int, "Pure", "No consecutive repetition", "Use all samples before repeat") var random_strategy = 0
+@export var streams  # (Array, AudioStream)
+@export var random_strategy = 0 # (int, "Pure", "No consecutive repetition", "Use all samples before repeat")
 
-export(bool) var randomize_volume = false
-export(float, -80, 24) var volume_min = 0
-export(float, -80, 24) var volume_max = 0
+@export var randomize_volume: bool = false
+@export var volume_min = 0 # (float, -80, 24)
+@export var volume_max = 0 # (float, -80, 24)
 
-export(bool) var randomize_pitch = false
-export(float, 0.01, 32) var pitch_min = 1
-export(float, 0.01, 32) var pitch_max = 1
+@export var randomize_pitch: bool = false
+@export var pitch_min = 1 # (float, 0.01, 32)
+@export var pitch_max = 1 # (float, 0.01, 32)
 
 var playing_sample_nb : int = -1
 var last_played_sample_nb : int = -1 # only used if random_strategy = 1
@@ -43,14 +43,14 @@ func play(from_position=0.0):
 						playing_sample_nb = randi() % number_of_samples
 			
 			if randomize_volume:
-				set_volume_db(rand_range(volume_min, volume_max))
+				set_volume_db(randf_range(volume_min, volume_max))
 			if randomize_pitch:
-				set_pitch_scale(rand_range(pitch_min, pitch_max))
+				set_pitch_scale(randf_range(pitch_min, pitch_max))
 		set_stream(streams[playing_sample_nb])
-		.play(from_position)
+		super.play(from_position)
 
 func _ready():
-	connect("finished", self, "reset_playing_sample_nb")
+	connect("finished",Callable(self,"reset_playing_sample_nb"))
 
 func reset_playing_sample_nb():
 	if playing_sample_nb >= 0:

@@ -1,7 +1,7 @@
 extends Node
 
-export var panels_path : NodePath
-export var BallScene : PackedScene
+@export var panels_path : NodePath
+@export var BallScene : PackedScene
 
 var panels: MapPanelContainer
 
@@ -20,14 +20,14 @@ func _ready():
 		panel.set_player(player)
 		panel.enable()
 		
-	Events.connect("sth_tapped", self, '_on_sth_tapped')
+	Events.connect("sth_tapped",Callable(self,'_on_sth_tapped'))
 	
-	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+	Events.connect('continue_after_game_over',Callable(self,'_on_continue_after_game_over'))
 	
-	global.arena.connect("all_ships_spawned", self, '_on_all_ships_spawned')
+	global.arena.connect("all_ships_spawned",Callable(self,'_on_all_ships_spawned'))
 	
 	# wait for the entire Arena subtree to be ready
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	
 	# connect MapLocations in a graph
 	var nodes = traits.get_all_with('Node')
@@ -38,11 +38,11 @@ func _ready():
 		
 		for node in nodes:
 			var polygon = node.get_global_polygon()
-			if Geometry.is_point_in_polygon(endpoints.start, polygon):
+			if Geometry2D.is_point_in_polygon(endpoints.start, polygon):
 				start = node
 				continue # no self-links
 			
-			if Geometry.is_point_in_polygon(endpoints.end, polygon):
+			if Geometry2D.is_point_in_polygon(endpoints.end, polygon):
 				end = node
 				continue # no self-links
 			
@@ -56,7 +56,7 @@ func _on_all_ships_spawned(spawners):
 	var winner = global.the_game.get_last_winner()
 	if winner != null:
 		var winner_ship = global.arena.get_ship_from_player(winner)
-		var star = BallScene.instance()
+		var star = BallScene.instantiate()
 		star.set_type('star')
 		add_child(star) # has to be inside the tree to be loaded
 		winner_ship.get_cargo().load_holdable(star)
@@ -89,8 +89,8 @@ func tap(ship : Ship, planet : MapPlanet):
 	elif planet.get_status() == TheUnlocker.LOCKED and ship.get_cargo().has_holdable():
 		var cargo = ship.get_cargo()
 		if cargo.get_holdable().has_type('star'):
-			planet.unlock()
-			cargo.empty()
+			false # planet.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
+			cargo.is_empty()
 
 func check_all_ready():
 	if not ready and len(players_ready) == global.the_game.get_number_of_players():
@@ -120,10 +120,10 @@ func explore(node) -> void:
 		if TheUnlocker.get_status("map_paths", path.name, TheUnlocker.HIDDEN) == TheUnlocker.HIDDEN:
 			path.appear()
 			TheUnlocker.unlock_element("map_paths", path.name)
-			yield(path, 'appeared')
+			await path.appeared
 			if n is MapPlanet:
 				n.unhide()
-				yield(n, 'unhid')
+				await n.unhid
 				TheUnlocker.unlock_element("sets", n.get_id(), TheUnlocker.LOCKED)
 			elif n is MapLocation:
 				n.set_status(TheUnlocker.UNLOCKED)

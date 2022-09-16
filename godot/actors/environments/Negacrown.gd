@@ -33,7 +33,7 @@ func charge():
 func dash():
 	charging = false
 	if patience <= 4 and randf() < 0.18 and len(get_tree().get_nodes_in_group('Negacrown')) < max(2, global.the_game.get_number_of_players()-1):
-		var child = load("res://actors/environments/Negacrown.tscn").instance()
+		var child = load("res://actors/environments/Negacrown.tscn").instantiate()
 		child.global_position = global_position
 		child.patience = 6
 		get_parent().add_child(child)

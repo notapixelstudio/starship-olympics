@@ -2,19 +2,19 @@ extends Node
 
 func _enter_tree():
 	# listen to bumpers bumping
-	Events.connect('sths_bumped', self, '_on_sths_bumped')
+	Events.connect('sths_bumped',Callable(self,'_on_sths_bumped'))
 	
 func _exit_tree():
 	# stop listening when outside tree
-	Events.disconnect('sths_bumped', self, '_on_sths_bumped')
+	Events.disconnect('sths_bumped',Callable(self,'_on_sths_bumped'))
 
 func _ready():
-	Events.connect('sth_collided_with_ship', self, '_on_sth_collided_with_ship')
-	Events.connect('sth_is_overlapping_with_ship', self, '_on_sth_is_overlapping_with_ship')
-	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
-	Events.connect('holdable_dropped', self, '_on_holdable_dropped')
-	Events.connect("ship_damaged", self, "_on_ship_damaged")
-	Events.connect("ship_died", self, "_on_ship_died")
+	Events.connect('sth_collided_with_ship',Callable(self,'_on_sth_collided_with_ship'))
+	Events.connect('sth_is_overlapping_with_ship',Callable(self,'_on_sth_is_overlapping_with_ship'))
+	Events.connect('holdable_loaded',Callable(self,'_on_holdable_loaded'))
+	Events.connect('holdable_dropped',Callable(self,'_on_holdable_dropped'))
+	Events.connect("ship_damaged",Callable(self,"_on_ship_damaged"))
+	Events.connect("ship_died",Callable(self,"_on_ship_died"))
 	
 func _on_sth_collided_with_ship(sth, ship: Ship) -> void:
 	handle_collision(sth, ship)
@@ -55,7 +55,7 @@ func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 		ship.get_cargo().drop_holdable(ship)
 		
 func _on_holdable_loaded(holdable, ship):
-	traits.get_trait(holdable, 'Holdable').remove()
+	traits.get_trait(holdable, 'Holdable').remove_at()
 	
 func _on_holdable_dropped(holdable, ship, cause):
 	traits.get_trait(holdable, 'Holdable').restore()

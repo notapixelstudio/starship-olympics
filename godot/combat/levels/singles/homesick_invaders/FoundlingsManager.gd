@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	yield(get_tree(), "idle_frame") # wait for variants to settle
+	await get_tree().idle_frame # wait for variants to settle
 	var aliens = Homeworld.COLORS.keys()
 	aliens.shuffle()
 	var i = 0
@@ -9,7 +9,7 @@ func _ready():
 		homeworld.set_kind(aliens[i])
 		i = (i+1) % len(aliens)
 		
-	Events.connect("planet_reached", self, '_on_planet_reached')
+	Events.connect("planet_reached",Callable(self,'_on_planet_reached'))
 	
 	# set speed according to player count
 	var dive_speed = 200 + 50*global.the_game.get_number_of_players()
@@ -26,7 +26,7 @@ func _on_planet_reached(planet, sth):
 		if cargo.has_holdable():
 			var holdable = cargo.get_holdable()
 			if holdable is Alien and holdable.get_kind() == planet.get_kind():
-				cargo.empty()
+				cargo.is_empty()
 				global.the_match.add_score(sth.get_player().id, 1)
 				global.arena.show_msg(sth.get_player().species, 1, sth.position)
 	elif sth is Alien:

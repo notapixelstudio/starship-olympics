@@ -1,17 +1,17 @@
 extends Camera2D
 
-export var zoomMin = 1.7
-export var zoomMax: float = 0
-export var marginX = 0
-export var marginY = 140.0
-export var subtractHeight = 0
-export (float) var zoom_speed_enlarge = 0.1
-export (float) var zoom_speed_shrink = 0.02
-export(float, 0.0, 4.0) var zoom_offset : float = 0.3
-export(float, 0.01, 0.5) var zoom_speed : float = 0.02
-export(float, 0.01, 0.5) var offset_speed : float = 0.22
-export var debug_mode : bool = true
-export var disabled_override :bool = false
+@export var zoomMin = 1.7
+@export var zoomMax: float = 0
+@export var marginX = 0
+@export var marginY = 140.0
+@export var subtractHeight = 0
+@export (float) var zoom_speed_enlarge = 0.1
+@export (float) var zoom_speed_shrink = 0.02
+@export var zoom_offset : float = 0.3 # (float, 0.0, 4.0)
+@export var zoom_speed : float = 0.02 # (float, 0.01, 0.5)
+@export var offset_speed : float = 0.22 # (float, 0.01, 0.5)
+@export var debug_mode : bool = true
+@export var disabled_override :bool = false
 
 var enabled = false
 var camera_rect : = Rect2()
@@ -56,7 +56,7 @@ func to(new_rect: Rect2):
 	in_transition = true
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, 'camera_rect', new_rect, 4)
-	yield(tween, "finished")
+	await tween.finished
 	emit_signal("transition_over")
 	# set_process(false)
 	
@@ -172,8 +172,8 @@ func screen_to_world(p : Vector2) -> Vector2:
 	var pt = p - viewport_rect.size/2
 	return Vector2(pt.x+marginX/2, pt.y+marginY/2)*zoom+offset
 	
-export var shake_power = 10
-export var shake_time = 0.5
+@export var shake_power = 10
+@export var shake_time = 0.5
 
 var timeformat = "{min}:{sec}"
 #onready var timelabel = $TimePassed

@@ -1,11 +1,15 @@
 extends Node2D
-tool
+@tool
 
 class_name PilotStats
 
 var info: InfoPlayer
 
-var new_position setget change_position
+var new_position :
+	get:
+		return new_position # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of change_position
 var max_points = 0
 
 var just_won: bool = false

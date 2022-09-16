@@ -1,16 +1,16 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/sprites/cards/card_outline.png" type="Texture" id=1]
-[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/cards/card_internal.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/cards/card_outline.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/sprites/cards/card_internal.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture2D" id=4]
 [ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/Card.gd" type="Script" id=6]
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/sprites/cards/card_border.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/cards/card_border.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=9]
+[ext_resource path="res://assets/sprites/species/mantiacs.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture2D" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 170 )
@@ -18,12 +18,12 @@ extents = Vector2( 120, 170 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 180, 230 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 42
 outline_size = 1
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="FontFile" id=11]
 size = 48
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
@@ -39,8 +39,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 1.6 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.8, 1.6 ),
+"transitions": PackedFloat32Array( -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, -64 ), Vector2( 0, -32 ), Vector2( 0, -64 ) ]
 }
@@ -55,8 +55,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.05, 0.15 ),
+"transitions": PackedFloat32Array( -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1 ) ]
 }
@@ -67,8 +67,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.15, 0.3 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0.15, 0.3 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
 }
@@ -79,8 +79,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.15, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ true, false, false ]
 }
@@ -91,8 +91,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.15, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ false, true, true ]
 }
@@ -103,8 +103,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 0.3 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -64 ) ]
 }
@@ -115,8 +115,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 0.3 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -64 ) ]
 }
@@ -127,8 +127,8 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 0.15, 0.3 ),
+"transitions": PackedFloat32Array( -2, -2, -2 ),
 "update": 0,
 "values": [ Vector2( 2, 2 ), Vector2( 1e-05, 2 ), Vector2( 2, 2 ) ]
 }
@@ -144,8 +144,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PackedFloat32Array(  ),
+"transitions": PackedFloat32Array(  ),
 "update": 0,
 "values": [  ]
 }
@@ -156,8 +156,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( -2 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( -2 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -168,8 +168,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ false ]
 }
@@ -180,8 +180,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ true ]
 }
@@ -192,8 +192,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( -2 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( -2 ),
 "update": 0,
 "values": [ Vector2( 0, -64 ) ]
 }
@@ -204,8 +204,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( -2 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( -2 ),
 "update": 0,
 "values": [ Vector2( 0, -64 ) ]
 }
@@ -216,8 +216,8 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( -2 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( -2 ),
 "update": 0,
 "values": [ Vector2( 2, 2 ) ]
 }
@@ -245,7 +245,7 @@ modulate = Color( 1, 0.188235, 0, 1 )
 position = Vector2( 0, -30 )
 shape = SubResource( 7 )
 
-[node name="Shadow" type="Sprite" parent="."]
+[node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color( 0, 0, 0, 0.235294 )
 position = Vector2( 0, 32 )
 scale = Vector2( 2, 2 )
@@ -254,7 +254,7 @@ texture = ExtResource( 2 )
 [node name="Ground" type="Node2D" parent="."]
 position = Vector2( 0, 32 )
 
-[node name="Outline" type="Sprite" parent="Ground"]
+[node name="Outline" type="Sprite2D" parent="Ground"]
 visible = false
 modulate = Color( 0.72549, 0.72549, 0.72549, 1 )
 scale = Vector2( 2, 2 )
@@ -264,30 +264,30 @@ texture = ExtResource( 1 )
 visible = false
 scale = Vector2( 0.22223, 1 )
 
-[node name="Background" type="Sprite" parent="Ground/Front"]
+[node name="Background" type="Sprite2D" parent="Ground/Front"]
 unique_name_in_owner = true
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
-[node name="Figure" type="Sprite" parent="Ground/Front"]
+[node name="Figure" type="Sprite2D" parent="Ground/Front"]
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 4 )
 
-[node name="Character" type="Sprite" parent="Ground/Front"]
+[node name="Character" type="Sprite2D" parent="Ground/Front"]
 visible = false
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 6.01, 35, 352.27, 446.325 )
 
-[node name="Border" type="Sprite" parent="Ground/Front"]
+[node name="Border" type="Sprite2D" parent="Ground/Front"]
 unique_name_in_owner = true
 visible = false
 self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Circle" type="Sprite" parent="Ground/Front"]
+[node name="Circle" type="Sprite2D" parent="Ground/Front"]
 visible = false
 self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
 position = Vector2( 80, -132 )
@@ -301,10 +301,10 @@ position = Vector2( 80, -134 )
 [node name="Monogram" type="Label" parent="Ground/Front/TopLeft"]
 modulate = Color( 0.0588235, 0.470588, 0.113725, 1 )
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
-margin_left = -102.667
-margin_top = -97.5
-margin_right = 98.3333
-margin_bottom = 102.5
+offset_left = -102.667
+offset_top = -97.5
+offset_right = 98.3333
+offset_bottom = 102.5
 custom_fonts/font = SubResource( 8 )
 text = "M"
 align = 1
@@ -319,21 +319,21 @@ position = Vector2( 0, 170 )
 [node name="Monogram" type="RichTextLabel" parent="Ground/Front/Wrapper"]
 visible = false
 self_modulate = Color( 0.92, 0.92, 0.92, 1 )
-margin_left = -202.0
-margin_top = -24.0
-margin_right = 202.0
-margin_bottom = 176.0
+offset_left = -202.0
+offset_top = -24.0
+offset_right = 202.0
+offset_bottom = 176.0
 custom_fonts/normal_font = SubResource( 11 )
 bbcode_enabled = true
 
 [node name="Back" type="Node2D" parent="Ground"]
 
-[node name="Background" type="Sprite" parent="Ground/Back"]
+[node name="Background" type="Sprite2D" parent="Ground/Back"]
 modulate = Color( 0.75, 0.615, 0.615, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
-[node name="Internal" type="Sprite" parent="Ground/Back"]
+[node name="Internal" type="Sprite2D" parent="Ground/Back"]
 modulate = Color( 0.68, 0.5576, 0.5576, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )

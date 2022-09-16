@@ -5,14 +5,14 @@ const SPEED_MULTIPLIER = 2.0
 
 func _enter_tree():
 	# listen to newly created bumpers
-	Events.connect('bumper_created', self, 'register_bumper')
+	Events.connect('bumper_created',Callable(self,'register_bumper'))
 	
 func _exit_tree():
 	# stop listening when outside tree
-	Events.disconnect('bumper_created', self, 'register_bumper')
+	Events.disconnect('bumper_created',Callable(self,'register_bumper'))
 	
 func register_bumper(bumper):
-	bumper.connect('body_entered', self, '_on_bumper_collided', [bumper])
+	bumper.connect('body_entered',Callable(self,'_on_bumper_collided').bind(bumper))
 	
 func _on_bumper_collided(bumper_b, bumper_a):
 	# only two bumpers should bump
@@ -28,7 +28,7 @@ func _on_bumper_collided(bumper_b, bumper_a):
 	Events.emit_signal("sths_bumped", bumper_a, bumper_b)
 	global.arena.show_ripple((bumper_a.global_position+bumper_b.global_position)/2, 2)
 	$RandomAudioStreamPlayer.play()
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	
 	if is_instance_valid(bumper_a):
 		var speed_multiplier = SPEED_MULTIPLIER

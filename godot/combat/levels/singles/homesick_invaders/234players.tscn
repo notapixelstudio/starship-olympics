@@ -66,7 +66,7 @@ variant_scenes = [ ExtResource( 2 ), ExtResource( 16 ), ExtResource( 17 ), ExtRe
 
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Middleground" index="0"]
 modulate = Color( 1, 1, 1, 0.0784314 )
-polygon = PoolVector2Array( -1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300 )
+polygon = PackedVector2Array( -1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300 )
 
 [node name="ParadeVariants" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
 variant_scenes = [ ExtResource( 15 ), ExtResource( 22 ), ExtResource( 21 ) ]
@@ -97,7 +97,7 @@ rotation = 1.5708
 controls = "kb2"
 species = ExtResource( 3 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 current = false
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3

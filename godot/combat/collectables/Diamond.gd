@@ -1,10 +1,10 @@
-tool
+@tool
 
 extends RigidBody2D
 
 class_name Diamond
 
-export var appear = true
+@export var appear = true
 
 var points = 1
 
@@ -23,5 +23,5 @@ func get_strategy(ship, distance, game_mode):
 	return {'seek': points}
 	
 func set_tangible(tangible : bool):
-	set_collision_mask_bit(1, tangible) # ship near area
+	set_collision_mask_value(1, tangible) # ship near area
 	

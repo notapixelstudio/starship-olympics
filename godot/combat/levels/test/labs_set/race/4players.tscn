@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=2]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
 [ext_resource path="res://actors/enemies/Bomb_spawner.tscn" type="PackedScene" id=5]
@@ -10,23 +10,23 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=11]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=11]
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=12]
 [ext_resource path="res://combat/modes/Race.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture2D" id=15]
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 11 )
 centered = false
 
 [node name="Grid" parent="Battlefield/Background" index="0"]
 modulate = Color( 0, 0.682353, 1, 0.27451 )
-polygon = PoolVector2Array( -1000, 1000, -1000, -1000, -717.135, -1000, 1000, -1000, 1000, 1000 )
+polygon = PackedVector2Array( -1000, 1000, -1000, -1000, -717.135, -1000, 1000, -1000, 1000, 1000 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
 hollow = true
@@ -55,13 +55,13 @@ bevel_se = 600
 type = 1
 flag_offset = 0
 
-[node name="Arrow" type="Sprite" parent="Battlefield/Background" index="3"]
+[node name="Arrow" type="Sprite2D" parent="Battlefield/Background" index="3"]
 modulate = Color( 0.2, 0.7, 1, 0.2 )
 rotation = 0.785398
 scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 
-[node name="Portal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
+[node name="Node3D" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
 position = Vector2( -323, 323 )
 rotation = -0.785398
 linked_to_path = NodePath("../Portal2")
@@ -74,7 +74,7 @@ goal_owner = NodePath("")
 [node name="Portal2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 14 )]
 position = Vector2( 323, -323 )
 rotation = 2.35619
-linked_to_path = NodePath("../Portal")
+linked_to_path = NodePath("../Node3D")
 width = 450.0
 offset = 200.0
 color = Color( 0, 0.486275, 1, 1 )
@@ -237,7 +237,7 @@ rotation = 0.785398
 controls = "joy2"
 species = ExtResource( 10 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 smoothing_speed = 0.3
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

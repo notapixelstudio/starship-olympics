@@ -1,13 +1,17 @@
-tool
+@tool
 extends MapLocation
 
 class_name MapMoon
 
-export var value_name : String = "flood"
-export var values : Array
-export var texture : Texture setget set_texture
-export var textures : Array setget set_textures # Array of Textures
-export var label = "flood moon"
+@export var value_name : String = "flood"
+@export var values : Array
+@export var texture : Texture2D :
+	get:
+		return texture # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_texture
+@export var textures : Array setget set_textures # Array of Textures
+@export var label = "flood moon"
 
 var value_index = 0
 
@@ -21,7 +25,7 @@ func refresh() -> void:
 	var value = global.get(value_name)
 	value_index = values.find(value)
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	$StatusSprite.texture = textures[value_index]
 	
 func tap(author: Ship):
@@ -38,11 +42,11 @@ func show_tap_preview(_author):
 func hide_tap_preview():
 	$Wrapper/Label.visible = false
 
-func set_texture(v: Texture) -> void:
+func set_texture(v: Texture2D) -> void:
 	texture = v
 	if not is_inside_tree():
-		yield(self, "ready")
-	$Sprite.texture = v
+		await self.ready
+	$Sprite2D.texture = v
 	
 func set_textures(v: Array) -> void:
 	textures = v

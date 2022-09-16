@@ -1,9 +1,13 @@
-tool
+@tool
 extends RigidBody2D
 class_name Marble
 
-export var radius := 180.0 setget set_radius
-export var score := 1
+@export var radius := 180.0 :
+	get:
+		return radius # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_radius
+@export var score := 1
 
 var species : Species
 var owner_ship

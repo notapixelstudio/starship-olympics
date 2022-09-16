@@ -7,13 +7,17 @@ enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 signal value_changed(value)
 
 ### Properties ###
-export (String) var element_path 
-# Text of the label that is going to appear on the Option
-export (String) var label_description
+@export (String) var element_path 
+# Text of the label that is going to appear checked the Option
+@export (String) var label_description
 
-export (String) var node_owner_path = "global"
+@export (String) var node_owner_path = "global"
 
-var value setget _set_value
+var value :
+	get:
+		return value # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of _set_value
 var node_owner
 
 func _ready():
