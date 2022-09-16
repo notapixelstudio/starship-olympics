@@ -1,16 +1,16 @@
 @tool
 extends RigidBody2D
-"""
-Node for the RigidBody3D and Ship physics
-it will get as export variable the battle template (containing the species values)
-and its keyboard control
-"""
+
+#Node for the RigidBody3D and Ship physics
+#it will get as export variable the battle 
+#template (containing the species values)
+#and its keyboard control
 class_name Ship
 
 @export var debug_enabled = false
-@export (String) var controls = "kb1"
 @export var absolute_controls : bool= true
-@export (Resource) var species
+@export var controls: String = "kb1"
+@export var species: Resource
 
 @export var forward_bullet_scene : PackedScene
 
@@ -38,7 +38,7 @@ var deadly_trail_powerup = false
 
 var golf = false
 
-var charge = 0
+var charge_impulse = 0
 var actual_charge = 0
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
@@ -272,7 +272,7 @@ static func magnitude(a:Vector2):
 func _integrate_forces(state):
 	if not responsive:
 		return
-	set_applied_force(Vector2())
+	apply_force(Vector2())
 	steer_force = max_steer_force * rotation_request
 	
 	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch unchecked when charging enough (and during dashes)
@@ -294,7 +294,7 @@ func _integrate_forces(state):
 		apply_impulse(entity.get_node('Flowing').get_flow().get_flow_vector(position), Vector2())
 		
 	# setting a maximum torque should prevent ship oscillation
-	set_applied_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
+	apply_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -381,19 +381,19 @@ func update_charge_bar():
 		$"%ArrowTip".position.x = $Graphics/ChargeBar/ChargeAxis.points[0].x+50
 	
 	# shooting line visible only when charging enough enough
-	$"%ShootingLine".visible = charge > MIN_CHARGE*2
-	$"%ShootingLine".enabled = charge > MIN_CHARGE*2
+	$"%ShootingLine".visible = charge_impulse > MIN_CHARGE*2
+	$"%ShootingLine".enabled = charge_impulse > MIN_CHARGE*2
 	
 	# overcharge feedback
-	if charge > MAX_CHARGE:
+	if charge_impulse > MAX_CHARGE:
 		if golf:
-			var visible = int(floor(charge * 15)) % 2
+			var visible = int(floor(charge_impulse * 15)) % 2
 			$Graphics/ChargeBar/Charge.modulate = Color(1,1,1,1) if visible else Color(0,0,0,1)
 		if not overcharging:
 			overcharging = true
 			emit_signal("overcharging_started")
 			
-	if charge > MAX_OVERCHARGE and golf:
+	if charge_impulse > MAX_OVERCHARGE and golf:
 		# golf wait in overcharge for a bit, then fires
 		fire()
 
@@ -436,13 +436,13 @@ func _physics_process(delta):
 		#dash_restore_appearance()
 		entity.get('Dashing').disable()
 		
-	if charging and not charging_enough and charge > MIN_CHARGE:
+	if charging and not charging_enough and charge_impulse > MIN_CHARGE:
 		charging_enough = true
 		#$GravitonField.enabled = true
 		charging_sfx.play()
 		dash_fat_appearance()
 		
-	if charging and not charging_too_much_for_tap and charge > MAX_TAP_CHARGE:
+	if charging and not charging_too_much_for_tap and charge_impulse > MAX_TAP_CHARGE:
 		charging_too_much_for_tap = true
 		
 var will_fire
@@ -462,7 +462,7 @@ func fire(override_charge = -1, dash_only = false):
 	"""
 	var should_reload = false
 	
-	actual_charge = override_charge if override_charge > 0 else charge
+	actual_charge = override_charge if override_charge > 0 else charge_impulse
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
 	var will_dash = charging_enough and is_aiming_away_gel()
 	
@@ -531,7 +531,7 @@ func fire(override_charge = -1, dash_only = false):
 		ammo.reload()
 		
 func reset_charge():
-	charge = 0
+	charge_impulse = 0
 	charging = false
 	charging_enough = false
 	charging_too_much_for_tap = false

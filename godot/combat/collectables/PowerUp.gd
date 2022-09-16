@@ -4,11 +4,8 @@ extends RigidBody2D
 
 class_name PowerUp
 
-@export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' :
-	get:
-		return type # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_type
+#@export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' 
+@export var type = "shield"
 @export var appear = true
 @export var tease = false
 @export var random_types = []

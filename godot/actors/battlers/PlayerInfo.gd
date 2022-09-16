@@ -1,6 +1,6 @@
 extends Marker2D
 
-@export var target_path: NodePath = @".."
+@export var target_path: NodePath = ".."
 
 @onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
 @onready var player_id = $Wrapper/Scaled/Colored/PlayerID

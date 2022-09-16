@@ -33,7 +33,7 @@ func _on_ArkaBall_body_entered(body):
 	if body is WallGoal and ship != null and body.get_player().species != ship.get_species():
 		body.do_goal(ship.get_player(), position)
 	elif body is Brick:
-		body.break(null)
+		body.break_brick(null)
 	elif body is Marble:
 		body.conquered_by(ship)
 	

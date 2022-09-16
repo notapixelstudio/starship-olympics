@@ -93,7 +93,6 @@ script = ExtResource("1")
 main_screen = ExtResource("2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -103,7 +102,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="Line1" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
 offset_top = 196.0
 offset_right = 1277.0
 offset_bottom = 294.0
@@ -112,7 +110,6 @@ text = "MILLENNIA OF INTERGALACTIC WARS"
 
 [node name="Line2" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
 offset_top = 293.0
 offset_right = 1277.0
 offset_bottom = 391.0
@@ -121,7 +118,6 @@ text = "FINALLY CAME TO AN END"
 
 [node name="Line3" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
 offset_top = 380.0
 offset_right = 1277.0
 offset_bottom = 478.0
@@ -134,7 +130,7 @@ libraries = {
 }
 
 [node name="Disclaimer" parent="." instance=ExtResource("4")]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (float, 1.0) var fraction = 0.0 :
+@export_range(0.0, 1.0) var fraction:= 0.0 :
 	get:
 		return fraction # TODOConverter40 Non existent get function 
 	set(mod_value):

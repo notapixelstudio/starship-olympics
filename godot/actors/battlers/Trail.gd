@@ -23,8 +23,8 @@ class_name Trail2D
 
 ##### SIGNALS #####
 
-signal add_point
-signal remove_point
+signal add_point_to_trail
+signal remove_point_to_trail
 signal no_points
 signal point_added
 
@@ -98,7 +98,7 @@ func _notification(p_what: int):
 			if auto_z_index:
 				z_index = target.z_index - 1 if target else 0
 		NOTIFICATION_UNPARENTED:
-			self.target_path = @""
+			self.target_path = ""
 			self.trail_length = 0
 
 func add_custom_point(point):
@@ -109,14 +109,14 @@ func add_custom_point(point):
 	if len(points) > 1:
 		if distanza < min_dist:
 			return
-	emit_signal("add_point", point)
+	emit_signal("add_point_to_trail", point)
 	# actual_length += distanza
 	add_point(point)
 	monitor.append(0.0)
 	emit_signal("point_added", point, last_point if len(points) > 1 else null)
 
 func remove_custom_point(index):
-	emit_signal("remove_point", index)
+	emit_signal("remove_point_to_trail", index)
 	remove_point(index)
 	if len(points) <= 0:
 		emit_signal("no_points")
@@ -211,7 +211,7 @@ func set_target(p_value: Node2D):
 		if get_path_to(p_value) != target_path:
 			target_path = get_path_to(p_value)
 	else:
-		target_path = @""
+		target_path = ""
 
 func set_target_path(p_value: NodePath):
 	target_path = p_value

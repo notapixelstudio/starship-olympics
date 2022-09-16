@@ -1,16 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://44qcti730wh7"]
 
-[ext_resource path="res://assets/shaders/trail.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://b61ydiv1s7xvd" path="res://assets/shaders/trail.png" id="1"]
+[ext_resource type="Script" path="res://actors/battlers/Trail.gd" id="2"]
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id="1"]
 
 [node name="Trail" type="Line2D"]
-material = SubResource( 1 )
+material = SubResource("1")
 width = 20.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 texture_mode = 2
-script = ExtResource( 2 )
+script = ExtResource("2")
 trail_length = 25
 auto_z_index = false

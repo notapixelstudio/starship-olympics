@@ -4,7 +4,7 @@ class_name Crown
 var entity
 
 enum types {CROWN, BALL, SOCCERBALL, TENNISBALL}
-@export (types) var type = types.CROWN
+@export var type: types = types.CROWN
 @export var impulse : float = 0
 var active : bool = false
 

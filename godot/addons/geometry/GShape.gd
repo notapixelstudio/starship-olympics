@@ -6,7 +6,7 @@ class_name GShape
 
 signal changed
 
-@export (Vector2) var center_offset = Vector2.ZERO :
+@export var center_offset := Vector2.ZERO :
 	get:
 		return center_offset # TODOConverter40 Non existent get function 
 	set(mod_value):
@@ -16,19 +16,17 @@ signal changed
 		return jitter # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_jitter
-@export (Rect2) var clip = Rect2(-10000, -10000, 20000, 20000) :
+@export var clip_rect := Rect2(-10000, -10000, 20000, 20000) :
 	get:
-		return clip # TODOConverter40 Non existent get function 
+		return clip_rect # TODOConverter40 Non existent get function 
 	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_clip
+		clip_rect = mod_value
+		emit_signal("changed")
 
 func set_jitter(value):
 	jitter = value
 	emit_signal("changed")
 	
-func set_clip(value):
-	clip = value
-	emit_signal("changed")
 	
 func clip(points):
 	var new_points = []

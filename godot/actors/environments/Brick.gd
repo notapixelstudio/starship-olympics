@@ -9,7 +9,7 @@ class_name Brick
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_points
 
-enum TYPE { solid, diamond, gold, respawner, harmful, super, huge }
+enum TYPE { solid, diamond, gold, respawner, harmful, superbrick, huge }
 @export var type: TYPE = TYPE.diamond :
 	get:
 		return type # TODOConverter40 Non existent get function 
@@ -40,7 +40,7 @@ func set_type(v):
 		self.set_color(Color(0.1,0.9,0.2,1))
 		$Under.texture = load('res://assets/sprites/bricks/respawner_under.png')
 		$Sprite2D.texture = load('res://assets/sprites/bricks/respawner.png')
-	elif type == TYPE.super:
+	elif type == TYPE.superbrick:
 		self.set_color(Color('#fff700'))
 		$Under.texture = load('res://assets/sprites/bricks/gold_under.png')
 		$Sprite2D.texture = load('res://assets/sprites/bricks/gold.png')
@@ -55,7 +55,7 @@ func set_type(v):
 	if not colorize:
 		self.set_color(Color.WHITE)
 	
-func break(breaker):
+func break_brick(breaker):
 	if type != TYPE.solid:
 		if breaker:
 			emit_signal('killed', self, breaker)

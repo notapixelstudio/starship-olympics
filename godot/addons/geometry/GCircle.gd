@@ -4,12 +4,12 @@ extends GShape
 
 class_name GCircle
 
-@export (int) var radius = 100 :
+@export var radius := 100 :
 	get:
 		return radius # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_radius
-@export (float) var precision = 100 :
+@export var precision := 100 :
 	get:
 		return precision # TODOConverter40 Non existent get function 
 	set(mod_value):
