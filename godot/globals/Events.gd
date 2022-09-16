@@ -63,3 +63,5 @@ signal player_ready(player_info)
 
 # draftcard 
 signal card_tapped(author, card)
+signal starting_deck_selected(starting_deck)
+signal selection_starting_deck_over

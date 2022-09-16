@@ -132,11 +132,6 @@ func _process(_delta: float) -> void:
 		#offset.x = max(offset.x, max_offset.x)
 		zoom.x = min(zoom.x, zoomMax)
 		zoom.y = min(zoom.y, zoomMax)
-
-	if not disabled_override:
-		current = true
-	else: 
-		current = false
 	
 	wait_in_frame-=1
 	

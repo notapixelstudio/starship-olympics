@@ -418,7 +418,8 @@ func get_state():
 		enable_camera=enable_camera,
 		flood=flood,
 		time_scale=time_scale,
-		laser=laser
+		laser=laser,
+		starting_deck=starting_deck
 	}
 	
 
@@ -651,3 +652,4 @@ func get_ordered_species() -> Array:
 func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
+var starting_deck: String = "classic"
