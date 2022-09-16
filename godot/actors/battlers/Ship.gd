@@ -8,9 +8,9 @@ and its keyboard control
 class_name Ship
 
 export var debug_enabled = false
-export (String) var controls = "kb1"
+export (String, 'kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls = "kb1"
 export var absolute_controls : bool= true
-export (Resource) var species
+export var species : Resource
 
 export var forward_bullet_scene : PackedScene
 
@@ -828,6 +828,9 @@ func get_bombs_enabled():
 	return bombs_enabled and not get_deadly_trail()
 	
 func update_weapon_indicator():
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew:
+		# show fw weapon indicator
+		return
 	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type] if bomb_type != null else null
 	$"%BombPreview".visible = get_bombs_enabled() or golf
 	$"%BombPreview/BombType".visible = get_bombs_enabled()
@@ -838,16 +841,16 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	# forward weapon: bullet
-	var aperture = PI/4
-	var amount = 1
-	for i in range(amount):
-		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
-		var bullet = forward_bullet_scene.instance()
-		get_parent().add_child(bullet)
-		bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
-		bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
-		bullet.set_ship(self)
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew:
+		var aperture = PI/4
+		var amount = 1
+		for i in range(amount):
+			var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
+			var bullet = forward_bullet_scene.instance()
+			get_parent().add_child(bullet)
+			bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
+			bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
+			bullet.set_ship(self)
 	
 var under = false
 
