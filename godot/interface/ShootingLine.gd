@@ -1,7 +1,7 @@
 extends RayCast2D
 
 func _physics_process(delta):
-	var cast_point = cast_to
+	var cast_point := target_position
 	force_raycast_update()
 	
 	if is_colliding():

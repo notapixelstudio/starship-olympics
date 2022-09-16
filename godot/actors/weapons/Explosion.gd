@@ -26,12 +26,12 @@ func _on_animation_ended(name):
 
 func _physics_process(delta):
 	for body in $RepealField.get_overlapping_bodies():
-		if body is Bomb or body is Ball or body is Diamond or body is BigDiamond or body is Rock or body is PowerUp or body is Mine or body is DeadShip or body is Ship or body is Marble:
+		if body is Rocket or body is Ball or body is Diamond or body is BigDiamond or body is Rock or body is PowerUp or body is Mine or body is DeadShip or body is Ship or body is Marble:
 			var vec = body.global_position-global_position
 			body.apply_central_impulse(vec.normalized()*global.sigmoid(vec.length(), repeal_field_width)*kilotons*(80 if body is Rock else 0.25 if body is DeadShip else 1))
 
 func _on_RepealField_body_entered(body):
-	if body is Bomb:
+	if body is Rocket:
 		ECM.E(body).get('Pursuer').set_target(null)
 		var pursuer = ECM.E(body).get('Pursuer')
 		pursuer.disable()

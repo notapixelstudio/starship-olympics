@@ -4,7 +4,8 @@ extends CollisionPolygon2D
 @export var outer_radius := 200.0
 @export var angle := PI/2
 @export var padding := 8.0
-@export (String, 'shield', 'plate', 'skin') var type ='normal'
+#@export (String, 'shield', 'plate', 'skin') var type ='normal'
+@export var type := 'normal'
 
 const COLLISION_POLYGON_PRECISION := PI/8
 const DRAW_PRECISION := PI/32
@@ -16,7 +17,7 @@ func _ready():
 
 func _draw():
 	var polygon = create_polygon(draw_precision, padding)
-	draw_colored_polygon(polygon, Color.WHITE, polygon, null, null, true)
+	draw_colored_polygon(polygon, Color.WHITE, polygon, null)
 	$Shadow.polygon = polygon
 	$Shadow.update()
 	
@@ -31,7 +32,7 @@ func up(new_type):
 			draw_precision = PI/6 # more rough appearance
 		'skin':
 			self_modulate = Color.GREEN
-	update()
+	# update() Godot 3
 	enable_collisions()
 	$AnimationPlayer.play("reset")
 
@@ -65,7 +66,7 @@ func switch_off():
 	modulate = Color(1.0,1.0,1.0,0.0)
 
 func create_polygon(precision : float, padding := 0.0) -> PackedVector2Array:
-	var steps := ceil(angle / precision)
+	var steps : float = ceil(angle / precision)
 	var angle_delta := angle / steps
 	var points := []
 	for i in range(steps+1):

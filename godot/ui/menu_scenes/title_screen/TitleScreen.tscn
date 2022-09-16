@@ -1,83 +1,91 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://b5lwrqhvhqiol"]
 
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=3]
-[ext_resource path="res://logo.png" type="Texture2D" id=4]
-[ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
-[ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/lock_generic.png" type="Texture2D" id=7]
+[ext_resource type="Theme" uid="uid://c2a2pb642uqel" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Script" path="res://ui/menu_scenes/title_screen/TitleScreen.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dikjckcanvtx4" path="res://logo.png" id="4"]
+[ext_resource type="PackedScene" path="res://ui/option_scenes/OptionScreen.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://local_multiplayer/LocalMultiplayer.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://3f0ycd1bdlv3" path="res://assets/lock_generic.png" id="7"]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 length = 0.001
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("logo_ssf_olympic:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("logo_ssf_olympic:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.6, 1 ),
-"transitions": PackedFloat32Array( 1, 0.615572, 1 ),
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 0.615572, 1),
 "update": 0,
-"values": [ Vector2( 640, 295 ), Vector2( 640, 295 ), Vector2( 640, 206 ) ]
+"values": [Vector2(640, 295), Vector2(640, 295), Vector2(640, 206)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("logo_ssf_olympic:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.3, 0.5, 0.9 ),
-"transitions": PackedFloat32Array( 1, 0.63728, 1, 1 ),
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 0.63728, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 
-[sub_resource type="FontFile" id=5]
-font_data = ExtResource( 3 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7h47"]
+_data = {
+"RESET": SubResource("4"),
+"fade_in": SubResource("1"),
+"fade_out": SubResource("2"),
+"option_selected": SubResource("3")
+}
 
 [node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
-options_scene = ExtResource( 5 )
-local_multi_scene = ExtResource( 6 )
+theme = ExtResource("1")
+script = ExtResource("2")
+options_scene = ExtResource("5")
+local_multi_scene = ExtResource("6")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 4 )
-anims/fade_in = SubResource( 1 )
-anims/fade_out = SubResource( 2 )
-anims/option_selected = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_w7h47")
+}
 
 [node name="logo_ssf_olympic" type="Sprite2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 640, 295 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
+position = Vector2(640, 206)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -86,25 +94,24 @@ offset_left = -145.0
 offset_top = 37.0
 offset_right = 145.0
 offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Fight" type="Button" parent="Buttons"]
-offset_top = 12.0
+layout_mode = 2
+offset_top = 85.0
 offset_right = 290.0
-offset_bottom = 67.0
-minimum_size = Vector2( 210, 55 )
+offset_bottom = 111.0
 action_mode = 0
 text = "FIGHT"
 flat = true
 
 [node name="TeamVersus" type="Button" parent="Buttons"]
-offset_top = 71.0
+layout_mode = 2
+offset_top = 115.0
 offset_right = 290.0
-offset_bottom = 126.0
-minimum_size = Vector2( 210, 55 )
+offset_bottom = 141.0
 disabled = true
 action_mode = 0
 text = "TEAM FIGHT"
@@ -112,15 +119,15 @@ flat = true
 
 [node name="Lock" type="Sprite2D" parent="Buttons/TeamVersus"]
 visible = false
-position = Vector2( 290, 40 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 7 )
+position = Vector2(290, 40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7")
 
 [node name="Campaign" type="Button" parent="Buttons"]
-offset_top = 130.0
+layout_mode = 2
+offset_top = 145.0
 offset_right = 290.0
-offset_bottom = 185.0
-minimum_size = Vector2( 210, 55 )
+offset_bottom = 171.0
 disabled = true
 action_mode = 0
 text = "CAMPAIGN"
@@ -128,25 +135,25 @@ flat = true
 
 [node name="Lock" type="Sprite2D" parent="Buttons/Campaign"]
 visible = false
-position = Vector2( 290, 40 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 7 )
+position = Vector2(290, 40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7")
 
 [node name="Options" type="Button" parent="Buttons"]
-offset_top = 189.0
+layout_mode = 2
+offset_top = 175.0
 offset_right = 290.0
-offset_bottom = 244.0
-minimum_size = Vector2( 210, 55 )
+offset_bottom = 201.0
 action_mode = 0
 text = "OPTIONS"
 flat = true
 
 [node name="Help" type="Button" parent="Buttons"]
 visible = false
+layout_mode = 2
 offset_top = 148.0
 offset_right = 290.0
 offset_bottom = 218.0
-minimum_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
 text = "HELP"
@@ -154,25 +161,27 @@ flat = true
 
 [node name="Credits" type="Button" parent="Buttons"]
 visible = false
+layout_mode = 2
 offset_top = 148.0
 offset_right = 290.0
 offset_bottom = 198.0
-minimum_size = Vector2( 0, 55 )
 disabled = true
 action_mode = 0
 text = "CREDITS"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
-offset_top = 248.0
+layout_mode = 2
+offset_top = 205.0
 offset_right = 290.0
-offset_bottom = 303.0
-minimum_size = Vector2( 0, 55 )
+offset_bottom = 231.0
 action_mode = 0
 text = "QUIT"
 flat = true
 
 [node name="Tooltips" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -181,98 +190,77 @@ offset_left = 181.0
 offset_top = 53.0
 offset_right = 631.0
 offset_bottom = 369.0
-minimum_size = Vector2( 450, 0 )
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Fight" type="RichTextLabel" parent="Tooltips"]
-modulate = Color( 1, 1, 1, 0 )
-offset_top = 12.0
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_top = 135.0
 offset_right = 450.0
-offset_bottom = 67.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
+offset_bottom = 141.0
 bbcode_enabled = true
-text = "2 TO 4 PLAYERS FREE FOR ALL"
 text = "2 TO 4 PLAYERS FREE FOR ALL"
 scroll_active = false
 
 [node name="TeamVersus" type="RichTextLabel" parent="Tooltips"]
-modulate = Color( 1, 1, 1, 0 )
-offset_top = 71.0
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_top = 145.0
 offset_right = 450.0
-offset_bottom = 126.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
+offset_bottom = 151.0
 bbcode_enabled = true
-text = "TEAM VS TEAM
-[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
 text = "TEAM VS TEAM
 CURRENTLY UNDER DEVELOPMENT!"
 scroll_active = false
 
 [node name="Campaign" type="RichTextLabel" parent="Tooltips"]
-modulate = Color( 1, 1, 1, 0 )
-offset_top = 130.0
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_top = 155.0
 offset_right = 450.0
-offset_bottom = 185.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
+offset_bottom = 161.0
 bbcode_enabled = true
-text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
-[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
 text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
 CURRENTLY UNDER DEVELOPMENT!"
 scroll_active = false
 
 [node name="Options" type="RichTextLabel" parent="Tooltips"]
-modulate = Color( 1, 1, 1, 0 )
-offset_top = 189.0
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_top = 165.0
 offset_right = 450.0
-offset_bottom = 244.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
+offset_bottom = 171.0
 bbcode_enabled = true
 scroll_active = false
 
 [node name="Help" type="RichTextLabel" parent="Tooltips"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
 offset_top = 148.0
 offset_right = 450.0
 offset_bottom = 208.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 scroll_active = false
 
 [node name="Credits" type="RichTextLabel" parent="Tooltips"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
 offset_top = 222.0
 offset_right = 450.0
 offset_bottom = 282.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 scroll_active = false
 
 [node name="QuitButton" type="RichTextLabel" parent="Tooltips"]
-modulate = Color( 1, 1, 1, 0 )
-offset_top = 248.0
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_top = 175.0
 offset_right = 450.0
-offset_bottom = 303.0
-minimum_size = Vector2( 450, 55 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
-custom_fonts/normal_font = SubResource( 5 )
+offset_bottom = 181.0
 bbcode_enabled = true
 scroll_active = false
 

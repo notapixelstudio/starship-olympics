@@ -2,7 +2,6 @@ extends Ship
 
 @onready var debug_ship = $Debug
 
-
 const MAX_DIR_WAIT = 900
 var steering = Vector2()
 var front = Vector2()
@@ -63,11 +62,18 @@ func choose_target(strategics, strategic_trait_name='Strategic') -> Dictionary:
 	var becareful = get_ahead()
 	var space_state = get_world_2d().direct_space_state
 	var i = 0
+	var params = PhysicsRayQueryParameters2D.new()
+	params.collide_with_areas = true
+	params.collide_with_bodies = true
+	params.exclude = [self]
+		
 	for ahead in becareful:
 		i +=1
 		var danger = position + ahead
-		
-		var result = space_state.intersect_ray(position, danger, [self], collision_mask, true, true)
+		params.from = position
+		params.to = danger
+		params.collision_mask = collision_mask
+		var result = space_state.intersect_ray(params)
 		
 		if result:
 			var collider = result.collider
@@ -196,13 +202,13 @@ func control(delta):
 	
 	# charge
 	if charging:
-		charge = charge+delta
+		charge_impulse = charge_impulse+delta
 	else:
-		charge = 0
+		charge_impulse = 0
 	
 	# overcharge feedback
-	if charge > MAX_CHARGE:
-		$Graphics/ChargeBar.visible = int(floor(charge * 15)) % 2
+	if charge_impulse > MAX_CHARGE:
+		$Graphics/ChargeBar.visible = int(floor(charge_impulse * 15)) % 2
 	
 	if not charging and choose_fire() and fire_cooldown <= 0:
 		charge()
@@ -211,7 +217,7 @@ func control(delta):
 	wait_for_chargedshot -= 1 * Engine.time_scale
 	
 	# overcharge
-	if charge > MAX_CHARGE or (charging and charging_time < 0):
+	if charge_impulse > MAX_CHARGE or (charging and charging_time < 0):
 		fire()
 		
 	# cooldown

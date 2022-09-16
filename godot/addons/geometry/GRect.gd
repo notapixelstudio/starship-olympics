@@ -4,12 +4,12 @@ extends GShape
 
 class_name GRect
 
-@export (int) var width = 100 :
+@export var width := 100 :
 	get:
 		return width # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_width
-@export (int) var height = 100 :
+@export var height := 100 :
 	get:
 		return height # TODOConverter40 Non existent get function 
 	set(mod_value):

@@ -4,14 +4,10 @@ extends Sprite2D
 	get:
 		return species # TODOConverter40 Non existent get function 
 	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_species
+		species = mod_value
+		if is_inside_tree():
+			await self.ready
+		texture = species.ship_off
 
 @onready var trail = $Trail
 
-
-func set_species(value):
-	species = value
-	if is_inside_tree():
-		await self.ready
-
-	texture = species.ship_off

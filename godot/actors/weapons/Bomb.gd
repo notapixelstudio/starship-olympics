@@ -1,7 +1,7 @@
 # script bomb
 extends RigidBody2D
 
-class_name Bomb
+class_name Rocket
 
 @export var Explosion : PackedScene
 @export var Ripple : PackedScene
@@ -71,7 +71,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite2D.texture = bullet_texture
 		$Sprite2D.scale = Vector2(size*0.6, size*0.6)
-		mode = MODE_CHARACTER
+		# mode = MODE_CHARACTER # Godot3
 		
 	elif type == GameMode.BOMB_TYPE.bubble:
 		entity.get('Pursuer').disable()
@@ -80,7 +80,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*90
 		$Sprite2D.texture = bubble_texture
 		$Sprite2D.scale = Vector2(size*1.4, size*1.4)
-		mode = MODE_CHARACTER
+		# mode = MODE_CHARACTER # Godot3
 		linear_damp = 0
 		ECM.E($Core).get('Deadly').disable()
 		
@@ -91,7 +91,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite2D.texture = ice_texture
 		$Sprite2D.scale = Vector2(size*1.1, size*1.1)
-		mode = MODE_CHARACTER
+		# mode = MODE_CHARACTER # Godot3
 		
 	else:
 		$CollisionShape2D.shape.radius = size*22
@@ -129,7 +129,7 @@ func _integrate_forces(state):
 
 
 signal detonate
-func detonate():
+func boom():
 	if type != GameMode.BOMB_TYPE.classic:
 		return
 		
@@ -189,7 +189,7 @@ var hit_count = 0
 # FIXME ? is this heavy? each bomb needs contact monitoring
 func _on_Bomb_body_entered(body):
 	if body is Brick:
-		body.break(entity.get('Owned').get_owned_by())
+		body.break_brick(entity.get('Owned').get_owned_by())
 	
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
@@ -205,7 +205,7 @@ func _on_Bomb_body_entered(body):
 		get_parent().call_deferred("add_child", ripple)
 	
 	if body is RemoteBomb:
-		detonate()
+		boom()
 
 var bubble_already_spawned = false
 func create_bubble():

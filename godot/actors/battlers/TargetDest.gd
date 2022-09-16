@@ -2,7 +2,7 @@ extends Marker2D
 
 class_name TargetDest
 
-@export var node_owner_path : NodePath = @".."
+@export var node_owner_path : NodePath = ".."
 
 var node_owner
 

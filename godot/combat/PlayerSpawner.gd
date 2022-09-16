@@ -2,11 +2,11 @@ extends Node2D
 
 class_name PlayerSpawner
 
-@export (String) var controls = "kb1"
-@export (Resource) var species
-@export (String) var team = ''
+@export var controls := "kb1"
+@export var species: Resource
+@export var team := ''
 # temporary for cpu
-@export (bool) var cpu = false
+@export var cpu := false
 
 signal player_assigned(info_player)
 signal entered_battlefield

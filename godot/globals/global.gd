@@ -120,7 +120,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.7.0-internal" :
+var version = "0.10.0" :
 	get:
 		return version # TODOConverter40 Non existent get function 
 	set(mod_value):
@@ -311,7 +311,7 @@ func _ready():
 	var k = get_path()
 	var global_key = String(get_path())
 	
-	if not saved_data or not "version" in saved_data[global_key] or check_version(saved_data[global_key]["version"], version):
+	if saved_data != null or not "version" in saved_data[global_key] or check_version(saved_data[global_key]["version"], version):
 		print("We need to update the saved game")
 		first_time = true
 		persistance.save_game()
@@ -480,7 +480,7 @@ func dir_contents(path:String, starts_with:String = "", extension:String = ".tsc
 				pass
 			else:
 				if file_name.ends_with(extension):
-					if starts_with != "" or file_name.find(starts_with) == 0: 
+					if starts_with == "" or file_name.find(starts_with) == 0: 
 						list_files.append(file_name)
 			file_name = dir.get_next()
 	else:

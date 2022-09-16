@@ -75,9 +75,9 @@ func control(delta):
 	
 	# charge
 	if charging:
-		charge = charge+delta
+		charge_impulse = charge_impulse+delta
 	else:
-		charge = 0
+		charge_impulse = 0
 		
 	if not charging and Input.is_action_just_pressed(controls+'_fire') and fire_cooldown <= 0:
 		charge()

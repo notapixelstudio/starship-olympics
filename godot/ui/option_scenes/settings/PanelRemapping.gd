@@ -3,10 +3,11 @@ extends UIOptionPanel
 class_name PanelRemapping
 
 @export var what_to_remap_scene: PackedScene
-@export (String, "keyboard", "joypad", "custom") var device_category = "keyboard"
+#@export (String, "keyboard", "joypad", "custom") var device_category = "keyboard"
+@export var device_category := "keyboard"
+@onready var device_node = $Content/VBoxContainer/Device
 
 var device
-@onready var device_node = $Content/VBoxContainer/Device
 
 func setup_device(path: String):
 	device_node.element_path = path

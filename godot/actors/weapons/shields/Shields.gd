@@ -33,7 +33,7 @@ func _ready():
 		layer.connect('body_shape_entered',Callable(self,'_on_Area2D_body_shape_entered').bind(layer))
 		
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, local_shape, layer):
-	if body is Bomb and body.get_owner_ship() != owner_ship or body is Bullet:
+	if body is Rocket and body.get_owner_ship() != owner_ship or body is Bullet:
 		body.dissolve()
 		body.queue_free()
 		

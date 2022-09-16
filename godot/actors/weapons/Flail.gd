@@ -13,8 +13,6 @@ func set_hook_to(v):
 	if node.has_method('get_color'):
 		$Ball.modulate = node.get_color()
 	
-func _process(delta):
-	update()
 	
 func _draw():
 	var points = []

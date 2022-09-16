@@ -19,7 +19,7 @@ func _on_DockArea_body_entered(body):
 		
 func link(to_what):
 	linked_to = to_what
-	mode = FREEZE_MODE_KINEMATIC
+	# mode = FREEZE_MODE_KINEMATIC # Godot3
 	
 	if linked_to is Ship:
 		modulate = linked_to.species.color
@@ -33,7 +33,7 @@ func unlink():
 	if linked_to.is_connected('dead',Callable(self,'_on_ship_dead')):
 		linked_to.disconnect('dead',Callable(self,'_on_ship_dead'))
 	linked_to = null
-	mode = MODE_RIGID
+	# mode = MODE_RIGID # Godot3
 
 func _on_ship_dead(ship, killer):
 	unlink()

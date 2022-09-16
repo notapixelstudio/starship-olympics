@@ -3,7 +3,6 @@ extends Control
 @export var Bar = preload('res://combat/interface/hud/Bar.tscn')
 
 var the_match: TheMatch
-var draw: bool = true
 var height
 @onready var Bars = $Bars
 @onready var Leading = $Content/LeaderPanel/Headshot

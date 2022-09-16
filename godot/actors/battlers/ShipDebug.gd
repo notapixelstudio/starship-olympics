@@ -1,7 +1,7 @@
 extends Node2D
-"""
-Debug node for movement and vectors
-"""
+
+# Debug node for movement and vectors
+
 @export var enabled :bool = false
 
 # GDquest colors
@@ -21,7 +21,6 @@ var parent = null
 
 func _ready():
 	parent = get_parent()
-	update()
 
 
 func _draw():
@@ -72,4 +71,3 @@ func _process(_delta):
 	rotation = -parent.rotation
 	if parent and parent.cpu :
 		$Label.text = parent.behaviour_mode
-	update()

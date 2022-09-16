@@ -1,6 +1,5 @@
-extends Node2D
 @tool
-
+extends Node2D
 class_name PilotStats
 
 var info: InfoPlayer

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 class_name Rock
+
 var RockScene = load('res://actors/environments/Rock.tscn')
 var DiamondScene = load('res://combat/collectables/Diamond.tscn')
 var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
@@ -82,7 +83,7 @@ func _ready():
 	$LightLine2DE4.points = PackedVector2Array([epoints[6], ipoints[6],epoints[7]])
 	$CollisionShape2D.shape = gshape.to_Shape2D()
 	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
-	rotation_degrees = 45
+	self.rotation = deg_to_rad(45)
 	mass = density*pow(gshape.width,2) # approximate to a square
 	
 	$Star.visible = contains_star
@@ -98,7 +99,7 @@ func _ready():
 	$NoRotate/CountdownWrapper.position = Vector2(0,-gshape.height*0.9) if self_destruct_position == 'top' else Vector2(0,0)
 	
 func _on_Area2D_body_entered(body):
-	if body is Bomb:
+	if body is Rocket:
 		if conquerable:
 			conquered_by(body.get_owner_ship())
 		try_break()
@@ -120,8 +121,8 @@ func try_break():
 		
 	if prisoner:
 		if prisoner is Ship:
-			prisoner.rotation_degrees += rotation_degrees-45
-		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg_to_rad(rotation_degrees-45))
+			prisoner.rotation += self.rotation-deg_to_rad(45)
+		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg_to_rad(self.rotation-deg_to_rad(45)))
 		get_parent().get_parent().call_deferred('add_child', prisoner) # ugly: Battlefield
 		await prisoner.tree_entered
 		# temporary disable collisions to avoid touching the rock

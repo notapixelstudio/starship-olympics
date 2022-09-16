@@ -21,7 +21,7 @@ func set_active(v):
 func _process(delta):
 	if active:
 		for body in get_overlapping_bodies():
-			if body is Bomb:
+			if body is Rocket:
 				pass
 			if body is RigidBody2D:
 				var direction = (body.global_position-global_position).normalized()
@@ -36,7 +36,7 @@ func is_good(body : RigidBody2D):
 	return body.get_collision_layer_value(9) or body.get_collision_layer_value(11)
 	
 func is_bad(body : RigidBody2D):
-	if not(body is Bomb):
+	if not(body is Rocket):
 		return false
 		
 	var bomb_owner = ECM.E(body).get('Owned').get_owned_by()

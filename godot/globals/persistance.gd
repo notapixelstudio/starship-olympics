@@ -59,9 +59,9 @@ func load_game() -> bool:
 	for group_name in self.savegame_config:
 		var filepath = self.savegame_config[group_name]
 		print("We are going to load from this JSON for ", group_name, ": ", filepath)
-		var data = get_saved_data(filepath)
+		var data := get_saved_data(filepath)
 		
-		if not data:
+		if data.is_empty():
 			print("Not found any data for", group_name, " in ", filepath)
 			continue
 

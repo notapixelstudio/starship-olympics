@@ -1,6 +1,6 @@
 extends GenericOption
 
-@export (String) var bus_name = "Master"
+@export var bus_name := "Master"
 @onready var sfx_effect  = $AudioStreamPlayer
 @onready var value_node = $VBoxContainer/HSlider
 @onready var description_node = $VBoxContainer/Volume

@@ -5,18 +5,17 @@ class_name Ball
 
 const GRAB_DISTANCE = 84
 
-@export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type :
+#@export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type :
+@export var type: String :
 	get:
 		return type # TODOConverter40 Copy here content of get_type
 	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_type
+		type = mod_value
+		refresh()
 
 var impulse := 0.0
 var player : InfoPlayer
 
-func set_type(v):
-	type = v
-	refresh()
 	
 func get_type():
 	return type

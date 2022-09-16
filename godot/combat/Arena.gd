@@ -1,19 +1,16 @@
 @tool
-"""
-Arena Node that will handle all the combat logic
-"""
 extends Node
-
 class_name Arena
 
+# Arena Node that will handle all the combat logic
 
 var width
 var height
 var someone_died = 0
 
-@export (PackedScene) var gameover_scene
-@export (bool) var demo = false
-@export (float) var size_multiplier = 2.0
+@export var gameover_scene: PackedScene
+@export var demo := false
+@export var size_multiplier := 2.0
 @export var game_mode : Resource # Gamemode - might be useful
 @export var style : Resource :
 	get:
@@ -426,10 +423,10 @@ func _ready():
 	
 	# group by order for trait intro
 	var intro_nodes = {}
-	for trait in traits.get_all('Intro'):
-		if not(str(trait.order) in intro_nodes.keys()):
-			intro_nodes[str(trait.order)] = []
-		intro_nodes[str(trait.order)].append(trait.get_host())
+	for trait_node in traits.get_all('Intro'):
+		if not(str(trait_node.order) in intro_nodes.keys()):
+			intro_nodes[str(trait_node.order)] = []
+		intro_nodes[str(trait_node.order)].append(trait_node.get_host())
 	
 	for group in intro_nodes:
 		for node in intro_nodes[group]:
@@ -456,7 +453,7 @@ func _ready():
 	for node in traits.get_all_with("Waiter"):
 		node.start()
 		
-func focus_in_camera(node: Node2D, wait_time: float):
+func move_focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
 
 const COUNTDOWN_LIMIT = 5.0
@@ -514,7 +511,7 @@ func _input(event):
 			Events.emit_signal("nav_to_character_selection")
 			
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not global.demo and (not global.is_match_running() or not global.the_match.game_over):
+	if event.is_action_pressed("pause") and not global.demo and (not global.is_match_running() or not global.the_match.is_game_over):
 		pause.start()
 		
 	var debug_pressed = event.is_action_pressed("debug")
@@ -889,7 +886,7 @@ func _on_Pause_skip():
 	
 const max_slomo_elements = 7
 
-func slomo():
+func slomotion():
 	
 	if len(get_tree().get_nodes_in_group('slomo')) > max_slomo_elements:
 		emit_signal("slomo")

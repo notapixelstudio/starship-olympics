@@ -1,8 +1,8 @@
 extends ColorRect
 
-signal back_at_you # signal that gives the line back to whoever instantiated the option
-
 class_name UIOptions
+
+signal back_at_you # signal that gives the line back to whoever instantiated the option
 
 @export var title: String = "Options"
 @export var start_scene: PackedScene

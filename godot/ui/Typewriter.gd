@@ -12,7 +12,7 @@ func type(text_to_type : String):
 	await $Tween.tween_all_completed
 	emit_signal('done')
 
-func done():
+func done_writing():
 	$Tween.stop_all()
 	$Tween.remove_all()
 	visible_characters = -1
@@ -21,4 +21,4 @@ func done():
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		set_process_input(false)
-		self.done()
+		self.done_writing()

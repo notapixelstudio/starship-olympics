@@ -4,7 +4,8 @@ extends Marker2D
 class_name ElementSpawnerGroup
 
 
-@export (String, 'slash', 'backslash', 'line', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "farapart", "custom") var pattern = "line" :
+#@export (String, 'slash', 'backslash', 'line', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "farapart", "custom") var pattern = "line" :
+@export var pattern = "line" :
 	get:
 		return pattern # TODOConverter40 Non existent get function 
 	set(mod_value):
@@ -16,12 +17,14 @@ class_name ElementSpawnerGroup
 		return element_scene # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of _set_element_scene
+
 @export var guest_star_scene: PackedScene :
 	get:
 		return guest_star_scene # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of _set_guest_star_scene
-@export (String, "center", "random") var guest_star_positioning = "center"
+#@export (String, "center", "random") var guest_star_positioning = "center"
+@export var guest_star_positioning := "center"
 
 var map_pattern_distance = {
 	"line": [Vector2(-300,0), Vector2(-150,0), Vector2(0,0), Vector2(150,0), Vector2(300,0)],

@@ -1,7 +1,7 @@
 @tool
 extends AudioStreamPlayer2D
 
-@export var streams  # (Array, AudioStream)
+@export var streams : Array[AudioStream]
 @export var random_strategy = 0 # (int, "Pure", "No consecutive repetition", "Use all samples before repeat")
 
 @export var randomize_volume: bool = false

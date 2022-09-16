@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bra1n2vcr703t"]
+[gd_scene load_steps=14 format=3 uid="uid://bra1n2vcr703t"]
 
 [ext_resource type="Script" path="res://actors/battlers/TrailNode.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b61ydiv1s7xvd" path="res://assets/shaders/trail.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://44qcti730wh7" path="res://actors/battlers/Trail.tscn" id="3"]
 [ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="4"]
 [ext_resource type="Script" path="res://addons/ECM/Component.gd" id="6"]
-[ext_resource type="Texture2D" uid="uid://dnlxys0bjqspp" path="res://addons/ECM/icons/Component.png" id="7"]
 [ext_resource type="Script" path="res://combat/components/Owned.gd" id="8"]
 [ext_resource type="Texture2D" uid="uid://cyb301u7cfxqg" path="res://assets/shaders/offset_trail.png" id="9"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="10"]
@@ -68,9 +67,6 @@ script = ExtResource("6")
 
 [node name="Owned" type="Node" parent="Trail/NearArea/Entity"]
 script = ExtResource("8")
-__meta__ = {
-"_editor_icon": ExtResource("7")
-}
 
 [node name="FarArea" type="Area2D" parent="Trail"]
 collision_layer = 524288
@@ -89,9 +85,6 @@ script = ExtResource("6")
 
 [node name="Owned" type="Node" parent="Trail/FarArea/Entity"]
 script = ExtResource("8")
-__meta__ = {
-"_editor_icon": ExtResource("7")
-}
 
 [node name="InnerTrail" parent="." instance=ExtResource("3")]
 width = 18.0

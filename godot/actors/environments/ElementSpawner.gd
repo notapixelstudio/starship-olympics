@@ -3,19 +3,16 @@
 extends Node2D
 class_name ElementSpawner
 
+@export var preview_sprite_name := "Sprite2D"
 @export var element_scene: PackedScene :
 	get:
 		return element_scene # TODOConverter40 Non existent get function 
 	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_element_scene
-@export var preview_sprite_name := "Sprite2D"
+			element_scene = mod_value
+			if not is_inside_tree():
+				await self.ready
+			refresh_preview()
 
-func set_element_scene(v: PackedScene):
-	element_scene = v
-	if not is_inside_tree():
-		await self.ready
-	refresh_preview()
-	
 func refresh_preview():
 	# in editor, just use the element's sprite texture instead of the actual element
 	var element = element_scene.instantiate()

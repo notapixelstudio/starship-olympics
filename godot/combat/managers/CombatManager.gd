@@ -17,21 +17,21 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 				ship.damage(other, owner)
 			else:
 				var possibly_bomb = entity.get_host()
-				if possibly_bomb is Bomb and (possibly_bomb.type == GameMode.BOMB_TYPE.bullet or possibly_bomb.type == GameMode.BOMB_TYPE.ball):
+				if possibly_bomb is Rocket and (possibly_bomb.type == GameMode.BOMB_TYPE.bullet or possibly_bomb.type == GameMode.BOMB_TYPE.ball):
 					pass
 				elif not(other is BombCore): # bomb cores do not self kill
 					ship.damage(other, owner)
 		else:
 			ship.die(null)
 			
-func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
+func bomb_near_area_entered(other : CollisionObject2D, rocket : Rocket):
 	var entity = ECM.E(other)
 	
 	if not entity:
 		return
 		
-	if entity.has('Trigger') and bomb.entity.get('Owned').get_owned_by() != entity.get_host():
-		bomb.detonate()
+	if entity.has('Trigger') and rocket.entity.get('Owned').get_owned_by() != entity.get_host():
+		rocket.boom()
 		
 #func _on_sth_killed(sth, killer : Ship, ship_for_good=false):
 #	if sth is Ship:

@@ -1,7 +1,7 @@
 @tool
 extends GenericOption
 
-@export (OPTION_TYPE) var elem_type = OPTION_TYPE.NUMBER
+@export var elem_type := OPTION_TYPE.NUMBER
 @export var suffix := ''
 @onready var value_node = $Container/ValueContainer/Value
 @onready var suffix_node = $Container/ValueContainer/Suffix
@@ -21,7 +21,7 @@ func _ready():
 	setup()
 	
 func setup():
-	if not label_description:
+	if label_description=="":
 		label_description = element_path
 		
 	description_node.text = label_description.to_upper()
@@ -120,5 +120,3 @@ func _on_Element_focus_exited():
 	value_node.set("custom_colors/font_color", null)
 	description_node.set("custom_colors/font_color", null)
 	set_process_input(false)
-
-

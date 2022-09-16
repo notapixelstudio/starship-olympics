@@ -7,28 +7,26 @@ enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 signal value_changed(value)
 
 ### Properties ###
-@export (String) var element_path 
+@export var element_path : String
 # Text of the label that is going to appear checked the Option
-@export (String) var label_description
+@export var label_description: String 
+@export var node_owner_path: String = "global"
 
-@export (String) var node_owner_path = "global"
+var node_owner
 
 var value :
 	get:
 		return value # TODOConverter40 Non existent get function 
 	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of _set_value
-var node_owner
+		value = mod_value
+		if node_owner:
+			node_owner.set(element_path, value)
+			emit_signal("value_changed", value)
+		else:
+			print_debug("Setter has been called without a proper setup")
+
 
 func _ready():
 	node_owner = get_tree().get_root().get_node(node_owner_path)
 	set_process_input(false)
-
-func _set_value(new_value):
-	value = new_value
-	if node_owner:
-		node_owner.set(element_path, value)
-		emit_signal("value_changed", value)
-	else:
-		print_debug("Setter has been called without a proper setup")
-		
+	

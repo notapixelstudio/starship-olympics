@@ -17,7 +17,7 @@ func set_shape(v):
 	shape = v
 	points = shape.to_PoolVector2Array()
 	closed_points = shape.to_closed_PoolVector2Array()
-	update()
+	# update() # Godot3
 
 func _draw():
 	for i in range(len(closed_points)-1):
@@ -32,5 +32,5 @@ func _draw():
 	
 func _process(delta):
 	h = height.rotated(-global_rotation)
-	update()
+	# update() # Godot3 
 	

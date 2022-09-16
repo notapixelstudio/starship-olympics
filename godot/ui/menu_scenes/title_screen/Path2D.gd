@@ -1,6 +1,6 @@
 extends Path2D
 
-@onready var follow = $PathFollow2D
+@onready var follow : PathFollow2D= $PathFollow2D
 @export var trail_scene : PackedScene
 @onready var ship = $PathFollow2D/Sprite2D
 @onready var trail = $PathFollow2D/Sprite2D/Trail
@@ -9,6 +9,7 @@ var all_species = []
 var all_speed = [150, 120, 200, 130, 140]
 var speed = 140
 func _ready():
+	# await get_tree().create_timer(1).timeout
 	randomize()
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
 	for species_id in unlocked_species:
@@ -17,10 +18,10 @@ func _ready():
 	init_ship()
 	
 func _process(delta):
-	follow.offset += speed*delta
+	follow.h_offset += speed*delta
 	if follow.progress_ratio > 0.97: 
 		init_ship()
-		follow.offset = 0.0
+		follow.h_offset = 0.0
 
 func init_ship():
 	var species = all_species[randi() % len(all_species)]

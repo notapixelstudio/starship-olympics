@@ -3,18 +3,18 @@
 extends StaticBody2D
 class_name Wall
 
-@export (bool) var hollow :
+@export var hollow : bool :
 	get:
 		return hollow # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_hollow
 
-@export (int) var offset = 800 :
+@export var offset := 800 :
 	get:
 		return offset # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_offset
-@export (int) var elongation :
+@export var elongation : int: 
 	get:
 		return elongation # TODOConverter40 Non existent get function 
 	set(mod_value):
@@ -72,7 +72,9 @@ enum TYPE { solid, hostile, ghost, decoration, glass }
 		mod_value  # TODOConverter40 Copy here content of set_grid_rotation
 
 @export var platform = false
-@export var under = 'both' setget set_under # (String, 'both', 'above', 'below')
+@export var under := 'both': # (String, 'both', 'above', 'below')
+		set(mod_value):
+			set_under(mod_value)
 
 const texture_glass = preload('res://assets/sprites/stripes.png')
 const spikes_texture = preload("res://assets/patterns/wall/spikesii.png")

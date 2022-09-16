@@ -31,7 +31,7 @@ func set_jitter(value):
 func clip(points):
 	var new_points = []
 	for p in points:
-		new_points.append(Vector2(clamp(p.x, clip.position.x, clip.end.x), clamp(p.y, clip.position.y, clip.end.y)))
+		new_points.append(Vector2(clamp(p.x, clip_rect.position.x, clip_rect.end.x), clamp(p.y, clip_rect.position.y, clip_rect.end.y)))
 	return PackedVector2Array(new_points)
 
 func set_center_offset(value):

@@ -16,7 +16,7 @@ var player_info : InfoPlayer :
 func _ready():
 	set_process(false)
 	ready_label.visible = false
-	if player_info == null and player_str:
+	if player_info == null and player_str!="":
 		var p_info = InfoPlayer.new()
 		p_info.controls = player_str
 		self.player_info = p_info

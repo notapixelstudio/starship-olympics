@@ -4,38 +4,38 @@ extends GShape
 
 class_name GBeveledRect
 
-@export (int) var width = 200 :
+@export var width := 200 :
 	get:
 		return width # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_width
-@export (int) var height = 100 :
+@export var height := 100 :
 	get:
 		return height # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_height
-@export (int) var bevel = 20 :
+@export var bevel := 20 :
 	get:
 		return bevel # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_bevel
 
-@export (int) var bevel_nw :
+@export var bevel_nw: int :
 	get:
 		return bevel_nw # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_bevel_nw
-@export (int) var bevel_ne :
+@export var bevel_ne: int :
 	get:
 		return bevel_ne # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_bevel_ne
-@export (int) var bevel_sw :
+@export var bevel_sw: int :
 	get:
 		return bevel_sw # TODOConverter40 Non existent get function 
 	set(mod_value):
 		mod_value  # TODOConverter40 Copy here content of set_bevel_sw
-@export (int) var bevel_se :
+@export var bevel_se: int :
 	get:
 		return bevel_se # TODOConverter40 Non existent get function 
 	set(mod_value):

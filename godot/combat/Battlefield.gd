@@ -7,10 +7,10 @@ func _ready():
 	for container in get_children():
 		groups.append(container.name)
 
-func add_child(node: Node, legible_unique_name=false):
-	var container = _get_container(node)
-	if not node in container.get_children():
-		container.call_deferred("add_child", node)
+#func add_child(node: Node, legible_unique_name=false):
+#	var container = _get_container(node)
+#	if not node in container.get_children():
+#		container.call_deferred("add_child", node)
 
 func remove_child(node):
 	var container = _get_container(node)
