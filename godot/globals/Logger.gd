@@ -7,7 +7,7 @@ func datetime_to_str(datetime: Dictionary, fmt = "") -> String:
 	# {"day":23,"dst":false,"hour":18,"minute":41,
 	# "month":9,"second":55,"weekday":4,"year":2021}
 	# FIXME replace with ISO dates
-	var tz = OS.get_time_zone_info()
+	var tz = Time.get_time_zone_from_system()
 	var tz_hours = floor(tz.bias / 60)
 	
 	return "%s-%02d-%02dT%02d:%02d:%02d+%02d:00" % [datetime["year"], datetime["month"], datetime["day"], datetime["hour"], datetime["minute"], datetime["second"], tz_hours]

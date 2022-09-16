@@ -339,6 +339,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://map_with_sets/planets/Set.gd"
 }, {
+"base": "Resource",
+"class": &"Species",
+"language": &"GDScript",
+"path": "res://selection/Species.gd"
+}, {
 "base": "RigidBody2D",
 "class": &"Star",
 "language": &"GDScript",
@@ -363,6 +368,11 @@ _global_script_classes=[{
 "class": &"TheGame",
 "language": &"GDScript",
 "path": "res://globals/TheGame.gd"
+}, {
+"base": "Node",
+"class": &"TheMatch",
+"language": &"GDScript",
+"path": "res://globals/TheMatch.gd"
 }, {
 "base": "Node",
 "class": &"TheSession",
@@ -476,11 +486,13 @@ _global_script_class_icons={
 "Rock": "",
 "Rule": "",
 "Set": "",
+"Species": "",
 "Star": "",
 "StarIcon": "",
 "StartingDeck": "",
 "TeamStats": "",
 "TheGame": "",
+"TheMatch": "",
 "TheSession": "",
 "Trail": "",
 "Trait": "",
@@ -517,7 +529,6 @@ global="*res://globals/global.gd"
 Controls="*res://globals/Controls.gd"
 TheUnlocker="*res://globals/TheUnlocker.gd"
 analytics="*res://globals/analytics.gd"
-GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
 traits="*res://addons/traits/traits.gd"
 Events="*res://globals/Events.gd"

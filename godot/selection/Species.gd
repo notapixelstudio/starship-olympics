@@ -2,16 +2,16 @@ extends Resource
 
 class_name Species
 
-@export (String) var id
+@export var id: String
 @export var species_id : int # This will be used to ordering them
-@export (String) var name
-@export (String) var tagline1
-@export (String) var tagline2
-@export (CompressedTexture2D) var ship
-@export (CompressedTexture2D) var ship_off
-@export (CompressedTexture2D) var ship_w
-@export (Texture2D) var character_ok
-@export (Texture2D) var character_beaten
+@export var name: String
+@export var tagline1: String
+@export var tagline2: String
+@export var ship: CompressedTexture2D
+@export var ship_off: CompressedTexture2D
+@export var ship_w: CompressedTexture2D
+@export var character_ok: Texture2D
+@export var character_beaten: Texture2D
 
 
 # color of the species

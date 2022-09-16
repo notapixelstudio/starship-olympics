@@ -53,7 +53,7 @@ var target: Node2D :
 
 	
 # The NodePath to the target
-@export var target_path: NodePath = @".." :
+@export var target_path: NodePath = ".." :
 	get:
 		return target_path # TODOConverter40 Non existent get function 
 	set(mod_value):

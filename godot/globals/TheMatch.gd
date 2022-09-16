@@ -14,7 +14,7 @@ var player_scores : Array = []  # of InfoPlayers. In order to keep them ordered
 var players = {} # Dictionary of InfoPlayers
 
 var draw : bool = true
-var game_over : bool = false
+var is_game_over : bool = false
 var perfect_end : bool = false
 var cumulative_points = 0
 
@@ -48,7 +48,7 @@ func start():
 func stop():
 	set_process(false)
 
-func initialize(_players: Dictionary, _game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
+func initialize(_players: Dictionary, _game_mode: GameMode, max_score: float = 0.0, max_timeout: float = 0.0):
 	game_mode = _game_mode
 	player_scores = []
 	target_score = game_mode.max_score
@@ -85,7 +85,7 @@ func sort_by_score(a: InfoPlayer, b: InfoPlayer):
 	
 func update(delta: float):
 	# Would be called by Arena
-	if game_over or time_left == -1:
+	if is_game_over or time_left == -1:
 		return
 	
 	time_left -= delta
@@ -119,7 +119,7 @@ func compute_game_status():
 		var draw = true
 		var last_value = leader.get_score()
 		for info_player in player_scores:
-			assert(info_player is InfoPlayer)
+			assert(info_player as InfoPlayer)
 			var player_score = info_player.get_score()
 			if (player_score > 0 and player_score - DEADZONE <= last_value and 
 				last_value <= player_score + DEADZONE):
@@ -145,7 +145,7 @@ func no_players_left():
 	compute_game_status()
 	
 func do_game_over():
-	game_over = true
+	is_game_over = true
 	emit_signal("game_over")
 	
 func get_score(id_player : String):

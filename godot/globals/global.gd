@@ -82,7 +82,7 @@ var full_screen = true :
 func _set_full_screen(value: bool):
 	full_screen = value
 	ProjectSettings.set("display/window/size/fullscreen", full_screen)
-	OS.move_window_to_foreground()
+	# OS.move_window_to_foreground()
 	if full_screen:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
@@ -422,11 +422,12 @@ func start_execution():
 	
 func end_execution():
 	# trigger quit
-	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+	Events.emit_signal('execution_ended')
+	# get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 	
 func _notification(what):
 	# actual quitting
-	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+	if what == MainLoop.NOTIFICATION_CRASH:
 		print("Thanks for playing")
 		Events.emit_signal('execution_ended')
 		get_tree().quit() # default behavior
@@ -438,7 +439,7 @@ func get_state():
 	"""
 	return {
 		custom_win=custom_win,
-		enable_analytics=enable_analytics,
+		# enable_analytics=enable_analytics,
 		language=language,
 		version=version,
 		music_volume=music_volume,
@@ -479,7 +480,7 @@ func dir_contents(path:String, starts_with:String = "", extension:String = ".tsc
 				pass
 			else:
 				if file_name.ends_with(extension):
-					if not starts_with or file_name.find(starts_with) == 0: 
+					if starts_with != "" or file_name.find(starts_with) == 0: 
 						list_files.append(file_name)
 			file_name = dir.get_next()
 	else:
@@ -526,7 +527,7 @@ func check_version(saved_version: String, version_: String) -> bool:
 	var minor = version_.split(".")[1]
 	var patch = version_.split(".")[2]
 	
-	return int(saved_patch) < int(patch)
+	return int(saved_patch.bin_to_int()) < int(patch.bin_to_int())
 
 func send_stats(category: String, stats: Dictionary):
 	emit_signal("send_statistics", category, stats)
@@ -628,7 +629,7 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
-		global.session.add_match(the_match.to_dict())
+		self.session.add_match(the_match.to_dict())
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
@@ -664,9 +665,9 @@ const SPECIES_PATH = "res://selection/characters"
 
 func get_resources(base_path: String) -> Dictionary:
 	var ret := {}
-	var resources = global.dir_contents(base_path, "", ".tres")
+	var resources = self.dir_contents(base_path, "", ".tres")
 	for filename in resources:
-		var this_res = load(base_path.plus_file(filename))
+		var this_res = load(base_path.path_join(filename))
 		var res_id = this_res.get_id()
 		ret[res_id] = this_res
 	return ret
@@ -682,7 +683,7 @@ func get_ordered_species() -> Array:
 	var ordered_species = []
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
 	for species_id in unlocked_species:
-		ordered_species.append(global.get_species(species_id))
+		ordered_species.append(self.get_species(species_id))
 	ordered_species.sort_custom(Callable(self,'compare_by_species_id'))
 	return ordered_species
 

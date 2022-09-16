@@ -21,8 +21,8 @@ func new_match():
 func get_id() -> String:
 	return id
 	
-func set_id(name: String) -> void:
-	self.id = name
+func set_id(name_: String) -> void:
+	self.id = name_
 
 func add_victory(perfect = false):
 	self.session_score.append({'perfect': perfect})

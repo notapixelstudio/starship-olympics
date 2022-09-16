@@ -61,9 +61,9 @@ var map_input_joy := {
 }
 
 func human_readable_button(joypad_type: String, button_key: String) -> String:
-	var button_can_be:Array = Controls.joy_input_map[button_key]
+	var button_can_be:Array = self.joy_input_map[button_key]
 	for button in button_can_be:
-		if button in Controls.map_input_joy[joypad_type].keys():
+		if button in self.map_input_joy[joypad_type].keys():
 			return button
 	return ""
 	
@@ -119,11 +119,11 @@ func event_from_text(device: String, command: String, device_id: int = 0) -> Inp
 	elif "joy" in device:
 		if "analog" in command:
 			e = InputEventJoypadMotion.new()
-			e.axis = int(command.split("_")[1])
-			e.axis_value = int(command.split("_")[2])
+			e.axis = int(command.split("_")[1].bin_to_int())
+			e.axis_value = int(command.split("_")[2].bin_to_int())
 		else:
 			e = InputEventJoypadButton.new()
-			e.button_index = int(command)
+			e.button_index = int(command.bin_to_int())
 		e.device = device_id
 	return e
 
@@ -227,7 +227,7 @@ func set_presets(action_device: String, preset_value: String) -> Dictionary:
 			var device = command_object["device"]
 			var device_id = command_object["id"]
 			if device_id < 0:
-				device_id = int(action_device.right(len(action_device)-1))-1
+				device_id = int(action_device.right(len(action_device)-1).bin_to_int())-1
 			
 			var event = event_from_text(device, button, device_id)
 			events.append(event)
@@ -284,7 +284,7 @@ func remap_action_to(action: String, new_event: InputEvent) -> Dictionary:
 	var acts = action.split("_")
 	var id = acts[len(acts)-1]
 	InputMap.action_add_event(action, new_event)
-	return Controls.event_to_text(new_event)
+	return self.event_to_text(new_event)
 
 
 
