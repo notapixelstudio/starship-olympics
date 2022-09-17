@@ -24,3 +24,6 @@ func dissolve() -> void:
 	pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()

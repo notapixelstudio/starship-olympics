@@ -334,3 +334,6 @@ func freeze():
 func get_owner_ship() -> Ship:
 	return owner_ship
 	
+func damage(hazard, damager : Ship):
+	try_break()
+	
