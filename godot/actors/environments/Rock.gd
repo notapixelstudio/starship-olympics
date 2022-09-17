@@ -78,7 +78,7 @@ func _ready():
 	mass = density*pow(gshape.width,2) # approximate to a square
 	
 	$Star.visible = contains_star
-	$Diamond.visible = spawn_diamonds and order >= last_order
+	#$Diamond.visible = spawn_diamonds and order >= last_order
 	
 	# workaround
 	$Line2D.texture_mode = Line2D.LINE_TEXTURE_TILE
@@ -252,19 +252,25 @@ func recolor():
 		$NoRotate.modulate = Color(0,0,0,1)
 		$Line2D.width = 36
 		
-	if deadly:
-		$Line2D.texture = spikes_texture
-		$Line2D.width = 30*(order+1)
+#	if deadly:
+#		$Line2D.texture = spikes_texture
+#		$Line2D.width = 30*(order+1)
 	
 func get_color():
 	if species:
 		return species.color
-	elif deadly:
-		return colors['deadly']
-	elif ice:
+		
+	if spawn_diamonds:
 		return colors['ice']
-	else:
-		return colors['solid']
+		
+	return colors['solid']
+	
+#	elif deadly:
+#		return colors['deadly']
+#	elif ice:
+#		return colors['ice']
+#	else:
+#		return colors['solid']
 		
 func get_score():
 	return pow(divisions, order)

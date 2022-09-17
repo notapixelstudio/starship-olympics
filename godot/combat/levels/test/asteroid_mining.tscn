@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/endless/Asteroids.tres" type="Resource" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+[ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3400, 2400 )
@@ -154,6 +155,10 @@ speed = 2000
 [node name="Orchestrator" type="AnimationPlayer" parent="Battlefield/Middleground" index="3" groups=["animation_in_battle"]]
 anims/Rotate = SubResource( 3 )
 
+[node name="Rock" parent="Battlefield/Middleground" index="4" instance=ExtResource( 11 )]
+position = Vector2( 1700, 0 )
+order = 2
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1400, -500 )
 rotation = 0.0
@@ -176,3 +181,4 @@ disabled_override = true
 [connection signal="spawn" from="Battlefield/Middleground/Path2D/RockSpawner2" to="." method="_on_Rock_request_spawn"]
 [connection signal="spawn" from="Battlefield/Middleground/Path2D2/RockSpawner" to="." method="_on_Rock_request_spawn"]
 [connection signal="spawn" from="Battlefield/Middleground/Path2D3/RockSpawner3" to="." method="_on_Rock_request_spawn"]
+[connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]
