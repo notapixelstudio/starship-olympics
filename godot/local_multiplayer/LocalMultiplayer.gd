@@ -101,12 +101,31 @@ func _on_minigame_selected(picked_card:DraftCard):
 	start_new_match(picked_card, minigame)
 	
 	
-func continue_fight() -> void:
+func continue_after_session_over() -> void:
 	"""
 	After a session has ended, return to the map.
 	"""
+	global.sessions_played +=1 # WE are sure that sessions is over
+	if global.sessions_played == 1:
+		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
+		$"%UnlockSceneClassic".unlock(unlock, true)
+		yield($"%UnlockSceneClassic", "unlocking_animation_over")
+	elif global.sessions_played == 2:
+		var this_deck_name: String = global.starting_deck
+		var unlock: PackedScene = load("res://special_scenes/unlock_screen/DiscoverWinter.tscn")
+		$"%UnlockSceneClassic".unlock(unlock, true)
+		yield($"%UnlockSceneClassic", "unlocking_animation_over")
+		TheUnlocker.unlock_element("starting_decks", "winter")
+		# add startdeck choosing
+		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
+		add_child(choose_deck_scene)
+		yield(Events, "selection_starting_deck_over")
+		# TODO: If you choose a new deck, you should start a new game
+		if this_deck_name != global.starting_deck:
+			global.new_game(players.values())
+			
+		choose_deck_scene.queue_free()
 	navigate_to_map()
-	
 func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
 	This function given a card and its minigame, will start a match
@@ -170,7 +189,7 @@ func _on_continue_after_game_over(session_over = false):
 	# maybe becaaauuse the combat isn't freeed when maaap is added
 	# maybe there is more than one maaaaap at the same tiiiiime
 	if session_over:
-		continue_fight()
+		continue_after_session_over()
 	else:
 		if not map.is_inside_tree():
 			add_child(map)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://map/DraftArena.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
 [ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=7]
 [ext_resource path="res://assets/shaders/TransitionFade.tscn" type="PackedScene" id=8]
+[ext_resource path="res://special_scenes/unlock_screen/UnlockSceneClassic.tscn" type="PackedScene" id=9]
 
 [sub_resource type="OpenSimplexNoise" id=2]
 octaves = 4
@@ -72,5 +73,8 @@ anchor_bottom = 1.0
 
 [node name="TransitionScreen" parent="." instance=ExtResource( 8 )]
 color = Color( 1, 1, 1, 1 )
+
+[node name="UnlockSceneClassic" parent="." instance=ExtResource( 9 )]
+unique_name_in_owner = true
 
 [editable path="ParallaxBackground"]
