@@ -77,10 +77,11 @@ func start_fight(selected_players: Array, fight_mode: String):
 	remove_child(parallax)
 	
 	# add startdeck choosing
-	var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
-	add_child(choose_deck_scene)
-	yield(Events, "selection_starting_deck_over")
-	choose_deck_scene.queue_free()
+	if len(TheUnlocker.get_unlocked_list("starting_decks")) > 1:
+		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
+		add_child(choose_deck_scene)
+		yield(Events, "selection_starting_deck_over")
+		choose_deck_scene.queue_free()
 	
 	global.new_game(players.values())
 	safe_destroy_combat()
@@ -111,20 +112,21 @@ func continue_after_session_over() -> void:
 		$"%UnlockSceneClassic".unlock(unlock, true)
 		yield($"%UnlockSceneClassic", "unlocking_animation_over")
 	elif global.sessions_played == 2:
+		var to_be_unlocked_deck := "winter"
 		var this_deck_name: String = global.starting_deck
 		var unlock: PackedScene = load("res://special_scenes/unlock_screen/DiscoverWinter.tscn")
-		$"%UnlockSceneClassic".unlock(unlock, true)
+		$"%UnlockSceneClassic".unlock(unlock, false)
 		yield($"%UnlockSceneClassic", "unlocking_animation_over")
-		TheUnlocker.unlock_element("starting_decks", "winter")
+		TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck)
 		# add startdeck choosing
-		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
-		add_child(choose_deck_scene)
-		yield(Events, "selection_starting_deck_over")
-		# TODO: If you choose a new deck, you should start a new game
-		if this_deck_name != global.starting_deck:
+		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
+		$"%UnlockSceneClassic".add_child(confirm)
+		confirm.setup("deck")
+		yield(confirm, "choice_selected")
+		if confirm.choice:
+			global.starting_deck = to_be_unlocked_deck
 			global.new_game(players.values())
-			
-		choose_deck_scene.queue_free()
+		confirm.queue_free()
 	navigate_to_map()
 func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
@@ -134,7 +136,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	$TransitionScreen.transition()
 	yield($TransitionScreen, "transitioned")
 	remove_child(map)
-	
+	$"%UnlockSceneClassic".reset()
 	# show tutorial if this minigame has one, and the minigame has not been already played
 	if minigame.has_tutorial() and minigame.is_first_time_started():
 		var tutorial = minigame.get_tutorial_scene().instance()
