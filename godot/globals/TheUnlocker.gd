@@ -19,8 +19,7 @@ var unlocked_elements = {
 		"5stars": "unlocked"
 	},
 	"starting_decks":{
-		"classic": UNLOCKED,
-		"winter": UNLOCKED
+		"classic": UNLOCKED
 	},
 	"card_pools":{
 		"the_card_pool": UNLOCKED

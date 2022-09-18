@@ -7,8 +7,9 @@ func _ready():
 
 func unlock(what: PackedScene, stay_in_screen:= false):
 	$"%ColorRect".visible = true
+	self.visible = true
 	var unlock_thing= what.instance()
-	add_child(unlock_thing)
+	$"%Content".add_child(unlock_thing)
 	yield(get_tree().create_timer(2), "timeout")
 	if stay_in_screen:
 		# tween to put it somewhere in the screen
@@ -21,3 +22,8 @@ func unlock(what: PackedScene, stay_in_screen:= false):
 	emit_signal("unlocking_animation_over")
 	$"%ColorRect".visible = false
 	
+func reset():
+	$"%ColorRect".visible = false
+	self.visible = false
+	for unlock_thing in $"%Content".get_children():
+		(unlock_thing as Node).queue_free()

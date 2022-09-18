@@ -11,5 +11,6 @@ func _ready():
 func _process(delta):
 	if Input.is_key_pressed(KEY_SHIFT) and Input.is_key_pressed(KEY_R):
 		global.sessions_played = 0
+		TheUnlocker.unlock_element("starting_decks", "winter", TheUnlocker.LOCKED)
 		$"%Info".text = "Sessions played: {sessions_played}. Press SHIFT+R to reset".format({"sessions_played": global.sessions_played})
 	
