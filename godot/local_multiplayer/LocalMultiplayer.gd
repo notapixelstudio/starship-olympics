@@ -109,13 +109,13 @@ func continue_after_session_over() -> void:
 	global.sessions_played +=1 # WE are sure that sessions is over
 	if global.sessions_played == 1:
 		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
-		$"%UnlockSceneClassic".unlock(unlock, true)
+		$"%UnlockSceneClassic".unlock(unlock, true, "first_unlock")
 		yield($"%UnlockSceneClassic", "unlocking_animation_over")
 	elif global.sessions_played == 2:
 		var to_be_unlocked_deck := "winter"
 		var this_deck_name: String = global.starting_deck
-		var unlock: PackedScene = load("res://special_scenes/unlock_screen/DiscoverWinter.tscn")
-		$"%UnlockSceneClassic".unlock(unlock, false)
+		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
+		$"%UnlockSceneClassic".unlock(unlock, false, "second_unlock")
 		yield($"%UnlockSceneClassic", "unlocking_animation_over")
 		TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck)
 		# add startdeck choosing

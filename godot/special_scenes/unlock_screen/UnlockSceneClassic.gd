@@ -5,12 +5,13 @@ signal unlocking_animation_over
 func _ready():
 	$"%ColorRect".visible = false
 
-func unlock(what: PackedScene, stay_in_screen:= false):
+func unlock(what: PackedScene, stay_in_screen:= false, method_name := "first_unlock"):
 	$"%ColorRect".visible = true
 	self.visible = true
 	var unlock_thing= what.instance()
 	$"%Content".add_child(unlock_thing)
-	yield(get_tree().create_timer(2), "timeout")
+	unlock_thing.call(method_name)
+	yield(unlock_thing, "animation_over")
 	if stay_in_screen:
 		# tween to put it somewhere in the screen
 		unlock_thing.scale = Vector2(0.2,0.2)
