@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/sprites/weapons/ball_bomb.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/atom.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/ArkaBall.gd" type="Script" id=2]
 [ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/sprites/environments/explosion_halo.png" type="Texture" id=5]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" type="AudioStream" id=7]
 
@@ -17,25 +16,25 @@ radius = 100.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
-length = 4.0
+length = 6.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Orbits:rotation_degrees")
+tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [ 0.0, 180.0, 360.0 ]
 }
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Orbits:rotation_degrees")
+tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -78,30 +77,15 @@ bus = "SFX"
 [node name="AutoTrail" parent="." instance=ExtResource( 3 )]
 starting_color = Color( 1, 1, 1, 0.235294 )
 
-[node name="Orbits" type="Node2D" parent="."]
-
-[node name="Orbit" type="Sprite" parent="Orbits"]
-rotation = 0.785398
-scale = Vector2( 1.4, 0.3 )
-texture = ExtResource( 5 )
-
-[node name="Orbit2" type="Sprite" parent="Orbits"]
-rotation = -0.785398
-scale = Vector2( 1.4, 0.3 )
-texture = ExtResource( 5 )
-
-[node name="Orbit3" type="Sprite" parent="Orbits"]
-scale = Vector2( 1.7, 0.4 )
-texture = ExtResource( 5 )
-
-[node name="Orbit4" type="Sprite" parent="Orbits"]
-rotation = 1.5708
-scale = Vector2( 1.7, 0.4 )
-texture = ExtResource( 5 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 anims/Idle = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_ArkaBall_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
 [ext_resource path="res://actors/weapons/ForwardBullet.tscn" type="PackedScene" id=33]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
+[ext_resource path="res://assets/sprites/atom.png" type="Texture" id=35]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
 [ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=39]
@@ -138,6 +139,7 @@ script = ExtResource( 1 )
 debug_enabled = true
 species = ExtResource( 2 )
 forward_bullet_scene = ExtResource( 33 )
+atom_texture = ExtResource( 35 )
 
 [node name="Intro" parent="." instance=ExtResource( 22 )]
 order = 1
