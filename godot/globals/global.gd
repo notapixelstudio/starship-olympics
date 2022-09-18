@@ -108,7 +108,7 @@ func _set_unlock_mode(value: String):
 
 func _set_language(value:String):
 	language = value
-	TranslationServer.set_locale(available_languages[language])
+	TranslationServer.set_locale(available_languages.get(language, "en"))
 
 func _get_language():
 	return language
@@ -419,7 +419,8 @@ func get_state():
 		flood=flood,
 		time_scale=time_scale,
 		laser=laser,
-		starting_deck=starting_deck
+		starting_deck=starting_deck,
+		sessions_played=sessions_played
 	}
 	
 
@@ -540,6 +541,8 @@ var session: TheSession = null
 var arena
 
 var game_number := 0
+var session_number := 0
+var sessions_played := 0 # Total number of sessions. Persistence
 var session_number_of_game := 0
 var match_number_of_game := 0
 
