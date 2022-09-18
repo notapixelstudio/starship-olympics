@@ -15,13 +15,11 @@ func set_starting(v: StartingDeck):
 	starting_deck = v
 	set_deck(starting_deck, true)
 
-const CARD_SIZE := Vector2(96, 96)
+const CARD_SIZE := Vector2(160, 160)
 
 func set_deck(v: StartingDeck, unlocked: bool) -> void:
 	deck = v
-	$"%MapRadio".rect_min_size.x = 0
-	$"%MapRadio".text = deck.get_name() 
-	$"%MapRadio".rect_min_size.x = $"%MapRadio".rect_size.x + 100
+	$"%Button".text = deck.get_name().to_upper()
 	if not unlocked:
 		$"%Title".modulate = Color(0.5,0.5,0.5)
 		
@@ -33,9 +31,10 @@ func set_deck(v: StartingDeck, unlocked: bool) -> void:
 		$"%HBoxContainer".add_child(container)
 		
 		var card_node = CardScene.instance()
-		card_node.scale = Vector2(0.25,0.25)
-		card_node.position = CARD_SIZE/2
+		card_node.scale = Vector2(0.42,0.42)
+		card_node.position = CARD_SIZE/2 + Vector2(0, 12)
 		card_node.set_content_card(card)
+		card_node.set_shadow_offset(0)
 		container.add_child(card_node)
 		card_node.instant_reveal = true
 		card_node.reveal()
@@ -44,35 +43,34 @@ func set_deck(v: StartingDeck, unlocked: bool) -> void:
 	container.rect_min_size = CARD_SIZE
 	$"%HBoxContainer".add_child(container)
 	
-	var sprite = Sprite.new()
-	
-	if deck.shuffle_before_dealing:
-		sprite.texture = shuffle_texture
-	else:
-		sprite.texture = arrow_texture
-		
-	sprite.scale = Vector2(0.2,0.2)
-	sprite.position = CARD_SIZE/2
-	container.add_child(sprite)
-	
-	for card in deck.nexts:
-		container = Container.new()
-		container.rect_min_size = CARD_SIZE
-		$"%HBoxContainer".add_child(container)
-		
-		var card_node = CardScene.instance()
-		card_node.scale = Vector2(0.25,0.25)
-		card_node.position = CARD_SIZE/2
-		card_node.set_content_card(card)
-		container.add_child(card_node)
-		card_node.instant_reveal = true
-		card_node.reveal()
+#	var sprite = Sprite.new()
+#
+#	if deck.shuffle_before_dealing:
+#		sprite.texture = shuffle_texture
+#	else:
+#		sprite.texture = arrow_texture
+#
+#	sprite.scale = Vector2(0.2,0.2)
+#	sprite.position = CARD_SIZE/2
+#	container.add_child(sprite)
+#
+#	for card in deck.nexts:
+#		container = Container.new()
+#		container.rect_min_size = CARD_SIZE
+#		$"%HBoxContainer".add_child(container)
+#
+#		var card_node = CardScene.instance()
+#		card_node.scale = Vector2(0.25,0.25)
+#		card_node.position = CARD_SIZE/2
+#		card_node.set_content_card(card)
+#		container.add_child(card_node)
+#		card_node.instant_reveal = true
+#		card_node.reveal()
 
-
-func _on_MapRadio_toggled(button_pressed):
-	if button_pressed:
-		print("{name} has been chosen".format({"name":deck.get_id()}))
-		Events.emit_signal("starting_deck_selected", self.deck)
-		
 func grab_focus():
-	$"%MapRadio".grab_focus()
+	$"%Button".grab_focus()
+
+func _on_Button_pressed():
+	print("{name} has been chosen".format({"name": deck.get_id()}))
+	Events.emit_signal("starting_deck_selected", self.deck)
+	

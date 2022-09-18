@@ -15,6 +15,7 @@ export var take_ownership = false
 export var multiple_owners := false
 export var float_when_selected := true
 export var instant_reveal := false
+export var shadow_offset := 32 setget set_shadow_offset
 
 signal revealing_while_undetermined
 signal taken
@@ -29,6 +30,10 @@ var players := []
 var ship
 var character_player
 
+func set_shadow_offset(v : int) -> void:
+	shadow_offset = v
+	$Shadow.position.y = shadow_offset
+	
 func set_player(v):
 	var previous_player = player
 	player = v
