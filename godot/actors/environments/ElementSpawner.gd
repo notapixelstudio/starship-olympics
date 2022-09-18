@@ -14,13 +14,13 @@ func set_element_scene(v: PackedScene):
 	
 func refresh_preview():
 	# in editor, just use the element's sprite texture instead of the actual element
-	var element = element_scene.instance()
 	if Engine.is_editor_hint():
+		var element = element_scene.instance()
 		$PreviewSprite.texture = element.get_node(preview_sprite_name).texture
 		$PreviewSprite.scale = element.get_node(preview_sprite_name).scale
+		element.queue_free()
 	else:
 		$PreviewSprite.queue_free()
-	element.free()
 		
 func spawn():
 	var element = element_scene.instance()
