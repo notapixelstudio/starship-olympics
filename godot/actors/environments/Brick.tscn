@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/environments/Brick.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/bricks/diamond_under.png" type="Texture" id=4]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -67,6 +68,37 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 6, 6, 6, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Brick" type="StaticBody2D" groups=["in_camera", "killables"]]
 collision_layer = 16
 collision_mask = 5
@@ -78,14 +110,19 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Under" type="Sprite" parent="."]
-modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
-position = Vector2( 0, 32 )
+modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
+position = Vector2( 0, 25 )
+z_index = -15
+z_as_relative = false
 texture = ExtResource( 4 )
 
+[node name="Content" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 7 )
+
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.0901961, 0.607843, 0.890196, 1 )
+modulate = Color( 0.407843, 0.231373, 0.0823529, 1 )
 texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 208, 108 )
 
 [node name="Label" type="Label" parent="Sprite"]
 visible = false
@@ -94,6 +131,7 @@ margin_left = -95.0
 margin_top = -95.0
 margin_right = 105.0
 margin_bottom = 105.0
+rect_scale = Vector2( -1, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "1"
 align = 1
@@ -113,3 +151,5 @@ joint_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Break = SubResource( 2 )
+anims/Damage = SubResource( 4 )
+anims/RESET = SubResource( 5 )

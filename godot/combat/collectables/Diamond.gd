@@ -18,6 +18,8 @@ func _ready():
 	if appear:
 		self.set_tangible(false)
 		$AnimationPlayer.play('AppearFuhfuhfuh')
+	else:
+		self.set_tangible(true)
 		
 func get_strategy(ship, distance, game_mode):
 	return {'seek': points}
@@ -25,3 +27,11 @@ func get_strategy(ship, distance, game_mode):
 func set_tangible(tangible : bool):
 	set_collision_mask_bit(1, tangible) # ship near area
 	
+func set_appear(v : bool) -> void:
+	appear = v
+	
+func get_texture() -> Texture:
+	return $Sprite.texture
+
+func get_sprite_position() -> Vector2:
+	return $Sprite.position

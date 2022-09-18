@@ -25,6 +25,7 @@ func spawn():
 	rock.position = global_position
 	rock.spawn_diamonds = randf() < spawn_diamonds_chance
 	rock.order = order
+	rock.smallest_break = false
 	emit_signal('spawn', rock)
 	
 func _process(delta):

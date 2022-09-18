@@ -2,7 +2,7 @@ extends Node2D
 
 class_name PlayerSpawner
 
-export (String) var controls = "kb1"
+export (String, 'kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls = "kb1"
 export (Resource) var species
 export (String) var team = ''
 # temporary for cpu
