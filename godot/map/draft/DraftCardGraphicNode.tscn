@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -52,7 +53,7 @@ modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
 
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true
-self_modulate = Color( 1, 1, 1, 1 )
+scale = Vector2( 2.1, 2.1 )
 
 [node name="Mystery" type="Sprite" parent="Ground/Front" index="5"]
 visible = false
@@ -106,6 +107,16 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="Snowflake" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/WinterLabel" index="0"]
+position = Vector2( 900, 367 )
+texture = ExtResource( 10 )
+
+[node name="SnowflakeShadow" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/WinterLabel/Snowflake" index="0"]
+modulate = Color( 0, 0.533333, 0.964706, 1 )
+show_behind_parent = true
+position = Vector2( 0, 6 )
+texture = ExtResource( 10 )
 
 [node name="PerfectionistLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="2"]
 unique_name_in_owner = true

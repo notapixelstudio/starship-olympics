@@ -49,6 +49,8 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()
 	if card.is_winter():
 		$Ground/Front/Border.self_modulate = Color('#9be9ff')
+		$Ground/Front/Border.self_modulate.b = 1.2 # glow
+		$Ground/Front/Border.z_index = -1
 	
 	# perfectionist
 	var perfectionist := not card is MysteryCard and card.is_perfectionist()
