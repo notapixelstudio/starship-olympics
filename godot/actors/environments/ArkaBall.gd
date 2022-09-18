@@ -7,6 +7,7 @@ export var impulse : float = 80
 var active : bool = false
 
 var ship # Ship
+var pickable = false
 
 func start():
 	active = true
@@ -48,3 +49,8 @@ func set_ship(v):
 func get_ship():
 	return ship
 	
+func is_pickable() -> bool:
+	return pickable
+
+func _on_Timer_timeout():
+	pickable = true

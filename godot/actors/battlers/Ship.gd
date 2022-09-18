@@ -13,6 +13,7 @@ export var absolute_controls : bool= true
 export var species : Resource
 
 export var forward_bullet_scene : PackedScene
+export var atom_texture : Texture
 
 var controls_enabled = false
 
@@ -441,7 +442,7 @@ func charge():
 	
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
-		$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,1)
+		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
 	
 signal charging_ended
 func fire(override_charge = -1, dash_only = false):
@@ -833,8 +834,14 @@ func update_weapon_indicator():
 		return
 	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type] if bomb_type != null else null
 	$"%BombPreview".visible = get_bombs_enabled() or golf
-	$"%BombPreview/BombType".visible = get_bombs_enabled()
-	$"%ArrowTip".flip_v = not (get_bombs_enabled() or golf) 
+	$"%BombPreview/BombType".visible = get_bombs_enabled() or golf
+	$"%ArrowTip".flip_v = not (get_bombs_enabled() or golf)
+	if golf:
+		$"%BombPreview/BombType".texture = atom_texture
+		$"%BombPreview/BombType".scale = Vector2(1.1,1.1)
+		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
+	else:
+		$"%BombPreview/BombType".scale = Vector2(0.7,0.7) # WARNING hardcoded default
 	
 func tap():
 	Events.emit_signal('tap', self)
@@ -886,7 +893,7 @@ func _on_bomb_expired(bomb_position):
 		
 
 func _on_Ship_near_area_entered(sth, this):
-	if sth is ArkaBall:
+	if sth is ArkaBall and sth.is_pickable():
 		sth.queue_free()
 		start_golf()
 

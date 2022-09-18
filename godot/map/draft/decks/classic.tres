@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=7 format=2]
 
-[ext_resource path="res://map/draft/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
 [ext_resource path="res://map/draft/cards/TakeTheCrown.tres" type="Resource" id=3]
 [ext_resource path="res://map/draft/cards/Deathmatch.tres" type="Resource" id=4]
 [ext_resource path="res://map/draft/cards/Diamondsnatch.tres" type="Resource" id=5]
@@ -10,6 +10,7 @@
 [resource]
 script = ExtResource( 1 )
 id = "classic"
+name = "Classic"
 cards = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ]
 nexts = [ ExtResource( 6 ), ExtResource( 7 ) ]
 shuffle_before_dealing = false

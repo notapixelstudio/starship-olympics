@@ -518,6 +518,9 @@ func _unhandled_input(event):
 	# reset by command only through debug
 	if event.is_action_pressed('continue') and debug:
 		reset(global.level)
+		
+	if event.is_action_pressed("debug_action") and global.the_match:
+		global.the_match.trigger_game_over_now()
 	
 func reset(level):
 	someone_died = false
