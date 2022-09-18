@@ -100,7 +100,7 @@ func update(delta: float):
 		
 	lasting_time += delta
 	
-func compute_game_status():
+func compute_game_status(end_now = false):
 	if game_over:
 		# print("Don't need to calculate winners again. Winners are: ")
 		return
@@ -114,7 +114,7 @@ func compute_game_status():
 	
 	perfect_end = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
 	
-	if perfect_end or time_left <= 0 or no_players:
+	if end_now or perfect_end or time_left <= 0 or no_players:
 		winners = []
 		var draw = true
 		var last_value = leader.get_score()
@@ -258,3 +258,6 @@ func set_draft_card(c: DraftCard):
 	
 func get_draft_card() -> DraftCard:
 	return draft_card
+
+func trigger_game_over_now():
+	compute_game_status(true) # end now
