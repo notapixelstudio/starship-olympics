@@ -1,12 +1,14 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
-[ext_resource path="res://map/draft/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
 [ext_resource path="res://map/draft/cards/BoardConquest.tres" type="Resource" id=2]
 [ext_resource path="res://map/draft/cards/AsteroidConquest.tres" type="Resource" id=3]
 [ext_resource path="res://map/draft/cards/QueenOfTheHive.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/MarbleConquest.tres" type="Resource" id=5]
+[ext_resource path="res://map/draft/cards/AtomicMarbles.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
 id = "conquest"
 cards = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]
+nexts = [  ]
+shuffle_before_dealing = true

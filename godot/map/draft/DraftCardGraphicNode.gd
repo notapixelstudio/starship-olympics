@@ -6,16 +6,6 @@ class_name DraftCardGraphicNode
 
 onready var chosen : bool = false setget set_chosen
 
-const SUIT_COLORS = {
-	'diamond': Color.dodgerblue,
-	'crown': Color.firebrick,
-	'block': Color.darkorange,
-	'heart': Color.white,
-	'snake': Color.teal,
-	'arrow': Color.forestgreen,
-	'circle': Color.palevioletred
-}
-
 func set_chosen(v):
 	chosen = v
 	if not is_inside_tree():
@@ -40,9 +30,9 @@ func set_content_card(card: DraftCard):
 	#$Ground/Front/Background.modulate = Color('#e0e0e0')
 	var tint = card.get_tint()
 	if tint:
-		get_node('%Border').self_modulate = tint
+		$'%Border'.self_modulate = tint
 	else:
-		get_node('%Border').self_modulate = Color(0,0,0,0) # invisible
+		$'%Border'.self_modulate = Color(0,0,0,0) # invisible
 	
 	# new
 	get_node('%NewLabel').visible = card_content.is_new()
@@ -59,6 +49,8 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()
 	if card.is_winter():
 		$Ground/Front/Border.self_modulate = Color('#9be9ff')
+		$Ground/Front/Border.self_modulate.b = 1.2 # glow
+		$Ground/Front/Border.z_index = -1
 	
 	# perfectionist
 	var perfectionist := not card is MysteryCard and card.is_perfectionist()
@@ -73,10 +65,19 @@ func set_content_card(card: DraftCard):
 		var suit_bottom = card.get_suit_bottom()
 		if suit_top:
 			$"%SuitTopLeft".texture = load("res://assets/sprites/signs/suits/"+suit_top+".png")
-			$"%SuitTopLeft".modulate = SUIT_COLORS[suit_top]
+			$'%SuitTopLeft'.self_modulate = global.SUIT_COLORS[suit_top]
+			$'%Background'.self_modulate = global.SUIT_COLORS[suit_top] # TBD double color
+			$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[suit_top].lightened(0.2) # TBD double color
 		if suit_bottom:
 			$"%SuitBottomRight".texture = load("res://assets/sprites/signs/suits/"+suit_bottom+".png")
-			$"%SuitBottomRight".modulate = SUIT_COLORS[suit_bottom]
+			$'%SuitBottomRight'.self_modulate = global.SUIT_COLORS[suit_bottom]
+			
+	
+# @override
+func select():
+	.select()
+	$"%SuitTopLeft".self_modulate = Color.white
+	$"%SuitBottomRight".self_modulate = Color.white
 	
 # @override
 func tap(author):

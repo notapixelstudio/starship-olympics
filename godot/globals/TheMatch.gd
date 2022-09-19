@@ -100,7 +100,7 @@ func update(delta: float):
 		
 	lasting_time += delta
 	
-func compute_game_status():
+func compute_game_status(end_now = false):
 	if game_over:
 		# print("Don't need to calculate winners again. Winners are: ")
 		return
@@ -114,7 +114,7 @@ func compute_game_status():
 	
 	perfect_end = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
 	
-	if perfect_end or time_left <= 0 or no_players:
+	if end_now or perfect_end or time_left <= 0 or no_players:
 		winners = []
 		var draw = true
 		var last_value = leader.get_score()
@@ -203,13 +203,17 @@ func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
-	return {
+	var dict = {
 		"uuid": get_uuid(),
 		"winners": winners,
-		"minigame_id": minigame.get_id(),
-		"card_id": draft_card.get_id(),
 		"winners_did_perfect": self.winners_did_perfect()
 	}
+	if minigame:
+		dict["minigame_id"] = minigame.get_id()
+	if draft_card:
+		dict["card_id"] = draft_card.get_id()
+		
+	return dict
 
 func get_number_of_players():
 	return len(players)
@@ -254,3 +258,6 @@ func set_draft_card(c: DraftCard):
 	
 func get_draft_card() -> DraftCard:
 	return draft_card
+
+func trigger_game_over_now():
+	compute_game_status(true) # end now

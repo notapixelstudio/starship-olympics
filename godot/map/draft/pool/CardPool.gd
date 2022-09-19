@@ -7,6 +7,8 @@ export var cards : Array = [] setget set_cards # DraftCard
 
 var index : Dictionary = {}
 
+func get_id() -> String:
+	return id
 func set_cards(v: Array):
 	cards = v
 	for card in cards:

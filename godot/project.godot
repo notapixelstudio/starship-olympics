@@ -119,11 +119,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/Cell.gd"
 }, {
-"base": "Node2D",
-"class": "CollectableSpawner",
-"language": "GDScript",
-"path": "res://actors/environments/DiamondSpawner.gd"
-}, {
 "base": "ColorRect",
 "class": "CollectionItem",
 "language": "GDScript",
@@ -188,6 +183,16 @@ _global_script_classes=[ {
 "class": "DraftCardGraphicNode",
 "language": "GDScript",
 "path": "res://map/draft/DraftCardGraphicNode.gd"
+}, {
+"base": "Node2D",
+"class": "ElementSpawner",
+"language": "GDScript",
+"path": "res://actors/environments/ElementSpawner.gd"
+}, {
+"base": "Position2D",
+"class": "ElementSpawnerGroup",
+"language": "GDScript",
+"path": "res://actors/environments/ElementSpawnerGroup.gd"
 }, {
 "base": "Node",
 "class": "Entity",
@@ -367,7 +372,7 @@ _global_script_classes=[ {
 "base": "MapLocation",
 "class": "MapRadio",
 "language": "GDScript",
-"path": "res://map_with_sets/MapRadio.gd"
+"path": "res://ui/common_elements/RadioOption.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Marble",
@@ -479,6 +484,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat/collectables/PowerUp.gd"
 }, {
+"base": "CheckBox",
+"class": "RadioOption",
+"language": "GDScript",
+"path": "res://map_with_sets/MapRadio.gd"
+}, {
 "base": "Control",
 "class": "RemapAction",
 "language": "GDScript",
@@ -537,7 +547,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "StartingDeck",
 "language": "GDScript",
-"path": "res://map/draft/StartingDeck.gd"
+"path": "res://map/draft/decks/StartingDeck.gd"
 }, {
 "base": "Position2D",
 "class": "TargetDest",
@@ -609,6 +619,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/WallGoal.gd"
 }, {
+"base": "Node2D",
+"class": "WaveGroupSpawner",
+"language": "GDScript",
+"path": "res://actors/environments/WaveGroupSpawner.gd"
+}, {
 "base": "MapLocation",
 "class": "Waypoint",
 "language": "GDScript",
@@ -642,7 +657,6 @@ _global_script_class_icons={
 "Card": "",
 "CardPool": "",
 "Cell": "",
-"CollectableSpawner": "",
 "CollectionItem": "",
 "Component": "",
 "Conquerable": "",
@@ -656,6 +670,8 @@ _global_script_class_icons={
 "Diamond": "",
 "DraftCard": "",
 "DraftCardGraphicNode": "",
+"ElementSpawner": "",
+"ElementSpawnerGroup": "",
 "Entity": "",
 "Explosion": "",
 "Field": "",
@@ -714,6 +730,7 @@ _global_script_class_icons={
 "Polyomino": "",
 "Portalz": "",
 "PowerUp": "",
+"RadioOption": "",
 "RemapAction": "",
 "RemappingScene": "",
 "RemoteBomb": "",
@@ -740,6 +757,7 @@ _global_script_class_icons={
 "UUID": "",
 "Wall": "",
 "WallGoal": "",
+"WaveGroupSpawner": "",
 "Waypoint": "",
 "Weapon": ""
 }
@@ -773,6 +791,11 @@ ECM="*res://addons/ECM/ECM.gd"
 traits="*res://addons/traits/traits.gd"
 Events="*res://globals/Events.gd"
 Logger="*res://globals/Logger.gd"
+
+[debug]
+
+settings/physics_interpolation/enable_warnings=false
+gdscript/warnings/enable=false
 
 [display]
 
@@ -1218,6 +1241,11 @@ rm3_fire={
 rm4_fire={
 "deadzone": 0.5,
 "events": [  ]
+}
+debug_action={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777249,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
 }
 
 [layer_names]

@@ -7,7 +7,7 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    sodipodi:docname="ships.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -22,10 +22,10 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
-     showgrid="true"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="368.04908"
-     inkscape:cy="533.15851"
+     showgrid="false"
+     inkscape:zoom="4.0000001"
+     inkscape:cx="499.87499"
+     inkscape:cy="749.62498"
      inkscape:current-layer="layer2"
      showborder="false"
      inkscape:snap-global="false"
@@ -33,11 +33,13 @@
      inkscape:snap-intersection-paths="true"
      units="px"
      inkscape:window-width="2560"
-     inkscape:window-height="1348"
+     inkscape:window-height="1347"
      inkscape:window-x="0"
      inkscape:window-y="55"
      inkscape:window-maximized="1"
-     showguides="false">
+     showguides="false"
+     inkscape:showpageshadow="0"
+     inkscape:deskcolor="#505050">
     <inkscape:grid
        type="xygrid"
        id="grid824"
@@ -172,8 +174,8 @@
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
        id="filter2347"
-       x="-0.87179798"
-       width="2.743596"
+       x="-0.68049013"
+       width="2.3609803"
        y="-0.53653703"
        height="2.0730741">
       <feGaussianBlur
@@ -297,6 +299,53 @@
          inkscape:collect="always"
          stdDeviation="4.4"
          id="feGaussianBlur33217" />
+    </filter>
+    <filter
+       inkscape:label="Film Grain"
+       inkscape:menu="Image Effects"
+       inkscape:menu-tooltip="Adds a small scale graininess"
+       style="color-interpolation-filters:sRGB;"
+       id="filter10593"
+       x="-0.00108"
+       y="-0.00108"
+       width="1.00216"
+       height="1.00216">
+      <feTurbulence
+         type="fractalNoise"
+         numOctaves="2"
+         baseFrequency="10"
+         seed="0"
+         result="result0"
+         id="feTurbulence10583" />
+      <feColorMatrix
+         result="result4"
+         values="0"
+         type="saturate"
+         id="feColorMatrix10585" />
+      <feComposite
+         in="SourceGraphic"
+         in2="result4"
+         operator="arithmetic"
+         k1="1.25"
+         k2="0.5"
+         k3="0.5"
+         result="result2"
+         id="feComposite10587" />
+      <feBlend
+         result="result5"
+         mode="darken"
+         in="result2"
+         in2="SourceGraphic"
+         id="feBlend10589" />
+      <feComposite
+         in="result5"
+         in2="SourceGraphic"
+         operator="in"
+         result="result3"
+         id="feComposite10591" />
+      <feGaussianBlur
+         stdDeviation="0.015239999"
+         id="feGaussianBlur12047" />
     </filter>
   </defs>
   <g
@@ -3223,7 +3272,7 @@
     <g
        inkscape:export-ydpi="192"
        inkscape:export-xdpi="192"
-       inkscape:export-filename="/home/nitaku/repos/superstarfighter/godot/assets/sprites/species/pentagonions/ship.png"
+       inkscape:export-filename="pentagonions/ship.png"
        transform="translate(67.655831,-93.817554)"
        id="g1533"
        style="stroke-width:0.924158">

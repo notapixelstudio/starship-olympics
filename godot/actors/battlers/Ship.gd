@@ -8,11 +8,12 @@ and its keyboard control
 class_name Ship
 
 export var debug_enabled = false
-export (String) var controls = "kb1"
+export (String, 'kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls = "kb1"
 export var absolute_controls : bool= true
-export (Resource) var species
+export var species : Resource
 
 export var forward_bullet_scene : PackedScene
+export var atom_texture : Texture
 
 var controls_enabled = false
 
@@ -441,7 +442,7 @@ func charge():
 	
 	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
 	if will_fire:
-		$Graphics/ChargeBar/BombPreview/BombType.self_modulate = Color(1,1,1,1)
+		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
 	
 signal charging_ended
 func fire(override_charge = -1, dash_only = false):
@@ -828,26 +829,35 @@ func get_bombs_enabled():
 	return bombs_enabled and not get_deadly_trail()
 	
 func update_weapon_indicator():
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew:
+		# show fw weapon indicator
+		return
 	$Graphics/ChargeBar/BombPreview/BombType.texture = weapon_textures[bomb_type] if bomb_type != null else null
 	$"%BombPreview".visible = get_bombs_enabled() or golf
-	$"%BombPreview/BombType".visible = get_bombs_enabled()
-	$"%ArrowTip".flip_v = not (get_bombs_enabled() or golf) 
+	$"%BombPreview/BombType".visible = get_bombs_enabled() or golf
+	$"%ArrowTip".flip_v = not (get_bombs_enabled() or golf)
+	if golf:
+		$"%BombPreview/BombType".texture = atom_texture
+		$"%BombPreview/BombType".scale = Vector2(1.1,1.1)
+		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
+	else:
+		$"%BombPreview/BombType".scale = Vector2(0.7,0.7) # WARNING hardcoded default
 	
 func tap():
 	Events.emit_signal('tap', self)
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	# forward weapon: bullet
-#	var aperture = PI/4
-#	var amount = 1
-#	for i in range(amount):
-#		var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
-#		var bullet = forward_bullet_scene.instance()
-#		get_parent().add_child(bullet)
-#		bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
-#		bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
-#		bullet.set_ship(self)
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew:
+		var aperture = PI/4
+		var amount = 1
+		for i in range(amount):
+			var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
+			var bullet = forward_bullet_scene.instance()
+			get_parent().add_child(bullet)
+			bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
+			bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
+			bullet.set_ship(self)
 	
 var under = false
 
@@ -883,7 +893,7 @@ func _on_bomb_expired(bomb_position):
 		
 
 func _on_Ship_near_area_entered(sth, this):
-	if sth is ArkaBall:
+	if sth is ArkaBall and sth.is_pickable():
 		sth.queue_free()
 		start_golf()
 

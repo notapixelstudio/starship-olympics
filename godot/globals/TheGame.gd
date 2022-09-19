@@ -12,7 +12,7 @@ func _init():
 	
 	# scripted first-time execeution
 	# do not shuffle the deck if this is the first game of this execution
-	if global.game_number > 1:
+	if global.game_number > 1 and deck:
 		deck.shuffle()
 	
 func get_uuid() -> String:
@@ -23,6 +23,13 @@ func set_players(_players : Array) -> void:
 	
 func get_players() -> Array: # of InfoPlayer
 	return players
+	
+func get_human_players() -> Array: # of InfoPlayer
+	var humans := []
+	for player in players:
+		if not player.cpu:
+			humans.append(player)
+	return humans
 	
 func get_player_index() -> Dictionary:
 	var index := {}

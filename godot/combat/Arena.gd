@@ -76,7 +76,7 @@ signal salvo
 
 var array_players = [] # Dictionary of InfoPlayers
 
-func compute_arena_size():
+func compute_arena_size() -> Rect2:
 	"""
 	compute the battlefield size
 	"""
@@ -155,6 +155,7 @@ func _enter_tree():
 		connect("update_stats", global.the_match, "update_stats")
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+		Events.connect("ask_to_spawn", self, "dramatic_spawn") # e.g. SpawnerManager
 	
 func _ready():
 	set_process(false)
@@ -312,10 +313,22 @@ func _ready():
 		# initialize HUD
 		hud.post_ready()
 	
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
+		
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
-	camera.initialize(compute_arena_size())
+		
+	camera.initialize(compute_arena_size().grow(100*30))
+	camera.to(compute_arena_size())
+	update_grid()
+	
+	if show_hud:
+		hud.set_draft_card(global.the_match.get_draft_card())
+	
+	yield(camera, "transition_over")
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
@@ -337,7 +350,7 @@ func _ready():
 			yield(get_tree().create_timer(3), "timeout")
 			mode_description.disappears()
 	
-	update_grid()
+	
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
@@ -388,13 +401,7 @@ func _ready():
 			$Battlefield/Background.add_child(ice)
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
-	
-	# load style from gamemode, if specified
-	if game_mode.arena_style:
-		set_style(game_mode.arena_style)
-		
-	if show_hud:
-		hud.set_draft_card(global.the_match.get_draft_card())
+				
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
 	
@@ -511,6 +518,9 @@ func _unhandled_input(event):
 	# reset by command only through debug
 	if event.is_action_pressed('continue') and debug:
 		reset(global.level)
+		
+	if event.is_action_pressed("debug_action") and global.the_match:
+		global.the_match.trigger_game_over_now()
 	
 func reset(level):
 	someone_died = false
@@ -818,10 +828,8 @@ func _on_sth_collected(collector, collectee):
 	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
 		
-	if collectee.get_parent().is_in_group("spawner_group"):
-		collectee.get_parent().call_deferred('remove', collectee)
-	else:
-		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+	collectee.get_parent().call_deferred('remove_child', collectee)
+	# collisions do not work as expected without defer
 		
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
@@ -860,12 +868,12 @@ func _on_sth_stolen(thief, mugged):
 
 signal wave_ready
 
-func on_next_wave(diamonds, wait_time=1):
+func dramatic_spawn(to_be_spawned: ElementSpawnerGroup , wait_time=1):
 	if wait_time:
-		focus_in_camera.move(diamonds.position, wait_time)
+		focus_in_camera.move(to_be_spawned.position, wait_time)
 		yield(focus_in_camera, "completed")
-	diamonds.spawn()
-	emit_signal('wave_ready')
+	to_be_spawned.spawn()
+	Events.emit_signal("spawned", to_be_spawned)
 	
 
 func _on_Pause_restart():

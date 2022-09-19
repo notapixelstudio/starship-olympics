@@ -22,6 +22,11 @@ signal planet_reached(planet, sth)
 signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
+signal sth_collected(collector, collectee)
+# Arena
+signal ask_to_spawn
+signal spawned
+
 signal minigame_selected(picked_card)
 
 signal execution_started
@@ -58,3 +63,5 @@ signal player_ready(player_info)
 
 # draftcard 
 signal card_tapped(author, card)
+signal starting_deck_selected(starting_deck)
+signal selection_starting_deck_over

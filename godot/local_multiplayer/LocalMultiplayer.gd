@@ -72,12 +72,19 @@ func start_fight(selected_players: Array, fight_mode: String):
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
 	
-	global.new_game(players.values())
-	
-	safe_destroy_combat()
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
+	
+	# add startdeck choosing
+	if len(TheUnlocker.get_unlocked_list("starting_decks")) > 1:
+		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
+		add_child(choose_deck_scene)
+		yield(Events, "selection_starting_deck_over")
+		choose_deck_scene.queue_free()
+	
+	global.new_game(players.values())
+	safe_destroy_combat()
 	
 	create_map()
 	navigate_to_map()
@@ -95,12 +102,32 @@ func _on_minigame_selected(picked_card:DraftCard):
 	start_new_match(picked_card, minigame)
 	
 	
-func continue_fight() -> void:
+func continue_after_session_over() -> void:
 	"""
 	After a session has ended, return to the map.
 	"""
+	global.sessions_played +=1 # WE are sure that sessions is over
+	if global.sessions_played == 1:
+		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
+		$"%UnlockSceneClassic".unlock(unlock, true, "first_unlock")
+		yield($"%UnlockSceneClassic", "unlocking_animation_over")
+	elif global.sessions_played == 2:
+		var to_be_unlocked_deck := "winter"
+		var this_deck_name: String = global.starting_deck
+		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
+		$"%UnlockSceneClassic".unlock(unlock, false, "second_unlock")
+		yield($"%UnlockSceneClassic", "unlocking_animation_over")
+		TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck)
+		# add startdeck choosing
+		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
+		$"%UnlockSceneClassic".add_child(confirm)
+		confirm.setup("deck")
+		yield(confirm, "choice_selected")
+		if confirm.choice:
+			global.starting_deck = to_be_unlocked_deck
+			global.new_game(players.values())
+		confirm.queue_free()
 	navigate_to_map()
-	
 func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
 	This function given a card and its minigame, will start a match
@@ -109,7 +136,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	$TransitionScreen.transition()
 	yield($TransitionScreen, "transitioned")
 	remove_child(map)
-	
+	$"%UnlockSceneClassic".reset()
 	# show tutorial if this minigame has one, and the minigame has not been already played
 	if minigame.has_tutorial() and minigame.is_first_time_started():
 		var tutorial = minigame.get_tutorial_scene().instance()
@@ -164,7 +191,7 @@ func _on_continue_after_game_over(session_over = false):
 	# maybe becaaauuse the combat isn't freeed when maaap is added
 	# maybe there is more than one maaaaap at the same tiiiiime
 	if session_over:
-		continue_fight()
+		continue_after_session_over()
 	else:
 		if not map.is_inside_tree():
 			add_child(map)

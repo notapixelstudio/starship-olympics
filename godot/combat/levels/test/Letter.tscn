@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/ZilapZodiac-a7ER.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://combat/levels/test/Letter.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 180
+font_data = ExtResource( 1 )
+
+[node name="Letter" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.694118, 0.694118, 0.694118, 1 )
+margin_right = 200.0
+margin_bottom = 200.0
+custom_colors/font_color_shadow = Color( 0.376471, 0.376471, 0.376471, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 8
+custom_fonts/font = SubResource( 1 )
+text = "A"
+align = 1
+valign = 1

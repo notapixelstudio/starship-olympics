@@ -1,0 +1,424 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=11]
+
+[node name="C" type="Node2D"]
+
+[node name="Diamond" parent="." instance=ExtResource( 5 )]
+
+[node name="Wall3" parent="." instance=ExtResource( 10 )]
+position = Vector2( -900, 300 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+
+[node name="GRegularPolygon" type="Node" parent="Wall3"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 900, -300 )
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+
+[node name="GRegularPolygon" type="Node" parent="Wall4"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wave0" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+max_repeats = 1
+
+[node name="ElementSpawnerGroup" parent="Wave0" instance=ExtResource( 6 )]
+position = Vector2( -900, 0 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup2" parent="Wave0" instance=ExtResource( 6 )]
+position = Vector2( 900, 0 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup3" parent="Wave0" instance=ExtResource( 6 )]
+position = Vector2( -900, 600 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup4" parent="Wave0" instance=ExtResource( 6 )]
+position = Vector2( 900, -600 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="Wave1" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+wave_number = 1
+max_repeats = 1
+
+[node name="ElementSpawnerGroup5" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( 600, -300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup6" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( 750, -150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup7" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( -600, 300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup8" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( -750, 150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup9" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( -1050, 150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup10" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( -1200, 300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup11" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( 1050, -150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup12" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( 1200, -300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup13" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( 1050, -450 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup14" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( 750, -450 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup15" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( -750, 450 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup16" parent="Wave1" instance=ExtResource( 6 )]
+position = Vector2( -1050, 450 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="Wave2" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+wave_number = 2
+max_repeats = 0
+
+[node name="ElementSpawnerGroup" parent="Wave2" instance=ExtResource( 6 )]
+pattern = "backslash"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup2" parent="Wave2" instance=ExtResource( 6 )]
+pattern = "slash"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup3" parent="Wave2" instance=ExtResource( 6 )]
+position = Vector2( -900, -300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup4" parent="Wave2" instance=ExtResource( 6 )]
+position = Vector2( 900, 300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup5" parent="Wave2" instance=ExtResource( 6 )]
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="Wave3" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+wave_number = 3
+max_repeats = 1
+
+[node name="ElementSpawnerGroup" parent="Wave3" instance=ExtResource( 6 )]
+position = Vector2( 900, -300 )
+pattern = "rhombus"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup2" parent="Wave3" instance=ExtResource( 6 )]
+position = Vector2( -900, 300 )
+pattern = "rhombus"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup3" parent="Wave3" instance=ExtResource( 6 )]
+pattern = "rhombus"
+element_scene = ExtResource( 5 )
+
+[node name="Wave4" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+wave_number = 4
+max_repeats = 0
+
+[node name="ElementSpawnerGroup2" parent="Wave4" instance=ExtResource( 6 )]
+position = Vector2( -1050, 450 )
+pattern = "single"
+element_scene = ExtResource( 3 )
+
+[node name="ElementSpawnerGroup3" parent="Wave4" instance=ExtResource( 6 )]
+position = Vector2( 1050, -450 )
+pattern = "single"
+element_scene = ExtResource( 3 )
+
+[node name="Wave5" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+wave_number = 5
+max_repeats = 1
+
+[node name="ElementSpawnerGroup35" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( -900, 0 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup39" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( -1200, 300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup36" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( 600, -300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup37" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( 1200, -300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup38" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( -900, 600 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup43" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( 900, -600 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup44" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( -600, 300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup45" parent="Wave5" instance=ExtResource( 6 )]
+position = Vector2( 900, 0 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="Wave6" type="Node2D" parent="." groups=["spawn_waves"]]
+script = ExtResource( 11 )
+wave_number = 6
+
+[node name="ElementSpawnerGroup" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "backslash"
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 3 )
+
+[node name="ElementSpawnerGroup2" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "slash"
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 3 )
+
+[node name="ElementSpawnerGroup3" parent="Wave6" instance=ExtResource( 6 )]
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 3 )
+
+[node name="ElementSpawnerGroup4" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -900, 300 )
+pattern = "rhombus"
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 3 )
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup5" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 900, -300 )
+pattern = "rhombus"
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 3 )
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup6" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -600, 0 )
+pattern = "backslash"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup7" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 600, 0 )
+pattern = "backslash"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup8" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 0, 300 )
+pattern = "vline"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup9" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 0, -300 )
+pattern = "vline"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup10" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -1050, -150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup11" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -1200, 0 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup20" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 1200, 0 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup13" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -450, -150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup14" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 450, 150 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup16" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 600, 300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup18" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -600, -300 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup19" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "farapart"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup21" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "farapart"
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 3 )
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup22" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "farapart"
+element_scene = ExtResource( 3 )
+
+[node name="ElementSpawnerGroup23" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 0, -600 )
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup24" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 0, 600 )
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup40" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -750, 450 )
+pattern = "zag"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup41" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -600, 600 )
+pattern = "zig"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup42" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 750, -450 )
+pattern = "zag"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup43" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 600, -600 )
+pattern = "zig"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup32" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 600, 750 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup33" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -600, -750 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup35" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -1050, -450 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup37" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 1050, 450 )
+pattern = "single"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup38" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 900, 600 )
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup39" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -900, -600 )
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup25" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 0, 300 )
+pattern = "farapart"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup26" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 0, -300 )
+pattern = "farapart"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup27" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -750, 150 )
+pattern = "zig"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup28" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 750, -150 )
+pattern = "zig"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup29" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( 900, 300 )
+pattern = "zag"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup30" parent="Wave6" instance=ExtResource( 6 )]
+position = Vector2( -900, -300 )
+pattern = "zag"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup31" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "gigarhombus"
+element_scene = ExtResource( 5 )
+
+[node name="ElementSpawnerGroup44" parent="Wave6" instance=ExtResource( 6 )]
+pattern = "plus"
+element_scene = ExtResource( 5 )
+guest_star_scene = ExtResource( 2 )

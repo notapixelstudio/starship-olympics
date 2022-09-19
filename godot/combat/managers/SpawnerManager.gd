@@ -1,75 +1,79 @@
 extends Node
 
-const COINGROUP = "coin"
+const WAVES_GROUP = "spawn_waves"
+const COLLECTABLE = "coin"
 const WAVE_DELAY = 3
 var to_next_wave = 2
 var current_wave = 0
 
+var waves : Dictionary = {}
+
 signal spawn_next
-var spawners: Array
 var spawners_per_wave : Dictionary
-var max_waves: int
 var how_many_spawners: int
 var current_spawners = 0
 
-export var min_elements_per_wave = 3
-var elements_spawned := 0
 onready var wave_timer = $Timer
-
-func initialize(_spawners, wait_time = 0, wave = 0):
-	current_wave = wave
-	spawners = _spawners
-	how_many_spawners = len(spawners)
-	spawners_per_wave = {}
-	var waves = 0
-	for s in spawners:
-		assert(s is CollectableSpawner)
-		if not s.wave in spawners_per_wave:
-			spawners_per_wave[s.wave] = [s]
-			waves += 1
-		else:
-			spawners_per_wave[s.wave].append(s)
-			
-	max_waves = waves
-	spawners_per_wave[current_wave].shuffle()
-	
-	wave_timer.start()
-	var next_spawner = spawners_per_wave[current_wave].pop_back()
-	elements_spawned += 1
-	global.arena.on_next_wave(next_spawner, wait_time)
-	
 signal done
-func intro():
-	global.arena.connect('wave_ready', self, 'on_wave_ready')
-	self.initialize(get_tree().get_nodes_in_group("spawner_group"))
-	yield(get_tree().create_timer(1), "timeout")
-	emit_signal('done')
+
+func _ready():
+	Events.connect("spawned", self, "spawned")
 	
-var wave_ready = false 
-func _process(delta):
-	if wave_ready and not get_tree().get_nodes_in_group(COINGROUP):
-		_handle_waves()
+	Events.connect("sth_collected", self, "_on_sth_collected")
+	# First spawner should already be in the field
+	# WARNING wait for variants to settle
+	yield(get_tree(), "idle_frame")
+	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
+	
+func get_spawner(spawners: Array) -> ElementSpawnerGroup:
+	var next_spawner = spawners.pop_back()
+	return next_spawner
+	
+func setup(wave_nodes, starting_wave = 0):
+	current_wave = starting_wave
+	spawners_per_wave = {}
+	for wave_node in wave_nodes:
+		var number = wave_node.wave_number
+		if number >= current_wave:
+			spawners_per_wave[number] = wave_node.get_spawners()
+			spawners_per_wave[number].shuffle()
 		
-func _handle_waves():
-	wave_ready = false
+		waves[number] = wave_node
 	
-	if not len(spawners_per_wave[current_wave]) or elements_spawned>=min_elements_per_wave:
+func start():
+	wave_timer.start()
+	
+func spawned(element_spawned: ElementSpawnerGroup):
+	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
+	
+	
+func _handle_waves():
+	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
+	var max_repeats_reached : bool = waves[current_wave].max_repeats != -1 and waves[current_wave].times_spawned >= waves[current_wave].max_repeats
+	if no_spawners_left or max_repeats_reached:
 		current_wave += 1
-		elements_spawned = 0
-	if current_wave >= max_waves:
-		initialize(spawners, WAVE_DELAY, current_wave - 1)
-		return
-	spawners_per_wave[current_wave].shuffle()
-	var next_spawner = (spawners_per_wave[current_wave] as Array).pop_back()
-	elements_spawned += 1
-	global.arena.on_next_wave(next_spawner, WAVE_DELAY)
+	var last_wave : bool = current_wave >= len(spawners_per_wave)
+	if last_wave:
+		current_wave -= 1 # keep spawning the last wave
+		setup(get_tree().get_nodes_in_group(WAVES_GROUP), current_wave)
+		
+	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
+	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY)
+	waves[current_wave].times_spawned += 1
+	self.reset_wave_timer()
 	
 func reset_wave_timer():
+	wave_timer.stop()
 	wave_timer.start()
 	
-func on_wave_ready():
-	wave_ready = true
-	reset_wave_timer()
-	
 func _on_Timer_timeout():
+	print("asking to spawn because timer of {timer_wait_time} has expired".format({"timer_wait_time": wave_timer.wait_time}))
 	_handle_waves()
+
+func _on_sth_collected(_collector, collectee):
+	# if there are no collectables to be collected anymore. We can move on with spawning
+	var all = len(get_tree().get_nodes_in_group(COLLECTABLE))
+	if all == 1:
+		print("asking to spawn because there are no collectable anymore")
+		_handle_waves()
+	

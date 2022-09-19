@@ -10,6 +10,16 @@ const isometric_offset = Vector2(0,32)
 
 var enable_camera := true 
 
+const SUIT_COLORS = {
+	'diamond': Color('#0080ff'),
+	'crown': Color('#ff3333'),
+	'block': Color('#ffde5f'),
+	'heart': Color('#ffffff'),
+	'snake': Color('#00fff3'),
+	'arrow': Color('#53ff53'),
+	'circle': Color('#d849f5')
+}
+
 var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 
@@ -128,7 +138,7 @@ func _set_unlock_mode(value: String):
 
 func _set_language(value:String):
 	language = value
-	TranslationServer.set_locale(available_languages[language])
+	TranslationServer.set_locale(available_languages.get(language, "en"))
 
 func _get_language():
 	return language
@@ -439,7 +449,9 @@ func get_state():
 		enable_camera=enable_camera,
 		flood=flood,
 		time_scale=time_scale,
-		laser=laser
+		laser=laser,
+		starting_deck=starting_deck,
+		sessions_played=sessions_played
 	}
 	
 
@@ -560,6 +572,8 @@ var session: TheSession = null
 var arena
 
 var game_number := 0
+var session_number := 0
+var sessions_played := 0 # Total number of sessions. Persistence
 var session_number_of_game := 0
 var match_number_of_game := 0
 
@@ -646,11 +660,11 @@ func is_before_first_match_of_the_game() -> bool:
 const SPECIES_PATH = "res://selection/characters"
 
 func get_resources(base_path: String) -> Dictionary:
-	var ret = {}
+	var ret := {}
 	var resources = global.dir_contents(base_path, "", ".tres")
 	for filename in resources:
 		var this_res = load(base_path.plus_file(filename))
-		var res_id = this_res.id
+		var res_id = this_res.get_id()
 		ret[res_id] = this_res
 	return ret
 
@@ -672,3 +686,4 @@ func get_ordered_species() -> Array:
 func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
+var starting_deck: String = "classic"

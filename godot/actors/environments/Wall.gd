@@ -203,7 +203,7 @@ func refresh():
 		$InnerPolygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
 	
-	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
+	$Polygon2D.visible = not hollow and not type == TYPE.ghost# and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
 	$line.visible = not hide_line
 	$lineBelow.visible = not hide_line_below
@@ -252,8 +252,10 @@ func refresh():
 		$lineBelow.self_modulate = Color(1,1,1,1)
 		$lineBelow.modulate = Color(0.2,0.4,1,0.2)
 	elif type == TYPE.decoration:
-		$line.modulate = Color(0.8,0.8,1.09,1)
-		$lineBelow.modulate = Color(0.8,0.8,1.09,1)
+		$Polygon2D.modulate = solid_line_color
+		$InnerPolygon2D.modulate = solid_line_color
+		$line.modulate = solid_line_color
+		$lineBelow.modulate = solid_line_color
 	elif type == TYPE.glass:
 		color = Color(0.4,0.7,1.2,1)
 		$Polygon2D.modulate = color

@@ -40,5 +40,5 @@ func _ready():
 	refresh()
 	
 func refresh():
-	sprite.play('full' if won else 'empty')
-	sprite.visible = won
+	$"%Sprite".play('full' if won else 'empty')
+	$"%Sprite".visible = won

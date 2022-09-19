@@ -12,7 +12,7 @@ func _on_ForwardBullet_body_entered(body):
 		dissolve()
 		queue_free()
 		
-	if body is Ship:
+	if body.has_method('damage'):
 		body.damage(self, ship)
 
 func set_ship(v : Ship):
@@ -24,3 +24,6 @@ func dissolve() -> void:
 	pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()

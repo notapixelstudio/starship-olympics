@@ -25,11 +25,18 @@ func refresh():
 	$LineLeft.position.x = -62 - label_width/2 - 35
 	$LineRight.position.x = 998 + label_width/2 + 35
 	
-	$Winter.visible = draft_card and draft_card.is_winter()
-	$WinterShadow.visible = draft_card and draft_card.is_winter()
-	
-	$Perfectionist.visible = draft_card and draft_card.is_perfectionist()
-	$PerfectionistShadow.visible = draft_card and draft_card.is_perfectionist()
+	if draft_card:
+		var suit = draft_card.get_suit_top()
+		if suit: # TBD double suit
+			$Label.modulate = global.SUIT_COLORS[suit]
+			$LineLeft.modulate = global.SUIT_COLORS[suit]
+			$LineRight.modulate = global.SUIT_COLORS[suit]
+		
+		$Winter.visible = draft_card.is_winter()
+		$WinterShadow.visible = draft_card.is_winter()
+		
+		$Perfectionist.visible = draft_card.is_perfectionist()
+		$PerfectionistShadow.visible = draft_card.is_perfectionist()
 	
 func set_gamemode(value: GameMode):
 	gamemode = value
@@ -43,13 +50,13 @@ signal letsfight
 
 func appears():
 	if global.is_game_running():
-		array_players = global.the_game.get_players()
+		array_players = global.the_game.get_human_players()
 	for p_node in $PlayersReady.get_children():
 		p_node.hide()
 	for player_info in array_players:
 		var player_ready = $PlayersReady.get_node((player_info as InfoPlayer).id)
-		$PlayersReady.get_node((player_info as InfoPlayer).id).visible= true
-		$PlayersReady.get_node((player_info as InfoPlayer).id).set_player_info((player_info as InfoPlayer))
+		player_ready.visible = true
+		player_ready.set_player_info((player_info as InfoPlayer))
 	for p_node in $PlayersReady.get_children():
 		# this is just because if not, we will receive multiple signals from player_node that are 
 		# not playing. TODO: might need some love
@@ -62,7 +69,12 @@ func appears():
 	yield($Description, "done")
 	animator.play("describeme")
 	
-func disappears():
+	if len(array_players) == 0:
+		# no human players, wait a bit then go
+		yield(get_tree().create_timer(1.0), "timeout")
+		disappear()
+	
+func disappear():
 	animator.play("getout")
 	$Continue.queue_free()
 	yield(animator, "animation_finished")
@@ -71,7 +83,6 @@ func disappears():
 
 func demomode(demo = false):
 	$Continue.visible = not demo
-
 
 func _on_Description_done():
 	set_process_input(true)
@@ -83,6 +94,4 @@ func a_player_is_ready(player_info: InfoPlayer):
 	for p_info in array_players:
 		if not p_info in players_ready:
 			return false
-	disappears()
-
-	
+	disappear()

@@ -18,6 +18,9 @@ export (Texture) var character_beaten
 export var color : Color
 export var color_2 : Color
 
+func get_id():
+	return id
+	
 func get_monogram():
 	return name.left(1).to_upper()
 	

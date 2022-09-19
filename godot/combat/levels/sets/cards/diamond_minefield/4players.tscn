@@ -19,7 +19,7 @@ game_mode = ExtResource( 1 )
 
 [node name="MinefieldManager" parent="Managers" index="0" instance=ExtResource( 5 )]
 
-[node name="ConquestModeManager" parent="Managers" index="11"]
+[node name="ConquestModeManager" parent="Managers" index="12"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -346,11 +346,9 @@ rotation = 0.0
 controls = "joy4"
 species = ExtResource( 17 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
-enabled = false
+disabled_override = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]

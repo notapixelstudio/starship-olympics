@@ -21,6 +21,8 @@ func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 				ship.apply_powerup(other)
 				
 			emit_signal('collected', ship, entity.get_host())
+			Events.emit_signal("sth_collected", ship, entity.get_host())
+			
 			ship.emit_signal('collect', other)
 			if traits.has_trait(other, 'Collectable'):
 				other.collect(ship)

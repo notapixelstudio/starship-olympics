@@ -112,10 +112,10 @@ gamemode = ExtResource( 1 )
 modulate = Color( 0, 0, 0, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.000460757
-margin_top = 12.0
-margin_right = -0.000488281
-margin_bottom = 12.0
+margin_left = 0.000457764
+margin_top = -12.0
+margin_right = 0.000488281
+margin_bottom = -12.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "MINIGAME"
@@ -127,13 +127,17 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 0.000915527
+margin_top = -24.0
+margin_right = 0.000976562
+margin_bottom = -24.0
 size_flags_horizontal = 3
-custom_colors/font_color_shadow = Color( 1, 0.533333, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.247059, 0.247059, 0.247059, 1 )
 custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 3
+custom_constants/shadow_offset_y = 4
 custom_fonts/font = SubResource( 2 )
 text = "MINIGAME"
 align = 1
@@ -144,8 +148,10 @@ uppercase = true
 modulate = Color( 0, 0, 0, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -79.0
-margin_bottom = -79.0
+margin_left = 0.000915527
+margin_top = -103.0
+margin_right = 0.000976562
+margin_bottom = -103.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 9 )
 text = "WINTER"
@@ -157,10 +163,10 @@ uppercase = true
 modulate = Color( 0.615686, 0.921569, 1, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.004
-margin_top = -91.0
-margin_right = 0.00402832
-margin_bottom = -91.0
+margin_left = 0.00491333
+margin_top = -115.0
+margin_right = 0.00488281
+margin_bottom = -115.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0, 0.533333, 0.964706, 1 )
 custom_constants/shadow_offset_x = 0
@@ -175,10 +181,10 @@ uppercase = true
 modulate = Color( 0, 0, 0, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.00291135
-margin_top = 89.0
-margin_right = -0.00292969
-margin_bottom = 89.0
+margin_left = -0.00198364
+margin_top = 65.0
+margin_right = -0.00195312
+margin_bottom = 65.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -193,10 +199,10 @@ uppercase = true
 modulate = Color( 1, 0.25098, 0.831373, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.00260417
-margin_top = 81.0
-margin_right = -0.00256348
-margin_bottom = 81.0
+margin_left = -0.00167847
+margin_top = 57.0
+margin_right = -0.00170898
+margin_bottom = 57.0
 size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0.670588, 0, 0.345098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -247,16 +253,16 @@ one_shot = true
 autostart = true
 
 [node name="Description" parent="." instance=ExtResource( 6 )]
-margin_top = 84.0
-margin_bottom = 227.0
+margin_top = 76.0
+margin_bottom = 219.0
 custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 12 )
 
 [node name="LineLeft" type="Polygon2D" parent="."]
-position = Vector2( -61.8767, 12.5112 )
-color = Color( 1, 0.870588, 0.372549, 1 )
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
+position = Vector2( -61.8758, -11.4888 )
 polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Shadow" type="Polygon2D" parent="LineLeft"]
@@ -272,8 +278,8 @@ default_color = Color( 0, 0, 0, 1 )
 joint_mode = 2
 
 [node name="LineRight" type="Polygon2D" parent="."]
-position = Vector2( 995.123, 12.511 )
-color = Color( 1, 0.870588, 0.372549, 1 )
+self_modulate = Color( 1.12, 1.12, 1.12, 1 )
+position = Vector2( 995.124, -11.489 )
 polygon = PoolVector2Array( 703, 288, 698, 309, -358, 309, -353, 288 )
 
 [node name="Shadow" type="Polygon2D" parent="LineRight"]

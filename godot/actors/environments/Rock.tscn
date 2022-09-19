@@ -51,6 +51,11 @@ animations = [ {
 "name": "empty",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "full",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 7 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": false,
 "name": "outline",
@@ -60,11 +65,6 @@ animations = [ {
 "loop": true,
 "name": "shine",
 "speed": 60.0
-}, {
-"frames": [ ExtResource( 31 ) ],
-"loop": true,
-"name": "full",
-"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=3]
@@ -199,10 +199,11 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 45
+frame = 18
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.454902 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 33 )
@@ -320,6 +321,8 @@ bus = "SFX"
 script = ExtResource( 36 )
 streams = [ ExtResource( 37 ) ]
 random_strategy = 2
+volume_min = 0
+volume_max = 0
 randomize_pitch = true
 pitch_min = 0.5
 pitch_max = 2.0
