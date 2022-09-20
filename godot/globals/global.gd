@@ -86,23 +86,25 @@ func _set_full_screen(value: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	
-onready var graphics_quality: String = "maximum" setget _set_graphics_quality
-var array_graphics_quality: Array = ["minimum", "medium", "maximum"]
+onready var graphics_quality: String = "HD" setget _set_graphics_quality
+var array_graphics_quality: Array = ["minimum", "low", "medium", "maximum", "HD"]
 
 func _set_graphics_quality(value: String):
 	# 16:9 aspect ratio resolutions: 1024×576, 1152×648, 1280×720, 1366×768, 1600×900, 1920×1080, 2560×1440 and 3840×2160.
 	graphics_quality = value
 	match graphics_quality:
-		
 		"minimum":
+			set_stretch(Vector2(640,288), 0.5)
+		"low":
 			set_stretch(Vector2(1024,576), 0.8)
 		"medium":
 			set_stretch(Vector2(1152,648), 0.9)
 		"maximum":
 			set_stretch(Vector2(1280,720), 1)
-			
-func set_stretch(resolution:Vector2, stretch:float):
-	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT,  SceneTree.STRETCH_ASPECT_KEEP, resolution, stretch)
+		"HD":
+			set_stretch(Vector2(1280,720), 1, SceneTree.STRETCH_MODE_2D)
+func set_stretch(resolution:Vector2, stretch:float, stretch_mode := SceneTree.STRETCH_MODE_VIEWPORT):
+	get_tree().set_screen_stretch(stretch_mode,  SceneTree.STRETCH_ASPECT_KEEP, resolution, stretch)
 	
 func get_graphics_scale() -> Vector2:
 	var viewport_size := get_tree().get_root().get_size()

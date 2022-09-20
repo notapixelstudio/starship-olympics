@@ -11,7 +11,7 @@ onready var line3 = $CanvasLayer2/Line3
 export var main_screen : PackedScene
 
 func _ready():
-	$CanvasLayer2.scale = global.get_graphics_scale()
+	#$CanvasLayer2.scale = global.get_graphics_scale()
 	global.start_execution()
 	
 	line1.bbcode_text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")

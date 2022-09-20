@@ -65,13 +65,6 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
 }
 
-[sub_resource type="GDScript" id=7]
-script/source = "extends CanvasLayer
-
-func _ready():
-	scale = global.get_graphics_scale()
-"
-
 [sub_resource type="DynamicFont" id=6]
 size = 512
 font_data = ExtResource( 35 )
