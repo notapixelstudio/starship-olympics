@@ -167,9 +167,6 @@ func _ready():
 		camera.enabled = global.enable_camera
 		Soundtrack.fade_out()
 		
-	# Pick controller label
-	$CanvasLayer/DemoLabel.visible = demo
-	
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
