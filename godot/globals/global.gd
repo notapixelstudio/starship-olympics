@@ -93,8 +93,6 @@ func _set_graphics_quality(value: String):
 	# 16:9 aspect ratio resolutions: 1024×576, 1152×648, 1280×720, 1366×768, 1600×900, 1920×1080, 2560×1440 and 3840×2160.
 	graphics_quality = value
 	match graphics_quality:
-		"minimum":
-			set_stretch(Vector2(640,288), 0.5)
 		"low":
 			set_stretch(Vector2(1024,576), 0.8)
 		"medium":
