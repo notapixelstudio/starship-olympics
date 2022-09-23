@@ -1,17 +1,16 @@
 extends Control
 
-onready var disclaimer = $CanvasLayer2/Disclaimer
-onready var anim = $CanvasLayer2/AnimationPlayer
+onready var disclaimer = $Disclaimer
+onready var anim = $AnimationPlayer
 
-onready var line1 = $CanvasLayer2/Line1
-onready var line2 = $CanvasLayer2/Line2
-onready var line3 = $CanvasLayer2/Line3
+onready var line1 = $Line1
+onready var line2 = $Line2
+onready var line3 = $Line3
 
 
 export var main_screen : PackedScene
 
 func _ready():
-	#$CanvasLayer2.scale = global.get_graphics_scale()
 	global.start_execution()
 	
 	line1.bbcode_text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")
