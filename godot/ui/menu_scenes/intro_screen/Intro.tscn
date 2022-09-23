@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/menu_scenes/intro_screen/Intro.gd" type="Script" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/audio/UI_effects/426759__magmi-soundtracks__scary-tension-buildup-02.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/soundtracks/lewislancaster-0013shed.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 38
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 54
@@ -91,42 +95,47 @@ main_screen = ExtResource( 2 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
-margin_bottom = -1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Line1" type="RichTextLabel" parent="."]
-margin_top = 195.0
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 196.0
 margin_right = 1277.0
-margin_bottom = 293.0
+margin_bottom = 294.0
 custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]MILLENNIA OF INTERGALACTIC WARS[/center]"
 text = "MILLENNIA OF INTERGALACTIC WARS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Line2" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 292.0
+margin_top = 293.0
 margin_right = 1277.0
-margin_bottom = 390.0
+margin_bottom = 391.0
 custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]FINALLY CAME TO AN END[/center]"
 text = "FINALLY CAME TO AN END"
 
 [node name="Line3" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 379.0
+margin_top = 380.0
 margin_right = 1277.0
-margin_bottom = 477.0
+margin_bottom = 478.0
 custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
 custom_fonts/italics_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]"
 text = "WHEN THE GAMES WERE CREATED"
@@ -135,11 +144,8 @@ text = "WHEN THE GAMES WERE CREATED"
 anims/Appear = SubResource( 3 )
 
 [node name="Disclaimer" parent="." instance=ExtResource( 4 )]
-margin_top = -1.0
-margin_bottom = -1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 0, -1 )
 stream = ExtResource( 5 )
 bus = "Music"
 

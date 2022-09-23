@@ -227,7 +227,7 @@ zoom = Vector2( 6, 6 )
 
 [node name="Camera" parent="." index="8"]
 current = false
-zoom = Vector2( 8.96831e+33, 8.96831e+33 )
+zoom = Vector2( 5.60519e+34, 5.60519e+34 )
 smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0
@@ -236,11 +236,18 @@ disabled_override = true
 
 [node name="CanvasLayerTop" type="CanvasLayer" parent="." index="10"]
 layer = 2
-script = ExtResource( 23 )
 
-[node name="PanelContainer" type="Node2D" parent="CanvasLayerTop" index="0"]
-position = Vector2( 0, 500 )
+[node name="PanelContainer" type="HBoxContainer" parent="CanvasLayerTop" index="0"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -200.0
+margin_bottom = -20.0
+custom_constants/separation = 20
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Control2" type="Control" parent="CanvasLayerTop/PanelContainer" index="0"]
 margin_right = 10.0
@@ -259,7 +266,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 340.0
 margin_right = 630.0
-margin_bottom = 194.0
+margin_bottom = 180.0
 
 [node name="p3" parent="CanvasLayerTop/PanelContainer" index="3" instance=ExtResource( 11 )]
 anchor_right = 0.0
@@ -278,7 +285,7 @@ margin_bottom = 180.0
 [node name="Control" type="Control" parent="CanvasLayerTop/PanelContainer" index="5"]
 margin_left = 1270.0
 margin_right = 1280.0
-margin_bottom = 194.0
+margin_bottom = 180.0
 size_flags_horizontal = 3
 
 [node name="Tween" type="Tween" parent="CanvasLayerTop/PanelContainer" index="6"]
