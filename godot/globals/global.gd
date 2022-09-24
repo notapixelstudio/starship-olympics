@@ -435,7 +435,6 @@ func get_state():
 		music_volume=music_volume,
 		master_volume=master_volume,
 		sfx_volume=sfx_volume,
-		demo=demo,
 		full_screen=full_screen,
 		graphics_quality=graphics_quality,
 		rumbling=rumbling,

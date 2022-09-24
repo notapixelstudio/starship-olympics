@@ -24,6 +24,11 @@ func initialize():
 	"""
 	
 	yield(get_tree().create_timer(1), "timeout")
+	
+	if global.demo:
+		get_tree().paused = false
+		Events.emit_signal("nav_to_character_selection")
+		return 
 	buttons.visible = true
 	
 	#TODO: what do we do in case of DRAW of session? Will ignore it for now

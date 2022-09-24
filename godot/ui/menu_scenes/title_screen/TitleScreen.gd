@@ -37,7 +37,6 @@ func _on_Fight_pressed():
 
 func _on_QuitButton_pressed():
 	global.end_execution()
-	Button
 
 func disable_buttons():
 	buttons.visible = false

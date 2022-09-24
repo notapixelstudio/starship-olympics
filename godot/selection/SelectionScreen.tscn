@@ -304,9 +304,6 @@ width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 30.0
-
 [node name="SmokeScreen" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -386,6 +383,15 @@ uppercase = true
 playback_speed = 2.0
 anims/close = SubResource( 8 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="Label" type="Label" parent="."]
+margin_left = 1140.0
+margin_top = 656.0
+margin_right = 1257.0
+margin_bottom = 670.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+
 [connection signal="deactivated" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_deactivated"]
 [connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

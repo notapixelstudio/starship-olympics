@@ -40,6 +40,7 @@ func _ready():
 	# So all the options will be saved
 	persistance.save_game()
 	
+	
 func _exit_tree():
 	global.local_multiplayer = null
 
@@ -67,7 +68,10 @@ func start_fight(selected_players: Array, fight_mode: String):
 		assert(player is InfoPlayer)
 		players[player.id] = player
 		i += 1
-	
+		
+	if global.demo:
+		add_cpu([2, 3, 4][randi()%3])
+		
 	# if single player, add a CPU
 	var num_CPUs = 0 if len(players) > 1 else 1
 	add_cpu(num_CPUs)
@@ -128,6 +132,7 @@ func continue_after_session_over() -> void:
 			global.new_game(players.values())
 		confirm.queue_free()
 	navigate_to_map()
+	
 func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
 	This function given a card and its minigame, will start a match
@@ -173,7 +178,6 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 		if child is Arena:
 			child.queue_free()
 			yield(child, 'tree_exited')
-	combat.demo = demo
 	add_child(combat)
 	
 func safe_destroy_combat():
