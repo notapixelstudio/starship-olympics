@@ -13,10 +13,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -389.0
-margin_top = -278.5
+margin_left = -391.0
+margin_top = -286.5
 margin_right = 389.0
-margin_bottom = 278.5
+margin_bottom = 270.5
 theme = ExtResource( 7 )
 script = ExtResource( 1 )
 
@@ -32,7 +32,7 @@ __meta__ = {
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 778.0
-margin_bottom = 482.0
+margin_bottom = 586.0
 
 [node name="Language" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -94,28 +94,29 @@ element_path = "unlock_mode"
 label_description = "Unlock mode"
 elem_type = 2
 
-[node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+[node name="Resolution" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 margin_top = 432.0
 margin_right = 778.0
 margin_bottom = 482.0
+element_path = "graphics_quality"
+label_description = "Resolution"
+elem_type = 2
+
+[node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 486.0
+margin_right = 778.0
+margin_bottom = 536.0
 element_path = "time_scale"
 label_description = "Game Speed"
 elem_type = 2
 suffix = "X"
 
-[node name="Back" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.08618
-anchor_right = 0.5
-anchor_bottom = 1.08618
-margin_left = -129.5
-margin_top = -65.0
-margin_right = 110.5
-margin_bottom = -7.0
+[node name="Back" type="Button" parent="Content/UIButtonsContainer"]
+margin_top = 540.0
+margin_right = 778.0
+margin_bottom = 586.0
 text = "BACK"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Content/UIButtonsContainer/Back" to="." method="_on_Back_pressed"]

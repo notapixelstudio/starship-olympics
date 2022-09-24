@@ -75,7 +75,7 @@ var available_languages = {
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
 var full_screen = true setget _set_full_screen
-
+	
 func _set_full_screen(value: bool):
 	full_screen = value
 	OS.window_fullscreen = full_screen
@@ -84,7 +84,31 @@ func _set_full_screen(value: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	
+onready var graphics_quality: String = "HD" setget _set_graphics_quality
+var array_graphics_quality: Array = ["minimum", "low", "medium", "maximum", "HD"]
 
+func _set_graphics_quality(value: String):
+	# 16:9 aspect ratio resolutions: 1024×576, 1152×648, 1280×720, 1366×768, 1600×900, 1920×1080, 2560×1440 and 3840×2160.
+	graphics_quality = value
+	match graphics_quality:
+		"low":
+			set_stretch(Vector2(1024,576), 0.8)
+		"medium":
+			set_stretch(Vector2(1152,648), 0.9)
+		"maximum":
+			set_stretch(Vector2(1280,720), 1)
+		"HD":
+			set_stretch(Vector2(1280,720), 1, SceneTree.STRETCH_MODE_2D)
+func set_stretch(resolution:Vector2, stretch:float, stretch_mode := SceneTree.STRETCH_MODE_VIEWPORT):
+	get_tree().set_screen_stretch(stretch_mode,  SceneTree.STRETCH_ASPECT_KEEP, resolution, stretch)
+	
+func get_graphics_scale() -> Vector2:
+	var viewport_size := get_tree().get_root().get_size()
+	var world_size := Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
+	return viewport_size/world_size
+	
 var unlock_mode = "custom" setget _set_unlock_mode
 var array_unlock_mode = ["custom", "demo", "core", "unlocked"]
 
@@ -413,6 +437,7 @@ func get_state():
 		sfx_volume=sfx_volume,
 		demo=demo,
 		full_screen=full_screen,
+		graphics_quality=graphics_quality,
 		rumbling=rumbling,
 		glow_enable=glow_enable,
 		enable_camera=enable_camera,
