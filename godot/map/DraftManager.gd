@@ -8,7 +8,7 @@ export var hand_position_node_path : NodePath
 export var draft_card_scene : PackedScene
 
 var this_arena
-var hand_node : Node
+var hand_node : HandNode
 var hand_position : Node
 var pass_node : Node
 var message_node : Typewriter
@@ -174,10 +174,11 @@ func pick_next_card():
 	yield(self, "card_chosen")
 	Events.emit_signal("minigame_selected", picked_card)
 
-func add_card(card, selected=false):
+func add_card(card: DraftCard, selected=false):
 	# will put the card in first empty position
-	var draft_card = draft_card_scene.instance()
+	var draft_card:DraftCardGraphicNode = draft_card_scene.instance()
 	draft_card.set_content_card(card)
+	hand_node.add_card(draft_card)
 	for pos_card in hand_node.get_children():
 		if pos_card.get_child_count() == 0:
 			pos_card.add_child(draft_card)

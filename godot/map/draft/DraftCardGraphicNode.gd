@@ -85,3 +85,10 @@ func tap(author):
 	if author is Ship:
 		Events.emit_signal("card_tapped", author, self)
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))
+
+func gracefully_go_to(point:Vector2):
+	$"%Tween".interpolate_property(self, 'position',
+		position, point, 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	$"%Tween".start()
+			

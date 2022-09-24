@@ -111,20 +111,6 @@ texture = ExtResource( 3 )
 [node name="Hand" type="Node2D" parent="Battlefield/Middleground" index="0"]
 script = ExtResource( 7 )
 
-[node name="Card1" type="Position2D" parent="Battlefield/Middleground/Hand" index="0"]
-position = Vector2( -1400, 0 )
-
-[node name="Card2" type="Position2D" parent="Battlefield/Middleground/Hand" index="1"]
-position = Vector2( -700, 0 )
-
-[node name="Card3" type="Position2D" parent="Battlefield/Middleground/Hand" index="2"]
-
-[node name="Card4" type="Position2D" parent="Battlefield/Middleground/Hand" index="3"]
-position = Vector2( 700, 0 )
-
-[node name="Card5" type="Position2D" parent="Battlefield/Middleground/Hand" index="4"]
-position = Vector2( 1400, 0 )
-
 [node name="PASS" type="Area2D" parent="Battlefield/Middleground" index="1"]
 visible = false
 position = Vector2( 1400, 800 )
