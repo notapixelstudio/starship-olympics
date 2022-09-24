@@ -10,10 +10,6 @@ var deck : Deck
 func _init():
 	uuid = UUID.v4()
 	
-	# scripted first-time execeution
-	# do not shuffle the deck if this is the first game of this execution
-	if global.game_number > 1 and deck:
-		deck.shuffle()
 	
 func get_uuid() -> String:
 	return uuid
@@ -81,5 +77,8 @@ func get_deck() -> Deck:
 	return deck
 	
 func set_deck(v : Deck) -> void:
+	# scripted first-time execeution
+	# do not shuffle the deck if this is the first game of this execution
 	deck = v
-	
+	if global.game_number > 1 or global.demo:
+		deck.shuffle()

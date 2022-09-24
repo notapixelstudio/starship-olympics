@@ -57,11 +57,10 @@ func post_ready():
 		child.uid = i
 	var joypads = Input.get_connected_joypads()
 	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
-	if global.demo:
-		actual_players = 0
 	var controls = assign_controls(actual_players)
 	for control in controls:
 		assert(add_controls(control))
+		
 func add_controls(new_controls : String) -> bool:
 	"""
 	Add a controller (keyboard or joypad) and move other to the right
@@ -190,13 +189,17 @@ func selected(player: PlayerSelection):
 		#global.shake_node(fight_node, $Tween)
 		fight_node.wiggle()
 		fight_node.visible = true
+	
+	$Timer.stop()
+	$Label.text = ""
 
 # this is in order to avoid to leave the screen if there is just one player
 # TODO: it should be with signals
 var deselected = false
 
 func deselected(species: Species):
-	restart_timer()
+	if not len(get_players()):
+		restart_timer()
 	var current_index = ordered_species.find(species)
 	if selected_index.find(current_index) >= 0:
 		selected_index.remove(selected_index.find(current_index))
@@ -215,8 +218,7 @@ func _unhandled_input(event):
 var fight_mode = "vs Mode"
 
 func _process(delta):
-	# TODO: what is this? 
-	
+
 	var teams = 0
 	var at_least_one_character_in_team_selected = false
 	var at_least_one_solo_selected = false
@@ -253,7 +255,11 @@ func _process(delta):
 			# fight_mode = "co-op"
 			pass
 	fight_node.set_label('play %s' % fight_mode)
-
+	if $Timer.time_left < 5 and not $Timer.is_stopped():
+		$Label.text = "DEMO MODE IN {time_left}".format({"time_left":int($Timer.time_left)})
+	else:
+		$Label.text = ""
+		
 func deselect():
 	for child in container.get_children():
 		if child.disabled:
@@ -261,11 +267,13 @@ func deselect():
 		child.deselect()
 
 func restart_timer():
-	if global.demo:
-		$Timer.start()
-
+	$Timer.start()
+	global.demo = false
+	
 func _on_Timer_timeout():
-	emit_signal("start_demo")
+	global.demo = true
+	emit_signal("fight", self.get_players(), fight_mode)
+	
 
 func _on_ReadyToFight_letsfight():
 	var players = get_players()
