@@ -233,6 +233,7 @@ script = ExtResource( 6 )
 [node name="Owned" parent="." instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2( 0, -30 )
 shape = SubResource( 1 )
 
@@ -347,6 +348,9 @@ anims/Stand = SubResource( 12 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
+
+[node name="Tween" type="Tween" parent="."]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="." to="." method="_on_Card_body_entered"]
 [connection signal="body_exited" from="ExitArea" to="." method="_on_ExitArea_body_exited"]

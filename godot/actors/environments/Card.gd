@@ -30,6 +30,9 @@ var players := []
 var ship
 var character_player
 
+func get_size() -> Vector2:
+	return $"%CollisionShape2D".shape.extents
+	
 func set_shadow_offset(v : int) -> void:
 	shadow_offset = v
 	$Shadow.position.y = shadow_offset
