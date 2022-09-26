@@ -86,9 +86,14 @@ func tap(author):
 		Events.emit_signal("card_tapped", author, self)
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))
 
-func gracefully_go_to(point:Vector2):
-	$"%Tween".interpolate_property(self, 'position',
-		position, point, 0.5,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	$"%Tween".start()
-			
+func gracefully_go_to(point: Vector2, angle: float = 0.0, duration: float = 0.5, easing = Tween.EASE_IN_OUT) -> void:
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(easing)
+	tween.tween_property(self, 'global_position', point, duration)
+	tween.parallel().tween_property(self, 'global_rotation', angle, duration)
+
+func gracefully_zoom_in():
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, 'global_position', Vector2(0, 300), 0.8)
+	tween.parallel().tween_property(self, 'global_rotation', 0, 0.8)
+	tween.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(self, 'scale', Vector2(8, 8), 2.5)
