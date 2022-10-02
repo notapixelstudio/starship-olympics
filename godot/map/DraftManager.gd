@@ -225,7 +225,7 @@ func animate_selection(picked_card: DraftCard):
 	yield(get_tree().create_timer(wait_time), "timeout")
 	chosen_card.chosen = false
 	chosen_card.gracefully_zoom_in()
-	yield(get_tree().create_timer(1.7), "timeout")
+	yield(chosen_card, "zoomed_in")
 	# TODO: danger of lock
 	emit_signal("card_chosen")
 	yield(get_tree().create_timer(2), "timeout")
