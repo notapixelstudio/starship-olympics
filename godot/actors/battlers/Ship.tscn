@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=35]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
+[ext_resource path="res://actors/battlers/Ammo.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
 [ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=39]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=40]
@@ -149,6 +150,9 @@ order = 1
 [node name="Collector" parent="." instance=ExtResource( 24 )]
 
 [node name="Tracked" parent="." instance=ExtResource( 36 )]
+
+[node name="Ammo" parent="." instance=ExtResource( 37 )]
+unique_name_in_owner = true
 
 [node name="IceAutoTrail" parent="." instance=ExtResource( 29 )]
 z_index = -16

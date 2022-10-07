@@ -7,7 +7,6 @@ onready var player_id = $Wrapper/Scaled/Colored/PlayerID
 onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
 onready var target_entity = ECM.E(target)
 onready var point_score = $Wrapper/Scaled/Colored/PointsScored
-onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
 onready var minisun = $Wrapper/Scaled/Colored/Minisun
 onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
 onready var minisun_outline = $Wrapper/Scaled/Minisun

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://actors/battlers/Ammo.gd" type="Script" id=1]
+
+[node name="Ammo" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ReplenishTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="ReplenishTimer" to="." method="_on_ReplenishTimer_timeout"]

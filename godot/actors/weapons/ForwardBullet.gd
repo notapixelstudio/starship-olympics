@@ -18,7 +18,7 @@ func _on_ForwardBullet_body_entered(body):
 func set_ship(v : Ship):
 	ship = v
 	$Halo.modulate = ship.get_color()
-
+	
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
 	pfft.set_color(ship.get_color())
