@@ -33,8 +33,8 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
-width = 3300
-height = 3300
+width = 5000
+height = 2600
 bevel = 400
 bevel_nw = 400
 bevel_ne = 400
@@ -47,40 +47,40 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="Marble2" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
-position = Vector2( -750, 750 )
+position = Vector2( -700, 700 )
 
 [node name="Marble3" parent="Battlefield/Foreground" index="1" instance=ExtResource( 9 )]
-position = Vector2( 750, -750 )
+position = Vector2( 700, -700 )
 
 [node name="Marble4" parent="Battlefield/Foreground" index="2" instance=ExtResource( 9 )]
-position = Vector2( -750, -750 )
+position = Vector2( -700, -700 )
 
 [node name="Marble5" parent="Battlefield/Foreground" index="3" instance=ExtResource( 9 )]
-position = Vector2( 750, 750 )
+position = Vector2( 700, 700 )
 
 [node name="ArkaBall" parent="Battlefield/Foreground" index="4" instance=ExtResource( 3 )]
 impulse = 0.0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
-position = Vector2( -1300, 0 )
+position = Vector2( -900, 0 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 2 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
-position = Vector2( 1300, 0 )
+position = Vector2( 900, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 7 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 4 )]
-position = Vector2( 0, 1300 )
+position = Vector2( 0, 900 )
 rotation = -1.5708
 controls = "kb2"
 species = ExtResource( 12 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 4 )]
-position = Vector2( 0, -1300 )
+position = Vector2( 0, -900 )
 rotation = 1.5708
 controls = "kb2"
 species = ExtResource( 11 )
@@ -88,5 +88,6 @@ species = ExtResource( 11 )
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
+disabled_override = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
