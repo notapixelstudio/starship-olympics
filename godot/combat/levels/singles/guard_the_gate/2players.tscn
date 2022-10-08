@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
@@ -14,18 +13,20 @@
 [ext_resource path="res://combat/styles/palace.tres" type="Resource" id=12]
 [ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=13]
 [ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=14]
+[ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=16]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=22]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=24]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 7 )
-id = "warden"
+id = "guard_the_gate"
 is_mutator = false
-name = "Warden"
+name = "Guard the Gate"
 icon = ExtResource( 14 )
 logo = ExtResource( 13 )
 arena_style = ExtResource( 12 )
-description = "kill the other players"
+description = "guard: touch the others - others: pass the gate"
 tagline_pro = "A kill for the honour, a kill for the species"
 tagline_cons = "A self kill, apart from being embarassing, make you lose point"
 max_timeout = 60
@@ -70,39 +71,48 @@ enabled = true
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 24 )
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+[node name="NoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource( 15 )]
+position = Vector2( -1350, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoHolderZone" index="11"]
+script = ExtResource( 16 )
+width = 800
+height = 1000
+bevel_nw = 200
+bevel_sw = 200
+
+[node name="NoHolderZone2" parent="Battlefield/Background" index="2" instance=ExtResource( 15 )]
+position = Vector2( 1350, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoHolderZone2" index="11"]
+script = ExtResource( 16 )
+width = 800
+height = 1000
+bevel_ne = 200
+bevel_se = 200
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
 hollow = true
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="32"]
+script = ExtResource( 16 )
 width = 3500
 height = 1000
-radius = 250
-precision = 100.0
+bevel = 200
+bevel_nw = 200
+bevel_ne = 200
+bevel_sw = 200
+bevel_se = 200
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 texture = ExtResource( 9 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background" index="4"]
-position = Vector2( -205.882, 0 )
-scale = Vector2( 0.882353, 1 )
-color = Color( 0, 1, 0.203922, 0.156863 )
-polygon = PoolVector2Array( -900, -450, -900, -450, -900, 500, -1550, 500, -1700, 400, -1750, 200, -1750, -250, -1650, -450, -1450, -500, -900, -500 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background" index="5"]
-scale = Vector2( -1, 1 )
-color = Color( 0, 1, 0.203922, 0.156863 )
-polygon = PoolVector2Array( -1000, -450, -1000, 500, -1550, 500, -1700, 400, -1750, 200, -1750, -250, -1650, -450, -1450, -500, -1000, -500 )
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
 position = Vector2( 1750, 0 )

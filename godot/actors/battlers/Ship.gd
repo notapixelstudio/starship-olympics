@@ -935,6 +935,9 @@ func is_piercing() -> bool:
 	
 func get_cargo():
 	return $Cargo
+	
+func has_cargo() -> bool:
+	return $Cargo.has_holdable()
 
 # some collisions must be checked every frame
 func continuous_collision_check():
@@ -982,4 +985,10 @@ func end_drift():
 #func set_size(size):
 #	scale = Vector2(size, size)
 #	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
+	
+func set_holder(v: bool) -> void:
+	set_collision_layer_bit(21, v)
+
+func is_holder() -> bool:
+	return get_collision_layer_bit(21)
 	

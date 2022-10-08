@@ -34,9 +34,15 @@ func _on_sths_bumped(sth1, sth2) -> void:
 		var cargo1 = sth1.get_cargo()
 		var cargo2 = sth2.get_cargo()
 		
+		# swap cargo
 		var swap = cargo1.get_holdable()
 		cargo1.set_holdable(cargo2.get_holdable())
 		cargo2.set_holdable(swap)
+		
+		# swap holder statuses
+		var swap_holder = sth1.is_holder()
+		sth1.set_holder(sth2.is_holder())
+		sth2.set_holder(swap_holder)
 		
 		# refresh appearance of cargoes
 		cargo1.hide_holdable()
@@ -56,6 +62,8 @@ func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 		
 func _on_holdable_loaded(holdable, ship):
 	traits.get_trait(holdable, 'Holdable').remove()
+	ship.set_holder(true)
 	
 func _on_holdable_dropped(holdable, ship, cause):
 	traits.get_trait(holdable, 'Holdable').restore()
+	ship.set_holder(false)
