@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=2]
@@ -18,6 +18,68 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=16]
 [ext_resource path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" type="PackedScene" id=17]
 
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( -10400, -10000, 10800, 20000 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Shrink"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( -10400, -10000, 10800, 20000 ), Rect2( -10400, -10000, 10100, 20000 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( -400, -10000, 10000, 20000 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shrink"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( -400, -10000, 10000, 20000 ), Rect2( 300, -10000, 10000, 20000 ) ]
+}
+
 [node name="Arena" instance=ExtResource( 5 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 15 )
@@ -36,20 +98,30 @@ position = Vector2( -1350, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
 script = ExtResource( 1 )
+clip = Rect2( -10400, -10000, 10800, 20000 )
 width = 800
 height = 1500
-bevel_nw = 200
-bevel_sw = 200
+bevel_nw = 100
+bevel_sw = 100
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
+anims/RESET = SubResource( 1 )
+anims/Shrink = SubResource( 2 )
 
 [node name="RightNoHolderZone" parent="Battlefield/Background" index="2" instance=ExtResource( 14 )]
 position = Vector2( 1350, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
 script = ExtResource( 1 )
+clip = Rect2( -400, -10000, 10000, 20000 )
 width = 800
 height = 1500
-bevel_ne = 200
-bevel_se = 200
+bevel_ne = 100
+bevel_se = 100
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
+anims/RESET = SubResource( 4 )
+anims/Shrink = SubResource( 3 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 2 )]
 hollow = true
@@ -62,11 +134,11 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 script = ExtResource( 1 )
 width = 3500
 height = 1500
-bevel = 200
-bevel_nw = 200
-bevel_ne = 200
-bevel_sw = 200
-bevel_se = 200
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 texture = ExtResource( 7 )
