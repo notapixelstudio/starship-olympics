@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=40 format=2]
+[gd_resource type="Theme" load_steps=43 format=2]
 
 [ext_resource path="res://interface/themes/olympic/scroll.tres" type="StyleBox" id=1]
 [ext_resource path="res://interface/themes/olympic/panel.tres" type="StyleBox" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://interface/themes/olympic/hover.tres" type="StyleBox" id=20]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=21]
 [ext_resource path="res://interface/themes/olympic/hover_pressed.tres" type="StyleBox" id=22]
+[ext_resource path="res://interface/themes/olympic/focus_line_eidt.tres" type="StyleBox" id=23]
+[ext_resource path="res://interface/themes/olympic/normal_line_edit.tres" type="StyleBox" id=24]
 
 [sub_resource type="DynamicFont" id=17]
 size = 26
@@ -67,6 +69,9 @@ corner_detail = 1
 [sub_resource type="StyleBoxEmpty" id=14]
 
 [sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="DynamicFont" id=18]
+font_data = ExtResource( 21 )
 
 [resource]
 BoxContainer/constants/separation = 4
@@ -809,8 +814,9 @@ LineEdit/colors/cursor_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/read_only = Color( 1, 1, 1, 1 )
 LineEdit/colors/selection_color = Color( 1, 1, 1, 1 )
-LineEdit/styles/focus = ExtResource( 5 )
-LineEdit/styles/normal = ExtResource( 3 )
+LineEdit/fonts/font = SubResource( 18 )
+LineEdit/styles/focus = ExtResource( 23 )
+LineEdit/styles/normal = ExtResource( 24 )
 LineEdit/styles/read_only = null
 LinkButton/colors/font_color = Color( 1, 1, 1, 1 )
 LinkButton/styles/focus = ExtResource( 5 )

@@ -32,6 +32,7 @@ func to_dict():
 		"id": id,
 		"controls": controls,
 		"species_name" : species.name,
+		"species": species.get_id(),
 		"cpu": cpu,
 		"session_score": len(session_score)
 	}
@@ -44,6 +45,9 @@ func reset():
 
 func add_score(amount):
 	self.stats.score += amount
+
+func set_species(species_: Species):
+	self.species = species_
 	
 func set_score(amount):
 	self.stats.score = amount
