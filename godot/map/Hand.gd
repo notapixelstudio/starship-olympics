@@ -8,7 +8,6 @@ func get_card(card_id):
 	for card in get_children():
 		if card.card_content.get_id() == card_id:
 			return card
-			
 	return null
 	
 func update_card_positions():
