@@ -203,6 +203,7 @@ func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
+	
 	var dict = {
 		"uuid": get_uuid(),
 		"winners": winners,

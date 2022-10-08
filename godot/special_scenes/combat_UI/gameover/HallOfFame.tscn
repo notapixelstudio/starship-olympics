@@ -12,9 +12,14 @@ font_data = ExtResource( 3 )
 size = 21
 font_data = ExtResource( 3 )
 
-[node name="SessionWinner" type="Control"]
+[node name="HallOfFame" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.843137 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0

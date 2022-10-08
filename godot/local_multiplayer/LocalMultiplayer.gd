@@ -136,7 +136,8 @@ func continue_after_session_over() -> void:
 			global.new_game(players.values())
 		confirm.queue_free()
 	"""
-	navigate_to_map()
+	navigate_to_celebration()
+	# navigate_to_map()
 	
 func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
@@ -208,8 +209,7 @@ func _on_continue_after_game_over(session_over = false):
 func _on_Pause_restart():
 	safe_destroy_combat()
 	start_match(last_card, last_minigame)
-
-
+	
 func _on_nav_to_menu():
 	global.safe_destroy_game()
 	get_tree().change_scene(menu_scene)
@@ -233,7 +233,15 @@ func _on_nav_to_map():
 	
 func create_map():
 	map = map_scene.instance()
-	
+
+var celebration
+func navigate_to_celebration():
+	safe_destroy_combat()
+	# map initialization
+	celebration = load("res://special_scenes/combat_UI/gameover/SessionWinner.tscn")
+	celebration.instance()
+	add_child(celebration)
+
 func navigate_to_map():
 	safe_destroy_combat()
 	# map initialization

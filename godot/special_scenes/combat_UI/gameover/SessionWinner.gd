@@ -1,5 +1,7 @@
 extends Control
 
+export var hall_of_fame: PackedScene
+
 var winner: InfoPlayer
 func _ready():
 	var this_session: TheSession = global.get("session")
@@ -19,4 +21,9 @@ func _on_InsertName_name_inserted(player_real_name: String):
 
 
 func _on_Timer_timeout():
-	Events.emit_signal("nav_to_hall_of_fame", winner.to_dict())
+	var scene = hall_of_fame.instance()
+	add_child(scene)
+	$CelebrateWinner.queue_free()
+	
+func _on_Continue():
+	Events.emit_signal("nav_to_map", winner.to_dict())
