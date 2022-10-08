@@ -1,25 +1,26 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=5]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=7]
-[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/modes/GuardTheBridge.tres" type="Resource" id=9]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=12]
-[ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=13]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=6]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=8]
+[ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=11]
+[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
+[ext_resource path="res://combat/modes/GuardTheBridge.tres" type="Resource" id=14]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=15]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( -400, -300, -200, -500, 400, -500, 400, 500, -200, 500, -400, 300, -400, -300 )
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( -400, -400, -200, -600, 400, -600, 400, 600, -200, 600, -400, 400, -400, -400 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( -400, -300, -200, -500, 400, -500, 400, 500, -200, 500, -400, 300, -400, -300 )
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( -400, -400, -200, -600, 400, -600, 400, 600, -200, 600, -400, 400, -400, -400 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 resource_local_to_scene = true
@@ -96,11 +97,11 @@ tracks/4/keys = {
 "values": [ Color( 0, 1, 0.266667, 1 ), Color( 0.22, 1, 0.428, 1 ) ]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( -400, -500, 200, -500, 400, -300, 400, 300, 200, 500, -400, 500, -400, -500 )
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( -400, -600, 200, -600, 400, -400, 400, 400, 200, 600, -400, 600, -400, -600 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( -400, -500, 200, -500, 400, -300, 400, 300, 200, 500, -400, 500, -400, -500 )
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( -400, -600, 200, -600, 400, -400, 400, 400, 200, 600, -400, 600, -400, -600 )
 
 [sub_resource type="ParticlesMaterial" id=7]
 resource_local_to_scene = true
@@ -177,106 +178,106 @@ tracks/4/keys = {
 "values": [ Color( 0, 1, 0.266667, 1 ), Color( 0.22, 1, 0.428, 1 ) ]
 }
 
-[node name="Arena" instance=ExtResource( 6 )]
+[node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
-game_mode = ExtResource( 9 )
-style = ExtResource( 11 )
+game_mode = ExtResource( 14 )
+style = ExtResource( 12 )
 
 [node name="KillModeManager" parent="Managers" index="9"]
 enabled = true
 
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="NoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource( 13 )]
+[node name="NoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource( 9 )]
 position = Vector2( -1350, 0 )
 
 [node name="IsoPolygon" parent="Battlefield/Background/NoHolderZone" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 1 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":1000,"bevel":20,"bevel_nw":200,"bevel_ne":0,"bevel_sw":200,"bevel_se":0)
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 1 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":1200,"bevel":20,"bevel_nw":200,"bevel_ne":0,"bevel_sw":200,"bevel_se":0)
 
 
 [node name="Polygon2D" parent="Battlefield/Background/NoHolderZone" index="1"]
-polygon = PoolVector2Array( -400, -300, -200, -500, 400, -500, 400, -500, 400, 500, 400, 500, -200, 500, -400, 300 )
+polygon = PoolVector2Array( -400, -400, -200, -600, 400, -600, 400, -600, 400, 600, 400, 600, -200, 600, -400, 400 )
 
 [node name="Line2D" parent="Battlefield/Background/NoHolderZone" index="2"]
-points = PoolVector2Array( -400, -300, -200, -500, 400, -500, 400, -500, 400, 500, 400, 500, -200, 500, -400, 300, -400, -300 )
+points = PoolVector2Array( -400, -400, -200, -600, 400, -600, 400, -600, 400, 600, 400, 600, -200, 600, -400, 400, -400, -400 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoHolderZone/Area2D" index="1"]
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoHolderZone/CrownCollider" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 10 )
 
 [node name="Particles2D" parent="Battlefield/Background/NoHolderZone" index="5"]
 process_material = SubResource( 3 )
 
 [node name="FeedbackLine" parent="Battlefield/Background/NoHolderZone" index="7"]
-points = PoolVector2Array( -400, -300, -200, -500, 400, -500, 400, -500, 400, 500, 400, 500, -200, 500, -400, 300, -400, -300 )
+points = PoolVector2Array( -400, -400, -200, -600, 400, -600, 400, -600, 400, 600, 400, 600, -200, 600, -400, 400, -400, -400 )
 
 [node name="AnimationPlayer" parent="Battlefield/Background/NoHolderZone" index="8"]
 anims/Feedback = SubResource( 4 )
 
 [node name="NoShipSign" parent="Battlefield/Background/NoHolderZone" index="9"]
-position = Vector2( -12, -716 )
+position = Vector2( -12, -816 )
 scale = Vector2( 2, 2 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoHolderZone" index="11"]
 script = ExtResource( 1 )
 width = 800
-height = 1000
+height = 1200
 bevel_nw = 200
 bevel_sw = 200
 
-[node name="NoHolderZone2" parent="Battlefield/Background" index="2" instance=ExtResource( 13 )]
+[node name="NoHolderZone2" parent="Battlefield/Background" index="2" instance=ExtResource( 9 )]
 position = Vector2( 1350, 0 )
 
 [node name="IsoPolygon" parent="Battlefield/Background/NoHolderZone2" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 1 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":1000,"bevel":20,"bevel_nw":0,"bevel_ne":200,"bevel_sw":0,"bevel_se":200)
+shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 1 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":1200,"bevel":20,"bevel_nw":0,"bevel_ne":200,"bevel_sw":0,"bevel_se":200)
 
 
 [node name="Polygon2D" parent="Battlefield/Background/NoHolderZone2" index="1"]
-polygon = PoolVector2Array( -400, -500, -400, -500, 200, -500, 400, -300, 400, 300, 200, 500, -400, 500, -400, 500 )
+polygon = PoolVector2Array( -400, -600, -400, -600, 200, -600, 400, -400, 400, 400, 200, 600, -400, 600, -400, 600 )
 
 [node name="Line2D" parent="Battlefield/Background/NoHolderZone2" index="2"]
-points = PoolVector2Array( -400, -500, -400, -500, 200, -500, 400, -300, 400, 300, 200, 500, -400, 500, -400, 500, -400, -500 )
+points = PoolVector2Array( -400, -600, -400, -600, 200, -600, 400, -400, 400, 400, 200, 600, -400, 600, -400, 600, -400, -600 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoHolderZone2/Area2D" index="1"]
-shape = SubResource( 5 )
+shape = SubResource( 11 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoHolderZone2/CrownCollider" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 12 )
 
 [node name="Particles2D" parent="Battlefield/Background/NoHolderZone2" index="5"]
 process_material = SubResource( 7 )
 
 [node name="FeedbackLine" parent="Battlefield/Background/NoHolderZone2" index="7"]
-points = PoolVector2Array( -400, -500, -400, -500, 200, -500, 400, -300, 400, 300, 200, 500, -400, 500, -400, 500, -400, -500 )
+points = PoolVector2Array( -400, -600, -400, -600, 200, -600, 400, -400, 400, 400, 200, 600, -400, 600, -400, 600, -400, -600 )
 
 [node name="AnimationPlayer" parent="Battlefield/Background/NoHolderZone2" index="8"]
 anims/Feedback = SubResource( 8 )
 
 [node name="NoShipSign" parent="Battlefield/Background/NoHolderZone2" index="9"]
-position = Vector2( -12, -716 )
+position = Vector2( -12, -816 )
 scale = Vector2( 2, 2 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/NoHolderZone2" index="11"]
 script = ExtResource( 1 )
 width = 800
-height = 1000
+height = 1200
 bevel_ne = 200
 bevel_se = 200
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 14 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 3 )]
 hollow = true
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 10 )
+line_texture = ExtResource( 11 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
 width = 3500
-height = 1000
+height = 1200
 bevel = 200
 bevel_nw = 200
 bevel_ne = 200
@@ -284,30 +285,36 @@ bevel_sw = 200
 bevel_se = 200
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
+[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( 1750, 0 )
 
-[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
+[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
 position = Vector2( -1750, 0 )
 
-[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 2 )]
 type = "crown"
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 3 )]
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, 0 )
 rotation = 3.14159
-species = ExtResource( 2 )
+species = ExtResource( 4 )
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 3 )]
-position = Vector2( -1300, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
+position = Vector2( -1300, -250 )
 rotation = 0.0
 controls = "kb2"
-species = ExtResource( 12 )
+species = ExtResource( 13 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
+position = Vector2( -1300, 250 )
+rotation = 0.0
+controls = "kb2"
+species = ExtResource( 15 )
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
