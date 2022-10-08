@@ -45,6 +45,8 @@ tracks/1/keys = {
 }
 
 [node name="FloatingMessage" type="Node2D" groups=["Overlay"]]
+z_index = 20
+z_as_relative = false
 script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]
