@@ -108,9 +108,13 @@ func _on_minigame_selected(picked_card:DraftCard):
 	
 func continue_after_session_over() -> void:
 	"""
-	After a session has ended, return to the map.
+	After a session has ended, Celebrate winner.
 	"""
 	global.sessions_played +=1 # WE are sure that sessions is over
+	
+	"""
+	Unlocking disabled Issue #1022
+	
 	if global.sessions_played == 1:
 		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
 		$"%UnlockSceneClassic".unlock(unlock, true, "first_unlock")
@@ -131,6 +135,7 @@ func continue_after_session_over() -> void:
 			global.starting_deck = to_be_unlocked_deck
 			global.new_game(players.values())
 		confirm.queue_free()
+	"""
 	navigate_to_map()
 	
 func start_new_match(picked_card: DraftCard, minigame: Minigame):
