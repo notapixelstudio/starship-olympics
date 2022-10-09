@@ -10,7 +10,6 @@ var deck : Deck
 func _init():
 	uuid = UUID.v4()
 	
-	
 func get_uuid() -> String:
 	return uuid
 
