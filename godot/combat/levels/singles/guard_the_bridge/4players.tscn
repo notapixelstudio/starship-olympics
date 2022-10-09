@@ -23,7 +23,7 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -32,50 +32,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( -10375, -10000, 10750, 20000 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("GBeveledRect:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1500 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("GBeveledRect:bevel_sw")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 100 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("GBeveledRect:bevel_nw")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 100 ]
+"values": [ Vector2( -1375, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
 resource_name = "Shrink"
 length = 20.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -84,49 +48,13 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 20 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( -10375, -10000, 10750, 20000 ), Rect2( -10400, -10000, 10100, 20000 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("GBeveledRect:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( -7.99999, -7.99999 ),
-"update": 0,
-"values": [ 1500, 1 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("GBeveledRect:bevel_nw")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( -8, -8 ),
-"update": 0,
-"values": [ 100, 0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("GBeveledRect:bevel_sw")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( -8, -8 ),
-"update": 0,
-"values": [ 100, 0 ]
+"values": [ Vector2( -1375, 0 ), Vector2( -2125, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -135,50 +63,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( -375, -10000, 10000, 20000 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("GBeveledRect:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1500 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("GBeveledRect:bevel_ne")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 100 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("GBeveledRect:bevel_se")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 100 ]
+"values": [ Vector2( 1375, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "Shrink"
 length = 20.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("GBeveledRect:clip")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -187,43 +79,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 20 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( -375, -10000, 10000, 20000 ), Rect2( 300, -10000, 10000, 20000 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("GBeveledRect:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( -8, -8 ),
-"update": 0,
-"values": [ 1500, 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("GBeveledRect:bevel_ne")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( -8, -8 ),
-"update": 0,
-"values": [ 100, 0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("GBeveledRect:bevel_se")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( -8, -8 ),
-"update": 0,
-"values": [ 100, 0 ]
+"values": [ Vector2( 1375, 0 ), Vector2( 2125, 0 ) ]
 }
 
 [node name="Arena" instance=ExtResource( 5 )]
@@ -244,11 +100,13 @@ position = Vector2( -1375, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
 script = ExtResource( 1 )
-clip = Rect2( -10375, -10000, 10750, 20000 )
 width = 750
 height = 1500
+bevel = 100
 bevel_nw = 100
+bevel_ne = 100
 bevel_sw = 100
+bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
 anims/RESET = SubResource( 1 )
@@ -262,10 +120,12 @@ position = Vector2( 1375, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
 script = ExtResource( 1 )
-clip = Rect2( -375, -10000, 10000, 20000 )
 width = 750
 height = 1500
+bevel = 100
+bevel_nw = 100
 bevel_ne = 100
+bevel_sw = 100
 bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
@@ -302,7 +162,7 @@ bg_color = Color( 0, 0.2, 0.166667, 1 )
 position = Vector2( -50, 0 )
 z_index = -5
 z_as_relative = false
-points = PoolVector2Array( -950, -750, -950, 750 )
+points = PoolVector2Array( -1050, -750, -950, -650, -950, 650, -1050, 750 )
 width = 25.0
 default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 
@@ -310,7 +170,7 @@ default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 position = Vector2( 1950, 0 )
 z_index = -5
 z_as_relative = false
-points = PoolVector2Array( -950, -750, -950, 750 )
+points = PoolVector2Array( -850, -750, -950, -650, -950, 650, -850, 750 )
 width = 25.0
 default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 

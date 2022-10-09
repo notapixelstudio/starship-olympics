@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
@@ -16,6 +16,72 @@
 [ext_resource path="res://combat/modes/GuardTheBridge.tres" type="Resource" id=14]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=15]
 [ext_resource path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" type="PackedScene" id=16]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/traits/Waiter.gd" type="Script" id=18]
+[ext_resource path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" type="Script" id=19]
+[ext_resource path="res://actors/environments/NoHolderZone.gd" type="Script" id=20]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1375, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Shrink"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1375, 0 ), Vector2( -2125, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1375, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shrink"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1375, 0 ), Vector2( 2125, 0 ) ]
+}
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
@@ -30,27 +96,82 @@ enabled = true
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 
-[node name="LeftNoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource( 9 )]
-position = Vector2( -1350, 0 )
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+texture = ExtResource( 6 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0, 0.54902, 0.32549, 1 )
+bg_color = Color( 0, 0.2, 0.166667, 1 )
+
+[node name="LeftNoHolderZone" type="Node2D" parent="Battlefield/Background" index="3" instance=ExtResource( 9 )]
+position = Vector2( -1375, 0 )
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
 script = ExtResource( 1 )
-width = 800
+width = 750
 height = 1100
-bevel_nw = 200
-bevel_sw = 200
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
-[node name="RightNoHolderZone" parent="Battlefield/Background" index="2" instance=ExtResource( 9 )]
-position = Vector2( 1350, 0 )
+[node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
+anims/RESET = SubResource( 1 )
+anims/Shrink = SubResource( 2 )
+script = ExtResource( 19 )
+
+[node name="Waiter" type="Node" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
+script = ExtResource( 18 )
+
+[node name="RightNoHolderZone" type="Node2D" parent="Battlefield/Background" index="4" instance=ExtResource( 9 )]
+position = Vector2( 1375, 0 )
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
 script = ExtResource( 1 )
-width = 800
+clip = Rect2( -375, -10000, 10000, 20000 )
+width = 750
 height = 1100
-bevel_ne = 200
-bevel_se = 200
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 3 )]
+[node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
+anims/RESET = SubResource( 4 )
+anims/Shrink = SubResource( 3 )
+script = ExtResource( 19 )
+
+[node name="Waiter" type="Node" parent="Battlefield/Background/RightNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
+script = ExtResource( 18 )
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="5"]
+position = Vector2( -50, 0 )
+z_index = -5
+z_as_relative = false
+points = PoolVector2Array( -1050, -550, -950, -450, -950, 450, -1050, 550 )
+width = 25.0
+default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
+
+[node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="6"]
+position = Vector2( 1950, 0 )
+z_index = -5
+z_as_relative = false
+points = PoolVector2Array( -850, -550, -950, -450, -950, 450, -850, 550 )
+width = 25.0
+default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="7" instance=ExtResource( 3 )]
 hollow = true
 hide_grid = true
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -61,17 +182,11 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 script = ExtResource( 1 )
 width = 3500
 height = 1100
-bevel = 200
-bevel_nw = 200
-bevel_ne = 200
-bevel_sw = 200
-bevel_se = 200
-
-[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-texture = ExtResource( 6 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0, 0.54902, 0.32549, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( 1750, 0 )
