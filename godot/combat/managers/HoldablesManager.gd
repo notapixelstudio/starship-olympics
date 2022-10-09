@@ -31,6 +31,10 @@ func handle_collision(sth, ship: Ship) -> void:
 			
 func _on_sths_bumped(sth1, sth2) -> void:
 	if sth1 is Ship and sth2 is Ship:
+		if not sth1.has_cargo() and not sth2.has_cargo():
+			# no actual swap has to occur, bail
+			return
+			
 		var cargo1 = sth1.get_cargo()
 		var cargo2 = sth2.get_cargo()
 		

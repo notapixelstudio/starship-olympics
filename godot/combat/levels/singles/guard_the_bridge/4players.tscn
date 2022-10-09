@@ -32,7 +32,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( -10400, -10000, 10800, 20000 ) ]
+"values": [ Rect2( -10375, -10000, 10750, 20000 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1500 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -48,7 +60,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 20 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( -10400, -10000, 10800, 20000 ), Rect2( -10400, -10000, 10050, 20000 ) ]
+"values": [ Rect2( -10375, -10000, 10750, 20000 ), Rect2( -10400, -10000, 10100, 20000 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( -7.99999, -7.99999 ),
+"update": 0,
+"values": [ 1500, 200 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -63,7 +87,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( -400, -10000, 10000, 20000 ) ]
+"values": [ Rect2( -350, -10000, 10000, 20000 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1500 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -79,7 +115,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 20 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( -400, -10000, 10000, 20000 ), Rect2( 350, -10000, 10000, 20000 ) ]
+"values": [ Rect2( -350, -10000, 10000, 20000 ), Rect2( 300, -10000, 10000, 20000 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GBeveledRect:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( -8, -8 ),
+"update": 0,
+"values": [ 1500, 200 ]
 }
 
 [node name="Arena" instance=ExtResource( 5 )]
@@ -96,12 +144,12 @@ enabled = true
 texture = ExtResource( 8 )
 
 [node name="LeftNoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource( 14 )]
-position = Vector2( -1350, 0 )
+position = Vector2( -1375, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
 script = ExtResource( 1 )
-clip = Rect2( -10400, -10000, 10800, 20000 )
-width = 800
+clip = Rect2( -10375, -10000, 10750, 20000 )
+width = 750
 height = 1500
 bevel_nw = 50
 bevel_sw = 50
@@ -114,12 +162,12 @@ script = ExtResource( 18 )
 [node name="Waiter" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 19 )]
 
 [node name="RightNoHolderZone" parent="Battlefield/Background" index="2" instance=ExtResource( 14 )]
-position = Vector2( 1350, 0 )
+position = Vector2( 1375, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
 script = ExtResource( 1 )
-clip = Rect2( -400, -10000, 10000, 20000 )
-width = 800
+clip = Rect2( -350, -10000, 10000, 20000 )
+width = 750
 height = 1500
 bevel_ne = 50
 bevel_se = 50
@@ -153,6 +201,12 @@ texture = ExtResource( 7 )
 texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="6"]
+position = Vector2( -50, 0 )
+points = PoolVector2Array( -950, -750, -950, 750 )
+width = 25.0
+default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( 1750, 0 )
