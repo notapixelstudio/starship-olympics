@@ -203,10 +203,13 @@ func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
-	
+	var winners_info = []
+	for winner in self.winners:
+		winners_info.append((winner as InfoPlayer).to_dict())
 	var dict = {
 		"uuid": get_uuid(),
 		"winners": winners,
+		"winners_info": winners_info,
 		"winners_did_perfect": self.winners_did_perfect()
 	}
 	if minigame:
