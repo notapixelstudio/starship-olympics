@@ -238,8 +238,7 @@ var celebration
 func navigate_to_celebration():
 	safe_destroy_combat()
 	# map initialization
-	celebration = load("res://special_scenes/combat_UI/gameover/SessionWinner.tscn")
-	celebration.instance()
+	celebration = load("res://special_scenes/combat_UI/gameover/SessionWinner.tscn").instance()
 	add_child(celebration)
 
 func navigate_to_map():
