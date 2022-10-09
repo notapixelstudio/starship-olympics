@@ -13,4 +13,4 @@ func set_player(champion: InfoChampion):
 	for a_match in matches:
 		var l = Label.new()
 		l.text = a_match["card_id"]
-		$"%StarsContainer"
+		$"%StarsContainer".add_child(l)
