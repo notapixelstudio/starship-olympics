@@ -1,16 +1,20 @@
 extends Node
 
 class_name TheSession
+
 var uuid : String
 var game_id: String
 var hand : Array # Array of DraftCard
+var timestamp_str : String
 
 var leaderboards : Array = []
 
 func _init():
 	uuid = UUID.v4()
 	game_id=global.the_game.get_uuid()
+	timestamp_str = datetime_to_str(OS.get_datetime(true))
 	snapshot_leaderboard()
+	
 	
 func get_uuid() -> String:
 	return uuid
@@ -86,6 +90,7 @@ func to_dict() -> Dictionary:
 	"""
 	return {
 		"game_id": game_id,
+		"timestamp": timestamp_str,
 		"uuid": get_uuid(),
 		"matches": self.matches
 	}
