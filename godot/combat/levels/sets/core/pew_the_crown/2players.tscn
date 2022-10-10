@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -8,13 +8,11 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/B.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/2A.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
-[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/C.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/B.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/D.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
@@ -115,8 +113,7 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 opaque_tint = Color( 0, 0, 0, 1 )
 
 [node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
-variant_scenes = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 15 ) ]
-debug_variant_index = 0
+variant_scenes = [ ExtResource( 10 ), ExtResource( 12 ) ]
 
 [node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, -950 )

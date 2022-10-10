@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/B.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/3A.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
@@ -17,8 +16,7 @@
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=17]
-[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/C.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/D.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/levels/sets/core/pew_the_crown/variants/B.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -143,7 +141,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Variants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 1 )]
-variant_scenes = [ ExtResource( 12 ), ExtResource( 10 ), ExtResource( 18 ), ExtResource( 19 ) ]
+variant_scenes = [ ExtResource( 12 ), ExtResource( 18 ) ]
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 type = "crown"

@@ -3,9 +3,16 @@ extends Area2D
 export (String, 'shield', 'plate', 'skin') var type = 'plate'
 export var starting_health := 3
 export var respawn_time := 6
+export var symbol_scale := 1.0 setget set_symbol_scale
 
 var health = starting_health
 
+func set_symbol_scale(v: float) -> void:
+	symbol_scale = v
+	if not is_inside_tree():
+		yield(self, "ready")
+	$Sprite.scale = Vector2(symbol_scale, symbol_scale)
+	
 func _ready():
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
 	$IsoPolygon.set_polygon($CollisionPolygon2D.polygon)

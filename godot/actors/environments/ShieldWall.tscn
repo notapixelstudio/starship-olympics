@@ -202,6 +202,7 @@ tracks/3/keys = {
 collision_layer = 128
 collision_mask = 4
 script = ExtResource( 1 )
+symbol_scale = 1.5
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = 8
@@ -228,7 +229,6 @@ anims/reset = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.27451 )
-scale = Vector2( 1.5, 1.5 )
 z_index = 8
 z_as_relative = false
 texture = ExtResource( 2 )
