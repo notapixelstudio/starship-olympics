@@ -1,6 +1,6 @@
 extends Node2D
 
-export var height = global.isometric_offset
+export var height = Vector2(0,32)
 var h = height
 var shape : GShape setget set_shape
 var points = []
@@ -13,6 +13,11 @@ func set_shape(v):
 	shape = v
 	points = shape.to_PoolVector2Array()
 	closed_points = shape.to_closed_PoolVector2Array()
+	update()
+	
+func set_polygon(v):
+	points = v
+	closed_points = v + PoolVector2Array([v[0]])
 	update()
 
 func _draw():

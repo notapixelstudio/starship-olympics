@@ -4,7 +4,8 @@ export (String, 'shield', 'plate', 'skin') var type = 'plate'
 
 func _ready():
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
-	$Shadow.polygon = $CollisionPolygon2D.polygon
+	$IsoPolygon.set_polygon($CollisionPolygon2D.polygon)
+	$Line2D.points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
 	up(type)
 
 func up(new_type):
@@ -12,10 +13,16 @@ func up(new_type):
 	match type:
 		'shield':
 			$Polygon2D.modulate = Color('#008bff')
+			$Line2D.modulate = Color('#008bff')
+			$IsoPolygon.color = Color('#008bff')
 		'plate':
-			$Polygon2D.modulate = Color.white
+			$Polygon2D.modulate = Color('#edd7a9')
+			$Line2D.modulate = Color('#edd7a9')
+			$IsoPolygon.color = Color('#edd7a9')
 		'skin':
-			$Polygon2D.modulate = Color.green
+			$Polygon2D.modulate = Color('#2fe257')
+			$Line2D.modulate = Color('#2fe257')
+			$IsoPolygon.color = Color('#2fe257')
 	enable_collisions()
 	$AnimationPlayer.play("reset")
 
@@ -38,8 +45,9 @@ func disable_collisions():
 			up('skin')
 
 func _on_ShieldWall_body_entered(body):
-	if body is Bomb or body is Bullet:
-		body.dissolve()
-		body.queue_free()
-		
+	if body.has_method('destroy'):
+		body.destroy()
 		self.down()
+
+#func _process(delta):
+#	$Polygon2D.texture_rotation_degrees = rotation_degrees

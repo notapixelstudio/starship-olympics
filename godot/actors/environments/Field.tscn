@@ -14,7 +14,7 @@
 [ext_resource path="res://combat/components/Owned.gd" type="Script" id=12]
 [ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=13]
 [ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=14]
-[ext_resource path="res://actors/environments/IsoPolygon.gd" type="Script" id=15]
+[ext_resource path="res://actors/environments/IsoPolygon.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -49,9 +49,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="IsoPolygon" type="Node2D" parent="."]
-modulate = Color( 1.36, 1.36, 1.36, 1 )
-script = ExtResource( 15 )
+[node name="IsoPolygon" parent="." instance=ExtResource( 15 )]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 material = SubResource( 1 )

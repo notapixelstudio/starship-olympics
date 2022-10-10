@@ -158,8 +158,7 @@ func _on_NearArea_area_exited(area):
 	
 func _on_LifeTime_timeout():
 	if not entity.has('StandAlone') and type != GameMode.BOMB_TYPE.bubble:
-		dissolve()
-		call_deferred("queue_free")
+		destroy()
 
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
@@ -233,3 +232,8 @@ func get_owner_ship():
 #signal frozen
 #func freeze():
 #	emit_signal("frozen", self)
+
+func destroy():
+	dissolve()
+	queue_free()
+	

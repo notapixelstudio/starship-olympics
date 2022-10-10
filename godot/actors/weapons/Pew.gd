@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Pew
 
 export var PfftScene : PackedScene
 
@@ -9,8 +10,7 @@ func _process(delta):
 
 func _on_ForwardBullet_body_entered(body):
 	if not (body is Mirror):
-		dissolve()
-		queue_free()
+		destroy()
 		
 	if body.has_method('damage'):
 		body.damage(self, ship)
@@ -27,4 +27,8 @@ func dissolve() -> void:
 	pfft.global_position = global_position
 
 func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+
+func destroy() -> void:
+	dissolve()
 	queue_free()

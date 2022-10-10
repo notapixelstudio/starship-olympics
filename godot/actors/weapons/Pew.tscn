@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/sprites/weapons/forward_bullet_halo.png" type="Texture" id=2]
-[ext_resource path="res://actors/weapons/ForwardBullet.gd" type="Script" id=3]
-[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=4]
+[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/weapons/Pew.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/weapons/forward_bullet_halo.png" type="Texture" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -14,7 +14,7 @@ radius = 35.0
 
 [node name="ForwardBullet" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 8209
+collision_mask = 8337
 mode = 2
 physics_material_override = SubResource( 1 )
 contacts_reported = 1
@@ -22,15 +22,15 @@ contact_monitor = true
 linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 3 )
-PfftScene = ExtResource( 1 )
+PfftScene = ExtResource( 2 )
 
 [node name="Halo" type="Sprite" parent="."]
 self_modulate = Color( 1.4, 1.4, 1.4, 1 )
 position = Vector2( -15, 0 )
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
-[node name="AutoTrail" parent="." instance=ExtResource( 4 )]
+[node name="AutoTrail" parent="." instance=ExtResource( 1 )]
 width = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
