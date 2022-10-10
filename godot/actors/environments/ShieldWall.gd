@@ -1,6 +1,10 @@
 extends Area2D
 
 export (String, 'shield', 'plate', 'skin') var type = 'plate'
+export var starting_health := 3
+export var respawn_time := 6
+
+var health = starting_health
 
 func _ready():
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
@@ -9,30 +13,36 @@ func _ready():
 	up(type)
 
 func up(new_type):
+	health = starting_health
 	type = new_type
 	match type:
 		'shield':
 			$Polygon2D.modulate = Color('#008bff')
+			$Sprite.modulate = Color('#008bff')
 			$Line2D.modulate = Color('#008bff')
 			$IsoPolygon.color = Color('#008bff')
 		'plate':
 			$Polygon2D.modulate = Color('#edd7a9')
+			$Sprite.modulate = Color('#edd7a9')
 			$Line2D.modulate = Color('#edd7a9')
 			$IsoPolygon.color = Color('#edd7a9')
 		'skin':
 			$Polygon2D.modulate = Color('#2fe257')
+			$Sprite.modulate = Color('#2fe257')
 			$Line2D.modulate = Color('#2fe257')
 			$IsoPolygon.color = Color('#2fe257')
 	enable_collisions()
 	$AnimationPlayer.play("reset")
 
 func down():
-	if $AnimationPlayer.is_playing():
+	if health <= 0:
 		return
 		
+	health -= 1
+	
 	# collisions will be disabled near the end of the animation
-	#$AnimationPlayer.stop() # this would make the sector flash again
-	if type == 'plate':
+	$AnimationPlayer.stop() # this would make the sector flash again
+	if health > 0 or type == 'plate':
 		$AnimationPlayer.play("IndestructibleHit")
 	else:
 		$AnimationPlayer.play("Disappear")
@@ -43,7 +53,7 @@ func enable_collisions():
 func disable_collisions():
 	$CollisionPolygon2D.call_deferred('set_disabled', true)
 	if type == 'skin':
-		yield(get_tree().create_timer(5), "timeout")
+		yield(get_tree().create_timer(respawn_time), "timeout")
 		if type == 'skin': # shield type could have changed (e.g., if switched off)
 			up('skin')
 
@@ -52,5 +62,5 @@ func _on_ShieldWall_body_entered(body):
 		body.destroy()
 		self.down()
 
-#func _process(delta):
-#	$Polygon2D.texture_rotation_degrees = rotation_degrees
+func _process(delta):
+	$Sprite.rotation = -global_rotation
