@@ -27,8 +27,11 @@ func up(new_type):
 	$AnimationPlayer.play("reset")
 
 func down():
+	if $AnimationPlayer.is_playing():
+		return
+		
 	# collisions will be disabled near the end of the animation
-	$AnimationPlayer.stop() # this would make the sector flash again
+	#$AnimationPlayer.stop() # this would make the sector flash again
 	if type == 'plate':
 		$AnimationPlayer.play("IndestructibleHit")
 	else:

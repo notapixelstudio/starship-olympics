@@ -39,12 +39,14 @@ anims/Rotate = SubResource( 2 )
 
 [node name="ShieldWall" parent="." instance=ExtResource( 1 )]
 position = Vector2( -800, 0 )
+type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
 polygon = PoolVector2Array( 0, -400, 400, 0, 0, 400, -400, 0 )
 
 [node name="ShieldWall2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 800, 0 )
+type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
 polygon = PoolVector2Array( 0, -400, 400, 0, 0, 400, -400, 0 )

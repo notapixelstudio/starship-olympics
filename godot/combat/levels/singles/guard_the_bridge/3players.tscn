@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
@@ -17,9 +17,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=15]
 [ext_resource path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/traits/Waiter.gd" type="Script" id=18]
 [ext_resource path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" type="Script" id=19]
-[ext_resource path="res://actors/environments/NoHolderZone.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -102,18 +100,13 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="LeftNoHolderZone" type="Node2D" parent="Battlefield/Background" index="3" instance=ExtResource( 9 )]
+[node name="LeftNoHolderZone" parent="Battlefield/Background" index="3" instance=ExtResource( 9 )]
 position = Vector2( -1375, 0 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
 script = ExtResource( 1 )
 width = 750
-height = 1100
+height = 900
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -121,26 +114,21 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
+playback_speed = 2.0
 anims/RESET = SubResource( 1 )
 anims/Shrink = SubResource( 2 )
 script = ExtResource( 19 )
 
-[node name="Waiter" type="Node" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
-script = ExtResource( 18 )
+[node name="Waiter" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
 
-[node name="RightNoHolderZone" type="Node2D" parent="Battlefield/Background" index="4" instance=ExtResource( 9 )]
+[node name="RightNoHolderZone" parent="Battlefield/Background" index="4" instance=ExtResource( 9 )]
 position = Vector2( 1375, 0 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
 script = ExtResource( 1 )
 clip = Rect2( -375, -10000, 10000, 20000 )
 width = 750
-height = 1100
+height = 900
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -148,12 +136,12 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
+playback_speed = 2.0
 anims/RESET = SubResource( 4 )
 anims/Shrink = SubResource( 3 )
 script = ExtResource( 19 )
 
-[node name="Waiter" type="Node" parent="Battlefield/Background/RightNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
-script = ExtResource( 18 )
+[node name="Waiter" parent="Battlefield/Background/RightNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background" index="5"]
 position = Vector2( -50, 0 )
@@ -181,7 +169,7 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
 width = 3500
-height = 1100
+height = 900
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -200,18 +188,19 @@ type = "helm"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( 0, 0 )
 rotation = 3.14159
+controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
-position = Vector2( -1300, -250 )
+position = Vector2( -1300, -200 )
 rotation = 0.0
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 13 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
-position = Vector2( -1300, 250 )
+position = Vector2( -1300, 200 )
 rotation = 0.0
-controls = "kb2"
+controls = "joy3"
 species = ExtResource( 15 )
 
 [node name="Camera" parent="." index="7"]

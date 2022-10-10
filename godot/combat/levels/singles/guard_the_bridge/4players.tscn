@@ -101,7 +101,7 @@ position = Vector2( -1375, 0 )
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
 script = ExtResource( 1 )
 width = 750
-height = 1500
+height = 1100
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -109,6 +109,7 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
+playback_speed = 2.0
 anims/RESET = SubResource( 1 )
 anims/Shrink = SubResource( 2 )
 script = ExtResource( 18 )
@@ -121,7 +122,7 @@ position = Vector2( 1375, 0 )
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
 script = ExtResource( 1 )
 width = 750
-height = 1500
+height = 1100
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -129,6 +130,7 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
+playback_speed = 2.0
 anims/RESET = SubResource( 4 )
 anims/Shrink = SubResource( 3 )
 script = ExtResource( 18 )
@@ -145,7 +147,7 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 1 )
 width = 3500
-height = 1500
+height = 1100
 bevel = 100
 bevel_nw = 100
 bevel_ne = 100
@@ -189,7 +191,7 @@ rotation = 3.14159
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( -1300, -400 )
+position = Vector2( -1300, -300 )
 rotation = 0.0
 controls = "kb2"
 species = ExtResource( 13 )
@@ -201,7 +203,7 @@ controls = "kb2"
 species = ExtResource( 6 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( -1300, 400 )
+position = Vector2( -1300, 300 )
 rotation = 0.0
 controls = "kb2"
 species = ExtResource( 16 )
