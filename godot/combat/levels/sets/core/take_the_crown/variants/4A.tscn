@@ -1,14 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://actors/environments/NoCrownZone.gd" type="Script" id=2]
-[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=2]
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 length = 10.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("NoCrownZone:rotation_degrees")
+tracks/0/path = NodePath("ShieldWall:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -20,7 +18,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("NoCrownZone2:rotation_degrees")
+tracks/1/path = NodePath("ShieldWall2:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -34,40 +32,21 @@ tracks/1/keys = {
 
 [node name="4A" type="Node2D"]
 
-[node name="NoCrownZone" type="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( -850, 0 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
-decoration_scale = 1.2
-
-[node name="GRegularPolygon" type="Node" parent="NoCrownZone"]
-script = ExtResource( 1 )
-radius = 500
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="NoCrownZone2" type="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 850, 0 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
-decoration_scale = 1.2
-
-[node name="GRegularPolygon" type="Node" parent="NoCrownZone2"]
-script = ExtResource( 1 )
-radius = 500
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["animation_in_battle"]]
+playback_process_mode = 0
 playback_speed = 0.2
-anims/Rotate = SubResource( 8 )
+anims/Rotate = SubResource( 2 )
+
+[node name="ShieldWall" parent="." instance=ExtResource( 2 )]
+position = Vector2( -800, 0 )
+type = "skin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
+polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
+
+[node name="ShieldWall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 800, 0 )
+type = "skin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
+polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
