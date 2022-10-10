@@ -15,7 +15,7 @@ onready var minimoon_outline = $Wrapper/Scaled/Minimoon
 
 func _ready():
 	if target.info_player:
-		player_id.text = tr(target.info_player.id)
+		player_id.text = tr(target.info_player.get_username())
 		if target.info_player.cpu:
 			player_id.text = tr("CPU")
 			

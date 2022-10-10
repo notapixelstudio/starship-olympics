@@ -16,21 +16,31 @@ func _ready():
 		var info_player := InfoPlayer.new()
 		info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
 		last_winner.player = info_player.to_dict()
+		last_winner.session_info = {"timestamp": global.datetime_to_str(OS.get_datetime(true))}
 		
 	$"%InsertName".grab_focus()
 	$"%WinnerBanner".set_player(last_winner)
-
+	$"%InsertName".placeholder_text = last_winner.player.username
+	
 func _on_InsertName_name_inserted(player_real_name: String):
 	$"%CanvasLayer".queue_free()
 	$"%WinnerBanner".set_player_name(player_real_name)
 	$"%Timer".start()
+	
+	last_winner.player.username = player_real_name
+	last_winner.store()
+	var this_game : TheGame = global.get("the_game")
+	if this_game:
+		var players = this_game.get_players()
+		for player in players:
+			if player.id == last_winner.player.id:
+				player.username = player_real_name
 
 
 func _on_Timer_timeout():
 	var scene = hall_of_fame.instance()
 	add_child(scene)
 	$CelebrateWinner.queue_free()
-	scene.setup(last_winner)
 	
 func _on_Continue():
 	Events.emit_signal("nav_to_map")
