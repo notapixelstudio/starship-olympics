@@ -43,7 +43,6 @@ signal continue_after_game_over(session_ended)
 signal nav_to_menu
 signal nav_to_map
 signal nav_to_character_selection
-signal nav_to_hall_of_fame
 
 signal sth_unhid(what, by_what) # e.g., Set by MapPlanet
 signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
