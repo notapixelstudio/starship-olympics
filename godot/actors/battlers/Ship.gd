@@ -540,6 +540,8 @@ func damage(hazard, damager : Ship):
 		
 		if has_method('vibration_feedback'):
 			call('vibration_feedback', false)
+			
+		$'%AnimationPlayer'.play('hit')
 		
 		Events.emit_signal("ship_damaged", self, hazard, damager)
 		

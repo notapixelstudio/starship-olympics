@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -86,6 +86,37 @@ func invincible(offset = 0):
 	yield(anim, \"animation_finished\")
 	emit_signal(\"stop_invincible\")
 "
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
@@ -263,7 +294,10 @@ position = Vector2( -130.4, 0 )
 enabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 12 )
 anims/appearing = ExtResource( 39 )
+anims/hit = SubResource( 13 )
 anims/invincible = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="Graphics"]
