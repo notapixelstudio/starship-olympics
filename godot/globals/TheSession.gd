@@ -12,9 +12,9 @@ var leaderboards : Array = []
 func _init():
 	uuid = UUID.v4()
 	game_id=global.the_game.get_uuid()
-	timestamp_str = datetime_to_str(OS.get_datetime(true))
+	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
 	snapshot_leaderboard()
-	
+
 	
 func get_uuid() -> String:
 	return uuid
@@ -131,4 +131,7 @@ func is_over() -> bool:
 		if player.get_session_score_total() >= global.win:
 			return true
 	return false
+	
+func store():
+	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), self.to_dict())
 	

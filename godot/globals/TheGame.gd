@@ -11,6 +11,7 @@ var deck : Deck
 func _init():
 	uuid = UUID.v4()
 	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
+	global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_log_dict())
 	
 func get_uuid() -> String:
 	return uuid

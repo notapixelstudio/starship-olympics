@@ -39,7 +39,7 @@ var uuid: String
 func _init():
 	global.the_match = self
 	uuid = UUID.v4()
-	timestamp_str = datetime_to_str(OS.get_datetime(true))
+	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
 	
 func get_uuid() -> String:
 	return uuid
@@ -268,3 +268,7 @@ func get_draft_card() -> DraftCard:
 
 func trigger_game_over_now():
 	compute_game_status(true) # end now
+
+func store():
+	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
+	

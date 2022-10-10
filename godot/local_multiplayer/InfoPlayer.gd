@@ -3,6 +3,7 @@ extends Node
 class_name InfoPlayer
 
 var id : String = "P1"
+var username: String = ""
 var controls : String = "kb1"
 var species  : Species
 
@@ -18,6 +19,9 @@ var team: String
 func new_match():
 	self.stats = PlayerStats.new()
 	
+func get_username() -> String:
+	return username if username != "" else self.get_id()
+
 func get_id() -> String:
 	return id
 	
@@ -29,12 +33,13 @@ func add_victory(perfect = false):
 
 func to_dict():
 	return {
-		"id": id,
+		"id": get_id(),
 		"controls": controls,
 		"species_name" : species.name,
 		"species": species.get_id(),
 		"cpu": cpu,
-		"session_score": len(session_score)
+		"session_score": len(session_score),
+		"username": get_username()
 	}
 
 func to_stats():
