@@ -4,11 +4,13 @@ class_name TheGame
 
 var uuid : String
 var players : Array
+var timestamp_str: String
 
 var deck : Deck
 
 func _init():
 	uuid = UUID.v4()
+	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
 	
 func get_uuid() -> String:
 	return uuid
@@ -67,6 +69,7 @@ func to_log_dict() -> Dictionary:
 		
 	return {
 		'game_uuid': self.get_uuid(),
+		'timestamp': self.timestamp_str,
 		'players': players_dicts,
 		'players_count': get_number_of_players(),
 		'human_players_count': get_number_of_human_players()
