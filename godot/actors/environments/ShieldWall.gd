@@ -22,22 +22,27 @@ func _ready():
 func up(new_type):
 	health = starting_health
 	type = new_type
-	match type:
-		'shield':
-			$Polygon2D.modulate = Color('#008bff')
-			$Sprite.modulate = Color('#008bff')
-			$Line2D.modulate = Color('#008bff')
-			$IsoPolygon.color = Color('#008bff')
-		'plate':
-			$Polygon2D.modulate = Color('#edd7a9')
-			$Sprite.modulate = Color('#edd7a9')
-			$Line2D.modulate = Color('#edd7a9')
-			$IsoPolygon.color = Color('#edd7a9')
-		'skin':
-			$Polygon2D.modulate = Color('#2fe257')
-			$Sprite.modulate = Color('#2fe257')
-			$Line2D.modulate = Color('#2fe257')
-			$IsoPolygon.color = Color('#2fe257')
+#	match type:
+#		'shield':
+#			$Polygon2D.modulate = Color('#008bff')
+#			$Sprite.modulate = Color('#008bff')
+#			$Line2D.modulate = Color('#008bff')
+#			$IsoPolygon.color = Color('#008bff')
+#		'plate':
+#			$Polygon2D.modulate = Color('#edd7a9')
+#			$Sprite.modulate = Color('#edd7a9')
+#			$Line2D.modulate = Color('#edd7a9')
+#			$IsoPolygon.color = Color('#edd7a9')
+#		'skin':
+#			$Polygon2D.modulate = Color('#2fe257')
+#			$Sprite.modulate = Color('#2fe257')
+#			$Line2D.modulate = Color('#2fe257')
+#			$IsoPolygon.color = Color('#2fe257')
+	$Polygon2D.modulate = Color('#008bff')
+	$Sprite.modulate = Color('#008bff')
+	$Line2D.modulate = Color('#008bff')
+	$IsoPolygon.color = Color('#008bff')
+	
 	enable_collisions()
 	$AnimationPlayer.play("reset")
 

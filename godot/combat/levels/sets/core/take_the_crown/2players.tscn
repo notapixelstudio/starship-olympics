@@ -16,7 +16,6 @@
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
 length = 8.0
@@ -144,13 +143,12 @@ type = "crown"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -400, -400 )
 rotation = 0.785398
-controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = -2.35619
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 7 )
 
 [node name="Camera" parent="." index="7"]
