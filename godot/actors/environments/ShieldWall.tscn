@@ -5,7 +5,7 @@
 [ext_resource path="res://actors/environments/IsoPolygon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
-length = 0.8
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -13,7 +13,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 0.5, 2 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -25,7 +25,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -116,6 +116,7 @@ begin_cap_mode = 1
 end_cap_mode = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 z_index = 10
 z_as_relative = false
