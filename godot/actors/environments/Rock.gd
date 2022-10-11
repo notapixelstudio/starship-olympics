@@ -85,8 +85,6 @@ func _ready():
 	
 	recolor()
 	
-	ECM.E(self).get('Deadly').set_enabled(deadly)
-	
 	$NoRotate/CountdownWrapper.position = Vector2(0,-gshape.height*0.9) if self_destruct_position == 'top' else Vector2(0,0)
 	
 func _on_Area2D_body_entered(body):
@@ -96,12 +94,8 @@ func _on_Area2D_body_entered(body):
 		try_break()
 		return
 		
-	#if body is Ship and conquerable:
-	#	conquered_by(body)
-	#	if body.is_piercing():
-	#		try_break()
-	#		body.rebound()
-	#	return
+	if body is Ship:
+		body.die(null)
 		
 	if ice and body.has_method('freeze'):
 		body.freeze()
@@ -238,14 +232,10 @@ func recolor():
 	$LightLine2DE4.default_color = color
 	
 	$NoRotate/CountdownWrapper.scale = Vector2(order, order)
-	
-	if species:
-		$NoRotate/Monogram/Label.text = self.get_owner_ship().get_id()
-		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
 		
 	if breakable:
 		$Polygon2D.self_modulate = Color(1,1,1,0.25)
-		$NoRotate.modulate = get_color()
+		$NoRotate.modulate = color
 		$Line2D.width = 36
 	else:
 		$Polygon2D.self_modulate = Color(1,1,1,0.75)
@@ -255,6 +245,10 @@ func recolor():
 #	if deadly:
 #		$Line2D.texture = spikes_texture
 #		$Line2D.width = 30*(order+1)
+	
+	if species:
+		$NoRotate/Monogram/Label.text = self.get_owner_ship().get_id()
+		$NoRotate/Monogram.scale = Vector2(order+1, order+1)
 	
 func get_color():
 	if species:
@@ -341,5 +335,7 @@ func get_owner_ship() -> Ship:
 	return owner_ship
 	
 func damage(hazard, damager : Ship):
+	if conquerable:
+		conquered_by(damager)
 	try_break()
 	

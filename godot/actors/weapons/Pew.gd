@@ -32,3 +32,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func destroy() -> void:
 	dissolve()
 	queue_free()
+
+func get_owner_ship() -> Ship:
+	return ship
+	

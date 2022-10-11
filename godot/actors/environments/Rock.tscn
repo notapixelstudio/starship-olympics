@@ -188,18 +188,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Deadly" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
 [node name="Star" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 18
+frame = 16
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
