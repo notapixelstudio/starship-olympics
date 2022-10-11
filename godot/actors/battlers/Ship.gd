@@ -96,18 +96,14 @@ var charging_too_much_for_tap = false
 var fire_cooldown = FIRE_COOLDOWN
 var dash_cooldown = 0
 var phasing_cooldown = 0
-var reload_time : float
 
 var game_mode : GameMode
-
-var bomb_count = 0
 
 var teleport_to = null
 
 onready var player = name
 onready var skin = $Graphics
 onready var charging_sfx = $charging
-onready var ammo = $PlayerInfo.ammo
 onready var target_dest = $TargetDest
 
 
@@ -166,7 +162,6 @@ func set_default_bomb_type(value):
 	
 func set_bomb_type(value):
 	bomb_type = value
-	ammo.type = bomb_type
 	update_weapon_indicator()
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
 		$Graphics/ChargeBar/BombPreview/BombType.modulate = species.color
@@ -174,11 +169,11 @@ func set_bomb_type(value):
 		next_symbol()
 	
 func set_ammo(value):
-	ammo.set_max_ammo(value)
-	ammo.replenish()
+	$'%Ammo'.set_max_ammo(value)
+	$'%Ammo'.replenish()
 	
 func set_reload_time(value):
-	reload_time = value
+	$'%Ammo'.set_reload_time(value)
 	
 func set_lives(value: int):
 	info_player.lives = value
@@ -434,14 +429,12 @@ func _physics_process(delta):
 	if charging and not charging_too_much_for_tap and charge > MAX_TAP_CHARGE:
 		charging_too_much_for_tap = true
 		
-var will_fire
 signal charging_started
 func charge():
 	charging = true
 	emit_signal("charging_started")
 	
-	will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0)
-	if will_fire:
+	if get_bombs_enabled() and not $'%Ammo'.is_empty():
 		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
 	
 signal charging_ended
@@ -449,8 +442,6 @@ func fire(override_charge = -1, dash_only = false):
 	"""
 	Fire a bomb
 	"""
-	var should_reload = false
-	
 	actual_charge = override_charge if override_charge > 0 else charge
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
 	var will_dash = charging_enough and is_aiming_away_gel()
@@ -473,11 +464,8 @@ func fire(override_charge = -1, dash_only = false):
 		golf = false
 		update_weapon_indicator()
 	elif get_bombs_enabled() and not dash_only:
-		bomb_count += 1
-		will_fire = get_bombs_enabled() and (ammo.max_ammo == -1 or ammo.current_ammo > 0) # FIXME this is repeated twice, should also be reflected by visual feedback
-		if will_fire:
-			ammo.shot()
-			should_reload = true
+		if get_bombs_enabled() and not $'%Ammo'.is_empty():
+			$'%Ammo'.shot()
 			var impulse
 			if bomb_type == GameMode.BOMB_TYPE.ball:
 				impulse = charge_impulse*BALL_CHARGE_MULTIPLIER+BALL_BOOST
@@ -515,10 +503,6 @@ func fire(override_charge = -1, dash_only = false):
 		dash_cooldown = (min(actual_charge, MAX_CHARGE) - MIN_CHARGE)*0.6
 		phasing_cooldown = 0.2 # wait a bit to be lenient with phase-through checks
 		
-	if should_reload and reload_time > 0: # negative == no automatic reload
-		yield(get_tree().create_timer(reload_time), "timeout")
-		ammo.reload()
-		
 func reset_charge():
 	charge = 0
 	charging = false
@@ -542,13 +526,22 @@ func damage(hazard, damager : Ship):
 		return
 		
 	self.set_health(health - 1)
-	if health <= 0:
+	
+	if health < -1:
+		self.set_health(-1)
+		
+	if health == 0:
 		die(damager)
 	else:
-		rebound((global_position-hazard.global_position).normalized(), 2500.0)
+		if(hazard.get('linear_velocity') == null):
+			rebound((global_position-hazard.global_position).normalized(), 2500.0)
+		else:
+			rebound(Vector2(1,0).rotated(hazard.linear_velocity.angle()), 2500.0)
 		
 		if has_method('vibration_feedback'):
 			call('vibration_feedback', false)
+			
+		$'%AnimationPlayer'.play('hit')
 		
 		Events.emit_signal("ship_damaged", self, hazard, damager)
 		
@@ -665,9 +658,6 @@ func _on_Dashing_disabled():
 #func _on_Phasing_disabled():
 #	modulate = Color(1,1,1)
 #	global.arena.show_msg(species, 'END', position)
-	
-func _on_bomb_freed():
-	bomb_count -= 1
 
 
 signal thrusters_on
@@ -848,15 +838,18 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	if bomb_type == GameMode.BOMB_TYPE.fw_pew:
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty():
+		$'%Ammo'.shot()
 		var aperture = PI/4
 		var amount = 1
+		var aim_correction = 0.65
 		for i in range(amount):
-			var angle = global_rotation + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
+			var aim_angle = (aim_correction*target_velocity.normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if target_velocity.length() > 0.6 else global_rotation
+			var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 			var bullet = forward_bullet_scene.instance()
 			get_parent().add_child(bullet)
 			bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
-			bullet.linear_velocity = Vector2(2000, 0).rotated(angle)
+			bullet.linear_velocity = Vector2(2500, 0).rotated(angle)
 			bullet.set_ship(self)
 	
 var under = false
@@ -886,12 +879,6 @@ func freeze():
 	if alive and not invincible:
 		emit_signal("frozen", self)
 		
-func _on_bomb_expired(bomb_position):
-	# if no autoreload, reload after bomb expired
-	if reload_time < 0:
-		ammo.reload()
-		
-
 func _on_Ship_near_area_entered(sth, this):
 	if sth is ArkaBall and sth.is_pickable():
 		sth.queue_free()
@@ -950,6 +937,9 @@ func is_piercing() -> bool:
 	
 func get_cargo():
 	return $Cargo
+	
+func has_cargo() -> bool:
+	return $Cargo.has_holdable()
 
 # some collisions must be checked every frame
 func continuous_collision_check():
@@ -997,4 +987,10 @@ func end_drift():
 #func set_size(size):
 #	scale = Vector2(size, size)
 #	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
+	
+func set_holder(v: bool) -> void:
+	set_collision_layer_bit(21, v)
+
+func is_holder() -> bool:
+	return get_collision_layer_bit(21)
 	

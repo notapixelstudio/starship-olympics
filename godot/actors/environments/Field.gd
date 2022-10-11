@@ -199,3 +199,7 @@ func get_strategy(ship, distance, game_mode):
 				else:
 					return {"avoid": 1}
 	return {}
+
+func get_overlapping_bodies() -> Array:
+	return $Area2D.get_overlapping_bodies()
+	

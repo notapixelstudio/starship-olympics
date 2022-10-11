@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=1]
+[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=2]
+
+[resource]
+resource_name = "keep"
+script = ExtResource( 2 )
+battlefield_texture = ExtResource( 1 )
+battlefield_texture_offset = Vector2( 0, 0 )
+battlefield_texture_scale = Vector2( 0.25, 0.25 )
+battlefield_texture_rotation_degrees = 0.0
+battlefield_fg_color = Color( 0.17, 0.119, 0.119, 1 )
+battlefield_bg_color = Color( 0.2, 0.14, 0.14, 1 )
+battlefield_opacity = 0.9
+wall_color = Color( 1.13, 0.78, 0.47, 1 )
+bgm = "keep"

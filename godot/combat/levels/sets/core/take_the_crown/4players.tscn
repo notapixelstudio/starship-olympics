@@ -1,6 +1,5 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
@@ -10,16 +9,16 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/C.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/4A.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=12]
-[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/D.tscn" type="PackedScene" id=13]
+[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=14]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=16]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=18]
-[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/4A.tscn" type="PackedScene" id=19]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=21]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -144,7 +143,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Variants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 21 )]
-variant_scenes = [ ExtResource( 19 ), ExtResource( 1 ), ExtResource( 11 ), ExtResource( 13 ) ]
+variant_scenes = [ ExtResource( 11 ), ExtResource( 13 ) ]
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
 type = "crown"

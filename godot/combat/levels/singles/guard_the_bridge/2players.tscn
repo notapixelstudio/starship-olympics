@@ -1,0 +1,205 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=5]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=7]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/modes/GuardTheBridge.tres" type="Resource" id=9]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
+[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=11]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=12]
+[ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=13]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" type="PackedScene" id=15]
+[ext_resource path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" type="Script" id=16]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=17]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1375, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Shrink"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1375, 0 ), Vector2( -2125, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1375, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shrink"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1375, 0 ), Vector2( 2125, 0 ) ]
+}
+
+[node name="Arena" instance=ExtResource( 6 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 9 )
+style = ExtResource( 11 )
+
+[node name="BridgeManager" parent="Managers" index="0" instance=ExtResource( 15 )]
+
+[node name="KillModeManager" parent="Managers" index="10"]
+enabled = true
+
+[node name="BackgroundImage" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 7 )
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+texture = ExtResource( 5 )
+texture_scale = Vector2( 0.25, 0.25 )
+fg_color = Color( 0, 0.54902, 0.32549, 1 )
+bg_color = Color( 0, 0.2, 0.166667, 1 )
+
+[node name="LeftNoHolderZone" parent="Battlefield/Background" index="3" instance=ExtResource( 13 )]
+position = Vector2( -1375, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
+script = ExtResource( 1 )
+width = 750
+height = 700
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
+playback_speed = 2.0
+anims/RESET = SubResource( 1 )
+anims/Shrink = SubResource( 2 )
+script = ExtResource( 16 )
+
+[node name="Waiter" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
+
+[node name="RightNoHolderZone" parent="Battlefield/Background" index="4" instance=ExtResource( 13 )]
+position = Vector2( 1375, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
+script = ExtResource( 1 )
+clip = Rect2( -375, -10000, 10000, 20000 )
+width = 750
+height = 700
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
+playback_speed = 2.0
+anims/RESET = SubResource( 4 )
+anims/Shrink = SubResource( 3 )
+script = ExtResource( 16 )
+
+[node name="Waiter" parent="Battlefield/Background/RightNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 17 )]
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="5"]
+position = Vector2( -50, 0 )
+z_index = -5
+z_as_relative = false
+points = PoolVector2Array( -1050, -350, -950, -250, -950, 250, -1050, 350 )
+width = 25.0
+default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
+
+[node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="6"]
+position = Vector2( 1950, 0 )
+z_index = -5
+z_as_relative = false
+points = PoolVector2Array( -850, -350, -950, -250, -950, 250, -850, 350 )
+width = 25.0
+default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
+
+[node name="OutsideWall" parent="Battlefield/Background" index="7" instance=ExtResource( 14 )]
+hollow = true
+hide_grid = true
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 10 )
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 1 )
+width = 3500
+height = 700
+bevel = 100
+bevel_nw = 100
+bevel_ne = 100
+bevel_sw = 100
+bevel_se = 100
+
+[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
+position = Vector2( 1750, 0 )
+
+[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
+position = Vector2( -1750, 0 )
+
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 8 )]
+type = "helm"
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
+rotation = 3.14159
+controls = "joy1"
+species = ExtResource( 12 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 3 )]
+position = Vector2( -1300, 0 )
+rotation = 0.0
+controls = "joy2"
+species = ExtResource( 2 )
+
+[node name="Camera" parent="." index="7"]
+zoom = Vector2( 1.42109e+10, 1.42109e+10 )
+smoothing_speed = 0.3
+disabled_override = true
+
+[connection signal="entered" from="Battlefield/Background/LeftNoHolderZone" to="Managers/BridgeManager" method="_on_LeftNoHolderZone_entered"]
+[connection signal="entered" from="Battlefield/Background/RightNoHolderZone" to="Managers/BridgeManager" method="_on_RightNoHolderZone_entered"]

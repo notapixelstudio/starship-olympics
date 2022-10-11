@@ -156,20 +156,9 @@ signal near_area_exited
 func _on_NearArea_area_exited(area):
 	emit_signal("near_area_exited", area, self)
 	
-signal expired
 func _on_LifeTime_timeout():
 	if not entity.has('StandAlone') and type != GameMode.BOMB_TYPE.bubble:
-		get_parent().call_deferred("remove_child", self)
-		emit_signal('expired', self.position)
-		if entity.has('Owned'):
-			var owner = entity.get('Owned').get_owned_by()
-			if is_instance_valid(owner):
-				owner._on_bomb_freed()
-				
-		dissolve()
-		
-		yield(get_tree().create_timer(1), "timeout")
-		call_deferred("queue_free")
+		destroy()
 
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
@@ -243,3 +232,8 @@ func get_owner_ship():
 #signal frozen
 #func freeze():
 #	emit_signal("frozen", self)
+
+func destroy():
+	dissolve()
+	queue_free()
+	

@@ -61,7 +61,7 @@ func drop_holdable(cause):
 	var holdable = held
 	held = null
 	var previous_velocity = owner_ship.previous_velocity
-	if previous_velocity.length() < 0.1: # push if the ship was still
+	if previous_velocity.length() < 1.0: # push if the ship was still
 		previous_velocity = Vector2(200.0, 0).rotated(owner_ship.global_rotation)
 	holdable.place_and_push(owner_ship, previous_velocity, direction) # previous is needed for glass
 	hide_holdable()
