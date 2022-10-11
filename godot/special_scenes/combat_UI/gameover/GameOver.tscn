@@ -17,9 +17,6 @@ anchor_bottom = 1.0
 mouse_filter = 1
 mouse_default_cursor_shape = 10
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 sure_scene = ExtResource( 4 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
@@ -51,14 +48,14 @@ __meta__ = {
 
 [node name="Continue" type="Button" parent="Buttons"]
 margin_right = 296.0
-margin_bottom = 43.0
+margin_bottom = 46.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
 [node name="Map" type="Button" parent="Buttons"]
-margin_top = 47.0
+margin_top = 50.0
 margin_right = 296.0
-margin_bottom = 90.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "QUIT TO MAP"
@@ -73,13 +70,13 @@ size_flags_vertical = 3
 text = "QUIT"
 
 [node name="Control" type="Control" parent="Buttons"]
-margin_top = 94.0
+margin_top = 100.0
 margin_right = 296.0
-margin_bottom = 132.0
+margin_bottom = 129.0
 size_flags_vertical = 3
 
 [node name="ShowArena" type="Button" parent="Buttons"]
-margin_top = 136.0
+margin_top = 133.0
 margin_right = 296.0
 margin_bottom = 179.0
 size_flags_vertical = 3

@@ -137,7 +137,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.7.0-internal" setget set_version
+var version = "0.8.0-internal" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -388,7 +388,25 @@ func _onRemoteCommand(id,strength,button):
 	handleEventFire(button,controlsString + "_fire")
 	handleEventAccept(button,"ui_accept")
 	 
-		
+func create_dir(path: String):
+	var dir = Directory.new()
+	dir.make_dir_recursive(path)
+	
+func write_into_file(filepath: String, data: Dictionary):
+	#open the log file and go to the end
+	var file = File.new()
+	var error = file.open(filepath, File.READ_WRITE)
+	if error == ERR_FILE_NOT_FOUND:
+		create_dir(filepath.get_base_dir())
+		error = file.open(filepath, File.WRITE_READ)
+	if error == OK:
+		file.seek_end()
+		file.store_line(to_json(data))
+		file.flush() # WARNING writing to disk too often could hurt performance
+		file.close()
+	else: 
+		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
+	
 func read_file(path: String) -> Dictionary:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
@@ -400,6 +418,27 @@ func read_file(path: String) -> Dictionary:
 	# parse file data - convert the JSON back to a dictionary
 	var data = {}
 	data = parse_json(file.get_as_text())
+	file.close()
+	return data
+
+func read_file_by_line(path: String) -> Array:
+	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
+	var file = File.new()
+	if not file.file_exists(path):
+		print("The save file does not exist.")
+		return []
+	file.open(path, File.READ)
+	print("We are going to load from this JSON: ", file.get_path_absolute())
+	# parse file data - convert the JSON back to a dictionary
+	var data = []
+	var num_lines = 1
+	while not file.eof_reached(): # iterate through all lines until the end of file is reached
+		var content = file.get_line()
+		if content == "":
+			continue
+		data.append(parse_json(content))
+		num_lines += 1
+	print("Read {lines}".format({"lines":num_lines}))
 	file.close()
 	return data
 
@@ -680,3 +719,16 @@ func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
 var starting_deck: String = "classic"
+
+
+# Date utils
+func datetime_to_str(datetime: Dictionary, fmt = "") -> String:
+	# {"day":23,"dst":false,"hour":18,"minute":41,
+	# "month":9,"second":55,"weekday":4,"year":2021}
+	# FIXME replace with ISO dates
+	var tz = OS.get_time_zone_info()
+	var tz_hours = floor(tz.bias / 60)
+	
+	return "%s-%02d-%02dT%02d:%02d:%02d+%02d:00" % [datetime["year"], datetime["month"], datetime["day"], datetime["hour"], datetime["minute"], datetime["second"], tz_hours]
+	
+	

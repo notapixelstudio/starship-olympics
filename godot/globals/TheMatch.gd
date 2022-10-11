@@ -26,6 +26,7 @@ var end_on_perfect := true
 var minigame : Minigame
 var draft_card: DraftCard
 var game_mode : GameMode
+var timestamp_str : String
 
 const DEADZONE = 0.1
 signal game_over
@@ -38,6 +39,7 @@ var uuid: String
 func _init():
 	global.the_match = self
 	uuid = UUID.v4()
+	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
 	
 func get_uuid() -> String:
 	return uuid
@@ -203,9 +205,14 @@ func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
+	var winners_info = []
+	for winner in self.winners:
+		winners_info.append((winner as InfoPlayer).to_dict())
 	var dict = {
 		"uuid": get_uuid(),
+		"timestamp": timestamp_str,
 		"winners": winners,
+		"winners_info": winners_info,
 		"winners_did_perfect": self.winners_did_perfect()
 	}
 	if minigame:
@@ -261,3 +268,7 @@ func get_draft_card() -> DraftCard:
 
 func trigger_game_over_now():
 	compute_game_status(true) # end now
+
+func store():
+	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
+	

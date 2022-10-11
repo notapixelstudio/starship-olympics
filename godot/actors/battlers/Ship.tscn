@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -32,10 +32,11 @@
 [ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
-[ext_resource path="res://actors/weapons/ForwardBullet.tscn" type="PackedScene" id=33]
+[ext_resource path="res://actors/weapons/Pew.tscn" type="PackedScene" id=33]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=35]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
+[ext_resource path="res://actors/battlers/Ammo.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
 [ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=39]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=40]
@@ -85,6 +86,37 @@ func invincible(offset = 0):
 	yield(anim, \"animation_finished\")
 	emit_signal(\"stop_invincible\")
 "
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
@@ -149,6 +181,9 @@ order = 1
 [node name="Collector" parent="." instance=ExtResource( 24 )]
 
 [node name="Tracked" parent="." instance=ExtResource( 36 )]
+
+[node name="Ammo" parent="." instance=ExtResource( 37 )]
+unique_name_in_owner = true
 
 [node name="IceAutoTrail" parent="." instance=ExtResource( 29 )]
 z_index = -16
@@ -259,7 +294,10 @@ position = Vector2( -130.4, 0 )
 enabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 12 )
 anims/appearing = ExtResource( 39 )
+anims/hit = SubResource( 13 )
 anims/invincible = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="Graphics"]

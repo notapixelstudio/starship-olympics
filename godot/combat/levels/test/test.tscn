@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=17]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -51,7 +52,20 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
+[node name="NoHolderZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 17 )]
+position = Vector2( 0, 1100 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoHolderZone" index="11"]
+script = ExtResource( 10 )
+width = 600
+height = 600
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 14 )]
 position = Vector2( 0, -1100 )
 visible_decorations = true
 symbol_scale = 2.0
@@ -64,7 +78,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NoShipZone" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
+[node name="NoShipZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 9 )]
 position = Vector2( -1200, 0 )
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoShipZone" index="11"]
@@ -77,14 +91,14 @@ bevel_ne = 200
 bevel_sw = 200
 bevel_se = 200
 
-[node name="Card" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
+[node name="Card" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
 position = Vector2( 719, -609 )
 auto_flip_back = true
 take_ownership = true
 multiple_owners = true
 float_when_selected = false
 
-[node name="Card2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
+[node name="Card2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 15 )]
 position = Vector2( 1237, -422 )
 auto_flip_back = true
 take_ownership = true
