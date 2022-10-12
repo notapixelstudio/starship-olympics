@@ -14,6 +14,10 @@ func _on_ForwardBullet_body_entered(body):
 		
 	if body.has_method('damage'):
 		body.damage(self, ship)
+		
+	if body is Ball:
+		body.set_player(ship.get_player())
+		body.activate()
 
 func set_ship(v : Ship):
 	ship = v
