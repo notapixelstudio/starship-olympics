@@ -201,8 +201,10 @@ func _enter_tree():
 	if controls_enabled:
 		make_invincible()
 		
-	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.4)
+	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.35)
 	$AutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
+	$FlameAutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.5)
+	$FlameAutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
 	
 func make_invincible():
 	invincible = true
@@ -658,9 +660,13 @@ signal thrusters_off
 
 func _on_Thrusters_disabled():
 	emit_signal('thrusters_off')
+	$FlameAutoTrail.drop_trail()
+	$InnerFlameAutoTrail.drop_trail()
 
 func _on_Thrusters_enabled():
 	emit_signal('thrusters_on')
+	$FlameAutoTrail.create_trail()
+	$InnerFlameAutoTrail.create_trail()
 
 signal fallen
 func fall():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
@@ -42,6 +42,7 @@
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=40]
 [ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=41]
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=42]
+[ext_resource path="res://assets/shaders/trail.png" type="Texture" id=43]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -454,6 +455,22 @@ texture = ExtResource( 19 )
 
 [node name="AutoTrail" parent="." instance=ExtResource( 29 )]
 width = 140
+
+[node name="FlameAutoTrail" parent="." instance=ExtResource( 29 )]
+position = Vector2( -54, 0 )
+starting_color = Color( 1, 1, 1, 1 )
+length = 10
+width = 140
+texture = ExtResource( 43 )
+texture_mode = 2
+
+[node name="InnerFlameAutoTrail" parent="." instance=ExtResource( 29 )]
+position = Vector2( -66, 0 )
+starting_color = Color( 1, 1, 1, 0.588235 )
+length = 10
+width = 40
+texture = ExtResource( 43 )
+texture_mode = 2
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
