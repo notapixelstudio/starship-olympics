@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=39]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=40]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=41]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -156,7 +157,7 @@ font_data = ExtResource( 34 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 52
-font_data = ExtResource( 34 )
+font_data = ExtResource( 41 )
 
 [node name="Rock" type="RigidBody2D" groups=["rock"]]
 collision_layer = 1024
@@ -193,7 +194,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 16
+frame = 76
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]

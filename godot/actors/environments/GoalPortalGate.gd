@@ -14,8 +14,9 @@ func _ready():
 		
 func set_player(v : InfoPlayer):
 	player = v
-	modulate = player.species.color
-	#$LabelWrapper/Label.text = player.get_id().to_upper()
+	$RingPart.self_modulate = player.species.color
+	$'%PlayerLabel'.text = player.get_username().to_upper()
+	$'%PlayerLabel'.modulate = player.species.color
 	
 func get_player():
 	return player
