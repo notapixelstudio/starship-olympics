@@ -23,7 +23,6 @@ var trail
 var cpu = false
 var velocity := Vector2(0,0)
 var previous_velocity := Vector2(0,0)
-var previous_global_positions : Array
 var last_contact_normal = null
 var target_velocity := Vector2(0,0)
 var steer_force = 0
@@ -189,7 +188,6 @@ func reset_health():
 func _enter_tree():
 	alive = true
 	outside_countup = 0
-	previous_global_positions = [global_position]
 	
 	reset_health()
 	
@@ -327,11 +325,6 @@ func _integrate_forces(state):
 	# store velocity as a readable var
 	previous_velocity = velocity
 	velocity = state.linear_velocity
-	
-	# remember our previous global positions
-	previous_global_positions.push_back(global_position)
-	if len(previous_global_positions) > 2:
-		previous_global_positions.pop_front()
 	
 	# store last contact normal as a readable var
 	if state.get_contact_count() > 0:
@@ -968,11 +961,6 @@ func get_species():
 	
 func get_color():
 	return get_species().color
-	
-func get_previous_global_position(): # Vector2 or null
-	if len(previous_global_positions) <= 1:
-		return null
-	return previous_global_positions[0]
 
 func start_drift():
 	drifting = true
