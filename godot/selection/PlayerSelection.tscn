@@ -1,11 +1,9 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
-[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Select_02.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/UI_effects/PM_BlurryDreams_33.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/davefuzz/audio/sfx_lobby_ui_playersearch_01.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/davefuzz/audio/sfx_lobby_ui_playerselect_01.wav" type="AudioStream" id=5]
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
@@ -18,6 +16,35 @@
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/davefuzz/audio/sfx_lobby_ui_playerdeselect_01.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/davefuzz/audio/sfx_lobby_ui_gamestart_01.wav" type="AudioStream" id=20]
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../../SFX/deselected:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../SFX/selected:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -50,19 +77,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../../../SFX/deselected")
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../SFX/deselected:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 6 )
-} ],
-"times": PoolRealArray( 0.05 )
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -81,19 +106,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0.95, 1.05 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1.01, 0.99 ), Vector2( 1, 1 ) ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../../../SFX/selected")
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../SFX/selected:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 4 )
-} ],
-"times": PoolRealArray( 0.1 )
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -166,9 +189,6 @@ grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 400 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 species = ExtResource( 12 )
 
 [node name="CharacterWrapper" type="Node2D" parent="Wrapper/SpeciesSelection"]
@@ -180,6 +200,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
 autoplay = "appear"
+anims/RESET = SubResource( 9 )
 anims/appear = SubResource( 1 )
 anims/deselect = SubResource( 2 )
 anims/select = SubResource( 3 )
@@ -378,19 +399,19 @@ uppercase = true
 
 [node name="SFX" type="Node" parent="."]
 
-[node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="switch-selection" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 3 )
 bus = "SFX"
 
-[node name="selected" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource( 4 )
+[node name="selected" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 5 )
 bus = "SFX"
 
-[node name="ready" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource( 5 )
+[node name="ready" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 20 )
 volume_db = 10.0
 bus = "SFX"
 
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 6 )
+stream = ExtResource( 19 )
 bus = "SFX"
