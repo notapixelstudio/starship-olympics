@@ -96,12 +96,13 @@ func gracefully_go_to(point: Vector2, angle: float = 0.0, duration: float = 0.5,
 
 
 func gracefully_zoom_in():
-	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween.tween_property(self, 'global_position', Vector2(0, 300), 0.8)
-	tween.parallel().tween_property(self, 'global_rotation', 0, 0.8)
-	tween.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.parallel().tween_property(self, 'scale', Vector2(8, 8), 2.5)
-	yield(tween, "finished")
+	var waiting_tweener = tween.parallel().tween_property(self, 'rotation_degrees', 0.0, 0.7)
+	tween.tween_property(self, 'scale', Vector2(8, 8), 1.5)
+	yield(waiting_tweener, "finished")
+	tween.parallel().tween_property(self, 'scale', Vector2(8, 8), 1.0)
+	tween.play()
 	emit_signal("zoomed_in")
 	
 func reposition(target_position: Vector2, target_rotation := 0.0):

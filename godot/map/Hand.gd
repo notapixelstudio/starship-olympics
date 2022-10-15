@@ -3,7 +3,7 @@ extends Node2D
 class_name HandNode
 
 const SEPARATION = 600
-const CARD_SEPARATION = 200
+const CARD_SEPARATION = PI
 
 export var size:= Vector2()
 
@@ -26,6 +26,7 @@ func update_card_positions():
 		var card : DraftCardGraphicNode = cards[i]
 		var target_pos = self.calculate_pos(i)
 		var target_rot = self.calculate_rot(i)
+		print("number of cards {cards} with angle {angle}".format({"cards": self.get_card_count(), "angle": rad2deg(self.calculate_angle(i))}))
 		card.reposition(target_pos, target_rot)
 		# card.position.x = (i-len(cards)/2.0+0.5)*(card.get_size().x+SEPARATION)
 		#card.gracefully_go_to( Vector2( (i-len(cards)/2.0+0.5)*(card.get_size().x+SEPARATION), 0) )
@@ -52,7 +53,10 @@ func get_card_index(card: DraftCardGraphicNode):
 	return 0
 
 func calculate_angle(index_card: int) -> float:
-	return PI/2 + CARD_SEPARATION*(float(index_card - self.get_card_count())/2 + 0.5)
+	var num_cards = self.get_card_count()
+	
+	return PI/2 - 0.75*((num_cards/2 - index_card))
+	# return PI/2 + CARD_SEPARATION*(float(index_card - self.get_card_count())/2 + 0.5)
 	
 func calculate_pos(index_card: int) -> Vector2:
 	# (i-len(cards)/2.0+0.5)*(card.get_size().x+SEPARATION)
