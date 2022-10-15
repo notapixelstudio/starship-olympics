@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=2]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
+[ext_resource path="res://utils/CameraStartingRect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/environments/Rototile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
@@ -68,7 +69,7 @@ centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 3.05176e-05, -250 )
+position = Vector2( 3.05176e-05, -100 )
 hollow = true
 offset = 200
 hide_grid = true
@@ -77,7 +78,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 3 )
-width = 6600
+width = 6700
 height = 3800
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -85,6 +86,14 @@ visible = false
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+
+[node name="CameraStartingRect" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
+polygon = PoolVector2Array( -1400, -1400, 1400, -1400, 1400, 1400, -1400, 1400, -1400, -1400 )
+
+[node name="GRect" type="Node" parent="Battlefield/Background/CameraStartingRect" index="0"]
+script = ExtResource( 3 )
+width = 2800
+height = 2800
 
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
 
@@ -162,14 +171,8 @@ controls = "kb2"
 species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="7"]
-current = false
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 disabled_override = true
-
-[node name="Camera2D" type="Camera2D" parent="." index="10"]
-offset = Vector2( 0, -240 )
-current = true
-zoom = Vector2( 5, 5 )
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
