@@ -4,7 +4,7 @@
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=2]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 [ext_resource path="res://utils/CameraStartingRect.tscn" type="PackedScene" id=4]
-[ext_resource path="res://actors/environments/Rototile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/RotoPowerline.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=8]
@@ -97,67 +97,67 @@ height = 2800
 
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
 
-[node name="Rototile" parent="Battlefield/Middleground/Board" index="0" instance=ExtResource( 5 )]
+[node name="RotoPowerline" parent="Battlefield/Middleground/Board" index="0" instance=ExtResource( 5 )]
 
-[node name="Rototile2" parent="Battlefield/Middleground/Board" index="1" instance=ExtResource( 5 )]
+[node name="RotoPowerline2" parent="Battlefield/Middleground/Board" index="1" instance=ExtResource( 5 )]
 position = Vector2( 0, -600 )
 
-[node name="Rototile3" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 5 )]
+[node name="RotoPowerline3" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, -1200 )
 
-[node name="Rototile4" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 5 )]
+[node name="RotoPowerline4" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 5 )]
+position = Vector2( 0, 600 )
+
+[node name="RotoPowerline5" parent="Battlefield/Middleground/Board" index="4" instance=ExtResource( 5 )]
 position = Vector2( 0, 1200 )
 
-[node name="Rototile6" parent="Battlefield/Middleground/Board" index="4" instance=ExtResource( 5 )]
+[node name="RotoPowerline6" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 5 )]
 position = Vector2( -600, 0 )
 
-[node name="Rototile7" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 5 )]
+[node name="RotoPowerline7" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 5 )]
 position = Vector2( -600, -600 )
 
-[node name="Rototile10" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 5 )]
+[node name="RotoPowerline8" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 5 )]
 position = Vector2( -600, -1200 )
 
-[node name="Rototile8" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 5 )]
+[node name="RotoPowerline9" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 5 )]
 position = Vector2( -600, 600 )
 
-[node name="Rototile16" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 5 )]
-position = Vector2( -1200, 0 )
-
-[node name="Rototile17" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 5 )]
-position = Vector2( -1200, -600 )
-
-[node name="Rototile18" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 5 )]
-position = Vector2( -1200, 600 )
-
-[node name="Rototile19" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 5 )]
-position = Vector2( 1200, 0 )
-
-[node name="Rototile20" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 5 )]
-position = Vector2( 1200, -600 )
-
-[node name="Rototile21" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 5 )]
-position = Vector2( 1200, 600 )
-
-[node name="Rototile9" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 5 )]
+[node name="RotoPowerline10" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 5 )]
 position = Vector2( -600, 1200 )
 
-[node name="Rototile11" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 5 )]
+[node name="RotoPowerline11" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 5 )]
 position = Vector2( 600, 0 )
 
-[node name="Rototile12" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 5 )]
+[node name="RotoPowerline12" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 5 )]
 position = Vector2( 600, -600 )
 
-[node name="Rototile13" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 5 )]
+[node name="RotoPowerline13" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 5 )]
 position = Vector2( 600, -1200 )
 
-[node name="Rototile14" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 5 )]
+[node name="RotoPowerline14" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 5 )]
 position = Vector2( 600, 600 )
 
-[node name="Rototile15" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 5 )]
+[node name="RotoPowerline19" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 5 )]
+position = Vector2( 1200, 0 )
+
+[node name="RotoPowerline20" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 5 )]
+position = Vector2( 1200, -600 )
+
+[node name="RotoPowerline21" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 5 )]
+position = Vector2( 1200, 600 )
+
+[node name="RotoPowerline15" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 5 )]
 position = Vector2( 600, 1200 )
 
-[node name="Rototile5" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 5 )]
-position = Vector2( 0, 600 )
+[node name="RotoPowerline16" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 5 )]
+position = Vector2( -1200, 0 )
+
+[node name="RotoPowerline17" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 5 )]
+position = Vector2( -1200, -600 )
+
+[node name="RotoPowerline18" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 5 )]
+position = Vector2( -1200, 600 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1800, 0 )

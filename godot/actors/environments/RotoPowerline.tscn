@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/Rototile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/RotoPowerline.gd" type="Script" id=2]
+
+[node name="RotoPowerline" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Line2D" type="Line2D" parent="." index="5"]
+points = PoolVector2Array( -300, 0, 300, 0 )
+width = 100.0
+default_color = Color( 1, 1, 1, 1 )
+
+[connection signal="all_rotations_finished" from="." to="." method="_on_RotoPowerline_all_rotations_finished"]
+[connection signal="start_rotating" from="." to="." method="_on_RotoPowerline_start_rotating"]
