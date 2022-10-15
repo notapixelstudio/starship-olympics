@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/lock_generic.png" type="Texture" id=7]
+[ext_resource path="res://assets/davefuzz/audio/sfx_menu_ui_selecoption_01.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/davefuzz/audio/sfx_lobby_ui_gamestart_01.wav" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -212,7 +214,7 @@ bbcode_enabled = true
 bbcode_text = "TEAM VS TEAM
 [color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
 text = "TEAM VS TEAM
-[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
+CURRENTLY UNDER DEVELOPMENT!"
 scroll_active = false
 
 [node name="Campaign" type="RichTextLabel" parent="Tooltips"]
@@ -227,7 +229,7 @@ bbcode_enabled = true
 bbcode_text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
 [color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
 text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
-[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
+CURRENTLY UNDER DEVELOPMENT!"
 scroll_active = false
 
 [node name="Options" type="RichTextLabel" parent="Tooltips"]
@@ -276,8 +278,23 @@ custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 scroll_active = false
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="Gamestart" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource( 9 )
+
+[node name="Switch" type="AudioStreamPlayer" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource( 8 )
+
+[connection signal="focus_entered" from="Buttons/Fight" to="." method="_on_button_focus"]
 [connection signal="pressed" from="Buttons/Fight" to="." method="_on_Fight_pressed"]
 [connection signal="pressed" from="Buttons/TeamVersus" to="." method="_on_Fight_pressed"]
 [connection signal="pressed" from="Buttons/Campaign" to="." method="_on_Fight_pressed"]
+[connection signal="focus_entered" from="Buttons/Options" to="." method="_on_button_focus"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
+[connection signal="focus_entered" from="Buttons/Help" to="." method="_on_button_focus"]
+[connection signal="focus_entered" from="Buttons/Credits" to="." method="_on_button_focus"]
+[connection signal="focus_entered" from="Buttons/QuitButton" to="." method="_on_button_focus"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

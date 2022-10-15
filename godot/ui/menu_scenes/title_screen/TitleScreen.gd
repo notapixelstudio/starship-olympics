@@ -33,6 +33,7 @@ func _on_Options_pressed():
 	options.connect("back_at_you", self, "back_from_options")
 
 func _on_Fight_pressed():
+	$"%Gamestart".play()
 	get_tree().change_scene_to(local_multi_scene)
 
 func _on_QuitButton_pressed():
@@ -53,3 +54,7 @@ func _on_button_focus_exited(button):
 	if button.disabled:
 		button.get_node('Lock').visible = false
 	$Tooltips.get_node(button.name).modulate = Color(1,1,1,0)
+
+
+func _on_button_focus():
+	$"%Switch".play()
