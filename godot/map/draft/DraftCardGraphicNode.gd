@@ -103,9 +103,8 @@ func gracefully_zoom_in():
 	tween.parallel().tween_property(self, 'scale', Vector2(8, 8), 2.5)
 	yield(tween, "finished")
 	emit_signal("zoomed_in")
-
-
+	
 func reposition(target_position: Vector2, target_rotation := 0.0):
 	# called to reposition the card. need a tween animation
 	self.position = target_position
-	self.rotation = target_rotation
+	self.rotation = deg2rad(target_rotation)
