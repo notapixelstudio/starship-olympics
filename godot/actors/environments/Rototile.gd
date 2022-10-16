@@ -27,6 +27,10 @@ func do_rotation():
 	tween.tween_property(self, 'rotation', angle, 0.5)
 	tween.connect('finished', self, '_on_rotation_finished')
 
+func set_random_angle():
+	angle = PI/2 * (randi() % 4)
+	rotation = angle
+	
 func _on_Rototile_body_entered(body):
 	if body is Ship:
 		Events.emit_signal("tappable_entered", self, body)
