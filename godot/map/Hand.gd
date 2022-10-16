@@ -7,7 +7,7 @@ const CARD_SEPARATION = PI
 
 export var size:= Vector2()
 
-var horizontal_radius := 1000.0
+var horizontal_radius := 1500.0
 var vertical_radius := 300.0
 
 
@@ -34,6 +34,11 @@ func update_card_positions():
 func add_card(card:DraftCardGraphicNode):
 	add_child(card)
 	self.update_card_positions()
+
+func remove_card(card:DraftCardGraphicNode):
+	remove_child(card)
+	card.queue_free()
+	self.update_card_positions()
 	
 func get_all_cards():
 	var cards = []
@@ -52,10 +57,17 @@ func get_card_index(card: DraftCardGraphicNode):
 		i+=1
 	return 0
 
+var values = [[0], [-1,1], [-1,0,1],[-2,-1,1,2],[-2,-1,0,1,2]]
+# we can take inspiration from: https://github.com/db0/godot-card-game-framework/blob/f58bbc3e9ac5010f6e213189f0796042bd3ec24c/src/core/CardTemplate.gd#L2678
 func calculate_angle(index_card: int) -> float:
 	var num_cards = self.get_card_count()
-	
-	return PI/2 - 0.75*((num_cards/2 - index_card))
+	var half = (num_cards - 1) / 2.0
+	var card_angle_max: float = 15
+	var card_angle_min: float = 6.5
+	# Angle between cards
+	var card_angle = max(min(60 / num_cards, card_angle_max), card_angle_min)
+	return deg2rad(90 + 1.8*(half - index_card) * card_angle )
+	# return deg2rad(card_angle)
 	# return PI/2 + CARD_SEPARATION*(float(index_card - self.get_card_count())/2 + 0.5)
 	
 func calculate_pos(index_card: int) -> Vector2:
@@ -68,30 +80,3 @@ func calculate_pos(index_card: int) -> Vector2:
 func calculate_rot(index_card: int) -> float: 
 	var angle = self.calculate_angle(index_card)
 	return (90 - rad2deg(angle))/4
-
-"""
-func drawcard():
-	var num_cards = get_card_count()
-	angle = PI/2 + CARD_SEPARATION*(float(num_cards)/2 - num_cards)
-	
-	var oval_angle_vector = Vector2(horizontal_radius * cos(angle), - vertical_radius * sin(angle))
-	
-	var target_position = oval_angle_vector - CardSize
-	
-	var target_rotation = (90 - rad2deg(angle))/4
-
-	Card_Numb = 0
-	for Card in get_children(): # reorganise hand
-		angle = PI/2 + CARD_SEPARATION*(float(NumberCardsHand)/2 - Card_Numb)
-		OvalAngleVector = Vector2(Hor_rad * cos(angle), - Ver_rad * sin(angle))
-		
-		Card.targetpos = CentreCardOval + OvalAngleVector - CardSize
-		Card.startrot = Card.rect_rotation
-		Card.targetrot = (90 - rad2deg(angle))/4
-		
-		Card_Numb += 1
-		
-	
-	return DeckSize
-"""
-

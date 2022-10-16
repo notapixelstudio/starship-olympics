@@ -101,8 +101,7 @@ func gracefully_zoom_in():
 	var waiting_tweener = tween.parallel().tween_property(self, 'rotation_degrees', 0.0, 0.7)
 	tween.tween_property(self, 'scale', Vector2(8, 8), 1.5)
 	yield(waiting_tweener, "finished")
-	tween.parallel().tween_property(self, 'scale', Vector2(8, 8), 1.0)
-	tween.play()
+	
 	emit_signal("zoomed_in")
 	
 func reposition(target_position: Vector2, target_rotation := 0.0):
