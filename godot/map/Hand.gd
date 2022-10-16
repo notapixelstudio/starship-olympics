@@ -3,11 +3,11 @@ extends Node2D
 class_name HandNode
 
 const SEPARATION = 600
-const CARD_SEPARATION = PI
+const CARD_SEPARATION_ANGLE = 1.8
 
 export var size:= Vector2()
 
-var horizontal_radius := 1500.0
+var horizontal_radius := 1800.0
 var vertical_radius := 300.0
 
 
@@ -66,7 +66,7 @@ func calculate_angle(index_card: int) -> float:
 	var card_angle_min: float = 6.5
 	# Angle between cards
 	var card_angle = max(min(60 / num_cards, card_angle_max), card_angle_min)
-	return deg2rad(90 + 1.8*(half - index_card) * card_angle )
+	return deg2rad(90 + CARD_SEPARATION_ANGLE*(half - index_card) * card_angle )
 	# return deg2rad(card_angle)
 	# return PI/2 + CARD_SEPARATION*(float(index_card - self.get_card_count())/2 + 0.5)
 	
