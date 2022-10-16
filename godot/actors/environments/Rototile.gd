@@ -9,10 +9,10 @@ signal rotation_finished
 signal all_rotations_finished
 
 func show_tap_preview(ship):
-	$Polygon2D.modulate = Color.white
+	$Sprite.modulate = Color.white
 	
 func hide_tap_preview():
-	$Polygon2D.modulate = Color('#b3b3b3')
+	$Sprite.modulate = Color('#b3b3b3')
 	
 func tap(author):
 	rotations += 1
