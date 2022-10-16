@@ -21,6 +21,10 @@ func _ready():
 		l.text = cleanup_datetime_str(champ_info.session_info.timestamp)
 		$"%SessionWon".add_child(l)
 		$"%SessionWon".add_child(champ_scene)
+	yield(get_tree(), "idle_frame")
+	$"%ScrollContainer".scroll_vertical = 1000
+	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 4)
 
 func _input(event):
 	if event.is_action_pressed("confirm"):
