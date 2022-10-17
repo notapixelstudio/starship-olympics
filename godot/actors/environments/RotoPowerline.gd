@@ -16,7 +16,7 @@ func set_on(v: bool) -> void:
 	if on:
 		$Line2D.self_modulate = Color(1,1,0.4)
 	else:
-		$Line2D.self_modulate = Color(0,0,0)
+		$Line2D.self_modulate = Color(0.1,0.1,0.1)
 		
 func set_type(v: String) -> void:
 	type = v
