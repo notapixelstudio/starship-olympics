@@ -11,7 +11,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
-[ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=12]
+[ext_resource path="res://actors/environments/PowerBattery.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/PowerCore.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/boards/power_grid.png" type="Texture" id=14]
 
@@ -23,7 +23,7 @@ var matrix := {}
 
 func _ready():
 	for tile in get_children():
-		if tile is RotoPowerline:
+		if tile is RotoPowerline and tile.is_interactable():
 			tile.set_on(false)
 			tile.set_random_angle()
 			tile.connect('disconnected', self, '_on_tile_disconnected')
@@ -214,25 +214,18 @@ type = "C"
 
 [node name="PowerCore" parent="Battlefield/Middleground/Tiles" index="26" instance=ExtResource( 13 )]
 
-[node name="SpeciesDecal" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
+[node name="PowerBattery" parent="Battlefield/Middleground/Tiles" index="27" instance=ExtResource( 12 )]
 position = Vector2( -1200, 600 )
-scale = Vector2( 0.6, 0.6 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
-[node name="SpeciesDecal2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
-position = Vector2( -600, -1200 )
-scale = Vector2( 0.6, 0.6 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p1")
-
-[node name="SpeciesDecal3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 12 )]
-position = Vector2( 1200, -600 )
-scale = Vector2( 0.6, 0.6 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p2")
-
-[node name="SpeciesDecal4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
+[node name="PowerBattery2" parent="Battlefield/Middleground/Tiles" index="28" instance=ExtResource( 12 )]
 position = Vector2( 600, 1200 )
-scale = Vector2( 0.6, 0.6 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p2")
+
+[node name="PowerBattery3" parent="Battlefield/Middleground/Tiles" index="29" instance=ExtResource( 12 )]
+position = Vector2( 1200, -600 )
+
+[node name="PowerBattery4" parent="Battlefield/Middleground/Tiles" index="30" instance=ExtResource( 12 )]
+position = Vector2( -600, -1200 )
+interactable = true
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -2400, 0 )

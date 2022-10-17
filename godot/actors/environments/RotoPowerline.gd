@@ -8,7 +8,7 @@ signal propagate
 
 var placed := true
 
-export (String, 'I', 'T', 'C') var type = 'T' setget set_type
+export (String, 'I', 'T', 'C', 'X') var type = 'T' setget set_type
 var on := false setget set_on
 
 func set_on(v: bool) -> void:
@@ -31,6 +31,8 @@ func set_type(v: String) -> void:
 			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(300,0),Vector2(0,0),Vector2(0,300)])
 		'C':
 			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(-100,0),Vector2(0,100),Vector2(0,300)])
+		'X':
+			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(300,0),Vector2(0,0),Vector2(0,300),Vector2(0,-300)])
 		
 
 func _on_RotoPowerline_start_rotating():
@@ -64,6 +66,8 @@ func input_power_from(direction: Vector2):
 		'C':
 			if idir == Vector2.UP or idir == Vector2.RIGHT:
 				return
+		'X':
+			pass
 			
 	set_on(true)
 	
@@ -78,6 +82,11 @@ func input_power_from(direction: Vector2):
 		'C':
 			emit_signal('propagate', self, ivec(Vector2.LEFT.rotated(angle)))
 			emit_signal('propagate', self, ivec(Vector2.DOWN.rotated(angle)))
+		'X':
+			emit_signal('propagate', self, ivec(Vector2.LEFT))
+			emit_signal('propagate', self, ivec(Vector2.DOWN))
+			emit_signal('propagate', self, ivec(Vector2.RIGHT))
+			emit_signal('propagate', self, ivec(Vector2.UP))
 	
 func power_off():
 	set_on(false)

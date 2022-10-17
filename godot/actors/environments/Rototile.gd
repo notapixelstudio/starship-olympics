@@ -1,6 +1,8 @@
 extends Area2D
 class_name Rototile
 
+export var interactable := true setget set_interactable
+
 var rotations := 0
 var angle := 0.0
 
@@ -8,13 +10,26 @@ signal start_rotating
 signal rotation_finished
 signal all_rotations_finished
 
+func set_interactable(v: bool) -> void:
+	interactable = v
+	if not is_inside_tree():
+		yield(self, 'ready')
+	$Sprite.visible = interactable
+
+func is_interactable() -> bool:
+	return interactable
+
 func show_tap_preview(ship):
+	if not interactable:
+		return
 	$Sprite.modulate = Color.white
 	
 func hide_tap_preview():
 	$Sprite.modulate = Color('#b3b3b3')
 	
 func tap(author):
+	if not interactable:
+		return
 	rotations += 1
 	if rotations == 1:
 		# start rotating

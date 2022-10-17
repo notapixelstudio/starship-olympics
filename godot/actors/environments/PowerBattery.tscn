@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://actors/environments/RotoPowerline.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/PowerBattery.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+func _process(delta):
+	global_rotation = 0
+	
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 3 )
+
+[node name="PowerBattery" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+interactable = false
+type = "X"
+
+[node name="Sprite" parent="." index="2"]
+visible = false
+
+[node name="Line2D" parent="." index="4"]
+points = PoolVector2Array( -300, 0, 300, 0, 0, 0, 0, 300, 0, -300 )
+
+[node name="NoRotate" type="Node2D" parent="." index="6"]
+script = SubResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="NoRotate" index="0"]
+color = Color( 0, 0, 0, 0.85098 )
+polygon = PoolVector2Array( -150, 225, -150, -225, -25, -225, -25, -250, 25, -250, 25, -225, 150, -225, 150, 225 )
+
+[node name="Line2D2" type="Line2D" parent="NoRotate" index="1"]
+points = PoolVector2Array( 0, 225, -150, 225, -150, -225, 150, -225, 150, 225, 0, 225 )
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Label" type="Label" parent="NoRotate" index="2"]
+self_modulate = Color( 1, 1, 1, 0.682353 )
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 1 )
+text = "PP"
+align = 1
+valign = 1
