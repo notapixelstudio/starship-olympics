@@ -15,7 +15,7 @@ func _process(delta):
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
-outline_size = 8
+outline_size = 15
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
@@ -45,7 +45,7 @@ polygon = PoolVector2Array( -150, 225, -150, -225, -35, -225, -35, -260, 35, -26
 
 [node name="ChargePolygon" type="Polygon2D" parent="NoRotate" index="1"]
 unique_name_in_owner = true
-polygon = PoolVector2Array( -125, 200, 125, 200, 125, 200, -125, 200 )
+polygon = PoolVector2Array( -125, 190, 125, 190, 125, 200, -125, 200 )
 
 [node name="BatteryOutline" type="Line2D" parent="NoRotate" index="2"]
 unique_name_in_owner = true
