@@ -23,11 +23,12 @@ var matrix := {}
 
 func _ready():
 	for tile in get_children():
-		if tile is RotoPowerline and tile.is_interactable():
+		if tile is RotoPowerline:
 			tile.set_on(false)
-			tile.set_random_angle()
-			tile.connect('disconnected', self, '_on_tile_disconnected')
-			tile.connect('connected', self, '_on_tile_connected')
+			if tile.is_interactable():
+				tile.set_random_angle()
+				tile.connect('disconnected', self, '_on_tile_disconnected')
+				tile.connect('connected', self, '_on_tile_connected')
 			tile.connect('propagate', self, '_on_tile_propagate')
 			matrix[tile.position/STEP] = tile
 		
@@ -216,16 +217,24 @@ type = "C"
 
 [node name="PowerBattery" parent="Battlefield/Middleground/Tiles" index="27" instance=ExtResource( 12 )]
 position = Vector2( -1200, 600 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="PowerBattery2" parent="Battlefield/Middleground/Tiles" index="28" instance=ExtResource( 12 )]
 position = Vector2( 600, 1200 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="PowerBattery3" parent="Battlefield/Middleground/Tiles" index="29" instance=ExtResource( 12 )]
 position = Vector2( 1200, -600 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="PowerBattery4" parent="Battlefield/Middleground/Tiles" index="30" instance=ExtResource( 12 )]
 position = Vector2( -600, -1200 )
 interactable = true
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -2400, 0 )

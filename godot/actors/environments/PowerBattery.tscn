@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/environments/RotoPowerline.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/PowerBattery.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=4]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Node2D
@@ -14,37 +15,50 @@ func _process(delta):
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [node name="PowerBattery" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 interactable = false
 type = "X"
+charge = 0.0
+charging_speed = 0.02
+score_multiplier = 100.0
+goal_owner = NodePath("")
 
-[node name="Sprite" parent="." index="2"]
+[node name="Owned" parent="." index="0" instance=ExtResource( 4 )]
+
+[node name="Sprite" parent="." index="3"]
 visible = false
 
-[node name="Line2D" parent="." index="4"]
+[node name="Line2D" parent="." index="5"]
 points = PoolVector2Array( -300, 0, 300, 0, 0, 0, 0, 300, 0, -300 )
 
-[node name="NoRotate" type="Node2D" parent="." index="6"]
+[node name="NoRotate" type="Node2D" parent="." index="7"]
 script = SubResource( 2 )
 
 [node name="Polygon2D" type="Polygon2D" parent="NoRotate" index="0"]
 color = Color( 0, 0, 0, 0.85098 )
-polygon = PoolVector2Array( -150, 225, -150, -225, -25, -225, -25, -250, 25, -250, 25, -225, 150, -225, 150, 225 )
+polygon = PoolVector2Array( -150, 225, -150, -225, -35, -225, -35, -260, 35, -260, 35, -225, 150, -225, 150, 225 )
 
-[node name="Line2D2" type="Line2D" parent="NoRotate" index="1"]
-points = PoolVector2Array( 0, 225, -150, 225, -150, -225, 150, -225, 150, 225, 0, 225 )
+[node name="ChargePolygon" type="Polygon2D" parent="NoRotate" index="1"]
+unique_name_in_owner = true
+polygon = PoolVector2Array( -125, 200, 125, 200, 125, 200, -125, 200 )
+
+[node name="BatteryOutline" type="Line2D" parent="NoRotate" index="2"]
+unique_name_in_owner = true
+points = PoolVector2Array( 0, 225, -150, 225, -150, -225, -35, -225, -35, -260, 35, -260, 35, -225, 150, -225, 150, 225, 0, 225 )
 default_color = Color( 1, 1, 1, 1 )
 
-[node name="Label" type="Label" parent="NoRotate" index="2"]
-self_modulate = Color( 1, 1, 1, 0.682353 )
-margin_left = -400.0
+[node name="PlayerLabel" type="Label" parent="NoRotate" index="3"]
+unique_name_in_owner = true
+margin_left = -396.0
 margin_top = -400.0
-margin_right = 400.0
+margin_right = 404.0
 margin_bottom = 400.0
 custom_fonts/font = SubResource( 1 )
-text = "PP"
+text = "PPP"
 align = 1
 valign = 1
