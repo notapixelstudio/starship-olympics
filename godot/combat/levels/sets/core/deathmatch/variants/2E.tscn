@@ -1,31 +1,21 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=2]
-[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=3]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=7]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=8]
 
 [node name="2E" type="Node2D"]
 
-[node name="Wall7" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 6 )]
-position = Vector2( -150, -600 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-elongation = 100
+[node name="Wall7" parent="." instance=ExtResource( 6 )]
+position = Vector2( -400, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 5 )
 
 [node name="GBeveledRect" type="Node" parent="Wall7"]
 script = ExtResource( 1 )
-width = 700
+width = 500
 height = 200
 bevel = 99
 bevel_nw = 99
@@ -33,21 +23,14 @@ bevel_ne = 99
 bevel_sw = 99
 bevel_se = 99
 
-[node name="Wall8" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 6 )]
-position = Vector2( 150, 600 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-elongation = 100
+[node name="Wall8" parent="." instance=ExtResource( 6 )]
+position = Vector2( 400, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 5 )
 
 [node name="GBeveledRect" type="Node" parent="Wall8"]
 script = ExtResource( 1 )
-width = 700
+width = 500
 height = 200
 bevel = 99
 bevel_nw = 99
@@ -55,47 +38,29 @@ bevel_ne = 99
 bevel_sw = 99
 bevel_se = 99
 
-[node name="DramaticSpawner" type="Node2D" parent="." instance=ExtResource( 8 )]
-script = ExtResource( 7 )
+[node name="DramaticSpawner" parent="." instance=ExtResource( 8 )]
 match_progress_trigger = 0.25
 jitter = 2.0
 
-[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner" groups=["in_camera"] instance=ExtResource( 4 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 3 )
+[node name="PowerUp" parent="DramaticSpawner" instance=ExtResource( 4 )]
 type = "shields"
 tease = true
 random_types = [ "plate", "shields" ]
 
-[node name="DramaticSpawner2" type="Node2D" parent="." instance=ExtResource( 8 )]
+[node name="DramaticSpawner2" parent="." instance=ExtResource( 8 )]
 position = Vector2( -1000, 600 )
-script = ExtResource( 7 )
 match_progress_trigger = 0.6
 chance = 0.4
 
-[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner2" groups=["in_camera"] instance=ExtResource( 4 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 3 )
+[node name="PowerUp" parent="DramaticSpawner2" instance=ExtResource( 4 )]
 type = "shields"
 tease = true
 
-[node name="DramaticSpawner3" type="Node2D" parent="." instance=ExtResource( 8 )]
+[node name="DramaticSpawner3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1000, -600 )
-script = ExtResource( 7 )
 match_progress_trigger = 0.6
 chance = 0.4
 
-[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner3" groups=["in_camera"] instance=ExtResource( 4 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 3 )
+[node name="PowerUp" parent="DramaticSpawner3" instance=ExtResource( 4 )]
 type = "shields"
 tease = true
