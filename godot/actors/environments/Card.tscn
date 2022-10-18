@@ -265,7 +265,7 @@ texture = ExtResource( 1 )
 
 [node name="Front" type="Node2D" parent="Ground"]
 visible = false
-scale = Vector2( 0.22223, 1 )
+scale = Vector2( 1e-05, 1 )
 
 [node name="Background" type="Sprite" parent="Ground/Front"]
 unique_name_in_owner = true
@@ -317,7 +317,7 @@ __meta__ = {
 }
 
 [node name="Wrapper" type="Node2D" parent="Ground/Front"]
-position = Vector2( 0, 170 )
+position = Vector2( 0, 218 )
 
 [node name="Monogram" type="RichTextLabel" parent="Ground/Front/Wrapper"]
 visible = false
