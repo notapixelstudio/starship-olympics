@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/geometry/GEllipse.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/SpinningTop.tscn" type="PackedScene" id=2]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=5]
 [ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
@@ -42,18 +41,24 @@ modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
+[node name="Area2D" type="Area2D" parent="Battlefield/Middleground" index="0"]
+collision_layer = 0
+collision_mask = 512
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 980.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Area2D" index="0"]
+polygon = PoolVector2Array( -2800, -1600, 2800, -1600, 2800, 1600, -2800, 1600 )
+
 [node name="SpinningTop" parent="Battlefield/Foreground" index="0" instance=ExtResource( 2 )]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
 position = Vector2( -1200, 0 )
 rotation = 0.0
-species = ExtResource( 9 )
-
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
-position = Vector2( 1218, -7 )
-rotation = 3.14159
 controls = "kb2"
-species = ExtResource( 4 )
+species = ExtResource( 9 )
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
