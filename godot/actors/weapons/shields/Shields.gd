@@ -4,13 +4,13 @@ signal hit(by)
 
 var owner_ship : Ship
 
-export var layers := 3
-export var sectors := [2, 2, 4]
-export var internal_radius := 90.0
-export var radii := [80.0, 60.0, 30.0]
-export var angles := [0.0, PI/2, 0.0]
-export var angle_speeds := [-PI/5, PI/5, -PI/3]
-export var padding := 16.0
+export var layers := 2
+export var sectors := [2, 4]
+export var internal_radius := 100.0
+export var radii := [120.0, 90.0]
+export var angles := [0.0, PI/2]
+export var angle_speeds := [-PI/5, PI/3]
+export var padding := 0.0
 export var layer_scene : PackedScene
 
 var layer_children := []
