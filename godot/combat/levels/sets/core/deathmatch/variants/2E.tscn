@@ -1,42 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=8]
 
 [node name="2E" type="Node2D"]
-
-[node name="Wall7" parent="." instance=ExtResource( 6 )]
-position = Vector2( -400, -600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
-
-[node name="GBeveledRect" type="Node" parent="Wall7"]
-script = ExtResource( 1 )
-width = 500
-height = 200
-bevel = 99
-bevel_nw = 99
-bevel_ne = 99
-bevel_sw = 99
-bevel_se = 99
-
-[node name="Wall8" parent="." instance=ExtResource( 6 )]
-position = Vector2( 400, 600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
-
-[node name="GBeveledRect" type="Node" parent="Wall8"]
-script = ExtResource( 1 )
-width = 500
-height = 200
-bevel = 99
-bevel_nw = 99
-bevel_ne = 99
-bevel_sw = 99
-bevel_se = 99
 
 [node name="DramaticSpawner" parent="." instance=ExtResource( 8 )]
 match_progress_trigger = 0.25
@@ -64,3 +32,17 @@ chance = 0.4
 [node name="PowerUp" parent="DramaticSpawner3" instance=ExtResource( 4 )]
 type = "shields"
 tease = true
+
+[node name="ShieldWall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 200, 600 )
+type = "skin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
+polygon = PoolVector2Array( 200, -200, 400, 0, 200, 200, -200, 200, -400, 0, -200, -200 )
+
+[node name="ShieldWall" parent="." instance=ExtResource( 2 )]
+position = Vector2( -200, -600 )
+type = "skin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
+polygon = PoolVector2Array( 200, -200, 400, 0, 200, 200, -200, 200, -400, 0, -200, -200 )
