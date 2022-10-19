@@ -230,10 +230,10 @@ func animate_selection(picked_card: DraftCard):
 	emit_signal("card_chosen")
 	yield(get_tree().create_timer(2), "timeout")
 	# everything back to position
-	hand_node.remove_card(chosen_card)
-	#chosen_card.global_position = back_pos
-	#chosen_card.scale = back_size
-	#chosen_card.z_index = 0
+	#hand_node.remove_card(chosen_card)
+	chosen_card.global_position = back_pos
+	chosen_card.scale = back_size
+	chosen_card.z_index = 0
 	
 func random_selection(list: Array, sel_index, loops=3, max_duration=5):
 	list.shuffle()
