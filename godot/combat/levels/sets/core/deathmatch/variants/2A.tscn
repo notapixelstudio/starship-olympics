@@ -43,6 +43,7 @@ bevel_se = 50
 [node name="DramaticSpawner" parent="." instance=ExtResource( 5 )]
 match_progress_trigger = 0.25
 jitter = 2.0
+chance = 0.8
 
 [node name="PowerUp" parent="DramaticSpawner" instance=ExtResource( 2 )]
 type = "shields"
