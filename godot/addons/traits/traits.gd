@@ -18,12 +18,15 @@ func get_all_with(trait_name):
 
 # check if the given node has a Trait with the given name
 func has_trait(node, trait_name):
+	if node == null:
+		return false
 	if OS.is_debug_build() and node.has_node(trait_name):
 		node.get_node(trait_name).validate()
 	return node.has_node(trait_name)
 
 # retrieve the Trait with the specified name from the given node
 func get_trait(node, trait_name):
+	assert(node != null)
 	if OS.is_debug_build():
 		assert(has_trait(node, trait_name))
 	return node.get_node(trait_name)

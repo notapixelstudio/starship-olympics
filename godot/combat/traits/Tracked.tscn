@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://combat/traits/Tracked.gd" type="Script" id=1]
 
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+func _ready():
+	if not visible:
+		queue_free()
+
+func _physics_process(delta):
+	update()
+
+func _draw():
+	var positions = get_parent().previous_global_positions
+	if len(positions) < 2:
+		return
+	draw_line(positions[0], positions[1], Color(.914, .118, .388), 24)
+"
+
 [node name="Tracked" type="Node"]
 script = ExtResource( 1 )
+
+[node name="Debug" type="Node2D" parent="."]
+visible = false
+z_index = 200
+z_as_relative = false
+script = SubResource( 1 )

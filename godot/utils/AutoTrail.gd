@@ -4,6 +4,8 @@ export var starting_color := Color(1,1,1,0.1)
 export var ending_color := Color(1,1,1,0)
 export var length := 30
 export var width := 90
+export var texture : Texture
+export var texture_mode := Line2D.LINE_TEXTURE_NONE
 export var max_segment_length := 1000
 export (Trail2D.Persistence) var persistence := Trail2D.Persistence.FRAME_RATE_INDIPENDENT
 export var auto_create_on_enter := true
@@ -28,6 +30,9 @@ func create_trail():
 	trail.gradient.set_color(1, starting_color)
 	trail.trail_length = length
 	trail.width = width
+	if texture:
+		trail.texture = texture
+		trail.texture_mode = texture_mode
 	add_child(trail)
 	trail.connect('point_added', self, '_on_trail_point_added')
 	

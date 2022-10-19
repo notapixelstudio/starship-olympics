@@ -14,6 +14,10 @@ func _on_ForwardBullet_body_entered(body):
 		
 	if body.has_method('damage'):
 		body.damage(self, ship)
+		
+	if body is Ball:
+		body.set_player(ship.get_player())
+		body.activate()
 
 func set_ship(v : Ship):
 	ship = v
@@ -32,3 +36,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func destroy() -> void:
 	dissolve()
 	queue_free()
+
+func get_owner_ship() -> Ship:
+	return ship
+	

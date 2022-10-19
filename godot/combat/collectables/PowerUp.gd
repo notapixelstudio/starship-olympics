@@ -44,7 +44,7 @@ const EXCLUSIVE = {
 const COLOR = {
 	'weapon': Color(1,0,0,1),
 	'strange': Color(1,0,1,1),
-	'protection': Color(0,1,1,1),
+	'protection': Color(0.5,1,1,1),
 	'addition': Color(1,0.25,0,1)
 }
 

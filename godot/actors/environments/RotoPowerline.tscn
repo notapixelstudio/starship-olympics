@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/environments/Rototile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/RotoPowerline.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1.2, 1.2, 1.1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Womwomwom"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 1.2, 1.2, 1.1, 1 ), Color( 1.05, 1.05, 1.05, 1 ) ]
+}
+
+[node name="RotoPowerline" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+type = "T"
+
+[node name="Sprite" parent="." index="2"]
+self_modulate = Color( 0.478431, 0.65098, 0.737255, 1 )
+
+[node name="Line2D" type="Line2D" parent="." index="4"]
+modulate = Color( 1.2, 1.2, 1.1, 1 )
+self_modulate = Color( 1, 1, 0, 1 )
+points = PoolVector2Array( -300, 0, 300, 0, 0, 0, 0, 300 )
+width = 100.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+autoplay = "Womwomwom"
+anims/RESET = SubResource( 1 )
+anims/Womwomwom = SubResource( 3 )
+
+[connection signal="all_rotations_finished" from="." to="." method="_on_RotoPowerline_all_rotations_finished"]
+[connection signal="start_rotating" from="." to="." method="_on_RotoPowerline_start_rotating"]
