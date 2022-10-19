@@ -4,7 +4,7 @@ export var sector_scene : PackedScene
 export var inner_radius := 100.0
 export var outer_radius := 200.0
 export var sectors := 2
-export var padding := 8.0
+export var padding := 0.0
 export var angle_speed := PI/5
 
 var sector_children := []

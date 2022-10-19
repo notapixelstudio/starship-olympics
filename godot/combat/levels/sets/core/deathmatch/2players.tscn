@@ -142,7 +142,7 @@ bg_color = Color( 0, 0.2, 0.166667, 1 )
 [node name="Bones" type="Sprite" parent="Battlefield/Background" index="6"]
 modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
 position = Vector2( 0, 32 )
-scale = Vector2( 6, 6 )
+scale = Vector2( 5, 5 )
 texture = ExtResource( 11 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
@@ -234,15 +234,15 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
-variant_scenes = [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 16 ) ]
+variant_scenes = [ ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 16 ) ]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1300, 900 )
+position = Vector2( -1200, 800 )
 rotation = 0.0
 species = ExtResource( 12 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1300, -900 )
+position = Vector2( 1200, -800 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 13 )
