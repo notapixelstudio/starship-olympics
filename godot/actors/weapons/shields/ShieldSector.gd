@@ -3,8 +3,9 @@ extends CollisionPolygon2D
 export var inner_radius := 100.0
 export var outer_radius := 200.0
 export var angle := PI/2
-export var padding := 8.0
+export var padding := 0.0
 export (String, 'shield', 'plate', 'skin') var type ='normal'
+export var fill : Color = Color(0,0,0,0)
 
 const COLLISION_POLYGON_PRECISION := PI/8
 const DRAW_PRECISION := PI/32
@@ -16,8 +17,10 @@ func _ready():
 
 func _draw():
 	var polygon = create_polygon(draw_precision, padding)
-	draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
+	draw_colored_polygon(polygon, fill, polygon, null, null, true)
+	draw_polyline(PoolVector2Array(Array(polygon) + [polygon[0]]), Color(0.6,1.0,1.4), 6.0, true)
 	$Shadow.polygon = polygon
+	$Shadow.fill = fill
 	$Shadow.update()
 	
 func up(new_type):
@@ -25,12 +28,12 @@ func up(new_type):
 	draw_precision = DRAW_PRECISION
 	match type:
 		'shield':
-			self_modulate = Color('#008bff')
+			fill = Color('#28668bff')
 		'plate':
-			self_modulate = Color.white
+			fill = Color(1,1,1,0.4)
 			draw_precision = PI/6 # more rough appearance
 		'skin':
-			self_modulate = Color.green
+			fill = Color(0,1,0,0.5)
 	update()
 	enable_collisions()
 	$AnimationPlayer.play("reset")

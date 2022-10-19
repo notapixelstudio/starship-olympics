@@ -79,6 +79,8 @@ func compute_arena_size() -> Rect2:
 	"""
 	compute the battlefield size
 	"""
+	if $Battlefield/Background.has_node("CameraStartingRect"):
+		return $Battlefield/Background/CameraStartingRect.get_rect_extents()
 	return $Battlefield/Background/OutsideWall.get_rect_extents()
 
 func set_time_scale(value):

@@ -42,6 +42,8 @@ func set_holdable(holdable):
 		Low-level set of a cargo holdable. Do not call to load a holdable. Call 'load_holdable' instead.
 	"""
 	held = holdable
+	if traits.has_trait(holdable, 'Owned'):
+		holdable.set_player(owner_ship.get_player())
 	
 func get_holdable():
 	return held

@@ -1,10 +1,13 @@
 extends Card
+class_name DraftCardGraphicNode
 
 var card_content: DraftCard
 export var order_id : int
-class_name DraftCardGraphicNode
+const SEPARATION = 0.25
 
 onready var chosen : bool = false setget set_chosen
+
+signal zoomed_in
 
 func set_chosen(v):
 	chosen = v
@@ -86,9 +89,22 @@ func tap(author):
 		Events.emit_signal("card_tapped", author, self)
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))
 
-func gracefully_go_to(point:Vector2):
-	$"%Tween".interpolate_property(self, 'position',
-		position, point, 0.5,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	$"%Tween".start()
-			
+func gracefully_go_to(point: Vector2, angle: float = 0.0, duration: float = 0.5, easing = Tween.EASE_IN_OUT) -> void:
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(easing)
+	tween.tween_property(self, 'global_position', point, duration)
+	tween.parallel().tween_property(self, 'global_rotation', angle, duration)
+
+
+func gracefully_zoom_in():
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	tween.tween_property(self, 'global_position', Vector2(0, 300), 0.8)
+	var waiting_tweener = tween.parallel().tween_property(self, 'rotation_degrees', 0.0, 0.7)
+	tween.tween_property(self, 'scale', Vector2(8, 8), 1.5)
+	yield(waiting_tweener, "finished")
+	
+	emit_signal("zoomed_in")
+	
+func reposition(target_position: Vector2, target_rotation := 0.0):
+	# called to reposition the card. need a tween animation
+	self.position = target_position
+	self.rotation = deg2rad(target_rotation)

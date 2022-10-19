@@ -40,7 +40,7 @@ func _physics_process(delta):
 		
 	for body in get_overlapping_bodies():
 		if traits.has_trait(body, 'Tracked'):
-			var global_past_position = body.get_previous_global_position()
+			var global_past_position = traits.get_trait(body, 'Tracked').get_previous_global_position()
 			if global_past_position == null:
 				continue
 				

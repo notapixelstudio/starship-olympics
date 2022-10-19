@@ -1,26 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://combat/collectables/PowerUp.gd" type="Script" id=3]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://utils/DramaticSpawner.gd" type="Script" id=7]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=8]
 
 [node name="3D" type="Node2D"]
 
-[node name="Wall7" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 5 )]
+[node name="Wall7" parent="." instance=ExtResource( 5 )]
 position = Vector2( -900, 500 )
 rotation = -0.785398
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true
-}
-elongation = 100
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 4 )
 
@@ -33,16 +21,9 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="Wall8" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 5 )]
+[node name="Wall8" parent="." instance=ExtResource( 5 )]
 position = Vector2( 900, -450 )
 rotation = -0.785398
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true
-}
-elongation = 100
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 4 )
 
@@ -54,48 +35,3 @@ bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
-
-[node name="DramaticSpawner2" type="Node2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( -1400, 900 )
-script = ExtResource( 7 )
-jitter = 2.0
-chance = 0.8
-
-[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner2" groups=["in_camera"] instance=ExtResource( 1 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 3 )
-type = "shields"
-tease = true
-
-[node name="DramaticSpawner4" type="Node2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1400, 900 )
-script = ExtResource( 7 )
-jitter = 2.0
-chance = 0.8
-
-[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner4" groups=["in_camera"] instance=ExtResource( 1 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 3 )
-type = "shields"
-tease = true
-
-[node name="DramaticSpawner3" type="Node2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1400, -900 )
-script = ExtResource( 7 )
-jitter = 2.0
-chance = 0.8
-
-[node name="PowerUp" type="RigidBody2D" parent="DramaticSpawner3" groups=["in_camera"] instance=ExtResource( 1 )]
-collision_layer = 2048
-collision_mask = 3090
-mode = 2
-linear_damp = 1.0
-script = ExtResource( 3 )
-type = "shields"
-tease = true
