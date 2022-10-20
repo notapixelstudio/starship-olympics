@@ -79,8 +79,8 @@ func set_content_card(card: DraftCard):
 # @override
 func select():
 	.select()
-	$"%SuitTopLeft".self_modulate = Color.white
-	$"%SuitBottomRight".self_modulate = Color.white
+	$"%SuitTopLeft".self_modulate = Color(0,0,0,0.75)
+	$"%SuitBottomRight".self_modulate = Color(0,0,0,0.75)
 	
 # @override
 func tap(author):
