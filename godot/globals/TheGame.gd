@@ -11,7 +11,7 @@ var deck : Deck
 func _init():
 	uuid = UUID.v4()
 	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
-	global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
+	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
 	
 func get_uuid() -> String:
 	return uuid
@@ -69,15 +69,18 @@ func to_dict() -> Dictionary:
 		players_dicts.append(player.to_dict())
 	var deck_info = null
 	if deck != null:
-		deck_info = to_json(get_deck())
-		
+		deck_info = get_deck().to_dict()
+	var session_info = null
+	if global.session != null:
+		session_info = global.session.to_dict()
 	return {
 		'game_uuid': self.get_uuid(),
 		'timestamp': self.timestamp_str,
 		'players': players_dicts,
 		'players_count': get_number_of_players(),
 		'human_players_count': get_number_of_human_players(),
-		'deck': deck_info
+		'deck': deck_info,
+		'session': session_info
 	}
 
 func get_deck() -> Deck:

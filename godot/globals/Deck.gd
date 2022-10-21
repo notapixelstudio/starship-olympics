@@ -5,7 +5,7 @@ class_name Deck
 var cards : Array = [] # of DraftCard
 var played_pile : Array = [] # of DraftCard
 var card_pool : CardPool
-var next : Array = []
+var next : Array = [] # of DrafCard
 var remembered_card_ids : Dictionary = {} # String -> bool
 
 const DECK_PATH = "res://map/draft/decks/"
@@ -120,8 +120,16 @@ func get_remembered_card_ids() -> Dictionary:
 	return remembered_card_ids
 
 func to_dict() -> Dictionary:
-
+	var next_info = self.cards_to_dict(next)
+	var played_info = self.cards_to_dict(played_pile)
 	return {
-		
+		remembered_card_ids=remembered_card_ids,
+		next=next_info,
+		played_pile=played_info
 	}
 
+func cards_to_dict(array_of_cards: Array) -> Array:
+	var serialized_cards := []
+	for card in array_of_cards:
+		serialized_cards.append((card as DraftCard).get_id())
+	return serialized_cards

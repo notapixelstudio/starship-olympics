@@ -4,7 +4,7 @@ class_name TheSession
 
 var uuid : String
 var game_id: String
-var hand : Array # Array of DraftCard
+var hand : Array # Array of DraftCard TODO: should be in Deck
 var timestamp_str : String
 
 var leaderboards : Array = []
@@ -86,13 +86,15 @@ func get_hand() -> Array:
 	return hand
 
 func to_dict() -> Dictionary:
-	
+	var serialized_cards := []
+	for card in self.get_hand():
+		serialized_cards.append((card as DraftCard).get_id())
 	return {
 		"game_id": game_id,
 		"timestamp": timestamp_str,
 		"uuid": get_uuid(),
 		"matches": self.matches,
-		"hand": self.get_hand()
+		"hand": serialized_cards
 	}
 
 func update_stars() -> void:
