@@ -86,13 +86,13 @@ func get_hand() -> Array:
 	return hand
 
 func to_dict() -> Dictionary:
-	"""
-	"""
+	
 	return {
 		"game_id": game_id,
 		"timestamp": timestamp_str,
 		"uuid": get_uuid(),
-		"matches": self.matches
+		"matches": self.matches,
+		"hand": self.get_hand()
 	}
 
 func update_stars() -> void:

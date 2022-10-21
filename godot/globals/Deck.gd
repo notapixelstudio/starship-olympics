@@ -118,4 +118,10 @@ func do_you_remember_card_id(id: String) -> bool:
 
 func get_remembered_card_ids() -> Dictionary:
 	return remembered_card_ids
-	
+
+func to_dict() -> Dictionary:
+
+	return {
+		
+	}
+

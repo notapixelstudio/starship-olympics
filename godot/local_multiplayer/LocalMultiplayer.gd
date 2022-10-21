@@ -159,6 +159,8 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 		tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
+	print("Save the game")
+	global.write_into_file("user://games/{id_game}.json".format({"id_game":global.the_game.uuid}), global.the_game.to_dict(), File.WRITE_READ)
 
 func get_next_minigame(set):
 	# replenish pool if empty

@@ -60,7 +60,7 @@ func _on_execution_ended() -> void:
 var game_started_ms : int
 func _on_game_started() -> void:
 	game_started_ms = OS.get_ticks_msec()
-	var event = global.the_game.to_log_dict()
+	var event = global.the_game.to_dict()
 	event.event_name = 'game_started'
 	log_event(event, true)
 	

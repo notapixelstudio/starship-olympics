@@ -392,10 +392,10 @@ func create_dir(path: String):
 	var dir = Directory.new()
 	dir.make_dir_recursive(path)
 	
-func write_into_file(filepath: String, data: Dictionary):
+func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE):
 	#open the log file and go to the end
 	var file = File.new()
-	var error = file.open(filepath, File.READ_WRITE)
+	var error = file.open(filepath, mode)
 	if error == ERR_FILE_NOT_FOUND:
 		create_dir(filepath.get_base_dir())
 		error = file.open(filepath, File.WRITE_READ)
@@ -404,6 +404,7 @@ func write_into_file(filepath: String, data: Dictionary):
 		file.store_line(to_json(data))
 		file.flush() # WARNING writing to disk too often could hurt performance
 		file.close()
+		print(filepath)
 	else: 
 		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
 	
