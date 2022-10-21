@@ -58,7 +58,7 @@ func _on_sths_bumped(sth1, sth2) -> void:
 		
 func _on_ship_damaged(ship: Ship, hazard, author) -> void:
 	if ship.get_cargo().has_holdable():
-		ship.get_cargo().drop_holdable(ship)
+		ship.get_cargo().drop_holdable(hazard)
 		
 func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 	if ship.get_cargo().has_holdable():

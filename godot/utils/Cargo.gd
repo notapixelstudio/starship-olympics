@@ -59,12 +59,18 @@ func drop_holdable(cause):
 		direction = 'forward' # no-zones will rebound
 	elif cause == owner_ship:
 		direction = 'forward' # upon death, cargo is dropped forward
+	else:
+		direction = 'forward'
 		
 	var holdable = held
 	held = null
 	var previous_velocity = owner_ship.previous_velocity
 	if previous_velocity.length() < 1.0: # push if the ship was still
 		previous_velocity = Vector2(200.0, 0).rotated(owner_ship.global_rotation)
+		
+	if cause is Pew: # FIXME all weapons?
+		previous_velocity = cause.get_previous_velocity()
+		
 	holdable.place_and_push(owner_ship, previous_velocity, direction) # previous is needed for glass
 	hide_holdable()
 	Events.emit_signal("holdable_dropped", holdable, owner_ship, cause)
