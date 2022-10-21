@@ -8,8 +8,8 @@ func _ready():
 	global.arena.connect('all_ships_spawned', self, '_on_all_ships_spawned')
 	
 func _on_ship_died(ship, killer, for_good):
-	if killer == null or ship == killer:
-		return
+#	if killer == null or ship == killer:
+#		return
 		
 	# spawn a skull where the ship has died
 	var skull = skull_scene.instance()

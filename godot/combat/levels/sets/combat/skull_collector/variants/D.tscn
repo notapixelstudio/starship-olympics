@@ -1,115 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/environments/NoShipZone.gd" type="Script" id=3]
 
 [node name="D" type="Node2D"]
 
-[node name="NoShipZone11" type="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 500, 700 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-symbol_scale = 1.0
-
-[node name="GBeveledRect" type="Node" parent="NoShipZone11"]
-script = ExtResource( 1 )
-height = 250
-bevel = 42
-bevel_nw = 42
-bevel_ne = 42
-bevel_sw = 42
-bevel_se = 42
-
-[node name="NoShipZone12" type="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -500, 700 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-symbol_scale = 1.0
-
-[node name="GBeveledRect" type="Node" parent="NoShipZone12"]
-script = ExtResource( 1 )
-height = 250
-bevel = 42
-bevel_nw = 42
-bevel_ne = 42
-bevel_sw = 42
-bevel_se = 42
-
-[node name="NoShipZone13" type="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -500, -700 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-symbol_scale = 1.0
+[node name="NoShipZone13" parent="." instance=ExtResource( 2 )]
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone13"]
 script = ExtResource( 1 )
-height = 250
-bevel = 42
-bevel_nw = 42
-bevel_ne = 42
-bevel_sw = 42
-bevel_se = 42
-
-[node name="NoShipZone14" type="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 500, -700 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-symbol_scale = 1.0
-
-[node name="GBeveledRect" type="Node" parent="NoShipZone14"]
-script = ExtResource( 1 )
-height = 250
-bevel = 42
-bevel_nw = 42
-bevel_ne = 42
-bevel_sw = 42
-bevel_se = 42
-
-[node name="NoShipZone15" type="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0.000217438, -700 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-symbol_scale = 1.0
-
-[node name="GBeveledRect" type="Node" parent="NoShipZone15"]
-script = ExtResource( 1 )
-height = 250
-bevel = 42
-bevel_nw = 42
-bevel_ne = 42
-bevel_sw = 42
-bevel_se = 42
-
-[node name="NoShipZone16" type="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0.000217438, 700 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
-symbol_scale = 1.0
-
-[node name="GBeveledRect" type="Node" parent="NoShipZone16"]
-script = ExtResource( 1 )
-height = 250
-bevel = 42
-bevel_nw = 42
-bevel_ne = 42
-bevel_sw = 42
-bevel_se = 42
+width = 600
+height = 600
+bevel = 240
+bevel_nw = 240
+bevel_ne = 240
+bevel_sw = 240
+bevel_se = 240

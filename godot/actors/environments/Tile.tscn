@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://actors/environments/Tile.gd" type="Script" id=2]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=5]
 [ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 48
-font_data = ExtResource( 4 )
+size = 52
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
 length = 0.3
@@ -63,6 +63,8 @@ polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -
 [node name="GRegularPolygon" type="Node" parent="."]
 script = ExtResource( 7 )
 sides = 4
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Conquerable" parent="." instance=ExtResource( 6 )]
 

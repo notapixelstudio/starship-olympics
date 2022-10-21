@@ -1,19 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/environments/NoShipZone.gd" type="Script" id=3]
 
 [node name="E" type="Node2D"]
 
-[node name="NoShipZone" type="Node2D" parent="." instance=ExtResource( 2 )]
+[node name="NoShipZone" parent="." instance=ExtResource( 2 )]
 position = Vector2( 550, 50 )
 rotation = -0.785398
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone"]
@@ -26,14 +20,9 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone4" type="Node2D" parent="." instance=ExtResource( 2 )]
+[node name="NoShipZone4" parent="." instance=ExtResource( 2 )]
 position = Vector2( -550, -50 )
 rotation = -0.785398
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone4"]
@@ -46,14 +35,9 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone2" type="Node2D" parent="." instance=ExtResource( 2 )]
+[node name="NoShipZone2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 50, -550 )
 rotation = 0.785398
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone2"]
@@ -66,14 +50,9 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone3" type="Node2D" parent="." instance=ExtResource( 2 )]
+[node name="NoShipZone3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -50, 550 )
 rotation = 0.785398
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone3"]

@@ -32,7 +32,8 @@ func set_ship(v : Ship):
 	
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
-	pfft.set_color(ship.get_color())
+	if ship != null:
+		pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
 
