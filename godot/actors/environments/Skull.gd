@@ -13,7 +13,7 @@ func _on_holdable_loaded(holdable, ship):
 		active = true
 		
 func _on_Skull_body_entered(body):
-	if body is Bomb:
+	if body is Bomb or body is Pew:
 		dissolve()
 		queue_free()
 		

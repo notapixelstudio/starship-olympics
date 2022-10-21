@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
@@ -42,18 +41,17 @@ solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 2 )
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_description_": ""
 }
-width = 3600
-height = 2500
-bevel = 100
-bevel_nw = 100
-bevel_ne = 100
-bevel_sw = 100
-bevel_se = 100
+polygon = PoolVector2Array( -1800, -500, -1800, -1150, -1700, -1250, -800, -1250, -400, -1650, 400, -1650, 800, -1250, 1700, -1250, 1800, -1150, 1800, 1150, 1700, 1250, 800, 1250, 400, 1650, -400, 1650, -800, 1250, -1700, 1250, -1800, 1150 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
+visible = false
+color = Color( 1, 1, 1, 0.533333 )
+polygon = PoolVector2Array( -1800, -500, -1800, -1150, -1700, -1250, -800, -1250, -400, -1650, 400, -1650, 800, -1250, 1700, -1250, 1800, -1150, 1800, 1150, 1700, 1250, 800, 1250, 400, 1650, -400, 1650, -800, 1250, -1700, 1250, -1800, 1150 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
