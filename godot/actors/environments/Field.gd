@@ -11,6 +11,8 @@ export var flag_offset : int = 0 setget set_flag_offset
 export var isometric_effect = true
 export var opaque_tint : Color = Color(0,0,0,0.8) setget set_opaque_tint
 
+var enabled := true
+
 func set_opaque_tint(v):
 	opaque_tint = v
 	yield(self, 'ready')
@@ -55,7 +57,7 @@ func refresh():
 	($Area2D/Entity/Deadly as Component).set_enabled(type == TYPE.hostile)
 	($Area2D/Entity/Flow as Component).set_enabled(type == TYPE.flow)
 	($Area2D/Entity/CrownDropper as Component).set_enabled(type == TYPE.castle)
-	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle
+	$CrownCollider/CollisionShape2D.disabled = type != TYPE.castle or not enabled
 	$CrownCollider.visible = type == TYPE.castle
 	$Particles2D.emitting = type == TYPE.flow
 	($Area2D/Entity/Hill as Component).set_enabled(type == TYPE.hill)
@@ -203,3 +205,14 @@ func get_strategy(ship, distance, game_mode):
 func get_overlapping_bodies() -> Array:
 	return $Area2D.get_overlapping_bodies()
 	
+func enable() -> void:
+	enabled = true
+	$Area2D/CollisionShape2D.set_deferred('disabled', false)
+	$CrownCollider/CollisionShape2D.set_deferred('disabled', false)
+	modulate = Color(1,1,1,1)
+
+func disable() -> void:
+	enabled = false
+	$Area2D/CollisionShape2D.set_deferred('disabled', true)
+	$CrownCollider/CollisionShape2D.set_deferred('disabled', true)
+	modulate = Color(1,1,1,0.1)
