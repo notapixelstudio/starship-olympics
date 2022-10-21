@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=3]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=4]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=8]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
@@ -19,7 +19,6 @@
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=19]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=20]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=21]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=22]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=24]
 
 [node name="Arena" instance=ExtResource( 17 )]
@@ -44,18 +43,16 @@ solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 22 )
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 5 )
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_description_": ""
 }
-width = 4600
-height = 2600
-bevel = 100
-bevel_nw = 100
-bevel_ne = 100
-bevel_sw = 100
-bevel_se = 100
+polygon = PoolVector2Array( -2300, -500, -2300, -1200, -2200, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2200, -1300, 2300, -1200, 2300, 1200, 2200, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2200, 1300, -2300, 1200 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
+visible = false
+polygon = PoolVector2Array( -2300, -500, -2300, -1200, -2200, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2200, -1300, 2300, -1200, 2300, 1200, 2200, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2200, 1300, -2300, 1200 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -108,55 +105,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall10" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
-position = Vector2( -600, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 21 )
-radius = 200
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="Wall11" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
-position = Vector2( -600, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 21 )
-radius = 200
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="Wall12" parent="Battlefield/Middleground" index="4" instance=ExtResource( 16 )]
-position = Vector2( 600, -1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
-script = ExtResource( 21 )
-radius = 200
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="Wall13" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
-position = Vector2( 600, 1300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 19 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
-script = ExtResource( 21 )
-radius = 200
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="Wall9" parent="Battlefield/Middleground" index="6" instance=ExtResource( 16 )]
+[node name="Wall9" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
 position = Vector2( -2600, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -168,7 +117,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall8" parent="Battlefield/Middleground" index="7" instance=ExtResource( 16 )]
+[node name="Wall8" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
 position = Vector2( 2600, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -180,7 +129,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="8" instance=ExtResource( 16 )]
+[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 16 )]
 position = Vector2( 2600, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -192,7 +141,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 16 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
 position = Vector2( 2300, 0 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 19 )
@@ -204,7 +153,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="SkullVariants" parent="Battlefield/Middleground" index="10" instance=ExtResource( 11 )]
+[node name="SkullVariants" parent="Battlefield/Middleground" index="6" instance=ExtResource( 11 )]
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 position = Vector2( -2100, 500 )
