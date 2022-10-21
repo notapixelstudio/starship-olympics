@@ -10,7 +10,7 @@ var deck : Deck
 
 func _init():
 	uuid = UUID.v4()
-	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
+	timestamp_str = global.datetime_to_str(OS.get_datetime(true)) # TODO Deprecated, use Time.get_datetime_dict_from_system() instead.
 	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
 	
 func get_uuid() -> String:
