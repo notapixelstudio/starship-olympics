@@ -32,8 +32,12 @@ func set_player_info(new_value: InfoPlayer):
 	
 func _process(delta):
 	if Input.is_action_pressed(player_info.controls+"_fire"):
+		if not $AudioStreamPlayer.playing:
+			$AudioStreamPlayer.play(time/SPEED)
 		time += (delta*SPEED)
 	else:
+		if $AudioStreamPlayer.playing:
+			$AudioStreamPlayer.stop()
 		time = max(0, time - delta*SPEED_DECREASE)
 	$Wheel.material.set_shader_param("value", time)
 	if time >= 100.0:
