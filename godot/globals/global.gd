@@ -610,12 +610,15 @@ var sessions_played := 0 # Total number of sessions. Persistence
 var session_number_of_game := 0
 var match_number_of_game := 0
 
-func new_game(players) -> TheGame:
+func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
 	the_game = TheGame.new()
 	game_number += 1
 	the_game.set_players(players)
 	var deck := Deck.new()
+	if not data.empty():
+		the_game.set_from_dictionary(data)
+		deck.set_from_dictionary(data.get("deck"))
 	the_game.set_deck(deck)
 	Events.emit_signal("game_started")
 	return the_game
@@ -627,7 +630,7 @@ func new_match() -> TheMatch:
 	Events.emit_signal("match_started")
 	return the_match
 	
-func new_session() -> TheSession:
+func new_session(existing_data := {}) -> TheSession:
 	safe_destroy_session()
 	session = TheSession.new()
 	session_number_of_game += 1
@@ -636,8 +639,13 @@ func new_session() -> TheSession:
 	the_game.reset_players()
 	
 	var deck = the_game.get_deck()
-	var hand = []
-	if session_number_of_game == 1:
+	
+	var hand_ids : Array = existing_data.get("hand", [])
+	var hand := []
+	for card_id in hand_ids:
+		hand.append(deck.get_card(card_id))
+		
+	if hand.empty():
 		hand = deck.draw(3)
 	# else: start with no hand, the draft manager will take care of that
 	session.set_hand(hand)

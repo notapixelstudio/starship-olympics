@@ -73,6 +73,7 @@ func to_dict() -> Dictionary:
 	var session_info = null
 	if global.session != null:
 		session_info = global.session.to_dict()
+		
 	return {
 		'game_uuid': self.get_uuid(),
 		'timestamp': self.timestamp_str,
@@ -82,6 +83,9 @@ func to_dict() -> Dictionary:
 		'deck': deck_info,
 		'session': session_info
 	}
+
+func set_from_dictionary(data: Dictionary):
+	uuid = data.get("game_uuid", self.get_uuid())
 
 func get_deck() -> Deck:
 	return deck

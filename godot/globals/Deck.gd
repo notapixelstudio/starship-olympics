@@ -29,6 +29,12 @@ func _init():
 		card_pool.remove_card(starting_card)
 	
 	next.append_array(starting_deck.get_nexts())
+
+func get_card(card_id: String) -> DraftCard:
+	for card in self.cards:
+		if card_id == (card as DraftCard).get_id():
+			return card
+	return null
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
@@ -133,3 +139,20 @@ func cards_to_dict(array_of_cards: Array) -> Array:
 	for card in array_of_cards:
 		serialized_cards.append((card as DraftCard).get_id())
 	return serialized_cards
+
+func set_from_dictionary(data: Dictionary):
+	next = []
+	played_pile = []
+	var next_ids = data.get("next", [])
+	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
+	var played_ids = data.get("played_pile", [])
+	var next_info = data.get("next", [])
+	for next_card_id in next_info:
+		next.append(card_pool.retrieve_card(next_card_id))
+	for played_card_id in played_ids:
+		for card_in_deck in cards:
+			if played_card_id == (card_in_deck as DraftCard).get_id():
+				print(card_pool.retrieve_card(played_card_id))
+				played_pile.append(card_in_deck)
+	print(data)
+	

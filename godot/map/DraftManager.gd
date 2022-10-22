@@ -33,7 +33,7 @@ func _ready():
 	
 	#pass_node.connect("tapped", self, '_on_pass_tapped')
 	
-	global.new_session()
+	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
 		self.populate_hand(hand.duplicate())
