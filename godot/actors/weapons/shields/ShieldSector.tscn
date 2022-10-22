@@ -14,7 +14,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.5, 2 ),
 "update": 0,
-"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1.7, 1.7, 1.7, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.5, 2 ),
 "update": 0,
-"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0.392157 ) ]
+"values": [ Color( 1.7, 1.7, 1.7, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -69,20 +69,22 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
 
 var polygon = null
+var fill = null
 
 func _draw():
 	if polygon != null:
-		draw_colored_polygon(polygon, Color.white, polygon, null, null, true)
+		draw_colored_polygon(polygon, fill, polygon, null, null, true)
+		draw_polyline(PoolVector2Array(Array(polygon) + [polygon[0]]), Color(0.6,1.0,1.4), 6.0, true)
 
 func _process(_delta):
-	position = global.isometric_offset.rotated(-global_rotation)
+	position = Vector2(0,12).rotated(-global_rotation)
 	
 "
 
@@ -92,6 +94,7 @@ z_index = 20
 z_as_relative = false
 disabled = true
 script = ExtResource( 1 )
+fill = Color( 1.5, 1.5, 1.5, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Disappear = SubResource( 1 )
@@ -99,7 +102,7 @@ anims/IndestructibleHit = SubResource( 2 )
 anims/reset = SubResource( 3 )
 
 [node name="Shadow" type="Node2D" parent="."]
-modulate = Color( 0, 0, 0, 0.54902 )
+modulate = Color( 0.4, 0.545098, 1, 0.784314 )
 z_index = -5
 z_as_relative = false
 script = SubResource( 4 )

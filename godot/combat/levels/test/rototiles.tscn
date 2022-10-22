@@ -1,0 +1,252 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://combat/levels/singles/power_grid/2players.tres" type="Resource" id=1]
+[ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=2]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
+[ext_resource path="res://utils/CameraStartingRect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/RotoPowerline.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=8]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
+[ext_resource path="res://actors/environments/PowerBattery.tscn" type="PackedScene" id=12]
+[ext_resource path="res://actors/environments/PowerCore.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/boards/power_grid.png" type="Texture" id=14]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+const STEP := 600
+var matrix := {}
+
+func _ready():
+	for tile in get_children():
+		if tile is RotoPowerline:
+			tile.set_on(false)
+			if tile.is_interactable():
+				tile.set_random_angle()
+				tile.connect('disconnected', self, '_on_tile_disconnected')
+				tile.connect('connected', self, '_on_tile_connected')
+			tile.connect('propagate', self, '_on_tile_propagate')
+			matrix[tile.position/STEP] = tile
+		
+	recompute_power()
+	
+func _on_tile_disconnected(tile):
+	recompute_power()
+
+func _on_tile_connected(tile):
+	recompute_power()
+
+func recompute_power():
+	for tile in get_children():
+		if not (tile is PowerCore):
+			tile.power_off()
+	
+	# input power to tiles that are adjacent to the source
+	matrix[Vector2.RIGHT].input_power_from(Vector2.LEFT)
+	matrix[Vector2.LEFT].input_power_from(Vector2.RIGHT)
+	matrix[Vector2.UP].input_power_from(Vector2.DOWN)
+	matrix[Vector2.DOWN].input_power_from(Vector2.UP)
+	
+func _on_tile_propagate(tile, direction):
+	# input power to tiles that are adjacent to the given one
+	if matrix.has(tile.position/STEP+direction):
+		matrix[tile.position/STEP+direction].input_power_from(-direction)
+"
+
+[node name="Arena" instance=ExtResource( 6 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 1 )
+style = ExtResource( 2 )
+
+[node name="ConquestModeManager" parent="Managers" index="11"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 3.05176e-05, -100 )
+hollow = true
+offset = 200
+hide_grid = true
+solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 3 )
+width = 6700
+height = 3800
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+visible = false
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0, 0.173333, 0.26, 1 )
+bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+
+[node name="CameraStartingRect" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
+polygon = PoolVector2Array( -1400, -1400, 1400, -1400, 1400, 1400, -1400, 1400, -1400, -1400 )
+
+[node name="GRect" type="Node" parent="Battlefield/Background/CameraStartingRect" index="0"]
+script = ExtResource( 3 )
+width = 2800
+height = 2800
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Middleground" index="0"]
+modulate = Color( 0.231373, 0.192157, 0.141176, 1 )
+position = Vector2( 0, 24 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="Sprite2" type="Sprite" parent="Battlefield/Middleground" index="1"]
+modulate = Color( 0.278431, 0.392157, 0.454902, 1 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="Tiles" type="Node2D" parent="Battlefield/Middleground" index="2"]
+script = SubResource( 2 )
+
+[node name="RotoPowerline2" parent="Battlefield/Middleground/Tiles" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, -600 )
+type = "C"
+
+[node name="RotoPowerline3" parent="Battlefield/Middleground/Tiles" index="1" instance=ExtResource( 5 )]
+position = Vector2( 0, -1200 )
+
+[node name="RotoPowerline4" parent="Battlefield/Middleground/Tiles" index="2" instance=ExtResource( 5 )]
+position = Vector2( 0, 600 )
+type = "C"
+
+[node name="RotoPowerline5" parent="Battlefield/Middleground/Tiles" index="3" instance=ExtResource( 5 )]
+position = Vector2( 0, 1200 )
+
+[node name="RotoPowerline6" parent="Battlefield/Middleground/Tiles" index="4" instance=ExtResource( 5 )]
+position = Vector2( -600, 0 )
+type = "C"
+
+[node name="RotoPowerline7" parent="Battlefield/Middleground/Tiles" index="5" instance=ExtResource( 5 )]
+position = Vector2( -600, -600 )
+type = "C"
+
+[node name="RotoPowerline9" parent="Battlefield/Middleground/Tiles" index="6" instance=ExtResource( 5 )]
+position = Vector2( -600, 600 )
+type = "C"
+
+[node name="RotoPowerline8" parent="Battlefield/Middleground/Tiles" index="7" instance=ExtResource( 5 )]
+position = Vector2( -1800, 0 )
+type = "I"
+
+[node name="RotoPowerline15" parent="Battlefield/Middleground/Tiles" index="8" instance=ExtResource( 5 )]
+position = Vector2( -1800, -600 )
+type = "C"
+
+[node name="RotoPowerline24" parent="Battlefield/Middleground/Tiles" index="9" instance=ExtResource( 5 )]
+position = Vector2( -1800, 600 )
+type = "C"
+
+[node name="RotoPowerline25" parent="Battlefield/Middleground/Tiles" index="10" instance=ExtResource( 5 )]
+position = Vector2( 1800, 0 )
+type = "I"
+
+[node name="RotoPowerline26" parent="Battlefield/Middleground/Tiles" index="11" instance=ExtResource( 5 )]
+position = Vector2( 1800, -600 )
+type = "C"
+
+[node name="RotoPowerline27" parent="Battlefield/Middleground/Tiles" index="12" instance=ExtResource( 5 )]
+position = Vector2( 1800, 600 )
+type = "C"
+
+[node name="RotoPowerline10" parent="Battlefield/Middleground/Tiles" index="13" instance=ExtResource( 5 )]
+position = Vector2( -600, 1200 )
+type = "C"
+
+[node name="RotoPowerline11" parent="Battlefield/Middleground/Tiles" index="14" instance=ExtResource( 5 )]
+position = Vector2( 600, 0 )
+type = "C"
+
+[node name="RotoPowerline12" parent="Battlefield/Middleground/Tiles" index="15" instance=ExtResource( 5 )]
+position = Vector2( 600, -600 )
+type = "C"
+
+[node name="RotoPowerline13" parent="Battlefield/Middleground/Tiles" index="16" instance=ExtResource( 5 )]
+position = Vector2( 600, -1200 )
+type = "C"
+
+[node name="RotoPowerline14" parent="Battlefield/Middleground/Tiles" index="17" instance=ExtResource( 5 )]
+position = Vector2( 600, 600 )
+type = "C"
+
+[node name="RotoPowerline19" parent="Battlefield/Middleground/Tiles" index="18" instance=ExtResource( 5 )]
+position = Vector2( 1200, 0 )
+
+[node name="RotoPowerline21" parent="Battlefield/Middleground/Tiles" index="19" instance=ExtResource( 5 )]
+position = Vector2( 1200, 600 )
+type = "C"
+
+[node name="RotoPowerline16" parent="Battlefield/Middleground/Tiles" index="20" instance=ExtResource( 5 )]
+position = Vector2( -1200, 0 )
+
+[node name="RotoPowerline17" parent="Battlefield/Middleground/Tiles" index="21" instance=ExtResource( 5 )]
+position = Vector2( -1200, -600 )
+type = "C"
+
+[node name="RotoPowerline18" parent="Battlefield/Middleground/Tiles" index="22" instance=ExtResource( 5 )]
+position = Vector2( -1200, -1200 )
+type = "C"
+
+[node name="RotoPowerline20" parent="Battlefield/Middleground/Tiles" index="23" instance=ExtResource( 5 )]
+position = Vector2( -1200, 1200 )
+type = "C"
+
+[node name="RotoPowerline22" parent="Battlefield/Middleground/Tiles" index="24" instance=ExtResource( 5 )]
+position = Vector2( 1200, 1200 )
+type = "C"
+
+[node name="RotoPowerline23" parent="Battlefield/Middleground/Tiles" index="25" instance=ExtResource( 5 )]
+position = Vector2( 1200, -1200 )
+type = "C"
+
+[node name="PowerCore" parent="Battlefield/Middleground/Tiles" index="26" instance=ExtResource( 13 )]
+
+[node name="PowerBattery" parent="Battlefield/Middleground/Tiles" index="27" instance=ExtResource( 12 )]
+position = Vector2( -1200, 600 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
+
+[node name="PowerBattery2" parent="Battlefield/Middleground/Tiles" index="28" instance=ExtResource( 12 )]
+position = Vector2( 600, 1200 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
+
+[node name="PowerBattery3" parent="Battlefield/Middleground/Tiles" index="29" instance=ExtResource( 12 )]
+position = Vector2( 1200, -600 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
+
+[node name="PowerBattery4" parent="Battlefield/Middleground/Tiles" index="30" instance=ExtResource( 12 )]
+position = Vector2( -600, -1200 )
+score_multiplier = 50.0
+goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
+position = Vector2( -2400, 0 )
+rotation = 0.0
+species = ExtResource( 11 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
+position = Vector2( 2400, 0 )
+rotation = 3.14159
+controls = "kb2"
+species = ExtResource( 10 )
+
+[node name="Camera" parent="." index="7"]
+zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+smoothing_speed = 0.3
+disabled_override = true
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

@@ -45,9 +45,6 @@ multiple_owners = true
 float_when_selected = false
 order_id = 0
 
-[node name="Front" parent="Ground" index="1"]
-scale = Vector2( 1e-05, 1 )
-
 [node name="Background" parent="Ground/Front" index="0"]
 modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
 
@@ -109,7 +106,7 @@ __meta__ = {
 }
 
 [node name="Snowflake" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/WinterLabel" index="0"]
-position = Vector2( 900, 367 )
+position = Vector2( 900, 359 )
 texture = ExtResource( 10 )
 
 [node name="SnowflakeShadow" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/WinterLabel/Snowflake" index="0"]
@@ -213,7 +210,7 @@ texture = ExtResource( 9 )
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false
-position = Vector2( 0, 275 )
+position = Vector2( 0, 347 )
 rotation = 3.14159
 z_index = 2000
 z_as_relative = false

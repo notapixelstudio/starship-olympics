@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://combat/modes/Ponganoid.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -15,10 +15,41 @@
 [ext_resource path="res://actors/environments/PlayerBricks.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/sprites/environments/no_ship.png" type="Texture" id=15]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../NoShipZone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2300, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Rotate"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../NoShipZone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 12 ),
+"transitions": PoolRealArray( 2, -0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2300, 0 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -107,11 +138,13 @@ sample_player_bricks_path = NodePath("../../Battlefield/Middleground/LeftBricks"
 texture = ExtResource( 8 )
 centered = false
 
-[node name="NoShipZone" parent="Battlefield/Background" index="1" instance=ExtResource( 12 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background" index="0" groups=["animation_in_battle"]]
+root_node = NodePath("../MegaSpace")
+anims/RESET = SubResource( 5 )
+anims/Rotate = SubResource( 6 )
 
-[node name="IsoPolygon" parent="Battlefield/Background/NoShipZone" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"physics_interpolation_mode":0,"unique_name_in_owner":false,"process_priority":0,"script":ExtResource( 2 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":300,"height":7000,"bevel":100,"bevel_nw":100,"bevel_ne":100,"bevel_sw":100,"bevel_se":100)
-
+[node name="NoShipZone" parent="Battlefield/Background" index="2" instance=ExtResource( 12 )]
+position = Vector2( 2300, 0 )
 
 [node name="Polygon2D" parent="Battlefield/Background/NoShipZone" index="1"]
 polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400 )
@@ -120,10 +153,10 @@ polygon = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150,
 points = PoolVector2Array( -150, -3400, -50, -3500, 50, -3500, 150, -3400, 150, 3400, 50, 3500, -50, 3500, -150, 3400, -150, -3400 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/Area2D" index="2"]
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/NoShipZone/CrownCollider" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Particles2D" parent="Battlefield/Background/NoShipZone" index="5"]
 process_material = SubResource( 3 )
@@ -152,7 +185,7 @@ bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
 
-[node name="OutsideWall" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
 offset = 1500
 elongation = 0
@@ -176,125 +209,96 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="Brick" parent="Battlefield/Middleground/LeftBricks" index="0" instance=ExtResource( 11 )]
 position = Vector2( 108, -50 )
-colorize = false
 
 [node name="Brick2" parent="Battlefield/Middleground/LeftBricks" index="1" instance=ExtResource( 11 )]
 position = Vector2( -100, -150 )
-colorize = false
 
 [node name="Brick3" parent="Battlefield/Middleground/LeftBricks" index="2" instance=ExtResource( 11 )]
 position = Vector2( 109, 50 )
-colorize = false
 
 [node name="Brick4" parent="Battlefield/Middleground/LeftBricks" index="3" instance=ExtResource( 11 )]
 position = Vector2( 109, -150 )
-colorize = false
 
 [node name="Brick5" parent="Battlefield/Middleground/LeftBricks" index="4" instance=ExtResource( 11 )]
 position = Vector2( -100, 250 )
-colorize = false
 
 [node name="Brick6" parent="Battlefield/Middleground/LeftBricks" index="5" instance=ExtResource( 11 )]
 position = Vector2( -100, 150 )
-colorize = false
 
 [node name="Brick7" parent="Battlefield/Middleground/LeftBricks" index="6" instance=ExtResource( 11 )]
 position = Vector2( 109, 250 )
-colorize = false
 
 [node name="Brick8" parent="Battlefield/Middleground/LeftBricks" index="7" instance=ExtResource( 11 )]
 position = Vector2( 109, 150 )
-colorize = false
 
 [node name="Brick9" parent="Battlefield/Middleground/LeftBricks" index="8" instance=ExtResource( 11 )]
 position = Vector2( -100, -450 )
-colorize = false
 
 [node name="Brick10" parent="Battlefield/Middleground/LeftBricks" index="9" instance=ExtResource( 11 )]
 position = Vector2( -100, -550 )
-colorize = false
 
 [node name="Brick11" parent="Battlefield/Middleground/LeftBricks" index="10" instance=ExtResource( 11 )]
 position = Vector2( 109, -450 )
-colorize = false
 
 [node name="Brick12" parent="Battlefield/Middleground/LeftBricks" index="11" instance=ExtResource( 11 )]
 position = Vector2( 109, -550 )
-colorize = false
 
 [node name="Brick13" parent="Battlefield/Middleground/LeftBricks" index="12" instance=ExtResource( 11 )]
 position = Vector2( -100, -250 )
-colorize = false
 
 [node name="Brick14" parent="Battlefield/Middleground/LeftBricks" index="13" instance=ExtResource( 11 )]
 position = Vector2( -100, -350 )
-colorize = false
 
 [node name="Brick15" parent="Battlefield/Middleground/LeftBricks" index="14" instance=ExtResource( 11 )]
 position = Vector2( 109, -250 )
-colorize = false
 
 [node name="Brick16" parent="Battlefield/Middleground/LeftBricks" index="15" instance=ExtResource( 11 )]
 position = Vector2( 109, -350 )
-colorize = false
 
 [node name="Brick25" parent="Battlefield/Middleground/LeftBricks" index="16" instance=ExtResource( 11 )]
 position = Vector2( -100, -700 )
 points = 5
 type = 6
-colorize = false
 
 [node name="Brick33" parent="Battlefield/Middleground/LeftBricks" index="17" instance=ExtResource( 11 )]
 position = Vector2( -100, 0 )
 points = 10
 type = 6
-colorize = false
 
 [node name="Brick26" parent="Battlefield/Middleground/LeftBricks" index="18" instance=ExtResource( 11 )]
 position = Vector2( -100, 700 )
 points = 5
 type = 6
-colorize = false
 
 [node name="Brick27" parent="Battlefield/Middleground/LeftBricks" index="19" instance=ExtResource( 11 )]
 position = Vector2( 109, -750 )
-colorize = false
 
 [node name="Brick30" parent="Battlefield/Middleground/LeftBricks" index="20" instance=ExtResource( 11 )]
 position = Vector2( 109, -650 )
-colorize = false
 
 [node name="Brick17" parent="Battlefield/Middleground/LeftBricks" index="21" instance=ExtResource( 11 )]
 position = Vector2( -100, 450 )
-colorize = false
 
 [node name="Brick18" parent="Battlefield/Middleground/LeftBricks" index="22" instance=ExtResource( 11 )]
 position = Vector2( -100, 350 )
-colorize = false
 
 [node name="Brick19" parent="Battlefield/Middleground/LeftBricks" index="23" instance=ExtResource( 11 )]
 position = Vector2( 109, 450 )
-colorize = false
 
 [node name="Brick20" parent="Battlefield/Middleground/LeftBricks" index="24" instance=ExtResource( 11 )]
 position = Vector2( 109, 350 )
-colorize = false
 
 [node name="Brick22" parent="Battlefield/Middleground/LeftBricks" index="25" instance=ExtResource( 11 )]
 position = Vector2( -100, 550 )
-colorize = false
 
 [node name="Brick23" parent="Battlefield/Middleground/LeftBricks" index="26" instance=ExtResource( 11 )]
 position = Vector2( 109, 650 )
-colorize = false
 
 [node name="Brick24" parent="Battlefield/Middleground/LeftBricks" index="27" instance=ExtResource( 11 )]
 position = Vector2( 109, 550 )
-colorize = false
 
 [node name="Brick32" parent="Battlefield/Middleground/LeftBricks" index="28" instance=ExtResource( 11 )]
 position = Vector2( 109, 750 )
-colorize = false
 
 [node name="RightBricks" parent="Battlefield/Middleground" index="1" instance=ExtResource( 14 )]
 position = Vector2( 2000, 0 )
@@ -302,125 +306,96 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Brick" parent="Battlefield/Middleground/RightBricks" index="0" instance=ExtResource( 11 )]
 position = Vector2( -109, -50 )
-colorize = false
 
 [node name="Brick33" parent="Battlefield/Middleground/RightBricks" index="1" instance=ExtResource( 11 )]
 position = Vector2( -109, 50 )
-colorize = false
 
 [node name="Brick5" parent="Battlefield/Middleground/RightBricks" index="2" instance=ExtResource( 11 )]
 position = Vector2( -109, 150 )
-colorize = false
 
 [node name="Brick6" parent="Battlefield/Middleground/RightBricks" index="3" instance=ExtResource( 11 )]
 position = Vector2( -109, 250 )
-colorize = false
 
 [node name="Brick7" parent="Battlefield/Middleground/RightBricks" index="4" instance=ExtResource( 11 )]
 position = Vector2( -109, 350 )
-colorize = false
 
 [node name="Brick12" parent="Battlefield/Middleground/RightBricks" index="5" instance=ExtResource( 11 )]
 position = Vector2( -109, 450 )
-colorize = false
 
 [node name="Brick13" parent="Battlefield/Middleground/RightBricks" index="6" instance=ExtResource( 11 )]
 position = Vector2( -109, 650 )
-colorize = false
 
 [node name="Brick2" parent="Battlefield/Middleground/RightBricks" index="7" instance=ExtResource( 11 )]
 position = Vector2( -109, -150 )
-colorize = false
 
 [node name="Brick3" parent="Battlefield/Middleground/RightBricks" index="8" instance=ExtResource( 11 )]
 position = Vector2( -109, -250 )
-colorize = false
 
 [node name="Brick4" parent="Battlefield/Middleground/RightBricks" index="9" instance=ExtResource( 11 )]
 position = Vector2( -109, -350 )
-colorize = false
 
 [node name="Brick8" parent="Battlefield/Middleground/RightBricks" index="10" instance=ExtResource( 11 )]
 position = Vector2( -109, -450 )
-colorize = false
 
 [node name="Brick10" parent="Battlefield/Middleground/RightBricks" index="11" instance=ExtResource( 11 )]
 position = Vector2( -109, -650 )
-colorize = false
 
 [node name="Brick15" parent="Battlefield/Middleground/RightBricks" index="12" instance=ExtResource( 11 )]
 position = Vector2( 100, 150 )
-colorize = false
 
 [node name="Brick16" parent="Battlefield/Middleground/RightBricks" index="13" instance=ExtResource( 11 )]
 position = Vector2( 100, 250 )
-colorize = false
 
 [node name="Brick17" parent="Battlefield/Middleground/RightBricks" index="14" instance=ExtResource( 11 )]
 position = Vector2( 100, 350 )
-colorize = false
 
 [node name="Brick19" parent="Battlefield/Middleground/RightBricks" index="15" instance=ExtResource( 11 )]
 position = Vector2( 100, 450 )
-colorize = false
 
 [node name="Brick30" parent="Battlefield/Middleground/RightBricks" index="16" instance=ExtResource( 11 )]
 position = Vector2( -109, 550 )
-colorize = false
 
 [node name="Brick32" parent="Battlefield/Middleground/RightBricks" index="17" instance=ExtResource( 11 )]
 position = Vector2( 100, 550 )
-colorize = false
 
 [node name="Brick31" parent="Battlefield/Middleground/RightBricks" index="18" instance=ExtResource( 11 )]
 position = Vector2( -109, 750 )
-colorize = false
 
 [node name="Brick21" parent="Battlefield/Middleground/RightBricks" index="19" instance=ExtResource( 11 )]
 position = Vector2( 100, -150 )
-colorize = false
 
 [node name="Brick22" parent="Battlefield/Middleground/RightBricks" index="20" instance=ExtResource( 11 )]
 position = Vector2( 100, -250 )
-colorize = false
 
 [node name="Brick23" parent="Battlefield/Middleground/RightBricks" index="21" instance=ExtResource( 11 )]
 position = Vector2( 100, -350 )
-colorize = false
 
 [node name="Brick24" parent="Battlefield/Middleground/RightBricks" index="22" instance=ExtResource( 11 )]
 position = Vector2( 100, -450 )
-colorize = false
 
 [node name="Brick20" parent="Battlefield/Middleground/RightBricks" index="23" instance=ExtResource( 11 )]
 position = Vector2( -109, -550 )
-colorize = false
 
 [node name="Brick26" parent="Battlefield/Middleground/RightBricks" index="24" instance=ExtResource( 11 )]
 position = Vector2( 100, -550 )
-colorize = false
 
 [node name="Brick27" parent="Battlefield/Middleground/RightBricks" index="25" instance=ExtResource( 11 )]
 position = Vector2( -109, -750 )
-colorize = false
 
 [node name="Brick28" parent="Battlefield/Middleground/RightBricks" index="28" instance=ExtResource( 11 )]
 position = Vector2( 100, 700 )
 points = 5
 type = 6
-colorize = false
 
 [node name="Brick29" parent="Battlefield/Middleground/RightBricks" index="29" instance=ExtResource( 11 )]
 position = Vector2( 100, -700 )
 points = 5
 type = 6
-colorize = false
 
 [node name="Brick34" parent="Battlefield/Middleground/RightBricks" index="30" instance=ExtResource( 11 )]
 position = Vector2( 100, 0 )
 points = 10
 type = 6
-colorize = false
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
 type = "tennis"
