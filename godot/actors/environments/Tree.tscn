@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/patterns/waves_duotone.png" type="Texture" id=1]
+[ext_resource path="res://assets/patterns/wall/leaves.png" type="Texture" id=2]
+[ext_resource path="res://actors/environments/Tree.gd" type="Script" id=3]
+
+[node name="Tree" type="Area2D"]
+collision_layer = 128
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = 500
+z_as_relative = false
+color = Color( 0.0987583, 0.35, 0.0945, 1 )
+texture = ExtResource( 1 )
+texture_scale = Vector2( 0.5, 0.5 )
+
+[node name="CanopyShade" type="Polygon2D" parent="."]
+z_index = 500
+z_as_relative = false
+color = Color( 0, 0.184314, 0, 0.811765 )
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2( 0, 96 )
+color = Color( 0, 0, 0, 0.235294 )
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 510
+z_as_relative = false
+width = 38.0
+default_color = Color( 0, 0.243137, 0.00784314, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
+
+[connection signal="body_entered" from="." to="." method="_on_ShieldWall_body_entered"]
