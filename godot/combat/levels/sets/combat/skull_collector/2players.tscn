@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
+[ext_resource path="res://combat/managers/RespawnFromPointManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
@@ -25,9 +26,10 @@ game_mode = ExtResource( 9 )
 
 [node name="SkullManager" parent="Managers" index="0" instance=ExtResource( 14 )]
 skull_scene = ExtResource( 13 )
-future_spawners_path = NodePath("../../Battlefield/Foreground/FutureSpawners")
 
-[node name="KillModeManager" parent="Managers" index="10"]
+[node name="RespawnFromPointManager" parent="Managers" index="1" instance=ExtResource( 3 )]
+
+[node name="KillModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -202,24 +204,15 @@ position = Vector2( 1800, 0 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 20 )
 
-[node name="FutureSpawners" type="Node2D" parent="Battlefield/Foreground" index="14"]
-
-[node name="p1" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="0"]
-position = Vector2( -100, 100 )
-
-[node name="p2" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="1"]
-position = Vector2( 100, -100 )
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1200, 650 )
 rotation = -0.785398
-controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1200, -650 )
 rotation = 2.35619
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 15 )
 
 [node name="Camera" parent="." index="7"]

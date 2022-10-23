@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=4]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/managers/RespawnFromPointManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=8]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=10]
@@ -27,9 +28,10 @@ game_mode = ExtResource( 8 )
 
 [node name="SkullManager" parent="Managers" index="0" instance=ExtResource( 12 )]
 skull_scene = ExtResource( 15 )
-future_spawners_path = NodePath("../../Battlefield/Foreground/FutureSpawners")
 
-[node name="KillModeManager" parent="Managers" index="10"]
+[node name="RespawnFromPointManager" parent="Managers" index="1" instance=ExtResource( 7 )]
+
+[node name="KillModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -285,36 +287,21 @@ position = Vector2( 2300, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 10 )
 
-[node name="FutureSpawners" type="Node2D" parent="Battlefield/Foreground" index="32"]
-
-[node name="p1" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="0"]
-position = Vector2( -100, 100 )
-
-[node name="p2" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="1"]
-position = Vector2( 100, -100 )
-
-[node name="p3" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="2"]
-position = Vector2( -100, -100 )
-
-[node name="p4" type="Position2D" parent="Battlefield/Foreground/FutureSpawners" index="3"]
-position = Vector2( 100, 100 )
-
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 18 )]
 position = Vector2( -1700, 700 )
 rotation = -0.785398
-controls = "joy1"
 species = ExtResource( 1 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 18 )]
 position = Vector2( 1700, -700 )
 rotation = 2.35619
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 2 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1700, -700 )
 rotation = 0.785398
-controls = "joy3"
+controls = "kb2"
 species = ExtResource( 4 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 18 )]
