@@ -7,7 +7,6 @@ var this_champion : InfoChampion # InfoChampion
 func _ready():
 	$"%PlayerName".visible = true
 	$"%HBoxContainer".visible = false
-	this_champion = InfoChampion.new()
 	
 func set_player_name(player_name: String):
 	$"%PlayerName".text = player_name

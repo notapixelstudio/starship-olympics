@@ -234,12 +234,19 @@ func _on_nav_to_map():
 func create_map():
 	map = map_scene.instance()
 
-var celebration
+var celebration: HallOfFame
 func navigate_to_celebration():
 	safe_destroy_combat()
 	# map initialization
 	celebration = celebration_scene.instance()
 	add_child(celebration)
+	var champion: InfoChampion = InfoChampion.new()
+	var this_session: TheSession = global.get("session")
+	this_session.get_last_winners()[0].to_dict()
+	this_session.to_dict()
+	champion.player = this_session.get_last_winners()[0].to_dict()
+	champion.session_info = this_session.to_dict()
+	celebration.set_champion(champion)
 
 func navigate_to_map():
 	safe_destroy_combat()
