@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=11]
+[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/Skull.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/managers/SkullManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=15]
@@ -238,6 +239,13 @@ position = Vector2( 2200, 0 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 15 )
+cpu = true
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
+position = Vector2( 0, -1300 )
+rotation = 1.5708
+controls = "kb2"
+species = ExtResource( 12 )
 cpu = true
 
 [node name="Camera" parent="." index="7"]
