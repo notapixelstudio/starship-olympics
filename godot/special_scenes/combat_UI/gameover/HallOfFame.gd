@@ -36,6 +36,13 @@ func _ready():
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1+ $"%SessionWon".get_child_count()%3)
 	yield(tween, "finished")
+	if self.get_parent() == get_tree().get_root():
+		var info_player := InfoPlayer.new()
+		var champ = InfoChampion.new()
+		info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
+		champ.player = info_player.to_dict()
+		champ.session_info = {"timestamp": global.datetime_to_str(OS.get_datetime(true))}
+		self.set_champion(champ)
 	add_champion_to_scene()
 	
 func naming_champions():

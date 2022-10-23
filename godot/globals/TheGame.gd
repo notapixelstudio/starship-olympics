@@ -7,11 +7,13 @@ var players : Array
 var timestamp_str: String
 
 var deck : Deck
-
+var all_cards : CardPool
+const CARD_POOL_PATH = "res://map/draft/pool"
 func _init():
 	uuid = UUID.v4()
 	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
 	global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_log_dict())
+	all_cards = load(CARD_POOL_PATH+'/the_card_pool.tres').duplicate()
 	
 func get_uuid() -> String:
 	return uuid

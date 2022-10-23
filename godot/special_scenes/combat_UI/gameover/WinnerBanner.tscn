@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Stat.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://special_scenes/combat_UI/gameover/InsertName.gd" type="Script" id=6]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://special_scenes/combat_UI/gameover/LogoMinigame.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=7]
 size = 26
@@ -34,6 +35,7 @@ margin_right = 361.0
 margin_bottom = 180.0
 rect_min_size = Vector2( 360, 180 )
 script = ExtResource( 5 )
+minigame_logo = ExtResource( 9 )
 
 [node name="DateSession" type="Label" parent="."]
 unique_name_in_owner = true
@@ -65,6 +67,7 @@ rect_min_size = Vector2( 0, 100 )
 unique_name_in_owner = true
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
+visible = false
 margin_left = 154.0
 margin_right = 404.0
 margin_bottom = 150.0
@@ -98,17 +101,21 @@ margin_right = 250.0
 margin_bottom = 150.0
 key = "bombs"
 
-[node name="StarsContainer" type="HBoxContainer" parent="Container"]
+[node name="StarsContainer" type="GridContainer" parent="Container"]
 unique_name_in_owner = true
-margin_left = 408.0
-margin_right = 408.0
+margin_left = 154.0
+margin_right = 234.0
 margin_bottom = 150.0
+columns = 3
+
+[node name="LogoMinigame" parent="Container/StarsContainer" instance=ExtResource( 9 )]
+unique_name_in_owner = true
 
 [node name="PlayerName" type="Label" parent="Container"]
 unique_name_in_owner = true
-margin_left = 412.0
+margin_left = 238.0
 margin_top = 45.0
-margin_right = 511.0
+margin_right = 337.0
 margin_bottom = 104.0
 theme = ExtResource( 7 )
 custom_fonts/font = SubResource( 5 )
@@ -117,8 +124,8 @@ valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container"]
 unique_name_in_owner = true
-margin_left = 515.0
-margin_right = 1211.0
+margin_left = 341.0
+margin_right = 1037.0
 margin_bottom = 150.0
 
 [node name="InsertName" type="LineEdit" parent="Container/HBoxContainer"]

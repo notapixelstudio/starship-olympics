@@ -3,24 +3,33 @@ extends Control
 signal champion_has_a_name 
 
 var this_champion : InfoChampion # InfoChampion
+export var minigame_logo : PackedScene
 
 func _ready():
 	$"%PlayerName".visible = true
 	$"%HBoxContainer".visible = false
+	$"%LogoMinigame".queue_free()
 	
 func set_player_name(player_name: String):
 	$"%PlayerName".text = player_name
 
+const CARD_POOL_PATH = "res://map/draft/pool"
 
 func set_player(champion: InfoChampion):
 	this_champion = champion
 	$"%PlayerName".text = champion.player.username if champion.player.username else champion.player.id
 	$"%Headshot".set_species(global.get_species(champion.player.species))
 	var matches = champion.session_info.get("matches", [])
+	var all_cards: CardPool = load(CARD_POOL_PATH+'/the_card_pool.tres').duplicate()
+	if global.the_game != null:
+		all_cards = global.the_game.all_cards
 	for a_match in matches:
-		var l = Label.new()
-		l.text = a_match["card_id"]
-		$"%StarsContainer".add_child(l)
+		var logo = minigame_logo.instance()
+		var card_id = a_match["card_id"]
+		
+		var card: DraftCard = all_cards.get_card(card_id)
+		logo.texture = card.get_logo()
+		$"%StarsContainer".add_child(logo)
 	$"%DateSession".text = cleanup_datetime_str(this_champion.session_info.timestamp)
 
 func insert_name():
