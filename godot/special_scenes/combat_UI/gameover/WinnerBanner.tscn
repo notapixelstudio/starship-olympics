@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Stat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture" id=3]
 [ext_resource path="res://assets/map/winner.png" type="Texture" id=4]
 [ext_resource path="res://special_scenes/combat_UI/gameover/WinnerBanner.gd" type="Script" id=5]
+[ext_resource path="res://special_scenes/combat_UI/gameover/InsertName.gd" type="Script" id=6]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 
@@ -12,7 +13,15 @@
 size = 50
 font_data = ExtResource( 8 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 8 )
+
 [sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 35
 font_data = ExtResource( 8 )
 
@@ -92,6 +101,32 @@ custom_fonts/font = SubResource( 5 )
 text = "SAX"
 valign = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+unique_name_in_owner = true
+margin_left = 515.0
+margin_right = 1211.0
+margin_bottom = 150.0
+
+[node name="InsertName" type="LineEdit" parent="Container/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 180.0
+margin_bottom = 150.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+max_length = 3
+placeholder_text = "P1 "
+script = ExtResource( 6 )
+
+[node name="Label2" type="Label" parent="Container/HBoxContainer"]
+margin_left = 184.0
+margin_top = 45.0
+margin_right = 696.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 3 )
+text = "Insert Your name"
+uppercase = true
+
 [node name="Champion" type="Sprite" parent="."]
 visible = false
 position = Vector2( 68.75, 110 )
@@ -112,7 +147,9 @@ margin_top = 16.0
 margin_right = 1287.0
 margin_bottom = 148.0
 theme = ExtResource( 7 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "This Graphics needs an overhaul"
 valign = 1
 autowrap = true
+
+[connection signal="name_inserted" from="Container/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]
