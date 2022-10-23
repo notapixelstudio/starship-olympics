@@ -5,7 +5,7 @@ onready var selection_screen = $SelectionScreen
 const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
-
+export var celebration_scene: PackedScene
 var games = {}  # {sport.name : Resource}
 
 var all_species = []
@@ -238,7 +238,7 @@ var celebration
 func navigate_to_celebration():
 	safe_destroy_combat()
 	# map initialization
-	celebration = load("res://special_scenes/combat_UI/gameover/SessionWinner.tscn").instance()
+	celebration = celebration_scene.instance()
 	add_child(celebration)
 
 func navigate_to_map():

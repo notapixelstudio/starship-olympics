@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://map/DraftArena.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=7]
 [ext_resource path="res://assets/shaders/TransitionFade.tscn" type="PackedScene" id=8]
 [ext_resource path="res://special_scenes/unlock_screen/UnlockSceneClassic.tscn" type="PackedScene" id=9]
+[ext_resource path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" type="PackedScene" id=10]
 
 [sub_resource type="OpenSimplexNoise" id=2]
 octaves = 4
@@ -39,6 +40,7 @@ shader_param/aberration_speed = 1.0
 [node name="LocalMultiplayer" type="Node"]
 script = ExtResource( 1 )
 map_scene = ExtResource( 2 )
+celebration_scene = ExtResource( 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 6 )
