@@ -6,7 +6,7 @@
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=4]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=5]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/managers/RespawnFromPointManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/managers/RespawnFromHomeManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=8]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=10]
@@ -29,7 +29,7 @@ game_mode = ExtResource( 8 )
 [node name="SkullManager" parent="Managers" index="0" instance=ExtResource( 12 )]
 skull_scene = ExtResource( 15 )
 
-[node name="RespawnFromPointManager" parent="Managers" index="1" instance=ExtResource( 7 )]
+[node name="RespawnFromHomeManager" parent="Managers" index="1" instance=ExtResource( 7 )]
 
 [node name="KillModeManager" parent="Managers" index="11"]
 enabled = true
