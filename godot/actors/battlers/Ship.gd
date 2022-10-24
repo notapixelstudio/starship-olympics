@@ -837,7 +837,7 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty():
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty() and not is_hiding():
 		$'%Ammo'.shot()
 		var aperture = PI/4
 		var amount = 1
@@ -901,6 +901,12 @@ func is_in_gel():
 func is_on_ice():
 	for area in $NearArea.get_overlapping_areas():
 		if area is Ice:
+			return true
+	return false
+	
+func is_hiding():
+	for area in $NearArea.get_overlapping_areas():
+		if area.is_in_group('hiding_spot'):
 			return true
 	return false
 	

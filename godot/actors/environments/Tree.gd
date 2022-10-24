@@ -1,9 +1,10 @@
 extends Area2D
 
 func _ready():
-	$Polygon2D.polygon = $CollisionPolygon2D.polygon
-	$Shadow.polygon = $CollisionPolygon2D.polygon
-	$Line2D.points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
+	$"%HidingSpot/CollisionPolygon2D".polygon = $CollisionPolygon2D.polygon
+	$"%Canopy".polygon = $CollisionPolygon2D.polygon
+	$"%Shadow".polygon = $CollisionPolygon2D.polygon
+	$"%Leaves".points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
 	
 	# compute the shade of the canopy
 	var polygon_bottom = []
@@ -15,4 +16,16 @@ func _ready():
 			
 	polygon_top.invert()
 	
-	$CanopyShade.polygon = PoolVector2Array(polygon_bottom + polygon_top)
+	$"%CanopyShade".polygon = PoolVector2Array(polygon_bottom + polygon_top)
+
+
+func _on_Tree_body_entered(body):
+	shake()
+	
+func _on_Tree_body_exited(body):
+	shake()
+	
+func shake():
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("Shake")
+	
