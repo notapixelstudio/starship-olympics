@@ -5,15 +5,18 @@ class_name Tile
 func get_klass():
 	return 'Tile'
 
-export var size = 1 setget set_size
+export var size := 1.0 setget set_size
 export var sides = 4 setget set_sides
 export var points = 1
 export var fortifiable = true
 export var need_royal = false
 export var foreground_offset := 16
 export var background_offset := 32
+export var background_scale := 0.85
 export var foreground_position := Vector2(0,0)
 export var fortified_background_scale := Vector2(1.05,1.05)
+export var neighbour_check_rotation_degrees := 0.0
+export var neighbour_check_scale := 1.1
 
 var conquering_ship : Ship
 var owner_ship : Ship setget set_owner_ship
@@ -25,7 +28,7 @@ var max_neighbour_value = 0
 signal conquered
 signal lost
 
-func set_size(v):
+func set_size(v: float):
 	size = v
 	$GRegularPolygon.radius = size*100
 	$Graphics/Wrapper.scale = Vector2(size,size)
@@ -48,7 +51,7 @@ func set_owner_ship(v):
 	emit_signal('conquered', owner_ship, self, get_score(), false)
 	
 	$Graphics/Partial.modulate = owner_ship.species.color
-	$Graphics/Wrapper/Label.self_modulate = owner_ship.species.color
+	#$Graphics/Wrapper/Label.self_modulate = owner_ship.species.color
 	
 func refresh_polygon():
 	var polygon = $GRegularPolygon.to_PoolVector2Array()
@@ -60,6 +63,9 @@ func refresh_polygon():
 func _ready():
 	refresh_polygon()
 	
+	$Neighbourhood.rotation_degrees = neighbour_check_rotation_degrees
+	$Neighbourhood.scale = neighbour_check_scale*Vector2(1,1)
+	$Graphics/Background.scale = background_scale*Vector2(1,1)
 	$Foreground.position = foreground_position + Vector2(0,foreground_offset).rotated(-global_rotation)
 	$Graphics.position = Vector2(0,background_offset).rotated(-global_rotation)
 	$Graphics/Wrapper.rotation = -global_rotation
@@ -109,11 +115,11 @@ func fortify():
 	fortified = true
 	set_process(false) # disable reconquering
 	$Foreground.modulate = owner_ship.species.color
-	$Foreground.self_modulate = Color(0.5,0.5,0.5)
+	$Foreground.self_modulate = Color(0.7,0.7,0.7)
 	$Graphics/Background.modulate = owner_ship.species.color
 	$Graphics/Background.self_modulate = Color(0.3,0.3,0.3)
 	$Graphics/Background.scale = fortified_background_scale
-	$Graphics/Wrapper/Label.modulate = Color(0.3,0.3,0.3)
+	$Graphics/Wrapper/Label.modulate = Color(0,0,0)
 
 func get_strategy(ship, distance, game_mode):
 	if fortified:
