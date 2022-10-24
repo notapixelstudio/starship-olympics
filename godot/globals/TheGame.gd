@@ -11,9 +11,10 @@ var all_cards : CardPool
 const CARD_POOL_PATH = "res://map/draft/pool"
 func _init():
 	uuid = UUID.v4()
-	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
-	global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_log_dict())
+	timestamp_str = global.datetime_to_str(OS.get_datetime(true)) # TODO Deprecated, use Time.get_datetime_dict_from_system() instead.
+	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
 	all_cards = load(CARD_POOL_PATH+'/the_card_pool.tres').duplicate()
+
 	
 func get_uuid() -> String:
 	return uuid
@@ -65,18 +66,29 @@ func reset_players():
 	for player in players:
 		player.reset()
 		
-func to_log_dict() -> Dictionary:
+func to_dict() -> Dictionary:
 	var players_dicts := []
 	for player in players:
 		players_dicts.append(player.to_dict())
+	var deck_info = null
+	if deck != null:
+		deck_info = get_deck().to_dict()
+	var session_info = null
+	if global.session != null:
+		session_info = global.session.to_dict()
 		
 	return {
 		'game_uuid': self.get_uuid(),
 		'timestamp': self.timestamp_str,
 		'players': players_dicts,
 		'players_count': get_number_of_players(),
-		'human_players_count': get_number_of_human_players()
+		'human_players_count': get_number_of_human_players(),
+		'deck': deck_info,
+		'session': session_info
 	}
+
+func set_from_dictionary(data: Dictionary):
+	uuid = data.get("game_uuid", self.get_uuid())
 
 func get_deck() -> Deck:
 	return deck

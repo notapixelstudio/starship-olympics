@@ -4,9 +4,9 @@ class_name TheSession
 
 var uuid : String
 var game_id: String
-var hand : Array # Array of DraftCard
+var hand : Array # Array of DraftCard TODO: should be in Deck
 var timestamp_str : String
-
+var playing_card : DraftCard
 var leaderboards : Array = []
 
 func _init():
@@ -61,8 +61,13 @@ func get_settings(key = null):
 func setup_selected_sets(sets: Array):
 	self.selected_sets = sets
 
+func add_to_hand(card: DraftCard, position := 0):
+	hand.insert(position, card)
+	
 func choose_next_card() -> DraftCard:
-	var next_card = hand.pop_front()
+	playing_card = null
+	var next_card: DraftCard = hand.pop_front()
+	playing_card = next_card
 	global.the_game.deck.put_card_into_played_pile(next_card)
 	return next_card
 
@@ -86,15 +91,23 @@ func get_hand() -> Array:
 	return hand
 
 func to_dict() -> Dictionary:
-	"""
-	"""
+	var serialized_cards := []
+	for card in self.get_hand():
+		serialized_cards.append((card as DraftCard).get_id())
+	if playing_card != null:
+		serialized_cards.insert(0, playing_card.get_id())
 	return {
 		"game_id": game_id,
 		"timestamp": timestamp_str,
 		"uuid": get_uuid(),
-		"matches": self.matches
+		"matches": self.matches,
+		"hand": serialized_cards
 	}
 
+func set_from_dictionary(data: Dictionary):
+	pass
+	
+	
 func update_stars() -> void:
 	var winners = get_last_winners()
 	

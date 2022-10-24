@@ -11,12 +11,15 @@ func _ready():
 	if player_spawner:
 		yield(player_spawner, "player_assigned")
 		set_player(player_spawner.get_player())
+	else:
+		set_player(null)
 		
 func set_player(v : InfoPlayer):
 	player = v
-	$RingPart.self_modulate = player.species.color
-	$'%PlayerLabel'.text = player.get_username().to_upper()
-	$'%PlayerLabel'.modulate = player.species.color
+	if player != null:
+		$RingPart.self_modulate = player.species.color
+		$'%PlayerLabel'.text = player.get_username().to_upper()
+		$'%PlayerLabel'.modulate = player.species.color
 	
 func get_player():
 	return player
@@ -25,9 +28,15 @@ func get_player():
 func _on_PortalGate_crossed(sth, _self):
 	assert(traits.has_trait(sth, 'Owned'))
 	var ball_player = sth.get_player()
-	if sth is Ball and ball_player != null and player != ball_player:
+	if sth is Ball and ball_player != null:
 		assert(traits.has_trait(sth, 'Tracked'))
-		emit_signal("goal_done", sth.get_player(), self, sth.global_position)
+		emit_signal("goal_done", sth.get_player(), self, sth.global_position, +1 if player != ball_player else -1)
 		sth.set_player(null) # ownership is reset whenever a goal is done
 		
 	._on_PortalGate_crossed(sth, _self)
+
+func _on_DefenseZone_body_entered(body):
+	# disable pew ownership transfer if is the defender
+	if body is Pew and body.get_player() == get_player():
+		body.disable_ownership_transfer()
+		
