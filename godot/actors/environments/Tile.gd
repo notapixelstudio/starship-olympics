@@ -1,5 +1,6 @@
 tool
 extends Area2D
+class_name Tile
 
 func get_klass():
 	return 'Tile'
@@ -9,6 +10,10 @@ export var sides = 4 setget set_sides
 export var points = 1
 export var fortifiable = true
 export var need_royal = false
+export var foreground_offset := 16
+export var background_offset := 32
+export var foreground_position := Vector2(0,0)
+export var fortified_background_scale := Vector2(1.05,1.05)
 
 var conquering_ship : Ship
 var owner_ship : Ship setget set_owner_ship
@@ -55,8 +60,8 @@ func refresh_polygon():
 func _ready():
 	refresh_polygon()
 	
-	$Foreground.position = Vector2(0,16).rotated(-global_rotation)
-	$Graphics.position = Vector2(0,32).rotated(-global_rotation)
+	$Foreground.position = foreground_position + Vector2(0,foreground_offset).rotated(-global_rotation)
+	$Graphics.position = Vector2(0,background_offset).rotated(-global_rotation)
 	$Graphics/Wrapper.rotation = -global_rotation
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
 	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
@@ -107,7 +112,7 @@ func fortify():
 	$Foreground.self_modulate = Color(0.5,0.5,0.5)
 	$Graphics/Background.modulate = owner_ship.species.color
 	$Graphics/Background.self_modulate = Color(0.3,0.3,0.3)
-	$Graphics/Background.scale = Vector2(1.05,1.05)
+	$Graphics/Background.scale = fortified_background_scale
 	$Graphics/Wrapper/Label.modulate = Color(0.3,0.3,0.3)
 
 func get_strategy(ship, distance, game_mode):

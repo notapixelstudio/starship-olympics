@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/TriTile.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/rect_triangle.png" type="Texture" id=3]
+
+[node name="TriTile" instance=ExtResource( 1 )]
+scale = Vector2( 4, 4 )
+script = ExtResource( 2 )
+foreground_offset = -7
+background_offset = 0
+foreground_position = Vector2( -3, 3 )
+fortified_background_scale = Vector2( 1, 1 )
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+polygon = PoolVector2Array( -50, 50, -50, -50, 50, 50 )
+
+[node name="Foreground" parent="." index="4"]
+self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
+position = Vector2( -3, -4 )
+scale = Vector2( 0.85, 0.85 )
+polygon = PoolVector2Array( -50, 50, -50, -50, 50, 50 )
+
+[node name="Graphics" parent="." index="5"]
+position = Vector2( 0, 0 )
+
+[node name="Background" parent="Graphics" index="0"]
+position = Vector2( -3, 3 )
+polygon = PoolVector2Array( -50, 50, -50, -50, 50, 50 )
+
+[node name="Partial" parent="Graphics" index="1"]
+position = Vector2( -11, 13 )
+rotation = 0.0
+texture = ExtResource( 3 )
+
+[node name="Neighbourhood" parent="." index="6"]
+visible = false
+
+[node name="CollisionPolygon2D" parent="Neighbourhood" index="0"]
+polygon = PoolVector2Array( -68.1818, 0, 22.7273, -22.7273, 0, 68.1818 )
