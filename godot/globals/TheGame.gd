@@ -4,16 +4,16 @@ class_name TheGame
 
 var uuid : String
 var players : Array
-var timestamp_str: String
 
+var timestamp_dict: Dictionary
 var deck : Deck
 var all_cards : CardPool
-const CARD_POOL_PATH = "res://map/draft/pool"
+
 func _init():
 	uuid = UUID.v4()
-	timestamp_str = global.datetime_to_str(OS.get_datetime(true)) # TODO Deprecated, use Time.get_datetime_dict_from_system() instead.
+	timestamp_dict = Time.get_datetime_dict_from_system(true)
 	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
-	all_cards = load(CARD_POOL_PATH+'/the_card_pool.tres').duplicate()
+	all_cards = CardPool.new() 
 
 	
 func get_uuid() -> String:
@@ -79,7 +79,8 @@ func to_dict() -> Dictionary:
 		
 	return {
 		'game_uuid': self.get_uuid(),
-		'timestamp': self.timestamp_str,
+		'timestamp': global.datetime_to_str(self.timestamp_dict),
+		'timestamp_local': global.datetime_to_str(self.timestamp_dict, true),
 		'players': players_dicts,
 		'players_count': get_number_of_players(),
 		'human_players_count': get_number_of_human_players(),

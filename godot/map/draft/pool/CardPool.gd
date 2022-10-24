@@ -4,13 +4,13 @@ class_name CardPool
 
 export var id : String
 export var cards : Array = [] setget set_cards # DraftCard
+var index : Dictionary = {}
+const CARD_POOL_PATH = "res://map/draft/cards"
 
 func _init():
-	index = global.get_resources("res://map/draft/cards/")
+	index = global.get_resources(CARD_POOL_PATH)
 	cards = index.values()
 
-
-var index : Dictionary = {}
 
 func get_id() -> String:
 	return id

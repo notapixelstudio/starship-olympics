@@ -4,13 +4,13 @@ class_name Deck
 
 var cards : Array = [] # of DraftCard
 var played_pile : Array = [] # of DraftCard
-var card_pool : CardPool
 var next : Array = [] # of DrafCard
 var remembered_card_ids : Dictionary = {} # String -> bool
 
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
+var card_pool : CardPool
 func _init():
 	randomize()
 	# starting decks have to provide levels for each player count
@@ -21,10 +21,7 @@ func _init():
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	
-	var pools = global.get_resources(CARD_POOL_PATH)
-	var unlocked_pools = TheUnlocker.get_unlocked_list("card_pools")
-	card_pool = global.get_actual_resource(pools, unlocked_pools[0])
-	
+	card_pool = CardPool.new()
 	for starting_card in starting_deck.cards:
 		card_pool.remove_card(starting_card)
 	

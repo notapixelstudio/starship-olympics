@@ -40,7 +40,8 @@ func _ready():
 	if not unfinished_game.empty():
 		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
 		get_tree().paused = true
-		$"%UnlockSceneClassic".add_child(confirm)
+		$"%AddOnScreen".visible = true
+		$"%AddOnScreen".add_child(confirm)
 		confirm.setup("continue")
 		yield(confirm, "choice_selected")
 		if confirm.choice:
@@ -48,6 +49,7 @@ func _ready():
 			self.setup_continue_game(unfinished_game)
 		confirm.queue_free()
 		get_tree().paused = false
+		$"%AddOnScreen".visible = false
 		
 	# will save the game before starting a new game 
 	# So all the options will be saved
