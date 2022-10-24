@@ -5,10 +5,16 @@ class_name CardPool
 export var id : String
 export var cards : Array = [] setget set_cards # DraftCard
 
+func _init():
+	index = global.get_resources("res://map/draft/cards/")
+	cards = index.values()
+
+
 var index : Dictionary = {}
 
 func get_id() -> String:
 	return id
+
 func set_cards(v: Array):
 	cards = v
 	for card in cards:
@@ -33,3 +39,4 @@ func get_card(id) -> DraftCard:
 func remove_card(card) -> void:
 	index.erase(card.get_id())
 	cards.erase(card)
+
