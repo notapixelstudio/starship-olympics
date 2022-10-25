@@ -619,11 +619,13 @@ func ship_just_died(ship, killer, for_good):
 		#respawn_timeout = 0.75
 		var cargo = ship.get_cargo()
 		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
-			respawn_timeout = 2.25
+			respawn_timeout = 1.25 + 0.5*global.the_game.get_number_of_players()
 	#elif conquest_mode.enabled:
 	#	respawn_timeout = 0.75
 	#elif game_mode.name == "GoalPortal":
 	#	respawn_timeout = 0.75
+	if game_mode.id == 'skull_collector':
+		respawn_timeout = 2.25
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -897,7 +899,7 @@ func _on_ship_fallen(ship, spawner):
 func respawn_from_home(ship, spawner):
 	var respawn_timeout = 1.0
 	if game_mode.id == 'skull_collector':
-		respawn_timeout = 2.0
+		respawn_timeout = 0.5
 	
 	ship.trail.destroy()
 	if ship.alive:

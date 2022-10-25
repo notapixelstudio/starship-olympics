@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://special_scenes/on_canvas_ui/FloatingMessage.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/davefuzz/audio/int/sfx_any_int_pointgained_01.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -43,6 +44,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( -125, -50 ), Vector2( -125, -120 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [node name="FloatingMessage" type="Node2D" groups=["Overlay"]]
 z_index = 20
@@ -51,9 +79,9 @@ script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -125.0
-margin_top = -50.0
+margin_top = -120.0
 margin_right = 125.0
-margin_bottom = -10.0
+margin_bottom = -80.0
 rect_pivot_offset = Vector2( 125, 20 )
 custom_fonts/font = SubResource( 1 )
 text = "+{}"
@@ -62,9 +90,9 @@ align = 1
 [node name="BadLabel" type="Label" parent="."]
 visible = false
 margin_left = -125.0
-margin_top = -50.0
+margin_top = -120.0
 margin_right = 125.0
-margin_bottom = -10.0
+margin_bottom = -80.0
 rect_pivot_offset = Vector2( 125, 20 )
 custom_fonts/font = SubResource( 3 )
 text = "+{}"
@@ -75,5 +103,9 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 2 )
+anims/RESET = SubResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

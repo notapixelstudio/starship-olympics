@@ -16,6 +16,9 @@ export (String, '', 'diamond', 'heart', 'snake', 'crown', 'block', 'arrow', 'cir
 func get_id() -> String:
 	return str(get_rid().get_id())
 	
+func get_logo():
+	return game_mode.logo
+	
 func get_icon():
 	return game_mode.get_icon()
 	

@@ -19,7 +19,11 @@ func appear():
 	animation.play("fade_in")
 	yield(animation, "animation_finished")
 	enable_buttons()
-	buttons.get_child(0).grab_focus()
+	for button in buttons.get_children():
+		if button.visible:
+			button.grab_focus()
+			break
+	
 	
 func back_from_options():
 	self.appear()
@@ -48,13 +52,14 @@ func enable_buttons():
 func _on_button_focus_entered(button):
 	if button.disabled:
 		button.get_node('Lock').visible = true
-	$Tooltips.get_node(button.name).modulate = Color(1,1,1,1)
+	var tooltip = $Tooltips.get_node(button.name) 
+	if tooltip != null:
+		tooltip.modulate = Color(1,1,1,1)
 	
 func _on_button_focus_exited(button):
 	if button.disabled:
 		button.get_node('Lock').visible = false
-	$Tooltips.get_node(button.name).modulate = Color(1,1,1,0)
+	var tooltip = $Tooltips.get_node(button.name) 
+	if tooltip != null:
+		tooltip.modulate = Color(1,1,1,0)
 
-
-func _on_button_focus():
-	$"%Switch".play()

@@ -1330,12 +1330,13 @@ rotation = 0.785398
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1900, 1200 )
 rotation = -0.785402
+controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1900, 1200 )
 rotation = -2.35619
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 11 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
@@ -1343,12 +1344,14 @@ position = Vector2( -1900, -1200 )
 rotation = 0.785398
 controls = "kb2"
 species = ExtResource( 2 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
 position = Vector2( 1900, -1200 )
 rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 10 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )

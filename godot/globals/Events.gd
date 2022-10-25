@@ -23,6 +23,7 @@ signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
 signal sth_collected(collector, collectee)
+signal sth_conquered(conqueror, conquered)
 # Arena
 signal ask_to_spawn
 signal spawned

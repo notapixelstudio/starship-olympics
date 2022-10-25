@@ -1,47 +1,73 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Stat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture" id=3]
 [ext_resource path="res://assets/map/winner.png" type="Texture" id=4]
 [ext_resource path="res://special_scenes/combat_UI/gameover/WinnerBanner.gd" type="Script" id=5]
+[ext_resource path="res://special_scenes/combat_UI/gameover/InsertName.gd" type="Script" id=6]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://special_scenes/combat_UI/gameover/LogoMinigame.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=7]
+size = 26
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 50
 font_data = ExtResource( 8 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 8 )
+
 [sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 35
 font_data = ExtResource( 8 )
 
 [node name="WinnerBanner" type="Control"]
-margin_top = 46.0
 margin_right = 361.0
-margin_bottom = 46.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 360, 180 )
 script = ExtResource( 5 )
+minigame_logo = ExtResource( 9 )
+
+[node name="DateSession" type="Label" parent="."]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 7 )
+text = "2022-10-23 15:00"
 
 [node name="Background" type="Polygon2D" parent="."]
+position = Vector2( 8, 32 )
 color = Color( 0.219608, 0.219608, 0.219608, 0.901961 )
 texture = ExtResource( 3 )
 polygon = PoolVector2Array( 12.5, 162.5, 12.5, 12.5, 1062.5, 12.5, 1012.5, 162.5 )
 
 [node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2( 8, 32 )
 color = Color( 0, 0, 0, 0.313726 )
 polygon = PoolVector2Array( 6.25, 156.25, 6.25, 6.25, 125, 6.25, 150, 156.25 )
 
 [node name="Container" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_right = 709.0
-margin_bottom = 150.0
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 858.0
+margin_bottom = 182.0
 rect_min_size = Vector2( 0, 100 )
 
 [node name="Headshot" parent="Container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
+visible = false
 margin_left = 154.0
 margin_right = 404.0
 margin_bottom = 150.0
@@ -75,22 +101,52 @@ margin_right = 250.0
 margin_bottom = 150.0
 key = "bombs"
 
-[node name="StarsContainer" type="HBoxContainer" parent="Container"]
+[node name="StarsContainer" type="GridContainer" parent="Container"]
 unique_name_in_owner = true
-margin_left = 408.0
-margin_right = 408.0
+margin_left = 154.0
+margin_right = 234.0
 margin_bottom = 150.0
+columns = 3
+
+[node name="LogoMinigame" parent="Container/StarsContainer" instance=ExtResource( 9 )]
+unique_name_in_owner = true
 
 [node name="PlayerName" type="Label" parent="Container"]
 unique_name_in_owner = true
-margin_left = 412.0
+margin_left = 238.0
 margin_top = 45.0
-margin_right = 511.0
+margin_right = 337.0
 margin_bottom = 104.0
 theme = ExtResource( 7 )
 custom_fonts/font = SubResource( 5 )
 text = "SAX"
 valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+unique_name_in_owner = true
+margin_left = 341.0
+margin_right = 1037.0
+margin_bottom = 150.0
+
+[node name="InsertName" type="LineEdit" parent="Container/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 180.0
+margin_bottom = 150.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+max_length = 3
+placeholder_text = "P1 "
+script = ExtResource( 6 )
+
+[node name="Label2" type="Label" parent="Container/HBoxContainer"]
+margin_left = 184.0
+margin_top = 45.0
+margin_right = 696.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 3 )
+text = "Insert Your name"
+uppercase = true
 
 [node name="Champion" type="Sprite" parent="."]
 visible = false
@@ -102,17 +158,20 @@ texture = ExtResource( 4 )
 
 [node name="WinnerOutline" type="Line2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 8, 32 )
 points = PoolVector2Array( 43.75, -12.5, 125, -12.5, 156.25, 162.5, -12.5, 162.5, -12.5, -12.5, 43.75, -12.5 )
 width = 6.0
 default_color = Color( 1.3, 1.3, 1.3, 1 )
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 1015.0
-margin_top = 16.0
-margin_right = 1287.0
-margin_bottom = 148.0
+margin_left = 1023.0
+margin_top = 48.0
+margin_right = 1295.0
+margin_bottom = 180.0
 theme = ExtResource( 7 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "This Graphics needs an overhaul"
 valign = 1
 autowrap = true
+
+[connection signal="name_inserted" from="Container/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]

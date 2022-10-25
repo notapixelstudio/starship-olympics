@@ -39,6 +39,9 @@ __meta__ = {
 "_editor_icon": ExtResource( 1 )
 }
 radius = 1750
+sides = 6
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -754,20 +757,27 @@ need_royal = true
 position = Vector2( 3.0127, 894.782 )
 rotation = 0.523599
 visible_decorations = false
+symbol_scale = 2.0
+decoration_scale = 1.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
 script = ExtResource( 2 )
 radius = 500
 sides = 3.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 12 )]
 position = Vector2( -3.0127, -894.782 )
 visible_decorations = false
+symbol_scale = 2.0
+decoration_scale = 1.0
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone2" index="12"]
 script = ExtResource( 2 )
 radius = 500
 sides = 3.0
+alternating_angle = 0
 rotation_degrees = 90.0
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]

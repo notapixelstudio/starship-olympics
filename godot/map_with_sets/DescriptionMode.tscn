@@ -3,9 +3,9 @@
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/davefuzz/audio/ui/sfx_any_ui_gamepresented_01.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=5]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=7]
 [ext_resource path="res://map_with_sets/DescriptionMode.gd" type="Script" id=8]
 [ext_resource path="res://ui/common_elements/PlayersReady/PlayersReady.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=10]
@@ -221,8 +221,7 @@ anims/getout = SubResource( 5 )
 anims/ready = SubResource( 6 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = 15.0
+stream = ExtResource( 4 )
 mix_target = 1
 bus = "SFX"
 
