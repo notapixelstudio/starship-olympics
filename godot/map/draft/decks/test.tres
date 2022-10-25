@@ -1,15 +1,14 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/RingRacing.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/KingOfTheCastle.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/SkullCollectors.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/DiamondMinefield.tres" type="Resource" id=5]
-[ext_resource path="res://map/draft/cards/FindingYourself.tres" type="Resource" id=6]
+[ext_resource path="res://map/draft/cards/Huntsman.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/Connex.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
 id = "test"
-cards = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ]
+name = ""
+cards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
 nexts = [  ]
 shuffle_before_dealing = true
