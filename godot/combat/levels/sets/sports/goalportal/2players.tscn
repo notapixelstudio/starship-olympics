@@ -175,7 +175,7 @@ texture = ExtResource( 11 )
 centered = false
 
 [node name="Zone" parent="Battlefield/Background" index="1" instance=ExtResource( 14 )]
-position = Vector2( -1650, 0 )
+position = Vector2( -2100, 0 )
 
 [node name="Polygon2D" parent="Battlefield/Background/Zone" index="1"]
 polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
@@ -209,7 +209,7 @@ radius = 650
 precision = 100
 
 [node name="Zone2" parent="Battlefield/Background" index="2" instance=ExtResource( 14 )]
-position = Vector2( 1650, 0 )
+position = Vector2( 2100, 0 )
 rotation = 3.14159
 
 [node name="Polygon2D" parent="Battlefield/Background/Zone2" index="1"]
@@ -254,8 +254,8 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 3 )
-width = 4100
-height = 2900
+width = 5000
+height = 3100
 radius = 600
 precision = 100.0
 
@@ -266,8 +266,22 @@ rotation = 0.785398
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="7"]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 0, 32 )
+points = PoolVector2Array( 0, -1550, 0, -550 )
+width = 130.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="8"]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 880, 912 )
+points = PoolVector2Array( -880, -330, -880, 670 )
+width = 130.0
+default_color = Color( 1, 1, 1, 1 )
+
 [node name="Launcher" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
-position = Vector2( 0, -850 )
+position = Vector2( 0, -950 )
 symbol_scale = 1.5
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher" index="11"]
@@ -276,7 +290,7 @@ radius = 200
 precision = 40.0
 
 [node name="Launcher2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 14 )]
-position = Vector2( 0, 850 )
+position = Vector2( 0, 1000 )
 symbol_scale = 1.5
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher2" index="11"]
@@ -285,14 +299,14 @@ radius = 200
 precision = 40.0
 
 [node name="LeftGoalPortalGate" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
-position = Vector2( -1700, 0 )
+position = Vector2( -2150, 0 )
 width = 900.0
 show_arrow = false
 linked_to_path = NodePath("../RightGoalPortalGate")
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
-position = Vector2( 1700, 0 )
+position = Vector2( 2150, 0 )
 rotation = 3.14159
 width = 900.0
 show_arrow = false
@@ -300,23 +314,25 @@ linked_to_path = NodePath("../LeftGoalPortalGate")
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 10 )]
+position = Vector2( 0, -1 )
 type = "soccer"
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="1" instance=ExtResource( 13 )]
-position = Vector2( 0, 1200 )
+position = Vector2( 0, 1350 )
 
 [node name="CameraEye2" parent="Battlefield/Foreground" index="2" instance=ExtResource( 13 )]
-position = Vector2( 0, -1200 )
+position = Vector2( 0, -1300 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -700, 0 )
+position = Vector2( -1300, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 710, 0 )
+position = Vector2( 1310, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 9 )
 
 [node name="Camera" parent="." index="7"]

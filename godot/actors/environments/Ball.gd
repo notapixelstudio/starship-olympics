@@ -30,13 +30,10 @@ func refresh():
 	
 func place_and_push(dropper, velocity, direction:='forward') -> void:
 	var dir = 1.0 if direction == 'forward' else -1.0
-	global_position = dropper.global_position
 	global_position = dropper.global_position + dir*Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
 	
 	linear_velocity = velocity if direction == 'forward' else -velocity
-	if type == 'soccer':
-		linear_velocity *= 1.5
-		
+	
 	activate()
 
 func activate():

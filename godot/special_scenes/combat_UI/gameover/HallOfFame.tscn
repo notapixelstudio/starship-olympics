@@ -48,29 +48,23 @@ align = 1
 valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
 margin_top = 90.0
 margin_right = 1280.0
 margin_bottom = 662.0
+scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 361.0
-margin_bottom = 246.0
+margin_right = 360.0
+margin_bottom = 200.0
 
 [node name="SessionWon" type="GridContainer" parent="ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 361.0
-margin_bottom = 246.0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SessionWon"]
-unique_name_in_owner = true
-margin_right = 361.0
-margin_bottom = 42.0
-theme = ExtResource( 9 )
-custom_fonts/font = SubResource( 3 )
-text = "2022/10/08    14:00"
-valign = 1
+margin_right = 360.0
+margin_bottom = 200.0
 
 [node name="WinnerBanner" parent="ScrollContainer/VBoxContainer/SessionWon" instance=ExtResource( 1 )]
 unique_name_in_owner = true
-margin_bottom = 246.0
+margin_right = 360.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 360, 200 )

@@ -5,7 +5,7 @@ onready var selection_screen = $SelectionScreen
 const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
 export var map_scene: PackedScene
-
+export var celebration_scene: PackedScene
 var games = {}  # {sport.name : Resource}
 
 var all_species = []
@@ -36,10 +36,39 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
+	var unfinished_game: Dictionary = global.read_file("user://games/latest.json")
+	if not unfinished_game.empty():
+		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
+		get_tree().paused = true
+		$"%AddOnScreen".visible = true
+		$"%AddOnScreen".add_child(confirm)
+		confirm.setup("continue")
+		yield(confirm, "choice_selected")
+		if confirm.choice:
+			print("setup with new data {data}".format({"data": unfinished_game}))
+			self.setup_continue_game(unfinished_game)
+		confirm.queue_free()
+		get_tree().paused = false
+		$"%AddOnScreen".visible = false
+		
 	# will save the game before starting a new game 
 	# So all the options will be saved
 	persistance.save_game()
 	
+func setup_continue_game(game_data: Dictionary):
+	# setup players
+	players = {}
+	for player_data in game_data.get("players", []):
+		var infoplayer := InfoPlayer.new()
+		infoplayer.set_from_dictionary(player_data)
+		players[infoplayer.get_id()] = infoplayer
+	
+	# setup deck
+	global.new_game(players.values(), game_data)
+	create_map(game_data.get("session", {}))
+	print("Last game played was {game}. Will be removed from last_played".format({"game":global.the_game.deck.played_pile.pop_back()}))
+	
+	navigate_to_map()
 	
 func _exit_tree():
 	global.local_multiplayer = null
@@ -159,14 +188,9 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 		tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
+	print("Save the game")
+	global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
 
-func get_next_minigame(set):
-	# replenish pool if empty
-	if len(minigame_pools[set.name]) == 0:
-		minigame_pools[set.name] = set.get_minigames()
-		minigame_pools[set.name].shuffle()
-		
-	return minigame_pools[set.name].pop_back()
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 	global.new_match()
@@ -231,24 +255,33 @@ func _on_nav_to_map():
 	create_map()
 	navigate_to_map()
 	
-func create_map():
+func create_map(data:= {}):
+	global.new_session(data)
 	map = map_scene.instance()
 
-var celebration
+var celebration: HallOfFame
+
 func navigate_to_celebration():
 	safe_destroy_combat()
 	# map initialization
-	celebration = load("res://special_scenes/combat_UI/gameover/SessionWinner.tscn").instance()
+	celebration = celebration_scene.instance()
 	add_child(celebration)
+	var champion: InfoChampion = InfoChampion.new()
+	var this_session: TheSession = global.get("session")
+	this_session.get_last_winners()[0].to_dict()
+	this_session.to_dict()
+	champion.player = this_session.get_last_winners()[0].to_dict()
+	champion.session_info = this_session.to_dict()
+	celebration.set_champion(champion)
 
-func navigate_to_map():
+func navigate_to_map(session_over := false):
 	safe_destroy_combat()
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
+	
 	add_child(map)
-
-
+	
 func add_cpu(how_many: int):
 	"""
 	Add cpu to the current pool of players

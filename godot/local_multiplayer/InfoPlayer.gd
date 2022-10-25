@@ -53,6 +53,9 @@ func add_score(amount):
 
 func set_species(species_: Species):
 	self.species = species_
+
+func set_species_from_id(species_id: String):
+	self.set_species(global.get_species(species_id))
 	
 func set_score(amount):
 	self.stats.score = amount
@@ -78,3 +81,9 @@ func get_team_color() -> Color:
 func get_ship() -> Texture:
 	return species.get_ship()
 	
+func set_from_dictionary(data: Dictionary):
+	self.controls = data.get("controls", self.controls)
+	self.id = data.get("id", self.get_id())
+	self.username = data.get("username", self.get_username())
+	self.set_species_from_id(data.get("species"))
+	print(data)
