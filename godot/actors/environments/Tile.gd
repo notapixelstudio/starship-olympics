@@ -15,6 +15,7 @@ export var background_offset := 32
 export var background_scale := 0.85
 export var foreground_position := Vector2(0,0)
 export var fortified_background_scale := Vector2(1.05,1.05)
+export var active_area_scale := 1.0
 export var neighbour_check_rotation_degrees := 0.0
 export var neighbour_check_scale := 1.1
 
@@ -64,6 +65,7 @@ func refresh_polygon():
 func _ready():
 	refresh_polygon()
 	
+	$CollisionPolygon2D.scale = active_area_scale*Vector2(1,1)
 	$Neighbourhood.rotation_degrees = neighbour_check_rotation_degrees
 	$Neighbourhood.scale = neighbour_check_scale*Vector2(1,1)
 	$Graphics/Background.scale = background_scale*Vector2(1,1)

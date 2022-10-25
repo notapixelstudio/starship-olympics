@@ -1,16 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=3]
-[ext_resource path="res://actors/environments/TriTile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/singles/connex/BigPlayerSide.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Connex.tres" type="Resource" id=10]
-[ext_resource path="res://combat/levels/singles/connex/PlayerSide.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=13]
 
 [sub_resource type="GDScript" id=1]
@@ -82,7 +81,6 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
-rotation = 0.785398
 script = SubResource( 1 )
 
 [node name="Border" type="Polygon2D" parent="Battlefield/Middleground/Board" index="0"]
@@ -101,1266 +99,3912 @@ z_as_relative = false
 color = Color( 0.105882, 0.0352941, 0, 1 )
 polygon = PoolVector2Array( -2700, -950, -950, -2700, 950, -2700, 2700, -950, 2700, 950, 950, 2700, -950, 2700, -2700, 950 )
 
-[node name="TriTile17" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 4 )]
-position = Vector2( -1400, 200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile18" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 4 )]
-position = Vector2( -1400, 200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile19" parent="Battlefield/Middleground/Board" index="4" instance=ExtResource( 4 )]
-position = Vector2( -1000, 200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile20" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 4 )]
-position = Vector2( -1000, 200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile21" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 4 )]
-position = Vector2( -1000, -200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile22" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 4 )]
-position = Vector2( -1000, -200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile23" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 4 )]
-position = Vector2( -1400, -200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile24" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 4 )]
-position = Vector2( -1400, -200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile25" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 4 )]
-position = Vector2( -600, 1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile26" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 4 )]
-position = Vector2( -600, 1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile27" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 4 )]
-position = Vector2( -200, 1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile28" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 4 )]
-position = Vector2( -200, 1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile37" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 4 )]
-position = Vector2( -200, -1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile38" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 4 )]
-position = Vector2( -200, -1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile39" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 4 )]
-position = Vector2( -600, -1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile40" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 4 )]
-position = Vector2( -600, -1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile41" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 4 )]
-position = Vector2( -1400, -600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile42" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 4 )]
-position = Vector2( -1400, -600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile43" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 4 )]
-position = Vector2( -1000, -600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile44" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 4 )]
-position = Vector2( -1000, -600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile45" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 4 )]
-position = Vector2( -1000, -1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile46" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 4 )]
-position = Vector2( -1000, -1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile47" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 4 )]
-position = Vector2( -1400, -1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile48" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 4 )]
-position = Vector2( -1400, -1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile53" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 4 )]
-position = Vector2( 600, -1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile54" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 4 )]
-position = Vector2( 600, -1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile55" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 4 )]
-position = Vector2( 200, -1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile56" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 4 )]
-position = Vector2( 200, -1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile57" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 4 )]
-position = Vector2( 200, 1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile58" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 4 )]
-position = Vector2( 200, 1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile59" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 4 )]
-position = Vector2( 600, 1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile60" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 4 )]
-position = Vector2( 600, 1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile65" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 4 )]
-position = Vector2( -1400, 1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile66" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 4 )]
-position = Vector2( -1400, 1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile67" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 4 )]
-position = Vector2( -1000, 1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile68" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 4 )]
-position = Vector2( -1000, 1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile69" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 4 )]
-position = Vector2( -1000, 600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile70" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 4 )]
-position = Vector2( -1000, 600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile71" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 4 )]
-position = Vector2( -1400, 600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile72" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 4 )]
-position = Vector2( -1400, 600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile87" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 4 )]
-position = Vector2( 1800, 200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile89" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 4 )]
-position = Vector2( 1800, 200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile97" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 4 )]
-position = Vector2( 1800, -200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile98" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 4 )]
-position = Vector2( 1800, -200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile99" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 4 )]
-position = Vector2( 1000, 200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile100" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 4 )]
-position = Vector2( 1000, 200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile101" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 4 )]
-position = Vector2( 1400, 200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile102" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 4 )]
-position = Vector2( 1400, 200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile103" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 4 )]
-position = Vector2( 1400, -200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile104" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 4 )]
-position = Vector2( 1400, -200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile105" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 4 )]
-position = Vector2( 1000, -200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile106" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 4 )]
-position = Vector2( 1000, -200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile107" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 4 )]
-position = Vector2( 1800, 1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile108" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 4 )]
-position = Vector2( 1800, 1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile109" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 4 )]
-position = Vector2( 1800, 600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile110" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 4 )]
-position = Vector2( 1800, 600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile111" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 4 )]
-position = Vector2( 1800, -600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile112" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 4 )]
-position = Vector2( 1800, -600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile113" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 4 )]
-position = Vector2( 1800, -1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile114" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 4 )]
-position = Vector2( 1800, -1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile115" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 4 )]
-position = Vector2( 1000, -600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile116" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 4 )]
-position = Vector2( 1000, -600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile117" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 4 )]
-position = Vector2( 1400, -600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile118" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 4 )]
-position = Vector2( 1400, -600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile119" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 4 )]
-position = Vector2( 1400, -1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile120" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 4 )]
-position = Vector2( 1400, -1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile121" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 4 )]
-position = Vector2( 1000, -1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile122" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 4 )]
-position = Vector2( 1000, -1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile123" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 4 )]
-position = Vector2( 1000, 1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile124" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 4 )]
-position = Vector2( 1000, 1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile125" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 4 )]
-position = Vector2( 1400, 1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile126" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 4 )]
-position = Vector2( 1400, 1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile127" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 4 )]
-position = Vector2( 1400, 600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile128" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 4 )]
-position = Vector2( 1400, 600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile131" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 4 )]
-position = Vector2( 2200, 200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile132" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 4 )]
-position = Vector2( 2200, 200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile133" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 4 )]
-position = Vector2( 2200, -200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile134" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 4 )]
-position = Vector2( 2200, -200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile135" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 4 )]
-position = Vector2( 2200, -600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile136" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 4 )]
-position = Vector2( 2200, -600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile137" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 4 )]
-position = Vector2( 2200, -1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile139" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 4 )]
-position = Vector2( 2200, 1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile141" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 4 )]
-position = Vector2( 2200, 600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile142" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 4 )]
-position = Vector2( 2200, 600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile129" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 4 )]
-position = Vector2( 1000, 600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile130" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 4 )]
-position = Vector2( 1000, 600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile73" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 4 )]
-position = Vector2( -2200, 200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile74" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 4 )]
-position = Vector2( -2200, 200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile75" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 4 )]
-position = Vector2( -1800, 200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile76" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 4 )]
-position = Vector2( -1800, 200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile77" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 4 )]
-position = Vector2( -1800, -200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile78" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 4 )]
-position = Vector2( -1800, -200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile79" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 4 )]
-position = Vector2( -2200, -200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile80" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 4 )]
-position = Vector2( -2200, -200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile81" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 4 )]
-position = Vector2( -2200, -600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile82" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 4 )]
-position = Vector2( -2200, -600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile83" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 4 )]
-position = Vector2( -1800, -600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile84" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 4 )]
-position = Vector2( -1800, -600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile85" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 4 )]
-position = Vector2( -1800, -1000 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile86" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 4 )]
-position = Vector2( -1800, -1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile144" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 4 )]
-position = Vector2( 200, -1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile145" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 4 )]
-position = Vector2( 200, -1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile146" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 4 )]
-position = Vector2( -200, -1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile147" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 4 )]
-position = Vector2( -200, -1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile148" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 4 )]
-position = Vector2( -600, -1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile149" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 4 )]
-position = Vector2( -600, -1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile150" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 4 )]
-position = Vector2( -1000, -1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile151" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 4 )]
-position = Vector2( -1000, -1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile152" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 4 )]
-position = Vector2( 1000, -1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile153" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 4 )]
-position = Vector2( 1000, -1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile154" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 4 )]
-position = Vector2( 600, -1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile155" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 4 )]
-position = Vector2( 600, -1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile158" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 4 )]
-position = Vector2( 1800, -1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile181" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 4 )]
-position = Vector2( 1400, -1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile182" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 4 )]
-position = Vector2( 1000, -2200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile160" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 4 )]
-position = Vector2( 1400, -1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile161" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 4 )]
-position = Vector2( 1400, -1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile156" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 4 )]
-position = Vector2( -200, -1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile157" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 4 )]
-position = Vector2( -200, -1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile159" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 4 )]
-position = Vector2( -600, -1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile164" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 4 )]
-position = Vector2( -600, -1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile165" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 4 )]
-position = Vector2( -1000, -1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile166" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 4 )]
-position = Vector2( -1000, -1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile167" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 4 )]
-position = Vector2( 600, -1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile168" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 4 )]
-position = Vector2( 600, -1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile169" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 4 )]
-position = Vector2( 200, -1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile170" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 4 )]
-position = Vector2( 200, -1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile171" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 4 )]
-position = Vector2( 1000, -1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile172" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 4 )]
-position = Vector2( 1000, -1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile173" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 4 )]
-position = Vector2( -600, -2200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile174" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 4 )]
-position = Vector2( -600, -2200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile175" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 4 )]
-position = Vector2( 200, -2200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile176" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 4 )]
-position = Vector2( 200, -2200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile177" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 4 )]
-position = Vector2( -200, -2200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile178" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 4 )]
-position = Vector2( -200, -2200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile179" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 4 )]
-position = Vector2( 600, -2200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile180" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 4 )]
-position = Vector2( 600, -2200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile162" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 4 )]
-position = Vector2( -1400, -1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile163" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 4 )]
-position = Vector2( -1400, -1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile88" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 4 )]
-position = Vector2( -2200, -1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile138" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 4 )]
-position = Vector2( -1800, -1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile140" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 4 )]
-position = Vector2( -1400, -1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile143" parent="Battlefield/Middleground/Board" index="144" instance=ExtResource( 4 )]
-position = Vector2( -1000, -2200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile90" parent="Battlefield/Middleground/Board" index="145" instance=ExtResource( 4 )]
-position = Vector2( -2200, 1000 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile91" parent="Battlefield/Middleground/Board" index="146" instance=ExtResource( 4 )]
-position = Vector2( -1800, 1000 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile92" parent="Battlefield/Middleground/Board" index="147" instance=ExtResource( 4 )]
-position = Vector2( -1800, 1000 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile183" parent="Battlefield/Middleground/Board" index="148" instance=ExtResource( 4 )]
-position = Vector2( -200, 1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile184" parent="Battlefield/Middleground/Board" index="149" instance=ExtResource( 4 )]
-position = Vector2( -200, 1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile185" parent="Battlefield/Middleground/Board" index="150" instance=ExtResource( 4 )]
-position = Vector2( 200, 1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile186" parent="Battlefield/Middleground/Board" index="151" instance=ExtResource( 4 )]
-position = Vector2( 200, 1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile187" parent="Battlefield/Middleground/Board" index="152" instance=ExtResource( 4 )]
-position = Vector2( 600, 1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile188" parent="Battlefield/Middleground/Board" index="153" instance=ExtResource( 4 )]
-position = Vector2( 600, 1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile189" parent="Battlefield/Middleground/Board" index="154" instance=ExtResource( 4 )]
-position = Vector2( 1000, 1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile190" parent="Battlefield/Middleground/Board" index="155" instance=ExtResource( 4 )]
-position = Vector2( 1000, 1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile191" parent="Battlefield/Middleground/Board" index="156" instance=ExtResource( 4 )]
-position = Vector2( -1000, 1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile192" parent="Battlefield/Middleground/Board" index="157" instance=ExtResource( 4 )]
-position = Vector2( -1000, 1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile193" parent="Battlefield/Middleground/Board" index="158" instance=ExtResource( 4 )]
-position = Vector2( -600, 1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile194" parent="Battlefield/Middleground/Board" index="159" instance=ExtResource( 4 )]
-position = Vector2( -600, 1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile195" parent="Battlefield/Middleground/Board" index="160" instance=ExtResource( 4 )]
-position = Vector2( 1400, 1400 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile196" parent="Battlefield/Middleground/Board" index="161" instance=ExtResource( 4 )]
-position = Vector2( 1400, 1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile197" parent="Battlefield/Middleground/Board" index="162" instance=ExtResource( 4 )]
-position = Vector2( 1800, 1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile199" parent="Battlefield/Middleground/Board" index="163" instance=ExtResource( 4 )]
-position = Vector2( -1800, 1400 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile200" parent="Battlefield/Middleground/Board" index="164" instance=ExtResource( 4 )]
-position = Vector2( -1400, 1400 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile201" parent="Battlefield/Middleground/Board" index="165" instance=ExtResource( 4 )]
-position = Vector2( -1400, 1400 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile198" parent="Battlefield/Middleground/Board" index="166" instance=ExtResource( 4 )]
-position = Vector2( 200, 1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile202" parent="Battlefield/Middleground/Board" index="167" instance=ExtResource( 4 )]
-position = Vector2( 200, 1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile203" parent="Battlefield/Middleground/Board" index="168" instance=ExtResource( 4 )]
-position = Vector2( 600, 1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile204" parent="Battlefield/Middleground/Board" index="169" instance=ExtResource( 4 )]
-position = Vector2( 600, 1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile205" parent="Battlefield/Middleground/Board" index="170" instance=ExtResource( 4 )]
-position = Vector2( 1000, 1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile206" parent="Battlefield/Middleground/Board" index="171" instance=ExtResource( 4 )]
-position = Vector2( 1000, 1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile207" parent="Battlefield/Middleground/Board" index="172" instance=ExtResource( 4 )]
-position = Vector2( 1400, 1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile224" parent="Battlefield/Middleground/Board" index="173" instance=ExtResource( 4 )]
-position = Vector2( 1000, 2200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile209" parent="Battlefield/Middleground/Board" index="174" instance=ExtResource( 4 )]
-position = Vector2( -600, 1800 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile210" parent="Battlefield/Middleground/Board" index="175" instance=ExtResource( 4 )]
-position = Vector2( -600, 1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile211" parent="Battlefield/Middleground/Board" index="176" instance=ExtResource( 4 )]
-position = Vector2( -200, 1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile212" parent="Battlefield/Middleground/Board" index="177" instance=ExtResource( 4 )]
-position = Vector2( -200, 1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile215" parent="Battlefield/Middleground/Board" index="178" instance=ExtResource( 4 )]
-position = Vector2( -1400, 1800 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile216" parent="Battlefield/Middleground/Board" index="179" instance=ExtResource( 4 )]
-position = Vector2( -1000, 1800 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile217" parent="Battlefield/Middleground/Board" index="180" instance=ExtResource( 4 )]
-position = Vector2( -1000, 1800 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile208" parent="Battlefield/Middleground/Board" index="181" instance=ExtResource( 4 )]
-position = Vector2( 600, 2200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile213" parent="Battlefield/Middleground/Board" index="182" instance=ExtResource( 4 )]
-position = Vector2( 600, 2200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile214" parent="Battlefield/Middleground/Board" index="183" instance=ExtResource( 4 )]
-position = Vector2( -200, 2200 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile218" parent="Battlefield/Middleground/Board" index="184" instance=ExtResource( 4 )]
-position = Vector2( -200, 2200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile219" parent="Battlefield/Middleground/Board" index="185" instance=ExtResource( 4 )]
-position = Vector2( 200, 2200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile220" parent="Battlefield/Middleground/Board" index="186" instance=ExtResource( 4 )]
-position = Vector2( 200, 2200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile221" parent="Battlefield/Middleground/Board" index="187" instance=ExtResource( 4 )]
-position = Vector2( -1000, 2200 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile222" parent="Battlefield/Middleground/Board" index="188" instance=ExtResource( 4 )]
-position = Vector2( -600, 2200 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile223" parent="Battlefield/Middleground/Board" index="189" instance=ExtResource( 4 )]
-position = Vector2( -600, 2200 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile93" parent="Battlefield/Middleground/Board" index="190" instance=ExtResource( 4 )]
-position = Vector2( -1800, 600 )
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile94" parent="Battlefield/Middleground/Board" index="191" instance=ExtResource( 4 )]
-position = Vector2( -1800, 600 )
-rotation = 3.14159
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile95" parent="Battlefield/Middleground/Board" index="192" instance=ExtResource( 4 )]
-position = Vector2( -2200, 600 )
-rotation = 1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="TriTile96" parent="Battlefield/Middleground/Board" index="193" instance=ExtResource( 4 )]
-position = Vector2( -2200, 600 )
-rotation = -1.5708
-neighbour_check_rotation_degrees = 0.0
-neighbour_check_scale = 1.1
-
-[node name="PlayerSide1Bottom" parent="Battlefield/Middleground/Board" index="194" instance=ExtResource( 12 )]
-side_owner = NodePath("../../../../SpawnPositions/Players/p1")
-
-[node name="PlayerSide2Bottom" parent="Battlefield/Middleground/Board" index="195" instance=ExtResource( 12 )]
-rotation = -1.5708
-side_owner = NodePath("../../../../SpawnPositions/Players/p2")
-
-[node name="PlayerSide1Top" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 12 )]
-rotation = 3.14159
+[node name="PlayerSink1" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 4 )]
+rotation = 3.92699
 side_owner = NodePath("../../../../SpawnPositions/Players/p1")
 source = false
 
-[node name="PlayerSide2Top" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 12 )]
-rotation = 1.5708
+[node name="PlayerSink2" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 4 )]
+rotation = 2.35619
 side_owner = NodePath("../../../../SpawnPositions/Players/p2")
 source = false
 
-[node name="Tile" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 13 )]
+[node name="Tile3" parent="Battlefield/Middleground/Board" index="4" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile4" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile5" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile6" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 13 )]
+position = Vector2( 98.959, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile7" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile8" parent="Battlefield/Middleground/Board" index="9" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile9" parent="Battlefield/Middleground/Board" index="10" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile17" parent="Battlefield/Middleground/Board" index="11" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile18" parent="Battlefield/Middleground/Board" index="12" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile19" parent="Battlefield/Middleground/Board" index="13" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile20" parent="Battlefield/Middleground/Board" index="14" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile21" parent="Battlefield/Middleground/Board" index="15" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile22" parent="Battlefield/Middleground/Board" index="16" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile23" parent="Battlefield/Middleground/Board" index="17" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile24" parent="Battlefield/Middleground/Board" index="18" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile12" parent="Battlefield/Middleground/Board" index="19" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile14" parent="Battlefield/Middleground/Board" index="20" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile15" parent="Battlefield/Middleground/Board" index="21" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile16" parent="Battlefield/Middleground/Board" index="22" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile31" parent="Battlefield/Middleground/Board" index="23" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile32" parent="Battlefield/Middleground/Board" index="24" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile33" parent="Battlefield/Middleground/Board" index="25" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile34" parent="Battlefield/Middleground/Board" index="26" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile36" parent="Battlefield/Middleground/Board" index="27" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile39" parent="Battlefield/Middleground/Board" index="28" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile41" parent="Battlefield/Middleground/Board" index="29" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile42" parent="Battlefield/Middleground/Board" index="30" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile43" parent="Battlefield/Middleground/Board" index="31" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile179" parent="Battlefield/Middleground/Board" index="32" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile180" parent="Battlefield/Middleground/Board" index="33" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile181" parent="Battlefield/Middleground/Board" index="34" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile182" parent="Battlefield/Middleground/Board" index="35" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile183" parent="Battlefield/Middleground/Board" index="36" instance=ExtResource( 13 )]
+position = Vector2( 98.959, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile184" parent="Battlefield/Middleground/Board" index="37" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile185" parent="Battlefield/Middleground/Board" index="38" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile186" parent="Battlefield/Middleground/Board" index="39" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile187" parent="Battlefield/Middleground/Board" index="40" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile188" parent="Battlefield/Middleground/Board" index="41" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile189" parent="Battlefield/Middleground/Board" index="42" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile190" parent="Battlefield/Middleground/Board" index="43" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile191" parent="Battlefield/Middleground/Board" index="44" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile192" parent="Battlefield/Middleground/Board" index="45" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile193" parent="Battlefield/Middleground/Board" index="46" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile194" parent="Battlefield/Middleground/Board" index="47" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile195" parent="Battlefield/Middleground/Board" index="48" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile196" parent="Battlefield/Middleground/Board" index="49" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile197" parent="Battlefield/Middleground/Board" index="50" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile198" parent="Battlefield/Middleground/Board" index="51" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile199" parent="Battlefield/Middleground/Board" index="52" instance=ExtResource( 13 )]
+position = Vector2( 98.959, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile200" parent="Battlefield/Middleground/Board" index="53" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile201" parent="Battlefield/Middleground/Board" index="54" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile202" parent="Battlefield/Middleground/Board" index="55" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile203" parent="Battlefield/Middleground/Board" index="56" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile204" parent="Battlefield/Middleground/Board" index="57" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile205" parent="Battlefield/Middleground/Board" index="58" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile206" parent="Battlefield/Middleground/Board" index="59" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile207" parent="Battlefield/Middleground/Board" index="60" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile208" parent="Battlefield/Middleground/Board" index="61" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile209" parent="Battlefield/Middleground/Board" index="62" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile210" parent="Battlefield/Middleground/Board" index="63" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile211" parent="Battlefield/Middleground/Board" index="64" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile212" parent="Battlefield/Middleground/Board" index="65" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile213" parent="Battlefield/Middleground/Board" index="66" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile214" parent="Battlefield/Middleground/Board" index="67" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile215" parent="Battlefield/Middleground/Board" index="68" instance=ExtResource( 13 )]
+position = Vector2( 98.959, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile216" parent="Battlefield/Middleground/Board" index="69" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile217" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile218" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile219" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile220" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile221" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile222" parent="Battlefield/Middleground/Board" index="75" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile223" parent="Battlefield/Middleground/Board" index="76" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile224" parent="Battlefield/Middleground/Board" index="77" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile225" parent="Battlefield/Middleground/Board" index="78" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile226" parent="Battlefield/Middleground/Board" index="79" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile227" parent="Battlefield/Middleground/Board" index="80" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile228" parent="Battlefield/Middleground/Board" index="81" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile229" parent="Battlefield/Middleground/Board" index="82" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile230" parent="Battlefield/Middleground/Board" index="83" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile231" parent="Battlefield/Middleground/Board" index="84" instance=ExtResource( 13 )]
+position = Vector2( 98.959, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile232" parent="Battlefield/Middleground/Board" index="85" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile233" parent="Battlefield/Middleground/Board" index="86" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile234" parent="Battlefield/Middleground/Board" index="87" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile243" parent="Battlefield/Middleground/Board" index="88" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile244" parent="Battlefield/Middleground/Board" index="89" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -98.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile250" parent="Battlefield/Middleground/Board" index="90" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile251" parent="Battlefield/Middleground/Board" index="91" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -98.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile419" parent="Battlefield/Middleground/Board" index="92" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile420" parent="Battlefield/Middleground/Board" index="93" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, -98.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile421" parent="Battlefield/Middleground/Board" index="94" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile422" parent="Battlefield/Middleground/Board" index="95" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -98.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile423" parent="Battlefield/Middleground/Board" index="96" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile425" parent="Battlefield/Middleground/Board" index="97" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile426" parent="Battlefield/Middleground/Board" index="98" instance=ExtResource( 13 )]
+position = Vector2( -101.041, 301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile431" parent="Battlefield/Middleground/Board" index="99" instance=ExtResource( 13 )]
+position = Vector2( -301.041, 301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile427" parent="Battlefield/Middleground/Board" index="100" instance=ExtResource( 13 )]
+position = Vector2( 98.959, 101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile428" parent="Battlefield/Middleground/Board" index="101" instance=ExtResource( 13 )]
+position = Vector2( 98.9591, 301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile429" parent="Battlefield/Middleground/Board" index="102" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile430" parent="Battlefield/Middleground/Board" index="103" instance=ExtResource( 13 )]
+position = Vector2( 298.959, 301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile235" parent="Battlefield/Middleground/Board" index="104" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile236" parent="Battlefield/Middleground/Board" index="105" instance=ExtResource( 13 )]
+position = Vector2( 498.959, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile237" parent="Battlefield/Middleground/Board" index="106" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile238" parent="Battlefield/Middleground/Board" index="107" instance=ExtResource( 13 )]
+position = Vector2( 698.959, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile274" parent="Battlefield/Middleground/Board" index="108" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile275" parent="Battlefield/Middleground/Board" index="109" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile276" parent="Battlefield/Middleground/Board" index="110" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile277" parent="Battlefield/Middleground/Board" index="111" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile281" parent="Battlefield/Middleground/Board" index="112" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile282" parent="Battlefield/Middleground/Board" index="113" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile283" parent="Battlefield/Middleground/Board" index="114" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile287" parent="Battlefield/Middleground/Board" index="115" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile288" parent="Battlefield/Middleground/Board" index="116" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile289" parent="Battlefield/Middleground/Board" index="117" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile290" parent="Battlefield/Middleground/Board" index="118" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile291" parent="Battlefield/Middleground/Board" index="119" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile292" parent="Battlefield/Middleground/Board" index="120" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile293" parent="Battlefield/Middleground/Board" index="121" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile294" parent="Battlefield/Middleground/Board" index="122" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile295" parent="Battlefield/Middleground/Board" index="123" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile296" parent="Battlefield/Middleground/Board" index="124" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile297" parent="Battlefield/Middleground/Board" index="125" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile298" parent="Battlefield/Middleground/Board" index="126" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile239" parent="Battlefield/Middleground/Board" index="127" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile240" parent="Battlefield/Middleground/Board" index="128" instance=ExtResource( 13 )]
+position = Vector2( -501.041, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile241" parent="Battlefield/Middleground/Board" index="129" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile242" parent="Battlefield/Middleground/Board" index="130" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 2301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile246" parent="Battlefield/Middleground/Board" index="131" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile247" parent="Battlefield/Middleground/Board" index="132" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile248" parent="Battlefield/Middleground/Board" index="133" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile249" parent="Battlefield/Middleground/Board" index="134" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 2101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile253" parent="Battlefield/Middleground/Board" index="135" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile254" parent="Battlefield/Middleground/Board" index="136" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile255" parent="Battlefield/Middleground/Board" index="137" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 1901.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile259" parent="Battlefield/Middleground/Board" index="138" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile260" parent="Battlefield/Middleground/Board" index="139" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, 1701.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile261" parent="Battlefield/Middleground/Board" index="140" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile262" parent="Battlefield/Middleground/Board" index="141" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile263" parent="Battlefield/Middleground/Board" index="142" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile264" parent="Battlefield/Middleground/Board" index="143" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 1501.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile265" parent="Battlefield/Middleground/Board" index="144" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile266" parent="Battlefield/Middleground/Board" index="145" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile267" parent="Battlefield/Middleground/Board" index="146" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 1301.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile268" parent="Battlefield/Middleground/Board" index="147" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile269" parent="Battlefield/Middleground/Board" index="148" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, 1101.04 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile270" parent="Battlefield/Middleground/Board" index="149" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, 901.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile47" parent="Battlefield/Middleground/Board" index="150" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile48" parent="Battlefield/Middleground/Board" index="151" instance=ExtResource( 13 )]
+position = Vector2( -701.041, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile49" parent="Battlefield/Middleground/Board" index="152" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile50" parent="Battlefield/Middleground/Board" index="153" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile51" parent="Battlefield/Middleground/Board" index="154" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile54" parent="Battlefield/Middleground/Board" index="155" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile55" parent="Battlefield/Middleground/Board" index="156" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile56" parent="Battlefield/Middleground/Board" index="157" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile57" parent="Battlefield/Middleground/Board" index="158" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile58" parent="Battlefield/Middleground/Board" index="159" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile59" parent="Battlefield/Middleground/Board" index="160" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile52" parent="Battlefield/Middleground/Board" index="161" instance=ExtResource( 13 )]
+position = Vector2( -901.041, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile60" parent="Battlefield/Middleground/Board" index="162" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile62" parent="Battlefield/Middleground/Board" index="163" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile61" parent="Battlefield/Middleground/Board" index="164" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile165" parent="Battlefield/Middleground/Board" index="165" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile63" parent="Battlefield/Middleground/Board" index="166" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile64" parent="Battlefield/Middleground/Board" index="167" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile65" parent="Battlefield/Middleground/Board" index="168" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile66" parent="Battlefield/Middleground/Board" index="169" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile67" parent="Battlefield/Middleground/Board" index="170" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile68" parent="Battlefield/Middleground/Board" index="171" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile69" parent="Battlefield/Middleground/Board" index="172" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile70" parent="Battlefield/Middleground/Board" index="173" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile71" parent="Battlefield/Middleground/Board" index="174" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile72" parent="Battlefield/Middleground/Board" index="175" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile73" parent="Battlefield/Middleground/Board" index="176" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile74" parent="Battlefield/Middleground/Board" index="177" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile75" parent="Battlefield/Middleground/Board" index="178" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile76" parent="Battlefield/Middleground/Board" index="179" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile77" parent="Battlefield/Middleground/Board" index="180" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile78" parent="Battlefield/Middleground/Board" index="181" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile79" parent="Battlefield/Middleground/Board" index="182" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile80" parent="Battlefield/Middleground/Board" index="183" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile81" parent="Battlefield/Middleground/Board" index="184" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile82" parent="Battlefield/Middleground/Board" index="185" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile83" parent="Battlefield/Middleground/Board" index="186" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile84" parent="Battlefield/Middleground/Board" index="187" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile85" parent="Battlefield/Middleground/Board" index="188" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile86" parent="Battlefield/Middleground/Board" index="189" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile87" parent="Battlefield/Middleground/Board" index="190" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile88" parent="Battlefield/Middleground/Board" index="191" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile89" parent="Battlefield/Middleground/Board" index="192" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile90" parent="Battlefield/Middleground/Board" index="193" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile91" parent="Battlefield/Middleground/Board" index="194" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile92" parent="Battlefield/Middleground/Board" index="195" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile93" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile94" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile95" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile96" parent="Battlefield/Middleground/Board" index="199" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile97" parent="Battlefield/Middleground/Board" index="200" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile98" parent="Battlefield/Middleground/Board" index="201" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile99" parent="Battlefield/Middleground/Board" index="202" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile100" parent="Battlefield/Middleground/Board" index="203" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile101" parent="Battlefield/Middleground/Board" index="204" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile102" parent="Battlefield/Middleground/Board" index="205" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile103" parent="Battlefield/Middleground/Board" index="206" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile104" parent="Battlefield/Middleground/Board" index="207" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile105" parent="Battlefield/Middleground/Board" index="208" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile106" parent="Battlefield/Middleground/Board" index="209" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile107" parent="Battlefield/Middleground/Board" index="210" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile108" parent="Battlefield/Middleground/Board" index="211" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile109" parent="Battlefield/Middleground/Board" index="212" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile110" parent="Battlefield/Middleground/Board" index="213" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile111" parent="Battlefield/Middleground/Board" index="214" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile112" parent="Battlefield/Middleground/Board" index="215" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile113" parent="Battlefield/Middleground/Board" index="216" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile114" parent="Battlefield/Middleground/Board" index="217" instance=ExtResource( 13 )]
+position = Vector2( -2301.04, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile115" parent="Battlefield/Middleground/Board" index="218" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile116" parent="Battlefield/Middleground/Board" index="219" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile117" parent="Battlefield/Middleground/Board" index="220" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile118" parent="Battlefield/Middleground/Board" index="221" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile119" parent="Battlefield/Middleground/Board" index="222" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile120" parent="Battlefield/Middleground/Board" index="223" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile121" parent="Battlefield/Middleground/Board" index="224" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile122" parent="Battlefield/Middleground/Board" index="225" instance=ExtResource( 13 )]
+position = Vector2( 2298.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile123" parent="Battlefield/Middleground/Board" index="226" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile124" parent="Battlefield/Middleground/Board" index="227" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile125" parent="Battlefield/Middleground/Board" index="228" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile126" parent="Battlefield/Middleground/Board" index="229" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile127" parent="Battlefield/Middleground/Board" index="230" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile128" parent="Battlefield/Middleground/Board" index="231" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile129" parent="Battlefield/Middleground/Board" index="232" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile130" parent="Battlefield/Middleground/Board" index="233" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile131" parent="Battlefield/Middleground/Board" index="234" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile132" parent="Battlefield/Middleground/Board" index="235" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile133" parent="Battlefield/Middleground/Board" index="236" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile134" parent="Battlefield/Middleground/Board" index="237" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile135" parent="Battlefield/Middleground/Board" index="238" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile136" parent="Battlefield/Middleground/Board" index="239" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile137" parent="Battlefield/Middleground/Board" index="240" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile138" parent="Battlefield/Middleground/Board" index="241" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile139" parent="Battlefield/Middleground/Board" index="242" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile140" parent="Battlefield/Middleground/Board" index="243" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile141" parent="Battlefield/Middleground/Board" index="244" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile142" parent="Battlefield/Middleground/Board" index="245" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile143" parent="Battlefield/Middleground/Board" index="246" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile144" parent="Battlefield/Middleground/Board" index="247" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile145" parent="Battlefield/Middleground/Board" index="248" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile146" parent="Battlefield/Middleground/Board" index="249" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile147" parent="Battlefield/Middleground/Board" index="250" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile148" parent="Battlefield/Middleground/Board" index="251" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile149" parent="Battlefield/Middleground/Board" index="252" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile150" parent="Battlefield/Middleground/Board" index="253" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile151" parent="Battlefield/Middleground/Board" index="254" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile152" parent="Battlefield/Middleground/Board" index="255" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile153" parent="Battlefield/Middleground/Board" index="256" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile154" parent="Battlefield/Middleground/Board" index="257" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile155" parent="Battlefield/Middleground/Board" index="258" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile156" parent="Battlefield/Middleground/Board" index="259" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile157" parent="Battlefield/Middleground/Board" index="260" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile158" parent="Battlefield/Middleground/Board" index="261" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile159" parent="Battlefield/Middleground/Board" index="262" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile160" parent="Battlefield/Middleground/Board" index="263" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile161" parent="Battlefield/Middleground/Board" index="264" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile162" parent="Battlefield/Middleground/Board" index="265" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile163" parent="Battlefield/Middleground/Board" index="266" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile166" parent="Battlefield/Middleground/Board" index="267" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile167" parent="Battlefield/Middleground/Board" index="268" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile168" parent="Battlefield/Middleground/Board" index="269" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile169" parent="Battlefield/Middleground/Board" index="270" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile170" parent="Battlefield/Middleground/Board" index="271" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile171" parent="Battlefield/Middleground/Board" index="272" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 501.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile164" parent="Battlefield/Middleground/Board" index="273" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile172" parent="Battlefield/Middleground/Board" index="274" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 701.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile299" parent="Battlefield/Middleground/Board" index="275" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile300" parent="Battlefield/Middleground/Board" index="276" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile301" parent="Battlefield/Middleground/Board" index="277" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile302" parent="Battlefield/Middleground/Board" index="278" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile303" parent="Battlefield/Middleground/Board" index="279" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile305" parent="Battlefield/Middleground/Board" index="280" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile310" parent="Battlefield/Middleground/Board" index="281" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile311" parent="Battlefield/Middleground/Board" index="282" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile312" parent="Battlefield/Middleground/Board" index="283" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile313" parent="Battlefield/Middleground/Board" index="284" instance=ExtResource( 13 )]
+position = Vector2( -2101.04, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile314" parent="Battlefield/Middleground/Board" index="285" instance=ExtResource( 13 )]
+position = Vector2( 2098.96, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile315" parent="Battlefield/Middleground/Board" index="286" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile316" parent="Battlefield/Middleground/Board" index="287" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile317" parent="Battlefield/Middleground/Board" index="288" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile321" parent="Battlefield/Middleground/Board" index="289" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile322" parent="Battlefield/Middleground/Board" index="290" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile323" parent="Battlefield/Middleground/Board" index="291" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile324" parent="Battlefield/Middleground/Board" index="292" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile325" parent="Battlefield/Middleground/Board" index="293" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile304" parent="Battlefield/Middleground/Board" index="294" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile326" parent="Battlefield/Middleground/Board" index="295" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile327" parent="Battlefield/Middleground/Board" index="296" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile306" parent="Battlefield/Middleground/Board" index="297" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -898.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile328" parent="Battlefield/Middleground/Board" index="298" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile332" parent="Battlefield/Middleground/Board" index="299" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile333" parent="Battlefield/Middleground/Board" index="300" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile334" parent="Battlefield/Middleground/Board" index="301" instance=ExtResource( 13 )]
+position = Vector2( -1901.04, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile335" parent="Battlefield/Middleground/Board" index="302" instance=ExtResource( 13 )]
+position = Vector2( 1898.96, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile336" parent="Battlefield/Middleground/Board" index="303" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile337" parent="Battlefield/Middleground/Board" index="304" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -1098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile341" parent="Battlefield/Middleground/Board" index="305" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile342" parent="Battlefield/Middleground/Board" index="306" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile343" parent="Battlefield/Middleground/Board" index="307" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile344" parent="Battlefield/Middleground/Board" index="308" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile345" parent="Battlefield/Middleground/Board" index="309" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile346" parent="Battlefield/Middleground/Board" index="310" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile347" parent="Battlefield/Middleground/Board" index="311" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile348" parent="Battlefield/Middleground/Board" index="312" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile352" parent="Battlefield/Middleground/Board" index="313" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile353" parent="Battlefield/Middleground/Board" index="314" instance=ExtResource( 13 )]
+position = Vector2( -1701.04, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile354" parent="Battlefield/Middleground/Board" index="315" instance=ExtResource( 13 )]
+position = Vector2( 1698.96, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile355" parent="Battlefield/Middleground/Board" index="316" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -1298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile359" parent="Battlefield/Middleground/Board" index="317" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile360" parent="Battlefield/Middleground/Board" index="318" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile361" parent="Battlefield/Middleground/Board" index="319" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile362" parent="Battlefield/Middleground/Board" index="320" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile363" parent="Battlefield/Middleground/Board" index="321" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile364" parent="Battlefield/Middleground/Board" index="322" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile365" parent="Battlefield/Middleground/Board" index="323" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile366" parent="Battlefield/Middleground/Board" index="324" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile367" parent="Battlefield/Middleground/Board" index="325" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile368" parent="Battlefield/Middleground/Board" index="326" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile369" parent="Battlefield/Middleground/Board" index="327" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile370" parent="Battlefield/Middleground/Board" index="328" instance=ExtResource( 13 )]
+position = Vector2( -1501.04, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile371" parent="Battlefield/Middleground/Board" index="329" instance=ExtResource( 13 )]
+position = Vector2( 1498.96, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile372" parent="Battlefield/Middleground/Board" index="330" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile373" parent="Battlefield/Middleground/Board" index="331" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile374" parent="Battlefield/Middleground/Board" index="332" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -1498.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile375" parent="Battlefield/Middleground/Board" index="333" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile376" parent="Battlefield/Middleground/Board" index="334" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile377" parent="Battlefield/Middleground/Board" index="335" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile378" parent="Battlefield/Middleground/Board" index="336" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile379" parent="Battlefield/Middleground/Board" index="337" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile380" parent="Battlefield/Middleground/Board" index="338" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile381" parent="Battlefield/Middleground/Board" index="339" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile382" parent="Battlefield/Middleground/Board" index="340" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile383" parent="Battlefield/Middleground/Board" index="341" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile384" parent="Battlefield/Middleground/Board" index="342" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile385" parent="Battlefield/Middleground/Board" index="343" instance=ExtResource( 13 )]
+position = Vector2( -1301.04, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile386" parent="Battlefield/Middleground/Board" index="344" instance=ExtResource( 13 )]
+position = Vector2( 1298.96, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile387" parent="Battlefield/Middleground/Board" index="345" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile388" parent="Battlefield/Middleground/Board" index="346" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -1698.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile389" parent="Battlefield/Middleground/Board" index="347" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile390" parent="Battlefield/Middleground/Board" index="348" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile391" parent="Battlefield/Middleground/Board" index="349" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile392" parent="Battlefield/Middleground/Board" index="350" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile393" parent="Battlefield/Middleground/Board" index="351" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile394" parent="Battlefield/Middleground/Board" index="352" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile395" parent="Battlefield/Middleground/Board" index="353" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile396" parent="Battlefield/Middleground/Board" index="354" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile397" parent="Battlefield/Middleground/Board" index="355" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile398" parent="Battlefield/Middleground/Board" index="356" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile399" parent="Battlefield/Middleground/Board" index="357" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile400" parent="Battlefield/Middleground/Board" index="358" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -1898.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile401" parent="Battlefield/Middleground/Board" index="359" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile402" parent="Battlefield/Middleground/Board" index="360" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile403" parent="Battlefield/Middleground/Board" index="361" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile404" parent="Battlefield/Middleground/Board" index="362" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile405" parent="Battlefield/Middleground/Board" index="363" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile406" parent="Battlefield/Middleground/Board" index="364" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile407" parent="Battlefield/Middleground/Board" index="365" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile408" parent="Battlefield/Middleground/Board" index="366" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile411" parent="Battlefield/Middleground/Board" index="367" instance=ExtResource( 13 )]
+position = Vector2( -301.041, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile412" parent="Battlefield/Middleground/Board" index="368" instance=ExtResource( 13 )]
+position = Vector2( -101.041, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile413" parent="Battlefield/Middleground/Board" index="369" instance=ExtResource( 13 )]
+position = Vector2( 98.959, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile414" parent="Battlefield/Middleground/Board" index="370" instance=ExtResource( 13 )]
+position = Vector2( 298.959, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile415" parent="Battlefield/Middleground/Board" index="371" instance=ExtResource( 13 )]
+position = Vector2( 498.959, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile416" parent="Battlefield/Middleground/Board" index="372" instance=ExtResource( 13 )]
+position = Vector2( 698.959, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile417" parent="Battlefield/Middleground/Board" index="373" instance=ExtResource( 13 )]
+position = Vector2( -501.041, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile418" parent="Battlefield/Middleground/Board" index="374" instance=ExtResource( 13 )]
+position = Vector2( -701.041, -2298.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile409" parent="Battlefield/Middleground/Board" index="375" instance=ExtResource( 13 )]
+position = Vector2( -901.041, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile410" parent="Battlefield/Middleground/Board" index="376" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -2098.96 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile174" parent="Battlefield/Middleground/Board" index="377" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -498.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile173" parent="Battlefield/Middleground/Board" index="378" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile245" parent="Battlefield/Middleground/Board" index="379" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -698.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile175" parent="Battlefield/Middleground/Board" index="380" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 101.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile176" parent="Battlefield/Middleground/Board" index="381" instance=ExtResource( 13 )]
+position = Vector2( 898.959, 301.041 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile177" parent="Battlefield/Middleground/Board" index="382" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -298.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="Tile178" parent="Battlefield/Middleground/Board" index="383" instance=ExtResource( 13 )]
+position = Vector2( 898.959, -98.959 )
+rotation = 0.785398
+size = 1.4
+foreground_offset = -28
+background_offset = 0
+background_scale = 0.9
+active_area_scale = 0.8
+neighbour_check_scale = 1.6
+
+[node name="2Tile35" parent="Battlefield/Middleground/Board" index="384" instance=ExtResource( 13 )]
 position = Vector2( -601.041, 601.041 )
 rotation = 0.785398
 size = 2.7
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile13" parent="Battlefield/Middleground/Board" index="199" instance=ExtResource( 13 )]
-position = Vector2( -1.04102, 1.04102 )
-rotation = 0.785398
-size = 5.5
-foreground_offset = -28
-background_offset = 0
-background_scale = 0.9
-neighbour_check_scale = 1.2
-
-[node name="Tile2" parent="Battlefield/Middleground/Board" index="200" instance=ExtResource( 13 )]
-position = Vector2( -200, 600 )
+[node name="2Tile36" parent="Battlefield/Middleground/Board" index="385" instance=ExtResource( 13 )]
+position = Vector2( 598.959, 601.041 )
 rotation = 0.785398
 size = 2.7
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile3" parent="Battlefield/Middleground/Board" index="201" instance=ExtResource( 13 )]
-position = Vector2( 200, 600 )
+[node name="2Tile37" parent="Battlefield/Middleground/Board" index="386" instance=ExtResource( 13 )]
+position = Vector2( -601.041, -598.959 )
 rotation = 0.785398
 size = 2.7
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile4" parent="Battlefield/Middleground/Board" index="202" instance=ExtResource( 13 )]
-position = Vector2( 600, 600 )
+[node name="2Tile38" parent="Battlefield/Middleground/Board" index="387" instance=ExtResource( 13 )]
+position = Vector2( 598.959, -598.959 )
 rotation = 0.785398
 size = 2.7
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile5" parent="Battlefield/Middleground/Board" index="203" instance=ExtResource( 13 )]
-position = Vector2( 600, 200 )
+[node name="3Tile13" parent="Battlefield/Middleground/Board" index="388" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, 1101.04 )
 rotation = 0.785398
-size = 2.7
+size = 4.1
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile6" parent="Battlefield/Middleground/Board" index="204" instance=ExtResource( 13 )]
-position = Vector2( 600, -200 )
+[node name="3Tile28" parent="Battlefield/Middleground/Board" index="389" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, 1101.04 )
 rotation = 0.785398
-size = 2.7
+size = 4.1
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile7" parent="Battlefield/Middleground/Board" index="205" instance=ExtResource( 13 )]
-position = Vector2( 600, -600 )
+[node name="3Tile29" parent="Battlefield/Middleground/Board" index="390" instance=ExtResource( 13 )]
+position = Vector2( 1098.96, -1098.96 )
 rotation = 0.785398
-size = 2.7
+size = 4.1
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile8" parent="Battlefield/Middleground/Board" index="206" instance=ExtResource( 13 )]
-position = Vector2( 200, -600 )
+[node name="3Tile44" parent="Battlefield/Middleground/Board" index="391" instance=ExtResource( 13 )]
+position = Vector2( -1101.04, -1098.96 )
 rotation = 0.785398
-size = 2.7
+size = 4.1
 foreground_offset = -28
 background_offset = 0
 background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+neighbour_check_scale = 1.5
 
-[node name="Tile9" parent="Battlefield/Middleground/Board" index="207" instance=ExtResource( 13 )]
-position = Vector2( -200, -600 )
+[node name="PlayerSource1" parent="Battlefield/Middleground/Board" index="392" instance=ExtResource( 4 )]
 rotation = 0.785398
-size = 2.7
-foreground_offset = -28
-background_offset = 0
-background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+side_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
-[node name="Tile10" parent="Battlefield/Middleground/Board" index="208" instance=ExtResource( 13 )]
-position = Vector2( -600, -600 )
-rotation = 0.785398
-size = 2.7
-foreground_offset = -28
-background_offset = 0
-background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
-
-[node name="Tile11" parent="Battlefield/Middleground/Board" index="209" instance=ExtResource( 13 )]
-position = Vector2( -600, -200 )
-rotation = 0.785398
-size = 2.7
-foreground_offset = -28
-background_offset = 0
-background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
-
-[node name="Tile12" parent="Battlefield/Middleground/Board" index="210" instance=ExtResource( 13 )]
-position = Vector2( -600, 200 )
-rotation = 0.785398
-size = 2.7
-foreground_offset = -28
-background_offset = 0
-background_scale = 0.95
-neighbour_check_rotation_degrees = 45.0
-neighbour_check_scale = 1.2
+[node name="PlayerSource2" parent="Battlefield/Middleground/Board" index="393" instance=ExtResource( 4 )]
+rotation = -0.785398
+side_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -2200, 1900 )
+position = Vector2( -1700, 1700 )
 rotation = -0.785398
+controls = "joy1"
 species = ExtResource( 1 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 2200, 1900 )
-rotation = -2.35619
-controls = "kb2"
+position = Vector2( 1700, 1700 )
+rotation = 3.92699
+controls = "joy2"
 species = ExtResource( 9 )
+
+[node name="Countdown" parent="CanvasLayer" index="2"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )

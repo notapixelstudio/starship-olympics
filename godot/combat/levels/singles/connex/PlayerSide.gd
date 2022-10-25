@@ -34,7 +34,7 @@ func _ready():
 	set_off()
 	if is_source():
 		on = true # sources are always on
-		modulate = Color(1.7,1.7,1.7)
+		modulate = Color(1.6,1.6,1.6)
 	
 func set_player(v : InfoPlayer):
 	player = v
@@ -51,15 +51,15 @@ func propagate():
 		neighbour.set_on(get_player())
 		
 func set_on(on_player):
-	if is_source():
+	if is_source() or on_player != player:
 		return
 	on = true
-	modulate = Color(1.7,1.7,1.7)
+	modulate = Color(1.6,1.6,1.6)
 	set_process(true)
 	
 func set_off():
 	on = false
-	modulate = Color(0.8,0.8,0.8)
+	modulate = Color(0.6,0.6,0.6)
 	set_process(false)
 
 func is_source() -> bool:
