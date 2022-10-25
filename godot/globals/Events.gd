@@ -40,6 +40,7 @@ signal game_ended
 signal execution_ended
 
 signal continue_after_game_over(session_ended)
+signal continue_after_session_ended
 
 signal nav_to_menu
 signal nav_to_map
