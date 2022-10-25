@@ -24,6 +24,7 @@ var owner_ship : Ship setget set_owner_ship
 var neighbours
 var fortified = false
 var max_neighbour_value = 0
+var on = false
 
 signal conquered
 signal lost
@@ -82,7 +83,7 @@ func _ready():
 		$Neighbourhood.queue_free() # delete areas to save physics computations
 	
 	for n in neighbours:
-		max_neighbour_value = max(max_neighbour_value, n.get_score())
+		max_neighbour_value = max(max_neighbour_value, n.get_score() if n.has_method('get_score') else 0)
 	
 func _process(delta):
 	var bodies = get_overlapping_bodies()
@@ -94,15 +95,18 @@ func _process(delta):
 		
 func conquest():
 	set_owner_ship(conquering_ship)
+	Events.emit_signal('sth_conquered', conquering_ship, self)
 	if fortifiable:
 		attempt_fortification()
 		for n in neighbours:
+			if n is PlayerSide:
+				continue
 			if n.owner_ship == owner_ship or n.conquering_ship == owner_ship:
 				n.attempt_fortification()
 	
 func attempt_fortification():
 	for n in neighbours:
-		if not(n.owner_ship == owner_ship or n.conquering_ship == owner_ship):
+		if not(n is PlayerSide or n.owner_ship == owner_ship or n.conquering_ship == owner_ship):
 			return
 	fortify()
 	
@@ -150,3 +154,21 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func get_score():
 	return points
 	
+func set_on(player):
+	if on or owner_ship == null or player != owner_ship.get_player():
+		return
+	on = true
+	modulate = Color(1.6,1.6,1.6)
+	propagate()
+	
+func set_off():
+	on = false
+	modulate = Color(1,1,1)
+	
+func propagate():
+	if not on or owner_ship == null:
+		return
+		
+	for neighbour in neighbours:
+		neighbour.set_on(owner_ship.get_player())
+		

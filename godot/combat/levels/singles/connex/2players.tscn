@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
@@ -12,6 +12,37 @@
 [ext_resource path="res://combat/modes/Connex.tres" type="Resource" id=10]
 [ext_resource path="res://combat/levels/singles/connex/PlayerSide.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=13]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+var tiles := []
+var sources := []
+var sinks := []
+
+func _ready():
+	Events.connect('sth_conquered', self, '_on_sth_conquered')
+	
+	for child in get_children():
+		if child is PlayerSide:
+			if child.is_source():
+				sources.append(child)
+			else:
+				sinks.append(child)
+		elif child is Tile:
+			tiles.append(child)
+	
+func _on_sth_conquered(conqueror, conquered):
+	recompute()
+	
+func recompute():
+	for tile in tiles:
+		tile.set_off()
+	for sink in sinks:
+		sink.set_off()
+	for source in sources:
+		source.propagate()
+"
 
 [node name="Arena" instance=ExtResource( 5 )]
 size_multiplier = 2.5
@@ -52,6 +83,7 @@ bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="Board" type="Node2D" parent="Battlefield/Middleground" index="0"]
 rotation = 0.785398
+script = SubResource( 1 )
 
 [node name="Border" type="Polygon2D" parent="Battlefield/Middleground/Board" index="0"]
 position = Vector2( 50, 50 )
@@ -1183,10 +1215,12 @@ side_owner = NodePath("../../../../SpawnPositions/Players/p2")
 [node name="PlayerSide1Top" parent="Battlefield/Middleground/Board" index="196" instance=ExtResource( 12 )]
 rotation = 3.14159
 side_owner = NodePath("../../../../SpawnPositions/Players/p1")
+source = false
 
 [node name="PlayerSide2Top" parent="Battlefield/Middleground/Board" index="197" instance=ExtResource( 12 )]
 rotation = 1.5708
 side_owner = NodePath("../../../../SpawnPositions/Players/p2")
+source = false
 
 [node name="Tile" parent="Battlefield/Middleground/Board" index="198" instance=ExtResource( 13 )]
 position = Vector2( -601.041, 601.041 )
