@@ -420,6 +420,8 @@ func read_file(path: String) -> Dictionary:
 	var data = {}
 	data = parse_json(file.get_as_text())
 	file.close()
+	if data == null:
+		data = {}
 	return data
 
 func read_file_by_line(path: String) -> Array:

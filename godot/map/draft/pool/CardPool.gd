@@ -36,7 +36,4 @@ func retrieve_card(id) -> DraftCard:
 func get_card(id) -> DraftCard:
 	return index[id]
 
-func remove_card(card) -> void:
-	index.erase(card.get_id())
-	cards.erase(card)
 
