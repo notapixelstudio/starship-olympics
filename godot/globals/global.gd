@@ -731,15 +731,22 @@ var starting_deck: String = "classic"
 
 
 # Date utils
-func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
+func datetime_to_str(datetime: Dictionary, use_local := false, seconds := false) -> String:
 	# {"day":23,"dst":false,"hour":18,"minute":41,
 	# "month":9,"second":55,"weekday":4,"year":2021}
 	# FIXME replace with ISO dates
 	var tz = Time.get_time_zone_from_system()
 	var tz_hours = floor(tz.bias / 60)
-	var return_datetime = Time.get_datetime_string_from_datetime_dict(datetime, true)
-	var local_tz = ""
+	var tz_min = floor(tz.bias%60)
+	if not seconds:
+		datetime.erase("second")
+	var datetime_with_local := datetime.duplicate()
+	datetime_with_local["hour"] = datetime_with_local.hour + tz_hours
+	datetime_with_local["minute"] = datetime_with_local.minute + tz_hours
+	var local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
 	if use_local:
-		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
-	return return_datetime+local_tz
+		var datetime_str_local = Time.get_datetime_string_from_datetime_dict(datetime_with_local, true)
+		datetime_str_local += local_tz
+		return datetime_str_local
+	return Time.get_datetime_string_from_datetime_dict(datetime, true)
 	

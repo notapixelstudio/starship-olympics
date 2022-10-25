@@ -260,6 +260,7 @@ func create_map(data:= {}):
 	map = map_scene.instance()
 
 var celebration: HallOfFame
+
 func navigate_to_celebration():
 	safe_destroy_combat()
 	# map initialization
@@ -273,14 +274,14 @@ func navigate_to_celebration():
 	champion.session_info = this_session.to_dict()
 	celebration.set_champion(champion)
 
-func navigate_to_map():
+func navigate_to_map(session_over := false):
 	safe_destroy_combat()
 	# map initialization
 	remove_child(selection_screen)
 	remove_child(parallax)
+	
 	add_child(map)
-
-
+	
 func add_cpu(how_many: int):
 	"""
 	Add cpu to the current pool of players
