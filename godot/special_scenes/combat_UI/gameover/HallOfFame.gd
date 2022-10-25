@@ -2,6 +2,7 @@ extends Control
 
 class_name HallOfFame
 
+
 export var champion_scene : PackedScene
 export var add_champion := false
 

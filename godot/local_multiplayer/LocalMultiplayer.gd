@@ -259,7 +259,7 @@ func create_map(data:= {}):
 	global.new_session(data)
 	map = map_scene.instance()
 
-var celebration: HallOfFame
+var celebration : HallOfFame
 
 func navigate_to_celebration():
 	safe_destroy_combat()

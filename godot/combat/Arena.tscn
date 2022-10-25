@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -19,7 +19,7 @@
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=18]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=19]
-[ext_resource path="res://assets/audio/FX/pickup--generic-pickup-sfx-for-collection-of-item--2-sound-effect-16598511.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/davefuzz/audio/int/sfx_any_int_grabitem_01.ogg" type="AudioStream" id=20]
 [ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=21]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=22]
 [ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=23]
@@ -40,6 +40,8 @@
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
 [ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
+[ext_resource path="res://assets/davefuzz/audio/int/sfx_any_int_pickupgem3_02.ogg" type="AudioStream" id=41]
+[ext_resource path="res://assets/davefuzz/audio/int/sfx_any_int_pickupgem1_01.ogg" type="AudioStream" id=42]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 40 )
@@ -269,8 +271,14 @@ __meta__ = {
 }
 enabled = false
 
-[node name="CollectAction" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
+[node name="GrabItem" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
 stream = ExtResource( 20 )
+
+[node name="Diamond" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
+stream = ExtResource( 42 )
+
+[node name="BigDiamond" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
+stream = ExtResource( 41 )
 
 [node name="TrailManager" type="Node" parent="Managers"]
 script = ExtResource( 21 )

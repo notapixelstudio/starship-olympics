@@ -67,14 +67,13 @@ __meta__ = {
 sprite = NodePath("../Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 0, 3 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
+visible = false
 position = Vector2( 0, 3 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect2" type="Sprite" parent="."]
@@ -91,12 +90,11 @@ texture = ExtResource( 7 )
 shape = SubResource( 1 )
 
 [node name="Glow" type="Node2D" parent="."]
-visible = false
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.0831619 )
-scale = Vector2( 0.819992, 0.819992 )
+modulate = Color( 0.305882, 1, 0.968627, 0.324703 )
+scale = Vector2( 0.87806, 0.87806 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
