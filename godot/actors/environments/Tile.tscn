@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://actors/environments/Tile.gd" type="Script" id=2]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=5]
 [ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 48
-font_data = ExtResource( 4 )
+size = 52
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
 length = 0.3
@@ -62,7 +62,10 @@ polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -
 
 [node name="GRegularPolygon" type="Node" parent="."]
 script = ExtResource( 7 )
+radius = 100.0
 sides = 4
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Conquerable" parent="." instance=ExtResource( 6 )]
 
@@ -70,7 +73,6 @@ sides = 4
 
 [node name="Foreground" type="Polygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
 position = Vector2( -6.99382e-07, 16 )
 scale = Vector2( 1.05, 1.05 )
 polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
@@ -87,7 +89,7 @@ polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -
 
 [node name="Partial" type="Sprite" parent="Graphics"]
 visible = false
-self_modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+self_modulate = Color( 0.701961, 0.701961, 0.701961, 1 )
 rotation = 0.785398
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
@@ -95,7 +97,7 @@ texture = ExtResource( 5 )
 [node name="Wrapper" type="Node2D" parent="Graphics"]
 
 [node name="Label" type="Label" parent="Graphics/Wrapper"]
-self_modulate = Color( 0.9, 0.9, 0.9, 1 )
+self_modulate = Color( 1, 1, 1, 0.705882 )
 margin_left = -100.0
 margin_top = -100.0
 margin_right = 100.0

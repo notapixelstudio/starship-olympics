@@ -54,8 +54,8 @@ const BOMB_BOOST = 1600
 const BALL_BOOST = 2300
 const BOMB_CHARGE_MULTIPLIER = 1.65
 const BALL_CHARGE_MULTIPLIER = 2.2
-const BULLET_BOOST = 1500
-const BULLET_CHARGE_MULTIPLIER = 1.3
+const BULLET_BOOST = 1600
+const BULLET_CHARGE_MULTIPLIER = 1.65
 const BUBBLE_BOOST = 1200
 const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
@@ -837,7 +837,7 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty():
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty() and not is_hiding():
 		$'%Ammo'.shot()
 		var aperture = PI/4
 		var amount = 1
@@ -901,6 +901,12 @@ func is_in_gel():
 func is_on_ice():
 	for area in $NearArea.get_overlapping_areas():
 		if area is Ice:
+			return true
+	return false
+	
+func is_hiding():
+	for area in $NearArea.get_overlapping_areas():
+		if area.is_in_group('hiding_spot'):
 			return true
 	return false
 	

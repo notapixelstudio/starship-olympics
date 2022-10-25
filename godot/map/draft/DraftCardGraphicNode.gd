@@ -47,6 +47,7 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard
 	if card is MysteryCard:
 		$Ground/Front/Mystery.texture = card.get_cover()
+		$Ground/Front/Background.modulate = Color('#7c6989')
 	
 	# winter
 	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()

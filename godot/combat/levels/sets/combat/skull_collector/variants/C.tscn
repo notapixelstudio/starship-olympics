@@ -1,22 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/environments/NoShipZone.gd" type="Script" id=4]
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=5]
 
 [node name="C" type="Node2D"]
 
-[node name="Wall" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 2 )]
+[node name="Wall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 350 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Wall"]
 script = ExtResource( 1 )
@@ -27,15 +18,8 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="Wall2" type="StaticBody2D" parent="." groups=["wall"] instance=ExtResource( 2 )]
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -350 )
-collision_layer = 2147483664
-collision_mask = 270337
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
-elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Wall2"]
 script = ExtResource( 1 )
@@ -46,13 +30,8 @@ bevel_ne = 1
 bevel_sw = 1
 bevel_se = 1
 
-[node name="NoShipZone7" type="Node2D" parent="." instance=ExtResource( 3 )]
+[node name="NoShipZone7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 500, -800 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone7"]
@@ -64,13 +43,8 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone8" type="Node2D" parent="." instance=ExtResource( 3 )]
+[node name="NoShipZone8" parent="." instance=ExtResource( 3 )]
 position = Vector2( -500, -800 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone8"]
@@ -82,13 +56,8 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone9" type="Node2D" parent="." instance=ExtResource( 3 )]
+[node name="NoShipZone9" parent="." instance=ExtResource( 3 )]
 position = Vector2( -500, 800 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone9"]
@@ -100,13 +69,8 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone10" type="Node2D" parent="." instance=ExtResource( 3 )]
+[node name="NoShipZone10" parent="." instance=ExtResource( 3 )]
 position = Vector2( 500, 800 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 4
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone10"]

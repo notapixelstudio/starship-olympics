@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://combat/levels/singles/connex/PlayerSide.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+func _ready():
+	global_rotation = 0
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 256
+font_data = ExtResource( 1 )
+
+[node name="PlayerSide" type="Area2D"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -950, 2700, -800, 2400, 800, 2400, 950, 2700 )
+
+[node name="ColorBand" type="Polygon2D" parent="."]
+self_modulate = Color( 0.701961, 0.701961, 0.701961, 1 )
+polygon = PoolVector2Array( -900, 2650, -800, 2425, 800, 2425, 900, 2650 )
+
+[node name="NoRotate" type="Node2D" parent="."]
+position = Vector2( 0, 3000 )
+script = SubResource( 1 )
+
+[node name="PlayerLabel" type="Label" parent="NoRotate"]
+unique_name_in_owner = true
+self_modulate = Color( 0.701961, 0.701961, 0.701961, 1 )
+margin_left = -900.0
+margin_top = -150.0
+margin_right = 900.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 2 )
+text = "PPP"
+align = 1
+valign = 1
+
+[node name="Neighbourhood" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Neighbourhood"]
+polygon = PoolVector2Array( -750, 2500, -750, 2325, 750, 2325, 750, 2500 )

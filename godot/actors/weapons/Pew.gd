@@ -21,7 +21,7 @@ func _on_ForwardBullet_body_entered(body):
 	if body.has_method('damage'):
 		body.damage(self, ship)
 		
-	if body is Ball and has_ownership_transfer():
+	if body is Ball and has_ownership_transfer() and ship != null and is_instance_valid(ship):
 		body.set_player(ship.get_player())
 		body.activate()
 
@@ -32,7 +32,8 @@ func set_ship(v : Ship):
 	
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
-	pfft.set_color(ship.get_color())
+	if ship != null and is_instance_valid(ship):
+		pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
 

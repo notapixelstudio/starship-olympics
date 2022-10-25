@@ -64,7 +64,7 @@ func has_type(t):
 	return self.get_type() == t
 	
 func is_equivalent_to(holdable2):
-	return self.has_type(holdable2.get_type())
+	return holdable2 != null and is_instance_valid(holdable2) and self.has_type(holdable2.get_type())
 	
 func set_player(v: InfoPlayer):
 	player = v
