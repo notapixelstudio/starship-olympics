@@ -31,6 +31,7 @@ func _ready():
 	
 	Events.connect("minigame_selected", self, "_on_minigame_selected")
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+	Events.connect('continue_after_session_ended', self, '_on_continue_after_session_ended')
 	
 	Events.connect('nav_to_menu', self, '_on_nav_to_menu')
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
@@ -229,6 +230,9 @@ func _on_continue_after_game_over(session_over = false):
 	else:
 		if not map.is_inside_tree():
 			add_child(map)
+			
+func _on_continue_after_session_ended():
+	navigate_to_map()
 	
 func _on_Pause_restart():
 	safe_destroy_combat()

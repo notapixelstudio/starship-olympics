@@ -53,7 +53,7 @@ func naming_champions():
 	
 func _input(event):
 	if event.is_action_pressed("confirm"):
-		Events.emit_signal("nav_to_map")
+		Events.emit_signal("continue_after_session_ended")
 		set_process_input(false)
 		queue_free()
 
