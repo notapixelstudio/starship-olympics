@@ -22,9 +22,6 @@ func _init():
 	append_cards(starting_deck.deal_cards())
 	
 	card_pool = CardPool.new()
-	for starting_card in starting_deck.cards:
-		card_pool.remove_card(starting_card)
-	
 	next.append_array(starting_deck.get_nexts())
 
 func get_card(card_id: String) -> DraftCard:
