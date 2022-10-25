@@ -622,6 +622,7 @@ func new_game(players: Array, data := {}) -> TheGame:
 		the_game.set_from_dictionary(data)
 		deck.set_from_dictionary(data.get("deck"))
 	the_game.set_deck(deck)
+	yield(get_tree().create_timer(1),"timeout" )
 	Events.emit_signal("game_started")
 	return the_game
 
@@ -668,7 +669,6 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
-		global.session.add_match(the_match.to_dict())
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null

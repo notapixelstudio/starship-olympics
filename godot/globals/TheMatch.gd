@@ -149,6 +149,8 @@ func no_players_left():
 func do_game_over():
 	game_over = true
 	emit_signal("game_over")
+	global.session.add_match(self.to_dict())
+	
 	
 func get_score(id_player : String):
 	var player : InfoPlayer = get_player(id_player)
@@ -211,7 +213,6 @@ func to_dict()->Dictionary:
 	var dict = {
 		"uuid": get_uuid(),
 		"timestamp": timestamp_str,
-		"winners": winners,
 		"winners_info": winners_info,
 		"winners_did_perfect": self.winners_did_perfect()
 	}

@@ -86,4 +86,5 @@ func set_from_dictionary(data: Dictionary):
 	self.id = data.get("id", self.get_id())
 	self.username = data.get("username", self.get_username())
 	self.set_species_from_id(data.get("species"))
+	self.session_score = data.get("session_score", 0)
 	print(data)

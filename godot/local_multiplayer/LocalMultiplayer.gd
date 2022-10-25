@@ -63,9 +63,11 @@ func setup_continue_game(game_data: Dictionary):
 		var infoplayer := InfoPlayer.new()
 		infoplayer.set_from_dictionary(player_data)
 		players[infoplayer.get_id()] = infoplayer
-	
+	yield(get_tree(), "idle_frame")
 	# setup deck
 	global.new_game(players.values(), game_data)
+	yield(get_tree(), "idle_frame")	
+	
 	create_map(game_data.get("session", {}))
 	print("Last game played was {game}. Will be removed from last_played".format({"game":global.the_game.deck.played_pile.pop_back()}))
 	
