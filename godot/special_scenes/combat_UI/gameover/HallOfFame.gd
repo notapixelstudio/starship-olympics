@@ -18,7 +18,8 @@ func _ready():
 			var champ = InfoChampion.new()
 			info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
 			champ.player = info_player.to_dict()
-			champ.session_info = {"timestamp": global.datetime_to_str(OS.get_datetime(true))}
+			var fake_session = TheSession.new()
+			champ.session_info = fake_session.to_dict()
 			champ_scene.set_player(champ)
 			$"%SessionWon".add_child(champ_scene)
 	
@@ -41,7 +42,8 @@ func _ready():
 		var champ = InfoChampion.new()
 		info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
 		champ.player = info_player.to_dict()
-		champ.session_info = {"timestamp": global.datetime_to_str(OS.get_datetime(true))}
+		var fake_session = TheSession.new()
+		champ.session_info = fake_session.to_dict()
 		self.set_champion(champ)
 	add_champion_to_scene()
 	

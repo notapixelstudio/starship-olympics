@@ -5,14 +5,17 @@ class_name TheSession
 var uuid : String
 var game_id: String
 var hand : Array # Array of DraftCard TODO: should be in Deck
-var timestamp_str : String
+var timestamp_dict : Dictionary
 var playing_card : DraftCard
 var leaderboards : Array = []
 
 func _init():
 	uuid = UUID.v4()
-	game_id=global.the_game.get_uuid()
-	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
+	if global.the_game:
+		game_id=global.the_game.get_uuid()
+	else:
+		game_id = "local_run"
+	timestamp_dict = Time.get_datetime_dict_from_system(true)
 	snapshot_leaderboard()
 
 	
@@ -98,7 +101,8 @@ func to_dict() -> Dictionary:
 		serialized_cards.insert(0, playing_card.get_id())
 	return {
 		"game_id": game_id,
-		"timestamp": timestamp_str,
+		'timestamp': global.datetime_to_str(self.timestamp_dict),
+		'timestamp_local': global.datetime_to_str(self.timestamp_dict, true),
 		"uuid": get_uuid(),
 		"matches": self.matches,
 		"hand": serialized_cards
@@ -124,6 +128,9 @@ func get_last_winners() -> Array:
 
 func snapshot_leaderboard() -> void:
 	var new_leaderboard = []
+	if not global.the_game:
+		print("No game is in session. Skip Leaderboard creation")
+		return
 	for player in global.the_game.get_players():
 		new_leaderboard.append(player.to_dict())
 	new_leaderboard.sort_custom(self, '_sort_by_session_score')

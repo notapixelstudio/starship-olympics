@@ -20,9 +20,11 @@ func set_player(champion: InfoChampion):
 	$"%PlayerName".text = champion.player.username if champion.player.username else champion.player.id
 	$"%Headshot".set_species(global.get_species(champion.player.species))
 	var matches = champion.session_info.get("matches", [])
-	var all_cards: CardPool = load(CARD_POOL_PATH+'/the_card_pool.tres').duplicate()
+	var all_cards = null
 	if global.the_game != null:
 		all_cards = global.the_game.all_cards
+	else:
+		all_cards = CardPool.new() 
 	for a_match in matches:
 		var logo = minigame_logo.instance()
 		var card_id = a_match["card_id"]
@@ -30,7 +32,7 @@ func set_player(champion: InfoChampion):
 		var card: DraftCard = all_cards.get_card(card_id)
 		logo.texture = card.get_logo()
 		$"%StarsContainer".add_child(logo)
-	$"%DateSession".text = cleanup_datetime_str(this_champion.session_info.timestamp)
+	$"%DateSession".text = cleanup_datetime_str(this_champion.session_info.get("timestamp_local", this_champion.session_info.timestamp))
 
 func insert_name():
 	$"%InsertName".connect("name_inserted", self, "_on_InsertName_name_inserted")
