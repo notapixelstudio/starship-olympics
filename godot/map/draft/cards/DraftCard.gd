@@ -97,3 +97,6 @@ func get_unlock() -> String:
 
 func get_unlock_strength() -> int:
 	return unlock_strength
+
+func get_logo() -> StreamTexture:
+	return get_minigame().get_logo()

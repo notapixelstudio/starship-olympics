@@ -1,0 +1,453 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=2]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=7]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
+[ext_resource path="res://actors/environments/GoalPortalGate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=11]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/modes/GoalPortal.tres" type="Resource" id=13]
+[ext_resource path="res://actors/environments/PortalGate.tscn" type="PackedScene" id=14]
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, -485.26 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+points = PoolVector2Array( -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, -485.26 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=4]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+points = PoolVector2Array( -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, -485.26 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, -485.26 )
+
+[sub_resource type="Animation" id=9]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, -485.26 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, -485.26 )
+
+[sub_resource type="Animation" id=12]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[node name="Arena" instance=ExtResource( 4 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 13 )
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+hollow = true
+offset = 200
+hide_grid = true
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
+script = ExtResource( 1 )
+radius = 2600
+sides = 6
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Field1" type="Node2D" parent="Battlefield/Middleground" index="0"]
+
+[node name="GoalPortalGate" parent="Battlefield/Middleground/Field1" index="0" instance=ExtResource( 10 )]
+position = Vector2( 0, -2050 )
+rotation = 1.5708
+width = 900.0
+show_arrow = false
+linked_to_path = NodePath("../PortalGate")
+goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
+
+[node name="Zone" parent="Battlefield/Middleground/Field1" index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, -2000 )
+rotation = 1.5708
+
+[node name="Polygon2D" parent="Battlefield/Middleground/Field1/Zone" index="1"]
+texture_rotation_degrees = -90.0002
+polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+
+[node name="Line2D" parent="Battlefield/Middleground/Field1/Zone" index="2"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/Field1/Zone/Area2D" index="2"]
+shape = SubResource( 13 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/Field1/Zone/CrownCollider" index="0"]
+shape = SubResource( 14 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/Field1/Zone" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Middleground/Field1/Zone" index="7"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="AnimationPlayer" parent="Battlefield/Middleground/Field1/Zone" index="8"]
+anims/Feedback = SubResource( 4 )
+
+[node name="NoShipSign" parent="Battlefield/Middleground/Field1/Zone" index="9"]
+position = Vector2( 288, -16 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Field1/Zone" index="11"]
+script = ExtResource( 5 )
+clip = Rect2( -400, -10000, 20000, 20000 )
+radius = 650
+precision = 100
+
+[node name="PortalGate" parent="Battlefield/Middleground/Field1" index="2" instance=ExtResource( 14 )]
+modulate = Color( 1, 1, 1, 0.313726 )
+position = Vector2( 0, 2100 )
+rotation = -1.5708
+width = 900.0
+show_arrow = false
+
+[node name="Field2" type="Node2D" parent="Battlefield/Middleground" index="1"]
+rotation = 2.0944
+
+[node name="GoalPortalGate" parent="Battlefield/Middleground/Field2" index="0" instance=ExtResource( 10 )]
+position = Vector2( 0, -2050 )
+rotation = 1.5708
+width = 900.0
+show_arrow = false
+linked_to_path = NodePath("../PortalGate")
+goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
+
+[node name="Zone" parent="Battlefield/Middleground/Field2" index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, -2000 )
+rotation = 1.5708
+
+[node name="Polygon2D" parent="Battlefield/Middleground/Field2/Zone" index="1"]
+texture_rotation_degrees = -90.0002
+polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+
+[node name="Line2D" parent="Battlefield/Middleground/Field2/Zone" index="2"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/Field2/Zone/Area2D" index="2"]
+shape = SubResource( 15 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/Field2/Zone/CrownCollider" index="0"]
+shape = SubResource( 16 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/Field2/Zone" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Middleground/Field2/Zone" index="7"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="AnimationPlayer" parent="Battlefield/Middleground/Field2/Zone" index="8"]
+anims/Feedback = SubResource( 9 )
+
+[node name="NoShipSign" parent="Battlefield/Middleground/Field2/Zone" index="9"]
+position = Vector2( 288, -16 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Field2/Zone" index="11"]
+script = ExtResource( 5 )
+clip = Rect2( -400, -10000, 20000, 20000 )
+radius = 650
+precision = 100
+
+[node name="PortalGate" parent="Battlefield/Middleground/Field2" index="2" instance=ExtResource( 14 )]
+modulate = Color( 1, 1, 1, 0.313726 )
+position = Vector2( 0, 2100 )
+rotation = -1.5708
+width = 900.0
+show_arrow = false
+
+[node name="Field3" type="Node2D" parent="Battlefield/Middleground" index="2"]
+rotation = 4.18879
+
+[node name="GoalPortalGate" parent="Battlefield/Middleground/Field3" index="0" instance=ExtResource( 10 )]
+position = Vector2( 0, -2050 )
+rotation = 1.5708
+width = 900.0
+show_arrow = false
+linked_to_path = NodePath("../PortalGate")
+goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
+
+[node name="Zone" parent="Battlefield/Middleground/Field3" index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, -2000 )
+rotation = 1.5708
+
+[node name="Polygon2D" parent="Battlefield/Middleground/Field3/Zone" index="1"]
+texture_rotation_degrees = -90.0002
+polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+
+[node name="Line2D" parent="Battlefield/Middleground/Field3/Zone" index="2"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/Field3/Zone/Area2D" index="2"]
+shape = SubResource( 17 )
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/Field3/Zone/CrownCollider" index="0"]
+shape = SubResource( 18 )
+
+[node name="Particles2D" parent="Battlefield/Middleground/Field3/Zone" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Middleground/Field3/Zone" index="7"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -400, 485.26, -400, 413.558, -400, 332.162, -400, 242.981, -400, 148.105, -400, 49.757, -400, -49.757, -400, -148.105, -400, -242.981, -400, -332.162, -400, -413.558, -400, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="AnimationPlayer" parent="Battlefield/Middleground/Field3/Zone" index="8"]
+anims/Feedback = SubResource( 12 )
+
+[node name="NoShipSign" parent="Battlefield/Middleground/Field3/Zone" index="9"]
+position = Vector2( 288, -16 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Field3/Zone" index="11"]
+script = ExtResource( 5 )
+clip = Rect2( -400, -10000, 20000, 20000 )
+radius = 650
+precision = 100
+
+[node name="PortalGate" parent="Battlefield/Middleground/Field3" index="2" instance=ExtResource( 14 )]
+modulate = Color( 1, 1, 1, 0.313726 )
+position = Vector2( 0, 2100 )
+rotation = -1.5708
+width = 900.0
+show_arrow = false
+
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
+type = "soccer"
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
+position = Vector2( -3.10351e-05, -1260 )
+rotation = 1.57079
+controls = "joy1"
+species = ExtResource( 7 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1091.19, 630 )
+rotation = -2.618
+controls = "joy2"
+species = ExtResource( 2 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
+position = Vector2( -1091.19, 630 )
+rotation = -0.523605
+controls = "joy2"
+species = ExtResource( 11 )
+cpu = true
+
+[node name="Camera" parent="." index="7"]
+smoothing_speed = 0.3
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
+
+[editable path="Battlefield/Middleground/Field1/Zone"]
+[editable path="Battlefield/Middleground/Field2/Zone"]
+[editable path="Battlefield/Middleground/Field3/Zone"]

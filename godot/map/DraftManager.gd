@@ -26,6 +26,7 @@ func _ready():
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	Events.connect("card_tapped", self, "player_just_chose_a_card")
 	
+	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
@@ -33,7 +34,7 @@ func _ready():
 	
 	#pass_node.connect("tapped", self, '_on_pass_tapped')
 	
-	global.new_session()
+	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
 		self.populate_hand(hand.duplicate())
@@ -64,7 +65,8 @@ func continue_draft(session_ended):
 	ships_have_to_choose = false
 	
 	var hand = global.session.get_hand()
-	if len(hand) == 0:
+	# TODO: design question? session ended will get to choose again 
+	if len(hand) == 0 or session_ended:
 		ships_have_to_choose = true
 		
 		# TODO: almost a duplicate of global.gd, might need some love

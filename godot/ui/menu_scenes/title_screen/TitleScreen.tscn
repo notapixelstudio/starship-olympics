@@ -86,27 +86,27 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -145.0
-margin_top = 37.0
+margin_top = 5.0
 margin_right = 145.0
-margin_bottom = 353.0
+margin_bottom = 355.0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Fight" type="Button" parent="Buttons"]
-margin_top = 12.0
+margin_top = 29.0
 margin_right = 290.0
-margin_bottom = 67.0
+margin_bottom = 84.0
 rect_min_size = Vector2( 210, 55 )
 action_mode = 0
 text = "FIGHT"
 flat = true
 
 [node name="TeamVersus" type="Button" parent="Buttons"]
-margin_top = 71.0
+margin_top = 88.0
 margin_right = 290.0
-margin_bottom = 126.0
+margin_bottom = 143.0
 rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
@@ -120,9 +120,9 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Campaign" type="Button" parent="Buttons"]
-margin_top = 130.0
+margin_top = 147.0
 margin_right = 290.0
-margin_bottom = 185.0
+margin_bottom = 202.0
 rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
@@ -136,9 +136,9 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Options" type="Button" parent="Buttons"]
-margin_top = 189.0
+margin_top = 206.0
 margin_right = 290.0
-margin_bottom = 244.0
+margin_bottom = 261.0
 rect_min_size = Vector2( 210, 55 )
 action_mode = 0
 text = "OPTIONS"
@@ -167,9 +167,9 @@ text = "CREDITS"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
-margin_top = 248.0
+margin_top = 265.0
 margin_right = 290.0
-margin_bottom = 303.0
+margin_bottom = 320.0
 rect_min_size = Vector2( 0, 55 )
 action_mode = 0
 text = "QUIT"

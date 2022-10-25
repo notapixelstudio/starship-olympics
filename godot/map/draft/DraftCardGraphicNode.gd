@@ -47,6 +47,7 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard
 	if card is MysteryCard:
 		$Ground/Front/Mystery.texture = card.get_cover()
+		$Ground/Front/Background.modulate = Color('#7c6989')
 	
 	# winter
 	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()
@@ -79,8 +80,8 @@ func set_content_card(card: DraftCard):
 # @override
 func select():
 	.select()
-	$"%SuitTopLeft".self_modulate = Color.white
-	$"%SuitBottomRight".self_modulate = Color.white
+	$"%SuitTopLeft".self_modulate = Color(0,0,0,0.75)
+	$"%SuitBottomRight".self_modulate = Color(0,0,0,0.75)
 	
 # @override
 func tap(author):

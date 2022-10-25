@@ -4,15 +4,18 @@ class_name TheSession
 
 var uuid : String
 var game_id: String
-var hand : Array # Array of DraftCard
-var timestamp_str : String
-
+var hand : Array # Array of DraftCard TODO: should be in Deck
+var timestamp_dict : Dictionary
+var playing_card : DraftCard
 var leaderboards : Array = []
 
 func _init():
 	uuid = UUID.v4()
-	game_id=global.the_game.get_uuid()
-	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
+	if global.the_game:
+		game_id=global.the_game.get_uuid()
+	else:
+		game_id = "local_run"
+	timestamp_dict = Time.get_datetime_dict_from_system(true)
 	snapshot_leaderboard()
 
 	
@@ -61,8 +64,13 @@ func get_settings(key = null):
 func setup_selected_sets(sets: Array):
 	self.selected_sets = sets
 
+func add_to_hand(card: DraftCard, position := 0):
+	hand.insert(position, card)
+	
 func choose_next_card() -> DraftCard:
-	var next_card = hand.pop_front()
+	playing_card = null
+	var next_card: DraftCard = hand.pop_front()
+	playing_card = next_card
 	global.the_game.deck.put_card_into_played_pile(next_card)
 	return next_card
 
@@ -86,15 +94,24 @@ func get_hand() -> Array:
 	return hand
 
 func to_dict() -> Dictionary:
-	"""
-	"""
+	var serialized_cards := []
+	for card in self.get_hand():
+		serialized_cards.append((card as DraftCard).get_id())
+	if playing_card != null:
+		serialized_cards.insert(0, playing_card.get_id())
 	return {
 		"game_id": game_id,
-		"timestamp": timestamp_str,
+		'timestamp': global.datetime_to_str(self.timestamp_dict),
+		'timestamp_local': global.datetime_to_str(self.timestamp_dict, true),
 		"uuid": get_uuid(),
-		"matches": self.matches
+		"matches": self.matches,
+		"hand": serialized_cards
 	}
 
+func set_from_dictionary(data: Dictionary):
+	pass
+	
+	
 func update_stars() -> void:
 	var winners = get_last_winners()
 	
@@ -111,6 +128,9 @@ func get_last_winners() -> Array:
 
 func snapshot_leaderboard() -> void:
 	var new_leaderboard = []
+	if not global.the_game:
+		print("No game is in session. Skip Leaderboard creation")
+		return
 	for player in global.the_game.get_players():
 		new_leaderboard.append(player.to_dict())
 	new_leaderboard.sort_custom(self, '_sort_by_session_score')

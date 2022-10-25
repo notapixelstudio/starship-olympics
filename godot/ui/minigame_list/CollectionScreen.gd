@@ -5,7 +5,7 @@ export var CollectionItemScene : PackedScene
 const CARD_POOL_PATH = "res://map/draft/pool"
 
 func _ready():
-	var pool = load(CARD_POOL_PATH+'/the_card_pool.tres')
+	var pool = CardPool.new()
 	var cards = pool.cards.duplicate()
 	cards.sort_custom(self, 'sort_cards')
 	
