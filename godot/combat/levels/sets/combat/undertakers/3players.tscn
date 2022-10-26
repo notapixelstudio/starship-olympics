@@ -45,7 +45,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -2100, -1100, -2000, -1200, -1000, -1200, -900, -1300, -900, -1600, 900, -1600, 900, -1300, 1000, -1200, 2000, -1200, 2100, -1100, 2100, -700, 2200, -600, 2500, -600, 2500, 600, 2200, 600, 2100, 700, 2100, 1150, 2000, 1200, 1000, 1200, 900, 1300, 900, 1600, -900, 1600, -900, 1300, -1000, 1200, -2000, 1200, -2100, 1100, -2100, 700, -2200, 600, -2500, 600, -2500, -600, -2200, -600, -2100, -700 )
+polygon = PoolVector2Array( -2000, -1000, -1900, -1100, -1000, -1100, -900, -1200, -900, -1500, 900, -1500, 900, -1200, 1000, -1100, 1900, -1100, 2000, -1000, 2000, -700, 2100, -600, 2400, -600, 2400, 600, 2100, 600, 2000, 700, 2000, 1000, 1900, 1100, 1000, 1100, 900, 1200, 900, 1500, -900, 1500, -900, 1200, -1000, 1100, -1900, 1100, -2000, 1000, -2000, 700, -2100, 600, -2400, 600, -2400, -600, -2100, -600, -2000, -700 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
@@ -120,19 +120,19 @@ bevel_sw = 90
 bevel_se = 90
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
-position = Vector2( -2150, 0 )
+position = Vector2( -2050, 0 )
 
 [node name="CameraEye3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 9 )]
-position = Vector2( -1.52588e-05, -1250 )
+position = Vector2( -1.52588e-05, -1200 )
 
 [node name="CameraEye4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 9 )]
-position = Vector2( -1.52588e-05, 1250 )
+position = Vector2( -1.52588e-05, 1200 )
 
 [node name="CameraEye2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 9 )]
-position = Vector2( 2150, 0 )
+position = Vector2( 2050, 0 )
 
 [node name="Wall10" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
-position = Vector2( -2300, -1400 )
+position = Vector2( -2200, -1300 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 
@@ -143,7 +143,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall11" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
-position = Vector2( -2300, 1400 )
+position = Vector2( -2200, 1300 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 
@@ -154,7 +154,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall12" parent="Battlefield/Middleground" index="10" instance=ExtResource( 8 )]
-position = Vector2( 2300, 1400 )
+position = Vector2( 2200, 1300 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 
@@ -165,7 +165,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall13" parent="Battlefield/Middleground" index="11" instance=ExtResource( 8 )]
-position = Vector2( 2300, -1400 )
+position = Vector2( 2200, -1300 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
 
@@ -230,19 +230,19 @@ position = Vector2( 0, 400 )
 graphics_scale = 0.8
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -2150, 0 )
+position = Vector2( -2050, 0 )
 rotation = 0.0
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2150, 0 )
+position = Vector2( 2050, 0 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 15 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
-position = Vector2( 0, -1250 )
+position = Vector2( 0, -1200 )
 rotation = 1.5708
 controls = "kb2"
 species = ExtResource( 12 )
