@@ -99,7 +99,7 @@ func to_dict() -> Dictionary:
 		serialized_cards.append((card as DraftCard).get_id())
 	if playing_card != null:
 		serialized_cards.insert(0, playing_card.get_id())
-	return {
+	var session_dict =  {
 		"game_id": game_id,
 		'timestamp': global.datetime_to_str(self.timestamp_dict),
 		'timestamp_local': global.datetime_to_str(self.timestamp_dict, true),
@@ -107,6 +107,7 @@ func to_dict() -> Dictionary:
 		"matches": self.matches,
 		"hand": serialized_cards
 	}
+	return session_dict
 
 func set_from_dictionary(data: Dictionary):
 	pass

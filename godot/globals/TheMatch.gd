@@ -149,6 +149,8 @@ func no_players_left():
 func do_game_over():
 	game_over = true
 	emit_signal("game_over")
+	global.session.add_match(self.to_dict())
+	
 	
 func get_score(id_player : String):
 	var player : InfoPlayer = get_player(id_player)
