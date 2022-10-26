@@ -101,14 +101,12 @@ func conquest():
 	if fortifiable:
 		attempt_fortification()
 		for n in neighbours:
-			if n is PlayerSide:
-				continue
-			if n.owner_ship == owner_ship or n.conquering_ship == owner_ship:
+			if n.get_player() == get_player() or n.get_conquering_player() == get_player():
 				n.attempt_fortification()
 	
 func attempt_fortification():
 	for n in neighbours:
-		if not(n is PlayerSide or n.owner_ship == owner_ship or n.conquering_ship == owner_ship):
+		if not(n.get_player() == get_player() or n.get_conquering_player() == get_player()):
 			return
 	fortify()
 	
@@ -157,7 +155,7 @@ func get_score():
 	return points
 	
 func set_on(player):
-	if on or owner_ship == null or player != owner_ship.get_player():
+	if on or get_player() == null or player != get_player():
 		return
 	on = true
 	modulate = Color(1.6,1.6,1.6)
@@ -168,9 +166,18 @@ func set_off():
 	modulate = Color(1,1,1)
 	
 func propagate():
-	if not on or owner_ship == null:
+	if not on or get_player() == null:
 		return
 		
 	for neighbour in neighbours:
 		neighbour.set_on(owner_ship.get_player())
 		
+func get_player():
+	if owner_ship == null:
+		return null
+	return owner_ship.get_player()
+
+func get_conquering_player():
+	if conquering_ship == null:
+		return null
+	return conquering_ship.get_player()

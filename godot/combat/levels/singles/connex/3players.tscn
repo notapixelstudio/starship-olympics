@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
-[ext_resource path="res://utils/CameraStartingRect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
 [ext_resource path="res://combat/levels/singles/connex/BigPlayerSide.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=6]
@@ -11,7 +11,9 @@
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://combat/modes/Connex.tres" type="Resource" id=10]
 [ext_resource path="res://combat/levels/singles/connex/Tiles.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=12]
+[ext_resource path="res://combat/levels/singles/connex/PlayerSide.tscn" type="PackedScene" id=12]
+[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
+[ext_resource path="res://utils/CameraStartingRect.tscn" type="PackedScene" id=14]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -78,11 +80,11 @@ sides = 8.0
 alternating_angle = 0
 rotation_degrees = 22.5
 
-[node name="CameraStartingRect" parent="Battlefield/Background" index="4" instance=ExtResource( 3 )]
+[node name="CameraStartingRect" parent="Battlefield/Background" index="4" instance=ExtResource( 14 )]
 polygon = PoolVector2Array( -2600, -2600, 2600, -2600, 2600, 2600, -2600, 2600, -2600, -2600 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/CameraStartingRect" index="0"]
-script = ExtResource( 12 )
+script = ExtResource( 3 )
 width = 5200
 height = 5200
 
@@ -90,7 +92,7 @@ height = 5200
 script = SubResource( 1 )
 
 [node name="Border" type="Polygon2D" parent="Battlefield/Middleground/Board" index="0"]
-position = Vector2( 0, 50 )
+position = Vector2( 50, 50 )
 z_index = -20
 z_as_relative = false
 color = Color( 0.247059, 0.172549, 0.133333, 1 )
@@ -105,25 +107,34 @@ z_as_relative = false
 color = Color( 0.105882, 0.0352941, 0, 1 )
 polygon = PoolVector2Array( -2700, -950, -950, -2700, 950, -2700, 2700, -950, 2700, 950, 950, 2700, -950, 2700, -2700, 950 )
 
-[node name="PlayerSink1" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 4 )]
+[node name="PlayerSource3" parent="Battlefield/Middleground/Board" index="2" groups=["in_camera"] instance=ExtResource( 4 )]
 rotation = 3.92699
-side_owner = NodePath("../../../../SpawnPositions/Players/p1")
-source = false
+side_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
-[node name="PlayerSink2" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 4 )]
-rotation = 2.35619
+[node name="PlayerSink2" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 12 )]
+rotation = -3.14159
 side_owner = NodePath("../../../../SpawnPositions/Players/p2")
 source = false
 
 [node name="Tiles" parent="Battlefield/Middleground/Board" index="4" instance=ExtResource( 11 )]
 
-[node name="PlayerSource1" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 4 )]
+[node name="PlayerSource1" parent="Battlefield/Middleground/Board" index="5" groups=["in_camera"] instance=ExtResource( 4 )]
 rotation = 0.785398
 side_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
-[node name="PlayerSource2" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 4 )]
+[node name="PlayerSource2" parent="Battlefield/Middleground/Board" index="6" groups=["in_camera"] instance=ExtResource( 4 )]
 rotation = -0.785398
 side_owner = NodePath("../../../../SpawnPositions/Players/p2")
+
+[node name="PlayerSink3" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 12 )]
+rotation = 1.5708
+side_owner = NodePath("../../../../SpawnPositions/Players/p3")
+source = false
+
+[node name="PlayerSink1" parent="Battlefield/Middleground/Board" index="8" instance=ExtResource( 12 )]
+rotation = 4.71239
+side_owner = NodePath("../../../../SpawnPositions/Players/p1")
+source = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1700, 1700 )
@@ -135,6 +146,12 @@ position = Vector2( 1700, 1700 )
 rotation = 3.92699
 controls = "kb2"
 species = ExtResource( 9 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
+position = Vector2( 1700, -1700 )
+rotation = 2.35619
+controls = "kb2"
+species = ExtResource( 13 )
 
 [node name="Countdown" parent="CanvasLayer" index="2"]
 __meta__ = {
