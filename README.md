@@ -43,6 +43,7 @@ All the game assets (art, audio, texture, .svg files) under the folder assets, i
 
 #### Soundtrack
 
+- [Giovanni Nava - Haunting Aliens](https://www.giovanni-nava.com/) 
 - [Mattek - Paradoxal Activity](https://soundcloud.com/themattek/mattek-paradoxal-activity)
 - Sounds and music from [freesound](https://freesound.org/people/salvob41/downloaded_sounds)
 
