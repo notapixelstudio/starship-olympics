@@ -52,7 +52,7 @@ rotation = 0.785398
 
 [node name="Tile6" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 8 )]
 rotation = 0.785398
-size = 5
+size = 5.0
 points = 50
 
 [node name="Tile12" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 8 )]
@@ -326,25 +326,25 @@ rotation = 0.785398
 [node name="Tile291" parent="Battlefield/Middleground/Board" index="70" instance=ExtResource( 8 )]
 position = Vector2( 1277.53, 566.528 )
 rotation = 0.785398
-size = 3
+size = 3.0
 points = 30
 
 [node name="Tile292" parent="Battlefield/Middleground/Board" index="71" instance=ExtResource( 8 )]
 position = Vector2( 1277.53, -565.472 )
 rotation = 0.785398
-size = 3
+size = 3.0
 points = 30
 
 [node name="Tile293" parent="Battlefield/Middleground/Board" index="72" instance=ExtResource( 8 )]
 position = Vector2( -1278.53, -564.528 )
 rotation = 0.785398
-size = 3
+size = 3.0
 points = 30
 
 [node name="Tile345" parent="Battlefield/Middleground/Board" index="73" instance=ExtResource( 8 )]
 position = Vector2( -1278.53, 569.472 )
 rotation = 0.785398
-size = 3
+size = 3.0
 points = 30
 
 [node name="Tile147" parent="Battlefield/Middleground/Board" index="74" instance=ExtResource( 8 )]
@@ -1356,5 +1356,6 @@ cpu = true
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
+disabled_override = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
