@@ -10,7 +10,7 @@ var remembered_card_ids : Dictionary = {} # String -> bool
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
-var card_pool : CardPool
+var card_pool := CardPool.new()
 func _init():
 	randomize()
 	# starting decks have to provide levels for each player count
@@ -20,8 +20,6 @@ func _init():
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck)
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
-	
-	card_pool = CardPool.new()
 	next.append_array(starting_deck.get_nexts())
 
 func get_card(card_id: String) -> DraftCard:
@@ -143,10 +141,11 @@ func set_from_dictionary(data: Dictionary):
 	var next_info = data.get("next", [])
 	for next_card_id in next_info:
 		next.append(card_pool.retrieve_card(next_card_id))
+	# create deck
+	cards = []
 	for played_card_id in played_ids:
-		for card_in_deck in cards:
-			if played_card_id == (card_in_deck as DraftCard).get_id():
-				print(card_pool.retrieve_card(played_card_id))
-				played_pile.append(card_in_deck)
+		var card_in_deck = card_pool.retrieve_card(played_card_id)
+		played_pile.append(card_in_deck)
+		
 	print(data)
 	

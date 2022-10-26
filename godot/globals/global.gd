@@ -643,7 +643,7 @@ func new_session(existing_data := {}) -> TheSession:
 	if existing_data.empty():
 		the_game.reset_players()
 	
-	var deck = the_game.get_deck()
+	var deck: Deck = the_game.get_deck()
 	
 	var hand_ids : Array = existing_data.get("hand", [])
 	var hand := []
