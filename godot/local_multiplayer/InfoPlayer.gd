@@ -11,7 +11,7 @@ var cpu: bool = false
 
 var playable : bool = true
 var lives : int = -1
-var session_score = []
+var session_score := []
 var stats: PlayerStats
 
 var team: String 
@@ -38,7 +38,7 @@ func to_dict():
 		"species_name" : species.name,
 		"species": species.get_id(),
 		"cpu": cpu,
-		"session_score": len(session_score),
+		"session_score": session_score,
 		"username": get_username()
 	}
 
@@ -86,5 +86,5 @@ func set_from_dictionary(data: Dictionary):
 	self.id = data.get("id", self.get_id())
 	self.username = data.get("username", self.get_username())
 	self.set_species_from_id(data.get("species"))
-	self.session_score = data.get("session_score", 0)
+	self.session_score = data.get("session_score", [])
 	print(data)

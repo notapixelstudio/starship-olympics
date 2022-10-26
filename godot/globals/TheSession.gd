@@ -16,7 +16,7 @@ func _init():
 	else:
 		game_id = "local_run"
 	timestamp_dict = Time.get_datetime_dict_from_system(true)
-	#snapshot_leaderboard()
+	snapshot_leaderboard()
 
 	
 func get_uuid() -> String:

@@ -234,6 +234,7 @@ func _on_continue_after_game_over(session_over = false):
 			add_child(map)
 			
 func _on_continue_after_session_ended():
+	global.write_into_file("user://games/latest.json", {}, File.WRITE_READ)
 	navigate_to_map()
 	
 func _on_Pause_restart():

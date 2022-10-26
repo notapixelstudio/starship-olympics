@@ -213,6 +213,7 @@ func to_dict()->Dictionary:
 	var dict = {
 		"uuid": get_uuid(),
 		"timestamp": timestamp_str,
+		"winners": winners,
 		"winners_info": winners_info,
 		"winners_did_perfect": self.winners_did_perfect()
 	}
