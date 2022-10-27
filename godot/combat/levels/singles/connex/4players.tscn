@@ -93,7 +93,7 @@ height = 5200
 script = SubResource( 1 )
 
 [node name="Border" type="Polygon2D" parent="Battlefield/Middleground/Board" index="0"]
-position = Vector2( 50, 50 )
+position = Vector2( 0, 50 )
 z_index = -20
 z_as_relative = false
 color = Color( 0.247059, 0.172549, 0.133333, 1 )
@@ -108,11 +108,11 @@ z_as_relative = false
 color = Color( 0.105882, 0.0352941, 0, 1 )
 polygon = PoolVector2Array( -2700, -950, -950, -2700, 950, -2700, 2700, -950, 2700, 950, 950, 2700, -950, 2700, -2700, 950 )
 
-[node name="PlayerSource3" parent="Battlefield/Middleground/Board" index="2" groups=["in_camera"] instance=ExtResource( 13 )]
+[node name="PlayerSource3" parent="Battlefield/Middleground/Board" index="2" instance=ExtResource( 13 )]
 rotation = 3.92699
 side_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
-[node name="PlayerSource4" parent="Battlefield/Middleground/Board" index="3" groups=["in_camera"] instance=ExtResource( 13 )]
+[node name="PlayerSource4" parent="Battlefield/Middleground/Board" index="3" instance=ExtResource( 13 )]
 rotation = 2.35619
 side_owner = NodePath("../../../../SpawnPositions/Players/p4")
 
@@ -123,11 +123,11 @@ source = false
 
 [node name="Tiles" parent="Battlefield/Middleground/Board" index="5" instance=ExtResource( 12 )]
 
-[node name="PlayerSource1" parent="Battlefield/Middleground/Board" index="6" groups=["in_camera"] instance=ExtResource( 13 )]
+[node name="PlayerSource1" parent="Battlefield/Middleground/Board" index="6" instance=ExtResource( 13 )]
 rotation = 0.785398
 side_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
-[node name="PlayerSource2" parent="Battlefield/Middleground/Board" index="7" groups=["in_camera"] instance=ExtResource( 13 )]
+[node name="PlayerSource2" parent="Battlefield/Middleground/Board" index="7" instance=ExtResource( 13 )]
 rotation = -0.785398
 side_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
