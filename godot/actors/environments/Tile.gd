@@ -81,6 +81,9 @@ func _ready():
 		if area != self and area.has_method('get_klass') and area.get_klass() == 'Tile': # trick to avoid circular references
 			neighbours.append(area)
 			
+	if len(neighbours) > 8:
+		print(len(neighbours))
+	
 	if not Engine.is_editor_hint(): # watch out for deleting this node when this is executed as a tool script!
 		$Neighbourhood.queue_free() # delete areas to save physics computations
 	
