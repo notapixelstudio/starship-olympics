@@ -158,12 +158,12 @@ func set_on(player):
 	if on or get_player() == null or player != get_player():
 		return
 	on = true
-	modulate = Color(1.6,1.6,1.6)
+	modulate = Color(1.7,1.7,1.7)
 	propagate()
 	
 func set_off():
 	on = false
-	modulate = Color(1,1,1)
+	modulate = Color(0.9,0.9,0.9)
 	
 func propagate():
 	if not on or get_player() == null:
