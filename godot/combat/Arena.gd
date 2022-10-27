@@ -42,7 +42,6 @@ onready var collect_mode = $Managers/CollectModeManager
 onready var survival_mode = $Managers/SurvivalModeManager
 
 onready var combat_manager = $Managers/CombatManager
-onready var stun_manager = $Managers/StunManager
 onready var collect_manager = $Managers/CollectManager
 onready var environments_manager = $Managers/EnvironmentsManager
 onready var conquest_manager = $Managers/ConquestManager
@@ -750,7 +749,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
-	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
 	ship.connect("dead", last_man_mode, "_on_sth_killed")
 	#ship.connect("dead", combat_manager, "_on_sth_killed")
