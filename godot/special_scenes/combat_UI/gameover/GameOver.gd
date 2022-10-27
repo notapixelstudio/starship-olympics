@@ -12,35 +12,9 @@ signal hide_arena
 export var sure_scene: PackedScene
 
 func _ready():
-	buttons.visible = false
-	
-func initialize():
-	"""
-	Parameters
-	----------
-	winners : Array of PlayerStats
-	
-		
-	"""
-	
-	yield(get_tree().create_timer(1), "timeout")
-	
-	if global.demo:
-		get_tree().paused = false
-		Events.emit_signal("nav_to_character_selection")
-		return 
-	buttons.visible = true
-	
-	#TODO: what do we do in case of DRAW of session? Will ignore it for now
-	if global.session.is_over():
-		Soundtrack.play('SessionOver', true)
-		back_to_menu_button.visible=false
-	
-	for button in buttons.get_children():
-		if button.visible:
-			button.grab_focus()
-			break
-	
+	set_process_unhandled_input(false)
+	$"%LeaderBoard".setup()
+
 func _on_Continue_pressed():
 	get_tree().paused = false
 	Events.emit_signal("continue_after_game_over", global.session.is_over())
@@ -52,6 +26,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		self.visible = true
 		emit_signal("hide_arena")
+		set_process_unhandled_input(false)
 		yield(get_tree().create_timer(0.5), "timeout")
 		# grab focus on first button visible
 		for button in buttons.get_children():
@@ -59,7 +34,9 @@ func _unhandled_input(event):
 				button.grab_focus()
 				break
 
+
 func _show_arena():
+	set_process_unhandled_input(true)
 	self.visible = false
 	emit_signal("show_arena")
 
@@ -79,3 +56,24 @@ func _on_Map_pressed():
 			button.focus_mode = Control.FOCUS_ALL
 	confirm.queue_free()
 	
+
+
+func _on_LeaderBoard_animation_over():
+	if global.demo:
+		get_tree().paused = false
+		Events.emit_signal("nav_to_character_selection")
+		return 
+	$"%Buttons".visible = true
+	
+	#TODO: what do we do in case of DRAW of session? Will ignore it for now
+	if global.session.is_over():
+		Soundtrack.play('SessionOver', true)
+		back_to_menu_button.visible=false
+	
+	for button in $"%Buttons".get_children():
+		if button.visible:
+			button.grab_focus()
+			break
+	
+	global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
+

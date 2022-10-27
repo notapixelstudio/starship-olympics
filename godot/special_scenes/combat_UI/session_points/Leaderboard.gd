@@ -4,20 +4,16 @@ const pad = Vector2(0, 140)
 
 export var pilot_stats_scene : PackedScene 
 
-onready var animator = $AnimationPlayer
+signal animation_over
 onready var container = $Chart
 
-func _ready():
-	"""
-	Parameters
-	----------
-	winners : Array of PlayerStats
-	
-	"""
+func setup():
 	
 	var player_index = global.the_game.get_player_index()
-	global.session.update_stars()
-	var winners = global.session.get_last_winners()
+	var match_played = global.the_match
+	global.session.update_scores(match_played)
+	
+	var winners = match_played.winners
 	var previous_leaderboard = global.session.get_previous_leaderboard()
 	
 	var max_points = global.win # Points of the session
@@ -35,7 +31,8 @@ func _ready():
 		pilot_stats.set_info(player)
 		i+=1
 		
-	animator.play("entrance")
+	$"%AnimationPlayer".play("entrance")
+	
 	
 func reorder():
 	var current_leaderboard = global.session.get_current_leaderboard()
@@ -48,7 +45,7 @@ func reorder():
 			i += 1
 			
 	yield(tween, "finished")
-	
+	emit_signal("animation_over")
 	if global.session.is_over():
 		celebrate()
 	

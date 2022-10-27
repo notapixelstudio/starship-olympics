@@ -65,7 +65,6 @@ func continue_draft(session_ended):
 	ships_have_to_choose = false
 	
 	var hand = global.session.get_hand()
-	# TODO: design question? session ended will get to choose again 
 	if len(hand) == 0:
 		ships_have_to_choose = true
 		

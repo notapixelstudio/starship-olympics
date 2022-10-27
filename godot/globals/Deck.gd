@@ -35,9 +35,12 @@ func set_from_dictionary(data: Dictionary):
 	for next_card_id in next_info:
 		next.append(card_pool.retrieve_card(next_card_id))
 	# create deck
-	cards = data.get("cards", self.remembered_card_ids.keys())
+	var card_ids = data.get("cards", self.remembered_card_ids.keys())
+	cards = []
+	for card_id in card_ids:
+		cards.append(self.get_card(card_id))
 	for played_card_id in played_ids:
-		var card_in_deck = card_pool.retrieve_card(played_card_id)
+		var card_in_deck = self.get_card(played_card_id)
 		played_pile.append(card_in_deck)
 
 
@@ -60,10 +63,11 @@ func draw(how_many : int) -> Array:
 		
 	var result = []
 	for i in range(min(how_many, len(cards))):
-		var card = cards.pop_front()
+		var card: DraftCard = cards.pop_front()
 		assert(card is DraftCard)
 		card.on_card_drawn()
 		result.append(card)
+	cards.append_array(result)
 	return result
 	
 func shuffle():
@@ -82,14 +86,14 @@ func add_new_cards(amount := 1) -> void:
 	var new_cards = []
 	for i in range(amount):
 		var new_card = next.pop_front()
-		if new_card != null:
+		if new_card != null and not new_cards in cards:
 			print("New card extracted from next: " + new_card.get_id())
 			new_card.set_new(true)
 			new_cards.append(new_card)
 			remember_card_id(new_card.get_id())
 			
 	new_cards.shuffle()
-	cards = new_cards + cards # new cards are placed on top
+	cards.append_array(new_cards) # new cards are placed on top
 	
 	# wipe the next array at each refill
 	next = []
@@ -137,11 +141,12 @@ func get_remembered_card_ids() -> Dictionary:
 func to_dict() -> Dictionary:
 	var next_info = self.cards_to_dict(next)
 	var played_info = self.cards_to_dict(played_pile)
+	var cards_info = self.cards_to_dict(cards)
 	return {
 		remembered_card_ids=remembered_card_ids,
 		next=next_info,
 		played_pile=played_info,
-		cards=cards
+		cards=cards_info
 	}
 
 func cards_to_dict(array_of_cards: Array) -> Array:

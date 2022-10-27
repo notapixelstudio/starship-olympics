@@ -673,6 +673,7 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
+		global.session.add_match(the_match)
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
@@ -737,22 +738,21 @@ var starting_deck: String = "classic"
 
 
 # Date utils
-func datetime_to_str(datetime: Dictionary, use_local := false, seconds := false) -> String:
+func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
 	# {"day":23,"dst":false,"hour":18,"minute":41,
 	# "month":9,"second":55,"weekday":4,"year":2021}
 	# FIXME replace with ISO dates
 	var tz = Time.get_time_zone_from_system()
 	var tz_hours = floor(tz.bias / 60)
 	var tz_min = floor(tz.bias%60)
-	if not seconds:
-		datetime.erase("second")
-	var datetime_with_local := datetime.duplicate()
-	datetime_with_local["hour"] = datetime_with_local.hour + tz_hours
-	datetime_with_local["minute"] = datetime_with_local.minute + tz_hours
-	var local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
+	var datetime_with_local := datetime
+	var local_tz = ""
+	datetime.erase("second")
+	var datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
 	if use_local:
-		var datetime_str_local = Time.get_datetime_string_from_datetime_dict(datetime_with_local, true)
-		datetime_str_local += local_tz
-		return datetime_str_local
-	return Time.get_datetime_string_from_datetime_dict(datetime, true)
+		datetime["hour"] = datetime["hour"] + tz_hours
+		datetime["minute"] = datetime["hour"] + tz_hours
+		datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
+		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
+	return datetime_string
 	
