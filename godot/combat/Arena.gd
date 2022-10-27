@@ -711,6 +711,9 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
 	ship.game_mode = self.game_mode
+	
+	ship.set_start_invincible(game_mode.start_invincible)
+	
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
