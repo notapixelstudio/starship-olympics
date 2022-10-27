@@ -294,14 +294,15 @@ func _ready():
 				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
 				
 	# FIXME this should eventually replace the system above
-	var score_definers = traits.get_all_with('ScoreDefiner')
-	if len(score_definers) > 0:
-		score_to_win_override = 0
-		for score_definer in score_definers:
-			score_to_win_override += score_definer.get_score()
-			
-	if not game_mode.shared_targets:
-		score_to_win_override /= global.the_game.get_number_of_players()
+	if score_to_win_override == 0: # do this only if score is not already overridden
+		var score_definers = traits.get_all_with('ScoreDefiner')
+		if len(score_definers) > 0:
+			score_to_win_override = 0
+			for score_definer in score_definers:
+				score_to_win_override += score_definer.get_score()
+				
+		if not game_mode.shared_targets:
+			score_to_win_override /= global.the_game.get_number_of_players()
 		
 	if game_mode.fill_starting_score:
 		game_mode.starting_score = score_to_win_override
