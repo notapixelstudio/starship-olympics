@@ -53,7 +53,7 @@ func recompute():
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
 
-[node name="ConquestModeManager" parent="Managers" index="11"]
+[node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -147,24 +147,24 @@ side_owner = NodePath("../../../../SpawnPositions/Players/p4")
 source = false
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1700, 1700 )
+position = Vector2( -2000, 1400 )
 rotation = -0.785398
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 1700, 1700 )
+position = Vector2( 1400, 2000 )
 rotation = 3.92699
 controls = "kb2"
 species = ExtResource( 1 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
-position = Vector2( 1700, -1700 )
+position = Vector2( 2000, -1400 )
 rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 11 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 6 )]
-position = Vector2( -1700, -1700 )
+position = Vector2( -1400, -2000 )
 rotation = 0.785398
 controls = "kb2"
 species = ExtResource( 15 )
