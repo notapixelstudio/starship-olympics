@@ -289,7 +289,6 @@ precision = 100
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 10 )]
 hollow = true
-offset = 200
 hide_grid = true
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
@@ -322,25 +321,7 @@ points = PoolVector2Array( -880, -330, -880, 920 )
 width = 130.0
 default_color = Color( 1, 1, 1, 1 )
 
-[node name="Launcher" parent="Battlefield/Middleground" index="0" instance=ExtResource( 16 )]
-position = Vector2( 0, -1050 )
-symbol_scale = 1.5
-
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher" index="11"]
-script = ExtResource( 1 )
-radius = 200
-precision = 40.0
-
-[node name="Launcher2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 16 )]
-position = Vector2( 0, 1100 )
-symbol_scale = 1.5
-
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher2" index="11"]
-script = ExtResource( 1 )
-radius = 200
-precision = 40.0
-
-[node name="LeftGoalPortalGate" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
+[node name="LeftGoalPortalGate" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 position = Vector2( -2300, 0 )
 __meta__ = {
@@ -372,7 +353,7 @@ anims/RESET = SubResource( 19 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/LeftGoalPortalGate/NoRotate" index="0"]
 text = ""
 
-[node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
+[node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 position = Vector2( 2300, 0 )
 rotation = 3.14159
@@ -401,38 +382,60 @@ scale = Vector2( 1, 1.81818 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/RightGoalPortalGate/NoRotate" index="0"]
 text = ""
 
+[node name="Launcher3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
+position = Vector2( -550, -1200 )
+symbol_scale = 1.5
+
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher3" index="11"]
+script = ExtResource( 1 )
+radius = 200
+precision = 40.0
+
+[node name="Launcher4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 16 )]
+position = Vector2( 550, 1200 )
+symbol_scale = 1.5
+
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher4" index="11"]
+script = ExtResource( 1 )
+radius = 200
+precision = 40.0
+
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 type = "soccer"
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="1" instance=ExtResource( 11 )]
-position = Vector2( 0, 1550 )
+position = Vector2( 0, 1200 )
 
 [node name="CameraEye2" parent="Battlefield/Foreground" index="2" instance=ExtResource( 11 )]
-position = Vector2( 0, -1500 )
+position = Vector2( 0, -1200 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -848.528, -848.528 )
 rotation = 0.785398
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
 position = Vector2( -1159.11, -310.583 )
 rotation = 0.261799
 controls = "kb2"
 species = ExtResource( 6 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
 position = Vector2( -1159.11, 310.583 )
 rotation = -0.261799
 controls = "kb2"
 species = ExtResource( 14 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 8 )]
 position = Vector2( -848.528, 848.528 )
 rotation = -0.785398
 controls = "kb2"
 species = ExtResource( 17 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 16000, 16000 )
