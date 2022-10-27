@@ -13,6 +13,9 @@ const CARD_POOL_PATH = "res://map/draft/pool"
 var card_pool := CardPool.new()
 func _init():
 	randomize()
+
+func setup():
+	# TODO: might be together with set_from_dictionary
 	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
@@ -22,11 +25,25 @@ func _init():
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())
 
+func set_from_dictionary(data: Dictionary):
+	next = []
+	played_pile = []
+	var next_ids = data.get("next", [])
+	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
+	var played_ids = data.get("played_pile", [])
+	var next_info = data.get("next", [])
+	for next_card_id in next_info:
+		next.append(card_pool.retrieve_card(next_card_id))
+	# create deck
+	cards = data.get("cards", self.remembered_card_ids.keys())
+	for played_card_id in played_ids:
+		var card_in_deck = card_pool.retrieve_card(played_card_id)
+		played_pile.append(card_in_deck)
+
+
 func get_card(card_id: String) -> DraftCard:
-	for card in self.cards:
-		if card_id == (card as DraftCard).get_id():
-			return card
-	return null
+	var returning_card: DraftCard = self.card_pool.retrieve_card(card_id)
+	return returning_card
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
@@ -123,7 +140,8 @@ func to_dict() -> Dictionary:
 	return {
 		remembered_card_ids=remembered_card_ids,
 		next=next_info,
-		played_pile=played_info
+		played_pile=played_info,
+		cards=cards
 	}
 
 func cards_to_dict(array_of_cards: Array) -> Array:
@@ -132,20 +150,3 @@ func cards_to_dict(array_of_cards: Array) -> Array:
 		serialized_cards.append((card as DraftCard).get_id())
 	return serialized_cards
 
-func set_from_dictionary(data: Dictionary):
-	next = []
-	played_pile = []
-	var next_ids = data.get("next", [])
-	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
-	var played_ids = data.get("played_pile", [])
-	var next_info = data.get("next", [])
-	for next_card_id in next_info:
-		next.append(card_pool.retrieve_card(next_card_id))
-	# create deck
-	cards = []
-	for played_card_id in played_ids:
-		var card_in_deck = card_pool.retrieve_card(played_card_id)
-		played_pile.append(card_in_deck)
-		
-	print(data)
-	

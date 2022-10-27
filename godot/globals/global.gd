@@ -535,14 +535,14 @@ func shake_node_backwards(node, tween):
 	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.interpolate_method(node, "set_position", node.rect_position - Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
-	yield(tween,"tween_completed")
+	
 
 func shake_node(node, tween):
 	var actual_d_pos = node.rect_position
 	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position + Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.interpolate_method(node, "set_position", node.rect_position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
-	yield(tween,"tween_completed")
+	
 	
 func get_base_entity(node : Node):
 	if node is Entity:
@@ -621,8 +621,10 @@ func new_game(players: Array, data := {}) -> TheGame:
 	if not data.empty():
 		the_game.set_from_dictionary(data)
 		deck.set_from_dictionary(data.get("deck"))
+	else:
+		deck.setup()
 	the_game.set_deck(deck)
-	yield(get_tree().create_timer(1),"timeout" )
+	
 	Events.emit_signal("game_started")
 	return the_game
 

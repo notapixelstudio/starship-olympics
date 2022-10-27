@@ -14,7 +14,6 @@ func _ready():
 	winners : Array of PlayerStats
 	
 	"""
-	global.safe_destroy_match()
 	
 	var player_index = global.the_game.get_player_index()
 	global.session.update_stars()

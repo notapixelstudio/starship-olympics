@@ -232,12 +232,12 @@ func animate_selection(picked_card: DraftCard):
 	emit_signal("card_chosen")
 	yield(get_tree().create_timer(2), "timeout")
 	# everything back to position
-	
 	chosen_card.global_position = back_pos
 	chosen_card.scale = back_size
 	chosen_card.z_index = 0
 	
 func random_selection(list: Array, sel_index, loops=3, max_duration=5):
+	list.shuffle()
 	list.shuffle()
 	list.resize(min(5, len(list)))
 	var total_wait: float = 0
