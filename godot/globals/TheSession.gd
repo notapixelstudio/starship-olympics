@@ -124,7 +124,7 @@ func update_scores(match_played: TheMatch) -> void:
 		winner.add_victory(match_played.winners_did_perfect())
 		print("%s added victory" % [winner.id])
 	# store leaderboard status after changing it
-	snapshot_leaderboard()
+	# snapshot_leaderboard()
 	print("Saving SNAPSHOT. {lead}".format({"lead": leaderboards}))
 	add_match(match_played)
 	
