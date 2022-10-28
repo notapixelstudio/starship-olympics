@@ -31,7 +31,7 @@ func _ready():
 		# select the first one, and overwrite the global id
 		var first = $VBoxContainer.get_child(0)
 		var deck: StartingDeck = (first as DeckListItem).deck
-		global.starting_deck = deck.get_id()
+		global.starting_deck = deck.get_id() # TBD maybe this should also be persisted somehow?
 		(first as DeckListItem).grab_focus()
 		
 func deck_chosen(starting_deck: StartingDeck):

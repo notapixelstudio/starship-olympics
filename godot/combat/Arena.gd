@@ -328,6 +328,14 @@ func _ready():
 	
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
+		
+	if global.is_match_running():
+		var draft_card = global.the_match.get_draft_card()
+		
+		# set the appropriate background, according to card suits
+		if draft_card != null:
+			var suit = draft_card.get_suit_top() # TBD different suits
+			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
 	
 	yield(camera, "transition_over")
 	
@@ -387,8 +395,8 @@ func _ready():
 			laser.queue_free()
 			
 	if global.is_match_running():
-		# manage the coming of winter
 		var draft_card = global.the_match.get_draft_card()
+		# manage the coming of winter
 		if draft_card != null and draft_card.is_winter():
 			var ice = IceScene.instance()
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
