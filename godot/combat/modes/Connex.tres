@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://assets/icon/minicards/sets/board_conquest.png" type="Texture" id=1]
+[ext_resource path="res://assets/icon/minicards/sets/connex.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
 
@@ -8,10 +8,10 @@
 script = ExtResource( 3 )
 id = "connex"
 is_mutator = false
-name = "Connex"
+name = "Connexx"
 icon = ExtResource( 1 )
 logo = ExtResource( 2 )
-description = "connect your sides"
+description = "keep your sides connected"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
 max_timeout = 40
@@ -40,6 +40,7 @@ bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
 auto_thrust = false
+start_invincible = true
 floodable = true
 flood = false
 laserable = false
