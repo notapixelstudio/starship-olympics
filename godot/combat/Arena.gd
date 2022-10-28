@@ -644,7 +644,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	
 func on_gameover():
-	
+	set_process_unhandled_input(false)
 	for child in $Managers.get_children():
 		if child is ModeManager:
 			child.enabled = false
@@ -658,8 +658,6 @@ func on_gameover():
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
-	
-	game_over.initialize()
 
 func _on_continue_after_game_over(_session_over):
 	if standalone:

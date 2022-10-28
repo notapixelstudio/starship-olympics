@@ -10,9 +10,12 @@ var remembered_card_ids : Dictionary = {} # String -> bool
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
-var card_pool : CardPool
+var card_pool := CardPool.new()
 func _init():
 	randomize()
+
+func setup():
+	# TODO: might be together with set_from_dictionary
 	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
@@ -20,15 +23,30 @@ func _init():
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck)
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
-	
-	card_pool = CardPool.new()
 	next.append_array(starting_deck.get_nexts())
 
+func set_from_dictionary(data: Dictionary):
+	next = []
+	played_pile = []
+	var next_ids = data.get("next", [])
+	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
+	var played_ids = data.get("played_pile", [])
+	var next_info = data.get("next", [])
+	for next_card_id in next_info:
+		next.append(card_pool.retrieve_card(next_card_id))
+	# create deck
+	var card_ids = data.get("cards", self.remembered_card_ids.keys())
+	cards = []
+	for card_id in card_ids:
+		cards.append(self.get_card(card_id))
+	for played_card_id in played_ids:
+		var card_in_deck = self.get_card(played_card_id)
+		played_pile.append(card_in_deck)
+
+
 func get_card(card_id: String) -> DraftCard:
-	for card in self.cards:
-		if card_id == (card as DraftCard).get_id():
-			return card
-	return null
+	var returning_card: DraftCard = self.card_pool.retrieve_card(card_id)
+	return returning_card
 	
 # could return less than the number of requested cards in corner cases
 func draw(how_many : int) -> Array:
@@ -45,10 +63,11 @@ func draw(how_many : int) -> Array:
 		
 	var result = []
 	for i in range(min(how_many, len(cards))):
-		var card = cards.pop_front()
+		var card: DraftCard = cards.pop_front()
 		assert(card is DraftCard)
 		card.on_card_drawn()
 		result.append(card)
+	cards.append_array(result)
 	return result
 	
 func shuffle():
@@ -67,14 +86,14 @@ func add_new_cards(amount := 1) -> void:
 	var new_cards = []
 	for i in range(amount):
 		var new_card = next.pop_front()
-		if new_card != null:
+		if new_card != null and not new_cards in cards:
 			print("New card extracted from next: " + new_card.get_id())
 			new_card.set_new(true)
 			new_cards.append(new_card)
 			remember_card_id(new_card.get_id())
 			
 	new_cards.shuffle()
-	cards = new_cards + cards # new cards are placed on top
+	cards.append_array(new_cards) # new cards are placed on top
 	
 	# wipe the next array at each refill
 	next = []
@@ -122,10 +141,12 @@ func get_remembered_card_ids() -> Dictionary:
 func to_dict() -> Dictionary:
 	var next_info = self.cards_to_dict(next)
 	var played_info = self.cards_to_dict(played_pile)
+	var cards_info = self.cards_to_dict(cards)
 	return {
 		remembered_card_ids=remembered_card_ids,
 		next=next_info,
-		played_pile=played_info
+		played_pile=played_info,
+		cards=cards_info
 	}
 
 func cards_to_dict(array_of_cards: Array) -> Array:
@@ -134,19 +155,3 @@ func cards_to_dict(array_of_cards: Array) -> Array:
 		serialized_cards.append((card as DraftCard).get_id())
 	return serialized_cards
 
-func set_from_dictionary(data: Dictionary):
-	next = []
-	played_pile = []
-	var next_ids = data.get("next", [])
-	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
-	var played_ids = data.get("played_pile", [])
-	var next_info = data.get("next", [])
-	for next_card_id in next_info:
-		next.append(card_pool.retrieve_card(next_card_id))
-	for played_card_id in played_ids:
-		for card_in_deck in cards:
-			if played_card_id == (card_in_deck as DraftCard).get_id():
-				print(card_pool.retrieve_card(played_card_id))
-				played_pile.append(card_in_deck)
-	print(data)
-	
