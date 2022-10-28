@@ -75,5 +75,5 @@ func _on_LeaderBoard_animation_over():
 			button.grab_focus()
 			break
 	
-	global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
+	#global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
 
