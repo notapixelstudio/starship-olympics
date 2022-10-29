@@ -33,6 +33,8 @@ func get_description():
 	return game_mode.description
 
 func increase_times_started():
+	if global.demo:
+		return
 	times_started += 1
 	
 func is_first_time_started():
