@@ -168,6 +168,8 @@ var array_level
 var audio_on : bool setget _audio_on
 
 var demo : bool = false
+# playtest mode, fixed selection player
+var demo_playtest : bool = true
 
 func _audio_on(new_value):
 	audio_on = new_value
