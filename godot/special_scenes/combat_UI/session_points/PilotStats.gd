@@ -19,6 +19,8 @@ func set_info(value: InfoPlayer):
 	$"%StarsContainer".initialize(info.session_score, max_points, just_won)
 	$Background.modulate = info.get_color()
 	$WinnerOutline.modulate = info.get_color()
+	$"%PlayerID".text = info.get_username()
+	$"%PlayerID".modulate = info.get_color()
 
 func change_position(new_value):
 	new_position = new_value

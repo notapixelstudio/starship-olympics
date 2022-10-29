@@ -24,7 +24,7 @@ func set_player_info(new_value: InfoPlayer):
 	set_process(true)
 	if not is_inside_tree():
 		yield(self, "ready")
-	$PlayerID.text = player_info.id
+	$PlayerID.text = player_info.get_username()
 	$controls.text = player_info.controls
 	$Wheel.modulate = player_info.get_color()
 	$PlayerID.modulate = player_info.get_color()
