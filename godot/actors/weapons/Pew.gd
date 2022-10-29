@@ -8,6 +8,9 @@ var ownership_transfer := true
 
 var previous_velocity := Vector2.LEFT
 
+func _ready():
+	$RandomAudioStreamPlayer.play()
+
 func _physics_process(delta):
 	previous_velocity = linear_velocity
 
@@ -42,6 +45,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func destroy() -> void:
 	dissolve()
+	if $RandomAudioStreamPlayer.playing:
+		yield($RandomAudioStreamPlayer, "finished")
 	queue_free()
 
 func get_owner_ship() -> Ship:
