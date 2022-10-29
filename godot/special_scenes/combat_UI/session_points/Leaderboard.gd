@@ -46,7 +46,7 @@ func reorder():
 			
 	yield(tween, "finished")
 	emit_signal("animation_over")
-	if global.session.is_over():
+	if global.session and global.session.is_over():
 		celebrate()
 	
 func celebrate():
