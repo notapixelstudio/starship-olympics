@@ -7,7 +7,7 @@ const CARD_SEPARATION_ANGLE = 1.8
 
 export var size:= Vector2()
 
-var horizontal_radius := 1800.0
+var horizontal_radius := 2200.0
 var vertical_radius := 300.0
 
 
