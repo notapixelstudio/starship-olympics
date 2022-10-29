@@ -41,8 +41,8 @@ var timestamp : String
 func _init():
 	global.the_match = self
 	uuid = UUID.v4()
-	timestamp_local = Time.get_datetime_string_from_system(true, true)
-	timestamp = Time.get_datetime_string_from_system(false, true)
+	timestamp_local = Time.get_datetime_string_from_system(false, true)
+	timestamp = Time.get_datetime_string_from_system(true, true)
 	
 func get_uuid() -> String:
 	return uuid

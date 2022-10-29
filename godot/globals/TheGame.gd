@@ -15,8 +15,8 @@ func _init():
 	timestamp_dict = Time.get_datetime_dict_from_system(true)
 	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
 	all_cards = CardPool.new() 
-	timestamp_local = Time.get_datetime_string_from_system(true, true)
-	timestamp = Time.get_datetime_string_from_system(false, true)
+	timestamp_local = Time.get_datetime_string_from_system(false, true)
+	timestamp = Time.get_datetime_string_from_system(true, true)
 
 	
 func get_uuid() -> String:

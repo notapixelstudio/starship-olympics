@@ -16,8 +16,8 @@ func _init():
 		game_id=global.the_game.get_uuid()
 	else:
 		game_id = "local_run"
-	timestamp_local = Time.get_datetime_string_from_system(true, true)
-	timestamp = Time.get_datetime_string_from_system(false, true)
+	timestamp_local = Time.get_datetime_string_from_system(false, true)
+	timestamp = Time.get_datetime_string_from_system(true, true)
 	snapshot_leaderboard()
 
 func setup_from_dictionary(data: Dictionary):
