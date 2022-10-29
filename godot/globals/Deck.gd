@@ -52,7 +52,13 @@ func get_card(card_id: String) -> DraftCard:
 func draw(how_many : int) -> Array:
 	# reshuffe the played pile into the deck if the deck is emptied
 	if how_many > len(cards):
+		print('deck is about to be emptied (' + str(len(cards)) + ' left, ' + str(how_many) + ' requested).')
+		print('reshuffling ' + str(len(played_pile)) + ' cards from the played pile.')
+		print(played_pile)
+		append_cards(played_pile)
+		played_pile = []
 		shuffle()
+		print('deck now contains ' + str(len(cards)) + ' cards')
 		print(cards)
 		
 	var result = []
@@ -61,7 +67,6 @@ func draw(how_many : int) -> Array:
 		assert(card is DraftCard)
 		card.on_card_drawn()
 		result.append(card)
-	cards.append_array(result)
 	return result
 	
 func shuffle():
@@ -71,10 +76,9 @@ func shuffle():
 	
 # add cards to the deck
 func append_cards(cards_to_be_appended : Array) -> void:
+	cards.append_array(cards_to_be_appended)
 	for new_card in cards_to_be_appended:
 		remember_card_id(new_card.get_id())
-	for card_id in remembered_card_ids:
-		cards.append(card_pool.retrieve_card(card_id))
 	
 func add_new_cards(amount := 1) -> void:
 	next.shuffle()
