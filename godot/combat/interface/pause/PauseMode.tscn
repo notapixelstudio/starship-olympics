@@ -40,9 +40,6 @@ map_texture = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Window" type="Sprite" parent="."]
 modulate = Color( 1.15, 1.15, 1.15, 1 )
@@ -92,14 +89,12 @@ margin_top = -465.0
 margin_right = 339.5
 margin_bottom = -30.0
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
 modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_top = 8.0
 margin_right = 678.0
-margin_bottom = 53.0
+margin_bottom = 61.0
 size_flags_horizontal = 3
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 0
@@ -113,9 +108,9 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
-margin_top = 57.0
+margin_top = 65.0
 margin_right = 678.0
-margin_bottom = 79.0
+margin_bottom = 87.0
 size_flags_horizontal = 3
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 0
@@ -129,15 +124,15 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
-margin_top = 83.0
+margin_top = 91.0
 margin_right = 678.0
-margin_bottom = 125.0
-rect_min_size = Vector2( 0, 42 )
+margin_bottom = 161.0
+rect_min_size = Vector2( 0, 70 )
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-margin_top = 129.0
+margin_top = 165.0
 margin_right = 678.0
-margin_bottom = 449.0
+margin_bottom = 435.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -176,21 +171,22 @@ margin_bottom = 170.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+visible = false
 margin_top = 174.0
 margin_right = 678.0
 margin_bottom = 220.0
 text = "QUIT TO CARDS"
 
 [node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 224.0
+margin_top = 174.0
 margin_right = 678.0
-margin_bottom = 270.0
+margin_bottom = 220.0
 text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 274.0
+margin_top = 224.0
 margin_right = 678.0
-margin_bottom = 320.0
+margin_bottom = 270.0
 text = "QUIT TO MAIN MENU"
 
 [node name="Tween" type="Tween" parent="."]
