@@ -50,6 +50,7 @@ func _on_continue_after_game_over(session_ended):
 	continue_draft(session_ended)
 	
 func continue_draft(session_ended):
+	global.session.put_back_playing_card()
 	if session_ended:
 		draw_anew()
 		
@@ -97,7 +98,6 @@ func continue_draft(session_ended):
 		self.pick_next_card()
 
 func draw_anew():
-	global.session.put_back_playing_card()
 	global.new_session()
 	global.session.discard_hand() # we don't want a normal hand, we need to add a new game first
 	for c in hand_node.get_all_cards():
