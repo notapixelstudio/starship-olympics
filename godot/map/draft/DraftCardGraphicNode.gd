@@ -111,7 +111,7 @@ func gracefully_zoom_in():
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween.tween_property(self, 'global_position', Vector2(0, 300), 0.8)
 	var waiting_tweener = tween.parallel().tween_property(self, 'rotation_degrees', 0.0, 0.7)
-	tween.tween_property(self, 'scale', Vector2(8, 8), 1.5)
+	tween.tween_property(self, 'scale', Vector2(8, 8), 1.4)
 	yield(waiting_tweener, "finished")
 	emit_signal("zoomed_in")
 	yield(tween, "finished")

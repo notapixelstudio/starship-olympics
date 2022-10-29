@@ -33,7 +33,6 @@ func update_card_positions():
 		
 func add_card(card:DraftCardGraphicNode):
 	add_child(card)
-	self.update_card_positions()
 
 func remove_card(card:DraftCardGraphicNode):
 	remove_child(card)

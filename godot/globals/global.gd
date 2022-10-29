@@ -272,8 +272,10 @@ var from_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 func _input(event):
 	if demo and (event is InputEventJoypadButton or event is InputEventKey):
 		demo = false
+		reset_counts()
 		Events.emit_signal('nav_to_character_selection')
 		get_tree().paused = false
+		
 		
 	if event.is_action_pressed("fullscreen"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -282,6 +284,8 @@ func _input(event):
 	if demo_playtest and event.is_action_pressed("force_reset"):
 		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
 		get_tree().paused = false
+		reset_counts()
+		
 	if demo_playtest and event.is_action_pressed("delete_persistence"):
 		persistance.delete_latest_game()
 
@@ -615,6 +619,13 @@ var the_match: TheMatch = null
 var session: TheSession = null
 var arena
 
+func reset_counts():
+	game_number = 0
+	session_number = 0
+	sessions_played = 0 # Total number of sessions. Persistence
+	session_number_of_game = 0
+	match_number_of_game = 0
+	
 var game_number := 0
 var session_number := 0
 var sessions_played := 0 # Total number of sessions. Persistence

@@ -53,7 +53,7 @@ func continue_draft(session_ended):
 	if session_ended:
 		draw_anew()
 		
-	yield(get_tree().create_timer(1.5), "timeout") # this is also needed to wait for entering the tree
+	yield(get_tree().create_timer(0.4), "timeout") # this is also needed to wait for entering the tree
 	
 	if not session_ended:
 		# cleanup if session continues
@@ -201,7 +201,7 @@ func populate_hand(hand: Array):
 		(card as DraftCard).on_card_drawn()
 		yield(get_tree().create_timer(0.1), "timeout")
 		add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
-		
+	hand_node.update_card_positions()
 func animate_selection(picked_card: DraftCard):
 	# This will animate the selection of the chosen card
 	var index_selection = 0
