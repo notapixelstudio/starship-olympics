@@ -51,17 +51,16 @@ func _on_continue_after_game_over(session_ended):
 	
 func continue_draft(session_ended):
 	if session_ended:
-		self.draw_anew()
+		draw_anew()
 		
 	yield(get_tree().create_timer(1.5), "timeout") # this is also needed to wait for entering the tree
 	
-	var last_match_info = global.session.get_last_match()
-	
 	if not session_ended:
 		# cleanup if session continues
-		var last_played_card = hand_node.get_card(last_match_info["card_id"])
+		var last_match_info = global.session.get_last_match()
+		var last_played_card: DraftCardGraphicNode = hand_node.get_card(last_match_info["card_id"])
 		hand_node.remove_card(last_played_card)
-	
+		
 	ships_have_to_choose = false
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
@@ -98,6 +97,7 @@ func continue_draft(session_ended):
 		self.pick_next_card()
 
 func draw_anew():
+	global.session.put_back_playing_card()
 	global.new_session()
 	global.session.discard_hand() # we don't want a normal hand, we need to add a new game first
 	for c in hand_node.get_all_cards():

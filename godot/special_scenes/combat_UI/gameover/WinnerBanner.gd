@@ -28,7 +28,6 @@ func set_player(champion: InfoChampion):
 	for a_match in matches:
 		var logo = minigame_logo.instance()
 		var card_id = a_match["card_id"]
-		
 		var card: DraftCard = all_cards.get_card(card_id)
 		logo.texture = card.get_logo()
 		$"%StarsContainer".add_child(logo)

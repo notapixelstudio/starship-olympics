@@ -87,13 +87,13 @@ func discard_hand():
 	hand = []
 
 func add_match_dict(last_match: Dictionary):
-	playing_card = null # we are not playing anymore
 	var match_id = last_match["id"]
 	if not match_id in ordered_matches:
 		matches.append(last_match)
 		ordered_matches.append(match_id)
 	
 func add_match(the_match: TheMatch):
+	
 	var match_dict : Dictionary = the_match.to_dict()
 	add_match_dict(match_dict)
 	
@@ -133,7 +133,12 @@ func update_scores(match_played: TheMatch) -> void:
 	snapshot_leaderboard()
 	print("Saving SNAPSHOT. {lead}".format({"lead": leaderboards}))
 	add_match(match_played)
-	
+
+func put_back_playing_card():
+	if playing_card != null:
+		global.the_game.deck.put_card_into_played_pile(playing_card)
+	playing_card = null
+
 func get_last_winners() -> Array:
 	var match_dict = matches.back()
 	return match_dict.get("winners", [])
