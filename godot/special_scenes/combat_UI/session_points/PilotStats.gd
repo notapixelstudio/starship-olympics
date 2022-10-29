@@ -34,4 +34,4 @@ func get_player_info():
 
 func celebrate():
 	$AnimationPlayer.play("Victory")
-	
+	z_index = 1
