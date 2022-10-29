@@ -60,17 +60,16 @@ func continue_draft(session_ended):
 	if not session_ended:
 		# cleanup if session continues
 		var last_played_card = hand_node.get_card(last_match_info["card_id"])
-		last_played_card.queue_free()
+		hand_node.remove_card(last_played_card)
 	
 	ships_have_to_choose = false
-	
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
 		ships_have_to_choose = true
 		
 		# TODO: almost a duplicate of global.gd, might need some love
 		var deck = global.the_game.get_deck()
-		
+
 		var how_many_new_cards := 1
 		
 		hand = deck.draw(HAND_SIZE-how_many_new_cards)

@@ -653,12 +653,12 @@ func new_session(existing_data := {}) -> TheSession:
 	var hand := []
 	for card_id in hand_ids:
 		hand.append(deck.get_card(card_id))
-		
+	
 	if hand.empty():
 		hand = deck.draw(3)
 	# else: start with no hand, the draft manager will take care of that
 	session.set_hand(hand)
-	
+	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
 	return session
 	
@@ -675,7 +675,6 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
-		global.session.add_match(the_match)
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
